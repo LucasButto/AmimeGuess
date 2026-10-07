@@ -84,6 +84,12 @@ $colors: (
   'accent': #2f5fd0,
   'accent-contrast': #ffffff,
   'focus': #1a46b8,
+  // Resultado de un intento (modo Clásico). Los tres tienen contraste AA (≥ 4,5:1)
+  // con `on-result`, y nunca se usan solos: siempre van con un ícono o un texto.
+  'match': #1f7a3d,
+  'partial': #b45309,
+  'miss': #b42318,
+  'on-result': #ffffff,
 );
 
 @function color($name) {
