@@ -3,16 +3,23 @@
 @use 'mixins' as m;
 
 .page {
-  @include m.container;
+  // Ancho amplio: la tabla del Clásico necesita más que una sola columna de texto.
+  @include m.container(t.$container-wide);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: t.$space-3;
-  padding-block: t.$space-6;
+  gap: t.$space-4;
+  padding-block: t.$space-5;
 
   @include bp.min-width('md') {
-    padding-block: t.$space-8;
+    gap: t.$space-5;
+    padding-block: t.$space-7;
   }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
 }
 
 .franchise {
@@ -28,19 +35,11 @@
   line-height: t.$line-height-tight;
 }
 
-.text {
-  color: t.color('text-muted');
-}
-
-.engine {
-  font-size: t.$font-size-sm;
-  color: t.color('text-muted');
-}
-
 .back {
   @include m.touch-target;
   display: inline-flex;
   align-items: center;
+  align-self: flex-start;
   color: t.color('accent');
 
   &:focus-visible {

@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { franchises, getFranchise } from '@/franchises';
 import { es } from '@/i18n/es';
+import { ModeGame } from './ModeGame';
 import styles from './page.module.scss';
 
 // Solo existen los modos de la config de cada franquicia; cualquier otra ruta es 404.
@@ -25,12 +26,11 @@ export default async function ModePage({
 
   return (
     <main className={styles.page}>
-      <p className={styles.franchise}>{franchise.name}</p>
-      <h1 className={styles.title}>{mode.name}</h1>
-      <p className={styles.text}>{es.mode.provisional}</p>
-      <p className={styles.engine}>
-        {es.mode.engineLabel}: {mode.engine}
-      </p>
+      <header className={styles.header}>
+        <p className={styles.franchise}>{franchise.name}</p>
+        <h1 className={styles.title}>{mode.name}</h1>
+      </header>
+      <ModeGame franchise={franchise} mode={mode} />
       <Link className={styles.back} href={`/${franchise.slug}`}>
         {es.mode.backToFranchise}
       </Link>

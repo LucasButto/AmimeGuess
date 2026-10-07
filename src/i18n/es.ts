@@ -19,7 +19,6 @@ export const es = {
   mode: {
     comingSoon: 'Próximamente',
     provisional: 'Este modo todavía no está disponible.',
-    engineLabel: 'Motor',
     backToFranchise: 'Volver a la franquicia',
   },
   game: {
