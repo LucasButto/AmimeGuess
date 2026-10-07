@@ -9,6 +9,9 @@ next-env.d.ts
 # tests
 /coverage
 
+# caché local de las APIs de los scripts de datos
+/.cache/
+
 # typescript
 *.tsbuildinfo
 
