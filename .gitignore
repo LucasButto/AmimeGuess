@@ -1,0 +1,32 @@
+# dependencias
+/node_modules
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+
+# tests
+/coverage
+
+# typescript
+*.tsbuildinfo
+
+# entorno
+.env*
+!.env.example
+
+# vercel
+.vercel
+
+# sistema
+.DS_Store
+Thumbs.db
+
+# logs
+npm-debug.log*
+
+# claude y documentación del proyecto (no se versionan)
+.claude/
+CLAUDE.md
+docs/
