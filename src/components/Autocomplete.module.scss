@@ -1,0 +1,92 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
+  // Al enfocar en el teléfono, el campo se sube dejando un margen arriba.
+  scroll-margin-block-start: t.$space-3;
+}
+
+.label {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: t.color('text-muted');
+}
+
+.input {
+  @include m.touch-target;
+  inline-size: 100%;
+  padding: t.$space-2 t.$space-3;
+  // 1rem (16 px) como mínimo: con menos, iOS hace zoom al enfocar el campo.
+  font-size: t.$font-size-base;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-md;
+  background: t.color('surface');
+  color: t.color('text');
+
+  &::placeholder {
+    color: t.color('text-muted');
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: 0.0625rem;
+  }
+
+  &:disabled {
+    background: t.color('bg');
+    color: t.color('text-muted');
+  }
+}
+
+.list,
+.empty {
+  position: absolute;
+  inset-inline: 0;
+  // Justo debajo del campo (alto del campo + el hueco con la etiqueta).
+  inset-block-start: 100%;
+  z-index: 20;
+  margin: t.$space-1 0 0;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-md;
+  background: t.color('surface');
+  box-shadow: 0 0.25rem 1rem color-mix(in srgb, #{t.color('text')} 20%, transparent);
+}
+
+.list {
+  padding: t.$space-1;
+  list-style: none;
+  // dvh: sigue sirviendo cuando el teclado virtual achica la pantalla.
+  max-block-size: min(50dvh, 22rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.empty {
+  padding: t.$space-3;
+  color: t.color('text-muted');
+}
+
+.option {
+  @include m.touch-target;
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
+  padding: t.$space-1 t.$space-2;
+  border-radius: t.$radius-sm;
+  cursor: pointer;
+
+  &[data-active='true'] {
+    background: color-mix(in srgb, #{t.color('accent')} 14%, #{t.color('surface')});
+  }
+}
+
+.thumb {
+  flex: none;
+  inline-size: 2rem;
+  block-size: 2rem;
+  object-fit: contain;
+}
