@@ -12,6 +12,9 @@ next-env.d.ts
 # caché local de las APIs de los scripts de datos
 /.cache/
 
+# capturas de npm run check:responsive
+/.screenshots/
+
 # typescript
 *.tsbuildinfo
 
