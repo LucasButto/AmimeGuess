@@ -1,0 +1,39 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.page {
+  @include m.container;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: t.$space-4;
+  padding-block: t.$space-6;
+
+  @include bp.min-width('md') {
+    padding-block: t.$space-8;
+  }
+}
+
+.title {
+  @include m.fluid-text(2rem, 3rem);
+  font-family: t.font('heading');
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+}
+
+.text {
+  color: t.color('text-muted');
+}
+
+.back {
+  @include m.touch-target;
+  display: inline-flex;
+  align-items: center;
+  color: t.color('accent');
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+}

@@ -1,0 +1,77 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.page {
+  @include m.container(t.$container-wide);
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-6;
+  padding-block: t.$space-6;
+
+  @include bp.min-width('md') {
+    gap: t.$space-7;
+    padding-block: t.$space-8;
+  }
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+}
+
+.title {
+  @include m.fluid-text(2rem, 3rem);
+  font-family: t.font('heading');
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+}
+
+.subtitle {
+  font-size: t.$font-size-lg;
+  color: t.color('text-muted');
+}
+
+// 1 columna en base, 2 en md, 4 en xl (SPEC 9.1).
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: t.$space-4;
+  padding: 0;
+  list-style: none;
+
+  @include bp.min-width('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include bp.min-width('xl') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  @include m.touch-target;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  block-size: 100%;
+  padding: t.$space-6 t.$space-5;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+  color: t.color('text');
+  font-size: t.$font-size-xl;
+  font-weight: t.$font-weight-medium;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    border-color: t.color('accent');
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+}
