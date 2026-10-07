@@ -1,0 +1,147 @@
+@use 'tokens' as t;
+
+// Medidas de la tabla. En un teléfono (360 px) no entran todas las columnas:
+// cada una tiene un ancho mínimo legible y el resto se desplaza dentro del marco.
+$name-column: 6.5rem;
+$column-min: 4.75rem;
+
+.frame {
+  position: relative;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+  overflow: hidden;
+
+  // Degradé del borde derecho: indica que hay más columnas por desplazar.
+  &::after {
+    content: '';
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0;
+    inline-size: 1.5rem;
+    background: linear-gradient(to left, color-mix(in srgb, #{t.color('text')} 28%, transparent), transparent);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+  }
+
+  &[data-more='true']::after {
+    opacity: 1;
+  }
+}
+
+.scroller {
+  overflow: auto;
+  // Con muchos intentos, la tabla se desplaza dentro de sí misma y el encabezado queda a la vista.
+  max-block-size: 80dvh;
+  overscroll-behavior-x: contain;
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: -0.125rem;
+  }
+}
+
+.table {
+  // `separate`: con `collapse` los bordes de las celdas fijas se pierden al desplazar.
+  border-collapse: separate;
+  border-spacing: 0;
+  inline-size: 100%;
+}
+
+.head {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 2;
+  min-inline-size: $column-min;
+  padding: t.$space-2 t.$space-1;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  line-height: t.$line-height-tight;
+  text-align: center;
+  background: t.color('surface');
+  color: t.color('text-muted');
+  border-block-end: t.$border-width solid t.color('border');
+}
+
+// La esquina queda fija en los dos sentidos, encima de todo.
+.nameHead {
+  inset-inline-start: 0;
+  z-index: 3;
+  min-inline-size: $name-column;
+  inline-size: $name-column;
+  border-inline-end: t.$border-width solid t.color('border');
+}
+
+.name {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 1;
+  display: table-cell;
+  min-inline-size: $name-column;
+  inline-size: $name-column;
+  padding: t.$space-2 t.$space-1;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  line-height: t.$line-height-tight;
+  text-align: center;
+  background: t.color('surface');
+  border-inline-end: t.$border-width solid t.color('border');
+  overflow-wrap: anywhere;
+
+  span {
+    display: block;
+  }
+}
+
+.thumb {
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.cell {
+  min-inline-size: $column-min;
+  padding: t.$space-1;
+  vertical-align: middle;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.125rem;
+  min-block-size: 3.25rem;
+  padding: t.$space-1;
+  font-size: t.$font-size-sm;
+  line-height: t.$line-height-tight;
+  text-align: center;
+  border-radius: t.$radius-md;
+  color: t.color('on-result');
+  // `break-word` (y no `anywhere`): la columna nunca queda más angosta que su
+  // palabra más larga, así "Eléctrico" no se parte a mitad.
+  overflow-wrap: break-word;
+
+  &[data-match='exact'] {
+    background: t.color('match');
+  }
+
+  &[data-match='partial'] {
+    background: t.color('partial');
+  }
+
+  &[data-match='none'] {
+    background: t.color('miss');
+  }
+}
+
+.value {
+  font-weight: t.$font-weight-bold;
+}
+
+.icon {
+  font-size: t.$font-size-base;
+  line-height: 1;
+}
