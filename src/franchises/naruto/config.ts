@@ -4,6 +4,11 @@ export const narutoConfig = {
   slug: 'naruto',
   name: 'Naruto',
   series: ['naruto', 'shippuden', 'boruto'],
+  seriesLabels: {
+    naruto: 'Naruto',
+    shippuden: 'Shippuden',
+    boruto: 'Boruto',
+  },
   modes: [
     { slug: 'clasico', name: 'Clásico', engine: 'classic' },
     { slug: 'silueta', name: 'Silueta', engine: 'image-reveal' },

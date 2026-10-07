@@ -4,6 +4,13 @@ export const dragonBallConfig = {
   slug: 'dragon-ball',
   name: 'Dragon Ball',
   series: ['db', 'dbz', 'gt', 'super', 'daima'],
+  seriesLabels: {
+    db: 'Dragon Ball',
+    dbz: 'Dragon Ball Z',
+    gt: 'Dragon Ball GT',
+    super: 'Dragon Ball Super',
+    daima: 'Dragon Ball Daima',
+  },
   modes: [
     { slug: 'clasico', name: 'Clásico', engine: 'classic' },
     { slug: 'silueta', name: 'Silueta', engine: 'image-reveal' },

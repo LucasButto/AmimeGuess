@@ -5,6 +5,14 @@ export const yugiohConfig = {
   name: 'Yu-Gi-Oh',
   // `sevens` y `gorush` son opcionales y quedan fuera hasta decidirlo (sesión 12).
   series: ['dm', 'gx', '5ds', 'zexal', 'arcv', 'vrains'],
+  seriesLabels: {
+    dm: 'Duel Monsters',
+    gx: 'GX',
+    '5ds': "5D's",
+    zexal: 'ZEXAL',
+    arcv: 'ARC-V',
+    vrains: 'VRAINS',
+  },
   modes: [
     { slug: 'duelista', name: 'Duelista', engine: 'classic' },
     { slug: 'carta', name: 'Carta', engine: 'classic' },
