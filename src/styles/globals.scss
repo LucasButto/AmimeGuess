@@ -1,0 +1,70 @@
+@use 'sass:math';
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+
+:root {
+  @include t.root-vars;
+  color-scheme: light;
+}
+
+// Tamaño de fuente raíz fluido (SPEC 9.1). Todo el sitio mide en rem, así que
+// la interfaz entera escala con esto: 16 px hasta fhd (1920), ~20 px en qhd
+// (2560) y ~30 px en uhd (3840). `rem` en el elemento raíz es el tamaño por
+// defecto del navegador, por lo que se respeta la preferencia del usuario.
+$fhd: bp.breakpoint('fhd');
+$qhd: bp.breakpoint('qhd');
+$uhd: bp.breakpoint('uhd');
+
+html {
+  -webkit-text-size-adjust: 100%;
+
+  @include bp.min-width('fhd') {
+    // +4 px de fuente raíz entre fhd y qhd.
+    font-size: clamp(1rem, calc(1rem + #{math.div(4px, $qhd - $fhd)} * (100vw - #{$fhd})), 1.25rem);
+  }
+
+  @include bp.min-width('qhd') {
+    // +10 px más entre qhd y uhd; de ahí en adelante se mantiene.
+    font-size: clamp(1.25rem, calc(1.25rem + #{math.div(10px, $uhd - $qhd)} * (100vw - #{$qhd})), 1.875rem);
+  }
+}
+
+// Reset
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+img,
+svg,
+video {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+body {
+  min-block-size: 100dvh;
+  // Áreas seguras del dispositivo (notch, barra de gestos).
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+    env(safe-area-inset-left);
+  overflow-wrap: break-word;
+  font-family: t.font('body');
+  font-size: t.$font-size-base;
+  line-height: t.$line-height-base;
+  color: t.color('text');
+  background: t.color('bg');
+}

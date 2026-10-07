@@ -1,0 +1,22 @@
+@use 'tokens' as t;
+
+// Área táctil mínima (44 × 44 px a 16 px de fuente raíz). Para botones, chips
+// y cualquier elemento que se toque.
+@mixin touch-target {
+  min-block-size: t.$touch-target;
+  min-inline-size: t.$touch-target;
+}
+
+// Texto fluido entre dos tamaños en rem.
+@mixin fluid-text($min, $max) {
+  font-size: t.fluid($min, $max);
+}
+
+// Contenedor centrado con margen lateral fluido. Por defecto, el ancho del
+// área de juego.
+@mixin container($max: t.$container-game) {
+  inline-size: 100%;
+  max-inline-size: $max;
+  margin-inline: auto;
+  padding-inline: t.$gutter;
+}

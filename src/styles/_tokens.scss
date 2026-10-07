@@ -1,0 +1,111 @@
+@use 'sass:map';
+@use 'sass:math';
+
+// Tokens de diseño. Colores, espaciados y tipografías se toman solo de acá.
+// Todas las medidas van en rem (la fuente raíz escala en pantallas grandes,
+// ver globals.scss); los píxeles quedan para los bordes.
+
+// --- Fluido -----------------------------------------------------------------
+// Interpola entre $min y $max (rem) mientras el ancho de la ventana va de
+// $from a $to. Fuera de ese rango se queda en el extremo, así en pantallas
+// grandes solo escala la fuente raíz y no se aplica un doble escalado.
+$fluid-from: 360px;
+$fluid-to: 1024px;
+
+@function fluid($min, $max, $from: $fluid-from, $to: $fluid-to) {
+  @if $min == $max {
+    @return $min;
+  }
+  // 16 = px por rem a esta escala; la pendiente queda en px de fuente por px de ventana.
+  $slope: math.div(math.div($max - $min, 1rem) * 16, math.div($to - $from, 1px));
+  @return clamp(#{$min}, calc(#{$min} + #{$slope} * (100vw - #{$from})), #{$max});
+}
+
+// --- Espaciado --------------------------------------------------------------
+$space-0: 0;
+$space-1: 0.25rem;
+$space-2: 0.5rem;
+$space-3: 0.75rem;
+$space-4: 1rem;
+$space-5: 1.5rem;
+$space-6: 2rem;
+$space-7: 3rem;
+$space-8: 4rem;
+$space-9: 6rem;
+
+// Margen lateral de página, fluido.
+$gutter: fluid(1rem, 2rem);
+
+// --- Tipografía -------------------------------------------------------------
+$font-size-sm: fluid(0.875rem, 0.9375rem);
+// Los campos de texto usan este tamaño o más (16 px) para que iOS no haga zoom al enfocar.
+$font-size-base: 1rem;
+$font-size-lg: fluid(1.125rem, 1.25rem);
+$font-size-xl: fluid(1.5rem, 1.875rem);
+$font-size-2xl: fluid(2rem, 3rem);
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.2;
+$line-height-base: 1.5;
+
+$fonts: (
+  'body': (system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif),
+  'heading': (system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif),
+);
+
+// --- Forma ------------------------------------------------------------------
+$radius-sm: 0.25rem;
+$radius-md: 0.5rem;
+$radius-lg: 1rem;
+$radius-full: 100rem;
+
+$border-width: 1px;
+
+// --- Medidas de layout ------------------------------------------------------
+// 44 px a 16 px de fuente raíz: área táctil mínima.
+$touch-target: 2.75rem;
+// Ancho máximo del área de juego (una columna centrada).
+$container-game: 48rem;
+// Ancho máximo del hub y de la página de franquicia.
+$container-wide: 80rem;
+
+// --- Colores ----------------------------------------------------------------
+// Se publican como variables CSS (`--color-*`) para que cada franquicia pueda
+// redefinirlos con su tema. Se leen con `color(nombre)`.
+$colors: (
+  'bg': #f6f7f9,
+  'surface': #ffffff,
+  'text': #1b1f24,
+  'text-muted': #5a6572,
+  'border': #d5dae1,
+  'accent': #2f5fd0,
+  'accent-contrast': #ffffff,
+  'focus': #1a46b8,
+);
+
+@function color($name) {
+  @if not map.has-key($colors, $name) {
+    @error 'Color desconocido: #{$name}. Opciones: #{map.keys($colors)}';
+  }
+  @return var(--color-#{$name});
+}
+
+@function font($name) {
+  @if not map.has-key($fonts, $name) {
+    @error 'Fuente desconocida: #{$name}. Opciones: #{map.keys($fonts)}';
+  }
+  @return var(--font-#{$name});
+}
+
+// Emite las variables CSS. Se incluye una sola vez, en globals.scss.
+@mixin root-vars {
+  @each $name, $value in $colors {
+    --color-#{$name}: #{$value};
+  }
+  @each $name, $value in $fonts {
+    --font-#{$name}: #{$value};
+  }
+}

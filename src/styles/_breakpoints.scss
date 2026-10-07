@@ -1,0 +1,28 @@
+@use 'sass:map';
+
+// Breakpoints de la SPEC, sección 9.1 (ancho en píxeles CSS).
+// Mobile first: los estilos base son los del teléfono (desde 360 px) y se
+// amplía con `min-width`. Es el único lugar donde se definen y `min-width`
+// es la única forma permitida de escribir una media query en el proyecto.
+$breakpoints: (
+  'sm': 480px,
+  'md': 768px,
+  'lg': 1024px,
+  'xl': 1440px,
+  'fhd': 1920px,
+  'qhd': 2560px,
+  'uhd': 3840px,
+);
+
+@function breakpoint($name) {
+  @if not map.has-key($breakpoints, $name) {
+    @error 'Breakpoint desconocido: #{$name}. Opciones: #{map.keys($breakpoints)}';
+  }
+  @return map.get($breakpoints, $name);
+}
+
+@mixin min-width($name) {
+  @media (min-width: breakpoint($name)) {
+    @content;
+  }
+}
