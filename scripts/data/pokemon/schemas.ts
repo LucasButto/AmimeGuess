@@ -1,0 +1,97 @@
+// Esquemas Zod: lo que se espera de PokéAPI y lo que se escribe en data/pokemon/.
+// Si una respuesta o un dato generado no cumple, el script falla (SPEC sección 7).
+
+import { z } from 'zod';
+
+// --- PokéAPI (solo los campos que usa el script) ----------------------------
+
+const named = z.object({ name: z.string(), url: z.string() });
+const language = z.object({ name: z.string() });
+const nameEntry = z.object({ name: z.string(), language });
+
+export const speciesListSchema = z.object({
+  count: z.number().int(),
+  results: z.array(named),
+});
+
+export const speciesSchema = z.object({
+  id: z.number().int(),
+  name: z.string(),
+  names: z.array(nameEntry),
+  generation: z.object({ name: z.string() }),
+  color: named,
+  habitat: named.nullable(),
+  egg_groups: z.array(named),
+  evolution_chain: z.object({ url: z.string() }),
+  flavor_text_entries: z.array(z.object({ flavor_text: z.string(), language, version: named })),
+  varieties: z.array(z.object({ is_default: z.boolean(), pokemon: named })),
+});
+
+export const pokemonSchema = z.object({
+  id: z.number().int(),
+  name: z.string(),
+  height: z.number().int(),
+  weight: z.number().int(),
+  types: z.array(z.object({ slot: z.number().int(), type: named })),
+  abilities: z.array(z.object({ ability: named, is_hidden: z.boolean(), slot: z.number().int() })),
+  stats: z.array(z.object({ base_stat: z.number().int(), stat: z.object({ name: z.string() }) })),
+  sprites: z.object({
+    other: z
+      .object({
+        'official-artwork': z.object({ front_default: z.string().nullable() }).optional(),
+      })
+      .optional(),
+  }),
+});
+
+export interface ChainLink {
+  species: { name: string };
+  evolves_to: ChainLink[];
+}
+
+const chainLinkSchema: z.ZodType<ChainLink> = z.lazy(() =>
+  z.object({ species: z.object({ name: z.string() }), evolves_to: z.array(chainLinkSchema) }),
+);
+
+export const evolutionChainSchema = z.object({ id: z.number().int(), chain: chainLinkSchema });
+
+/** Tipos, colores, hábitats, grupos huevo y habilidades: solo importan los nombres traducidos. */
+export const namedResourceSchema = z.object({ names: z.array(nameEntry) });
+
+export type Species = z.infer<typeof speciesSchema>;
+export type PokemonData = z.infer<typeof pokemonSchema>;
+export type NameEntry = z.infer<typeof nameEntry>;
+
+// --- Datos generados --------------------------------------------------------
+
+const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+const SERIES = /^g[1-9]$/;
+
+const attrValueSchema = z.union([
+  z.string(),
+  z.number(),
+  z.null(),
+  z.array(z.union([z.string(), z.object({ value: z.string(), series: z.string().optional() })])),
+]);
+
+export const entitySchema = z
+  .object({
+    id: z.string().regex(KEBAB),
+    name: z.object({ es: z.string().min(1), en: z.string().min(1).optional() }),
+    aliases: z.array(z.string().min(1)),
+    series: z.array(z.string().regex(SERIES)).length(1),
+    image: z.string().min(1).optional(),
+    attrs: z.record(z.string(), attrValueSchema),
+  })
+  .strict();
+
+export const contentSchema = z
+  .object({
+    id: z.string().regex(KEBAB),
+    kind: z.literal('dex'),
+    entityId: z.string().regex(KEBAB),
+    series: z.string().regex(SERIES),
+    payload: z.object({ text: z.string().min(1), version: z.string().min(1) }).strict(),
+    verified: z.boolean(),
+  })
+  .strict();

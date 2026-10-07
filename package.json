@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "vitest run",
+    "data:pokemon": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/data/pokemon/build.ts"
   },
   "dependencies": {
     "next": "^16.4.0",
@@ -23,6 +24,7 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.4.0",
     "sass": "^1.105.1",
+    "sharp": "^0.35.5",
     "typescript": "^6.0.3",
     "vite": "^8.3.3",
     "vitest": "^5.0.3"
