@@ -13,13 +13,13 @@
 // Cada sesión que agrega pantallas suma sus rutas a ROUTES.
 
 import { spawn, type ChildProcess } from 'node:child_process';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { mkdir, rm } from 'node:fs/promises';
 import net from 'node:net';
 import path from 'node:path';
-import { chromium, type Browser } from 'playwright';
+import { chromium, type Browser, type Page } from 'playwright';
 import { getDay } from '../src/engine/day.ts';
-import { stateKey } from '../src/engine/storage.ts';
+import { stateKey, statsKey } from '../src/engine/storage.ts';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const OUT_DIR = path.join(ROOT, '.screenshots');
@@ -38,6 +38,12 @@ const VIEWPORTS = [
   { name: '3840x2160', width: 3840, height: 2160 },
 ] as const;
 
+interface Viewport {
+  name: string;
+  width: number;
+  height: number;
+}
+
 interface RouteCheck {
   /** Nombre de la carpeta de capturas. */
   name: string;
@@ -46,14 +52,80 @@ interface RouteCheck {
   storage?: Record<string, string>;
   /** Selector que indica que la página terminó de armarse. Sin él, se espera a que la red se aquiete. */
   ready?: string;
+  /**
+   * Pasos previos a medir y fotografiar, como abrir un modal. Puede devolver
+   * problemas propios de la pantalla (por ejemplo, un modal que no ocupa todo el teléfono).
+   */
+  before?: (page: Page, context: { phone: boolean }) => Promise<string[]>;
 }
 
 const GAME_READY = '[data-game-ready="true"]';
 
-/** Una partida de Pokémon Clásico con 6 intentos ya hechos, para probar la tabla llena. */
-function sixAttempts(filterKey: string, attempts: string[]): Record<string, string> {
+/** Una partida de Pokémon Clásico con intentos ya hechos, para probar la tabla llena. */
+function seededGame(filterKey: string, attempts: string[]): Record<string, string> {
   const key = stateKey({ franchise: 'pokemon', mode: 'clasico', filterKey, day: getDay(new Date()) });
   return { [key]: JSON.stringify({ attempts, result: 'playing' }) };
+}
+
+const SIX_ATTEMPTS = ['gyarados', 'mr-mime', 'snorlax', 'mewtwo', 'charizard', 'pikachu'];
+
+/** Estadísticas de ejemplo con partidas ganadas y una racha vigente, para el modal de estadísticas. */
+function seededStats(): Record<string, string> {
+  const today = getDay(new Date());
+  return {
+    [statsKey('pokemon', 'clasico')]: JSON.stringify({
+      played: 17,
+      won: 15,
+      distribution: { '3': 1, '5': 2, '6': 4, '8': 3, '9': 2, '12': 1, '16': 1, '27': 1 },
+      currentStreak: 4,
+      maxStreak: 9,
+      lastWonDay: today,
+    }),
+  };
+}
+
+/** Todos los Pokémon de g6: jugados como intentos, la partida queda ganada (con una tabla larga). */
+function wholeGeneration(series: string): string[] {
+  const entities = JSON.parse(readFileSync(path.join(ROOT, 'data', 'pokemon', 'entities.json'), 'utf8')) as Array<{
+    id: string;
+    series: string[];
+  }>;
+  return entities.filter((entity) => entity.series.includes(series)).map((entity) => entity.id);
+}
+
+/** Abre un modal desde la barra del juego y comprueba cómo se ve en un teléfono. */
+async function openDialog(page: Page, buttonName: string, { phone }: { phone: boolean }): Promise<string[]> {
+  await page.getByRole('button', { name: buttonName }).click();
+  await page.waitForSelector('dialog[open]');
+  const box = await page.evaluate(() => {
+    const dialog = document.querySelector('dialog[open]')!.getBoundingClientRect();
+    const close = document.querySelector('dialog[open] footer button')!.getBoundingClientRect();
+    return {
+      width: dialog.width,
+      height: dialog.height,
+      viewportWidth: window.innerWidth,
+      viewportHeight: window.innerHeight,
+      closeTop: close.top,
+      closeBottom: close.bottom,
+    };
+  });
+
+  const problems: string[] = [];
+  if (box.closeBottom > box.viewportHeight + 0.5 || box.closeTop < 0) {
+    problems.push('el botón de cerrar del modal queda fuera de la pantalla');
+  }
+  if (phone) {
+    if (Math.abs(box.width - box.viewportWidth) > 1 || Math.abs(box.height - box.viewportHeight) > 1) {
+      problems.push(
+        `el modal no ocupa toda la pantalla del teléfono: ${Math.round(box.width)}×${Math.round(box.height)} en ${box.viewportWidth}×${box.viewportHeight}`,
+      );
+    }
+    // Zona del pulgar: el botón de cerrar tiene que estar en la mitad de abajo de la pantalla.
+    if ((box.closeTop + box.closeBottom) / 2 < box.viewportHeight / 2) {
+      problems.push('el botón de cerrar del modal no está en la mitad inferior de la pantalla (zona del pulgar)');
+    }
+  }
+  return problems;
 }
 
 const ROUTES: RouteCheck[] = [
@@ -65,14 +137,40 @@ const ROUTES: RouteCheck[] = [
     name: 'pokemon-clasico-6-intentos',
     path: '/pokemon/clasico',
     ready: GAME_READY,
-    storage: sixAttempts('all', ['gyarados', 'mr-mime', 'snorlax', 'mewtwo', 'charizard', 'pikachu']),
+    storage: seededGame('all', SIX_ATTEMPTS),
   },
   {
     // Solo g1 y g2: aparece la columna condicional de Hábitat, 9 columnas.
     name: 'pokemon-clasico-g1g2-6-intentos',
     path: '/pokemon/clasico?s=g1.g2',
     ready: GAME_READY,
-    storage: sixAttempts('g1.g2', ['gyarados', 'mr-mime', 'snorlax', 'mewtwo', 'charizard', 'pikachu']),
+    storage: seededGame('g1.g2', SIX_ATTEMPTS),
+  },
+  {
+    // Partida ganada (se jugaron las 72 de g6): resumen, compartir y una tabla larga.
+    name: 'pokemon-clasico-victoria',
+    path: '/pokemon/clasico?s=g6',
+    ready: GAME_READY,
+    storage: { ...seededGame('g6', wholeGeneration('g6')), ...seededStats() },
+  },
+  {
+    name: 'pokemon-clasico-ayuda',
+    path: '/pokemon/clasico',
+    ready: GAME_READY,
+    before: (page, context) => openDialog(page, 'Cómo se juega', context),
+  },
+  {
+    name: 'pokemon-clasico-estadisticas',
+    path: '/pokemon/clasico',
+    ready: GAME_READY,
+    storage: seededStats(),
+    before: (page, context) => openDialog(page, 'Estadísticas', context),
+  },
+  {
+    name: 'pokemon-clasico-estadisticas-vacias',
+    path: '/pokemon/clasico',
+    ready: GAME_READY,
+    before: (page, context) => openDialog(page, 'Estadísticas', context),
   },
   { name: 'dragon-ball-clasico-proximamente', path: '/dragon-ball/clasico' },
 ];
@@ -162,7 +260,7 @@ async function checkPage(
   browser: Browser,
   baseUrl: string,
   route: RouteCheck,
-  viewport: (typeof VIEWPORTS)[number],
+  viewport: Viewport,
 ): Promise<Result> {
   const phone = Math.min(viewport.width, viewport.height) < 500;
   const context = await browser.newContext({
@@ -196,14 +294,29 @@ async function checkPage(
     await page.goto(`${baseUrl}${route.path}`, { waitUntil: 'load' });
     if (route.ready) await page.waitForSelector(route.ready, { timeout: 20_000 });
     else await page.waitForLoadState('networkidle');
-    // Las imágenes de la tabla cargan en diferido: se espera a que terminen antes de medir y fotografiar.
-    await page.evaluate(() =>
-      Promise.all(
-        Array.from(document.images).map((image) =>
-          image.complete ? null : new Promise((resolve) => image.addEventListener('load', resolve, { once: true })),
-        ),
-      ),
+    // Las imágenes cargan en diferido y las que están fuera de la vista (filas de una tabla larga)
+    // no cargarían nunca: se piden todas y se espera a que terminen, con un tope de tiempo.
+    await page.evaluate(
+      (limitMs: number) =>
+        Promise.race([
+          Promise.all(
+            Array.from(document.images).map((image) => {
+              image.loading = 'eager';
+              return image.complete
+                ? null
+                : new Promise((resolve) => {
+                    image.addEventListener('load', resolve, { once: true });
+                    image.addEventListener('error', resolve, { once: true });
+                  });
+            }),
+          ),
+          new Promise((resolve) => setTimeout(resolve, limitMs)),
+        ]),
+      10_000,
     );
+
+    // Pasos propios de la pantalla (abrir un modal…), antes de medir y fotografiar.
+    if (route.before) problems.push(...(await route.before(page, { phone })));
 
     // Desborde horizontal de la página.
     const widths = await page.evaluate(() => ({
@@ -211,10 +324,12 @@ async function checkPage(
       document: document.documentElement.scrollWidth,
       body: document.body.scrollWidth,
     }));
-    if (widths.document > widths.window || widths.body > widths.window) {
-      problems.push(
-        `desborde horizontal: la página mide ${Math.max(widths.document, widths.body)} px en una ventana de ${widths.window} px`,
-      );
+    // Se compara contra el ancho del viewport que se pidió, no contra `window.innerWidth`: en un
+    // teléfono, si el contenido no cabe el navegador ensancha la ventana (el ancho de layout) y
+    // la página y la ventana crecen juntas, así que comparar entre sí no detectaría nada.
+    const measured = Math.max(widths.document, widths.body, widths.window);
+    if (measured > viewport.width) {
+      problems.push(`desborde horizontal: la página mide ${measured} px en un viewport de ${viewport.width} px`);
     }
 
     // Lo que se toca, en teléfono: al menos 44 × 44 px.
@@ -237,7 +352,8 @@ async function checkPage(
 
     const file = path.join(OUT_DIR, route.name, `${viewport.name}.png`);
     await mkdir(path.dirname(file), { recursive: true });
-    await page.screenshot({ path: file, fullPage: true });
+    // Con un modal abierto se fotografía lo que se ve en pantalla; el resto, la página entera.
+    await page.screenshot({ path: file, fullPage: !route.before });
   } catch (error) {
     problems.push(`no se pudo revisar: ${error instanceof Error ? error.message : String(error)}`);
   } finally {
