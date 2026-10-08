@@ -167,6 +167,36 @@ async function imageFitsWithField(page: Page): Promise<string[]> {
   return problems;
 }
 
+/**
+ * Ids de Pokémon que nunca pueden ser la respuesta de un modo de pista de texto porque no tienen
+ * contenido de ese tipo: fallos seguros para sembrar una partida a medias, sea cual sea el día.
+ */
+function neverAnswers(contentKind: string, count: number): string[] {
+  const read = (file: string) => JSON.parse(readFileSync(path.join(ROOT, 'data', 'pokemon', file), 'utf8')) as unknown[];
+  const entities = read('entities.json') as Array<{ id: string }>;
+  const contents = read('content.json') as Array<{ kind: string; entityId?: string }>;
+  const withContent = new Set(contents.filter((content) => content.kind === contentKind).map((content) => content.entityId));
+  return entities.filter((entity) => !withContent.has(entity.id)).slice(0, count).map((entity) => entity.id);
+}
+
+/** Con una combinación de filtros que no alcanza el pool mínimo, el marco muestra el aviso y no monta el juego. */
+async function showsPoolWarning(page: Page): Promise<string[]> {
+  const state = await page.evaluate(() => ({
+    game: document.querySelector('[data-game-ready]') !== null,
+    warning: document.body.innerText.includes('hacen falta al menos'),
+  }));
+  const problems: string[] = [];
+  if (state.game) problems.push('se montó el juego aunque la combinación no alcanza el pool mínimo');
+  if (!state.warning) problems.push('no aparece el aviso de que no alcanza el pool mínimo');
+  return problems;
+}
+
+/** Los modos de Pokémon que usan el motor de pista de texto (sesión 06) y el tipo de contenido de cada uno. */
+const TEXT_MODES = [
+  { slug: 'descripcion', contentKind: 'dex' },
+  { slug: 'movimiento-insignia', contentKind: 'signature-move' },
+] as const;
+
 /** Los modos de Pokémon que usan el motor de imagen (sesión 05). */
 const IMAGE_MODES = [{ slug: 'silueta' }, { slug: 'zoom' }, { slug: 'carta' }] as const;
 
@@ -233,6 +263,26 @@ const ROUTES: RouteCheck[] = [
       storage: seededGame('g6', wholeGeneration('g6'), slug),
     },
   ]),
+  ...TEXT_MODES.flatMap(({ slug, contentKind }) => [
+    { name: `pokemon-${slug}`, path: `/pokemon/${slug}`, ready: GAME_READY },
+    {
+      // Con 6 fallos ya se desbloquearon todas las pistas.
+      name: `pokemon-${slug}-6-fallos`,
+      path: `/pokemon/${slug}`,
+      ready: GAME_READY,
+      storage: seededGame('all', neverAnswers(contentKind, 6), slug),
+    },
+    {
+      // Partida ganada (se jugaron las 72 de g6): todas las pistas abiertas y el resumen del marco.
+      name: `pokemon-${slug}-victoria`,
+      path: `/pokemon/${slug}?s=g6`,
+      ready: GAME_READY,
+      storage: seededGame('g6', wholeGeneration('g6'), slug),
+    },
+  ]),
+  // Movimiento insignia con solo g3 (6 posibles) y Descripción con solo g9 (ninguna): no alcanzan el mínimo.
+  { name: 'pokemon-movimiento-insignia-sin-pool', path: '/pokemon/movimiento-insignia?s=g3', check: showsPoolWarning },
+  { name: 'pokemon-descripcion-sin-pool', path: '/pokemon/descripcion?s=g9', check: showsPoolWarning },
 ];
 
 /** Tamaño mínimo de lo que se toca (SPEC 9.1, "Móvil"). */
