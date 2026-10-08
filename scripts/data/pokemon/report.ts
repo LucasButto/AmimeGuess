@@ -3,6 +3,7 @@
 import type { Content, Entity } from '../../../src/engine/types.ts';
 import { CARDS_PER_POKEMON } from './cards.ts';
 import type { Rendered, Size } from './images.ts';
+import type { SignatureResult } from './moves.ts';
 
 const pct = (part: number, total: number) => (total === 0 ? '  -  ' : `${((100 * part) / total).toFixed(0).padStart(3)}%`);
 const kb = (bytes: number) => `${(bytes / 1024).toFixed(1)} KB`;
@@ -21,6 +22,8 @@ export interface ReportInput {
   cardImages: Rendered[];
   /** Pokémon para los que no se encontró ninguna carta. */
   withoutCard: string[];
+  /** Movimientos insignia. */
+  signature: SignatureResult;
 }
 
 /** Una línea por tamaño con cantidad, peso, promedio, máximo y calidades usadas; devuelve el peso total. */
@@ -52,6 +55,7 @@ export function printReport({
   rendered,
   cardImages,
   withoutCard,
+  signature,
 }: ReportInput): void {
   const line = (text = '') => console.log(text);
   const dexContents = contents.filter((content) => content.kind === 'dex');
@@ -112,6 +116,29 @@ export function printReport({
   line(`  Total: ${cardContents.length} cartas; ${withOne} Pokémon con una sola.`);
   line(`  Pokémon sin carta: ${withoutCard.length}${withoutCard.length > 0 ? ` (${withoutCard.join(', ')})` : ''}`);
   const cardTotal = printImages(line, cardImages);
+
+  line();
+  const signatureContents = contents.filter((content) => content.kind === 'signature-move');
+  line(`Movimientos insignia (los que solo aprende una línea evolutiva): ${signature.moves} movimientos, ${signatureContents.length} contenidos.`);
+  line('Por generación                 Pokémon     con movimiento    contenidos');
+  for (const series of generations) {
+    const group = entities.filter((entity) => entity.series[0] === series);
+    const own = signatureContents.filter((content) => content.series === series);
+    const withMove = group.filter((entity) => own.some((content) => content.entityId === entity.id)).length;
+    line(
+      `  ${series.padEnd(26)}${String(group.length).padStart(9)}   ` +
+        `${`${withMove}/${group.length}`.padStart(11)} ${pct(withMove, group.length)}   ${String(own.length).padStart(7)}`,
+    );
+  }
+  const withMoveTotal = new Set(signatureContents.map((content) => content.entityId)).size;
+  line(`  Total: ${withMoveTotal} Pokémon con al menos un movimiento insignia.`);
+  const shared = signatureContents.filter((content) => (content.payload.accepts as string[]).length > 0).length;
+  line(`  ${shared} contenidos son de movimientos que aprenden varias especies de la línea (las demás también cuentan como respuesta).`);
+  line(`  ${signature.withoutText} movimientos sin texto en español (se juegan solo con nombre y tipo).`);
+  if (signature.excluded.length > 0) {
+    line(`  Excluidos (${signature.excluded.length}):`);
+    for (const item of signature.excluded) line(`    - ${item.move}: ${item.reason}`);
+  }
 
   line();
   line(`Peso de public/img/pokemon: ${mb(artworkTotal + cardTotal)} (arte oficial ${mb(artworkTotal)} + cartas ${mb(cardTotal)}).`);

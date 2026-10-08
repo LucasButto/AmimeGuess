@@ -3,7 +3,8 @@
 // Genera el dataset base de Pokémon a partir de PokéAPI y TCGdex:
 //   data/pokemon/entities.json   una entidad por especie base (sin megas ni formas regionales)
 //   data/pokemon/content.json    descripciones de la Pokédex en español, con el nombre en "???",
-//                                y cartas del TCG (kind "tcg-card", hasta 2 por Pokémon)
+//                                cartas del TCG (kind "tcg-card", hasta 2 por Pokémon) y
+//                                movimientos insignia (kind "signature-move")
 //   public/img/pokemon/          arte oficial en WebP, 256 y 512 px
 //   public/img/pokemon/cards/    las cartas del TCG en WebP, 256 y 512 px
 //
@@ -33,17 +34,22 @@ import {
   renderImage,
   type Rendered,
 } from './images.ts';
+import { buildSignatureContents, learnerPokemonId, type SignatureResult } from './moves.ts';
 import { printReport } from './report.ts';
 import {
   contentSchema,
   entitySchema,
   evolutionChainSchema,
+  moveListSchema,
+  moveSchema,
   namedResourceSchema,
   pokemonSchema,
+  pokemonSpeciesRefSchema,
   speciesListSchema,
   speciesSchema,
   tcgCardListSchema,
   tcgCardSchema,
+  type Move,
   type PokemonData,
   type Species,
 } from './schemas.ts';
@@ -125,6 +131,79 @@ async function fetchSpanishNames(species: Species[], pokemon: PokemonData[]): Pr
     if (name === undefined) throw new Error(`Falta el nombre en español de ${url}`);
     return name;
   };
+}
+
+// --- 1b. Movimientos --------------------------------------------------------
+
+async function fetchMoves(): Promise<Move[]> {
+  const list = await getJson(`${API_BASE}/move?limit=2000`, moveListSchema);
+  const entries = [...list.results].sort((a, b) => idFromUrl(a.url) - idFromUrl(b.url));
+  step(`Movimientos en la API: ${list.count}. Descargando…`);
+  const moves = await mapPool(entries, FETCH_TASKS, (entry) => getJson(entry.url, moveSchema));
+  if (moves.length !== list.count) throw new Error(`Se descargaron ${moves.length} movimientos y la API informa ${list.count}`);
+  return moves;
+}
+
+/**
+ * Nombre en español de los tipos de los movimientos. Algunos movimientos tienen un tipo interno sin
+ * traducción (de otros juegos): solo es un problema si lo usa un movimiento insignia.
+ */
+async function fetchMoveTypeNames(moves: Move[]): Promise<(url: string) => string> {
+  const urls = unique(moves.map((move) => move.type.url));
+  const resources = await mapPool(urls, FETCH_TASKS, (url) => getJson(url, namedResourceSchema));
+  const names = new Map<string, string>();
+  urls.forEach((url, index) => {
+    const spanishName = nameIn(resources[index].names, 'es');
+    if (spanishName !== undefined) names.set(url, spanishName);
+  });
+  return (url) => {
+    const name = names.get(url);
+    if (name === undefined) throw new Error(`Falta el nombre en español del tipo ${url}`);
+    return name;
+  };
+}
+
+/**
+ * A qué especie pertenece cada Pokémon que aparece como aprendiz. Las formas por defecto ya
+ * están descargadas; las alternativas (Mega, regionales, Gigamax…) se piden una por una.
+ */
+async function fetchSpeciesOfPokemon(
+  moves: Move[],
+  species: Species[],
+  pokemon: PokemonData[],
+): Promise<(pokemonId: number) => number | undefined> {
+  const known = new Map<number, number>(pokemon.map((entry, index) => [entry.id, species[index].id]));
+  const missing = unique(moves.flatMap((move) => move.learned_by_pokemon.map(learnerPokemonId))).filter((id) => !known.has(id));
+  step(`Formas alternativas que aprenden movimientos: ${missing.length}`);
+  const forms = await mapPool(missing, FETCH_TASKS, (id) => getJson(`${API_BASE}/pokemon/${id}`, pokemonSpeciesRefSchema));
+  for (const form of forms) known.set(form.id, idFromUrl(form.species.url));
+  return (pokemonId) => known.get(pokemonId);
+}
+
+function signatureMoves(
+  moves: Move[],
+  species: Species[],
+  entities: Entity[],
+  speciesOf: (pokemonId: number) => number | undefined,
+  spanish: (url: string) => string,
+): SignatureResult {
+  const entityBySpecies = new Map(species.map((entry, index) => [entry.id, entities[index]]));
+  const chainBySpecies = new Map(species.map((entry) => [entry.id, idFromUrl(entry.evolution_chain.url)]));
+  return buildSignatureContents({
+    moves,
+    speciesOf,
+    chainOf: (speciesId) => {
+      const chain = chainBySpecies.get(speciesId);
+      if (chain === undefined) throw new Error(`La especie ${speciesId} no tiene cadena evolutiva`);
+      return chain;
+    },
+    entityOf: (speciesId) => {
+      const entity = entityBySpecies.get(speciesId);
+      if (entity === undefined) throw new Error(`La especie ${speciesId} no tiene entidad`);
+      return entity;
+    },
+    typeName: spanish,
+  });
 }
 
 // --- 2. Imágenes ------------------------------------------------------------
@@ -236,6 +315,12 @@ async function validate(entities: Entity[], contents: Content[], apiCount: numbe
     const count = cardContents.filter((content) => content.entityId === entity.id).length;
     if (count > CARDS_PER_POKEMON) problems.push(`${entity.id}: tiene ${count} cartas y el máximo es ${CARDS_PER_POKEMON}`);
   }
+  for (const content of contents.filter((candidate) => candidate.kind === 'signature-move')) {
+    for (const other of content.payload.accepts as string[]) {
+      if (!ids.has(other)) problems.push(`${content.id}: acepta a ${other}, que no existe`);
+      if (other === content.entityId) problems.push(`${content.id}: se acepta a sí mismo`);
+    }
+  }
   const series = new Set(entities.map((entity) => entity.series[0]));
   for (let generation = 1; generation <= 9; generation++) {
     if (!series.has(`g${generation}`)) problems.push(`no hay ninguna entidad de g${generation}`);
@@ -329,7 +414,10 @@ async function main(): Promise<void> {
   const pokemon = await mapPool(species, FETCH_TASKS, (entry) => getJson(defaultPokemonUrl(entry), pokemonSchema));
 
   const stages = await fetchStages(species);
+  const moves = await fetchMoves();
+  const speciesOfPokemon = await fetchSpeciesOfPokemon(moves, species, pokemon);
   const spanish = await fetchSpanishNames(species, pokemon);
+  const moveTypeName = await fetchMoveTypeNames(moves);
 
   step('Armando entidades y descripciones…');
   const entities: Entity[] = [];
@@ -349,7 +437,8 @@ async function main(): Promise<void> {
   const rendered = await buildImages(species, pokemon);
   const cards = await buildCards(species, entities);
   // Primero las descripciones y después las cartas, así agregar un tipo de contenido no reordena el resto.
-  const allContents = [...contents, ...cards.contents];
+  const signature = signatureMoves(moves, species, entities, speciesOfPokemon, moveTypeName);
+  const allContents = [...contents, ...cards.contents, ...signature.contents];
 
   step('Validando…');
   await validate(entities, allContents, apiCount);
@@ -366,6 +455,7 @@ async function main(): Promise<void> {
     rendered,
     cardImages: cards.rendered,
     withoutCard: cards.withoutCard,
+    signature,
   });
   step('Listo.');
 }

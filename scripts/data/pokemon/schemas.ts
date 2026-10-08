@@ -62,6 +62,29 @@ export type Species = z.infer<typeof speciesSchema>;
 export type PokemonData = z.infer<typeof pokemonSchema>;
 export type NameEntry = z.infer<typeof nameEntry>;
 
+// Movimientos: de cada uno interesa su nombre, su tipo, su texto y quién lo aprende.
+export const moveListSchema = z.object({
+  count: z.number().int(),
+  results: z.array(named),
+});
+
+export const moveSchema = z.object({
+  id: z.number().int(),
+  name: z.string(),
+  names: z.array(nameEntry),
+  type: named,
+  flavor_text_entries: z.array(z.object({ flavor_text: z.string(), language, version_group: named })),
+  learned_by_pokemon: z.array(named),
+});
+
+/** Una forma alternativa (Mega, regional, Gigamax…): solo importa a qué especie pertenece. */
+export const pokemonSpeciesRefSchema = z.object({
+  id: z.number().int(),
+  species: named,
+});
+
+export type Move = z.infer<typeof moveSchema>;
+
 // --- TCGdex (solo los campos que usa el script) -----------------------------
 
 /** Una carta en el listado de `cards?dexId=eq:N`: sin detalle, y sin imagen si no hay escaneo. */
@@ -142,4 +165,27 @@ const tcgCardContentSchema = z
   })
   .strict();
 
-export const contentSchema = z.discriminatedUnion('kind', [dexContentSchema, tcgCardContentSchema]);
+/**
+ * Un movimiento que solo aprende una línea evolutiva, atado a uno de sus aprendices.
+ * `accepts` son los otros aprendices de la línea: también son respuestas correctas.
+ */
+const signatureMoveContentSchema = z
+  .object({
+    ...contentBase,
+    kind: z.literal('signature-move'),
+    payload: z
+      .object({
+        name: z.string().min(1),
+        type: z.string().min(1),
+        description: z.string().min(1).optional(),
+        accepts: z.array(z.string().regex(KEBAB)),
+      })
+      .strict(),
+  })
+  .strict();
+
+export const contentSchema = z.discriminatedUnion('kind', [
+  dexContentSchema,
+  tcgCardContentSchema,
+  signatureMoveContentSchema,
+]);
