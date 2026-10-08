@@ -101,6 +101,24 @@ export const es = {
         'Podés apagar "Revelar con cada intento" para que la imagen no cambie hasta que aciertes, y "Mostrar colores" para verla en grises. Tus elecciones se recuerdan en este dispositivo.',
     },
   },
+  textClue: {
+    inputLabel: 'Tu intento',
+    clueTitle: 'La pista',
+    hintsTitle: 'Más pistas',
+    hintLocked: (remaining: number) =>
+      `Se desbloquea con ${remaining} ${plural(remaining, 'intento fallido más', 'intentos fallidos más')}`,
+    attempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
+    failedTitle: 'Intentos fallidos',
+    empty: 'Todavía no hiciste ningún intento.',
+    wrongAttempt: (name: string) => `${name} no es.`,
+    help: {
+      goal: 'Adiviná la respuesta del día a partir de la pista. Escribí un nombre, elegí una opción de la lista y probá las veces que haga falta.',
+      hintsTitle: 'Pistas',
+      hintsIntro: 'Cuando fallás varias veces se desbloquean más pistas:',
+      hint: (label: string, after: number) =>
+        `${label}: a los ${after} ${plural(after, 'intento fallido', 'intentos fallidos')}.`,
+    },
+  },
   shell: {
     modesLabel: 'Modos de juego',
     modeSolved: 'resuelto hoy',
