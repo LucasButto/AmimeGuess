@@ -119,6 +119,43 @@ export const es = {
         `${label}: a los ${after} ${plural(after, 'intento fallido', 'intentos fallidos')}.`,
     },
   },
+  higherLower: {
+    roundLabel: (round: number) => `Ronda ${round}`,
+    score: (score: number) => `Aciertos seguidos: ${score}`,
+    optionsLabel: 'Opciones',
+    higher: 'Mayor',
+    picked: 'Tu elección',
+    next: 'Siguiente',
+    correct: '¡Correcto!',
+    wrong: (winner: string) => `Fallaste: ${winner} tenía el valor mayor.`,
+    perfect: '¡Acertaste todas las rondas!',
+    noRounds: 'Con estos filtros no hay pares para comparar. Activá más series.',
+    announceCorrect: (name: string) => `Correcto: ${name} tenía el valor mayor.`,
+    announceWrong: (name: string) => `Incorrecto: ${name} tenía el valor mayor.`,
+    lastRound: (winner: string, winnerValue: string, loser: string, loserValue: string) =>
+      `Tenía el mayor valor ${winner} (${winnerValue}), frente a ${loser} (${loserValue}).`,
+    help: {
+      goal: 'Elegí cuál de los dos tiene el valor mayor. Si acertás, sigue otro par; la partida termina con el primer error y tu puntaje son los aciertos seguidos.',
+      sequence: 'Los pares son los mismos para todo el mundo con los mismos filtros, y nunca empatan.',
+      metricsTitle: 'Qué se compara',
+      metricsIntro: 'Cada día se juega una de estas medidas, en rotación:',
+    },
+  },
+  revealList: {
+    inputLabel: 'Tu intento',
+    listTitle: 'Las pistas',
+    position: (position: number) => `Pista ${position}`,
+    hidden: 'Todavía oculta',
+    attempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
+    failedTitle: 'Intentos fallidos',
+    empty: 'Todavía no hiciste ningún intento.',
+    wrongAttempt: (name: string, revealed: boolean) =>
+      revealed ? `${name} no es. Se reveló una pista más.` : `${name} no es.`,
+    help: {
+      goal: 'Adiviná la respuesta del día con las pistas. Escribí un nombre, elegí una opción de la lista y probá las veces que haga falta.',
+      reveal: 'Al empezar ves una sola pista; cada intento fallido revela una más.',
+    },
+  },
   shell: {
     modesLabel: 'Modos de juego',
     modeSolved: 'resuelto hoy',
