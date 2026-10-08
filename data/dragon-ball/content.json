@@ -1,0 +1,1100 @@
+[
+  {
+    "id": "quote-vegeta-2",
+    "kind": "quote",
+    "entityId": "vegeta",
+    "series": "dbz",
+    "payload": {
+      "text": "Es de más de 8000",
+      "source": "https://dragonball.fandom.com/es/wiki/Vegeta_IV"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-vegeta-3",
+    "kind": "quote",
+    "entityId": "vegeta",
+    "series": "dbz",
+    "payload": {
+      "text": "Un saiyano que no puede moverse no me sirve para nada",
+      "source": "https://dragonball.fandom.com/es/wiki/Vegeta_IV"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-vegeta-5",
+    "kind": "quote",
+    "entityId": "vegeta",
+    "series": "dbz",
+    "payload": {
+      "text": "Debes sentirte afortunado, porque un guerrero de clase baja tendrá el honor de jugar un poco con el mejor guerrero",
+      "source": "https://dragonball.fandom.com/es/wiki/Vegeta_IV"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-vegeta-6",
+    "kind": "quote",
+    "entityId": "vegeta",
+    "series": "dbz",
+    "payload": {
+      "text": "¡Te mostraré la gran pared que no podrás sobrepasar por mayor que sea tu esfuerzo!",
+      "source": "https://dragonball.fandom.com/es/wiki/Vegeta_IV"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-vegeta-8",
+    "kind": "quote",
+    "entityId": "vegeta",
+    "series": "dbz",
+    "payload": {
+      "text": "Ya estoy harto de tu generosidad, sabandija estúpida",
+      "source": "https://dragonball.fandom.com/es/wiki/Vegeta_IV"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-vegeta-11",
+    "kind": "quote",
+    "entityId": "vegeta",
+    "series": "dbz",
+    "payload": {
+      "text": "Estás deforme, pareces un globo mal inflado",
+      "source": "https://dragonball.fandom.com/es/wiki/Vegeta_IV"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-vegeta-22",
+    "kind": "quote",
+    "entityId": "vegeta",
+    "series": "dbz",
+    "payload": {
+      "text": "Te advierto que no seré sensible contigo sólo porque eres una mujer, ah, pero me equivoco, eres un androide, no una mujer",
+      "source": "https://dragonball.fandom.com/es/wiki/Vegeta_IV"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-freezer-2",
+    "kind": "quote",
+    "entityId": "freezer",
+    "series": "dbz",
+    "payload": {
+      "text": "Esa persona era muy terca, no quiso cooperar. Ni siquiera por que fui gentil y tuve la penosa necesidad de asesinarlo",
+      "source": "https://dragonball.fandom.com/es/wiki/Freeza"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-freezer-5",
+    "kind": "quote",
+    "entityId": "freezer",
+    "series": "dbz",
+    "payload": {
+      "text": "Vaya hay basura en el camino sera mejor que la recoja",
+      "source": "https://dragonball.fandom.com/es/wiki/Freeza"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-freezer-6",
+    "kind": "quote",
+    "entityId": "freezer",
+    "series": "dbz",
+    "payload": {
+      "text": "El dolor que sentirán será peor que estar en el infierno",
+      "source": "https://dragonball.fandom.com/es/wiki/Freeza"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-freezer-8",
+    "kind": "quote",
+    "entityId": "freezer",
+    "series": "dbz",
+    "payload": {
+      "text": "Tú eres el único que me ha herido gravemente además de mi padre",
+      "source": "https://dragonball.fandom.com/es/wiki/Freeza"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-freezer-15",
+    "kind": "quote",
+    "entityId": "freezer",
+    "series": "super",
+    "payload": {
+      "text": "Desde que reviví, he entrenado para pelear contra ti. Esta es la primera vez que hago esto... y gracias a ti he podido llegar a un Nivel de poder que jamás me había imaginado",
+      "source": "https://dragonball.fandom.com/es/wiki/Freeza"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-freezer-21",
+    "kind": "quote",
+    "entityId": "freezer",
+    "series": "super",
+    "payload": {
+      "text": "¿Crees que yo haría equipo con un principiante como tú?",
+      "source": "https://dragonball.fandom.com/es/wiki/Freeza"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-freezer-25",
+    "kind": "quote",
+    "entityId": "freezer",
+    "series": "super",
+    "payload": {
+      "text": "Vaya, ¿dónde fue a parar tu cara de póquer?... La fuerza se vuelve debilidad una vez doblegada",
+      "source": "https://dragonball.fandom.com/es/wiki/Freeza"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-freezer-30",
+    "kind": "quote",
+    "entityId": "freezer",
+    "series": "super",
+    "payload": {
+      "text": "Lamento haberlos hecho esperar. ¡El emperador del universo regresó!",
+      "source": "https://dragonball.fandom.com/es/wiki/Freeza"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-piccolo-1",
+    "kind": "quote",
+    "entityId": "piccolo",
+    "series": "dbz",
+    "payload": {
+      "text": "Si quieres odiarme debes empezar por odiar tu destino, así como lo hago yo",
+      "source": "https://dragonball.fandom.com/es/wiki/Piccolo"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-piccolo-2",
+    "kind": "quote",
+    "entityId": "piccolo",
+    "series": "dbz",
+    "payload": {
+      "text": "Tu eres Goku, para ti no hay imposibles",
+      "source": "https://dragonball.fandom.com/es/wiki/Piccolo"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-piccolo-3",
+    "kind": "quote",
+    "entityId": "piccolo",
+    "series": "dbz",
+    "payload": {
+      "text": "Este es un color ecológico y no te hagas el listo o te ira muy mal",
+      "source": "https://dragonball.fandom.com/es/wiki/Piccolo"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-piccolo-6",
+    "kind": "quote",
+    "entityId": "piccolo",
+    "series": "dbz",
+    "payload": {
+      "text": "Por si no lo sabías yo soy la parte maligna de Kami que se separó de él, no soy amable como Goku",
+      "source": "https://dragonball.fandom.com/es/wiki/Piccolo"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-piccolo-7",
+    "kind": "quote",
+    "entityId": "piccolo",
+    "series": "dbz",
+    "payload": {
+      "text": "Acaso no son tan fuertes como pensaban, o tal vez fuimos nosotros quienes nos hicimos más fuertes",
+      "source": "https://dragonball.fandom.com/es/wiki/Piccolo"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-piccolo-10",
+    "kind": "quote",
+    "entityId": "piccolo",
+    "series": "db",
+    "payload": {
+      "text": "No te molestes en luchar si tú habilidad no respalda tus palabras",
+      "source": "https://dragonball.fandom.com/es/wiki/Piccolo"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-goku-1",
+    "kind": "quote",
+    "entityId": "goku",
+    "series": "db",
+    "payload": {
+      "text": "¿Tú eres una chica?",
+      "source": "https://dragonball.fandom.com/es/wiki/Son_Goku"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-goku-4",
+    "kind": "quote",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "text": "¡No, no quiero, odio las inyecciones, suéltame, Krilin!",
+      "source": "https://dragonball.fandom.com/es/wiki/Son_Goku"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-goku-8",
+    "kind": "quote",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "text": "Veo que puedes destruir un planeta entero, pero no a una persona",
+      "source": "https://dragonball.fandom.com/es/wiki/Son_Goku"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-goku-12",
+    "kind": "quote",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "text": "Peleaste muy bien, te felicito. Por favor, hijo, dile a tu Mamá que me disculpe, siempre hice las cosas a mi manera, sin hacerle caso...Cuídate mucho Gohan",
+      "source": "https://dragonball.fandom.com/es/wiki/Son_Goku"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-goku-13",
+    "kind": "quote",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "text": "Los muñecos están bien pero lo demás es pura ficción",
+      "source": "https://dragonball.fandom.com/es/wiki/Son_Goku"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-goku-18",
+    "kind": "quote",
+    "entityId": "goku",
+    "series": "super",
+    "payload": {
+      "text": "Primero, esto es un Supersaiyano, y esto es un Supersaiyano 2, y este, es el poderoso Supersaiyano 3",
+      "source": "https://dragonball.fandom.com/es/wiki/Son_Goku"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-goku-21",
+    "kind": "quote",
+    "entityId": "goku",
+    "series": "super",
+    "payload": {
+      "text": "El nivel en el que estoy ahora va mucho mas allá de tu salto en el tiempo",
+      "source": "https://dragonball.fandom.com/es/wiki/Son_Goku"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-goku-23",
+    "kind": "quote",
+    "entityId": "goku",
+    "series": "super",
+    "payload": {
+      "text": "No soy un héroe justiciero, ni un emisario de la paz pero: si alguien lastima a mis amigos, ¡no lo perdono!",
+      "source": "https://dragonball.fandom.com/es/wiki/Son_Goku"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-gohan-2",
+    "kind": "quote",
+    "entityId": "gohan",
+    "series": "dbz",
+    "payload": {
+      "text": "Yo tengo la culpa por ser siempre un niño débil. Siempre he dependido de los demás... ¡Y ya no quiero!",
+      "source": "https://dragonball.fandom.com/es/wiki/Son_Gohan"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-gohan-3",
+    "kind": "quote",
+    "entityId": "gohan",
+    "series": "dbz",
+    "payload": {
+      "text": "Esta vez yo seré tu oponente",
+      "source": "https://dragonball.fandom.com/es/wiki/Son_Gohan"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-gohan-5",
+    "kind": "quote",
+    "entityId": "gohan",
+    "series": "dbz",
+    "payload": {
+      "text": "¿Quieres que acabe con él? ¡Es demasiado pronto, papá! ¡Ese gusano merece sufrir más por lo que ha hecho!",
+      "source": "https://dragonball.fandom.com/es/wiki/Son_Gohan"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-gohan-9",
+    "kind": "quote",
+    "entityId": "gohan",
+    "series": "dbz",
+    "payload": {
+      "text": "Está bien haré lo que tú me pidas. Te quiero, papá. ¡Haré todo lo posible para derrotar a Cell, salvar la tierra y vengar tu muerte!",
+      "source": "https://dragonball.fandom.com/es/wiki/Son_Gohan"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-celula-1",
+    "kind": "quote",
+    "entityId": "celula",
+    "series": "dbz",
+    "payload": {
+      "text": "¿¡Por qué!? ¿¡Por qué me molestan cuando estoy comiendo!?",
+      "source": "https://dragonball.fandom.com/es/wiki/Cell"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-celula-2",
+    "kind": "quote",
+    "entityId": "celula",
+    "series": "dbz",
+    "payload": {
+      "text": "No tenías por qué meterte en esto. Siempre fuiste un inútil",
+      "source": "https://dragonball.fandom.com/es/wiki/Cell"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-celula-4",
+    "kind": "quote",
+    "entityId": "celula",
+    "series": "dbz",
+    "payload": {
+      "text": "¿A quién maté? Ah, ya veo, conque fue Trunks",
+      "source": "https://dragonball.fandom.com/es/wiki/Cell"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-celula-5",
+    "kind": "quote",
+    "entityId": "celula",
+    "series": "dbz",
+    "payload": {
+      "text": "Esta vez no solo la Tierra va a explotar, sino el sistema solar entero, y no quedará rastro de él",
+      "source": "https://dragonball.fandom.com/es/wiki/Cell"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-celula-7",
+    "kind": "quote",
+    "entityId": "celula",
+    "series": "dbz",
+    "payload": {
+      "text": "¡No! ¡No! Yo... ¡Yo soy perfecto!",
+      "source": "https://dragonball.fandom.com/es/wiki/Cell"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-bardock-3",
+    "kind": "quote",
+    "entityId": "bardock",
+    "series": "dbz",
+    "payload": {
+      "text": "¡Malditos sean todos!, ya no se los pediré. ¡Ojalá que todos ustedes se vayan al infierno por incrédulos!",
+      "source": "https://dragonball.fandom.com/es/wiki/Bardock"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-bardock-4",
+    "kind": "quote",
+    "entityId": "bardock",
+    "series": "dbz",
+    "payload": {
+      "text": "Yo tendré que derrotarte... ¡Cambiaré el destino, te juro que lo haré!",
+      "source": "https://dragonball.fandom.com/es/wiki/Bardock"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-bardock-5",
+    "kind": "quote",
+    "entityId": "bardock",
+    "series": "dbz",
+    "payload": {
+      "text": "Kakarotto, debes cumplir mi objetivo. Tú serás quien vengará la muerte de los saiyanos y la desaparición del Planeta Vegeta",
+      "source": "https://dragonball.fandom.com/es/wiki/Bardock"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-androide-17-1",
+    "kind": "quote",
+    "entityId": "androide-17",
+    "series": "dbz",
+    "payload": {
+      "text": "Los tales Saiyan se ve que tienen un exceso de confianza y me imagino que Goku también. Por la culpa de ese orgullo tienden a morir mas pronto que los demás",
+      "source": "https://dragonball.fandom.com/es/wiki/Androide_N%C3%BAmero_17"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-androide-17-5",
+    "kind": "quote",
+    "entityId": "androide-17",
+    "series": "dbz",
+    "payload": {
+      "text": "Es verdad te has vuelto mas fuerte que antes...¡Ahora si podrás divertirme por un momento, extraterrestre!",
+      "source": "https://dragonball.fandom.com/es/wiki/Androide_N%C3%BAmero_17"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-androide-17-6",
+    "kind": "quote",
+    "entityId": "androide-17",
+    "series": "dbz",
+    "payload": {
+      "text": "Vayamos a otra parte porque un estúpido acaba de desaparecer la isla, cuida un poco más la naturaleza",
+      "source": "https://dragonball.fandom.com/es/wiki/Androide_N%C3%BAmero_17"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-androide-18-1",
+    "kind": "quote",
+    "entityId": "androide-18",
+    "series": "dbz",
+    "payload": {
+      "text": "Acércate un paso más y explotaremos los dos, si yo muero.... Ya no podrás cumplir tu objetivo.",
+      "source": "https://dragonball.fandom.com/es/wiki/Androide_N%C3%BAmero_18"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-androide-18-2",
+    "kind": "quote",
+    "entityId": "androide-18",
+    "series": "dbz",
+    "payload": {
+      "text": "¡Tonto! 17 es mi hermano gemelo y yo soy la mayor.... Y no creas que aceptaré tan fácilmente, ni tampoco creas que estoy agradecida por lo de la bomba...... Ya nos veremos.",
+      "source": "https://dragonball.fandom.com/es/wiki/Androide_N%C3%BAmero_18"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-raditz-1",
+    "kind": "quote",
+    "entityId": "raditz",
+    "series": "dbz",
+    "payload": {
+      "text": "Conque era cierto, este planeta sigue con vida. ¡Ese canalla de Kakarotto!",
+      "source": "https://dragonball.fandom.com/es/wiki/Raditz"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-raditz-3",
+    "kind": "quote",
+    "entityId": "raditz",
+    "series": "dbz",
+    "payload": {
+      "text": "Finalmente te he encontrado, has crecido bastante. Te reconocí con tan solo verte, Kakarotto... Eres tal y como era tu padre",
+      "source": "https://dragonball.fandom.com/es/wiki/Raditz"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-turles-1",
+    "kind": "quote",
+    "entityId": "turles",
+    "series": "dbz",
+    "payload": {
+      "text": "Oye, niño, ¿no te gustaría venir conmigo? Viajarías por el universo, podrías destruir cualquier planeta que te gustara, tendrías buena comida y excelente vino para embriagarte. No hay mejor vida que esa",
+      "source": "https://dragonball.fandom.com/es/wiki/Tullece"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-turles-3",
+    "kind": "quote",
+    "entityId": "turles",
+    "series": "dbz",
+    "payload": {
+      "text": "Hay una gran diferencia entre el Cielo y la Tierra. ¡Así como nuestros poderes!",
+      "source": "https://dragonball.fandom.com/es/wiki/Tullece"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-majin-buu-2",
+    "kind": "quote",
+    "entityId": "majin-buu",
+    "series": "dbz",
+    "payload": {
+      "text": "No me simpatizas, molestas a Mr. Satán.",
+      "source": "https://dragonball.fandom.com/es/wiki/Boo_Bueno"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-majin-buu-4",
+    "kind": "quote",
+    "entityId": "majin-buu",
+    "series": "dbz",
+    "payload": {
+      "text": "¡No molestes a Satán!",
+      "source": "https://dragonball.fandom.com/es/wiki/Boo_Bueno"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-majin-buu-6",
+    "kind": "quote",
+    "entityId": "majin-buu",
+    "series": "super",
+    "payload": {
+      "text": "Sabes, eres fuerte, pero.....¡yo soy, más fuerte que tú!",
+      "source": "https://dragonball.fandom.com/es/wiki/Boo_Bueno"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-trunks-2",
+    "kind": "quote",
+    "entityId": "trunks",
+    "series": "dbz",
+    "payload": {
+      "text": "¿Tú eres Freeza, no es verdad?, no tienes por qué sorprenderte, sé todo sobre ti. Hasta sé exactamente el lugar donde vas a morir",
+      "source": "https://dragonball.fandom.com/es/wiki/Trunks_del_Futuro"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-trunks-3",
+    "kind": "quote",
+    "entityId": "trunks",
+    "series": "dbz",
+    "payload": {
+      "text": "Como podrás darte cuenta, la espada no es la que me daba la fuerza",
+      "source": "https://dragonball.fandom.com/es/wiki/Trunks_del_Futuro"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-trunks-6",
+    "kind": "quote",
+    "entityId": "trunks",
+    "series": "dbz",
+    "payload": {
+      "text": "¡No permitiré que ustedes los androides se salgan con la suya, ya no puedo soportarlo, no permitiré que esa desgracia suceda en el futuro!...¡No volveremos a vivir en ese infierno jamás!",
+      "source": "https://dragonball.fandom.com/es/wiki/Trunks_del_Futuro"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-trunks-8",
+    "kind": "quote",
+    "entityId": "trunks",
+    "series": "dbz",
+    "payload": {
+      "text": "Número 17, Número 18, ha llegado su fin malditos...¡Acabaré con ustedes!",
+      "source": "https://dragonball.fandom.com/es/wiki/Trunks_del_Futuro"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-trunks-11",
+    "kind": "quote",
+    "entityId": "trunks",
+    "series": "dbz",
+    "payload": {
+      "text": "¡Desaparece para siempre, Cell!",
+      "source": "https://dragonball.fandom.com/es/wiki/Trunks_del_Futuro"
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-conoce-a-bulma",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku conoce a Bulma, que busca las Esferas del Dragón",
+      "order": 1
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-y-krilin-entrenan-con-roshi",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku y Krilin entrenan con el Maestro Roshi",
+      "order": 2
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-pierde-la-final-del-torneo-21",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku pierde la final del 21.º Torneo de las Artes Marciales contra Jackie Chun",
+      "order": 3
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-acaba-con-el-ejercito-del-liston-rojo",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku acaba con el Ejército del Listón Rojo",
+      "order": 4
+    },
+    "verified": false
+  },
+  {
+    "id": "event-tenshinhan-gana-el-torneo-22",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Tenshinhan gana el 22.º Torneo de las Artes Marciales",
+      "order": 5
+    },
+    "verified": false
+  },
+  {
+    "id": "event-tambourine-asesina-a-krilin",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Tambourine asesina a Krilin",
+      "order": 6
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-derrota-al-gran-rey-demonio-piccolo",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku derrota al Gran Rey Demonio Piccolo",
+      "order": 7
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-se-casa-con-chi-chi",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku se casa con Chi-Chi",
+      "order": 8
+    },
+    "verified": false
+  },
+  {
+    "id": "event-raditz-llega-a-la-tierra",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Raditz llega a la Tierra y se lleva a Gohan",
+      "order": 9
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-muere-por-detener-a-raditz",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku muere al sacrificarse para detener a Raditz",
+      "order": 10
+    },
+    "verified": false
+  },
+  {
+    "id": "event-piccolo-entrena-a-gohan",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Piccolo entrena a Gohan en el desierto",
+      "order": 11
+    },
+    "verified": false
+  },
+  {
+    "id": "event-nappa-y-vegeta-llegan-a-la-tierra",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Nappa y Vegeta llegan a la Tierra",
+      "order": 12
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-llega-a-namek",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku llega a Namek",
+      "order": 13
+    },
+    "verified": false
+  },
+  {
+    "id": "event-freezer-mata-a-krilin",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Freezer mata a Krilin",
+      "order": 14
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-se-transforma-en-supersaiyano",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku se transforma en Supersaiyano por primera vez",
+      "order": 15
+    },
+    "verified": false
+  },
+  {
+    "id": "event-namek-explota",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "El planeta Namek explota",
+      "order": 16
+    },
+    "verified": false
+  },
+  {
+    "id": "event-trunks-del-futuro-derrota-a-freezer",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Trunks del futuro llega a la Tierra y derrota a Freezer",
+      "order": 17
+    },
+    "verified": false
+  },
+  {
+    "id": "event-gero-activa-a-los-androides-17-y-18",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "El Dr. Gero activa a los Androides 17 y 18",
+      "order": 18
+    },
+    "verified": false
+  },
+  {
+    "id": "event-celula-absorbe-a-17-y-18",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Célula absorbe a los Androides 17 y 18 y alcanza su forma perfecta",
+      "order": 19
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-se-sacrifica-con-celula",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku se sacrifica para llevarse a Célula lejos de la Tierra",
+      "order": 20
+    },
+    "verified": false
+  },
+  {
+    "id": "event-gohan-derrota-a-celula",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Gohan derrota a Célula con un Kamehameha Padre e Hijo",
+      "order": 21
+    },
+    "verified": false
+  },
+  {
+    "id": "event-babidi-despierta-a-majin-buu",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Babidi despierta a Majin Buu",
+      "order": 22
+    },
+    "verified": false
+  },
+  {
+    "id": "event-vegeta-se-sacrifica-contra-buu",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Vegeta se sacrifica para intentar destruir a Majin Buu",
+      "order": 23
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-y-vegeta-se-fusionan-en-vegetto",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku y Vegeta se fusionan en Vegetto",
+      "order": 24
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-derrota-a-kid-buu-con-la-genkidama",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku derrota a Kid Buu con la Genkidama",
+      "order": 25
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-y-sus-amigos-vuelven-a-ser-ninos",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "Goku y sus amigos quedan transformados en niños",
+      "order": 45
+    },
+    "verified": false
+  },
+  {
+    "id": "event-viaje-al-reino-demoniaco",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "Goku y sus amigos viajan al Reino Demoníaco",
+      "order": 46
+    },
+    "verified": false
+  },
+  {
+    "id": "event-bills-despierta",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Bills despierta y empieza a buscar al Dios Supersaiyano",
+      "order": 26
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-se-convierte-en-supersaiyano-dios",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Goku se convierte en Supersaiyano Dios",
+      "order": 27
+    },
+    "verified": false
+  },
+  {
+    "id": "event-freezer-es-resucitado",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Freezer es resucitado por sus soldados",
+      "order": 28
+    },
+    "verified": false
+  },
+  {
+    "id": "event-freezer-alcanza-la-forma-dorada",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Freezer alcanza su forma dorada",
+      "order": 29
+    },
+    "verified": false
+  },
+  {
+    "id": "event-torneo-universo-6-contra-universo-7",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Se enfrentan el Universo 6 y el Universo 7 en un torneo",
+      "order": 30
+    },
+    "verified": false
+  },
+  {
+    "id": "event-trunks-del-futuro-pide-ayuda-contra-black",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Trunks del futuro llega al presente para pedir ayuda contra Goku Black",
+      "order": 31
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-black-y-zamasu-se-fusionan",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Goku Black y Zamasu se fusionan",
+      "order": 32
+    },
+    "verified": false
+  },
+  {
+    "id": "event-zeno-anuncia-el-torneo-del-poder",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "El Rey de Todo anuncia el Torneo del Poder",
+      "order": 33
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-logra-el-ultra-instinto",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Goku logra el Ultra Instinto",
+      "order": 34
+    },
+    "verified": false
+  },
+  {
+    "id": "event-el-universo-7-gana-el-torneo-del-poder",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "El Universo 7 gana el Torneo del Poder",
+      "order": 35
+    },
+    "verified": false
+  },
+  {
+    "id": "event-gogeta-derrota-a-broly",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Gogeta Supersaiyano Azul derrota a Broly",
+      "order": 36
+    },
+    "verified": false
+  },
+  {
+    "id": "event-moro-escapa-de-la-prision",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Moro escapa de la prisión de la Patrulla Galáctica",
+      "order": 37
+    },
+    "verified": false
+  },
+  {
+    "id": "event-gohan-despierta-su-forma-bestia",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Gohan despierta su forma Bestia contra Cell Max",
+      "order": 38
+    },
+    "verified": false
+  },
+  {
+    "id": "event-pilaf-convierte-a-goku-en-nino",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Pilaf convierte a Goku en niño con las Esferas del Dragón Definitivas",
+      "order": 39
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-trunks-y-pan-viajan-al-espacio",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Goku, Trunks y Pan viajan al espacio en busca de las Esferas",
+      "order": 40
+    },
+    "verified": false
+  },
+  {
+    "id": "event-baby-domina-la-tierra",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Baby domina la Tierra",
+      "order": 41
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-se-transforma-en-supersaiyano-4",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Goku se transforma en Supersaiyano 4",
+      "order": 42
+    },
+    "verified": false
+  },
+  {
+    "id": "event-gogeta-derrota-a-omega-shenlong",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Gogeta derrota a Omega Shenlong",
+      "order": 43
+    },
+    "verified": false
+  },
+  {
+    "id": "event-goku-se-va-con-shenlong",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Goku se va con Shenlong",
+      "order": 44
+    },
+    "verified": false
+  }
+]

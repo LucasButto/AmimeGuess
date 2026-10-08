@@ -1,0 +1,53 @@
+[
+  { "id": "goku-ssj", "api": 1, "character": "goku", "forma": "Supersaiyano", "name": "Goku Supersaiyano", "aliases": ["Goku SSJ", "Goku Super Saiyan", "Goku Super Saiyajin"], "series": "dbz", "verified": false },
+  { "id": "goku-ssj2", "api": 2, "character": "goku", "forma": "Supersaiyano 2", "name": "Goku Supersaiyano 2", "aliases": ["Goku SSJ2", "Goku Super Saiyan 2"], "series": "dbz", "verified": false },
+  { "id": "goku-ssj3", "api": 3, "character": "goku", "forma": "Supersaiyano 3", "name": "Goku Supersaiyano 3", "aliases": ["Goku SSJ3", "Goku Super Saiyan 3"], "series": "dbz", "verified": false },
+  { "id": "goku-ssj4", "api": 4, "character": "goku", "forma": "Supersaiyano 4", "name": "Goku Supersaiyano 4", "aliases": ["Goku SSJ4", "Goku Super Saiyan 4"], "series": "gt", "verified": false },
+  { "id": "goku-ssb", "api": 5, "character": "goku", "forma": "Supersaiyano Azul", "name": "Goku Supersaiyano Azul", "aliases": ["Goku SSJB", "Goku Super Saiyan Blue", "Goku Supersaiyano Dios Supersaiyano"], "series": "super", "verified": false },
+  { "id": "goku-ultra-instinto", "api": 44, "character": "goku", "forma": "Ultra Instinto", "name": "Goku Ultra Instinto", "aliases": ["Goku Ultra Instinct", "Goku UI"], "series": "super", "verified": false },
+
+  { "id": "vegeta-ssj", "api": 7, "character": "vegeta", "forma": "Supersaiyano", "name": "Vegeta Supersaiyano", "aliases": ["Vegeta SSJ", "Vegeta Super Saiyan"], "series": "dbz", "verified": false },
+  { "id": "vegeta-ssj2", "api": 8, "character": "vegeta", "forma": "Supersaiyano 2", "name": "Vegeta Supersaiyano 2", "aliases": ["Vegeta SSJ2", "Vegeta Super Saiyan 2"], "series": "dbz", "verified": false },
+  { "id": "vegeta-ssj4", "api": 9, "character": "vegeta", "forma": "Supersaiyano 4", "name": "Vegeta Supersaiyano 4", "aliases": ["Vegeta SSJ4", "Vegeta Super Saiyan 4"], "series": "gt", "verified": false },
+  { "id": "vegeta-ssb", "api": 10, "character": "vegeta", "forma": "Supersaiyano Azul", "name": "Vegeta Supersaiyano Azul", "aliases": ["Vegeta SSJB", "Vegeta Super Saiyan Blue", "Vegeta Supersaiyano Dios Supersaiyano"], "series": "super", "verified": false },
+
+  { "id": "piccolo-naranja", "api": 13, "character": "piccolo", "forma": "Naranja", "name": "Piccolo Naranja", "aliases": ["Piccolo Orange", "Orange Piccolo"], "series": "super", "verified": false },
+
+  { "id": "freezer-segunda-forma", "api": 14, "character": "freezer", "forma": "Segunda Forma", "name": "Freezer Segunda Forma", "aliases": ["Freezer 2nd Form", "Freeza Segunda Forma", "Frieza segunda transformación"], "series": "dbz", "verified": false },
+  { "id": "freezer-tercera-forma", "api": 15, "character": "freezer", "forma": "Tercera Forma", "name": "Freezer Tercera Forma", "aliases": ["Freezer 3rd Form", "Freeza Tercera Forma", "Frieza tercera transformación"], "series": "dbz", "verified": false },
+  { "id": "freezer-forma-final", "api": 16, "character": "freezer", "forma": "Forma Final", "name": "Freezer Forma Final", "aliases": ["Freezer Perfect Form", "Freeza Forma Final", "Freezer Cuarta Forma", "Frieza forma perfecta"], "series": "dbz", "verified": false },
+  { "id": "freezer-dorado", "api": 17, "character": "freezer", "forma": "Forma Dorada", "name": "Freezer Forma Dorada", "aliases": ["Freezer Dorado", "Freezer Golden", "Golden Frieza", "Freeza Dorado"], "series": "super", "verified": false },
+
+  { "id": "zarbon-transformado", "api": 18, "character": "zarbon", "forma": "Transformado", "name": "Zarbon Transformado", "aliases": ["Zarbon Monster", "Zarbon monstruo"], "series": "dbz", "verified": false },
+
+  { "id": "celula-imperfecto", "api": 19, "character": "celula", "forma": "Forma Imperfecta", "name": "Célula Forma Imperfecta", "aliases": ["Cell Imperfect Form", "Cell Imperfecto", "Célula Imperfecto"], "series": "dbz", "verified": false },
+  { "id": "celula-semiperfecto", "api": 20, "character": "celula", "forma": "Forma Semiperfecta", "name": "Célula Forma Semiperfecta", "aliases": ["Cell Semi Perfect Form", "Cell Semiperfecto", "Célula Semiperfecto"], "series": "dbz", "verified": false },
+  { "id": "celula-super-perfecto", "api": 21, "character": "celula", "forma": "Forma Súper Perfecta", "name": "Célula Forma Súper Perfecta", "aliases": ["Cell Super Perfect Form", "Super Perfect Cell", "Célula Súper Perfecto"], "series": "dbz", "verified": false },
+
+  { "id": "gohan-ssj", "api": 22, "character": "gohan", "forma": "Supersaiyano", "name": "Gohan Supersaiyano", "aliases": ["Gohan SSJ", "Gohan Super Saiyan"], "series": "dbz", "verified": false },
+  { "id": "gohan-ssj2", "api": 23, "character": "gohan", "forma": "Supersaiyano 2", "name": "Gohan Supersaiyano 2", "aliases": ["Gohan SSJ2", "Gohan Super Saiyan 2"], "series": "dbz", "verified": false },
+  { "id": "gohan-definitivo", "api": 24, "character": "gohan", "forma": "Definitivo", "name": "Gohan Definitivo", "aliases": ["Gohan Ultimate", "Ultimate Gohan", "Gohan Místico", "Gohan Mystic"], "series": "dbz", "verified": false },
+  { "id": "gohan-bestia", "api": 25, "character": "gohan", "forma": "Bestia", "name": "Gohan Bestia", "aliases": ["Gohan Beast", "Beast Gohan"], "series": "super", "verified": false },
+
+  { "id": "trunks-ssj", "api": 26, "character": "trunks", "forma": "Supersaiyano", "name": "Trunks Supersaiyano", "aliases": ["Trunks SSJ", "Trunks Super Saiyan"], "series": "dbz", "verified": false },
+  { "id": "trunks-ssj2", "api": 27, "character": "trunks", "forma": "Supersaiyano 2", "name": "Trunks Supersaiyano 2", "aliases": ["Trunks SSJ2", "Trunks Super Saiyan 2"], "series": "dbz", "verified": false },
+  { "id": "trunks-furioso", "api": 29, "character": "trunks", "forma": "Supersaiyano Furioso", "name": "Trunks Supersaiyano Furioso", "aliases": ["Trunks Rage", "Rage Trunks", "Trunks Super Saiyan Rage"], "series": "super", "verified": false },
+
+  { "id": "gotenks-ssj", "api": 30, "character": "gotenks", "forma": "Supersaiyano", "name": "Gotenks Supersaiyano", "aliases": ["Gotenks SSJ", "Gotenks Super Saiyan"], "series": "dbz", "verified": false },
+  { "id": "gotenks-ssj3", "api": 31, "character": "gotenks", "forma": "Supersaiyano 3", "name": "Gotenks Supersaiyano 3", "aliases": ["Gotenks SSJ3", "Gotenks Super Saiyan 3"], "series": "dbz", "verified": false },
+
+  { "id": "buu-super-buu", "api": 32, "character": "majin-buu", "forma": "Super Buu", "name": "Super Buu", "aliases": ["Super Boo", "Majin Buu malvado"], "series": "dbz", "verified": false },
+  { "id": "buu-super-buu-gotenks", "api": 33, "character": "majin-buu", "forma": "Super Buu con Gotenks", "name": "Super Buu con Gotenks", "aliases": ["Majin Buu (Gotenks)", "Super Buu absorbió a Gotenks", "Super Buu Gotenks"], "series": "dbz", "verified": false },
+  { "id": "buu-super-buu-gohan", "api": 34, "character": "majin-buu", "forma": "Super Buu con Gohan", "name": "Super Buu con Gohan", "aliases": ["Majin Buu (Gohan)", "Super Buu absorbió a Gohan", "Super Buu Gohan"], "series": "dbz", "verified": false },
+  { "id": "buu-kid-buu", "api": 35, "character": "majin-buu", "forma": "Kid Buu", "name": "Kid Buu", "aliases": ["Majin Buu (Pure)", "Boo Puro", "Buu Puro", "Majin Buu puro"], "series": "dbz", "verified": false },
+
+  { "id": "gogeta-ssj", "api": 36, "character": "gogeta", "forma": "Supersaiyano", "name": "Gogeta Supersaiyano", "aliases": ["Gogeta SSJ", "Gogeta Super Saiyan"], "series": "dbz", "verified": false },
+  { "id": "gogeta-ssj4", "api": 37, "character": "gogeta", "forma": "Supersaiyano 4", "name": "Gogeta Supersaiyano 4", "aliases": ["Gogeta SSJ4", "Gogeta Super Saiyan 4"], "series": "gt", "verified": false },
+  { "id": "gogeta-ssb", "api": 38, "character": "gogeta", "forma": "Supersaiyano Azul", "name": "Gogeta Supersaiyano Azul", "aliases": ["Gogeta SSJB", "Gogeta Super Saiyan Blue"], "series": "super", "verified": false },
+
+  { "id": "vegetto-ssj", "api": 40, "character": "vegetto", "forma": "Supersaiyano", "name": "Vegetto Supersaiyano", "aliases": ["Vegetto SSJ", "Vegito Super Saiyan", "Vegetto Super Saiyan"], "series": "dbz", "verified": false },
+  { "id": "vegetto-ssb", "api": 41, "character": "vegetto", "forma": "Supersaiyano Azul", "name": "Vegetto Supersaiyano Azul", "aliases": ["Vegetto SSJB", "Vegito Blue", "Vegetto Super Saiyan Blue"], "series": "super", "verified": false },
+
+  { "id": "janemba-super-janemba", "api": 42, "character": "janemba", "forma": "Super Janemba", "name": "Super Janemba", "aliases": ["Janemba Super", "Janenba Super"], "series": "dbz", "verified": false },
+  { "id": "broly-ssj-legendario", "api": 43, "character": "broly", "forma": "Supersaiyano Legendario", "name": "Broly Supersaiyano Legendario", "aliases": ["Broly SSJ Legendary", "Broly Legendary Super Saiyan", "Broly Super Saiyajin Legendario"], "series": "super", "verified": false }
+]

@@ -1,0 +1,36 @@
+{
+  "seriesOrder": ["db", "dbz", "super", "gt", "daima"],
+  "sagas": [
+    { "id": "pilaf", "series": "db", "name": "Arco de la Búsqueda de las Esferas del Dragón" },
+    { "id": "torneo-21", "series": "db", "name": "Arco del 21.º Torneo Mundial de las Artes Marciales" },
+    { "id": "liston-rojo", "series": "db", "name": "Arco del Ejército del Listón Rojo" },
+    { "id": "torneo-22", "series": "db", "name": "Arco del 22.º Torneo Mundial de las Artes Marciales" },
+    { "id": "gran-rey-demonio-piccolo", "series": "db", "name": "Arco del Gran Rey Demonio Piccolo" },
+    { "id": "torneo-23", "series": "db", "name": "Arco del 23.º Torneo Mundial de las Artes Marciales" },
+
+    { "id": "saiyanos", "series": "dbz", "name": "Arco de los Saiyanos" },
+    { "id": "namek-freezer", "series": "dbz", "name": "Arco de Namek y Freezer" },
+    { "id": "makyo", "series": "dbz", "name": "Arco del Planeta Makyo" },
+    { "id": "androides-cell", "series": "dbz", "name": "Arco de los Androides y Célula" },
+    { "id": "otro-mundo", "series": "dbz", "name": "Arco del Torneo del Otro Mundo" },
+    { "id": "boo", "series": "dbz", "name": "Arco del Monstruo Boo" },
+    { "id": "dbz-peliculas", "series": "dbz", "name": "Películas y especiales de Dragon Ball Z" },
+
+    { "id": "beerus", "series": "super", "name": "Arco del Dios de la Destrucción Beerus" },
+    { "id": "freezer-dorado", "series": "super", "name": "Arco de Freezer Dorado" },
+    { "id": "universo-6", "series": "super", "name": "Arco del Universo 6 contra el Universo 7" },
+    { "id": "trunks-futuro", "series": "super", "name": "Arco de Trunks del Futuro" },
+    { "id": "supervivencia", "series": "super", "name": "Arco de la Supervivencia del Universo" },
+    { "id": "super-broly", "series": "super", "name": "Película Dragon Ball Super: Broly" },
+    { "id": "prisionero-patrulla-galactica", "series": "super", "name": "Arco del Prisionero de la Patrulla Galáctica" },
+    { "id": "sobreviviente-granolah", "series": "super", "name": "Arco del Sobreviviente Granolah" },
+    { "id": "super-hero", "series": "super", "name": "Película Dragon Ball Super: Super Hero" },
+
+    { "id": "esferas-definitivas", "series": "gt", "name": "Arco de las Esferas del Dragón Definitivas" },
+    { "id": "baby", "series": "gt", "name": "Arco del Demonio Vengador Baby" },
+    { "id": "androide-definitivo", "series": "gt", "name": "Arco del Androide Definitivo" },
+    { "id": "dragones-malignos", "series": "gt", "name": "Arco de los Siete Dragones Malignos" },
+
+    { "id": "reino-demoniaco", "series": "daima", "name": "Dragon Ball Daima" }
+  ]
+}

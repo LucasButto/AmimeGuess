@@ -1,0 +1,765 @@
+[
+  {
+    "id": "goku-ssj",
+    "name": {
+      "es": "Goku Supersaiyano"
+    },
+    "aliases": [
+      "Goku SSJ",
+      "Goku Super Saiyan",
+      "Goku Super Saiyajin"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Goku",
+      "forma": "Supersaiyano",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/goku-ssj"
+  },
+  {
+    "id": "goku-ssj2",
+    "name": {
+      "es": "Goku Supersaiyano 2"
+    },
+    "aliases": [
+      "Goku SSJ2",
+      "Goku Super Saiyan 2"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Goku",
+      "forma": "Supersaiyano 2",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/goku-ssj2"
+  },
+  {
+    "id": "goku-ssj3",
+    "name": {
+      "es": "Goku Supersaiyano 3"
+    },
+    "aliases": [
+      "Goku SSJ3",
+      "Goku Super Saiyan 3"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Goku",
+      "forma": "Supersaiyano 3",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/goku-ssj3"
+  },
+  {
+    "id": "goku-ssj4",
+    "name": {
+      "es": "Goku Supersaiyano 4"
+    },
+    "aliases": [
+      "Goku SSJ4",
+      "Goku Super Saiyan 4"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "personaje": "Goku",
+      "forma": "Supersaiyano 4",
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/transformations/goku-ssj4"
+  },
+  {
+    "id": "goku-ssb",
+    "name": {
+      "es": "Goku Supersaiyano Azul"
+    },
+    "aliases": [
+      "Goku SSJB",
+      "Goku Super Saiyan Blue",
+      "Goku Supersaiyano Dios Supersaiyano"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "personaje": "Goku",
+      "forma": "Supersaiyano Azul",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/goku-ssb"
+  },
+  {
+    "id": "goku-ultra-instinto",
+    "name": {
+      "es": "Goku Ultra Instinto"
+    },
+    "aliases": [
+      "Goku Ultra Instinct",
+      "Goku UI"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "personaje": "Goku",
+      "forma": "Ultra Instinto",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/goku-ultra-instinto"
+  },
+  {
+    "id": "vegeta-ssj",
+    "name": {
+      "es": "Vegeta Supersaiyano"
+    },
+    "aliases": [
+      "Vegeta SSJ",
+      "Vegeta Super Saiyan"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Vegeta",
+      "forma": "Supersaiyano",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/vegeta-ssj"
+  },
+  {
+    "id": "vegeta-ssj2",
+    "name": {
+      "es": "Vegeta Supersaiyano 2"
+    },
+    "aliases": [
+      "Vegeta SSJ2",
+      "Vegeta Super Saiyan 2"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Vegeta",
+      "forma": "Supersaiyano 2",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/vegeta-ssj2"
+  },
+  {
+    "id": "vegeta-ssj4",
+    "name": {
+      "es": "Vegeta Supersaiyano 4"
+    },
+    "aliases": [
+      "Vegeta SSJ4",
+      "Vegeta Super Saiyan 4"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "personaje": "Vegeta",
+      "forma": "Supersaiyano 4",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/vegeta-ssj4"
+  },
+  {
+    "id": "vegeta-ssb",
+    "name": {
+      "es": "Vegeta Supersaiyano Azul"
+    },
+    "aliases": [
+      "Vegeta SSJB",
+      "Vegeta Super Saiyan Blue",
+      "Vegeta Supersaiyano Dios Supersaiyano"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "personaje": "Vegeta",
+      "forma": "Supersaiyano Azul",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/vegeta-ssb"
+  },
+  {
+    "id": "piccolo-naranja",
+    "name": {
+      "es": "Piccolo Naranja"
+    },
+    "aliases": [
+      "Piccolo Orange",
+      "Orange Piccolo"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "personaje": "Piccolo",
+      "forma": "Naranja",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/piccolo-naranja"
+  },
+  {
+    "id": "freezer-segunda-forma",
+    "name": {
+      "es": "Freezer Segunda Forma"
+    },
+    "aliases": [
+      "Freezer 2nd Form",
+      "Freeza Segunda Forma",
+      "Frieza segunda transformación"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Freezer",
+      "forma": "Segunda Forma",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/freezer-segunda-forma"
+  },
+  {
+    "id": "freezer-tercera-forma",
+    "name": {
+      "es": "Freezer Tercera Forma"
+    },
+    "aliases": [
+      "Freezer 3rd Form",
+      "Freeza Tercera Forma",
+      "Frieza tercera transformación"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Freezer",
+      "forma": "Tercera Forma",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/freezer-tercera-forma"
+  },
+  {
+    "id": "freezer-forma-final",
+    "name": {
+      "es": "Freezer Forma Final"
+    },
+    "aliases": [
+      "Freezer Perfect Form",
+      "Freeza Forma Final",
+      "Freezer Cuarta Forma",
+      "Frieza forma perfecta"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Freezer",
+      "forma": "Forma Final",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/freezer-forma-final"
+  },
+  {
+    "id": "freezer-dorado",
+    "name": {
+      "es": "Freezer Forma Dorada"
+    },
+    "aliases": [
+      "Freezer Dorado",
+      "Freezer Golden",
+      "Golden Frieza",
+      "Freeza Dorado"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "personaje": "Freezer",
+      "forma": "Forma Dorada",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/freezer-dorado"
+  },
+  {
+    "id": "zarbon-transformado",
+    "name": {
+      "es": "Zarbon Transformado"
+    },
+    "aliases": [
+      "Zarbon Monster",
+      "Zarbon monstruo"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Zarbon",
+      "forma": "Transformado",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/zarbon-transformado"
+  },
+  {
+    "id": "celula-imperfecto",
+    "name": {
+      "es": "Célula Forma Imperfecta"
+    },
+    "aliases": [
+      "Cell Imperfect Form",
+      "Cell Imperfecto",
+      "Célula Imperfecto"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Célula",
+      "forma": "Forma Imperfecta",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/celula-imperfecto"
+  },
+  {
+    "id": "celula-semiperfecto",
+    "name": {
+      "es": "Célula Forma Semiperfecta"
+    },
+    "aliases": [
+      "Cell Semi Perfect Form",
+      "Cell Semiperfecto",
+      "Célula Semiperfecto"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Célula",
+      "forma": "Forma Semiperfecta",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/celula-semiperfecto"
+  },
+  {
+    "id": "celula-super-perfecto",
+    "name": {
+      "es": "Célula Forma Súper Perfecta"
+    },
+    "aliases": [
+      "Cell Super Perfect Form",
+      "Super Perfect Cell",
+      "Célula Súper Perfecto"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Célula",
+      "forma": "Forma Súper Perfecta",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/celula-super-perfecto"
+  },
+  {
+    "id": "gohan-ssj",
+    "name": {
+      "es": "Gohan Supersaiyano"
+    },
+    "aliases": [
+      "Gohan SSJ",
+      "Gohan Super Saiyan"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Gohan",
+      "forma": "Supersaiyano",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/gohan-ssj"
+  },
+  {
+    "id": "gohan-ssj2",
+    "name": {
+      "es": "Gohan Supersaiyano 2"
+    },
+    "aliases": [
+      "Gohan SSJ2",
+      "Gohan Super Saiyan 2"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Gohan",
+      "forma": "Supersaiyano 2",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/gohan-ssj2"
+  },
+  {
+    "id": "gohan-definitivo",
+    "name": {
+      "es": "Gohan Definitivo"
+    },
+    "aliases": [
+      "Gohan Ultimate",
+      "Ultimate Gohan",
+      "Gohan Místico",
+      "Gohan Mystic"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Gohan",
+      "forma": "Definitivo",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/gohan-definitivo"
+  },
+  {
+    "id": "gohan-bestia",
+    "name": {
+      "es": "Gohan Bestia"
+    },
+    "aliases": [
+      "Gohan Beast",
+      "Beast Gohan"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "personaje": "Gohan",
+      "forma": "Bestia",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/gohan-bestia"
+  },
+  {
+    "id": "trunks-ssj",
+    "name": {
+      "es": "Trunks Supersaiyano"
+    },
+    "aliases": [
+      "Trunks SSJ",
+      "Trunks Super Saiyan"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Trunks",
+      "forma": "Supersaiyano",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/trunks-ssj"
+  },
+  {
+    "id": "trunks-ssj2",
+    "name": {
+      "es": "Trunks Supersaiyano 2"
+    },
+    "aliases": [
+      "Trunks SSJ2",
+      "Trunks Super Saiyan 2"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Trunks",
+      "forma": "Supersaiyano 2",
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/transformations/trunks-ssj2"
+  },
+  {
+    "id": "trunks-furioso",
+    "name": {
+      "es": "Trunks Supersaiyano Furioso"
+    },
+    "aliases": [
+      "Trunks Rage",
+      "Rage Trunks",
+      "Trunks Super Saiyan Rage"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "personaje": "Trunks",
+      "forma": "Supersaiyano Furioso",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/trunks-furioso"
+  },
+  {
+    "id": "gotenks-ssj",
+    "name": {
+      "es": "Gotenks Supersaiyano"
+    },
+    "aliases": [
+      "Gotenks SSJ",
+      "Gotenks Super Saiyan"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Gotenks",
+      "forma": "Supersaiyano",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/gotenks-ssj"
+  },
+  {
+    "id": "gotenks-ssj3",
+    "name": {
+      "es": "Gotenks Supersaiyano 3"
+    },
+    "aliases": [
+      "Gotenks SSJ3",
+      "Gotenks Super Saiyan 3"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Gotenks",
+      "forma": "Supersaiyano 3",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/gotenks-ssj3"
+  },
+  {
+    "id": "buu-super-buu",
+    "name": {
+      "es": "Super Buu"
+    },
+    "aliases": [
+      "Super Boo",
+      "Majin Buu malvado"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Majin Buu",
+      "forma": "Super Buu",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/buu-super-buu"
+  },
+  {
+    "id": "buu-super-buu-gotenks",
+    "name": {
+      "es": "Super Buu con Gotenks"
+    },
+    "aliases": [
+      "Majin Buu (Gotenks)",
+      "Super Buu absorbió a Gotenks",
+      "Super Buu Gotenks"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Majin Buu",
+      "forma": "Super Buu con Gotenks",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/buu-super-buu-gotenks"
+  },
+  {
+    "id": "buu-super-buu-gohan",
+    "name": {
+      "es": "Super Buu con Gohan"
+    },
+    "aliases": [
+      "Majin Buu (Gohan)",
+      "Super Buu absorbió a Gohan",
+      "Super Buu Gohan"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Majin Buu",
+      "forma": "Super Buu con Gohan",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/buu-super-buu-gohan"
+  },
+  {
+    "id": "buu-kid-buu",
+    "name": {
+      "es": "Kid Buu"
+    },
+    "aliases": [
+      "Majin Buu (Pure)",
+      "Boo Puro",
+      "Buu Puro",
+      "Majin Buu puro"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Majin Buu",
+      "forma": "Kid Buu",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/buu-kid-buu"
+  },
+  {
+    "id": "gogeta-ssj",
+    "name": {
+      "es": "Gogeta Supersaiyano"
+    },
+    "aliases": [
+      "Gogeta SSJ",
+      "Gogeta Super Saiyan"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Gogeta",
+      "forma": "Supersaiyano",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/gogeta-ssj"
+  },
+  {
+    "id": "gogeta-ssj4",
+    "name": {
+      "es": "Gogeta Supersaiyano 4"
+    },
+    "aliases": [
+      "Gogeta SSJ4",
+      "Gogeta Super Saiyan 4"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "personaje": "Gogeta",
+      "forma": "Supersaiyano 4",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/gogeta-ssj4"
+  },
+  {
+    "id": "gogeta-ssb",
+    "name": {
+      "es": "Gogeta Supersaiyano Azul"
+    },
+    "aliases": [
+      "Gogeta SSJB",
+      "Gogeta Super Saiyan Blue"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "personaje": "Gogeta",
+      "forma": "Supersaiyano Azul",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/gogeta-ssb"
+  },
+  {
+    "id": "vegetto-ssj",
+    "name": {
+      "es": "Vegetto Supersaiyano"
+    },
+    "aliases": [
+      "Vegetto SSJ",
+      "Vegito Super Saiyan",
+      "Vegetto Super Saiyan"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Vegetto",
+      "forma": "Supersaiyano",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/vegetto-ssj"
+  },
+  {
+    "id": "vegetto-ssb",
+    "name": {
+      "es": "Vegetto Supersaiyano Azul"
+    },
+    "aliases": [
+      "Vegetto SSJB",
+      "Vegito Blue",
+      "Vegetto Super Saiyan Blue"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "personaje": "Vegetto",
+      "forma": "Supersaiyano Azul",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/vegetto-ssb"
+  },
+  {
+    "id": "janemba-super-janemba",
+    "name": {
+      "es": "Super Janemba"
+    },
+    "aliases": [
+      "Janemba Super",
+      "Janenba Super"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "personaje": "Janemba",
+      "forma": "Super Janemba",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/janemba-super-janemba"
+  },
+  {
+    "id": "broly-ssj-legendario",
+    "name": {
+      "es": "Broly Supersaiyano Legendario"
+    },
+    "aliases": [
+      "Broly SSJ Legendary",
+      "Broly Legendary Super Saiyan",
+      "Broly Super Saiyajin Legendario"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "personaje": "Broly",
+      "forma": "Supersaiyano Legendario",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/transformations/broly-ssj-legendario"
+  }
+]

@@ -1,0 +1,188 @@
+{
+  "series": [
+    {
+      "id": "db",
+      "order": 1
+    },
+    {
+      "id": "dbz",
+      "order": 2
+    },
+    {
+      "id": "super",
+      "order": 3
+    },
+    {
+      "id": "gt",
+      "order": 4
+    },
+    {
+      "id": "daima",
+      "order": 5
+    }
+  ],
+  "sagas": [
+    {
+      "id": "pilaf",
+      "name": "Arco de la Búsqueda de las Esferas del Dragón",
+      "series": "db",
+      "order": 1
+    },
+    {
+      "id": "torneo-21",
+      "name": "Arco del 21.º Torneo Mundial de las Artes Marciales",
+      "series": "db",
+      "order": 2
+    },
+    {
+      "id": "liston-rojo",
+      "name": "Arco del Ejército del Listón Rojo",
+      "series": "db",
+      "order": 3
+    },
+    {
+      "id": "torneo-22",
+      "name": "Arco del 22.º Torneo Mundial de las Artes Marciales",
+      "series": "db",
+      "order": 4
+    },
+    {
+      "id": "gran-rey-demonio-piccolo",
+      "name": "Arco del Gran Rey Demonio Piccolo",
+      "series": "db",
+      "order": 5
+    },
+    {
+      "id": "torneo-23",
+      "name": "Arco del 23.º Torneo Mundial de las Artes Marciales",
+      "series": "db",
+      "order": 6
+    },
+    {
+      "id": "saiyanos",
+      "name": "Arco de los Saiyanos",
+      "series": "dbz",
+      "order": 7
+    },
+    {
+      "id": "namek-freezer",
+      "name": "Arco de Namek y Freezer",
+      "series": "dbz",
+      "order": 8
+    },
+    {
+      "id": "makyo",
+      "name": "Arco del Planeta Makyo",
+      "series": "dbz",
+      "order": 9
+    },
+    {
+      "id": "androides-cell",
+      "name": "Arco de los Androides y Célula",
+      "series": "dbz",
+      "order": 10
+    },
+    {
+      "id": "otro-mundo",
+      "name": "Arco del Torneo del Otro Mundo",
+      "series": "dbz",
+      "order": 11
+    },
+    {
+      "id": "boo",
+      "name": "Arco del Monstruo Boo",
+      "series": "dbz",
+      "order": 12
+    },
+    {
+      "id": "dbz-peliculas",
+      "name": "Películas y especiales de Dragon Ball Z",
+      "series": "dbz",
+      "order": 13
+    },
+    {
+      "id": "beerus",
+      "name": "Arco del Dios de la Destrucción Beerus",
+      "series": "super",
+      "order": 14
+    },
+    {
+      "id": "freezer-dorado",
+      "name": "Arco de Freezer Dorado",
+      "series": "super",
+      "order": 15
+    },
+    {
+      "id": "universo-6",
+      "name": "Arco del Universo 6 contra el Universo 7",
+      "series": "super",
+      "order": 16
+    },
+    {
+      "id": "trunks-futuro",
+      "name": "Arco de Trunks del Futuro",
+      "series": "super",
+      "order": 17
+    },
+    {
+      "id": "supervivencia",
+      "name": "Arco de la Supervivencia del Universo",
+      "series": "super",
+      "order": 18
+    },
+    {
+      "id": "super-broly",
+      "name": "Película Dragon Ball Super: Broly",
+      "series": "super",
+      "order": 19
+    },
+    {
+      "id": "prisionero-patrulla-galactica",
+      "name": "Arco del Prisionero de la Patrulla Galáctica",
+      "series": "super",
+      "order": 20
+    },
+    {
+      "id": "sobreviviente-granolah",
+      "name": "Arco del Sobreviviente Granolah",
+      "series": "super",
+      "order": 21
+    },
+    {
+      "id": "super-hero",
+      "name": "Película Dragon Ball Super: Super Hero",
+      "series": "super",
+      "order": 22
+    },
+    {
+      "id": "esferas-definitivas",
+      "name": "Arco de las Esferas del Dragón Definitivas",
+      "series": "gt",
+      "order": 23
+    },
+    {
+      "id": "baby",
+      "name": "Arco del Demonio Vengador Baby",
+      "series": "gt",
+      "order": 24
+    },
+    {
+      "id": "androide-definitivo",
+      "name": "Arco del Androide Definitivo",
+      "series": "gt",
+      "order": 25
+    },
+    {
+      "id": "dragones-malignos",
+      "name": "Arco de los Siete Dragones Malignos",
+      "series": "gt",
+      "order": 26
+    },
+    {
+      "id": "reino-demoniaco",
+      "name": "Dragon Ball Daima",
+      "series": "daima",
+      "order": 27
+    }
+  ]
+}
