@@ -48,3 +48,11 @@ $heights: (
     @content;
   }
 }
+
+// Movimiento: las transiciones solo corren si la persona no pidió reducirlo
+// (`prefers-reduced-motion`). Es la única forma de escribir esa media query.
+@mixin motion-ok {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
