@@ -5,6 +5,8 @@
 import { describe, expect, it } from 'vitest';
 import { defaultMinPool, hasMinimumPool } from '@/engine/filters';
 import type { Content, Entity } from '@/engine/types';
+import { MAX_ROUNDS, buildRounds, metricOfDay, poolOf } from '@/modes/higher-lower/logic';
+import { candidatesOf as revealCandidates, itemsOf } from '@/modes/reveal-list/logic';
 import { candidatesOf } from '@/modes/text-clue/logic';
 import { leaksName, nameVariants } from '../../../scripts/data/pokemon/transform.ts';
 import entitiesJson from '../../../data/pokemon/entities.json';
@@ -123,5 +125,115 @@ describe('pools con los filtros', () => {
     const pool = candidatesOf(entities, contents, all, modeConfig('movimiento-insignia'));
     expect(pool.length).toBe(withMove.size);
     for (const candidate of pool) expect(withMove.has(candidate.id)).toBe(true);
+  });
+});
+
+describe('Moveset', () => {
+  const movesets = contents.filter((content) => content.kind === 'moveset');
+  const config = () => {
+    const revealList = modes.find((mode) => mode.slug === 'moveset')?.revealList;
+    if (!revealList) throw new Error('moveset no tiene config de reveal-list');
+    return revealList;
+  };
+
+  it('casi todos los Pokémon tienen uno, con 4 movimientos distintos', () => {
+    expect(movesets.length).toBeGreaterThan(1000);
+    for (const moveset of movesets) {
+      const items = itemsOf(moveset, 'items');
+      expect(items, moveset.id).toHaveLength(4);
+      expect(new Set(items).size, moveset.id).toBe(4);
+    }
+  });
+
+  it('ningún movimiento contiene el nombre del Pokémon', () => {
+    const leaks = movesets.filter((moveset) => {
+      const entity = byId.get(moveset.entityId ?? '');
+      return entity !== undefined && leaksName(itemsOf(moveset, 'items').join('. '), namesOf(entity));
+    });
+    expect(leaks.map((moveset) => moveset.id)).toEqual([]);
+  });
+
+  it('cada Moveset es de un Pokémon que existe y de su serie', () => {
+    for (const moveset of movesets) {
+      const entity = byId.get(moveset.entityId ?? '');
+      expect(entity, moveset.id).toBeDefined();
+      expect(entity?.series, moveset.id).toContain(moveset.series);
+    }
+  });
+
+  it('alcanza el pool mínimo con todas las series y con cualquiera sola', () => {
+    const minimum = defaultMinPool('reveal-list');
+    expect(hasMinimumPool(revealCandidates(entities, contents, pokemonConfig.series, config()).length, minimum)).toBe(true);
+    for (const generation of pokemonConfig.series) {
+      const pool = revealCandidates(entities, contents, [generation], config());
+      expect(hasMinimumPool(pool.length, minimum), generation).toBe(true);
+    }
+  });
+
+  it('los Pokémon con menos de 4 movimientos no pueden ser la respuesta, pero sí un intento', () => {
+    const pool = revealCandidates(entities, contents, pokemonConfig.series, config());
+    for (const id of ['ditto', 'unown', 'smeargle']) {
+      expect(pool.some((candidate) => candidate.id === id), id).toBe(false);
+      expect(byId.has(id), id).toBe(true);
+    }
+  });
+
+  it('con una serie apagada no aparece nada de ella', () => {
+    const active = pokemonConfig.series.filter((id) => id !== 'g9');
+    const pool = revealCandidates(entities, contents, active, config());
+    expect(pool.some((candidate) => candidate.entity.series.includes('g9'))).toBe(false);
+  });
+});
+
+describe('Mayor o Menor', () => {
+  const config = () => {
+    const higherLower = modes.find((mode) => mode.slug === 'mayor-o-menor')?.higherLower;
+    if (!higherLower) throw new Error('mayor-o-menor no tiene config de higher-lower');
+    return higherLower;
+  };
+
+  it('los 1025 Pokémon tienen peso, altura y total de estadísticas', () => {
+    const pool = poolOf(entities, pokemonConfig.series, config().metrics);
+    expect(pool).toHaveLength(entities.length);
+  });
+
+  it('alterna peso, altura y total de estadísticas por día', () => {
+    expect([0, 1, 2, 3].map((day) => metricOfDay(config().metrics, day).key)).toEqual(['peso', 'altura', 'totalEstadisticas', 'peso']);
+  });
+
+  it('alcanza el pool mínimo con todas las series y con cualquiera sola', () => {
+    const minimum = defaultMinPool('higher-lower');
+    for (const active of [pokemonConfig.series, ...pokemonConfig.series.map((id) => [id])]) {
+      expect(hasMinimumPool(poolOf(entities, active, config().metrics).length, minimum), active.join()).toBe(true);
+    }
+  });
+
+  it('las tres métricas dan una secuencia completa y sin empates, todos los días probados', () => {
+    for (const metric of config().metrics) {
+      const pool = poolOf(entities, pokemonConfig.series, config().metrics);
+      for (let day = 0; day < 40; day++) {
+        const rounds = buildRounds(pool, metric.key, { franchise: 'pokemon', mode: 'mayor-o-menor', filterKey: 'all', day });
+        expect(rounds, `${metric.key} día ${day}`).toHaveLength(MAX_ROUNDS);
+        for (const round of rounds) expect(round.aValue).not.toBe(round.bValue);
+      }
+    }
+  });
+
+  it('con solo g1 no sale ningún Pokémon de otra generación', () => {
+    const pool = poolOf(entities, ['g1'], config().metrics);
+    for (let day = 0; day < 20; day++) {
+      for (const round of buildRounds(pool, 'peso', { franchise: 'pokemon', mode: 'mayor-o-menor', filterKey: 'g1', day })) {
+        expect(round.a.series).toContain('g1');
+        expect(round.b.series).toContain('g1');
+      }
+    }
+  });
+
+  it('la secuencia de un día es la misma, sin importar el orden de los datos', () => {
+    const ctx = { franchise: 'pokemon', mode: 'mayor-o-menor', filterKey: 'all', day: 279 };
+    const ids = (rounds: ReturnType<typeof buildRounds>) => rounds.map((round) => `${round.a.id}-${round.b.id}`);
+    const forward = poolOf(entities, pokemonConfig.series, config().metrics);
+    const backward = poolOf([...entities].reverse(), pokemonConfig.series, config().metrics);
+    expect(ids(buildRounds(backward, 'peso', ctx))).toEqual(ids(buildRounds(forward, 'peso', ctx)));
   });
 });
