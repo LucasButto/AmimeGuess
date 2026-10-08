@@ -1,5 +1,11 @@
 @use 'tokens' as t;
 
+.soonPage {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-4;
+}
+
 .soon {
   display: flex;
   flex-direction: column;

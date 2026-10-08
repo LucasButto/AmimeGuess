@@ -1,8 +1,8 @@
 'use client';
 
-import { useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useState } from 'react';
 import { Autocomplete, type AutocompleteItem } from '@/components/Autocomplete';
-import { ContentImage } from '@/components/ContentImage';
+import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import { pickDaily, type DailyContext } from '@/engine/daily';
 import { getLocalStorage, readState, writeState } from '@/engine/storage';
@@ -10,28 +10,58 @@ import type { Content, Entity } from '@/engine/types';
 import { es } from '@/i18n/es';
 import { AttemptsTable } from './AttemptsTable';
 import styles from './ClassicBoard.module.scss';
-import { buildRow, failedCount, hintStates, hintText, restoreAttempts } from './logic';
+import { buildRow, failedCount, hintStates, hintText, restoreAttempts, shareGrid, type AttemptRow } from './logic';
 import type { ClassicColumn, ClassicHint } from './types';
 
 interface ClassicBoardProps {
-  franchise: string;
-  mode: string;
-  filterKey: string;
-  day: number;
+  /** Lo que da el marco (`GameShell`): día, filtros y el aviso de que terminó el reto. */
+  session: GameSession;
   /** Entidades elegibles con las series activas. */
   pool: readonly Entity[];
-  active: readonly string[];
   columns: readonly ClassicColumn[];
   hints: readonly ClassicHint[];
   contents: readonly Content[];
 }
 
+/** Las filas de los intentos, en el orden en que se jugaron. */
+function rowsOf(
+  ids: readonly string[],
+  byId: ReadonlyMap<string, Entity>,
+  answer: Entity,
+  columns: readonly ClassicColumn[],
+  active: readonly string[],
+): AttemptRow[] {
+  return ids.flatMap((id) => {
+    const entity = byId.get(id);
+    return entity ? [buildRow(entity, answer, columns, active)] : [];
+  });
+}
+
+/** El aviso al marco de que terminó el reto: la respuesta, los intentos y la grilla para compartir. */
+function reportOf(
+  ids: readonly string[],
+  byId: ReadonlyMap<string, Entity>,
+  answer: Entity,
+  columns: readonly ClassicColumn[],
+  active: readonly string[],
+  fresh: boolean,
+): FinishReport {
+  return {
+    won: true,
+    attempts: ids.length,
+    answer: { label: answer.name.es, imageStem: answer.image },
+    grid: shareGrid(rowsOf(ids, byId, answer, columns, active)),
+    fresh,
+  };
+}
+
 /**
- * Una partida: el reto de un día para una combinación de filtros. Se vuelve a
- * montar (con `key`) cuando cambia cualquiera de los dos, y así recupera desde
+ * Una partida: el reto de un día para una combinación de filtros. El marco la
+ * vuelve a montar cuando cambia cualquiera de los dos, y así recupera desde
  * `localStorage` los intentos de esa combinación.
  */
-export function ClassicBoard({ franchise, mode, filterKey, day, pool, active, columns, hints, contents }: ClassicBoardProps) {
+export function ClassicBoard({ session, pool, columns, hints, contents }: ClassicBoardProps) {
+  const { franchise, mode, filterKey, day, active, onFinish } = session;
   const hintsTitleId = useId();
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
   const answer = useMemo(() => pickDaily(pool, ctx), [pool, ctx]);
@@ -41,6 +71,15 @@ export function ClassicBoard({ franchise, mode, filterKey, day, pool, active, co
     restoreAttempts(readState(getLocalStorage(), ctx)?.attempts, pool),
   );
   const [lastAdded, setLastAdded] = useState<string | null>(null);
+
+  // Si la partida ya estaba ganada al montarse (se recargó la página), el marco tiene que
+  // mostrar su resumen, pero sin volver a sumarla a las estadísticas.
+  const [restored] = useState<FinishReport | null>(() =>
+    attemptIds.includes(answer.id) ? reportOf(attemptIds, byId, answer, columns, active, false) : null,
+  );
+  useEffect(() => {
+    if (restored) onFinish(restored);
+  }, [restored, onFinish]);
 
   const attempted = useMemo(() => new Set(attemptIds), [attemptIds]);
   const lastName = lastAdded ? byId.get(lastAdded)?.name.es : undefined;
@@ -54,13 +93,7 @@ export function ClassicBoard({ franchise, mode, filterKey, day, pool, active, co
 
   // Del más reciente al más antiguo: lo último que se probó queda arriba, junto al campo.
   const rows = useMemo(
-    () =>
-      attemptIds
-        .flatMap((id) => {
-          const entity = byId.get(id);
-          return entity ? [buildRow(entity, answer, columns, active)] : [];
-        })
-        .reverse(),
+    () => rowsOf(attemptIds, byId, answer, columns, active).reverse(),
     [attemptIds, byId, answer, columns, active],
   );
 
@@ -77,26 +110,19 @@ export function ClassicBoard({ franchise, mode, filterKey, day, pool, active, co
   function addAttempt(id: string) {
     if (won || attempted.has(id) || !byId.has(id)) return;
     const next = [...attemptIds, id];
+    const solved = next.includes(answer.id);
+
     setAttemptIds(next);
     setLastAdded(id);
-    writeState(getLocalStorage(), ctx, { attempts: next, result: next.includes(answer.id) ? 'won' : 'playing' });
+    writeState(getLocalStorage(), ctx, { attempts: next, result: solved ? 'won' : 'playing' });
+
+    if (solved) onFinish(reportOf(next, byId, answer, columns, active, true));
   }
 
   return (
     <div className={styles.root} data-game-ready="true">
-      {won ? (
-        <section className={styles.win} aria-live="polite">
-          {answer.image && (
-            <ContentImage className={styles.winImage} stem={answer.image} alt="" sizes="(min-width: 48rem) 10rem, 8rem" priority />
-          )}
-          <div>
-            <h2 className={styles.winTitle}>{es.classic.wonTitle}</h2>
-            <p>{es.classic.wonText(answer.name.es, attemptIds.length)}</p>
-          </div>
-        </section>
-      ) : (
-        <Autocomplete label={es.classic.inputLabel} items={items} excludeIds={attempted} onSelect={addAttempt} />
-      )}
+      {/* Al ganar, el marco muestra la respuesta y el resumen (ver `FinishReport`). */}
+      {!won && <Autocomplete label={es.classic.inputLabel} items={items} excludeIds={attempted} onSelect={addAttempt} />}
 
       {!won && visibleHints.length > 0 && (
         <section className={styles.hints} aria-labelledby={hintsTitleId}>

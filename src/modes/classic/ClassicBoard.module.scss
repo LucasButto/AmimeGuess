@@ -7,33 +7,6 @@
   gap: t.$space-4;
 }
 
-.win {
-  display: flex;
-  align-items: center;
-  gap: t.$space-4;
-  padding: t.$space-4;
-  border-radius: t.$radius-lg;
-  background: t.color('match');
-  color: t.color('on-result');
-}
-
-.winImage {
-  flex: none;
-  inline-size: 6rem;
-  block-size: 6rem;
-  object-fit: contain;
-
-  @include bp.min-width('md') {
-    inline-size: 8rem;
-    block-size: 8rem;
-  }
-}
-
-.winTitle {
-  font-size: t.$font-size-xl;
-  line-height: t.$line-height-tight;
-}
-
 .hints {
   display: flex;
   flex-direction: column;

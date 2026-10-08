@@ -1,72 +1,72 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { CopyLinkButton } from '@/components/CopyLinkButton';
-import { FilterPanel } from '@/components/FilterPanel';
-import { useSeriesFilters } from '@/components/useSeriesFilters';
-import { getDay } from '@/engine/day';
+import { useCallback, useMemo } from 'react';
+import { GameShell } from '@/components/game-shell/GameShell';
+import type { AnswerInfo, GameSession, ModeLink, ShellFranchise } from '@/components/game-shell/types';
+import { yesterday as yesterdayOf, type DailyContext } from '@/engine/daily';
 import { defaultMinPool, eligibleEntities, hasMinimumPool } from '@/engine/filters';
 import type { Content, Entity } from '@/engine/types';
 import { ClassicBoard } from './ClassicBoard';
-import styles from './ClassicGame.module.scss';
+import { ClassicHelp } from './ClassicHelp';
 import { visibleColumns } from './logic';
 import type { ClassicConfig } from './types';
 
 interface ClassicGameProps {
-  franchise: string;
-  mode: string;
-  /** Ids de serie en orden canónico. */
-  series: readonly string[];
-  seriesLabels: Readonly<Record<string, string>>;
+  franchise: ShellFranchise;
+  mode: { slug: string; name: string };
+  /** Todos los modos de la franquicia, para la navegación del marco. */
+  modes: readonly ModeLink[];
   config: ClassicConfig;
   entities: readonly Entity[];
   contents: readonly Content[];
 }
 
+const MINIMUM_POOL = defaultMinPool('classic');
+
 /**
  * Modo Clásico: se adivina una entidad por la tabla de atributos de sus
- * intentos. Es genérico: las columnas, las pistas y los datos vienen por
- * props, y no sabe de qué franquicia son.
- *
- * El reto se calcula en el cliente, después del montaje (SPEC 8), así que este
- * componente solo se monta cuando los datos ya cargaron (ver `ModeGame`).
+ * intentos. Es el motor `classic` montado sobre el marco común (`GameShell`):
+ * acá solo está lo que es propio de él, que es cómo se arma el pool, la
+ * respuesta de ayer, su ayuda y el juego. No sabe de qué franquicia es.
  */
-export function ClassicGame({ franchise, mode, series, seriesLabels, config, entities, contents }: ClassicGameProps) {
-  const { active, filterKey, setActive } = useSeriesFilters(franchise, series);
-  const [day] = useState(() => getDay(new Date()));
+export function ClassicGame({ franchise, mode, modes, config, entities, contents }: ClassicGameProps) {
+  const poolSize = useCallback((active: readonly string[]) => eligibleEntities(entities, active).length, [entities]);
 
-  const pool = useMemo(() => eligibleEntities(entities, active), [entities, active]);
-  const columns = useMemo(() => visibleColumns(config.columns, active), [config.columns, active]);
-  const minimum = defaultMinPool('classic');
+  const yesterday = useCallback(
+    (ctx: DailyContext, active: readonly string[]): AnswerInfo | null => {
+      const pool = eligibleEntities(entities, active);
+      if (!hasMinimumPool(pool.length, MINIMUM_POOL)) return null;
+      const answer = yesterdayOf(pool, ctx);
+      return { label: answer.name.es, imageStem: answer.image };
+    },
+    [entities],
+  );
 
   return (
-    <div className={styles.root} data-game="classic">
-      <FilterPanel
-        series={series}
-        labels={seriesLabels}
-        active={active}
-        onChange={setActive}
-        remaining={pool.length}
-        minimum={minimum}
-      >
-        <CopyLinkButton filterKey={filterKey} />
-      </FilterPanel>
-
-      {hasMinimumPool(pool.length, minimum) && (
-        <ClassicBoard
-          // Otra combinación de filtros o de día es otra partida: se vuelve a montar.
-          key={`${filterKey}:${day}`}
-          franchise={franchise}
-          mode={mode}
-          filterKey={filterKey}
-          day={day}
-          pool={pool}
-          active={active}
-          columns={columns}
-          hints={config.hints}
-          contents={contents}
-        />
-      )}
-    </div>
+    <GameShell
+      franchise={franchise}
+      mode={mode}
+      modes={modes}
+      minimumPool={MINIMUM_POOL}
+      poolSize={poolSize}
+      yesterday={yesterday}
+      help={<ClassicHelp config={config} />}
+    >
+      {(session) => <ClassicSession session={session} config={config} entities={entities} contents={contents} />}
+    </GameShell>
   );
+}
+
+interface ClassicSessionProps {
+  session: GameSession;
+  config: ClassicConfig;
+  entities: readonly Entity[];
+  contents: readonly Content[];
+}
+
+/** El juego de una combinación de series: calcula su pool y sus columnas una vez por combinación. */
+function ClassicSession({ session, config, entities, contents }: ClassicSessionProps) {
+  const pool = useMemo(() => eligibleEntities(entities, session.active), [entities, session.active]);
+  const columns = useMemo(() => visibleColumns(config.columns, session.active), [config.columns, session.active]);
+  return <ClassicBoard session={session} pool={pool} columns={columns} hints={config.hints} contents={contents} />;
 }

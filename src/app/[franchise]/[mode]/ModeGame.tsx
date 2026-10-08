@@ -1,15 +1,20 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { hasFranchiseData, loadFranchiseData, type FranchiseData } from '@/franchises/data';
+import { ModeNav } from '@/components/game-shell/ModeNav';
+import type { ModeLink } from '@/components/game-shell/types';
+import { loadFranchiseData, type FranchiseData } from '@/franchises/data';
 import type { FranchiseConfig, ModeConfig } from '@/franchises/types';
 import { es } from '@/i18n/es';
 import { ClassicGame } from '@/modes/classic/ClassicGame';
 import styles from './ModeGame.module.scss';
+import { isPlayable } from './playable';
 
 interface ModeGameProps {
   franchise: FranchiseConfig;
   mode: ModeConfig;
+  /** Todos los modos de la franquicia con su disponibilidad, para la navegación. */
+  modes: readonly ModeLink[];
 }
 
 /**
@@ -20,9 +25,9 @@ interface ModeGameProps {
  * motores solo se montan después de la hidratación y pueden leer `window`,
  * `localStorage` y la hora sin producir diferencias con el HTML del servidor.
  */
-export function ModeGame({ franchise, mode }: ModeGameProps) {
+export function ModeGame({ franchise, mode, modes }: ModeGameProps) {
   const classic = mode.engine === 'classic' ? mode.classic : undefined;
-  const playable = classic !== undefined && hasFranchiseData(franchise.slug);
+  const playable = isPlayable(franchise, mode);
   const [loaded, setLoaded] = useState<FranchiseData | 'error' | null>(null);
 
   useEffect(() => {
@@ -40,12 +45,15 @@ export function ModeGame({ franchise, mode }: ModeGameProps) {
     };
   }, [playable, franchise.slug]);
 
-  if (!playable) {
+  if (!playable || !classic) {
     return (
-      <section className={styles.soon}>
-        <h2 className={styles.soonTitle}>{es.mode.comingSoon}</h2>
-        <p>{es.mode.provisional}</p>
-      </section>
+      <div className={styles.soonPage}>
+        <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} />
+        <section className={styles.soon}>
+          <h2 className={styles.soonTitle}>{es.mode.comingSoon}</h2>
+          <p>{es.mode.provisional}</p>
+        </section>
+      </div>
     );
   }
   if (loaded === 'error') return <p role="alert">{es.game.loadError}</p>;
@@ -53,10 +61,9 @@ export function ModeGame({ franchise, mode }: ModeGameProps) {
 
   return (
     <ClassicGame
-      franchise={franchise.slug}
-      mode={mode.slug}
-      series={franchise.series}
-      seriesLabels={franchise.seriesLabels}
+      franchise={franchise}
+      mode={mode}
+      modes={modes}
       config={classic}
       entities={loaded.entities}
       contents={loaded.contents}

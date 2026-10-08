@@ -4,6 +4,7 @@ import { franchises, getFranchise } from '@/franchises';
 import { es } from '@/i18n/es';
 import { ModeGame } from './ModeGame';
 import styles from './page.module.scss';
+import { isPlayable } from './playable';
 
 // Solo existen los modos de la config de cada franquicia; cualquier otra ruta es 404.
 export const dynamicParams = false;
@@ -24,13 +25,19 @@ export default async function ModePage({
   const mode = franchise?.modes.find((candidate) => candidate.slug === modeSlug);
   if (!franchise || !mode) notFound();
 
+  const modes = franchise.modes.map((candidate) => ({
+    slug: candidate.slug,
+    name: candidate.name,
+    available: isPlayable(franchise, candidate),
+  }));
+
   return (
     <main className={styles.page}>
       <header className={styles.header}>
         <p className={styles.franchise}>{franchise.name}</p>
         <h1 className={styles.title}>{mode.name}</h1>
       </header>
-      <ModeGame franchise={franchise} mode={mode} />
+      <ModeGame franchise={franchise} mode={mode} modes={modes} />
       <Link className={styles.back} href={`/${franchise.slug}`}>
         {es.mode.backToFranchise}
       </Link>

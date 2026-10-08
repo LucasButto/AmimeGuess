@@ -1,0 +1,66 @@
+@use 'tokens' as t;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-5;
+}
+
+.title {
+  margin-block-end: t.$space-2;
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
+}
+
+.swatch {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.75rem;
+  block-size: 2.25rem;
+  font-weight: t.$font-weight-bold;
+  border-radius: t.$radius-md;
+  color: t.color('on-result');
+
+  &[data-match='exact'] {
+    background: t.color('match');
+  }
+
+  &[data-match='partial'] {
+    background: t.color('partial');
+  }
+
+  &[data-match='none'] {
+    background: t.color('miss');
+  }
+}
+
+.note {
+  margin-block-start: t.$space-3;
+  font-size: t.$font-size-sm;
+  color: t.color('text-muted');
+}
+
+.hints {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
+  margin: t.$space-2 0 0;
+  padding-inline-start: t.$space-5;
+}

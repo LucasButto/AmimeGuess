@@ -66,6 +66,17 @@ export function buildRow(
   };
 }
 
+const MATCH_EMOJI: Record<CellMatch, string> = { exact: '🟩', partial: '🟧', none: '🟥' };
+
+/**
+ * Grilla para compartir: una línea por intento, en el orden en que se jugaron,
+ * con un cuadrado de color por columna. Solo colores: sin nombres, valores ni
+ * flechas, así que no revela nada de la respuesta.
+ */
+export function shareGrid(rows: readonly AttemptRow[]): string[] {
+  return rows.map((row) => row.cells.map((cell) => MATCH_EMOJI[cell.match]).join(''));
+}
+
 /** Intentos que no fueron la respuesta: son los que desbloquean pistas. */
 export function failedCount(attemptIds: readonly string[], answerId: string): number {
   return attemptIds.filter((id) => id !== answerId).length;

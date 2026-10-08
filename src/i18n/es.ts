@@ -58,9 +58,6 @@ export const es = {
     hintsTitle: 'Pistas',
     hintLocked: (remaining: number) =>
       `Se desbloquea con ${remaining} ${plural(remaining, 'intento fallido más', 'intentos fallidos más')}`,
-    wonTitle: '¡Lo adivinaste!',
-    wonText: (name: string, attempts: number) =>
-      `Era ${name}. Lo lograste en ${attempts} ${plural(attempts, 'intento', 'intentos')}.`,
     help: {
       goal: 'Adiviná la respuesta del día. Escribí un nombre, elegí una opción de la lista y mirá cómo se compara con la respuesta.',
       colorsTitle: 'Qué significa cada color',
