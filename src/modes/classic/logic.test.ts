@@ -7,6 +7,7 @@ import {
   hintStates,
   hintText,
   restoreAttempts,
+  shareGrid,
   visibleColumns,
 } from './logic';
 import type { ClassicColumn, ClassicHint } from './types';
@@ -114,6 +115,40 @@ describe('buildRow', () => {
     expect(buildRow(withGt, withoutGt, formas, ['dbz', 'gt']).cells[0].match).toBe('partial');
     expect(buildRow(withGt, withoutGt, formas, ['dbz']).cells[0].match).toBe('exact');
     expect(buildRow(withGt, withoutGt, formas, ['dbz']).cells[0].value).toEqual(['Forma base']);
+  });
+});
+
+describe('shareGrid', () => {
+  const build = (guess: Entity, answer: Entity) => buildRow(guess, answer, columns, ['g1']);
+
+  it('un cuadrado de color por columna: verde, naranja o rojo', () => {
+    // bulbasaur vs charmander: tipo1 ✕, tipo2 ✕, altura ✕, huevo parcial, hábitat ✕
+    expect(shareGrid([build(bulbasaur, charmander)])).toEqual(['🟥🟥🟥🟧🟥']);
+    expect(shareGrid([build(bulbasaur, bulbasaur)])).toEqual(['🟩🟩🟩🟩🟩']);
+  });
+
+  it('una línea por intento, en el orden en que se jugaron', () => {
+    const grid = shareGrid([build(charmander, bulbasaur), build(ivysaur, bulbasaur), build(bulbasaur, bulbasaur)]);
+    expect(grid).toHaveLength(3);
+    expect(grid[2]).toBe('🟩🟩🟩🟩🟩');
+    expect(grid[0]).not.toBe(grid[2]);
+  });
+
+  it('todas las líneas tienen tantos cuadrados como columnas', () => {
+    for (const line of shareGrid([build(bulbasaur, charmander), build(squirtle, bulbasaur)])) {
+      expect(Array.from(line)).toHaveLength(columns.length);
+    }
+  });
+
+  it('solo contiene los tres emojis de color: ni nombres, ni valores, ni flechas', () => {
+    const grid = shareGrid([build(bulbasaur, charmander), build(charmander, bulbasaur), build(ivysaur, squirtle)]);
+    for (const line of grid) expect(line).toMatch(/^[🟩🟧🟥]+$/u);
+    const text = grid.join('\n');
+    for (const secret of ['bulbasaur', 'charmander', 'Planta', 'Fuego', '↑', '↓']) expect(text).not.toContain(secret);
+  });
+
+  it('sin intentos, grilla vacía', () => {
+    expect(shareGrid([])).toEqual([]);
   });
 });
 
