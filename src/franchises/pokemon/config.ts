@@ -43,7 +43,20 @@ export const pokemonConfig = {
       },
     },
     { slug: 'silueta', name: 'Silueta', engine: 'image-reveal', imageReveal: { variant: 'silhouette' } },
-    { slug: 'descripcion', name: 'Descripción', engine: 'text-clue' },
+    {
+      slug: 'descripcion',
+      name: 'Descripción',
+      engine: 'text-clue',
+      // La entrada de la Pokédex en español, con el nombre en "???". Los tipos y la generación ayudan si se falla.
+      textClue: {
+        contentKind: 'dex',
+        lines: [
+          { kind: 'content', label: 'Descripción', after: 0, field: 'text' },
+          { kind: 'attr', label: 'Tipos', after: 3, keys: ['tipo1', 'tipo2'] },
+          { kind: 'attr', label: 'Generación', after: 6, keys: ['generacion'] },
+        ],
+      },
+    },
     {
       slug: 'carta',
       name: 'Carta',
@@ -51,7 +64,21 @@ export const pokemonConfig = {
       // La imagen es una carta del TCG (hasta 2 por Pokémon, una por día) y la respuesta, su Pokémon.
       imageReveal: { variant: 'blur', imageContentKind: 'tcg-card' },
     },
-    { slug: 'movimiento-insignia', name: 'Movimiento insignia', engine: 'text-clue' },
+    {
+      slug: 'movimiento-insignia',
+      name: 'Movimiento insignia',
+      engine: 'text-clue',
+      // Un movimiento que solo aprende una línea evolutiva: el nombre al principio, y el tipo y el texto si se falla.
+      // Cuenta como acierto cualquier Pokémon de la línea que lo aprenda (ver `accepts` en los datos).
+      textClue: {
+        contentKind: 'signature-move',
+        lines: [
+          { kind: 'content', label: 'Movimiento', after: 0, field: 'name' },
+          { kind: 'content', label: 'Tipo', after: 3, field: 'type' },
+          { kind: 'content', label: 'Descripción', after: 6, field: 'description' },
+        ],
+      },
+    },
     { slug: 'zoom', name: 'Zoom', engine: 'image-reveal', imageReveal: { variant: 'zoom' } },
     { slug: 'mayor-o-menor', name: 'Mayor o Menor', engine: 'higher-lower' },
     { slug: 'moveset', name: 'Moveset', engine: 'reveal-list' },

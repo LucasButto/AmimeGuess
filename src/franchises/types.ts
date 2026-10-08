@@ -1,5 +1,6 @@
 import type { ClassicConfig } from '../modes/classic/types';
 import type { ImageRevealConfig } from '../modes/image-reveal/types';
+import type { TextClueConfig } from '../modes/text-clue/types';
 
 /** Los 7 motores de juego (SPEC 3.2). Ninguno contiene lógica de una franquicia. */
 export type EngineId =
@@ -20,6 +21,8 @@ export interface ModeConfig {
   readonly classic?: ClassicConfig;
   /** Variante e imagen, solo para los modos con motor `image-reveal`. */
   readonly imageReveal?: ImageRevealConfig;
+  /** Contenido y pistas, solo para los modos con motor `text-clue`. */
+  readonly textClue?: TextClueConfig;
 }
 
 export interface FranchiseConfig {

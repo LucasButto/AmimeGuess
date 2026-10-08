@@ -10,6 +10,7 @@ import type { FranchiseConfig, ModeConfig } from '@/franchises/types';
 export function isPlayable(franchise: FranchiseConfig, mode: ModeConfig): boolean {
   const configured =
     (mode.engine === 'classic' && mode.classic !== undefined) ||
-    (mode.engine === 'image-reveal' && mode.imageReveal !== undefined);
+    (mode.engine === 'image-reveal' && mode.imageReveal !== undefined) ||
+    (mode.engine === 'text-clue' && mode.textClue !== undefined);
   return configured && hasFranchiseData(franchise.slug);
 }

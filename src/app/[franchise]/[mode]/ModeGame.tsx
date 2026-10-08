@@ -8,6 +8,7 @@ import type { FranchiseConfig, ModeConfig } from '@/franchises/types';
 import { es } from '@/i18n/es';
 import { ClassicGame } from '@/modes/classic/ClassicGame';
 import { ImageRevealGame } from '@/modes/image-reveal/ImageRevealGame';
+import { TextClueGame } from '@/modes/text-clue/TextClueGame';
 import styles from './ModeGame.module.scss';
 import { isPlayable } from './playable';
 
@@ -29,6 +30,7 @@ interface ModeGameProps {
 export function ModeGame({ franchise, mode, modes }: ModeGameProps) {
   const classic = mode.engine === 'classic' ? mode.classic : undefined;
   const imageReveal = mode.engine === 'image-reveal' ? mode.imageReveal : undefined;
+  const textClue = mode.engine === 'text-clue' ? mode.textClue : undefined;
   const playable = isPlayable(franchise, mode);
   const [loaded, setLoaded] = useState<FranchiseData | 'error' | null>(null);
 
@@ -68,6 +70,19 @@ export function ModeGame({ franchise, mode, modes }: ModeGameProps) {
         mode={mode}
         modes={modes}
         config={imageReveal}
+        entities={loaded.entities}
+        contents={loaded.contents}
+      />
+    );
+  }
+
+  if (textClue) {
+    return (
+      <TextClueGame
+        franchise={franchise}
+        mode={mode}
+        modes={modes}
+        config={textClue}
         entities={loaded.entities}
         contents={loaded.contents}
       />
