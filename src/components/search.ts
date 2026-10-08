@@ -1,5 +1,7 @@
 // Búsqueda del autocompletado: sin distinguir mayúsculas, acentos ni signos, y
-// con coincidencia por nombre y por alias. Lógica pura, sin React.
+// con coincidencia por nombre y por alias. Solo cuenta lo que EMPIEZA igual:
+// con "s" salen los que empiezan con S, no los que llevan una S en cualquier
+// parte. Lógica pura, sin React.
 
 export interface SearchItem {
   id: string;
@@ -9,21 +11,16 @@ export interface SearchItem {
 
 /** "Mr. Mime", "mr mime" y "MRMIME" dan lo mismo: minúsculas, sin acentos, signos ni espacios. */
 export function normalizeSearch(text: string): string {
-  return splitWords(text).join('');
-}
-
-function splitWords(text: string): string[] {
   return text
     .normalize('NFD')
     .replace(/\p{M}/gu, '')
     .toLowerCase()
     .split(/[^\p{L}\p{N}]+/u)
-    .filter((word) => word.length > 0);
+    .join('');
 }
 
 interface Key {
   compact: string;
-  words: string[];
   /** Un alias vale menos que el nombre: a igual coincidencia, el nombre sale primero. */
   penalty: number;
 }
@@ -37,8 +34,7 @@ interface IndexEntry<T> {
 export type SearchIndex<T extends SearchItem> = IndexEntry<T>[];
 
 function toKey(text: string, penalty: number): Key {
-  const words = splitWords(text);
-  return { compact: words.join(''), words, penalty };
+  return { compact: normalizeSearch(text), penalty };
 }
 
 /** Prepara los elementos una sola vez, para que cada tecla solo compare. */
@@ -50,13 +46,16 @@ export function buildSearchIndex<T extends SearchItem>(items: readonly T[]): Sea
   }));
 }
 
-/** 0: empieza igual · 1: una palabra empieza igual · 2: lo contiene. `null`: no coincide. */
+/**
+ * Con menos letras que esto solo cuenta el nombre: con una sola letra tienen que salir los que
+ * empiezan con ella, no los que se llaman así en otro idioma ("S" no debe traer a Colagrito por "Scream Tail").
+ */
+const MIN_ALIAS_QUERY = 2;
+
+/** 0: el nombre empieza igual · 3: un alias empieza igual. `null`: no coincide. */
 function rank(key: Key, query: string): number | null {
-  if (key.compact.length === 0) return null;
-  if (key.compact.startsWith(query)) return key.penalty;
-  if (key.words.some((word) => word.startsWith(query))) return key.penalty + 1;
-  if (key.compact.includes(query)) return key.penalty + 2;
-  return null;
+  if (key.penalty > 0 && query.length < MIN_ALIAS_QUERY) return null;
+  return key.compact.length > 0 && key.compact.startsWith(query) ? key.penalty : null;
 }
 
 export interface SearchOptions {
@@ -65,7 +64,7 @@ export interface SearchOptions {
   limit?: number;
 }
 
-/** Los mejores resultados para `query`, del que mejor coincide al que peor. Sin texto, ninguno. */
+/** Los que empiezan igual que `query`: primero por nombre, después por alias, y alfabéticamente. Sin texto, ninguno. */
 export function search<T extends SearchItem>(index: SearchIndex<T>, query: string, options: SearchOptions = {}): T[] {
   const normalized = normalizeSearch(query);
   if (normalized.length === 0) return [];

@@ -63,14 +63,39 @@ describe('search', () => {
     expect(ids('raichu de alola')).toEqual(['raichu']);
   });
 
-  it('ordena: primero los que empiezan igual, después una palabra, después los que lo contienen', () => {
-    // "mime": empieza con Mime Jr.; es una palabra de Mr. Mime.
-    expect(ids('mime')).toEqual(['mime-jr', 'mr-mime']);
-    // "chu": lo contienen Pikachu, Pichu (no: "pichu" contiene "chu") y Raichu.
-    expect(ids('chu')).toEqual(['pichu', 'pikachu', 'raichu']);
-    // "pi": empiezan Pichu y Pikachu; lo contienen otros.
-    expect(ids('pi')[0]).toBe('pichu');
-    expect(ids('pi').slice(0, 2)).toEqual(['pichu', 'pikachu']);
+  it('solo ofrece lo que empieza igual: no lo que contiene el texto en el medio, al final ni en otra palabra', () => {
+    // "chu": Pichu, Pikachu y Raichu lo llevan al final, pero ninguno empieza con "chu".
+    expect(ids('chu')).toEqual([]);
+    // "mime": Mime Jr. empieza igual; Mr. Mime lleva "mime" como segunda palabra y no entra.
+    expect(ids('mime')).toEqual(['mime-jr']);
+    // "m": empiezan Mime Jr. y Mr. Mime; Charmander lleva una M adentro y no entra.
+    expect(ids('m')).toEqual(['mime-jr', 'mr-mime']);
+  });
+
+  it('con una letra, ofrece solo los que empiezan con esa letra, aunque otros la lleven', () => {
+    // Regresión: "S" mostraba Metagross y otros por llevar una S dentro del nombre.
+    const names = ['Snorunt', 'Metagross', 'Sandshrew', 'Pikachu', 'Gyarados', 'Starmie', 'Charizard'];
+    const list = buildSearchIndex(names.map((label) => ({ id: label.toLowerCase(), label })));
+    expect(search(list, 's').map((item) => item.label)).toEqual(['Sandshrew', 'Snorunt', 'Starmie']);
+  });
+
+  it('los alias no cuentan con una sola letra: "s" no trae a quien solo se llama así en otro idioma', () => {
+    const list = buildSearchIndex([
+      { id: 'colagrito', label: 'Colagrito', aliases: ['Scream Tail'] },
+      { id: 'snorunt', label: 'Snorunt' },
+    ]);
+    expect(search(list, 's').map((item) => item.id)).toEqual(['snorunt']);
+    expect(search(list, 'sc').map((item) => item.id)).toEqual(['colagrito']);
+  });
+
+  it('ordena alfabéticamente y deja los alias después de los nombres', () => {
+    expect(ids('p').slice(0, 2)).toEqual(['pichu', 'pikachu']);
+    const list = buildSearchIndex([
+      { id: 'a', label: 'Zeta', aliases: ['Alfa'] },
+      { id: 'b', label: 'Alfonso' },
+      { id: 'c', label: 'Alberto' },
+    ]);
+    expect(search(list, 'al').map((item) => item.id)).toEqual(['c', 'b', 'a']);
   });
 
   it('un nombre que coincide sale antes que un alias que coincide igual', () => {
@@ -87,9 +112,17 @@ describe('search', () => {
   });
 
   it('limita la cantidad de resultados, conservando los mejores', () => {
-    const limited = ids('i', { limit: 3 });
-    expect(limited).toHaveLength(3);
-    expect(limited).toEqual(ids('i').slice(0, 3));
+    const limited = ids('m', { limit: 1 });
+    expect(limited).toEqual(ids('m').slice(0, 1));
+  });
+
+  it('con una sola letra y sin límite devuelve todas las coincidencias, no solo las primeras', () => {
+    // Regresión: el desplegable cortaba en 8 y "S" no mostraba a Snorunt hasta escribir "SN".
+    const names = ['Sandshrew', 'Scyther', 'Seel', 'Shellder', 'Slowpoke', 'Snorlax', 'Spearow', 'Squirtle', 'Starmie', 'Snorunt'];
+    const many = buildSearchIndex(names.map((label) => ({ id: label.toLowerCase(), label })));
+    const found = search(many, 's').map((item) => item.id);
+    expect(found).toHaveLength(names.length);
+    expect(found).toContain('snorunt');
   });
 
   it('devuelve los mismos objetos que se le dieron', () => {

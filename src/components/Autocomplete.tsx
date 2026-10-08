@@ -22,12 +22,15 @@ interface AutocompleteProps {
   disabled?: boolean;
 }
 
-const MAX_RESULTS = 8;
-
 /**
  * Campo de texto con sugerencias (patrón ARIA "combobox"). Se opera por
  * completo con teclado: flechas para moverse, Enter para elegir, Escape para
- * cerrar. Busca por nombre y alias sin distinguir mayúsculas ni acentos.
+ * cerrar. Ofrece lo que empieza con lo escrito, por nombre o alias, sin
+ * distinguir mayúsculas ni acentos.
+ *
+ * La lista muestra todas las coincidencias, sin tope: con una sola letra puede
+ * ser larga, pero así nadie se queda sin ver la opción que busca. Se desplaza
+ * dentro del panel y las miniaturas cargan en diferido.
  */
 export function Autocomplete({ label, items, excludeIds, onSelect, disabled = false }: AutocompleteProps) {
   const baseId = useId();
@@ -40,10 +43,7 @@ export function Autocomplete({ label, items, excludeIds, onSelect, disabled = fa
   const [activeIndex, setActiveIndex] = useState(0);
 
   const index = useMemo(() => buildSearchIndex(items), [items]);
-  const results = useMemo(
-    () => search(index, query, { exclude: excludeIds, limit: MAX_RESULTS }),
-    [index, query, excludeIds],
-  );
+  const results = useMemo(() => search(index, query, { exclude: excludeIds }), [index, query, excludeIds]);
 
   const showPanel = open && query.trim().length > 0;
   const active = results.length === 0 ? -1 : Math.min(activeIndex, results.length - 1);
