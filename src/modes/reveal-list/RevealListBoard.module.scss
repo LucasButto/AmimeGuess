@@ -1,0 +1,114 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-4;
+}
+
+// La lista de pistas: es lo que se mira mientras se juega, así que va destacada.
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-3;
+  padding: t.$space-4;
+  border: t.$border-width solid t.color('border');
+  border-inline-start: 0.375rem solid t.color('accent');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+
+  @include bp.min-width('md') {
+    padding: t.$space-5;
+  }
+}
+
+.listTitle {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  color: t.color('text-muted');
+}
+
+.slots {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.slot {
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
+  min-block-size: 2.75rem;
+  padding: t.$space-1 t.$space-3;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-md;
+  background: t.color('bg');
+
+  // Una pista todavía oculta se ve apagada y punteada.
+  &[data-revealed='false'] {
+    border-style: dashed;
+    color: t.color('text-muted');
+  }
+}
+
+.position {
+  flex: none;
+  inline-size: 1.5rem;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  text-align: center;
+  color: t.color('text-muted');
+}
+
+.text {
+  font-size: t.$font-size-lg;
+  line-height: t.$line-height-tight;
+  overflow-wrap: anywhere;
+}
+
+.counter {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: t.color('text-muted');
+}
+
+.failed {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+}
+
+.failedTitle {
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  padding: t.$space-1 t.$space-3;
+  font-size: t.$font-size-sm;
+  border: t.$border-width solid t.color('miss');
+  border-radius: t.$radius-full;
+  background: color-mix(in srgb, #{t.color('miss')} 10%, #{t.color('surface')});
+  color: t.color('text');
+}
+
+.empty {
+  padding: t.$space-5 t.$space-4;
+  text-align: center;
+  border: t.$border-width dashed t.color('border');
+  border-radius: t.$radius-lg;
+  color: t.color('text-muted');
+}

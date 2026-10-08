@@ -1,0 +1,7 @@
+@use 'tokens' as t;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-4;
+}
