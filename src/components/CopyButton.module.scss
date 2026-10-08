@@ -16,6 +16,13 @@
     border-color: t.color('accent');
   }
 
+  // La acción principal de una pantalla (por ejemplo, compartir el resultado).
+  &[data-variant='primary'] {
+    border-color: t.color('accent');
+    background: t.color('accent');
+    color: t.color('accent-contrast');
+  }
+
   &:focus-visible {
     outline: 0.125rem solid t.color('focus');
     outline-offset: 0.125rem;

@@ -1,0 +1,138 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// Con un modal abierto, la página de atrás no se desplaza.
+:global(body:has(dialog[open])) {
+  overflow: hidden;
+}
+
+.dialog {
+  // Teléfono: pantalla completa.
+  inline-size: 100%;
+  max-inline-size: none;
+  block-size: 100dvh;
+  max-block-size: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: t.color('surface');
+  color: t.color('text');
+
+  // Solo cuando está abierto: cerrado, el navegador lo oculta con display: none.
+  &[open] {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &::backdrop {
+    background: color-mix(in srgb, #{t.color('text')} 60%, transparent);
+  }
+
+  // Ventana ancha Y alta (tablet, escritorio): cuadro centrado que se achica al contenido.
+  // Un teléfono en horizontal es ancho pero bajo: sigue a pantalla completa.
+  @include bp.min-width('md') {
+    @include bp.min-height('tall') {
+      inline-size: min(calc(100% - #{t.$space-6}), 40rem);
+      // `fit-content` y no `auto`: un elemento fijo con `inset: 0` se estira a toda la altura con `auto`.
+      block-size: fit-content;
+      max-block-size: 85dvh;
+      margin: auto;
+      border-radius: t.$radius-lg;
+      overflow: hidden;
+    }
+  }
+}
+
+.header {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-3;
+  // El notch del teléfono no tapa el título.
+  padding: max(t.$space-3, env(safe-area-inset-top)) t.$space-4 t.$space-3;
+  border-block-end: t.$border-width solid t.color('border');
+
+  @include bp.min-width('md') {
+    @include bp.min-height('tall') {
+      padding-block-start: t.$space-3;
+    }
+  }
+}
+
+.title {
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+}
+
+.x {
+  @include m.touch-target;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: t.$font-size-lg;
+  border: 0;
+  border-radius: t.$radius-md;
+  background: transparent;
+  color: t.color('text-muted');
+  cursor: pointer;
+
+  &:hover {
+    color: t.color('text');
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: -0.125rem;
+  }
+}
+
+.body {
+  flex: 1 1 auto;
+  min-block-size: 0;
+  padding: t.$space-4;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.footer {
+  display: flex;
+  flex: none;
+  // El botón queda en el borde inferior: se alcanza con el pulgar y no queda bajo la barra de gestos.
+  padding: t.$space-3 t.$space-4 max(t.$space-3, env(safe-area-inset-bottom));
+  border-block-start: t.$border-width solid t.color('border');
+
+  @include bp.min-width('md') {
+    @include bp.min-height('tall') {
+      justify-content: flex-end;
+      padding-block-end: t.$space-3;
+    }
+  }
+}
+
+.close {
+  @include m.touch-target;
+  flex: 1;
+  padding: t.$space-2 t.$space-5;
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-medium;
+  border: t.$border-width solid t.color('accent');
+  border-radius: t.$radius-md;
+  background: t.color('accent');
+  color: t.color('accent-contrast');
+  cursor: pointer;
+
+  @include bp.min-width('md') {
+    @include bp.min-height('tall') {
+      flex: none;
+    }
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+}
