@@ -1,20 +1,38 @@
 // npm run data:pokemon
 //
-// Genera el dataset base de Pokémon a partir de PokéAPI:
+// Genera el dataset base de Pokémon a partir de PokéAPI y TCGdex:
 //   data/pokemon/entities.json   una entidad por especie base (sin megas ni formas regionales)
-//   data/pokemon/content.json    descripciones de la Pokédex en español, con el nombre en "???"
+//   data/pokemon/content.json    descripciones de la Pokédex en español, con el nombre en "???",
+//                                y cartas del TCG (kind "tcg-card", hasta 2 por Pokémon)
 //   public/img/pokemon/          arte oficial en WebP, 256 y 512 px
+//   public/img/pokemon/cards/    las cartas del TCG en WebP, 256 y 512 px
 //
-// Las respuestas de la API quedan en .cache/pokeapi/ (ignorada por git); la
-// salida es determinista: ejecutarlo dos veces produce los mismos archivos.
-// Si algo no cumple (esquema, ids repetidos, imágenes faltantes o fuera de
-// presupuesto), falla sin escribir los JSON.
+// Las respuestas de las APIs quedan en .cache/ (ignorada por git); la salida es
+// determinista: ejecutarlo dos veces produce los mismos archivos. Si algo no
+// cumple (esquema, ids repetidos, imágenes faltantes o fuera de presupuesto),
+// falla sin escribir los JSON.
 
 import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { Content, Entity } from '../../../src/engine/types.ts';
-import { API_BASE, ROOT, getFile, getJson, mapPool } from './api.ts';
-import { BUDGET_BYTES, SIZES, imageDimensions, imageFileName, renderImage, type Rendered } from './images.ts';
+import { API_BASE, NotFoundError, ROOT, TCGDEX, TCGDEX_BASE, getFile, getJson, mapPool } from './api.ts';
+import {
+  CARDS_PER_POKEMON,
+  CARD_DIRECTORY,
+  buildCardContent,
+  cardSlug,
+  pickCards,
+  type CardSource,
+} from './cards.ts';
+import {
+  BUDGET_BYTES,
+  CARD,
+  SIZES,
+  imageDimensions,
+  imageFileName,
+  renderImage,
+  type Rendered,
+} from './images.ts';
 import { printReport } from './report.ts';
 import {
   contentSchema,
@@ -24,6 +42,8 @@ import {
   pokemonSchema,
   speciesListSchema,
   speciesSchema,
+  tcgCardListSchema,
+  tcgCardSchema,
   type PokemonData,
   type Species,
 } from './schemas.ts';
@@ -31,6 +51,7 @@ import { buildDexContent, buildEntity, evolutionStages, mainAbilityUrl, nameIn }
 
 const DATA_DIR = path.join(ROOT, 'data', 'pokemon');
 const IMAGE_DIR = path.join(ROOT, 'public', 'img', 'pokemon');
+const CARD_IMAGE_DIR = path.join(ROOT, 'public', 'img', CARD_DIRECTORY);
 const FETCH_TASKS = 16;
 const IMAGE_TASKS = 4;
 
@@ -129,7 +150,57 @@ async function buildImages(species: Species[], pokemon: PokemonData[]): Promise<
   return rendered.flat();
 }
 
-// --- 3. Validación ----------------------------------------------------------
+// --- 3. Cartas del TCG ------------------------------------------------------
+
+interface CardsResult {
+  contents: Content[];
+  rendered: Rendered[];
+  /** Pokémon para los que TCGdex no tiene ninguna carta que sirva. */
+  withoutCard: string[];
+}
+
+/** Un recurso que no existe es `null` (se prueba con otra carta); cualquier otro fallo corta el script. */
+async function orNull<T>(request: Promise<T>): Promise<T | null> {
+  try {
+    return await request;
+  } catch (error) {
+    if (error instanceof NotFoundError) return null;
+    throw error;
+  }
+}
+
+async function buildCards(species: Species[], entities: Entity[]): Promise<CardsResult> {
+  step(`Cartas del TCG (TCGdex): eligiendo hasta ${CARDS_PER_POKEMON} por Pokémon…`);
+  const source: CardSource = {
+    detail: (id) => orNull(getJson(`${TCGDEX_BASE}/es/cards/${encodeURIComponent(id)}`, tcgCardSchema, TCGDEX)),
+    image: (card) => orNull(getFile(`${card.image}/high.webp`, `cards/${cardSlug(card.id)}.webp`, TCGDEX)),
+  };
+
+  // El número de Pokédex nacional es el id de la especie en PokéAPI.
+  const picks = await mapPool(entities, FETCH_TASKS, async (entity, index) => {
+    const dex = species[index].id;
+    const briefs = await getJson(`${TCGDEX_BASE}/es/cards?dexId=eq:${dex}`, tcgCardListSchema, TCGDEX);
+    return pickCards(entity.id, dex, briefs, source);
+  });
+
+  const flat = entities.flatMap((entity, index) => picks[index].map((pick) => ({ entity, pick })));
+  step(`Convirtiendo ${flat.length} cartas a WebP (256 y 512 px)…`);
+  const built = await mapPool(flat, IMAGE_TASKS, async ({ entity, pick }) => {
+    const slug = cardSlug(pick.card.id);
+    const rendered = await renderImage(slug, pick.image, CARD_IMAGE_DIR, CARD);
+    const size = await imageDimensions(path.join(CARD_IMAGE_DIR, imageFileName(slug, 512)));
+    return { content: buildCardContent(entity, pick.card, size), rendered };
+  });
+
+  const withoutCard = entities.filter((_, index) => picks[index].length === 0).map((entity) => entity.id);
+  return {
+    contents: built.map((item) => item.content),
+    rendered: built.flatMap((item) => item.rendered),
+    withoutCard,
+  };
+}
+
+// --- 4. Validación ----------------------------------------------------------
 
 const REQUIRED_ATTRS = [
   'tipo1', 'tipo2', 'generacion', 'colores', 'etapa', 'altura', 'peso', 'habitat', 'gruposHuevo', 'habilidad',
@@ -154,8 +225,16 @@ async function validate(entities: Entity[], contents: Content[], apiCount: numbe
   const ids = new Set(entities.map((entity) => entity.id));
   if (ids.size !== entities.length) problems.push('hay ids de entidad repetidos');
   if (new Set(contents.map((content) => content.id)).size !== contents.length) problems.push('hay ids de contenido repetidos');
-  if (new Set(contents.map((content) => content.entityId)).size !== contents.length) {
+  const dexContents = contents.filter((content) => content.kind === 'dex');
+  if (new Set(dexContents.map((content) => content.entityId)).size !== dexContents.length) {
     problems.push('hay más de una descripción para una misma entidad');
+  }
+  const cardContents = contents.filter((content) => content.kind === 'tcg-card');
+  const cardIds = cardContents.map((content) => String(content.payload.cardId));
+  if (new Set(cardIds).size !== cardIds.length) problems.push('una misma carta del TCG está asignada a más de un Pokémon');
+  for (const entity of entities) {
+    const count = cardContents.filter((content) => content.entityId === entity.id).length;
+    if (count > CARDS_PER_POKEMON) problems.push(`${entity.id}: tiene ${count} cartas y el máximo es ${CARDS_PER_POKEMON}`);
   }
   const series = new Set(entities.map((entity) => entity.series[0]));
   for (let generation = 1; generation <= 9; generation++) {
@@ -200,10 +279,35 @@ async function validate(entities: Entity[], contents: Content[], apiCount: numbe
   });
   problems.push(...imageChecks.flat());
 
+  // Cartas: las dos variantes en disco, WebP, lado mayor exacto, dentro del presupuesto
+  // de las cartas, y con las medidas del archivo de 512 px que guarda el contenido.
+  const cardChecks = await mapPool(cardContents, FETCH_TASKS, async (content) => {
+    const found: string[] = [];
+    const stem = String(content.payload.image);
+    for (const size of SIZES) {
+      const file = path.join(ROOT, 'public', 'img', `${stem}-${size}.webp`);
+      try {
+        const [{ size: bytes }, dimensions] = await Promise.all([stat(file), imageDimensions(file)]);
+        if (dimensions.format !== 'webp') found.push(`${content.id} (${size} px): no es WebP`);
+        if (Math.max(dimensions.width, dimensions.height) !== size) {
+          found.push(`${content.id} (${size} px): mide ${dimensions.width}×${dimensions.height}`);
+        }
+        if (bytes > CARD.budget[size]) found.push(`${content.id} (${size} px): pesa ${bytes} bytes`);
+        if (size === 512 && (dimensions.width !== content.payload.width || dimensions.height !== content.payload.height)) {
+          found.push(`${content.id}: el contenido dice ${String(content.payload.width)}×${String(content.payload.height)} y el archivo mide ${dimensions.width}×${dimensions.height}`);
+        }
+      } catch {
+        found.push(`${content.id} (${size} px): falta el archivo`);
+      }
+    }
+    return found;
+  });
+  problems.push(...cardChecks.flat());
+
   if (problems.length > 0) fail('Los datos generados no cumplen', problems);
 }
 
-// --- 4. Escritura -----------------------------------------------------------
+// --- 5. Escritura -----------------------------------------------------------
 
 async function writeJson(file: string, value: unknown): Promise<void> {
   const text = `${JSON.stringify(value, null, 2)}\n`;
@@ -243,15 +347,26 @@ async function main(): Promise<void> {
   });
 
   const rendered = await buildImages(species, pokemon);
+  const cards = await buildCards(species, entities);
+  // Primero las descripciones y después las cartas, así agregar un tipo de contenido no reordena el resto.
+  const allContents = [...contents, ...cards.contents];
 
   step('Validando…');
-  await validate(entities, contents, apiCount);
+  await validate(entities, allContents, apiCount);
 
   step('Escribiendo data/pokemon/…');
   await writeJson(path.join(DATA_DIR, 'entities.json'), entities);
-  await writeJson(path.join(DATA_DIR, 'content.json'), contents);
+  await writeJson(path.join(DATA_DIR, 'content.json'), allContents);
 
-  printReport({ entities, contents, apiSpeciesCount: apiCount, missingSpanishName, rendered });
+  printReport({
+    entities,
+    contents: allContents,
+    apiSpeciesCount: apiCount,
+    missingSpanishName,
+    rendered,
+    cardImages: cards.rendered,
+    withoutCard: cards.withoutCard,
+  });
   step('Listo.');
 }
 

@@ -1,7 +1,7 @@
 // Cliente de las fuentes de datos: HTTP con caché en disco, concurrencia
 // limitada y reintentos con espera (SPEC sección 7, "Reglas de uso").
 //
-// - Cada respuesta se guarda en .cache/pokeapi/ (ignorada por git): la segunda
+// - Cada respuesta se guarda en .cache/<fuente>/ (ignorada por git): la segunda
 //   ejecución no vuelve a pedir nada. Para refrescar, borrar esa carpeta.
 // - Nunca más de MAX_CONCURRENCY solicitudes simultáneas en total, sin importar
 //   cuántas tareas las pidan a la vez.
@@ -13,12 +13,28 @@ import type { z } from 'zod';
 
 export const ROOT = path.resolve(import.meta.dirname, '..', '..', '..');
 export const API_BASE = 'https://pokeapi.co/api/v2';
+export const TCGDEX_BASE = 'https://api.tcgdex.net/v2';
 
-const CACHE_DIR = path.join(ROOT, '.cache', 'pokeapi');
+/** De dónde vienen los datos: dónde se guarda su caché y qué parte de la ruta no entra al nombre del archivo. */
+export interface Source {
+  readonly cacheDir: string;
+  readonly pathPrefix: string;
+}
+
+export const POKEAPI: Source = { cacheDir: path.join(ROOT, '.cache', 'pokeapi'), pathPrefix: '/api/v2/' };
+export const TCGDEX: Source = { cacheDir: path.join(ROOT, '.cache', 'tcgdex'), pathPrefix: '/v2/' };
+
 const USER_AGENT = 'AnimeGuess-data-build (https://github.com/LucasButto/AmimeGuess)';
 const MAX_CONCURRENCY = 5;
-const MAX_ATTEMPTS = 5;
-const BASE_DELAY_MS = 500;
+const MAX_ATTEMPTS = 6;
+const BASE_DELAY_MS = 1000;
+
+/** El recurso no existe (404). No se reintenta; quien lo pide decide si es grave. */
+export class NotFoundError extends Error {
+  constructor(url: string) {
+    super(`No existe ${url}`);
+  }
+}
 
 class HttpError extends Error {
   readonly status: number;
@@ -100,6 +116,7 @@ async function download(url: string): Promise<Buffer> {
       await sleep(wait);
     }
   }
+  if (lastError instanceof HttpError && lastError.status === 404) throw new NotFoundError(url);
   throw new Error(`No se pudo descargar ${url}: ${lastError instanceof Error ? lastError.message : String(lastError)}`);
 }
 
@@ -121,11 +138,14 @@ async function writeCache(file: string, data: Buffer): Promise<void> {
   await rename(temporary, file);
 }
 
-function jsonCachePath(url: string): string {
+function jsonCachePath(url: string, source: Source): string {
   const parsed = new URL(url);
-  const resource = parsed.pathname.replace(/^\/api\/v2\//, '').replace(/\/$/, '');
+  const relative = parsed.pathname.startsWith(source.pathPrefix)
+    ? parsed.pathname.slice(source.pathPrefix.length)
+    : parsed.pathname.slice(1);
+  const resource = relative.replace(/\/$/, '');
   const query = parsed.search ? `__${parsed.search.slice(1).replace(/[^a-z0-9=&-]/gi, '_')}` : '';
-  return path.join(CACHE_DIR, 'json', `${resource}${query}.json`);
+  return path.join(source.cacheDir, 'json', `${resource}${query}.json`);
 }
 
 /** Datos del mismo origen se piden una sola vez: las tareas que piden la misma URL comparten la promesa. */
@@ -146,8 +166,8 @@ async function cached(file: string, url: string): Promise<Buffer> {
 }
 
 /** JSON de la API, validado con el esquema. Usa la caché si existe. */
-export async function getJson<T>(url: string, schema: z.ZodType<T>): Promise<T> {
-  const raw = await cached(jsonCachePath(url), url);
+export async function getJson<T>(url: string, schema: z.ZodType<T>, source: Source = POKEAPI): Promise<T> {
+  const raw = await cached(jsonCachePath(url, source), url);
   const parsed = schema.safeParse(JSON.parse(raw.toString('utf8')));
   if (!parsed.success) {
     throw new Error(`Respuesta inesperada de ${url}: ${parsed.error.message}`);
@@ -155,7 +175,7 @@ export async function getJson<T>(url: string, schema: z.ZodType<T>): Promise<T> 
   return parsed.data;
 }
 
-/** Archivo binario (imagen). `cacheName` es la ruta dentro de .cache/pokeapi/files/. */
-export async function getFile(url: string, cacheName: string): Promise<Buffer> {
-  return cached(path.join(CACHE_DIR, 'files', cacheName), url);
+/** Archivo binario (imagen). `cacheName` es la ruta dentro de .cache/<fuente>/files/. */
+export async function getFile(url: string, cacheName: string, source: Source = POKEAPI): Promise<Buffer> {
+  return cached(path.join(source.cacheDir, 'files', cacheName), url);
 }

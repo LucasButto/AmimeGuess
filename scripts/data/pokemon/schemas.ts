@@ -62,6 +62,32 @@ export type Species = z.infer<typeof speciesSchema>;
 export type PokemonData = z.infer<typeof pokemonSchema>;
 export type NameEntry = z.infer<typeof nameEntry>;
 
+// --- TCGdex (solo los campos que usa el script) -----------------------------
+
+/** Una carta en el listado de `cards?dexId=eq:N`: sin detalle, y sin imagen si no hay escaneo. */
+export const tcgCardBriefSchema = z.object({
+  id: z.string().min(1),
+  localId: z.string().min(1),
+  name: z.string(),
+  image: z.string().optional(),
+});
+
+export const tcgCardListSchema = z.array(tcgCardBriefSchema);
+
+export const tcgCardSchema = z.object({
+  id: z.string().min(1),
+  localId: z.string().min(1),
+  name: z.string(),
+  category: z.string(),
+  image: z.string().optional(),
+  /** Números de Pokédex nacional de los Pokémon que aparecen en la carta. */
+  dexId: z.array(z.number().int()).optional(),
+  set: z.object({ id: z.string().min(1), name: z.string() }),
+});
+
+export type TcgCardBrief = z.infer<typeof tcgCardBriefSchema>;
+export type TcgCard = z.infer<typeof tcgCardSchema>;
+
 // --- Datos generados --------------------------------------------------------
 
 const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -85,13 +111,35 @@ export const entitySchema = z
   })
   .strict();
 
-export const contentSchema = z
+const contentBase = {
+  id: z.string().regex(KEBAB),
+  entityId: z.string().regex(KEBAB),
+  series: z.string().regex(SERIES),
+  verified: z.boolean(),
+};
+
+const dexContentSchema = z
   .object({
-    id: z.string().regex(KEBAB),
+    ...contentBase,
     kind: z.literal('dex'),
-    entityId: z.string().regex(KEBAB),
-    series: z.string().regex(SERIES),
     payload: z.object({ text: z.string().min(1), version: z.string().min(1) }).strict(),
-    verified: z.boolean(),
   })
   .strict();
+
+/** Una carta del TCG: `image` es la ruta sin tamaño ni extensión; `width` y `height`, las del archivo de 512 px. */
+const tcgCardContentSchema = z
+  .object({
+    ...contentBase,
+    kind: z.literal('tcg-card'),
+    payload: z
+      .object({
+        image: z.string().regex(/^pokemon\/cards\/[a-z0-9]+(-[a-z0-9]+)*$/),
+        width: z.number().int().positive(),
+        height: z.number().int().positive(),
+        cardId: z.string().min(1),
+      })
+      .strict(),
+  })
+  .strict();
+
+export const contentSchema = z.discriminatedUnion('kind', [dexContentSchema, tcgCardContentSchema]);

@@ -10,13 +10,34 @@ import sharp from 'sharp';
 export const SIZES = [256, 512] as const;
 export type Size = (typeof SIZES)[number];
 
-/** Presupuesto de la sesión: ≤ 25 KB la de 256 px y ≤ 70 KB la de 512 px. */
+/** Presupuesto del arte oficial: ≤ 25 KB la de 256 px y ≤ 70 KB la de 512 px. */
 export const BUDGET_BYTES: Record<Size, number> = { 256: 25 * 1024, 512: 70 * 1024 };
 
-// Se prueba de la mejor calidad hacia abajo y se queda con la primera que entra
-// en el presupuesto. El resultado depende solo de la imagen, así que ejecutar
-// el script dos veces da archivos idénticos byte a byte.
-const QUALITIES = [90, 85, 80, 75, 70, 65, 60, 55, 50, 45, 40];
+/**
+ * Cómo se comprime un tipo de imagen. Se prueba de la mejor calidad hacia abajo
+ * y se queda con la primera que entra en el presupuesto. El resultado depende
+ * solo de la imagen, así que ejecutar el script dos veces da archivos idénticos
+ * byte a byte.
+ */
+export interface RenderOptions {
+  readonly qualities: readonly number[];
+  readonly budget: Readonly<Record<Size, number>>;
+}
+
+export const ARTWORK: RenderOptions = {
+  qualities: [90, 85, 80, 75, 70, 65, 60, 55, 50, 45, 40],
+  budget: BUDGET_BYTES,
+};
+
+/**
+ * Cartas del TCG (sesión 05): ≤ 60 KB la de 512 px. Empiezan en calidad 70 y no en 90
+ * porque se muestran borrosas y son ~2050 cartas: así `public/img` se queda bajo los
+ * 150 MB de la SPEC (con calidad 90 pasaría de 190 MB).
+ */
+export const CARD: RenderOptions = {
+  qualities: [70, 65, 60, 55, 50, 45, 40],
+  budget: { 256: 25 * 1024, 512: 60 * 1024 },
+};
 
 export interface Rendered {
   id: string;
@@ -29,22 +50,24 @@ export function imageFileName(id: string, size: Size): string {
   return `${id}-${size}.webp`;
 }
 
-async function encode(source: Buffer, size: Size): Promise<{ buffer: Buffer; quality: number }> {
+async function encode(source: Buffer, size: Size, options: RenderOptions): Promise<{ buffer: Buffer; quality: number }> {
   // El arte oficial mide 475 px: la variante de 512 es un reescalado leve.
   const { data, info } = await sharp(source)
     .resize({ width: size, height: size, fit: 'inside' })
     .raw()
     .toBuffer({ resolveWithObject: true });
 
-  for (const quality of QUALITIES) {
+  for (const quality of options.qualities) {
     // effort 4 pesa 1-2 % más que el 6 pero codifica ~60 veces más rápido
     // (30 ms contra 1,8 s por imagen): el script se puede volver a correr.
     const buffer = await sharp(data, { raw: info })
       .webp({ quality, alphaQuality: 100, effort: 4, smartSubsample: true })
       .toBuffer();
-    if (buffer.length <= BUDGET_BYTES[size]) return { buffer, quality };
+    if (buffer.length <= options.budget[size]) return { buffer, quality };
   }
-  throw new Error(`no entra en ${BUDGET_BYTES[size] / 1024} KB ni con calidad ${QUALITIES[QUALITIES.length - 1]}`);
+  throw new Error(
+    `no entra en ${options.budget[size] / 1024} KB ni con calidad ${options.qualities[options.qualities.length - 1]}`,
+  );
 }
 
 /** Escribe el archivo solo si cambió: una segunda ejecución no toca nada. */
@@ -58,12 +81,17 @@ async function writeIfChanged(file: string, data: Buffer): Promise<void> {
 }
 
 /** Convierte una imagen fuente a los dos tamaños y los guarda en `directory`. */
-export async function renderImage(id: string, source: Buffer, directory: string): Promise<Rendered[]> {
+export async function renderImage(
+  id: string,
+  source: Buffer,
+  directory: string,
+  options: RenderOptions = ARTWORK,
+): Promise<Rendered[]> {
   await mkdir(directory, { recursive: true });
   const rendered: Rendered[] = [];
   for (const size of SIZES) {
     try {
-      const { buffer, quality } = await encode(source, size);
+      const { buffer, quality } = await encode(source, size, options);
       await writeIfChanged(path.join(directory, imageFileName(id, size)), buffer);
       rendered.push({ id, size, bytes: buffer.length, quality });
     } catch (error) {
