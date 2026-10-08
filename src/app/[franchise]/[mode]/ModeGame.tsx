@@ -7,6 +7,7 @@ import { loadFranchiseData, type FranchiseData } from '@/franchises/data';
 import type { FranchiseConfig, ModeConfig } from '@/franchises/types';
 import { es } from '@/i18n/es';
 import { ClassicGame } from '@/modes/classic/ClassicGame';
+import { ImageRevealGame } from '@/modes/image-reveal/ImageRevealGame';
 import styles from './ModeGame.module.scss';
 import { isPlayable } from './playable';
 
@@ -27,6 +28,7 @@ interface ModeGameProps {
  */
 export function ModeGame({ franchise, mode, modes }: ModeGameProps) {
   const classic = mode.engine === 'classic' ? mode.classic : undefined;
+  const imageReveal = mode.engine === 'image-reveal' ? mode.imageReveal : undefined;
   const playable = isPlayable(franchise, mode);
   const [loaded, setLoaded] = useState<FranchiseData | 'error' | null>(null);
 
@@ -45,28 +47,45 @@ export function ModeGame({ franchise, mode, modes }: ModeGameProps) {
     };
   }, [playable, franchise.slug]);
 
-  if (!playable || !classic) {
-    return (
-      <div className={styles.soonPage}>
-        <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} />
-        <section className={styles.soon}>
-          <h2 className={styles.soonTitle}>{es.mode.comingSoon}</h2>
-          <p>{es.mode.provisional}</p>
-        </section>
-      </div>
-    );
-  }
+  const comingSoon = (
+    <div className={styles.soonPage}>
+      <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} />
+      <section className={styles.soon}>
+        <h2 className={styles.soonTitle}>{es.mode.comingSoon}</h2>
+        <p>{es.mode.provisional}</p>
+      </section>
+    </div>
+  );
+
+  if (!playable) return comingSoon;
   if (loaded === 'error') return <p role="alert">{es.game.loadError}</p>;
   if (loaded === null) return <p role="status">{es.game.loading}</p>;
 
-  return (
-    <ClassicGame
-      franchise={franchise}
-      mode={mode}
-      modes={modes}
-      config={classic}
-      entities={loaded.entities}
-      contents={loaded.contents}
-    />
-  );
+  if (imageReveal) {
+    return (
+      <ImageRevealGame
+        franchise={franchise}
+        mode={mode}
+        modes={modes}
+        config={imageReveal}
+        entities={loaded.entities}
+        contents={loaded.contents}
+      />
+    );
+  }
+
+  if (classic) {
+    return (
+      <ClassicGame
+        franchise={franchise}
+        mode={mode}
+        modes={modes}
+        config={classic}
+        entities={loaded.entities}
+        contents={loaded.contents}
+      />
+    );
+  }
+
+  return comingSoon;
 }

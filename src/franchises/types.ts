@@ -1,4 +1,5 @@
 import type { ClassicConfig } from '../modes/classic/types';
+import type { ImageRevealConfig } from '../modes/image-reveal/types';
 
 /** Los 8 motores de juego (SPEC 3.2). Ninguno contiene lógica de una franquicia. */
 export type EngineId =
@@ -18,6 +19,8 @@ export interface ModeConfig {
   readonly engine: EngineId;
   /** Columnas y pistas, solo para los modos con motor `classic`. */
   readonly classic?: ClassicConfig;
+  /** Variante e imagen, solo para los modos con motor `image-reveal`. */
+  readonly imageReveal?: ImageRevealConfig;
 }
 
 export interface FranchiseConfig {
