@@ -11,7 +11,8 @@
     "test": "vitest run",
     "check:responsive": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-responsive.ts",
     "data:pokemon": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/data/pokemon/build.ts",
-    "data:dragon-ball": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/data/dragon-ball/build.ts"
+    "data:dragon-ball": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/data/dragon-ball/build.ts",
+    "data:naruto": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/data/naruto/build.ts"
   },
   "dependencies": {
     "next": "^16.4.0",

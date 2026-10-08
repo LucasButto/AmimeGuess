@@ -1,0 +1,5545 @@
+[
+  {
+    "id": "naruto-uzumaki",
+    "name": {
+      "es": "Naruto Uzumaki"
+    },
+    "aliases": [
+      "Naruto",
+      "Séptimo Hokage"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Monte Myōboku",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu",
+        "Fūinjutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Lava",
+        "Magnetismo",
+        "Ebullición"
+      ],
+      "naturalezas": [
+        "Viento",
+        "Rayo",
+        "Tierra",
+        "Agua",
+        "Fuego",
+        "Yin",
+        "Yang",
+        "Yin-Yang"
+      ],
+      "atributos": [
+        "Jinchūriki",
+        "Sabio",
+        "Sensor"
+      ],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": "Hokage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "sasuke-uchiha",
+    "name": {
+      "es": "Sasuke Uchiha"
+    },
+    "aliases": [
+      "Sasuke"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Oto",
+        "Cueva Ryūchi",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu",
+        "Genjutsu",
+        "Fūinjutsu",
+        "Kenjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Sharingan",
+        "Mangekyō Sharingan Eterno",
+        "Rinnegan"
+      ],
+      "naturalezas": [
+        "Rayo",
+        "Fuego",
+        "Viento",
+        "Tierra",
+        "Agua",
+        "Yin"
+      ],
+      "atributos": [
+        "Ninja renegado"
+      ],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": "Líder del clan Uchiha",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "sakura-haruno",
+    "name": {
+      "es": "Sakura Haruno"
+    },
+    "aliases": [
+      "Sakura"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        },
+        "Bosque Shikkotsu"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu",
+        "Fūinjutsu",
+        "Ninjutsu médico"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Tierra",
+        "Agua",
+        "Fuego",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [
+        "Ninja médico"
+      ],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": "Jefe del Departamento Médico de Konoha",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kakashi-hatake",
+    "name": {
+      "es": "Kakashi Hatake"
+    },
+    "aliases": [
+      "Kakashi",
+      "Sexto Hokage"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Raíz",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu",
+        "Genjutsu",
+        "Kenjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Sharingan",
+        "Mangekyō Sharingan"
+      ],
+      "naturalezas": [
+        "Rayo",
+        "Tierra",
+        "Agua",
+        "Fuego",
+        "Viento",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": "Hokage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "iruka-umino",
+    "name": {
+      "es": "Iruka Umino"
+    },
+    "aliases": [
+      "Iruka"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Agua",
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": "Director de la Academia",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "hiruzen-sarutobi",
+    "name": {
+      "es": "Hiruzen Sarutobi"
+    },
+    "aliases": [
+      "Hiruzen",
+      "Tercer Hokage"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Tierra",
+        "Agua",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [
+        "Sensor"
+      ],
+      "arcoDebut": 1,
+      "estadoVital": "Muerto",
+      "ocupacion": "Hokage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "konohamaru-sarutobi",
+    "name": {
+      "es": "Konohamaru Sarutobi"
+    },
+    "aliases": [
+      "Konohamaru"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Monte Myōboku"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Yang"
+      ],
+      "atributos": [],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "mizuki",
+    "name": {
+      "es": "Mizuki"
+    },
+    "aliases": [],
+    "series": [
+      "naruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Oto"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Tierra",
+        "Yin"
+      ],
+      "atributos": [
+        "Ninja renegado"
+      ],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": "Instructor de la Academia (ex)",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "hinata-hyuga",
+    "name": {
+      "es": "Hinata Hyūga"
+    },
+    "aliases": [
+      "Hinata"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [
+        "Byakugan"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Rayo"
+      ],
+      "atributos": [],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": "Heredera del clan Hyūga (ex)",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "shikamaru-nara",
+    "name": {
+      "es": "Shikamaru Nara"
+    },
+    "aliases": [
+      "Shikamaru"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Tierra",
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": "Asistente principal del Hokage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "choji-akimichi",
+    "name": {
+      "es": "Chōji Akimichi"
+    },
+    "aliases": [
+      "Choji"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Tierra",
+        "Fuego",
+        "Yang"
+      ],
+      "atributos": [],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "ino-yamanaka",
+    "name": {
+      "es": "Ino Yamanaka"
+    },
+    "aliases": [
+      "Ino"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Tierra",
+        "Agua",
+        "Fuego",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [
+        "Sensor",
+        "Ninja médico"
+      ],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": "Florista",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kiba-inuzuka",
+    "name": {
+      "es": "Kiba Inuzuka"
+    },
+    "aliases": [
+      "Kiba"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Tierra",
+        "Yang"
+      ],
+      "atributos": [],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "shino-aburame",
+    "name": {
+      "es": "Shino Aburame"
+    },
+    "aliases": [
+      "Shino"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Tierra",
+        "Fuego",
+        "Yang"
+      ],
+      "atributos": [],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": "Maestro de la Academia",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "neji-hyuga",
+    "name": {
+      "es": "Neji Hyūga"
+    },
+    "aliases": [
+      "Neji"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Byakugan"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Tierra",
+        "Agua"
+      ],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "rock-lee",
+    "name": {
+      "es": "Rock Lee"
+    },
+    "aliases": [
+      "Lee"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Examinador del Examen Chūnin",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "tenten",
+    "name": {
+      "es": "Tenten"
+    },
+    "aliases": [],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Vendedor de armas",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "might-guy",
+    "name": {
+      "es": "Might Guy"
+    },
+    "aliases": [
+      "Guy",
+      "Gai",
+      "Maito Gai"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Rayo"
+      ],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "asuma-sarutobi",
+    "name": {
+      "es": "Asuma Sarutobi"
+    },
+    "aliases": [
+      "Asuma"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Viento",
+        "Fuego"
+      ],
+      "atributos": [],
+      "arcoDebut": 1,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kurenai-yuhi",
+    "name": {
+      "es": "Kurenai Yūhi"
+    },
+    "aliases": [
+      "Kurenai"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Yin"
+      ],
+      "atributos": [
+        "Sensor"
+      ],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "anko-mitarashi",
+    "name": {
+      "es": "Anko Mitarashi"
+    },
+    "aliases": [
+      "Anko"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha",
+        "Cueva Ryūchi",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Examinador del Examen Chūnin",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "ibiki-morino",
+    "name": {
+      "es": "Ibiki Morino"
+    },
+    "aliases": [
+      "Ibiki"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Jefe de la Fuerza de Tortura e Interrogación de Konoha",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "genma-shiranui",
+    "name": {
+      "es": "Genma Shiranui"
+    },
+    "aliases": [
+      "Genma"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Examinador del Examen Chūnin",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "hayate-gekko",
+    "name": {
+      "es": "Hayate Gekkō"
+    },
+    "aliases": [
+      "Hayate"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Kenjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Muerto",
+      "ocupacion": "Examinador del Examen Chūnin",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "shizune",
+    "name": {
+      "es": "Shizune"
+    },
+    "aliases": [],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Ninjutsu médico"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [
+        "Ninja médico"
+      ],
+      "arcoDebut": 4,
+      "estadoVital": "Vivo",
+      "ocupacion": "Asistente del Hokage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "tsunade",
+    "name": {
+      "es": "Tsunade"
+    },
+    "aliases": [
+      "Quinta Hokage"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha",
+        "Bosque Shikkotsu",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu",
+        "Fūinjutsu",
+        "Ninjutsu médico"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Rayo",
+        "Tierra",
+        "Agua",
+        "Fuego",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [
+        "Ninja médico",
+        "Sannin"
+      ],
+      "arcoDebut": 4,
+      "estadoVital": "Vivo",
+      "ocupacion": "Hokage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "jiraiya",
+    "name": {
+      "es": "Jiraiya"
+    },
+    "aliases": [
+      "Ermitaño Sapo"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Monte Myōboku"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Viento",
+        "Tierra",
+        "Agua",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [
+        "Sabio",
+        "Sannin"
+      ],
+      "arcoDebut": 2,
+      "estadoVital": "Muerto",
+      "ocupacion": "Escritor",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "orochimaru",
+    "name": {
+      "es": "Orochimaru"
+    },
+    "aliases": [],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Raíz",
+        "Akatsuki",
+        "Oto",
+        "Cueva Ryūchi"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Kekkei Genkai de Jūgo",
+        "Kekkei Genkai de Sakon y Ukon",
+        "Shikotsumyaku",
+        "Madera"
+      ],
+      "naturalezas": [
+        "Viento",
+        "Rayo",
+        "Tierra",
+        "Agua",
+        "Fuego",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [
+        "Ninja renegado",
+        "Rango S",
+        "Sannin"
+      ],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Fundador y líder de Oto",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "minato-namikaze",
+    "name": {
+      "es": "Minato Namikaze"
+    },
+    "aliases": [
+      "Minato",
+      "Cuarto Hokage"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Monte Myōboku",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [
+        "Jinchūriki",
+        "Sabio",
+        "Sensor"
+      ],
+      "arcoDebut": 1,
+      "estadoVital": "Muerto",
+      "ocupacion": "Hokage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "fugaku-uchiha",
+    "name": {
+      "es": "Fugaku Uchiha"
+    },
+    "aliases": [
+      "Fugaku"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Sharingan",
+        "Mangekyō Sharingan"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 4,
+      "estadoVital": "Muerto",
+      "ocupacion": "Líder del clan Uchiha",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "mikoto-uchiha",
+    "name": {
+      "es": "Mikoto Uchiha"
+    },
+    "aliases": [
+      "Mikoto"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 4,
+      "estadoVital": "Muerto",
+      "ocupacion": "Ama de casa",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "itachi-uchiha",
+    "name": {
+      "es": "Itachi Uchiha"
+    },
+    "aliases": [
+      "Itachi"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Genjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Sharingan",
+        "Mangekyō Sharingan"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Viento",
+        "Agua",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [
+        "Rango S",
+        "Ninja renegado"
+      ],
+      "arcoDebut": 3,
+      "estadoVital": "Muerto",
+      "ocupacion": "Capitán de ANBU (ex)",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kisame-hoshigaki",
+    "name": {
+      "es": "Kisame Hoshigaki"
+    },
+    "aliases": [
+      "Kisame"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kiri",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua",
+        "Fuego",
+        "Viento",
+        "Tierra"
+      ],
+      "atributos": [
+        "Rango S",
+        "Ninja renegado"
+      ],
+      "arcoDebut": 3,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "hashirama-senju",
+    "name": {
+      "es": "Hashirama Senju"
+    },
+    "aliases": [
+      "Hashirama",
+      "Primer Hokage"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Madera"
+      ],
+      "naturalezas": [
+        "Tierra",
+        "Agua",
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [
+        "Sabio"
+      ],
+      "arcoDebut": 3,
+      "estadoVital": "Muerto",
+      "ocupacion": "Hokage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "tobirama-senju",
+    "name": {
+      "es": "Tobirama Senju"
+    },
+    "aliases": [
+      "Tobirama",
+      "Segundo Hokage"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua",
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Tierra",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [
+        "Sensor"
+      ],
+      "arcoDebut": 3,
+      "estadoVital": "Muerto",
+      "ocupacion": "Hokage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "homura-mitokado",
+    "name": {
+      "es": "Homura Mitokado"
+    },
+    "aliases": [
+      "Homura"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Consejero",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "koharu-utatane",
+    "name": {
+      "es": "Koharu Utatane"
+    },
+    "aliases": [
+      "Koharu"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Consejero",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "hanabi-hyuga",
+    "name": {
+      "es": "Hanabi Hyūga"
+    },
+    "aliases": [
+      "Hanabi"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Byakugan"
+      ],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Heredera del clan Hyūga",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "hiashi-hyuga",
+    "name": {
+      "es": "Hiashi Hyūga"
+    },
+    "aliases": [
+      "Hiashi"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Byakugan"
+      ],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Líder del clan Hyūga",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "choza-akimichi",
+    "name": {
+      "es": "Chōza Akimichi"
+    },
+    "aliases": [
+      "Choza"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Yang"
+      ],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Líder del clan Akimichi",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "inoichi-yamanaka",
+    "name": {
+      "es": "Inoichi Yamanaka"
+    },
+    "aliases": [
+      "Inoichi"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua"
+      ],
+      "atributos": [
+        "Sensor"
+      ],
+      "arcoDebut": 2,
+      "estadoVital": "Muerto",
+      "ocupacion": "Líder del clan Yamanaka",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "shikaku-nara",
+    "name": {
+      "es": "Shikaku Nara"
+    },
+    "aliases": [
+      "Shikaku"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Muerto",
+      "ocupacion": "Líder del clan Nara",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "tsume-inuzuka",
+    "name": {
+      "es": "Tsume Inuzuka"
+    },
+    "aliases": [
+      "Tsume"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 3,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "shibi-aburame",
+    "name": {
+      "es": "Shibi Aburame"
+    },
+    "aliases": [
+      "Shibi"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 3,
+      "estadoVital": "Vivo",
+      "ocupacion": "Líder del clan Aburame",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kabuto-yakushi",
+    "name": {
+      "es": "Kabuto Yakushi"
+    },
+    "aliases": [
+      "Kabuto"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Raíz",
+        "Oto",
+        "Cueva Ryūchi",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Genjutsu",
+        "Senjutsu",
+        "Ninjutsu médico"
+      ],
+      "kekkeiGenkai": [
+        "Kekkei Genkai de Jūgo",
+        "Kekkei Genkai de Sakon y Ukon",
+        "Shikotsumyaku"
+      ],
+      "naturalezas": [
+        "Tierra",
+        "Agua",
+        "Viento",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [
+        "Ninja médico",
+        "Ninja renegado",
+        "Sabio"
+      ],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Espía y mano derecha de Orochimaru",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "ebisu",
+    "name": {
+      "es": "Ebisu"
+    },
+    "aliases": [],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego"
+      ],
+      "atributos": [],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": "Entrenador personal",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "teuchi",
+    "name": {
+      "es": "Teuchi"
+    },
+    "aliases": [
+      "Viejo del Ichiraku"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Cocinero de ramen",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "tazuna",
+    "name": {
+      "es": "Tazuna"
+    },
+    "aliases": [],
+    "series": [
+      "naruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "País de las Olas"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": "Carpintero",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "zabuza-momochi",
+    "name": {
+      "es": "Zabuza Momochi"
+    },
+    "aliases": [
+      "Zabuza"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kiri"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua"
+      ],
+      "atributos": [
+        "Ninja renegado",
+        "Mercenario"
+      ],
+      "arcoDebut": 1,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "haku",
+    "name": {
+      "es": "Haku"
+    },
+    "aliases": [],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kiri"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Hielo"
+      ],
+      "naturalezas": [
+        "Viento",
+        "Agua"
+      ],
+      "atributos": [
+        "Mercenario"
+      ],
+      "arcoDebut": 1,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "gaara",
+    "name": {
+      "es": "Gaara"
+    },
+    "aliases": [
+      "Quinto Kazekage"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Suna",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Magnetismo"
+      ],
+      "naturalezas": [
+        "Viento",
+        "Tierra",
+        "Rayo"
+      ],
+      "atributos": [
+        "Jinchūriki",
+        "Sensor"
+      ],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Kazekage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kankuro",
+    "name": {
+      "es": "Kankurō"
+    },
+    "aliases": [],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Suna",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Viento",
+        "Rayo",
+        "Tierra",
+        "Agua"
+      ],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Capitán de la División de Ataque Sorpresa de las Fuerzas Aliadas Shinobi",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "temari",
+    "name": {
+      "es": "Temari"
+    },
+    "aliases": [],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Suna",
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Viento"
+      ],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": "Guardaespaldas del Quinto Kazekage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "rasa",
+    "name": {
+      "es": "Rasa"
+    },
+    "aliases": [
+      "Cuarto Kazekage"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Suna"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Magnetismo"
+      ],
+      "naturalezas": [
+        "Viento",
+        "Tierra",
+        "Agua",
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Muerto",
+      "ocupacion": "Kazekage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "baki",
+    "name": {
+      "es": "Baki"
+    },
+    "aliases": [],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Suna"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Viento"
+      ],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "dosu-kinuta",
+    "name": {
+      "es": "Dosu Kinuta"
+    },
+    "aliases": [
+      "Dosu"
+    ],
+    "series": [
+      "naruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Oto"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "zaku-abumi",
+    "name": {
+      "es": "Zaku Abumi"
+    },
+    "aliases": [
+      "Zaku"
+    ],
+    "series": [
+      "naruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Oto"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kin-tsuchi",
+    "name": {
+      "es": "Kin Tsuchi"
+    },
+    "aliases": [
+      "Kin"
+    ],
+    "series": [
+      "naruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Oto"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kimimaro",
+    "name": {
+      "es": "Kimimaro"
+    },
+    "aliases": [],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Oto"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Shikotsumyaku"
+      ],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 5,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "tayuya",
+    "name": {
+      "es": "Tayuya"
+    },
+    "aliases": [],
+    "series": [
+      "naruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Oto"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 3,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "jirobo",
+    "name": {
+      "es": "Jirōbō"
+    },
+    "aliases": [],
+    "series": [
+      "naruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Oto"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Tierra"
+      ],
+      "atributos": [],
+      "arcoDebut": 3,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kidomaru",
+    "name": {
+      "es": "Kidōmaru"
+    },
+    "aliases": [],
+    "series": [
+      "naruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Oto"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [
+        "Sensor"
+      ],
+      "arcoDebut": 3,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "sakon-y-ukon",
+    "name": {
+      "es": "Sakon y Ukon"
+    },
+    "aliases": [
+      "Sakon",
+      "Ukon",
+      "Sakon and Ukon"
+    ],
+    "series": [
+      "naruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Oto"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Kekkei Genkai de Sakon y Ukon"
+      ],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 3,
+      "estadoVital": "Muerto",
+      "ocupacion": "Líder de facto de los Cuatro del Sonido",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "gamabunta",
+    "name": {
+      "es": "Gamabunta"
+    },
+    "aliases": [
+      "Jefe Sapo"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Monte Myōboku",
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua"
+      ],
+      "atributos": [
+        "Invocación"
+      ],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "katsuyu",
+    "name": {
+      "es": "Katsuyu"
+    },
+    "aliases": [],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": null,
+      "afiliaciones": [
+        "Bosque Shikkotsu",
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [
+        "Invocación"
+      ],
+      "arcoDebut": 4,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "manda",
+    "name": {
+      "es": "Manda"
+    },
+    "aliases": [],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Cueva Ryūchi",
+        "Oto"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [
+        "Invocación"
+      ],
+      "arcoDebut": 4,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "pakkun",
+    "name": {
+      "es": "Pakkun"
+    },
+    "aliases": [],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [
+        "Invocación"
+      ],
+      "arcoDebut": 1,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "akamaru",
+    "name": {
+      "es": "Akamaru"
+    },
+    "aliases": [],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 2,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "gamakichi",
+    "name": {
+      "es": "Gamakichi"
+    },
+    "aliases": [],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Monte Myōboku",
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua",
+        "Fuego"
+      ],
+      "atributos": [
+        "Sabio",
+        "Invocación"
+      ],
+      "arcoDebut": 3,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kurama",
+    "name": {
+      "es": "Kurama"
+    },
+    "aliases": [
+      "Kyūbi",
+      "Nueve Colas"
+    ],
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Viento"
+      ],
+      "atributos": [
+        "Bestia con cola",
+        "Sensor",
+        "Sabio"
+      ],
+      "arcoDebut": 1,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "shukaku",
+    "name": {
+      "es": "Shukaku"
+    },
+    "aliases": [
+      "Una Cola",
+      "Ichibi"
+    ],
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": null,
+      "afiliaciones": [
+        "Suna"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Magnetismo"
+      ],
+      "naturalezas": [
+        "Viento",
+        "Tierra"
+      ],
+      "atributos": [
+        "Bestia con cola"
+      ],
+      "arcoDebut": 3,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "sasori",
+    "name": {
+      "es": "Sasori"
+    },
+    "aliases": [
+      "Sasori de la Arena Roja"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Suna",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [
+        "Rango S",
+        "Ninja renegado"
+      ],
+      "arcoDebut": 6,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "chiyo",
+    "name": {
+      "es": "Chiyo"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Suna"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [
+        "Ninja médico"
+      ],
+      "arcoDebut": 6,
+      "estadoVital": "Muerto",
+      "ocupacion": "Consejero (retirado)",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "deidara",
+    "name": {
+      "es": "Deidara"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Iwa",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Explosión"
+      ],
+      "naturalezas": [
+        "Tierra",
+        "Rayo"
+      ],
+      "atributos": [
+        "Rango S",
+        "Ninja renegado",
+        "Mercenario"
+      ],
+      "arcoDebut": 6,
+      "estadoVital": "Muerto",
+      "ocupacion": "Bombardero terrorista",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "hidan",
+    "name": {
+      "es": "Hidan"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Yu",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [
+        "Rango S",
+        "Ninja renegado"
+      ],
+      "arcoDebut": 8,
+      "estadoVital": "Incapacitado",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kakuzu",
+    "name": {
+      "es": "Kakuzu"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Taki",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Tierra",
+        "Agua",
+        "Fuego",
+        "Viento",
+        "Rayo"
+      ],
+      "atributos": [
+        "Rango S",
+        "Ninja renegado"
+      ],
+      "arcoDebut": 8,
+      "estadoVital": "Muerto",
+      "ocupacion": "Tesorero de Akatsuki",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "obito-uchiha",
+    "name": {
+      "es": "Obito Uchiha"
+    },
+    "aliases": [
+      "Obito",
+      "Tobi"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Akatsuki",
+        "Kiri"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Genjutsu",
+        "Fūinjutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Sharingan",
+        "Mangekyō Sharingan",
+        "Rinnegan",
+        "Madera"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Tierra",
+        "Agua",
+        "Yin",
+        "Yang",
+        "Yin-Yang"
+      ],
+      "atributos": [
+        "Jinchūriki",
+        "Ninja renegado",
+        "Rango S",
+        "Sensor"
+      ],
+      "arcoDebut": 6,
+      "estadoVital": "Muerto",
+      "ocupacion": "Líder de Akatsuki",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "rin-nohara",
+    "name": {
+      "es": "Rin Nohara"
+    },
+    "aliases": [
+      "Rin"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Agua",
+        "Yang"
+      ],
+      "atributos": [
+        "Ninja médico",
+        "Jinchūriki"
+      ],
+      "arcoDebut": 9,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "madara-uchiha",
+    "name": {
+      "es": "Madara Uchiha"
+    },
+    "aliases": [
+      "Madara"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Genjutsu",
+        "Fūinjutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Sharingan",
+        "Mangekyō Sharingan Eterno",
+        "Rinnegan",
+        "Madera",
+        "Tormenta"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Tierra",
+        "Agua",
+        "Yin",
+        "Yang",
+        "Yin-Yang"
+      ],
+      "atributos": [
+        "Jinchūriki",
+        "Ninja renegado",
+        "Sensor",
+        "Sabio"
+      ],
+      "arcoDebut": 10,
+      "estadoVital": "Muerto",
+      "ocupacion": "Cofundador de Konoha",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "danzo-shimura",
+    "name": {
+      "es": "Danzō Shimura"
+    },
+    "aliases": [
+      "Danzo"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Raíz"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Genjutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Sharingan",
+        "Mangekyō Sharingan",
+        "Madera"
+      ],
+      "naturalezas": [
+        "Viento",
+        "Tierra",
+        "Agua",
+        "Fuego",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [],
+      "arcoDebut": 6,
+      "estadoVital": "Muerto",
+      "ocupacion": "Líder de la Raíz",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "sai",
+    "name": {
+      "es": "Sai"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Raíz",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Tierra",
+        "Agua",
+        "Fuego",
+        "Yang"
+      ],
+      "atributos": [],
+      "arcoDebut": 6,
+      "estadoVital": "Vivo",
+      "ocupacion": "Jefe de ANBU",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "yamato",
+    "name": {
+      "es": "Yamato"
+    },
+    "aliases": [
+      "Tenzō"
+    ],
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Raíz",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Madera"
+      ],
+      "naturalezas": [
+        "Tierra",
+        "Agua",
+        "Yang"
+      ],
+      "atributos": [],
+      "arcoDebut": 7,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "shisui-uchiha",
+    "name": {
+      "es": "Shisui Uchiha"
+    },
+    "aliases": [
+      "Shisui"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Genjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Sharingan",
+        "Mangekyō Sharingan"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 13,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kushina-uzumaki",
+    "name": {
+      "es": "Kushina Uzumaki"
+    },
+    "aliases": [
+      "Kushina"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Uzushio",
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Viento",
+        "Agua",
+        "Yin"
+      ],
+      "atributos": [
+        "Jinchūriki"
+      ],
+      "arcoDebut": 10,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "konan",
+    "name": {
+      "es": "Konan"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Ame",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Viento",
+        "Tierra",
+        "Agua",
+        "Yang"
+      ],
+      "atributos": [
+        "Rango S",
+        "Sensor"
+      ],
+      "arcoDebut": 9,
+      "estadoVital": "Muerto",
+      "ocupacion": "Líder de Ame",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "nagato",
+    "name": {
+      "es": "Nagato"
+    },
+    "aliases": [
+      "Pain",
+      "Pein"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Ame",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Rinnegan"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Tierra",
+        "Agua",
+        "Yang"
+      ],
+      "atributos": [
+        "Rango S",
+        "Sensor"
+      ],
+      "arcoDebut": 10,
+      "estadoVital": "Muerto",
+      "ocupacion": "Líder de Akatsuki",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "yahiko",
+    "name": {
+      "es": "Yahiko"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Ame",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua",
+        "Fuego",
+        "Viento"
+      ],
+      "atributos": [],
+      "arcoDebut": 10,
+      "estadoVital": "Muerto",
+      "ocupacion": "Fundador y líder de Akatsuki",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kaguya-otsutsuki",
+    "name": {
+      "es": "Kaguya Ōtsutsuki"
+    },
+    "aliases": [
+      "Kaguya"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Tierra",
+        "Agua",
+        "Yin",
+        "Yang",
+        "Yin-Yang"
+      ],
+      "atributos": [
+        "Sensor"
+      ],
+      "arcoDebut": 18,
+      "estadoVital": "Incapacitado",
+      "ocupacion": "Princesa",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "hagoromo-otsutsuki",
+    "name": {
+      "es": "Hagoromo Ōtsutsuki"
+    },
+    "aliases": [
+      "Hagoromo",
+      "Sabio de los Seis Caminos"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Monte Myōboku"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Tierra",
+        "Agua",
+        "Yin",
+        "Yang",
+        "Yin-Yang"
+      ],
+      "atributos": [
+        "Jinchūriki",
+        "Sabio",
+        "Sensor"
+      ],
+      "arcoDebut": 16,
+      "estadoVital": "Muerto",
+      "ocupacion": "Sacerdote",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "hamura-otsutsuki",
+    "name": {
+      "es": "Hamura Ōtsutsuki"
+    },
+    "aliases": [
+      "Hamura"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Monte Myōboku",
+        "Luna"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Tierra",
+        "Agua",
+        "Yin",
+        "Yang",
+        "Yin-Yang"
+      ],
+      "atributos": [
+        "Sabio"
+      ],
+      "arcoDebut": 17,
+      "estadoVital": "Muerto",
+      "ocupacion": "Líder del clan Ōtsutsuki",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "indra-otsutsuki",
+    "name": {
+      "es": "Indra Ōtsutsuki"
+    },
+    "aliases": [
+      "Indra"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Sharingan",
+        "Mangekyō Sharingan"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Rayo",
+        "Yin"
+      ],
+      "atributos": [
+        "Sensor"
+      ],
+      "arcoDebut": 13,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "asura-otsutsuki",
+    "name": {
+      "es": "Asura Ōtsutsuki"
+    },
+    "aliases": [
+      "Asura"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Madera"
+      ],
+      "naturalezas": [
+        "Viento",
+        "Rayo",
+        "Tierra",
+        "Agua",
+        "Fuego",
+        "Yin",
+        "Yang",
+        "Yin-Yang"
+      ],
+      "atributos": [
+        "Sabio",
+        "Sensor"
+      ],
+      "arcoDebut": 13,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "suigetsu-hozuki",
+    "name": {
+      "es": "Suigetsu Hōzuki"
+    },
+    "aliases": [
+      "Suigetsu"
+    ],
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kiri",
+        "Oto",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua",
+        "Viento"
+      ],
+      "atributos": [],
+      "arcoDebut": 9,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "karin",
+    "name": {
+      "es": "Karin"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Kusa",
+        "Oto",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Tierra",
+        "Agua",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [
+        "Sensor"
+      ],
+      "arcoDebut": 9,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "jugo",
+    "name": {
+      "es": "Jūgo"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Oto",
+        "Akatsuki"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Kekkei Genkai de Jūgo"
+      ],
+      "naturalezas": [
+        "Viento",
+        "Tierra",
+        "Agua",
+        "Yang"
+      ],
+      "atributos": [
+        "Sabio"
+      ],
+      "arcoDebut": 9,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "killer-bee",
+    "name": {
+      "es": "Killer B"
+    },
+    "aliases": [
+      "Killer Bee",
+      "B"
+    ],
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kumo",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu",
+        "Kenjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Rayo",
+        "Agua",
+        "Fuego",
+        "Yang"
+      ],
+      "atributos": [
+        "Jinchūriki"
+      ],
+      "arcoDebut": 11,
+      "estadoVital": "Vivo",
+      "ocupacion": "Guardián de Kumo",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "yugito-nii",
+    "name": {
+      "es": "Yugito Nii"
+    },
+    "aliases": [
+      "Yugito"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Kumo"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego"
+      ],
+      "atributos": [
+        "Jinchūriki"
+      ],
+      "arcoDebut": 8,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "roshi",
+    "name": {
+      "es": "Rōshi"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Iwa"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Lava"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Tierra"
+      ],
+      "atributos": [
+        "Jinchūriki"
+      ],
+      "arcoDebut": 9,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "han",
+    "name": {
+      "es": "Han"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Iwa"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [
+        "Ebullición"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Agua"
+      ],
+      "atributos": [
+        "Jinchūriki"
+      ],
+      "arcoDebut": 13,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "utakata",
+    "name": {
+      "es": "Utakata"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kiri"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua"
+      ],
+      "atributos": [
+        "Sensor",
+        "Jinchūriki",
+        "Ninja renegado"
+      ],
+      "arcoDebut": 11,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "fu",
+    "name": {
+      "es": "Fū"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Taki"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [
+        "Jinchūriki"
+      ],
+      "arcoDebut": 13,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "yagura-karatachi",
+    "name": {
+      "es": "Yagura Karatachi"
+    },
+    "aliases": [
+      "Yagura",
+      "Cuarto Mizukage"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kiri"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua",
+        "Viento"
+      ],
+      "atributos": [
+        "Jinchūriki"
+      ],
+      "arcoDebut": 13,
+      "estadoVital": "Muerto",
+      "ocupacion": "Mizukage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "mei-terumi",
+    "name": {
+      "es": "Mei Terumī"
+    },
+    "aliases": [
+      "Mei",
+      "Quinta Mizukage"
+    ],
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Kiri",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Lava",
+        "Ebullición"
+      ],
+      "naturalezas": [
+        "Agua",
+        "Fuego",
+        "Rayo",
+        "Tierra"
+      ],
+      "atributos": [],
+      "arcoDebut": 13,
+      "estadoVital": "Vivo",
+      "ocupacion": "Mizukage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "onoki",
+    "name": {
+      "es": "Ōnoki"
+    },
+    "aliases": [
+      "Tercer Tsuchikage"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Iwa",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Lava"
+      ],
+      "naturalezas": [
+        "Tierra",
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Yang"
+      ],
+      "atributos": [],
+      "arcoDebut": 13,
+      "estadoVital": "Muerto",
+      "ocupacion": "Tsuchikage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kurotsuchi",
+    "name": {
+      "es": "Kurotsuchi"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Iwa",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Lava"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Tierra",
+        "Agua",
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 13,
+      "estadoVital": "Vivo",
+      "ocupacion": "Tsuchikage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "a-cuarto-raikage",
+    "name": {
+      "es": "A (Cuarto Raikage)"
+    },
+    "aliases": [
+      "A",
+      "Cuarto Raikage",
+      "Raikage"
+    ],
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kumo",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Rayo",
+        "Tierra",
+        "Agua"
+      ],
+      "atributos": [],
+      "arcoDebut": 12,
+      "estadoVital": "Vivo",
+      "ocupacion": "Raikage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "darui",
+    "name": {
+      "es": "Darui"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kumo",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Tormenta"
+      ],
+      "naturalezas": [
+        "Rayo",
+        "Agua",
+        "Viento"
+      ],
+      "atributos": [],
+      "arcoDebut": 13,
+      "estadoVital": "Vivo",
+      "ocupacion": "Raikage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "mu",
+    "name": {
+      "es": "Mū"
+    },
+    "aliases": [
+      "Segundo Tsuchikage"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Iwa"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Tierra",
+        "Agua",
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Yang"
+      ],
+      "atributos": [
+        "Sensor"
+      ],
+      "arcoDebut": 14,
+      "estadoVital": "Muerto",
+      "ocupacion": "Tsuchikage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "gengetsu-hozuki",
+    "name": {
+      "es": "Gengetsu Hōzuki"
+    },
+    "aliases": [
+      "Gengetsu",
+      "Segundo Mizukage"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kiri"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua",
+        "Fuego",
+        "Rayo",
+        "Tierra",
+        "Yin",
+        "Yang"
+      ],
+      "atributos": [],
+      "arcoDebut": 15,
+      "estadoVital": "Muerto",
+      "ocupacion": "Mizukage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "hanzo",
+    "name": {
+      "es": "Hanzō"
+    },
+    "aliases": [
+      "Hanzō de la Salamandra"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Ame"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego"
+      ],
+      "atributos": [],
+      "arcoDebut": 10,
+      "estadoVital": "Muerto",
+      "ocupacion": "Líder de Ame",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "pakura",
+    "name": {
+      "es": "Pakura"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Suna"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Calor"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Viento"
+      ],
+      "atributos": [],
+      "arcoDebut": 15,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "chojuro",
+    "name": {
+      "es": "Chōjūrō"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kiri",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua"
+      ],
+      "atributos": [],
+      "arcoDebut": 13,
+      "estadoVital": "Vivo",
+      "ocupacion": "Mizukage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "ameyuri-ringo",
+    "name": {
+      "es": "Ameyuri Ringo"
+    },
+    "aliases": [
+      "Ameyuri"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Kiri"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Kenjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Rayo"
+      ],
+      "atributos": [],
+      "arcoDebut": 15,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kushimaru-kuriarare",
+    "name": {
+      "es": "Kushimaru Kuriarare"
+    },
+    "aliases": [
+      "Kushimaru"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kiri"
+      ],
+      "tiposDeJutsu": [
+        "Kenjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 15,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "jinpachi-munashi",
+    "name": {
+      "es": "Jinpachi Munashi"
+    },
+    "aliases": [
+      "Jinpachi"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kiri"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 15,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "fuguki-suikazan",
+    "name": {
+      "es": "Fuguki Suikazan"
+    },
+    "aliases": [
+      "Fuguki"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kiri"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 14,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "mangetsu-hozuki",
+    "name": {
+      "es": "Mangetsu Hōzuki"
+    },
+    "aliases": [
+      "Mangetsu"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kiri"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua"
+      ],
+      "atributos": [],
+      "arcoDebut": 15,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "gari",
+    "name": {
+      "es": "Gari"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Iwa"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Explosión"
+      ],
+      "naturalezas": [
+        "Tierra",
+        "Rayo"
+      ],
+      "atributos": [],
+      "arcoDebut": 14,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "karui",
+    "name": {
+      "es": "Karui"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Kumo",
+        "Konoha",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Rayo"
+      ],
+      "atributos": [],
+      "arcoDebut": 12,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "samui",
+    "name": {
+      "es": "Samui"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Kumo",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 12,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "omoi",
+    "name": {
+      "es": "Omoi"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Kumo",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu",
+        "Kenjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Rayo"
+      ],
+      "atributos": [],
+      "arcoDebut": 12,
+      "estadoVital": "Vivo",
+      "ocupacion": "Guardaespaldas del Quinto Raikage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "akatsuchi",
+    "name": {
+      "es": "Akatsuchi"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Iwa",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Tierra"
+      ],
+      "atributos": [],
+      "arcoDebut": 13,
+      "estadoVital": "Vivo",
+      "ocupacion": "Asistente del Tsuchikage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kitsuchi",
+    "name": {
+      "es": "Kitsuchi"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Iwa",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Tierra"
+      ],
+      "atributos": [],
+      "arcoDebut": 14,
+      "estadoVital": "Vivo",
+      "ocupacion": "Comandante de la Segunda División de las Fuerzas Aliadas Shinobi",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "fukasaku",
+    "name": {
+      "es": "Fukasaku"
+    },
+    "aliases": [
+      "Gran Sapo Sabio"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Monte Myōboku",
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Viento",
+        "Agua",
+        "Yin"
+      ],
+      "atributos": [
+        "Sabio",
+        "Invocación"
+      ],
+      "arcoDebut": 10,
+      "estadoVital": "Vivo",
+      "ocupacion": "Anciano sapo",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "shima",
+    "name": {
+      "es": "Shima"
+    },
+    "aliases": [],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Monte Myōboku",
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Viento",
+        "Yin"
+      ],
+      "atributos": [
+        "Sabio",
+        "Invocación"
+      ],
+      "arcoDebut": 10,
+      "estadoVital": "Vivo",
+      "ocupacion": "Anciano sapo",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "mirai-sarutobi",
+    "name": {
+      "es": "Mirai Sarutobi"
+    },
+    "aliases": [
+      "Mirai"
+    ],
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Genjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Viento",
+        "Fuego",
+        "Rayo",
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 15,
+      "estadoVital": "Vivo",
+      "ocupacion": "Guardaespaldas del Hokage",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "matatabi",
+    "name": {
+      "es": "Matatabi"
+    },
+    "aliases": [
+      "Dos Colas",
+      "Nibi"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": null,
+      "afiliaciones": [
+        "Kumo"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego"
+      ],
+      "atributos": [
+        "Bestia con cola"
+      ],
+      "arcoDebut": 8,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "isobu",
+    "name": {
+      "es": "Isobu"
+    },
+    "aliases": [
+      "Tres Colas",
+      "Sanbi"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": null,
+      "afiliaciones": [
+        "Kiri"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua",
+        "Yin"
+      ],
+      "atributos": [
+        "Bestia con cola"
+      ],
+      "arcoDebut": 8,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "son-goku",
+    "name": {
+      "es": "Son Gokū"
+    },
+    "aliases": [
+      "Cuatro Colas",
+      "Yonbi"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": null,
+      "afiliaciones": [
+        "Iwa"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [
+        "Lava"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Tierra"
+      ],
+      "atributos": [
+        "Bestia con cola",
+        "Sabio"
+      ],
+      "arcoDebut": 12,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kokuo",
+    "name": {
+      "es": "Kokuō"
+    },
+    "aliases": [
+      "Cinco Colas",
+      "Gobi"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": null,
+      "afiliaciones": [
+        "Iwa"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [
+        "Ebullición"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Agua"
+      ],
+      "atributos": [
+        "Bestia con cola"
+      ],
+      "arcoDebut": 12,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "saiken",
+    "name": {
+      "es": "Saiken"
+    },
+    "aliases": [
+      "Seis Colas",
+      "Rokubi"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": null,
+      "afiliaciones": [
+        "Kiri"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua"
+      ],
+      "atributos": [
+        "Bestia con cola"
+      ],
+      "arcoDebut": 11,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "chomei",
+    "name": {
+      "es": "Chōmei"
+    },
+    "aliases": [
+      "Siete Colas",
+      "Nanabi"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": null,
+      "afiliaciones": [
+        "Taki"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [
+        "Bestia con cola"
+      ],
+      "arcoDebut": 12,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "gyuki",
+    "name": {
+      "es": "Gyūki"
+    },
+    "aliases": [
+      "Ocho Colas",
+      "Hachibi"
+    ],
+    "series": [
+      "shippuden"
+    ],
+    "attrs": {
+      "genero": null,
+      "afiliaciones": [
+        "Kumo",
+        {
+          "value": "Fuerzas Aliadas Shinobi",
+          "series": "shippuden"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [
+        "Bestia con cola"
+      ],
+      "arcoDebut": 11,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "boruto-uzumaki",
+    "name": {
+      "es": "Boruto Uzumaki"
+    },
+    "aliases": [
+      "Boruto"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha",
+        "Cueva Ryūchi"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Jōgan"
+      ],
+      "naturalezas": [
+        "Rayo",
+        "Viento",
+        "Agua"
+      ],
+      "atributos": [
+        "Sensor"
+      ],
+      "arcoDebut": 20,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "sarada-uchiha",
+    "name": {
+      "es": "Sarada Uchiha"
+    },
+    "aliases": [
+      "Sarada"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Taijutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Sharingan"
+      ],
+      "naturalezas": [
+        "Rayo",
+        "Fuego",
+        "Viento",
+        "Yin"
+      ],
+      "atributos": [
+        "Ninja médico"
+      ],
+      "arcoDebut": 20,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "mitsuki",
+    "name": {
+      "es": "Mitsuki"
+    },
+    "aliases": [],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Oto",
+        "Cueva Ryūchi",
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Kekkei Genkai de Jūgo"
+      ],
+      "naturalezas": [
+        "Viento",
+        "Rayo"
+      ],
+      "atributos": [
+        "Ninja médico",
+        "Sabio",
+        "Sensor"
+      ],
+      "arcoDebut": 20,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "himawari-uzumaki",
+    "name": {
+      "es": "Himawari Uzumaki"
+    },
+    "aliases": [
+      "Himawari"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Byakugan"
+      ],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 20,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "shikadai-nara",
+    "name": {
+      "es": "Shikadai Nara"
+    },
+    "aliases": [
+      "Shikadai"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Viento",
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 20,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "inojin-yamanaka",
+    "name": {
+      "es": "Inojin Yamanaka"
+    },
+    "aliases": [
+      "Inojin"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [
+        "Ninja médico",
+        "Sensor"
+      ],
+      "arcoDebut": 20,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "chocho-akimichi",
+    "name": {
+      "es": "Chōchō Akimichi"
+    },
+    "aliases": [
+      "Chocho"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Rayo",
+        "Yang"
+      ],
+      "atributos": [],
+      "arcoDebut": 20,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "metal-lee",
+    "name": {
+      "es": "Metal Lee"
+    },
+    "aliases": [],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 20,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "iwabee-yuino",
+    "name": {
+      "es": "Iwabee Yūino"
+    },
+    "aliases": [
+      "Iwabee"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Tierra"
+      ],
+      "atributos": [
+        "Ninja médico"
+      ],
+      "arcoDebut": 20,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "denki-kaminarimon",
+    "name": {
+      "es": "Denki Kaminarimon"
+    },
+    "aliases": [
+      "Denki"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Rayo"
+      ],
+      "atributos": [],
+      "arcoDebut": 20,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "wasabi-izuno",
+    "name": {
+      "es": "Wasabi Izuno"
+    },
+    "aliases": [
+      "Wasabi"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [
+        "Ninja médico"
+      ],
+      "arcoDebut": 20,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "namida-suzumeno",
+    "name": {
+      "es": "Namida Suzumeno"
+    },
+    "aliases": [
+      "Namida"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Fūinjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua"
+      ],
+      "atributos": [],
+      "arcoDebut": 20,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "sumire-kakei",
+    "name": {
+      "es": "Sumire Kakei"
+    },
+    "aliases": [
+      "Sumire"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Agua"
+      ],
+      "atributos": [],
+      "arcoDebut": 20,
+      "estadoVital": "Vivo",
+      "ocupacion": "Asistente de Katasuke Tōno",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kawaki",
+    "name": {
+      "es": "Kawaki"
+    },
+    "aliases": [],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        {
+          "value": "Kara",
+          "series": "boruto"
+        },
+        "Konoha"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Dōjutsu de Isshiki"
+      ],
+      "naturalezas": [
+        "Fuego"
+      ],
+      "atributos": [],
+      "arcoDebut": 20,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "eida",
+    "name": {
+      "es": "Eida"
+    },
+    "aliases": [
+      "Ada"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        {
+          "value": "Kara",
+          "series": "boruto"
+        },
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Senrigan"
+      ],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 31,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "daemon",
+    "name": {
+      "es": "Daemon"
+    },
+    "aliases": [],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        {
+          "value": "Kara",
+          "series": "boruto"
+        },
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 31,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "jigen",
+    "name": {
+      "es": "Jigen"
+    },
+    "aliases": [],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        {
+          "value": "Kara",
+          "series": "boruto"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [],
+      "atributos": [],
+      "arcoDebut": 28,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "code",
+    "name": {
+      "es": "Code"
+    },
+    "aliases": [],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        {
+          "value": "Kara",
+          "series": "boruto"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 28,
+      "estadoVital": "Vivo",
+      "ocupacion": "Líder de Kara",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "isshiki-otsutsuki",
+    "name": {
+      "es": "Isshiki Ōtsutsuki"
+    },
+    "aliases": [
+      "Isshiki"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        {
+          "value": "Kara",
+          "series": "boruto"
+        }
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Byakugan",
+        "Dōjutsu de Isshiki"
+      ],
+      "naturalezas": [
+        "Yin",
+        "Fuego"
+      ],
+      "atributos": [],
+      "arcoDebut": 29,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "momoshiki-otsutsuki",
+    "name": {
+      "es": "Momoshiki Ōtsutsuki"
+    },
+    "aliases": [
+      "Momoshiki"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Byakugan",
+        "Rinnegan",
+        "Madera"
+      ],
+      "naturalezas": [
+        "Viento",
+        "Rayo",
+        "Tierra",
+        "Agua",
+        "Fuego",
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 20,
+      "estadoVital": "Muerto",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "kinshiki-otsutsuki",
+    "name": {
+      "es": "Kinshiki Ōtsutsuki"
+    },
+    "aliases": [
+      "Kinshiki"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [
+        "Byakugan"
+      ],
+      "naturalezas": [
+        "Rayo"
+      ],
+      "atributos": [
+        "Sensor"
+      ],
+      "arcoDebut": 20,
+      "estadoVital": "Muerto",
+      "ocupacion": "Guardián de Momoshiki",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "delta",
+    "name": {
+      "es": "Delta"
+    },
+    "aliases": [],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "afiliaciones": [
+        {
+          "value": "Kara",
+          "series": "boruto"
+        },
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 28,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "amado",
+    "name": {
+      "es": "Amado"
+    },
+    "aliases": [
+      "Amado Sanzu"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        {
+          "value": "Kara",
+          "series": "boruto"
+        },
+        "Konoha"
+      ],
+      "tiposDeJutsu": [],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 28,
+      "estadoVital": "Vivo",
+      "ocupacion": "Científico",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "boro",
+    "name": {
+      "es": "Boro"
+    },
+    "aliases": [],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        {
+          "value": "Kara",
+          "series": "boruto"
+        }
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Lava"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Tierra",
+        "Agua",
+        "Yin"
+      ],
+      "atributos": [],
+      "arcoDebut": 28,
+      "estadoVital": "Muerto",
+      "ocupacion": "Líder de culto",
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "koji-kashin",
+    "name": {
+      "es": "Koji Kashin"
+    },
+    "aliases": [
+      "Koji"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        {
+          "value": "Kara",
+          "series": "boruto"
+        },
+        "Monte Myōboku"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [],
+      "naturalezas": [
+        "Fuego",
+        "Tierra",
+        "Yin"
+      ],
+      "atributos": [
+        "Sabio"
+      ],
+      "arcoDebut": 26,
+      "estadoVital": "Vivo",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  },
+  {
+    "id": "toneri-otsutsuki",
+    "name": {
+      "es": "Toneri Ōtsutsuki"
+    },
+    "aliases": [
+      "Toneri"
+    ],
+    "series": [
+      "boruto"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "afiliaciones": [
+        "Luna"
+      ],
+      "tiposDeJutsu": [
+        "Ninjutsu",
+        "Senjutsu"
+      ],
+      "kekkeiGenkai": [
+        "Byakugan",
+        "Tenseigan"
+      ],
+      "naturalezas": [
+        "Fuego",
+        "Viento",
+        "Rayo",
+        "Tierra",
+        "Agua",
+        "Yin",
+        "Yang",
+        "Yin-Yang"
+      ],
+      "atributos": [
+        "Sensor"
+      ],
+      "arcoDebut": 20,
+      "estadoVital": "Incapacitado",
+      "ocupacion": null,
+      "imagenTransparente": null
+    }
+  }
+]

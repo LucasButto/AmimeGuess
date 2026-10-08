@@ -1,0 +1,742 @@
+[
+  {
+    "id": "bestias-con-cola",
+    "name": "Bestias con cola",
+    "category": "bestia",
+    "difficulty": 1,
+    "series": "shippuden",
+    "members": [
+      "kurama",
+      "shukaku",
+      "matatabi",
+      "isobu",
+      "son-goku",
+      "kokuo",
+      "saiken",
+      "chomei",
+      "gyuki"
+    ],
+    "derived": {
+      "from": "classification",
+      "name": "Tailed Beast"
+    },
+    "verified": false
+  },
+  {
+    "id": "hokage",
+    "name": "Hokage",
+    "category": "cargo",
+    "difficulty": 1,
+    "series": "naruto",
+    "members": [
+      "hashirama-senju",
+      "tobirama-senju",
+      "hiruzen-sarutobi",
+      "minato-namikaze",
+      "tsunade",
+      "kakashi-hatake",
+      "naruto-uzumaki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "akatsuki",
+    "name": "Akatsuki",
+    "category": "organización",
+    "difficulty": 1,
+    "series": "shippuden",
+    "members": [
+      "yahiko",
+      "nagato",
+      "konan",
+      "itachi-uchiha",
+      "kisame-hoshigaki",
+      "deidara",
+      "sasori",
+      "hidan",
+      "kakuzu",
+      "obito-uchiha",
+      "orochimaru"
+    ],
+    "derived": {
+      "from": "akatsuki",
+      "exclude": [
+        "jugo",
+        "kabuto-yakushi",
+        "karin",
+        "madara-uchiha",
+        "sasuke-uchiha",
+        "suigetsu-hozuki"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "generacion-de-naruto",
+    "name": "Los genin de la generación de Naruto",
+    "category": "generación",
+    "difficulty": 1,
+    "series": "naruto",
+    "members": [
+      "naruto-uzumaki",
+      "sasuke-uchiha",
+      "sakura-haruno",
+      "hinata-hyuga",
+      "shikamaru-nara",
+      "choji-akimichi",
+      "ino-yamanaka",
+      "kiba-inuzuka",
+      "shino-aburame",
+      "neji-hyuga",
+      "rock-lee",
+      "tenten"
+    ],
+    "verified": false
+  },
+  {
+    "id": "aldea-suna",
+    "name": "Aldea de la Arena (Suna)",
+    "category": "aldea",
+    "difficulty": 1,
+    "series": "naruto",
+    "members": [
+      "gaara",
+      "kankuro",
+      "temari",
+      "baki",
+      "rasa",
+      "chiyo",
+      "sasori",
+      "pakura",
+      "shukaku"
+    ],
+    "derived": {
+      "from": "village",
+      "name": "Sunagakure"
+    },
+    "verified": false
+  },
+  {
+    "id": "aldea-kiri",
+    "name": "Aldea de la Niebla (Kiri)",
+    "category": "aldea",
+    "difficulty": 1,
+    "series": "naruto",
+    "members": [
+      "chojuro",
+      "haku",
+      "kisame-hoshigaki",
+      "gengetsu-hozuki",
+      "mangetsu-hozuki",
+      "suigetsu-hozuki",
+      "isobu",
+      "yagura-karatachi",
+      "kushimaru-kuriarare",
+      "zabuza-momochi",
+      "jinpachi-munashi",
+      "ameyuri-ringo",
+      "saiken",
+      "fuguki-suikazan",
+      "mei-terumi",
+      "utakata"
+    ],
+    "derived": {
+      "from": "village",
+      "name": "Kirigakure",
+      "exclude": [
+        "obito-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "aldea-kumo",
+    "name": "Aldea de las Nubes (Kumo)",
+    "category": "aldea",
+    "difficulty": 1,
+    "series": "shippuden",
+    "members": [
+      "a-cuarto-raikage",
+      "darui",
+      "gyuki",
+      "karui",
+      "killer-bee",
+      "matatabi",
+      "yugito-nii",
+      "omoi",
+      "samui"
+    ],
+    "derived": {
+      "from": "village",
+      "name": "Kumogakure"
+    },
+    "verified": false
+  },
+  {
+    "id": "aldea-iwa",
+    "name": "Aldea de la Roca (Iwa)",
+    "category": "aldea",
+    "difficulty": 1,
+    "series": "shippuden",
+    "members": [
+      "akatsuchi",
+      "deidara",
+      "gari",
+      "han",
+      "kitsuchi",
+      "kokuo",
+      "kurotsuchi",
+      "mu",
+      "onoki",
+      "roshi",
+      "son-goku"
+    ],
+    "derived": {
+      "from": "village",
+      "name": "Iwagakure"
+    },
+    "verified": false
+  },
+  {
+    "id": "aldea-oto",
+    "name": "Aldea del Sonido (Oto)",
+    "category": "aldea",
+    "difficulty": 1,
+    "series": "naruto",
+    "members": [
+      "zaku-abumi",
+      "jirobo",
+      "kidomaru",
+      "kimimaro",
+      "dosu-kinuta",
+      "mitsuki",
+      "orochimaru",
+      "sakon-y-ukon",
+      "tayuya",
+      "kin-tsuchi",
+      "kabuto-yakushi"
+    ],
+    "derived": {
+      "from": "village",
+      "name": "Otogakure",
+      "exclude": [
+        "suigetsu-hozuki",
+        "jugo",
+        "karin",
+        "manda",
+        "sasuke-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "aldea-ame",
+    "name": "Aldea de la Lluvia (Ame)",
+    "category": "aldea",
+    "difficulty": 1,
+    "series": "shippuden",
+    "members": [
+      "hanzo",
+      "konan",
+      "nagato",
+      "yahiko"
+    ],
+    "derived": {
+      "from": "village",
+      "name": "Amegakure"
+    },
+    "verified": false
+  },
+  {
+    "id": "clan-uchiha",
+    "name": "Clan Uchiha",
+    "category": "clan",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "fugaku-uchiha",
+      "itachi-uchiha",
+      "madara-uchiha",
+      "mikoto-uchiha",
+      "obito-uchiha",
+      "sarada-uchiha",
+      "sasuke-uchiha",
+      "shisui-uchiha"
+    ],
+    "derived": {
+      "from": "clan",
+      "name": "Uchiha",
+      "exclude": [
+        "sakura-haruno"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "clan-hyuga",
+    "name": "Clan Hyūga",
+    "category": "clan",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "hanabi-hyuga",
+      "hiashi-hyuga",
+      "neji-hyuga",
+      "hinata-hyuga"
+    ],
+    "derived": {
+      "from": "clan",
+      "name": "Hyūga",
+      "include": [
+        "hinata-hyuga"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "clan-uzumaki",
+    "name": "Clan Uzumaki",
+    "category": "clan",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "karin",
+      "nagato",
+      "kushina-uzumaki",
+      "naruto-uzumaki",
+      "boruto-uzumaki",
+      "himawari-uzumaki"
+    ],
+    "derived": {
+      "from": "clan",
+      "name": "Uzumaki",
+      "include": [
+        "boruto-uzumaki",
+        "himawari-uzumaki"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "clan-sarutobi",
+    "name": "Clan Sarutobi",
+    "category": "clan",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "asuma-sarutobi",
+      "hiruzen-sarutobi",
+      "konohamaru-sarutobi",
+      "mirai-sarutobi"
+    ],
+    "derived": {
+      "from": "clan",
+      "name": "Sarutobi",
+      "exclude": [
+        "kurenai-yuhi"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "ino-shika-cho",
+    "name": "Clanes Yamanaka, Nara y Akimichi",
+    "category": "clan",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "shikamaru-nara",
+      "shikaku-nara",
+      "shikadai-nara",
+      "ino-yamanaka",
+      "inoichi-yamanaka",
+      "inojin-yamanaka",
+      "choji-akimichi",
+      "choza-akimichi",
+      "chocho-akimichi"
+    ],
+    "verified": false
+  },
+  {
+    "id": "jinchuriki",
+    "name": "Jinchūriki",
+    "category": "rol",
+    "difficulty": 2,
+    "series": "shippuden",
+    "members": [
+      "naruto-uzumaki",
+      "minato-namikaze",
+      "gaara",
+      "obito-uchiha",
+      "rin-nohara",
+      "madara-uchiha",
+      "kushina-uzumaki",
+      "hagoromo-otsutsuki",
+      "killer-bee",
+      "yugito-nii",
+      "roshi",
+      "han",
+      "utakata",
+      "fu",
+      "yagura-karatachi"
+    ],
+    "derived": {
+      "from": "classification",
+      "name": "Jinchūriki"
+    },
+    "verified": false
+  },
+  {
+    "id": "cinco-kage",
+    "name": "Los Kage de la Cumbre de los Cinco Kage",
+    "category": "cargo",
+    "difficulty": 2,
+    "series": "shippuden",
+    "members": [
+      "tsunade",
+      "gaara",
+      "mei-terumi",
+      "a-cuarto-raikage",
+      "onoki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "nueva-generacion",
+    "name": "La nueva generación de Konoha",
+    "category": "generación",
+    "difficulty": 2,
+    "series": "boruto",
+    "members": [
+      "boruto-uzumaki",
+      "sarada-uchiha",
+      "mitsuki",
+      "himawari-uzumaki",
+      "shikadai-nara",
+      "inojin-yamanaka",
+      "chocho-akimichi",
+      "metal-lee",
+      "iwabee-yuino",
+      "denki-kaminarimon",
+      "wasabi-izuno",
+      "namida-suzumeno",
+      "sumire-kakei",
+      "kawaki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "jonin-sensei",
+    "name": "Los jōnin sensei de la generación de Naruto",
+    "category": "rol",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "kakashi-hatake",
+      "asuma-sarutobi",
+      "kurenai-yuhi",
+      "might-guy"
+    ],
+    "verified": false
+  },
+  {
+    "id": "clan-otsutsuki",
+    "name": "Clan Ōtsutsuki",
+    "category": "clan",
+    "difficulty": 3,
+    "series": "shippuden",
+    "members": [
+      "asura-otsutsuki",
+      "hagoromo-otsutsuki",
+      "hamura-otsutsuki",
+      "indra-otsutsuki",
+      "isshiki-otsutsuki",
+      "kaguya-otsutsuki",
+      "kinshiki-otsutsuki",
+      "momoshiki-otsutsuki",
+      "toneri-otsutsuki"
+    ],
+    "derived": {
+      "from": "clan",
+      "name": "Ōtsutsuki"
+    },
+    "verified": false
+  },
+  {
+    "id": "kara",
+    "name": "Kara",
+    "category": "organización",
+    "difficulty": 3,
+    "series": "boruto",
+    "members": [
+      "eida",
+      "boro",
+      "code",
+      "daemon",
+      "delta",
+      "jigen",
+      "koji-kashin",
+      "kawaki",
+      "isshiki-otsutsuki",
+      "amado"
+    ],
+    "derived": {
+      "from": "kara"
+    },
+    "verified": false
+  },
+  {
+    "id": "taka",
+    "name": "Taka",
+    "category": "equipo",
+    "difficulty": 3,
+    "series": "shippuden",
+    "members": [
+      "sasuke-uchiha",
+      "suigetsu-hozuki",
+      "karin",
+      "jugo"
+    ],
+    "verified": false
+  },
+  {
+    "id": "cuatro-del-sonido",
+    "name": "Los Cuatro del Sonido",
+    "category": "equipo",
+    "difficulty": 3,
+    "series": "naruto",
+    "members": [
+      "sakon-y-ukon",
+      "tayuya",
+      "jirobo",
+      "kidomaru"
+    ],
+    "verified": false
+  },
+  {
+    "id": "siete-espadachines",
+    "name": "Espadachines de la Niebla",
+    "category": "organización",
+    "difficulty": 3,
+    "series": "shippuden",
+    "members": [
+      "zabuza-momochi",
+      "kisame-hoshigaki",
+      "ameyuri-ringo",
+      "kushimaru-kuriarare",
+      "jinpachi-munashi",
+      "fuguki-suikazan",
+      "mangetsu-hozuki",
+      "chojuro"
+    ],
+    "verified": false
+  },
+  {
+    "id": "invocaciones",
+    "name": "Animales invocados",
+    "category": "invocación",
+    "difficulty": 3,
+    "series": "naruto",
+    "members": [
+      "gamabunta",
+      "katsuyu",
+      "manda",
+      "pakkun",
+      "gamakichi",
+      "fukasaku",
+      "shima"
+    ],
+    "derived": {
+      "from": "classification",
+      "name": "Summon"
+    },
+    "verified": false
+  },
+  {
+    "id": "ninjas-medicos",
+    "name": "Ninjas médicos",
+    "category": "rol",
+    "difficulty": 3,
+    "series": "naruto",
+    "members": [
+      "sakura-haruno",
+      "ino-yamanaka",
+      "shizune",
+      "tsunade",
+      "kabuto-yakushi",
+      "chiyo",
+      "rin-nohara",
+      "sarada-uchiha",
+      "mitsuki",
+      "inojin-yamanaka",
+      "iwabee-yuino",
+      "wasabi-izuno"
+    ],
+    "derived": {
+      "from": "classification",
+      "name": "Medical-nin"
+    },
+    "verified": false
+  },
+  {
+    "id": "sharingan",
+    "name": "Usuarios del Sharingan",
+    "category": "kekkei genkai",
+    "difficulty": 3,
+    "series": "naruto",
+    "members": [
+      "kakashi-hatake",
+      "indra-otsutsuki",
+      "danzo-shimura",
+      "fugaku-uchiha",
+      "itachi-uchiha",
+      "madara-uchiha",
+      "obito-uchiha",
+      "sarada-uchiha",
+      "sasuke-uchiha",
+      "shisui-uchiha"
+    ],
+    "derived": {
+      "from": "kekkei-genkai",
+      "name": "Sharingan"
+    },
+    "verified": false
+  },
+  {
+    "id": "byakugan",
+    "name": "Usuarios del Byakugan",
+    "category": "kekkei genkai",
+    "difficulty": 3,
+    "series": "naruto",
+    "members": [
+      "hanabi-hyuga",
+      "hiashi-hyuga",
+      "hinata-hyuga",
+      "neji-hyuga",
+      "isshiki-otsutsuki",
+      "kinshiki-otsutsuki",
+      "momoshiki-otsutsuki",
+      "toneri-otsutsuki",
+      "himawari-uzumaki"
+    ],
+    "derived": {
+      "from": "kekkei-genkai",
+      "name": "Byakugan"
+    },
+    "verified": false
+  },
+  {
+    "id": "ninjas-renegados",
+    "name": "Ninjas renegados",
+    "category": "rol",
+    "difficulty": 4,
+    "series": "naruto",
+    "members": [
+      "sasuke-uchiha",
+      "mizuki",
+      "orochimaru",
+      "itachi-uchiha",
+      "kisame-hoshigaki",
+      "kabuto-yakushi",
+      "zabuza-momochi",
+      "sasori",
+      "deidara",
+      "hidan",
+      "kakuzu",
+      "obito-uchiha",
+      "madara-uchiha",
+      "utakata"
+    ],
+    "derived": {
+      "from": "classification",
+      "name": "Missing-nin"
+    },
+    "verified": false
+  },
+  {
+    "id": "criminales-rango-s",
+    "name": "Criminales de rango S",
+    "category": "rol",
+    "difficulty": 4,
+    "series": "naruto",
+    "members": [
+      "orochimaru",
+      "itachi-uchiha",
+      "kisame-hoshigaki",
+      "sasori",
+      "deidara",
+      "hidan",
+      "kakuzu",
+      "obito-uchiha",
+      "konan",
+      "nagato"
+    ],
+    "derived": {
+      "from": "classification",
+      "name": "S-rank"
+    },
+    "verified": false
+  },
+  {
+    "id": "estilo-lava",
+    "name": "Usuarios del Estilo Lava",
+    "category": "kekkei genkai",
+    "difficulty": 4,
+    "series": "shippuden",
+    "members": [
+      "boro",
+      "kurotsuchi",
+      "onoki",
+      "roshi",
+      "son-goku",
+      "mei-terumi",
+      "naruto-uzumaki"
+    ],
+    "derived": {
+      "from": "kekkei-genkai",
+      "name": "Lava Release"
+    },
+    "verified": false
+  },
+  {
+    "id": "estilo-madera",
+    "name": "Usuarios del Estilo Madera",
+    "category": "kekkei genkai",
+    "difficulty": 4,
+    "series": "naruto",
+    "members": [
+      "orochimaru",
+      "asura-otsutsuki",
+      "hashirama-senju",
+      "danzo-shimura",
+      "madara-uchiha",
+      "obito-uchiha",
+      "yamato",
+      "momoshiki-otsutsuki"
+    ],
+    "derived": {
+      "from": "kekkei-genkai",
+      "name": "Wood Release"
+    },
+    "verified": false
+  },
+  {
+    "id": "rinnegan",
+    "name": "Usuarios del Rinnegan",
+    "category": "kekkei genkai",
+    "difficulty": 4,
+    "series": "shippuden",
+    "members": [
+      "nagato",
+      "momoshiki-otsutsuki",
+      "madara-uchiha",
+      "obito-uchiha",
+      "sasuke-uchiha"
+    ],
+    "derived": {
+      "from": "kekkei-genkai",
+      "name": "Rinnegan"
+    },
+    "verified": false
+  }
+]

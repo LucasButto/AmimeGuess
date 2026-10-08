@@ -1,0 +1,204 @@
+{
+  "series": [
+    {
+      "id": "naruto",
+      "order": 1
+    },
+    {
+      "id": "shippuden",
+      "order": 2
+    },
+    {
+      "id": "boruto",
+      "order": 3
+    }
+  ],
+  "arcs": [
+    {
+      "id": "tierra-de-las-olas",
+      "name": "Prólogo: País de las Olas",
+      "series": "naruto",
+      "order": 1
+    },
+    {
+      "id": "examen-chunin",
+      "name": "Examen Chūnin",
+      "series": "naruto",
+      "order": 2
+    },
+    {
+      "id": "invasion-de-konoha",
+      "name": "Invasión de Konoha",
+      "series": "naruto",
+      "order": 3
+    },
+    {
+      "id": "busqueda-de-tsunade",
+      "name": "Búsqueda de Tsunade",
+      "series": "naruto",
+      "order": 4
+    },
+    {
+      "id": "recuperacion-de-sasuke",
+      "name": "Recuperación de Sasuke",
+      "series": "naruto",
+      "order": 5
+    },
+    {
+      "id": "rescate-del-kazekage",
+      "name": "Rescate del Kazekage",
+      "series": "shippuden",
+      "order": 6
+    },
+    {
+      "id": "puente-tenchi",
+      "name": "Reconocimiento del Puente Tenchi",
+      "series": "shippuden",
+      "order": 7
+    },
+    {
+      "id": "supresion-de-akatsuki",
+      "name": "Supresión de Akatsuki",
+      "series": "shippuden",
+      "order": 8
+    },
+    {
+      "id": "persecucion-de-itachi",
+      "name": "Persecución de Itachi",
+      "series": "shippuden",
+      "order": 9
+    },
+    {
+      "id": "historia-de-jiraiya",
+      "name": "Historia de Jiraiya el Galante",
+      "series": "shippuden",
+      "order": 10
+    },
+    {
+      "id": "batalla-entre-hermanos",
+      "name": "Batalla del destino entre hermanos",
+      "series": "shippuden",
+      "order": 11
+    },
+    {
+      "id": "asalto-de-pain",
+      "name": "Asalto de Pain",
+      "series": "shippuden",
+      "order": 12
+    },
+    {
+      "id": "cumbre-de-los-kage",
+      "name": "Cumbre de los Cinco Kage",
+      "series": "shippuden",
+      "order": 13
+    },
+    {
+      "id": "guerra-cuenta-regresiva",
+      "name": "Cuarta Guerra Shinobi: Cuenta regresiva",
+      "series": "shippuden",
+      "order": 14
+    },
+    {
+      "id": "guerra-confrontacion",
+      "name": "Cuarta Guerra Shinobi: Confrontación",
+      "series": "shippuden",
+      "order": 15
+    },
+    {
+      "id": "guerra-climax",
+      "name": "Cuarta Guerra Shinobi: Clímax",
+      "series": "shippuden",
+      "order": 16
+    },
+    {
+      "id": "jinchuriki-del-diez-colas",
+      "name": "Nacimiento del jinchūriki del Diez Colas",
+      "series": "shippuden",
+      "order": 17
+    },
+    {
+      "id": "kaguya",
+      "name": "Kaguya Ōtsutsuki ataca",
+      "series": "shippuden",
+      "order": 18
+    },
+    {
+      "id": "konoha-hiden",
+      "name": "Konoha Hiden",
+      "series": "shippuden",
+      "order": 19
+    },
+    {
+      "id": "ingreso-a-la-academia",
+      "name": "Ingreso a la Academia",
+      "series": "boruto",
+      "order": 20
+    },
+    {
+      "id": "arco-de-sarada",
+      "name": "Arco de Sarada Uchiha",
+      "series": "boruto",
+      "order": 21
+    },
+    {
+      "id": "excursion-escolar",
+      "name": "Excursión escolar",
+      "series": "boruto",
+      "order": 22
+    },
+    {
+      "id": "examen-de-graduacion",
+      "name": "Examen de graduación",
+      "series": "boruto",
+      "order": 23
+    },
+    {
+      "id": "mision-de-genin",
+      "name": "Misión de genin",
+      "series": "boruto",
+      "order": 24
+    },
+    {
+      "id": "banda-de-byakuya",
+      "name": "Banda de Byakuya",
+      "series": "boruto",
+      "order": 25
+    },
+    {
+      "id": "contra-momoshiki",
+      "name": "Contra Momoshiki",
+      "series": "boruto",
+      "order": 26
+    },
+    {
+      "id": "desaparicion-de-mitsuki",
+      "name": "Desaparición de Mitsuki",
+      "series": "boruto",
+      "order": 27
+    },
+    {
+      "id": "activacion-de-kara",
+      "name": "Activación de Kara",
+      "series": "boruto",
+      "order": 28
+    },
+    {
+      "id": "arco-de-kawaki",
+      "name": "Arco de Kawaki",
+      "series": "boruto",
+      "order": 29
+    },
+    {
+      "id": "reexamen-chunin",
+      "name": "Reexamen Chūnin",
+      "series": "boruto",
+      "order": 30
+    },
+    {
+      "id": "asalto-de-code",
+      "name": "Asalto de Code",
+      "series": "boruto",
+      "order": 31
+    }
+  ]
+}

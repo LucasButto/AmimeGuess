@@ -1,0 +1,266 @@
+[
+  {
+    "id": "equipo-7",
+    "name": "Equipo 7 (Kakashi)",
+    "members": [
+      "naruto-uzumaki",
+      "sasuke-uchiha",
+      "sakura-haruno",
+      "kakashi-hatake"
+    ],
+    "series": "naruto",
+    "api": "Team Kakashi",
+    "verified": false
+  },
+  {
+    "id": "equipo-7-shippuden",
+    "name": "Equipo 7 de Shippūden",
+    "members": [
+      "naruto-uzumaki",
+      "sakura-haruno",
+      "sai",
+      "yamato"
+    ],
+    "series": "shippuden",
+    "api": "Team Kakashi",
+    "verified": false
+  },
+  {
+    "id": "equipo-8",
+    "name": "Equipo 8 (Kurenai)",
+    "members": [
+      "hinata-hyuga",
+      "kiba-inuzuka",
+      "shino-aburame",
+      "kurenai-yuhi",
+      "akamaru"
+    ],
+    "answers": [
+      "hinata-hyuga",
+      "kiba-inuzuka",
+      "shino-aburame",
+      "kurenai-yuhi"
+    ],
+    "series": "naruto",
+    "api": "Team 8",
+    "verified": false
+  },
+  {
+    "id": "equipo-10",
+    "name": "Equipo 10 (Asuma)",
+    "members": [
+      "shikamaru-nara",
+      "ino-yamanaka",
+      "choji-akimichi",
+      "asuma-sarutobi"
+    ],
+    "series": "naruto",
+    "api": "Team 10",
+    "verified": false
+  },
+  {
+    "id": "equipo-guy",
+    "name": "Equipo Guy",
+    "members": [
+      "neji-hyuga",
+      "rock-lee",
+      "tenten",
+      "might-guy"
+    ],
+    "series": "naruto",
+    "api": "Team Guy",
+    "verified": false
+  },
+  {
+    "id": "equipo-minato",
+    "name": "Equipo Minato",
+    "members": [
+      "kakashi-hatake",
+      "obito-uchiha",
+      "rin-nohara",
+      "minato-namikaze"
+    ],
+    "series": "shippuden",
+    "api": "Team Minato",
+    "verified": false
+  },
+  {
+    "id": "taka",
+    "name": "Taka",
+    "members": [
+      "suigetsu-hozuki",
+      "karin",
+      "jugo",
+      "sasuke-uchiha"
+    ],
+    "series": "shippuden",
+    "api": "Taka",
+    "verified": false
+  },
+  {
+    "id": "equipo-hiruzen",
+    "name": "Hiruzen y los Sannin",
+    "members": [
+      "jiraiya",
+      "tsunade",
+      "orochimaru",
+      "hiruzen-sarutobi"
+    ],
+    "series": "naruto",
+    "api": "Team Hiruzen",
+    "verified": false
+  },
+  {
+    "id": "cuatro-del-sonido",
+    "name": "Los Cuatro del Sonido",
+    "members": [
+      "tayuya",
+      "jirobo",
+      "kidomaru",
+      "sakon-y-ukon"
+    ],
+    "series": "naruto",
+    "api": "Sound Four",
+    "verified": false
+  },
+  {
+    "id": "equipo-baki",
+    "name": "Baki y los hermanos de la Arena",
+    "members": [
+      "temari",
+      "kankuro",
+      "gaara",
+      "baki"
+    ],
+    "series": "naruto",
+    "api": "Three Sand Siblings",
+    "verified": false
+  },
+  {
+    "id": "equipo-7-boruto",
+    "name": "Equipo 7 de Boruto",
+    "members": [
+      "boruto-uzumaki",
+      "sarada-uchiha",
+      "mitsuki",
+      "konohamaru-sarutobi",
+      "kawaki"
+    ],
+    "series": "boruto",
+    "api": "Team 7",
+    "verified": false
+  },
+  {
+    "id": "ino-shika-cho-padres",
+    "name": "Ino-Shika-Chō (la generación de los padres)",
+    "members": [
+      "shikaku-nara",
+      "inoichi-yamanaka",
+      "choza-akimichi"
+    ],
+    "series": "naruto",
+    "api": "Ino–Shika–Chō",
+    "verified": false
+  },
+  {
+    "id": "ino-shika-cho-hijos",
+    "name": "Ino-Shika-Chō (la nueva generación)",
+    "members": [
+      "shikadai-nara",
+      "inojin-yamanaka",
+      "chocho-akimichi"
+    ],
+    "series": "boruto",
+    "api": "Team 10",
+    "verified": false
+  },
+  {
+    "id": "recuperacion-de-sasuke",
+    "name": "Equipo de recuperación de Sasuke",
+    "members": [
+      "shikamaru-nara",
+      "neji-hyuga",
+      "kiba-inuzuka",
+      "choji-akimichi",
+      "akamaru",
+      "naruto-uzumaki"
+    ],
+    "answers": [
+      "shikamaru-nara",
+      "neji-hyuga",
+      "kiba-inuzuka",
+      "choji-akimichi",
+      "naruto-uzumaki"
+    ],
+    "series": "naruto",
+    "api": "Sasuke Recovery Team",
+    "verified": false
+  },
+  {
+    "id": "rescate-del-kazekage",
+    "name": "Equipo de rescate del Kazekage",
+    "members": [
+      "chiyo",
+      "sakura-haruno",
+      "kakashi-hatake",
+      "naruto-uzumaki"
+    ],
+    "series": "shippuden",
+    "api": "Kazekage Rescue Team",
+    "verified": false
+  },
+  {
+    "id": "siete-espadachines",
+    "name": "Los Espadachines de la Niebla",
+    "members": [
+      "jinpachi-munashi",
+      "kushimaru-kuriarare",
+      "fuguki-suikazan",
+      "mangetsu-hozuki",
+      "ameyuri-ringo",
+      "kisame-hoshigaki",
+      "zabuza-momochi",
+      "chojuro"
+    ],
+    "series": "shippuden",
+    "api": "Seven Ninja Swordsmen of the Mist",
+    "verified": false
+  },
+  {
+    "id": "equipo-samui",
+    "name": "Equipo Samui (Kumo)",
+    "members": [
+      "karui",
+      "omoi",
+      "samui"
+    ],
+    "series": "shippuden",
+    "api": "Team Samui",
+    "verified": false
+  },
+  {
+    "id": "equipo-dosu",
+    "name": "Equipo Dosu (Oto)",
+    "members": [
+      "zaku-abumi",
+      "kin-tsuchi",
+      "dosu-kinuta"
+    ],
+    "series": "naruto",
+    "api": "Team Dosu",
+    "verified": false
+  },
+  {
+    "id": "cinco-kage",
+    "name": "Los Cinco Kage de la Cumbre",
+    "members": [
+      "onoki",
+      "mei-terumi",
+      "a-cuarto-raikage",
+      "gaara",
+      "tsunade"
+    ],
+    "series": "shippuden",
+    "verified": false
+  }
+]

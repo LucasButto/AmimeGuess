@@ -1,0 +1,255 @@
+[
+  {
+    "id": "kakashi-companeros",
+    "character": "kakashi-hatake",
+    "text": "En el mundo ninja, quien rompe las reglas es escoria, es cierto, pero quien abandona a sus compañeros es peor que la escoria.",
+    "addressee": "Sus alumnos del Equipo 7",
+    "arc": "tierra-de-las-olas",
+    "series": "naruto",
+    "accepts": ["obito-uchiha"],
+    "context": "Narutopedia, Quotes de Kakashi Hatake: (To his students) \"In the ninja world, those who break the rules are trash, that's true, but those who abandon their comrades are worse than trash.\" Dicha en la prueba de los cascabeles (episodio 4).",
+    "verified": false
+  },
+  {
+    "id": "naruto-sueno-hokage",
+    "character": "naruto-uzumaki",
+    "text": "¡Y mi sueño para el futuro es ser el Hokage más grande! Entonces toda la aldea dejará de despreciarme y empezará a tratarme como a alguien. ¡Alguien importante!",
+    "addressee": "Kakashi Hatake",
+    "arc": "tierra-de-las-olas",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Naruto Uzumaki: (To Kakashi) \"And my future dream is to be the greatest Hokage! Then the whole village will stop disrespecting me and start treating me like I'm somebody. Somebody important!\" Dicha en la presentación del Equipo 7.",
+    "verified": false
+  },
+  {
+    "id": "naruto-ibiki",
+    "character": "naruto-uzumaki",
+    "text": "¡No me subestimes! ¡No me rindo ni huyo! ¡Puedes hacerte el duro todo lo que quieras, no me vas a asustar! ¡Ni hablar! No me importa quedarme como genin el resto de mi vida: ¡algún día seré Hokage!",
+    "addressee": "Ibiki Morino",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Naruto Uzumaki: (To Ibiki) \"Don't underestimate me! I don't quit and I don't run! You can act tough all you want! You're not gonna scare me off! No way! I don't care if I do get stuck as a genin for the rest of my life! I'll still be Hokage someday!\" Primera prueba del Examen Chūnin.",
+    "verified": false
+  },
+  {
+    "id": "naruto-neji",
+    "character": "naruto-uzumaki",
+    "text": "¡No voy a huir, jamás me retracto de mi palabra! ¡Ese es mi nindō: mi camino ninja!",
+    "addressee": "Neji Hyūga",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "accepts": ["hinata-hyuga"],
+    "context": "Narutopedia, Quotes de Naruto Uzumaki: (To Neji) \"I'm not gonna run away, I never go back on my word! That's my nindō: my ninja way!\" En la de Hinata (To Neji): \"I will never go back on my word… Because that too is my nindō, my ninja way!\"",
+    "verified": false
+  },
+  {
+    "id": "neji-destino",
+    "character": "neji-hyuga",
+    "text": "Estos ojos míos me muestran muchas cosas. Una de ellas es que los límites de las personas están fijados y no cambian. ¡Solo un necio pierde su tiempo tratando de ser algo que nunca podrá ser! El único destino que todos compartimos… es la muerte.",
+    "addressee": "Naruto Uzumaki",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Neji Hyūga: (To Naruto) \"These eyes of mine show me many things. One thing they've shown me… people's limitations are set, fixed, and unchangeable. Only a fool wastes his time trying to become something he can never be! The only destiny that everyone shares… is death.\"",
+    "verified": false
+  },
+  {
+    "id": "zabuza-ninja",
+    "character": "zabuza-momochi",
+    "text": "Cuando has estado tantas veces entre la vida y la muerte que ya no te inmuta, quizás puedas llamarte ninja. Cuando te has vuelto tan letal que tu perfil entra en mi libro bingo, entonces quizás te hayas ganado el título de ninja.",
+    "addressee": "Equipo 7",
+    "arc": "tierra-de-las-olas",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Zabuza Momochi: (To Team 7) \"When you've hovered between life and death so many times that it doesn't faze you, you may be called a ninja. When you've become so deadly that your profile has been entered into my bingo book, then you may have earned the title ninja.\"",
+    "verified": false
+  },
+  {
+    "id": "zabuza-demonio",
+    "character": "zabuza-momochi",
+    "text": "¡Hasta el insignificante Demonio de la Niebla Oculta puede morir y convertirse en un verdadero demonio en el infierno! ¡Esto será divertido!",
+    "addressee": "Gatō",
+    "arc": "tierra-de-las-olas",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Zabuza Momochi: (To Gatō) \"Even the unremarkable Demon of the Hidden Mist can die and become a real Demon in hell! This will be fun!!!\"",
+    "verified": false
+  },
+  {
+    "id": "haku-fuerte",
+    "character": "haku",
+    "text": "Cuando una persona tiene algo importante que quiere proteger… es entonces cuando puede volverse verdaderamente fuerte.",
+    "addressee": "Naruto Uzumaki",
+    "arc": "tierra-de-las-olas",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Haku: (To Naruto) \"When a person… has something important they want to protect… that's when they can become truly strong.\"",
+    "verified": false
+  },
+  {
+    "id": "iruka-mizuki",
+    "character": "iruka-umino",
+    "text": "Sí… el zorro demonio haría eso… pero Naruto es diferente. Lo he reconocido como… uno de mis excelentes alumnos.",
+    "addressee": "Mizuki",
+    "arc": "tierra-de-las-olas",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Iruka Umino: (To Mizuki) \"Yeah… the monster fox would do that… but Naruto is different. I've acknowledged him as… one of my excellent students.\" (el original sigue; se toma hasta el primer punto).",
+    "verified": false
+  },
+  {
+    "id": "lee-sakura",
+    "character": "rock-lee",
+    "text": "Sakura, ¡sal conmigo, por favor! ¡Te protegeré con mi vida!",
+    "addressee": "Sakura Haruno",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Rock Lee: (To Sakura) \"Sakura, please go out with me! I'll protect you with my life!\"",
+    "verified": false
+  },
+  {
+    "id": "lee-genio",
+    "character": "rock-lee",
+    "text": "Entre los fuertes existen los genios y los que trabajan duro. Si tu Sharingan es de tipo genio, por la sangre Uchiha, yo soy simplemente alguien que trabaja duro y que solo ha dominado el taijutsu.",
+    "addressee": "Sasuke Uchiha",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Rock Lee: (To Sasuke) \"Among strong people exists genius types and hard-working types. If your Sharingan is a genius-type from the Uchiha blood, I am simply a hard-working type who has mastered only taijutsu.\"",
+    "verified": false
+  },
+  {
+    "id": "gaara-ojos",
+    "character": "gaara",
+    "text": "Tienes mis mismos ojos… ojos llenos de odio y muerte que anhelan poder… igual que los míos… tus ojos me dicen cuánto deseas matar a quien te hizo pasar por el infierno llamado soledad.",
+    "addressee": "Sasuke Uchiha",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Gaara: (To Sasuke) \"You have the same eyes as I do… the eyes, filled with hatred and death, that long for strength… just like mine… your eyes tell me how badly you wish to kill the one who put you through the hell called loneliness.\"",
+    "verified": false
+  },
+  {
+    "id": "temari-aburrido",
+    "character": "temari",
+    "text": "No fue gran cosa de pelea; medio aburrida.",
+    "addressee": null,
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Temari: (About her match with Tenten) \"Wasn't much of a match; kinda boring.\"",
+    "verified": false
+  },
+  {
+    "id": "deidara-arte",
+    "character": "deidara",
+    "text": "¡El arte es una explosión!",
+    "addressee": null,
+    "arc": "rescate-del-kazekage",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Deidara: (Catchphrase) \"Art is an explosion!\"",
+    "verified": false
+  },
+  {
+    "id": "sasori-kankuro",
+    "character": "sasori",
+    "text": "Como no me gusta esperar ni hacer esperar a nadie… acabaré esto rápido.",
+    "addressee": "Kankurō",
+    "arc": "rescate-del-kazekage",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Sasori: (To Kankurō) \"Since I don't like to wait or make people wait… I'll end this quickly.\"",
+    "verified": false
+  },
+  {
+    "id": "sasori-sakura",
+    "character": "sasori",
+    "text": "Me describiría como un ser humano que no pudo convertirse en una marioneta completa; soy una marioneta inconclusa, cuyo cuerpo sin vida aún tiene un corazón latiendo en su centro. No estoy muerto, ni estoy vivo.",
+    "addressee": "Sakura Haruno",
+    "arc": "rescate-del-kazekage",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Sasori: (To Sakura) \"I would describe myself as a human being who could not become a complete puppet, I am an unfinished puppet, whose lifeless frame still contains a beating heart at its core. I am neither dead, nor am I alive.\"",
+    "verified": false
+  },
+  {
+    "id": "chiyo-sakura",
+    "character": "chiyo",
+    "text": "Y Sakura… la próxima vez, salva a quienes te son queridos, no a una vieja bruja. Tú y yo nos parecemos mucho. No hay muchas chicas tan caballerosas como tú. Podrías llegar a ser una kunoichi que supere a su maestra.",
+    "addressee": "Sakura Haruno",
+    "arc": "rescate-del-kazekage",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Chiyo: (To Sakura) \"And Sakura… Next time, save the people who are dear to you, not some old hag. You and I are very similar. There aren't many girls as chivalrous as you around. You might become a kunoichi who surpasses her master.\"",
+    "verified": false
+  },
+  {
+    "id": "kakuzu-infierno",
+    "character": "kakuzu",
+    "text": "Hasta el Infierno funciona con dinero. A mí me iría bien.",
+    "addressee": "Hidan",
+    "arc": "supresion-de-akatsuki",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Kakuzu: (To Hidan) \"Even Hell runs on money. I'd be just fine.\"",
+    "verified": false
+  },
+  {
+    "id": "shikamaru-voluntad",
+    "character": "shikamaru-nara",
+    "text": "Verás, tú y yo tenemos creencias distintas. Yo creo en la Voluntad de Fuego. Ese patético Lord Jashin o como se llame ya no es tu dios. Lo soy yo. El único que hará caer la venganza soy yo.",
+    "addressee": "Hidan",
+    "arc": "supresion-de-akatsuki",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Shikamaru Nara: (To Hidan) \"See, you and I have different beliefs. I believe in the Will of Fire. That pathetic Lord Jashin or whatever isn't your God any more. I am. The only one bringing down vengeance is me.\"",
+    "verified": false
+  },
+  {
+    "id": "asuma-choji",
+    "character": "asuma-sarutobi",
+    "text": "Chōji, eres un hombre amable que se preocupa por sus compañeros. Por eso… te convertirás en un shinobi más poderoso que todos. Ten más confianza en ti mismo. Y… quizás deberías hacer un poco de dieta.",
+    "addressee": "Chōji Akimichi",
+    "arc": "supresion-de-akatsuki",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Asuma Sarutobi: (To Chōji, before he died) \"Chōji, you're a kind man who cares for his comrades. That's why… you'll become a shinobi more powerful than everyone else. Be more confident in yourself. And… maybe diet a little.\"",
+    "verified": false
+  },
+  {
+    "id": "konan-tobi",
+    "character": "konan",
+    "text": "Una pregunta… Madara. ¿Entiendes por qué te traicionamos? ¡Porque tú eres oscuridad, un mundo sin luz donde las flores solo pueden marchitarse y morir!",
+    "addressee": "Tobi",
+    "arc": "asalto-de-pain",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Konan: (To Tobi) \"One question… Madara. Do you understand why we betrayed you? Because you are darkness, a world without light where flowers can only wither and die!\"",
+    "verified": false
+  },
+  {
+    "id": "konan-naruto",
+    "character": "konan",
+    "text": "Nagato creyó en ti, así que yo también creo en ti.",
+    "addressee": "Naruto Uzumaki",
+    "arc": "asalto-de-pain",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Konan: (To Naruto) \"Nagato believed in you, so I believe in you, too.\"",
+    "verified": false
+  },
+  {
+    "id": "nagato-naruto",
+    "character": "nagato",
+    "text": "Ambos somos hombres comunes, impulsados a buscar venganza en nombre de la justicia. Pero si hay justicia en la venganza, entonces la justicia solo engendrará más venganza. Y desatará un ciclo de odio.",
+    "addressee": "Naruto Uzumaki",
+    "arc": "asalto-de-pain",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Nagato: (To Naruto) \"We are both ordinary men, driven to seek vengeance in the name of justice. However, if there is justice in vengeance, then justice will breed only more vengeance. And trigger a cycle of hatred.\"",
+    "verified": false
+  },
+  {
+    "id": "hinata-fracasado",
+    "character": "hinata-hyuga",
+    "text": "Para mí… ¡eres un orgulloso fracasado! Cuando te miro, siento algo muy fuerte en el corazón… Porque no eres perfecto… porque fracasas… tienes la fuerza para volver a levantarte… ¡Porque creo que eso es la verdadera fortaleza!",
+    "addressee": "Naruto Uzumaki",
+    "arc": "asalto-de-pain",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Hinata Hyūga: (To Naruto) \"In my eyes… you're a proud failure! When I look at you, I get an intense feeling in my heart… Because you're not perfect… Because you fail… you have the strength to get back up… Because I believe that is what true strength is…\"",
+    "verified": false
+  },
+  {
+    "id": "obito-kakashi-gaiden",
+    "character": "obito-uchiha",
+    "text": "Quien rompe las reglas es escoria, ¡pero quien abandona a sus compañeros es peor que la escoria!",
+    "addressee": "Kakashi Hatake",
+    "arc": "persecucion-de-itachi",
+    "series": "shippuden",
+    "accepts": ["kakashi-hatake"],
+    "context": "Narutopedia, Quotes de Obito Uchiha: (To Kakashi) \"Those who break the rules are trash, but those who abandon their comrades are worse than trash!\" (el original sigue con otra frase; se toma hasta aquí). Dicha en Kakashi Gaiden (episodios 119 y 120 de Shippūden).",
+    "verified": false
+  }
+]

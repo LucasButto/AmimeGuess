@@ -1,0 +1,2189 @@
+[
+  {
+    "id": "naruto-uzumaki",
+    "name": "Naruto Uzumaki",
+    "aliases": [
+      "Naruto",
+      "Séptimo Hokage"
+    ],
+    "api": 1344,
+    "apiName": "Naruto Uzumaki",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "sasuke-uchiha",
+    "name": "Sasuke Uchiha",
+    "aliases": [
+      "Sasuke"
+    ],
+    "api": 1307,
+    "apiName": "Sasuke Uchiha",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "sakura-haruno",
+    "name": "Sakura Haruno",
+    "aliases": [
+      "Sakura"
+    ],
+    "api": 374,
+    "apiName": "Sakura Haruno",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kakashi-hatake",
+    "name": "Kakashi Hatake",
+    "aliases": [
+      "Kakashi",
+      "Sexto Hokage"
+    ],
+    "api": 376,
+    "apiName": "Kakashi Hatake",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "iruka-umino",
+    "name": "Iruka Umino",
+    "aliases": [
+      "Iruka"
+    ],
+    "api": 1325,
+    "apiName": "Iruka Umino",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "hiruzen-sarutobi",
+    "name": "Hiruzen Sarutobi",
+    "aliases": [
+      "Hiruzen",
+      "Tercer Hokage"
+    ],
+    "api": 1036,
+    "apiName": "Hiruzen Sarutobi",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "konohamaru-sarutobi",
+    "name": "Konohamaru Sarutobi",
+    "aliases": [
+      "Konohamaru"
+    ],
+    "api": 1037,
+    "apiName": "Konohamaru Sarutobi",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "mizuki",
+    "name": "Mizuki",
+    "aliases": [],
+    "api": 818,
+    "apiName": "Mizuki",
+    "series": [
+      "naruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "hinata-hyuga",
+    "name": "Hinata Hyūga",
+    "aliases": [
+      "Hinata"
+    ],
+    "api": 437,
+    "apiName": "Hinata Hyūga",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "shikamaru-nara",
+    "name": "Shikamaru Nara",
+    "aliases": [
+      "Shikamaru"
+    ],
+    "api": 878,
+    "apiName": "Shikamaru Nara",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "override": {
+      "ocupacion": "Asistente principal del Hokage"
+    },
+    "verified": false
+  },
+  {
+    "id": "choji-akimichi",
+    "name": "Chōji Akimichi",
+    "aliases": [
+      "Choji"
+    ],
+    "api": 40,
+    "apiName": "Chōji Akimichi",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "ino-yamanaka",
+    "name": "Ino Yamanaka",
+    "aliases": [
+      "Ino"
+    ],
+    "api": 1365,
+    "apiName": "Ino Yamanaka",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "override": {
+      "ocupacion": "Florista"
+    },
+    "verified": false
+  },
+  {
+    "id": "kiba-inuzuka",
+    "name": "Kiba Inuzuka",
+    "aliases": [
+      "Kiba"
+    ],
+    "api": 466,
+    "apiName": "Kiba Inuzuka",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "shino-aburame",
+    "name": "Shino Aburame",
+    "aliases": [
+      "Shino"
+    ],
+    "api": 13,
+    "apiName": "Shino Aburame",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "override": {
+      "ocupacion": "Maestro de la Academia"
+    },
+    "verified": false
+  },
+  {
+    "id": "neji-hyuga",
+    "name": "Neji Hyūga",
+    "aliases": [
+      "Neji"
+    ],
+    "api": 444,
+    "apiName": "Neji Hyūga",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "rock-lee",
+    "name": "Rock Lee",
+    "aliases": [
+      "Lee"
+    ],
+    "api": 739,
+    "apiName": "Rock Lee",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "tenten",
+    "name": "Tenten",
+    "aliases": [],
+    "api": 1216,
+    "apiName": "Tenten",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "override": {
+      "ocupacion": "Vendedor de armas"
+    },
+    "verified": false
+  },
+  {
+    "id": "might-guy",
+    "name": "Might Guy",
+    "aliases": [
+      "Guy",
+      "Gai",
+      "Maito Gai"
+    ],
+    "api": 344,
+    "apiName": "Might Guy",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "asuma-sarutobi",
+    "name": "Asuma Sarutobi",
+    "aliases": [
+      "Asuma"
+    ],
+    "api": 1034,
+    "apiName": "Asuma Sarutobi",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kurenai-yuhi",
+    "name": "Kurenai Yūhi",
+    "aliases": [
+      "Kurenai"
+    ],
+    "api": 1397,
+    "apiName": "Kurenai Yūhi",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "anko-mitarashi",
+    "name": "Anko Mitarashi",
+    "aliases": [
+      "Anko"
+    ],
+    "api": 809,
+    "apiName": "Anko Mitarashi",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "override": {
+      "ocupacion": "Examinador del Examen Chūnin"
+    },
+    "verified": false
+  },
+  {
+    "id": "ibiki-morino",
+    "name": "Ibiki Morino",
+    "aliases": [
+      "Ibiki"
+    ],
+    "api": 835,
+    "apiName": "Ibiki Morino",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "genma-shiranui",
+    "name": "Genma Shiranui",
+    "aliases": [
+      "Genma"
+    ],
+    "api": 1110,
+    "apiName": "Genma Shiranui",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "override": {
+      "ocupacion": "Examinador del Examen Chūnin"
+    },
+    "verified": false
+  },
+  {
+    "id": "hayate-gekko",
+    "name": "Hayate Gekkō",
+    "aliases": [
+      "Hayate"
+    ],
+    "api": 293,
+    "apiName": "Hayate Gekkō",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "shizune",
+    "name": "Shizune",
+    "aliases": [],
+    "api": 1122,
+    "apiName": "Shizune",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "override": {
+      "ocupacion": "Asistente del Hokage"
+    },
+    "verified": false
+  },
+  {
+    "id": "tsunade",
+    "name": "Tsunade",
+    "aliases": [
+      "Quinta Hokage"
+    ],
+    "api": 1280,
+    "apiName": "Tsunade",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "jiraiya",
+    "name": "Jiraiya",
+    "aliases": [
+      "Ermitaño Sapo"
+    ],
+    "api": 515,
+    "apiName": "Jiraiya",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "orochimaru",
+    "name": "Orochimaru",
+    "aliases": [],
+    "api": 928,
+    "apiName": "Orochimaru",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "override": {
+      "genero": "Masculino",
+      "ocupacion": "Fundador y líder de Oto"
+    },
+    "verified": false
+  },
+  {
+    "id": "minato-namikaze",
+    "name": "Minato Namikaze",
+    "aliases": [
+      "Minato",
+      "Cuarto Hokage"
+    ],
+    "api": 865,
+    "apiName": "Minato Namikaze",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "fugaku-uchiha",
+    "name": "Fugaku Uchiha",
+    "aliases": [
+      "Fugaku"
+    ],
+    "api": 1289,
+    "apiName": "Fugaku Uchiha",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "override": {
+      "ocupacion": "Líder del clan Uchiha"
+    },
+    "verified": false
+  },
+  {
+    "id": "mikoto-uchiha",
+    "name": "Mikoto Uchiha",
+    "aliases": [
+      "Mikoto"
+    ],
+    "api": 1300,
+    "apiName": "Mikoto Uchiha",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "itachi-uchiha",
+    "name": "Itachi Uchiha",
+    "aliases": [
+      "Itachi"
+    ],
+    "api": 1293,
+    "apiName": "Itachi Uchiha",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kisame-hoshigaki",
+    "name": "Kisame Hoshigaki",
+    "aliases": [
+      "Kisame"
+    ],
+    "api": 421,
+    "apiName": "Kisame Hoshigaki",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "hashirama-senju",
+    "name": "Hashirama Senju",
+    "aliases": [
+      "Hashirama",
+      "Primer Hokage"
+    ],
+    "api": 1063,
+    "apiName": "Hashirama Senju",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "tobirama-senju",
+    "name": "Tobirama Senju",
+    "aliases": [
+      "Tobirama",
+      "Segundo Hokage"
+    ],
+    "api": 1066,
+    "apiName": "Tobirama Senju",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "homura-mitokado",
+    "name": "Homura Mitokado",
+    "aliases": [
+      "Homura"
+    ],
+    "api": 811,
+    "apiName": "Homura Mitokado",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "koharu-utatane",
+    "name": "Koharu Utatane",
+    "aliases": [
+      "Koharu"
+    ],
+    "api": 1336,
+    "apiName": "Koharu Utatane",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "hanabi-hyuga",
+    "name": "Hanabi Hyūga",
+    "aliases": [
+      "Hanabi"
+    ],
+    "api": 435,
+    "apiName": "Hanabi Hyūga",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "hiashi-hyuga",
+    "name": "Hiashi Hyūga",
+    "aliases": [
+      "Hiashi"
+    ],
+    "api": 436,
+    "apiName": "Hiashi Hyūga",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "choza-akimichi",
+    "name": "Chōza Akimichi",
+    "aliases": [
+      "Choza"
+    ],
+    "api": 42,
+    "apiName": "Chōza Akimichi",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "inoichi-yamanaka",
+    "name": "Inoichi Yamanaka",
+    "aliases": [
+      "Inoichi"
+    ],
+    "api": 1367,
+    "apiName": "Inoichi Yamanaka",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "override": {
+      "ocupacion": "Líder del clan Yamanaka"
+    },
+    "verified": false
+  },
+  {
+    "id": "shikaku-nara",
+    "name": "Shikaku Nara",
+    "aliases": [
+      "Shikaku"
+    ],
+    "api": 877,
+    "apiName": "Shikaku Nara",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "override": {
+      "ocupacion": "Líder del clan Nara"
+    },
+    "verified": false
+  },
+  {
+    "id": "tsume-inuzuka",
+    "name": "Tsume Inuzuka",
+    "aliases": [
+      "Tsume"
+    ],
+    "api": 468,
+    "apiName": "Tsume Inuzuka",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "shibi-aburame",
+    "name": "Shibi Aburame",
+    "aliases": [
+      "Shibi"
+    ],
+    "api": 11,
+    "apiName": "Shibi Aburame",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kabuto-yakushi",
+    "name": "Kabuto Yakushi",
+    "aliases": [
+      "Kabuto"
+    ],
+    "api": 1359,
+    "apiName": "Kabuto Yakushi",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "override": {
+      "ocupacion": "Espía y mano derecha de Orochimaru"
+    },
+    "verified": false
+  },
+  {
+    "id": "ebisu",
+    "name": "Ebisu",
+    "aliases": [],
+    "api": 212,
+    "apiName": "Ebisu",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "teuchi",
+    "name": "Teuchi",
+    "aliases": [
+      "Viejo del Ichiraku"
+    ],
+    "api": 1227,
+    "apiName": "Teuchi",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "tazuna",
+    "name": "Tazuna",
+    "aliases": [],
+    "api": 1204,
+    "apiName": "Tazuna",
+    "series": [
+      "naruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "zabuza-momochi",
+    "name": "Zabuza Momochi",
+    "aliases": [
+      "Zabuza"
+    ],
+    "api": 831,
+    "apiName": "Zabuza Momochi",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "haku",
+    "name": "Haku",
+    "aliases": [],
+    "api": 356,
+    "apiName": "Haku",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "gaara",
+    "name": "Gaara",
+    "aliases": [
+      "Quinto Kazekage"
+    ],
+    "api": 259,
+    "apiName": "Gaara",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "override": {
+      "ocupacion": "Kazekage"
+    },
+    "verified": false
+  },
+  {
+    "id": "kankuro",
+    "name": "Kankurō",
+    "aliases": [
+      "Kankuro"
+    ],
+    "api": 577,
+    "apiName": "Kankurō",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "temari",
+    "name": "Temari",
+    "aliases": [],
+    "api": 1208,
+    "apiName": "Temari",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "rasa",
+    "name": "Rasa",
+    "aliases": [
+      "Cuarto Kazekage"
+    ],
+    "api": 967,
+    "apiName": "Rasa",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "baki",
+    "name": "Baki",
+    "aliases": [],
+    "api": 107,
+    "apiName": "Baki",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "dosu-kinuta",
+    "name": "Dosu Kinuta",
+    "aliases": [
+      "Dosu"
+    ],
+    "api": 644,
+    "apiName": "Dosu Kinuta",
+    "series": [
+      "naruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "zaku-abumi",
+    "name": "Zaku Abumi",
+    "aliases": [
+      "Zaku"
+    ],
+    "api": 8,
+    "apiName": "Zaku Abumi",
+    "series": [
+      "naruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kin-tsuchi",
+    "name": "Kin Tsuchi",
+    "aliases": [
+      "Kin"
+    ],
+    "api": 1265,
+    "apiName": "Kin Tsuchi",
+    "series": [
+      "naruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kimimaro",
+    "name": "Kimimaro",
+    "aliases": [],
+    "api": 637,
+    "apiName": "Kimimaro",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "tayuya",
+    "name": "Tayuya",
+    "aliases": [],
+    "api": 1203,
+    "apiName": "Tayuya",
+    "series": [
+      "naruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "jirobo",
+    "name": "Jirōbō",
+    "aliases": [
+      "Jirobo"
+    ],
+    "api": 517,
+    "apiName": "Jirōbō",
+    "series": [
+      "naruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kidomaru",
+    "name": "Kidōmaru",
+    "aliases": [
+      "Kidomaru"
+    ],
+    "api": 626,
+    "apiName": "Kidōmaru",
+    "series": [
+      "naruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "sakon-y-ukon",
+    "name": "Sakon y Ukon",
+    "aliases": [
+      "Sakon",
+      "Ukon",
+      "Sakon and Ukon"
+    ],
+    "api": 1015,
+    "apiName": "Sakon and Ukon",
+    "series": [
+      "naruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "gamabunta",
+    "name": "Gamabunta",
+    "aliases": [
+      "Jefe Sapo"
+    ],
+    "api": 261,
+    "apiName": "Gamabunta",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "katsuyu",
+    "name": "Katsuyu",
+    "aliases": [],
+    "api": 608,
+    "apiName": "Katsuyu",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "manda",
+    "name": "Manda",
+    "aliases": [],
+    "api": 761,
+    "apiName": "Manda",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "pakkun",
+    "name": "Pakkun",
+    "aliases": [],
+    "api": 949,
+    "apiName": "Pakkun",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "akamaru",
+    "name": "Akamaru",
+    "aliases": [],
+    "api": 29,
+    "apiName": "Akamaru",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "gamakichi",
+    "name": "Gamakichi",
+    "aliases": [],
+    "api": 266,
+    "apiName": "Gamakichi",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kurama",
+    "name": "Kurama",
+    "aliases": [
+      "Kyūbi",
+      "Nueve Colas",
+      "Kyubi"
+    ],
+    "api": 711,
+    "apiName": "Kurama",
+    "series": [
+      "naruto",
+      "shippuden",
+      "boruto"
+    ],
+    "override": {
+      "genero": "Masculino"
+    },
+    "verified": false
+  },
+  {
+    "id": "shukaku",
+    "name": "Shukaku",
+    "aliases": [
+      "Una Cola",
+      "Ichibi"
+    ],
+    "api": 1127,
+    "apiName": "Shukaku",
+    "series": [
+      "naruto",
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "sasori",
+    "name": "Sasori",
+    "aliases": [
+      "Sasori de la Arena Roja"
+    ],
+    "api": 1042,
+    "apiName": "Sasori",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "chiyo",
+    "name": "Chiyo",
+    "aliases": [],
+    "api": 148,
+    "apiName": "Chiyo",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "deidara",
+    "name": "Deidara",
+    "aliases": [],
+    "api": 193,
+    "apiName": "Deidara",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "hidan",
+    "name": "Hidan",
+    "aliases": [],
+    "api": 388,
+    "apiName": "Hidan",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kakuzu",
+    "name": "Kakuzu",
+    "aliases": [],
+    "api": 558,
+    "apiName": "Kakuzu",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "obito-uchiha",
+    "name": "Obito Uchiha",
+    "aliases": [
+      "Obito",
+      "Tobi"
+    ],
+    "api": 1303,
+    "apiName": "Obito Uchiha",
+    "series": [
+      "shippuden"
+    ],
+    "override": {
+      "ocupacion": "Líder de Akatsuki"
+    },
+    "verified": false
+  },
+  {
+    "id": "rin-nohara",
+    "name": "Rin Nohara",
+    "aliases": [
+      "Rin"
+    ],
+    "api": 903,
+    "apiName": "Rin Nohara",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "madara-uchiha",
+    "name": "Madara Uchiha",
+    "aliases": [
+      "Madara"
+    ],
+    "api": 1299,
+    "apiName": "Madara Uchiha",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "danzo-shimura",
+    "name": "Danzō Shimura",
+    "aliases": [
+      "Danzo"
+    ],
+    "api": 1093,
+    "apiName": "Danzō Shimura",
+    "series": [
+      "shippuden"
+    ],
+    "override": {
+      "ocupacion": "Líder de la Raíz"
+    },
+    "verified": false
+  },
+  {
+    "id": "sai",
+    "name": "Sai",
+    "aliases": [],
+    "api": 1008,
+    "apiName": "Sai",
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "yamato",
+    "name": "Yamato",
+    "aliases": [
+      "Tenzō",
+      "Tenzo"
+    ],
+    "api": 1373,
+    "apiName": "Yamato",
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "shisui-uchiha",
+    "name": "Shisui Uchiha",
+    "aliases": [
+      "Shisui"
+    ],
+    "api": 1310,
+    "apiName": "Shisui Uchiha",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kushina-uzumaki",
+    "name": "Kushina Uzumaki",
+    "aliases": [
+      "Kushina"
+    ],
+    "api": 1341,
+    "apiName": "Kushina Uzumaki",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "konan",
+    "name": "Konan",
+    "aliases": [],
+    "api": 684,
+    "apiName": "Konan",
+    "series": [
+      "shippuden"
+    ],
+    "override": {
+      "ocupacion": "Líder de Ame"
+    },
+    "verified": false
+  },
+  {
+    "id": "nagato",
+    "name": "Nagato",
+    "aliases": [
+      "Pain",
+      "Pein"
+    ],
+    "api": 861,
+    "apiName": "Nagato",
+    "series": [
+      "shippuden"
+    ],
+    "override": {
+      "ocupacion": "Líder de Akatsuki"
+    },
+    "verified": false
+  },
+  {
+    "id": "yahiko",
+    "name": "Yahiko",
+    "aliases": [],
+    "api": 1356,
+    "apiName": "Yahiko",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kaguya-otsutsuki",
+    "name": "Kaguya Ōtsutsuki",
+    "aliases": [
+      "Kaguya"
+    ],
+    "api": 940,
+    "apiName": "Kaguya Ōtsutsuki",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "hagoromo-otsutsuki",
+    "name": "Hagoromo Ōtsutsuki",
+    "aliases": [
+      "Hagoromo",
+      "Sabio de los Seis Caminos"
+    ],
+    "api": 935,
+    "apiName": "Hagoromo Ōtsutsuki",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "hamura-otsutsuki",
+    "name": "Hamura Ōtsutsuki",
+    "aliases": [
+      "Hamura"
+    ],
+    "api": 936,
+    "apiName": "Hamura Ōtsutsuki",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "indra-otsutsuki",
+    "name": "Indra Ōtsutsuki",
+    "aliases": [
+      "Indra"
+    ],
+    "api": 938,
+    "apiName": "Indra Ōtsutsuki",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "asura-otsutsuki",
+    "name": "Asura Ōtsutsuki",
+    "aliases": [
+      "Asura"
+    ],
+    "api": 934,
+    "apiName": "Asura Ōtsutsuki",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "suigetsu-hozuki",
+    "name": "Suigetsu Hōzuki",
+    "aliases": [
+      "Suigetsu"
+    ],
+    "api": 430,
+    "apiName": "Suigetsu Hōzuki",
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "karin",
+    "name": "Karin",
+    "aliases": [],
+    "api": 593,
+    "apiName": "Karin",
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "jugo",
+    "name": "Jūgo",
+    "aliases": [
+      "Jugo"
+    ],
+    "api": 521,
+    "apiName": "Jūgo",
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "killer-bee",
+    "name": "Killer B",
+    "aliases": [
+      "Killer Bee",
+      "B"
+    ],
+    "api": 636,
+    "apiName": "Killer B",
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "yugito-nii",
+    "name": "Yugito Nii",
+    "aliases": [
+      "Yugito"
+    ],
+    "api": 898,
+    "apiName": "Yugito Nii",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "roshi",
+    "name": "Rōshi",
+    "aliases": [
+      "Roshi"
+    ],
+    "api": 983,
+    "apiName": "Rōshi",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "han",
+    "name": "Han",
+    "aliases": [],
+    "api": 363,
+    "apiName": "Han",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "utakata",
+    "name": "Utakata",
+    "aliases": [],
+    "api": 1335,
+    "apiName": "Utakata",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "fu",
+    "name": "Fū",
+    "aliases": [
+      "Fu"
+    ],
+    "api": 221,
+    "apiName": "Fū",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "yagura-karatachi",
+    "name": "Yagura Karatachi",
+    "aliases": [
+      "Yagura",
+      "Cuarto Mizukage"
+    ],
+    "api": 591,
+    "apiName": "Yagura Karatachi",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "mei-terumi",
+    "name": "Mei Terumī",
+    "aliases": [
+      "Mei",
+      "Quinta Mizukage"
+    ],
+    "api": 1223,
+    "apiName": "Mei Terumī",
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "onoki",
+    "name": "Ōnoki",
+    "aliases": [
+      "Onoki",
+      "Tercer Tsuchikage"
+    ],
+    "api": 925,
+    "apiName": "Ōnoki",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kurotsuchi",
+    "name": "Kurotsuchi",
+    "aliases": [],
+    "api": 725,
+    "apiName": "Kurotsuchi",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "a-cuarto-raikage",
+    "name": "A (Cuarto Raikage)",
+    "aliases": [
+      "A",
+      "Cuarto Raikage",
+      "Raikage"
+    ],
+    "api": 6,
+    "apiName": "A (Fourth Raikage)",
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "override": {
+      "ocupacion": "Raikage"
+    },
+    "verified": false
+  },
+  {
+    "id": "darui",
+    "name": "Darui",
+    "aliases": [],
+    "api": 190,
+    "apiName": "Darui",
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "mu",
+    "name": "Mū",
+    "aliases": [
+      "Mu",
+      "Segundo Tsuchikage"
+    ],
+    "api": 844,
+    "apiName": "Mū",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "gengetsu-hozuki",
+    "name": "Gengetsu Hōzuki",
+    "aliases": [
+      "Gengetsu",
+      "Segundo Mizukage"
+    ],
+    "api": 428,
+    "apiName": "Gengetsu Hōzuki",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "hanzo",
+    "name": "Hanzō",
+    "aliases": [
+      "Hanzo",
+      "Hanzō de la Salamandra"
+    ],
+    "api": 368,
+    "apiName": "Hanzō",
+    "series": [
+      "shippuden"
+    ],
+    "override": {
+      "ocupacion": "Líder de Ame"
+    },
+    "verified": false
+  },
+  {
+    "id": "pakura",
+    "name": "Pakura",
+    "aliases": [],
+    "api": 950,
+    "apiName": "Pakura",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "chojuro",
+    "name": "Chōjūrō",
+    "aliases": [
+      "Chojuro"
+    ],
+    "api": 152,
+    "apiName": "Chōjūrō",
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "ameyuri-ringo",
+    "name": "Ameyuri Ringo",
+    "aliases": [
+      "Ameyuri"
+    ],
+    "api": 975,
+    "apiName": "Ameyuri Ringo",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kushimaru-kuriarare",
+    "name": "Kushimaru Kuriarare",
+    "aliases": [
+      "Kushimaru"
+    ],
+    "api": 716,
+    "apiName": "Kushimaru Kuriarare",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "jinpachi-munashi",
+    "name": "Jinpachi Munashi",
+    "aliases": [
+      "Jinpachi"
+    ],
+    "api": 853,
+    "apiName": "Jinpachi Munashi",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "fuguki-suikazan",
+    "name": "Fuguki Suikazan",
+    "aliases": [
+      "Fuguki"
+    ],
+    "api": 1145,
+    "apiName": "Fuguki Suikazan",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "mangetsu-hozuki",
+    "name": "Mangetsu Hōzuki",
+    "aliases": [
+      "Mangetsu"
+    ],
+    "api": 429,
+    "apiName": "Mangetsu Hōzuki",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "gari",
+    "name": "Gari",
+    "aliases": [],
+    "api": 282,
+    "apiName": "Gari",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "karui",
+    "name": "Karui",
+    "aliases": [],
+    "api": 596,
+    "apiName": "Karui",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "samui",
+    "name": "Samui",
+    "aliases": [],
+    "api": 1019,
+    "apiName": "Samui",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "omoi",
+    "name": "Omoi",
+    "aliases": [],
+    "api": 920,
+    "apiName": "Omoi",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "akatsuchi",
+    "name": "Akatsuchi",
+    "aliases": [],
+    "api": 35,
+    "apiName": "Akatsuchi",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kitsuchi",
+    "name": "Kitsuchi",
+    "aliases": [],
+    "api": 653,
+    "apiName": "Kitsuchi",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "fukasaku",
+    "name": "Fukasaku",
+    "aliases": [
+      "Gran Sapo Sabio"
+    ],
+    "api": 230,
+    "apiName": "Fukasaku",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "shima",
+    "name": "Shima",
+    "aliases": [],
+    "api": 1091,
+    "apiName": "Shima",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "mirai-sarutobi",
+    "name": "Mirai Sarutobi",
+    "aliases": [
+      "Mirai"
+    ],
+    "api": 1038,
+    "apiName": "Mirai Sarutobi",
+    "series": [
+      "shippuden",
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "matatabi",
+    "name": "Matatabi",
+    "aliases": [
+      "Dos Colas",
+      "Nibi"
+    ],
+    "api": 771,
+    "apiName": "Matatabi",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "isobu",
+    "name": "Isobu",
+    "aliases": [
+      "Tres Colas",
+      "Sanbi"
+    ],
+    "api": 480,
+    "apiName": "Isobu",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "son-goku",
+    "name": "Son Gokū",
+    "aliases": [
+      "Cuatro Colas",
+      "Yonbi",
+      "Son Goku"
+    ],
+    "api": 1134,
+    "apiName": "Son Gokū",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kokuo",
+    "name": "Kokuō",
+    "aliases": [
+      "Cinco Colas",
+      "Gobi",
+      "Kokuo"
+    ],
+    "api": 669,
+    "apiName": "Kokuō",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "saiken",
+    "name": "Saiken",
+    "aliases": [
+      "Seis Colas",
+      "Rokubi"
+    ],
+    "api": 1009,
+    "apiName": "Saiken",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "chomei",
+    "name": "Chōmei",
+    "aliases": [
+      "Siete Colas",
+      "Nanabi",
+      "Chomei"
+    ],
+    "api": 153,
+    "apiName": "Chōmei",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "gyuki",
+    "name": "Gyūki",
+    "aliases": [
+      "Ocho Colas",
+      "Hachibi",
+      "Gyuki"
+    ],
+    "api": 345,
+    "apiName": "Gyūki",
+    "series": [
+      "shippuden"
+    ],
+    "verified": false
+  },
+  {
+    "id": "boruto-uzumaki",
+    "name": "Boruto Uzumaki",
+    "aliases": [
+      "Boruto"
+    ],
+    "api": 1339,
+    "apiName": "Boruto Uzumaki",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "sarada-uchiha",
+    "name": "Sarada Uchiha",
+    "aliases": [
+      "Sarada"
+    ],
+    "api": 1306,
+    "apiName": "Sarada Uchiha",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "mitsuki",
+    "name": "Mitsuki",
+    "aliases": [],
+    "api": 813,
+    "apiName": "Mitsuki",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "himawari-uzumaki",
+    "name": "Himawari Uzumaki",
+    "aliases": [
+      "Himawari"
+    ],
+    "api": 1340,
+    "apiName": "Himawari Uzumaki",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "shikadai-nara",
+    "name": "Shikadai Nara",
+    "aliases": [
+      "Shikadai"
+    ],
+    "api": 876,
+    "apiName": "Shikadai Nara",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "inojin-yamanaka",
+    "name": "Inojin Yamanaka",
+    "aliases": [
+      "Inojin"
+    ],
+    "api": 1368,
+    "apiName": "Inojin Yamanaka",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "chocho-akimichi",
+    "name": "Chōchō Akimichi",
+    "aliases": [
+      "Chocho"
+    ],
+    "api": 39,
+    "apiName": "Chōchō Akimichi",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "metal-lee",
+    "name": "Metal Lee",
+    "aliases": [],
+    "api": 738,
+    "apiName": "Metal Lee",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "iwabee-yuino",
+    "name": "Iwabee Yūino",
+    "aliases": [
+      "Iwabee"
+    ],
+    "api": 1400,
+    "apiName": "Iwabee Yuino",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "denki-kaminarimon",
+    "name": "Denki Kaminarimon",
+    "aliases": [
+      "Denki"
+    ],
+    "api": 568,
+    "apiName": "Denki Kaminarimon",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "wasabi-izuno",
+    "name": "Wasabi Izuno",
+    "aliases": [
+      "Wasabi"
+    ],
+    "api": 499,
+    "apiName": "Wasabi Izuno",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "namida-suzumeno",
+    "name": "Namida Suzumeno",
+    "aliases": [
+      "Namida"
+    ],
+    "api": 1166,
+    "apiName": "Namida Suzumeno",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "sumire-kakei",
+    "name": "Sumire Kakei",
+    "aliases": [
+      "Sumire"
+    ],
+    "api": 550,
+    "apiName": "Sumire Kakei",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kawaki",
+    "name": "Kawaki",
+    "aliases": [],
+    "api": 609,
+    "apiName": "Kawaki",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "eida",
+    "name": "Eida",
+    "aliases": [
+      "Ada"
+    ],
+    "api": 17,
+    "apiName": "Ada",
+    "series": [
+      "boruto"
+    ],
+    "arcDebut": "asalto-de-code",
+    "verified": false
+  },
+  {
+    "id": "daemon",
+    "name": "Daemon",
+    "aliases": [],
+    "api": 165,
+    "apiName": "Daemon",
+    "series": [
+      "boruto"
+    ],
+    "arcDebut": "asalto-de-code",
+    "verified": false
+  },
+  {
+    "id": "jigen",
+    "name": "Jigen",
+    "aliases": [],
+    "api": 510,
+    "apiName": "Jigen",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "code",
+    "name": "Code",
+    "aliases": [],
+    "api": 159,
+    "apiName": "Code",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "isshiki-otsutsuki",
+    "name": "Isshiki Ōtsutsuki",
+    "aliases": [
+      "Isshiki"
+    ],
+    "api": 939,
+    "apiName": "Isshiki Ōtsutsuki",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "momoshiki-otsutsuki",
+    "name": "Momoshiki Ōtsutsuki",
+    "aliases": [
+      "Momoshiki"
+    ],
+    "api": 942,
+    "apiName": "Momoshiki Ōtsutsuki",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kinshiki-otsutsuki",
+    "name": "Kinshiki Ōtsutsuki",
+    "aliases": [
+      "Kinshiki"
+    ],
+    "api": 941,
+    "apiName": "Kinshiki Ōtsutsuki",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "delta",
+    "name": "Delta",
+    "aliases": [],
+    "api": 194,
+    "apiName": "Delta",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "amado",
+    "name": "Amado",
+    "aliases": [
+      "Amado Sanzu"
+    ],
+    "api": 1027,
+    "apiName": "Amado Sanzu",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "boro",
+    "name": "Boro",
+    "aliases": [],
+    "api": 125,
+    "apiName": "Boro",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "koji-kashin",
+    "name": "Koji Kashin",
+    "aliases": [
+      "Koji"
+    ],
+    "api": 600,
+    "apiName": "Koji Kashin",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  },
+  {
+    "id": "toneri-otsutsuki",
+    "name": "Toneri Ōtsutsuki",
+    "aliases": [
+      "Toneri"
+    ],
+    "api": 944,
+    "apiName": "Toneri Ōtsutsuki",
+    "series": [
+      "boruto"
+    ],
+    "verified": false
+  }
+]

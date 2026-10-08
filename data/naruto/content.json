@@ -1,0 +1,3863 @@
+[
+  {
+    "id": "quote-kakashi-companeros",
+    "kind": "quote",
+    "entityId": "kakashi-hatake",
+    "series": "naruto",
+    "payload": {
+      "text": "En el mundo ninja, quien rompe las reglas es escoria, es cierto, pero quien abandona a sus compañeros es peor que la escoria.",
+      "source": "https://naruto.fandom.com/wiki/Kakashi_Hatake",
+      "addressee": "Sus alumnos del Equipo 7",
+      "arc": "Prólogo: País de las Olas",
+      "accepts": [
+        "obito-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-naruto-sueno-hokage",
+    "kind": "quote",
+    "entityId": "naruto-uzumaki",
+    "series": "naruto",
+    "payload": {
+      "text": "¡Y mi sueño para el futuro es ser el Hokage más grande! Entonces toda la aldea dejará de despreciarme y empezará a tratarme como a alguien. ¡Alguien importante!",
+      "source": "https://naruto.fandom.com/wiki/Naruto_Uzumaki",
+      "addressee": "Kakashi Hatake",
+      "arc": "Prólogo: País de las Olas"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-naruto-ibiki",
+    "kind": "quote",
+    "entityId": "naruto-uzumaki",
+    "series": "naruto",
+    "payload": {
+      "text": "¡No me subestimes! ¡No me rindo ni huyo! ¡Puedes hacerte el duro todo lo que quieras, no me vas a asustar! ¡Ni hablar! No me importa quedarme como genin el resto de mi vida: ¡algún día seré Hokage!",
+      "source": "https://naruto.fandom.com/wiki/Naruto_Uzumaki",
+      "addressee": "Ibiki Morino",
+      "arc": "Examen Chūnin"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-naruto-neji",
+    "kind": "quote",
+    "entityId": "naruto-uzumaki",
+    "series": "naruto",
+    "payload": {
+      "text": "¡No voy a huir, jamás me retracto de mi palabra! ¡Ese es mi nindō: mi camino ninja!",
+      "source": "https://naruto.fandom.com/wiki/Naruto_Uzumaki",
+      "addressee": "Neji Hyūga",
+      "arc": "Examen Chūnin",
+      "accepts": [
+        "hinata-hyuga"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-neji-destino",
+    "kind": "quote",
+    "entityId": "neji-hyuga",
+    "series": "naruto",
+    "payload": {
+      "text": "Estos ojos míos me muestran muchas cosas. Una de ellas es que los límites de las personas están fijados y no cambian. ¡Solo un necio pierde su tiempo tratando de ser algo que nunca podrá ser! El único destino que todos compartimos… es la muerte.",
+      "source": "https://naruto.fandom.com/wiki/Neji_Hy%C5%ABga",
+      "addressee": "Naruto Uzumaki",
+      "arc": "Examen Chūnin"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-zabuza-ninja",
+    "kind": "quote",
+    "entityId": "zabuza-momochi",
+    "series": "naruto",
+    "payload": {
+      "text": "Cuando has estado tantas veces entre la vida y la muerte que ya no te inmuta, quizás puedas llamarte ninja. Cuando te has vuelto tan letal que tu perfil entra en mi libro bingo, entonces quizás te hayas ganado el título de ninja.",
+      "source": "https://naruto.fandom.com/wiki/Zabuza_Momochi",
+      "addressee": "Equipo 7",
+      "arc": "Prólogo: País de las Olas"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-zabuza-demonio",
+    "kind": "quote",
+    "entityId": "zabuza-momochi",
+    "series": "naruto",
+    "payload": {
+      "text": "¡Hasta el insignificante Demonio de la Niebla Oculta puede morir y convertirse en un verdadero demonio en el infierno! ¡Esto será divertido!",
+      "source": "https://naruto.fandom.com/wiki/Zabuza_Momochi",
+      "addressee": "Gatō",
+      "arc": "Prólogo: País de las Olas"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-haku-fuerte",
+    "kind": "quote",
+    "entityId": "haku",
+    "series": "naruto",
+    "payload": {
+      "text": "Cuando una persona tiene algo importante que quiere proteger… es entonces cuando puede volverse verdaderamente fuerte.",
+      "source": "https://naruto.fandom.com/wiki/Haku",
+      "addressee": "Naruto Uzumaki",
+      "arc": "Prólogo: País de las Olas"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-iruka-mizuki",
+    "kind": "quote",
+    "entityId": "iruka-umino",
+    "series": "naruto",
+    "payload": {
+      "text": "Sí… el zorro demonio haría eso… pero Naruto es diferente. Lo he reconocido como… uno de mis excelentes alumnos.",
+      "source": "https://naruto.fandom.com/wiki/Iruka_Umino",
+      "addressee": "Mizuki",
+      "arc": "Prólogo: País de las Olas"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-lee-sakura",
+    "kind": "quote",
+    "entityId": "rock-lee",
+    "series": "naruto",
+    "payload": {
+      "text": "Sakura, ¡sal conmigo, por favor! ¡Te protegeré con mi vida!",
+      "source": "https://naruto.fandom.com/wiki/Rock_Lee",
+      "addressee": "Sakura Haruno",
+      "arc": "Examen Chūnin"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-lee-genio",
+    "kind": "quote",
+    "entityId": "rock-lee",
+    "series": "naruto",
+    "payload": {
+      "text": "Entre los fuertes existen los genios y los que trabajan duro. Si tu Sharingan es de tipo genio, por la sangre Uchiha, yo soy simplemente alguien que trabaja duro y que solo ha dominado el taijutsu.",
+      "source": "https://naruto.fandom.com/wiki/Rock_Lee",
+      "addressee": "Sasuke Uchiha",
+      "arc": "Examen Chūnin"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-gaara-ojos",
+    "kind": "quote",
+    "entityId": "gaara",
+    "series": "naruto",
+    "payload": {
+      "text": "Tienes mis mismos ojos… ojos llenos de odio y muerte que anhelan poder… igual que los míos… tus ojos me dicen cuánto deseas matar a quien te hizo pasar por el infierno llamado soledad.",
+      "source": "https://naruto.fandom.com/wiki/Gaara",
+      "addressee": "Sasuke Uchiha",
+      "arc": "Examen Chūnin"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-temari-aburrido",
+    "kind": "quote",
+    "entityId": "temari",
+    "series": "naruto",
+    "payload": {
+      "text": "No fue gran cosa de pelea; medio aburrida.",
+      "source": "https://naruto.fandom.com/wiki/Temari",
+      "arc": "Examen Chūnin"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-deidara-arte",
+    "kind": "quote",
+    "entityId": "deidara",
+    "series": "shippuden",
+    "payload": {
+      "text": "¡El arte es una explosión!",
+      "source": "https://naruto.fandom.com/wiki/Deidara",
+      "arc": "Rescate del Kazekage"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-sasori-kankuro",
+    "kind": "quote",
+    "entityId": "sasori",
+    "series": "shippuden",
+    "payload": {
+      "text": "Como no me gusta esperar ni hacer esperar a nadie… acabaré esto rápido.",
+      "source": "https://naruto.fandom.com/wiki/Sasori",
+      "addressee": "Kankurō",
+      "arc": "Rescate del Kazekage"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-sasori-sakura",
+    "kind": "quote",
+    "entityId": "sasori",
+    "series": "shippuden",
+    "payload": {
+      "text": "Me describiría como un ser humano que no pudo convertirse en una marioneta completa; soy una marioneta inconclusa, cuyo cuerpo sin vida aún tiene un corazón latiendo en su centro. No estoy muerto, ni estoy vivo.",
+      "source": "https://naruto.fandom.com/wiki/Sasori",
+      "addressee": "Sakura Haruno",
+      "arc": "Rescate del Kazekage"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-chiyo-sakura",
+    "kind": "quote",
+    "entityId": "chiyo",
+    "series": "shippuden",
+    "payload": {
+      "text": "Y Sakura… la próxima vez, salva a quienes te son queridos, no a una vieja bruja. Tú y yo nos parecemos mucho. No hay muchas chicas tan caballerosas como tú. Podrías llegar a ser una kunoichi que supere a su maestra.",
+      "source": "https://naruto.fandom.com/wiki/Chiyo",
+      "addressee": "Sakura Haruno",
+      "arc": "Rescate del Kazekage"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-kakuzu-infierno",
+    "kind": "quote",
+    "entityId": "kakuzu",
+    "series": "shippuden",
+    "payload": {
+      "text": "Hasta el Infierno funciona con dinero. A mí me iría bien.",
+      "source": "https://naruto.fandom.com/wiki/Kakuzu",
+      "addressee": "Hidan",
+      "arc": "Supresión de Akatsuki"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-shikamaru-voluntad",
+    "kind": "quote",
+    "entityId": "shikamaru-nara",
+    "series": "shippuden",
+    "payload": {
+      "text": "Verás, tú y yo tenemos creencias distintas. Yo creo en la Voluntad de Fuego. Ese patético Lord Jashin o como se llame ya no es tu dios. Lo soy yo. El único que hará caer la venganza soy yo.",
+      "source": "https://naruto.fandom.com/wiki/Shikamaru_Nara",
+      "addressee": "Hidan",
+      "arc": "Supresión de Akatsuki"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-asuma-choji",
+    "kind": "quote",
+    "entityId": "asuma-sarutobi",
+    "series": "shippuden",
+    "payload": {
+      "text": "Chōji, eres un hombre amable que se preocupa por sus compañeros. Por eso… te convertirás en un shinobi más poderoso que todos. Ten más confianza en ti mismo. Y… quizás deberías hacer un poco de dieta.",
+      "source": "https://naruto.fandom.com/wiki/Asuma_Sarutobi",
+      "addressee": "Chōji Akimichi",
+      "arc": "Supresión de Akatsuki"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-konan-tobi",
+    "kind": "quote",
+    "entityId": "konan",
+    "series": "shippuden",
+    "payload": {
+      "text": "Una pregunta… Madara. ¿Entiendes por qué te traicionamos? ¡Porque tú eres oscuridad, un mundo sin luz donde las flores solo pueden marchitarse y morir!",
+      "source": "https://naruto.fandom.com/wiki/Konan",
+      "addressee": "Tobi",
+      "arc": "Asalto de Pain"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-konan-naruto",
+    "kind": "quote",
+    "entityId": "konan",
+    "series": "shippuden",
+    "payload": {
+      "text": "Nagato creyó en ti, así que yo también creo en ti.",
+      "source": "https://naruto.fandom.com/wiki/Konan",
+      "addressee": "Naruto Uzumaki",
+      "arc": "Asalto de Pain"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-nagato-naruto",
+    "kind": "quote",
+    "entityId": "nagato",
+    "series": "shippuden",
+    "payload": {
+      "text": "Ambos somos hombres comunes, impulsados a buscar venganza en nombre de la justicia. Pero si hay justicia en la venganza, entonces la justicia solo engendrará más venganza. Y desatará un ciclo de odio.",
+      "source": "https://naruto.fandom.com/wiki/Nagato",
+      "addressee": "Naruto Uzumaki",
+      "arc": "Asalto de Pain"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-hinata-fracasado",
+    "kind": "quote",
+    "entityId": "hinata-hyuga",
+    "series": "shippuden",
+    "payload": {
+      "text": "Para mí… ¡eres un orgulloso fracasado! Cuando te miro, siento algo muy fuerte en el corazón… Porque no eres perfecto… porque fracasas… tienes la fuerza para volver a levantarte… ¡Porque creo que eso es la verdadera fortaleza!",
+      "source": "https://naruto.fandom.com/wiki/Hinata_Hy%C5%ABga",
+      "addressee": "Naruto Uzumaki",
+      "arc": "Asalto de Pain"
+    },
+    "verified": false
+  },
+  {
+    "id": "quote-obito-kakashi-gaiden",
+    "kind": "quote",
+    "entityId": "obito-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "text": "Quien rompe las reglas es escoria, ¡pero quien abandona a sus compañeros es peor que la escoria!",
+      "source": "https://naruto.fandom.com/wiki/Obito_Uchiha",
+      "addressee": "Kakashi Hatake",
+      "arc": "Persecución de Itachi",
+      "accepts": [
+        "kakashi-hatake"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-7-naruto-uzumaki",
+    "kind": "team",
+    "entityId": "naruto-uzumaki",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo 7 (Kakashi)",
+      "items": [
+        "Sasuke Uchiha",
+        "Sakura Haruno",
+        "Kakashi Hatake"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-7-sasuke-uchiha",
+    "kind": "team",
+    "entityId": "sasuke-uchiha",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo 7 (Kakashi)",
+      "items": [
+        "Naruto Uzumaki",
+        "Sakura Haruno",
+        "Kakashi Hatake"
+      ],
+      "accepts": [
+        "chiyo"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-7-sakura-haruno",
+    "kind": "team",
+    "entityId": "sakura-haruno",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo 7 (Kakashi)",
+      "items": [
+        "Naruto Uzumaki",
+        "Sasuke Uchiha",
+        "Kakashi Hatake"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-7-kakashi-hatake",
+    "kind": "team",
+    "entityId": "kakashi-hatake",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo 7 (Kakashi)",
+      "items": [
+        "Naruto Uzumaki",
+        "Sasuke Uchiha",
+        "Sakura Haruno"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-7-shippuden-naruto-uzumaki",
+    "kind": "team",
+    "entityId": "naruto-uzumaki",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo 7 de Shippūden",
+      "items": [
+        "Sakura Haruno",
+        "Sai",
+        "Yamato"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-7-shippuden-sakura-haruno",
+    "kind": "team",
+    "entityId": "sakura-haruno",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo 7 de Shippūden",
+      "items": [
+        "Naruto Uzumaki",
+        "Sai",
+        "Yamato"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-7-shippuden-sai",
+    "kind": "team",
+    "entityId": "sai",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo 7 de Shippūden",
+      "items": [
+        "Naruto Uzumaki",
+        "Sakura Haruno",
+        "Yamato"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-7-shippuden-yamato",
+    "kind": "team",
+    "entityId": "yamato",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo 7 de Shippūden",
+      "items": [
+        "Naruto Uzumaki",
+        "Sakura Haruno",
+        "Sai"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-8-hinata-hyuga",
+    "kind": "team",
+    "entityId": "hinata-hyuga",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo 8 (Kurenai)",
+      "items": [
+        "Kiba Inuzuka",
+        "Shino Aburame",
+        "Kurenai Yūhi",
+        "Akamaru"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-8-kiba-inuzuka",
+    "kind": "team",
+    "entityId": "kiba-inuzuka",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo 8 (Kurenai)",
+      "items": [
+        "Hinata Hyūga",
+        "Shino Aburame",
+        "Kurenai Yūhi",
+        "Akamaru"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-8-shino-aburame",
+    "kind": "team",
+    "entityId": "shino-aburame",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo 8 (Kurenai)",
+      "items": [
+        "Hinata Hyūga",
+        "Kiba Inuzuka",
+        "Kurenai Yūhi",
+        "Akamaru"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-8-kurenai-yuhi",
+    "kind": "team",
+    "entityId": "kurenai-yuhi",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo 8 (Kurenai)",
+      "items": [
+        "Hinata Hyūga",
+        "Kiba Inuzuka",
+        "Shino Aburame",
+        "Akamaru"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-10-shikamaru-nara",
+    "kind": "team",
+    "entityId": "shikamaru-nara",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo 10 (Asuma)",
+      "items": [
+        "Ino Yamanaka",
+        "Chōji Akimichi",
+        "Asuma Sarutobi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-10-ino-yamanaka",
+    "kind": "team",
+    "entityId": "ino-yamanaka",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo 10 (Asuma)",
+      "items": [
+        "Shikamaru Nara",
+        "Chōji Akimichi",
+        "Asuma Sarutobi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-10-choji-akimichi",
+    "kind": "team",
+    "entityId": "choji-akimichi",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo 10 (Asuma)",
+      "items": [
+        "Shikamaru Nara",
+        "Ino Yamanaka",
+        "Asuma Sarutobi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-10-asuma-sarutobi",
+    "kind": "team",
+    "entityId": "asuma-sarutobi",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo 10 (Asuma)",
+      "items": [
+        "Shikamaru Nara",
+        "Ino Yamanaka",
+        "Chōji Akimichi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-guy-neji-hyuga",
+    "kind": "team",
+    "entityId": "neji-hyuga",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo Guy",
+      "items": [
+        "Rock Lee",
+        "Tenten",
+        "Might Guy"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-guy-rock-lee",
+    "kind": "team",
+    "entityId": "rock-lee",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo Guy",
+      "items": [
+        "Neji Hyūga",
+        "Tenten",
+        "Might Guy"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-guy-tenten",
+    "kind": "team",
+    "entityId": "tenten",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo Guy",
+      "items": [
+        "Neji Hyūga",
+        "Rock Lee",
+        "Might Guy"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-guy-might-guy",
+    "kind": "team",
+    "entityId": "might-guy",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo Guy",
+      "items": [
+        "Neji Hyūga",
+        "Rock Lee",
+        "Tenten"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-minato-kakashi-hatake",
+    "kind": "team",
+    "entityId": "kakashi-hatake",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo Minato",
+      "items": [
+        "Obito Uchiha",
+        "Rin Nohara",
+        "Minato Namikaze"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-minato-obito-uchiha",
+    "kind": "team",
+    "entityId": "obito-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo Minato",
+      "items": [
+        "Kakashi Hatake",
+        "Rin Nohara",
+        "Minato Namikaze"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-minato-rin-nohara",
+    "kind": "team",
+    "entityId": "rin-nohara",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo Minato",
+      "items": [
+        "Kakashi Hatake",
+        "Obito Uchiha",
+        "Minato Namikaze"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-minato-minato-namikaze",
+    "kind": "team",
+    "entityId": "minato-namikaze",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo Minato",
+      "items": [
+        "Kakashi Hatake",
+        "Obito Uchiha",
+        "Rin Nohara"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-taka-suigetsu-hozuki",
+    "kind": "team",
+    "entityId": "suigetsu-hozuki",
+    "series": "shippuden",
+    "payload": {
+      "team": "Taka",
+      "items": [
+        "Karin",
+        "Jūgo",
+        "Sasuke Uchiha"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-taka-karin",
+    "kind": "team",
+    "entityId": "karin",
+    "series": "shippuden",
+    "payload": {
+      "team": "Taka",
+      "items": [
+        "Suigetsu Hōzuki",
+        "Jūgo",
+        "Sasuke Uchiha"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-taka-jugo",
+    "kind": "team",
+    "entityId": "jugo",
+    "series": "shippuden",
+    "payload": {
+      "team": "Taka",
+      "items": [
+        "Suigetsu Hōzuki",
+        "Karin",
+        "Sasuke Uchiha"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-taka-sasuke-uchiha",
+    "kind": "team",
+    "entityId": "sasuke-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "team": "Taka",
+      "items": [
+        "Suigetsu Hōzuki",
+        "Karin",
+        "Jūgo"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-hiruzen-jiraiya",
+    "kind": "team",
+    "entityId": "jiraiya",
+    "series": "naruto",
+    "payload": {
+      "team": "Hiruzen y los Sannin",
+      "items": [
+        "Tsunade",
+        "Orochimaru",
+        "Hiruzen Sarutobi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-hiruzen-tsunade",
+    "kind": "team",
+    "entityId": "tsunade",
+    "series": "naruto",
+    "payload": {
+      "team": "Hiruzen y los Sannin",
+      "items": [
+        "Jiraiya",
+        "Orochimaru",
+        "Hiruzen Sarutobi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-hiruzen-orochimaru",
+    "kind": "team",
+    "entityId": "orochimaru",
+    "series": "naruto",
+    "payload": {
+      "team": "Hiruzen y los Sannin",
+      "items": [
+        "Jiraiya",
+        "Tsunade",
+        "Hiruzen Sarutobi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-hiruzen-hiruzen-sarutobi",
+    "kind": "team",
+    "entityId": "hiruzen-sarutobi",
+    "series": "naruto",
+    "payload": {
+      "team": "Hiruzen y los Sannin",
+      "items": [
+        "Jiraiya",
+        "Tsunade",
+        "Orochimaru"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-cuatro-del-sonido-tayuya",
+    "kind": "team",
+    "entityId": "tayuya",
+    "series": "naruto",
+    "payload": {
+      "team": "Los Cuatro del Sonido",
+      "items": [
+        "Jirōbō",
+        "Kidōmaru",
+        "Sakon y Ukon"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-cuatro-del-sonido-jirobo",
+    "kind": "team",
+    "entityId": "jirobo",
+    "series": "naruto",
+    "payload": {
+      "team": "Los Cuatro del Sonido",
+      "items": [
+        "Tayuya",
+        "Kidōmaru",
+        "Sakon y Ukon"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-cuatro-del-sonido-kidomaru",
+    "kind": "team",
+    "entityId": "kidomaru",
+    "series": "naruto",
+    "payload": {
+      "team": "Los Cuatro del Sonido",
+      "items": [
+        "Tayuya",
+        "Jirōbō",
+        "Sakon y Ukon"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-cuatro-del-sonido-sakon-y-ukon",
+    "kind": "team",
+    "entityId": "sakon-y-ukon",
+    "series": "naruto",
+    "payload": {
+      "team": "Los Cuatro del Sonido",
+      "items": [
+        "Tayuya",
+        "Jirōbō",
+        "Kidōmaru"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-baki-temari",
+    "kind": "team",
+    "entityId": "temari",
+    "series": "naruto",
+    "payload": {
+      "team": "Baki y los hermanos de la Arena",
+      "items": [
+        "Kankurō",
+        "Gaara",
+        "Baki"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-baki-kankuro",
+    "kind": "team",
+    "entityId": "kankuro",
+    "series": "naruto",
+    "payload": {
+      "team": "Baki y los hermanos de la Arena",
+      "items": [
+        "Temari",
+        "Gaara",
+        "Baki"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-baki-gaara",
+    "kind": "team",
+    "entityId": "gaara",
+    "series": "naruto",
+    "payload": {
+      "team": "Baki y los hermanos de la Arena",
+      "items": [
+        "Temari",
+        "Kankurō",
+        "Baki"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-baki-baki",
+    "kind": "team",
+    "entityId": "baki",
+    "series": "naruto",
+    "payload": {
+      "team": "Baki y los hermanos de la Arena",
+      "items": [
+        "Temari",
+        "Kankurō",
+        "Gaara"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-7-boruto-boruto-uzumaki",
+    "kind": "team",
+    "entityId": "boruto-uzumaki",
+    "series": "boruto",
+    "payload": {
+      "team": "Equipo 7 de Boruto",
+      "items": [
+        "Sarada Uchiha",
+        "Mitsuki",
+        "Konohamaru Sarutobi",
+        "Kawaki"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-7-boruto-sarada-uchiha",
+    "kind": "team",
+    "entityId": "sarada-uchiha",
+    "series": "boruto",
+    "payload": {
+      "team": "Equipo 7 de Boruto",
+      "items": [
+        "Boruto Uzumaki",
+        "Mitsuki",
+        "Konohamaru Sarutobi",
+        "Kawaki"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-7-boruto-mitsuki",
+    "kind": "team",
+    "entityId": "mitsuki",
+    "series": "boruto",
+    "payload": {
+      "team": "Equipo 7 de Boruto",
+      "items": [
+        "Boruto Uzumaki",
+        "Sarada Uchiha",
+        "Konohamaru Sarutobi",
+        "Kawaki"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-7-boruto-konohamaru-sarutobi",
+    "kind": "team",
+    "entityId": "konohamaru-sarutobi",
+    "series": "boruto",
+    "payload": {
+      "team": "Equipo 7 de Boruto",
+      "items": [
+        "Boruto Uzumaki",
+        "Sarada Uchiha",
+        "Mitsuki",
+        "Kawaki"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-7-boruto-kawaki",
+    "kind": "team",
+    "entityId": "kawaki",
+    "series": "boruto",
+    "payload": {
+      "team": "Equipo 7 de Boruto",
+      "items": [
+        "Boruto Uzumaki",
+        "Sarada Uchiha",
+        "Mitsuki",
+        "Konohamaru Sarutobi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-ino-shika-cho-padres-shikaku-nara",
+    "kind": "team",
+    "entityId": "shikaku-nara",
+    "series": "naruto",
+    "payload": {
+      "team": "Ino-Shika-Chō (la generación de los padres)",
+      "items": [
+        "Inoichi Yamanaka",
+        "Chōza Akimichi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-ino-shika-cho-padres-inoichi-yamanaka",
+    "kind": "team",
+    "entityId": "inoichi-yamanaka",
+    "series": "naruto",
+    "payload": {
+      "team": "Ino-Shika-Chō (la generación de los padres)",
+      "items": [
+        "Shikaku Nara",
+        "Chōza Akimichi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-ino-shika-cho-padres-choza-akimichi",
+    "kind": "team",
+    "entityId": "choza-akimichi",
+    "series": "naruto",
+    "payload": {
+      "team": "Ino-Shika-Chō (la generación de los padres)",
+      "items": [
+        "Shikaku Nara",
+        "Inoichi Yamanaka"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-ino-shika-cho-hijos-shikadai-nara",
+    "kind": "team",
+    "entityId": "shikadai-nara",
+    "series": "boruto",
+    "payload": {
+      "team": "Ino-Shika-Chō (la nueva generación)",
+      "items": [
+        "Inojin Yamanaka",
+        "Chōchō Akimichi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-ino-shika-cho-hijos-inojin-yamanaka",
+    "kind": "team",
+    "entityId": "inojin-yamanaka",
+    "series": "boruto",
+    "payload": {
+      "team": "Ino-Shika-Chō (la nueva generación)",
+      "items": [
+        "Shikadai Nara",
+        "Chōchō Akimichi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-ino-shika-cho-hijos-chocho-akimichi",
+    "kind": "team",
+    "entityId": "chocho-akimichi",
+    "series": "boruto",
+    "payload": {
+      "team": "Ino-Shika-Chō (la nueva generación)",
+      "items": [
+        "Shikadai Nara",
+        "Inojin Yamanaka"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-recuperacion-de-sasuke-shikamaru-nara",
+    "kind": "team",
+    "entityId": "shikamaru-nara",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo de recuperación de Sasuke",
+      "items": [
+        "Neji Hyūga",
+        "Kiba Inuzuka",
+        "Chōji Akimichi",
+        "Akamaru",
+        "Naruto Uzumaki"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-recuperacion-de-sasuke-neji-hyuga",
+    "kind": "team",
+    "entityId": "neji-hyuga",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo de recuperación de Sasuke",
+      "items": [
+        "Shikamaru Nara",
+        "Kiba Inuzuka",
+        "Chōji Akimichi",
+        "Akamaru",
+        "Naruto Uzumaki"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-recuperacion-de-sasuke-kiba-inuzuka",
+    "kind": "team",
+    "entityId": "kiba-inuzuka",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo de recuperación de Sasuke",
+      "items": [
+        "Shikamaru Nara",
+        "Neji Hyūga",
+        "Chōji Akimichi",
+        "Akamaru",
+        "Naruto Uzumaki"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-recuperacion-de-sasuke-choji-akimichi",
+    "kind": "team",
+    "entityId": "choji-akimichi",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo de recuperación de Sasuke",
+      "items": [
+        "Shikamaru Nara",
+        "Neji Hyūga",
+        "Kiba Inuzuka",
+        "Akamaru",
+        "Naruto Uzumaki"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-recuperacion-de-sasuke-naruto-uzumaki",
+    "kind": "team",
+    "entityId": "naruto-uzumaki",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo de recuperación de Sasuke",
+      "items": [
+        "Shikamaru Nara",
+        "Neji Hyūga",
+        "Kiba Inuzuka",
+        "Chōji Akimichi",
+        "Akamaru"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-rescate-del-kazekage-chiyo",
+    "kind": "team",
+    "entityId": "chiyo",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo de rescate del Kazekage",
+      "items": [
+        "Sakura Haruno",
+        "Kakashi Hatake",
+        "Naruto Uzumaki"
+      ],
+      "accepts": [
+        "sasuke-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "team-rescate-del-kazekage-sakura-haruno",
+    "kind": "team",
+    "entityId": "sakura-haruno",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo de rescate del Kazekage",
+      "items": [
+        "Chiyo",
+        "Kakashi Hatake",
+        "Naruto Uzumaki"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-rescate-del-kazekage-kakashi-hatake",
+    "kind": "team",
+    "entityId": "kakashi-hatake",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo de rescate del Kazekage",
+      "items": [
+        "Chiyo",
+        "Sakura Haruno",
+        "Naruto Uzumaki"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-rescate-del-kazekage-naruto-uzumaki",
+    "kind": "team",
+    "entityId": "naruto-uzumaki",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo de rescate del Kazekage",
+      "items": [
+        "Chiyo",
+        "Sakura Haruno",
+        "Kakashi Hatake"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-siete-espadachines-jinpachi-munashi",
+    "kind": "team",
+    "entityId": "jinpachi-munashi",
+    "series": "shippuden",
+    "payload": {
+      "team": "Los Espadachines de la Niebla",
+      "items": [
+        "Kushimaru Kuriarare",
+        "Fuguki Suikazan",
+        "Mangetsu Hōzuki",
+        "Ameyuri Ringo",
+        "Kisame Hoshigaki",
+        "Zabuza Momochi",
+        "Chōjūrō"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-siete-espadachines-kushimaru-kuriarare",
+    "kind": "team",
+    "entityId": "kushimaru-kuriarare",
+    "series": "shippuden",
+    "payload": {
+      "team": "Los Espadachines de la Niebla",
+      "items": [
+        "Jinpachi Munashi",
+        "Fuguki Suikazan",
+        "Mangetsu Hōzuki",
+        "Ameyuri Ringo",
+        "Kisame Hoshigaki",
+        "Zabuza Momochi",
+        "Chōjūrō"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-siete-espadachines-fuguki-suikazan",
+    "kind": "team",
+    "entityId": "fuguki-suikazan",
+    "series": "shippuden",
+    "payload": {
+      "team": "Los Espadachines de la Niebla",
+      "items": [
+        "Jinpachi Munashi",
+        "Kushimaru Kuriarare",
+        "Mangetsu Hōzuki",
+        "Ameyuri Ringo",
+        "Kisame Hoshigaki",
+        "Zabuza Momochi",
+        "Chōjūrō"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-siete-espadachines-mangetsu-hozuki",
+    "kind": "team",
+    "entityId": "mangetsu-hozuki",
+    "series": "shippuden",
+    "payload": {
+      "team": "Los Espadachines de la Niebla",
+      "items": [
+        "Jinpachi Munashi",
+        "Kushimaru Kuriarare",
+        "Fuguki Suikazan",
+        "Ameyuri Ringo",
+        "Kisame Hoshigaki",
+        "Zabuza Momochi",
+        "Chōjūrō"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-siete-espadachines-ameyuri-ringo",
+    "kind": "team",
+    "entityId": "ameyuri-ringo",
+    "series": "shippuden",
+    "payload": {
+      "team": "Los Espadachines de la Niebla",
+      "items": [
+        "Jinpachi Munashi",
+        "Kushimaru Kuriarare",
+        "Fuguki Suikazan",
+        "Mangetsu Hōzuki",
+        "Kisame Hoshigaki",
+        "Zabuza Momochi",
+        "Chōjūrō"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-siete-espadachines-kisame-hoshigaki",
+    "kind": "team",
+    "entityId": "kisame-hoshigaki",
+    "series": "shippuden",
+    "payload": {
+      "team": "Los Espadachines de la Niebla",
+      "items": [
+        "Jinpachi Munashi",
+        "Kushimaru Kuriarare",
+        "Fuguki Suikazan",
+        "Mangetsu Hōzuki",
+        "Ameyuri Ringo",
+        "Zabuza Momochi",
+        "Chōjūrō"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-siete-espadachines-zabuza-momochi",
+    "kind": "team",
+    "entityId": "zabuza-momochi",
+    "series": "shippuden",
+    "payload": {
+      "team": "Los Espadachines de la Niebla",
+      "items": [
+        "Jinpachi Munashi",
+        "Kushimaru Kuriarare",
+        "Fuguki Suikazan",
+        "Mangetsu Hōzuki",
+        "Ameyuri Ringo",
+        "Kisame Hoshigaki",
+        "Chōjūrō"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-siete-espadachines-chojuro",
+    "kind": "team",
+    "entityId": "chojuro",
+    "series": "shippuden",
+    "payload": {
+      "team": "Los Espadachines de la Niebla",
+      "items": [
+        "Jinpachi Munashi",
+        "Kushimaru Kuriarare",
+        "Fuguki Suikazan",
+        "Mangetsu Hōzuki",
+        "Ameyuri Ringo",
+        "Kisame Hoshigaki",
+        "Zabuza Momochi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-samui-karui",
+    "kind": "team",
+    "entityId": "karui",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo Samui (Kumo)",
+      "items": [
+        "Omoi",
+        "Samui"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-samui-omoi",
+    "kind": "team",
+    "entityId": "omoi",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo Samui (Kumo)",
+      "items": [
+        "Karui",
+        "Samui"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-samui-samui",
+    "kind": "team",
+    "entityId": "samui",
+    "series": "shippuden",
+    "payload": {
+      "team": "Equipo Samui (Kumo)",
+      "items": [
+        "Karui",
+        "Omoi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-dosu-zaku-abumi",
+    "kind": "team",
+    "entityId": "zaku-abumi",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo Dosu (Oto)",
+      "items": [
+        "Kin Tsuchi",
+        "Dosu Kinuta"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-dosu-kin-tsuchi",
+    "kind": "team",
+    "entityId": "kin-tsuchi",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo Dosu (Oto)",
+      "items": [
+        "Zaku Abumi",
+        "Dosu Kinuta"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-equipo-dosu-dosu-kinuta",
+    "kind": "team",
+    "entityId": "dosu-kinuta",
+    "series": "naruto",
+    "payload": {
+      "team": "Equipo Dosu (Oto)",
+      "items": [
+        "Zaku Abumi",
+        "Kin Tsuchi"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-cinco-kage-onoki",
+    "kind": "team",
+    "entityId": "onoki",
+    "series": "shippuden",
+    "payload": {
+      "team": "Los Cinco Kage de la Cumbre",
+      "items": [
+        "Mei Terumī",
+        "A (Cuarto Raikage)",
+        "Gaara",
+        "Tsunade"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-cinco-kage-mei-terumi",
+    "kind": "team",
+    "entityId": "mei-terumi",
+    "series": "shippuden",
+    "payload": {
+      "team": "Los Cinco Kage de la Cumbre",
+      "items": [
+        "Ōnoki",
+        "A (Cuarto Raikage)",
+        "Gaara",
+        "Tsunade"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-cinco-kage-a-cuarto-raikage",
+    "kind": "team",
+    "entityId": "a-cuarto-raikage",
+    "series": "shippuden",
+    "payload": {
+      "team": "Los Cinco Kage de la Cumbre",
+      "items": [
+        "Ōnoki",
+        "Mei Terumī",
+        "Gaara",
+        "Tsunade"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-cinco-kage-gaara",
+    "kind": "team",
+    "entityId": "gaara",
+    "series": "shippuden",
+    "payload": {
+      "team": "Los Cinco Kage de la Cumbre",
+      "items": [
+        "Ōnoki",
+        "Mei Terumī",
+        "A (Cuarto Raikage)",
+        "Tsunade"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "team-cinco-kage-tsunade",
+    "kind": "team",
+    "entityId": "tsunade",
+    "series": "shippuden",
+    "payload": {
+      "team": "Los Cinco Kage de la Cumbre",
+      "items": [
+        "Ōnoki",
+        "Mei Terumī",
+        "A (Cuarto Raikage)",
+        "Gaara"
+      ],
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-naruto-uzumaki",
+    "kind": "emoji",
+    "entityId": "naruto-uzumaki",
+    "series": "naruto",
+    "payload": {
+      "text": "🦊🍜🌀🍥"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-sasuke-uchiha",
+    "kind": "emoji",
+    "entityId": "sasuke-uchiha",
+    "series": "naruto",
+    "payload": {
+      "text": "⚡🔴👁️🗡️"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-sakura-haruno",
+    "kind": "emoji",
+    "entityId": "sakura-haruno",
+    "series": "naruto",
+    "payload": {
+      "text": "🌸💪🩺👊"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-kakashi-hatake",
+    "kind": "emoji",
+    "entityId": "kakashi-hatake",
+    "series": "naruto",
+    "payload": {
+      "text": "📖🐕😷⚡"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-iruka-umino",
+    "kind": "emoji",
+    "entityId": "iruka-umino",
+    "series": "naruto",
+    "payload": {
+      "text": "🏫🍜📝🐬"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-hinata-hyuga",
+    "kind": "emoji",
+    "entityId": "hinata-hyuga",
+    "series": "naruto",
+    "payload": {
+      "text": "🤍👁️🌼🙈"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-shikamaru-nara",
+    "kind": "emoji",
+    "entityId": "shikamaru-nara",
+    "series": "naruto",
+    "payload": {
+      "text": "☁️😴♟️🦌"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-choji-akimichi",
+    "kind": "emoji",
+    "entityId": "choji-akimichi",
+    "series": "naruto",
+    "payload": {
+      "text": "🍖🍔🥩💪"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-ino-yamanaka",
+    "kind": "emoji",
+    "entityId": "ino-yamanaka",
+    "series": "naruto",
+    "payload": {
+      "text": "💜🌺🧠💐"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-kiba-inuzuka",
+    "kind": "emoji",
+    "entityId": "kiba-inuzuka",
+    "series": "naruto",
+    "payload": {
+      "text": "🐕🐺🦷💨"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-shino-aburame",
+    "kind": "emoji",
+    "entityId": "shino-aburame",
+    "series": "naruto",
+    "payload": {
+      "text": "🪲🐛🕶️🤐"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-neji-hyuga",
+    "kind": "emoji",
+    "entityId": "neji-hyuga",
+    "series": "naruto",
+    "payload": {
+      "text": "👁️🌀🤍⚔️"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-rock-lee",
+    "kind": "emoji",
+    "entityId": "rock-lee",
+    "series": "naruto",
+    "payload": {
+      "text": "🥋🟢💪🔥"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-might-guy",
+    "kind": "emoji",
+    "entityId": "might-guy",
+    "series": "naruto",
+    "payload": {
+      "text": "🥋🟢🐯🌅"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-tenten",
+    "kind": "emoji",
+    "entityId": "tenten",
+    "series": "naruto",
+    "payload": {
+      "text": "🎯🗡️🏹📜"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-anko-mitarashi",
+    "kind": "emoji",
+    "entityId": "anko-mitarashi",
+    "series": "naruto",
+    "payload": {
+      "text": "🍡🐍🧣🔥"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-jiraiya",
+    "kind": "emoji",
+    "entityId": "jiraiya",
+    "series": "naruto",
+    "payload": {
+      "text": "🐸📚👀🧙‍♂️"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-tsunade",
+    "kind": "emoji",
+    "entityId": "tsunade",
+    "series": "naruto",
+    "payload": {
+      "text": "💰🎰🍶💪"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-orochimaru",
+    "kind": "emoji",
+    "entityId": "orochimaru",
+    "series": "naruto",
+    "payload": {
+      "text": "🐍🧪🌑💜"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-gaara",
+    "kind": "emoji",
+    "entityId": "gaara",
+    "series": "naruto",
+    "payload": {
+      "text": "🏜️🔴😴🍶"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-temari",
+    "kind": "emoji",
+    "entityId": "temari",
+    "series": "naruto",
+    "payload": {
+      "text": "🌪️🍃🏜️🗡️"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-zabuza-momochi",
+    "kind": "emoji",
+    "entityId": "zabuza-momochi",
+    "series": "naruto",
+    "payload": {
+      "text": "🗡️🌫️😷👹"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-haku",
+    "kind": "emoji",
+    "entityId": "haku",
+    "series": "naruto",
+    "payload": {
+      "text": "❄️🪞🎭🌨️"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-kurama",
+    "kind": "emoji",
+    "entityId": "kurama",
+    "series": "naruto",
+    "payload": {
+      "text": "🦊🔥🟠😈"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-hashirama-senju",
+    "kind": "emoji",
+    "entityId": "hashirama-senju",
+    "series": "naruto",
+    "payload": {
+      "text": "🌳🌲💚🏘️"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-minato-namikaze",
+    "kind": "emoji",
+    "entityId": "minato-namikaze",
+    "series": "naruto",
+    "payload": {
+      "text": "⚡🟡🗡️🏃"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-itachi-uchiha",
+    "kind": "emoji",
+    "entityId": "itachi-uchiha",
+    "series": "naruto",
+    "payload": {
+      "text": "🐦🌙🔴🩸"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-kisame-hoshigaki",
+    "kind": "emoji",
+    "entityId": "kisame-hoshigaki",
+    "series": "naruto",
+    "payload": {
+      "text": "🦈🗡️🌊🔵"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-deidara",
+    "kind": "emoji",
+    "entityId": "deidara",
+    "series": "shippuden",
+    "payload": {
+      "text": "💥🎨🕊️💣"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-sasori",
+    "kind": "emoji",
+    "entityId": "sasori",
+    "series": "shippuden",
+    "payload": {
+      "text": "🪆🎎🩸⏳"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-hidan",
+    "kind": "emoji",
+    "entityId": "hidan",
+    "series": "shippuden",
+    "payload": {
+      "text": "⛓️🔺😈🩸"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-kakuzu",
+    "kind": "emoji",
+    "entityId": "kakuzu",
+    "series": "shippuden",
+    "payload": {
+      "text": "💰🧵❤️🎭"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-konan",
+    "kind": "emoji",
+    "entityId": "konan",
+    "series": "shippuden",
+    "payload": {
+      "text": "📄🦋🌹☔"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-nagato",
+    "kind": "emoji",
+    "entityId": "nagato",
+    "series": "shippuden",
+    "payload": {
+      "text": "🔴🌀☔💀"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-obito-uchiha",
+    "kind": "emoji",
+    "entityId": "obito-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "text": "🌀😷🎭👁️"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-madara-uchiha",
+    "kind": "emoji",
+    "entityId": "madara-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "text": "🔴👁️🌋☄️"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-killer-bee",
+    "kind": "emoji",
+    "entityId": "killer-bee",
+    "series": "shippuden",
+    "payload": {
+      "text": "🎤🐂🐙🎶"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-sai",
+    "kind": "emoji",
+    "entityId": "sai",
+    "series": "shippuden",
+    "payload": {
+      "text": "🖌️🎨🦁🖤"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-yamato",
+    "kind": "emoji",
+    "entityId": "yamato",
+    "series": "shippuden",
+    "payload": {
+      "text": "🌳🏠🎭🌲"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-boruto-uzumaki",
+    "kind": "emoji",
+    "entityId": "boruto-uzumaki",
+    "series": "boruto",
+    "payload": {
+      "text": "🌀🧒🤖⚡"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-sarada-uchiha",
+    "kind": "emoji",
+    "entityId": "sarada-uchiha",
+    "series": "boruto",
+    "payload": {
+      "text": "👓🔴🌸🍙"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-mitsuki",
+    "kind": "emoji",
+    "entityId": "mitsuki",
+    "series": "boruto",
+    "payload": {
+      "text": "🐍🧬🔵🐸"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-arco-tierra-de-las-olas",
+    "kind": "emoji-arc",
+    "series": "naruto",
+    "payload": {
+      "arc": "tierra-de-las-olas",
+      "text": "🌉🌫️🗡️❄️"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-arco-examen-chunin",
+    "kind": "emoji-arc",
+    "series": "naruto",
+    "payload": {
+      "arc": "examen-chunin",
+      "text": "📝🌲🐍🥊"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-arco-rescate-del-kazekage",
+    "kind": "emoji-arc",
+    "series": "shippuden",
+    "payload": {
+      "arc": "rescate-del-kazekage",
+      "text": "🏜️🎎💥🔴"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-arco-supresion-de-akatsuki",
+    "kind": "emoji-arc",
+    "series": "shippuden",
+    "payload": {
+      "arc": "supresion-de-akatsuki",
+      "text": "🔴☁️💰⛓️"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-arco-asalto-de-pain",
+    "kind": "emoji-arc",
+    "series": "shippuden",
+    "payload": {
+      "arc": "asalto-de-pain",
+      "text": "🔴☔💥🏘️"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-arco-cumbre-de-los-kage",
+    "kind": "emoji-arc",
+    "series": "shippuden",
+    "payload": {
+      "arc": "cumbre-de-los-kage",
+      "text": "🏛️👑⚡🌊"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-arco-ingreso-a-la-academia",
+    "kind": "emoji-arc",
+    "series": "boruto",
+    "payload": {
+      "arc": "ingreso-a-la-academia",
+      "text": "🏫🧒📚🌀"
+    },
+    "verified": false
+  },
+  {
+    "id": "emoji-arco-contra-momoshiki",
+    "kind": "emoji-arc",
+    "series": "boruto",
+    "payload": {
+      "arc": "contra-momoshiki",
+      "text": "🌙👾🌀🧒"
+    },
+    "verified": false
+  },
+  {
+    "id": "group-bestias-con-cola",
+    "kind": "group",
+    "series": "shippuden",
+    "payload": {
+      "name": "Bestias con cola",
+      "category": "bestia",
+      "difficulty": 1,
+      "members": [
+        "kurama",
+        "shukaku",
+        "matatabi",
+        "isobu",
+        "son-goku",
+        "kokuo",
+        "saiken",
+        "chomei",
+        "gyuki"
+      ],
+      "shared": {
+        "gyuki": [
+          "aldea-kumo"
+        ],
+        "isobu": [
+          "aldea-kiri"
+        ],
+        "kokuo": [
+          "aldea-iwa"
+        ],
+        "matatabi": [
+          "aldea-kumo"
+        ],
+        "saiken": [
+          "aldea-kiri"
+        ],
+        "shukaku": [
+          "aldea-suna"
+        ],
+        "son-goku": [
+          "aldea-iwa",
+          "estilo-lava"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-hokage",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Hokage",
+      "category": "cargo",
+      "difficulty": 1,
+      "members": [
+        "hashirama-senju",
+        "tobirama-senju",
+        "hiruzen-sarutobi",
+        "minato-namikaze",
+        "tsunade",
+        "kakashi-hatake",
+        "naruto-uzumaki"
+      ],
+      "shared": {
+        "hashirama-senju": [
+          "estilo-madera"
+        ],
+        "hiruzen-sarutobi": [
+          "clan-sarutobi"
+        ],
+        "kakashi-hatake": [
+          "jonin-sensei",
+          "sharingan"
+        ],
+        "minato-namikaze": [
+          "jinchuriki"
+        ],
+        "naruto-uzumaki": [
+          "generacion-de-naruto",
+          "clan-uzumaki",
+          "jinchuriki",
+          "estilo-lava"
+        ],
+        "tsunade": [
+          "cinco-kage",
+          "ninjas-medicos"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-akatsuki",
+    "kind": "group",
+    "series": "shippuden",
+    "payload": {
+      "name": "Akatsuki",
+      "category": "organización",
+      "difficulty": 1,
+      "members": [
+        "yahiko",
+        "nagato",
+        "konan",
+        "itachi-uchiha",
+        "kisame-hoshigaki",
+        "deidara",
+        "sasori",
+        "hidan",
+        "kakuzu",
+        "obito-uchiha",
+        "orochimaru"
+      ],
+      "shared": {
+        "deidara": [
+          "aldea-iwa",
+          "ninjas-renegados",
+          "criminales-rango-s"
+        ],
+        "hidan": [
+          "ninjas-renegados",
+          "criminales-rango-s"
+        ],
+        "itachi-uchiha": [
+          "clan-uchiha",
+          "sharingan",
+          "ninjas-renegados",
+          "criminales-rango-s"
+        ],
+        "kakuzu": [
+          "ninjas-renegados",
+          "criminales-rango-s"
+        ],
+        "kisame-hoshigaki": [
+          "aldea-kiri",
+          "siete-espadachines",
+          "ninjas-renegados",
+          "criminales-rango-s"
+        ],
+        "konan": [
+          "aldea-ame",
+          "criminales-rango-s"
+        ],
+        "nagato": [
+          "aldea-ame",
+          "clan-uzumaki",
+          "criminales-rango-s",
+          "rinnegan"
+        ],
+        "obito-uchiha": [
+          "clan-uchiha",
+          "jinchuriki",
+          "sharingan",
+          "ninjas-renegados",
+          "criminales-rango-s",
+          "estilo-madera",
+          "rinnegan"
+        ],
+        "orochimaru": [
+          "aldea-oto",
+          "ninjas-renegados",
+          "criminales-rango-s",
+          "estilo-madera"
+        ],
+        "sasori": [
+          "aldea-suna",
+          "ninjas-renegados",
+          "criminales-rango-s"
+        ],
+        "yahiko": [
+          "aldea-ame"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-generacion-de-naruto",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Los genin de la generación de Naruto",
+      "category": "generación",
+      "difficulty": 1,
+      "members": [
+        "naruto-uzumaki",
+        "sasuke-uchiha",
+        "sakura-haruno",
+        "hinata-hyuga",
+        "shikamaru-nara",
+        "choji-akimichi",
+        "ino-yamanaka",
+        "kiba-inuzuka",
+        "shino-aburame",
+        "neji-hyuga",
+        "rock-lee",
+        "tenten"
+      ],
+      "shared": {
+        "choji-akimichi": [
+          "ino-shika-cho"
+        ],
+        "hinata-hyuga": [
+          "clan-hyuga",
+          "byakugan"
+        ],
+        "ino-yamanaka": [
+          "ino-shika-cho",
+          "ninjas-medicos"
+        ],
+        "naruto-uzumaki": [
+          "hokage",
+          "clan-uzumaki",
+          "jinchuriki",
+          "estilo-lava"
+        ],
+        "neji-hyuga": [
+          "clan-hyuga",
+          "byakugan"
+        ],
+        "sakura-haruno": [
+          "ninjas-medicos"
+        ],
+        "sasuke-uchiha": [
+          "clan-uchiha",
+          "taka",
+          "sharingan",
+          "ninjas-renegados",
+          "rinnegan"
+        ],
+        "shikamaru-nara": [
+          "ino-shika-cho"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-aldea-suna",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Aldea de la Arena (Suna)",
+      "category": "aldea",
+      "difficulty": 1,
+      "members": [
+        "gaara",
+        "kankuro",
+        "temari",
+        "baki",
+        "rasa",
+        "chiyo",
+        "sasori",
+        "pakura",
+        "shukaku"
+      ],
+      "shared": {
+        "chiyo": [
+          "ninjas-medicos"
+        ],
+        "gaara": [
+          "jinchuriki",
+          "cinco-kage"
+        ],
+        "sasori": [
+          "akatsuki",
+          "ninjas-renegados",
+          "criminales-rango-s"
+        ],
+        "shukaku": [
+          "bestias-con-cola"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-aldea-kiri",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Aldea de la Niebla (Kiri)",
+      "category": "aldea",
+      "difficulty": 1,
+      "members": [
+        "chojuro",
+        "haku",
+        "kisame-hoshigaki",
+        "gengetsu-hozuki",
+        "mangetsu-hozuki",
+        "suigetsu-hozuki",
+        "isobu",
+        "yagura-karatachi",
+        "kushimaru-kuriarare",
+        "zabuza-momochi",
+        "jinpachi-munashi",
+        "ameyuri-ringo",
+        "saiken",
+        "fuguki-suikazan",
+        "mei-terumi",
+        "utakata"
+      ],
+      "shared": {
+        "ameyuri-ringo": [
+          "siete-espadachines"
+        ],
+        "chojuro": [
+          "siete-espadachines"
+        ],
+        "fuguki-suikazan": [
+          "siete-espadachines"
+        ],
+        "isobu": [
+          "bestias-con-cola"
+        ],
+        "jinpachi-munashi": [
+          "siete-espadachines"
+        ],
+        "kisame-hoshigaki": [
+          "akatsuki",
+          "siete-espadachines",
+          "ninjas-renegados",
+          "criminales-rango-s"
+        ],
+        "kushimaru-kuriarare": [
+          "siete-espadachines"
+        ],
+        "mangetsu-hozuki": [
+          "siete-espadachines"
+        ],
+        "mei-terumi": [
+          "cinco-kage",
+          "estilo-lava"
+        ],
+        "saiken": [
+          "bestias-con-cola"
+        ],
+        "suigetsu-hozuki": [
+          "taka"
+        ],
+        "utakata": [
+          "jinchuriki",
+          "ninjas-renegados"
+        ],
+        "yagura-karatachi": [
+          "jinchuriki"
+        ],
+        "zabuza-momochi": [
+          "siete-espadachines",
+          "ninjas-renegados"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-aldea-kumo",
+    "kind": "group",
+    "series": "shippuden",
+    "payload": {
+      "name": "Aldea de las Nubes (Kumo)",
+      "category": "aldea",
+      "difficulty": 1,
+      "members": [
+        "a-cuarto-raikage",
+        "darui",
+        "gyuki",
+        "karui",
+        "killer-bee",
+        "matatabi",
+        "yugito-nii",
+        "omoi",
+        "samui"
+      ],
+      "shared": {
+        "a-cuarto-raikage": [
+          "cinco-kage"
+        ],
+        "gyuki": [
+          "bestias-con-cola"
+        ],
+        "killer-bee": [
+          "jinchuriki"
+        ],
+        "matatabi": [
+          "bestias-con-cola"
+        ],
+        "yugito-nii": [
+          "jinchuriki"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-aldea-iwa",
+    "kind": "group",
+    "series": "shippuden",
+    "payload": {
+      "name": "Aldea de la Roca (Iwa)",
+      "category": "aldea",
+      "difficulty": 1,
+      "members": [
+        "akatsuchi",
+        "deidara",
+        "gari",
+        "han",
+        "kitsuchi",
+        "kokuo",
+        "kurotsuchi",
+        "mu",
+        "onoki",
+        "roshi",
+        "son-goku"
+      ],
+      "shared": {
+        "deidara": [
+          "akatsuki",
+          "ninjas-renegados",
+          "criminales-rango-s"
+        ],
+        "han": [
+          "jinchuriki"
+        ],
+        "kokuo": [
+          "bestias-con-cola"
+        ],
+        "kurotsuchi": [
+          "estilo-lava"
+        ],
+        "onoki": [
+          "cinco-kage",
+          "estilo-lava"
+        ],
+        "roshi": [
+          "jinchuriki",
+          "estilo-lava"
+        ],
+        "son-goku": [
+          "bestias-con-cola",
+          "estilo-lava"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-aldea-oto",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Aldea del Sonido (Oto)",
+      "category": "aldea",
+      "difficulty": 1,
+      "members": [
+        "zaku-abumi",
+        "jirobo",
+        "kidomaru",
+        "kimimaro",
+        "dosu-kinuta",
+        "mitsuki",
+        "orochimaru",
+        "sakon-y-ukon",
+        "tayuya",
+        "kin-tsuchi",
+        "kabuto-yakushi"
+      ],
+      "shared": {
+        "jirobo": [
+          "cuatro-del-sonido"
+        ],
+        "kabuto-yakushi": [
+          "ninjas-medicos",
+          "ninjas-renegados"
+        ],
+        "kidomaru": [
+          "cuatro-del-sonido"
+        ],
+        "mitsuki": [
+          "nueva-generacion",
+          "ninjas-medicos"
+        ],
+        "orochimaru": [
+          "akatsuki",
+          "ninjas-renegados",
+          "criminales-rango-s",
+          "estilo-madera"
+        ],
+        "sakon-y-ukon": [
+          "cuatro-del-sonido"
+        ],
+        "tayuya": [
+          "cuatro-del-sonido"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-aldea-ame",
+    "kind": "group",
+    "series": "shippuden",
+    "payload": {
+      "name": "Aldea de la Lluvia (Ame)",
+      "category": "aldea",
+      "difficulty": 1,
+      "members": [
+        "hanzo",
+        "konan",
+        "nagato",
+        "yahiko"
+      ],
+      "shared": {
+        "konan": [
+          "akatsuki",
+          "criminales-rango-s"
+        ],
+        "nagato": [
+          "akatsuki",
+          "clan-uzumaki",
+          "criminales-rango-s",
+          "rinnegan"
+        ],
+        "yahiko": [
+          "akatsuki"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-clan-uchiha",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Clan Uchiha",
+      "category": "clan",
+      "difficulty": 2,
+      "members": [
+        "fugaku-uchiha",
+        "itachi-uchiha",
+        "madara-uchiha",
+        "mikoto-uchiha",
+        "obito-uchiha",
+        "sarada-uchiha",
+        "sasuke-uchiha",
+        "shisui-uchiha"
+      ],
+      "shared": {
+        "fugaku-uchiha": [
+          "sharingan"
+        ],
+        "itachi-uchiha": [
+          "akatsuki",
+          "sharingan",
+          "ninjas-renegados",
+          "criminales-rango-s"
+        ],
+        "madara-uchiha": [
+          "jinchuriki",
+          "sharingan",
+          "ninjas-renegados",
+          "estilo-madera",
+          "rinnegan"
+        ],
+        "obito-uchiha": [
+          "akatsuki",
+          "jinchuriki",
+          "sharingan",
+          "ninjas-renegados",
+          "criminales-rango-s",
+          "estilo-madera",
+          "rinnegan"
+        ],
+        "sarada-uchiha": [
+          "nueva-generacion",
+          "ninjas-medicos",
+          "sharingan"
+        ],
+        "sasuke-uchiha": [
+          "generacion-de-naruto",
+          "taka",
+          "sharingan",
+          "ninjas-renegados",
+          "rinnegan"
+        ],
+        "shisui-uchiha": [
+          "sharingan"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-clan-hyuga",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Clan Hyūga",
+      "category": "clan",
+      "difficulty": 2,
+      "members": [
+        "hanabi-hyuga",
+        "hiashi-hyuga",
+        "neji-hyuga",
+        "hinata-hyuga"
+      ],
+      "shared": {
+        "hanabi-hyuga": [
+          "byakugan"
+        ],
+        "hiashi-hyuga": [
+          "byakugan"
+        ],
+        "hinata-hyuga": [
+          "generacion-de-naruto",
+          "byakugan"
+        ],
+        "neji-hyuga": [
+          "generacion-de-naruto",
+          "byakugan"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-clan-uzumaki",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Clan Uzumaki",
+      "category": "clan",
+      "difficulty": 2,
+      "members": [
+        "karin",
+        "nagato",
+        "kushina-uzumaki",
+        "naruto-uzumaki",
+        "boruto-uzumaki",
+        "himawari-uzumaki"
+      ],
+      "shared": {
+        "boruto-uzumaki": [
+          "nueva-generacion"
+        ],
+        "himawari-uzumaki": [
+          "nueva-generacion",
+          "byakugan"
+        ],
+        "karin": [
+          "taka"
+        ],
+        "kushina-uzumaki": [
+          "jinchuriki"
+        ],
+        "nagato": [
+          "akatsuki",
+          "aldea-ame",
+          "criminales-rango-s",
+          "rinnegan"
+        ],
+        "naruto-uzumaki": [
+          "hokage",
+          "generacion-de-naruto",
+          "jinchuriki",
+          "estilo-lava"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-clan-sarutobi",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Clan Sarutobi",
+      "category": "clan",
+      "difficulty": 2,
+      "members": [
+        "asuma-sarutobi",
+        "hiruzen-sarutobi",
+        "konohamaru-sarutobi",
+        "mirai-sarutobi"
+      ],
+      "shared": {
+        "asuma-sarutobi": [
+          "jonin-sensei"
+        ],
+        "hiruzen-sarutobi": [
+          "hokage"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-ino-shika-cho",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Clanes Yamanaka, Nara y Akimichi",
+      "category": "clan",
+      "difficulty": 2,
+      "members": [
+        "shikamaru-nara",
+        "shikaku-nara",
+        "shikadai-nara",
+        "ino-yamanaka",
+        "inoichi-yamanaka",
+        "inojin-yamanaka",
+        "choji-akimichi",
+        "choza-akimichi",
+        "chocho-akimichi"
+      ],
+      "shared": {
+        "chocho-akimichi": [
+          "nueva-generacion"
+        ],
+        "choji-akimichi": [
+          "generacion-de-naruto"
+        ],
+        "ino-yamanaka": [
+          "generacion-de-naruto",
+          "ninjas-medicos"
+        ],
+        "inojin-yamanaka": [
+          "nueva-generacion",
+          "ninjas-medicos"
+        ],
+        "shikadai-nara": [
+          "nueva-generacion"
+        ],
+        "shikamaru-nara": [
+          "generacion-de-naruto"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-jinchuriki",
+    "kind": "group",
+    "series": "shippuden",
+    "payload": {
+      "name": "Jinchūriki",
+      "category": "rol",
+      "difficulty": 2,
+      "members": [
+        "naruto-uzumaki",
+        "minato-namikaze",
+        "gaara",
+        "obito-uchiha",
+        "rin-nohara",
+        "madara-uchiha",
+        "kushina-uzumaki",
+        "hagoromo-otsutsuki",
+        "killer-bee",
+        "yugito-nii",
+        "roshi",
+        "han",
+        "utakata",
+        "fu",
+        "yagura-karatachi"
+      ],
+      "shared": {
+        "gaara": [
+          "aldea-suna",
+          "cinco-kage"
+        ],
+        "hagoromo-otsutsuki": [
+          "clan-otsutsuki"
+        ],
+        "han": [
+          "aldea-iwa"
+        ],
+        "killer-bee": [
+          "aldea-kumo"
+        ],
+        "kushina-uzumaki": [
+          "clan-uzumaki"
+        ],
+        "madara-uchiha": [
+          "clan-uchiha",
+          "sharingan",
+          "ninjas-renegados",
+          "estilo-madera",
+          "rinnegan"
+        ],
+        "minato-namikaze": [
+          "hokage"
+        ],
+        "naruto-uzumaki": [
+          "hokage",
+          "generacion-de-naruto",
+          "clan-uzumaki",
+          "estilo-lava"
+        ],
+        "obito-uchiha": [
+          "akatsuki",
+          "clan-uchiha",
+          "sharingan",
+          "ninjas-renegados",
+          "criminales-rango-s",
+          "estilo-madera",
+          "rinnegan"
+        ],
+        "rin-nohara": [
+          "ninjas-medicos"
+        ],
+        "roshi": [
+          "aldea-iwa",
+          "estilo-lava"
+        ],
+        "utakata": [
+          "aldea-kiri",
+          "ninjas-renegados"
+        ],
+        "yagura-karatachi": [
+          "aldea-kiri"
+        ],
+        "yugito-nii": [
+          "aldea-kumo"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-cinco-kage",
+    "kind": "group",
+    "series": "shippuden",
+    "payload": {
+      "name": "Los Kage de la Cumbre de los Cinco Kage",
+      "category": "cargo",
+      "difficulty": 2,
+      "members": [
+        "tsunade",
+        "gaara",
+        "mei-terumi",
+        "a-cuarto-raikage",
+        "onoki"
+      ],
+      "shared": {
+        "a-cuarto-raikage": [
+          "aldea-kumo"
+        ],
+        "gaara": [
+          "aldea-suna",
+          "jinchuriki"
+        ],
+        "mei-terumi": [
+          "aldea-kiri",
+          "estilo-lava"
+        ],
+        "onoki": [
+          "aldea-iwa",
+          "estilo-lava"
+        ],
+        "tsunade": [
+          "hokage",
+          "ninjas-medicos"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-nueva-generacion",
+    "kind": "group",
+    "series": "boruto",
+    "payload": {
+      "name": "La nueva generación de Konoha",
+      "category": "generación",
+      "difficulty": 2,
+      "members": [
+        "boruto-uzumaki",
+        "sarada-uchiha",
+        "mitsuki",
+        "himawari-uzumaki",
+        "shikadai-nara",
+        "inojin-yamanaka",
+        "chocho-akimichi",
+        "metal-lee",
+        "iwabee-yuino",
+        "denki-kaminarimon",
+        "wasabi-izuno",
+        "namida-suzumeno",
+        "sumire-kakei",
+        "kawaki"
+      ],
+      "shared": {
+        "boruto-uzumaki": [
+          "clan-uzumaki"
+        ],
+        "chocho-akimichi": [
+          "ino-shika-cho"
+        ],
+        "himawari-uzumaki": [
+          "clan-uzumaki",
+          "byakugan"
+        ],
+        "inojin-yamanaka": [
+          "ino-shika-cho",
+          "ninjas-medicos"
+        ],
+        "iwabee-yuino": [
+          "ninjas-medicos"
+        ],
+        "kawaki": [
+          "kara"
+        ],
+        "mitsuki": [
+          "aldea-oto",
+          "ninjas-medicos"
+        ],
+        "sarada-uchiha": [
+          "clan-uchiha",
+          "ninjas-medicos",
+          "sharingan"
+        ],
+        "shikadai-nara": [
+          "ino-shika-cho"
+        ],
+        "wasabi-izuno": [
+          "ninjas-medicos"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-jonin-sensei",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Los jōnin sensei de la generación de Naruto",
+      "category": "rol",
+      "difficulty": 2,
+      "members": [
+        "kakashi-hatake",
+        "asuma-sarutobi",
+        "kurenai-yuhi",
+        "might-guy"
+      ],
+      "shared": {
+        "asuma-sarutobi": [
+          "clan-sarutobi"
+        ],
+        "kakashi-hatake": [
+          "hokage",
+          "sharingan"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-clan-otsutsuki",
+    "kind": "group",
+    "series": "shippuden",
+    "payload": {
+      "name": "Clan Ōtsutsuki",
+      "category": "clan",
+      "difficulty": 3,
+      "members": [
+        "asura-otsutsuki",
+        "hagoromo-otsutsuki",
+        "hamura-otsutsuki",
+        "indra-otsutsuki",
+        "isshiki-otsutsuki",
+        "kaguya-otsutsuki",
+        "kinshiki-otsutsuki",
+        "momoshiki-otsutsuki",
+        "toneri-otsutsuki"
+      ],
+      "shared": {
+        "asura-otsutsuki": [
+          "estilo-madera"
+        ],
+        "hagoromo-otsutsuki": [
+          "jinchuriki"
+        ],
+        "indra-otsutsuki": [
+          "sharingan"
+        ],
+        "isshiki-otsutsuki": [
+          "kara",
+          "byakugan"
+        ],
+        "kinshiki-otsutsuki": [
+          "byakugan"
+        ],
+        "momoshiki-otsutsuki": [
+          "byakugan",
+          "estilo-madera",
+          "rinnegan"
+        ],
+        "toneri-otsutsuki": [
+          "byakugan"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-kara",
+    "kind": "group",
+    "series": "boruto",
+    "payload": {
+      "name": "Kara",
+      "category": "organización",
+      "difficulty": 3,
+      "members": [
+        "eida",
+        "boro",
+        "code",
+        "daemon",
+        "delta",
+        "jigen",
+        "koji-kashin",
+        "kawaki",
+        "isshiki-otsutsuki",
+        "amado"
+      ],
+      "shared": {
+        "boro": [
+          "estilo-lava"
+        ],
+        "isshiki-otsutsuki": [
+          "clan-otsutsuki",
+          "byakugan"
+        ],
+        "kawaki": [
+          "nueva-generacion"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-taka",
+    "kind": "group",
+    "series": "shippuden",
+    "payload": {
+      "name": "Taka",
+      "category": "equipo",
+      "difficulty": 3,
+      "members": [
+        "sasuke-uchiha",
+        "suigetsu-hozuki",
+        "karin",
+        "jugo"
+      ],
+      "shared": {
+        "karin": [
+          "clan-uzumaki"
+        ],
+        "sasuke-uchiha": [
+          "generacion-de-naruto",
+          "clan-uchiha",
+          "sharingan",
+          "ninjas-renegados",
+          "rinnegan"
+        ],
+        "suigetsu-hozuki": [
+          "aldea-kiri"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-cuatro-del-sonido",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Los Cuatro del Sonido",
+      "category": "equipo",
+      "difficulty": 3,
+      "members": [
+        "sakon-y-ukon",
+        "tayuya",
+        "jirobo",
+        "kidomaru"
+      ],
+      "shared": {
+        "jirobo": [
+          "aldea-oto"
+        ],
+        "kidomaru": [
+          "aldea-oto"
+        ],
+        "sakon-y-ukon": [
+          "aldea-oto"
+        ],
+        "tayuya": [
+          "aldea-oto"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-siete-espadachines",
+    "kind": "group",
+    "series": "shippuden",
+    "payload": {
+      "name": "Espadachines de la Niebla",
+      "category": "organización",
+      "difficulty": 3,
+      "members": [
+        "zabuza-momochi",
+        "kisame-hoshigaki",
+        "ameyuri-ringo",
+        "kushimaru-kuriarare",
+        "jinpachi-munashi",
+        "fuguki-suikazan",
+        "mangetsu-hozuki",
+        "chojuro"
+      ],
+      "shared": {
+        "ameyuri-ringo": [
+          "aldea-kiri"
+        ],
+        "chojuro": [
+          "aldea-kiri"
+        ],
+        "fuguki-suikazan": [
+          "aldea-kiri"
+        ],
+        "jinpachi-munashi": [
+          "aldea-kiri"
+        ],
+        "kisame-hoshigaki": [
+          "akatsuki",
+          "aldea-kiri",
+          "ninjas-renegados",
+          "criminales-rango-s"
+        ],
+        "kushimaru-kuriarare": [
+          "aldea-kiri"
+        ],
+        "mangetsu-hozuki": [
+          "aldea-kiri"
+        ],
+        "zabuza-momochi": [
+          "aldea-kiri",
+          "ninjas-renegados"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-invocaciones",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Animales invocados",
+      "category": "invocación",
+      "difficulty": 3,
+      "members": [
+        "gamabunta",
+        "katsuyu",
+        "manda",
+        "pakkun",
+        "gamakichi",
+        "fukasaku",
+        "shima"
+      ],
+      "shared": {}
+    },
+    "verified": false
+  },
+  {
+    "id": "group-ninjas-medicos",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Ninjas médicos",
+      "category": "rol",
+      "difficulty": 3,
+      "members": [
+        "sakura-haruno",
+        "ino-yamanaka",
+        "shizune",
+        "tsunade",
+        "kabuto-yakushi",
+        "chiyo",
+        "rin-nohara",
+        "sarada-uchiha",
+        "mitsuki",
+        "inojin-yamanaka",
+        "iwabee-yuino",
+        "wasabi-izuno"
+      ],
+      "shared": {
+        "chiyo": [
+          "aldea-suna"
+        ],
+        "ino-yamanaka": [
+          "generacion-de-naruto",
+          "ino-shika-cho"
+        ],
+        "inojin-yamanaka": [
+          "ino-shika-cho",
+          "nueva-generacion"
+        ],
+        "iwabee-yuino": [
+          "nueva-generacion"
+        ],
+        "kabuto-yakushi": [
+          "aldea-oto",
+          "ninjas-renegados"
+        ],
+        "mitsuki": [
+          "aldea-oto",
+          "nueva-generacion"
+        ],
+        "rin-nohara": [
+          "jinchuriki"
+        ],
+        "sakura-haruno": [
+          "generacion-de-naruto"
+        ],
+        "sarada-uchiha": [
+          "clan-uchiha",
+          "nueva-generacion",
+          "sharingan"
+        ],
+        "tsunade": [
+          "hokage",
+          "cinco-kage"
+        ],
+        "wasabi-izuno": [
+          "nueva-generacion"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-sharingan",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Usuarios del Sharingan",
+      "category": "kekkei genkai",
+      "difficulty": 3,
+      "members": [
+        "kakashi-hatake",
+        "indra-otsutsuki",
+        "danzo-shimura",
+        "fugaku-uchiha",
+        "itachi-uchiha",
+        "madara-uchiha",
+        "obito-uchiha",
+        "sarada-uchiha",
+        "sasuke-uchiha",
+        "shisui-uchiha"
+      ],
+      "shared": {
+        "danzo-shimura": [
+          "estilo-madera"
+        ],
+        "fugaku-uchiha": [
+          "clan-uchiha"
+        ],
+        "indra-otsutsuki": [
+          "clan-otsutsuki"
+        ],
+        "itachi-uchiha": [
+          "akatsuki",
+          "clan-uchiha",
+          "ninjas-renegados",
+          "criminales-rango-s"
+        ],
+        "kakashi-hatake": [
+          "hokage",
+          "jonin-sensei"
+        ],
+        "madara-uchiha": [
+          "clan-uchiha",
+          "jinchuriki",
+          "ninjas-renegados",
+          "estilo-madera",
+          "rinnegan"
+        ],
+        "obito-uchiha": [
+          "akatsuki",
+          "clan-uchiha",
+          "jinchuriki",
+          "ninjas-renegados",
+          "criminales-rango-s",
+          "estilo-madera",
+          "rinnegan"
+        ],
+        "sarada-uchiha": [
+          "clan-uchiha",
+          "nueva-generacion",
+          "ninjas-medicos"
+        ],
+        "sasuke-uchiha": [
+          "generacion-de-naruto",
+          "clan-uchiha",
+          "taka",
+          "ninjas-renegados",
+          "rinnegan"
+        ],
+        "shisui-uchiha": [
+          "clan-uchiha"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-byakugan",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Usuarios del Byakugan",
+      "category": "kekkei genkai",
+      "difficulty": 3,
+      "members": [
+        "hanabi-hyuga",
+        "hiashi-hyuga",
+        "hinata-hyuga",
+        "neji-hyuga",
+        "isshiki-otsutsuki",
+        "kinshiki-otsutsuki",
+        "momoshiki-otsutsuki",
+        "toneri-otsutsuki",
+        "himawari-uzumaki"
+      ],
+      "shared": {
+        "hanabi-hyuga": [
+          "clan-hyuga"
+        ],
+        "hiashi-hyuga": [
+          "clan-hyuga"
+        ],
+        "himawari-uzumaki": [
+          "clan-uzumaki",
+          "nueva-generacion"
+        ],
+        "hinata-hyuga": [
+          "generacion-de-naruto",
+          "clan-hyuga"
+        ],
+        "isshiki-otsutsuki": [
+          "clan-otsutsuki",
+          "kara"
+        ],
+        "kinshiki-otsutsuki": [
+          "clan-otsutsuki"
+        ],
+        "momoshiki-otsutsuki": [
+          "clan-otsutsuki",
+          "estilo-madera",
+          "rinnegan"
+        ],
+        "neji-hyuga": [
+          "generacion-de-naruto",
+          "clan-hyuga"
+        ],
+        "toneri-otsutsuki": [
+          "clan-otsutsuki"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-ninjas-renegados",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Ninjas renegados",
+      "category": "rol",
+      "difficulty": 4,
+      "members": [
+        "sasuke-uchiha",
+        "mizuki",
+        "orochimaru",
+        "itachi-uchiha",
+        "kisame-hoshigaki",
+        "kabuto-yakushi",
+        "zabuza-momochi",
+        "sasori",
+        "deidara",
+        "hidan",
+        "kakuzu",
+        "obito-uchiha",
+        "madara-uchiha",
+        "utakata"
+      ],
+      "shared": {
+        "deidara": [
+          "akatsuki",
+          "aldea-iwa",
+          "criminales-rango-s"
+        ],
+        "hidan": [
+          "akatsuki",
+          "criminales-rango-s"
+        ],
+        "itachi-uchiha": [
+          "akatsuki",
+          "clan-uchiha",
+          "sharingan",
+          "criminales-rango-s"
+        ],
+        "kabuto-yakushi": [
+          "aldea-oto",
+          "ninjas-medicos"
+        ],
+        "kakuzu": [
+          "akatsuki",
+          "criminales-rango-s"
+        ],
+        "kisame-hoshigaki": [
+          "akatsuki",
+          "aldea-kiri",
+          "siete-espadachines",
+          "criminales-rango-s"
+        ],
+        "madara-uchiha": [
+          "clan-uchiha",
+          "jinchuriki",
+          "sharingan",
+          "estilo-madera",
+          "rinnegan"
+        ],
+        "obito-uchiha": [
+          "akatsuki",
+          "clan-uchiha",
+          "jinchuriki",
+          "sharingan",
+          "criminales-rango-s",
+          "estilo-madera",
+          "rinnegan"
+        ],
+        "orochimaru": [
+          "akatsuki",
+          "aldea-oto",
+          "criminales-rango-s",
+          "estilo-madera"
+        ],
+        "sasori": [
+          "akatsuki",
+          "aldea-suna",
+          "criminales-rango-s"
+        ],
+        "sasuke-uchiha": [
+          "generacion-de-naruto",
+          "clan-uchiha",
+          "taka",
+          "sharingan",
+          "rinnegan"
+        ],
+        "utakata": [
+          "aldea-kiri",
+          "jinchuriki"
+        ],
+        "zabuza-momochi": [
+          "aldea-kiri",
+          "siete-espadachines"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-criminales-rango-s",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Criminales de rango S",
+      "category": "rol",
+      "difficulty": 4,
+      "members": [
+        "orochimaru",
+        "itachi-uchiha",
+        "kisame-hoshigaki",
+        "sasori",
+        "deidara",
+        "hidan",
+        "kakuzu",
+        "obito-uchiha",
+        "konan",
+        "nagato"
+      ],
+      "shared": {
+        "deidara": [
+          "akatsuki",
+          "aldea-iwa",
+          "ninjas-renegados"
+        ],
+        "hidan": [
+          "akatsuki",
+          "ninjas-renegados"
+        ],
+        "itachi-uchiha": [
+          "akatsuki",
+          "clan-uchiha",
+          "sharingan",
+          "ninjas-renegados"
+        ],
+        "kakuzu": [
+          "akatsuki",
+          "ninjas-renegados"
+        ],
+        "kisame-hoshigaki": [
+          "akatsuki",
+          "aldea-kiri",
+          "siete-espadachines",
+          "ninjas-renegados"
+        ],
+        "konan": [
+          "akatsuki",
+          "aldea-ame"
+        ],
+        "nagato": [
+          "akatsuki",
+          "aldea-ame",
+          "clan-uzumaki",
+          "rinnegan"
+        ],
+        "obito-uchiha": [
+          "akatsuki",
+          "clan-uchiha",
+          "jinchuriki",
+          "sharingan",
+          "ninjas-renegados",
+          "estilo-madera",
+          "rinnegan"
+        ],
+        "orochimaru": [
+          "akatsuki",
+          "aldea-oto",
+          "ninjas-renegados",
+          "estilo-madera"
+        ],
+        "sasori": [
+          "akatsuki",
+          "aldea-suna",
+          "ninjas-renegados"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-estilo-lava",
+    "kind": "group",
+    "series": "shippuden",
+    "payload": {
+      "name": "Usuarios del Estilo Lava",
+      "category": "kekkei genkai",
+      "difficulty": 4,
+      "members": [
+        "boro",
+        "kurotsuchi",
+        "onoki",
+        "roshi",
+        "son-goku",
+        "mei-terumi",
+        "naruto-uzumaki"
+      ],
+      "shared": {
+        "boro": [
+          "kara"
+        ],
+        "kurotsuchi": [
+          "aldea-iwa"
+        ],
+        "mei-terumi": [
+          "aldea-kiri",
+          "cinco-kage"
+        ],
+        "naruto-uzumaki": [
+          "hokage",
+          "generacion-de-naruto",
+          "clan-uzumaki",
+          "jinchuriki"
+        ],
+        "onoki": [
+          "aldea-iwa",
+          "cinco-kage"
+        ],
+        "roshi": [
+          "aldea-iwa",
+          "jinchuriki"
+        ],
+        "son-goku": [
+          "bestias-con-cola",
+          "aldea-iwa"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-estilo-madera",
+    "kind": "group",
+    "series": "naruto",
+    "payload": {
+      "name": "Usuarios del Estilo Madera",
+      "category": "kekkei genkai",
+      "difficulty": 4,
+      "members": [
+        "orochimaru",
+        "asura-otsutsuki",
+        "hashirama-senju",
+        "danzo-shimura",
+        "madara-uchiha",
+        "obito-uchiha",
+        "yamato",
+        "momoshiki-otsutsuki"
+      ],
+      "shared": {
+        "asura-otsutsuki": [
+          "clan-otsutsuki"
+        ],
+        "danzo-shimura": [
+          "sharingan"
+        ],
+        "hashirama-senju": [
+          "hokage"
+        ],
+        "madara-uchiha": [
+          "clan-uchiha",
+          "jinchuriki",
+          "sharingan",
+          "ninjas-renegados",
+          "rinnegan"
+        ],
+        "momoshiki-otsutsuki": [
+          "clan-otsutsuki",
+          "byakugan",
+          "rinnegan"
+        ],
+        "obito-uchiha": [
+          "akatsuki",
+          "clan-uchiha",
+          "jinchuriki",
+          "sharingan",
+          "ninjas-renegados",
+          "criminales-rango-s",
+          "rinnegan"
+        ],
+        "orochimaru": [
+          "akatsuki",
+          "aldea-oto",
+          "ninjas-renegados",
+          "criminales-rango-s"
+        ]
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "group-rinnegan",
+    "kind": "group",
+    "series": "shippuden",
+    "payload": {
+      "name": "Usuarios del Rinnegan",
+      "category": "kekkei genkai",
+      "difficulty": 4,
+      "members": [
+        "nagato",
+        "momoshiki-otsutsuki",
+        "madara-uchiha",
+        "obito-uchiha",
+        "sasuke-uchiha"
+      ],
+      "shared": {
+        "madara-uchiha": [
+          "clan-uchiha",
+          "jinchuriki",
+          "sharingan",
+          "ninjas-renegados",
+          "estilo-madera"
+        ],
+        "momoshiki-otsutsuki": [
+          "clan-otsutsuki",
+          "byakugan",
+          "estilo-madera"
+        ],
+        "nagato": [
+          "akatsuki",
+          "aldea-ame",
+          "clan-uzumaki",
+          "criminales-rango-s"
+        ],
+        "obito-uchiha": [
+          "akatsuki",
+          "clan-uchiha",
+          "jinchuriki",
+          "sharingan",
+          "ninjas-renegados",
+          "criminales-rango-s",
+          "estilo-madera"
+        ],
+        "sasuke-uchiha": [
+          "generacion-de-naruto",
+          "clan-uchiha",
+          "taka",
+          "sharingan",
+          "ninjas-renegados"
+        ]
+      }
+    },
+    "verified": false
+  }
+]
