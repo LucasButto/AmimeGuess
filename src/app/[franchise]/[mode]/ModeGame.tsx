@@ -7,7 +7,9 @@ import { loadFranchiseData, type FranchiseData } from '@/franchises/data';
 import type { FranchiseConfig, ModeConfig } from '@/franchises/types';
 import { es } from '@/i18n/es';
 import { ClassicGame } from '@/modes/classic/ClassicGame';
+import { HigherLowerGame } from '@/modes/higher-lower/HigherLowerGame';
 import { ImageRevealGame } from '@/modes/image-reveal/ImageRevealGame';
+import { RevealListGame } from '@/modes/reveal-list/RevealListGame';
 import { TextClueGame } from '@/modes/text-clue/TextClueGame';
 import styles from './ModeGame.module.scss';
 import { isPlayable } from './playable';
@@ -31,6 +33,8 @@ export function ModeGame({ franchise, mode, modes }: ModeGameProps) {
   const classic = mode.engine === 'classic' ? mode.classic : undefined;
   const imageReveal = mode.engine === 'image-reveal' ? mode.imageReveal : undefined;
   const textClue = mode.engine === 'text-clue' ? mode.textClue : undefined;
+  const revealList = mode.engine === 'reveal-list' ? mode.revealList : undefined;
+  const higherLower = mode.engine === 'higher-lower' ? mode.higherLower : undefined;
   const playable = isPlayable(franchise, mode);
   const [loaded, setLoaded] = useState<FranchiseData | 'error' | null>(null);
 
@@ -72,6 +76,31 @@ export function ModeGame({ franchise, mode, modes }: ModeGameProps) {
         config={imageReveal}
         entities={loaded.entities}
         contents={loaded.contents}
+      />
+    );
+  }
+
+  if (revealList) {
+    return (
+      <RevealListGame
+        franchise={franchise}
+        mode={mode}
+        modes={modes}
+        config={revealList}
+        entities={loaded.entities}
+        contents={loaded.contents}
+      />
+    );
+  }
+
+  if (higherLower) {
+    return (
+      <HigherLowerGame
+        franchise={franchise}
+        mode={mode}
+        modes={modes}
+        config={higherLower}
+        entities={loaded.entities}
       />
     );
   }

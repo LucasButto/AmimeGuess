@@ -80,7 +80,25 @@ export const pokemonConfig = {
       },
     },
     { slug: 'zoom', name: 'Zoom', engine: 'image-reveal', imageReveal: { variant: 'zoom' } },
-    { slug: 'mayor-o-menor', name: 'Mayor o Menor', engine: 'higher-lower' },
-    { slug: 'moveset', name: 'Moveset', engine: 'reveal-list' },
+    {
+      slug: 'mayor-o-menor',
+      name: 'Mayor o Menor',
+      engine: 'higher-lower',
+      // Una métrica por día, en este orden. Los tres atributos existen para los 1025 Pokémon.
+      higherLower: {
+        metrics: [
+          { key: 'peso', label: 'Peso', question: '¿Cuál pesa más?', unit: 'kg' },
+          { key: 'altura', label: 'Altura', question: '¿Cuál es más alto?', unit: 'm' },
+          { key: 'totalEstadisticas', label: 'Total de estadísticas base', question: '¿Cuál tiene más estadísticas base en total?' },
+        ],
+      },
+    },
+    {
+      slug: 'moveset',
+      name: 'Moveset',
+      engine: 'reveal-list',
+      // Sus 4 movimientos menos comunes, del más común al menos común: cada fallo revela uno más.
+      revealList: { contentKind: 'moveset', field: 'items', label: 'Movimientos' },
+    },
   ],
 } as const satisfies FranchiseConfig;

@@ -11,6 +11,8 @@ export function isPlayable(franchise: FranchiseConfig, mode: ModeConfig): boolea
   const configured =
     (mode.engine === 'classic' && mode.classic !== undefined) ||
     (mode.engine === 'image-reveal' && mode.imageReveal !== undefined) ||
-    (mode.engine === 'text-clue' && mode.textClue !== undefined);
+    (mode.engine === 'text-clue' && mode.textClue !== undefined) ||
+    (mode.engine === 'reveal-list' && mode.revealList !== undefined) ||
+    (mode.engine === 'higher-lower' && mode.higherLower !== undefined);
   return configured && hasFranchiseData(franchise.slug);
 }
