@@ -93,6 +93,21 @@ function seededStats(): Record<string, string> {
   };
 }
 
+/** Estadísticas de Mayor o Menor: un modo de puntaje, con la distribución por aciertos seguidos (incluido el 0). */
+function seededScoreStats(): Record<string, string> {
+  const today = getDay(new Date());
+  return {
+    [statsKey('pokemon', 'mayor-o-menor')]: JSON.stringify({
+      played: 12,
+      won: 12,
+      distribution: { '0': 3, '1': 2, '2': 2, '4': 2, '7': 2, '14': 1 },
+      currentStreak: 3,
+      maxStreak: 5,
+      lastWonDay: today,
+    }),
+  };
+}
+
 /** Todos los Pokémon de g6: jugados como intentos, la partida queda ganada (con una tabla larga). */
 function wholeGeneration(series: string): string[] {
   const entities = JSON.parse(readFileSync(path.join(ROOT, 'data', 'pokemon', 'entities.json'), 'utf8')) as Array<{
@@ -191,6 +206,33 @@ async function showsPoolWarning(page: Page): Promise<string[]> {
   return problems;
 }
 
+/**
+ * Mayor o Menor: las dos opciones se apilan en un teléfono vertical y van lado a lado en horizontal
+ * y desde `md` (768 px). Se comprueba también con una opción ya elegida, que es más alta.
+ */
+async function optionsLayout(page: Page): Promise<string[]> {
+  const info = await page.evaluate(() => {
+    const [a, b] = [...document.querySelectorAll('[data-option]')].map((option) => option.getBoundingClientRect());
+    return a && b ? { aTop: a.top, bTop: b.top, aBottom: a.bottom, width: window.innerWidth, height: window.innerHeight } : null;
+  });
+  if (!info) return ['no se encontraron las dos opciones'];
+  const wide = info.width >= 768 || info.width > info.height;
+  const sameRow = Math.abs(info.aTop - info.bTop) < 2;
+  const stacked = info.bTop >= info.aBottom - 1;
+  if (wide && !sameRow) return [`las opciones deberían ir lado a lado en ${info.width}×${info.height}`];
+  if (!wide && !stacked) return [`las opciones deberían apilarse en ${info.width}×${info.height}`];
+  return [];
+}
+
+/** Elige una de las dos opciones y espera a que se muestren los valores. */
+function afterPicking(index: number): (page: Page) => Promise<string[]> {
+  return async (page) => {
+    await page.locator('[data-option]').nth(index).click();
+    await page.waitForSelector('[data-revealed="true"]');
+    return optionsLayout(page);
+  };
+}
+
 /** Los modos de Pokémon que usan el motor de pista de texto (sesión 06) y el tipo de contenido de cada uno. */
 const TEXT_MODES = [
   { slug: 'descripcion', contentKind: 'dex' },
@@ -280,6 +322,32 @@ const ROUTES: RouteCheck[] = [
       storage: seededGame('g6', wholeGeneration('g6'), slug),
     },
   ]),
+  // Sesión 07: Moveset (lista de pistas) y Mayor o Menor (puntaje).
+  { name: 'pokemon-moveset', path: '/pokemon/moveset', ready: GAME_READY },
+  {
+    // Con 3 fallos ya se ven las 4 pistas.
+    name: 'pokemon-moveset-3-fallos',
+    path: '/pokemon/moveset',
+    ready: GAME_READY,
+    storage: seededGame('all', neverAnswers('moveset', 3), 'moveset'),
+  },
+  {
+    name: 'pokemon-moveset-victoria',
+    path: '/pokemon/moveset?s=g6',
+    ready: GAME_READY,
+    storage: seededGame('g6', wholeGeneration('g6'), 'moveset'),
+  },
+  { name: 'pokemon-mayor-o-menor', path: '/pokemon/mayor-o-menor', ready: GAME_READY, check: optionsLayout },
+  // Una de las dos opciones es la mayor: elegir una y la otra cubre el acierto y el error, sea cual sea el día.
+  { name: 'pokemon-mayor-o-menor-elegida-1', path: '/pokemon/mayor-o-menor', ready: GAME_READY, check: afterPicking(0) },
+  { name: 'pokemon-mayor-o-menor-elegida-2', path: '/pokemon/mayor-o-menor', ready: GAME_READY, check: afterPicking(1) },
+  {
+    name: 'pokemon-mayor-o-menor-estadisticas',
+    path: '/pokemon/mayor-o-menor',
+    ready: GAME_READY,
+    storage: seededScoreStats(),
+    before: (page, context) => openDialog(page, 'Estadísticas', context),
+  },
   // Movimiento insignia con solo g3 (6 posibles) y Descripción con solo g9 (ninguna): no alcanzan el mínimo.
   { name: 'pokemon-movimiento-insignia-sin-pool', path: '/pokemon/movimiento-insignia?s=g3', check: showsPoolWarning },
   { name: 'pokemon-descripcion-sin-pool', path: '/pokemon/descripcion?s=g9', check: showsPoolWarning },
