@@ -55,19 +55,28 @@ interface RouteCheck {
   /**
    * Pasos previos a medir y fotografiar, como abrir un modal. Puede devolver
    * problemas propios de la pantalla (por ejemplo, un modal que no ocupa todo el teléfono).
+   * Con esto la captura es de lo que se ve en pantalla, no de la página entera.
    */
   before?: (page: Page, context: { phone: boolean }) => Promise<string[]>;
+  /**
+   * Comprobaciones propias de la pantalla que no cambian la captura (que sigue siendo
+   * de la página entera): por ejemplo, que dos elementos entren juntos en la pantalla.
+   */
+  check?: (page: Page, context: { phone: boolean }) => Promise<string[]>;
 }
 
 const GAME_READY = '[data-game-ready="true"]';
 
-/** Una partida de Pokémon Clásico con intentos ya hechos, para probar la tabla llena. */
-function seededGame(filterKey: string, attempts: string[]): Record<string, string> {
-  const key = stateKey({ franchise: 'pokemon', mode: 'clasico', filterKey, day: getDay(new Date()) });
+/** Una partida de Pokémon con intentos ya hechos, para probar la tabla llena o la imagen a medio revelar. */
+function seededGame(filterKey: string, attempts: string[], mode = 'clasico'): Record<string, string> {
+  const key = stateKey({ franchise: 'pokemon', mode, filterKey, day: getDay(new Date()) });
   return { [key]: JSON.stringify({ attempts, result: 'playing' }) };
 }
 
 const SIX_ATTEMPTS = ['gyarados', 'mr-mime', 'snorlax', 'mewtwo', 'charizard', 'pikachu'];
+
+/** Tres fallos con todas las series activas (1025 posibles): casi seguro que ninguno es la respuesta del día. */
+const THREE_MISSES = ['gyarados', 'snorlax', 'mewtwo'];
 
 /** Estadísticas de ejemplo con partidas ganadas y una racha vigente, para el modal de estadísticas. */
 function seededStats(): Record<string, string> {
@@ -128,6 +137,39 @@ async function openDialog(page: Page, buttonName: string, { phone }: { phone: bo
   return problems;
 }
 
+/**
+ * Los modos de imagen: el marco de la imagen y el campo de texto tienen que entrar juntos en la
+ * pantalla, o sea que su altura sumada no supera la de la ventana. (Para llegar hasta ahí la página
+ * se desplaza: arriba van la navegación, la barra y los filtros del marco común.)
+ */
+async function imageFitsWithField(page: Page): Promise<string[]> {
+  const box = await page.evaluate(() => {
+    const field = document.querySelector('[data-game-ready] input[role="combobox"]')?.getBoundingClientRect();
+    const frame = document.querySelector('[data-game-ready] img')?.parentElement?.getBoundingClientRect();
+    if (!field || !frame) return null;
+    return {
+      top: Math.min(field.top, frame.top),
+      bottom: Math.max(field.bottom, frame.bottom),
+      left: frame.left,
+      right: frame.right,
+      viewportHeight: window.innerHeight,
+      viewportWidth: window.innerWidth,
+    };
+  });
+  if (!box) return ['no se encontró la imagen del reto o el campo de texto'];
+  const problems: string[] = [];
+  if (box.bottom - box.top > box.viewportHeight + 0.5) {
+    problems.push(
+      `la imagen y el campo no entran juntos en la pantalla: miden ${Math.round(box.bottom - box.top)} px y la ventana, ${box.viewportHeight} px`,
+    );
+  }
+  if (box.left < -0.5 || box.right > box.viewportWidth + 0.5) problems.push('la imagen se sale de la pantalla en horizontal');
+  return problems;
+}
+
+/** Los modos de Pokémon que usan el motor de imagen (sesión 05). */
+const IMAGE_MODES = [{ slug: 'silueta' }, { slug: 'zoom' }, { slug: 'carta' }] as const;
+
 const ROUTES: RouteCheck[] = [
   { name: 'inicio', path: '/' },
   { name: 'pokemon', path: '/pokemon' },
@@ -173,6 +215,24 @@ const ROUTES: RouteCheck[] = [
     before: (page, context) => openDialog(page, 'Estadísticas', context),
   },
   { name: 'dragon-ball-clasico-proximamente', path: '/dragon-ball/clasico' },
+  ...IMAGE_MODES.flatMap(({ slug }) => [
+    { name: `pokemon-${slug}`, path: `/pokemon/${slug}`, ready: GAME_READY, check: imageFitsWithField },
+    {
+      // A medio revelar: tres pasos más de la imagen.
+      name: `pokemon-${slug}-3-fallos`,
+      path: `/pokemon/${slug}`,
+      ready: GAME_READY,
+      storage: seededGame('all', THREE_MISSES, slug),
+      check: imageFitsWithField,
+    },
+    {
+      // Partida ganada (se jugaron las 72 de g6): la imagen entera y el resumen del marco.
+      name: `pokemon-${slug}-victoria`,
+      path: `/pokemon/${slug}?s=g6`,
+      ready: GAME_READY,
+      storage: seededGame('g6', wholeGeneration('g6'), slug),
+    },
+  ]),
 ];
 
 /** Tamaño mínimo de lo que se toca (SPEC 9.1, "Móvil"). */
@@ -317,6 +377,7 @@ async function checkPage(
 
     // Pasos propios de la pantalla (abrir un modal…), antes de medir y fotografiar.
     if (route.before) problems.push(...(await route.before(page, { phone })));
+    if (route.check) problems.push(...(await route.check(page, { phone })));
 
     // Desborde horizontal de la página.
     const widths = await page.evaluate(() => ({
