@@ -1,0 +1,204 @@
+@use 'breakpoints' as bp;
+@use 'mixins' as m;
+@use 'tokens' as t;
+
+// Las dos opciones se apilan en un teléfono vertical y van lado a lado en
+// horizontal y desde `md`: lo que cambia con la forma de la pantalla se escribe
+// una sola vez acá.
+@mixin side-by-side {
+  @include bp.landscape {
+    @content;
+  }
+
+  @include bp.min-width('md') {
+    @content;
+  }
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-4;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
+}
+
+.question {
+  font-size: t.$font-size-xl;
+  line-height: t.$line-height-tight;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-1 t.$space-4;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: t.color('text-muted');
+}
+
+.score {
+  color: t.color('text');
+  font-weight: t.$font-weight-bold;
+}
+
+.options {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: t.$space-3;
+
+  @include side-by-side {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.option {
+  @include m.touch-target;
+  display: flex;
+  align-items: center;
+  gap: t.$space-4;
+  min-inline-size: 0;
+  padding: t.$space-3 t.$space-4;
+  text-align: start;
+  font: inherit;
+  color: t.color('text');
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+  cursor: pointer;
+
+  @include side-by-side {
+    flex-direction: column;
+    justify-content: center;
+    padding: t.$space-4;
+    text-align: center;
+  }
+
+  &:not(:disabled):hover {
+    border-color: t.color('accent');
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+
+  // Ya elegida la ronda no se vuelve a tocar, pero se tiene que seguir leyendo bien.
+  &:disabled {
+    cursor: default;
+    color: t.color('text');
+  }
+
+  // El resultado se marca con borde y fondo, y además con texto e ícono (ver `badge`).
+  &[data-winner='true'] {
+    border-color: t.color('match');
+    background: color-mix(in srgb, #{t.color('match')} 10%, #{t.color('surface')});
+  }
+
+  &[data-picked='true']:not([data-winner='true']) {
+    border-color: t.color('miss');
+    background: color-mix(in srgb, #{t.color('miss')} 10%, #{t.color('surface')});
+  }
+}
+
+.image {
+  flex: none;
+  inline-size: 5rem;
+  block-size: 5rem;
+  object-fit: contain;
+
+  @include side-by-side {
+    inline-size: 9rem;
+    block-size: 9rem;
+  }
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: t.$space-1;
+  min-inline-size: 0;
+
+  @include side-by-side {
+    align-items: center;
+  }
+}
+
+.name {
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+  overflow-wrap: anywhere;
+}
+
+.value {
+  font-size: t.$font-size-lg;
+  font-variant-numeric: tabular-nums;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-1 t.$space-2;
+}
+
+.badge {
+  padding: 0 t.$space-2;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  border-radius: t.$radius-full;
+  background: t.color('bg');
+
+  &[data-kind='winner'] {
+    color: t.color('on-result');
+    background: t.color('match');
+  }
+}
+
+.outcome {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: t.$space-3;
+  padding: t.$space-4;
+  border: t.$border-width solid t.color('border');
+  border-inline-start: 0.375rem solid t.color('miss');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+
+  &[data-correct='true'] {
+    border-inline-start-color: t.color('match');
+  }
+
+  @include bp.min-width('sm') {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.outcomeText {
+  font-weight: t.$font-weight-bold;
+}
+
+.next {
+  @include m.touch-target;
+  padding: t.$space-2 t.$space-5;
+  font: inherit;
+  font-weight: t.$font-weight-bold;
+  color: t.color('accent-contrast');
+  border: t.$border-width solid t.color('accent');
+  border-radius: t.$radius-md;
+  background: t.color('accent');
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+}
