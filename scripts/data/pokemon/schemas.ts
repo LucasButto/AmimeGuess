@@ -34,6 +34,8 @@ export const pokemonSchema = z.object({
   weight: z.number().int(),
   types: z.array(z.object({ slot: z.number().int(), type: named })),
   abilities: z.array(z.object({ ability: named, is_hidden: z.boolean(), slot: z.number().int() })),
+  /** Todos los movimientos que aprende, en cualquier juego. */
+  moves: z.array(z.object({ move: named })),
   stats: z.array(z.object({ base_stat: z.number().int(), stat: z.object({ name: z.string() }) })),
   sprites: z.object({
     other: z
@@ -184,8 +186,18 @@ const signatureMoveContentSchema = z
   })
   .strict();
 
+/** Los 4 movimientos del Moveset, del más común al menos común: el último es el que más delata al Pokémon. */
+const movesetContentSchema = z
+  .object({
+    ...contentBase,
+    kind: z.literal('moveset'),
+    payload: z.object({ items: z.array(z.string().min(1)).length(4) }).strict(),
+  })
+  .strict();
+
 export const contentSchema = z.discriminatedUnion('kind', [
   dexContentSchema,
   tcgCardContentSchema,
   signatureMoveContentSchema,
+  movesetContentSchema,
 ]);

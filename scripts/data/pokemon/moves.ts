@@ -40,6 +40,23 @@ export function pickMoveText(entries: Move['flavor_text_entries']): string | und
   return best?.text;
 }
 
+/** Cuántas especies aprenden cada movimiento, por nombre de la API. Cuenta formas alternativas como su especie. */
+export function countLearners(
+  moves: readonly Move[],
+  speciesOf: (pokemonId: number) => number | undefined,
+): Map<string, number> {
+  const counts = new Map<string, number>();
+  for (const move of moves) {
+    const species = new Set<number>();
+    for (const learner of move.learned_by_pokemon) {
+      const id = speciesOf(learnerPokemonId(learner));
+      if (id !== undefined) species.add(id);
+    }
+    counts.set(move.name, species.size);
+  }
+  return counts;
+}
+
 export interface SignatureInput {
   moves: readonly Move[];
   /** Especie de un Pokémon de la API, sea la forma por defecto o una alternativa. `undefined` si no se conoce. */

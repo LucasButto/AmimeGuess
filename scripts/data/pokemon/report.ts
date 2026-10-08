@@ -4,6 +4,7 @@ import type { Content, Entity } from '../../../src/engine/types.ts';
 import { CARDS_PER_POKEMON } from './cards.ts';
 import type { Rendered, Size } from './images.ts';
 import type { SignatureResult } from './moves.ts';
+import { MOVES_PER_POKEMON, type MovesetResult } from './moveset.ts';
 
 const pct = (part: number, total: number) => (total === 0 ? '  -  ' : `${((100 * part) / total).toFixed(0).padStart(3)}%`);
 const kb = (bytes: number) => `${(bytes / 1024).toFixed(1)} KB`;
@@ -24,6 +25,8 @@ export interface ReportInput {
   withoutCard: string[];
   /** Movimientos insignia. */
   signature: SignatureResult;
+  /** Moveset de cada Pokémon. */
+  moveset: MovesetResult;
 }
 
 /** Una línea por tamaño con cantidad, peso, promedio, máximo y calidades usadas; devuelve el peso total. */
@@ -56,6 +59,7 @@ export function printReport({
   cardImages,
   withoutCard,
   signature,
+  moveset,
 }: ReportInput): void {
   const line = (text = '') => console.log(text);
   const dexContents = contents.filter((content) => content.kind === 'dex');
@@ -138,6 +142,19 @@ export function printReport({
   if (signature.excluded.length > 0) {
     line(`  Excluidos (${signature.excluded.length}):`);
     for (const item of signature.excluded) line(`    - ${item.move}: ${item.reason}`);
+  }
+
+  line();
+  line(`Moveset (${MOVES_PER_POKEMON} movimientos, los menos comunes de cada Pokémon):`);
+  line('Por generación                 Pokémon     con Moveset');
+  for (const series of generations) {
+    const group = entities.filter((entity) => entity.series[0] === series);
+    const withMoveset = moveset.contents.filter((content) => content.series === series).length;
+    line(`  ${series.padEnd(26)}${String(group.length).padStart(9)}   ${`${withMoveset}/${group.length}`.padStart(11)} ${pct(withMoveset, group.length)}`);
+  }
+  line(`  Total: ${moveset.contents.length} Pokémon con Moveset; ${moveset.without.length} sin (menos de ${MOVES_PER_POKEMON} movimientos que se puedan mostrar).`);
+  if (moveset.without.length > 0) {
+    line(`  ${moveset.without.map((item) => `${item.id} (${item.usable})`).join(', ')}`);
   }
 
   line();

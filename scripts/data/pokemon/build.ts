@@ -4,7 +4,8 @@
 //   data/pokemon/entities.json   una entidad por especie base (sin megas ni formas regionales)
 //   data/pokemon/content.json    descripciones de la Pokédex en español, con el nombre en "???",
 //                                cartas del TCG (kind "tcg-card", hasta 2 por Pokémon) y
-//                                movimientos insignia (kind "signature-move")
+//                                movimientos insignia (kind "signature-move") y el Moveset de
+//                                cada Pokémon (kind "moveset": sus 4 movimientos menos comunes)
 //   public/img/pokemon/          arte oficial en WebP, 256 y 512 px
 //   public/img/pokemon/cards/    las cartas del TCG en WebP, 256 y 512 px
 //
@@ -34,7 +35,8 @@ import {
   renderImage,
   type Rendered,
 } from './images.ts';
-import { buildSignatureContents, learnerPokemonId, type SignatureResult } from './moves.ts';
+import { buildSignatureContents, countLearners, learnerPokemonId, type SignatureResult } from './moves.ts';
+import { MOVES_PER_POKEMON, buildMovesetContents } from './moveset.ts';
 import { printReport } from './report.ts';
 import {
   contentSchema,
@@ -315,6 +317,14 @@ async function validate(entities: Entity[], contents: Content[], apiCount: numbe
     const count = cardContents.filter((content) => content.entityId === entity.id).length;
     if (count > CARDS_PER_POKEMON) problems.push(`${entity.id}: tiene ${count} cartas y el máximo es ${CARDS_PER_POKEMON}`);
   }
+  const movesetContents = contents.filter((content) => content.kind === 'moveset');
+  if (new Set(movesetContents.map((content) => content.entityId)).size !== movesetContents.length) {
+    problems.push('hay más de un Moveset para una misma entidad');
+  }
+  for (const content of movesetContents) {
+    const items = content.payload.items as string[];
+    if (new Set(items).size !== MOVES_PER_POKEMON) problems.push(`${content.id}: tiene movimientos repetidos`);
+  }
   for (const content of contents.filter((candidate) => candidate.kind === 'signature-move')) {
     for (const other of content.payload.accepts as string[]) {
       if (!ids.has(other)) problems.push(`${content.id}: acepta a ${other}, que no existe`);
@@ -438,7 +448,12 @@ async function main(): Promise<void> {
   const cards = await buildCards(species, entities);
   // Primero las descripciones y después las cartas, así agregar un tipo de contenido no reordena el resto.
   const signature = signatureMoves(moves, species, entities, speciesOfPokemon, moveTypeName);
-  const allContents = [...contents, ...cards.contents, ...signature.contents];
+  const moveset = buildMovesetContents({
+    pokemon: entities.map((entity, index) => ({ entity, moves: pokemon[index].moves.map((entry) => entry.move.name) })),
+    moves,
+    learnerCount: countLearners(moves, speciesOfPokemon),
+  });
+  const allContents = [...contents, ...cards.contents, ...signature.contents, ...moveset.contents];
 
   step('Validando…');
   await validate(entities, allContents, apiCount);
@@ -456,6 +471,7 @@ async function main(): Promise<void> {
     cardImages: cards.rendered,
     withoutCard: cards.withoutCard,
     signature,
+    moveset,
   });
   step('Listo.');
 }
