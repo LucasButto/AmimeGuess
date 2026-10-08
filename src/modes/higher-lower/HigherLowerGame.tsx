@@ -8,7 +8,7 @@ import type { Entity } from '@/engine/types';
 import { es } from '@/i18n/es';
 import { HigherLowerBoard } from './HigherLowerBoard';
 import { HigherLowerHelp } from './HigherLowerHelp';
-import { buildRounds, metricOfDay, poolOf } from './logic';
+import { MAX_ROUNDS, buildRounds, metricOfDay, poolOf } from './logic';
 import type { HigherLowerConfig } from './types';
 
 interface HigherLowerGameProps {
@@ -66,8 +66,8 @@ function HigherLowerSession({ session, config, entities }: HigherLowerSessionPro
   const metric = useMemo(() => metricOfDay(config.metrics, day), [config.metrics, day]);
   const pool = useMemo(() => poolOf(entities, active, config.metrics), [entities, active, config.metrics]);
   const rounds = useMemo(
-    () => buildRounds(pool, metric.key, { franchise, mode, filterKey, day }),
-    [pool, metric.key, franchise, mode, filterKey, day],
+    () => buildRounds(pool, metric.key, { franchise, mode, filterKey, day }, MAX_ROUNDS, config.minRatio),
+    [pool, metric.key, franchise, mode, filterKey, day, config.minRatio],
   );
 
   if (rounds.length === 0) return <p role="status">{es.higherLower.noRounds}</p>;

@@ -5,7 +5,7 @@ import { ContentImage } from '@/components/ContentImage';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import { es } from '@/i18n/es';
 import styles from './AttemptsTable.module.scss';
-import { formatValue, type AttemptRow, type Cell } from './logic';
+import { cellText, type AttemptRow, type Cell } from './logic';
 import type { ClassicColumn } from './types';
 
 interface AttemptsTableProps {
@@ -97,7 +97,7 @@ export function AttemptsTable({ rows, columns }: AttemptsTableProps) {
                   <span>{row.entity.name.es}</span>
                 </th>
                 {row.cells.map((cell) => {
-                  const text = formatValue(cell.value, cell.column.unit);
+                  const text = cellText(cell.column, cell.value);
                   return (
                     <td key={cell.column.key} className={styles.cell}>
                       <div className={styles.box} data-match={cell.match}>
@@ -105,7 +105,7 @@ export function AttemptsTable({ rows, columns }: AttemptsTableProps) {
                           {text ?? (
                             <>
                               <span aria-hidden="true">—</span>
-                              <VisuallyHidden>{es.classic.noValue}</VisuallyHidden>
+                              <VisuallyHidden>{cell.hidden ? es.classic.hiddenValue : es.classic.noValue}</VisuallyHidden>
                             </>
                           )}
                         </span>

@@ -15,6 +15,8 @@ export interface Cell {
   match: CellMatch;
   /** Solo en columnas ordenables: hacia dónde está la respuesta. `null` si coincide o no es comparable. */
   direction: Direction | null;
+  /** `true` si el valor del intento pertenece a una serie inactiva: no se muestra y no se compara. Ausente si no. */
+  hidden?: true;
 }
 
 export interface AttemptRow {
@@ -35,6 +37,13 @@ export function visibleColumns(columns: readonly ClassicColumn[], active: readon
 function attrOf(entity: Entity, key: string, active: readonly string[]): AttrValue {
   // Regla 3 de la SPEC: los valores de series inactivas se ocultan antes de comparar.
   return filterAttrValue(entity.attrs[key] ?? null, active);
+}
+
+/** El valor de una columna con etiquetas que pertenece a una serie inactiva se oculta, como los valores etiquetados de un conjunto. */
+function isHidden(column: ClassicColumn, value: AttrValue, active: readonly string[]): boolean {
+  if (column.valueLabels === undefined || typeof value !== 'number') return false;
+  const series = column.valueLabels[String(value)]?.series;
+  return series !== undefined && !active.includes(series);
 }
 
 function compareColumn(column: ClassicColumn, guess: AttrValue, answer: AttrValue): Pick<Cell, 'match' | 'direction'> {
@@ -59,9 +68,16 @@ export function buildRow(
 ): AttemptRow {
   return {
     entity: guess,
-    cells: columns.map((column) => {
+    cells: columns.map((column): Cell => {
       const value = attrOf(guess, column.key, active);
-      return { column, value, ...compareColumn(column, value, attrOf(answer, column.key, active)) };
+      const target = attrOf(answer, column.key, active);
+      // Si el valor del intento o el de la respuesta está oculto, no hay con qué comparar: ni acierto ni flecha.
+      const hiddenGuess = isHidden(column, value, active);
+      if (hiddenGuess || isHidden(column, target, active)) {
+        const cell: Cell = { column, value: hiddenGuess ? null : value, match: 'none', direction: null };
+        return hiddenGuess ? { ...cell, hidden: true } : cell;
+      }
+      return { column, value, ...compareColumn(column, value, target) };
     }),
   };
 }
@@ -104,6 +120,18 @@ export function hintText(hint: ClassicHint, answer: Entity, contents: readonly C
   const content = contents.find((candidate) => candidate.kind === hint.contentKind && candidate.entityId === answer.id);
   const text = content?.payload[hint.field];
   return typeof text === 'string' && text.length > 0 ? text : null;
+}
+
+/**
+ * El texto de la celda de un intento: el de `valueLabels` si la columna lo tiene para ese número, o el valor
+ * con su unidad. `null` si no tiene valor.
+ */
+export function cellText(column: ClassicColumn, value: AttrValue): string | null {
+  if (column.valueLabels !== undefined && typeof value === 'number') {
+    const label = column.valueLabels[String(value)]?.label;
+    if (label !== undefined) return label;
+  }
+  return formatValue(value, column.unit);
 }
 
 /** Valor listo para mostrar, con su unidad. `null` si no tiene valor (se muestra como "ninguno"). */

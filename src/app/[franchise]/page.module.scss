@@ -37,3 +37,48 @@
     outline-offset: 0.125rem;
   }
 }
+
+// 1 columna en base, 2 en md, 4 en xl (SPEC 9.1).
+.modes {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: t.$space-3;
+  inline-size: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.min-width('md') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include bp.min-width('xl') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.mode {
+  @include m.touch-target;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  block-size: 100%;
+  padding: t.$space-4;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+  color: t.color('text');
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-medium;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    border-color: t.color('accent');
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+}

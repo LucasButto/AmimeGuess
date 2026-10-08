@@ -14,6 +14,7 @@ export const es = {
   },
   franchise: {
     provisional: 'Página de la franquicia en construcción.',
+    modesLabel: 'Modos de juego',
     backToHome: 'Volver al inicio',
   },
   mode: {
@@ -55,6 +56,7 @@ export const es = {
     answerHigher: 'La respuesta es mayor',
     answerLower: 'La respuesta es menor',
     noValue: 'Ninguno',
+    hiddenValue: 'Oculto: pertenece a una serie que apagaste',
     hintsTitle: 'Pistas',
     hintLocked: (remaining: number) =>
       `Se desbloquea con ${remaining} ${plural(remaining, 'intento fallido más', 'intentos fallidos más')}`,
@@ -70,6 +72,7 @@ export const es = {
       hint: (label: string, after: number) =>
         `${label}: a los ${after} ${plural(after, 'intento fallido', 'intentos fallidos')}.`,
       columnsNote: 'Algunas columnas solo aparecen con ciertas series activas.',
+      hiddenNote: 'Si el valor de una columna pertenece a una serie que apagaste, se ve como — y no se compara.',
     },
   },
   imageReveal: {
@@ -154,6 +157,34 @@ export const es = {
     help: {
       goal: 'Adiviná la respuesta del día con las pistas. Escribí un nombre, elegí una opción de la lista y probá las veces que haga falta.',
       reveal: 'Al empezar ves una sola pista; cada intento fallido revela una más.',
+    },
+  },
+  timeline: {
+    instructions: 'Ordená los sucesos del más antiguo al más reciente.',
+    oldest: 'Más antiguo',
+    newest: 'Más reciente',
+    listLabel: 'Sucesos para ordenar',
+    attempt: (current: number, total: number) => `Intento ${current} de ${total}`,
+    confirm: 'Confirmar orden',
+    moveFirst: 'Cambiá algo del orden antes de volver a confirmar.',
+    moveUp: (text: string) => `Subir: ${text}`,
+    moveDown: (text: string) => `Bajar: ${text}`,
+    moved: (text: string, position: number, total: number) => `${text}: posición ${position} de ${total}.`,
+    stateLocked: 'En su lugar',
+    stateWrong: 'No va ahí',
+    confirmed: (attempt: number, correct: number, total: number) =>
+      `Intento ${attempt}: ${correct} de ${total} en su lugar.`,
+    solvedAnnouncement: '¡Ordenados!',
+    lostAnnouncement: 'Se acabaron los intentos.',
+    correctOrderTitle: 'El orden correcto',
+    answerLabel: (first: string, last: string) => `de «${first}» a «${last}»`,
+    noPuzzle: 'Con estos filtros no hay suficientes sucesos para armar el reto. Activá más series.',
+    help: {
+      goal: (count: number) =>
+        `Ordená ${count} sucesos del más antiguo (arriba) al más reciente (abajo).`,
+      move: 'Arrastrá un suceso desde su asa (las rayitas de la izquierda) o usá los botones de subir y bajar; con el teclado, los botones.',
+      attempts: (total: number) =>
+        `Tenés ${total} intentos. Al confirmar, los sucesos que están en su lugar quedan fijos y el resto se sigue moviendo.`,
     },
   },
   shell: {

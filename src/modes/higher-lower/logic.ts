@@ -57,6 +57,13 @@ export function winnerOf(round: Round): Entity {
   return round.aValue > round.bValue ? round.a : round.b;
 }
 
+/** ¿El mayor de los dos vale al menos `minRatio` veces el menor? Con `minRatio` 1 (o menos) siempre; si no, hacen falta valores positivos. */
+export function hasRatio(a: number, b: number, minRatio: number): boolean {
+  if (minRatio <= 1) return true;
+  const low = Math.min(a, b);
+  return low > 0 && Math.max(a, b) / low >= minRatio;
+}
+
 /**
  * La secuencia de pares del día. Cada par sale de dos sorteos con el PRNG del
  * día; se descartan los empates (no se ofrecen como par) y los pares ya usados
@@ -68,6 +75,7 @@ export function buildRounds(
   metricKey: string,
   ctx: DailyContext,
   length: number = MAX_ROUNDS,
+  minRatio: number = 1,
 ): Round[] {
   const count = pool.length;
   if (count < 2) return [];
@@ -86,6 +94,7 @@ export function buildRounds(
     const aValue = valueOf(a, metricKey);
     const bValue = valueOf(b, metricKey);
     if (aValue === null || bValue === null || aValue === bValue) continue;
+    if (!hasRatio(aValue, bValue, minRatio)) continue;
 
     const key = a.id < b.id ? `${a.id}|${b.id}` : `${b.id}|${a.id}`;
     if (used.has(key)) continue;
@@ -146,8 +155,31 @@ export function shareGrid(score: number, failed: boolean): string[] {
   return lines;
 }
 
-/** Un valor listo para mostrar, con su unidad. */
-export function formatValue(value: number, unit?: string): string {
-  const text = value.toLocaleString('es-AR', { maximumFractionDigits: 2 });
+const SUPERSCRIPT: Record<string, string> = { '0': '⁰', '1': '¹', '2': '²', '3': '³', '4': '⁴', '5': '⁵', '6': '⁶', '7': '⁷', '8': '⁸', '9': '⁹', '-': '⁻' };
+
+/** Desde este valor, una métrica `scientific` se muestra como potencia de diez. */
+export const SCIENTIFIC_FROM = 1_000_000;
+
+/** `1,98 × 10²⁵`: la mantisa con a lo sumo 2 decimales y el exponente en superíndice. */
+export function formatScientific(value: number): string {
+  let exponent = Math.floor(Math.log10(value));
+  let mantissa = Math.round((value / 10 ** exponent) * 100) / 100;
+  if (mantissa >= 10) {
+    mantissa /= 10;
+    exponent += 1;
+  }
+  const power = String(exponent).replace(/./g, (char) => SUPERSCRIPT[char] ?? char);
+  return `${mantissa.toLocaleString('es-AR', { maximumFractionDigits: 2 })} × 10${power}`;
+}
+
+/** Un valor listo para mostrar, con su unidad. `scientific`: los muy grandes van como potencia de diez. */
+export function formatValue(value: number, unit?: string, scientific = false): string {
+  const text =
+    scientific && value >= SCIENTIFIC_FROM ? formatScientific(value) : value.toLocaleString('es-AR', { maximumFractionDigits: 2 });
   return unit ? `${text} ${unit}` : text;
+}
+
+/** El valor de una métrica, con el formato que pide su configuración. */
+export function formatMetric(metric: HigherLowerMetric, value: number): string {
+  return formatValue(value, metric.unit, metric.scientific);
 }

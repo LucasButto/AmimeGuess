@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { Content, Entity } from '@/engine/types';
 import {
   buildRow,
+  cellText,
   failedCount,
   formatValue,
   hintStates,
@@ -254,5 +255,69 @@ describe('restoreAttempts', () => {
 
   it('descarta los intentos que quedaron fuera del pool por un filtro', () => {
     expect(restoreAttempts(['squirtle', 'bulbasaur'], pool)).toEqual(['bulbasaur']);
+  });
+});
+
+describe('columnas con etiquetas (valueLabels)', () => {
+  // El valor es el lugar en la cronología; el texto, el nombre de la serie, y cada una pertenece a la suya.
+  const debut: ClassicColumn = {
+    key: 'debut',
+    label: 'Serie de debut',
+    compare: 'ordered',
+    valueLabels: { '1': { label: 'Dragon Ball', series: 'db' }, '2': { label: 'Dragon Ball Z', series: 'dbz' }, '3': { label: 'Dragon Ball Super', series: 'super' } },
+  };
+  const one = (id: string, debutValue: number, series = ['db', 'dbz', 'super']) => entity(id, { debut: debutValue }, series);
+  const goku = one('goku', 1);
+  const vegeta = one('vegeta', 2);
+  const bills = one('bills', 3);
+  const row = (guess: Entity, answer: Entity, active: string[]) => buildRow(guess, answer, [debut], active).cells[0];
+
+  it('se muestra el texto en lugar del número, y se compara el número', () => {
+    expect(cellText(debut, 2)).toBe('Dragon Ball Z');
+    const cell = row(goku, bills, ['db', 'dbz', 'super']);
+    expect(cell.value).toBe(1);
+    expect(cell.match).toBe('none');
+    expect(cell.direction).toBe('up');
+    expect(row(vegeta, vegeta, ['db', 'dbz', 'super']).match).toBe('exact');
+  });
+
+  it('un número sin etiqueta se muestra como número', () => {
+    expect(cellText(debut, 9)).toBe('9');
+    expect(cellText(debut, null)).toBeNull();
+  });
+
+  it('una columna sin etiquetas se comporta como siempre', () => {
+    expect(cellText({ key: 'altura', label: 'Altura', compare: 'ordered', unit: 'm' }, 0.7)).toBe('0,7 m');
+  });
+
+  it('con la serie del valor inactiva, el valor del intento se oculta y no se compara', () => {
+    const cell = row(vegeta, bills, ['db', 'super']);
+    expect(cell.hidden).toBe(true);
+    expect(cell.value).toBeNull();
+    expect(cell.match).toBe('none');
+    expect(cell.direction).toBeNull();
+  });
+
+  it('si el valor de la respuesta está oculto no hay flecha ni acierto, pero el intento se ve', () => {
+    const cell = row(bills, vegeta, ['db', 'super']);
+    expect(cell.hidden).toBeUndefined();
+    expect(cell.value).toBe(3);
+    expect(cell.match).toBe('none');
+    expect(cell.direction).toBeNull();
+  });
+
+  it('si los dos están ocultos tampoco coinciden: no hay nada que comparar', () => {
+    expect(row(vegeta, vegeta, ['db', 'super']).match).toBe('none');
+  });
+
+  it('con todas las series activas nunca hay nada oculto', () => {
+    for (const guess of [goku, vegeta, bills]) expect(row(guess, bills, ['db', 'dbz', 'super']).hidden).toBeUndefined();
+  });
+
+  it('un valor sin serie en su etiqueta no se oculta nunca', () => {
+    const open: ClassicColumn = { key: 'debut', label: 'Debut', compare: 'ordered', valueLabels: { '1': { label: 'Uno' } } };
+    const cell = buildRow(one('a', 1), one('b', 1), [open], ['db']).cells[0];
+    expect(cell.hidden).toBeUndefined();
+    expect(cell.match).toBe('exact');
   });
 });

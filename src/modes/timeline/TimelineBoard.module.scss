@@ -1,0 +1,237 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-3;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
+}
+
+.instructions {
+  line-height: t.$line-height-base;
+}
+
+.counter {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: t.color('text-muted');
+}
+
+// Los extremos de la línea: arriba lo más antiguo, abajo lo más reciente.
+.end {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  color: t.color('text-muted');
+}
+
+// `position: relative`: el arrastre mide las alturas de los sucesos respecto de la lista.
+// `overflow-anchor: none`: al reordenar durante un arrastre, el navegador no puede desplazar la
+// página para mantener fija una tarjeta; eso movería la lista bajo el dedo y el arrastre se perdería.
+.list {
+  position: relative;
+  overflow-anchor: none;
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  min-block-size: 3.5rem;
+  padding: t.$space-1 t.$space-2;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-md;
+  background: t.color('surface');
+
+  // Un suceso en su lugar queda fijo; uno confirmado que no iba ahí se marca. Siempre con ícono y texto.
+  &[data-state='locked'] {
+    border-color: t.color('match');
+    background: color-mix(in srgb, #{t.color('match')} 12%, #{t.color('surface')});
+  }
+
+  &[data-state='wrong'] {
+    border-color: t.color('miss');
+    background: color-mix(in srgb, #{t.color('miss')} 10%, #{t.color('surface')});
+  }
+
+  // El que se arrastra sigue al puntero (`--drag-offset` se calcula en cada movimiento) y se despega de la lista.
+  &[data-dragging='true'] {
+    z-index: 2;
+    transform: translateY(var(--drag-offset, 0));
+    border-color: t.color('accent');
+    box-shadow: 0 0.5rem 1.25rem color-mix(in srgb, #{t.color('text')} 25%, transparent);
+    user-select: none;
+  }
+}
+
+// El asa: lo único desde donde se arrastra, así el resto de la tarjeta deja desplazar la página con el dedo.
+.handle {
+  position: relative;
+  flex: none;
+  align-self: stretch;
+  inline-size: t.$touch-target;
+  min-block-size: t.$touch-target;
+  border-radius: t.$radius-sm;
+  cursor: grab;
+  touch-action: none;
+
+  // Las rayitas del asa: dos columnas de tres puntos, centradas; el área táctil es toda la columna.
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    inline-size: 1rem;
+    block-size: 1.5rem;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, t.color('text-muted') 0.09375rem, transparent 0.125rem) 0 0 / 0.5rem 0.5rem;
+  }
+
+  .item[data-dragging='true'] & {
+    cursor: grabbing;
+  }
+}
+
+.text {
+  flex: 1;
+  min-inline-size: 0;
+  line-height: t.$line-height-tight;
+  overflow-wrap: anywhere;
+}
+
+.position {
+  margin-inline-end: t.$space-1;
+  font-weight: t.$font-weight-bold;
+  color: t.color('text-muted');
+}
+
+.mark {
+  flex: none;
+  font-weight: t.$font-weight-bold;
+
+  .item[data-state='locked'] & {
+    color: t.color('match');
+  }
+
+  .item[data-state='wrong'] & {
+    color: t.color('miss');
+  }
+}
+
+// En un teléfono vertical los botones se apilan para dejarle ancho al texto.
+.moves {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+
+  @include bp.min-width('sm') {
+    flex-direction: row;
+  }
+}
+
+.move {
+  @include m.touch-target;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font: inherit;
+  font-size: t.$font-size-sm;
+  color: t.color('accent');
+  border: 0;
+  border-radius: t.$radius-md;
+  background: transparent;
+  cursor: pointer;
+
+  &:hover:not(:disabled) {
+    background: color-mix(in srgb, #{t.color('accent')} 12%, transparent);
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: -0.125rem;
+  }
+
+  &:disabled {
+    color: t.color('text-muted');
+    opacity: 0.4;
+    cursor: default;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: t.$space-2;
+
+  @include bp.min-width('sm') {
+    align-items: flex-start;
+  }
+}
+
+.confirm {
+  @include m.touch-target;
+  padding: t.$space-2 t.$space-5;
+  font: inherit;
+  font-weight: t.$font-weight-bold;
+  color: t.color('accent-contrast');
+  border: t.$border-width solid t.color('accent');
+  border-radius: t.$radius-md;
+  background: t.color('accent');
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.hint {
+  font-size: t.$font-size-sm;
+  color: t.color('text-muted');
+}
+
+.solution {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+  padding: t.$space-3 t.$space-4;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+}
+
+.solutionTitle {
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+}
+
+.solutionList {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
+  margin: 0;
+  padding-inline-start: t.$space-5;
+}

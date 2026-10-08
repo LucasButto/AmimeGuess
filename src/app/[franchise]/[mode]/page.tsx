@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { franchises, getFranchise } from '@/franchises';
+import { loadFranchiseData } from '@/franchises/data';
 import { es } from '@/i18n/es';
 import { ModeGame } from './ModeGame';
 import styles from './page.module.scss';
-import { isPlayable } from './playable';
+import { modeStatus } from './playable';
 
 // Solo existen los modos de la config de cada franquicia; cualquier otra ruta es 404.
 export const dynamicParams = false;
@@ -25,11 +26,15 @@ export default async function ModePage({
   const mode = franchise?.modes.find((candidate) => candidate.slug === modeSlug);
   if (!franchise || !mode) notFound();
 
-  const modes = franchise.modes.map((candidate) => ({
-    slug: candidate.slug,
-    name: candidate.name,
-    available: isPlayable(franchise, candidate),
-  }));
+  // Los datos se leen al generar la página: con ellos se sabe qué modos tienen pool suficiente.
+  // Los que no lo alcanzan con todas las series activas no aparecen en la navegación.
+  const data = await loadFranchiseData(franchise.slug);
+  const statuses = new Map(franchise.modes.map((candidate) => [candidate.slug, modeStatus(franchise, candidate, data)]));
+  const modes = franchise.modes.flatMap((candidate) =>
+    statuses.get(candidate.slug) === 'hidden'
+      ? []
+      : [{ slug: candidate.slug, name: candidate.name, available: statuses.get(candidate.slug) === 'playable' }],
+  );
 
   return (
     <main className={styles.page}>
@@ -37,7 +42,7 @@ export default async function ModePage({
         <p className={styles.franchise}>{franchise.name}</p>
         <h1 className={styles.title}>{mode.name}</h1>
       </header>
-      <ModeGame franchise={franchise} mode={mode} modes={modes} />
+      <ModeGame franchise={franchise} mode={mode} modes={modes} playable={statuses.get(mode.slug) === 'playable'} />
       <Link className={styles.back} href={`/${franchise.slug}`}>
         {es.mode.backToFranchise}
       </Link>

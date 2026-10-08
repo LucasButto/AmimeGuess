@@ -18,7 +18,10 @@ export function HigherLowerHelp({ config }: HigherLowerHelpProps) {
         <p>{es.higherLower.help.metricsIntro}</p>
         <ul className={styles.metrics}>
           {config.metrics.map((metric) => (
-            <li key={metric.key}>{metric.label}</li>
+            <li key={metric.key}>
+              {metric.label}
+              {metric.note && <span className={styles.note}> {metric.note}</span>}
+            </li>
           ))}
         </ul>
       </section>

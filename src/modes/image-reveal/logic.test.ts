@@ -8,6 +8,8 @@ import {
   REVEAL_STEPS,
   candidatesOf,
   failedCount,
+  isCorrect,
+  meetsRequirement,
   pickImage,
   randomFocus,
   restoreAttempts,
@@ -326,5 +328,65 @@ describe('src/modes/image-reveal', () => {
 
   it('la lógica no importa React ni nada de una franquicia (regla 2)', () => {
     expect(code).not.toMatch(/from\s+['"](react|next|@\/franchises|@\/components)/);
+  });
+});
+
+describe('requireAttr · quién puede ser la respuesta', () => {
+  const withAttr = (id: string, imagenTransparente: number | null, series = ['g1']): Entity => ({ ...entity(id, series), attrs: { imagenTransparente } });
+  const entities = [withAttr('a', 1), withAttr('b', 0), withAttr('c', null), withAttr('d', 1, ['g2'])];
+  const config: ImageRevealConfig = { variant: 'silhouette', requireAttr: { key: 'imagenTransparente', equals: 1 } };
+
+  it('solo las que tienen el valor pedido entran al pool de respuestas', () => {
+    expect(candidatesOf(entities, [], ['g1', 'g2'], config).map((c) => c.id)).toEqual(['a', 'd']);
+  });
+
+  it('se combina con las series activas', () => {
+    expect(candidatesOf(entities, [], ['g1'], config).map((c) => c.id)).toEqual(['a']);
+    expect(candidatesOf(entities, [], ['g2'], config).map((c) => c.id)).toEqual(['d']);
+  });
+
+  it('sin requireAttr, entran todas las que tienen imagen', () => {
+    expect(candidatesOf(entities, [], ['g1', 'g2'], { variant: 'silhouette' }).map((c) => c.id)).toEqual(['a', 'b', 'c', 'd']);
+  });
+
+  it('meetsRequirement compara el valor exacto', () => {
+    const [a, b, c] = entities;
+    const requirement = { key: 'imagenTransparente', equals: 1 };
+    expect([a, b, c].map((item) => meetsRequirement(item, requirement))).toEqual([true, false, false]);
+    expect(meetsRequirement(b, undefined)).toBe(true);
+  });
+
+  it('también filtra cuando la imagen sale de un contenido', () => {
+    const cards = [card('c-a', 'a', 'g1', { image: 'cards/a' }), card('c-b', 'b', 'g1', { image: 'cards/b' })];
+    const cardConfig: ImageRevealConfig = { variant: 'blur', imageContentKind: 'tcg-card', requireAttr: { key: 'imagenTransparente', equals: 1 } };
+    expect(candidatesOf(entities, cards, ['g1'], cardConfig).map((c) => c.id)).toEqual(['a']);
+  });
+});
+
+describe('accepts · una imagen que es cierta para más de una entidad', () => {
+  const entities = [entity('goku', ['db']), entity('krilin', ['db']), entity('vegeta', ['db'])];
+  const technique = (id: string, entityId: string, payload: Record<string, unknown>) => card(id, entityId, 'db', { image: `techniques/${id}`, ...payload }, 'technique');
+  const config: ImageRevealConfig = { variant: 'blur', imageContentKind: 'technique' };
+
+  it('la imagen lleva los ids que acepta, solo si el dato los trae', () => {
+    const contents = [technique('kame', 'goku', { accepts: ['krilin', 7, 'vegeta'] }), technique('genki', 'krilin', {})];
+    const images = Object.fromEntries(candidatesOf(entities, contents, ['db'], config).map((c) => [c.id, c.images[0]]));
+    expect(images.goku.accepts).toEqual(['krilin', 'vegeta']);
+    expect(images.krilin.accepts).toBeUndefined();
+  });
+
+  it('isCorrect acepta la respuesta y cualquiera de las que se aceptan', () => {
+    expect(isCorrect('goku', 'goku')).toBe(true);
+    expect(isCorrect('krilin', 'goku')).toBe(false);
+    expect(isCorrect('krilin', 'goku', ['krilin'])).toBe(true);
+    expect(isCorrect('vegeta', 'goku', ['krilin'])).toBe(false);
+  });
+
+  it('failedCount y shareGrid cuentan como acierto lo que se acepta', () => {
+    const attempts = ['vegeta', 'krilin', 'goku'];
+    expect(failedCount(attempts, 'goku', ['krilin'])).toBe(1);
+    expect(failedCount(attempts, 'goku')).toBe(2);
+    expect(shareGrid(attempts, 'goku', ['krilin'])).toEqual(['🟥', '🟩', '🟩']);
+    expect(shareGrid(attempts, 'goku')).toEqual(['🟥', '🟥', '🟩']);
   });
 });

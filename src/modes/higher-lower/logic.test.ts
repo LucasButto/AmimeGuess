@@ -7,7 +7,10 @@ import {
   GRID_ROW,
   MAX_ROUNDS,
   buildRounds,
+  formatMetric,
+  formatScientific,
   formatValue,
+  hasRatio,
   metricOfDay,
   poolOf,
   progressOf,
@@ -290,5 +293,68 @@ describe('src/modes/higher-lower', () => {
 
   it('la lógica no importa React ni nada de una franquicia (regla 2)', () => {
     expect(code).not.toMatch(/from\s+['"](react|next|@\/franchises|@\/components)/);
+  });
+});
+
+describe('minRatio · pares con diferencia suficiente', () => {
+  // 1, 3, 10, 30, 100…: cada valor es 3 o 3,3 veces el anterior, así muchos pares no llegan a 10 veces.
+  const WIDE = Array.from({ length: 14 }, (_, i) => entity(`w${String(i).padStart(2, '0')}`, ['g1'], { peso: 10 ** Math.floor(i / 2) * (i % 2 === 0 ? 1 : 3) }));
+  const CLOSE = Array.from({ length: 30 }, (_, i) => entity(`c${String(i).padStart(2, '0')}`, ['g1'], { peso: 100 + i }));
+
+  it('hasRatio compara el mayor con el menor', () => {
+    expect(hasRatio(1, 10, 10)).toBe(true);
+    expect(hasRatio(10, 1, 10)).toBe(true);
+    expect(hasRatio(1, 9.99, 10)).toBe(false);
+    expect(hasRatio(5, 6, 1)).toBe(true);
+  });
+
+  it('con minRatio 1 (o sin él) vale cualquier par; con valores no positivos, ninguno de los que piden razón', () => {
+    expect(hasRatio(0, 5, 1)).toBe(true);
+    expect(hasRatio(0, 5, 10)).toBe(false);
+    expect(hasRatio(-2, 50, 10)).toBe(false);
+  });
+
+  it('todos los pares ofrecidos difieren al menos en un orden de magnitud', () => {
+    const rounds = buildRounds(WIDE, 'peso', ctx, MAX_ROUNDS, 10);
+    expect(rounds.length).toBeGreaterThan(10);
+    for (const round of rounds) expect(Math.max(round.aValue, round.bValue) / Math.min(round.aValue, round.bValue)).toBeGreaterThanOrEqual(10);
+  });
+
+  it('sin minRatio salen pares más parejos que con él', () => {
+    const free = buildRounds(WIDE, 'peso', ctx, MAX_ROUNDS);
+    expect(free.some((round) => Math.max(round.aValue, round.bValue) / Math.min(round.aValue, round.bValue) < 10)).toBe(true);
+  });
+
+  it('la secuencia con minRatio es la misma en cualquier dispositivo', () => {
+    const ids = (rounds: Round[]) => rounds.map((round) => `${round.a.id}|${round.b.id}`);
+    expect(ids(buildRounds(WIDE, 'peso', ctx, MAX_ROUNDS, 10))).toEqual(ids(buildRounds(WIDE, 'peso', ctx, MAX_ROUNDS, 10)));
+  });
+
+  it('si ningún par llega a la razón pedida, la secuencia queda vacía en vez de colgarse', () => {
+    expect(buildRounds(CLOSE, 'peso', ctx, MAX_ROUNDS, 10)).toEqual([]);
+  });
+});
+
+describe('notación científica', () => {
+  it('la mantisa va con hasta 2 decimales y el exponente en superíndice', () => {
+    expect(formatScientific(9e25)).toBe('9 × 10²⁵');
+    expect(formatScientific(1.984e25)).toBe('1,98 × 10²⁵');
+    expect(formatScientific(4.4e8)).toBe('4,4 × 10⁸');
+  });
+
+  it('una mantisa que se redondea a 10 pasa al exponente siguiente', () => {
+    expect(formatScientific(9.999e6)).toBe('1 × 10⁷');
+  });
+
+  it('formatValue solo la usa si la métrica la pide y el valor es grande', () => {
+    expect(formatValue(9e25, undefined, true)).toBe('9 × 10²⁵');
+    expect(formatValue(9e25)).not.toContain('×');
+    expect(formatValue(1500, undefined, true)).toBe('1.500');
+    expect(formatValue(5_000_000, 'ki', true)).toBe('5 × 10⁶ ki');
+  });
+
+  it('formatMetric sigue la configuración de la métrica', () => {
+    expect(formatMetric({ key: 'ki', label: 'Ki', question: '?', scientific: true }, 2e24)).toBe('2 × 10²⁴');
+    expect(formatMetric({ key: 'peso', label: 'Peso', question: '?', unit: 'kg' }, 6.9)).toBe('6,9 kg');
   });
 });

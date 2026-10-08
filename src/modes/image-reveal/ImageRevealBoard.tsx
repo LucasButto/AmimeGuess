@@ -13,6 +13,7 @@ import {
   REVEALED,
   REVEAL_STEPS,
   failedCount,
+  isCorrect,
   pickImage,
   randomFocus,
   restoreAttempts,
@@ -36,12 +37,12 @@ interface ImageRevealBoardProps {
 }
 
 /** El aviso al marco de que terminó el reto: la respuesta, los intentos y la grilla para compartir. */
-function reportOf(attemptIds: readonly string[], answer: Candidate, fresh: boolean): FinishReport {
+function reportOf(attemptIds: readonly string[], answer: Candidate, accepted: readonly string[], fresh: boolean): FinishReport {
   return {
     won: true,
     attempts: attemptIds.length,
     answer: { label: answer.entity.name.es, imageStem: answer.entity.image },
-    grid: shareGrid(attemptIds, answer.id),
+    grid: shareGrid(attemptIds, answer.id, accepted),
     fresh,
   };
 }
@@ -58,6 +59,8 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
   const answer = useMemo(() => pickDaily(candidates, ctx), [candidates, ctx]);
   const image = useMemo(() => pickImage(answer, ctx), [answer, ctx]);
+  // Una imagen puede ser igual de cierta para más de una entidad (una técnica que usan varios personajes).
+  const accepted = useMemo(() => image.accepts ?? [], [image]);
   // El punto del zoom: el del dato si lo trae y, si no, el del PRNG del día.
   const focus = useMemo(() => image.focus ?? randomFocus(ctx), [image, ctx]);
   const byId = useMemo(() => new Map(options.map((entity) => [entity.id, entity])), [options]);
@@ -71,15 +74,15 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   // Si la partida ya estaba ganada al montarse (se recargó la página), el marco tiene que
   // mostrar su resumen, pero sin volver a sumarla a las estadísticas.
   const [restored] = useState<FinishReport | null>(() =>
-    attemptIds.includes(answer.id) ? reportOf(attemptIds, answer, false) : null,
+    attemptIds.some((id) => isCorrect(id, answer.id, accepted)) ? reportOf(attemptIds, answer, accepted, false) : null,
   );
   useEffect(() => {
     if (restored) onFinish(restored);
   }, [restored, onFinish]);
 
   const attempted = useMemo(() => new Set(attemptIds), [attemptIds]);
-  const won = attempted.has(answer.id);
-  const failed = failedCount(attemptIds, answer.id);
+  const won = attemptIds.some((id) => isCorrect(id, answer.id, accepted));
+  const failed = failedCount(attemptIds, answer.id, accepted);
   const step = revealStep(failed, prefs.reveal);
   // Al acertar, la imagen se muestra entera, a color y nítida.
   const visual = won ? REVEALED : revealVisual(config.variant, step, prefs.colors, focus);
@@ -93,25 +96,25 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   const failedNames = useMemo(
     () =>
       attemptIds
-        .filter((id) => id !== answer.id)
+        .filter((id) => !isCorrect(id, answer.id, accepted))
         .flatMap((id) => {
           const entity = byId.get(id);
           return entity ? [{ id, label: entity.name.es }] : [];
         })
         .reverse(),
-    [attemptIds, answer.id, byId],
+    [attemptIds, answer.id, accepted, byId],
   );
 
   function addAttempt(id: string) {
     if (won || attempted.has(id) || !byId.has(id)) return;
     const next = [...attemptIds, id];
-    const solved = id === answer.id;
+    const solved = isCorrect(id, answer.id, accepted);
 
     setAttemptIds(next);
     setLastAttempt({ id, revealed: prefs.reveal });
     writeState(getLocalStorage(), ctx, { attempts: next, result: solved ? 'won' : 'playing' });
 
-    if (solved) onFinish(reportOf(next, answer, true));
+    if (solved) onFinish(reportOf(next, answer, accepted, true));
   }
 
   function updatePrefs(next: RevealPrefs) {
@@ -119,7 +122,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
     writePrefs(getLocalStorage(), franchise, mode, next);
   }
 
-  const lastName = lastAttempt && lastAttempt.id !== answer.id ? byId.get(lastAttempt.id)?.name.es : undefined;
+  const lastName = lastAttempt && !isCorrect(lastAttempt.id, answer.id, accepted) ? byId.get(lastAttempt.id)?.name.es : undefined;
 
   return (
     <div className={styles.root} data-game-ready="true" data-step={step} data-won={won}>

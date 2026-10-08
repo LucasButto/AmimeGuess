@@ -5,6 +5,18 @@
 
 export type CompareKind = 'exact' | 'set' | 'ordered';
 
+/** Cómo se muestra un valor numérico de una columna ordenable. */
+export interface ClassicValueLabel {
+  /** El texto que se ve en lugar del número. */
+  readonly label: string;
+  /**
+   * Serie a la que pertenece el valor, si pertenece a una. Con esa serie inactiva el valor se
+   * oculta antes de comparar (regla 3 de la SPEC, aplicada a un valor suelto): no se ve ni
+   * se compara, para que lo excluido no aparezca nunca.
+   */
+  readonly series?: string;
+}
+
 export interface ClassicColumn {
   /** Clave del atributo en `Entity.attrs`. */
   readonly key: string;
@@ -19,6 +31,12 @@ export interface ClassicColumn {
    * generaciones). Sin esto, la columna se muestra siempre.
    */
   readonly onlyForSeries?: readonly string[];
+  /**
+   * Para una columna ordenable cuyo valor es un número que representa otra cosa, como el
+   * lugar de una saga en la cronología: qué texto se muestra por cada número (la clave es el
+   * número, como texto) y a qué serie pertenece. Se compara el número; se muestra el texto.
+   */
+  readonly valueLabels?: Readonly<Record<string, ClassicValueLabel>>;
 }
 
 /** Una pista que se desbloquea tras `after` intentos fallidos. */

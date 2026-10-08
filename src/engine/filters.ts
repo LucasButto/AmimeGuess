@@ -78,6 +78,22 @@ export function eligibleContents<T extends Pick<Content, 'series'>>(
 }
 
 /**
+ * Tipos de contenido que redacta o completa una persona o una IA y que, por eso,
+ * solo entran al pool de producción con `verified: true` (SPEC 7, CLAUDE.md regla 4):
+ * las frases y los sucesos de la línea de tiempo.
+ */
+export const VERIFIED_KINDS: readonly string[] = ['quote', 'event'];
+
+/** ¿Puede este contenido entrar a un pool? Los de `VERIFIED_KINDS` necesitan estar verificados; el resto, siempre. */
+export function isContentPublishable(content: Pick<Content, 'kind' | 'verified'>): boolean {
+  return content.verified || !VERIFIED_KINDS.includes(content.kind);
+}
+
+export function publishableContents<T extends Pick<Content, 'kind' | 'verified'>>(pool: readonly T[]): T[] {
+  return pool.filter(isContentPublishable);
+}
+
+/**
  * Regla 3: en un atributo de tipo conjunto se ocultan los valores etiquetados
  * con una serie inactiva. Los valores sin etiqueta se conservan siempre. Hay
  * que aplicarlo antes de comparar. Los atributos que no son listas pasan

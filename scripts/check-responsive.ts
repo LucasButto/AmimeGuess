@@ -67,9 +67,9 @@ interface RouteCheck {
 
 const GAME_READY = '[data-game-ready="true"]';
 
-/** Una partida de Pokémon con intentos ya hechos, para probar la tabla llena o la imagen a medio revelar. */
-function seededGame(filterKey: string, attempts: string[], mode = 'clasico'): Record<string, string> {
-  const key = stateKey({ franchise: 'pokemon', mode, filterKey, day: getDay(new Date()) });
+/** Una partida con intentos ya hechos (de Pokémon salvo que se diga otra franquicia), para probar la tabla llena o la imagen a medio revelar. */
+function seededGame(filterKey: string, attempts: string[], mode = 'clasico', franchise = 'pokemon'): Record<string, string> {
+  const key = stateKey({ franchise, mode, filterKey, day: getDay(new Date()) });
   return { [key]: JSON.stringify({ attempts, result: 'playing' }) };
 }
 
@@ -233,6 +233,151 @@ function afterPicking(index: number): (page: Page) => Promise<string[]> {
   };
 }
 
+
+// --- Sesión 09: Dragon Ball --------------------------------------------------------------------
+
+/** Seis personajes de Dragon Ball para probar la tabla llena del Clásico. */
+const DB_SIX_ATTEMPTS = ['goku', 'vegeta', 'freezer', 'celula', 'gogeta', 'majin-buu'];
+
+/**
+ * Tres personajes sin imagen: en Silueta, Borroso y Zoom no pueden ser la respuesta del día (solo se
+ * puede adivinar quien tiene imagen), así que son fallos seguros para sembrar una partida a medias.
+ */
+const DB_THREE_MISSES = ['oolong', 'puar', 'yajirobe'];
+
+/** Tres formas para sembrar fallos en Transformación (con tres de 39 posibles, casi seguro que no es ninguna). */
+const DB_THREE_FORMS = ['goku-ssj', 'vegeta-ssj', 'gohan-ssj'];
+
+/** Todas las series menos GT: la tabla del Clásico oculta lo que es de esa serie. */
+const WITHOUT_GT = 'db.dbz.super.daima';
+
+/** El juego de la línea de tiempo está montado (el modo queda oculto mientras no haya sucesos verificados). */
+const TIMELINE_GAME = '[data-game-ready][data-over]';
+
+async function hasTimelineGame(page: Page): Promise<boolean> {
+  return (await page.locator(TIMELINE_GAME).count()) > 0;
+}
+
+/** Los sucesos de la línea de tiempo, de arriba abajo. */
+function timelineTexts(page: Page): Promise<string[]> {
+  return page.evaluate(() =>
+    [...document.querySelectorAll('[data-item] p')].map((text) => (text.textContent ?? '').replace(/^\s*\d+/, '').trim()),
+  );
+}
+
+/** Con una pantalla de teléfono: todo lo que se toca mide al menos 44 × 44 px, el asa también; nada se sale de la pantalla. */
+async function timelineLayout(page: Page, { phone }: { phone: boolean }): Promise<string[]> {
+  if (!(await hasTimelineGame(page))) return [];
+  const info = await page.evaluate(() => {
+    const boxOf = (element: Element) => {
+      const box = element.getBoundingClientRect();
+      return { width: box.width, height: box.height, left: box.left, right: box.right };
+    };
+    return {
+      items: [...document.querySelectorAll('[data-item]')].map(boxOf),
+      handles: [...document.querySelectorAll('[data-handle]')].map(boxOf),
+      width: window.innerWidth,
+    };
+  });
+  const problems: string[] = [];
+  if (info.items.length < 2) problems.push('no se encontraron los sucesos');
+  if (info.items.some((box) => box.left < -0.5 || box.right > info.width + 0.5)) problems.push('un suceso se sale de la pantalla en horizontal');
+  if (phone && info.handles.some((box) => box.width < TOUCH_TARGET_PX - 0.5 || box.height < TOUCH_TARGET_PX - 0.5)) {
+    problems.push('el asa de arrastre mide menos de 44 × 44 px');
+  }
+  return problems;
+}
+
+/**
+ * Arrastra el primer suceso hasta el tercer lugar, con el dedo (eventos táctiles reales) o con el mouse, y comprueba el orden.
+ * Hasta el tercero y no solo hasta el segundo: al reordenar durante el arrastre el navegador podía correr la página bajo el
+ * dedo (scroll anchoring) y el suceso se quedaba en el segundo lugar.
+ */
+async function timelineDrag(page: Page, { phone }: { phone: boolean }): Promise<string[]> {
+  if (!(await hasTimelineGame(page))) return [];
+  // La lista queda debajo de la navegación y los filtros: se lleva a la vista, como haría una persona antes de arrastrar.
+  await page.evaluate(() => document.querySelector('[data-item]')?.scrollIntoView({ block: 'start' }));
+  const before = await timelineTexts(page);
+  const boxes = await page.evaluate(() => {
+    const items = [...document.querySelectorAll('[data-item]')].map((item) => item.getBoundingClientRect());
+    const handle = document.querySelector('[data-item] [data-handle]')?.getBoundingClientRect();
+    return handle && items.length > 2
+      ? { handle: { x: handle.x + handle.width / 2, y: handle.y + handle.height / 2 }, third: { y: items[2].y, height: items[2].height } }
+      : null;
+  });
+  if (!boxes) return ['no se encontró el asa de arrastre'];
+  const scrollBefore = await page.evaluate(() => window.scrollY);
+  const from = boxes.handle;
+  const to = { x: from.x, y: boxes.third.y + boxes.third.height - 2 };
+  const steps = 10;
+
+  if (phone) {
+    const client = await page.context().newCDPSession(page);
+    const send = (type: 'touchStart' | 'touchMove' | 'touchEnd', y: number) =>
+      client.send('Input.dispatchTouchEvent', { type, touchPoints: type === 'touchEnd' ? [] : [{ x: from.x, y }] });
+    await send('touchStart', from.y);
+    for (let step = 1; step <= steps; step++) await send('touchMove', from.y + ((to.y - from.y) * step) / steps);
+    await send('touchEnd', to.y);
+  } else {
+    await page.mouse.move(from.x, from.y);
+    await page.mouse.down();
+    await page.mouse.move(to.x, to.y, { steps });
+    await page.mouse.up();
+  }
+
+  const after = await timelineTexts(page);
+  const problems: string[] = [];
+  if (after[0] !== before[1] || after[1] !== before[2] || after[2] !== before[0] || after.slice(3).join() !== before.slice(3).join()) {
+    problems.push(`arrastrar el primer suceso hasta el tercer lugar no lo dejó tercero (${phone ? 'con el dedo' : 'con el mouse'})`);
+  }
+  if (phone && (await page.evaluate(() => window.scrollY)) !== scrollBefore) problems.push('la página se desplazó mientras se arrastraba con el dedo');
+  return problems;
+}
+
+/** Con el teclado: enfocar "Bajar" del primer suceso, activarlo, y que el suceso baje y el foco lo acompañe. */
+async function timelineKeyboard(page: Page): Promise<string[]> {
+  if (!(await hasTimelineGame(page))) return [];
+  const before = await timelineTexts(page);
+  const down = page.locator('[data-item]').first().getByRole('button', { name: /^Bajar:/ });
+  await down.focus();
+  await page.keyboard.press('Enter');
+  const after = await timelineTexts(page);
+  const focused = await page.evaluate(() => document.activeElement?.getAttribute('aria-label') ?? '');
+  const problems: string[] = [];
+  if (after[1] !== before[0] || after[0] !== before[1]) problems.push('el botón "Bajar" no movió el suceso');
+  if (!focused.includes(before[0])) problems.push('el foco no acompañó al suceso que se movió con el botón');
+  return problems;
+}
+
+/** Mueve un suceso con el teclado, confirma el orden y comprueba que se cuenta un intento. */
+async function timelineConfirm(page: Page, { phone }: { phone: boolean }): Promise<string[]> {
+  if (!(await hasTimelineGame(page))) return [];
+  const problems = await timelineKeyboard(page);
+  await page.getByRole('button', { name: 'Confirmar orden' }).click();
+  const counter = await page.locator('[data-game-ready] p', { hasText: /^Intento \d de \d$/ }).innerText();
+  if (counter !== 'Intento 2 de 4') problems.push(`después de confirmar se esperaba "Intento 2 de 4" y dice "${counter}"`);
+  return [...problems, ...(await timelineLayout(page, { phone }))];
+}
+
+/** Gasta los 4 intentos (o resuelve por suerte): el juego termina, muestra el orden correcto y el resumen del marco. */
+async function timelineFinish(page: Page, { phone }: { phone: boolean }): Promise<string[]> {
+  if (!(await hasTimelineGame(page))) return [];
+  for (let attempt = 0; attempt < 4; attempt++) {
+    if ((await page.locator(TIMELINE_GAME).getAttribute('data-over')) === 'true') break;
+    // Un cambio cualquiera para poder confirmar de nuevo: el primer botón de mover que se pueda usar.
+    const move = page.locator('[data-item] button:not([disabled])').first();
+    if ((await move.count()) > 0) await move.click();
+    await page.getByRole('button', { name: 'Confirmar orden' }).click();
+  }
+  const problems: string[] = [];
+  if ((await page.locator(TIMELINE_GAME).getAttribute('data-over')) !== 'true') problems.push('después de 4 intentos el juego no terminó');
+  if ((await page.locator('[data-game-ready] [data-handle], [data-game-ready] button[aria-label]').count()) > 0) {
+    problems.push('al terminar siguen los controles para mover los sucesos');
+  }
+  if ((await page.locator('section[data-won]').count()) === 0) problems.push('no aparece el resumen del marco al terminar');
+  return [...problems, ...(await timelineLayout(page, { phone }))];
+}
+
 /** Los modos de Pokémon que usan el motor de pista de texto (sesión 06) y el tipo de contenido de cada uno. */
 const TEXT_MODES = [
   { slug: 'descripcion', contentKind: 'dex' },
@@ -286,7 +431,6 @@ const ROUTES: RouteCheck[] = [
     ready: GAME_READY,
     before: (page, context) => openDialog(page, 'Estadísticas', context),
   },
-  { name: 'dragon-ball-clasico-proximamente', path: '/dragon-ball/clasico' },
   ...IMAGE_MODES.flatMap(({ slug }) => [
     { name: `pokemon-${slug}`, path: `/pokemon/${slug}`, ready: GAME_READY, check: imageFitsWithField },
     {
@@ -348,6 +492,55 @@ const ROUTES: RouteCheck[] = [
     storage: seededScoreStats(),
     before: (page, context) => openDialog(page, 'Estadísticas', context),
   },
+  // Sesión 09: los 9 modos de Dragon Ball. Los que dependen de contenido que revisa una persona (frases y
+  // sucesos verificados, capturas de técnicas cargadas a mano) quedan ocultos mientras no haya: sus rutas
+  // se revisan igual (muestran "Próximamente") y sus comprobaciones propias se saltean si el juego no está.
+  { name: 'dragon-ball', path: '/dragon-ball' },
+  { name: 'dragon-ball-clasico', path: '/dragon-ball/clasico', ready: GAME_READY },
+  {
+    // 7 columnas, con la serie y la saga de debut con el nombre de cada una.
+    name: 'dragon-ball-clasico-6-intentos',
+    path: '/dragon-ball/clasico',
+    ready: GAME_READY,
+    storage: seededGame('all', DB_SIX_ATTEMPTS, 'clasico', 'dragon-ball'),
+  },
+  {
+    // Sin GT: las transformaciones de GT desaparecen y Gogeta, que debutó en GT, ve su debut oculto ("—").
+    name: 'dragon-ball-clasico-sin-gt',
+    path: `/dragon-ball/clasico?s=${WITHOUT_GT}`,
+    ready: GAME_READY,
+    storage: seededGame(WITHOUT_GT, DB_SIX_ATTEMPTS, 'clasico', 'dragon-ball'),
+  },
+  ...['silueta', 'borroso', 'zoom'].flatMap((slug) => [
+    { name: `dragon-ball-${slug}`, path: `/dragon-ball/${slug}`, ready: GAME_READY, check: imageFitsWithField },
+    {
+      name: `dragon-ball-${slug}-3-fallos`,
+      path: `/dragon-ball/${slug}`,
+      ready: GAME_READY,
+      storage: seededGame('all', DB_THREE_MISSES, slug, 'dragon-ball'),
+      check: imageFitsWithField,
+    },
+  ]),
+  { name: 'dragon-ball-transformacion', path: '/dragon-ball/transformacion', ready: GAME_READY, check: imageFitsWithField },
+  {
+    name: 'dragon-ball-transformacion-3-fallos',
+    path: '/dragon-ball/transformacion',
+    ready: GAME_READY,
+    storage: seededGame('all', DB_THREE_FORMS, 'transformacion', 'dragon-ball'),
+    check: imageFitsWithField,
+  },
+  // Ninguna forma es de Daima: con solo esa serie el modo no alcanza el pool mínimo.
+  { name: 'dragon-ball-transformacion-sin-pool', path: '/dragon-ball/transformacion?s=daima', check: showsPoolWarning },
+  { name: 'dragon-ball-poder', path: '/dragon-ball/poder', ready: GAME_READY, check: optionsLayout },
+  { name: 'dragon-ball-poder-elegida-1', path: '/dragon-ball/poder', ready: GAME_READY, check: afterPicking(0) },
+  { name: 'dragon-ball-poder-elegida-2', path: '/dragon-ball/poder', ready: GAME_READY, check: afterPicking(1) },
+  { name: 'dragon-ball-frase', path: '/dragon-ball/frase' },
+  { name: 'dragon-ball-tecnica', path: '/dragon-ball/tecnica' },
+  { name: 'dragon-ball-linea-de-tiempo', path: '/dragon-ball/linea-de-tiempo', check: timelineLayout },
+  // Arrastrar: con el dedo en un teléfono y con el mouse en el resto.
+  { name: 'dragon-ball-linea-de-tiempo-arrastrar', path: '/dragon-ball/linea-de-tiempo', check: timelineDrag },
+  { name: 'dragon-ball-linea-de-tiempo-confirmado', path: '/dragon-ball/linea-de-tiempo', check: timelineConfirm },
+  { name: 'dragon-ball-linea-de-tiempo-terminado', path: '/dragon-ball/linea-de-tiempo', check: timelineFinish },
   // Movimiento insignia con solo g3 (6 posibles) y Descripción con solo g9 (ninguna): no alcanzan el mínimo.
   { name: 'pokemon-movimiento-insignia-sin-pool', path: '/pokemon/movimiento-insignia?s=g3', check: showsPoolWarning },
   { name: 'pokemon-descripcion-sin-pool', path: '/pokemon/descripcion?s=g9', check: showsPoolWarning },

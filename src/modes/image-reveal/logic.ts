@@ -8,7 +8,7 @@ import { eligibleContents, eligibleEntities } from '@/engine/filters';
 import { fmix32, fnv1a32 } from '@/engine/hash';
 import { mulberry32 } from '@/engine/rng';
 import type { Content, Entity } from '@/engine/types';
-import type { ImageRevealConfig, RevealVariant } from './types';
+import type { AttrRequirement, ImageRevealConfig, RevealVariant } from './types';
 
 // --- Candidatas e imágenes ----------------------------------------------------
 
@@ -27,6 +27,8 @@ export interface RevealImage {
   readonly height: number;
   /** Punto que el zoom abre primero, si el dato lo trae. */
   readonly focus: Focus | null;
+  /** Ids de otras entidades que también son respuestas correctas con esta imagen, si el dato las trae. */
+  readonly accepts?: readonly string[];
 }
 
 /** Una posible respuesta del día, con las imágenes que sirven para mostrarla. */
@@ -57,15 +59,22 @@ function parseFocus(value: unknown): Focus | null {
 }
 
 function imageOfContent(content: Content): RevealImage | null {
-  const { image, width, height, focus } = content.payload;
+  const { image, width, height, focus, accepts } = content.payload;
   if (typeof image !== 'string' || image.length === 0) return null;
+  const accepted = Array.isArray(accepts) ? accepts.filter((id): id is string => typeof id === 'string') : [];
   return {
     id: content.id,
     stem: image,
     width: positiveInt(width) ?? ENTITY_IMAGE_SIZE,
     height: positiveInt(height) ?? ENTITY_IMAGE_SIZE,
     focus: parseFocus(focus),
+    ...(accepted.length > 0 ? { accepts: accepted } : {}),
   };
+}
+
+/** ¿Cumple la entidad la condición de la configuración, si la hay? */
+export function meetsRequirement(entity: Entity, requirement: AttrRequirement | undefined): boolean {
+  return requirement === undefined || entity.attrs[requirement.key] === requirement.equals;
 }
 
 function byId(a: { id: string }, b: { id: string }): number {
@@ -84,7 +93,7 @@ export function candidatesOf(
   active: readonly string[],
   config: ImageRevealConfig,
 ): Candidate[] {
-  const eligible = eligibleEntities(entities, active);
+  const eligible = eligibleEntities(entities, active).filter((entity) => meetsRequirement(entity, config.requireAttr));
 
   if (config.imageContentKind === undefined) {
     return eligible.flatMap((entity) =>
@@ -207,9 +216,14 @@ export function randomFocus(ctx: DailyContext): Focus {
 
 // --- Intentos y resultado -----------------------------------------------------
 
-/** Intentos que no fueron la respuesta: cada uno revela un paso más. */
-export function failedCount(attemptIds: readonly string[], answerId: string): number {
-  return attemptIds.filter((id) => id !== answerId).length;
+/** ¿Acierta este intento? La respuesta del día o cualquiera de las que la imagen acepta. */
+export function isCorrect(guessId: string, answerId: string, accepted: readonly string[] = []): boolean {
+  return guessId === answerId || accepted.includes(guessId);
+}
+
+/** Intentos que no acertaron: cada uno revela un paso más. */
+export function failedCount(attemptIds: readonly string[], answerId: string, accepted: readonly string[] = []): number {
+  return attemptIds.filter((id) => !isCorrect(id, answerId, accepted)).length;
 }
 
 /**
@@ -234,6 +248,6 @@ export function restoreAttempts(stored: readonly unknown[] | undefined, options:
  * Solo rojo para el que falló y verde para el que acertó: no revela nada de la
  * respuesta.
  */
-export function shareGrid(attemptIds: readonly string[], answerId: string): string[] {
-  return attemptIds.map((id) => (id === answerId ? '🟩' : '🟥'));
+export function shareGrid(attemptIds: readonly string[], answerId: string, accepted: readonly string[] = []): string[] {
+  return attemptIds.map((id) => (isCorrect(id, answerId, accepted) ? '🟩' : '🟥'));
 }

@@ -9,7 +9,7 @@ import { getLocalStorage, readState, writeState } from '@/engine/storage';
 import type { Entity } from '@/engine/types';
 import { es } from '@/i18n/es';
 import styles from './HigherLowerBoard.module.scss';
-import { formatValue, progressOf, restorePicks, shareGrid, winnerOf, type Progress, type Round } from './logic';
+import { formatMetric, progressOf, restorePicks, shareGrid, winnerOf, type Progress, type Round } from './logic';
 import type { HigherLowerMetric } from './types';
 
 interface HigherLowerBoardProps {
@@ -39,9 +39,9 @@ function reportOf(picks: readonly string[], progress: Progress, rounds: readonly
         failed && winner && loser && winnerValue !== undefined && loserValue !== undefined
           ? es.higherLower.lastRound(
               winner.name.es,
-              formatValue(winnerValue, metric.unit),
+              formatMetric(metric, winnerValue),
               loser.name.es,
-              formatValue(loserValue, metric.unit),
+              formatMetric(metric, loserValue),
             )
           : '',
       imageStem: failed ? winner?.image : undefined,
@@ -133,7 +133,7 @@ export function HigherLowerBoard({ session, metric, rounds }: HigherLowerBoardPr
             key={`${index}-${entity.id}`}
             entity={entity}
             value={position === 0 ? round.aValue : round.bValue}
-            unit={metric.unit}
+            metric={metric}
             revealed={revealed}
             isWinner={entity.id === winner.id}
             isPicked={entity.id === picked}
@@ -168,7 +168,7 @@ export function HigherLowerBoard({ session, metric, rounds }: HigherLowerBoardPr
 interface OptionProps {
   entity: Entity;
   value: number;
-  unit?: string;
+  metric: HigherLowerMetric;
   revealed: boolean;
   isWinner: boolean;
   isPicked: boolean;
@@ -177,7 +177,7 @@ interface OptionProps {
 }
 
 /** Una de las dos opciones: se toca para elegirla y, ya elegida, muestra su valor y si era la mayor. */
-function Option({ entity, value, unit, revealed, isWinner, isPicked, onChoose, buttonRef }: OptionProps) {
+function Option({ entity, value, metric, revealed, isWinner, isPicked, onChoose, buttonRef }: OptionProps) {
   return (
     <button
       type="button"
@@ -195,7 +195,7 @@ function Option({ entity, value, unit, revealed, isWinner, isPicked, onChoose, b
       )}
       <span className={styles.details}>
         <span className={styles.name}>{entity.name.es}</span>
-        {revealed && <span className={styles.value}>{formatValue(value, unit)}</span>}
+        {revealed && <span className={styles.value}>{formatMetric(metric, value)}</span>}
         {revealed && (
           <span className={styles.badges}>
             {/* El resultado va en texto con su ícono: no depende del color. */}

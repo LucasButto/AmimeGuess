@@ -9,9 +9,11 @@ import {
   hasMinimumPool,
   inheritSeries,
   isContentEligible,
+  isContentPublishable,
   isEntityEligible,
   normalizeActiveSeries,
   parseFilterKey,
+  publishableContents,
 } from './filters';
 
 const POKEMON = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9'];
@@ -226,5 +228,26 @@ describe('pool mínimo (regla 6)', () => {
     expect(hasMinimumPool(19, 20)).toBe(false);
     expect(hasMinimumPool(0, 10)).toBe(false);
     expect(hasMinimumPool(500, 10)).toBe(true);
+  });
+});
+
+describe('contenido sin verificar', () => {
+  const content = (kind: string, verified: boolean) => ({ id: `${kind}-${verified}`, kind, verified });
+
+  it('las frases y los sucesos solo entran al pool con verified: true', () => {
+    expect(isContentPublishable(content('quote', true))).toBe(true);
+    expect(isContentPublishable(content('quote', false))).toBe(false);
+    expect(isContentPublishable(content('event', true))).toBe(true);
+    expect(isContentPublishable(content('event', false))).toBe(false);
+  });
+
+  it('los demás tipos de contenido no dependen de verified', () => {
+    expect(isContentPublishable(content('technique', false))).toBe(true);
+    expect(isContentPublishable(content('dex', false))).toBe(true);
+  });
+
+  it('publishableContents conserva el orden y quita solo lo que no puede entrar', () => {
+    const pool = [content('quote', false), content('technique', false), content('event', true), content('quote', true)];
+    expect(publishableContents(pool).map((item) => item.id)).toEqual(['technique-false', 'event-true', 'quote-true']);
   });
 });

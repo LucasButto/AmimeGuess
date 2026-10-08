@@ -11,6 +11,14 @@
  */
 export type RevealVariant = 'silhouette' | 'blur' | 'zoom';
 
+/** Una condición sobre un atributo de la entidad respuesta. */
+export interface AttrRequirement {
+  /** Clave del atributo en `Entity.attrs`. */
+  readonly key: string;
+  /** El valor que tiene que tener. */
+  readonly equals: string | number;
+}
+
 export interface ImageRevealConfig {
   readonly variant: RevealVariant;
   /**
@@ -25,6 +33,16 @@ export interface ImageRevealConfig {
    * `payload.height` (medidas del archivo más grande) y `payload.focus`
    * (`{ x, y }` entre 0 y 1, el punto que el zoom abre primero). Un Pokémon con
    * varias imágenes usa una por día, elegida de forma determinista.
+   *
+   * Un contenido puede traer `payload.accepts`, una lista de ids de otras
+   * entidades que también son respuestas correctas: sirve cuando la imagen es
+   * igual de cierta para más de una (una técnica que usan varios personajes).
    */
   readonly imageContentKind?: string;
+  /**
+   * Solo pueden ser la respuesta las entidades que cumplen esto (por ejemplo, las que
+   * tienen una imagen de fondo transparente, para la silueta). Las demás siguen siendo
+   * una opción del autocompletado: se pueden intentar, pero no son la respuesta.
+   */
+  readonly requireAttr?: AttrRequirement;
 }

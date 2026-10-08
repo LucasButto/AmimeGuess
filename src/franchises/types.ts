@@ -3,6 +3,7 @@ import type { HigherLowerConfig } from '../modes/higher-lower/types';
 import type { ImageRevealConfig } from '../modes/image-reveal/types';
 import type { RevealListConfig } from '../modes/reveal-list/types';
 import type { TextClueConfig } from '../modes/text-clue/types';
+import type { TimelineConfig } from '../modes/timeline/types';
 
 /** Los 7 motores de juego (SPEC 3.2). Ninguno contiene lógica de una franquicia. */
 export type EngineId =
@@ -29,6 +30,15 @@ export interface ModeConfig {
   readonly revealList?: RevealListConfig;
   /** Métricas a comparar, solo para los modos con motor `higher-lower`. */
   readonly higherLower?: HigherLowerConfig;
+  /** Sucesos a ordenar, solo para los modos con motor `timeline`. */
+  readonly timeline?: TimelineConfig;
+  /**
+   * De dónde salen las entidades que se adivinan y se ofrecen como opción: el
+   * conjunto con este nombre de `FranchiseData.entitySets` (por ejemplo, las
+   * transformaciones de Dragon Ball). Sin esto, las entidades principales de la
+   * franquicia (`FranchiseData.entities`).
+   */
+  readonly entitySet?: string;
 }
 
 export interface FranchiseConfig {

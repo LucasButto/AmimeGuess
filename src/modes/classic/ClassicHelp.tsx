@@ -33,6 +33,7 @@ export function ClassicHelp({ config }: ClassicHelpProps) {
           ))}
         </ul>
         {config.columns.some((column) => column.onlyForSeries) && <p className={styles.note}>{es.classic.help.columnsNote}</p>}
+        {config.columns.some((column) => column.valueLabels) && <p className={styles.note}>{es.classic.help.hiddenNote}</p>}
       </section>
 
       {config.hints.length > 0 && (

@@ -13,6 +13,13 @@ export interface HigherLowerMetric {
   readonly question: string;
   /** Unidad que se agrega al valor, por ejemplo `kg`. */
   readonly unit?: string;
+  /**
+   * Los valores pueden ser enormes: los de un millón en adelante se muestran como potencias
+   * de diez (`1,98 × 10²⁵`) en lugar de con todos sus dígitos.
+   */
+  readonly scientific?: boolean;
+  /** Aclaración para la ayuda, por ejemplo de dónde salen los valores o que no son oficiales. */
+  readonly note?: string;
 }
 
 export interface HigherLowerConfig {
@@ -22,4 +29,10 @@ export interface HigherLowerConfig {
    * tienen un valor numérico en todas, así cualquier día se puede jugar.
    */
   readonly metrics: readonly HigherLowerMetric[];
+  /**
+   * Solo se ofrecen pares en que el mayor vale al menos `minRatio` veces el menor, así la
+   * diferencia no es discutible (10 = un orden de magnitud). Pide valores positivos. Sin esto,
+   * vale cualquier par que no empate.
+   */
+  readonly minRatio?: number;
 }
