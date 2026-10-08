@@ -8,7 +8,7 @@ import {
   joinWords,
   limitGrid,
 } from './share';
-import { distributionRows, rowHolds, winRate } from './stats';
+import { bestScore, distributionRows, rowHolds, winRate } from './stats';
 
 const POKEMON = ['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9'];
 const LABELS = Object.fromEntries(POKEMON.map((id) => [id, `Gen ${id.slice(1)}`]));
@@ -235,5 +235,76 @@ describe('winRate', () => {
     expect(winRate({ played: 3, won: 1 })).toBe(33);
     expect(winRate({ played: 3, won: 2 })).toBe(67);
     expect(winRate({ played: 5, won: 5 })).toBe(100);
+  });
+});
+
+describe('resultados con puntaje', () => {
+  const scored = {
+    franchiseName: 'Pokémon',
+    modeName: 'Mayor o Menor',
+    filters: 'todas',
+    won: true,
+    attempts: 8,
+    score: 7,
+    grid: ['🟩🟩🟩🟩🟩🟩🟩🟥'],
+    url: 'https://animeguess.vercel.app/pokemon/mayor-o-menor?s=all',
+  };
+
+  it('el texto compartido dice la racha de aciertos en vez de los intentos', () => {
+    expect(buildShareText(scored)).toBe(
+      [
+        'AnimeGuess · Pokémon · Mayor o Menor',
+        'Series: todas',
+        'Racha de aciertos: 7',
+        '',
+        '🟩🟩🟩🟩🟩🟩🟩🟥',
+        '',
+        'https://animeguess.vercel.app/pokemon/mayor-o-menor?s=all',
+      ].join('\n'),
+    );
+  });
+
+  it('con puntaje 0 también lo dice (no cae en "Hoy no lo resolví")', () => {
+    const text = buildShareText({ ...scored, score: 0, attempts: 1, grid: ['🟥'] });
+    expect(text).toContain('Racha de aciertos: 0');
+    expect(text).not.toContain('Hoy no lo resolví');
+  });
+
+  it('sin puntaje, el texto sigue siendo el de intentos', () => {
+    expect(buildShareText({ ...scored, score: undefined })).toContain('Lo resolví en 8 intentos');
+  });
+
+  it('el texto no trae nada de la partida más que colores y el puntaje', () => {
+    expect(buildShareText(scored)).not.toMatch(/kg|altura|peso/i);
+  });
+
+  it('la distribución de un modo de puntaje empieza en 0', () => {
+    const rows = distributionRows({ '0': 2, '3': 1 }, 12, 0);
+    expect(rows.map((row) => [row.label, row.count])).toEqual([
+      ['0', 2],
+      ['1', 0],
+      ['2', 0],
+      ['3', 1],
+    ]);
+  });
+
+  it('un modo de intentos sigue ignorando el 0', () => {
+    expect(distributionRows({ '0': 2, '2': 1 }).map((row) => row.label)).toEqual(['1', '2']);
+  });
+
+  it('con puntaje agrupa desde el tope: 12 filas y una final "12+"', () => {
+    const rows = distributionRows({ '0': 1, '11': 1, '12': 2, '25': 1 }, 12, 0);
+    expect(rows).toHaveLength(13);
+    expect(rows[11]).toMatchObject({ label: '11', count: 1 });
+    expect(rows[12]).toMatchObject({ label: '12+', attempts: null, count: 3 });
+    expect(rowHolds(rows[12], 30)).toBe(true);
+    expect(rowHolds(rows[12], 11)).toBe(false);
+  });
+
+  it('el mejor puntaje es la mayor clave con partidas', () => {
+    expect(bestScore({ '0': 3, '4': 1, '9': 2 })).toBe(9);
+    expect(bestScore({ '0': 3 })).toBe(0);
+    expect(bestScore({})).toBe(0);
+    expect(bestScore({ '7': 0, '2': 1 })).toBe(2);
   });
 });
