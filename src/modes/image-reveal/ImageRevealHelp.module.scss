@@ -1,0 +1,13 @@
+@use 'tokens' as t;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-5;
+}
+
+.title {
+  margin-block-end: t.$space-2;
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+}

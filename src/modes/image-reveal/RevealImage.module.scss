@@ -1,0 +1,37 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+
+// Tamaño del marco: nunca más ancho que $max-width ni más alto que $max-height.
+// El alto máximo es una parte de la pantalla (dvh, que sigue sirviendo con el
+// teclado virtual abierto), así en un teléfono apaisado la imagen entra junto
+// con el campo de texto. Como el marco conserva la proporción de la imagen, el
+// ancho se limita por las dos cosas.
+$max-width: 24rem;
+$max-height: min(28rem, 60dvh);
+
+.frame {
+  inline-size: min(100%, #{$max-width}, calc(#{$max-height} * var(--aspect)));
+  aspect-ratio: var(--aspect);
+  margin-inline: auto;
+  overflow: hidden;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+}
+
+.image {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+  // El recorte ampliado parte de la esquina de la imagen: el desplazamiento ya trae el punto focal.
+  transform-origin: 0 0;
+  transform: scale(var(--reveal-scale)) translate(var(--reveal-x), var(--reveal-y));
+  filter: grayscale(var(--reveal-gray)) brightness(var(--reveal-brightness)) blur(var(--reveal-blur));
+
+  @include bp.motion-ok {
+    transition:
+      filter 0.6s ease,
+      transform 0.6s ease;
+  }
+}

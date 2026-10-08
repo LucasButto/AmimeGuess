@@ -72,6 +72,35 @@ export const es = {
       columnsNote: 'Algunas columnas solo aparecen con ciertas series activas.',
     },
   },
+  imageReveal: {
+    inputLabel: 'Tu intento',
+    imageAlt: 'Imagen del reto, parcialmente oculta',
+    imageSolvedAlt: (label: string) => `Imagen completa: ${label}`,
+    step: (current: number, total: number) => `Pista ${current} de ${total}`,
+    attempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
+    failedTitle: 'Intentos fallidos',
+    empty: 'Todavía no hiciste ningún intento.',
+    wrongAttempt: (name: string, revealed: boolean) =>
+      revealed ? `${name} no es. Se reveló un poco más de la imagen.` : `${name} no es.`,
+    difficultyTitle: 'Dificultad',
+    revealSwitch: 'Revelar con cada intento',
+    revealHint: 'Cada intento fallido muestra un poco más de la imagen.',
+    colorsSwitch: 'Mostrar colores',
+    colorsHint: 'Apagado, la imagen se ve en grises hasta que aciertes.',
+    help: {
+      goal: {
+        silhouette: 'Adiviná la respuesta del día a partir de su silueta. Escribí un nombre y elegí una opción de la lista.',
+        blur: 'Adiviná la respuesta del día a partir de una imagen desenfocada. Escribí un nombre y elegí una opción de la lista.',
+        zoom: 'Adiviná la respuesta del día a partir de un detalle ampliado de su imagen. Escribí un nombre y elegí una opción de la lista.',
+      },
+      stepsTitle: 'Pistas',
+      steps: (total: number) =>
+        `Cada intento fallido revela un poco más de la imagen, en ${total} pasos. Al acertar se ve completa.`,
+      difficultyTitle: 'Dificultad',
+      difficulty:
+        'Podés apagar "Revelar con cada intento" para que la imagen no cambie hasta que aciertes, y "Mostrar colores" para verla en grises. Tus elecciones se recuerdan en este dispositivo.',
+    },
+  },
   shell: {
     modesLabel: 'Modos de juego',
     modeSolved: 'resuelto hoy',
