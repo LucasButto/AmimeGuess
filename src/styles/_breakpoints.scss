@@ -56,3 +56,12 @@ $heights: (
     @content;
   }
 }
+
+// Pantalla apaisada (más ancha que alta). Un teléfono en horizontal (844 × 390)
+// ya pasa `md`, pero uno chico (640 × 360) no: lo que se ordena según la forma
+// de la pantalla se decide también por orientación.
+@mixin landscape {
+  @media (orientation: landscape) {
+    @content;
+  }
+}
