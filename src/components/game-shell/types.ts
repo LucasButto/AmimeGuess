@@ -45,12 +45,31 @@
  *   d. Lee `window` y `localStorage` con libertad: el marco monta el juego
  *      solo en el cliente, después de la hidratación.
  *
- * Resultados con puntaje en vez de intentos (Mayor o Menor) se agregan en la
- * sesión 07 ampliando `FinishReport`; hoy el resultado se cuenta en intentos.
+ * Resultados con puntaje (sesión 07). Un modo como Mayor o Menor no se gana ni se
+ * pierde: se juega hasta el primer error y lo que cuenta es la racha de aciertos.
+ * Para eso:
+ *
+ *   e. Declara `resultKind: 'score'` en `GameShellProps` (por defecto es
+ *      `'attempts'`). El marco lo usa para el resumen, las estadísticas y el
+ *      texto compartido.
+ *   f. Al terminar reporta `score` (los aciertos seguidos) y `won: true`: la
+ *      partida terminó y cuenta como jugada ese día, así que suma a las
+ *      estadísticas, a la racha de días y al "resuelto hoy". Guarda su partida
+ *      con `result: 'won'`. Las estadísticas guardan el puntaje donde los modos
+ *      de intentos guardan los intentos.
+ *   g. `answer.label` es una frase libre (no "Era X.") que el marco muestra tal
+ *      cual; puede ir vacía. `grid` es una línea de cuadrados por cada 10 jugadas
+ *      (🟩 acierto, 🟥 el error final), no una línea por intento.
  */
 
 import type { ReactNode } from 'react';
 import type { DailyContext } from '@/engine/daily';
+
+/**
+ * Cómo se mide el resultado de un modo: en `attempts` (intentos hasta acertar,
+ * menos es mejor) o en `score` (aciertos seguidos, más es mejor).
+ */
+export type ResultKind = 'attempts' | 'score';
 
 /** Un modo de la franquicia en la navegación. */
 export interface ModeLink {
@@ -79,11 +98,13 @@ export interface AnswerInfo {
 /** Lo que el motor le avisa al marco cuando la persona termina el reto del día. */
 export interface FinishReport {
   readonly won: boolean;
-  /** Intentos usados. */
+  /** Intentos usados. En un modo de puntaje, las jugadas hechas (los aciertos más el error final). */
   readonly attempts: number;
+  /** Solo en modos de puntaje (`resultKind: 'score'`): los aciertos seguidos. */
+  readonly score?: number;
   /** La respuesta de hoy: el marco la muestra arriba, en el resumen, junto al botón de compartir. */
   readonly answer: AnswerInfo;
-  /** Una línea de emojis por intento, en orden. Solo colores: no puede revelar la respuesta. */
+  /** Una línea de emojis por intento, en orden (en los modos de puntaje, ver la regla g). Solo colores: no puede revelar la respuesta. */
   readonly grid: readonly string[];
   /**
    * `true`: la partida terminó ahora y hay que sumarla a las estadísticas.
@@ -110,6 +131,8 @@ export interface GameShellProps {
   readonly mode: { readonly slug: string; readonly name: string };
   /** Todos los modos de la franquicia, en orden. */
   readonly modes: readonly ModeLink[];
+  /** Cómo se mide el resultado de este modo. Por defecto, `attempts`. */
+  readonly resultKind?: ResultKind;
   /** Mínimo de opciones elegibles para poder jugar. */
   readonly minimumPool: number;
   /** Cuántas opciones quedan elegibles con estas series activas. */

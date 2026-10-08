@@ -142,6 +142,10 @@ export const es = {
       wonSummary: (attempts: number, streak: number) =>
         `Lo resolviste en ${attempts} ${plural(attempts, 'intento', 'intentos')}. Racha: ${streak} ${plural(streak, 'día', 'días')}.`,
       lostSummary: 'Mañana hay un reto nuevo.',
+      // Modos de puntaje: no se gana ni se pierde, se juega hasta el primer error.
+      scoreTitle: 'Fin de la racha',
+      scoreSummary: (score: number, streak: number) =>
+        `${score === 0 ? 'No acertaste ninguna.' : `Acertaste ${score} ${plural(score, 'seguida', 'seguidas')}.`} Racha: ${streak} ${plural(streak, 'día', 'días')}.`,
       share: 'Compartir resultado',
       shareCopied: 'Resultado copiado',
       shareFailed: 'No se pudo copiar',
@@ -157,6 +161,11 @@ export const es = {
         `${label} ${plural(count, 'intento', 'intentos')}: ${count} ${plural(count, 'victoria', 'victorias')}`,
       moreThan: (count: number) => `${count}+`,
       noGames: 'Todavía no jugaste ninguna partida de este modo.',
+      // Modos de puntaje.
+      bestScore: 'Mejor puntaje',
+      scoreDistribution: 'Aciertos seguidos por partida',
+      scoreDistributionRow: (label: string, count: number) =>
+        `${label} aciertos: ${count} ${plural(count, 'partida', 'partidas')}`,
     },
   },
   share: {
@@ -166,6 +175,7 @@ export const es = {
     and: 'y',
     won: (attempts: number) => `Lo resolví en ${attempts} ${plural(attempts, 'intento', 'intentos')}`,
     lost: 'Hoy no lo resolví',
+    score: (score: number) => `Racha de aciertos: ${score}`,
     omitted: '…',
   },
 } as const;

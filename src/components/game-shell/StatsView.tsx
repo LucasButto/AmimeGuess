@@ -3,26 +3,36 @@ import type { Stats } from '@/engine/storage';
 import { es } from '@/i18n/es';
 import { VisuallyHidden } from '../VisuallyHidden';
 import styles from './StatsView.module.scss';
-import { distributionRows, rowHolds, winRate } from './stats';
+import { bestScore, distributionRows, rowHolds, winRate } from './stats';
+import type { ResultKind } from './types';
 
 interface StatsViewProps {
   stats: Stats;
   /** Racha vigente hoy (ver `activeStreak`), que puede ser menor que la guardada si se cortó. */
   streak: number;
-  /** Intentos de la partida que se ganó recién, para resaltarla en el gráfico. */
+  /** Intentos (o puntaje, en un modo de puntaje) de la partida que terminó recién, para resaltarla en el gráfico. */
   latestWin?: number;
+  /** Cómo se mide el resultado del modo. Por defecto, en intentos. */
+  kind?: ResultKind;
 }
 
-/** Contenido del modal de estadísticas: partidas, victorias, rachas y distribución de intentos. */
-export function StatsView({ stats, streak, latestWin }: StatsViewProps) {
+/**
+ * Contenido del modal de estadísticas: partidas, rachas y distribución. En un modo de intentos muestra
+ * el porcentaje de victorias y los intentos por victoria; en uno de puntaje, el mejor puntaje y los
+ * aciertos seguidos por partida (ahí no hay victorias: toda partida terminada cuenta).
+ */
+export function StatsView({ stats, streak, latestWin, kind = 'attempts' }: StatsViewProps) {
   const titleId = useId();
   if (stats.played === 0) return <p className={styles.empty}>{es.shell.statsView.noGames}</p>;
 
-  const rows = distributionRows(stats.distribution);
+  const scored = kind === 'score';
+  const rows = distributionRows(stats.distribution, 12, scored ? 0 : 1);
   const tallest = Math.max(1, ...rows.map((row) => row.count));
   const tiles = [
     { label: es.shell.statsView.played, value: String(stats.played) },
-    { label: es.shell.statsView.winRate, value: `${winRate(stats)}%` },
+    scored
+      ? { label: es.shell.statsView.bestScore, value: String(bestScore(stats.distribution)) }
+      : { label: es.shell.statsView.winRate, value: `${winRate(stats)}%` },
     { label: es.shell.statsView.currentStreak, value: String(streak) },
     { label: es.shell.statsView.maxStreak, value: String(stats.maxStreak) },
   ];
@@ -41,12 +51,16 @@ export function StatsView({ stats, streak, latestWin }: StatsViewProps) {
       {rows.length > 0 && (
         <section aria-labelledby={titleId}>
           <h3 className={styles.subtitle} id={titleId}>
-            {es.shell.statsView.distribution}
+            {scored ? es.shell.statsView.scoreDistribution : es.shell.statsView.distribution}
           </h3>
           <ol className={styles.bars}>
             {rows.map((row) => (
               <li key={row.label} className={styles.row}>
-                <VisuallyHidden>{es.shell.statsView.distributionRow(row.label, row.count)}</VisuallyHidden>
+                <VisuallyHidden>
+                  {scored
+                    ? es.shell.statsView.scoreDistributionRow(row.label, row.count)
+                    : es.shell.statsView.distributionRow(row.label, row.count)}
+                </VisuallyHidden>
                 <span className={styles.rowLabel} aria-hidden="true">
                   {row.label}
                 </span>

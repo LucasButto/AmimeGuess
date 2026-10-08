@@ -46,13 +46,16 @@ export interface ShareInput {
   filters: string;
   won: boolean;
   attempts: number;
+  /** Solo en modos de puntaje: los aciertos seguidos. Reemplaza a la línea de intentos. */
+  score?: number;
   /** Una línea de emojis por intento, sin nombres ni datos de la respuesta. */
   grid: readonly string[];
   url: string;
 }
 
-export function buildShareText({ franchiseName, modeName, filters, won, attempts, grid, url }: ShareInput): string {
-  const lines = [es.share.header(franchiseName, modeName), es.share.filters(filters), won ? es.share.won(attempts) : es.share.lost];
+export function buildShareText({ franchiseName, modeName, filters, won, attempts, score, grid, url }: ShareInput): string {
+  const outcome = score !== undefined ? es.share.score(score) : won ? es.share.won(attempts) : es.share.lost;
+  const lines = [es.share.header(franchiseName, modeName), es.share.filters(filters), outcome];
   const shownGrid = limitGrid(grid);
   if (shownGrid.length > 0) lines.push('', ...shownGrid);
   lines.push('', url);

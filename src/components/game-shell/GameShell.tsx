@@ -29,7 +29,17 @@ type Dialog = 'help' | 'stats' | null;
  * Lee `window` y `localStorage` al montarse, así que solo se monta en el
  * cliente, después de la hidratación (ver `ModeGame`).
  */
-export function GameShell({ franchise, mode, modes, minimumPool, poolSize, yesterday, help, children }: GameShellProps) {
+export function GameShell({
+  franchise,
+  mode,
+  modes,
+  resultKind = 'attempts',
+  minimumPool,
+  poolSize,
+  yesterday,
+  help,
+  children,
+}: GameShellProps) {
   const { active, filterKey, setActive } = useSeriesFilters(franchise.slug, franchise.series);
   const [day, setDay] = useState(() => getDay(new Date()));
   const [stats, setStats] = useState(() => readStats(getLocalStorage(), franchise.slug, mode.slug));
@@ -80,7 +90,12 @@ export function GameShell({ franchise, mode, modes, minimumPool, poolSize, yeste
       // Solo la partida que terminó ahora suma; una restaurada al recargar ya está contada.
       if (reported.fresh) {
         setStats(
-          recordResult(getLocalStorage(), franchise.slug, mode.slug, { day, won: reported.won, attempts: reported.attempts }),
+          // En un modo de puntaje las estadísticas guardan el puntaje donde los demás guardan los intentos.
+          recordResult(getLocalStorage(), franchise.slug, mode.slug, {
+            day,
+            won: reported.won,
+            attempts: reported.score ?? reported.attempts,
+          }),
         );
       }
     },
@@ -95,6 +110,7 @@ export function GameShell({ franchise, mode, modes, minimumPool, poolSize, yeste
       filters: describeFilters(active, franchise.series, franchise.seriesLabels),
       won: report.won,
       attempts: report.attempts,
+      score: report.score,
       grid: report.grid,
       url: buildShareUrl(window.location.href, filterKey),
     });
@@ -122,6 +138,7 @@ export function GameShell({ franchise, mode, modes, minimumPool, poolSize, yeste
         <ResultPanel
           won={report.won}
           attempts={report.attempts}
+          score={report.score}
           answer={report.answer}
           streak={activeStreak(stats, day)}
           getShareText={getShareText}
@@ -176,7 +193,12 @@ export function GameShell({ franchise, mode, modes, minimumPool, poolSize, yeste
 
       {dialog === 'stats' && (
         <Modal title={es.shell.statsView.title} onClose={closeDialog}>
-          <StatsView stats={stats} streak={activeStreak(stats, day)} latestWin={report?.won ? report.attempts : undefined} />
+          <StatsView
+            stats={stats}
+            streak={activeStreak(stats, day)}
+            latestWin={report?.won ? (report.score ?? report.attempts) : undefined}
+            kind={resultKind}
+          />
         </Modal>
       )}
     </div>
