@@ -1,0 +1,89 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-4;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-2 t.$space-4;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-2;
+}
+
+.button {
+  @include m.touch-target;
+  padding: t.$space-1 t.$space-4;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-md;
+  background: t.color('surface');
+  color: t.color('text');
+  cursor: pointer;
+
+  &:hover {
+    border-color: t.color('accent');
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+}
+
+.game {
+  min-inline-size: 0;
+}
+
+.yesterday {
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
+  padding: t.$space-3 t.$space-4;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+  font-size: t.$font-size-sm;
+}
+
+.yesterdayImage {
+  flex: none;
+  inline-size: 3rem;
+  block-size: 3rem;
+  object-fit: contain;
+}
+
+.yesterdayLabel {
+  color: t.color('text-muted');
+}
+
+.help {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-5;
+}
+
+.helpTitle {
+  margin-block-end: t.$space-2;
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+}
+
+.helpList {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+  margin: 0;
+  padding-inline-start: t.$space-5;
+}

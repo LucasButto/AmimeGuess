@@ -1,0 +1,106 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-5;
+}
+
+.empty {
+  padding: t.$space-5 t.$space-3;
+  text-align: center;
+  color: t.color('text-muted');
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: t.$space-3;
+  margin: 0;
+
+  @include bp.min-width('sm') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: t.$space-1;
+  padding: t.$space-3 t.$space-2;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-md;
+  background: t.color('bg');
+  text-align: center;
+}
+
+// En el HTML la etiqueta (<dt>) va antes que el número (<dd>); en pantalla, al revés.
+.value {
+  order: -1;
+  margin: 0;
+  font-size: t.$font-size-xl;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  font-size: t.$font-size-sm;
+  color: t.color('text-muted');
+}
+
+.subtitle {
+  margin-block-end: t.$space-2;
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+}
+
+.bars {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr 2rem;
+  align-items: center;
+  gap: t.$space-2;
+  font-size: t.$font-size-sm;
+  font-variant-numeric: tabular-nums;
+}
+
+.rowLabel {
+  text-align: end;
+  color: t.color('text-muted');
+}
+
+.track {
+  display: block;
+  block-size: 1.25rem;
+  border-radius: t.$radius-sm;
+  background: t.color('bg');
+  overflow: hidden;
+}
+
+.bar {
+  display: block;
+  block-size: 100%;
+  // Que una barra con valor se vea aunque sea la más corta.
+  min-inline-size: 0.25rem;
+  border-radius: t.$radius-sm;
+  background: t.color('accent');
+
+  &[data-latest='true'] {
+    background: t.color('match');
+  }
+}
+
+.count {
+  font-weight: t.$font-weight-medium;
+}

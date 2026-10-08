@@ -1,0 +1,80 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.list {
+  // Es el contenedor de lo que se desplaza: sin esto, el texto oculto para lectores de pantalla
+  // (position: absolute) de las pastillas que quedan fuera de la vista se escapa del recorte y
+  // el navegador del teléfono ensancha toda la ventana para que quepa.
+  position: relative;
+  display: flex;
+  gap: t.$space-2;
+  margin: 0;
+  // Un poco de aire para que el contorno de foco no se recorte al desplazar.
+  padding: 0.125rem 0.125rem t.$space-1;
+  list-style: none;
+  // Teléfono: una fila que se desplaza; el modo siguiente asoma por el borde.
+  overflow-x: auto;
+  scrollbar-width: thin;
+  overscroll-behavior-x: contain;
+
+  @include bp.min-width('md') {
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+}
+
+.pill {
+  @include m.touch-target;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-1;
+  padding: t.$space-1 t.$space-4;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  white-space: nowrap;
+  text-decoration: none;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-full;
+  background: t.color('surface');
+  color: t.color('text');
+
+  &[data-state='idle']:hover,
+  &[data-state='solved']:hover {
+    border-color: t.color('accent');
+  }
+
+  &[data-state='current'] {
+    border-color: t.color('accent');
+    background: t.color('accent');
+    color: t.color('accent-contrast');
+  }
+
+  // Ya resuelto hoy: borde verde y tilde, además del texto para lectores de pantalla.
+  &[data-state='solved'] {
+    border-color: t.color('match');
+  }
+
+  // Modo que todavía no existe: apagado y sin link.
+  &[data-state='soon'] {
+    border-style: dashed;
+    background: transparent;
+    color: t.color('text-muted');
+  }
+
+  &[data-state='soon'][aria-current='page'] {
+    border-color: t.color('accent');
+    color: t.color('text');
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+}
+
+.check {
+  color: t.color('match');
+  font-weight: t.$font-weight-bold;
+}

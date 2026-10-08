@@ -1,0 +1,18 @@
+@use 'tokens' as t;
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 t.$space-2;
+  font-size: t.$font-size-sm;
+  color: t.color('text-muted');
+}
+
+.time {
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+  // Cifras del mismo ancho: los dígitos no bailan cada segundo.
+  font-variant-numeric: tabular-nums;
+  color: t.color('text');
+}
