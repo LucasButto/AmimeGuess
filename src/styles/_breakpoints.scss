@@ -26,3 +26,25 @@ $breakpoints: (
     @content;
   }
 }
+
+// Alturas de referencia (alto en píxeles CSS). Un teléfono en horizontal
+// (844 × 390) es más ancho que `md` pero igual de bajo que uno en vertical: lo
+// que depende del espacio vertical, como los modales a pantalla completa, se
+// decide también por altura. `tall` es la altura desde la que hay lugar para
+// un cuadro centrado.
+$heights: (
+  'tall': 512px,
+);
+
+@function viewport-height($name) {
+  @if not map.has-key($heights, $name) {
+    @error 'Altura desconocida: #{$name}. Opciones: #{map.keys($heights)}';
+  }
+  @return map.get($heights, $name);
+}
+
+@mixin min-height($name) {
+  @media (min-height: viewport-height($name)) {
+    @content;
+  }
+}
