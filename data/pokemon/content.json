@@ -36305,5 +36305,2932 @@
       "cardId": "sv08.5-163"
     },
     "verified": true
+  },
+  {
+    "id": "signature-move-bone-club-cubone",
+    "kind": "signature-move",
+    "entityId": "cubone",
+    "series": "g1",
+    "payload": {
+      "name": "Hueso Palo",
+      "type": "Tierra",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": [
+        "marowak"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-bone-club-marowak",
+    "kind": "signature-move",
+    "entityId": "marowak",
+    "series": "g1",
+    "payload": {
+      "name": "Hueso Palo",
+      "type": "Tierra",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": [
+        "cubone"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-kinesis-alakazam",
+    "kind": "signature-move",
+    "entityId": "alakazam",
+    "series": "g1",
+    "payload": {
+      "name": "Kinético",
+      "type": "Psíquico",
+      "description": "Dobla una cuchara para distraer al objetivo y bajar su nivel de Precisión.",
+      "accepts": [
+        "kadabra"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-kinesis-kadabra",
+    "kind": "signature-move",
+    "entityId": "kadabra",
+    "series": "g1",
+    "payload": {
+      "name": "Kinético",
+      "type": "Psíquico",
+      "description": "Dobla una cuchara para distraer al objetivo y bajar su nivel de Precisión.",
+      "accepts": [
+        "alakazam"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-barrage-exeggcute",
+    "kind": "signature-move",
+    "entityId": "exeggcute",
+    "series": "g1",
+    "payload": {
+      "name": "Bombardeo",
+      "type": "Normal",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": [
+        "exeggutor"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-barrage-exeggutor",
+    "kind": "signature-move",
+    "entityId": "exeggutor",
+    "series": "g1",
+    "payload": {
+      "name": "Bombardeo",
+      "type": "Normal",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": [
+        "exeggcute"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-lovely-kiss-jynx",
+    "kind": "signature-move",
+    "entityId": "jynx",
+    "series": "g1",
+    "payload": {
+      "name": "Beso Amoroso",
+      "type": "Normal",
+      "description": "Intimida al objetivo con una cara que asusta y le da un beso que lo deja dormido.",
+      "accepts": [
+        "smoochum"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-lovely-kiss-smoochum",
+    "kind": "signature-move",
+    "entityId": "smoochum",
+    "series": "g2",
+    "payload": {
+      "name": "Beso Amoroso",
+      "type": "Normal",
+      "description": "Intimida al objetivo con una cara que asusta y le da un beso que lo deja dormido.",
+      "accepts": [
+        "jynx"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-bonemerang-cubone",
+    "kind": "signature-move",
+    "entityId": "cubone",
+    "series": "g1",
+    "payload": {
+      "name": "Huesomerang",
+      "type": "Tierra",
+      "description": "Lanza un hueso a modo de bumerán que golpea dos veces.",
+      "accepts": [
+        "marowak"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-bonemerang-marowak",
+    "kind": "signature-move",
+    "entityId": "marowak",
+    "series": "g1",
+    "payload": {
+      "name": "Huesomerang",
+      "type": "Tierra",
+      "description": "Lanza un hueso a modo de bumerán que golpea dos veces.",
+      "accepts": [
+        "cubone"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-conversion-porygon",
+    "kind": "signature-move",
+    "entityId": "porygon",
+    "series": "g1",
+    "payload": {
+      "name": "Conversión",
+      "type": "Normal",
+      "description": "Cambia el tipo del usuario por el del primero de sus movimientos.",
+      "accepts": [
+        "porygon-z",
+        "porygon2"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-conversion-porygon-z",
+    "kind": "signature-move",
+    "entityId": "porygon-z",
+    "series": "g4",
+    "payload": {
+      "name": "Conversión",
+      "type": "Normal",
+      "description": "Cambia el tipo del usuario por el del primero de sus movimientos.",
+      "accepts": [
+        "porygon",
+        "porygon2"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-conversion-porygon2",
+    "kind": "signature-move",
+    "entityId": "porygon2",
+    "series": "g2",
+    "payload": {
+      "name": "Conversión",
+      "type": "Normal",
+      "description": "Cambia el tipo del usuario por el del primero de sus movimientos.",
+      "accepts": [
+        "porygon",
+        "porygon-z"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-sketch-smeargle",
+    "kind": "signature-move",
+    "entityId": "smeargle",
+    "series": "g2",
+    "payload": {
+      "name": "Esquema",
+      "type": "Normal",
+      "description": "Aprende de forma permanente el último movimiento utilizado por el objetivo. Es de un solo uso.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-conversion-2-porygon",
+    "kind": "signature-move",
+    "entityId": "porygon",
+    "series": "g1",
+    "payload": {
+      "name": "Conversión 2",
+      "type": "Normal",
+      "description": "El usuario cambia de tipo para hacerse resistente al último tipo de movimiento usado por el objetivo.",
+      "accepts": [
+        "porygon-z",
+        "porygon2"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-conversion-2-porygon-z",
+    "kind": "signature-move",
+    "entityId": "porygon-z",
+    "series": "g4",
+    "payload": {
+      "name": "Conversión 2",
+      "type": "Normal",
+      "description": "El usuario cambia de tipo para hacerse resistente al último tipo de movimiento usado por el objetivo.",
+      "accepts": [
+        "porygon",
+        "porygon2"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-conversion-2-porygon2",
+    "kind": "signature-move",
+    "entityId": "porygon2",
+    "series": "g2",
+    "payload": {
+      "name": "Conversión 2",
+      "type": "Normal",
+      "description": "El usuario cambia de tipo para hacerse resistente al último tipo de movimiento usado por el objetivo.",
+      "accepts": [
+        "porygon",
+        "porygon-z"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-aeroblast-lugia",
+    "kind": "signature-move",
+    "entityId": "lugia",
+    "series": "g2",
+    "payload": {
+      "name": "Aerochorro",
+      "type": "Volador",
+      "description": "Lanza un chorro de aire que suele asestar un golpe crítico.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-luster-purge-latios",
+    "kind": "signature-move",
+    "entityId": "latios",
+    "series": "g3",
+    "payload": {
+      "name": "Resplandor",
+      "type": "Psíquico",
+      "description": "Fogonazo de luz que puede bajar la Defensa Especial del objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-mist-ball-latias",
+    "kind": "signature-move",
+    "entityId": "latias",
+    "series": "g3",
+    "payload": {
+      "name": "Bola Neblina",
+      "type": "Psíquico",
+      "description": "Banco de niebla que puede bajar el Ataque Especial del objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-volt-tackle-pichu",
+    "kind": "signature-move",
+    "entityId": "pichu",
+    "series": "g2",
+    "payload": {
+      "name": "Placaje Eléctrico",
+      "type": "Eléctrico",
+      "description": "Quien lo usa electrifica su cuerpo para luego atacar. Se hiere mucho a sí mismo, pero puede paralizar al objetivo.",
+      "accepts": [
+        "pikachu",
+        "raichu"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-volt-tackle-pikachu",
+    "kind": "signature-move",
+    "entityId": "pikachu",
+    "series": "g1",
+    "payload": {
+      "name": "Placaje Eléctrico",
+      "type": "Eléctrico",
+      "description": "Quien lo usa electrifica su cuerpo para luego atacar. Se hiere mucho a sí mismo, pero puede paralizar al objetivo.",
+      "accepts": [
+        "pichu",
+        "raichu"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-volt-tackle-raichu",
+    "kind": "signature-move",
+    "entityId": "raichu",
+    "series": "g1",
+    "payload": {
+      "name": "Placaje Eléctrico",
+      "type": "Eléctrico",
+      "description": "Quien lo usa electrifica su cuerpo para luego atacar. Se hiere mucho a sí mismo, pero puede paralizar al objetivo.",
+      "accepts": [
+        "pichu",
+        "pikachu"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-doom-desire-jirachi",
+    "kind": "signature-move",
+    "entityId": "jirachi",
+    "series": "g3",
+    "payload": {
+      "name": "Deseo Oculto",
+      "type": "Acero",
+      "description": "Concentra un haz de luz y ataca dos turnos después.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-chatter-chatot",
+    "kind": "signature-move",
+    "entityId": "chatot",
+    "series": "g4",
+    "payload": {
+      "name": "Cháchara",
+      "type": "Volador",
+      "description": "Ataca con una onda de sonido muy ruidosa compuesta por palabras y confunde al objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-judgment-arceus",
+    "kind": "signature-move",
+    "entityId": "arceus",
+    "series": "g4",
+    "payload": {
+      "name": "Sentencia",
+      "type": "Normal",
+      "description": "Emite incontables haces de luz. El tipo del movimiento varía según la tabla que lleve el usuario.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-attack-order-vespiquen",
+    "kind": "signature-move",
+    "entityId": "vespiquen",
+    "series": "g4",
+    "payload": {
+      "name": "Al Ataque",
+      "type": "Bicho",
+      "description": "El usuario llama a sus súbditos para que ataquen al objetivo. Suele ser crítico.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-defend-order-vespiquen",
+    "kind": "signature-move",
+    "entityId": "vespiquen",
+    "series": "g4",
+    "payload": {
+      "name": "A Defender",
+      "type": "Bicho",
+      "description": "El usuario llama a sus súbditos para que formen un escudo viviente. Sube la Defensa y la Defensa Especial.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-heal-order-vespiquen",
+    "kind": "signature-move",
+    "entityId": "vespiquen",
+    "series": "g4",
+    "payload": {
+      "name": "Auxilio",
+      "type": "Bicho",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-roar-of-time-dialga",
+    "kind": "signature-move",
+    "entityId": "dialga",
+    "series": "g4",
+    "payload": {
+      "name": "Distorsión",
+      "type": "Dragón",
+      "description": "Ataca al objetivo usando tal energía que el tiempo se distorsiona. El usuario descansa el siguiente turno.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-spacial-rend-palkia",
+    "kind": "signature-move",
+    "entityId": "palkia",
+    "series": "g4",
+    "payload": {
+      "name": "Corte Vacío",
+      "type": "Dragón",
+      "description": "Desgarra al objetivo y el espacio a su alrededor. Suele ser crítico.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-lunar-dance-cresselia",
+    "kind": "signature-move",
+    "entityId": "cresselia",
+    "series": "g4",
+    "payload": {
+      "name": "Danza Lunar",
+      "type": "Psíquico",
+      "description": "El usuario se debilita, pero el Pokémon que lo sustituye recupera su estado, los PS y los PP.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-crush-grip-regigigas",
+    "kind": "signature-move",
+    "entityId": "regigigas",
+    "series": "g4",
+    "payload": {
+      "name": "Agarrón",
+      "type": "Normal",
+      "description": "Estruja al objetivo con gran fuerza. Cuantos más PS le queden al objetivo, más fuerte será el ataque.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-magma-storm-heatran",
+    "kind": "signature-move",
+    "entityId": "heatran",
+    "series": "g4",
+    "payload": {
+      "name": "Lluvia Ígnea",
+      "type": "Fuego",
+      "description": "El objetivo queda atrapado en una tormenta de fuego que dura de cuatro a cinco turnos.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-dark-void-darkrai",
+    "kind": "signature-move",
+    "entityId": "darkrai",
+    "series": "g4",
+    "payload": {
+      "name": "Brecha Negra",
+      "type": "Siniestro",
+      "description": "El objetivo es enviado a un mundo de tinieblas que lo hace dormir.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-seed-flare-shaymin",
+    "kind": "signature-move",
+    "entityId": "shaymin",
+    "series": "g4",
+    "payload": {
+      "name": "Fulgor Semilla",
+      "type": "Planta",
+      "description": "Una onda de choque se libera del cuerpo. Puede bajar mucho la Defensa Especial del objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-shadow-force-giratina",
+    "kind": "signature-move",
+    "entityId": "giratina",
+    "series": "g4",
+    "payload": {
+      "name": "Golpe Umbrío",
+      "type": "Fantasma",
+      "description": "En el primer turno, desaparece. En el segundo, golpea al objetivo aunque se esté protegiendo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-psystrike-mewtwo",
+    "kind": "signature-move",
+    "entityId": "mewtwo",
+    "series": "g1",
+    "payload": {
+      "name": "Onda Mental",
+      "type": "Psíquico",
+      "description": "Crea una onda psíquica que causa daño físico al objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-head-charge-bouffalant",
+    "kind": "signature-move",
+    "entityId": "bouffalant",
+    "series": "g5",
+    "payload": {
+      "name": "Ariete",
+      "type": "Normal",
+      "description": "Propina un tremendo cabezazo. También daña al usuario un poco.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-gear-grind-klang",
+    "kind": "signature-move",
+    "entityId": "klang",
+    "series": "g5",
+    "payload": {
+      "name": "Rueda Doble",
+      "type": "Acero",
+      "description": "Rota dos engranajes de hierro sobre el objetivo. Golpea dos veces.",
+      "accepts": [
+        "klink",
+        "klinklang"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-gear-grind-klink",
+    "kind": "signature-move",
+    "entityId": "klink",
+    "series": "g5",
+    "payload": {
+      "name": "Rueda Doble",
+      "type": "Acero",
+      "description": "Rota dos engranajes de hierro sobre el objetivo. Golpea dos veces.",
+      "accepts": [
+        "klang",
+        "klinklang"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-gear-grind-klinklang",
+    "kind": "signature-move",
+    "entityId": "klinklang",
+    "series": "g5",
+    "payload": {
+      "name": "Rueda Doble",
+      "type": "Acero",
+      "description": "Rota dos engranajes de hierro sobre el objetivo. Golpea dos veces.",
+      "accepts": [
+        "klang",
+        "klink"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-searing-shot-victini",
+    "kind": "signature-move",
+    "entityId": "victini",
+    "series": "g5",
+    "payload": {
+      "name": "Bomba Ígnea",
+      "type": "Fuego",
+      "description": "Un infierno de llamas daña a los Pokémon adyacentes en combate. Puede quemar.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-techno-blast-genesect",
+    "kind": "signature-move",
+    "entityId": "genesect",
+    "series": "g5",
+    "payload": {
+      "name": "Tecno Shock",
+      "type": "Normal",
+      "description": "Ataca al objetivo con un gran láser. El tipo del ataque lo determina el cartucho que porta el usuario.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-relic-song-meloetta",
+    "kind": "signature-move",
+    "entityId": "meloetta",
+    "series": "g5",
+    "payload": {
+      "name": "Canto Arcaico",
+      "type": "Normal",
+      "description": "Ataca conmoviendo a los rivales de alrededor con un antiguo canto. Puede dormirlos.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-secret-sword-keldeo",
+    "kind": "signature-move",
+    "entityId": "keldeo",
+    "series": "g5",
+    "payload": {
+      "name": "Sable Místico",
+      "type": "Lucha",
+      "description": "Ensarta al objetivo con un largo cuerno dotado de un poder místico que provoca daño físico.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-glaciate-kyurem",
+    "kind": "signature-move",
+    "entityId": "kyurem",
+    "series": "g5",
+    "payload": {
+      "name": "Mundo Gélido",
+      "type": "Hielo",
+      "description": "Ataque con aire helado que baja la Velocidad del objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-bolt-strike-zekrom",
+    "kind": "signature-move",
+    "entityId": "zekrom",
+    "series": "g5",
+    "payload": {
+      "name": "Ataque Fulgor",
+      "type": "Eléctrico",
+      "description": "Ataca envolviéndose de una gran carga eléctrica y embistiendo al objetivo con ella. Puede paralizar.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-blue-flare-reshiram",
+    "kind": "signature-move",
+    "entityId": "reshiram",
+    "series": "g5",
+    "payload": {
+      "name": "Llama Azul",
+      "type": "Fuego",
+      "description": "Ataca con una bella pero potente llama azul que rodea al objetivo. Puede quemarlo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-freeze-shock-kyurem",
+    "kind": "signature-move",
+    "entityId": "kyurem",
+    "series": "g5",
+    "payload": {
+      "name": "Rayo Gélido",
+      "type": "Hielo",
+      "description": "El usuario carga un bloque de hielo con electricidad en el primer turno y ataca con él en el segundo. Puede paralizar.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-ice-burn-kyurem",
+    "kind": "signature-move",
+    "entityId": "kyurem",
+    "series": "g5",
+    "payload": {
+      "name": "Llama Gélida",
+      "type": "Hielo",
+      "description": "Ataca al objetivo en el segundo turno rodeándolo de un aire gélido. Puede causar quemaduras.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-v-create-victini",
+    "kind": "signature-move",
+    "entityId": "victini",
+    "series": "g5",
+    "payload": {
+      "name": "V de Fuego",
+      "type": "Fuego",
+      "description": "Golpea con una V de llamas al objetivo. Baja la Defensa, la Defensa Especial y la Velocidad de quien lo usa.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-trick-or-treat-gourgeist",
+    "kind": "signature-move",
+    "entityId": "gourgeist",
+    "series": "g6",
+    "payload": {
+      "name": "Halloween",
+      "type": "Fantasma",
+      "description": "Invita al objetivo a celebrar Halloween, lo que añade el tipo Fantasma a los tipos de este.",
+      "accepts": [
+        "pumpkaboo"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-trick-or-treat-pumpkaboo",
+    "kind": "signature-move",
+    "entityId": "pumpkaboo",
+    "series": "g6",
+    "payload": {
+      "name": "Halloween",
+      "type": "Fantasma",
+      "description": "Invita al objetivo a celebrar Halloween, lo que añade el tipo Fantasma a los tipos de este.",
+      "accepts": [
+        "gourgeist"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-forests-curse-phantump",
+    "kind": "signature-move",
+    "entityId": "phantump",
+    "series": "g6",
+    "payload": {
+      "name": "Condena Silvana",
+      "type": "Planta",
+      "description": "El objetivo es presa de la maldición del bosque, por lo que pasa a ser un Pokémon de tipo Planta, además de conservar sus tipos habituales.",
+      "accepts": [
+        "trevenant"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-forests-curse-trevenant",
+    "kind": "signature-move",
+    "entityId": "trevenant",
+    "series": "g6",
+    "payload": {
+      "name": "Condena Silvana",
+      "type": "Planta",
+      "description": "El objetivo es presa de la maldición del bosque, por lo que pasa a ser un Pokémon de tipo Planta, además de conservar sus tipos habituales.",
+      "accepts": [
+        "phantump"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-fairy-lock-klefki",
+    "kind": "signature-move",
+    "entityId": "klefki",
+    "series": "g6",
+    "payload": {
+      "name": "Cerrojo Feérico",
+      "type": "Hada",
+      "description": "Consigue que ningún Pokémon pueda huir en el siguiente turno echando un cerrojo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-kings-shield-aegislash",
+    "kind": "signature-move",
+    "entityId": "aegislash",
+    "series": "g6",
+    "payload": {
+      "name": "Escudo Real",
+      "type": "Acero",
+      "description": "El usuario adopta una postura defensiva y se protege de cualquier daño. Reduce el Ataque de cualquier Pokémon con el que entre en contacto.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-diamond-storm-diancie",
+    "kind": "signature-move",
+    "entityId": "diancie",
+    "series": "g6",
+    "payload": {
+      "name": "Tormenta de Diamantes",
+      "type": "Roca",
+      "description": "Desata un devastador vendaval de diamantes para dañar a los oponentes. Puede aumentar mucho la Defensa del usuario.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-steam-eruption-volcanion",
+    "kind": "signature-move",
+    "entityId": "volcanion",
+    "series": "g6",
+    "payload": {
+      "name": "Chorro de Vapor",
+      "type": "Agua",
+      "description": "Envuelve al Pokémon oponente con vapor extremadamente caliente que puede llegar a quemarlo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-hyperspace-hole-hoopa",
+    "kind": "signature-move",
+    "entityId": "hoopa",
+    "series": "g6",
+    "payload": {
+      "name": "Paso Dimensional",
+      "type": "Psíquico",
+      "description": "El usuario aparece junto al rival usando un agujero dimensional y le asesta un golpe que movimientos como Protección o Detección no pueden evitar.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-geomancy-xerneas",
+    "kind": "signature-move",
+    "entityId": "xerneas",
+    "series": "g6",
+    "payload": {
+      "name": "Geocontrol",
+      "type": "Hada",
+      "description": "Concentra energía durante el primer turno, de forma que su Velocidad, Ataque Especial y Defensa Especial aumenten mucho en el segundo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-oblivion-wing-yveltal",
+    "kind": "signature-move",
+    "entityId": "yveltal",
+    "series": "g6",
+    "payload": {
+      "name": "Ala Mortífera",
+      "type": "Volador",
+      "description": "El usuario absorbe energía del objetivo y aumenta sus PS en una cantidad igual o superior a la mitad del daño infligido.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-thousand-arrows-zygarde",
+    "kind": "signature-move",
+    "entityId": "zygarde",
+    "series": "g6",
+    "payload": {
+      "name": "Mil Flechas",
+      "type": "Tierra",
+      "description": "Acierta incluso a Pokémon que estén en el aire y los hace caer al suelo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-thousand-waves-zygarde",
+    "kind": "signature-move",
+    "entityId": "zygarde",
+    "series": "g6",
+    "payload": {
+      "name": "Mil Temblores",
+      "type": "Tierra",
+      "description": "El usuario genera ondas sísmicas que se propagan por el suelo y sacuden a los oponentes. Los Pokémon alcanzados no podrán huir del combate.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-lands-wrath-zygarde",
+    "kind": "signature-move",
+    "entityId": "zygarde",
+    "series": "g6",
+    "payload": {
+      "name": "Fuerza Telúrica",
+      "type": "Tierra",
+      "description": "Acumula energía de la corteza terrestre y la concentra contra los oponentes, dañándolos.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-light-of-ruin-floette",
+    "kind": "signature-move",
+    "entityId": "floette",
+    "series": "g6",
+    "payload": {
+      "name": "Luz Aniquiladora",
+      "type": "Hada",
+      "description": "El usuario emplea el poder de la Flor Eterna para lanzar un potente rayo de luz, pero sufre bastante daño al hacerlo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-origin-pulse-kyogre",
+    "kind": "signature-move",
+    "entityId": "kyogre",
+    "series": "g3",
+    "payload": {
+      "name": "Pulso Primigenio",
+      "type": "Agua",
+      "description": "Ataca al objetivo con una infinidad de rayos de luz azulada.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-precipice-blades-groudon",
+    "kind": "signature-move",
+    "entityId": "groudon",
+    "series": "g3",
+    "payload": {
+      "name": "Filo del Abismo",
+      "type": "Tierra",
+      "description": "Hace que el poder latente de la tierra se manifieste en forma de hojas afiladas y ataca al objetivo con ellas.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-dragon-ascent-rayquaza",
+    "kind": "signature-move",
+    "entityId": "rayquaza",
+    "series": "g3",
+    "payload": {
+      "name": "Ascenso Draco",
+      "type": "Volador",
+      "description": "El usuario se precipita desde el cielo a una velocidad de vértigo para atacar al objetivo, pero hace que bajen la Defensa y la Defensa Especial del usuario.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-hyperspace-fury-hoopa",
+    "kind": "signature-move",
+    "entityId": "hoopa",
+    "series": "g6",
+    "payload": {
+      "name": "Cerco Dimensión",
+      "type": "Siniestro",
+      "description": "Ataca al objetivo con una ráfaga de golpes que pasan por alto los efectos de movimientos como Protección o Detección. Baja la Defensa del usuario.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-shore-up-palossand",
+    "kind": "signature-move",
+    "entityId": "palossand",
+    "series": "g7",
+    "payload": {
+      "name": "Recogearena",
+      "type": "Tierra",
+      "description": "Restaura la mitad de los PS máximos del usuario. Durante las tormentas de arena, restaura aún más PS.",
+      "accepts": [
+        "sandygast"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-shore-up-sandygast",
+    "kind": "signature-move",
+    "entityId": "sandygast",
+    "series": "g7",
+    "payload": {
+      "name": "Recogearena",
+      "type": "Tierra",
+      "description": "Restaura la mitad de los PS máximos del usuario. Durante las tormentas de arena, restaura aún más PS.",
+      "accepts": [
+        "palossand"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-baneful-bunker-toxapex",
+    "kind": "signature-move",
+    "entityId": "toxapex",
+    "series": "g7",
+    "payload": {
+      "name": "Búnker",
+      "type": "Veneno",
+      "description": "Protege de los ataques y, al mismo tiempo, envenena al Pokémon que use un movimiento de contacto contra el usuario.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-spirit-shackle-decidueye",
+    "kind": "signature-move",
+    "entityId": "decidueye",
+    "series": "g7",
+    "payload": {
+      "name": "Puntada Sombría",
+      "type": "Fantasma",
+      "description": "Ataca al oponente y, al mismo tiempo, fija su sombra al terreno para impedir su huida.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-floral-healing-comfey",
+    "kind": "signature-move",
+    "entityId": "comfey",
+    "series": "g7",
+    "payload": {
+      "name": "Cura Floral",
+      "type": "Hada",
+      "description": "Restaura la mitad de los PS máximos del objetivo. Es más efectivo cuando se usa en conjunción con Campo de Hierba.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-toxic-thread-ariados",
+    "kind": "signature-move",
+    "entityId": "ariados",
+    "series": "g2",
+    "payload": {
+      "name": "Hilo Venenoso",
+      "type": "Veneno",
+      "description": "Ataca al oponente con hilillos venenosos que reducen su Velocidad y lo envenenan.",
+      "accepts": [
+        "spinarak"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-toxic-thread-spinarak",
+    "kind": "signature-move",
+    "entityId": "spinarak",
+    "series": "g2",
+    "payload": {
+      "name": "Hilo Venenoso",
+      "type": "Veneno",
+      "description": "Ataca al oponente con hilillos venenosos que reducen su Velocidad y lo envenenan.",
+      "accepts": [
+        "ariados"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-anchor-shot-dhelmise",
+    "kind": "signature-move",
+    "entityId": "dhelmise",
+    "series": "g7",
+    "payload": {
+      "name": "Anclaje",
+      "type": "Acero",
+      "description": "Ataca lanzando un ancla al oponente, que queda atrapado y no puede huir.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-purify-pyukumuku",
+    "kind": "signature-move",
+    "entityId": "pyukumuku",
+    "series": "g7",
+    "payload": {
+      "name": "Purificación",
+      "type": "Veneno",
+      "description": "Cura los problemas de estado del Pokémon rival y a cambio recupera PS propios.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-revelation-dance-oricorio",
+    "kind": "signature-move",
+    "entityId": "oricorio",
+    "series": "g7",
+    "payload": {
+      "name": "Danza Despertar",
+      "type": "Normal",
+      "description": "Ataque que consiste en un baile muy enérgico. El tipo de este ataque se corresponde con el del Pokémon que lo ejecuta.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-core-enforcer-zygarde",
+    "kind": "signature-move",
+    "entityId": "zygarde",
+    "series": "g6",
+    "payload": {
+      "name": "Núcleo Castigo",
+      "type": "Dragón",
+      "description": "Inflige daño al rival, y si este ya ha hecho uso de algún movimiento, pierde su habilidad.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-trop-kick-tsareena",
+    "kind": "signature-move",
+    "entityId": "tsareena",
+    "series": "g7",
+    "payload": {
+      "name": "Patada Tropical",
+      "type": "Planta",
+      "description": "Lanza una patada con la fuerza del trópico que golpea al rival y reduce su Ataque.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-instruct-oranguru",
+    "kind": "signature-move",
+    "entityId": "oranguru",
+    "series": "g7",
+    "payload": {
+      "name": "Mandato",
+      "type": "Psíquico",
+      "description": "Fuerza al objetivo a repetir inmediatamente su último movimiento.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-beak-blast-toucannon",
+    "kind": "signature-move",
+    "entityId": "toucannon",
+    "series": "g7",
+    "payload": {
+      "name": "Pico Cañón",
+      "type": "Volador",
+      "description": "Primero aumenta la temperatura de su pico y luego ejecuta un ataque. Quema al rival si este le propina un ataque físico mientras está calentando el pico.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-clanging-scales-kommo-o",
+    "kind": "signature-move",
+    "entityId": "kommo-o",
+    "series": "g7",
+    "payload": {
+      "name": "Fragor Escamas",
+      "type": "Dragón",
+      "description": "Frota todas las escamas de su cuerpo para crear un fuerte sonido con el que ataca. Cuando el ataque termina, su Defensa se ve reducida.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-shell-trap-turtonator",
+    "kind": "signature-move",
+    "entityId": "turtonator",
+    "series": "g7",
+    "payload": {
+      "name": "Coraza Trampa",
+      "type": "Fuego",
+      "description": "El caparazón del Pokémon se convierte en una trampa. Si le alcanza un ataque físico, la trampa estalla y los oponentes sufren daño.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-fleur-cannon-magearna",
+    "kind": "signature-move",
+    "entityId": "magearna",
+    "series": "g7",
+    "payload": {
+      "name": "Cañón Floral",
+      "type": "Hada",
+      "description": "El usuario emite un potente rayo, pero su Ataque Especial se reduce mucho.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-shadow-bone-marowak",
+    "kind": "signature-move",
+    "entityId": "marowak",
+    "series": "g1",
+    "payload": {
+      "name": "Hueso Sombrío",
+      "type": "Fantasma",
+      "description": "Ataca al oponente golpeándole con un hueso poseído por un espíritu. Puede reducir la Defensa del objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-accelerock-lycanroc",
+    "kind": "signature-move",
+    "entityId": "lycanroc",
+    "series": "g7",
+    "payload": {
+      "name": "Roca Veloz",
+      "type": "Roca",
+      "description": "El usuario se lanza contra el objetivo a gran velocidad. Este movimiento tiene prioridad alta.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-prismatic-laser-necrozma",
+    "kind": "signature-move",
+    "entityId": "necrozma",
+    "series": "g7",
+    "payload": {
+      "name": "Láser Prisma",
+      "type": "Psíquico",
+      "description": "El usuario utiliza un prisma para emitir un rayo de gran potencia, pero no puede moverse en el turno siguiente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-spectral-thief-marshadow",
+    "kind": "signature-move",
+    "entityId": "marshadow",
+    "series": "g7",
+    "payload": {
+      "name": "Robasombra",
+      "type": "Fantasma",
+      "description": "El usuario se esconde en la sombra del objetivo y lo ataca tras robarle las mejoras en sus características.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-sunsteel-strike-solgaleo",
+    "kind": "signature-move",
+    "entityId": "solgaleo",
+    "series": "g7",
+    "payload": {
+      "name": "Meteoimpacto",
+      "type": "Acero",
+      "description": "Ataca al objetivo con la potencia de un meteoro, ignorando su habilidad.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-moongeist-beam-lunala",
+    "kind": "signature-move",
+    "entityId": "lunala",
+    "series": "g7",
+    "payload": {
+      "name": "Rayo Umbrío",
+      "type": "Fantasma",
+      "description": "Ataca con un rayo misterioso que ignora la habilidad del objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-multi-attack-silvally",
+    "kind": "signature-move",
+    "entityId": "silvally",
+    "series": "g7",
+    "payload": {
+      "name": "Multiataque",
+      "type": "Normal",
+      "description": "El Pokémon se rodea de una potente energía con la que golpea al rival. El tipo del movimiento depende del disco que lleva el usuario.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-mind-blown-blacephalon",
+    "kind": "signature-move",
+    "entityId": "blacephalon",
+    "series": "g7",
+    "payload": {
+      "name": "Cabeza Sorpresa",
+      "type": "Fuego",
+      "description": "El usuario hace explotar su cabeza para atacar a todos los Pokémon que se hallan a su alrededor, aunque también se hiere a sí mismo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-plasma-fists-zeraora",
+    "kind": "signature-move",
+    "entityId": "zeraora",
+    "series": "g7",
+    "payload": {
+      "name": "Puños Plasma",
+      "type": "Eléctrico",
+      "description": "El usuario ataca con puños cargados de electricidad. Convierte los movimientos de tipo Normal en movimientos de tipo Eléctrico.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-photon-geyser-necrozma",
+    "kind": "signature-move",
+    "entityId": "necrozma",
+    "series": "g7",
+    "payload": {
+      "name": "Géiser Fotónico",
+      "type": "Psíquico",
+      "description": "El usuario ataca con una gran columna de luz. Compara sus valores de Ataque y Ataque Especial para infligir daño con el más alto de los dos.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-zippy-zap-pikachu",
+    "kind": "signature-move",
+    "entityId": "pikachu",
+    "series": "g1",
+    "payload": {
+      "name": "Pikaturbo",
+      "type": "Eléctrico",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-splishy-splash-pikachu",
+    "kind": "signature-move",
+    "entityId": "pikachu",
+    "series": "g1",
+    "payload": {
+      "name": "Salpikasurf",
+      "type": "Agua",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-floaty-fall-pikachu",
+    "kind": "signature-move",
+    "entityId": "pikachu",
+    "series": "g1",
+    "payload": {
+      "name": "Pikapicado",
+      "type": "Volador",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-bouncy-bubble-eevee",
+    "kind": "signature-move",
+    "entityId": "eevee",
+    "series": "g1",
+    "payload": {
+      "name": "Vapodrenaje",
+      "type": "Agua",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-buzzy-buzz-eevee",
+    "kind": "signature-move",
+    "entityId": "eevee",
+    "series": "g1",
+    "payload": {
+      "name": "Joltioparálisis",
+      "type": "Eléctrico",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-sizzly-slide-eevee",
+    "kind": "signature-move",
+    "entityId": "eevee",
+    "series": "g1",
+    "payload": {
+      "name": "Flarembestida",
+      "type": "Fuego",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-glitzy-glow-eevee",
+    "kind": "signature-move",
+    "entityId": "eevee",
+    "series": "g1",
+    "payload": {
+      "name": "Espeaura",
+      "type": "Psíquico",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-baddy-bad-eevee",
+    "kind": "signature-move",
+    "entityId": "eevee",
+    "series": "g1",
+    "payload": {
+      "name": "Umbreozona",
+      "type": "Siniestro",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-sappy-seed-eevee",
+    "kind": "signature-move",
+    "entityId": "eevee",
+    "series": "g1",
+    "payload": {
+      "name": "Leafitobombas",
+      "type": "Planta",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-freezy-frost-eevee",
+    "kind": "signature-move",
+    "entityId": "eevee",
+    "series": "g1",
+    "payload": {
+      "name": "Glaceoprisma",
+      "type": "Hielo",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-sparkly-swirl-eevee",
+    "kind": "signature-move",
+    "entityId": "eevee",
+    "series": "g1",
+    "payload": {
+      "name": "Sylveotornado",
+      "type": "Hada",
+      "description": "Este movimiento no se puede usar, por lo que sería mejor olvidarlo, aunque eso implique que no se pueda recordar posteriormente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-double-iron-bash-melmetal",
+    "kind": "signature-move",
+    "entityId": "melmetal",
+    "series": "g7",
+    "payload": {
+      "name": "Ferropuño Doble",
+      "type": "Acero",
+      "description": "Usando la tuerca del pecho como eje, gira sobre sí mismo y golpea con los brazos dos veces seguidas. Puede amedrentar al rival.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-dynamax-cannon-eternatus",
+    "kind": "signature-move",
+    "entityId": "eternatus",
+    "series": "g8",
+    "payload": {
+      "name": "Cañón Dinamax",
+      "type": "Dragón",
+      "description": "El usuario ataca emitiendo un rayo desde su núcleo. El daño infligido se duplica si el objetivo ha alcanzado el estado Dinamax.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-snipe-shot-inteleon",
+    "kind": "signature-move",
+    "entityId": "inteleon",
+    "series": "g8",
+    "payload": {
+      "name": "Disparo Certero",
+      "type": "Agua",
+      "description": "Permite atacar al objetivo seleccionado ignorando las habilidades o movimientos que permiten a un rival centrar la atención sobre sí.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-no-retreat-falinks",
+    "kind": "signature-move",
+    "entityId": "falinks",
+    "series": "g8",
+    "payload": {
+      "name": "Bastión Final",
+      "type": "Lucha",
+      "description": "El usuario aumenta todas sus características, pero ya no puede huir ni ser cambiado por otro.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-tar-shot-coalossal",
+    "kind": "signature-move",
+    "entityId": "coalossal",
+    "series": "g8",
+    "payload": {
+      "name": "Alquitranazo",
+      "type": "Roca",
+      "description": "Cubre al objetivo de un alquitrán pegajoso que reduce su Velocidad y lo vuelve débil contra el fuego.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-magic-powder-hatterene",
+    "kind": "signature-move",
+    "entityId": "hatterene",
+    "series": "g8",
+    "payload": {
+      "name": "Polvo Mágico",
+      "type": "Psíquico",
+      "description": "Cubre al objetivo con unos polvos mágicos que le hacen adquirir el tipo Psíquico.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-dragon-darts-dragapult",
+    "kind": "signature-move",
+    "entityId": "dragapult",
+    "series": "g8",
+    "payload": {
+      "name": "Dracoflechas",
+      "type": "Dragón",
+      "description": "El usuario ataca propulsando a ambos Dreepy. En caso de haber dos adversarios, cada Dreepy golpea a su propio objetivo por separado.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-teatime-polteageist",
+    "kind": "signature-move",
+    "entityId": "polteageist",
+    "series": "g8",
+    "payload": {
+      "name": "Hora del Té",
+      "type": "Normal",
+      "description": "El usuario invita a tomar el té a todos los presentes en el terreno de combate, lo que hace que ingieran las bayas que lleven equipadas.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-octolock-grapploct",
+    "kind": "signature-move",
+    "entityId": "grapploct",
+    "series": "g8",
+    "payload": {
+      "name": "Octopresa",
+      "type": "Lucha",
+      "description": "Retiene al objetivo para impedir su huida, a la vez que reduce su Defensa y Defensa Especial cada turno.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-court-change-cinderace",
+    "kind": "signature-move",
+    "entityId": "cinderace",
+    "series": "g8",
+    "payload": {
+      "name": "Cambio de Cancha",
+      "type": "Normal",
+      "description": "Extraño poder que intercambia los efectos en el terreno de combate de ambos bandos.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-clangorous-soul-kommo-o",
+    "kind": "signature-move",
+    "entityId": "kommo-o",
+    "series": "g7",
+    "payload": {
+      "name": "Estruendo Escama",
+      "type": "Dragón",
+      "description": "Utiliza parte de los PS propios para subir sus características.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-decorate-alcremie",
+    "kind": "signature-move",
+    "entityId": "alcremie",
+    "series": "g8",
+    "payload": {
+      "name": "Decoración",
+      "type": "Hada",
+      "description": "Aumenta mucho el Ataque y el Ataque Especial del objetivo al decorarlo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-drum-beating-rillaboom",
+    "kind": "signature-move",
+    "entityId": "rillaboom",
+    "series": "g8",
+    "payload": {
+      "name": "Batería Asalto",
+      "type": "Planta",
+      "description": "El usuario controla un tocón mediante la percusión y al atacar reduce la Velocidad del objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-snap-trap-stunfisk",
+    "kind": "signature-move",
+    "entityId": "stunfisk",
+    "series": "g5",
+    "payload": {
+      "name": "Cepo",
+      "type": "Planta",
+      "description": "Cepo que atrapa al objetivo durante cuatro o cinco turnos y le causa daño mientras se encuentra preso.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-pyro-ball-cinderace",
+    "kind": "signature-move",
+    "entityId": "cinderace",
+    "series": "g8",
+    "payload": {
+      "name": "Balón Ígneo",
+      "type": "Fuego",
+      "description": "El usuario prende una pequeña piedra para crear una bola de fuego con la que ataca al rival. Puede causar quemaduras.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-aura-wheel-morpeko",
+    "kind": "signature-move",
+    "entityId": "morpeko",
+    "series": "g8",
+    "payload": {
+      "name": "Rueda Aural",
+      "type": "Eléctrico",
+      "description": "La energía que acumula en las mejillas le sirve para atacar y aumentar su Velocidad. Este movimiento cambia de tipo según la forma que adopte ???.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-overdrive-toxtricity",
+    "kind": "signature-move",
+    "entityId": "toxtricity",
+    "series": "g8",
+    "payload": {
+      "name": "Amplificador",
+      "type": "Eléctrico",
+      "description": "El usuario rasguea la guitarra o el bajo para generar enormes vibraciones de intensa reverberación con las que ataca al objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-apple-acid-appletun",
+    "kind": "signature-move",
+    "entityId": "appletun",
+    "series": "g8",
+    "payload": {
+      "name": "Ácido Málico",
+      "type": "Planta",
+      "description": "Ataca al objetivo con el fluido corrosivo que desprende una manzana ácida, lo que también disminuye la Defensa Especial de este.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-grav-apple-flapple",
+    "kind": "signature-move",
+    "entityId": "flapple",
+    "series": "g8",
+    "payload": {
+      "name": "Fuerza G",
+      "type": "Planta",
+      "description": "El usuario ataca haciendo caer una manzana desde gran altura. Disminuye la Defensa del objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-strange-steam-weezing",
+    "kind": "signature-move",
+    "entityId": "weezing",
+    "series": "g1",
+    "payload": {
+      "name": "Cautivapor",
+      "type": "Hada",
+      "description": "Desprende un humo con el que ataca al objetivo, que puede acabar confundido.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-obstruct-obstagoon",
+    "kind": "signature-move",
+    "entityId": "obstagoon",
+    "series": "g8",
+    "payload": {
+      "name": "Obstrucción",
+      "type": "Siniestro",
+      "description": "Frena todos los ataques, pero puede fallar si se usa repetidamente. Reduce mucho la Defensa de quien ejecute un movimiento de contacto contra el usuario.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-false-surrender-grimmsnarl",
+    "kind": "signature-move",
+    "entityId": "grimmsnarl",
+    "series": "g8",
+    "payload": {
+      "name": "Irreverencia",
+      "type": "Siniestro",
+      "description": "El usuario finge hacer una reverencia y aprovecha la ocasión para ensartar al objetivo con su cabello alborotado. Siempre acierta.",
+      "accepts": [
+        "morgrem"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-false-surrender-morgrem",
+    "kind": "signature-move",
+    "entityId": "morgrem",
+    "series": "g8",
+    "payload": {
+      "name": "Irreverencia",
+      "type": "Siniestro",
+      "description": "El usuario finge hacer una reverencia y aprovecha la ocasión para ensartar al objetivo con su cabello alborotado. Siempre acierta.",
+      "accepts": [
+        "grimmsnarl"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-meteor-assault-sirfetchd",
+    "kind": "signature-move",
+    "entityId": "sirfetchd",
+    "series": "g8",
+    "payload": {
+      "name": "Asalto Estelar",
+      "type": "Lucha",
+      "description": "El usuario agita violentamente su grueso puerro para atacar, pero el mareo que le provocan las sacudidas le impide moverse en el turno siguiente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-eternabeam-eternatus",
+    "kind": "signature-move",
+    "entityId": "eternatus",
+    "series": "g8",
+    "payload": {
+      "name": "Rayo Infinito",
+      "type": "Dragón",
+      "description": "Este es el mayor ataque de ??? una vez adquirida su forma original. No puede moverse en el turno siguiente.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-shell-side-arm-slowbro",
+    "kind": "signature-move",
+    "entityId": "slowbro",
+    "series": "g1",
+    "payload": {
+      "name": "Moluscañón",
+      "type": "Veneno",
+      "description": "El usuario lanza un ataque físico o especial en función de cuál inflija más daño. Puede envenenar al objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-jungle-healing-zarude",
+    "kind": "signature-move",
+    "entityId": "zarude",
+    "series": "g8",
+    "payload": {
+      "name": "Cura Selvática",
+      "type": "Planta",
+      "description": "Al entrar en plena armonía con la selva, el usuario cura problemas de estado y restaura PS no solo de sí mismo, sino también de los aliados presentes en el terreno.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-wicked-blow-urshifu",
+    "kind": "signature-move",
+    "entityId": "urshifu",
+    "series": "g8",
+    "payload": {
+      "name": "Golpe Oscuro",
+      "type": "Siniestro",
+      "description": "Golpe devastador que requiere un absoluto dominio de las artes siniestras. Siempre asesta un golpe crítico.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-surging-strikes-urshifu",
+    "kind": "signature-move",
+    "entityId": "urshifu",
+    "series": "g8",
+    "payload": {
+      "name": "Azote Torrencial",
+      "type": "Agua",
+      "description": "El usuario, dominador absoluto del líquido elemento, golpea hasta tres veces con movimientos fluidos. Siempre asesta un golpe crítico.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-thunder-cage-regieleki",
+    "kind": "signature-move",
+    "entityId": "regieleki",
+    "series": "g8",
+    "payload": {
+      "name": "Electrojaula",
+      "type": "Eléctrico",
+      "description": "El objetivo queda atrapado en una jaula electrificada que permanece en el terreno de cuatro a cinco turnos.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-dragon-energy-regidrago",
+    "kind": "signature-move",
+    "entityId": "regidrago",
+    "series": "g8",
+    "payload": {
+      "name": "Dracoenergía",
+      "type": "Dragón",
+      "description": "El usuario convierte su fuerza vital en una energía con la que ataca al objetivo. Cuantos menos PS tenga el usuario, menor será la potencia del movimiento.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-freezing-glare-articuno",
+    "kind": "signature-move",
+    "entityId": "articuno",
+    "series": "g1",
+    "payload": {
+      "name": "Mirada Heladora",
+      "type": "Psíquico",
+      "description": "A través de sus ojos emite poderes psíquicos con los que ataca al objetivo, al que puede llegar a congelar.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-fiery-wrath-moltres",
+    "kind": "signature-move",
+    "entityId": "moltres",
+    "series": "g1",
+    "payload": {
+      "name": "Furia Candente",
+      "type": "Siniestro",
+      "description": "El usuario convierte su ira en un aura flamígera para lanzar su ataque. Puede amedrentar al objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-thunderous-kick-zapdos",
+    "kind": "signature-move",
+    "entityId": "zapdos",
+    "series": "g1",
+    "payload": {
+      "name": "Patada Relámpago",
+      "type": "Lucha",
+      "description": "El usuario desconcierta al rival con movimientos centelleantes y le propina una patada. Baja la Defensa del objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-glacial-lance-calyrex",
+    "kind": "signature-move",
+    "entityId": "calyrex",
+    "series": "g8",
+    "payload": {
+      "name": "Lanza Glacial",
+      "type": "Hielo",
+      "description": "El usuario ataca al objetivo lanzándole un carámbano de hielo envuelto en una ventisca.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-astral-barrage-calyrex",
+    "kind": "signature-move",
+    "entityId": "calyrex",
+    "series": "g8",
+    "payload": {
+      "name": "Orbes Espectro",
+      "type": "Fantasma",
+      "description": "El usuario ataca al objetivo lanzándole una ingente cantidad de pequeños fantasmas.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-eerie-spell-slowking",
+    "kind": "signature-move",
+    "entityId": "slowking",
+    "series": "g2",
+    "payload": {
+      "name": "Conjuro Funesto",
+      "type": "Psíquico",
+      "description": "El usuario ataca con un poder psíquico de inmensa potencia y elimina 3 PP del último movimiento que haya usado el objetivo.",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-dire-claw-sneasler",
+    "kind": "signature-move",
+    "entityId": "sneasler",
+    "series": "g8",
+    "payload": {
+      "name": "Garra Nociva",
+      "type": "Veneno",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-psyshield-bash-stantler",
+    "kind": "signature-move",
+    "entityId": "stantler",
+    "series": "g2",
+    "payload": {
+      "name": "Asalto Barrera",
+      "type": "Psíquico",
+      "accepts": [
+        "wyrdeer"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-psyshield-bash-wyrdeer",
+    "kind": "signature-move",
+    "entityId": "wyrdeer",
+    "series": "g8",
+    "payload": {
+      "name": "Asalto Barrera",
+      "type": "Psíquico",
+      "accepts": [
+        "stantler"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-stone-axe-kleavor",
+    "kind": "signature-move",
+    "entityId": "kleavor",
+    "series": "g8",
+    "payload": {
+      "name": "Hachazo Pétreo",
+      "type": "Roca",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-springtide-storm-enamorus",
+    "kind": "signature-move",
+    "entityId": "enamorus",
+    "series": "g8",
+    "payload": {
+      "name": "Ciclón Primavera",
+      "type": "Hada",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-chloroblast-electrode",
+    "kind": "signature-move",
+    "entityId": "electrode",
+    "series": "g1",
+    "payload": {
+      "name": "Clorofiláser",
+      "type": "Planta",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-mountain-gale-avalugg",
+    "kind": "signature-move",
+    "entityId": "avalugg",
+    "series": "g6",
+    "payload": {
+      "name": "Viento Carámbano",
+      "type": "Hielo",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-victory-dance-lilligant",
+    "kind": "signature-move",
+    "entityId": "lilligant",
+    "series": "g5",
+    "payload": {
+      "name": "Danza Triunfal",
+      "type": "Lucha",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-barb-barrage-overqwil",
+    "kind": "signature-move",
+    "entityId": "overqwil",
+    "series": "g8",
+    "payload": {
+      "name": "Mil Púas Tóxicas",
+      "type": "Veneno",
+      "accepts": [
+        "qwilfish"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-barb-barrage-qwilfish",
+    "kind": "signature-move",
+    "entityId": "qwilfish",
+    "series": "g2",
+    "payload": {
+      "name": "Mil Púas Tóxicas",
+      "type": "Veneno",
+      "accepts": [
+        "overqwil"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-esper-wing-braviary",
+    "kind": "signature-move",
+    "entityId": "braviary",
+    "series": "g5",
+    "payload": {
+      "name": "Ala Aural",
+      "type": "Psíquico",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-bitter-malice-zoroark",
+    "kind": "signature-move",
+    "entityId": "zoroark",
+    "series": "g5",
+    "payload": {
+      "name": "Rencor Reprimido",
+      "type": "Fantasma",
+      "accepts": [
+        "zorua"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-bitter-malice-zorua",
+    "kind": "signature-move",
+    "entityId": "zorua",
+    "series": "g5",
+    "payload": {
+      "name": "Rencor Reprimido",
+      "type": "Fantasma",
+      "accepts": [
+        "zoroark"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-shelter-goodra",
+    "kind": "signature-move",
+    "entityId": "goodra",
+    "series": "g6",
+    "payload": {
+      "name": "Retracción",
+      "type": "Acero",
+      "accepts": [
+        "goomy",
+        "sliggoo"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-shelter-goomy",
+    "kind": "signature-move",
+    "entityId": "goomy",
+    "series": "g6",
+    "payload": {
+      "name": "Retracción",
+      "type": "Acero",
+      "accepts": [
+        "goodra",
+        "sliggoo"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-shelter-sliggoo",
+    "kind": "signature-move",
+    "entityId": "sliggoo",
+    "series": "g6",
+    "payload": {
+      "name": "Retracción",
+      "type": "Acero",
+      "accepts": [
+        "goodra",
+        "goomy"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-triple-arrows-decidueye",
+    "kind": "signature-move",
+    "entityId": "decidueye",
+    "series": "g7",
+    "payload": {
+      "name": "Triple Flecha",
+      "type": "Lucha",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-infernal-parade-typhlosion",
+    "kind": "signature-move",
+    "entityId": "typhlosion",
+    "series": "g2",
+    "payload": {
+      "name": "Marcha Espectral",
+      "type": "Fantasma",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-ceaseless-edge-samurott",
+    "kind": "signature-move",
+    "entityId": "samurott",
+    "series": "g5",
+    "payload": {
+      "name": "Tajo Metralla",
+      "type": "Siniestro",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-bleakwind-storm-tornadus",
+    "kind": "signature-move",
+    "entityId": "tornadus",
+    "series": "g5",
+    "payload": {
+      "name": "Vendaval Gélido",
+      "type": "Volador",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-wildbolt-storm-thundurus",
+    "kind": "signature-move",
+    "entityId": "thundurus",
+    "series": "g5",
+    "payload": {
+      "name": "Electormenta",
+      "type": "Eléctrico",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-sandsear-storm-landorus",
+    "kind": "signature-move",
+    "entityId": "landorus",
+    "series": "g5",
+    "payload": {
+      "name": "Simún de Arena",
+      "type": "Tierra",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-lunar-blessing-cresselia",
+    "kind": "signature-move",
+    "entityId": "cresselia",
+    "series": "g4",
+    "payload": {
+      "name": "Plegaria Lunar",
+      "type": "Psíquico",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-take-heart-manaphy",
+    "kind": "signature-move",
+    "entityId": "manaphy",
+    "series": "g4",
+    "payload": {
+      "name": "Bálsamo Osado",
+      "type": "Psíquico",
+      "accepts": [
+        "phione"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-take-heart-phione",
+    "kind": "signature-move",
+    "entityId": "phione",
+    "series": "g4",
+    "payload": {
+      "name": "Bálsamo Osado",
+      "type": "Psíquico",
+      "accepts": [
+        "manaphy"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-silk-trap-spidops",
+    "kind": "signature-move",
+    "entityId": "spidops",
+    "series": "g9",
+    "payload": {
+      "name": "Telatrampa",
+      "type": "Bicho",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-lumina-crash-espathra",
+    "kind": "signature-move",
+    "entityId": "espathra",
+    "series": "g9",
+    "payload": {
+      "name": "Fotocolisión",
+      "type": "Psíquico",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-order-up-dondozo",
+    "kind": "signature-move",
+    "entityId": "dondozo",
+    "series": "g9",
+    "payload": {
+      "name": "Oído Cocina",
+      "type": "Dragón",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-jet-punch-palafin",
+    "kind": "signature-move",
+    "entityId": "palafin",
+    "series": "g9",
+    "payload": {
+      "name": "Puño Jet",
+      "type": "Agua",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-spicy-extract-scovillain",
+    "kind": "signature-move",
+    "entityId": "scovillain",
+    "series": "g9",
+    "payload": {
+      "name": "Extracto Picante",
+      "type": "Planta",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-spin-out-revavroom",
+    "kind": "signature-move",
+    "entityId": "revavroom",
+    "series": "g9",
+    "payload": {
+      "name": "Quemarrueda",
+      "type": "Acero",
+      "accepts": [
+        "varoom"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-spin-out-varoom",
+    "kind": "signature-move",
+    "entityId": "varoom",
+    "series": "g9",
+    "payload": {
+      "name": "Quemarrueda",
+      "type": "Acero",
+      "accepts": [
+        "revavroom"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-population-bomb-maushold",
+    "kind": "signature-move",
+    "entityId": "maushold",
+    "series": "g9",
+    "payload": {
+      "name": "Proliferación",
+      "type": "Normal",
+      "accepts": [
+        "tandemaus"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-population-bomb-tandemaus",
+    "kind": "signature-move",
+    "entityId": "tandemaus",
+    "series": "g9",
+    "payload": {
+      "name": "Proliferación",
+      "type": "Normal",
+      "accepts": [
+        "maushold"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-glaive-rush-baxcalibur",
+    "kind": "signature-move",
+    "entityId": "baxcalibur",
+    "series": "g9",
+    "payload": {
+      "name": "Asalto Espadón",
+      "type": "Dragón",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-salt-cure-garganacl",
+    "kind": "signature-move",
+    "entityId": "garganacl",
+    "series": "g9",
+    "payload": {
+      "name": "Salazón",
+      "type": "Roca",
+      "accepts": [
+        "naclstack"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-salt-cure-naclstack",
+    "kind": "signature-move",
+    "entityId": "naclstack",
+    "series": "g9",
+    "payload": {
+      "name": "Salazón",
+      "type": "Roca",
+      "accepts": [
+        "garganacl"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-triple-dive-wugtrio",
+    "kind": "signature-move",
+    "entityId": "wugtrio",
+    "series": "g9",
+    "payload": {
+      "name": "Triple Inmersión",
+      "type": "Agua",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-mortal-spin-glimmora",
+    "kind": "signature-move",
+    "entityId": "glimmora",
+    "series": "g9",
+    "payload": {
+      "name": "Giro Mortífero",
+      "type": "Veneno",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-doodle-grafaiai",
+    "kind": "signature-move",
+    "entityId": "grafaiai",
+    "series": "g9",
+    "payload": {
+      "name": "Decalcomanía",
+      "type": "Normal",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-fillet-away-veluza",
+    "kind": "signature-move",
+    "entityId": "veluza",
+    "series": "g9",
+    "payload": {
+      "name": "Deslome",
+      "type": "Normal",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-kowtow-cleave-kingambit",
+    "kind": "signature-move",
+    "entityId": "kingambit",
+    "series": "g9",
+    "payload": {
+      "name": "Genufendiente",
+      "type": "Siniestro",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-flower-trick-meowscarada",
+    "kind": "signature-move",
+    "entityId": "meowscarada",
+    "series": "g9",
+    "payload": {
+      "name": "Truco Floral",
+      "type": "Planta",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-torch-song-skeledirge",
+    "kind": "signature-move",
+    "entityId": "skeledirge",
+    "series": "g9",
+    "payload": {
+      "name": "Canto Ardiente",
+      "type": "Fuego",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-aqua-step-quaquaval",
+    "kind": "signature-move",
+    "entityId": "quaquaval",
+    "series": "g9",
+    "payload": {
+      "name": "Danza Acuática",
+      "type": "Agua",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-raging-bull-tauros",
+    "kind": "signature-move",
+    "entityId": "tauros",
+    "series": "g1",
+    "payload": {
+      "name": "Furia Taurina",
+      "type": "Normal",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-make-it-rain-gholdengo",
+    "kind": "signature-move",
+    "entityId": "gholdengo",
+    "series": "g9",
+    "payload": {
+      "name": "Fiebre Dorada",
+      "type": "Acero",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-psyblade-iron-leaves",
+    "kind": "signature-move",
+    "entityId": "iron-leaves",
+    "series": "g9",
+    "payload": {
+      "name": "Psicohojas",
+      "type": "Psíquico",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-hydro-steam-walking-wake",
+    "kind": "signature-move",
+    "entityId": "walking-wake",
+    "series": "g9",
+    "payload": {
+      "name": "Hidrovapor",
+      "type": "Agua",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-collision-course-koraidon",
+    "kind": "signature-move",
+    "entityId": "koraidon",
+    "series": "g9",
+    "payload": {
+      "name": "Nitrochoque",
+      "type": "Lucha",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-electro-drift-miraidon",
+    "kind": "signature-move",
+    "entityId": "miraidon",
+    "series": "g9",
+    "payload": {
+      "name": "Electroderrape",
+      "type": "Eléctrico",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-chilly-reception-slowking",
+    "kind": "signature-move",
+    "entityId": "slowking",
+    "series": "g2",
+    "payload": {
+      "name": "Fría Acogida",
+      "type": "Hielo",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-hyper-drill-dudunsparce",
+    "kind": "signature-move",
+    "entityId": "dudunsparce",
+    "series": "g9",
+    "payload": {
+      "name": "Hipertaladro",
+      "type": "Normal",
+      "accepts": [
+        "dunsparce"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-hyper-drill-dunsparce",
+    "kind": "signature-move",
+    "entityId": "dunsparce",
+    "series": "g2",
+    "payload": {
+      "name": "Hipertaladro",
+      "type": "Normal",
+      "accepts": [
+        "dudunsparce"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-twin-beam-farigiraf",
+    "kind": "signature-move",
+    "entityId": "farigiraf",
+    "series": "g9",
+    "payload": {
+      "name": "Láser Doble",
+      "type": "Psíquico",
+      "accepts": [
+        "girafarig"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-twin-beam-girafarig",
+    "kind": "signature-move",
+    "entityId": "girafarig",
+    "series": "g2",
+    "payload": {
+      "name": "Láser Doble",
+      "type": "Psíquico",
+      "accepts": [
+        "farigiraf"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-rage-fist-annihilape",
+    "kind": "signature-move",
+    "entityId": "annihilape",
+    "series": "g9",
+    "payload": {
+      "name": "Puño Furia",
+      "type": "Fantasma",
+      "accepts": [
+        "primeape"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-rage-fist-primeape",
+    "kind": "signature-move",
+    "entityId": "primeape",
+    "series": "g1",
+    "payload": {
+      "name": "Puño Furia",
+      "type": "Fantasma",
+      "accepts": [
+        "annihilape"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-armor-cannon-armarouge",
+    "kind": "signature-move",
+    "entityId": "armarouge",
+    "series": "g9",
+    "payload": {
+      "name": "Cañón Armadura",
+      "type": "Fuego",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-bitter-blade-ceruledge",
+    "kind": "signature-move",
+    "entityId": "ceruledge",
+    "series": "g9",
+    "payload": {
+      "name": "Espada Lamento",
+      "type": "Fuego",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-double-shock-pawmot",
+    "kind": "signature-move",
+    "entityId": "pawmot",
+    "series": "g9",
+    "payload": {
+      "name": "Electropalmas",
+      "type": "Eléctrico",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-gigaton-hammer-tinkaton",
+    "kind": "signature-move",
+    "entityId": "tinkaton",
+    "series": "g9",
+    "payload": {
+      "name": "Martillo Colosal",
+      "type": "Acero",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-blood-moon-ursaluna",
+    "kind": "signature-move",
+    "entityId": "ursaluna",
+    "series": "g8",
+    "payload": {
+      "name": "Luna Roja",
+      "type": "Normal",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-matcha-gotcha-sinistcha",
+    "kind": "signature-move",
+    "entityId": "sinistcha",
+    "series": "g9",
+    "payload": {
+      "name": "Cañón Batidor",
+      "type": "Planta",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-syrup-bomb-dipplin",
+    "kind": "signature-move",
+    "entityId": "dipplin",
+    "series": "g9",
+    "payload": {
+      "name": "Bomba Caramelo",
+      "type": "Planta",
+      "accepts": [
+        "hydrapple"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-syrup-bomb-hydrapple",
+    "kind": "signature-move",
+    "entityId": "hydrapple",
+    "series": "g9",
+    "payload": {
+      "name": "Bomba Caramelo",
+      "type": "Planta",
+      "accepts": [
+        "dipplin"
+      ]
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-ivy-cudgel-ogerpon",
+    "kind": "signature-move",
+    "entityId": "ogerpon",
+    "series": "g9",
+    "payload": {
+      "name": "Garrote Liana",
+      "type": "Planta",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-electro-shot-archaludon",
+    "kind": "signature-move",
+    "entityId": "archaludon",
+    "series": "g9",
+    "payload": {
+      "name": "Electrorrayo",
+      "type": "Eléctrico",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-tera-starstorm-terapagos",
+    "kind": "signature-move",
+    "entityId": "terapagos",
+    "series": "g9",
+    "payload": {
+      "name": "Teraclúster",
+      "type": "Normal",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-fickle-beam-hydrapple",
+    "kind": "signature-move",
+    "entityId": "hydrapple",
+    "series": "g9",
+    "payload": {
+      "name": "Láser Veleidoso",
+      "type": "Dragón",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-burning-bulwark-gouging-fire",
+    "kind": "signature-move",
+    "entityId": "gouging-fire",
+    "series": "g9",
+    "payload": {
+      "name": "Llama Protectora",
+      "type": "Fuego",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-thunderclap-raging-bolt",
+    "kind": "signature-move",
+    "entityId": "raging-bolt",
+    "series": "g9",
+    "payload": {
+      "name": "Relámpago Súbito",
+      "type": "Eléctrico",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-mighty-cleave-iron-boulder",
+    "kind": "signature-move",
+    "entityId": "iron-boulder",
+    "series": "g9",
+    "payload": {
+      "name": "Filo Potente",
+      "type": "Roca",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-tachyon-cutter-iron-crown",
+    "kind": "signature-move",
+    "entityId": "iron-crown",
+    "series": "g9",
+    "payload": {
+      "name": "Tajo Taquión",
+      "type": "Acero",
+      "accepts": []
+    },
+    "verified": true
+  },
+  {
+    "id": "signature-move-malignant-chain-pecharunt",
+    "kind": "signature-move",
+    "entityId": "pecharunt",
+    "series": "g9",
+    "payload": {
+      "name": "Cadena Virulenta",
+      "type": "Veneno",
+      "accepts": []
+    },
+    "verified": true
   }
 ]
