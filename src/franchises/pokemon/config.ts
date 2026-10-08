@@ -53,7 +53,6 @@ export const pokemonConfig = {
     },
     { slug: 'movimiento-insignia', name: 'Movimiento insignia', engine: 'text-clue' },
     { slug: 'zoom', name: 'Zoom', engine: 'image-reveal', imageReveal: { variant: 'zoom' } },
-    { slug: 'grito', name: 'Grito', engine: 'audio-clue' },
     { slug: 'mayor-o-menor', name: 'Mayor o Menor', engine: 'higher-lower' },
     { slug: 'moveset', name: 'Moveset', engine: 'reveal-list' },
   ],

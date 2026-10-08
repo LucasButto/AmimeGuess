@@ -1,12 +1,11 @@
 import type { ClassicConfig } from '../modes/classic/types';
 import type { ImageRevealConfig } from '../modes/image-reveal/types';
 
-/** Los 8 motores de juego (SPEC 3.2). Ninguno contiene lógica de una franquicia. */
+/** Los 7 motores de juego (SPEC 3.2). Ninguno contiene lógica de una franquicia. */
 export type EngineId =
   | 'classic'
   | 'image-reveal'
   | 'text-clue'
-  | 'audio-clue'
   | 'reveal-list'
   | 'higher-lower'
   | 'timeline'

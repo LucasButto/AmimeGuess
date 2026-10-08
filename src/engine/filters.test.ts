@@ -216,7 +216,7 @@ describe('pool mínimo (regla 6)', () => {
   it('valores por defecto: 20 para classic, 4 grupos para connections, 10 para el resto', () => {
     expect(defaultMinPool('classic')).toBe(20);
     expect(defaultMinPool('connections')).toBe(4);
-    for (const engine of ['image-reveal', 'text-clue', 'audio-clue', 'reveal-list', 'higher-lower', 'timeline']) {
+    for (const engine of ['image-reveal', 'text-clue', 'reveal-list', 'higher-lower', 'timeline']) {
       expect(defaultMinPool(engine)).toBe(10);
     }
   });

@@ -6,8 +6,8 @@ describe('configs de franquicia', () => {
     expect(franchises.map((f) => f.slug)).toEqual(['pokemon', 'dragon-ball', 'naruto', 'yugioh']);
   });
 
-  it('la cantidad de modos es 9, 9, 9 y 10', () => {
-    expect(franchises.map((f) => f.modes.length)).toEqual([9, 9, 9, 10]);
+  it('la cantidad de modos es 8, 9, 9 y 10', () => {
+    expect(franchises.map((f) => f.modes.length)).toEqual([8, 9, 9, 10]);
   });
 
   it('los slugs de modo no se repiten dentro de una franquicia', () => {
