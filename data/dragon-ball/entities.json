@@ -928,8 +928,9 @@
       "tecnica": null,
       "ki": 440000000,
       "kiOficial": 0,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/androide-16"
   },
   {
     "id": "androide-19",
@@ -2150,8 +2151,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/oolong"
   },
   {
     "id": "puar",
@@ -2184,8 +2186,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/puar"
   },
   {
     "id": "yajirobe",
@@ -2217,8 +2220,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/yajirobe"
   },
   {
     "id": "chaoz",
@@ -2253,8 +2257,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/chaoz"
   },
   {
     "id": "karin",
@@ -2286,8 +2291,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/karin"
   },
   {
     "id": "mr-popo",
@@ -2319,8 +2325,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/mr-popo"
   },
   {
     "id": "pilaf",
@@ -2353,8 +2360,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/pilaf"
   },
   {
     "id": "mai",
@@ -2383,8 +2391,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/mai"
   },
   {
     "id": "shu",
@@ -2413,8 +2422,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/shu"
   },
   {
     "id": "tao-pai-pai",
@@ -2447,8 +2457,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/tao-pai-pai"
   },
   {
     "id": "general-blue",
@@ -2479,8 +2490,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/general-blue"
   },
   {
     "id": "rey-gyuma",
@@ -2513,8 +2525,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/rey-gyuma"
   },
   {
     "id": "baba",
@@ -2546,8 +2559,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/baba"
   },
   {
     "id": "gran-rey-demonio-piccolo",
@@ -2581,8 +2595,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/gran-rey-demonio-piccolo"
   },
   {
     "id": "shenlong",
@@ -2615,8 +2630,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/shenlong"
   },
   {
     "id": "kami",
@@ -2646,8 +2662,9 @@
       "tecnica": "Mafuba",
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/kami"
   },
   {
     "id": "nappa",
@@ -2681,8 +2698,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/nappa"
   },
   {
     "id": "recoome",
@@ -2715,8 +2733,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/recoome"
   },
   {
     "id": "burter",
@@ -2748,8 +2767,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/burter"
   },
   {
     "id": "jeice",
@@ -2782,8 +2802,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/jeice"
   },
   {
     "id": "guldo",
@@ -2815,8 +2836,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/guldo"
   },
   {
     "id": "turles",
@@ -2851,8 +2873,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/turles"
   },
   {
     "id": "slug",
@@ -2882,8 +2905,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/slug"
   },
   {
     "id": "coola",
@@ -2914,8 +2938,9 @@
       "tecnica": "Rayo Mortal",
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/coola"
   },
   {
     "id": "videl",
@@ -2944,8 +2969,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/videl"
   },
   {
     "id": "goten",
@@ -2983,8 +3009,9 @@
       "tecnica": "Kamehameha",
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/goten"
   },
   {
     "id": "oob",
@@ -3016,8 +3043,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/oob"
   },
   {
     "id": "dabura",
@@ -3049,8 +3077,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/dabura"
   },
   {
     "id": "super-buu",
@@ -3084,8 +3113,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/super-buu"
   },
   {
     "id": "kid-buu",
@@ -3118,8 +3148,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/kid-buu"
   },
   {
     "id": "cell-jr",
@@ -3151,8 +3182,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/cell-jr"
   },
   {
     "id": "bojack",
@@ -3181,8 +3213,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/bojack"
   },
   {
     "id": "kaioshin-anciano",
@@ -3215,8 +3248,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/kaioshin-anciano"
   },
   {
     "id": "bubbles",
@@ -3245,8 +3279,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/bubbles"
   },
   {
     "id": "gregory",
@@ -3276,8 +3311,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/gregory"
   },
   {
     "id": "rey-enma",
@@ -3307,8 +3343,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/rey-enma"
   },
   {
     "id": "baby",
@@ -3338,8 +3375,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/baby"
   },
   {
     "id": "super-17",
@@ -3370,8 +3408,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/super-17"
   },
   {
     "id": "dr-mu",
@@ -3402,8 +3441,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/dr-mu"
   },
   {
     "id": "goku-jr",
@@ -3434,8 +3474,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/goku-jr"
   },
   {
     "id": "champa",
@@ -3463,8 +3504,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/champa"
   },
   {
     "id": "vados",
@@ -3492,8 +3534,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/vados"
   },
   {
     "id": "hit",
@@ -3520,8 +3563,9 @@
       "tecnica": "Salto Temporal",
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/hit"
   },
   {
     "id": "zamasu",
@@ -3552,8 +3596,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/zamasu"
   },
   {
     "id": "goku-black",
@@ -3590,8 +3635,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/goku-black"
   },
   {
     "id": "cabba",
@@ -3625,8 +3671,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/cabba"
   },
   {
     "id": "caulifla",
@@ -3665,8 +3712,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/caulifla"
   },
   {
     "id": "kale",
@@ -3700,8 +3748,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/kale"
   },
   {
     "id": "kefla",
@@ -3739,8 +3788,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/kefla"
   },
   {
     "id": "frost",
@@ -3770,8 +3820,9 @@
       "tecnica": "Rayo Mortal",
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/frost"
   },
   {
     "id": "monaka",
@@ -3796,8 +3847,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/monaka"
   },
   {
     "id": "gamma-1",
@@ -3827,8 +3879,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/gamma-1"
   },
   {
     "id": "gamma-2",
@@ -3858,8 +3911,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/gamma-2"
   },
   {
     "id": "dr-hedo",
@@ -3889,8 +3943,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/dr-hedo"
   },
   {
     "id": "granolah",
@@ -3917,8 +3972,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/granolah"
   },
   {
     "id": "moro",
@@ -3945,8 +4001,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/moro"
   },
   {
     "id": "merus",
@@ -3976,8 +4033,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/merus"
   },
   {
     "id": "glorio",
@@ -4004,8 +4062,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/glorio"
   },
   {
     "id": "panzy",
@@ -4032,8 +4091,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/panzy"
   },
   {
     "id": "gomah",
@@ -4061,8 +4121,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/gomah"
   },
   {
     "id": "deges",
@@ -4089,8 +4150,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/deges"
   },
   {
     "id": "arins",
@@ -4121,8 +4183,9 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/arins"
   },
   {
     "id": "neva",
@@ -4149,7 +4212,8 @@
       "tecnica": null,
       "ki": null,
       "kiOficial": null,
-      "imagenTransparente": null
-    }
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/neva"
   }
 ]
