@@ -1,0 +1,229 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-3;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
+}
+
+.instructions {
+  line-height: t.$line-height-base;
+}
+
+// Los errores que quedan: el texto lo dice, los puntos solo lo acompañan.
+.mistakes {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: t.color('text-muted');
+}
+
+.dots {
+  display: inline-flex;
+  gap: t.$space-1;
+}
+
+.dot {
+  inline-size: 0.625rem;
+  block-size: 0.625rem;
+  border: t.$border-width solid t.color('text-muted');
+  border-radius: t.$radius-full;
+  background: t.color('text-muted');
+
+  &[data-used='true'] {
+    background: transparent;
+  }
+}
+
+// Un grupo resuelto: ocupa todo el ancho, con el color de su dificultad. El nivel se dice con texto
+// ("Dificultad: Fácil"), así que el color nunca va solo.
+.bands {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.band {
+  --band: #{t.color('match')};
+
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
+  padding: t.$space-2 t.$space-3;
+  text-align: center;
+  color: t.color('on-result');
+  border-radius: t.$radius-md;
+  background: var(--band);
+
+  &[data-difficulty='2'] {
+    --band: #{t.color('accent')};
+  }
+
+  &[data-difficulty='3'] {
+    --band: #{t.color('partial')};
+  }
+
+  &[data-difficulty='4'] {
+    --band: color-mix(in srgb, #{t.color('accent')} 50%, #{t.color('miss')});
+  }
+}
+
+.bandLevel {
+  font-size: t.$font-size-sm;
+  opacity: 0.9;
+}
+
+.bandName {
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+  overflow-wrap: anywhere;
+}
+
+.bandMembers {
+  font-size: t.$font-size-sm;
+  line-height: t.$line-height-tight;
+  overflow-wrap: anywhere;
+}
+
+// Siempre 4 columnas, también en un teléfono de 360 px: los nombres bajan de línea dentro de su
+// casilla y la letra se achica solo en pantallas angostas (11,5 px a 360 px), lo justo para que la
+// palabra más larga de los datos (Kaminarimon) entre entera.
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: t.$space-1;
+
+  @include bp.min-width('sm') {
+    gap: t.$space-2;
+  }
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 4rem;
+  padding: t.$space-1 0.125rem;
+  font: inherit;
+  font-size: t.fluid(0.71875rem, 1rem);
+  font-weight: t.$font-weight-medium;
+  line-height: t.$line-height-tight;
+  text-align: center;
+  color: t.color('text');
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-md;
+  background: t.color('surface');
+  cursor: pointer;
+
+  // Elegido: contorno grueso, fondo teñido y una marca (✓) en la esquina. La letra no cambia de peso: así el
+  // nombre no se reacomoda al tocar la casilla.
+  &[aria-pressed='true'] {
+    border-color: t.color('accent');
+    background: color-mix(in srgb, #{t.color('accent')} 14%, #{t.color('surface')});
+    box-shadow: inset 0 0 0 0.125rem t.color('accent');
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+}
+
+.check {
+  position: absolute;
+  inset-block-start: 0.125rem;
+  inset-inline-end: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: t.$font-weight-bold;
+  color: t.color('accent');
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-2;
+}
+
+.count {
+  flex-basis: 100%;
+  font-size: t.$font-size-sm;
+  color: t.color('text-muted');
+}
+
+.submit,
+.clear {
+  @include m.touch-target;
+  padding: t.$space-2 t.$space-5;
+  font: inherit;
+  font-weight: t.$font-weight-bold;
+  border-radius: t.$radius-md;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
+
+.submit {
+  flex: 1;
+  color: t.color('accent-contrast');
+  border: t.$border-width solid t.color('accent');
+  background: t.color('accent');
+
+  @include bp.min-width('sm') {
+    flex: none;
+  }
+}
+
+.clear {
+  color: t.color('accent');
+  border: t.$border-width solid t.color('accent');
+  background: transparent;
+}
+
+// Reserva la altura de una línea: así el aviso no mueve el tablero al aparecer.
+.feedback {
+  min-block-size: 1.5em;
+  font-weight: t.$font-weight-medium;
+  color: t.color('text');
+  visibility: hidden;
+
+  &[data-visible='true'] {
+    visibility: visible;
+  }
+}
+
+.missed {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+}
+
+.missedTitle {
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+}
