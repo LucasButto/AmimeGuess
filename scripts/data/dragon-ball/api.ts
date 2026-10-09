@@ -24,6 +24,8 @@ export interface Source {
   readonly cacheDir: string;
   readonly pathPrefix: string;
   readonly concurrency: number;
+  /** Tiempo mínimo entre el comienzo de dos solicitudes de red a esta fuente (las respuestas en caché no cuentan). Sin esto, no hay espaciado. */
+  readonly minIntervalMs?: number;
 }
 
 export const DRAGONBALL_API_BASE = 'https://dragonball-api.com/api';
@@ -110,8 +112,21 @@ export async function mapPool<T, R>(
 
 const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve, ms));
 
+const lastStart = new Map<string, number>();
+
+/** Espacia las solicitudes de una fuente que limita las que admite por segundo (YGOPRODeck: 10). Reserva su turno al instante, así varias tareas no se pisan. */
+async function pace(source: Source): Promise<void> {
+  const interval = source.minIntervalMs ?? 0;
+  if (interval <= 0) return;
+  const now = Date.now();
+  const start = Math.max(now, (lastStart.get(source.name) ?? 0) + interval);
+  lastStart.set(source.name, start);
+  if (start > now) await sleep(start - now);
+}
+
 async function request(url: string, source: Source): Promise<Buffer> {
   return withSlot(source, async () => {
+    await pace(source);
     const response = await fetch(url, { headers: { 'User-Agent': USER_AGENT } });
     if (!response.ok) {
       const retryAfter = Number(response.headers.get('retry-after'));
