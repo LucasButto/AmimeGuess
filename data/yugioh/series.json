@@ -1,0 +1,34 @@
+{
+  "series": [
+    {
+      "id": "dm",
+      "order": 1,
+      "label": "Duel Monsters"
+    },
+    {
+      "id": "gx",
+      "order": 2,
+      "label": "GX"
+    },
+    {
+      "id": "5ds",
+      "order": 3,
+      "label": "5D's"
+    },
+    {
+      "id": "zexal",
+      "order": 4,
+      "label": "ZEXAL"
+    },
+    {
+      "id": "arcv",
+      "order": 5,
+      "label": "ARC-V"
+    },
+    {
+      "id": "vrains",
+      "order": 6,
+      "label": "VRAINS"
+    }
+  ]
+}

@@ -1,0 +1,1439 @@
+[
+  {
+    "id": "yugi-muto",
+    "name": {
+      "es": "Yugi Muto"
+    },
+    "aliases": [
+      "Yami Yugi",
+      "Atem",
+      "Yugi Mutou",
+      "Faraón"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/yugi-muto",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 1,
+      "rol": "protagonista",
+      "afiliaciones": [
+        "Preparatoria Domino",
+        "Objetos del Milenio"
+      ],
+      "arquetipos": [
+        "Mago Oscuro",
+        "Guerrero Magnético",
+        "Dioses Egipcios"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión",
+        "Ritual"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "seto-kaiba",
+    "name": {
+      "es": "Seto Kaiba"
+    },
+    "aliases": [
+      "Kaiba",
+      "Seto"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/seto-kaiba",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 1,
+      "rol": "rival",
+      "afiliaciones": [
+        "Preparatoria Domino",
+        "KaibaCorp"
+      ],
+      "arquetipos": [
+        "Dragón Blanco de Ojos Azules",
+        "Máquinas",
+        "Dioses Egipcios"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "joey-wheeler",
+    "name": {
+      "es": "Joey Wheeler"
+    },
+    "aliases": [
+      "Jonouchi",
+      "Katsuya Jonouchi"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/joey-wheeler",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 1,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Preparatoria Domino"
+      ],
+      "arquetipos": [
+        "Dragón Negro de Ojos Rojos",
+        "Guerreros",
+        "Dragones"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "mai-valentine",
+    "name": {
+      "es": "Mai Valentine"
+    },
+    "aliases": [
+      "Mai Kujaku"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/mai-valentine",
+    "attrs": {
+      "genero": "Femenino",
+      "serieDebut": 1,
+      "rol": "rival",
+      "afiliaciones": [
+        "Doma"
+      ],
+      "arquetipos": [
+        "Arpía"
+      ],
+      "metodosInvocacion": [
+        "Normal"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 3",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "maximillion-pegasus",
+    "name": {
+      "es": "Maximillion Pegasus"
+    },
+    "aliases": [
+      "Pegasus",
+      "Pegasus J. Crawford"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/maximillion-pegasus",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 1,
+      "rol": "antagonista",
+      "afiliaciones": [
+        "Industrial Illusions",
+        "Objetos del Milenio"
+      ],
+      "arquetipos": [
+        "Toon",
+        "Mil Ojos"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión",
+        "Ritual"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "marik-ishtar",
+    "name": {
+      "es": "Marik Ishtar"
+    },
+    "aliases": [
+      "Marik",
+      "Yami Marik"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/marik-ishtar",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 1,
+      "rol": "antagonista",
+      "afiliaciones": [
+        "Rare Hunters",
+        "Objetos del Milenio"
+      ],
+      "arquetipos": [
+        "Dioses Egipcios",
+        "Gelatina",
+        "Máquinas"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión",
+        "Ritual"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 50",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "yami-bakura",
+    "name": {
+      "es": "Yami Bakura"
+    },
+    "aliases": [
+      "Bakura",
+      "Ladrón Bakura",
+      "Thief King Bakura"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/yami-bakura",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 1,
+      "rol": "antagonista",
+      "afiliaciones": [
+        "Objetos del Milenio"
+      ],
+      "arquetipos": [
+        "Demonios",
+        "Zombis",
+        "Espíritus"
+      ],
+      "metodosInvocacion": [
+        "Normal"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 12",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "weevil-underwood",
+    "name": {
+      "es": "Weevil Underwood"
+    },
+    "aliases": [
+      "Insector Haga",
+      "Haga"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/weevil-underwood",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 1,
+      "rol": "rival",
+      "afiliaciones": [
+        "Doma"
+      ],
+      "arquetipos": [
+        "Insectos"
+      ],
+      "metodosInvocacion": [
+        "Normal"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 2",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "rex-raptor",
+    "name": {
+      "es": "Rex Raptor"
+    },
+    "aliases": [
+      "Dinosaur Ryuzaki",
+      "Ryuzaki"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/rex-raptor",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 1,
+      "rol": "rival",
+      "afiliaciones": [
+        "Doma"
+      ],
+      "arquetipos": [
+        "Dinosaurios",
+        "Dragones"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 2",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "mako-tsunami",
+    "name": {
+      "es": "Mako Tsunami"
+    },
+    "aliases": [
+      "Mako"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/mako-tsunami",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 1,
+      "rol": "rival",
+      "afiliaciones": [],
+      "arquetipos": [
+        "Acuáticos",
+        "Umi"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Ritual"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 7",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "tristan-taylor",
+    "name": {
+      "es": "Tristan Taylor"
+    },
+    "aliases": [
+      "Honda",
+      "Hiroto Honda"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/tristan-taylor",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 1,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Preparatoria Domino"
+      ],
+      "arquetipos": [
+        "Guardián de Batalla",
+        "Máquinas"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "tea-gardner",
+    "name": {
+      "es": "Téa Gardner"
+    },
+    "aliases": [
+      "Tea Gardner",
+      "Téa",
+      "Anzu Mazaki"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/tea-gardner",
+    "attrs": {
+      "genero": "Femenino",
+      "serieDebut": 1,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Preparatoria Domino"
+      ],
+      "arquetipos": [
+        "Hadas",
+        "Elfos"
+      ],
+      "metodosInvocacion": [
+        "Normal"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "ishizu-ishtar",
+    "name": {
+      "es": "Ishizu Ishtar"
+    },
+    "aliases": [
+      "Ishizu"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/ishizu-ishtar",
+    "attrs": {
+      "genero": "Femenino",
+      "serieDebut": 1,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Consejo Supremo Egipcio de Antigüedades",
+        "Objetos del Milenio"
+      ],
+      "arquetipos": [
+        "Cuidador de Tumbas"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 52",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "rafael",
+    "name": {
+      "es": "Rafael"
+    },
+    "aliases": [
+      "Raphael"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/rafael",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 1,
+      "rol": "antagonista",
+      "afiliaciones": [
+        "Doma"
+      ],
+      "arquetipos": [
+        "Guardián"
+      ],
+      "metodosInvocacion": [
+        "Normal"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 145",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "zigfried-von-schroeder",
+    "name": {
+      "es": "Zigfried von Schroeder"
+    },
+    "aliases": [
+      "Siegfried von Schroeder",
+      "Zigfried"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/zigfried-von-schroeder",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 1,
+      "rol": "rival",
+      "afiliaciones": [
+        "Schroeder Corp"
+      ],
+      "arquetipos": [
+        "Valquiria"
+      ],
+      "metodosInvocacion": [
+        "Normal"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 185",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "noah-kaiba",
+    "name": {
+      "es": "Noah Kaiba"
+    },
+    "aliases": [
+      "Noah"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/duelists/noah-kaiba",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 1,
+      "rol": "antagonista",
+      "afiliaciones": [
+        "KaibaCorp"
+      ],
+      "arquetipos": [
+        "Shinato"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Ritual"
+      ],
+      "primeraAparicion": "Duel Monsters, episodio 98",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "jaden-yuki",
+    "name": {
+      "es": "Jaden Yuki"
+    },
+    "aliases": [
+      "Judai Yuki",
+      "Judai",
+      "Jaden"
+    ],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/jaden-yuki",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 2,
+      "rol": "protagonista",
+      "afiliaciones": [
+        "Academia de Duelos",
+        "Slifer Red"
+      ],
+      "arquetipos": [
+        "HÉROE Elemental",
+        "Neo Espacial",
+        "Kuriboh"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión"
+      ],
+      "primeraAparicion": "GX, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "chazz-princeton",
+    "name": {
+      "es": "Chazz Princeton"
+    },
+    "aliases": [
+      "Jun Manjoume",
+      "Manjoume"
+    ],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/chazz-princeton",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 2,
+      "rol": "rival",
+      "afiliaciones": [
+        "Academia de Duelos",
+        "Academia del Norte",
+        "Obelisk Blue",
+        "Slifer Red",
+        "Sociedad de la Luz"
+      ],
+      "arquetipos": [
+        "Ojama",
+        "Dragón Armado"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión"
+      ],
+      "primeraAparicion": "GX, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "alexis-rhodes",
+    "name": {
+      "es": "Alexis Rhodes"
+    },
+    "aliases": [
+      "Asuka Tenjoin",
+      "Asuka"
+    ],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/alexis-rhodes",
+    "attrs": {
+      "genero": "Femenino",
+      "serieDebut": 2,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Academia de Duelos",
+        "Obelisk Blue",
+        "Sociedad de la Luz"
+      ],
+      "arquetipos": [
+        "Ciber",
+        "Ciber Ángel"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión",
+        "Ritual"
+      ],
+      "primeraAparicion": "GX, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "zane-truesdale",
+    "name": {
+      "es": "Zane Truesdale"
+    },
+    "aliases": [
+      "Ryo Marufuji",
+      "Hell Kaiser",
+      "Zane"
+    ],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/zane-truesdale",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 2,
+      "rol": "rival",
+      "afiliaciones": [
+        "Academia de Duelos",
+        "Obelisk Blue"
+      ],
+      "arquetipos": [
+        "Ciber Dragón",
+        "Ciberoscuro"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión"
+      ],
+      "primeraAparicion": "GX, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "syrus-truesdale",
+    "name": {
+      "es": "Syrus Truesdale"
+    },
+    "aliases": [
+      "Sho Marufuji",
+      "Sho",
+      "Syrus"
+    ],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/syrus-truesdale",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 2,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Academia de Duelos",
+        "Slifer Red",
+        "Ra Yellow",
+        "Obelisk Blue"
+      ],
+      "arquetipos": [
+        "Roid"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión"
+      ],
+      "primeraAparicion": "GX, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "bastion-misawa",
+    "name": {
+      "es": "Bastion Misawa"
+    },
+    "aliases": [
+      "Daichi Misawa",
+      "Misawa"
+    ],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/bastion-misawa",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 2,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Academia de Duelos",
+        "Ra Yellow",
+        "Sociedad de la Luz"
+      ],
+      "arquetipos": [
+        "Mezcla"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Ritual"
+      ],
+      "primeraAparicion": "GX, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "jesse-anderson",
+    "name": {
+      "es": "Jesse Anderson"
+    },
+    "aliases": [
+      "Johan Andersen",
+      "Johan"
+    ],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/jesse-anderson",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 2,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Academia del Norte"
+      ],
+      "arquetipos": [
+        "Bestia de Cristal"
+      ],
+      "metodosInvocacion": [
+        "Normal"
+      ],
+      "primeraAparicion": "GX, episodio 106",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "aster-phoenix",
+    "name": {
+      "es": "Aster Phoenix"
+    },
+    "aliases": [
+      "Edo Phoenix",
+      "Edo"
+    ],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/aster-phoenix",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 2,
+      "rol": "rival",
+      "afiliaciones": [
+        "Academia de Duelos",
+        "Obelisk Blue",
+        "Grupo Senrigan"
+      ],
+      "arquetipos": [
+        "HÉROE del Destino",
+        "HÉROE Elemental"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión"
+      ],
+      "primeraAparicion": "GX, episodio 53",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "sartorius",
+    "name": {
+      "es": "Sartorius"
+    },
+    "aliases": [],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/sartorius",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 2,
+      "rol": "antagonista",
+      "afiliaciones": [
+        "Academia de Duelos",
+        "Obelisk Blue",
+        "Sociedad de la Luz"
+      ],
+      "arquetipos": [
+        "Fuerza Arcana"
+      ],
+      "metodosInvocacion": [
+        "Normal"
+      ],
+      "primeraAparicion": "GX, episodio 53",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "tyranno-hassleberry",
+    "name": {
+      "es": "Tyranno Hassleberry"
+    },
+    "aliases": [
+      "Hassleberry",
+      "Tyranno Kenzan"
+    ],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/tyranno-hassleberry",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 2,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Academia de Duelos",
+        "Ra Yellow"
+      ],
+      "arquetipos": [
+        "Dinosaurios"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión"
+      ],
+      "primeraAparicion": "GX, episodio 53",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "vellian-crowler",
+    "name": {
+      "es": "Vellian Crowler"
+    },
+    "aliases": [
+      "Crowler",
+      "Dr. Crowler"
+    ],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/vellian-crowler",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 2,
+      "rol": "rival",
+      "afiliaciones": [
+        "Academia de Duelos",
+        "Obelisk Blue"
+      ],
+      "arquetipos": [
+        "Mecanismo Antiguo"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión"
+      ],
+      "primeraAparicion": "GX, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "adrian-gecko",
+    "name": {
+      "es": "Adrian Gecko"
+    },
+    "aliases": [],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/adrian-gecko",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 2,
+      "rol": "rival",
+      "afiliaciones": [
+        "Academia del Este"
+      ],
+      "arquetipos": [
+        "Cloudian",
+        "Exodia"
+      ],
+      "metodosInvocacion": [
+        "Normal"
+      ],
+      "primeraAparicion": "GX, episodio 106",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "axel-brodie",
+    "name": {
+      "es": "Axel Brodie"
+    },
+    "aliases": [],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/axel-brodie",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 2,
+      "rol": "rival",
+      "afiliaciones": [
+        "Academia del Oeste"
+      ],
+      "arquetipos": [
+        "Volcánico"
+      ],
+      "metodosInvocacion": [
+        "Normal"
+      ],
+      "primeraAparicion": "GX, episodio 106",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "jim-crocodile-cook",
+    "name": {
+      "es": "Jim Crocodile Cook"
+    },
+    "aliases": [
+      "Jim Cook",
+      "Jim"
+    ],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/jim-crocodile-cook",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 2,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Academia del Sur"
+      ],
+      "arquetipos": [
+        "Fósil"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión"
+      ],
+      "primeraAparicion": "GX, episodio 106",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "lyman-banner",
+    "name": {
+      "es": "Lyman Banner"
+    },
+    "aliases": [
+      "Banner",
+      "Profesor Banner",
+      "Amnael"
+    ],
+    "series": [
+      "gx"
+    ],
+    "image": "yugioh/duelists/lyman-banner",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 2,
+      "rol": "antagonista",
+      "afiliaciones": [
+        "Academia de Duelos",
+        "Slifer Red",
+        "Jinetes de las Sombras"
+      ],
+      "arquetipos": [
+        "Alquimia",
+        "Helios"
+      ],
+      "metodosInvocacion": [
+        "Normal"
+      ],
+      "primeraAparicion": "GX, episodio 2",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "yusei-fudo",
+    "name": {
+      "es": "Yusei Fudo"
+    },
+    "aliases": [
+      "Yusei"
+    ],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/duelists/yusei-fudo",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 3,
+      "rol": "protagonista",
+      "afiliaciones": [
+        "Signers",
+        "Team 5D's",
+        "Los Enforcers"
+      ],
+      "arquetipos": [
+        "Basura",
+        "Polvo de Estrellas",
+        "Sincrón"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Sincro"
+      ],
+      "primeraAparicion": "5D's, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "jack-atlas",
+    "name": {
+      "es": "Jack Atlas"
+    },
+    "aliases": [
+      "Jack"
+    ],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/duelists/jack-atlas",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 3,
+      "rol": "rival",
+      "afiliaciones": [
+        "Signers",
+        "Team 5D's",
+        "Los Enforcers"
+      ],
+      "arquetipos": [
+        "Archidemonio"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Sincro"
+      ],
+      "primeraAparicion": "5D's, episodio 1",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "crow-hogan",
+    "name": {
+      "es": "Crow Hogan"
+    },
+    "aliases": [
+      "Crow"
+    ],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/duelists/crow-hogan",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 3,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Signers",
+        "Team 5D's",
+        "Los Enforcers"
+      ],
+      "arquetipos": [
+        "Alanegra"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Sincro"
+      ],
+      "primeraAparicion": "5D's, episodio 30",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "akiza-izinski",
+    "name": {
+      "es": "Akiza Izinski"
+    },
+    "aliases": [
+      "Aki Izayoi",
+      "Akiza Izayoi",
+      "Aki"
+    ],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/duelists/akiza-izinski",
+    "attrs": {
+      "genero": "Femenino",
+      "serieDebut": 3,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Signers",
+        "Team 5D's",
+        "Movimiento Arcadia"
+      ],
+      "arquetipos": [
+        "Dragón de la Rosa",
+        "Plantas"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Sincro"
+      ],
+      "primeraAparicion": "5D's, episodio 14",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "leo",
+    "name": {
+      "es": "Leo"
+    },
+    "aliases": [
+      "Rua"
+    ],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/duelists/leo",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 3,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Signers",
+        "Team 5D's"
+      ],
+      "arquetipos": [
+        "Morfotrónico"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Sincro"
+      ],
+      "primeraAparicion": "5D's, episodio 12",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "luna",
+    "name": {
+      "es": "Luna"
+    },
+    "aliases": [
+      "Ruka"
+    ],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/duelists/luna",
+    "attrs": {
+      "genero": "Femenino",
+      "serieDebut": 3,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Signers",
+        "Team 5D's"
+      ],
+      "arquetipos": [
+        "Hadas"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Sincro"
+      ],
+      "primeraAparicion": "5D's, episodio 12",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "kalin-kessler",
+    "name": {
+      "es": "Kalin Kessler"
+    },
+    "aliases": [
+      "Kiryu Kyosuke",
+      "Kiryu",
+      "Kalin"
+    ],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/duelists/kalin-kessler",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 3,
+      "rol": "antagonista",
+      "afiliaciones": [
+        "Dark Signers",
+        "Los Enforcers",
+        "Satisfaction Town"
+      ],
+      "arquetipos": [
+        "Inférnico",
+        "Inmortal Terrestre"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Sincro"
+      ],
+      "primeraAparicion": "5D's, episodio 27",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "rex-goodwin",
+    "name": {
+      "es": "Rex Goodwin"
+    },
+    "aliases": [
+      "Rex Godwin"
+    ],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/duelists/rex-goodwin",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 3,
+      "rol": "antagonista",
+      "afiliaciones": [
+        "Dark Signers",
+        "Signers",
+        "Iliaster"
+      ],
+      "arquetipos": [
+        "Inmortal Terrestre"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Sincro"
+      ],
+      "primeraAparicion": "5D's, episodio 2",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "roman-goodwin",
+    "name": {
+      "es": "Roman Goodwin"
+    },
+    "aliases": [
+      "Roman Godwin",
+      "Roman"
+    ],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/duelists/roman-goodwin",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 3,
+      "rol": "antagonista",
+      "afiliaciones": [
+        "Dark Signers",
+        "Signers"
+      ],
+      "arquetipos": [
+        "Inmortal Terrestre",
+        "Arañas"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Sincro"
+      ],
+      "primeraAparicion": "5D's, episodio 19",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "sherry-leblanc",
+    "name": {
+      "es": "Sherry LeBlanc"
+    },
+    "aliases": [
+      "Sherry"
+    ],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/duelists/sherry-leblanc",
+    "attrs": {
+      "genero": "Femenino",
+      "serieDebut": 3,
+      "rol": "rival",
+      "afiliaciones": [
+        "Iliaster"
+      ],
+      "arquetipos": [
+        "Flor"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Fusión"
+      ],
+      "primeraAparicion": "5D's, episodio 71",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "sayer",
+    "name": {
+      "es": "Sayer"
+    },
+    "aliases": [],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/duelists/sayer",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 3,
+      "rol": "antagonista",
+      "afiliaciones": [
+        "Movimiento Arcadia"
+      ],
+      "arquetipos": [
+        "Psíquicos"
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Sincro"
+      ],
+      "primeraAparicion": "5D's, episodio 16",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "bruno",
+    "name": {
+      "es": "Bruno"
+    },
+    "aliases": [
+      "Antinomy",
+      "Vizor"
+    ],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/duelists/bruno",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 3,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Iliaster",
+        "Team 5D's"
+      ],
+      "arquetipos": [
+        "T.G."
+      ],
+      "metodosInvocacion": [
+        "Normal",
+        "Sincro"
+      ],
+      "primeraAparicion": "5D's, episodio 73",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "aporia",
+    "name": {
+      "es": "Aporia"
+    },
+    "aliases": [],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/duelists/aporia",
+    "attrs": {
+      "genero": "Masculino",
+      "serieDebut": 3,
+      "rol": "antagonista",
+      "afiliaciones": [
+        "Iliaster"
+      ],
+      "arquetipos": [
+        "Meklord"
+      ],
+      "metodosInvocacion": [
+        "Normal"
+      ],
+      "primeraAparicion": "5D's, episodio 65",
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "carly-carmine",
+    "name": {
+      "es": "Carly Carmine"
+    },
+    "aliases": [
+      "Carly"
+    ],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/duelists/carly-carmine",
+    "attrs": {
+      "genero": "Femenino",
+      "serieDebut": 3,
+      "rol": "aliado",
+      "afiliaciones": [
+        "Dark Signers"
+      ],
+      "arquetipos": [
+        "Adivinadora",
+        "Inmortal Terrestre"
+      ],
+      "metodosInvocacion": [
+        "Normal"
+      ],
+      "primeraAparicion": "5D's, episodio 27",
+      "imagenTransparente": 0
+    }
+  }
+]
