@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import translationsJson from '../../../data-src/yugioh/translations.json';
+import sharp from 'sharp';
+import { CLEANUP, THRESHOLDS, cleanAlpha, isUsable, largestShare, measureCutout } from './silhouette.ts';
 import { translationsSchema, type DuelistSrc, type YgoprodeckCard } from './schemas.ts';
 import {
   acceptedSummons,
@@ -8,6 +10,7 @@ import {
   buildCardTextContents,
   buildDeckContents,
   buildDuelistEntity,
+  buildSilhouetteContents,
   buildSummonContents,
   evidenceOf,
   firstAppearanceText,
@@ -370,6 +373,15 @@ describe('contenidos', () => {
     });
   });
 
+  it('la silueta de un monstruo es un contenido por serie de la carta, sin verificar, con la imagen recortada', () => {
+    const contents = buildSilhouetteContents('dark-magician', ['dm', 'gx'], 'yugioh/silhouettes/dark-magician');
+    expect(contents.map((content) => content.id)).toEqual(['silhouette-dark-magician-dm', 'silhouette-dark-magician-gx']);
+    expect(contents.map((content) => content.series)).toEqual(['dm', 'gx']);
+    for (const content of contents) {
+      expect(content).toMatchObject({ kind: 'silhouette', entityId: 'dark-magician', payload: { image: 'yugioh/silhouettes/dark-magician' }, verified: false });
+    }
+  });
+
   const avian = 'elemental-hero-avian';
   const burst = 'elemental-hero-burstinatrix';
   const flame: SummonInput = { cardId: 'flame-wingman', kind: 'fusion', series: ['gx'], items: ['Avian', 'Burstinatrix'], materialIds: [avian, burst] };
@@ -398,5 +410,64 @@ describe('quotedMaterials', () => {
   it('un texto sin comillas no tiene materiales con nombre', () => {
     expect(quotedMaterials('1 Tuner + 1 or more non-Tuner monsters')).toEqual([]);
     expect(quotedMaterials('')).toEqual([]);
+  });
+});
+
+describe('silueta: qué recortes sirven', () => {
+  const whole = 0.95;
+
+  it('sirve el que ocupa entre el 8 % y el 85 % de la imagen y es en su mayor parte una sola pieza, bordes incluidos', () => {
+    expect(isUsable({ coverage: THRESHOLDS.coverage.min, connected: whole })).toBe(true);
+    expect(isUsable({ coverage: THRESHOLDS.coverage.max, connected: whole })).toBe(true);
+    expect(isUsable({ coverage: 0.45, connected: THRESHOLDS.connected })).toBe(true);
+    // Infernity Beast: el modelo solo encontró un detalle (6,5 %).
+    expect(isUsable({ coverage: 0.065, connected: whole })).toBe(false);
+    expect(isUsable({ coverage: 0, connected: 0 })).toBe(false);
+    expect(isUsable({ coverage: 0.92, connected: whole })).toBe(false);
+    // Cloudian - Sheep Cloud: además de la nube recortó las del fondo, que quedan en piezas sueltas.
+    expect(isUsable({ coverage: 0.4, connected: 0.55 })).toBe(false);
+  });
+
+  it('largestShare mide qué parte de lo marcado es la pieza más grande, con vecinos en cruz', () => {
+    // 5 × 3: una pieza de 6 píxeles, una de 1 y una de 2; la diagonal no conecta.
+    // 1 1 0 0 1
+    // 1 1 0 0 0
+    // 1 0 1 0 1  (el de la diagonal arriba a la izquierda del 1 del medio no cuenta como vecino)
+    const marked = Uint8Array.from([1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1]);
+    expect(largestShare(marked, 5, 3)).toBeCloseTo(5 / 8, 10);
+    expect(largestShare(new Uint8Array(15), 5, 3)).toBe(0);
+    expect(largestShare(Uint8Array.from([1, 1, 1, 1]), 2, 2)).toBe(1);
+    expect(largestShare(Uint8Array.from([1, 0, 0, 1]), 2, 2)).toBe(0.5);
+  });
+
+  it('cleanAlpha borra lo tenue, afirma lo casi opaco, deja el borde suave y quita las islas diminutas', () => {
+    const size = 100;
+    const alpha = new Uint8Array(size * size);
+    // Un cuadrado de 30 × 30 con el borde exterior a medias, una isla de 2 × 2 y un velo tenue.
+    for (let y = 10; y < 40; y++) for (let x = 10; x < 40; x++) alpha[y * size + x] = 250;
+    for (let x = 10; x < 40; x++) alpha[10 * size + x] = 150;
+    for (let y = 70; y < 72; y++) for (let x = 70; x < 72; x++) alpha[y * size + x] = 255;
+    for (let y = 60; y < 70; y++) for (let x = 0; x < 10; x++) alpha[y * size + x] = CLEANUP.floor - 1;
+    cleanAlpha(alpha, size, size);
+    expect(alpha[20 * size + 20]).toBe(255);
+    expect(alpha[10 * size + 20]).toBe(150);
+    expect(alpha[70 * size + 70]).toBe(0);
+    expect(alpha[65 * size + 5]).toBe(0);
+    expect(alpha.filter((value) => value > 0).length).toBe(30 * 30);
+  });
+
+  it('measureCutout lee la cobertura y la conexión del canal alfa de un PNG', async () => {
+    const size = 20;
+    const rgba = Buffer.alloc(size * size * 4);
+    // Un cuadrado opaco de 10 × 10 (25 %) y un punto suelto de 1 píxel.
+    const paint = (x: number, y: number) => {
+      rgba[(y * size + x) * 4 + 3] = 255;
+    };
+    for (let y = 2; y < 12; y++) for (let x = 2; x < 12; x++) paint(x, y);
+    paint(17, 17);
+    const png = await sharp(rgba, { raw: { width: size, height: size, channels: 4 } }).png().toBuffer();
+    const metrics = await measureCutout(png);
+    expect(metrics.coverage).toBeCloseTo(101 / 400, 10);
+    expect(metrics.connected).toBeCloseTo(100 / 101, 10);
   });
 });
