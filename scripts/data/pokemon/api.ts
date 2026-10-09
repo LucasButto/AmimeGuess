@@ -23,11 +23,14 @@ export interface Source {
 
 export const POKEAPI: Source = { cacheDir: path.join(ROOT, '.cache', 'pokeapi'), pathPrefix: '/api/v2/' };
 export const TCGDEX: Source = { cacheDir: path.join(ROOT, '.cache', 'tcgdex'), pathPrefix: '/v2/' };
+export const WIKIDEX: Source = { cacheDir: path.join(ROOT, '.cache', 'wikidex'), pathPrefix: '/' };
 
 const USER_AGENT = 'AnimeGuess-data-build (https://github.com/LucasButto/AmimeGuess)';
 const MAX_CONCURRENCY = 5;
 const MAX_ATTEMPTS = 6;
 const BASE_DELAY_MS = 1000;
+/** Una conexión que no responde se corta y se reintenta como cualquier fallo de red. */
+const REQUEST_TIMEOUT_MS = 30_000;
 
 /** El recurso no existe (404). No se reintenta; quien lo pide decide si es grave. */
 export class NotFoundError extends Error {
@@ -93,7 +96,7 @@ const sleep = (ms: number) => new Promise<void>((resolve) => setTimeout(resolve,
 
 async function request(url: string): Promise<Buffer> {
   return withSlot(async () => {
-    const response = await fetch(url, { headers: { 'User-Agent': USER_AGENT } });
+    const response = await fetch(url, { headers: { 'User-Agent': USER_AGENT }, signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS) });
     if (!response.ok) {
       const retryAfter = Number(response.headers.get('retry-after'));
       throw new HttpError(response.status, url, Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : null);

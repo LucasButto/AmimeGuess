@@ -105,8 +105,12 @@ describe('pools con los filtros', () => {
     expect(hasMinimumPool(pool.length, minimum)).toBe(false);
   });
 
-  it('Descripción con solo g9 no tiene ninguna (PokéAPI no trae el texto en español de g9)', () => {
-    expect(candidatesOf(entities, contents, ['g9'], modeConfig('descripcion'))).toEqual([]);
+  it('Descripción con solo g9 alcanza el mínimo con los textos de WikiDex (PokéAPI no trae los de g9)', () => {
+    const pool = candidatesOf(entities, contents, ['g9'], modeConfig('descripcion'));
+    expect(hasMinimumPool(pool.length, minimum)).toBe(true);
+    for (const candidate of pool) {
+      expect(candidate.contents.every((content) => !content.verified), candidate.id).toBe(true);
+    }
   });
 
   it('con una serie apagada no aparece nada de ella, ni respuestas ni equivalentes', () => {

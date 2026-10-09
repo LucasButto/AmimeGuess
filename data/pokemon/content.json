@@ -9878,6 +9878,1403 @@
     "verified": true
   },
   {
+    "id": "dex-wyrdeer",
+    "kind": "dex",
+    "entityId": "wyrdeer",
+    "series": "g8",
+    "payload": {
+      "text": "Sus orbes negros brillan con un fulgor misterioso cuando erige muros invisibles. El pelaje que se desprende de sus barbas es muy codiciado para crear cálidos ropajes para el invierno.",
+      "version": "legends-arceus"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-kleavor",
+    "kind": "dex",
+    "entityId": "kleavor",
+    "series": "g8",
+    "payload": {
+      "text": "Gracias a un mineral extremadamente escaso que se encuentra en zonas volcánicas, parte de su cuerpo se volvió pétreo al evolucionar.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-ursaluna",
+    "kind": "dex",
+    "entityId": "ursaluna",
+    "series": "g8",
+    "payload": {
+      "text": "Tengo la teoría de que el terreno pantanoso de Hisui favoreció el desarrollo de su constitución robusta, así como su capacidad de manipular la turba a voluntad.",
+      "version": "legends-arceus"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-basculegion",
+    "kind": "dex",
+    "entityId": "basculegion",
+    "series": "g8",
+    "payload": {
+      "text": "Su cuerpo está envuelto en las almas de los compañeros que perecieron durante el arduo viaje para regresar al río que los vio nacer.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-sneasler",
+    "kind": "dex",
+    "entityId": "sneasler",
+    "series": "g8",
+    "payload": {
+      "text": "Gracias a su fortaleza física y potente veneno, ninguna especie de las alturas heladas le planta cara. Es de personalidad solitaria y no forma manadas.",
+      "version": "legends-arceus"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-overqwil",
+    "kind": "dex",
+    "entityId": "overqwil",
+    "series": "g8",
+    "payload": {
+      "text": "Sus púas tóxicas reaccionan como acto reflejo ante cualquier movimiento, por lo que ensartará todo lo que se acerque incluso mientras duerme.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-enamorus",
+    "kind": "dex",
+    "entityId": "enamorus",
+    "series": "g8",
+    "payload": {
+      "text": "Su llegada de allende el mar significa el fin del duro invierno. De acuerdo con el folclore, su amor siempre trae consigo un soplo de vida nueva a Hisui.",
+      "version": "legends-arceus"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-sprigatito",
+    "kind": "dex",
+    "entityId": "sprigatito",
+    "series": "g9",
+    "payload": {
+      "text": "Su sedoso pelaje se asemeja en composición a las plantas. Se lava la cara con diligencia para que no se le seque.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-floragato",
+    "kind": "dex",
+    "entityId": "floragato",
+    "series": "g9",
+    "payload": {
+      "text": "Maneja diestramente la vid oculta bajo su largo pelaje y propina latigazos al enemigo con el capullo endurecido de la punta.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-meowscarada",
+    "kind": "dex",
+    "entityId": "meowscarada",
+    "series": "g9",
+    "payload": {
+      "text": "Se sirve de la luz que reflejan los tricomas de su manto de hojas para camuflar la vid y crear la ilusión óptica de que la flor flota en el aire.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-fuecoco",
+    "kind": "dex",
+    "entityId": "fuecoco",
+    "series": "g9",
+    "payload": {
+      "text": "Yace sobre rocas calientes, cuyo calor transforma en energía ígnea tras absorberlo por sus escamas rectangulares.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-crocalor",
+    "kind": "dex",
+    "entityId": "crocalor",
+    "series": "g9",
+    "payload": {
+      "text": "La mezcla de energía ígnea con el exceso de su propia fuerza vital ha tomado la forma de una bola de fuego de aspecto oval sobre su cabeza.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-skeledirge",
+    "kind": "dex",
+    "entityId": "skeledirge",
+    "series": "g9",
+    "payload": {
+      "text": "Se dice que el pájaro flamígero al que da forma su canto es un espíritu que moraba en la bola de fuego que le coronaba la cabeza.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-quaxly",
+    "kind": "dex",
+    "entityId": "quaxly",
+    "series": "g9",
+    "payload": {
+      "text": "Un Pokémon llegado hace tiempo desde tierras lejanas y ya establecido en la región. El gel que secreta por las plumas repele el agua y la mugre.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-quaxwell",
+    "kind": "dex",
+    "entityId": "quaxwell",
+    "series": "g9",
+    "payload": {
+      "text": "Fortalece las extremidades corriendo con tesón por los bajíos. Compite con los suyos para ver cuál posee una técnica más grácil con las patas.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-quaquaval",
+    "kind": "dex",
+    "entityId": "quaquaval",
+    "series": "g9",
+    "payload": {
+      "text": "Realiza una exótica danza mientras controla la tremenda fuerza de sus extremidades, capaces de hacer volcar un camión de una patada.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-lechonk",
+    "kind": "dex",
+    "entityId": "lechonk",
+    "series": "g9",
+    "payload": {
+      "text": "Posee un olfato muy desarrollado que emplea únicamente para buscar comida, actividad a la que dedica el día entero.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-oinkologne",
+    "kind": "dex",
+    "entityId": "oinkologne",
+    "series": "g9",
+    "payload": {
+      "text": "Su piel suave y lustrosa es su mayor orgullo. Desprende una fragancia concentrada por la punta de la cola.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-tarountula",
+    "kind": "dex",
+    "entityId": "tarountula",
+    "series": "g9",
+    "payload": {
+      "text": "La bola de hilo que le rodea el cuerpo es lo bastante elástica como para repeler las guadañas de los Scyther, su enemigo natural.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-spidops",
+    "kind": "dex",
+    "entityId": "spidops",
+    "series": "g9",
+    "payload": {
+      "text": "Se adhiere con su hilo a ramas y techos, por los que se desplaza en silencio. Acaba con su presa antes de que esta se percate de su presencia.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-nymble",
+    "kind": "dex",
+    "entityId": "nymble",
+    "series": "g9",
+    "payload": {
+      "text": "Mantiene plegado su tercer par de patas, cuya fuerza le permite saltar a más de 10 m de altura para huir en caso de apuro.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-lokix",
+    "kind": "dex",
+    "entityId": "lokix",
+    "series": "g9",
+    "payload": {
+      "text": "Cuando decide luchar sin cuartel, se alza con su tercer par de patas y entra en modo asalto. Acaba con el rival en un abrir y cerrar de ojos.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-pawmi",
+    "kind": "dex",
+    "entityId": "pawmi",
+    "series": "g9",
+    "payload": {
+      "text": "Como las bolsas de sus mejillas están poco desarrolladas, genera electricidad frotándolas con las almohadillas de sus patas delanteras.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-pawmo",
+    "kind": "dex",
+    "entityId": "pawmo",
+    "series": "g9",
+    "payload": {
+      "text": "Cuando su manada se ve amenazada, atacan a la vanguardia usando un arte marcial caracterizado por el empleo de descargas eléctricas.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-pawmot",
+    "kind": "dex",
+    "entityId": "pawmot",
+    "series": "g9",
+    "payload": {
+      "text": "Este Pokémon es normalmente bastante calmado, pero, una vez en combate, derriba a sus rivales con movimientos de una velocidad vertiginosa.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-tandemaus",
+    "kind": "dex",
+    "entityId": "tandemaus",
+    "series": "g9",
+    "payload": {
+      "text": "Cuando encuentran un material que les parece útil para su nido, lo recortan con sus incisivos y lo acarrean, todo en perfecta compenetración.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-maushold",
+    "kind": "dex",
+    "entityId": "maushold",
+    "series": "g9",
+    "payload": {
+      "text": "Construyen grandes nidos que dividen en varias cámaras destinadas a distintas funciones, como dormir o comer.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-fidough",
+    "kind": "dex",
+    "entityId": "fidough",
+    "series": "g9",
+    "payload": {
+      "text": "Resulta húmedo y suave al tacto. Hace fermentar las cosas a su alrededor con la levadura de su aliento.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-dachsbun",
+    "kind": "dex",
+    "entityId": "dachsbun",
+    "series": "g9",
+    "payload": {
+      "text": "El fragante aroma que despide su cuerpo favorece el crecimiento del trigo, por lo que lo aprecian mucho en las comunidades agrícolas.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-smoliv",
+    "kind": "dex",
+    "entityId": "smoliv",
+    "series": "g9",
+    "payload": {
+      "text": "Se defiende de sus rivales segregando por el fruto de su cabeza un aceite tan amargo y agrio que cualquiera daría un respingo al probarlo.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-dolliv",
+    "kind": "dex",
+    "entityId": "dolliv",
+    "series": "g9",
+    "payload": {
+      "text": "No duda en compartir su delicioso aceite de fresco aroma. Convive con los seres humanos desde hace mucho tiempo.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-arboliva",
+    "kind": "dex",
+    "entityId": "arboliva",
+    "series": "g9",
+    "payload": {
+      "text": "Es pacífico y compasivo. Comparte su delicioso y nutritivo aceite con los Pokémon que han perdido las fuerzas.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-squawkabilly",
+    "kind": "dex",
+    "entityId": "squawkabilly",
+    "series": "g9",
+    "payload": {
+      "text": "Prefieren vivir en las ciudades. Forman bandadas según el color de su plumaje y libran disputas por el control de los territorios.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-nacli",
+    "kind": "dex",
+    "entityId": "nacli",
+    "series": "g9",
+    "payload": {
+      "text": "Surgen de estratos salinos subterráneos. Antaño se los tenía en alta estima, pues compartían su sal, un mineral por entonces muy preciado.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-naclstack",
+    "kind": "dex",
+    "entityId": "naclstack",
+    "series": "g9",
+    "payload": {
+      "text": "Escupe sal para recubrir con ella a sus presas y someterlas a un proceso de salazón que extrae la humedad de sus cuerpos.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-garganacl",
+    "kind": "dex",
+    "entityId": "garganacl",
+    "series": "g9",
+    "payload": {
+      "text": "Cuando encuentra a un Pokémon herido, frota las puntas de los dedos para rociarlo con sal y curar rápidamente incluso las heridas más graves.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-charcadet",
+    "kind": "dex",
+    "entityId": "charcadet",
+    "series": "g9",
+    "payload": {
+      "text": "Nació de unos restos de carbón consumidos por las llamas. Reta a rivales poderosos para saciar su ardiente espíritu combativo.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-armarouge",
+    "kind": "dex",
+    "entityId": "armarouge",
+    "series": "g9",
+    "payload": {
+      "text": "Evolucionó al portar la armadura de un guerrero de renombre. Este Pokémon destaca por su gran lealtad.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-ceruledge",
+    "kind": "dex",
+    "entityId": "ceruledge",
+    "series": "g9",
+    "payload": {
+      "text": "Las afiladas llamas que cubren sus brazos están avivadas por la frustración de un espadachín que cayó antes de poder cumplir su cometido.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-tadbulb",
+    "kind": "dex",
+    "entityId": "tadbulb",
+    "series": "g9",
+    "payload": {
+      "text": "Produce electricidad agitando la cola. Si siente peligro, hace parpadear su cabeza para alertar a sus compañeros.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-bellibolt",
+    "kind": "dex",
+    "entityId": "bellibolt",
+    "series": "g9",
+    "payload": {
+      "text": "Puede generar grandes cantidades de energía expandiendo y contrayendo su elástico cuerpo gracias a la dinamo de su ombligo.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-wattrel",
+    "kind": "dex",
+    "entityId": "wattrel",
+    "series": "g9",
+    "payload": {
+      "text": "Los huesos de sus alas producen electricidad con las corrientes de aire. Para cazar, se zambulle en el mar y electrocuta a su presa.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-kilowattrel",
+    "kind": "dex",
+    "entityId": "kilowattrel",
+    "series": "g9",
+    "payload": {
+      "text": "Aumenta la intensidad de su electricidad al inflar su saco gular. Es capaz de recorrer 700 km en un día impulsado por las corrientes de aire.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-maschiff",
+    "kind": "dex",
+    "entityId": "maschiff",
+    "series": "g9",
+    "payload": {
+      "text": "Mantiene el ceño fruncido para que sus rivales lo tomen en serio, pero hasta el niño más llorón estallaría en carcajadas al ver su mueca.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-mabosstiff",
+    "kind": "dex",
+    "entityId": "mabosstiff",
+    "series": "g9",
+    "payload": {
+      "text": "Almacena energía en la papada y la libera toda de golpe para arrasar con sus rivales.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-shroodle",
+    "kind": "dex",
+    "entityId": "shroodle",
+    "series": "g9",
+    "payload": {
+      "text": "Es manso, pero muerde y paraliza a quien lo enfada con sus afilados incisivos impregnados de toxinas.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-grafaiai",
+    "kind": "dex",
+    "entityId": "grafaiai",
+    "series": "g9",
+    "payload": {
+      "text": "El color de su saliva venenosa varía según su alimentación. Se embadurna los dedos con ella para pintar motivos en los árboles del bosque.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-bramblin",
+    "kind": "dex",
+    "entityId": "bramblin",
+    "series": "g9",
+    "payload": {
+      "text": "Se dice que este Pokémon nace cuando las almas en pena terminan enredadas en la hierba seca tras ser arrastradas por el viento.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-brambleghast",
+    "kind": "dex",
+    "entityId": "brambleghast",
+    "series": "g9",
+    "payload": {
+      "text": "Despliega las ramas para engullir a sus presas. Cuando ha terminado de absorber su energía vital, las escupe.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-toedscool",
+    "kind": "dex",
+    "entityId": "toedscool",
+    "series": "g9",
+    "payload": {
+      "text": "Los pliegues ondulados que se desprenden de su cuerpo cuentan con una textura curiosa y un sabor delicioso. Habita en bosques húmedos.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-toedscruel",
+    "kind": "dex",
+    "entityId": "toedscruel",
+    "series": "g9",
+    "payload": {
+      "text": "Forma colonias de varios ejemplares en lo más profundo de los bosques. No soporta las visitas indeseadas de extraños.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-klawf",
+    "kind": "dex",
+    "entityId": "klawf",
+    "series": "g9",
+    "payload": {
+      "text": "Acecha a sus presas colgado cabeza abajo de los acantilados, pero no puede aguantar así mucho tiempo porque se le sube la sangre a la cabeza.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-capsakid",
+    "kind": "dex",
+    "entityId": "capsakid",
+    "series": "g9",
+    "payload": {
+      "text": "Cuanto más se expone al sol, más aumenta la cantidad de capsaicinoides de su cuerpo y, por lo tanto, la pungencia de sus movimientos.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-scovillain",
+    "kind": "dex",
+    "entityId": "scovillain",
+    "series": "g9",
+    "payload": {
+      "text": "La cabeza roja transforma los capsaicinoides de su cuerpo en energía flamígera, lo que le permite arrojar llamaradas extremadamente abrasadoras.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-rellor",
+    "kind": "dex",
+    "entityId": "rellor",
+    "series": "g9",
+    "payload": {
+      "text": "Mezcla tierra, arena y energía psíquica para crear una bola de barro que atesora por encima de su propia vida.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-rabsca",
+    "kind": "dex",
+    "entityId": "rabsca",
+    "series": "g9",
+    "payload": {
+      "text": "El cuerpo que sostiene la bola apenas se mueve, por lo que se cree que el cuerpo en el interior de esta es quien controla sus acciones.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-flittle",
+    "kind": "dex",
+    "entityId": "flittle",
+    "series": "g9",
+    "payload": {
+      "text": "La punta de sus extremidades levita a 1 cm del suelo a causa del poder psíquico que emiten los volantes de su abdomen.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-espathra",
+    "kind": "dex",
+    "entityId": "espathra",
+    "series": "g9",
+    "payload": {
+      "text": "Baña al rival con el poder psíquico que emana de sus grandes ojos y lo inmoviliza. A pesar de su aspecto, posee un temperamento feroz.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-tinkatink",
+    "kind": "dex",
+    "entityId": "tinkatink",
+    "series": "g9",
+    "payload": {
+      "text": "Agita su martillo forjado a mano para ahuyentar a posibles amenazas, pero los Pokémon que se alimentan a base de metal suelen robárselo.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-tinkatuff",
+    "kind": "dex",
+    "entityId": "tinkatuff",
+    "series": "g9",
+    "payload": {
+      "text": "Asalta el séquito entero de un Bisharp para reunir metal con el que forjar su enorme y robusto martillo.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-tinkaton",
+    "kind": "dex",
+    "entityId": "tinkaton",
+    "series": "g9",
+    "payload": {
+      "text": "Posee una notable inteligencia y una exacerbada personalidad. Si ve Corviknight volando, golpea y lanza rocas con su martillo para derribarlos.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-wiglett",
+    "kind": "dex",
+    "entityId": "wiglett",
+    "series": "g9",
+    "payload": {
+      "text": "Puede percibir el olor de los Veluza a 20 m de distancia, lo que le permite ocultarse bajo la arena a tiempo.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-wugtrio",
+    "kind": "dex",
+    "entityId": "wugtrio",
+    "series": "g9",
+    "payload": {
+      "text": "Es de temperamento agresivo, aunque no lo parezca. Envuelve a sus presas con sus largos cuerpos y las arrastra a su nido.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-bombirdier",
+    "kind": "dex",
+    "entityId": "bombirdier",
+    "series": "g9",
+    "payload": {
+      "text": "Mete cosas en su bolsa, fabricada con el plumón de su pecho y con plumas mudadas, para luego dejarlas caer desde las alturas por diversión.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-finizen",
+    "kind": "dex",
+    "entityId": "finizen",
+    "series": "g9",
+    "payload": {
+      "text": "Le gusta jugar con sus congéneres con el anillo de agua de su aleta caudal. Utiliza ultrasonidos para percibir las emociones de otros seres.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-palafin",
+    "kind": "dex",
+    "entityId": "palafin",
+    "series": "g9",
+    "payload": {
+      "text": "Cambia de forma en cuanto recibe una señal de socorro de sus compañeros. Nunca se transforma delante de nadie.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-varoom",
+    "kind": "dex",
+    "entityId": "varoom",
+    "series": "g9",
+    "payload": {
+      "text": "Se dice que surgió cuando un misterioso Pokémon venenoso tomó posesión de un motor abandonado en un desguace.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-revavroom",
+    "kind": "dex",
+    "entityId": "revavroom",
+    "series": "g9",
+    "payload": {
+      "text": "Posee ocho cilindros, con los que genera energía haciendo estallar el gas que produce al mezclar los minerales de las rocas con su veneno.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-cyclizar",
+    "kind": "dex",
+    "entityId": "cyclizar",
+    "series": "g9",
+    "payload": {
+      "text": "Según parece, ha permitido que los humanos monten en él desde tiempos remotos. Aparece en pinturas rupestres de hace diez mil años.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-orthworm",
+    "kind": "dex",
+    "entityId": "orthworm",
+    "series": "g9",
+    "payload": {
+      "text": "Cuando lo atacan, usa los pelos de su cuerpo a modo de puños y hace llover un aluvión de puñetazos sobre sus enemigos.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-glimmet",
+    "kind": "dex",
+    "entityId": "glimmet",
+    "series": "g9",
+    "payload": {
+      "text": "Absorbe nutrientes de las paredes de las cuevas. Cubre su cuerpo con pétalos hechos de energía venenosa cristalizada.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-glimmora",
+    "kind": "dex",
+    "entityId": "glimmora",
+    "series": "g9",
+    "payload": {
+      "text": "En cuanto percibe peligro, abre sus pétalos de cristal y despide rayos por su cuerpo en forma de cono.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-greavard",
+    "kind": "dex",
+    "entityId": "greavard",
+    "series": "g9",
+    "payload": {
+      "text": "Se cree que es la reencarnación de un Pokémon perro vagabundo que murió sin haber tenido contacto con humanos.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-houndstone",
+    "kind": "dex",
+    "entityId": "houndstone",
+    "series": "g9",
+    "payload": {
+      "text": "Pasa la mayor parte del tiempo durmiendo en cementerios. De todos los Pokémon perro, es el que profesa una mayor lealtad por su Entrenador.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-flamigo",
+    "kind": "dex",
+    "entityId": "flamigo",
+    "series": "g9",
+    "payload": {
+      "text": "Al parecer, se anudan la base del cuello para impedir que la energía que tienen almacenada en el estómago escape por el pico.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-cetoddle",
+    "kind": "dex",
+    "entityId": "cetoddle",
+    "series": "g9",
+    "payload": {
+      "text": "Los miembros de esta especie, emparentada al parecer con los Wailmer, abandonaron hace ya mucho tiempo el mar para vivir en tierra firme.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-cetitan",
+    "kind": "dex",
+    "entityId": "cetitan",
+    "series": "g9",
+    "payload": {
+      "text": "Este Pokémon vive en áreas cubiertas de nieve y hielo. Se protege con su fuerte musculatura y una gruesa capa de grasa subcutánea.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-veluza",
+    "kind": "dex",
+    "entityId": "veluza",
+    "series": "g9",
+    "payload": {
+      "text": "Al desechar la carne que no necesita, agudiza la mente y sus poderes psíquicos se incrementan. Dicha carne tiene un sabor suave pero exquisito.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-dondozo",
+    "kind": "dex",
+    "entityId": "dondozo",
+    "series": "g9",
+    "payload": {
+      "text": "Le gusta mucho comer, pero no se le da bien cazar, por lo que aúna fuerzas con Tatsugiri con el fin de capturar presas.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-tatsugiri",
+    "kind": "dex",
+    "entityId": "tatsugiri",
+    "series": "g9",
+    "payload": {
+      "text": "Pokémon dragón de pequeño tamaño. Vive en la boca de un Dondozo para protegerse de los ataques de los depredadores.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-annihilape",
+    "kind": "dex",
+    "entityId": "annihilape",
+    "series": "g9",
+    "payload": {
+      "text": "Cuando su ira explosiva rebasó el punto crítico, adquirió un poder que lo libró para siempre de las limitaciones de su cuerpo material.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-clodsire",
+    "kind": "dex",
+    "entityId": "clodsire",
+    "series": "g9",
+    "payload": {
+      "text": "Cuando se siente amenazado, repele al enemigo con sus gruesas púas retráctiles. Esta técnica tan peligrosa es un arma de doble filo.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-farigiraf",
+    "kind": "dex",
+    "entityId": "farigiraf",
+    "series": "g9",
+    "payload": {
+      "text": "Las ondas cerebrales de la cola y la cabeza van al compás, lo que le confiere poderes psíquicos diez veces más potentes que los de los Girafarig.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-dudunsparce",
+    "kind": "dex",
+    "entityId": "dudunsparce",
+    "series": "g9",
+    "payload": {
+      "text": "Usa su dura cola para horadar el lecho rocoso en las profundidades de la tierra y establecer su madriguera, cuyos túneles se extienden 10 km.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-kingambit",
+    "kind": "dex",
+    "entityId": "kingambit",
+    "series": "g9",
+    "payload": {
+      "text": "Solo el Bisharp más destacado entre las filas de cada gran ejército tiene el honor de evolucionar a ???.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-great-tusk",
+    "kind": "dex",
+    "entityId": "great-tusk",
+    "series": "g9",
+    "payload": {
+      "text": "Testigos afirman haberlo visto recientemente. El nombre ??? está tomado de una criatura mencionada en cierto libro.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-scream-tail",
+    "kind": "dex",
+    "entityId": "scream-tail",
+    "series": "g9",
+    "payload": {
+      "text": "Solo se había avistado una vez en el pasado. Su aspecto se asemeja al de una misteriosa criatura descrita en cierto diario antiguo.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-brute-bonnet",
+    "kind": "dex",
+    "entityId": "brute-bonnet",
+    "series": "g9",
+    "payload": {
+      "text": "Es posible que se trate de la criatura que se menciona en cierto libro bajo el nombre de ???.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-flutter-mane",
+    "kind": "dex",
+    "entityId": "flutter-mane",
+    "series": "g9",
+    "payload": {
+      "text": "Sus rasgos distintivos encajan con la descripción de una criatura mencionada en cierto libro bajo el nombre de ???.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-slither-wing",
+    "kind": "dex",
+    "entityId": "slither-wing",
+    "series": "g9",
+    "payload": {
+      "text": "Un misterioso Pokémon que presenta ciertas similitudes con ???, una criatura descrita en un tomo antiguo.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-sandy-shocks",
+    "kind": "dex",
+    "entityId": "sandy-shocks",
+    "series": "g9",
+    "payload": {
+      "text": "Nunca se había capturado uno, ergo los datos al respecto escasean. Su descripción coincide con la de una criatura mencionada en cierto diario.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-iron-treads",
+    "kind": "dex",
+    "entityId": "iron-treads",
+    "series": "g9",
+    "payload": {
+      "text": "Su aspecto recuerda al de un arma científica de origen extraterrestre que apareció en un artículo de una revista esotérica.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-iron-bundle",
+    "kind": "dex",
+    "entityId": "iron-bundle",
+    "series": "g9",
+    "payload": {
+      "text": "Tiene una forma similar a la del robot construido por una civilización antigua mencionado en cierto artículo de una revista esotérica.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-iron-hands",
+    "kind": "dex",
+    "entityId": "iron-hands",
+    "series": "g9",
+    "payload": {
+      "text": "Guarda parecido con un atleta, supuestamente transformado en cíborg, que apareció entre las exclusivas de una revista esotérica.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-iron-jugulis",
+    "kind": "dex",
+    "entityId": "iron-jugulis",
+    "series": "g9",
+    "payload": {
+      "text": "Se asemeja a un Pokémon que apareció en una revista esotérica descrito como \"el fruto de un romance entre un Hydreigon y un robot\".",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-iron-moth",
+    "kind": "dex",
+    "entityId": "iron-moth",
+    "series": "g9",
+    "payload": {
+      "text": "Se asemeja a un extraño objeto descrito en una revista esotérica como \"un ovni enviado con el objetivo de espiar a la raza humana\".",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-iron-thorns",
+    "kind": "dex",
+    "entityId": "iron-thorns",
+    "series": "g9",
+    "payload": {
+      "text": "Guarda similitudes con el supuesto aspecto que, según cierta revista de dudosa veracidad, tendrá Tyranitar dentro de mil millones de años.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-frigibax",
+    "kind": "dex",
+    "entityId": "frigibax",
+    "series": "g9",
+    "payload": {
+      "text": "Absorbe el calor a través de la placa dorsal y lo convierte en energía gélida. Cuanto más alta es la temperatura, más energía acumula.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-arctibax",
+    "kind": "dex",
+    "entityId": "arctibax",
+    "series": "g9",
+    "payload": {
+      "text": "Congela el aire a su alrededor para cubrirse el rostro con una máscara de hielo protectora y dotar su placa dorsal de cuchillas glaciales.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-baxcalibur",
+    "kind": "dex",
+    "entityId": "baxcalibur",
+    "series": "g9",
+    "payload": {
+      "text": "Exhala un aliento extremadamente frío por la boca que es capaz de congelar al instante incluso magma al rojo vivo.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-gimmighoul",
+    "kind": "dex",
+    "entityId": "gimmighoul",
+    "series": "g9",
+    "payload": {
+      "text": "El cofre en el que nació data de hace 1500 años aproximadamente. Absorbe la energía vital de los granujas que intentan hacerse con su tesoro.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-gholdengo",
+    "kind": "dex",
+    "entityId": "gholdengo",
+    "series": "g9",
+    "payload": {
+      "text": "Se dice que su cuerpo está formado por 1000 monedas. Es capaz de hacer buenas migas con cualquiera rápidamente por su sociabilidad.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-wo-chien",
+    "kind": "dex",
+    "entityId": "wo-chien",
+    "series": "g9",
+    "payload": {
+      "text": "Este Pokémon nació al imbuirse en hojas marchitas el rencor de una persona castigada por enumerar las fechorías de su rey en unas tablillas.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-chien-pao",
+    "kind": "dex",
+    "entityId": "chien-pao",
+    "series": "g9",
+    "payload": {
+      "text": "Controla a su voluntad masas de nieve de hasta cien toneladas. Se divierte zambulléndose y saltando felizmente en los aludes que provoca.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-ting-lu",
+    "kind": "dex",
+    "entityId": "ting-lu",
+    "series": "g9",
+    "payload": {
+      "text": "Este Pokémon nació al imbuirse en tierra y rocas el miedo vertido en un caldero que se utilizaba en rituales antiguos.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-chi-yu",
+    "kind": "dex",
+    "entityId": "chi-yu",
+    "series": "g9",
+    "payload": {
+      "text": "Controla a su voluntad llamas de hasta 3000 ºC. Nada tranquilamente por los mares de magma que crea al derretir las rocas y la grava a su paso.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-roaring-moon",
+    "kind": "dex",
+    "entityId": "roaring-moon",
+    "series": "g9",
+    "payload": {
+      "text": "Podría tratarse de la criatura que aparece bajo el nombre de ??? en cierto diario repleto de incógnitas.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-iron-valiant",
+    "kind": "dex",
+    "entityId": "iron-valiant",
+    "series": "g9",
+    "payload": {
+      "text": "Comparte varios rasgos con el invento de un científico loco que apareció en un artículo de una revista esotérica.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-koraidon",
+    "kind": "dex",
+    "entityId": "koraidon",
+    "series": "g9",
+    "payload": {
+      "text": "Toda información relativa a su biología es un completo misterio. La profesora que lo descubrió lo nombró ???.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-miraidon",
+    "kind": "dex",
+    "entityId": "miraidon",
+    "series": "g9",
+    "payload": {
+      "text": "Comparte rasgos con un misterioso objeto descrito en un viejo diario de exploración y que era conocido como Ferromandra.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-walking-wake",
+    "kind": "dex",
+    "entityId": "walking-wake",
+    "series": "g9",
+    "payload": {
+      "text": "Una criatura violenta rodeada de misterio, cuyo nombre se inspira en cierto monstruo acuático mencionado en un viejo diario de exploración.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-iron-leaves",
+    "kind": "dex",
+    "entityId": "iron-leaves",
+    "series": "g9",
+    "payload": {
+      "text": "Presenta numerosas características en común con el Virizion del futuro que apareció publicado en cierta revista esotérica.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-dipplin",
+    "kind": "dex",
+    "entityId": "dipplin",
+    "series": "g9",
+    "payload": {
+      "text": "Ha evolucionado gracias a una manzana especial que solo se cultiva en cierta zona. Este Pokémon está formado por dos individuos.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-poltchageist",
+    "kind": "dex",
+    "entityId": "poltchageist",
+    "series": "g9",
+    "payload": {
+      "text": "Según se dice, el resquemor de un practicante de la ceremonia del té que murió sin perfeccionar el arte poseyó el matcha y dio lugar a un Pokémon.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-sinistcha",
+    "kind": "dex",
+    "entityId": "sinistcha",
+    "series": "g9",
+    "payload": {
+      "text": "Se hace pasar por té matcha para que algún incauto lo beba y así absorber su energía vital, pero su plan suele fracasar.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-okidogi",
+    "kind": "dex",
+    "entityId": "okidogi",
+    "series": "g9",
+    "payload": {
+      "text": "Las toxinas de la cadena que lleva al cuello producen una estimulación muscular que le ha conferido un cuerpo de lo más robusto.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-munkidori",
+    "kind": "dex",
+    "entityId": "munkidori",
+    "series": "g9",
+    "payload": {
+      "text": "Las toxinas de la cadena, capaces de sacar a relucir su potencial, le han estimulado el cerebro y le han hecho desarrollar poderes psíquicos.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-fezandipiti",
+    "kind": "dex",
+    "entityId": "fezandipiti",
+    "series": "g9",
+    "payload": {
+      "text": "Ha desarrollado una forma y una voz muy bellas gracias a la estimulación causada por las toxinas de la cadena que lleva en torno al cuerpo.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-ogerpon",
+    "kind": "dex",
+    "entityId": "ogerpon",
+    "series": "g9",
+    "payload": {
+      "text": "Cambia de tipo según la máscara que lleve. Se vale de sus rápidos movimientos y patadas para jugar a su antojo con sus enemigos.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-archaludon",
+    "kind": "dex",
+    "entityId": "archaludon",
+    "series": "g9",
+    "payload": {
+      "text": "Acumula la electricidad estática de su entorno. El rayo que dispara cuando está a cuatro patas posee una potencia colosal.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-hydrapple",
+    "kind": "dex",
+    "entityId": "hydrapple",
+    "series": "g9",
+    "payload": {
+      "text": "Se trata de siete seres llamados Viborappli que viven juntos en una manzana de caramelo. El del centro es el líder del grupo.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-gouging-fire",
+    "kind": "dex",
+    "entityId": "gouging-fire",
+    "series": "g9",
+    "payload": {
+      "text": "Apenas constan avistamientos de este Pokémon, pero existe una breve grabación donde aparece desbocado y escupiendo ráfagas de fuego.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-raging-bolt",
+    "kind": "dex",
+    "entityId": "raging-bolt",
+    "series": "g9",
+    "payload": {
+      "text": "Se dice que calcina todo cuanto lo rodea con los rayos que libera su pelaje. Aparte de eso, se sabe muy poco sobre esta criatura.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-iron-boulder",
+    "kind": "dex",
+    "entityId": "iron-boulder",
+    "series": "g9",
+    "payload": {
+      "text": "Recuerda a un Pokémon descrito en cierta revista de dudosa veracidad como \"un Terrakion modificado por una malvada organización\".",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-iron-crown",
+    "kind": "dex",
+    "entityId": "iron-crown",
+    "series": "g9",
+    "payload": {
+      "text": "Se asemeja a un extraño objeto descrito en una revista esotérica como \"un arma de tecnología punta con forma de Cobalion\".",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-terapagos",
+    "kind": "dex",
+    "entityId": "terapagos",
+    "series": "g9",
+    "payload": {
+      "text": "Se vale de su capacidad para transformar energía en duros cristales para protegerse. Este Pokémon dio origen a la teracristalización.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
+    "id": "dex-pecharunt",
+    "kind": "dex",
+    "entityId": "pecharunt",
+    "series": "g9",
+    "payload": {
+      "text": "Hace comer a su objetivo un mochi tóxico que saca a relucir todo su potencial y su ambición, para después controlarlo con sus cadenas.",
+      "version": "scarlet"
+    },
+    "verified": false
+  },
+  {
     "id": "tcg-card-me01-001",
     "kind": "tcg-card",
     "entityId": "bulbasaur",

@@ -266,10 +266,17 @@ export function buildEntity({ species, pokemon, stage, spanish }: EntityInput): 
 /**
  * La descripción de la Pokédex como contenido, con el nombre reemplazado por
  * "???". Viene tal cual de PokéAPI, sin redactar nada: por eso `verified: true`.
- * Devuelve `undefined` si la especie no tiene texto en español.
+ * Si PokéAPI no tiene texto en español se usa `fallback` (la transcripción de
+ * WikiDex, ver wikidex.ts), que nace con `verified: false`. Devuelve
+ * `undefined` si no hay ninguno de los dos.
  */
-export function buildDexContent(species: Species, entity: Entity): Content | undefined {
-  const picked = pickFlavorText(species.flavor_text_entries);
+export function buildDexContent(
+  species: Species,
+  entity: Entity,
+  fallback?: { text: string; version: string },
+): Content | undefined {
+  const official = pickFlavorText(species.flavor_text_entries);
+  const picked = official ?? fallback;
   if (picked === undefined) return undefined;
 
   const names = nameVariants(
@@ -286,6 +293,6 @@ export function buildDexContent(species: Species, entity: Entity): Content | und
     entityId: entity.id,
     series: entity.series[0],
     payload: { text, version: picked.version },
-    verified: true,
+    verified: official !== undefined,
   };
 }

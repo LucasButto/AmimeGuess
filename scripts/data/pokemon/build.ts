@@ -17,7 +17,7 @@
 import { mkdir, readFile, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import type { Content, Entity } from '../../../src/engine/types.ts';
-import { API_BASE, NotFoundError, ROOT, TCGDEX, TCGDEX_BASE, getFile, getJson, mapPool } from './api.ts';
+import { API_BASE, NotFoundError, ROOT, TCGDEX, TCGDEX_BASE, WIKIDEX, getFile, getJson, mapPool } from './api.ts';
 import {
   CARDS_PER_POKEMON,
   CARD_DIRECTORY,
@@ -55,13 +55,15 @@ import {
   type PokemonData,
   type Species,
 } from './schemas.ts';
-import { buildDexContent, buildEntity, evolutionStages, mainAbilityUrl, nameIn } from './transform.ts';
+import { buildDexContent, buildEntity, evolutionStages, mainAbilityUrl, nameIn, pickFlavorText } from './transform.ts';
+import { wikidexDexText, wikidexParseSchema, wikidexUrl } from './wikidex.ts';
 
 const DATA_DIR = path.join(ROOT, 'data', 'pokemon');
 const IMAGE_DIR = path.join(ROOT, 'public', 'img', 'pokemon');
 const CARD_IMAGE_DIR = path.join(ROOT, 'public', 'img', CARD_DIRECTORY);
 const FETCH_TASKS = 16;
 const IMAGE_TASKS = 4;
+const WIKIDEX_TASKS = 2;
 
 const started = Date.now();
 const step = (message: string) => console.log(`[${((Date.now() - started) / 1000).toFixed(0).padStart(3)} s] ${message}`);
@@ -281,6 +283,28 @@ async function buildCards(species: Species[], entities: Entity[]): Promise<Cards
   };
 }
 
+// --- 3b. Descripciones de WikiDex --------------------------------------------
+
+/**
+ * Para las especies sin descripción en español en PokéAPI, la transcripción de
+ * la plantilla {{Pokédex}} de WikiDex (ver wikidex.ts). La página se busca por
+ * el nombre en español. Las que WikiDex tampoco tiene quedan sin descripción.
+ */
+async function fetchWikidexTexts(species: Species[]): Promise<Map<string, { text: string; version: string }>> {
+  const missing = species.filter((entry) => pickFlavorText(entry.flavor_text_entries) === undefined);
+  step(`Descripciones de WikiDex para ${missing.length} especies sin texto en PokéAPI…`);
+  const texts = await mapPool(missing, WIKIDEX_TASKS, async (entry) => {
+    const page = nameIn(entry.names, 'es') ?? nameIn(entry.names, 'en') ?? entry.name;
+    return wikidexDexText(await getJson(wikidexUrl(page), wikidexParseSchema, WIKIDEX));
+  });
+  const found = new Map<string, { text: string; version: string }>();
+  missing.forEach((entry, index) => {
+    const text = texts[index];
+    if (text !== undefined) found.set(entry.name, text);
+  });
+  return found;
+}
+
 // --- 4. Validación ----------------------------------------------------------
 
 const REQUIRED_ATTRS = [
@@ -429,6 +453,8 @@ async function main(): Promise<void> {
   const spanish = await fetchSpanishNames(species, pokemon);
   const moveTypeName = await fetchMoveTypeNames(moves);
 
+  const wikidex = await fetchWikidexTexts(species);
+
   step('Armando entidades y descripciones…');
   const entities: Entity[] = [];
   const contents: Content[] = [];
@@ -440,7 +466,7 @@ async function main(): Promise<void> {
 
     const entity = buildEntity({ species: entry, pokemon: pokemon[index], stage, spanish });
     entities.push(entity);
-    const content = buildDexContent(entry, entity);
+    const content = buildDexContent(entry, entity, wikidex.get(entry.name));
     if (content) contents.push(content);
   });
 
