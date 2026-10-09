@@ -21,7 +21,7 @@ describe('configs de franquicia', () => {
     expect(getFranchise('pokemon')?.series).toEqual(['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9']);
     expect(getFranchise('dragon-ball')?.series).toEqual(['db', 'dbz', 'gt', 'super', 'daima']);
     expect(getFranchise('naruto')?.series).toEqual(['naruto', 'shippuden', 'boruto']);
-    expect(getFranchise('yugioh')?.series).toEqual(['dm', 'gx', '5ds', 'zexal', 'arcv', 'vrains']);
+    expect(getFranchise('yugioh')?.series).toEqual(['dm', 'gx', '5ds']);
   });
 
   it('Duelista es el primer modo de Yu-Gi-Oh', () => {

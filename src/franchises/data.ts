@@ -44,6 +44,19 @@ const loaders: Record<string, () => Promise<FranchiseData>> = {
     ]);
     return { entities: entities.default as Entity[], contents: publishableContents(contents.default as Content[]) };
   },
+  // Los duelistas son las entidades principales; las cartas insignia, un conjunto aparte (`cards`).
+  yugioh: async () => {
+    const [entities, cards, contents] = await Promise.all([
+      import('../../data/yugioh/entities.json'),
+      import('../../data/yugioh/cards.json'),
+      import('../../data/yugioh/content.json'),
+    ]);
+    return {
+      entities: entities.default as Entity[],
+      contents: publishableContents(contents.default as Content[]),
+      entitySets: { cards: cards.default as Entity[] },
+    };
+  },
 };
 
 /** ¿Hay datos generados para esta franquicia? Las que aún no, muestran "Próximamente". */
