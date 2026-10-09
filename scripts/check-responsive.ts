@@ -183,11 +183,12 @@ async function imageFitsWithField(page: Page): Promise<string[]> {
 }
 
 /**
- * Ids de Pokémon que nunca pueden ser la respuesta de un modo de pista de texto porque no tienen
- * contenido de ese tipo: fallos seguros para sembrar una partida a medias, sea cual sea el día.
+ * Ids de Pokémon (o de otra franquicia, si se dice) que nunca pueden ser la respuesta de un modo con
+ * contenido propio porque no tienen contenido de ese tipo: fallos seguros para sembrar una partida a
+ * medias, sea cual sea el día.
  */
-function neverAnswers(contentKind: string, count: number): string[] {
-  const read = (file: string) => JSON.parse(readFileSync(path.join(ROOT, 'data', 'pokemon', file), 'utf8')) as unknown[];
+function neverAnswers(contentKind: string, count: number, franchise = 'pokemon'): string[] {
+  const read = (file: string) => JSON.parse(readFileSync(path.join(ROOT, 'data', franchise, file), 'utf8')) as unknown[];
   const entities = read('entities.json') as Array<{ id: string }>;
   const contents = read('content.json') as Array<{ kind: string; entityId?: string }>;
   const withContent = new Set(contents.filter((content) => content.kind === contentKind).map((content) => content.entityId));
@@ -378,6 +379,138 @@ async function timelineFinish(page: Page, { phone }: { phone: boolean }): Promis
   return [...problems, ...(await timelineLayout(page, { phone }))];
 }
 
+// --- Sesión 11: Naruto -------------------------------------------------------------------------
+
+/** Seis personajes de Naruto para probar la tabla llena del Clásico. */
+const NARUTO_SIX_ATTEMPTS = ['naruto-uzumaki', 'sasuke-uchiha', 'sakura-haruno', 'kakashi-hatake', 'itachi-uchiha', 'hinata-hyuga'];
+
+/** Sin la serie original: los personajes que debutaron en ella ven su arco de debut oculto ("—"). */
+const WITHOUT_NARUTO = 'shippuden.boruto';
+
+/** El tablero de Conexiones está montado (si el modo no alcanza el pool, el marco muestra un aviso y no hay tablero). */
+const CONNECTIONS_GAME = '[data-game-ready][data-over]';
+
+async function hasConnectionsGame(page: Page): Promise<boolean> {
+  return (await page.locator(CONNECTIONS_GAME).count()) > 0;
+}
+
+/**
+ * La grilla de Conexiones: las casillas están en 4 columnas, caben en la pantalla, no cortan el texto, la
+ * letra mide 11 px o más y ninguna palabra es más ancha que su casilla (si lo fuera, el nombre se partiría a
+ * la mitad de una palabra).
+ */
+async function connectionsLayout(page: Page): Promise<string[]> {
+  if (!(await hasConnectionsGame(page))) return [];
+  const info = await page.evaluate(() => {
+    const tiles = [...document.querySelectorAll<HTMLElement>('[data-tile]')];
+    const probe = document.createElement('span');
+    probe.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap';
+    document.body.append(probe);
+    const split: string[] = [];
+    for (const tile of tiles) {
+      const style = getComputedStyle(tile);
+      probe.style.fontFamily = style.fontFamily;
+      probe.style.fontSize = style.fontSize;
+      probe.style.fontWeight = style.fontWeight;
+      const inner = tile.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+      for (const word of (tile.firstChild?.textContent ?? '').split(/\s+/)) {
+        probe.textContent = word;
+        const width = probe.getBoundingClientRect().width;
+        if (width > inner + 0.5) split.push(`${word} (${Math.round(width)} > ${Math.round(inner)} px)`);
+      }
+    }
+    probe.remove();
+    const boxes = tiles.map((tile) => tile.getBoundingClientRect());
+    return {
+      count: tiles.length,
+      columns: new Set(boxes.map((box) => Math.round(box.left))).size,
+      outside: boxes.filter((box) => box.left < -0.5 || box.right > window.innerWidth + 0.5).length,
+      clipped: tiles
+        .filter((tile) => tile.scrollWidth > tile.clientWidth + 1 || tile.scrollHeight > tile.clientHeight + 1)
+        .map((tile) => tile.textContent ?? ''),
+      smallest: Math.min(...tiles.map((tile) => parseFloat(getComputedStyle(tile).fontSize))),
+      split,
+    };
+  });
+  const problems: string[] = [];
+  if (info.count % 4 !== 0 || info.count === 0) problems.push(`la cantidad de casillas debería ser múltiplo de 4 y hay ${info.count}`);
+  if (info.columns !== 4) problems.push(`la grilla debería tener 4 columnas y tiene ${info.columns}`);
+  if (info.outside > 0) problems.push(`${info.outside} casilla(s) se salen de la pantalla en horizontal`);
+  if (info.clipped.length > 0) problems.push(`texto cortado en: ${info.clipped.join(', ')}`);
+  if (info.smallest < 11 - 0.01) problems.push(`la letra de las casillas mide ${info.smallest} px (mínimo 11 px)`);
+  if (info.split.length > 0) problems.push(`palabras que no entran enteras en su casilla: ${info.split.join(', ')}`);
+  return problems;
+}
+
+/** Con el teclado: enfocar una casilla y elegirla con la barra espaciadora, y que el foco no se pierda. */
+async function connectionsKeyboard(page: Page): Promise<string[]> {
+  const tile = page.locator('[data-tile][aria-pressed="false"]').last();
+  await tile.focus();
+  await page.keyboard.press('Space');
+  const state = await page.evaluate(() => ({
+    pressed: document.activeElement?.getAttribute('aria-pressed'),
+    isTile: document.activeElement?.hasAttribute('data-tile'),
+  }));
+  const problems: string[] = [];
+  if (!state.isTile) problems.push('el foco no quedó en la casilla después de elegirla con el teclado');
+  if (state.pressed !== 'true') problems.push('la barra espaciadora no eligió la casilla');
+  // El foco sigue en la misma casilla: una segunda barra espaciadora la deselecciona.
+  await page.keyboard.press('Space');
+  return problems;
+}
+
+/** Elige 5 casillas (la quinta no se suma), deselecciona, elige 4 y las envía: se resuelve un grupo o cuesta un error. */
+async function connectionsSelect(page: Page): Promise<string[]> {
+  if (!(await hasConnectionsGame(page))) return [];
+  const problems = await connectionsKeyboard(page);
+  const tiles = page.locator('[data-tile]');
+  const pressed = () => page.locator('[data-tile][aria-pressed="true"]').count();
+  for (let index = 0; index < 5; index++) await tiles.nth(index).click();
+  if ((await pressed()) !== 4) problems.push(`con 5 toques debería haber 4 elegidas y hay ${await pressed()}`);
+  await page.getByRole('button', { name: 'Deseleccionar todo' }).click();
+  if ((await pressed()) !== 0) problems.push('"Deseleccionar todo" no deseleccionó');
+  const submit = page.getByRole('button', { name: 'Enviar' });
+  if (await submit.isEnabled()) problems.push('"Enviar" está habilitado sin 4 elegidas');
+  for (let index = 0; index < 4; index++) await tiles.nth(index).click();
+  if (!(await submit.isEnabled())) problems.push('"Enviar" sigue deshabilitado con 4 elegidas');
+  await submit.click();
+  const after = await page.evaluate(() => ({
+    bands: document.querySelectorAll('[data-band]').length,
+    text: document.body.innerText,
+  }));
+  const resolved = after.bands === 1;
+  const failed = after.text.includes('Errores que podés cometer: 3 de 4');
+  if (!resolved && !failed) problems.push('enviar 4 casillas no resolvió un grupo ni costó un error');
+  return [...problems, ...(await connectionsLayout(page))];
+}
+
+/** Envía combinaciones hasta que el juego termina (se gastan los 4 errores o se resuelve) y comprueba el final. */
+async function connectionsFinish(page: Page): Promise<string[]> {
+  if (!(await hasConnectionsGame(page))) return [];
+  const over = async () => (await page.locator(CONNECTIONS_GAME).getAttribute('data-over')) === 'true';
+  for (let turn = 0; turn < 60 && !(await over()); turn++) {
+    const clear = page.getByRole('button', { name: 'Deseleccionar todo' });
+    if (await clear.isEnabled()) await clear.click();
+    const tiles = page.locator('[data-tile]');
+    const total = await tiles.count();
+    for (let offset = 0; offset < 4; offset++) await tiles.nth((turn + offset * 3) % total).click();
+    // Una combinación repetida no cuenta: se avisa y se sigue con la próxima vuelta.
+    await page.getByRole('button', { name: 'Enviar' }).click();
+  }
+  const problems: string[] = [];
+  if (!(await over())) problems.push('después de 60 envíos el juego no terminó');
+  const end = await page.evaluate(() => ({
+    bands: document.querySelectorAll('[data-band]').length,
+    tiles: document.querySelectorAll('[data-tile]').length,
+    submit: [...document.querySelectorAll('button')].some((button) => button.textContent === 'Enviar'),
+    summary: document.querySelector('section[data-won]') !== null,
+  }));
+  if (end.bands !== 4) problems.push(`al terminar deberían verse los 4 grupos con su nombre y hay ${end.bands}`);
+  if (end.tiles > 0 || end.submit) problems.push('al terminar siguen la grilla o el botón de enviar');
+  if (!end.summary) problems.push('no aparece el resumen del marco al terminar');
+  return problems;
+}
+
 /** Los modos de Pokémon que usan el motor de pista de texto (sesión 06) y el tipo de contenido de cada uno. */
 const TEXT_MODES = [
   { slug: 'descripcion', contentKind: 'dex' },
@@ -541,6 +674,63 @@ const ROUTES: RouteCheck[] = [
   { name: 'dragon-ball-linea-de-tiempo-arrastrar', path: '/dragon-ball/linea-de-tiempo', check: timelineDrag },
   { name: 'dragon-ball-linea-de-tiempo-confirmado', path: '/dragon-ball/linea-de-tiempo', check: timelineConfirm },
   { name: 'dragon-ball-linea-de-tiempo-terminado', path: '/dragon-ball/linea-de-tiempo', check: timelineFinish },
+  // Sesión 11: los 9 modos de Naruto. Silueta (todas las imágenes tienen fondo) y Frase (frases sin verificar) quedan
+  // ocultos: sus rutas se revisan igual (muestran "Próximamente"). Los demás son jugables con todas las series.
+  { name: 'naruto', path: '/naruto' },
+  { name: 'naruto-clasico', path: '/naruto/clasico', ready: GAME_READY },
+  {
+    // 7 columnas, con el arco de debut con su nombre corto.
+    name: 'naruto-clasico-6-intentos',
+    path: '/naruto/clasico',
+    ready: GAME_READY,
+    storage: seededGame('all', NARUTO_SIX_ATTEMPTS, 'clasico', 'naruto'),
+  },
+  {
+    // Sin la serie original: quienes debutaron en ella ven su arco de debut oculto.
+    name: 'naruto-clasico-sin-naruto',
+    path: `/naruto/clasico?s=${WITHOUT_NARUTO}`,
+    ready: GAME_READY,
+    storage: seededGame(WITHOUT_NARUTO, NARUTO_SIX_ATTEMPTS, 'clasico', 'naruto'),
+  },
+  { name: 'naruto-borroso', path: '/naruto/borroso', ready: GAME_READY, check: imageFitsWithField },
+  ...(['ojo', 'jutsu'] as const).flatMap((slug) => [
+    { name: `naruto-${slug}`, path: `/naruto/${slug}`, ready: GAME_READY, check: imageFitsWithField },
+    {
+      // A medio revelar: tres personajes que no pueden ser la respuesta (no tienen contenido de ese tipo).
+      name: `naruto-${slug}-3-fallos`,
+      path: `/naruto/${slug}`,
+      ready: GAME_READY,
+      storage: seededGame('all', neverAnswers(slug === 'ojo' ? 'eye' : 'jutsu', 3, 'naruto'), slug, 'naruto'),
+      check: imageFitsWithField,
+    },
+  ]),
+  // Ningún jutsu es de Boruto: con solo esa serie el modo no alcanza el pool mínimo.
+  { name: 'naruto-jutsu-sin-pool', path: '/naruto/jutsu?s=boruto', check: showsPoolWarning },
+  { name: 'naruto-equipo', path: '/naruto/equipo', ready: GAME_READY },
+  {
+    // Con 3 fallos ya se ven 4 miembros.
+    name: 'naruto-equipo-3-fallos',
+    path: '/naruto/equipo',
+    ready: GAME_READY,
+    storage: seededGame('all', neverAnswers('team', 3, 'naruto'), 'equipo', 'naruto'),
+  },
+  { name: 'naruto-emoji', path: '/naruto/emoji', ready: GAME_READY },
+  {
+    // Con 6 fallos ya se desbloquearon todas las pistas.
+    name: 'naruto-emoji-6-fallos',
+    path: '/naruto/emoji',
+    ready: GAME_READY,
+    storage: seededGame('all', neverAnswers('emoji', 6, 'naruto'), 'emoji', 'naruto'),
+  },
+  { name: 'naruto-frase', path: '/naruto/frase' },
+  { name: 'naruto-silueta', path: '/naruto/silueta' },
+  { name: 'naruto-conexiones', path: '/naruto/conexiones', ready: GAME_READY, check: connectionsLayout },
+  { name: 'naruto-conexiones-seleccion', path: '/naruto/conexiones', ready: GAME_READY, check: connectionsSelect },
+  { name: 'naruto-conexiones-terminado', path: '/naruto/conexiones', ready: GAME_READY, check: connectionsFinish },
+  // Solo la serie original: pocos grupos, pero alcanzan para un tablero.
+  { name: 'naruto-conexiones-solo-naruto', path: '/naruto/conexiones?s=naruto', ready: GAME_READY, check: connectionsLayout },
+  // Solo Boruto: no hay un grupo de cada dificultad, no alcanza el pool mínimo.
+  { name: 'naruto-conexiones-sin-pool', path: '/naruto/conexiones?s=boruto', check: showsPoolWarning },
   // Movimiento insignia con solo g3 (6 posibles): no alcanza el mínimo. Descripción ya no tiene una combinación sin pool
   // desde que las de g8 y g9 vienen de WikiDex (con solo g9 hay 120), así que el aviso se prueba con este modo y con Transformación.
   { name: 'pokemon-movimiento-insignia-sin-pool', path: '/pokemon/movimiento-insignia?s=g3', check: showsPoolWarning },
