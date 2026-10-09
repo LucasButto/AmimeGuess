@@ -27,6 +27,7 @@
     "@types/react-dom": "^19.3.0",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.4.0",
+    "onnxruntime-node": "^1.30.0",
     "playwright": "^1.64.0",
     "sass": "^1.105.1",
     "sharp": "^0.35.5",
