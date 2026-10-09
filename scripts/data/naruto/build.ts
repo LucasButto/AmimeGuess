@@ -709,6 +709,13 @@ async function main(): Promise<void> {
       charactersWithImage: characters.length - missingCharacters.length,
       jutsuPoolMinimum: POOL_MINIMUM,
       jutsuAnswersWithImage: jutsuAnswers,
+      focus: {
+        points: src.focus.length,
+        unverified: src.focus.filter((item) => !item.verified).length,
+        withoutPoint: characters
+          .filter((entity) => entity.image !== undefined && !src.focus.some((item) => item.character === entity.id))
+          .map((entity) => ({ id: entity.id, name: entity.name.es })),
+      },
       quotesUnverified: quotes.length - verifiedQuotes.length,
       quotesTotal: quotes.length,
       quotePoolMinimum: POOL_MINIMUM,

@@ -49,46 +49,54 @@ function table(items: readonly MissingImage[], answers = false): string[] {
 
 export function renderTodoSection(input: TodoInput): string {
   const lines: string[] = [TODO_START, '', '## Dragon Ball · imágenes para cargar a mano', ''];
-  lines.push(
-    'Las imágenes de Dragon Ball API (58 personajes y 43 formas) se descargan solas. Las de la wiki de Fandom no: su CDN (`static.wikia.nocookie.net`) responde con un desafío anti-bots de Cloudflare a cualquier cliente que no sea un navegador, y el script no intenta saltearlo (sesión 08).',
-    '',
-    'Para cada una: abrí la página indicada en el navegador, guardá la imagen principal (cuanto más grande mejor; las de fondo transparente sirven también para Silueta) con el nombre de la columna "Archivo" y volvé a correr `npm run data:dragon-ball`. El script la convierte a WebP en dos tamaños, la suma al dataset y quita la fila de esta lista. Este bloque lo reescribe el script en cada corrida.',
-    '',
-  );
-
-  lines.push(`### Personajes sin imagen (${input.characters.length})`, '');
-  if (input.characters.length === 0) lines.push('Ninguno.');
-  else {
+  if (input.characters.length === 0 && input.techniques.length === 0) {
     lines.push(
+      'Las imágenes de Dragon Ball API se descargan solas; las de la wiki de Fandom se cargan a mano en `data-src/dragon-ball/images/` (su CDN, `static.wikia.nocookie.net`, responde con un desafío anti-bots de Cloudflare a los scripts y no se intenta saltearlo, sesión 08). Hoy no falta ninguna.',
+      '',
+    );
+  } else {
+    lines.push(
+      'Las imágenes de Dragon Ball API (58 personajes y 43 formas) se descargan solas. Las de la wiki de Fandom no: su CDN (`static.wikia.nocookie.net`) responde con un desafío anti-bots de Cloudflare a cualquier cliente que no sea un navegador, y el script no intenta saltearlo (sesión 08).',
+      '',
+      'Para cada una: abrí la página indicada en el navegador, guardá la imagen principal (cuanto más grande mejor; las de fondo transparente sirven también para Silueta) con el nombre de la columna "Archivo" y volvé a correr `npm run data:dragon-ball`. El script la convierte a WebP en dos tamaños, la suma al dataset y quita la fila de esta lista. Este bloque lo reescribe el script en cada corrida.',
+      '',
+    );
+  }
+
+  if (input.characters.length > 0) {
+    lines.push(
+      `### Personajes sin imagen (${input.characters.length})`,
+      '',
       'Sin imagen siguen jugando en el Clásico, pero no pueden ser la respuesta de Silueta, Borroso ni Zoom.',
       '',
       ...table(input.characters),
+      '',
     );
   }
-  lines.push('');
 
-  lines.push(`### Técnicas sin imagen (${input.techniques.length})`, '');
-  if (input.techniques.length === 0) lines.push('Ninguna.');
-  else {
+  if (input.techniques.length > 0) {
     const missingToOpen = Math.max(0, input.techniquePoolMinimum - input.techniqueAnswersWithImage);
     lines.push(
+      `### Técnicas sin imagen (${input.techniques.length})`,
+      '',
       `El modo Técnica adivina quién usa la técnica, así que su pool se cuenta en personajes distintos que son respuesta (columna "Responde"), no en técnicas: queda oculto hasta tener imagen de técnicas de al menos ${input.techniquePoolMinimum} personajes distintos (ahora hay ${input.techniqueAnswersWithImage}${missingToOpen > 0 ? `; faltan ${missingToOpen}` : ''}). La captura puede ser de cualquier escena de la técnica; si no es de la serie anotada en \`techniques.json\`, corregí el campo \`series\` de esa técnica.`,
       '',
       ...table(input.techniques, true),
+      '',
     );
   }
-  lines.push('');
 
-  lines.push(`### Imágenes con fondo, que no sirven para Silueta (${input.opaque.length})`, '');
-  if (input.opaque.length === 0) lines.push('Ninguna.');
-  else {
+  if (input.opaque.length > 0) {
     lines.push(
+      `### Imágenes con fondo, que no sirven para Silueta (${input.opaque.length})`,
+      '',
       'Quedan fuera del pool de Silueta (`imagenTransparente: 0`) pero sirven para Borroso y Zoom. Para que entren, reemplazalas por una versión recortada con fondo transparente (mismo nombre de archivo en `data-src/dragon-ball/images/`).',
       '',
       ...input.opaque.map((item) => `- ${item.name} (\`${item.id}\`)`),
+      '',
     );
   }
-  lines.push('', TODO_END);
+  lines.push(TODO_END);
   return lines.join('\n');
 }
 
