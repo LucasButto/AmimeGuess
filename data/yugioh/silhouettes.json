@@ -1,0 +1,2980 @@
+{
+  "monsters": [
+    {
+      "id": "alligators-sword",
+      "coverage": 0.543,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "alligators-sword-dragon",
+      "coverage": 0.365,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "alpha-the-magnet-warrior",
+      "coverage": 0.485,
+      "connected": 0.913,
+      "usable": true
+    },
+    {
+      "id": "amazoness-chain-master",
+      "coverage": 0.459,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ambulanceroid",
+      "coverage": 0.559,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "amphibian-beast",
+      "coverage": 0.262,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "ancient-elf",
+      "coverage": 0.549,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ancient-fairy-dragon",
+      "coverage": 0.373,
+      "connected": 0.998,
+      "usable": true
+    },
+    {
+      "id": "ancient-gear",
+      "coverage": 0.394,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ancient-gear-beast",
+      "coverage": 0.459,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ancient-gear-cannon",
+      "coverage": 0.61,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ancient-gear-engineer",
+      "coverage": 0.53,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ancient-gear-golem",
+      "coverage": 0.575,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ancient-gear-soldier",
+      "coverage": 0.646,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "aqua-spirit",
+      "coverage": 0.394,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "arcana-force-0-the-fool",
+      "coverage": 0.377,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "arcana-force-ex-the-dark-ruler",
+      "coverage": 0.244,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "arcana-force-ex-the-light-ruler",
+      "coverage": 0.463,
+      "connected": 0.976,
+      "usable": true
+    },
+    {
+      "id": "arcana-force-i-the-magician",
+      "coverage": 0.588,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "arcana-force-iii-the-empress",
+      "coverage": 0.516,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "arcana-force-iv-the-emperor",
+      "coverage": 0.543,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "arcana-force-vi-the-lovers",
+      "coverage": 0.329,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "arcana-force-vii-the-chariot",
+      "coverage": 0.447,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "arcana-force-xii-the-hangman",
+      "coverage": 0.337,
+      "connected": 0.99,
+      "usable": true
+    },
+    {
+      "id": "arcana-force-xiv-temperance",
+      "coverage": 0.837,
+      "connected": 0.854,
+      "usable": true
+    },
+    {
+      "id": "arcana-force-xv-the-fiend",
+      "coverage": 0.456,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "arcana-force-xviii-the-moon",
+      "coverage": 0.808,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "arcana-force-xxi-the-world",
+      "coverage": 0.487,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "archfiend-interceptor",
+      "coverage": 0.314,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "archlord-zerato",
+      "coverage": 0.697,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "armed-dragon-lv10",
+      "coverage": 0.629,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "armed-dragon-lv3",
+      "coverage": 0.314,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "armed-dragon-lv5",
+      "coverage": 0.531,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "armed-dragon-lv7",
+      "coverage": 0.562,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "armored-white-bear",
+      "coverage": 0.589,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "armory-arm",
+      "coverage": 0.311,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "axe-raider",
+      "coverage": 0.561,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "baby-dragon",
+      "coverage": 0.45,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "babycerasaurus",
+      "coverage": 0.413,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "basic-insect",
+      "coverage": 0.711,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "battle-ox",
+      "coverage": 0.75,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "battle-warrior",
+      "coverage": 0.536,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "beta-the-magnet-warrior",
+      "coverage": 0.357,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "big-insect",
+      "coverage": 0.404,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "big-piece-golem",
+      "coverage": 0.551,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "bird-of-roses",
+      "coverage": 0.424,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "black-rose-dragon",
+      "coverage": 0.314,
+      "connected": 0.959,
+      "usable": true
+    },
+    {
+      "id": "black-skull-dragon",
+      "coverage": 0.463,
+      "connected": 0.966,
+      "usable": true
+    },
+    {
+      "id": "black-stego",
+      "coverage": 0.529,
+      "connected": 0.983,
+      "usable": true
+    },
+    {
+      "id": "black-tyranno",
+      "coverage": 0.394,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "black-winged-dragon",
+      "coverage": 0.2,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blackland-fire-dragon",
+      "coverage": 0.397,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blackwing-armed-wing",
+      "coverage": 0.276,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "blackwing-armor-master",
+      "coverage": 0.351,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "blackwing-blizzard-the-far-north",
+      "coverage": 0.454,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blackwing-bora-the-spear",
+      "coverage": 0.235,
+      "connected": 0.652,
+      "usable": false
+    },
+    {
+      "id": "blackwing-elphin-the-raven",
+      "coverage": 0.699,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blackwing-fane-the-steel-chain",
+      "coverage": 0.314,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blackwing-gale-the-whirlwind",
+      "coverage": 0.508,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blackwing-kalut-the-moon-shadow",
+      "coverage": 0.408,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blackwing-mistral-the-silver-shield",
+      "coverage": 0.427,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blackwing-shura-the-blue-flame",
+      "coverage": 0.496,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blackwing-silverwind-the-ascendant",
+      "coverage": 0.457,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blackwing-sirocco-the-dawn",
+      "coverage": 0.564,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blackwing-vayu-the-emblem-of-honor",
+      "coverage": 0.354,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blade-skater",
+      "coverage": 0.238,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blue-eyes-shining-dragon",
+      "coverage": 0.374,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blue-eyes-ultimate-dragon",
+      "coverage": 0.664,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blue-eyes-white-dragon",
+      "coverage": 0.545,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "blue-rose-dragon",
+      "coverage": 0.412,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "buster-blader",
+      "coverage": 0.509,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "buster-blaster",
+      "coverage": 0.363,
+      "connected": 0.987,
+      "usable": true
+    },
+    {
+      "id": "carboneddon",
+      "coverage": 0.427,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "celtic-guardian",
+      "coverage": 0.672,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "centaur-mina",
+      "coverage": 0.47,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "chimeratech-overdragon",
+      "coverage": 0.606,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "chiron-the-mage",
+      "coverage": 0.461,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "chthonian-soldier",
+      "coverage": 0.384,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cloudian-eye-of-the-typhoon",
+      "coverage": 0.62,
+      "connected": 0.99,
+      "usable": true
+    },
+    {
+      "id": "cloudian-ghost-fog",
+      "coverage": 0.452,
+      "connected": 0.654,
+      "usable": false
+    },
+    {
+      "id": "cloudian-nimbusman",
+      "coverage": 0.329,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cloudian-poison-cloud",
+      "coverage": 0.519,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cloudian-sheep-cloud",
+      "coverage": 0.184,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cocoon-of-evolution",
+      "coverage": 0.128,
+      "connected": 0.788,
+      "usable": false
+    },
+    {
+      "id": "copy-plant",
+      "coverage": 0.331,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "crawling-dragon-2",
+      "coverage": 0.455,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "crystal-beast-amber-mammoth",
+      "coverage": 0.519,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "crystal-beast-amethyst-cat",
+      "coverage": 0.404,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "crystal-beast-cobalt-eagle",
+      "coverage": 0.588,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "crystal-beast-emerald-tortoise",
+      "coverage": 0.647,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "crystal-beast-ruby-carbuncle",
+      "coverage": 0.476,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "crystal-beast-sapphire-pegasus",
+      "coverage": 0.747,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "crystal-beast-topaz-tiger",
+      "coverage": 0.445,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "curse-of-dragon",
+      "coverage": 0.31,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyber-angel-benten",
+      "coverage": 0.384,
+      "connected": 0.988,
+      "usable": true
+    },
+    {
+      "id": "cyber-angel-dakini",
+      "coverage": 0.384,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyber-angel-idaten",
+      "coverage": 0.194,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyber-barrier-dragon",
+      "coverage": 0.709,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyber-blader",
+      "coverage": 0.342,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyber-commander",
+      "coverage": 0.74,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyber-dragon",
+      "coverage": 0.553,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyber-end-dragon",
+      "coverage": 0.452,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyber-gymnast",
+      "coverage": 0.252,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyber-kirin",
+      "coverage": 0.41,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyber-laser-dragon",
+      "coverage": 0.428,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "cyber-petit-angel",
+      "coverage": 0.314,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyber-phoenix",
+      "coverage": 0.526,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyber-prima",
+      "coverage": 0.212,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyber-tutu",
+      "coverage": 0.165,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyber-twin-dragon",
+      "coverage": 0.397,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cyberdark-dragon",
+      "coverage": 0.245,
+      "connected": 0.954,
+      "usable": true
+    },
+    {
+      "id": "cyberdark-edge",
+      "coverage": 0.269,
+      "connected": 0.947,
+      "usable": true
+    },
+    {
+      "id": "cyberdark-horn",
+      "coverage": 0.424,
+      "connected": 0.99,
+      "usable": true
+    },
+    {
+      "id": "cyberdark-keel",
+      "coverage": 0.447,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "cycroid",
+      "coverage": 0.352,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "d-d-crow",
+      "coverage": 0.205,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "dark-driceratops",
+      "coverage": 0.775,
+      "connected": 0.998,
+      "usable": true
+    },
+    {
+      "id": "dark-eyes-illusionist",
+      "coverage": 0.579,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "dark-magician",
+      "coverage": 0.372,
+      "connected": 0.905,
+      "usable": true
+    },
+    {
+      "id": "dark-magician-girl",
+      "coverage": 0.731,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "dark-magician-of-chaos",
+      "coverage": 0.361,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "dark-necrofear",
+      "coverage": 0.263,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "dark-paladin",
+      "coverage": 0.483,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "dark-resonator",
+      "coverage": 0.455,
+      "connected": 0.975,
+      "usable": true
+    },
+    {
+      "id": "dark-ruler-ha-des",
+      "coverage": 0.733,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "dark-spider",
+      "coverage": 0.188,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "dark-verger",
+      "coverage": 0.254,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "darkfire-dragon",
+      "coverage": 0.483,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "debris-dragon",
+      "coverage": 0.627,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "destiny-end-dragoon",
+      "coverage": 0.744,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "destiny-hero-celestial",
+      "coverage": 0.331,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "destiny-hero-dasher",
+      "coverage": 0.268,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "destiny-hero-diamond-dude",
+      "coverage": 0.275,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "destiny-hero-dogma",
+      "coverage": 0.291,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "destiny-hero-doom-lord",
+      "coverage": 0.205,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "destiny-hero-double-dude",
+      "coverage": 0.414,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "destiny-hero-dreadmaster",
+      "coverage": 0.378,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "destiny-hero-plasma",
+      "coverage": 0.771,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "destroyersaurus",
+      "coverage": 0.485,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "destructotron",
+      "coverage": 0.248,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "dread-dragon",
+      "coverage": 0.3,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "dreamsprite",
+      "coverage": 0.593,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "drillroid",
+      "coverage": 0.408,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "dyna-base",
+      "coverage": 0.443,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "dyna-tank",
+      "coverage": 0.543,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "earthbound-immortal-aslla-piscu",
+      "coverage": 0.263,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "earthbound-immortal-ccapac-apu",
+      "coverage": 0.456,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "earthbound-immortal-uru",
+      "coverage": 0.458,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "earthbound-immortal-wiraqocha-rasca",
+      "coverage": 0.355,
+      "connected": 0.952,
+      "usable": true
+    },
+    {
+      "id": "earthbound-spirit",
+      "coverage": 0.145,
+      "connected": 0.631,
+      "usable": false
+    },
+    {
+      "id": "element-dragon",
+      "coverage": 0.349,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "element-magician",
+      "coverage": 0.294,
+      "connected": 0.994,
+      "usable": true
+    },
+    {
+      "id": "element-saurus",
+      "coverage": 0.407,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-avian",
+      "coverage": 0.448,
+      "connected": 0.994,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-bladedge",
+      "coverage": 0.465,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-bubbleman",
+      "coverage": 0.382,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-burstinatrix",
+      "coverage": 0.328,
+      "connected": 0.978,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-clayman",
+      "coverage": 0.56,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-flame-wingman",
+      "coverage": 0.451,
+      "connected": 0.843,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-mudballman",
+      "coverage": 0.51,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-necroshade",
+      "coverage": 0.407,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-neos",
+      "coverage": 0.393,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-phoenix-enforcer",
+      "coverage": 0.266,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-shining-flare-wingman",
+      "coverage": 0.472,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-shining-phoenix-enforcer",
+      "coverage": 0.317,
+      "connected": 0.979,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-sparkman",
+      "coverage": 0.324,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-tempest",
+      "coverage": 0.786,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-thunder-giant",
+      "coverage": 0.427,
+      "connected": 0.758,
+      "usable": false
+    },
+    {
+      "id": "elemental-hero-wildedge",
+      "coverage": 0.692,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "elemental-hero-wildheart",
+      "coverage": 0.624,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "emes-the-infinity",
+      "coverage": 0.756,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "etoile-cyber",
+      "coverage": 0.304,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "exodia-the-forbidden-one",
+      "coverage": 0.641,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "exodius-the-ultimate-forbidden-lord",
+      "coverage": 0.419,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "exploder-dragonwing",
+      "coverage": 0.419,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "expressroid",
+      "coverage": 0.462,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fairy-archer",
+      "coverage": 0.308,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fairy-dragon",
+      "coverage": 0.331,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fairys-gift",
+      "coverage": 0.409,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "feral-imp",
+      "coverage": 0.603,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fiend-kraken",
+      "coverage": 0.561,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fire-ant-ascator",
+      "coverage": 0.248,
+      "connected": 0.954,
+      "usable": true
+    },
+    {
+      "id": "fire-princess",
+      "coverage": 0.534,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fire-trooper",
+      "coverage": 0.437,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "flame-manipulator",
+      "coverage": 0.267,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "flame-swordsman",
+      "coverage": 0.68,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fleur-synchron",
+      "coverage": 0.259,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "flint-cragger",
+      "coverage": 0.267,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "flying-kamakiri-1",
+      "coverage": 0.569,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "formula-synchron",
+      "coverage": 0.405,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fortress-whale",
+      "coverage": 0.424,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fortune-fairy-ann",
+      "coverage": 0.47,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fortune-fairy-hikari",
+      "coverage": 0.384,
+      "connected": 0.945,
+      "usable": true
+    },
+    {
+      "id": "fortune-lady-dark",
+      "coverage": 0.245,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fortune-lady-earth",
+      "coverage": 0.255,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fortune-lady-fire",
+      "coverage": 0.193,
+      "connected": 0.881,
+      "usable": true
+    },
+    {
+      "id": "fortune-lady-light",
+      "coverage": 0.266,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fortune-lady-water",
+      "coverage": 0.287,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "fortune-lady-wind",
+      "coverage": 0.081,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fossil-dragon-skullgar",
+      "coverage": 0.348,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fossil-dragon-skullgios",
+      "coverage": 0.306,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fossil-dyna-pachycephalo",
+      "coverage": 0.437,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fossil-machine-skull-buggy",
+      "coverage": 0.413,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fossil-machine-skull-convoy",
+      "coverage": 0.495,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fossil-machine-skull-wagon",
+      "coverage": 0.466,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fossil-warrior-skull-bone",
+      "coverage": 0.383,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "fossil-warrior-skull-king",
+      "coverage": 0.407,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "fossil-warrior-skull-knight",
+      "coverage": 0.341,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gadget-driver",
+      "coverage": 0.425,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gadget-hauler",
+      "coverage": 0.498,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gaia-plate-the-earth-giant",
+      "coverage": 0.231,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gaia-the-dragon-champion",
+      "coverage": 0.288,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gaia-the-fierce-knight",
+      "coverage": 0.47,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gamma-the-magnet-warrior",
+      "coverage": 0.568,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "garuda-the-wind-spirit",
+      "coverage": 0.541,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gearfried-the-iron-knight",
+      "coverage": 0.57,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gemini-elf",
+      "coverage": 0.742,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "giant-soldier-of-stone",
+      "coverage": 0.843,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gigaplant",
+      "coverage": 0.623,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gilasaurus",
+      "coverage": 0.268,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gilford-the-lightning",
+      "coverage": 0.566,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "goblin-zombie",
+      "coverage": 0.295,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gokibore",
+      "coverage": 0.4,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gravekeepers-assailant",
+      "coverage": 0.489,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gravekeepers-commandant",
+      "coverage": 0.516,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gravekeepers-descendant",
+      "coverage": 0.436,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gravekeepers-headman",
+      "coverage": 0.346,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gravekeepers-priestess",
+      "coverage": 0.46,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "gravekeepers-spear-soldier",
+      "coverage": 0.307,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gravekeepers-spiritualist",
+      "coverage": 0.478,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gravekeepers-supernaturalist",
+      "coverage": 0.535,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "great-moth",
+      "coverage": 0.489,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "great-white",
+      "coverage": 0.345,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ground-attacker-bugroth",
+      "coverage": 0.5,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ground-spider",
+      "coverage": 0.209,
+      "connected": 0.978,
+      "usable": true
+    },
+    {
+      "id": "guardian-dreadscythe",
+      "coverage": 0.664,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "guardian-eatos",
+      "coverage": 0.342,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "guardian-elma",
+      "coverage": 0.425,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "guardian-grarl",
+      "coverage": 0.531,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "guardian-kayest",
+      "coverage": 0.221,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "gyroid",
+      "coverage": 0.307,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "happy-lover",
+      "coverage": 0.378,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "harpie-lady",
+      "coverage": 0.274,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "harpie-lady-sisters",
+      "coverage": 0.817,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "harpies-pet-dragon",
+      "coverage": 0.552,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "headless-knight",
+      "coverage": 0.317,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "helios-duo-megistus",
+      "coverage": 0.21,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "helios-the-primordial-sun",
+      "coverage": 0.148,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "helios-trice-megistus",
+      "coverage": 0.089,
+      "connected": 0.378,
+      "usable": false
+    },
+    {
+      "id": "hercules-beetle",
+      "coverage": 0.446,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "hino-kagu-tsuchi",
+      "coverage": 0.437,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "horse-of-the-floral-knights",
+      "coverage": 0.391,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "humanoid-slime",
+      "coverage": 0.422,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "humanoid-worm-drake",
+      "coverage": 0.259,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "hydrogeddon",
+      "coverage": 0.549,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "hyper-hammerhead",
+      "coverage": 0.356,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "hyper-synchron",
+      "coverage": 0.638,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "infernal-flame-emperor",
+      "coverage": 0.091,
+      "connected": 0.551,
+      "usable": false
+    },
+    {
+      "id": "infernity-archfiend",
+      "coverage": 0.535,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "infernity-avenger",
+      "coverage": 0.32,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "infernity-beast",
+      "coverage": 0.079,
+      "connected": 0.31,
+      "usable": false
+    },
+    {
+      "id": "infernity-beetle",
+      "coverage": 0.219,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "infernity-destroyer",
+      "coverage": 0.507,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "infernity-doom-dragon",
+      "coverage": 0.326,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "infernity-doom-slinger",
+      "coverage": 0.427,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "infernity-dwarf",
+      "coverage": 0.325,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "infernity-guardian",
+      "coverage": 0.371,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "infernity-mirage",
+      "coverage": 0.256,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "infernity-necromancer",
+      "coverage": 0.68,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "infernity-randomizer",
+      "coverage": 0.316,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "insect-queen",
+      "coverage": 0.475,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "jellyfish",
+      "coverage": 0.474,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "jetroid",
+      "coverage": 0.395,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "jowgen-the-spiritualist",
+      "coverage": 0.36,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "junk-archer",
+      "coverage": 0.282,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "junk-destroyer",
+      "coverage": 0.411,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "junk-synchron",
+      "coverage": 0.509,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "junk-warrior",
+      "coverage": 0.496,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "kaibaman",
+      "coverage": 0.578,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "kairyu-shin",
+      "coverage": 0.545,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "kaiser-sea-horse",
+      "coverage": 0.527,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "killer-needle",
+      "coverage": 0.292,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "krebons",
+      "coverage": 0.269,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "kuriboh",
+      "coverage": 0.289,
+      "connected": 0.868,
+      "usable": true
+    },
+    {
+      "id": "kuribon",
+      "coverage": 0.37,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "la-jinn-the-mystical-genie-of-the-lamp",
+      "coverage": 0.619,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "lancer-archfiend",
+      "coverage": 0.403,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "larvae-moth",
+      "coverage": 0.411,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "lava-battleguard",
+      "coverage": 0.752,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "left-arm-of-the-forbidden-one",
+      "coverage": 0.501,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "left-leg-of-the-forbidden-one",
+      "coverage": 0.424,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "lesser-dragon",
+      "coverage": 0.424,
+      "connected": 0.978,
+      "usable": true
+    },
+    {
+      "id": "litmus-doom-swordsman",
+      "coverage": 0.285,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "little-d",
+      "coverage": 0.623,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "lord-of-d",
+      "coverage": 0.637,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "lord-poison",
+      "coverage": 0.331,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "machine-king",
+      "coverage": 0.491,
+      "connected": 0.956,
+      "usable": true
+    },
+    {
+      "id": "mad-archfiend",
+      "coverage": 0.538,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "magical-android",
+      "coverage": 0.486,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "magical-scientist",
+      "coverage": 0.353,
+      "connected": 0.962,
+      "usable": true
+    },
+    {
+      "id": "magician-of-black-chaos",
+      "coverage": 0.45,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "maiden-of-the-moonlight",
+      "coverage": 0.738,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "majestic-red-dragon",
+      "coverage": 0.069,
+      "connected": 0.589,
+      "usable": false
+    },
+    {
+      "id": "majestic-star-dragon",
+      "coverage": 0.395,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "man-eater-bug",
+      "coverage": 0.4,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "masaki-the-legendary-swordsman",
+      "coverage": 0.457,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "masked-dragon",
+      "coverage": 0.681,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "max-warrior",
+      "coverage": 0.681,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "mechanicalchaser",
+      "coverage": 0.292,
+      "connected": 0.97,
+      "usable": true
+    },
+    {
+      "id": "medium-piece-golem",
+      "coverage": 0.603,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "megasonic-eye",
+      "coverage": 0.508,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "megazowler",
+      "coverage": 0.46,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "meklord-army-of-granel",
+      "coverage": 0.477,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "meklord-army-of-skiel",
+      "coverage": 0.193,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "meklord-army-of-wisel",
+      "coverage": 0.274,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "meklord-astro-dragon-asterisk",
+      "coverage": 0.348,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "meklord-astro-mekanikle",
+      "coverage": 0.437,
+      "connected": 0.865,
+      "usable": true
+    },
+    {
+      "id": "meklord-emperor-granel",
+      "coverage": 0.476,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "meklord-emperor-skiel",
+      "coverage": 0.267,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "meklord-emperor-wisel",
+      "coverage": 0.244,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "mind-master",
+      "coverage": 0.362,
+      "connected": 0.842,
+      "usable": true
+    },
+    {
+      "id": "mind-protector",
+      "coverage": 0.695,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "moon-dragon-quilla",
+      "coverage": 0.436,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "morphtronic-boomboxen",
+      "coverage": 0.432,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "morphtronic-cameran",
+      "coverage": 0.679,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "morphtronic-celfon",
+      "coverage": 0.429,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "morphtronic-clocken",
+      "coverage": 0.584,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "morphtronic-datatron",
+      "coverage": 0.475,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "morphtronic-lantron",
+      "coverage": 0.471,
+      "connected": 0.779,
+      "usable": false
+    },
+    {
+      "id": "morphtronic-magnen",
+      "coverage": 0.295,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "morphtronic-radion",
+      "coverage": 0.494,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "morphtronic-remoten",
+      "coverage": 0.41,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "morphtronic-scopen",
+      "coverage": 0.56,
+      "connected": 0.946,
+      "usable": true
+    },
+    {
+      "id": "morphtronic-staplen",
+      "coverage": 0.28,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "morphtronic-videon",
+      "coverage": 0.62,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "mystical-elf",
+      "coverage": 0.484,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "necro-fleur",
+      "coverage": 0.091,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "neo-spacian-aqua-dolphin",
+      "coverage": 0.284,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "neo-spacian-glow-moss",
+      "coverage": 0.304,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "nitro-synchron",
+      "coverage": 0.36,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "nitro-warrior",
+      "coverage": 0.548,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "obelisk-the-tormentor",
+      "coverage": 0.721,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ojama-black",
+      "coverage": 0.291,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ojama-green",
+      "coverage": 0.429,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ojama-king",
+      "coverage": 0.454,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ojama-yellow",
+      "coverage": 0.3,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ooguchi",
+      "coverage": 0.617,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "oxygeddon",
+      "coverage": 0.252,
+      "connected": 0.757,
+      "usable": false
+    },
+    {
+      "id": "pair-cycroid",
+      "coverage": 0.427,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "panther-warrior",
+      "coverage": 0.491,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "parasite-paracide",
+      "coverage": 0.338,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "patroid",
+      "coverage": 0.462,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "perfectly-ultimate-great-moth",
+      "coverage": 0.612,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "petit-angel",
+      "coverage": 0.472,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "petit-dragon",
+      "coverage": 0.464,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "petit-moth",
+      "coverage": 0.487,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "phoenixian-cluster-amaryllis",
+      "coverage": 0.317,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "phoenixian-seed",
+      "coverage": 0.144,
+      "connected": 0.826,
+      "usable": true
+    },
+    {
+      "id": "pinch-hopper",
+      "coverage": 0.267,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "plasma-warrior-eitom",
+      "coverage": 0.545,
+      "connected": 0.99,
+      "usable": true
+    },
+    {
+      "id": "power-tool-dragon",
+      "coverage": 0.427,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "proto-cyber-dragon",
+      "coverage": 0.533,
+      "connected": 0.996,
+      "usable": true
+    },
+    {
+      "id": "psychic-commander",
+      "coverage": 0.484,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "psychic-snail",
+      "coverage": 0.591,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "quickdraw-synchron",
+      "coverage": 0.505,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "quillbolt-hedgehog",
+      "coverage": 0.504,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "rainbow-dark-dragon",
+      "coverage": 0.328,
+      "connected": 0.995,
+      "usable": true
+    },
+    {
+      "id": "rainbow-dragon",
+      "coverage": 0.22,
+      "connected": 0.977,
+      "usable": true
+    },
+    {
+      "id": "red-dragon-archfiend",
+      "coverage": 0.24,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "red-eyes-black-dragon",
+      "coverage": 0.117,
+      "connected": 0.92,
+      "usable": true
+    },
+    {
+      "id": "red-eyes-black-metal-dragon",
+      "coverage": 0.599,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "red-nova-dragon",
+      "coverage": 0.16,
+      "connected": 0.509,
+      "usable": false
+    },
+    {
+      "id": "regulus",
+      "coverage": 0.223,
+      "connected": 0.948,
+      "usable": true
+    },
+    {
+      "id": "relinquished",
+      "coverage": 0.595,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "rescueroid",
+      "coverage": 0.558,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "revival-jam",
+      "coverage": 0.222,
+      "connected": 0.686,
+      "usable": false
+    },
+    {
+      "id": "revival-rose",
+      "coverage": 0.341,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "right-arm-of-the-forbidden-one",
+      "coverage": 0.464,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "right-leg-of-the-forbidden-one",
+      "coverage": 0.424,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "road-warrior",
+      "coverage": 0.463,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "rocket-warrior",
+      "coverage": 0.405,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "rose-fairy",
+      "coverage": 0.218,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "rose-tentacles",
+      "coverage": 0.185,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "sabersaurus",
+      "coverage": 0.44,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "saggi-the-dark-clown",
+      "coverage": 0.555,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "sauropod-brachion",
+      "coverage": 0.412,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "seiyaryu",
+      "coverage": 0.359,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "serpent-night-dragon",
+      "coverage": 0.645,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "shell-knight",
+      "coverage": 0.392,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "shield-warrior",
+      "coverage": 0.325,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "shield-wing",
+      "coverage": 0.276,
+      "connected": 0.997,
+      "usable": true
+    },
+    {
+      "id": "shinato-king-of-a-higher-plane",
+      "coverage": 0.373,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "shining-friendship",
+      "coverage": 0.433,
+      "connected": 0.956,
+      "usable": true
+    },
+    {
+      "id": "shooting-star-dragon",
+      "coverage": 0.468,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "sinister-serpent",
+      "coverage": 0.445,
+      "connected": 0.965,
+      "usable": true
+    },
+    {
+      "id": "skilled-dark-magician",
+      "coverage": 0.432,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "slifer-the-sky-dragon",
+      "coverage": 0.355,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "small-piece-golem",
+      "coverage": 0.457,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "sonic-chick",
+      "coverage": 0.498,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "sorciere-de-fleur",
+      "coverage": 0.398,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "speed-warrior",
+      "coverage": 0.467,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "spirit-of-flames",
+      "coverage": 0.423,
+      "connected": 0.99,
+      "usable": true
+    },
+    {
+      "id": "spirit-of-the-breeze",
+      "coverage": 0.38,
+      "connected": 0.986,
+      "usable": true
+    },
+    {
+      "id": "stardust-dragon",
+      "coverage": 0.751,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "stealthroid",
+      "coverage": 0.391,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "steamroid",
+      "coverage": 0.461,
+      "connected": 0.905,
+      "usable": true
+    },
+    {
+      "id": "steel-scorpion",
+      "coverage": 0.382,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "strong-wind-dragon",
+      "coverage": 0.513,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "submarineroid",
+      "coverage": 0.35,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "summoned-skull",
+      "coverage": 0.555,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "sun-dragon-inti",
+      "coverage": 0.369,
+      "connected": 0.759,
+      "usable": false
+    },
+    {
+      "id": "sunlight-unicorn",
+      "coverage": 0.226,
+      "connected": 0.978,
+      "usable": true
+    },
+    {
+      "id": "sunny-pixie",
+      "coverage": 0.175,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "super-conductor-tyranno",
+      "coverage": 0.55,
+      "connected": 0.993,
+      "usable": true
+    },
+    {
+      "id": "super-roboyarou",
+      "coverage": 0.639,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "super-vehicroid-jumbo-drill",
+      "coverage": 0.643,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "super-vehicroid-stealth-union",
+      "coverage": 0.459,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "swamp-battleguard",
+      "coverage": 0.833,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "sword-arm-of-dragon",
+      "coverage": 0.524,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "t-g-blade-blaster",
+      "coverage": 0.443,
+      "connected": 0.982,
+      "usable": true
+    },
+    {
+      "id": "t-g-catapult-dragon",
+      "coverage": 0.446,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "t-g-cyber-magician",
+      "coverage": 0.402,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "t-g-drill-fish",
+      "coverage": 0.2,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "t-g-gear-zombie",
+      "coverage": 0.388,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "t-g-halberd-cannon",
+      "coverage": 0.32,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "t-g-hyper-librarian",
+      "coverage": 0.414,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "t-g-jet-falcon",
+      "coverage": 0.402,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "t-g-metal-skeleton",
+      "coverage": 0.274,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "t-g-power-gladiator",
+      "coverage": 0.29,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "t-g-recipro-dragonfly",
+      "coverage": 0.073,
+      "connected": 1,
+      "usable": false
+    },
+    {
+      "id": "t-g-rush-rhino",
+      "coverage": 0.565,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "t-g-striker",
+      "coverage": 0.457,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "t-g-warwolf",
+      "coverage": 0.444,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "t-g-wonder-magician",
+      "coverage": 0.316,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "telekinetic-shocker",
+      "coverage": 0.187,
+      "connected": 0.899,
+      "usable": true
+    },
+    {
+      "id": "the-earl-of-demise",
+      "coverage": 0.221,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "the-gross-ghost-of-fled-dreams",
+      "coverage": 0.477,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "the-legendary-fisherman",
+      "coverage": 0.382,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "the-portraits-secret",
+      "coverage": 0.256,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "the-rock-spirit",
+      "coverage": 0.634,
+      "connected": 0.989,
+      "usable": true
+    },
+    {
+      "id": "the-unhappy-maiden",
+      "coverage": 0.46,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "the-winged-dragon-of-ra",
+      "coverage": 0.338,
+      "connected": 0.984,
+      "usable": true
+    },
+    {
+      "id": "thought-ruler-archfiend",
+      "coverage": 0.434,
+      "connected": 0.919,
+      "usable": true
+    },
+    {
+      "id": "thousand-dragon",
+      "coverage": 0.513,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "thousand-eyes-idol",
+      "coverage": 0.631,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "thousand-eyes-restrict",
+      "coverage": 0.728,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "time-wizard",
+      "coverage": 0.548,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "trakodon",
+      "coverage": 0.388,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "trap-eater",
+      "coverage": 0.481,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "truckroid",
+      "coverage": 0.463,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "turbo-synchron",
+      "coverage": 0.487,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "turbo-warrior",
+      "coverage": 0.552,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "turret-warrior",
+      "coverage": 0.7,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "twin-shield-defender",
+      "coverage": 0.624,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "twin-sword-marauder",
+      "coverage": 0.636,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "two-headed-king-rex",
+      "coverage": 0.56,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "tyranno-infinity",
+      "coverage": 0.545,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "tyrant-dragon",
+      "coverage": 0.443,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "uforoid",
+      "coverage": 0.328,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "uforoid-fighter",
+      "coverage": 0.574,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "ultimate-ancient-gear-golem",
+      "coverage": 0.604,
+      "connected": 0.998,
+      "usable": true
+    },
+    {
+      "id": "ultimate-tyranno",
+      "coverage": 0.483,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "underground-arachnid",
+      "coverage": 0.242,
+      "connected": 0.997,
+      "usable": true
+    },
+    {
+      "id": "uraby",
+      "coverage": 0.372,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "valkyrie-brunhilde",
+      "coverage": 0.595,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "valkyrie-dritte",
+      "coverage": 0.432,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "valkyrie-erste",
+      "coverage": 0.437,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "valkyrie-zweite",
+      "coverage": 0.346,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "valkyrion-the-magna-warrior",
+      "coverage": 0.411,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "vice-dragon",
+      "coverage": 0.268,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "violet-witch",
+      "coverage": 0.758,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "volcanic-blaster",
+      "coverage": 0.413,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "volcanic-counter",
+      "coverage": 0.526,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "volcanic-doomfire",
+      "coverage": 0.506,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "volcanic-hammerer",
+      "coverage": 0.572,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "volcanic-rat",
+      "coverage": 0.263,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "volcanic-scattershot",
+      "coverage": 0.396,
+      "connected": 0.968,
+      "usable": true
+    },
+    {
+      "id": "volcanic-shell",
+      "coverage": 0.415,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "volcanic-slicer",
+      "coverage": 0.448,
+      "connected": 0.9,
+      "usable": true
+    },
+    {
+      "id": "vorse-raider",
+      "coverage": 0.58,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "vw-tiger-catapult",
+      "coverage": 0.384,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "vwxyz-dragon-catapult-cannon",
+      "coverage": 0.549,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "wall-of-ivy",
+      "coverage": 0.54,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "water-dragon",
+      "coverage": 0.775,
+      "connected": 0.999,
+      "usable": true
+    },
+    {
+      "id": "weathering-soldier",
+      "coverage": 0.453,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "weeping-idol",
+      "coverage": 0.467,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "winged-kuriboh",
+      "coverage": 0.353,
+      "connected": 0.998,
+      "usable": true
+    },
+    {
+      "id": "witch-of-the-black-rose",
+      "coverage": 0.383,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "worm-drake",
+      "coverage": 0.368,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "x-head-cannon",
+      "coverage": 0.447,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "xyz-dragon-cannon",
+      "coverage": 0.424,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "y-dragon-head",
+      "coverage": 0.241,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "yubel",
+      "coverage": 0.354,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "z-metal-tank",
+      "coverage": 0.343,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "zera-the-mant",
+      "coverage": 0.686,
+      "connected": 1,
+      "usable": true
+    },
+    {
+      "id": "zone-eater",
+      "coverage": 0.642,
+      "connected": 1,
+      "usable": true
+    }
+  ]
+}

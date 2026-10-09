@@ -7909,6 +7909,4826 @@
     "verified": false
   },
   {
+    "id": "silhouette-alligators-sword-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "alligators-sword",
+    "payload": {
+      "image": "yugioh/silhouettes/alligators-sword"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-alligators-sword-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "alligators-sword-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/alligators-sword-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-alpha-the-magnet-warrior-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "alpha-the-magnet-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/alpha-the-magnet-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-amazoness-chain-master-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "amazoness-chain-master",
+    "payload": {
+      "image": "yugioh/silhouettes/amazoness-chain-master"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ambulanceroid-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "ambulanceroid",
+    "payload": {
+      "image": "yugioh/silhouettes/ambulanceroid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-amphibian-beast-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "amphibian-beast",
+    "payload": {
+      "image": "yugioh/silhouettes/amphibian-beast"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ancient-elf-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "ancient-elf",
+    "payload": {
+      "image": "yugioh/silhouettes/ancient-elf"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ancient-fairy-dragon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "ancient-fairy-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/ancient-fairy-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ancient-gear-beast-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "ancient-gear-beast",
+    "payload": {
+      "image": "yugioh/silhouettes/ancient-gear-beast"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ancient-gear-cannon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "ancient-gear-cannon",
+    "payload": {
+      "image": "yugioh/silhouettes/ancient-gear-cannon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ancient-gear-engineer-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "ancient-gear-engineer",
+    "payload": {
+      "image": "yugioh/silhouettes/ancient-gear-engineer"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ancient-gear-golem-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "ancient-gear-golem",
+    "payload": {
+      "image": "yugioh/silhouettes/ancient-gear-golem"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ancient-gear-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "ancient-gear",
+    "payload": {
+      "image": "yugioh/silhouettes/ancient-gear"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ancient-gear-soldier-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "ancient-gear-soldier",
+    "payload": {
+      "image": "yugioh/silhouettes/ancient-gear-soldier"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-aqua-spirit-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "aqua-spirit",
+    "payload": {
+      "image": "yugioh/silhouettes/aqua-spirit"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-arcana-force-0-the-fool-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "arcana-force-0-the-fool",
+    "payload": {
+      "image": "yugioh/silhouettes/arcana-force-0-the-fool"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-arcana-force-ex-the-dark-ruler-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "arcana-force-ex-the-dark-ruler",
+    "payload": {
+      "image": "yugioh/silhouettes/arcana-force-ex-the-dark-ruler"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-arcana-force-ex-the-light-ruler-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "arcana-force-ex-the-light-ruler",
+    "payload": {
+      "image": "yugioh/silhouettes/arcana-force-ex-the-light-ruler"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-arcana-force-i-the-magician-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "arcana-force-i-the-magician",
+    "payload": {
+      "image": "yugioh/silhouettes/arcana-force-i-the-magician"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-arcana-force-iii-the-empress-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "arcana-force-iii-the-empress",
+    "payload": {
+      "image": "yugioh/silhouettes/arcana-force-iii-the-empress"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-arcana-force-iv-the-emperor-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "arcana-force-iv-the-emperor",
+    "payload": {
+      "image": "yugioh/silhouettes/arcana-force-iv-the-emperor"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-arcana-force-vi-the-lovers-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "arcana-force-vi-the-lovers",
+    "payload": {
+      "image": "yugioh/silhouettes/arcana-force-vi-the-lovers"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-arcana-force-vii-the-chariot-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "arcana-force-vii-the-chariot",
+    "payload": {
+      "image": "yugioh/silhouettes/arcana-force-vii-the-chariot"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-arcana-force-xii-the-hangman-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "arcana-force-xii-the-hangman",
+    "payload": {
+      "image": "yugioh/silhouettes/arcana-force-xii-the-hangman"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-arcana-force-xiv-temperance-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "arcana-force-xiv-temperance",
+    "payload": {
+      "image": "yugioh/silhouettes/arcana-force-xiv-temperance"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-arcana-force-xv-the-fiend-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "arcana-force-xv-the-fiend",
+    "payload": {
+      "image": "yugioh/silhouettes/arcana-force-xv-the-fiend"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-arcana-force-xviii-the-moon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "arcana-force-xviii-the-moon",
+    "payload": {
+      "image": "yugioh/silhouettes/arcana-force-xviii-the-moon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-arcana-force-xxi-the-world-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "arcana-force-xxi-the-world",
+    "payload": {
+      "image": "yugioh/silhouettes/arcana-force-xxi-the-world"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-archfiend-interceptor-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "archfiend-interceptor",
+    "payload": {
+      "image": "yugioh/silhouettes/archfiend-interceptor"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-archlord-zerato-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "archlord-zerato",
+    "payload": {
+      "image": "yugioh/silhouettes/archlord-zerato"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-armed-dragon-lv10-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "armed-dragon-lv10",
+    "payload": {
+      "image": "yugioh/silhouettes/armed-dragon-lv10"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-armed-dragon-lv3-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "armed-dragon-lv3",
+    "payload": {
+      "image": "yugioh/silhouettes/armed-dragon-lv3"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-armed-dragon-lv5-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "armed-dragon-lv5",
+    "payload": {
+      "image": "yugioh/silhouettes/armed-dragon-lv5"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-armed-dragon-lv7-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "armed-dragon-lv7",
+    "payload": {
+      "image": "yugioh/silhouettes/armed-dragon-lv7"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-armored-white-bear-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "armored-white-bear",
+    "payload": {
+      "image": "yugioh/silhouettes/armored-white-bear"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-armory-arm-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "armory-arm",
+    "payload": {
+      "image": "yugioh/silhouettes/armory-arm"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-axe-raider-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "axe-raider",
+    "payload": {
+      "image": "yugioh/silhouettes/axe-raider"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-baby-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "baby-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/baby-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-babycerasaurus-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "babycerasaurus",
+    "payload": {
+      "image": "yugioh/silhouettes/babycerasaurus"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-basic-insect-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "basic-insect",
+    "payload": {
+      "image": "yugioh/silhouettes/basic-insect"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-battle-ox-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "battle-ox",
+    "payload": {
+      "image": "yugioh/silhouettes/battle-ox"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-battle-warrior-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "battle-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/battle-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-beta-the-magnet-warrior-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "beta-the-magnet-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/beta-the-magnet-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-big-insect-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "big-insect",
+    "payload": {
+      "image": "yugioh/silhouettes/big-insect"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-big-piece-golem-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "big-piece-golem",
+    "payload": {
+      "image": "yugioh/silhouettes/big-piece-golem"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-bird-of-roses-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "bird-of-roses",
+    "payload": {
+      "image": "yugioh/silhouettes/bird-of-roses"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-black-rose-dragon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "black-rose-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/black-rose-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-black-skull-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "black-skull-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/black-skull-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-black-stego-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "black-stego",
+    "payload": {
+      "image": "yugioh/silhouettes/black-stego"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-black-tyranno-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "black-tyranno",
+    "payload": {
+      "image": "yugioh/silhouettes/black-tyranno"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-black-tyranno-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "black-tyranno",
+    "payload": {
+      "image": "yugioh/silhouettes/black-tyranno"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-black-winged-dragon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "black-winged-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/black-winged-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blackland-fire-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "blackland-fire-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/blackland-fire-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blackwing-armed-wing-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "blackwing-armed-wing",
+    "payload": {
+      "image": "yugioh/silhouettes/blackwing-armed-wing"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blackwing-armor-master-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "blackwing-armor-master",
+    "payload": {
+      "image": "yugioh/silhouettes/blackwing-armor-master"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blackwing-blizzard-the-far-north-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "blackwing-blizzard-the-far-north",
+    "payload": {
+      "image": "yugioh/silhouettes/blackwing-blizzard-the-far-north"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blackwing-elphin-the-raven-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "blackwing-elphin-the-raven",
+    "payload": {
+      "image": "yugioh/silhouettes/blackwing-elphin-the-raven"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blackwing-fane-the-steel-chain-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "blackwing-fane-the-steel-chain",
+    "payload": {
+      "image": "yugioh/silhouettes/blackwing-fane-the-steel-chain"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blackwing-gale-the-whirlwind-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "blackwing-gale-the-whirlwind",
+    "payload": {
+      "image": "yugioh/silhouettes/blackwing-gale-the-whirlwind"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blackwing-kalut-the-moon-shadow-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "blackwing-kalut-the-moon-shadow",
+    "payload": {
+      "image": "yugioh/silhouettes/blackwing-kalut-the-moon-shadow"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blackwing-mistral-the-silver-shield-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "blackwing-mistral-the-silver-shield",
+    "payload": {
+      "image": "yugioh/silhouettes/blackwing-mistral-the-silver-shield"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blackwing-shura-the-blue-flame-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "blackwing-shura-the-blue-flame",
+    "payload": {
+      "image": "yugioh/silhouettes/blackwing-shura-the-blue-flame"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blackwing-silverwind-the-ascendant-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "blackwing-silverwind-the-ascendant",
+    "payload": {
+      "image": "yugioh/silhouettes/blackwing-silverwind-the-ascendant"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blackwing-sirocco-the-dawn-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "blackwing-sirocco-the-dawn",
+    "payload": {
+      "image": "yugioh/silhouettes/blackwing-sirocco-the-dawn"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blackwing-vayu-the-emblem-of-honor-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "blackwing-vayu-the-emblem-of-honor",
+    "payload": {
+      "image": "yugioh/silhouettes/blackwing-vayu-the-emblem-of-honor"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blade-skater-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "blade-skater",
+    "payload": {
+      "image": "yugioh/silhouettes/blade-skater"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blue-eyes-shining-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "blue-eyes-shining-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/blue-eyes-shining-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blue-eyes-ultimate-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "blue-eyes-ultimate-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/blue-eyes-ultimate-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blue-eyes-white-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "blue-eyes-white-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/blue-eyes-white-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-blue-rose-dragon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "blue-rose-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/blue-rose-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-buster-blader-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "buster-blader",
+    "payload": {
+      "image": "yugioh/silhouettes/buster-blader"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-buster-blaster-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "buster-blaster",
+    "payload": {
+      "image": "yugioh/silhouettes/buster-blaster"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-carboneddon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "carboneddon",
+    "payload": {
+      "image": "yugioh/silhouettes/carboneddon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-celtic-guardian-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "celtic-guardian",
+    "payload": {
+      "image": "yugioh/silhouettes/celtic-guardian"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-centaur-mina-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "centaur-mina",
+    "payload": {
+      "image": "yugioh/silhouettes/centaur-mina"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-chimeratech-overdragon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "chimeratech-overdragon",
+    "payload": {
+      "image": "yugioh/silhouettes/chimeratech-overdragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-chiron-the-mage-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "chiron-the-mage",
+    "payload": {
+      "image": "yugioh/silhouettes/chiron-the-mage"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-chthonian-soldier-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "chthonian-soldier",
+    "payload": {
+      "image": "yugioh/silhouettes/chthonian-soldier"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cloudian-eye-of-the-typhoon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cloudian-eye-of-the-typhoon",
+    "payload": {
+      "image": "yugioh/silhouettes/cloudian-eye-of-the-typhoon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cloudian-nimbusman-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cloudian-nimbusman",
+    "payload": {
+      "image": "yugioh/silhouettes/cloudian-nimbusman"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cloudian-poison-cloud-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cloudian-poison-cloud",
+    "payload": {
+      "image": "yugioh/silhouettes/cloudian-poison-cloud"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cloudian-sheep-cloud-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cloudian-sheep-cloud",
+    "payload": {
+      "image": "yugioh/silhouettes/cloudian-sheep-cloud"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-copy-plant-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "copy-plant",
+    "payload": {
+      "image": "yugioh/silhouettes/copy-plant"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-crawling-dragon-2-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "crawling-dragon-2",
+    "payload": {
+      "image": "yugioh/silhouettes/crawling-dragon-2"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-crystal-beast-amber-mammoth-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "crystal-beast-amber-mammoth",
+    "payload": {
+      "image": "yugioh/silhouettes/crystal-beast-amber-mammoth"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-crystal-beast-amethyst-cat-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "crystal-beast-amethyst-cat",
+    "payload": {
+      "image": "yugioh/silhouettes/crystal-beast-amethyst-cat"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-crystal-beast-cobalt-eagle-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "crystal-beast-cobalt-eagle",
+    "payload": {
+      "image": "yugioh/silhouettes/crystal-beast-cobalt-eagle"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-crystal-beast-emerald-tortoise-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "crystal-beast-emerald-tortoise",
+    "payload": {
+      "image": "yugioh/silhouettes/crystal-beast-emerald-tortoise"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-crystal-beast-ruby-carbuncle-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "crystal-beast-ruby-carbuncle",
+    "payload": {
+      "image": "yugioh/silhouettes/crystal-beast-ruby-carbuncle"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-crystal-beast-sapphire-pegasus-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "crystal-beast-sapphire-pegasus",
+    "payload": {
+      "image": "yugioh/silhouettes/crystal-beast-sapphire-pegasus"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-crystal-beast-topaz-tiger-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "crystal-beast-topaz-tiger",
+    "payload": {
+      "image": "yugioh/silhouettes/crystal-beast-topaz-tiger"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-curse-of-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "curse-of-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/curse-of-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-angel-benten-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-angel-benten",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-angel-benten"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-angel-dakini-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-angel-dakini",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-angel-dakini"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-angel-idaten-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-angel-idaten",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-angel-idaten"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-barrier-dragon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-barrier-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-barrier-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-blader-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-blader",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-blader"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-commander-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "cyber-commander",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-commander"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-dragon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-end-dragon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-end-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-end-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-gymnast-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-gymnast",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-gymnast"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-kirin-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-kirin",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-kirin"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-laser-dragon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-laser-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-laser-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-petit-angel-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-petit-angel",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-petit-angel"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-phoenix-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-phoenix",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-phoenix"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-prima-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-prima",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-prima"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-tutu-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-tutu",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-tutu"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyber-twin-dragon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyber-twin-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/cyber-twin-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyberdark-dragon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyberdark-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/cyberdark-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyberdark-edge-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyberdark-edge",
+    "payload": {
+      "image": "yugioh/silhouettes/cyberdark-edge"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyberdark-horn-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyberdark-horn",
+    "payload": {
+      "image": "yugioh/silhouettes/cyberdark-horn"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cyberdark-keel-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cyberdark-keel",
+    "payload": {
+      "image": "yugioh/silhouettes/cyberdark-keel"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-cycroid-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "cycroid",
+    "payload": {
+      "image": "yugioh/silhouettes/cycroid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-d-d-crow-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "d-d-crow",
+    "payload": {
+      "image": "yugioh/silhouettes/d-d-crow"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dark-driceratops-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "dark-driceratops",
+    "payload": {
+      "image": "yugioh/silhouettes/dark-driceratops"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dark-eyes-illusionist-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "dark-eyes-illusionist",
+    "payload": {
+      "image": "yugioh/silhouettes/dark-eyes-illusionist"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dark-magician-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "dark-magician",
+    "payload": {
+      "image": "yugioh/silhouettes/dark-magician"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dark-magician-girl-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "dark-magician-girl",
+    "payload": {
+      "image": "yugioh/silhouettes/dark-magician-girl"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dark-magician-of-chaos-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "dark-magician-of-chaos",
+    "payload": {
+      "image": "yugioh/silhouettes/dark-magician-of-chaos"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dark-necrofear-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "dark-necrofear",
+    "payload": {
+      "image": "yugioh/silhouettes/dark-necrofear"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dark-paladin-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "dark-paladin",
+    "payload": {
+      "image": "yugioh/silhouettes/dark-paladin"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dark-resonator-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "dark-resonator",
+    "payload": {
+      "image": "yugioh/silhouettes/dark-resonator"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dark-ruler-ha-des-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "dark-ruler-ha-des",
+    "payload": {
+      "image": "yugioh/silhouettes/dark-ruler-ha-des"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dark-spider-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "dark-spider",
+    "payload": {
+      "image": "yugioh/silhouettes/dark-spider"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dark-verger-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "dark-verger",
+    "payload": {
+      "image": "yugioh/silhouettes/dark-verger"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-darkfire-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "darkfire-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/darkfire-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-debris-dragon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "debris-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/debris-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-destiny-end-dragoon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "destiny-end-dragoon",
+    "payload": {
+      "image": "yugioh/silhouettes/destiny-end-dragoon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-destiny-hero-celestial-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "destiny-hero-celestial",
+    "payload": {
+      "image": "yugioh/silhouettes/destiny-hero-celestial"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-destiny-hero-dasher-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "destiny-hero-dasher",
+    "payload": {
+      "image": "yugioh/silhouettes/destiny-hero-dasher"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-destiny-hero-diamond-dude-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "destiny-hero-diamond-dude",
+    "payload": {
+      "image": "yugioh/silhouettes/destiny-hero-diamond-dude"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-destiny-hero-dogma-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "destiny-hero-dogma",
+    "payload": {
+      "image": "yugioh/silhouettes/destiny-hero-dogma"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-destiny-hero-doom-lord-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "destiny-hero-doom-lord",
+    "payload": {
+      "image": "yugioh/silhouettes/destiny-hero-doom-lord"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-destiny-hero-double-dude-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "destiny-hero-double-dude",
+    "payload": {
+      "image": "yugioh/silhouettes/destiny-hero-double-dude"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-destiny-hero-dreadmaster-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "destiny-hero-dreadmaster",
+    "payload": {
+      "image": "yugioh/silhouettes/destiny-hero-dreadmaster"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-destiny-hero-plasma-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "destiny-hero-plasma",
+    "payload": {
+      "image": "yugioh/silhouettes/destiny-hero-plasma"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-destroyersaurus-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "destroyersaurus",
+    "payload": {
+      "image": "yugioh/silhouettes/destroyersaurus"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-destructotron-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "destructotron",
+    "payload": {
+      "image": "yugioh/silhouettes/destructotron"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dread-dragon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "dread-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/dread-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dreamsprite-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "dreamsprite",
+    "payload": {
+      "image": "yugioh/silhouettes/dreamsprite"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-drillroid-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "drillroid",
+    "payload": {
+      "image": "yugioh/silhouettes/drillroid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dyna-base-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "dyna-base",
+    "payload": {
+      "image": "yugioh/silhouettes/dyna-base"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-dyna-tank-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "dyna-tank",
+    "payload": {
+      "image": "yugioh/silhouettes/dyna-tank"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-earthbound-immortal-aslla-piscu-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "earthbound-immortal-aslla-piscu",
+    "payload": {
+      "image": "yugioh/silhouettes/earthbound-immortal-aslla-piscu"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-earthbound-immortal-ccapac-apu-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "earthbound-immortal-ccapac-apu",
+    "payload": {
+      "image": "yugioh/silhouettes/earthbound-immortal-ccapac-apu"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-earthbound-immortal-uru-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "earthbound-immortal-uru",
+    "payload": {
+      "image": "yugioh/silhouettes/earthbound-immortal-uru"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-earthbound-immortal-wiraqocha-rasca-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "earthbound-immortal-wiraqocha-rasca",
+    "payload": {
+      "image": "yugioh/silhouettes/earthbound-immortal-wiraqocha-rasca"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-element-dragon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "element-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/element-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-element-magician-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "element-magician",
+    "payload": {
+      "image": "yugioh/silhouettes/element-magician"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-element-saurus-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "element-saurus",
+    "payload": {
+      "image": "yugioh/silhouettes/element-saurus"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-avian-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-avian",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-avian"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-bladedge-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-bladedge",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-bladedge"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-bubbleman-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-bubbleman",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-bubbleman"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-burstinatrix-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-burstinatrix",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-burstinatrix"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-clayman-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-clayman",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-clayman"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-flame-wingman-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-flame-wingman",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-flame-wingman"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-mudballman-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-mudballman",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-mudballman"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-necroshade-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-necroshade",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-necroshade"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-neos-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-neos",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-neos"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-phoenix-enforcer-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-phoenix-enforcer",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-phoenix-enforcer"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-shining-flare-wingman-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-shining-flare-wingman",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-shining-flare-wingman"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-shining-phoenix-enforcer-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-shining-phoenix-enforcer",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-shining-phoenix-enforcer"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-sparkman-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-sparkman",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-sparkman"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-tempest-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-tempest",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-tempest"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-wildedge-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-wildedge",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-wildedge"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-elemental-hero-wildheart-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "elemental-hero-wildheart",
+    "payload": {
+      "image": "yugioh/silhouettes/elemental-hero-wildheart"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-emes-the-infinity-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "emes-the-infinity",
+    "payload": {
+      "image": "yugioh/silhouettes/emes-the-infinity"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-etoile-cyber-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "etoile-cyber",
+    "payload": {
+      "image": "yugioh/silhouettes/etoile-cyber"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-exodia-the-forbidden-one-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "exodia-the-forbidden-one",
+    "payload": {
+      "image": "yugioh/silhouettes/exodia-the-forbidden-one"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-exodius-the-ultimate-forbidden-lord-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "exodius-the-ultimate-forbidden-lord",
+    "payload": {
+      "image": "yugioh/silhouettes/exodius-the-ultimate-forbidden-lord"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-exploder-dragonwing-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "exploder-dragonwing",
+    "payload": {
+      "image": "yugioh/silhouettes/exploder-dragonwing"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-expressroid-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "expressroid",
+    "payload": {
+      "image": "yugioh/silhouettes/expressroid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fairy-archer-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "fairy-archer",
+    "payload": {
+      "image": "yugioh/silhouettes/fairy-archer"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fairy-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "fairy-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/fairy-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fairys-gift-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "fairys-gift",
+    "payload": {
+      "image": "yugioh/silhouettes/fairys-gift"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-feral-imp-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "feral-imp",
+    "payload": {
+      "image": "yugioh/silhouettes/feral-imp"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fiend-kraken-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "fiend-kraken",
+    "payload": {
+      "image": "yugioh/silhouettes/fiend-kraken"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fire-ant-ascator-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "fire-ant-ascator",
+    "payload": {
+      "image": "yugioh/silhouettes/fire-ant-ascator"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fire-princess-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "fire-princess",
+    "payload": {
+      "image": "yugioh/silhouettes/fire-princess"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fire-trooper-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "fire-trooper",
+    "payload": {
+      "image": "yugioh/silhouettes/fire-trooper"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-flame-manipulator-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "flame-manipulator",
+    "payload": {
+      "image": "yugioh/silhouettes/flame-manipulator"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-flame-swordsman-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "flame-swordsman",
+    "payload": {
+      "image": "yugioh/silhouettes/flame-swordsman"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fleur-synchron-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "fleur-synchron",
+    "payload": {
+      "image": "yugioh/silhouettes/fleur-synchron"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-flint-cragger-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "flint-cragger",
+    "payload": {
+      "image": "yugioh/silhouettes/flint-cragger"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-flying-kamakiri-1-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "flying-kamakiri-1",
+    "payload": {
+      "image": "yugioh/silhouettes/flying-kamakiri-1"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-formula-synchron-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "formula-synchron",
+    "payload": {
+      "image": "yugioh/silhouettes/formula-synchron"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fortress-whale-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "fortress-whale",
+    "payload": {
+      "image": "yugioh/silhouettes/fortress-whale"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fortune-fairy-ann-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "fortune-fairy-ann",
+    "payload": {
+      "image": "yugioh/silhouettes/fortune-fairy-ann"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fortune-fairy-hikari-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "fortune-fairy-hikari",
+    "payload": {
+      "image": "yugioh/silhouettes/fortune-fairy-hikari"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fortune-lady-dark-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "fortune-lady-dark",
+    "payload": {
+      "image": "yugioh/silhouettes/fortune-lady-dark"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fortune-lady-earth-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "fortune-lady-earth",
+    "payload": {
+      "image": "yugioh/silhouettes/fortune-lady-earth"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fortune-lady-fire-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "fortune-lady-fire",
+    "payload": {
+      "image": "yugioh/silhouettes/fortune-lady-fire"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fortune-lady-light-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "fortune-lady-light",
+    "payload": {
+      "image": "yugioh/silhouettes/fortune-lady-light"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fortune-lady-water-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "fortune-lady-water",
+    "payload": {
+      "image": "yugioh/silhouettes/fortune-lady-water"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fortune-lady-wind-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "fortune-lady-wind",
+    "payload": {
+      "image": "yugioh/silhouettes/fortune-lady-wind"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fossil-dragon-skullgar-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "fossil-dragon-skullgar",
+    "payload": {
+      "image": "yugioh/silhouettes/fossil-dragon-skullgar"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fossil-dragon-skullgios-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "fossil-dragon-skullgios",
+    "payload": {
+      "image": "yugioh/silhouettes/fossil-dragon-skullgios"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fossil-dyna-pachycephalo-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "fossil-dyna-pachycephalo",
+    "payload": {
+      "image": "yugioh/silhouettes/fossil-dyna-pachycephalo"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fossil-machine-skull-buggy-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "fossil-machine-skull-buggy",
+    "payload": {
+      "image": "yugioh/silhouettes/fossil-machine-skull-buggy"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fossil-machine-skull-convoy-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "fossil-machine-skull-convoy",
+    "payload": {
+      "image": "yugioh/silhouettes/fossil-machine-skull-convoy"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fossil-machine-skull-wagon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "fossil-machine-skull-wagon",
+    "payload": {
+      "image": "yugioh/silhouettes/fossil-machine-skull-wagon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fossil-warrior-skull-bone-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "fossil-warrior-skull-bone",
+    "payload": {
+      "image": "yugioh/silhouettes/fossil-warrior-skull-bone"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fossil-warrior-skull-king-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "fossil-warrior-skull-king",
+    "payload": {
+      "image": "yugioh/silhouettes/fossil-warrior-skull-king"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-fossil-warrior-skull-knight-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "fossil-warrior-skull-knight",
+    "payload": {
+      "image": "yugioh/silhouettes/fossil-warrior-skull-knight"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gadget-driver-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "gadget-driver",
+    "payload": {
+      "image": "yugioh/silhouettes/gadget-driver"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gadget-hauler-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "gadget-hauler",
+    "payload": {
+      "image": "yugioh/silhouettes/gadget-hauler"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gaia-plate-the-earth-giant-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "gaia-plate-the-earth-giant",
+    "payload": {
+      "image": "yugioh/silhouettes/gaia-plate-the-earth-giant"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gaia-the-dragon-champion-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gaia-the-dragon-champion",
+    "payload": {
+      "image": "yugioh/silhouettes/gaia-the-dragon-champion"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gaia-the-fierce-knight-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gaia-the-fierce-knight",
+    "payload": {
+      "image": "yugioh/silhouettes/gaia-the-fierce-knight"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gamma-the-magnet-warrior-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gamma-the-magnet-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/gamma-the-magnet-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-garuda-the-wind-spirit-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "garuda-the-wind-spirit",
+    "payload": {
+      "image": "yugioh/silhouettes/garuda-the-wind-spirit"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gearfried-the-iron-knight-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gearfried-the-iron-knight",
+    "payload": {
+      "image": "yugioh/silhouettes/gearfried-the-iron-knight"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gemini-elf-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gemini-elf",
+    "payload": {
+      "image": "yugioh/silhouettes/gemini-elf"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-giant-soldier-of-stone-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "giant-soldier-of-stone",
+    "payload": {
+      "image": "yugioh/silhouettes/giant-soldier-of-stone"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gigaplant-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "gigaplant",
+    "payload": {
+      "image": "yugioh/silhouettes/gigaplant"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gilasaurus-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "gilasaurus",
+    "payload": {
+      "image": "yugioh/silhouettes/gilasaurus"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gilford-the-lightning-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gilford-the-lightning",
+    "payload": {
+      "image": "yugioh/silhouettes/gilford-the-lightning"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-goblin-zombie-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "goblin-zombie",
+    "payload": {
+      "image": "yugioh/silhouettes/goblin-zombie"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gokibore-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gokibore",
+    "payload": {
+      "image": "yugioh/silhouettes/gokibore"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gravekeepers-assailant-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gravekeepers-assailant",
+    "payload": {
+      "image": "yugioh/silhouettes/gravekeepers-assailant"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gravekeepers-commandant-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gravekeepers-commandant",
+    "payload": {
+      "image": "yugioh/silhouettes/gravekeepers-commandant"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gravekeepers-descendant-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gravekeepers-descendant",
+    "payload": {
+      "image": "yugioh/silhouettes/gravekeepers-descendant"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gravekeepers-headman-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gravekeepers-headman",
+    "payload": {
+      "image": "yugioh/silhouettes/gravekeepers-headman"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gravekeepers-priestess-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gravekeepers-priestess",
+    "payload": {
+      "image": "yugioh/silhouettes/gravekeepers-priestess"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gravekeepers-spear-soldier-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gravekeepers-spear-soldier",
+    "payload": {
+      "image": "yugioh/silhouettes/gravekeepers-spear-soldier"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gravekeepers-spiritualist-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gravekeepers-spiritualist",
+    "payload": {
+      "image": "yugioh/silhouettes/gravekeepers-spiritualist"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gravekeepers-supernaturalist-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "gravekeepers-supernaturalist",
+    "payload": {
+      "image": "yugioh/silhouettes/gravekeepers-supernaturalist"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-great-moth-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "great-moth",
+    "payload": {
+      "image": "yugioh/silhouettes/great-moth"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-great-white-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "great-white",
+    "payload": {
+      "image": "yugioh/silhouettes/great-white"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ground-attacker-bugroth-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "ground-attacker-bugroth",
+    "payload": {
+      "image": "yugioh/silhouettes/ground-attacker-bugroth"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ground-spider-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "ground-spider",
+    "payload": {
+      "image": "yugioh/silhouettes/ground-spider"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-guardian-dreadscythe-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "guardian-dreadscythe",
+    "payload": {
+      "image": "yugioh/silhouettes/guardian-dreadscythe"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-guardian-eatos-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "guardian-eatos",
+    "payload": {
+      "image": "yugioh/silhouettes/guardian-eatos"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-guardian-elma-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "guardian-elma",
+    "payload": {
+      "image": "yugioh/silhouettes/guardian-elma"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-guardian-grarl-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "guardian-grarl",
+    "payload": {
+      "image": "yugioh/silhouettes/guardian-grarl"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-guardian-kayest-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "guardian-kayest",
+    "payload": {
+      "image": "yugioh/silhouettes/guardian-kayest"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-gyroid-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "gyroid",
+    "payload": {
+      "image": "yugioh/silhouettes/gyroid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-happy-lover-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "happy-lover",
+    "payload": {
+      "image": "yugioh/silhouettes/happy-lover"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-harpie-lady-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "harpie-lady",
+    "payload": {
+      "image": "yugioh/silhouettes/harpie-lady"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-harpie-lady-sisters-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "harpie-lady-sisters",
+    "payload": {
+      "image": "yugioh/silhouettes/harpie-lady-sisters"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-harpies-pet-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "harpies-pet-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/harpies-pet-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-headless-knight-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "headless-knight",
+    "payload": {
+      "image": "yugioh/silhouettes/headless-knight"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-helios-duo-megistus-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "helios-duo-megistus",
+    "payload": {
+      "image": "yugioh/silhouettes/helios-duo-megistus"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-helios-the-primordial-sun-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "helios-the-primordial-sun",
+    "payload": {
+      "image": "yugioh/silhouettes/helios-the-primordial-sun"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-hercules-beetle-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "hercules-beetle",
+    "payload": {
+      "image": "yugioh/silhouettes/hercules-beetle"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-hino-kagu-tsuchi-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "hino-kagu-tsuchi",
+    "payload": {
+      "image": "yugioh/silhouettes/hino-kagu-tsuchi"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-horse-of-the-floral-knights-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "horse-of-the-floral-knights",
+    "payload": {
+      "image": "yugioh/silhouettes/horse-of-the-floral-knights"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-humanoid-slime-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "humanoid-slime",
+    "payload": {
+      "image": "yugioh/silhouettes/humanoid-slime"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-humanoid-worm-drake-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "humanoid-worm-drake",
+    "payload": {
+      "image": "yugioh/silhouettes/humanoid-worm-drake"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-hydrogeddon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "hydrogeddon",
+    "payload": {
+      "image": "yugioh/silhouettes/hydrogeddon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-hyper-hammerhead-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "hyper-hammerhead",
+    "payload": {
+      "image": "yugioh/silhouettes/hyper-hammerhead"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-hyper-synchron-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "hyper-synchron",
+    "payload": {
+      "image": "yugioh/silhouettes/hyper-synchron"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-infernity-archfiend-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "infernity-archfiend",
+    "payload": {
+      "image": "yugioh/silhouettes/infernity-archfiend"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-infernity-avenger-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "infernity-avenger",
+    "payload": {
+      "image": "yugioh/silhouettes/infernity-avenger"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-infernity-beetle-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "infernity-beetle",
+    "payload": {
+      "image": "yugioh/silhouettes/infernity-beetle"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-infernity-destroyer-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "infernity-destroyer",
+    "payload": {
+      "image": "yugioh/silhouettes/infernity-destroyer"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-infernity-doom-dragon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "infernity-doom-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/infernity-doom-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-infernity-doom-slinger-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "infernity-doom-slinger",
+    "payload": {
+      "image": "yugioh/silhouettes/infernity-doom-slinger"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-infernity-dwarf-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "infernity-dwarf",
+    "payload": {
+      "image": "yugioh/silhouettes/infernity-dwarf"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-infernity-guardian-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "infernity-guardian",
+    "payload": {
+      "image": "yugioh/silhouettes/infernity-guardian"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-infernity-mirage-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "infernity-mirage",
+    "payload": {
+      "image": "yugioh/silhouettes/infernity-mirage"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-infernity-necromancer-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "infernity-necromancer",
+    "payload": {
+      "image": "yugioh/silhouettes/infernity-necromancer"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-infernity-randomizer-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "infernity-randomizer",
+    "payload": {
+      "image": "yugioh/silhouettes/infernity-randomizer"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-insect-queen-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "insect-queen",
+    "payload": {
+      "image": "yugioh/silhouettes/insect-queen"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-jellyfish-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "jellyfish",
+    "payload": {
+      "image": "yugioh/silhouettes/jellyfish"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-jetroid-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "jetroid",
+    "payload": {
+      "image": "yugioh/silhouettes/jetroid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-jowgen-the-spiritualist-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "jowgen-the-spiritualist",
+    "payload": {
+      "image": "yugioh/silhouettes/jowgen-the-spiritualist"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-junk-archer-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "junk-archer",
+    "payload": {
+      "image": "yugioh/silhouettes/junk-archer"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-junk-destroyer-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "junk-destroyer",
+    "payload": {
+      "image": "yugioh/silhouettes/junk-destroyer"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-junk-synchron-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "junk-synchron",
+    "payload": {
+      "image": "yugioh/silhouettes/junk-synchron"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-junk-warrior-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "junk-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/junk-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-kaibaman-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "kaibaman",
+    "payload": {
+      "image": "yugioh/silhouettes/kaibaman"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-kairyu-shin-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "kairyu-shin",
+    "payload": {
+      "image": "yugioh/silhouettes/kairyu-shin"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-kaiser-sea-horse-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "kaiser-sea-horse",
+    "payload": {
+      "image": "yugioh/silhouettes/kaiser-sea-horse"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-killer-needle-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "killer-needle",
+    "payload": {
+      "image": "yugioh/silhouettes/killer-needle"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-krebons-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "krebons",
+    "payload": {
+      "image": "yugioh/silhouettes/krebons"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-kuriboh-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "kuriboh",
+    "payload": {
+      "image": "yugioh/silhouettes/kuriboh"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-kuribon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "kuribon",
+    "payload": {
+      "image": "yugioh/silhouettes/kuribon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-la-jinn-the-mystical-genie-of-the-lamp-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "la-jinn-the-mystical-genie-of-the-lamp",
+    "payload": {
+      "image": "yugioh/silhouettes/la-jinn-the-mystical-genie-of-the-lamp"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-lancer-archfiend-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "lancer-archfiend",
+    "payload": {
+      "image": "yugioh/silhouettes/lancer-archfiend"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-larvae-moth-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "larvae-moth",
+    "payload": {
+      "image": "yugioh/silhouettes/larvae-moth"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-lava-battleguard-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "lava-battleguard",
+    "payload": {
+      "image": "yugioh/silhouettes/lava-battleguard"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-left-arm-of-the-forbidden-one-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "left-arm-of-the-forbidden-one",
+    "payload": {
+      "image": "yugioh/silhouettes/left-arm-of-the-forbidden-one"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-left-leg-of-the-forbidden-one-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "left-leg-of-the-forbidden-one",
+    "payload": {
+      "image": "yugioh/silhouettes/left-leg-of-the-forbidden-one"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-lesser-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "lesser-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/lesser-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-litmus-doom-swordsman-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "litmus-doom-swordsman",
+    "payload": {
+      "image": "yugioh/silhouettes/litmus-doom-swordsman"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-little-d-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "little-d",
+    "payload": {
+      "image": "yugioh/silhouettes/little-d"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-lord-of-d-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "lord-of-d",
+    "payload": {
+      "image": "yugioh/silhouettes/lord-of-d"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-lord-poison-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "lord-poison",
+    "payload": {
+      "image": "yugioh/silhouettes/lord-poison"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-machine-king-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "machine-king",
+    "payload": {
+      "image": "yugioh/silhouettes/machine-king"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-mad-archfiend-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "mad-archfiend",
+    "payload": {
+      "image": "yugioh/silhouettes/mad-archfiend"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-magical-android-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "magical-android",
+    "payload": {
+      "image": "yugioh/silhouettes/magical-android"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-magical-scientist-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "magical-scientist",
+    "payload": {
+      "image": "yugioh/silhouettes/magical-scientist"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-magician-of-black-chaos-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "magician-of-black-chaos",
+    "payload": {
+      "image": "yugioh/silhouettes/magician-of-black-chaos"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-maiden-of-the-moonlight-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "maiden-of-the-moonlight",
+    "payload": {
+      "image": "yugioh/silhouettes/maiden-of-the-moonlight"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-majestic-star-dragon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "majestic-star-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/majestic-star-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-man-eater-bug-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "man-eater-bug",
+    "payload": {
+      "image": "yugioh/silhouettes/man-eater-bug"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-masaki-the-legendary-swordsman-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "masaki-the-legendary-swordsman",
+    "payload": {
+      "image": "yugioh/silhouettes/masaki-the-legendary-swordsman"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-masked-dragon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "masked-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/masked-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-max-warrior-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "max-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/max-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-mechanicalchaser-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "mechanicalchaser",
+    "payload": {
+      "image": "yugioh/silhouettes/mechanicalchaser"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-medium-piece-golem-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "medium-piece-golem",
+    "payload": {
+      "image": "yugioh/silhouettes/medium-piece-golem"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-megasonic-eye-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "megasonic-eye",
+    "payload": {
+      "image": "yugioh/silhouettes/megasonic-eye"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-megazowler-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "megazowler",
+    "payload": {
+      "image": "yugioh/silhouettes/megazowler"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-meklord-army-of-granel-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "meklord-army-of-granel",
+    "payload": {
+      "image": "yugioh/silhouettes/meklord-army-of-granel"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-meklord-army-of-skiel-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "meklord-army-of-skiel",
+    "payload": {
+      "image": "yugioh/silhouettes/meklord-army-of-skiel"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-meklord-army-of-wisel-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "meklord-army-of-wisel",
+    "payload": {
+      "image": "yugioh/silhouettes/meklord-army-of-wisel"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-meklord-astro-dragon-asterisk-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "meklord-astro-dragon-asterisk",
+    "payload": {
+      "image": "yugioh/silhouettes/meklord-astro-dragon-asterisk"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-meklord-astro-mekanikle-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "meklord-astro-mekanikle",
+    "payload": {
+      "image": "yugioh/silhouettes/meklord-astro-mekanikle"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-meklord-emperor-granel-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "meklord-emperor-granel",
+    "payload": {
+      "image": "yugioh/silhouettes/meklord-emperor-granel"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-meklord-emperor-skiel-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "meklord-emperor-skiel",
+    "payload": {
+      "image": "yugioh/silhouettes/meklord-emperor-skiel"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-meklord-emperor-wisel-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "meklord-emperor-wisel",
+    "payload": {
+      "image": "yugioh/silhouettes/meklord-emperor-wisel"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-mind-master-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "mind-master",
+    "payload": {
+      "image": "yugioh/silhouettes/mind-master"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-mind-protector-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "mind-protector",
+    "payload": {
+      "image": "yugioh/silhouettes/mind-protector"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-moon-dragon-quilla-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "moon-dragon-quilla",
+    "payload": {
+      "image": "yugioh/silhouettes/moon-dragon-quilla"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-morphtronic-boomboxen-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "morphtronic-boomboxen",
+    "payload": {
+      "image": "yugioh/silhouettes/morphtronic-boomboxen"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-morphtronic-cameran-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "morphtronic-cameran",
+    "payload": {
+      "image": "yugioh/silhouettes/morphtronic-cameran"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-morphtronic-celfon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "morphtronic-celfon",
+    "payload": {
+      "image": "yugioh/silhouettes/morphtronic-celfon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-morphtronic-clocken-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "morphtronic-clocken",
+    "payload": {
+      "image": "yugioh/silhouettes/morphtronic-clocken"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-morphtronic-datatron-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "morphtronic-datatron",
+    "payload": {
+      "image": "yugioh/silhouettes/morphtronic-datatron"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-morphtronic-magnen-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "morphtronic-magnen",
+    "payload": {
+      "image": "yugioh/silhouettes/morphtronic-magnen"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-morphtronic-radion-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "morphtronic-radion",
+    "payload": {
+      "image": "yugioh/silhouettes/morphtronic-radion"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-morphtronic-remoten-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "morphtronic-remoten",
+    "payload": {
+      "image": "yugioh/silhouettes/morphtronic-remoten"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-morphtronic-scopen-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "morphtronic-scopen",
+    "payload": {
+      "image": "yugioh/silhouettes/morphtronic-scopen"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-morphtronic-staplen-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "morphtronic-staplen",
+    "payload": {
+      "image": "yugioh/silhouettes/morphtronic-staplen"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-morphtronic-videon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "morphtronic-videon",
+    "payload": {
+      "image": "yugioh/silhouettes/morphtronic-videon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-mystical-elf-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "mystical-elf",
+    "payload": {
+      "image": "yugioh/silhouettes/mystical-elf"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-necro-fleur-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "necro-fleur",
+    "payload": {
+      "image": "yugioh/silhouettes/necro-fleur"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-neo-spacian-aqua-dolphin-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "neo-spacian-aqua-dolphin",
+    "payload": {
+      "image": "yugioh/silhouettes/neo-spacian-aqua-dolphin"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-neo-spacian-glow-moss-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "neo-spacian-glow-moss",
+    "payload": {
+      "image": "yugioh/silhouettes/neo-spacian-glow-moss"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-nitro-synchron-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "nitro-synchron",
+    "payload": {
+      "image": "yugioh/silhouettes/nitro-synchron"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-nitro-warrior-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "nitro-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/nitro-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-obelisk-the-tormentor-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "obelisk-the-tormentor",
+    "payload": {
+      "image": "yugioh/silhouettes/obelisk-the-tormentor"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ojama-black-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "ojama-black",
+    "payload": {
+      "image": "yugioh/silhouettes/ojama-black"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ojama-green-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "ojama-green",
+    "payload": {
+      "image": "yugioh/silhouettes/ojama-green"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ojama-king-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "ojama-king",
+    "payload": {
+      "image": "yugioh/silhouettes/ojama-king"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ojama-yellow-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "ojama-yellow",
+    "payload": {
+      "image": "yugioh/silhouettes/ojama-yellow"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ooguchi-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "ooguchi",
+    "payload": {
+      "image": "yugioh/silhouettes/ooguchi"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-pair-cycroid-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "pair-cycroid",
+    "payload": {
+      "image": "yugioh/silhouettes/pair-cycroid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-panther-warrior-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "panther-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/panther-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-parasite-paracide-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "parasite-paracide",
+    "payload": {
+      "image": "yugioh/silhouettes/parasite-paracide"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-patroid-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "patroid",
+    "payload": {
+      "image": "yugioh/silhouettes/patroid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-perfectly-ultimate-great-moth-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "perfectly-ultimate-great-moth",
+    "payload": {
+      "image": "yugioh/silhouettes/perfectly-ultimate-great-moth"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-petit-angel-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "petit-angel",
+    "payload": {
+      "image": "yugioh/silhouettes/petit-angel"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-petit-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "petit-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/petit-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-petit-moth-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "petit-moth",
+    "payload": {
+      "image": "yugioh/silhouettes/petit-moth"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-phoenixian-cluster-amaryllis-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "phoenixian-cluster-amaryllis",
+    "payload": {
+      "image": "yugioh/silhouettes/phoenixian-cluster-amaryllis"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-phoenixian-seed-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "phoenixian-seed",
+    "payload": {
+      "image": "yugioh/silhouettes/phoenixian-seed"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-pinch-hopper-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "pinch-hopper",
+    "payload": {
+      "image": "yugioh/silhouettes/pinch-hopper"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-plasma-warrior-eitom-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "plasma-warrior-eitom",
+    "payload": {
+      "image": "yugioh/silhouettes/plasma-warrior-eitom"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-power-tool-dragon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "power-tool-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/power-tool-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-proto-cyber-dragon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "proto-cyber-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/proto-cyber-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-psychic-commander-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "psychic-commander",
+    "payload": {
+      "image": "yugioh/silhouettes/psychic-commander"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-psychic-snail-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "psychic-snail",
+    "payload": {
+      "image": "yugioh/silhouettes/psychic-snail"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-quickdraw-synchron-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "quickdraw-synchron",
+    "payload": {
+      "image": "yugioh/silhouettes/quickdraw-synchron"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-quillbolt-hedgehog-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "quillbolt-hedgehog",
+    "payload": {
+      "image": "yugioh/silhouettes/quillbolt-hedgehog"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-rainbow-dark-dragon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "rainbow-dark-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/rainbow-dark-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-rainbow-dragon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "rainbow-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/rainbow-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-red-dragon-archfiend-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "red-dragon-archfiend",
+    "payload": {
+      "image": "yugioh/silhouettes/red-dragon-archfiend"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-red-eyes-black-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "red-eyes-black-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/red-eyes-black-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-red-eyes-black-metal-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "red-eyes-black-metal-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/red-eyes-black-metal-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-regulus-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "regulus",
+    "payload": {
+      "image": "yugioh/silhouettes/regulus"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-relinquished-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "relinquished",
+    "payload": {
+      "image": "yugioh/silhouettes/relinquished"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-rescueroid-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "rescueroid",
+    "payload": {
+      "image": "yugioh/silhouettes/rescueroid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-revival-rose-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "revival-rose",
+    "payload": {
+      "image": "yugioh/silhouettes/revival-rose"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-right-arm-of-the-forbidden-one-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "right-arm-of-the-forbidden-one",
+    "payload": {
+      "image": "yugioh/silhouettes/right-arm-of-the-forbidden-one"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-right-leg-of-the-forbidden-one-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "right-leg-of-the-forbidden-one",
+    "payload": {
+      "image": "yugioh/silhouettes/right-leg-of-the-forbidden-one"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-road-warrior-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "road-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/road-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-rocket-warrior-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "rocket-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/rocket-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-rose-fairy-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "rose-fairy",
+    "payload": {
+      "image": "yugioh/silhouettes/rose-fairy"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-rose-tentacles-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "rose-tentacles",
+    "payload": {
+      "image": "yugioh/silhouettes/rose-tentacles"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-sabersaurus-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "sabersaurus",
+    "payload": {
+      "image": "yugioh/silhouettes/sabersaurus"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-saggi-the-dark-clown-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "saggi-the-dark-clown",
+    "payload": {
+      "image": "yugioh/silhouettes/saggi-the-dark-clown"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-sauropod-brachion-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "sauropod-brachion",
+    "payload": {
+      "image": "yugioh/silhouettes/sauropod-brachion"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-seiyaryu-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "seiyaryu",
+    "payload": {
+      "image": "yugioh/silhouettes/seiyaryu"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-serpent-night-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "serpent-night-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/serpent-night-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-shell-knight-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "shell-knight",
+    "payload": {
+      "image": "yugioh/silhouettes/shell-knight"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-shield-warrior-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "shield-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/shield-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-shield-wing-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "shield-wing",
+    "payload": {
+      "image": "yugioh/silhouettes/shield-wing"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-shinato-king-of-a-higher-plane-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "shinato-king-of-a-higher-plane",
+    "payload": {
+      "image": "yugioh/silhouettes/shinato-king-of-a-higher-plane"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-shining-friendship-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "shining-friendship",
+    "payload": {
+      "image": "yugioh/silhouettes/shining-friendship"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-shooting-star-dragon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "shooting-star-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/shooting-star-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-sinister-serpent-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "sinister-serpent",
+    "payload": {
+      "image": "yugioh/silhouettes/sinister-serpent"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-skilled-dark-magician-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "skilled-dark-magician",
+    "payload": {
+      "image": "yugioh/silhouettes/skilled-dark-magician"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-slifer-the-sky-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "slifer-the-sky-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/slifer-the-sky-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-small-piece-golem-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "small-piece-golem",
+    "payload": {
+      "image": "yugioh/silhouettes/small-piece-golem"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-sonic-chick-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "sonic-chick",
+    "payload": {
+      "image": "yugioh/silhouettes/sonic-chick"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-sorciere-de-fleur-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "sorciere-de-fleur",
+    "payload": {
+      "image": "yugioh/silhouettes/sorciere-de-fleur"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-speed-warrior-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "speed-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/speed-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-spirit-of-flames-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "spirit-of-flames",
+    "payload": {
+      "image": "yugioh/silhouettes/spirit-of-flames"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-spirit-of-the-breeze-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "spirit-of-the-breeze",
+    "payload": {
+      "image": "yugioh/silhouettes/spirit-of-the-breeze"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-stardust-dragon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "stardust-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/stardust-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-stealthroid-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "stealthroid",
+    "payload": {
+      "image": "yugioh/silhouettes/stealthroid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-steamroid-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "steamroid",
+    "payload": {
+      "image": "yugioh/silhouettes/steamroid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-steel-scorpion-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "steel-scorpion",
+    "payload": {
+      "image": "yugioh/silhouettes/steel-scorpion"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-strong-wind-dragon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "strong-wind-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/strong-wind-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-submarineroid-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "submarineroid",
+    "payload": {
+      "image": "yugioh/silhouettes/submarineroid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-summoned-skull-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "summoned-skull",
+    "payload": {
+      "image": "yugioh/silhouettes/summoned-skull"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-sunlight-unicorn-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "sunlight-unicorn",
+    "payload": {
+      "image": "yugioh/silhouettes/sunlight-unicorn"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-sunny-pixie-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "sunny-pixie",
+    "payload": {
+      "image": "yugioh/silhouettes/sunny-pixie"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-super-conductor-tyranno-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "super-conductor-tyranno",
+    "payload": {
+      "image": "yugioh/silhouettes/super-conductor-tyranno"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-super-roboyarou-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "super-roboyarou",
+    "payload": {
+      "image": "yugioh/silhouettes/super-roboyarou"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-super-vehicroid-jumbo-drill-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "super-vehicroid-jumbo-drill",
+    "payload": {
+      "image": "yugioh/silhouettes/super-vehicroid-jumbo-drill"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-super-vehicroid-stealth-union-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "super-vehicroid-stealth-union",
+    "payload": {
+      "image": "yugioh/silhouettes/super-vehicroid-stealth-union"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-swamp-battleguard-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "swamp-battleguard",
+    "payload": {
+      "image": "yugioh/silhouettes/swamp-battleguard"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-sword-arm-of-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "sword-arm-of-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/sword-arm-of-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-t-g-blade-blaster-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "t-g-blade-blaster",
+    "payload": {
+      "image": "yugioh/silhouettes/t-g-blade-blaster"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-t-g-catapult-dragon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "t-g-catapult-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/t-g-catapult-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-t-g-cyber-magician-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "t-g-cyber-magician",
+    "payload": {
+      "image": "yugioh/silhouettes/t-g-cyber-magician"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-t-g-drill-fish-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "t-g-drill-fish",
+    "payload": {
+      "image": "yugioh/silhouettes/t-g-drill-fish"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-t-g-gear-zombie-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "t-g-gear-zombie",
+    "payload": {
+      "image": "yugioh/silhouettes/t-g-gear-zombie"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-t-g-halberd-cannon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "t-g-halberd-cannon",
+    "payload": {
+      "image": "yugioh/silhouettes/t-g-halberd-cannon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-t-g-hyper-librarian-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "t-g-hyper-librarian",
+    "payload": {
+      "image": "yugioh/silhouettes/t-g-hyper-librarian"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-t-g-jet-falcon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "t-g-jet-falcon",
+    "payload": {
+      "image": "yugioh/silhouettes/t-g-jet-falcon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-t-g-metal-skeleton-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "t-g-metal-skeleton",
+    "payload": {
+      "image": "yugioh/silhouettes/t-g-metal-skeleton"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-t-g-power-gladiator-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "t-g-power-gladiator",
+    "payload": {
+      "image": "yugioh/silhouettes/t-g-power-gladiator"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-t-g-rush-rhino-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "t-g-rush-rhino",
+    "payload": {
+      "image": "yugioh/silhouettes/t-g-rush-rhino"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-t-g-striker-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "t-g-striker",
+    "payload": {
+      "image": "yugioh/silhouettes/t-g-striker"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-t-g-warwolf-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "t-g-warwolf",
+    "payload": {
+      "image": "yugioh/silhouettes/t-g-warwolf"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-t-g-wonder-magician-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "t-g-wonder-magician",
+    "payload": {
+      "image": "yugioh/silhouettes/t-g-wonder-magician"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-telekinetic-shocker-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "telekinetic-shocker",
+    "payload": {
+      "image": "yugioh/silhouettes/telekinetic-shocker"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-the-earl-of-demise-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "the-earl-of-demise",
+    "payload": {
+      "image": "yugioh/silhouettes/the-earl-of-demise"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-the-gross-ghost-of-fled-dreams-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "the-gross-ghost-of-fled-dreams",
+    "payload": {
+      "image": "yugioh/silhouettes/the-gross-ghost-of-fled-dreams"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-the-legendary-fisherman-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "the-legendary-fisherman",
+    "payload": {
+      "image": "yugioh/silhouettes/the-legendary-fisherman"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-the-portraits-secret-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "the-portraits-secret",
+    "payload": {
+      "image": "yugioh/silhouettes/the-portraits-secret"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-the-rock-spirit-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "the-rock-spirit",
+    "payload": {
+      "image": "yugioh/silhouettes/the-rock-spirit"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-the-unhappy-maiden-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "the-unhappy-maiden",
+    "payload": {
+      "image": "yugioh/silhouettes/the-unhappy-maiden"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-the-winged-dragon-of-ra-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "the-winged-dragon-of-ra",
+    "payload": {
+      "image": "yugioh/silhouettes/the-winged-dragon-of-ra"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-thought-ruler-archfiend-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "thought-ruler-archfiend",
+    "payload": {
+      "image": "yugioh/silhouettes/thought-ruler-archfiend"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-thousand-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "thousand-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/thousand-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-thousand-eyes-idol-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "thousand-eyes-idol",
+    "payload": {
+      "image": "yugioh/silhouettes/thousand-eyes-idol"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-thousand-eyes-restrict-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "thousand-eyes-restrict",
+    "payload": {
+      "image": "yugioh/silhouettes/thousand-eyes-restrict"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-time-wizard-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "time-wizard",
+    "payload": {
+      "image": "yugioh/silhouettes/time-wizard"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-trakodon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "trakodon",
+    "payload": {
+      "image": "yugioh/silhouettes/trakodon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-trap-eater-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "trap-eater",
+    "payload": {
+      "image": "yugioh/silhouettes/trap-eater"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-truckroid-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "truckroid",
+    "payload": {
+      "image": "yugioh/silhouettes/truckroid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-turbo-synchron-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "turbo-synchron",
+    "payload": {
+      "image": "yugioh/silhouettes/turbo-synchron"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-turbo-warrior-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "turbo-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/turbo-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-turret-warrior-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "turret-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/turret-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-twin-shield-defender-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "twin-shield-defender",
+    "payload": {
+      "image": "yugioh/silhouettes/twin-shield-defender"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-twin-sword-marauder-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "twin-sword-marauder",
+    "payload": {
+      "image": "yugioh/silhouettes/twin-sword-marauder"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-two-headed-king-rex-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "two-headed-king-rex",
+    "payload": {
+      "image": "yugioh/silhouettes/two-headed-king-rex"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-tyranno-infinity-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "tyranno-infinity",
+    "payload": {
+      "image": "yugioh/silhouettes/tyranno-infinity"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-tyrant-dragon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "tyrant-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/tyrant-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-uforoid-fighter-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "uforoid-fighter",
+    "payload": {
+      "image": "yugioh/silhouettes/uforoid-fighter"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-uforoid-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "uforoid",
+    "payload": {
+      "image": "yugioh/silhouettes/uforoid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ultimate-ancient-gear-golem-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "ultimate-ancient-gear-golem",
+    "payload": {
+      "image": "yugioh/silhouettes/ultimate-ancient-gear-golem"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-ultimate-tyranno-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "ultimate-tyranno",
+    "payload": {
+      "image": "yugioh/silhouettes/ultimate-tyranno"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-underground-arachnid-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "underground-arachnid",
+    "payload": {
+      "image": "yugioh/silhouettes/underground-arachnid"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-uraby-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "uraby",
+    "payload": {
+      "image": "yugioh/silhouettes/uraby"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-valkyrie-brunhilde-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "valkyrie-brunhilde",
+    "payload": {
+      "image": "yugioh/silhouettes/valkyrie-brunhilde"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-valkyrie-dritte-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "valkyrie-dritte",
+    "payload": {
+      "image": "yugioh/silhouettes/valkyrie-dritte"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-valkyrie-erste-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "valkyrie-erste",
+    "payload": {
+      "image": "yugioh/silhouettes/valkyrie-erste"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-valkyrie-zweite-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "valkyrie-zweite",
+    "payload": {
+      "image": "yugioh/silhouettes/valkyrie-zweite"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-valkyrion-the-magna-warrior-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "valkyrion-the-magna-warrior",
+    "payload": {
+      "image": "yugioh/silhouettes/valkyrion-the-magna-warrior"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-vice-dragon-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "vice-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/vice-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-violet-witch-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "violet-witch",
+    "payload": {
+      "image": "yugioh/silhouettes/violet-witch"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-volcanic-blaster-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "volcanic-blaster",
+    "payload": {
+      "image": "yugioh/silhouettes/volcanic-blaster"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-volcanic-counter-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "volcanic-counter",
+    "payload": {
+      "image": "yugioh/silhouettes/volcanic-counter"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-volcanic-doomfire-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "volcanic-doomfire",
+    "payload": {
+      "image": "yugioh/silhouettes/volcanic-doomfire"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-volcanic-hammerer-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "volcanic-hammerer",
+    "payload": {
+      "image": "yugioh/silhouettes/volcanic-hammerer"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-volcanic-rat-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "volcanic-rat",
+    "payload": {
+      "image": "yugioh/silhouettes/volcanic-rat"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-volcanic-scattershot-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "volcanic-scattershot",
+    "payload": {
+      "image": "yugioh/silhouettes/volcanic-scattershot"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-volcanic-shell-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "volcanic-shell",
+    "payload": {
+      "image": "yugioh/silhouettes/volcanic-shell"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-volcanic-slicer-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "volcanic-slicer",
+    "payload": {
+      "image": "yugioh/silhouettes/volcanic-slicer"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-vorse-raider-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "vorse-raider",
+    "payload": {
+      "image": "yugioh/silhouettes/vorse-raider"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-vw-tiger-catapult-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "vw-tiger-catapult",
+    "payload": {
+      "image": "yugioh/silhouettes/vw-tiger-catapult"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-vwxyz-dragon-catapult-cannon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "vwxyz-dragon-catapult-cannon",
+    "payload": {
+      "image": "yugioh/silhouettes/vwxyz-dragon-catapult-cannon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-wall-of-ivy-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "wall-of-ivy",
+    "payload": {
+      "image": "yugioh/silhouettes/wall-of-ivy"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-water-dragon-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "water-dragon",
+    "payload": {
+      "image": "yugioh/silhouettes/water-dragon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-weathering-soldier-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "weathering-soldier",
+    "payload": {
+      "image": "yugioh/silhouettes/weathering-soldier"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-weeping-idol-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "weeping-idol",
+    "payload": {
+      "image": "yugioh/silhouettes/weeping-idol"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-winged-kuriboh-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "winged-kuriboh",
+    "payload": {
+      "image": "yugioh/silhouettes/winged-kuriboh"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-witch-of-the-black-rose-5ds",
+    "series": "5ds",
+    "kind": "silhouette",
+    "entityId": "witch-of-the-black-rose",
+    "payload": {
+      "image": "yugioh/silhouettes/witch-of-the-black-rose"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-worm-drake-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "worm-drake",
+    "payload": {
+      "image": "yugioh/silhouettes/worm-drake"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-x-head-cannon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "x-head-cannon",
+    "payload": {
+      "image": "yugioh/silhouettes/x-head-cannon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-xyz-dragon-cannon-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "xyz-dragon-cannon",
+    "payload": {
+      "image": "yugioh/silhouettes/xyz-dragon-cannon"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-y-dragon-head-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "y-dragon-head",
+    "payload": {
+      "image": "yugioh/silhouettes/y-dragon-head"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-yubel-gx",
+    "series": "gx",
+    "kind": "silhouette",
+    "entityId": "yubel",
+    "payload": {
+      "image": "yugioh/silhouettes/yubel"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-z-metal-tank-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "z-metal-tank",
+    "payload": {
+      "image": "yugioh/silhouettes/z-metal-tank"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-zera-the-mant-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "zera-the-mant",
+    "payload": {
+      "image": "yugioh/silhouettes/zera-the-mant"
+    },
+    "verified": false
+  },
+  {
+    "id": "silhouette-zone-eater-dm",
+    "series": "dm",
+    "kind": "silhouette",
+    "entityId": "zone-eater",
+    "payload": {
+      "image": "yugioh/silhouettes/zone-eater"
+    },
+    "verified": false
+  },
+  {
     "id": "summon-alligators-sword-dragon-dm",
     "series": "dm",
     "kind": "summon",
