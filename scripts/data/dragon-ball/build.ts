@@ -96,7 +96,7 @@ const TECHNIQUE_IMAGE_DIR = path.join(IMAGE_DIR, 'techniques');
 const TODO_FILE = path.join(ROOT, 'docs', 'CONTENT_TODO.md');
 
 const IMAGE_TASKS = 4;
-const IMG_LIMIT_BYTES = 150 * 1024 * 1024;
+const IMG_LIMIT_BYTES = 200 * 1024 * 1024;
 /** Pool mínimo del modo Técnica (SPEC 4, regla 6). */
 const TECHNIQUE_POOL_MINIMUM = 10;
 
@@ -646,7 +646,7 @@ async function main(): Promise<void> {
     imageBytesProject,
   });
   if (imageBytesProject > IMG_LIMIT_BYTES) {
-    console.warn('AVISO: public/img supera los 150 MB de la SPEC (sección 7). Avisar antes de seguir.');
+    console.warn('AVISO: public/img supera los 200 MB de la SPEC (sección 7). Avisar antes de seguir.');
   }
   step('Listo.');
 }

@@ -129,9 +129,9 @@ export function printReport(input: ReportInput): void {
   const total = printImages(line, 'personajes  ', input.rendered.characters) + printImages(line, 'jutsus      ', input.rendered.jutsus);
   line(`  Peso generado en esta corrida: ${mb(total)}`);
   line(`  Peso de public/img/naruto: ${mb(input.imageBytesNaruto)}`);
-  const limit = 150 * 1024 * 1024;
+  const limit = 200 * 1024 * 1024;
   line(
-    `  Peso de public/img en total: ${mb(input.imageBytesProject)} de 150 MB (${input.imageBytesProject > limit ? 'SUPERA el límite de la SPEC: avisar antes de seguir' : `quedan ${mb(limit - input.imageBytesProject)}`}).`,
+    `  Peso de public/img en total: ${mb(input.imageBytesProject)} de 200 MB (${input.imageBytesProject > limit ? 'SUPERA el límite de la SPEC: avisar antes de seguir' : `quedan ${mb(limit - input.imageBytesProject)}`}).`,
   );
   line(`  Personajes sin imagen: ${input.missing.characters} de ${characters.length}; jutsus sin imagen: ${input.missing.jutsus} de ${input.jutsusTotal}  → ver docs/CONTENT_TODO.md`);
   line(

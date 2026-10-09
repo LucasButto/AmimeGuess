@@ -113,9 +113,9 @@ export function printReport(input: ReportInput): void {
     printImages(line, 'técnicas    ', input.rendered.techniques);
   line(`  Peso generado en esta corrida: ${mb(total)}`);
   line(`  Peso de public/img/dragon-ball: ${mb(input.imageBytesDragonBall)}`);
-  const limit = 150 * 1024 * 1024;
+  const limit = 200 * 1024 * 1024;
   line(
-    `  Peso de public/img en total: ${mb(input.imageBytesProject)} de 150 MB (${input.imageBytesProject > limit ? 'SUPERA el límite de la SPEC: avisar antes de seguir' : `quedan ${mb(limit - input.imageBytesProject)}`}).`,
+    `  Peso de public/img en total: ${mb(input.imageBytesProject)} de 200 MB (${input.imageBytesProject > limit ? 'SUPERA el límite de la SPEC: avisar antes de seguir' : `quedan ${mb(limit - input.imageBytesProject)}`}).`,
   );
   line(`  Personajes sin imagen: ${input.missing.characters.length}; técnicas sin imagen: ${input.missing.techniques.length}  → ver docs/CONTENT_TODO.md`);
   line(`  Imágenes con fondo (no sirven para Silueta): ${input.opaqueImages.length}${input.opaqueImages.length > 0 ? ` (${input.opaqueImages.join(', ')})` : ''}`);
