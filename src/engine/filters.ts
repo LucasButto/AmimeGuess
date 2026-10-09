@@ -117,8 +117,9 @@ export function inheritSeries(
   return normalizeActiveSeries(ownerSeries.flat(), canonical);
 }
 
-// Regla 6: tamaño mínimo de pool, salvo que el modo defina otro.
-export const MIN_POOL_CLASSIC = 20;
+// Regla 6: tamaño mínimo de pool, salvo que el modo defina otro. El Clásico pedía 20, pero Yu-Gi-Oh tiene series de 14
+// a 16 duelistas y se tiene que poder jugar con una sola: el mínimo es el mismo que el de los demás motores.
+export const MIN_POOL_CLASSIC = 10;
 export const MIN_POOL_DEFAULT = 10;
 /** Para `connections` el mínimo se cuenta en grupos completos, no en entidades. */
 export const MIN_POOL_CONNECTIONS = 4;

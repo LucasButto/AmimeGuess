@@ -75,8 +75,8 @@ describe('modePoolSize', () => {
 });
 
 describe('minimumPoolOf', () => {
-  it('es el mínimo de su motor: 20 para el Clásico, 4 grupos para Conexiones y 10 para el resto', () => {
-    expect(minimumPoolOf(classic)).toBe(20);
+  it('es el mínimo de su motor: 4 grupos para Conexiones y 10 para el resto, el Clásico incluido', () => {
+    expect(minimumPoolOf(classic)).toBe(10);
     expect(minimumPoolOf({ ...base, engine: 'timeline' })).toBe(10);
     expect(minimumPoolOf({ ...base, engine: 'higher-lower' })).toBe(10);
     expect(minimumPoolOf({ ...base, engine: 'connections' })).toBe(4);

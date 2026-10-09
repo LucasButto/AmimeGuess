@@ -215,8 +215,8 @@ describe('series heredadas (regla 4)', () => {
 });
 
 describe('pool mínimo (regla 6)', () => {
-  it('valores por defecto: 20 para classic, 4 grupos para connections, 10 para el resto', () => {
-    expect(defaultMinPool('classic')).toBe(20);
+  it('valores por defecto: 4 grupos para connections y 10 para el resto, el Clásico incluido', () => {
+    expect(defaultMinPool('classic')).toBe(10);
     expect(defaultMinPool('connections')).toBe(4);
     for (const engine of ['image-reveal', 'text-clue', 'reveal-list', 'higher-lower', 'timeline']) {
       expect(defaultMinPool(engine)).toBe(10);
