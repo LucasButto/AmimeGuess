@@ -44,6 +44,29 @@ describe('modePoolSize', () => {
     expect(modePoolSize(mode, data, ['s2'])).toBe(1);
   });
 
+  it('Conexiones: los grupos que forman parte de algún tablero, con las series activas', () => {
+    const people = Array.from({ length: 24 }, (_, index) => entity(`p${index}`, [index < 20 ? 's1' : 's2']));
+    const group = (id: string, difficulty: number, from: number, series: string): Content => ({
+      id,
+      kind: 'group',
+      series,
+      payload: { name: id, difficulty, members: [0, 1, 2, 3, 4].map((offset) => `p${from + offset}`) },
+      verified: false,
+    });
+    const groups = [group('g1', 1, 0, 's1'), group('g2', 2, 5, 's1'), group('g3', 3, 10, 's1'), group('g4', 4, 15, 's1'), group('g5', 4, 19, 's2')];
+    const mode: ModeConfig = {
+      ...base,
+      engine: 'connections',
+      connections: { contentKind: 'group', nameField: 'name', membersField: 'members', difficultyField: 'difficulty' },
+    };
+    const withGroups: FranchiseData = { entities: people, contents: groups };
+    expect(modePoolSize(mode, withGroups, ['s1', 's2'])).toBe(5);
+    // Sin la serie del grupo g5 (y de sus personajes) quedan los 4 de s1; sin s1 no hay ninguna dificultad completa.
+    expect(modePoolSize(mode, withGroups, ['s1'])).toBe(4);
+    expect(modePoolSize(mode, withGroups, ['s2'])).toBe(0);
+    expect(minimumPoolOf(mode)).toBe(4);
+  });
+
   it('un modo sin la configuración de su motor, o con un motor que no existe, no tiene pool', () => {
     expect(modePoolSize({ ...base, engine: 'classic' }, data, ['s1'])).toBeNull();
     expect(modePoolSize({ ...base, engine: 'timeline' }, data, ['s1'])).toBeNull();
@@ -52,9 +75,10 @@ describe('modePoolSize', () => {
 });
 
 describe('minimumPoolOf', () => {
-  it('es el mínimo de su motor: 20 para el Clásico y 10 para el resto', () => {
+  it('es el mínimo de su motor: 20 para el Clásico, 4 grupos para Conexiones y 10 para el resto', () => {
     expect(minimumPoolOf(classic)).toBe(20);
     expect(minimumPoolOf({ ...base, engine: 'timeline' })).toBe(10);
     expect(minimumPoolOf({ ...base, engine: 'higher-lower' })).toBe(10);
+    expect(minimumPoolOf({ ...base, engine: 'connections' })).toBe(4);
   });
 });
