@@ -22,6 +22,8 @@ export const BUDGET_BYTES: Record<Size, number> = { 256: 25 * 1024, 512: 70 * 10
 export interface RenderOptions {
   readonly qualities: readonly number[];
   readonly budget: Readonly<Record<Size, number>>;
+  /** Calidad del canal alfa (0 a 100). Por defecto 100: sin pérdida, que es lo que necesita el arte con bordes finos. */
+  readonly alphaQuality?: number;
 }
 
 export const ARTWORK: RenderOptions = {
@@ -61,7 +63,7 @@ async function encode(source: Buffer, size: Size, options: RenderOptions): Promi
     // effort 4 pesa 1-2 % más que el 6 pero codifica ~60 veces más rápido
     // (30 ms contra 1,8 s por imagen): el script se puede volver a correr.
     const buffer = await sharp(data, { raw: info })
-      .webp({ quality, alphaQuality: 100, effort: 4, smartSubsample: true })
+      .webp({ quality, alphaQuality: options.alphaQuality ?? 100, effort: 4, smartSubsample: true })
       .toBuffer();
     if (buffer.length <= options.budget[size]) return { buffer, quality };
   }

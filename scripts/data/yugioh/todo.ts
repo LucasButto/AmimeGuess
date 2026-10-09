@@ -27,6 +27,8 @@ export interface TodoInput {
   /** Cartas cuyo único respaldo en Yugipedia es una mención en la página del duelista, no su lista de deck. */
   readonly weakEvidence: ReadonlyArray<{ duelist: string; card: string }>;
   readonly unverified: { readonly duelists: number; readonly cards: number; readonly summons: number };
+  /** Monstruos que tienen silueta y monstruos cuyo recorte no sirvió (sin silueta: no son respuesta de Silueta, pero sí de los demás modos). */
+  readonly silhouettes: { readonly monsters: number; readonly usable: number; readonly rejected: readonly string[] };
   readonly imageBytesProject: number;
 }
 
@@ -65,9 +67,19 @@ export function renderTodoSection(input: TodoInput): string {
   lines.push(
     '### Silueta',
     '',
-    'Ninguna ilustración de carta sirve para Silueta: todas son un cuadro con fondo, sin canal alfa (`imagenTransparente: 0`). Cuando se arme el modo Silueta de Yu-Gi-Oh (sesión 13) va a quedar oculto por pool, igual que en Naruto, hasta que haya una forma de recortar los fondos (requiere una dependencia nueva, así que hay que decidirlo).',
+    `Las ilustraciones de las cartas son un cuadro con fondo, así que la silueta de cada monstruo se recorta con BiRefNet_lite (un modelo de segmentación con licencia MIT que corre en local con onnxruntime-node; el modelo, de 224 MB, se baja una sola vez a \`.cache/models/\`). ${input.silhouettes.usable} de ${input.silhouettes.monsters} monstruos tienen silueta. Las magias y trampas no tienen: Silueta usa solo monstruos.`,
+    '',
+    'Un recorte se descarta si el monstruo ocupa muy poco o casi toda la imagen, o si el modelo recortó también cosas del fondo (mucha parte del recorte en piezas sueltas). Los umbrales están en `scripts/data/yugioh/silhouette.ts`; las medidas de cada monstruo, en `data/yugioh/silhouettes.json`. Para reintentar uno, borrá su entrada de ese archivo y corré `npm run data:yugioh`.',
     '',
   );
+  if (input.silhouettes.rejected.length > 0) {
+    lines.push(
+      `Sin silueta por recorte descartado (${input.silhouettes.rejected.length}); siguen jugando en los demás modos de carta:`,
+      '',
+      input.silhouettes.rejected.join(', '),
+      '',
+    );
+  }
 
   lines.push('### Cartas sin texto en español', '');
   if (input.withoutSpanish.length === 0) {

@@ -21,12 +21,13 @@
 // Las respuestas de las APIs quedan en .cache/ (ignorada por git); la salida es determinista.
 // Si algo no cumple (esquema, referencias, fuentes, imágenes), falla sin escribir los JSON.
 
-import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { z } from 'zod';
 import type { Content, Entity } from '../../../src/engine/types.ts';
 import { ROOT, mapPool } from './api.ts';
 import {
+  SIZES,
   imageDimensions,
   imageFileName,
   readManualImage,
@@ -36,6 +37,7 @@ import {
   type Rendered,
 } from './images.ts';
 import { printReport } from './report.ts';
+import { cleanCutout, isUsable, loadSegmenter, measureCutout, renderSilhouette, type Segmenter } from './silhouette.ts';
 import {
   SERIES,
   contentSchema,
@@ -44,9 +46,11 @@ import {
   duelistSrcSchema,
   seriesOutputSchema,
   signatureCardsSrcSchema,
+  silhouetteRecordsSchema,
   summonSrcSchema,
   translationsSchema,
   type DuelistSrc,
+  type SilhouetteRecord,
   type SeriesId,
   type SignatureCardsSrc,
   type SummonSrc,
@@ -72,6 +76,7 @@ import {
   buildCardTextContents,
   buildDeckContents,
   buildDuelistEntity,
+  buildSilhouetteContents,
   buildSummonContents,
   evidenceOf,
   isMonster,
@@ -98,6 +103,9 @@ const IMAGE_DIR = path.join(IMG_ROOT, 'yugioh');
 const DUELIST_IMAGE_DIR = path.join(IMAGE_DIR, 'duelists');
 const CARD_IMAGE_DIR = path.join(IMAGE_DIR, 'cards');
 const FACE_IMAGE_DIR = path.join(IMAGE_DIR, 'cards-full');
+const SILHOUETTE_DIR = path.join(IMAGE_DIR, 'silhouettes');
+const SILHOUETTE_CACHE = path.join(ROOT, '.cache', 'yugioh', 'silhouettes');
+const SILHOUETTES_FILE = path.join(DATA_DIR, 'silhouettes.json');
 const TODO_FILE = path.join(ROOT, 'docs', 'CONTENT_TODO.md');
 const REVIEW_FILE = path.join(ROOT, 'docs', 'REVISION_YUGIOH.md');
 
@@ -318,6 +326,72 @@ async function duelistImage(src: DuelistSrc, facts: DuelistFacts): Promise<Dueli
   return { rendered: result.rendered, source: 'yugipedia', transparent: result.transparent };
 }
 
+// --- Siluetas -------------------------------------------------------------------
+
+const round3 = (value: number) => Math.round(value * 1000) / 1000;
+const byId = (a: { id: string }, b: { id: string }) => (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+const exists = (file: string) => stat(file).then(() => true, () => false);
+
+async function readSilhouetteRecords(): Promise<Map<string, SilhouetteRecord>> {
+  try {
+    const parsed = silhouetteRecordsSchema.parse(JSON.parse(await readFile(SILHOUETTES_FILE, 'utf8')));
+    return new Map(parsed.monsters.map((record) => [record.id, record]));
+  } catch {
+    return new Map();
+  }
+}
+
+/**
+ * La silueta de cada monstruo: su ilustración sin el fondo, en WebP con transparencia. Un monstruo con decisión previa
+ * en data/yugioh/silhouettes.json (y sus archivos, si sirvió) no se vuelve a procesar. Si hay alguno por procesar, el
+ * recorte sale de la caché o del modelo (que se carga y se baja recién ahí). Los archivos de monstruos cuyo recorte ya
+ * no sirve se borran: public/img/yugioh/silhouettes/ tiene solo lo que usa el sitio.
+ */
+async function silhouettes(monsters: ReadonlyArray<{ id: string; api: YgoprodeckCard }>): Promise<{ records: SilhouetteRecord[]; rendered: Rendered[] }> {
+  const previous = await readSilhouetteRecords();
+  const hasFiles = async (id: string) => (await Promise.all(SIZES.map((size) => exists(path.join(SILHOUETTE_DIR, imageFileName(id, size)))))).every(Boolean);
+  const records = new Map<string, SilhouetteRecord>();
+  const pending: Array<(typeof monsters)[number]> = [];
+  for (const monster of monsters) {
+    const record = previous.get(monster.id);
+    // Una decisión sirve si sigue siendo la que dan los umbrales de hoy (si se ajustaron, se vuelve a decidir con el recorte en caché).
+    if (record !== undefined && record.usable === isUsable(record) && (!record.usable || (await hasFiles(monster.id)))) records.set(monster.id, record);
+    else pending.push(monster);
+  }
+
+  const rendered: Rendered[] = [];
+  if (pending.length > 0) {
+    step(`Siluetas: ${pending.length} monstruos por recortar (cerca de 4 s cada uno; el modelo BiRefNet_lite, de 224 MB, se baja una sola vez)…`);
+    let segment: Segmenter | null = null;
+    for (const [index, monster] of pending.entries()) {
+      const cacheFile = path.join(SILHOUETTE_CACHE, `${monster.id}.png`);
+      let png: Buffer | null = await readFile(cacheFile).catch(() => null);
+      if (png === null) {
+        segment ??= await loadSegmenter();
+        png = await segment(await fetchCardImage(monster.api, 'art'));
+        await mkdir(SILHOUETTE_CACHE, { recursive: true });
+        await writeFile(cacheFile, png);
+      }
+      // La caché guarda lo que dio el modelo; la limpieza se aplica siempre, así ajustarla no obliga a volver a correrlo.
+      png = await cleanCutout(png);
+      const measured = await measureCutout(png);
+      // Se decide con las medidas redondeadas, que son las que quedan guardadas: así la decisión siempre se puede volver a comprobar.
+      const metrics = { coverage: round3(measured.coverage), connected: round3(measured.connected) };
+      const usable = isUsable(metrics);
+      if (usable) rendered.push(...(await renderSilhouette(monster.id, png, SILHOUETTE_DIR)));
+      records.set(monster.id, { id: monster.id, ...metrics, usable });
+      if ((index + 1) % 25 === 0) step(`  ${index + 1} de ${pending.length}`);
+    }
+  }
+
+  const keep = new Set([...records.values()].filter((record) => record.usable).map((record) => record.id));
+  for (const file of await readdir(SILHOUETTE_DIR).catch(() => [])) {
+    const id = file.replace(/-(256|512)\.webp$/, '');
+    if (!keep.has(id)) await rm(path.join(SILHOUETTE_DIR, file));
+  }
+  return { records: [...records.values()].sort(byId), rendered };
+}
+
 // --- 4. Escritura ----------------------------------------------------------------
 
 async function writeJson(file: string, value: unknown): Promise<void> {
@@ -471,6 +545,18 @@ async function main(): Promise<void> {
     const buffer = await fetchCardImage((cards.get(name) as CardFacts).api, 'art');
     return renderCardArt(cardId.get(name) as string, buffer, CARD_IMAGE_DIR);
   });
+  step('Siluetas de los monstruos…');
+  const silhouetteResult = await silhouettes(
+    cardNames.flatMap((name) => {
+      const api = (cards.get(name) as CardFacts).api;
+      return isMonster(api) ? [{ id: cardId.get(name) as string, api }] : [];
+    }),
+  );
+  for (const record of silhouetteResult.records) {
+    if (!record.usable) continue;
+    const entity = cardEntities.find((candidate) => candidate.id === record.id) as Entity;
+    contents.push(...buildSilhouetteContents(entity.id, entity.series as SeriesId[], `yugioh/silhouettes/${entity.id}`));
+  }
   const aceCards = src.signature.map((entry) => ({ duelist: entry.duelist, name: (entry.cards.find((card) => card.ace === true) as { name: string }).name }));
   step('Cartas as enteras…');
   const faces = await mapPool(aceCards, IMAGE_TASKS, async (ace) => {
@@ -513,6 +599,8 @@ async function main(): Promise<void> {
   await writeJson(path.join(DATA_DIR, 'entities.json'), duelistEntities);
   await writeJson(path.join(DATA_DIR, 'cards.json'), cardEntities);
   await writeJson(path.join(DATA_DIR, 'content.json'), contents);
+  validate('Las siluetas', silhouetteRecordsSchema, [{ monsters: silhouetteResult.records }], () => 'silhouettes.json');
+  await writeJson(SILHOUETTES_FILE, { monsters: silhouetteResult.records });
   const seriesOutput = { series: SERIES.map((id, index) => ({ id, order: index + 1, label: translations.series[id] })) };
   validate('El orden de series', seriesOutputSchema, [seriesOutput], () => 'series.json');
   await writeJson(path.join(DATA_DIR, 'series.json'), seriesOutput);
@@ -540,6 +628,11 @@ async function main(): Promise<void> {
         duelists: src.duelists.filter((duelist) => !duelist.verified).length,
         cards: src.signature.filter((entry) => !entry.verified).length,
         summons: src.summons.filter((summon) => !summon.verified).length,
+      },
+      silhouettes: {
+        monsters: silhouetteResult.records.length,
+        usable: silhouetteResult.records.filter((record) => record.usable).length,
+        rejected: silhouetteResult.records.filter((record) => !record.usable).map((record) => record.id),
       },
       imageBytesProject,
     }),
@@ -581,7 +674,9 @@ async function main(): Promise<void> {
       duelists: duelistImages.flatMap((image) => image?.rendered ?? []),
       art: art.flat(),
       faces: faces.flatMap((face) => face.rendered),
+      silhouettes: silhouetteResult.rendered,
     },
+    silhouettes: { monsters: silhouetteResult.records.length, usable: silhouetteResult.records.filter((record) => record.usable).length },
     images: { fromYugipedia, manual, missing: missingImages.length },
     unverified: {
       duelists: src.duelists.filter((duelist) => !duelist.verified).length,

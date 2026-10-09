@@ -17,7 +17,8 @@ export interface ReportInput {
   readonly summonCandidates: number;
   readonly withoutSpanish: string[];
   readonly weakEvidence: number;
-  readonly rendered: { duelists: Rendered[]; art: Rendered[]; faces: Rendered[] };
+  readonly rendered: { duelists: Rendered[]; art: Rendered[]; faces: Rendered[]; silhouettes: Rendered[] };
+  readonly silhouettes: { readonly monsters: number; readonly usable: number };
   readonly images: { fromYugipedia: number; manual: number; missing: number };
   readonly unverified: { duelists: number; cards: number; summons: number };
   readonly imageBytesYugioh: number;
@@ -68,6 +69,7 @@ export function printReport(input: ReportInput): void {
   const summons = of('summon');
   line(`  Invocaciones (summon)           ${pad(summons.length, 4)}   (monstruos con materiales cargados: ${new Set(summons.map((content) => content.entityId)).size})`);
   line(`  Carta as entera (ace-card)      ${pad(of('ace-card').length, 4)}`);
+  line(`  Silueta del monstruo (silhouette) ${pad(of('silhouette').length, 2)}   (${input.silhouettes.usable} de ${input.silhouettes.monsters} monstruos tienen recorte que sirve)`);
 
   line();
   line(`Sin verificar: ${input.unverified.duelists} de ${input.duelists.length} duelistas, ${input.unverified.cards} listas de cartas, ${input.unverified.summons} invocaciones.`);
@@ -80,12 +82,13 @@ export function printReport(input: ReportInput): void {
   line(`Respaldo en Yugipedia: todas las cartas aparecen en las páginas de su duelista; ${input.weakEvidence} solo mencionadas (no en una lista de deck).`);
 
   line();
-  line('Pools mínimos con todas las series (clásico 20, resto 10):');
+  line('Pools mínimos con todas las series (10 en todos los modos):');
   const verifiedPool = (kind: string) => new Set(of(kind).map((content) => content.entityId)).size;
   line(`  Duelista (Clásico)   ${pad(input.duelists.length, 4)}`);
   line(`  Carta (Clásico)      ${pad(input.cards.length, 4)}`);
   line(`  Texto                ${pad(verifiedPool('card-text'), 4)} cartas con texto`);
   line(`  Arte / Zoom          ${pad(input.cards.length, 4)} cartas con ilustración`);
+  line(`  Silueta              ${pad(input.silhouettes.usable, 4)} monstruos con recorte`);
   line(`  Carta insignia       ${pad(verifiedPool('ace-card'), 4)} duelistas con su carta as`);
   line(`  Deck                 ${pad(verifiedPool('deck'), 4)} duelistas`);
   line(`  Invocación           ${pad(verifiedPool('summon'), 4)} monstruos (de ${input.summonCandidates} fusión/sincro/xyz/ritual del pool)`);
@@ -96,7 +99,8 @@ export function printReport(input: ReportInput): void {
   const total =
     printImages(line, 'duelistas   ', input.rendered.duelists) +
     printImages(line, 'ilustración ', input.rendered.art) +
-    printImages(line, 'carta as    ', input.rendered.faces);
+    printImages(line, 'carta as    ', input.rendered.faces) +
+    printImages(line, 'silueta     ', input.rendered.silhouettes);
   line(`  Peso generado en esta corrida: ${mb(total)}`);
   line(`  Peso de public/img/yugioh: ${mb(input.imageBytesYugioh)}`);
   const limit = 200 * 1024 * 1024;

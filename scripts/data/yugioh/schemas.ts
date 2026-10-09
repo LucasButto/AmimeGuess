@@ -232,7 +232,30 @@ const aceCardSchema = z
   })
   .strict();
 
-export const contentSchema = z.discriminatedUnion('kind', [cardTextSchema, deckSchema, summonSchema, aceCardSchema]);
+/** El monstruo de una carta recortado del fondo de su ilustración (WebP con transparencia): la imagen de Silueta. La respuesta es la carta. */
+const silhouetteSchema = z
+  .object({
+    ...contentBase,
+    kind: z.literal('silhouette'),
+    entityId: kebab,
+    payload: z.object({ image: z.string().regex(/^yugioh\/silhouettes\/[a-z0-9]+(-[a-z0-9]+)*$/) }).strict(),
+  })
+  .strict();
+
+export const contentSchema = z.discriminatedUnion('kind', [cardTextSchema, deckSchema, summonSchema, aceCardSchema, silhouetteSchema]);
+
+/**
+ * data/yugioh/silhouettes.json: de cada monstruo, cuánto ocupa y cuán de una pieza es su recorte, y si sirvió para
+ * Silueta. Es lo que evita volver a correr el modelo con cada corrida del script.
+ */
+export const silhouetteRecordsSchema = z
+  .object({
+    monsters: z.array(
+      z.object({ id: kebab, coverage: z.number().min(0).max(1), connected: z.number().min(0).max(1), usable: z.boolean() }).strict(),
+    ),
+  })
+  .strict();
+export type SilhouetteRecord = z.infer<typeof silhouetteRecordsSchema>['monsters'][number];
 
 export const seriesOutputSchema = z
   .object({ series: z.array(z.object({ id: seriesId, order: z.number().int().positive(), label: z.string().min(1) }).strict()) })

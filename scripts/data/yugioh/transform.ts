@@ -326,6 +326,11 @@ export function buildAceCardContents(
   }));
 }
 
+/** La silueta de un monstruo: una imagen cuadrada de 512 px (lo que el motor supone si el contenido no trae medidas). Un contenido por serie de la carta. */
+export function buildSilhouetteContents(cardId: string, series: readonly SeriesId[], image: string): Content[] {
+  return perSeries('silhouette', cardId, series, () => ({ kind: 'silhouette', entityId: cardId, payload: { image }, verified: false }));
+}
+
 // --- Materiales de una invocación -----------------------------------------------
 
 /**
