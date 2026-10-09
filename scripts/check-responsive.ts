@@ -187,9 +187,9 @@ async function imageFitsWithField(page: Page): Promise<string[]> {
  * contenido propio porque no tienen contenido de ese tipo: fallos seguros para sembrar una partida a
  * medias, sea cual sea el día.
  */
-function neverAnswers(contentKind: string, count: number, franchise = 'pokemon'): string[] {
+function neverAnswers(contentKind: string, count: number, franchise = 'pokemon', entitiesFile = 'entities.json'): string[] {
   const read = (file: string) => JSON.parse(readFileSync(path.join(ROOT, 'data', franchise, file), 'utf8')) as unknown[];
-  const entities = read('entities.json') as Array<{ id: string }>;
+  const entities = read(entitiesFile) as Array<{ id: string }>;
   const contents = read('content.json') as Array<{ kind: string; entityId?: string }>;
   const withContent = new Set(contents.filter((content) => content.kind === contentKind).map((content) => content.entityId));
   return entities.filter((entity) => !withContent.has(entity.id)).slice(0, count).map((entity) => entity.id);
@@ -511,6 +511,28 @@ async function connectionsFinish(page: Page): Promise<string[]> {
   return problems;
 }
 
+// --- Sesión 13: Yu-Gi-Oh -----------------------------------------------------------------------
+
+/** Seis duelistas (uno de cada época) para probar la tabla llena del Clásico Duelista. */
+const YUGIOH_SIX_DUELISTS = ['yugi-muto', 'seto-kaiba', 'jaden-yuki', 'chazz-princeton', 'yusei-fudo', 'jack-atlas'];
+
+/** Seis cartas para probar la tabla de 8 columnas del Clásico Carta (con clases, atributos y dueños distintos). */
+const YUGIOH_SIX_CARDS = ['dark-magician', 'blue-eyes-white-dragon', 'red-eyes-black-dragon', 'stardust-dragon', 'elemental-hero-sparkman', 'cyber-dragon'];
+
+/** Sin GX: las cartas de Chazz y de los demás duelistas de GX no aparecen, y sus dueños se ocultan en la tabla. */
+const WITHOUT_GX = 'dm.5ds';
+
+/**
+ * Los primeros `count` ids de un archivo de entidades, para sembrar fallos en un modo donde cualquiera puede ser la
+ * respuesta (todos los duelistas tienen deck y carta as; todas las cartas, ilustración). Con 628 cartas casi seguro que
+ * ninguno es la respuesta de hoy; con 45 duelistas, no tanto (3 de 45), así que esas rutas no llevan comprobación propia:
+ * si la partida se ganara, solo cambiaría la captura.
+ */
+function someIds(franchise: string, entitiesFile: string, count: number): string[] {
+  const entities = JSON.parse(readFileSync(path.join(ROOT, 'data', franchise, entitiesFile), 'utf8')) as Array<{ id: string }>;
+  return entities.slice(0, count).map((entity) => entity.id);
+}
+
 /** Los modos de Pokémon que usan el motor de pista de texto (sesión 06) y el tipo de contenido de cada uno. */
 const TEXT_MODES = [
   { slug: 'descripcion', contentKind: 'dex' },
@@ -731,6 +753,89 @@ const ROUTES: RouteCheck[] = [
   { name: 'naruto-conexiones-solo-naruto', path: '/naruto/conexiones?s=naruto', ready: GAME_READY, check: connectionsLayout },
   // Solo Boruto: no hay un grupo de cada dificultad, no alcanza el pool mínimo.
   { name: 'naruto-conexiones-sin-pool', path: '/naruto/conexiones?s=boruto', check: showsPoolWarning },
+  // Sesión 13: los 10 modos de Yu-Gi-Oh. Duelista, el principal, va primero; con una sola serie (14 a 16 duelistas)
+  // también se puede jugar.
+  { name: 'yugioh', path: '/yugioh' },
+  { name: 'yugioh-duelista', path: '/yugioh/duelista', ready: GAME_READY },
+  {
+    // 6 columnas, con la serie de debut con el nombre de cada serie.
+    name: 'yugioh-duelista-6-intentos',
+    path: '/yugioh/duelista',
+    ready: GAME_READY,
+    storage: seededGame('all', YUGIOH_SIX_DUELISTS, 'duelista', 'yugioh'),
+  },
+  { name: 'yugioh-duelista-solo-5ds', path: '/yugioh/duelista?s=5ds', ready: GAME_READY },
+  { name: 'yugioh-carta', path: '/yugioh/carta', ready: GAME_READY },
+  {
+    // 8 columnas: la tabla más ancha del sitio.
+    name: 'yugioh-carta-6-intentos',
+    path: '/yugioh/carta',
+    ready: GAME_READY,
+    storage: seededGame('all', YUGIOH_SIX_CARDS, 'carta', 'yugioh'),
+  },
+  {
+    // Sin GX: los dueños de GX y su serie se ocultan en las celdas de Duelista y Serie.
+    name: 'yugioh-carta-sin-gx',
+    path: `/yugioh/carta?s=${WITHOUT_GX}`,
+    ready: GAME_READY,
+    storage: seededGame(WITHOUT_GX, YUGIOH_SIX_CARDS, 'carta', 'yugioh'),
+  },
+  // Silueta: el monstruo recortado del fondo, en negro; con fallos se va aclarando. Tres cartas sin silueta (magias o
+  // trampas, o un recorte descartado) que nunca son la respuesta.
+  { name: 'yugioh-silueta', path: '/yugioh/silueta', ready: GAME_READY, check: imageFitsWithField },
+  {
+    name: 'yugioh-silueta-3-fallos',
+    path: '/yugioh/silueta',
+    ready: GAME_READY,
+    storage: seededGame('all', neverAnswers('silhouette', 3, 'yugioh', 'cards.json'), 'silueta', 'yugioh'),
+    check: imageFitsWithField,
+  },
+  { name: 'yugioh-texto', path: '/yugioh/texto', ready: GAME_READY },
+  {
+    // Con 6 fallos ya se desbloquearon todas las pistas: seis cartas sin texto en español, que nunca son la respuesta.
+    name: 'yugioh-texto-6-fallos',
+    path: '/yugioh/texto',
+    ready: GAME_READY,
+    storage: seededGame('all', neverAnswers('card-text', 6, 'yugioh', 'cards.json'), 'texto', 'yugioh'),
+  },
+  ...(['arte', 'zoom'] as const).flatMap((slug) => [
+    { name: `yugioh-${slug}`, path: `/yugioh/${slug}`, ready: GAME_READY, check: imageFitsWithField },
+    {
+      name: `yugioh-${slug}-3-fallos`,
+      path: `/yugioh/${slug}`,
+      ready: GAME_READY,
+      storage: seededGame('all', someIds('yugioh', 'cards.json', 3), slug, 'yugioh'),
+      check: imageFitsWithField,
+    },
+  ]),
+  // La imagen es la carta entera (351 × 512, más alta que ancha) y la respuesta, un duelista.
+  { name: 'yugioh-carta-insignia', path: '/yugioh/carta-insignia', ready: GAME_READY, check: imageFitsWithField },
+  {
+    name: 'yugioh-carta-insignia-3-fallos',
+    path: '/yugioh/carta-insignia',
+    ready: GAME_READY,
+    storage: seededGame('all', someIds('yugioh', 'entities.json', 3), 'carta-insignia', 'yugioh'),
+  },
+  { name: 'yugioh-mayor-o-menor', path: '/yugioh/mayor-o-menor', ready: GAME_READY, check: optionsLayout },
+  { name: 'yugioh-mayor-o-menor-elegida-1', path: '/yugioh/mayor-o-menor', ready: GAME_READY, check: afterPicking(0) },
+  { name: 'yugioh-mayor-o-menor-elegida-2', path: '/yugioh/mayor-o-menor', ready: GAME_READY, check: afterPicking(1) },
+  { name: 'yugioh-invocacion', path: '/yugioh/invocacion', ready: GAME_READY },
+  {
+    // Con 3 fallos ya se ven 4 materiales: tres cartas sin invocación, que nunca son la respuesta.
+    name: 'yugioh-invocacion-3-fallos',
+    path: '/yugioh/invocacion',
+    ready: GAME_READY,
+    storage: seededGame('all', neverAnswers('summon', 3, 'yugioh', 'cards.json'), 'invocacion', 'yugioh'),
+  },
+  // Ninguna invocación es de 5D's: con solo esa serie el modo no alcanza el pool mínimo.
+  { name: 'yugioh-invocacion-sin-pool', path: '/yugioh/invocacion?s=5ds', check: showsPoolWarning },
+  { name: 'yugioh-deck', path: '/yugioh/deck', ready: GAME_READY },
+  {
+    name: 'yugioh-deck-3-fallos',
+    path: '/yugioh/deck',
+    ready: GAME_READY,
+    storage: seededGame('all', someIds('yugioh', 'entities.json', 3), 'deck', 'yugioh'),
+  },
   // Movimiento insignia con solo g3 (6 posibles): no alcanza el mínimo. Descripción ya no tiene una combinación sin pool
   // desde que las de g8 y g9 vienen de WikiDex (con solo g9 hay 120), así que el aviso se prueba con este modo y con Transformación.
   { name: 'pokemon-movimiento-insignia-sin-pool', path: '/pokemon/movimiento-insignia?s=g3', check: showsPoolWarning },
