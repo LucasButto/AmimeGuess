@@ -1,0 +1,42 @@
+{
+  "verified": false,
+  "gender": {"Male": "Masculino", "Female": "Femenino"},
+  "series": {"dm": "Duel Monsters", "gx": "GX", "5ds": "5D's", "zexal": "ZEXAL", "arcv": "ARC-V", "vrains": "VRAINS"},
+  "summoning": {"normal": "Normal", "fusion": "Fusión", "ritual": "Ritual", "synchro": "Sincro", "xyz": "Xyz", "pendulum": "Péndulo", "link": "Enlace"},
+  "cardType": {
+    "Normal Monster": {"class": "Monstruo Normal", "summoning": "normal"},
+    "Normal Tuner Monster": {"class": "Monstruo Normal", "summoning": "normal"},
+    "Effect Monster": {"class": "Monstruo de Efecto", "summoning": "normal"},
+    "Tuner Monster": {"class": "Monstruo de Efecto", "summoning": "normal"},
+    "Flip Effect Monster": {"class": "Monstruo de Efecto", "summoning": "normal"},
+    "Flip Tuner Effect Monster": {"class": "Monstruo de Efecto", "summoning": "normal"},
+    "Spirit Monster": {"class": "Monstruo de Efecto", "summoning": "normal"},
+    "Union Effect Monster": {"class": "Monstruo de Efecto", "summoning": "normal"},
+    "Gemini Monster": {"class": "Monstruo de Efecto", "summoning": "normal"},
+    "Toon Monster": {"class": "Monstruo de Efecto", "summoning": "normal"},
+    "Fusion Monster": {"class": "Monstruo de Fusión", "summoning": "fusion"},
+    "Synchro Monster": {"class": "Monstruo Sincro", "summoning": "synchro"},
+    "Synchro Tuner Monster": {"class": "Monstruo Sincro", "summoning": "synchro"},
+    "XYZ Monster": {"class": "Monstruo Xyz", "summoning": "xyz"},
+    "Link Monster": {"class": "Monstruo Link", "summoning": "link"},
+    "Ritual Monster": {"class": "Monstruo de Ritual", "summoning": "ritual"},
+    "Ritual Effect Monster": {"class": "Monstruo de Ritual", "summoning": "ritual"},
+    "Pendulum Effect Monster": {"class": "Monstruo Péndulo", "summoning": "pendulum"},
+    "Pendulum Normal Monster": {"class": "Monstruo Péndulo", "summoning": "pendulum"},
+    "Spell Card": {"class": "Carta Mágica"},
+    "Trap Card": {"class": "Carta de Trampa"}
+  },
+  "attribute": {
+    "DARK": "OSCURIDAD", "LIGHT": "LUZ", "EARTH": "TIERRA", "WATER": "AGUA", "FIRE": "FUEGO", "WIND": "VIENTO", "DIVINE": "DIVINO"
+  },
+  "spellTrapAttribute": {"Spell Card": "MÁGICA", "Trap Card": "TRAMPA"},
+  "monsterType": {
+    "Aqua": "Aqua", "Beast": "Bestia", "Beast-Warrior": "Bestia Guerrera", "Creator-God": "Dios Creador", "Cyberse": "Cibérsico", "Dinosaur": "Dinosaurio",
+    "Divine-Beast": "Bestia Divina", "Dragon": "Dragón", "Fairy": "Hada", "Fiend": "Demonio", "Fish": "Pez", "Illusion": "Ilusión", "Insect": "Insecto",
+    "Machine": "Máquina", "Plant": "Planta", "Psychic": "Psíquico", "Pyro": "Piro", "Reptile": "Reptil", "Rock": "Roca", "Sea Serpent": "Serpiente Marina",
+    "Spellcaster": "Lanzador de Conjuros", "Thunder": "Trueno", "Warrior": "Guerrero", "Winged Beast": "Bestia Alada", "Wyrm": "Wyrm", "Zombie": "Zombi"
+  },
+  "spellTrapType": {
+    "Normal": "Normal", "Continuous": "Continua", "Equip": "Equipo", "Quick-Play": "Juego Rápido", "Field": "Campo", "Ritual": "Ritual", "Counter": "Contraefecto"
+  }
+}
