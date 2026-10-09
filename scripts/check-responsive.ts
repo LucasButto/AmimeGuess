@@ -541,9 +541,9 @@ const ROUTES: RouteCheck[] = [
   { name: 'dragon-ball-linea-de-tiempo-arrastrar', path: '/dragon-ball/linea-de-tiempo', check: timelineDrag },
   { name: 'dragon-ball-linea-de-tiempo-confirmado', path: '/dragon-ball/linea-de-tiempo', check: timelineConfirm },
   { name: 'dragon-ball-linea-de-tiempo-terminado', path: '/dragon-ball/linea-de-tiempo', check: timelineFinish },
-  // Movimiento insignia con solo g3 (6 posibles) y Descripción con solo g9 (ninguna): no alcanzan el mínimo.
+  // Movimiento insignia con solo g3 (6 posibles): no alcanza el mínimo. Descripción ya no tiene una combinación sin pool
+  // desde que las de g8 y g9 vienen de WikiDex (con solo g9 hay 120), así que el aviso se prueba con este modo y con Transformación.
   { name: 'pokemon-movimiento-insignia-sin-pool', path: '/pokemon/movimiento-insignia?s=g3', check: showsPoolWarning },
-  { name: 'pokemon-descripcion-sin-pool', path: '/pokemon/descripcion?s=g9', check: showsPoolWarning },
 ];
 
 /** Tamaño mínimo de lo que se toca (SPEC 9.1, "Móvil"). */
