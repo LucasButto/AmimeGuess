@@ -37,6 +37,13 @@ const loaders: Record<string, () => Promise<FranchiseData>> = {
       entitySets: { transformations: transformations.default as Entity[] },
     };
   },
+  naruto: async () => {
+    const [entities, contents] = await Promise.all([
+      import('../../data/naruto/entities.json'),
+      import('../../data/naruto/content.json'),
+    ]);
+    return { entities: entities.default as Entity[], contents: publishableContents(contents.default as Content[]) };
+  },
 };
 
 /** ¿Hay datos generados para esta franquicia? Las que aún no, muestran "Próximamente". */
