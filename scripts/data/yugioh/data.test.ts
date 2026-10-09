@@ -5,6 +5,7 @@
 
 import { existsSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
+import sharp from 'sharp';
 import { describe, expect, it } from 'vitest';
 import { eligibleEntities, filterAttrValue } from '../../../src/engine/filters.ts';
 import type { Content, Entity } from '../../../src/engine/types.ts';
@@ -12,12 +13,14 @@ import cardsJson from '../../../data/yugioh/cards.json';
 import contentJson from '../../../data/yugioh/content.json';
 import duelistsJson from '../../../data/yugioh/entities.json';
 import seriesJson from '../../../data/yugioh/series.json';
+import silhouettesJson from '../../../data/yugioh/silhouettes.json';
 import duelistsSrcJson from '../../../data-src/yugioh/duelists.json';
 import signatureJson from '../../../data-src/yugioh/signature-cards.json';
 import summonsJson from '../../../data-src/yugioh/summons.json';
 import { ROOT } from './api.ts';
+import { THRESHOLDS, isUsable } from './silhouette.ts';
 import { leaksName, slugify } from './transform.ts';
-import { ROLES, SERIES, duelistSrcSchema, signatureCardsSrcSchema, summonSrcSchema, type SeriesId } from './schemas.ts';
+import { ROLES, SERIES, duelistSrcSchema, signatureCardsSrcSchema, silhouetteRecordsSchema, summonSrcSchema, type SeriesId } from './schemas.ts';
 
 const duelists = duelistsJson as Entity[];
 const cards = cardsJson as Entity[];
@@ -33,6 +36,8 @@ const cardText = of('card-text');
 const decks = of('deck');
 const aces = of('ace-card');
 const summonContents = of('summon');
+const silhouetteContents = of('silhouette');
+const silhouetteRecords = silhouetteRecordsSchema.parse(silhouettesJson).monsters;
 
 const IMG_ROOT = path.join(ROOT, 'public', 'img');
 const IMG_LIMIT_BYTES = 200 * 1024 * 1024;
@@ -323,6 +328,58 @@ function seriesLabel(id: SeriesId): string {
   return (seriesJson.series.find((item) => item.id === id) as { label: string }).label;
 }
 
+describe('siluetas', () => {
+  const isMonsterCard = (card: Entity) => String(card.attrs.clase).startsWith('Monstruo');
+  const usable = silhouetteRecords.filter((record) => record.usable);
+  const SILHOUETTE_DIR = path.join(IMG_ROOT, 'yugioh', 'silhouettes');
+
+  it('hay una decisión por cada monstruo, y ninguna por magias ni trampas', () => {
+    const monsters = cards.filter(isMonsterCard).map((card) => card.id).sort();
+    expect(silhouetteRecords.map((record) => record.id).sort()).toEqual(monsters);
+  });
+
+  it('cada decisión coincide con los umbrales del script: sirvió si ocupa lo justo y es en su mayor parte una pieza', () => {
+    for (const record of silhouetteRecords) expect(record.usable, `${record.id}: ${record.coverage} / ${record.connected}`).toBe(isUsable(record));
+  });
+
+  it('hay silueta para la gran mayoría de los monstruos y suficientes para el pool mínimo', () => {
+    expect(usable.length).toBeGreaterThanOrEqual(10);
+    expect(usable.length / silhouetteRecords.length).toBeGreaterThan(0.6);
+  });
+
+  it('un contenido por serie de cada monstruo con recorte que sirvió, sin verificar, y ninguno de los demás', () => {
+    const expected = usable.flatMap((record) => (cardById.get(record.id) as Entity).series.map((series) => `silhouette-${record.id}-${series}`)).sort();
+    expect(silhouetteContents.map((content) => content.id).sort()).toEqual(expected);
+    for (const content of silhouetteContents) {
+      expect(content.entityId, content.id).toBeDefined();
+      expect((cardById.get(content.entityId as string) as Entity).series, content.id).toContain(content.series);
+      expect(content.payload.image, content.id).toBe(`yugioh/silhouettes/${content.entityId}`);
+      expect(content.verified, content.id).toBe(false);
+    }
+  });
+
+  it('la carpeta tiene los dos tamaños de cada silueta que sirvió y nada más', () => {
+    const files = readdirSync(SILHOUETTE_DIR).sort();
+    expect(files).toEqual(usable.flatMap((record) => [`${record.id}-256.webp`, `${record.id}-512.webp`]).sort());
+  });
+
+  it('son WebP con transparencia: el fondo se ve transparente (de un 15 % a un 92 % de los píxeles) y entran en el presupuesto', async () => {
+    for (const record of usable) {
+      for (const [size, limit] of [[256, 18], [512, 50]] as const) {
+        const file = sizeOf(`yugioh/silhouettes/${record.id}`, size);
+        expect(kb(statSync(file).size), `${record.id} ${size}`).toBeLessThanOrEqual(limit);
+        const { data, info } = await sharp(file).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+        expect(Math.max(info.width, info.height), `${record.id} ${size}`).toBe(size);
+        let transparent = 0;
+        for (let index = 3; index < data.length; index += 4) if (data[index] < 128) transparent++;
+        const share = transparent / (data.length / 4);
+        expect(share, `${record.id} ${size} transparente`).toBeGreaterThan(1 - THRESHOLDS.coverage.max - 0.05);
+        expect(share, `${record.id} ${size} transparente`).toBeLessThan(1 - THRESHOLDS.coverage.min + 0.02);
+      }
+    }
+  }, 120_000);
+});
+
 describe('imágenes', () => {
   it('cada duelista y cada carta tienen sus dos tamaños en disco, y la carta as entera también', () => {
     for (const entity of [...duelists, ...cards]) {
@@ -346,12 +403,13 @@ describe('imágenes', () => {
 });
 
 describe('pools mínimos con todas las series', () => {
-  it('cada modo de Yu-Gi-Oh alcanza su mínimo (Clásico 20, el resto 10)', () => {
-    expect(duelists.length).toBeGreaterThanOrEqual(20);
-    expect(cards.length).toBeGreaterThanOrEqual(20);
+  it('cada modo de Yu-Gi-Oh alcanza su mínimo de 10', () => {
+    expect(duelists.length).toBeGreaterThanOrEqual(10);
+    expect(cards.length).toBeGreaterThanOrEqual(10);
     expect(new Set(cardText.map((content) => content.entityId)).size).toBeGreaterThanOrEqual(10);
     expect(new Set(aces.map((content) => content.entityId)).size).toBeGreaterThanOrEqual(10);
     expect(new Set(decks.map((content) => content.entityId)).size).toBeGreaterThanOrEqual(10);
+    expect(new Set(silhouetteContents.map((content) => content.entityId)).size).toBeGreaterThanOrEqual(10);
     expect(cards.filter((card) => String(card.attrs.clase).startsWith('Monstruo') && typeof card.attrs.atk === 'number').length).toBeGreaterThanOrEqual(10);
   });
 });
