@@ -7,6 +7,7 @@ import { entitiesOfMode, loadFranchiseData, type FranchiseData } from '@/franchi
 import type { FranchiseConfig, ModeConfig } from '@/franchises/types';
 import { es } from '@/i18n/es';
 import { ClassicGame } from '@/modes/classic/ClassicGame';
+import { ConnectionsGame } from '@/modes/connections/ConnectionsGame';
 import { HigherLowerGame } from '@/modes/higher-lower/HigherLowerGame';
 import { ImageRevealGame } from '@/modes/image-reveal/ImageRevealGame';
 import { RevealListGame } from '@/modes/reveal-list/RevealListGame';
@@ -39,6 +40,7 @@ export function ModeGame({ franchise, mode, modes, playable }: ModeGameProps) {
   const revealList = mode.engine === 'reveal-list' ? mode.revealList : undefined;
   const higherLower = mode.engine === 'higher-lower' ? mode.higherLower : undefined;
   const timeline = mode.engine === 'timeline' ? mode.timeline : undefined;
+  const connections = mode.engine === 'connections' ? mode.connections : undefined;
   const [loaded, setLoaded] = useState<FranchiseData | 'error' | null>(null);
 
   useEffect(() => {
@@ -113,6 +115,19 @@ export function ModeGame({ franchise, mode, modes, playable }: ModeGameProps) {
 
   if (timeline) {
     return <TimelineGame franchise={franchise} mode={mode} modes={modes} config={timeline} contents={loaded.contents} />;
+  }
+
+  if (connections) {
+    return (
+      <ConnectionsGame
+        franchise={franchise}
+        mode={mode}
+        modes={modes}
+        config={connections}
+        entities={entities}
+        contents={loaded.contents}
+      />
+    );
   }
 
   if (textClue) {

@@ -1,4 +1,5 @@
 import { defaultMinPool, eligibleEntities } from '@/engine/filters';
+import { poolOf as connectionsPool } from '@/modes/connections/logic';
 import { candidatesOf as imageCandidates } from '@/modes/image-reveal/logic';
 import { poolOf as higherLowerPool } from '@/modes/higher-lower/logic';
 import { candidatesOf as listCandidates } from '@/modes/reveal-list/logic';
@@ -29,7 +30,7 @@ export function modePoolSize(mode: ModeConfig, data: FranchiseData, active: read
     case 'timeline':
       return mode.timeline === undefined ? null : timelinePool(data.contents, active, mode.timeline).length;
     case 'connections':
-      return null;
+      return mode.connections === undefined ? null : connectionsPool(entities, data.contents, active, mode.connections).length;
   }
 }
 

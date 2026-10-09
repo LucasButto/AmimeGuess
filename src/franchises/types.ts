@@ -1,4 +1,5 @@
 import type { ClassicConfig } from '../modes/classic/types';
+import type { ConnectionsConfig } from '../modes/connections/types';
 import type { HigherLowerConfig } from '../modes/higher-lower/types';
 import type { ImageRevealConfig } from '../modes/image-reveal/types';
 import type { RevealListConfig } from '../modes/reveal-list/types';
@@ -32,6 +33,8 @@ export interface ModeConfig {
   readonly higherLower?: HigherLowerConfig;
   /** Sucesos a ordenar, solo para los modos con motor `timeline`. */
   readonly timeline?: TimelineConfig;
+  /** Grupos a formar, solo para los modos con motor `connections`. */
+  readonly connections?: ConnectionsConfig;
   /**
    * De dónde salen las entidades que se adivinan y se ofrecen como opción: el
    * conjunto con este nombre de `FranchiseData.entitySets` (por ejemplo, las
