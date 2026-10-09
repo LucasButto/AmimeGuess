@@ -3859,5 +3859,2826 @@
       }
     },
     "verified": false
+  },
+  {
+    "id": "eye-naruto-uzumaki",
+    "kind": "eye",
+    "entityId": "naruto-uzumaki",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/naruto-uzumaki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.35,
+        "y": 0.41
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-sasuke-uchiha",
+    "kind": "eye",
+    "entityId": "sasuke-uchiha",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/sasuke-uchiha",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.38,
+        "y": 0.47
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-sakura-haruno",
+    "kind": "eye",
+    "entityId": "sakura-haruno",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/sakura-haruno",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.28,
+        "y": 0.42
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kakashi-hatake",
+    "kind": "eye",
+    "entityId": "kakashi-hatake",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/kakashi-hatake",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.41,
+        "y": 0.34
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-iruka-umino",
+    "kind": "eye",
+    "entityId": "iruka-umino",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/iruka-umino",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.43,
+        "y": 0.54
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-hiruzen-sarutobi",
+    "kind": "eye",
+    "entityId": "hiruzen-sarutobi",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/hiruzen-sarutobi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.42
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-konohamaru-sarutobi",
+    "kind": "eye",
+    "entityId": "konohamaru-sarutobi",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/konohamaru-sarutobi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.34
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-mizuki",
+    "kind": "eye",
+    "entityId": "mizuki",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/mizuki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.37,
+        "y": 0.46
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-hinata-hyuga",
+    "kind": "eye",
+    "entityId": "hinata-hyuga",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/hinata-hyuga",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.46,
+        "y": 0.38
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-shikamaru-nara",
+    "kind": "eye",
+    "entityId": "shikamaru-nara",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/shikamaru-nara",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.42,
+        "y": 0.35
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-ino-yamanaka",
+    "kind": "eye",
+    "entityId": "ino-yamanaka",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/ino-yamanaka",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.44,
+        "y": 0.46
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kiba-inuzuka",
+    "kind": "eye",
+    "entityId": "kiba-inuzuka",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/kiba-inuzuka",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.42,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-shino-aburame",
+    "kind": "eye",
+    "entityId": "shino-aburame",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/shino-aburame",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.43,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-neji-hyuga",
+    "kind": "eye",
+    "entityId": "neji-hyuga",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/neji-hyuga",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.47,
+        "y": 0.47
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-rock-lee",
+    "kind": "eye",
+    "entityId": "rock-lee",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/rock-lee",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.42,
+        "y": 0.42
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-tenten",
+    "kind": "eye",
+    "entityId": "tenten",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/tenten",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.43,
+        "y": 0.52
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-might-guy",
+    "kind": "eye",
+    "entityId": "might-guy",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/might-guy",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.37,
+        "y": 0.4
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-asuma-sarutobi",
+    "kind": "eye",
+    "entityId": "asuma-sarutobi",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/asuma-sarutobi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.44,
+        "y": 0.45
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kurenai-yuhi",
+    "kind": "eye",
+    "entityId": "kurenai-yuhi",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/kurenai-yuhi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.41,
+        "y": 0.36
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-anko-mitarashi",
+    "kind": "eye",
+    "entityId": "anko-mitarashi",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/anko-mitarashi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.37,
+        "y": 0.45
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-ibiki-morino",
+    "kind": "eye",
+    "entityId": "ibiki-morino",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/ibiki-morino",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.37,
+        "y": 0.45
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-genma-shiranui",
+    "kind": "eye",
+    "entityId": "genma-shiranui",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/genma-shiranui",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.46,
+        "y": 0.36
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-hayate-gekko",
+    "kind": "eye",
+    "entityId": "hayate-gekko",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/hayate-gekko",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.44,
+        "y": 0.42
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-shizune",
+    "kind": "eye",
+    "entityId": "shizune",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/shizune",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.44,
+        "y": 0.4
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-tsunade",
+    "kind": "eye",
+    "entityId": "tsunade",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/tsunade",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.39
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-jiraiya",
+    "kind": "eye",
+    "entityId": "jiraiya",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/jiraiya",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.42,
+        "y": 0.4
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-orochimaru",
+    "kind": "eye",
+    "entityId": "orochimaru",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/orochimaru",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.59,
+        "y": 0.38
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-minato-namikaze",
+    "kind": "eye",
+    "entityId": "minato-namikaze",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/minato-namikaze",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.45,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-fugaku-uchiha",
+    "kind": "eye",
+    "entityId": "fugaku-uchiha",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/fugaku-uchiha",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.44,
+        "y": 0.4
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-mikoto-uchiha",
+    "kind": "eye",
+    "entityId": "mikoto-uchiha",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/mikoto-uchiha",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.38,
+        "y": 0.32
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-itachi-uchiha",
+    "kind": "eye",
+    "entityId": "itachi-uchiha",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/itachi-uchiha",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.43,
+        "y": 0.45
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kisame-hoshigaki",
+    "kind": "eye",
+    "entityId": "kisame-hoshigaki",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/kisame-hoshigaki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.22,
+        "y": 0.51
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-hashirama-senju",
+    "kind": "eye",
+    "entityId": "hashirama-senju",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/hashirama-senju",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.55,
+        "y": 0.4
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-tobirama-senju",
+    "kind": "eye",
+    "entityId": "tobirama-senju",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/tobirama-senju",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.29
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-homura-mitokado",
+    "kind": "eye",
+    "entityId": "homura-mitokado",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/homura-mitokado",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.44,
+        "y": 0.48
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-koharu-utatane",
+    "kind": "eye",
+    "entityId": "koharu-utatane",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/koharu-utatane",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.6,
+        "y": 0.5
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-hanabi-hyuga",
+    "kind": "eye",
+    "entityId": "hanabi-hyuga",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/hanabi-hyuga",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.42,
+        "y": 0.49
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-hiashi-hyuga",
+    "kind": "eye",
+    "entityId": "hiashi-hyuga",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/hiashi-hyuga",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.47,
+        "y": 0.32
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-choza-akimichi",
+    "kind": "eye",
+    "entityId": "choza-akimichi",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/choza-akimichi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-inoichi-yamanaka",
+    "kind": "eye",
+    "entityId": "inoichi-yamanaka",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/inoichi-yamanaka",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.42,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-shikaku-nara",
+    "kind": "eye",
+    "entityId": "shikaku-nara",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/shikaku-nara",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.53,
+        "y": 0.36
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-tsume-inuzuka",
+    "kind": "eye",
+    "entityId": "tsume-inuzuka",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/tsume-inuzuka",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.33,
+        "y": 0.53
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-shibi-aburame",
+    "kind": "eye",
+    "entityId": "shibi-aburame",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/shibi-aburame",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.44,
+        "y": 0.45
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kabuto-yakushi",
+    "kind": "eye",
+    "entityId": "kabuto-yakushi",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/kabuto-yakushi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.43,
+        "y": 0.49
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-ebisu",
+    "kind": "eye",
+    "entityId": "ebisu",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/ebisu",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.37,
+        "y": 0.29
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-teuchi",
+    "kind": "eye",
+    "entityId": "teuchi",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/teuchi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.36,
+        "y": 0.42
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-tazuna",
+    "kind": "eye",
+    "entityId": "tazuna",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/tazuna",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.43,
+        "y": 0.5
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-zabuza-momochi",
+    "kind": "eye",
+    "entityId": "zabuza-momochi",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/zabuza-momochi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.49,
+        "y": 0.25
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-haku",
+    "kind": "eye",
+    "entityId": "haku",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/haku",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.32
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-gaara",
+    "kind": "eye",
+    "entityId": "gaara",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/gaara",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.35,
+        "y": 0.52
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kankuro",
+    "kind": "eye",
+    "entityId": "kankuro",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/kankuro",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.43,
+        "y": 0.44
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-temari",
+    "kind": "eye",
+    "entityId": "temari",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/temari",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.47,
+        "y": 0.32
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-rasa",
+    "kind": "eye",
+    "entityId": "rasa",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/rasa",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.37,
+        "y": 0.29
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-baki",
+    "kind": "eye",
+    "entityId": "baki",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/baki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.28,
+        "y": 0.42
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-dosu-kinuta",
+    "kind": "eye",
+    "entityId": "dosu-kinuta",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/dosu-kinuta",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.66,
+        "y": 0.4
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-zaku-abumi",
+    "kind": "eye",
+    "entityId": "zaku-abumi",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/zaku-abumi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.53,
+        "y": 0.45
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kin-tsuchi",
+    "kind": "eye",
+    "entityId": "kin-tsuchi",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/kin-tsuchi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.47,
+        "y": 0.3
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kimimaro",
+    "kind": "eye",
+    "entityId": "kimimaro",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/kimimaro",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.38,
+        "y": 0.34
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-tayuya",
+    "kind": "eye",
+    "entityId": "tayuya",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/tayuya",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.58,
+        "y": 0.44
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-jirobo",
+    "kind": "eye",
+    "entityId": "jirobo",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/jirobo",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.43,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kidomaru",
+    "kind": "eye",
+    "entityId": "kidomaru",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/kidomaru",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.56,
+        "y": 0.42
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-gamabunta",
+    "kind": "eye",
+    "entityId": "gamabunta",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/gamabunta",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.65,
+        "y": 0.39
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-pakkun",
+    "kind": "eye",
+    "entityId": "pakkun",
+    "series": "naruto",
+    "payload": {
+      "image": "naruto/pakkun",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.56,
+        "y": 0.44
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-sasori",
+    "kind": "eye",
+    "entityId": "sasori",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/sasori",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.26,
+        "y": 0.52
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-chiyo",
+    "kind": "eye",
+    "entityId": "chiyo",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/chiyo",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.38,
+        "y": 0.46
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-deidara",
+    "kind": "eye",
+    "entityId": "deidara",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/deidara",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.46,
+        "y": 0.46
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-hidan",
+    "kind": "eye",
+    "entityId": "hidan",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/hidan",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.55,
+        "y": 0.35
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kakuzu",
+    "kind": "eye",
+    "entityId": "kakuzu",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/kakuzu",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.47
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-obito-uchiha",
+    "kind": "eye",
+    "entityId": "obito-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/obito-uchiha",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.38,
+        "y": 0.45
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-rin-nohara",
+    "kind": "eye",
+    "entityId": "rin-nohara",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/rin-nohara",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.39,
+        "y": 0.45
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-madara-uchiha",
+    "kind": "eye",
+    "entityId": "madara-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/madara-uchiha",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.55,
+        "y": 0.36
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-danzo-shimura",
+    "kind": "eye",
+    "entityId": "danzo-shimura",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/danzo-shimura",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.59,
+        "y": 0.3
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-sai",
+    "kind": "eye",
+    "entityId": "sai",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/sai",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.52,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-yamato",
+    "kind": "eye",
+    "entityId": "yamato",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/yamato",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.39
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-shisui-uchiha",
+    "kind": "eye",
+    "entityId": "shisui-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/shisui-uchiha",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.37,
+        "y": 0.52
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kushina-uzumaki",
+    "kind": "eye",
+    "entityId": "kushina-uzumaki",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/kushina-uzumaki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.43,
+        "y": 0.37
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-konan",
+    "kind": "eye",
+    "entityId": "konan",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/konan",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.43,
+        "y": 0.46
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-yahiko",
+    "kind": "eye",
+    "entityId": "yahiko",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/yahiko",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.45,
+        "y": 0.41
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kaguya-otsutsuki",
+    "kind": "eye",
+    "entityId": "kaguya-otsutsuki",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/kaguya-otsutsuki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.42,
+        "y": 0.38
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-hagoromo-otsutsuki",
+    "kind": "eye",
+    "entityId": "hagoromo-otsutsuki",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/hagoromo-otsutsuki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.43,
+        "y": 0.51
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-hamura-otsutsuki",
+    "kind": "eye",
+    "entityId": "hamura-otsutsuki",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/hamura-otsutsuki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.38,
+        "y": 0.41
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-indra-otsutsuki",
+    "kind": "eye",
+    "entityId": "indra-otsutsuki",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/indra-otsutsuki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.56,
+        "y": 0.36
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-asura-otsutsuki",
+    "kind": "eye",
+    "entityId": "asura-otsutsuki",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/asura-otsutsuki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.55,
+        "y": 0.39
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-suigetsu-hozuki",
+    "kind": "eye",
+    "entityId": "suigetsu-hozuki",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/suigetsu-hozuki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.23,
+        "y": 0.48
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-karin",
+    "kind": "eye",
+    "entityId": "karin",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/karin",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.47
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-jugo",
+    "kind": "eye",
+    "entityId": "jugo",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/jugo",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.37,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-killer-bee",
+    "kind": "eye",
+    "entityId": "killer-bee",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/killer-bee",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.22,
+        "y": 0.39
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-yugito-nii",
+    "kind": "eye",
+    "entityId": "yugito-nii",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/yugito-nii",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.43,
+        "y": 0.47
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-roshi",
+    "kind": "eye",
+    "entityId": "roshi",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/roshi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.42,
+        "y": 0.42
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-han",
+    "kind": "eye",
+    "entityId": "han",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/han",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.48,
+        "y": 0.45
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-utakata",
+    "kind": "eye",
+    "entityId": "utakata",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/utakata",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.43,
+        "y": 0.33
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-fu",
+    "kind": "eye",
+    "entityId": "fu",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/fu",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.42,
+        "y": 0.44
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-yagura-karatachi",
+    "kind": "eye",
+    "entityId": "yagura-karatachi",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/yagura-karatachi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.37,
+        "y": 0.39
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-mei-terumi",
+    "kind": "eye",
+    "entityId": "mei-terumi",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/mei-terumi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.62,
+        "y": 0.39
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-onoki",
+    "kind": "eye",
+    "entityId": "onoki",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/onoki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.46,
+        "y": 0.38
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kurotsuchi",
+    "kind": "eye",
+    "entityId": "kurotsuchi",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/kurotsuchi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.35,
+        "y": 0.35
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-a-cuarto-raikage",
+    "kind": "eye",
+    "entityId": "a-cuarto-raikage",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/a-cuarto-raikage",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.5,
+        "y": 0.4
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-darui",
+    "kind": "eye",
+    "entityId": "darui",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/darui",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.59,
+        "y": 0.4
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-mu",
+    "kind": "eye",
+    "entityId": "mu",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/mu",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.32,
+        "y": 0.41
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-gengetsu-hozuki",
+    "kind": "eye",
+    "entityId": "gengetsu-hozuki",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/gengetsu-hozuki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.3,
+        "y": 0.45
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-hanzo",
+    "kind": "eye",
+    "entityId": "hanzo",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/hanzo",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-pakura",
+    "kind": "eye",
+    "entityId": "pakura",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/pakura",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.38,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-chojuro",
+    "kind": "eye",
+    "entityId": "chojuro",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/chojuro",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.37,
+        "y": 0.45
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-ameyuri-ringo",
+    "kind": "eye",
+    "entityId": "ameyuri-ringo",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/ameyuri-ringo",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.33,
+        "y": 0.37
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-fuguki-suikazan",
+    "kind": "eye",
+    "entityId": "fuguki-suikazan",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/fuguki-suikazan",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.43,
+        "y": 0.3
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-mangetsu-hozuki",
+    "kind": "eye",
+    "entityId": "mangetsu-hozuki",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/mangetsu-hozuki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.38,
+        "y": 0.35
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-gari",
+    "kind": "eye",
+    "entityId": "gari",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/gari",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.47,
+        "y": 0.38
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-karui",
+    "kind": "eye",
+    "entityId": "karui",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/karui",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.47,
+        "y": 0.46
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-samui",
+    "kind": "eye",
+    "entityId": "samui",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/samui",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.45,
+        "y": 0.4
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-omoi",
+    "kind": "eye",
+    "entityId": "omoi",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/omoi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.38,
+        "y": 0.36
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-akatsuchi",
+    "kind": "eye",
+    "entityId": "akatsuchi",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/akatsuchi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.47,
+        "y": 0.36
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kitsuchi",
+    "kind": "eye",
+    "entityId": "kitsuchi",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/kitsuchi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.45,
+        "y": 0.28
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-fukasaku",
+    "kind": "eye",
+    "entityId": "fukasaku",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/fukasaku",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.22,
+        "y": 0.44
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-shima",
+    "kind": "eye",
+    "entityId": "shima",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/shima",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.32,
+        "y": 0.5
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-mirai-sarutobi",
+    "kind": "eye",
+    "entityId": "mirai-sarutobi",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/mirai-sarutobi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.39,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kokuo",
+    "kind": "eye",
+    "entityId": "kokuo",
+    "series": "shippuden",
+    "payload": {
+      "image": "naruto/kokuo",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.16,
+        "y": 0.68
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-boruto-uzumaki",
+    "kind": "eye",
+    "entityId": "boruto-uzumaki",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/boruto-uzumaki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.44,
+        "y": 0.45
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-sarada-uchiha",
+    "kind": "eye",
+    "entityId": "sarada-uchiha",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/sarada-uchiha",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.39
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-mitsuki",
+    "kind": "eye",
+    "entityId": "mitsuki",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/mitsuki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.42,
+        "y": 0.39
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-himawari-uzumaki",
+    "kind": "eye",
+    "entityId": "himawari-uzumaki",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/himawari-uzumaki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.38,
+        "y": 0.5
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-shikadai-nara",
+    "kind": "eye",
+    "entityId": "shikadai-nara",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/shikadai-nara",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.39,
+        "y": 0.56
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-inojin-yamanaka",
+    "kind": "eye",
+    "entityId": "inojin-yamanaka",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/inojin-yamanaka",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.47,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-chocho-akimichi",
+    "kind": "eye",
+    "entityId": "chocho-akimichi",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/chocho-akimichi",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.41,
+        "y": 0.46
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-metal-lee",
+    "kind": "eye",
+    "entityId": "metal-lee",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/metal-lee",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.49
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-iwabee-yuino",
+    "kind": "eye",
+    "entityId": "iwabee-yuino",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/iwabee-yuino",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-denki-kaminarimon",
+    "kind": "eye",
+    "entityId": "denki-kaminarimon",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/denki-kaminarimon",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.45,
+        "y": 0.33
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-wasabi-izuno",
+    "kind": "eye",
+    "entityId": "wasabi-izuno",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/wasabi-izuno",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.37,
+        "y": 0.49
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-namida-suzumeno",
+    "kind": "eye",
+    "entityId": "namida-suzumeno",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/namida-suzumeno",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.35,
+        "y": 0.51
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-sumire-kakei",
+    "kind": "eye",
+    "entityId": "sumire-kakei",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/sumire-kakei",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.42,
+        "y": 0.44
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kawaki",
+    "kind": "eye",
+    "entityId": "kawaki",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/kawaki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.37,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-eida",
+    "kind": "eye",
+    "entityId": "eida",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/eida",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.45,
+        "y": 0.42
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-daemon",
+    "kind": "eye",
+    "entityId": "daemon",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/daemon",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.67,
+        "y": 0.55
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-jigen",
+    "kind": "eye",
+    "entityId": "jigen",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/jigen",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.39
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-code",
+    "kind": "eye",
+    "entityId": "code",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/code",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.55,
+        "y": 0.47
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-isshiki-otsutsuki",
+    "kind": "eye",
+    "entityId": "isshiki-otsutsuki",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/isshiki-otsutsuki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.48,
+        "y": 0.4
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-momoshiki-otsutsuki",
+    "kind": "eye",
+    "entityId": "momoshiki-otsutsuki",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/momoshiki-otsutsuki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.57,
+        "y": 0.35
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-kinshiki-otsutsuki",
+    "kind": "eye",
+    "entityId": "kinshiki-otsutsuki",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/kinshiki-otsutsuki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.52,
+        "y": 0.33
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-delta",
+    "kind": "eye",
+    "entityId": "delta",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/delta",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.39,
+        "y": 0.4
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-amado",
+    "kind": "eye",
+    "entityId": "amado",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/amado",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.4,
+        "y": 0.44
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-koji-kashin",
+    "kind": "eye",
+    "entityId": "koji-kashin",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/koji-kashin",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.52,
+        "y": 0.52
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "eye-toneri-otsutsuki",
+    "kind": "eye",
+    "entityId": "toneri-otsutsuki",
+    "series": "boruto",
+    "payload": {
+      "image": "naruto/toneri-otsutsuki",
+      "width": 512,
+      "height": 512,
+      "focus": {
+        "x": 0.6,
+        "y": 0.43
+      }
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-rasengan",
+    "kind": "jutsu",
+    "entityId": "naruto-uzumaki",
+    "series": "naruto",
+    "payload": {
+      "name": "Rasengan",
+      "image": "naruto/jutsus/rasengan",
+      "width": 512,
+      "height": 384,
+      "accepts": [
+        "boruto-uzumaki",
+        "jiraiya",
+        "kakashi-hatake",
+        "koji-kashin",
+        "konohamaru-sarutobi",
+        "minato-namikaze",
+        "momoshiki-otsutsuki"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-chidori",
+    "kind": "jutsu",
+    "entityId": "sasuke-uchiha",
+    "series": "naruto",
+    "payload": {
+      "name": "Chidori",
+      "image": "naruto/jutsus/chidori",
+      "width": 512,
+      "height": 287,
+      "accepts": [
+        "kakashi-hatake",
+        "sarada-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-amaterasu",
+    "kind": "jutsu",
+    "entityId": "itachi-uchiha",
+    "series": "naruto",
+    "payload": {
+      "name": "Amaterasu",
+      "image": "naruto/jutsus/amaterasu",
+      "width": 512,
+      "height": 289,
+      "accepts": [
+        "sasuke-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-tsukuyomi",
+    "kind": "jutsu",
+    "entityId": "itachi-uchiha",
+    "series": "naruto",
+    "payload": {
+      "name": "Tsukuyomi",
+      "image": "naruto/jutsus/tsukuyomi",
+      "width": 512,
+      "height": 266,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-lightning-cutter",
+    "kind": "jutsu",
+    "entityId": "kakashi-hatake",
+    "series": "naruto",
+    "payload": {
+      "name": "Raikiri (Corte de Rayo)",
+      "image": "naruto/jutsus/lightning-cutter",
+      "width": 512,
+      "height": 285,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-eight-gates",
+    "kind": "jutsu",
+    "entityId": "might-guy",
+    "series": "shippuden",
+    "payload": {
+      "name": "Ocho Puertas Internas",
+      "image": "naruto/jutsus/eight-gates",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-sixty-four-palms",
+    "kind": "jutsu",
+    "entityId": "neji-hyuga",
+    "series": "naruto",
+    "payload": {
+      "name": "Sesenta y Cuatro Palmas de los Ocho Trigramas",
+      "image": "naruto/jutsus/sixty-four-palms",
+      "width": 512,
+      "height": 383,
+      "accepts": [
+        "hiashi-hyuga",
+        "hinata-hyuga"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-shadow-imitation",
+    "kind": "jutsu",
+    "entityId": "shikamaru-nara",
+    "series": "naruto",
+    "payload": {
+      "name": "Jutsu de Posesión de la Sombra",
+      "image": "naruto/jutsus/shadow-imitation",
+      "width": 512,
+      "height": 289,
+      "accepts": [
+        "momoshiki-otsutsuki",
+        "shikadai-nara",
+        "shikaku-nara"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-mind-body-switch",
+    "kind": "jutsu",
+    "entityId": "ino-yamanaka",
+    "series": "naruto",
+    "payload": {
+      "name": "Jutsu de Intercambio de Mentes",
+      "image": "naruto/jutsus/mind-body-switch",
+      "width": 512,
+      "height": 384,
+      "accepts": [
+        "inoichi-yamanaka",
+        "inojin-yamanaka"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-partial-multi-size",
+    "kind": "jutsu",
+    "entityId": "choji-akimichi",
+    "series": "naruto",
+    "payload": {
+      "name": "Jutsu de Expansión Parcial",
+      "image": "naruto/jutsus/partial-multi-size",
+      "width": 512,
+      "height": 287,
+      "accepts": [
+        "chocho-akimichi",
+        "choza-akimichi"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-sand-binding-coffin",
+    "kind": "jutsu",
+    "entityId": "gaara",
+    "series": "naruto",
+    "payload": {
+      "name": "Ataúd de Arena",
+      "image": "naruto/jutsus/sand-binding-coffin",
+      "width": 512,
+      "height": 384,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-kamui",
+    "kind": "jutsu",
+    "entityId": "obito-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Kamui",
+      "image": "naruto/jutsus/kamui",
+      "width": 512,
+      "height": 288,
+      "accepts": [
+        "kakashi-hatake",
+        "madara-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-shinra-tensei",
+    "kind": "jutsu",
+    "entityId": "nagato",
+    "series": "shippuden",
+    "payload": {
+      "name": "Shinra Tensei",
+      "image": "naruto/jutsus/shinra-tensei",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-flying-thunder-god",
+    "kind": "jutsu",
+    "entityId": "minato-namikaze",
+    "series": "shippuden",
+    "payload": {
+      "name": "Jutsu del Dios del Trueno Volador",
+      "image": "naruto/jutsus/flying-thunder-god",
+      "width": 512,
+      "height": 289,
+      "accepts": [
+        "tobirama-senju"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-detachment-primitive-world",
+    "kind": "jutsu",
+    "entityId": "onoki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Estilo Polvo: Separación del Mundo Primitivo",
+      "image": "naruto/jutsus/detachment-primitive-world",
+      "width": 512,
+      "height": 288,
+      "accepts": [
+        "mu"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-cherry-blossom-impact",
+    "kind": "jutsu",
+    "entityId": "sakura-haruno",
+    "series": "shippuden",
+    "payload": {
+      "name": "Impacto de Flor de Cerezo",
+      "image": "naruto/jutsus/cherry-blossom-impact",
+      "width": 512,
+      "height": 384,
+      "accepts": [
+        "sarada-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-strength-of-a-hundred-seal",
+    "kind": "jutsu",
+    "entityId": "tsunade",
+    "series": "naruto",
+    "payload": {
+      "name": "Sello de la Fuerza de los Cien",
+      "image": "naruto/jutsus/strength-of-a-hundred-seal",
+      "width": 320,
+      "height": 512,
+      "accepts": [
+        "sakura-haruno"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-front-lotus",
+    "kind": "jutsu",
+    "entityId": "rock-lee",
+    "series": "naruto",
+    "payload": {
+      "name": "Loto Primario",
+      "image": "naruto/jutsus/front-lotus",
+      "width": 512,
+      "height": 384,
+      "accepts": [
+        "might-guy"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-fang-passing-fang",
+    "kind": "jutsu",
+    "entityId": "kiba-inuzuka",
+    "series": "naruto",
+    "payload": {
+      "name": "Colmillo que Atraviesa el Colmillo",
+      "image": "naruto/jutsus/fang-passing-fang",
+      "width": 512,
+      "height": 384,
+      "accepts": [
+        "akamaru",
+        "tsume-inuzuka"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-super-beast-imitating-drawing",
+    "kind": "jutsu",
+    "entityId": "sai",
+    "series": "shippuden",
+    "payload": {
+      "name": "Dibujo de Bestias Súper Imitadas",
+      "image": "naruto/jutsus/super-beast-imitating-drawing",
+      "width": 512,
+      "height": 384,
+      "accepts": [
+        "inojin-yamanaka"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-impure-world-reincarnation",
+    "kind": "jutsu",
+    "entityId": "orochimaru",
+    "series": "naruto",
+    "payload": {
+      "name": "Reencarnación del Mundo Impuro",
+      "image": "naruto/jutsus/impure-world-reincarnation",
+      "width": 512,
+      "height": 288,
+      "accepts": [
+        "kabuto-yakushi",
+        "tobirama-senju"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-paper-shuriken",
+    "kind": "jutsu",
+    "entityId": "konan",
+    "series": "shippuden",
+    "payload": {
+      "name": "Shuriken de Papel",
+      "image": "naruto/jutsus/paper-shuriken",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-nativity-world-of-trees",
+    "kind": "jutsu",
+    "entityId": "hashirama-senju",
+    "series": "naruto",
+    "payload": {
+      "name": "Técnica Secreta de Madera: Nacimiento de un Mundo de Árboles",
+      "image": "naruto/jutsus/nativity-world-of-trees",
+      "width": 512,
+      "height": 384,
+      "accepts": [
+        "madara-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-needle-jizo",
+    "kind": "jutsu",
+    "entityId": "jiraiya",
+    "series": "naruto",
+    "payload": {
+      "name": "Jizō de Agujas",
+      "image": "naruto/jutsus/needle-jizo",
+      "width": 512,
+      "height": 384,
+      "accepts": [
+        "koji-kashin"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-explosive-clay",
+    "kind": "jutsu",
+    "entityId": "deidara",
+    "series": "shippuden",
+    "payload": {
+      "name": "Arcilla Explosiva",
+      "image": "naruto/jutsus/explosive-clay",
+      "width": 512,
+      "height": 384,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-puppet-technique",
+    "kind": "jutsu",
+    "entityId": "kankuro",
+    "series": "naruto",
+    "payload": {
+      "name": "Técnica de Marionetas",
+      "image": "naruto/jutsus/puppet-technique",
+      "width": 512,
+      "height": 384,
+      "accepts": [
+        "chiyo",
+        "sasori"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-dead-demon-consuming-seal",
+    "kind": "jutsu",
+    "entityId": "hiruzen-sarutobi",
+    "series": "naruto",
+    "payload": {
+      "name": "Sello de Devoración del Demonio de la Muerte",
+      "image": "naruto/jutsus/dead-demon-consuming-seal",
+      "width": 512,
+      "height": 384,
+      "accepts": [
+        "minato-namikaze"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-demonic-mirroring-ice-crystals",
+    "kind": "jutsu",
+    "entityId": "haku",
+    "series": "naruto",
+    "payload": {
+      "name": "Cristales de Hielo Espejo Demoníacos",
+      "image": "naruto/jutsus/demonic-mirroring-ice-crystals",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-exploding-water-colliding-wave",
+    "kind": "jutsu",
+    "entityId": "kisame-hoshigaki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Estilo Agua: Ola Colisionante Explosiva",
+      "image": "naruto/jutsus/exploding-water-colliding-wave",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-four-pillar-house",
+    "kind": "jutsu",
+    "entityId": "yamato",
+    "series": "shippuden",
+    "payload": {
+      "name": "Estilo Madera: Técnica de la Casa de Cuatro Pilares",
+      "image": "naruto/jutsus/four-pillar-house",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-great-sickle-weasel",
+    "kind": "jutsu",
+    "entityId": "temari",
+    "series": "shippuden",
+    "payload": {
+      "name": "Estilo Viento: Gran Hoz de la Comadreja",
+      "image": "naruto/jutsus/great-sickle-weasel",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-melting-apparition",
+    "kind": "jutsu",
+    "entityId": "mei-terumi",
+    "series": "shippuden",
+    "payload": {
+      "name": "Estilo Lava: Aparición Fundente",
+      "image": "naruto/jutsus/melting-apparition",
+      "width": 512,
+      "height": 289,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-earth-grudge-fear",
+    "kind": "jutsu",
+    "entityId": "kakuzu",
+    "series": "shippuden",
+    "payload": {
+      "name": "Miedo del Rencor de la Tierra",
+      "image": "naruto/jutsus/earth-grudge-fear",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-insect-clone",
+    "kind": "jutsu",
+    "entityId": "shino-aburame",
+    "series": "naruto",
+    "payload": {
+      "name": "Clon de Insectos",
+      "image": "naruto/jutsus/insect-clone",
+      "width": 512,
+      "height": 384,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-chakra-scalpel",
+    "kind": "jutsu",
+    "entityId": "kabuto-yakushi",
+    "series": "naruto",
+    "payload": {
+      "name": "Bisturí de Chakra",
+      "image": "naruto/jutsus/chakra-scalpel",
+      "width": 512,
+      "height": 384,
+      "accepts": [
+        "sakura-haruno",
+        "tsunade"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-hiding-in-mist",
+    "kind": "jutsu",
+    "entityId": "zabuza-momochi",
+    "series": "naruto",
+    "payload": {
+      "name": "Técnica de Ocultamiento en la Niebla",
+      "image": "naruto/jutsus/hiding-in-mist",
+      "width": 512,
+      "height": 384,
+      "accepts": [
+        "mei-terumi"
+      ]
+    },
+    "verified": false
   }
 ]
