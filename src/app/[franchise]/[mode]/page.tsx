@@ -1,8 +1,10 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { franchises, getFranchise } from '@/franchises';
 import { loadFranchiseData } from '@/franchises/data';
 import { es } from '@/i18n/es';
+import { OG_SIZE, ogImage } from '../../site';
 import { ModeGame } from './ModeGame';
 import styles from './page.module.scss';
 import { modeStatus } from './playable';
@@ -14,6 +16,28 @@ export function generateStaticParams() {
   return franchises.flatMap((franchise) =>
     franchise.modes.map((mode) => ({ franchise: franchise.slug, mode: mode.slug })),
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ franchise: string; mode: string }>;
+}): Promise<Metadata> {
+  const { franchise: franchiseSlug, mode: modeSlug } = await params;
+  const franchise = getFranchise(franchiseSlug);
+  const mode = franchise?.modes.find((candidate) => candidate.slug === modeSlug);
+  if (!franchise || !mode) return {};
+  const title = `${mode.name} · ${franchise.name}`;
+  const description = es.meta.mode(mode.name, franchise.name);
+  const url = `/${franchise.slug}/${mode.slug}`;
+  const image = { url: ogImage(franchise.slug), ...OG_SIZE, alt: es.meta.imageAlt(franchise.name) };
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    openGraph: { type: 'website', siteName: es.site.name, locale: 'es_AR', title, description, url, images: [image] },
+    twitter: { card: 'summary_large_image', title, description, images: [image.url] },
+  };
 }
 
 export default async function ModePage({

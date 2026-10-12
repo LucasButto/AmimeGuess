@@ -1,7 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Button } from '@/components/Button';
 import { ModeNav } from '@/components/game-shell/ModeNav';
+import { StatusMessage } from '@/components/StatusMessage';
 import type { ModeLink } from '@/components/game-shell/types';
 import { entitiesOfMode, loadFranchiseData, type FranchiseData } from '@/franchises/data';
 import type { FranchiseConfig, ModeConfig } from '@/franchises/types';
@@ -42,6 +44,8 @@ export function ModeGame({ franchise, mode, modes, playable }: ModeGameProps) {
   const timeline = mode.engine === 'timeline' ? mode.timeline : undefined;
   const connections = mode.engine === 'connections' ? mode.connections : undefined;
   const [loaded, setLoaded] = useState<FranchiseData | 'error' | null>(null);
+  // Cada reintento vuelve a pedir los datos (un fallo de red al bajar el chunk se arregla con otro intento).
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     if (!playable) return;
@@ -56,7 +60,7 @@ export function ModeGame({ franchise, mode, modes, playable }: ModeGameProps) {
     return () => {
       cancelled = true;
     };
-  }, [playable, franchise.slug]);
+  }, [playable, franchise.slug, attempt]);
 
   const comingSoon = (
     <div className={styles.soonPage}>
@@ -69,8 +73,26 @@ export function ModeGame({ franchise, mode, modes, playable }: ModeGameProps) {
   );
 
   if (!playable) return comingSoon;
-  if (loaded === 'error') return <p role="alert">{es.game.loadError}</p>;
-  if (loaded === null) return <p role="status">{es.game.loading}</p>;
+  if (loaded === 'error') {
+    return (
+      <StatusMessage
+        kind="error"
+        action={
+          <Button
+            onClick={() => {
+              setLoaded(null);
+              setAttempt((count) => count + 1);
+            }}
+          >
+            {es.game.retry}
+          </Button>
+        }
+      >
+        {es.game.loadError}
+      </StatusMessage>
+    );
+  }
+  if (loaded === null) return <StatusMessage kind="loading">{es.game.loading}</StatusMessage>;
 
   // Las entidades que se adivinan: las de un conjunto con nombre (las formas de Dragon Ball) o las principales.
   const entities = entitiesOfMode(loaded, mode.entitySet);

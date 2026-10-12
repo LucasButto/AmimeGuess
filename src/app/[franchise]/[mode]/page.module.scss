@@ -30,7 +30,7 @@
 
 .title {
   @include m.fluid-text(1.75rem, 2.5rem);
-  font-family: t.font('heading');
+  @include m.heading;
   font-weight: t.$font-weight-bold;
   line-height: t.$line-height-tight;
 }
