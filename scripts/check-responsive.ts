@@ -48,6 +48,8 @@ interface RouteCheck {
   /** Nombre de la carpeta de capturas. */
   name: string;
   path: string;
+  /** La página responde 404 a propósito (la 404 propia): el aviso del navegador por ese estado no es un error. */
+  expectNotFound?: boolean;
   /** `localStorage` a precargar antes de abrir la página (por ejemplo, una partida empezada). */
   storage?: Record<string, string>;
   /** Selector que indica que la página terminó de armarse. Sin él, se espera a que la red se aquiete. */
@@ -533,6 +535,73 @@ function someIds(franchise: string, entitiesFile: string, count: number): string
   return entities.slice(0, count).map((entity) => entity.id);
 }
 
+// --- Sesión 14: teclado y páginas del sitio -----------------------------------------------------
+
+/** Qué se busca con Tab: el campo de texto, una opción de Mayor o Menor o el botón "Siguiente". */
+type TabTarget = 'combobox' | 'option' | 'next';
+
+/** Se llega al elemento buscado solo con Tab (hasta `limit` tabulaciones desde el principio de la página). */
+async function tabTo(page: Page, target: TabTarget, limit = 80): Promise<boolean> {
+  await page.evaluate(() => {
+    (document.activeElement as HTMLElement | null)?.blur();
+    window.scrollTo(0, 0);
+  });
+  for (let press = 0; press < limit; press++) {
+    await page.keyboard.press('Tab');
+    const reached = await page.evaluate((wanted: TabTarget) => {
+      const element = document.activeElement;
+      if (element === null) return false;
+      if (wanted === 'combobox') return element.getAttribute('role') === 'combobox';
+      if (wanted === 'option') return element.hasAttribute('data-option');
+      return (element.textContent ?? '').trim() === 'Siguiente';
+    }, target);
+    if (reached) return true;
+  }
+  return false;
+}
+
+/**
+ * Se juega con el teclado y nada más: se llega al campo con Tab, se escribe, se baja a la segunda sugerencia con
+ * la flecha y se elige con Enter. El intento tiene que contar (cambia lo que se ve) y el foco no se pierde.
+ */
+async function keyboardGuess(page: Page): Promise<string[]> {
+  if ((await page.locator(`${GAME_READY} input[role="combobox"]`).count()) === 0) return ['no hay campo de texto para jugar'];
+  const problems: string[] = [];
+  if (!(await tabTo(page, 'combobox'))) return ['no se llegó al campo de texto solo con Tab'];
+  const before = await page.locator(GAME_READY).innerText();
+  await page.keyboard.type('a');
+  try {
+    await page.waitForSelector('[role="listbox"] [role="option"]', { timeout: 5_000 });
+  } catch {
+    return ['al escribir no aparecieron sugerencias'];
+  }
+  await page.keyboard.press('ArrowDown');
+  await page.keyboard.press('Enter');
+  await page.waitForTimeout(250);
+  if ((await page.locator(GAME_READY).innerText()) === before) problems.push('elegir una sugerencia con Enter no registró ningún intento');
+  return problems;
+}
+
+/** Mayor o Menor con el teclado: se llega a una opción con Tab, se elige con Enter, y si fue correcta se sigue con "Siguiente". */
+async function keyboardPick(page: Page): Promise<string[]> {
+  if (!(await tabTo(page, 'option'))) return ['no se llegó a una opción solo con Tab'];
+  await page.keyboard.press('Enter');
+  try {
+    await page.waitForSelector('[data-revealed="true"]', { timeout: 5_000 });
+  } catch {
+    return ['elegir una opción con Enter no reveló los valores'];
+  }
+  const next = page.getByRole('button', { name: 'Siguiente' });
+  if ((await next.count()) === 0) return [];
+  const problems: string[] = [];
+  if (!(await tabTo(page, 'next'))) return ['no se llegó a "Siguiente" solo con Tab'];
+  const before = await page.locator('[data-option]').first().innerText();
+  await page.keyboard.press('Enter');
+  await page.waitForTimeout(250);
+  if ((await page.locator('[data-option]').first().innerText()) === before) problems.push('"Siguiente" con Enter no pasó a la ronda siguiente');
+  return problems;
+}
+
 /** Los modos de Pokémon que usan el motor de pista de texto (sesión 06) y el tipo de contenido de cada uno. */
 const TEXT_MODES = [
   { slug: 'descripcion', contentKind: 'dex' },
@@ -836,6 +905,16 @@ const ROUTES: RouteCheck[] = [
     ready: GAME_READY,
     storage: seededGame('all', someIds('yugioh', 'entities.json', 3), 'deck', 'yugioh'),
   },
+  // Sesión 14: la 404 propia y todos los motores jugados solo con el teclado (uno por motor; Línea de tiempo y
+  // Conexiones ya lo comprueban en sus rutas). Yu-Gi-Oh repite el Clásico con el tema oscuro.
+  { name: 'no-existe', path: '/no-existe', expectNotFound: true },
+  { name: 'pokemon-no-existe', path: '/pokemon/no-existe', expectNotFound: true },
+  { name: 'pokemon-clasico-teclado', path: '/pokemon/clasico', ready: GAME_READY, check: keyboardGuess },
+  { name: 'pokemon-silueta-teclado', path: '/pokemon/silueta', ready: GAME_READY, check: keyboardGuess },
+  { name: 'pokemon-descripcion-teclado', path: '/pokemon/descripcion', ready: GAME_READY, check: keyboardGuess },
+  { name: 'pokemon-moveset-teclado', path: '/pokemon/moveset', ready: GAME_READY, check: keyboardGuess },
+  { name: 'pokemon-mayor-o-menor-teclado', path: '/pokemon/mayor-o-menor', ready: GAME_READY, check: keyboardPick },
+  { name: 'yugioh-duelista-teclado', path: '/yugioh/duelista', ready: GAME_READY, check: keyboardGuess },
   // Movimiento insignia con solo g3 (6 posibles): no alcanza el mínimo. Descripción ya no tiene una combinación sin pool
   // desde que las de g8 y g9 vienen de WikiDex (con solo g9 hay 120), así que el aviso se prueba con este modo y con Transformación.
   { name: 'pokemon-movimiento-insignia-sin-pool', path: '/pokemon/movimiento-insignia?s=g3', check: showsPoolWarning },
@@ -949,15 +1028,17 @@ async function checkPage(
     page.on('console', (message) => {
       if (message.type() !== 'error') return;
       const url = message.location().url;
-      // El sitio todavía no tiene favicon (llega con los metadatos, sesión 14): su 404 es ruido.
-      if (url.endsWith('/favicon.ico')) return;
+      // La 404 propia responde con ese estado: el navegador lo avisa en consola, y es lo esperado.
+      if (route.expectNotFound && url.endsWith(route.path) && message.text().includes('404')) return;
       problems.push(`error en consola: ${message.text()}${url ? ` (${url})` : ''}`);
     });
     page.on('request', (request) => {
       if (request.url().includes('/_next/image')) problems.push(`solicitud a /_next/image: ${request.url()}`);
     });
 
-    await page.goto(`${baseUrl}${route.path}`, { waitUntil: 'load' });
+    const response = await page.goto(`${baseUrl}${route.path}`, { waitUntil: 'load' });
+    if (route.expectNotFound && response?.status() !== 404) problems.push(`se esperaba un 404 y respondió ${response?.status()}`);
+    if (!route.expectNotFound && response && response.status() >= 400) problems.push(`la página respondió ${response.status()}`);
     if (route.ready) await page.waitForSelector(route.ready, { timeout: 20_000 });
     else await page.waitForLoadState('networkidle');
     // Las imágenes cargan en diferido y las que están fuera de la vista (filas de una tabla larga)
@@ -1030,6 +1111,20 @@ async function checkPage(
   return { problems };
 }
 
+/**
+ * Toda ruta del sitemap (el inicio, cada franquicia y cada modo que se puede jugar) tiene que estar registrada en
+ * ROUTES: así una página nueva no se queda sin revisar en los 8 viewports.
+ */
+async function sitemapCoverage(baseUrl: string): Promise<string[]> {
+  const response = await fetch(`${baseUrl}/sitemap.xml`);
+  if (!response.ok) return [`/sitemap.xml respondió ${response.status}`];
+  const xml = await response.text();
+  const paths = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new URL(match[1]).pathname);
+  if (paths.length === 0) return ['/sitemap.xml no lista ninguna ruta'];
+  const covered = new Set(ROUTES.map((route) => route.path.split('?')[0]));
+  return paths.filter((pathname) => !covered.has(pathname)).map((pathname) => `la ruta ${pathname} del sitemap no está registrada en ROUTES`);
+}
+
 // --- Programa ---------------------------------------------------------------
 
 async function main(): Promise<void> {
@@ -1043,7 +1138,7 @@ async function main(): Promise<void> {
     console.log(`Navegador: ${launched.label}. Servidor: ${server.baseUrl}`);
     console.log(`Revisando ${ROUTES.length} rutas en ${VIEWPORTS.length} viewports…\n`);
 
-    const failures: string[] = [];
+    const failures: string[] = await sitemapCoverage(server.baseUrl);
     const grid: string[] = [];
     const nameWidth = Math.max(...ROUTES.map((route) => route.name.length));
     grid.push(`${'ruta'.padEnd(nameWidth)}  ${VIEWPORTS.map((viewport) => viewport.name.padStart(9)).join(' ')}`);
