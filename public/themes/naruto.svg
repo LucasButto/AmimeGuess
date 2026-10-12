@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <!-- Naruto: pergamino con bordes envejecidos, pinceladas de tinta y un sol de naranja apagado. -->
+  <defs>
+    <radialGradient id="paper" cx="0.5" cy="0.45" r="0.8">
+      <stop offset="0" stop-color="#efe5cb"/>
+      <stop offset="0.7" stop-color="#eadfc2"/>
+      <stop offset="1" stop-color="#dccda4"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#paper)"/>
+  <circle cx="1330" cy="190" r="150" fill="#c9722f" opacity="0.13"/>
+  <!-- Pinceladas de tinta. -->
+  <g fill="#2b2013" opacity="0.07">
+    <path d="M-20 790 C 220 700 420 800 700 760 S 1140 700 1380 780 S 1560 820 1640 790 V920 H-20 Z"/>
+    <path d="M60 120 C 260 60 420 140 560 100 L 548 118 C 420 170 250 100 70 150 Z"/>
+    <path d="M1020 640 C 1220 590 1380 650 1580 610 L 1572 632 C 1390 676 1210 620 1030 668 Z"/>
+  </g>
+  <!-- Fibras del papel. -->
+  <g stroke="#8a7347" stroke-width="2" opacity="0.1" fill="none">
+    <path d="M120 300 q 60 -18 120 0"/>
+    <path d="M520 560 q 70 -22 140 4"/>
+    <path d="M900 260 q 50 -16 100 2"/>
+    <path d="M1240 470 q 70 -20 130 2"/>
+    <path d="M300 700 q 50 -14 100 2"/>
+  </g>
+</svg>

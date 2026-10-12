@@ -101,4 +101,28 @@ export const pokemonConfig = {
       revealList: { contentKind: 'moveset', field: 'items', label: 'Movimientos' },
     },
   ],
+  // Luminoso: cielo y pasto, bordes bien redondeados y una tipografía amable.
+  theme: {
+    scheme: 'light',
+    colors: {
+      bg: '#e6f4ff',
+      surface: '#ffffff',
+      stage: '#ffffff',
+      text: '#10263d',
+      'text-muted': '#42607e',
+      border: '#a9cdea',
+      accent: '#1565c0',
+      'accent-contrast': '#ffffff',
+      focus: '#0b3d91',
+      match: '#1b7a33',
+      partial: '#a84b00',
+      miss: '#b3261e',
+      'on-result': '#ffffff',
+    },
+    headingFont: { id: 'fredoka', fallback: 'ui-rounded, "Trebuchet MS", system-ui, sans-serif' },
+    radius: { sm: '0.5rem', md: '0.875rem', lg: '1.5rem' },
+    cardShadow: '0 0.25rem 0.75rem color-mix(in srgb, var(--color-text) 14%, transparent)',
+    headingStyle: { letterSpacing: '0', textTransform: 'none' },
+    background: '/themes/pokemon.svg',
+  },
 } as const satisfies FranchiseConfig;

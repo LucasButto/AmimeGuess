@@ -155,4 +155,28 @@ export const yugiohConfig = {
       revealList: { contentKind: 'deck', field: 'items', label: 'Cartas' },
     },
   ],
+  // Oscuro y dorado, con el marco doble de una carta en las tarjetas y títulos en mayúsculas clásicas.
+  theme: {
+    scheme: 'dark',
+    colors: {
+      bg: '#0c0a12',
+      surface: '#17131f',
+      stage: '#efe6cf',
+      text: '#f3ead2',
+      'text-muted': '#bdb190',
+      border: '#6e5b27',
+      accent: '#e0b43c',
+      'accent-contrast': '#17110a',
+      focus: '#ffe28a',
+      match: '#52c27a',
+      partial: '#f0a83a',
+      miss: '#ff7068',
+      'on-result': '#0d0a10',
+    },
+    headingFont: { id: 'cinzel', fallback: '"Trajan Pro", Georgia, "Times New Roman", serif' },
+    radius: { sm: '0.25rem', md: '0.375rem', lg: '0.5rem' },
+    cardShadow: 'inset 0 0 0 0.1875rem var(--color-surface), inset 0 0 0 0.25rem var(--color-border)',
+    headingStyle: { letterSpacing: '0.08em', textTransform: 'uppercase' },
+    background: '/themes/yugioh.svg',
+  },
 } as const satisfies FranchiseConfig;

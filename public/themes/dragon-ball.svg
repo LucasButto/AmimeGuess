@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <!-- Dragon Ball: azul profundo con rayos de energía naranja en diagonal. Oscuro y de poco contraste para que el texto claro se lea. -->
+  <defs>
+    <linearGradient id="base" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#08153a"/>
+      <stop offset="1" stop-color="#0b2260"/>
+    </linearGradient>
+    <radialGradient id="aura" cx="0.18" cy="0.95" r="0.7">
+      <stop offset="0" stop-color="#ff9422" stop-opacity="0.38"/>
+      <stop offset="0.5" stop-color="#ff9422" stop-opacity="0.1"/>
+      <stop offset="1" stop-color="#ff9422" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#base)"/>
+  <rect width="1600" height="900" fill="url(#aura)"/>
+  <!-- Rayos que salen de la esquina inferior izquierda. -->
+  <g fill="#ff9422" opacity="0.1">
+    <polygon points="0,900 1600,120 1600,230"/>
+    <polygon points="0,900 1600,330 1600,380"/>
+    <polygon points="0,900 1180,0 1320,0"/>
+    <polygon points="0,900 760,0 800,0"/>
+    <polygon points="0,900 1600,560 1600,600"/>
+  </g>
+  <!-- Rayos finos de la otra diagonal, apenas visibles. -->
+  <g stroke="#6f8de0" stroke-width="3" opacity="0.14">
+    <line x1="1600" y1="0" x2="1100" y2="900"/>
+    <line x1="1600" y1="120" x2="1260" y2="900"/>
+    <line x1="1500" y1="0" x2="1010" y2="620"/>
+  </g>
+</svg>

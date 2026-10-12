@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <!-- Pokémon: cielo claro con nubes y pasto en lomas suaves. Colores cercanos al fondo del tema para no restar contraste al texto. -->
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cfe9ff"/>
+      <stop offset="0.7" stop-color="#e6f4ff"/>
+      <stop offset="1" stop-color="#eaf7e0"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.86" cy="0.1" r="0.35">
+      <stop offset="0" stop-color="#fff6c2" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#fff6c2" stop-opacity="0"/>
+    </radialGradient>
+    <g id="cloud">
+      <ellipse cx="0" cy="0" rx="120" ry="34"/>
+      <ellipse cx="-70" cy="-22" rx="62" ry="40"/>
+      <ellipse cx="22" cy="-38" rx="74" ry="48"/>
+      <ellipse cx="86" cy="-14" rx="58" ry="34"/>
+    </g>
+  </defs>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <rect width="1600" height="900" fill="url(#sun)"/>
+  <g fill="#ffffff" opacity="0.85">
+    <use href="#cloud" x="260" y="170"/>
+    <use href="#cloud" x="900" y="110" transform="translate(900 110) scale(0.8) translate(-900 -110)"/>
+    <use href="#cloud" x="1330" y="300" transform="translate(1330 300) scale(1.15) translate(-1330 -300)"/>
+    <use href="#cloud" x="640" y="420" transform="translate(640 420) scale(0.6) translate(-640 -420)"/>
+  </g>
+  <path d="M0 760 C 220 700 420 720 640 760 S 1060 800 1280 740 S 1500 720 1600 750 V900 H0 Z" fill="#dcf1c8"/>
+  <path d="M0 820 C 260 770 520 800 760 830 S 1200 850 1600 800 V900 H0 Z" fill="#cde9b3"/>
+</svg>

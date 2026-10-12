@@ -44,6 +44,48 @@ export interface ModeConfig {
   readonly entitySet?: string;
 }
 
+/** Los colores que un tema define: los mismos que `$colors` en src/styles/_tokens.scss (un test lo comprueba). */
+export const THEME_COLORS = [
+  'bg',
+  'surface',
+  'stage',
+  'text',
+  'text-muted',
+  'border',
+  'accent',
+  'accent-contrast',
+  'focus',
+  'match',
+  'partial',
+  'miss',
+  'on-result',
+] as const;
+export type ThemeColor = (typeof THEME_COLORS)[number];
+
+/** Fuentes de Google Fonts que cargan los temas (ver src/app/fonts.ts). Cada una es una variable CSS `--font-<id>`. */
+export type ThemeFont = 'fredoka' | 'bangers' | 'kaushan-script' | 'cinzel';
+
+/**
+ * El tema de una franquicia (SPEC 9): paleta, tipografía de títulos, forma y tratamiento de fondo. Son solo
+ * datos; `themeCss` los vuelve variables CSS y los estilos los leen con los tokens. La estructura de pantalla
+ * es la misma en las cuatro.
+ */
+export interface FranchiseTheme {
+  /** Si la paleta es clara u oscura: decide el `color-scheme` de los controles del navegador. */
+  readonly scheme: 'light' | 'dark';
+  readonly colors: Readonly<Record<ThemeColor, string>>;
+  /** Fuente de los títulos y la pila de respaldo mientras carga. */
+  readonly headingFont: { readonly id: ThemeFont; readonly fallback: string };
+  /** Cuánto se redondean los bordes (rem): chico, mediano y grande. */
+  readonly radius: { readonly sm: string; readonly md: string; readonly lg: string };
+  /** Sombra o marco de las tarjetas, o `none`. Puede usar las variables `--color-*`. */
+  readonly cardShadow: string;
+  /** Cómo se escriben los títulos. */
+  readonly headingStyle: { readonly letterSpacing: string; readonly textTransform: 'none' | 'uppercase' };
+  /** Ilustración de fondo: un SVG de public/ (se escala sin pixelarse en 4K). Va fija detrás del contenido. */
+  readonly background: string;
+}
+
 export interface FranchiseConfig {
   readonly slug: string;
   readonly name: string;
@@ -51,6 +93,7 @@ export interface FranchiseConfig {
   readonly series: readonly string[];
   /** Nombre visible de cada serie, para los chips del panel de filtros. */
   readonly seriesLabels: Readonly<Record<string, string>>;
-  /** Modos en el orden en que se muestran (SPEC 3.3). */
+  /** Modos en el orden en que se muestran (SPEC 3.3). El primero es el principal. */
   readonly modes: readonly ModeConfig[];
+  readonly theme: FranchiseTheme;
 }

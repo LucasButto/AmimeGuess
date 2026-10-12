@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+  <!-- Yu-Gi-Oh: noche con un resplandor violeta y marcos dorados de carta en las esquinas. Oscuro: el texto claro se lee encima. -->
+  <defs>
+    <radialGradient id="glow" cx="0.5" cy="0.1" r="0.75">
+      <stop offset="0" stop-color="#2b1d4f" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#0c0a12" stop-opacity="0"/>
+    </radialGradient>
+    <g id="corner" fill="none" stroke="#e0b43c" stroke-width="3">
+      <path d="M0 150 V28 Q0 0 28 0 H150"/>
+      <path d="M22 130 V44 Q22 22 44 22 H130" opacity="0.6"/>
+      <path d="M0 0 L58 58" opacity="0.5"/>
+    </g>
+  </defs>
+  <rect width="1600" height="900" fill="#0c0a12"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+  <!-- Marcos dorados en las cuatro esquinas. -->
+  <g opacity="0.3">
+    <use href="#corner" x="40" y="40"/>
+    <use href="#corner" transform="translate(1560 40) scale(-1 1)"/>
+    <use href="#corner" transform="translate(40 860) scale(1 -1)"/>
+    <use href="#corner" transform="translate(1560 860) scale(-1 -1)"/>
+  </g>
+  <!-- Rombos finos de fondo. -->
+  <g fill="none" stroke="#e0b43c" stroke-width="1.5" opacity="0.1">
+    <path d="M800 140 L1010 450 L800 760 L590 450 Z"/>
+    <path d="M800 220 L950 450 L800 680 L650 450 Z"/>
+    <circle cx="800" cy="450" r="230"/>
+  </g>
+</svg>

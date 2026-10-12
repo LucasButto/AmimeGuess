@@ -145,4 +145,28 @@ export const narutoConfig = {
       connections: { contentKind: 'group', nameField: 'name', membersField: 'members', difficultyField: 'difficulty' },
     },
   ],
+  // Pergamino y tinta: papel cálido, naranja apagado y un título de pincel.
+  theme: {
+    scheme: 'light',
+    colors: {
+      bg: '#eadfc2',
+      surface: '#f7efd9',
+      stage: '#f7efd9',
+      text: '#2b2013',
+      'text-muted': '#5a4630',
+      border: '#bfa97c',
+      accent: '#963f08',
+      'accent-contrast': '#ffffff',
+      focus: '#6d2b00',
+      match: '#1f6b35',
+      partial: '#9a4a00',
+      miss: '#a8281e',
+      'on-result': '#ffffff',
+    },
+    headingFont: { id: 'kaushan-script', fallback: '"Brush Script MT", "Segoe Script", cursive' },
+    radius: { sm: '0.125rem', md: '0.25rem', lg: '0.375rem' },
+    cardShadow: '0.125rem 0.125rem 0 var(--color-border)',
+    headingStyle: { letterSpacing: '0.01em', textTransform: 'none' },
+    background: '/themes/naruto.svg',
+  },
 } as const satisfies FranchiseConfig;

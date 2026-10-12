@@ -155,4 +155,28 @@ export const dragonBallConfig = {
       timeline: { contentKind: 'event', textField: 'text', orderField: 'order' },
     },
   ],
+  // Energía: azul profundo y naranja intenso, esquinas filosas, sombras duras y rayos en diagonal de fondo.
+  theme: {
+    scheme: 'dark',
+    colors: {
+      bg: '#08153a',
+      surface: '#0f2255',
+      stage: '#e8eefc',
+      text: '#fff6e5',
+      'text-muted': '#c3d0ee',
+      border: '#3a5399',
+      accent: '#ff9422',
+      'accent-contrast': '#1a0d00',
+      focus: '#ffd35c',
+      match: '#46c779',
+      partial: '#ffb02e',
+      miss: '#ff6f61',
+      'on-result': '#0a1226',
+    },
+    headingFont: { id: 'bangers', fallback: 'Impact, "Arial Narrow Bold", system-ui, sans-serif' },
+    radius: { sm: '0.125rem', md: '0.25rem', lg: '0.375rem' },
+    cardShadow: '0.25rem 0.25rem 0 var(--color-accent)',
+    headingStyle: { letterSpacing: '0.04em', textTransform: 'uppercase' },
+    background: '/themes/dragon-ball.svg',
+  },
 } as const satisfies FranchiseConfig;
