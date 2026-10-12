@@ -1,0 +1,22 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// Páginas de estado (404 y error): una columna angosta con el mensaje.
+.page {
+  @include m.container;
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-4;
+  padding-block: t.$space-7;
+
+  @include bp.min-width('md') {
+    padding-block: t.$space-9;
+  }
+}
+
+.title {
+  @include m.heading;
+  @include m.fluid-text(2.5rem, 4rem);
+  line-height: t.$line-height-tight;
+}
