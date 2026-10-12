@@ -1,0 +1,76 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.root {
+  display: flex;
+  align-items: flex-start;
+  gap: t.$space-3;
+  padding: t.$space-4;
+  border: t.$border-width solid t.color('border');
+  border-inline-start: 0.375rem solid t.color('accent');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+  color: t.color('text');
+
+  &[data-kind='error'] {
+    border-inline-start-color: t.color('miss');
+  }
+}
+
+// Cargando: un círculo que gira. Con movimiento reducido queda quieto (un anillo abierto), sin dejar de verse.
+.icon {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  border-radius: t.$radius-full;
+  font-weight: t.$font-weight-bold;
+  line-height: 1;
+
+  .root[data-kind='loading'] & {
+    border: 0.1875rem solid t.color('border');
+    border-block-start-color: t.color('accent');
+
+    @include bp.motion-ok {
+      animation: spin 0.9s linear infinite;
+    }
+  }
+
+  .root[data-kind='error'] & {
+    background: t.color('miss');
+    color: t.color('on-result');
+  }
+
+  .root[data-kind='empty'] & {
+    background: t.color('border');
+    color: t.color('text');
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+  min-inline-size: 0;
+}
+
+.title {
+  @include m.heading;
+  font-size: t.$font-size-lg;
+  line-height: t.$line-height-tight;
+}
+
+.action {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-2;
+}

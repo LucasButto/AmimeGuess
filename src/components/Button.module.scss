@@ -1,0 +1,31 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.button {
+  @include m.touch-target;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: t.$space-1 t.$space-5;
+  border: t.$border-width solid t.color('accent');
+  border-radius: t.$radius-md;
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+  text-decoration: none;
+  cursor: pointer;
+
+  &[data-variant='primary'] {
+    background: t.color('accent');
+    color: t.color('accent-contrast');
+  }
+
+  &[data-variant='secondary'] {
+    background: t.color('surface');
+    color: t.color('accent');
+  }
+
+  &:focus-visible {
+    outline: 0.1875rem solid t.color('focus');
+    outline-offset: 0.1875rem;
+  }
+}
