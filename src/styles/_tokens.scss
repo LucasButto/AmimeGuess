@@ -57,10 +57,14 @@ $fonts: (
 );
 
 // --- Forma ------------------------------------------------------------------
-$radius-sm: 0.25rem;
-$radius-md: 0.5rem;
-$radius-lg: 1rem;
+// Los tres redondeos los define el tema de cada franquicia (ver `$theme-defaults`).
+$radius-sm: var(--radius-sm);
+$radius-md: var(--radius-md);
+$radius-lg: var(--radius-lg);
 $radius-full: 100rem;
+
+// Sombra o marco de las tarjetas (puede ser `none`).
+$card-shadow: var(--card-shadow);
 
 $border-width: 1px;
 
@@ -77,6 +81,8 @@ $container-wide: 80rem;
 // redefinirlos con su tema. Se leen con `color(nombre)`.
 $colors: (
   'bg': #f6f7f9,
+  // Fondo del marco de las imágenes de los juegos. Siempre claro (también en los temas oscuros): la silueta es negra.
+  'stage': #ffffff,
   'surface': #ffffff,
   'text': #1b1f24,
   'text-muted': #5a6572,
@@ -90,6 +96,18 @@ $colors: (
   'partial': #b45309,
   'miss': #b42318,
   'on-result': #ffffff,
+);
+
+// Lo que un tema puede cambiar además de los colores, con su valor por defecto (el del sitio sin franquicia).
+// Cada franquicia lo redefine en su config.ts (`theme`); los estilos nunca conocen una franquicia concreta.
+$theme-defaults: (
+  'radius-sm': 0.25rem,
+  'radius-md': 0.5rem,
+  'radius-lg': 1rem,
+  'card-shadow': none,
+  'heading-letter-spacing': 0,
+  'heading-text-transform': none,
+  'background-image': none,
 );
 
 @function color($name) {
@@ -113,5 +131,8 @@ $colors: (
   }
   @each $name, $value in $fonts {
     --font-#{$name}: #{$value};
+  }
+  @each $name, $value in $theme-defaults {
+    --#{$name}: #{$value};
   }
 }

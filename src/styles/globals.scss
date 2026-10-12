@@ -57,6 +57,12 @@ textarea {
 }
 
 body {
+  // Contexto propio: la ilustración de fondo (`::before`) queda detrás del contenido pero delante del color de fondo.
+  position: relative;
+  isolation: isolate;
+  // Columna flexible: el pie queda al fondo de la ventana aunque la página sea corta.
+  display: flex;
+  flex-direction: column;
   min-block-size: 100dvh;
   // Áreas seguras del dispositivo (notch, barra de gestos).
   padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
@@ -67,4 +73,14 @@ body {
   line-height: t.$line-height-base;
   color: t.color('text');
   background: t.color('bg');
+
+  // Ilustración de fondo del tema: un SVG fijo que se escala sin pixelarse. No va en el flujo ni recibe toques.
+  &::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: var(--background-image) center / cover no-repeat;
+    pointer-events: none;
+  }
 }

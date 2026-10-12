@@ -7,6 +7,13 @@
   min-inline-size: t.$touch-target;
 }
 
+// Títulos: la fuente, el espaciado y las mayúsculas los define el tema de la franquicia.
+@mixin heading {
+  font-family: t.font('heading');
+  letter-spacing: var(--heading-letter-spacing);
+  text-transform: var(--heading-text-transform);
+}
+
 // Texto fluido entre dos tamaños en rem.
 @mixin fluid-text($min, $max) {
   font-size: t.fluid($min, $max);
