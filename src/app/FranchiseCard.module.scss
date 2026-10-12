@@ -1,0 +1,64 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// La tarjeta lleva el tema de su franquicia (las variables vienen de `[data-franchise]`), así el Home muestra
+// las cuatro identidades a la vez. El fondo es la ilustración del tema bajo un velo del color de las tarjetas,
+// para que el texto conserve su contraste.
+.card {
+  @include m.touch-target;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-2;
+  block-size: 100%;
+  min-block-size: 9rem;
+  padding: t.$space-6 t.$space-5;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-lg;
+  background:
+    linear-gradient(color-mix(in srgb, #{t.color('surface')} 90%, transparent), color-mix(in srgb, #{t.color('surface')} 90%, transparent)),
+    var(--background-image) center / cover no-repeat,
+    t.color('surface');
+  box-shadow: t.$card-shadow;
+  color: t.color('text');
+  text-align: center;
+  text-decoration: none;
+
+  @include bp.min-width('md') {
+    min-block-size: 11rem;
+  }
+
+  &:hover {
+    border-color: t.color('accent');
+  }
+
+  &:focus-visible {
+    outline: 0.1875rem solid t.color('focus');
+    outline-offset: 0.1875rem;
+  }
+}
+
+.name {
+  @include m.heading;
+  @include m.fluid-text(1.75rem, 2.25rem);
+  line-height: t.$line-height-tight;
+  color: t.color('text');
+}
+
+.progress {
+  min-block-size: 1.5em;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: t.color('text-muted');
+
+  &[data-done='true'] {
+    color: t.color('text');
+  }
+}
+
+.check {
+  color: t.color('match');
+  font-weight: t.$font-weight-bold;
+}

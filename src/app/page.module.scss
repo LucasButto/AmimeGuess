@@ -22,8 +22,8 @@
 }
 
 .title {
+  @include m.heading;
   @include m.fluid-text(2rem, 3rem);
-  font-family: t.font('heading');
   font-weight: t.$font-weight-bold;
   line-height: t.$line-height-tight;
 }
@@ -38,6 +38,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: t.$space-4;
+  margin: 0;
   padding: 0;
   list-style: none;
 
@@ -47,31 +48,5 @@
 
   @include bp.min-width('xl') {
     grid-template-columns: repeat(4, 1fr);
-  }
-}
-
-.card {
-  @include m.touch-target;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  block-size: 100%;
-  padding: t.$space-6 t.$space-5;
-  border: t.$border-width solid t.color('border');
-  border-radius: t.$radius-lg;
-  background: t.color('surface');
-  color: t.color('text');
-  font-size: t.$font-size-xl;
-  font-weight: t.$font-weight-medium;
-  text-align: center;
-  text-decoration: none;
-
-  &:hover {
-    border-color: t.color('accent');
-  }
-
-  &:focus-visible {
-    outline: 0.125rem solid t.color('focus');
-    outline-offset: 0.125rem;
   }
 }
