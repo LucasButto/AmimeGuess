@@ -1,0 +1,116 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.progress {
+  min-block-size: 1.5em;
+  font-size: t.$font-size-lg;
+  color: t.color('text-muted');
+}
+
+// 1 columna en base, 2 en md, 4 en xl (SPEC 9.1). El modo principal ocupa una fila entera.
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: t.$space-3;
+  inline-size: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.min-width('md') {
+    grid-template-columns: repeat(2, 1fr);
+    gap: t.$space-4;
+  }
+
+  @include bp.min-width('xl') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.item[data-main='true'] {
+  @include bp.min-width('md') {
+    grid-column: 1 / -1;
+  }
+}
+
+.card {
+  @include m.touch-target;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-1;
+  block-size: 100%;
+  min-block-size: 6rem;
+  padding: t.$space-4;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+  box-shadow: t.$card-shadow;
+  color: t.color('text');
+  text-align: center;
+  text-decoration: none;
+
+  &[data-state='solved'] {
+    border-color: t.color('match');
+  }
+
+  &[data-main='true'] {
+    min-block-size: 8rem;
+    border-color: t.color('accent');
+    border-width: 0.1875rem;
+
+    @include bp.min-width('md') {
+      min-block-size: 10rem;
+    }
+  }
+
+  &:hover {
+    border-color: t.color('accent');
+  }
+
+  &:focus-visible {
+    outline: 0.1875rem solid t.color('focus');
+    outline-offset: 0.1875rem;
+  }
+}
+
+.badge {
+  padding: t.$space-1 t.$space-3;
+  border-radius: t.$radius-full;
+  background: t.color('accent');
+  color: t.color('accent-contrast');
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+}
+
+.name {
+  @include m.heading;
+  @include m.fluid-text(1.25rem, 1.5rem);
+  line-height: t.$line-height-tight;
+
+  .card[data-main='true'] & {
+    @include m.fluid-text(1.75rem, 2.25rem);
+  }
+}
+
+.status {
+  min-block-size: 1.5em;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: t.color('text-muted');
+
+  .card[data-state='solved'] & {
+    color: t.color('text');
+  }
+}
+
+.icon {
+  font-weight: t.$font-weight-bold;
+
+  .card[data-state='solved'] & {
+    color: t.color('match');
+  }
+}

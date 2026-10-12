@@ -1,9 +1,12 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { franchises, getFranchise } from '@/franchises';
 import { loadFranchiseData } from '@/franchises/data';
 import { es } from '@/i18n/es';
+import { OG_SIZE, ogImage } from '../site';
 import { modeStatus } from './[mode]/playable';
+import { ModesGrid } from './ModesGrid';
 import styles from './page.module.scss';
 
 // Solo existen las franquicias de la config; cualquier otra ruta es 404.
@@ -13,31 +16,46 @@ export function generateStaticParams() {
   return franchises.map((franchise) => ({ franchise: franchise.slug }));
 }
 
+/** Los modos de la franquicia que se pueden jugar: los que no alcanzan el pool mínimo con todas las series no aparecen (SPEC 8). */
+async function playableModes(slug: string) {
+  const franchise = getFranchise(slug);
+  if (!franchise) return null;
+  const data = await loadFranchiseData(franchise.slug);
+  return { franchise, modes: franchise.modes.filter((mode) => modeStatus(franchise, mode, data) === 'playable') };
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ franchise: string }> }): Promise<Metadata> {
+  const { franchise: slug } = await params;
+  const found = await playableModes(slug);
+  if (!found) return {};
+  const { franchise, modes } = found;
+  const description = es.meta.franchise(franchise.name, modes.length);
+  const image = { url: ogImage(franchise.slug), ...OG_SIZE, alt: es.meta.imageAlt(franchise.name) };
+  return {
+    title: franchise.name,
+    description,
+    alternates: { canonical: `/${franchise.slug}` },
+    openGraph: { type: 'website', siteName: es.site.name, locale: 'es_AR', title: franchise.name, description, url: `/${franchise.slug}`, images: [image] },
+    twitter: { card: 'summary_large_image', title: franchise.name, description, images: [image.url] },
+  };
+}
+
 export default async function FranchisePage({ params }: { params: Promise<{ franchise: string }> }) {
   const { franchise: slug } = await params;
-  const franchise = getFranchise(slug);
-  if (!franchise) notFound();
-
-  // Solo se listan los modos que se pueden jugar: los que no alcanzan el pool mínimo con todas
-  // las series activas no aparecen (SPEC 8). La grilla con su estado llega en la sesión 14.
-  const data = await loadFranchiseData(franchise.slug);
-  const playable = franchise.modes.filter((mode) => modeStatus(franchise, mode, data) === 'playable');
+  const found = await playableModes(slug);
+  if (!found) notFound();
+  const { franchise, modes } = found;
 
   return (
     <main className={styles.page}>
-      <h1 className={styles.title}>{franchise.name}</h1>
-      {playable.length === 0 ? (
+      <header className={styles.header}>
+        <h1 className={styles.title}>{franchise.name}</h1>
+        <p className={styles.text}>{es.franchise.intro(franchise.name)}</p>
+      </header>
+      {modes.length === 0 ? (
         <p className={styles.text}>{es.franchise.provisional}</p>
       ) : (
-        <ul className={styles.modes} aria-label={es.franchise.modesLabel}>
-          {playable.map((mode) => (
-            <li key={mode.slug}>
-              <Link className={styles.mode} href={`/${franchise.slug}/${mode.slug}`}>
-                {mode.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <ModesGrid franchise={franchise.slug} modes={modes.map((mode) => ({ slug: mode.slug, name: mode.name }))} />
       )}
       <Link className={styles.back} href="/">
         {es.franchise.backToHome}
