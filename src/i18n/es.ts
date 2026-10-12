@@ -11,11 +11,41 @@ export const es = {
     title: 'AnimeGuess',
     subtitle: 'Un reto nuevo cada día. Elegí una franquicia.',
     franchisesLabel: 'Franquicias',
+    progress: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy`,
+    progressDone: '¡Completaste todos los de hoy!',
   },
   franchise: {
     provisional: 'Página de la franquicia en construcción.',
     modesLabel: 'Modos de juego',
     backToHome: 'Volver al inicio',
+    intro: (name: string) => `Los retos diarios de ${name}.`,
+    progress: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy resueltos`,
+    mainMode: 'Modo principal',
+    solved: 'Resuelto hoy',
+    pending: 'Pendiente',
+  },
+  footer: {
+    label: 'Aviso legal',
+    notice:
+      'AnimeGuess es un proyecto de fans, sin afiliación con los titulares de las marcas Pokémon, Dragon Ball, Naruto ni Yu-Gi-Oh. Las marcas, los personajes y las imágenes pertenecen a sus dueños.',
+  },
+  notFound: {
+    title: 'Página no encontrada',
+    text: 'La página que buscás no existe o cambió de lugar.',
+    home: 'Volver al inicio',
+  },
+  errorPage: {
+    title: 'Algo salió mal',
+    text: 'Se produjo un error inesperado. Probá de nuevo; si sigue pasando, volvé al inicio.',
+    retry: 'Reintentar',
+    home: 'Volver al inicio',
+  },
+  meta: {
+    franchise: (name: string, modes: number) =>
+      `Juegos diarios de ${name}: ${modes} ${plural(modes, 'modo', 'modos')} con un reto nuevo cada día, para jugar solo o comparar con amigos.`,
+    mode: (mode: string, franchise: string) =>
+      `Reto diario del modo ${mode} de ${franchise}. Un reto nuevo cada día, el mismo para quien tenga los mismos filtros.`,
+    imageAlt: (name: string) => `${name} en AnimeGuess`,
   },
   mode: {
     comingSoon: 'Próximamente',
@@ -24,7 +54,8 @@ export const es = {
   },
   game: {
     loading: 'Cargando el reto…',
-    loadError: 'No se pudieron cargar los datos. Probá recargar la página.',
+    loadError: 'No se pudieron cargar los datos. Probá de nuevo.',
+    retry: 'Reintentar',
     copyLink: 'Copiar link',
     linkCopied: 'Link copiado',
     linkCopyFailed: 'No se pudo copiar el link',

@@ -1,0 +1,18 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.footer {
+  // Pegado al fondo de la ventana aunque la página sea corta (el body es una columna flexible).
+  margin-block-start: auto;
+  padding-block: t.$space-5;
+  border-block-start: t.$border-width solid t.color('border');
+  // Sobre la ilustración de fondo, el texto se lee con el color de las tarjetas.
+  background: t.color('surface');
+}
+
+.notice {
+  @include m.container(t.$container-wide);
+  font-size: t.$font-size-sm;
+  color: t.color('text-muted');
+  text-align: center;
+}
