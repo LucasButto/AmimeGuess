@@ -16,7 +16,8 @@ $max-height: min(28rem, 60dvh);
   overflow: hidden;
   border: t.$border-width solid t.color('border');
   border-radius: t.$radius-lg;
-  background: t.color('surface');
+  // Siempre claro: la silueta se ve negra y tiene que destacarse también en los temas oscuros.
+  background: t.color('stage');
 }
 
 .image {
