@@ -49,6 +49,11 @@
     border-color: t.color('accent');
     background: t.color('accent');
     color: t.color('accent-contrast');
+
+    // La tilde de "resuelto" va con el color del texto de la pastilla: el verde sobre el acento no se lee.
+    .check {
+      color: inherit;
+    }
   }
 
   // Ya resuelto hoy: borde verde y tilde, además del texto para lectores de pantalla.
