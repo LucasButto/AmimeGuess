@@ -24,6 +24,11 @@ export const wikidexParseSchema = z.union([
 
 export type WikidexParse = z.infer<typeof wikidexParseSchema>;
 
+/** Dirección pública de una página de WikiDex: el contenido que sale de ahí la guarda para atribuirlo en /creditos (CC BY-SA). */
+export function wikidexPageUrl(title: string): string {
+  return `https://www.wikidex.net/wiki/${encodeURIComponent(title.replace(/ /g, '_'))}`;
+}
+
 /**
  * Juegos de la plantilla, del más reciente al más viejo, con el nombre de la
  * versión en PokéAPI (el mismo que usan las descripciones que vienen de ahí).
@@ -108,8 +113,12 @@ export function pickWikidexText(fields: ReadonlyMap<string, string>): { text: st
   return undefined;
 }
 
-/** Texto de la Pokédex a partir de la respuesta de la API, o `undefined` si la página no lo tiene. */
-export function wikidexDexText(response: WikidexParse): { text: string; version: string } | undefined {
+/**
+ * Texto de la Pokédex a partir de la respuesta de la API, con la página de la que sale (después de seguir
+ * las redirecciones), o `undefined` si la página no lo tiene.
+ */
+export function wikidexDexText(response: WikidexParse): { text: string; version: string; source: string } | undefined {
   if (!('parse' in response)) return undefined;
-  return pickWikidexText(parseDexTemplate(response.parse.wikitext['*']));
+  const picked = pickWikidexText(parseDexTemplate(response.parse.wikitext['*']));
+  return picked === undefined ? undefined : { ...picked, source: wikidexPageUrl(response.parse.title) };
 }

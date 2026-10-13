@@ -290,14 +290,14 @@ async function buildCards(species: Species[], entities: Entity[]): Promise<Cards
  * la plantilla {{Pokédex}} de WikiDex (ver wikidex.ts). La página se busca por
  * el nombre en español. Las que WikiDex tampoco tiene quedan sin descripción.
  */
-async function fetchWikidexTexts(species: Species[]): Promise<Map<string, { text: string; version: string }>> {
+async function fetchWikidexTexts(species: Species[]): Promise<Map<string, { text: string; version: string; source: string }>> {
   const missing = species.filter((entry) => pickFlavorText(entry.flavor_text_entries) === undefined);
   step(`Descripciones de WikiDex para ${missing.length} especies sin texto en PokéAPI…`);
   const texts = await mapPool(missing, WIKIDEX_TASKS, async (entry) => {
     const page = nameIn(entry.names, 'es') ?? nameIn(entry.names, 'en') ?? entry.name;
     return wikidexDexText(await getJson(wikidexUrl(page), wikidexParseSchema, WIKIDEX));
   });
-  const found = new Map<string, { text: string; version: string }>();
+  const found = new Map<string, { text: string; version: string; source: string }>();
   missing.forEach((entry, index) => {
     const text = texts[index];
     if (text !== undefined) found.set(entry.name, text);

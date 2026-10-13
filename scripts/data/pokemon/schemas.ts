@@ -147,7 +147,8 @@ const dexContentSchema = z
   .object({
     ...contentBase,
     kind: z.literal('dex'),
-    payload: z.object({ text: z.string().min(1), version: z.string().min(1) }).strict(),
+    /** `source`: la página de WikiDex de la que sale el texto, cuando no viene de PokéAPI (se atribuye en /creditos). */
+    payload: z.object({ text: z.string().min(1), version: z.string().min(1), source: z.string().url().optional() }).strict(),
   })
   .strict();
 

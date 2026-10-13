@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseDexTemplate, pickWikidexText, wikidexDexText, wikidexUrl } from './wikidex.ts';
+import { parseDexTemplate, pickWikidexText, wikidexDexText, wikidexPageUrl, wikidexUrl } from './wikidex.ts';
 
 const PAGE = `Intro
 == Descripción Pokédex ==
@@ -81,6 +81,19 @@ describe('pickWikidexText', () => {
 describe('wikidexDexText', () => {
   it('una página que no existe no tiene texto', () => {
     expect(wikidexDexText({ error: { code: 'missingtitle', info: 'no existe' } })).toBeUndefined();
+  });
+
+  it('devuelve el texto con la página de origen', () => {
+    expect(wikidexDexText({ parse: { title: 'Gran Colmillo', wikitext: { '*': PAGE } } })).toEqual({
+      text: 'Su sedoso pelaje se asemeja a las plantas.',
+      version: 'scarlet',
+      source: 'https://www.wikidex.net/wiki/Gran_Colmillo',
+    });
+  });
+
+  it('arma la dirección pública de la página', () => {
+    expect(wikidexPageUrl('Iron Valiant')).toBe('https://www.wikidex.net/wiki/Iron_Valiant');
+    expect(wikidexPageUrl('Pokémon')).toBe('https://www.wikidex.net/wiki/Pok%C3%A9mon');
   });
 
   it('arma la URL de la API con la página codificada', () => {

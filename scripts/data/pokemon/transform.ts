@@ -273,11 +273,13 @@ export function buildEntity({ species, pokemon, stage, spanish }: EntityInput): 
 export function buildDexContent(
   species: Species,
   entity: Entity,
-  fallback?: { text: string; version: string },
+  fallback?: { text: string; version: string; source: string },
 ): Content | undefined {
   const official = pickFlavorText(species.flavor_text_entries);
   const picked = official ?? fallback;
   if (picked === undefined) return undefined;
+  // El texto de WikiDex lleva la página de origen, para atribuirlo en /creditos (CC BY-SA).
+  const source = official === undefined ? fallback?.source : undefined;
 
   const names = nameVariants(
     [entity.name.es, entity.name.en, species.name, ...entity.aliases].filter((name): name is string => name !== undefined),
@@ -292,7 +294,7 @@ export function buildDexContent(
     kind: 'dex',
     entityId: entity.id,
     series: entity.series[0],
-    payload: { text, version: picked.version },
+    payload: source === undefined ? { text, version: picked.version } : { text, version: picked.version, source },
     verified: official !== undefined,
   };
 }

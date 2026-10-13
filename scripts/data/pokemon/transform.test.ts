@@ -425,18 +425,21 @@ describe('buildDexContent', () => {
 
   it('sin texto en español usa el de WikiDex, sin verificar', () => {
     const noSpanish = makeSpecies({ flavor_text_entries: [flavor('English.', 'sword', 33, 'en')] });
-    expect(buildDexContent(noSpanish, entity, { text: 'Bulbasaur duerme al sol.', version: 'scarlet' })).toEqual({
+    const fallback = { text: 'Bulbasaur duerme al sol.', version: 'scarlet', source: 'https://www.wikidex.net/wiki/Bulbasaur' };
+    expect(buildDexContent(noSpanish, entity, fallback)).toEqual({
       id: 'dex-bulbasaur',
       kind: 'dex',
       entityId: 'bulbasaur',
       series: 'g1',
-      payload: { text: '??? duerme al sol.', version: 'scarlet' },
+      payload: { text: '??? duerme al sol.', version: 'scarlet', source: 'https://www.wikidex.net/wiki/Bulbasaur' },
       verified: false,
     });
   });
 
   it('con texto de PokéAPI ignora el de WikiDex', () => {
-    expect(buildDexContent(species, entity, { text: 'Otro texto.', version: 'scarlet' })?.payload.text).toBe('Una semilla de ???.');
+    const fromPokeapi = buildDexContent(species, entity, { text: 'Otro texto.', version: 'scarlet', source: 'https://www.wikidex.net/wiki/Bulbasaur' });
+    expect(fromPokeapi?.payload.text).toBe('Una semilla de ???.');
+    expect(fromPokeapi?.payload).not.toHaveProperty('source');
   });
 
   it('enmascara también el nombre en inglés y el id', () => {
