@@ -308,7 +308,7 @@ async function fetchWikidexTexts(species: Species[]): Promise<Map<string, { text
 // --- 4. Validación ----------------------------------------------------------
 
 const REQUIRED_ATTRS = [
-  'tipo1', 'tipo2', 'generacion', 'colores', 'etapa', 'altura', 'peso', 'habitat', 'gruposHuevo', 'habilidad',
+  'numero', 'inicial', 'tipo1', 'tipo2', 'generacion', 'colores', 'etapa', 'altura', 'peso', 'habitat', 'gruposHuevo', 'habilidad',
   'ps', 'ataque', 'defensa', 'ataqueEspecial', 'defensaEspecial', 'velocidad', 'totalEstadisticas',
 ];
 

@@ -4,6 +4,7 @@ import {
   baseStats,
   buildDexContent,
   buildEntity,
+  initialOf,
   capitalizeFirst,
   cleanFlavorText,
   evolutionStages,
@@ -296,6 +297,12 @@ describe('buildEntity', () => {
     expect(imageStem('mr-mime')).toBe('pokemon/mr-mime');
   });
 
+  it('el número es el de la Pokédex Nacional y la inicial, la del nombre en español', () => {
+    expect(entity.attrs.numero).toBe(1);
+    expect(entity.attrs.inicial).toBe('B');
+    expect(buildEntity({ species: makeSpecies({ id: 25 }), pokemon: makePokemon(), stage: 1, spanish }).attrs.numero).toBe(25);
+  });
+
   it('arma los atributos del Clásico', () => {
     expect(entity.attrs).toMatchObject({
       tipo1: 'Planta',
@@ -452,5 +459,22 @@ describe('buildDexContent', () => {
     });
     const mixedEntity = buildEntity({ species: mixed, pokemon: makePokemon(), stage: 1, spanish });
     expect(buildDexContent(mixed, mixedEntity)?.payload.text).toBe('???, o ???.');
+  });
+});
+
+describe('initialOf', () => {
+  it('es la primera letra en mayúscula', () => {
+    expect(initialOf('Pikachu')).toBe('P');
+    expect(initialOf('mr. mime')).toBe('M');
+  });
+
+  it('no cuentan los acentos ni los signos del principio', () => {
+    expect(initialOf('Éxeggutor')).toBe('E');
+    expect(initialOf('Ñandú')).toBe('N');
+    expect(initialOf('"Ho-Oh"')).toBe('H');
+  });
+
+  it('un nombre sin letras es un error', () => {
+    expect(() => initialOf('123')).toThrow();
   });
 });

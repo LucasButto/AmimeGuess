@@ -231,6 +231,16 @@ export function imageStem(id: string): string {
   return `pokemon/${id}`;
 }
 
+/**
+ * La inicial del nombre para la columna "Inicial" del Clásico: la primera letra, en mayúscula y sin acento
+ * (una "É" o una "Ñ" cuentan como "E" y "N": los acentos no cuentan).
+ */
+export function initialOf(name: string): string {
+  const letter = [...name.normalize('NFD').replace(/\p{Diacritic}/gu, '')].find((char) => /\p{L}/u.test(char));
+  if (letter === undefined) throw new Error(`El nombre "${name}" no tiene ninguna letra`);
+  return letter.toUpperCase();
+}
+
 export function buildEntity({ species, pokemon, stage, spanish }: EntityInput): Entity {
   const english = nameIn(species.names, 'en');
   const spanishName = nameIn(species.names, 'es') ?? english ?? species.name;
@@ -247,6 +257,9 @@ export function buildEntity({ species, pokemon, stage, spanish }: EntityInput): 
     series: [`g${generation}`],
     image: imageStem(species.name),
     attrs: {
+      // Número en la Pokédex Nacional: ordena el selector de Pokémon del juego.
+      numero: species.id,
+      inicial: initialOf(spanishName),
       tipo1: spanish(firstType.type.url),
       tipo2: types[1] ? spanish(types[1].type.url) : null,
       generacion: generation,
