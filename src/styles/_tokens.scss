@@ -37,12 +37,21 @@ $space-9: 6rem;
 $gutter: fluid(1rem, 2rem);
 
 // --- Tipografía -------------------------------------------------------------
-$font-size-sm: fluid(0.875rem, 0.9375rem);
+// Cada tamaño se multiplica por `--font-scale` (1 si el tema no lo define): una piel con una fuente de texto más chica
+// que la normal (Jersey 10, por ejemplo) sube todos los tamaños de una vez.
+$font-size-sm: calc(#{fluid(0.875rem, 0.9375rem)} * var(--font-scale, 1));
 // Los campos de texto usan este tamaño o más (16 px) para que iOS no haga zoom al enfocar.
-$font-size-base: 1rem;
-$font-size-lg: fluid(1.125rem, 1.25rem);
-$font-size-xl: fluid(1.5rem, 1.875rem);
-$font-size-2xl: fluid(2rem, 3rem);
+$font-size-base: calc(1rem * var(--font-scale, 1));
+$font-size-lg: calc(#{fluid(1.125rem, 1.25rem)} * var(--font-scale, 1));
+$font-size-xl: calc(#{fluid(1.5rem, 1.875rem)} * var(--font-scale, 1));
+$font-size-2xl: calc(#{fluid(2rem, 3rem)} * var(--font-scale, 1));
+
+// Tamaños de la fuente de títulos (`display`), en pasos de 0,5 rem: a la fuente raíz de 16 px son múltiplos
+// de 8 px, la grilla de una fuente pixel. Se aplican con el mixin `display-size`.
+$font-display-sm: 1rem;
+$font-display-md: 1.5rem;
+$font-display-lg: 2rem;
+$font-display-xl: 2.5rem;
 
 $font-weight-regular: 400;
 $font-weight-medium: 500;
@@ -51,9 +60,15 @@ $font-weight-bold: 700;
 $line-height-tight: 1.2;
 $line-height-base: 1.5;
 
+// La fuente de sistema: la del sitio sin tema y la de la preferencia "Fuente legible".
+$font-system: (system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif);
+
+// `heading` la define el tema base de cada franquicia (sesión 14). `display` (títulos grandes y números
+// cortos) y `body` (todo lo demás) las redefine una piel; `display` sale por defecto de `heading`.
 $fonts: (
-  'body': (system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif),
-  'heading': (system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif),
+  'body': $font-system,
+  'heading': $font-system,
+  'display': var(--font-heading),
 );
 
 // --- Forma ------------------------------------------------------------------
@@ -110,11 +125,193 @@ $theme-defaults: (
   'background-image': none,
 );
 
+// --- Tokens semánticos (sesión 15) ------------------------------------------
+// Lo que una piel (SPEC 9.2: sesiones 15 a 18) redefine sobre su clase raíz, en
+// src/franchises/<slug>/theme/theme.module.scss. Los valores por defecto salen de
+// los colores y la forma del tema base, así una franquicia sin piel se ve igual
+// que en la sesión 14. Los primitivos de src/components/ui/ leen solo estos. Se
+// leen con `token(nombre)`.
+$semantic: (
+  // Superficies: la página, los paneles, los cuadros de diálogo, las pantallas
+  // (un panel oscuro, como una pantalla de consola) y lo que queda hundido.
+  'surface-page': var(--color-bg),
+  'surface-panel': var(--color-surface),
+  'surface-dialog': var(--color-surface),
+  'surface-screen': var(--color-surface),
+  'surface-sunken': var(--color-bg),
+  // Tintas: el texto sobre cada superficie y la sombra del texto pixel.
+  'ink': var(--color-text),
+  'ink-muted': var(--color-text-muted),
+  'ink-screen': var(--color-text),
+  'ink-shadow': transparent,
+  // Acentos: el botón principal y el secundario, con el color de su texto.
+  'accent-primary': var(--color-accent),
+  'accent-primary-ink': var(--color-accent-contrast),
+  'accent-secondary': var(--color-surface),
+  'accent-secondary-ink': var(--color-accent),
+  // Estados de celda del Clásico y el color de su texto.
+  'cell-correct': var(--color-match),
+  'cell-partial': var(--color-partial),
+  'cell-incorrect': var(--color-miss),
+  'cell-ink': var(--color-on-result),
+  // Marcos: un anillo exterior (el borde) y uno interior opcional, para los marcos de dos tonos.
+  'frame-width': 1px,
+  'frame-color': var(--color-border),
+  'frame-inner-width': 0px,
+  'frame-inner': transparent,
+  // Formas: el recorte de las esquinas (`none`, o un polígono escalonado de `pixel-corners`) de los
+  // paneles, los botones, los chips y las celdas. Con `none` mandan los redondeos del tema base.
+  'clip-panel': none,
+  'clip-button': none,
+  'clip-chip': none,
+  'clip-cell': none,
+  // Paneles (primitivo Panel): el anillo interior del cuadro de diálogo y el de la pantalla.
+  'frame-dialog-inner': transparent,
+  // El anillo interior del resumen de una partida ganada (el de diálogo, si el tema no lo cambia).
+  'frame-won-inner': transparent,
+  // El anillo interior del recuadro del modo infinito.
+  'frame-practice-inner': transparent,
+  'frame-screen-inner': transparent,
+  // Botones (primitivo Button). `button-edge: initial` deja que cada variante use su propio borde (el de
+  // su color); una piel lo fija para dibujar todos con el mismo marco.
+  'button-edge': initial,
+  'button-frame-width': 1px,
+  'button-ghost-hover-edge': var(--color-accent),
+  // Cuánto baja un botón al presionarlo.
+  'button-press': 0px,
+  // Decoraciones opcionales: un punto antes del texto del botón principal, que se enciende con el foco,
+  // y un cursor ▶ en el fantasma, que aparece con el foco y el hover. Ocultas por defecto.
+  'button-lead-display': none,
+  'button-lead': var(--color-accent-contrast),
+  'button-lead-glow': var(--color-accent-contrast),
+  'button-cursor-display': none,
+  'button-disabled-outline': none,
+  // Botones de ícono: tono A (confirmar) y tono B (cerrar, volver).
+  'icon-a-fill': transparent,
+  'icon-a-ink': var(--color-text-muted),
+  'icon-b-fill': transparent,
+  'icon-b-ink': var(--color-text-muted),
+  'icon-hover-ink': var(--color-text),
+  'icon-frame-width': 0px,
+  'clip-icon': none,
+  // Modales: la barra del título y el botón de cerrar del pie (por defecto, el botón principal).
+  'dialog-bar-fill': transparent,
+  'dialog-bar-ink': var(--color-text),
+  'modal-close-fill': var(--color-accent),
+  'modal-close-ink': var(--color-accent-contrast),
+  // Chips (primitivo Chip) y pastillas de la navegación entre modos: redondeo (píldora por defecto; una
+  // piel con esquinas escalonadas lo pone en 0), apagado y prendido.
+  'chip-radius': 100rem,
+  'chip-fill': var(--color-surface),
+  'chip-ink': var(--color-text-muted),
+  'chip-edge': var(--color-border),
+  'chip-on-fill': var(--color-accent),
+  'chip-on-ink': var(--color-accent-contrast),
+  'chip-on-edge': var(--color-accent),
+  // Paneles de los motores: la franja de acento a la izquierda (la pista principal, la lista de pistas), el
+  // ▼ que avisa una pista nueva y el cursor ▶ de la pista recién revelada (ocultos por defecto).
+  'panel-accent-width': 0.375rem,
+  'dialog-more-display': none,
+  'menu-cursor-display': none,
+  // Botón ⓘ de ayuda (primitivo InfoTip): el círculo con la "i".
+  'infotip-fill': var(--color-accent),
+  'infotip-open-fill': var(--color-accent),
+  'infotip-ink': var(--color-accent-contrast),
+  'infotip-radius': 100rem,
+  'clip-infotip': none,
+  // Franja de color del resumen al terminar un reto (verde al ganar, roja al perder).
+  'result-mark-width': 0.375rem,
+  // Celdas del Clásico: un borde interior opcional, cuántas líneas de texto como mucho (todas por defecto),
+  // la sombra del texto y la flecha del indicio de desplazamiento de la tabla (oculta por defecto).
+  'cell-frame-width': 0px,
+  'cell-edge': transparent,
+  'cell-lines': none,
+  'cell-text-shadow': transparent,
+  'scroll-hint-arrow': none,
+  // Medidores (barras proporcionales de Mayor o Menor, intentos): pista, relleno por nivel y borde.
+  'meter-height': 0.5rem,
+  'meter-track': color-mix(in srgb, var(--color-border) 60%, transparent),
+  'meter-fill-high': var(--color-accent),
+  'meter-fill-mid': var(--color-accent),
+  'meter-fill-low': var(--color-accent),
+  'meter-border': none,
+  'meter-ease': cubic-bezier(0.3, 0.7, 0.4, 1),
+  // Títulos de página: color, sombra (o contorno, si van directo sobre el fondo del tema) y una viñeta
+  // opcional (una imagen de public/ antes del título; invisible con tamaño 0).
+  'title-ink': var(--color-text),
+  'title-shadow': none,
+  'title-bullet': none,
+  'title-bullet-size': 0px,
+  // Nombre del sitio sobre el título de la franquicia (oculto por defecto) y la línea chica sobre el
+  // título de un modo (el nombre de la franquicia): color y sombra.
+  'header-site-display': none,
+  'kicker-ink': var(--color-text-muted),
+  'kicker-shadow': none,
+  // Placa de página: el fondo que una piel pone debajo del texto suelto de una página (la introducción,
+  // el área de juego), para que nunca quede directo sobre su ilustración. Invisible por defecto.
+  'plate-fill': transparent,
+  'plate-edge': transparent,
+  'plate-inner': transparent,
+  'plate-width': 0px,
+  'plate-inner-width': 0px,
+  'plate-pad': 0rem,
+  // Botones de volver: relleno y aro interior (por defecto, los de los paneles).
+  'nav-fill': var(--color-surface),
+  'nav-inner': transparent,
+  'nav-inner-width': 0px,
+  // Foco: un anillo con un halo alrededor, para que se vea sobre cualquier color.
+  'focus-color': var(--color-focus),
+  'focus-width': 0.125rem,
+  'focus-halo': transparent,
+  'focus-halo-width': 0px,
+  // Sombras: la de las tarjetas (del tema base) y la de lo que flota (sugerencias, ayudas).
+  'shadow-card': var(--card-shadow),
+  'shadow-pop': 0 0.25rem 1rem color-mix(in srgb, var(--color-text) 20%, transparent),
+  // Movimiento de la revelación del Clásico (SPEC 9.2).
+  'flip-duration': 450ms,
+  'flip-stagger': 280ms,
+  'flip-ease': cubic-bezier(0.3, 0.7, 0.4, 1),
+  // Grilla nativa de la fuente de títulos (`display`): sus tamaños se redondean a múltiplos de esta medida
+  // en píxeles reales, para que una fuente pixel no se vea borrosa (ver el mixin `display-size`).
+  'display-grid': 1px,
+  // Unidad de arte: un "píxel" de los dibujos pixel. Se redondea a un número entero de píxeles
+  // reales (ver `root-vars`) para que el pixel art no se vea borroso a ninguna escala.
+  'px': 0.25rem,
+  // Medio píxel de arte, también entero: para dibujos chicos (íconos, la bola de los botones de volver).
+  'px-half': 0.125rem,
+);
+
+// --- Capas (z-index) --------------------------------------------------------
+// Los modales (<dialog>) van en la capa superior del navegador y no necesitan número.
+$layer-backdrop: -1;
+$layer-raised: 1;
+$layer-sticky: 2;
+$layer-sticky-corner: 3;
+$layer-dropdown: 20;
+$layer-nav: 30;
+$layer-tooltip: 50;
+$layer-transition: 60;
+
 @function color($name) {
   @if not map.has-key($colors, $name) {
     @error 'Color desconocido: #{$name}. Opciones: #{map.keys($colors)}';
   }
   @return var(--color-#{$name});
+}
+
+@function token($name) {
+  @if not map.has-key($semantic, $name) {
+    @error 'Token desconocido: #{$name}. Opciones: #{map.keys($semantic)}';
+  }
+  @return var(--#{$name});
+}
+
+// `n` píxeles de arte, para medir todo lo pixel (SPEC 9.2: múltiplos de --px).
+@function px($n) {
+  @if $n == 1 {
+    @return var(--px);
+  }
+  @return calc(var(--px) * #{$n});
 }
 
 @function font($name) {
@@ -134,5 +331,25 @@ $theme-defaults: (
   }
   @each $name, $value in $theme-defaults {
     --#{$name}: #{$value};
+  }
+  @include semantic-vars;
+}
+
+// Los tokens semánticos se calculan a partir de los colores del tema base del elemento donde se
+// declaran. globals.scss los declara en `:root` y también en cada `[data-franchise]` (las tarjetas
+// del inicio llevan cada una su tema), para que sigan a los colores de ese alcance.
+@mixin semantic-vars {
+  @each $name, $value in $semantic {
+    --#{$name}: #{$value};
+  }
+  --font-display: #{map.get($fonts, 'display')};
+}
+
+// La unidad de arte redondeada a píxeles enteros (SPEC 9.2). Donde `round()` no existe se queda en
+// 0,25 rem, que a la fuente raíz de 16 px ya son 4 px enteros.
+@mixin px-rounding {
+  @supports (inline-size: round(nearest, 0.25rem, 1px)) {
+    --px: round(nearest, 0.25rem, 1px);
+    --px-half: round(nearest, 0.125rem, 1px);
   }
 }

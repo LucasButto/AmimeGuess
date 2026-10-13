@@ -50,9 +50,25 @@ $heights: (
 }
 
 // Movimiento: las transiciones solo corren si la persona no pidió reducirlo
-// (`prefers-reduced-motion`). Es la única forma de escribir esa media query.
+// (`prefers-reduced-motion`). Estos dos mixins son la única forma de escribir esa media query.
 @mixin motion-ok {
   @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+// Lo contrario: estilos que reemplazan una animación cuando la persona pidió menos movimiento.
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) {
+    @content;
+  }
+}
+
+// Dispositivos con puntero que puede pasar por encima (mouse, trackpad). Todo estilo de `:hover` va
+// acá adentro: en una pantalla táctil el hover queda pegado después de tocar, y ninguna función puede
+// depender de él. Es la única forma de escribir esa media query.
+@mixin hover-capable {
+  @media (hover: hover) {
     @content;
   }
 }

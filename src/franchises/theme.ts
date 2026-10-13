@@ -1,4 +1,4 @@
-import { THEME_COLORS, type FranchiseTheme } from './types';
+import { THEME_COLORS, type FranchiseTheme, type ThemeColor, type ThemeFont, type ThemePair } from './types';
 
 // Del tema de una franquicia (datos en su config.ts) a CSS y a las comprobaciones de contraste.
 // Los estilos no conocen ninguna franquicia: leen las variables `--color-*`, `--radius-*`, etc. de
@@ -11,11 +11,19 @@ export function themeScope(slug: string): ThemeScope {
   return `[data-franchise="${slug}"]`;
 }
 
+/** Las tipografías que usa un tema: la de títulos y, si tiene, la del resto del texto. */
+export function themeFonts(theme: FranchiseTheme): ThemeFont[] {
+  return theme.bodyFont ? [theme.headingFont.id, theme.bodyFont.id] : [theme.headingFont.id];
+}
+
 /** Las variables CSS de un tema, listas para un `<style>`. Determinista: no depende de nada más que del tema. */
 export function themeCss(theme: FranchiseTheme, scope: ThemeScope = ':root'): string {
   const lines = [
     ...THEME_COLORS.map((name) => `--color-${name}: ${theme.colors[name]};`),
     `--font-heading: var(--font-${theme.headingFont.id}), ${theme.headingFont.fallback};`,
+    ...(theme.bodyFont
+      ? [`--font-body: var(--font-${theme.bodyFont.id}), ${theme.bodyFont.fallback};`]
+      : []),
     `--radius-sm: ${theme.radius.sm};`,
     `--radius-md: ${theme.radius.md};`,
     `--radius-lg: ${theme.radius.lg};`,
@@ -24,6 +32,7 @@ export function themeCss(theme: FranchiseTheme, scope: ThemeScope = ':root'): st
     `--heading-text-transform: ${theme.headingStyle.textTransform};`,
     `--background-image: url('${theme.background}');`,
     `color-scheme: ${theme.scheme};`,
+    ...Object.entries(theme.palette ?? {}).map(([name, value]) => `--palette-${name}: ${value};`),
   ];
   return `${scope} { ${lines.join(' ')} }`;
 }
@@ -47,4 +56,14 @@ export function luminance(hex: string): number {
 export function contrastRatio(a: string, b: string): number {
   const [light, dark] = [luminance(a), luminance(b)].sort((x, y) => y - x);
   return (light + 0.05) / (dark + 0.05);
+}
+
+/** Mínimo AA (WCAG 2.1) de cada tipo de par: texto normal, texto grande (≥ 24 px, o 18,7 px en negrita) e interfaz. */
+export const AA_MINIMUM: Readonly<Record<ThemePair['kind'], number>> = { text: 4.5, large: 3, ui: 3 };
+
+/** Un color del tema por nombre: de `palette` o de `colors`. */
+export function themeColor(theme: FranchiseTheme, name: string): string | undefined {
+  const fromPalette = theme.palette?.[name];
+  if (fromPalette !== undefined) return fromPalette;
+  return (THEME_COLORS as readonly string[]).includes(name) ? theme.colors[name as ThemeColor] : undefined;
 }

@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { franchises } from './index';
-import { contrastRatio, themeCss, themeScope } from './theme';
+import { AA_MINIMUM, contrastRatio, themeColor, themeCss, themeScope } from './theme';
 import { THEME_COLORS } from './types';
 
 // Contraste AA (WCAG 2.1) en los cuatro temas: 4,5 para texto, 3 para íconos y contornos de foco.
@@ -75,6 +75,30 @@ describe.each(franchises.map((franchise) => [franchise.slug, franchise.theme] as
   });
 });
 
+describe.each(franchises.map((franchise) => [franchise.slug, franchise.theme] as const))('paleta de la piel de %s', (_slug, theme) => {
+  it('define cada color de la paleta como #rrggbb, con 24 colores como mucho contando los del tema', () => {
+    const palette = Object.values(theme.palette ?? {});
+    for (const value of palette) expect(value).toMatch(/^#[0-9a-f]{6}$/i);
+    if (palette.length > 0) expect(new Set([...palette, ...Object.values(theme.colors)]).size).toBeLessThanOrEqual(24);
+  });
+
+  it('cada par texto/fondo que usa la piel pasa AA (4,5:1 texto; 3:1 texto grande e interfaz)', () => {
+    for (const pair of theme.pairs ?? []) {
+      const text = themeColor(theme, pair.text);
+      const background = themeColor(theme, pair.background);
+      expect(text, pair.text).toBeDefined();
+      expect(background, pair.background).toBeDefined();
+      expect(contrastRatio(text!, background!), `${pair.text}/${pair.background} (${pair.where})`).toBeGreaterThanOrEqual(
+        AA_MINIMUM[pair.kind],
+      );
+    }
+  });
+
+  it('las variables de la paleta llegan al CSS', () => {
+    for (const [name, value] of Object.entries(theme.palette ?? {})) expect(themeCss(theme)).toContain(`--palette-${name}: ${value};`);
+  });
+});
+
 describe('themeCss', () => {
   const pokemon = franchises[0].theme;
 
@@ -82,8 +106,9 @@ describe('themeCss', () => {
     const css = themeCss(pokemon);
     expect(css.startsWith(':root { ')).toBe(true);
     for (const name of THEME_COLORS) expect(css).toContain(`--color-${name}: ${pokemon.colors[name]};`);
-    expect(css).toContain('--font-heading: var(--font-fredoka),');
-    expect(css).toContain('--radius-lg: 1.5rem;');
+    expect(css).toContain('--font-heading: var(--font-press-start-2p),');
+    expect(css).toContain('--font-body: var(--font-jersey-10),');
+    expect(css).toContain(`--radius-lg: ${pokemon.radius.lg};`);
     expect(css).toContain("--background-image: url('/themes/pokemon.svg');");
     expect(css).toContain('color-scheme: light;');
     expect(themeCss(pokemon, themeScope('pokemon')).startsWith('[data-franchise="pokemon"] { ')).toBe(true);

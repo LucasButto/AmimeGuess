@@ -8,10 +8,11 @@
   flex-direction: column;
   align-items: flex-start;
   gap: t.$space-5;
-  padding-block: t.$space-6;
+  // Arriba, el mismo margen que la página de un modo: los botones de volver quedan en el mismo lugar.
+  padding-block: t.$space-5 t.$space-6;
 
   @include bp.min-width('md') {
-    padding-block: t.$space-8;
+    padding-block: t.$space-7 t.$space-6;
   }
 }
 
@@ -21,26 +22,26 @@
   gap: t.$space-2;
 }
 
+// El nombre del sitio, sobre el título (si el tema lo muestra).
+.site {
+  @include m.heading;
+  @include m.display-size(t.$font-display-sm);
+  display: t.token('header-site-display');
+  color: t.token('title-ink');
+  line-height: t.$line-height-tight;
+  text-shadow: t.token('title-shadow');
+}
+
 .title {
   @include m.heading;
-  @include m.fluid-text(2rem, 3rem);
+  @include m.display-size(t.fluid(2rem, 3rem));
+  @include m.page-title;
   font-weight: t.$font-weight-bold;
   line-height: t.$line-height-tight;
 }
 
-.text {
+.plate {
+  @include m.plate;
   font-size: t.$font-size-lg;
-  color: t.color('text-muted');
-}
-
-.back {
-  @include m.touch-target;
-  display: inline-flex;
-  align-items: center;
-  color: t.color('accent');
-
-  &:focus-visible {
-    outline: 0.125rem solid t.color('focus');
-    outline-offset: 0.125rem;
-  }
+  color: t.token('ink-muted');
 }

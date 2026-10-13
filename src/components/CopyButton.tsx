@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import styles from './CopyButton.module.scss';
+import { Button } from './ui/Button';
 import { VisuallyHidden } from './VisuallyHidden';
 
 type Status = 'idle' | 'copied' | 'failed';
@@ -15,7 +16,8 @@ interface CopyButtonProps {
   copiedLabel: string;
   failedLabel: string;
   /** `primary` para la acción principal de una pantalla; por defecto, secundaria. */
-  variant?: 'primary' | 'secondary';
+  /** `primary` (el color principal), `accent` (el secundario, por ejemplo azul) o `secondary` (discreto, el de siempre). */
+  variant?: 'primary' | 'accent' | 'secondary';
 }
 
 /** Botón que copia un texto al portapapeles y lo confirma, a la vista y para lectores de pantalla. */
@@ -35,9 +37,10 @@ export function CopyButton({ getText, label, copiedLabel, failedLabel, variant =
 
   return (
     <>
-      <button type="button" className={styles.button} data-variant={variant} onClick={copy}>
+      {/* La secundaria es un botón de barra (fantasma): discreto, del color de los paneles. */}
+      <Button variant={variant === 'primary' ? 'primary' : variant === 'accent' ? 'secondary' : 'ghost'} onClick={copy}>
         {visible}
-      </button>
+      </Button>
       <VisuallyHidden role="status">{status === 'idle' ? '' : visible}</VisuallyHidden>
     </>
   );

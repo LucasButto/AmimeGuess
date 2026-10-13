@@ -1,0 +1,23 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// Por defecto, un panel con borde de 1 px y esquinas redondeadas (el aspecto de la sesión 14). Una piel
+// cambia el recorte, los dos anillos del marco y los colores de cada variante.
+.panel {
+  --_fill: #{t.token('surface-panel')};
+  --_inner: #{t.token('frame-inner')};
+  @include m.pixel-frame($fill: var(--_fill), $inner: var(--_inner), $radius: var(--panel-radius, #{t.$radius-lg}));
+  padding: calc(#{t.token('frame-width')} + #{t.token('frame-inner-width')} + var(--panel-pad, #{t.$space-4}));
+  color: t.token('ink');
+
+  &[data-variant='dialog'] {
+    --_fill: #{t.token('surface-dialog')};
+    --_inner: #{t.token('frame-dialog-inner')};
+  }
+
+  &[data-variant='screen'] {
+    --_fill: #{t.token('surface-screen')};
+    --_inner: #{t.token('frame-screen-inner')};
+    color: t.token('ink-screen');
+  }
+}

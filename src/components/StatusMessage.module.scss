@@ -74,3 +74,9 @@
   flex-wrap: wrap;
   gap: t.$space-2;
 }
+
+// El indicador de carga del tema, en el lugar del ícono.
+.loader {
+  display: inline-flex;
+  flex: none;
+}

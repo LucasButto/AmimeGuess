@@ -1,0 +1,48 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.switch {
+  @include m.touch-target;
+  display: flex;
+  align-items: flex-start;
+  gap: t.$space-3;
+  padding-block: t.$space-2;
+  border-radius: t.$radius-md;
+  cursor: pointer;
+
+  // El anillo de foco rodea toda la fila (la casilla sola es chica).
+  &:has(:focus-visible) {
+    outline: t.token('focus-width') solid t.token('focus-color');
+    outline-offset: 0.125rem;
+    box-shadow: 0 0 0 calc(0.125rem + #{t.token('focus-width')} + #{t.token('focus-halo-width')}) t.token('focus-halo');
+  }
+}
+
+.input {
+  flex: none;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  margin: 0;
+  accent-color: t.token('accent-primary');
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.label {
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-medium;
+}
+
+.hint {
+  font-size: t.$font-size-sm;
+  color: t.token('ink-muted');
+}

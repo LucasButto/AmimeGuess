@@ -1,0 +1,84 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.card {
+  @include m.touch-target;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-1;
+  block-size: 100%;
+  min-block-size: 6rem;
+  padding: t.$space-4;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+  box-shadow: t.$card-shadow;
+  color: t.color('text');
+  text-align: center;
+  text-decoration: none;
+
+  &[data-state='solved'] {
+    border-color: t.color('match');
+  }
+
+  &[data-main='true'] {
+    min-block-size: 8rem;
+    border-color: t.color('accent');
+    border-width: 0.1875rem;
+
+    @include bp.min-width('md') {
+      min-block-size: 10rem;
+    }
+  }
+
+  @include m.hover {
+    border-color: t.color('accent');
+  }
+
+  &:focus-visible {
+    outline: 0.1875rem solid t.color('focus');
+    outline-offset: 0.1875rem;
+  }
+}
+
+.badge {
+  padding: t.$space-1 t.$space-3;
+  border-radius: t.$radius-full;
+  background: t.color('accent');
+  color: t.color('accent-contrast');
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+}
+
+.name {
+  @include m.heading;
+  @include m.fluid-text(1.25rem, 1.5rem);
+  line-height: t.$line-height-tight;
+
+  .card[data-main='true'] & {
+    @include m.fluid-text(1.75rem, 2.25rem);
+  }
+}
+
+.status {
+  min-block-size: 1.5em;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: t.color('text-muted');
+
+  .card[data-state='solved'] & {
+    color: t.color('text');
+  }
+}
+
+.icon {
+  font-weight: t.$font-weight-bold;
+
+  .card[data-state='solved'] & {
+    color: t.color('match');
+  }
+}

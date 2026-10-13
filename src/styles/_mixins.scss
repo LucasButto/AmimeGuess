@@ -1,4 +1,6 @@
-@use 'tokens' as t;
+@use "sass:list";
+@use "breakpoints" as bp;
+@use "tokens" as t;
 
 // Área táctil mínima (44 × 44 px a 16 px de fuente raíz). Para botones, chips
 // y cualquier elemento que se toque.
@@ -9,7 +11,7 @@
 
 // Títulos: la fuente, el espaciado y las mayúsculas los define el tema de la franquicia.
 @mixin heading {
-  font-family: t.font('heading');
+  font-family: t.font("heading");
   letter-spacing: var(--heading-letter-spacing);
   text-transform: var(--heading-text-transform);
 }
@@ -26,4 +28,256 @@
   max-inline-size: $max;
   margin-inline: auto;
   padding-inline: t.$gutter;
+}
+
+// --- Pixel art (sesión 15) --------------------------------------------------
+
+// Una coordenada a `$n` píxeles de arte del borde inicial (o del final, con `$from-end`).
+@function edge-at($n, $from-end: false) {
+  @if $from-end {
+    @if $n == 0 {
+      @return 100%;
+    }
+    @return calc(100% - var(--px) * #{$n});
+  }
+  @if $n == 0 {
+    @return 0;
+  }
+  @return calc(var(--px) * #{$n});
+}
+
+// Polígono de esquinas escalonadas para `clip-path`. `$profile` dice cuántos píxeles de arte se
+// recortan en cada fila desde el borde, de arriba hacia abajo: `(1)` saca el píxel de la esquina,
+// `(2, 1)` hace una escalera de dos pasos, `(4, 2, 1, 1)` redondea los extremos de una cápsula.
+// Las cuatro esquinas son simétricas. Los puntos están en múltiplos de --px (píxeles enteros), así
+// que el borde no se ve borroso ni con costuras a ninguna escala.
+@function pixel-corners($profile) {
+  $n: list.length($profile);
+  $points: ();
+  // Arriba a la izquierda: desde el borde izquierdo, sube escalón por escalón hasta el borde de arriba.
+  $points: list.append($points, 0 edge-at($n), comma);
+  @for $i from $n through 1 {
+    $a: list.nth($profile, $i);
+    $points: list.append($points, edge-at($a) edge-at($i), comma);
+    $points: list.append($points, edge-at($a) edge-at($i - 1), comma);
+  }
+  // Arriba a la derecha.
+  @for $i from 1 through $n {
+    $a: list.nth($profile, $i);
+    $points: list.append($points, edge-at($a, true) edge-at($i - 1), comma);
+    $points: list.append($points, edge-at($a, true) edge-at($i), comma);
+  }
+  $points: list.append($points, 100% edge-at($n), comma);
+  // Abajo a la derecha.
+  $points: list.append($points, 100% edge-at($n, true), comma);
+  @for $i from $n through 1 {
+    $a: list.nth($profile, $i);
+    $points: list.append($points, edge-at($a, true) edge-at($i, true), comma);
+    $points: list.append(
+      $points,
+      edge-at($a, true) edge-at($i - 1, true),
+      comma
+    );
+  }
+  // Abajo a la izquierda.
+  @for $i from 1 through $n {
+    $a: list.nth($profile, $i);
+    $points: list.append($points, edge-at($a) edge-at($i - 1, true), comma);
+    $points: list.append($points, edge-at($a) edge-at($i, true), comma);
+  }
+  $points: list.append($points, 0 edge-at($n, true), comma);
+  @return polygon($points);
+}
+
+// Marco de dos tonos que dibujan dos capas detrás del contenido: `::before` es el anillo exterior y
+// `::after`, el relleno con el anillo interior. Las dos se recortan con el mismo `$clip`.
+//
+// Por qué capas recortadas con `clip-path` (y no las otras dos técnicas habituales):
+// - un `box-shadow` escalonado dibuja el marco por fuera de la caja (el área táctil y el layout
+//   dejan de coincidir con lo que se ve) y una cápsula de extremos escalonados necesita decenas de
+//   sombras;
+// - un `border-image` de 9 cortes con un SVG estático lleva los colores fijos dentro del archivo:
+//   haría falta un SVG por combinación de colores y no seguiría a las variables del tema;
+// - el polígono es vectorial (nítido en 4K), sus escalones miden múltiplos enteros de --px, toma
+//   los colores de las variables CSS y no recorta el contenido, las listas que se despliegan ni el
+//   anillo de foco, porque el elemento en sí no se recorta: solo sus dos capas de fondo.
+// Con los valores por defecto de los tokens (sin recorte, redondeo del tema, borde de 1 px) se ve
+// igual que un borde común con `border-radius`.
+@mixin pixel-frame(
+  $fill: t.token("surface-panel"),
+  $outer: t.token("frame-color"),
+  $inner: t.token("frame-inner"),
+  $width: t.token("frame-width"),
+  $inner-width: t.token("frame-inner-width"),
+  $clip: t.token("clip-panel"),
+  $radius: t.$radius-lg
+) {
+  position: relative;
+  isolation: isolate;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    clip-path: $clip;
+    pointer-events: none;
+  }
+
+  &::before {
+    inset: 0;
+    border-radius: $radius;
+    background: $outer;
+  }
+
+  &::after {
+    inset: $width;
+    border-radius: max(0px, calc(#{$radius} - #{$width}));
+    background: $fill;
+    box-shadow: inset 0 0 0 $inner-width $inner;
+  }
+}
+
+// --- Piezas comunes de los motores (sesión 15) --------------------------------
+
+// Panel de un motor (la pista principal, la lista de pistas, la dificultad): el marco del tema, de panel o
+// de cuadro de diálogo, y opcionalmente la franja de acento a la izquierda (`panel-accent-width`; 0 en una
+// piel que no la usa). El relleno interior suma el marco y la franja.
+@mixin engine-panel($variant: "plain", $accent: false) {
+  $fill: t.token("surface-panel");
+  $inner: t.token("frame-inner");
+  @if $variant == "dialog" {
+    $fill: t.token("surface-dialog");
+    $inner: t.token("frame-dialog-inner");
+  }
+  @if $accent {
+    $stripe: t.token("panel-accent-width");
+    $fill:
+      linear-gradient(
+        to right,
+        #{t.color("accent")} 0 #{$stripe},
+        transparent #{$stripe}
+      ),
+      #{$fill};
+  }
+  @include pixel-frame($fill: $fill, $inner: $inner);
+  $frame: calc(#{t.token("frame-width")} + #{t.token("frame-inner-width")});
+  padding: calc(#{t.$space-4} + #{$frame});
+  @if $accent {
+    padding-inline-start: calc(
+      #{t.$space-4} + #{$frame} + #{t.token("panel-accent-width")}
+    );
+  }
+}
+
+// Un intento fallido como chip: borde y fondo del color de error, siempre con su cruz (el color no informa solo).
+@mixin fail-chip {
+  @include pixel-frame(
+    $fill: color-mix(
+        in srgb,
+        #{t.token("cell-incorrect")} 10%,
+        #{t.token("surface-panel")}
+      ),
+    $outer: t.token("cell-incorrect"),
+    $inner: transparent,
+    $width: t.token("button-frame-width"),
+    $inner-width: 0px,
+    $clip: t.token("clip-chip"),
+    $radius: t.token("chip-radius")
+  );
+  padding: t.$space-1 calc(#{t.$space-3} + #{t.token("button-frame-width")});
+  font-size: t.$font-size-sm;
+  color: t.token("ink");
+}
+
+// Estado vacío de un motor ("Todavía no hiciste ningún intento"): un recuadro punteado.
+@mixin empty-box {
+  padding: t.$space-5 t.$space-4;
+  text-align: center;
+  border: t.$border-width dashed t.token("frame-color");
+  border-radius: t.$radius-lg;
+  color: t.token("ink-muted");
+}
+
+// Placa de página (tokens `plate-*`): fondo y marco que una piel pone debajo del texto suelto de una página.
+// Por defecto no se ve ni ocupa lugar.
+@mixin plate {
+  @include pixel-frame(
+    $fill: t.token("plate-fill"),
+    $outer: t.token("plate-edge"),
+    $inner: t.token("plate-inner"),
+    $width: t.token("plate-width"),
+    $inner-width: t.token("plate-inner-width"),
+    $clip: t.token("clip-panel")
+  );
+  padding: calc(
+    #{t.token("plate-width")} + #{t.token("plate-inner-width")} +
+      #{t.token("plate-pad")}
+  );
+}
+
+// Título de página: color y sombra del tema, y su viñeta opcional antes del texto.
+@mixin page-title {
+  color: t.token("title-ink");
+  text-shadow: t.token("title-shadow");
+
+  &::before {
+    content: "";
+    display: inline-block;
+    inline-size: t.token("title-bullet-size");
+    block-size: t.token("title-bullet-size");
+    margin-inline-end: calc(#{t.token("title-bullet-size")} / 3);
+    vertical-align: middle;
+    background: t.token("title-bullet") center / contain no-repeat;
+  }
+}
+
+// Texto con sombra dura hacia abajo y a la derecha, como el de los juegos de consola. La sombra mide
+// un píxel de la letra (aprox. 1/16 del tamaño) redondeado a píxeles enteros; sin sombra si el tema
+// la deja transparente.
+@mixin pixel-text($color: t.token("ink-shadow")) {
+  //text-shadow: 0.0625em 0.0625em 0 $color;
+  //text-shadow: round(up, 0.0625em, 1px) round(up, 0.0625em, 1px) 0 $color;
+}
+
+// Anillo de foco de alto contraste: una línea con un halo de otro color alrededor (y en el hueco que
+// la separa del elemento), así se ve sobre cualquier fondo, también sobre rojo y sobre azul. El halo
+// usa `box-shadow`: un elemento con sombra propia la pasa en `$keep` para no perderla al enfocarse.
+@mixin focus-ring($offset: 0.125rem, $keep: null) {
+  &:focus-visible {
+    outline: t.token("focus-width") solid t.token("focus-color");
+    outline-offset: $offset;
+    $halo: 0 0 0
+      calc(
+        #{$offset} + #{t.token("focus-width")} + #{t.token("focus-halo-width")}
+      )
+      t.token("focus-halo");
+    @if $keep {
+      box-shadow: $halo, $keep;
+    } @else {
+      box-shadow: $halo;
+    }
+  }
+}
+
+// Tamaño de un texto en la fuente de títulos, redondeado a la grilla nativa de la fuente (`--display-grid`):
+// una fuente pixel dibujada a 8 px se ve nítida a 16, 24 o 32 px, también cuando la fuente raíz crece en
+// 2K y 4K. Donde `round()` no existe queda el tamaño sin redondear.
+@mixin display-size($size) {
+  font-size: $size;
+  font-size: round(nearest, #{$size}, #{t.token("display-grid")});
+}
+
+// Imágenes pixel: se agrandan sin suavizar.
+@mixin pixelated {
+  image-rendering: pixelated;
+}
+
+// Estilos de `:hover` solo con un puntero que puede pasar por encima (ver `hover-capable`).
+@mixin hover {
+  @include bp.hover-capable {
+    &:hover {
+      @content;
+    }
+  }
 }

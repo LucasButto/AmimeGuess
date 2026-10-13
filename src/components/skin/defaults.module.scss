@@ -1,0 +1,42 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+
+// Dorso liso: ocupa toda la celda, con el borde y el redondeo de las celdas.
+.cellBack {
+  position: absolute;
+  inset: 0;
+  border: t.$border-width solid t.token('frame-color');
+  border-radius: t.$radius-md;
+  background: t.token('surface-sunken');
+}
+
+.chipMark {
+  inline-size: 1em;
+  text-align: center;
+}
+
+.backIcon {
+  flex: none;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+}
+
+.loader {
+  flex: none;
+  display: inline-block;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  border: 0.1875rem solid t.color('border');
+  border-block-start-color: t.color('accent');
+  border-radius: t.$radius-full;
+
+  @include bp.motion-ok {
+    animation: spin 0.9s linear infinite;
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

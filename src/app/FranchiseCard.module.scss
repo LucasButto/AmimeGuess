@@ -30,7 +30,7 @@
     min-block-size: 11rem;
   }
 
-  &:hover {
+  @include m.hover {
     border-color: t.color('accent');
   }
 

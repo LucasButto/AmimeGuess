@@ -1,0 +1,112 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// El botón mide 44 × 44 px (área táctil); el dibujo, un círculo chico con la "i", va en el centro. Quien lo
+// pone en un lugar estrecho (un encabezado de tabla) puede achicar su huella con márgenes negativos sin
+// achicar el área táctil.
+.button {
+  @include m.touch-target;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  vertical-align: middle;
+  cursor: pointer;
+  @include m.focus-ring(-0.25rem);
+}
+
+.dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  border-radius: t.token('infotip-radius');
+  background: t.token('infotip-fill');
+  color: t.token('infotip-ink');
+  font-size: 0.75rem;
+  clip-path: t.token('clip-infotip');
+
+  .button[aria-expanded='true'] & {
+    background: t.token('infotip-open-fill');
+  }
+}
+
+// El recuadro: un cuadro de diálogo chico del tema, fijo en la ventana (lo ubica el componente) y por
+// encima de todo. Se ve recién cuando ya tiene su lugar calculado, para que no aparezca en una esquina.
+.tip {
+  @include m.pixel-frame($fill: t.token('surface-dialog'), $inner: t.token('frame-dialog-inner'), $radius: t.$radius-md);
+  position: fixed;
+  z-index: t.$layer-tooltip;
+  inline-size: max-content;
+  max-inline-size: min(20rem, calc(100vw - 2rem));
+  padding: calc(#{t.$space-2} + #{t.token('frame-width')} + #{t.token('frame-inner-width')}) calc(#{t.$space-3} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
+  font-family: t.font('body');
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-regular;
+  line-height: t.$line-height-base;
+  text-align: start;
+  text-transform: none;
+  letter-spacing: normal;
+  color: t.token('ink');
+  box-shadow: t.token('shadow-pop');
+  visibility: hidden;
+
+  &[data-placed='true'] {
+    visibility: visible;
+  }
+}
+
+// Flecha escalonada hacia el botón: arriba del recuadro si se abrió abajo, y al revés.
+.arrow {
+  position: absolute;
+  inset-inline-start: calc(var(--arrow-x, 50%) - var(--px) * 3);
+  inline-size: t.px(6);
+  block-size: t.px(3);
+  background: t.token('frame-color');
+
+  .tip[data-side='below'] & {
+    inset-block-end: 100%;
+    clip-path: polygon(
+      #{t.px(2)} 0,
+      #{t.px(4)} 0,
+      #{t.px(4)} var(--px),
+      #{t.px(5)} var(--px),
+      #{t.px(5)} #{t.px(2)},
+      100% #{t.px(2)},
+      100% 100%,
+      0 100%,
+      0 #{t.px(2)},
+      var(--px) #{t.px(2)},
+      var(--px) var(--px),
+      #{t.px(2)} var(--px)
+    );
+  }
+
+  .tip[data-side='above'] & {
+    inset-block-start: 100%;
+    clip-path: polygon(
+      0 0,
+      100% 0,
+      100% var(--px),
+      #{t.px(5)} var(--px),
+      #{t.px(5)} #{t.px(2)},
+      #{t.px(4)} #{t.px(2)},
+      #{t.px(4)} 100%,
+      #{t.px(2)} 100%,
+      #{t.px(2)} #{t.px(2)},
+      var(--px) #{t.px(2)},
+      var(--px) var(--px),
+      0 var(--px)
+    );
+  }
+}
+
+// Compacto: los márgenes negativos achican su huella en el renglón a 1,5 rem; el área táctil sigue de 44 px.
+.button[data-compact='true'] {
+  margin: -0.625rem;
+}

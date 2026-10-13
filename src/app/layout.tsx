@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
-import { SiteFooter } from '@/components/SiteFooter';
+import { PREFS_BOOT_SCRIPT } from '@/components/prefs';
 import { es } from '@/i18n/es';
 import '@/styles/globals.scss';
 import { fontVariables } from './fonts';
@@ -31,10 +31,13 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="es" className={fontVariables}>
+    // `suppressHydrationWarning`: el script de preferencias puede marcar <html> antes de hidratar.
+    <html lang="es" className={fontVariables} suppressHydrationWarning>
+      {/* El pie lo pone cada página: el de las franquicias es un slot de su piel (ver [franchise]/layout.tsx). */}
       <body>
+        {/* Antes de pintar: la "Fuente legible" de las preferencias (ver prefs.ts). */}
+        <script dangerouslySetInnerHTML={{ __html: PREFS_BOOT_SCRIPT }} />
         {children}
-        <SiteFooter />
       </body>
     </html>
   );

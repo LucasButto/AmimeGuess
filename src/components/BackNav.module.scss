@@ -1,0 +1,58 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// La caja es común a todos los temas (SPEC 9.2): misma posición, tamaño y separación en todas las páginas
+// de franquicia y de modo. El tema cambia el dibujo del ícono y los colores, nunca estas medidas.
+.nav {
+  align-self: flex-start;
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link {
+  @include m.touch-target;
+  @include m.pixel-frame($fill: t.token('nav-fill'), $inner: t.token('nav-inner'), $inner-width: t.token('nav-inner-width'), $radius: t.$radius-md, $clip: t.token('clip-chip'));
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-2;
+  min-block-size: 2.75rem;
+  padding: t.$space-1 calc(#{t.$space-3} + #{t.token('frame-width')}) t.$space-1 calc(#{t.$space-2} + #{t.token('frame-width')});
+  color: t.token('ink');
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+  text-decoration: none;
+  @include m.focus-ring;
+
+  @include m.hover {
+    color: t.color('accent');
+  }
+}
+
+// "Inicio" mide lo mismo con cualquier fuente de tema: así el botón de la franquicia empieza siempre en el
+// mismo lugar (su ancho depende del nombre de la franquicia).
+.link[data-kind='home'] {
+  inline-size: 6.75rem;
+}
+
+// El lugar del dibujo: 2 rem × 2 rem en todos los temas. Lo que dibuje el tema puede asomar, pero no
+// cambia la caja.
+.icon {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+}
+
+.label {
+  white-space: nowrap;
+}

@@ -1,0 +1,13 @@
+@use 'mixins' as m;
+
+.art {
+  flex: none;
+  overflow: visible;
+  @include m.pixelated;
+
+  &[data-size='px'] {
+    inline-size: calc(var(--px) * var(--art-w));
+    block-size: calc(var(--px) * var(--art-h));
+    max-inline-size: none;
+  }
+}

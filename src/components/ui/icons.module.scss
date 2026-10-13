@@ -1,0 +1,8 @@
+// Alto de una letra; el ancho sigue a la proporción del dibujo. `crispEdges` lleva los bordes a píxeles
+// enteros, así que no se ve borroso aunque 1 em no sea un múltiplo exacto del dibujo.
+.icon {
+  display: inline-block;
+  inline-size: auto;
+  block-size: 1em;
+  vertical-align: -0.125em;
+}

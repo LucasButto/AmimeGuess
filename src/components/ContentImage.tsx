@@ -1,6 +1,6 @@
 // La única forma de mostrar imágenes de contenido en todo el sitio (SPEC 7,
 // "Cómo se sirven"). Envuelve a la etiqueta <img> nativa sobre los archivos
-// estáticos de public/img/: nunca next/image ni optimización de Vercel.
+// estáticos de public/img/: nunca el componente de imágenes de Next ni la optimización de Vercel.
 //
 // Cada imagen existe en dos tamaños, `<stem>-256.webp` y `<stem>-512.webp`, que
 // genera el script de datos de la franquicia. `width` y `height` reservan el
@@ -36,6 +36,8 @@ export function ContentImage({ stem, alt, sizes, width = 512, height = 512, prio
       height={height}
       alt={alt}
       decoding="async"
+      // No se arrastran: en los modos de imagen oculta, el "fantasma" que acompaña al cursor mostraría la imagen entera.
+      draggable={false}
       loading={priority ? 'eager' : 'lazy'}
       fetchPriority={priority ? 'high' : undefined}
     />

@@ -7,6 +7,7 @@
   overflow: hidden;
 }
 
+// El <dialog> solo ubica el cuadro: el fondo y el marco los dibuja el Panel de adentro.
 .dialog {
   // Teléfono: pantalla completa.
   inline-size: 100%;
@@ -16,9 +17,8 @@
   margin: 0;
   padding: 0;
   border: 0;
-  border-radius: 0;
-  background: t.color('surface');
-  color: t.color('text');
+  background: transparent;
+  color: t.token('ink');
 
   // Solo cuando está abierto: cerrado, el navegador lo oculta con display: none.
   &[open] {
@@ -39,13 +39,37 @@
       block-size: fit-content;
       max-block-size: 85dvh;
       margin: auto;
-      border-radius: t.$radius-lg;
-      overflow: hidden;
+    }
+  }
+
+  // Más ancho (hasta 56 rem) para contenido en grilla.
+  @include bp.min-width('md') {
+    @include bp.min-height('tall') {
+      &[data-wide='true'] {
+        inline-size: min(calc(100% - #{t.$space-6}), 56rem);
+      }
+    }
+  }
+}
+
+// El cuadro: una columna que llena el diálogo (y se achica con él), con el cuerpo desplazable.
+.panel {
+  --panel-pad: 0rem;
+  --panel-radius: 0;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-block-size: 0;
+
+  @include bp.min-width('md') {
+    @include bp.min-height('tall') {
+      --panel-radius: #{t.$radius-lg};
     }
   }
 }
 
 .header {
+  @include m.pixel-text;
   display: flex;
   flex: none;
   align-items: center;
@@ -53,7 +77,10 @@
   gap: t.$space-3;
   // El notch del teléfono no tapa el título.
   padding: max(t.$space-3, env(safe-area-inset-top)) t.$space-4 t.$space-3;
-  border-block-end: t.$border-width solid t.color('border');
+  border-block-end: t.$border-width solid t.token('frame-color');
+  // Barra del título: del color que le dé el tema (por defecto, sin fondo).
+  background: t.token('dialog-bar-fill');
+  color: t.token('dialog-bar-ink');
 
   @include bp.min-width('md') {
     @include bp.min-height('tall') {
@@ -66,28 +93,6 @@
   font-size: t.$font-size-lg;
   font-weight: t.$font-weight-bold;
   line-height: t.$line-height-tight;
-}
-
-.x {
-  @include m.touch-target;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: t.$font-size-lg;
-  border: 0;
-  border-radius: t.$radius-md;
-  background: transparent;
-  color: t.color('text-muted');
-  cursor: pointer;
-
-  &:hover {
-    color: t.color('text');
-  }
-
-  &:focus-visible {
-    outline: 0.125rem solid t.color('focus');
-    outline-offset: -0.125rem;
-  }
 }
 
 .body {
@@ -103,7 +108,7 @@
   flex: none;
   // El botón queda en el borde inferior: se alcanza con el pulgar y no queda bajo la barra de gestos.
   padding: t.$space-3 t.$space-4 max(t.$space-3, env(safe-area-inset-bottom));
-  border-block-start: t.$border-width solid t.color('border');
+  border-block-start: t.$border-width solid t.token('frame-color');
 
   @include bp.min-width('md') {
     @include bp.min-height('tall') {
@@ -114,25 +119,15 @@
 }
 
 .close {
-  @include m.touch-target;
+  // El cerrar del pie es el botón principal, con los colores que le dé el tema (por ejemplo, un botón B).
+  --accent-primary: #{t.token('modal-close-fill')};
+  --accent-primary-ink: #{t.token('modal-close-ink')};
+  --button-lead-display: none;
   flex: 1;
-  padding: t.$space-2 t.$space-5;
-  font-size: t.$font-size-base;
-  font-weight: t.$font-weight-medium;
-  border: t.$border-width solid t.color('accent');
-  border-radius: t.$radius-md;
-  background: t.color('accent');
-  color: t.color('accent-contrast');
-  cursor: pointer;
 
   @include bp.min-width('md') {
     @include bp.min-height('tall') {
       flex: none;
     }
-  }
-
-  &:focus-visible {
-    outline: 0.125rem solid t.color('focus');
-    outline-offset: 0.125rem;
   }
 }

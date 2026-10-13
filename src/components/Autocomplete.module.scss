@@ -13,47 +13,57 @@
 .label {
   font-size: t.$font-size-sm;
   font-weight: t.$font-weight-medium;
-  color: t.color('text-muted');
+  color: t.token('ink-muted');
+}
+
+// El marco del campo (dos capas recortadas, ver `pixel-frame`): por defecto, un borde de 1 px redondeado.
+.field {
+  @include m.pixel-frame($radius: t.$radius-md);
+  display: block;
+
+  &:has(.input:disabled)::after {
+    background: t.token('surface-sunken');
+  }
 }
 
 .input {
   @include m.touch-target;
+  display: block;
   inline-size: 100%;
-  padding: t.$space-2 t.$space-3;
+  padding: calc(#{t.$space-2} + #{t.token('frame-width')}) calc(#{t.$space-3} + #{t.token('frame-width')});
   // 1rem (16 px) como mínimo: con menos, iOS hace zoom al enfocar el campo.
   font-size: t.$font-size-base;
-  border: t.$border-width solid t.color('border');
+  border: 0;
   border-radius: t.$radius-md;
-  background: t.color('surface');
-  color: t.color('text');
+  background: transparent;
+  color: t.token('ink');
+  @include m.focus-ring(0.0625rem);
 
   &::placeholder {
-    color: t.color('text-muted');
-  }
-
-  &:focus-visible {
-    outline: 0.125rem solid t.color('focus');
-    outline-offset: 0.0625rem;
+    color: t.token('ink-muted');
   }
 
   &:disabled {
-    background: t.color('bg');
-    color: t.color('text-muted');
+    color: t.token('ink-muted');
   }
 }
 
-.list,
+.popup,
 .empty {
+  @include m.pixel-frame($radius: t.$radius-md);
+  // Después del marco: la lista flota sobre la página, justo debajo del campo.
   position: absolute;
   inset-inline: 0;
-  // Justo debajo del campo (alto del campo + el hueco con la etiqueta).
   inset-block-start: 100%;
-  z-index: 20;
+  z-index: t.$layer-dropdown;
   margin: t.$space-1 0 0;
-  border: t.$border-width solid t.color('border');
+  // El redondeo es el del marco: así la sombra sigue su forma.
   border-radius: t.$radius-md;
-  background: t.color('surface');
-  box-shadow: 0 0.25rem 1rem color-mix(in srgb, #{t.color('text')} 20%, transparent);
+  box-shadow: t.token('shadow-pop');
+}
+
+.popup {
+  padding: t.token('frame-width');
 }
 
 .list {
@@ -66,8 +76,8 @@
 }
 
 .empty {
-  padding: t.$space-3;
-  color: t.color('text-muted');
+  padding: calc(#{t.$space-3} + #{t.token('frame-width')});
+  color: t.token('ink-muted');
 }
 
 .option {
@@ -80,13 +90,14 @@
   cursor: pointer;
 
   &[data-active='true'] {
-    background: color-mix(in srgb, #{t.color('accent')} 14%, #{t.color('surface')});
+    background: color-mix(in srgb, #{t.color('accent')} 14%, #{t.token('surface-panel')});
   }
 }
 
+// Miniatura de cada sugerencia (activable por franquicia en su config).
 .thumb {
   flex: none;
-  inline-size: 2rem;
-  block-size: 2rem;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
   object-fit: contain;
 }

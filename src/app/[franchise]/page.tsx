@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { BackNav } from '@/components/BackNav';
 import { franchises, getFranchise } from '@/franchises';
 import { loadFranchiseData } from '@/franchises/data';
 import { es } from '@/i18n/es';
@@ -48,18 +48,20 @@ export default async function FranchisePage({ params }: { params: Promise<{ fran
 
   return (
     <main className={styles.page}>
+      <BackNav franchise={franchise} atFranchise />
       <header className={styles.header}>
+        <p className={styles.site}>{es.site.name}</p>
         <h1 className={styles.title}>{franchise.name}</h1>
-        <p className={styles.text}>{es.franchise.intro(franchise.name)}</p>
       </header>
       {modes.length === 0 ? (
-        <p className={styles.text}>{es.franchise.provisional}</p>
+        <p className={styles.plate}>{es.franchise.provisional}</p>
       ) : (
-        <ModesGrid franchise={franchise.slug} modes={modes.map((mode) => ({ slug: mode.slug, name: mode.name }))} />
+        <ModesGrid
+          franchise={franchise.slug}
+          intro={es.franchise.intro(franchise.name)}
+          modes={modes.map((mode) => ({ slug: mode.slug, name: mode.name }))}
+        />
       )}
-      <Link className={styles.back} href="/">
-        {es.franchise.backToHome}
-      </Link>
     </main>
   );
 }

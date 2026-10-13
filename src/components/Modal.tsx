@@ -3,11 +3,17 @@
 import { useEffect, useId, useRef, type KeyboardEvent, type ReactNode } from 'react';
 import { es } from '@/i18n/es';
 import styles from './Modal.module.scss';
+import { Button } from './ui/Button';
+import { Panel } from './ui/Panel';
 
 interface ModalProps {
   title: string;
   /** Se llama al cerrar con Escape, con el botón o tocando fuera del cuadro. Quien lo usa deja de montar el modal. */
   onClose: () => void;
+  /** Un cuadro más ancho en pantallas grandes, para contenido en grilla (por ejemplo, el selector de la Pokédex). */
+  wide?: boolean;
+  /** Clase del `<dialog>`: sirve para redefinir tokens del tema solo en este modal (por ejemplo, el color de la barra del título). */
+  className?: string;
   children: ReactNode;
 }
 
@@ -25,7 +31,7 @@ const FOCUSABLE = 'a[href], button:not([disabled]), input:not([disabled]), selec
  *
  * Se monta solo mientras está abierto: `{abierto && <Modal …>}`.
  */
-export function Modal({ title, onClose, children }: ModalProps) {
+export function Modal({ title, onClose, wide = false, className, children }: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const unmounting = useRef(false);
   const titleId = useId();
@@ -65,31 +71,38 @@ export function Modal({ title, onClose, children }: ModalProps) {
   return (
     <dialog
       ref={dialogRef}
-      className={styles.dialog}
+      className={className ? `${styles.dialog} ${className}` : styles.dialog}
+      data-wide={wide}
       aria-labelledby={titleId}
       onKeyDown={handleKeyDown}
       onClose={() => {
-        if (!unmounting.current) onClose();
+        // El evento llega después de cerrarse. Se ignora si lo provocó el desmontaje o si el diálogo ya se
+        // volvió a abrir (en desarrollo, React monta los efectos dos veces: el `close` del primer desmontaje
+        // llega con el diálogo abierto de nuevo).
+        if (!unmounting.current && !dialogRef.current?.open) onClose();
       }}
       // Un clic sobre el fondo oscuro llega al propio <dialog>, no a su contenido.
       onClick={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <header className={styles.header}>
-        <h2 className={styles.title} id={titleId}>
-          {title}
-        </h2>
-        <button type="button" className={styles.x} aria-label={es.shell.close} onClick={onClose}>
-          <span aria-hidden="true">✕</span>
-        </button>
-      </header>
-      <div className={styles.body}>{children}</div>
-      <footer className={styles.footer}>
-        <button type="button" className={styles.close} onClick={onClose}>
-          {es.shell.close}
-        </button>
-      </footer>
+      {/* El cuadro es un Panel de diálogo: el tema le da su marco. El <dialog> solo lo ubica. */}
+      <Panel variant="dialog" className={styles.panel}>
+        <header className={styles.header}>
+          <h2 className={styles.title} id={titleId}>
+            {title}
+          </h2>
+          <Button variant="icon" tone="b" aria-label={es.shell.close} onClick={onClose}>
+            <span aria-hidden="true">✕</span>
+          </Button>
+        </header>
+        <div className={styles.body}>{children}</div>
+        <footer className={styles.footer}>
+          <Button className={styles.close} onClick={onClose}>
+            {es.shell.close}
+          </Button>
+        </footer>
+      </Panel>
     </dialog>
   );
 }

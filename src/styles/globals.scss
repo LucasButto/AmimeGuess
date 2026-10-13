@@ -4,7 +4,27 @@
 
 :root {
   @include t.root-vars;
+  @include t.px-rounding;
   color-scheme: light;
+}
+
+// Cada tarjeta del inicio lleva el tema base de su franquicia (`[data-franchise]`): los tokens
+// semánticos se vuelven a calcular con sus colores. `:where` no suma especificidad, así la clase de
+// una piel, si el mismo elemento la tuviera, igual gana.
+:where([data-franchise]) {
+  @include t.semantic-vars;
+  @include t.px-rounding;
+}
+
+// Preferencia "Fuente legible" (SPEC 9.2): las fuentes del tema se reemplazan por la de sistema, también
+// dentro de la raíz de una piel y de las tarjetas del inicio, que redefinen las suyas.
+:root[data-legible-font],
+:root[data-legible-font] [data-theme-root],
+:root[data-legible-font] [data-franchise] {
+  --font-body: #{t.$font-system};
+  --font-heading: #{t.$font-system};
+  --font-display: #{t.$font-system};
+  --display-grid: 1px;
 }
 
 // Tamaño de fuente raíz fluido (SPEC 9.1). Todo el sitio mide en rem, así que
@@ -46,6 +66,12 @@ video {
   display: block;
   max-inline-size: 100%;
   block-size: auto;
+}
+
+// Las imágenes no se arrastran ni se seleccionan: en los modos de imagen oculta, arrastrarla mostraría la imagen entera.
+img {
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 button,

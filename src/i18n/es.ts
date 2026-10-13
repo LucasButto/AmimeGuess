@@ -1,6 +1,6 @@
 /** Textos de interfaz (regla 8 de CLAUDE.md). Nada de texto visible dentro de los componentes. */
 
-import type { ThemeFont } from '@/franchises/types';
+import type { ModeCardState, ThemeFont } from '@/franchises/types';
 
 const plural = (count: number, one: string, many: string) => (count === 1 ? one : many);
 
@@ -19,12 +19,18 @@ export const es = {
   franchise: {
     provisional: 'Página de la franquicia en construcción.',
     modesLabel: 'Modos de juego',
-    backToHome: 'Volver al inicio',
     intro: (name: string) => `Los retos diarios de ${name}.`,
     progress: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy resueltos`,
     mainMode: 'Modo principal',
     solved: 'Resuelto hoy',
     pending: 'Pendiente',
+    /** Nombre accesible de una tarjeta de modo: "Modo: estado". */
+    cardLabel: (mode: string, state: ModeCardState) =>
+      state === 'unknown' ? mode : `${mode}: ${state === 'solved' ? 'resuelto hoy' : 'pendiente'}`,
+  },
+  nav: {
+    label: 'Volver',
+    home: 'Inicio',
   },
   footer: {
     label: 'Aviso legal',
@@ -114,7 +120,8 @@ export const es = {
       license: { name: 'SIL Open Font License 1.1', url: 'https://openfontlicense.org' },
       // Una por id de `ThemeFont`: al sumar una tipografía a un tema, el tipo obliga a acreditarla acá.
       items: {
-        fredoka: { name: 'Fredoka', url: 'https://fonts.google.com/specimen/Fredoka' },
+        'press-start-2p': { name: 'Press Start 2P', url: 'https://fonts.google.com/specimen/Press+Start+2P' },
+        'jersey-10': { name: 'Jersey 10', url: 'https://fonts.google.com/specimen/Jersey+10' },
         bangers: { name: 'Bangers', url: 'https://fonts.google.com/specimen/Bangers' },
         'kaushan-script': { name: 'Kaushan Script', url: 'https://fonts.google.com/specimen/Kaushan+Script' },
         cinzel: { name: 'Cinzel', url: 'https://fonts.google.com/specimen/Cinzel' },
@@ -159,7 +166,6 @@ export const es = {
   mode: {
     comingSoon: 'Próximamente',
     provisional: 'Este modo todavía no está disponible.',
-    backToFranchise: 'Volver a la franquicia',
   },
   game: {
     loading: 'Cargando el reto…',
@@ -174,6 +180,7 @@ export const es = {
     hint: 'Apagá las series que no querés que aparezcan.',
     groupLabel: 'Filtrar por serie',
     remaining: (count: number) => `${count} ${plural(count, 'posible', 'posibles')}`,
+    remainingLabel: 'Respuestas posibles',
     belowMinimum: (remaining: number, minimum: number) =>
       `Con estos filtros quedan ${remaining} y hacen falta al menos ${minimum} para jugar este modo. Activá más series.`,
     keepOne: 'Tiene que quedar al menos una serie activa.',
@@ -190,6 +197,9 @@ export const es = {
     empty: 'Todavía no hiciste ningún intento.',
     attempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
     lastAttempt: (name: string) => `Intento agregado: ${name}`,
+    // Al terminar de revelarse una fila, un único aviso la resume: "Pikachu: Tipo 1 correcto, Altura mayor, …".
+    revealSummary: (name: string, parts: readonly string[]) => `${name}: ${parts.join(', ')}.`,
+    cellSummary: { exact: 'correcto', partial: 'parcial', none: 'incorrecto', higher: 'mayor', lower: 'menor', hidden: 'oculto' },
     cellExact: 'Coincide',
     cellPartial: 'Coincide en parte',
     cellNone: 'No coincide',
@@ -235,6 +245,8 @@ export const es = {
         silhouette: 'Adiviná la respuesta del día a partir de su silueta. Escribí un nombre y elegí una opción de la lista.',
         blur: 'Adiviná la respuesta del día a partir de una imagen desenfocada. Escribí un nombre y elegí una opción de la lista.',
         zoom: 'Adiviná la respuesta del día a partir de un detalle ampliado de su imagen. Escribí un nombre y elegí una opción de la lista.',
+        'zoom-silhouette':
+          'Adiviná la respuesta del día a partir de un detalle ampliado de su silueta. Escribí un nombre y elegí una opción de la lista.',
       },
       stepsTitle: 'Pistas',
       steps: (total: number) =>
@@ -242,6 +254,9 @@ export const es = {
       difficultyTitle: 'Dificultad',
       difficulty:
         'Podés apagar "Revelar con cada intento" para que la imagen no cambie hasta que aciertes, y "Mostrar colores" para verla en grises. Tus elecciones se recuerdan en este dispositivo.',
+      // Con una silueta no hay colores que mostrar.
+      difficultyNoColors:
+        'Podés apagar "Revelar con cada intento" para que la imagen no cambie hasta que aciertes. Tu elección se recuerda en este dispositivo.',
     },
   },
   textClue: {
@@ -287,6 +302,9 @@ export const es = {
   revealList: {
     inputLabel: 'Tu intento',
     listTitle: 'Las pistas',
+    hintsTitle: 'Más pistas',
+    hintLocked: (remaining: number) =>
+      `Se desbloquea con ${remaining} ${plural(remaining, 'intento fallido más', 'intentos fallidos más')}`,
     position: (position: number) => `Pista ${position}`,
     hidden: 'Todavía oculta',
     attempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
@@ -359,6 +377,22 @@ export const es = {
   },
   shell: {
     modesLabel: 'Modos de juego',
+    nextModes: 'Seguí jugando',
+    nextModesLabel: 'Seguir con otro modo',
+    // Modo infinito: partidas extra del mismo modo y los mismos filtros, sin esperar al reto de mañana.
+    practice: {
+      title: 'Modo infinito',
+      intro: 'Seguí jugando este modo con los mismos filtros, sin esperar a mañana. No cuenta para tus estadísticas ni para tu racha.',
+      start: 'Jugar en modo infinito',
+      banner: 'No cuenta para tus estadísticas ni para tu racha.',
+      next: 'Otra partida',
+      back: 'Volver al reto de hoy',
+      lostTitle: 'No salió',
+      wonSummary: (attempts: number) => `Lo resolviste en ${attempts} ${plural(attempts, 'intento', 'intentos')}.`,
+      lostSummary: 'Probá con otra partida.',
+      scoreSummary: (score: number) =>
+        score === 0 ? 'No acertaste ninguna.' : `Acertaste ${score} ${plural(score, 'seguida', 'seguidas')}.`,
+    },
     modeSolved: 'resuelto hoy',
     modeSoon: 'próximamente',
     help: 'Cómo se juega',
@@ -375,6 +409,8 @@ export const es = {
     ],
     result: {
       wonTitle: '¡Lo adivinaste!',
+      // Título del resumen en los temas que nombran la respuesta al ganar.
+      answerTitle: (label: string) => `¡Es ${label}!`,
       lostTitle: 'Hoy no salió',
       answerWas: (label: string) => `Era ${label}.`,
       wonSummary: (attempts: number, streak: number) =>
@@ -405,6 +441,72 @@ export const es = {
       scoreDistributionRow: (label: string, count: number) =>
         `${label} aciertos: ${count} ${plural(count, 'partida', 'partidas')}`,
     },
+  },
+  // Textos propios de la piel de Pokémon (sesión 15).
+  pokemonSkin: {
+    pokedexPending: 'Hoy: pendiente',
+    pokedexSolved: (attempts: number) => `Resuelto en ${attempts} ${plural(attempts, 'intento', 'intentos')}`,
+    pokedexSolvedToday: 'Resuelto hoy',
+    play: 'Jugar',
+    // Selector de Pokémon (reemplaza al campo de texto en los modos de adivinar).
+    picker: {
+      open: 'Elegir en la Pokédex',
+      title: 'Pokédex',
+      search: 'Buscar por nombre o número',
+      placeholder: 'Pikachu, 25…',
+      count: (count: number) => `${count} Pokémon`,
+      available: (count: number) => `${count} Pokémon posibles`,
+      empty: 'Ningún Pokémon coincide con esa búsqueda.',
+      tried: 'ya probado',
+      number: (value: number) => `N.º ${String(value).padStart(3, '0')}`,
+      gridLabel: 'Pokémon',
+    },
+    statsTitle: 'Estadísticas base',
+    // Medallero de la racha: desde la octava medalla, cuántos días más.
+    medalsMore: (extra: number) => `+${extra}`,
+    hp: 'PS',
+    stats: {
+      ps: 'PS',
+      ataque: 'Ataque',
+      defensa: 'Defensa',
+      ataqueEspecial: 'At. Esp.',
+      defensaEspecial: 'Def. Esp.',
+      velocidad: 'Velocidad',
+    },
+  },
+  // Ayudas de los botones ⓘ (SPEC 9.2): 140 caracteres como mucho y sin pistas sobre la respuesta.
+  help: {
+    button: (topic: string) => `Ayuda: ${topic}`,
+    filters:
+      'Las mismas series activas dan el mismo reto a todo el mundo. Cambiarlas cambia el reto de hoy.',
+    remaining: 'Cuántas respuestas posibles quedan con las series que tenés activas.',
+    copyLink: 'El link lleva tus series activas: quien lo abra juega exactamente el mismo reto que vos.',
+    hints: 'Cada pista se desbloquea sola después de una cantidad de intentos fallidos.',
+    yesterday: 'La respuesta de ayer para esta misma combinación de series.',
+    streak: 'Días seguidos en que terminaste este modo, con cualquier combinación de series.',
+    stats: 'Tus partidas de este modo. Se guardan solo en este dispositivo.',
+    difficulty: 'Estas opciones solo cambian cómo ves la imagen. El reto y la respuesta del día son los mismos.',
+    metric: 'La medida que se compara hoy. Cambia cada día y es la misma para todo el mundo.',
+    // Columnas del Clásico de Pokémon.
+    pokemon: {
+      tipo1: 'El primer tipo del Pokémon. Verde si es el mismo primer tipo que el de la respuesta; rojo si no.',
+      tipo2: 'El segundo tipo, o "—" si tiene uno solo. Se compara con el segundo tipo de la respuesta.',
+      generacion: 'La generación en la que apareció. La flecha indica si la de la respuesta es anterior o posterior.',
+      colores: 'Sus colores. Verde si son los mismos que los de la respuesta; naranja si comparten alguno.',
+      etapa: 'Su lugar en la cadena evolutiva: 1 si no evoluciona de otro. La flecha indica hacia dónde está la respuesta.',
+      altura: 'La altura en metros. La flecha indica si la respuesta es más alta o más baja.',
+      peso: 'El peso en kilos. La flecha indica si la respuesta pesa más o menos.',
+      inicial: 'La primera letra del nombre. Verde si es la misma que la de la respuesta; rojo si no.',
+      habitat: 'Dónde vive según los juegos de Kanto a Hoenn. Esta columna aparece solo con las generaciones 1 a 3.',
+    },
+  },
+  settings: {
+    button: 'Ajustes',
+    title: 'Ajustes',
+    legibleFont: 'Fuente legible',
+    legibleFontHint: 'Cambia las letras del tema por una fuente de sistema, más fácil de leer.',
+    sounds: 'Sonidos',
+    soundsHint: 'Efectos cortos al jugar. Están apagados hasta que los prendas.',
   },
   share: {
     header: (franchise: string, mode: string) => `AnimeGuess · ${franchise} · ${mode}`,

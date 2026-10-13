@@ -59,3 +59,42 @@ export function solvedToday(
   }
   return solved;
 }
+
+/** Intentos de una partida guardada si está ganada (la longitud de `attempts`), o `null`. */
+function wonAttempts(storage: KeyedStorage, key: string): number | null {
+  try {
+    const raw = storage.getItem(key);
+    if (raw === null) return null;
+    const value: unknown = JSON.parse(raw);
+    if (typeof value !== 'object' || value === null) return null;
+    const { result, attempts } = value as { result?: unknown; attempts?: unknown };
+    return result === 'won' && Array.isArray(attempts) ? attempts.length : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Los intentos con que se ganó hoy cada modo resuelto (con varias combinaciones de filtros, la de menos
+ * intentos). Solo lee las mismas partidas que `solvedToday`, sin claves nuevas. Un modo terminado sin
+ * ganar no aparece.
+ */
+export function wonToday(storage: KeyedStorage | null, franchise: string, modes: readonly string[], day: number): Map<string, number> {
+  const won = new Map<string, number>();
+  if (storage === null) return won;
+  const prefix = `${STORAGE_PREFIX}:state:${franchise}:`;
+  const suffix = `:${day}`;
+  try {
+    for (let index = 0; index < storage.length; index++) {
+      const key = storage.key(index);
+      if (key === null || !key.startsWith(prefix) || !key.endsWith(suffix)) continue;
+      const mode = key.slice(prefix.length).split(':')[0];
+      if (!modes.includes(mode)) continue;
+      const attempts = wonAttempts(storage, key);
+      if (attempts !== null) won.set(mode, Math.min(attempts, won.get(mode) ?? attempts));
+    }
+  } catch {
+    // Lo leído hasta el fallo alcanza.
+  }
+  return won;
+}

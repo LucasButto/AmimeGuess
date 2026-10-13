@@ -1,0 +1,137 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// Cada variante elige su relleno, su texto y su borde (`--_fill`, `--_ink`, `--_edge`); el marco lo
+// dibujan dos capas recortadas (ver `pixel-frame`). Con los tokens por defecto es un botón con borde de
+// 1 px y esquinas redondeadas; una piel cambia el recorte, el borde y las decoraciones.
+.button {
+  --_fill: #{t.token('surface-panel')};
+  --_ink: #{t.token('ink')};
+  --_edge: #{t.token('frame-color')};
+  --_frame: #{t.token('button-frame-width')};
+  --_clip: #{t.token('clip-button')};
+  --_radius: #{t.$radius-md};
+  --_pad-inline: #{t.$space-5};
+  @include m.touch-target;
+  @include m.pixel-frame($fill: var(--_fill), $outer: var(--_edge), $inner: transparent, $width: var(--_frame), $inner-width: 0px, $clip: var(--_clip), $radius: var(--_radius));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-2;
+  padding: calc(#{t.$space-1} + var(--_frame)) calc(var(--_pad-inline) + var(--_frame));
+  border: 0;
+  background: none;
+  color: var(--_ink);
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  @include m.focus-ring;
+
+  &[data-variant='primary'] {
+    --_fill: #{t.token('accent-primary')};
+    --_ink: #{t.token('accent-primary-ink')};
+    --_edge: var(--button-edge, #{t.token('accent-primary')});
+  }
+
+  &[data-variant='secondary'] {
+    --_fill: #{t.token('accent-secondary')};
+    --_ink: #{t.token('accent-secondary-ink')};
+    --_edge: var(--button-edge, #{t.color('accent')});
+  }
+
+  // Acciones de barra (ayuda, estadísticas, copiar): discretas, del color de los paneles.
+  &[data-variant='ghost'] {
+    --_edge: var(--button-edge, #{t.color('border')});
+    --_pad-inline: #{t.$space-4};
+    font-size: t.$font-size-sm;
+    font-weight: t.$font-weight-medium;
+
+    @include m.hover {
+      --_edge: #{t.token('button-ghost-hover-edge')};
+    }
+  }
+
+  // Solo un ícono: cuadrado de 44 px. Tono A para confirmar, tono B para cerrar o volver.
+  &[data-variant='icon'] {
+    --_frame: #{t.token('icon-frame-width')};
+    --_clip: #{t.token('clip-icon')};
+    --_edge: var(--button-edge, transparent);
+    --_pad-inline: 0px;
+    padding: 0;
+    font-size: t.$font-size-lg;
+
+    &[data-tone='a'] {
+      --_fill: #{t.token('icon-a-fill')};
+      --_ink: #{t.token('icon-a-ink')};
+    }
+
+    &[data-tone='b'] {
+      --_fill: #{t.token('icon-b-fill')};
+      --_ink: #{t.token('icon-b-ink')};
+    }
+
+    @include m.hover {
+      --_ink: #{t.token('icon-hover-ink')};
+    }
+  }
+
+  // Presionado: baja un paso (por defecto, nada).
+  &:active:not(:disabled, [aria-disabled='true']) {
+    transform: translateY(#{t.token('button-press')});
+  }
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    --_fill: #{t.token('surface-sunken')};
+    --_ink: #{t.token('ink-muted')};
+    --_edge: var(--button-edge, #{t.color('border')});
+    cursor: not-allowed;
+
+    // Borde punteado (si el tema lo define), salvo mientras tiene el foco: ahí manda el anillo de foco.
+    &:not(:focus-visible) {
+      outline: t.token('button-disabled-outline');
+      outline-offset: calc(var(--_frame) * -2);
+    }
+  }
+}
+
+// Punto antes del texto del botón principal: se enciende con el foco.
+.lead {
+  display: t.token('button-lead-display');
+  flex: none;
+  inline-size: t.px(3);
+  block-size: t.px(3);
+  background: t.token('button-lead');
+  clip-path: m.pixel-corners((1));
+
+  .button:focus-visible & {
+    background: t.token('button-lead-glow');
+  }
+
+  @include bp.hover-capable {
+    .button:hover & {
+      background: t.token('button-lead-glow');
+    }
+  }
+}
+
+// Cursor ▶ del botón fantasma: ocupa su lugar siempre (para que el texto no se mueva) y aparece con el
+// foco o el hover.
+.cursor {
+  display: t.token('button-cursor-display');
+  opacity: 0;
+
+  .button:focus-visible & {
+    opacity: 1;
+  }
+
+  @include bp.hover-capable {
+    .button:hover & {
+      opacity: 1;
+    }
+  }
+}

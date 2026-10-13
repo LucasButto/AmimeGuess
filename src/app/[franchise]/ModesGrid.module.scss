@@ -2,115 +2,56 @@
 @use 'tokens' as t;
 @use 'mixins' as m;
 
-.progress {
-  min-block-size: 1.5em;
-  font-size: t.$font-size-lg;
-  color: t.color('text-muted');
+.plate {
+  @include m.plate;
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
 }
 
-// 1 columna en base, 2 en md, 4 en xl (SPEC 9.1). El modo principal ocupa una fila entera.
+.intro,
+.progress {
+  font-size: t.$font-size-lg;
+  color: t.token('ink-muted');
+}
+
+.progress {
+  min-block-size: 1.5em;
+}
+
+// 1 columna en base, 2 en md, 4 en xl (SPEC 9.1). El modo principal ocupa una fila entera. Una piel puede
+// cambiar las columnas de cada tramo y el ancho máximo con --mode-cols, --mode-cols-md, --mode-cols-xl y
+// --mode-grid-max. También puede poner el modo principal al costado de los demás: desde `lg` y `xl`,
+// --mode-template-lg y --mode-template-xl reemplazan las columnas por una plantilla completa (la primera
+// columna, para el principal) y --mode-main-column, --mode-main-row y --mode-main-align lo ubican.
+// Si un modo se oculta por falta de contenido, la grilla se acomoda sola, sin huecos.
 .grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(var(--mode-cols, 1), minmax(0, 1fr));
   gap: t.$space-3;
   inline-size: 100%;
+  max-inline-size: var(--mode-grid-max, none);
   margin: 0;
   padding: 0;
   list-style: none;
 
   @include bp.min-width('md') {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(var(--mode-cols-md, 2), minmax(0, 1fr));
     gap: t.$space-4;
   }
 
+  @include bp.min-width('lg') {
+    grid-template-columns: var(--mode-template-lg, repeat(var(--mode-cols-md, 2), minmax(0, 1fr)));
+    column-gap: var(--mode-column-gap-lg, #{t.$space-4});
+  }
+
   @include bp.min-width('xl') {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: var(--mode-template-xl, repeat(var(--mode-cols-xl, 4), minmax(0, 1fr)));
   }
 }
 
 .item[data-main='true'] {
-  @include bp.min-width('md') {
-    grid-column: 1 / -1;
-  }
-}
-
-.card {
-  @include m.touch-target;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: t.$space-1;
-  block-size: 100%;
-  min-block-size: 6rem;
-  padding: t.$space-4;
-  border: t.$border-width solid t.color('border');
-  border-radius: t.$radius-lg;
-  background: t.color('surface');
-  box-shadow: t.$card-shadow;
-  color: t.color('text');
-  text-align: center;
-  text-decoration: none;
-
-  &[data-state='solved'] {
-    border-color: t.color('match');
-  }
-
-  &[data-main='true'] {
-    min-block-size: 8rem;
-    border-color: t.color('accent');
-    border-width: 0.1875rem;
-
-    @include bp.min-width('md') {
-      min-block-size: 10rem;
-    }
-  }
-
-  &:hover {
-    border-color: t.color('accent');
-  }
-
-  &:focus-visible {
-    outline: 0.1875rem solid t.color('focus');
-    outline-offset: 0.1875rem;
-  }
-}
-
-.badge {
-  padding: t.$space-1 t.$space-3;
-  border-radius: t.$radius-full;
-  background: t.color('accent');
-  color: t.color('accent-contrast');
-  font-size: t.$font-size-sm;
-  font-weight: t.$font-weight-bold;
-}
-
-.name {
-  @include m.heading;
-  @include m.fluid-text(1.25rem, 1.5rem);
-  line-height: t.$line-height-tight;
-
-  .card[data-main='true'] & {
-    @include m.fluid-text(1.75rem, 2.25rem);
-  }
-}
-
-.status {
-  min-block-size: 1.5em;
-  font-size: t.$font-size-sm;
-  font-weight: t.$font-weight-medium;
-  color: t.color('text-muted');
-
-  .card[data-state='solved'] & {
-    color: t.color('text');
-  }
-}
-
-.icon {
-  font-weight: t.$font-weight-bold;
-
-  .card[data-state='solved'] & {
-    color: t.color('match');
-  }
+  grid-column: var(--mode-main-column, 1 / -1);
+  grid-row: var(--mode-main-row, auto);
+  align-self: var(--mode-main-align, stretch);
 }

@@ -1,0 +1,34 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// Por defecto, una píldora con borde de 1 px que se rellena con el acento al prenderse.
+.chip {
+  --_fill: #{t.token('chip-fill')};
+  --_ink: #{t.token('chip-ink')};
+  --_edge: #{t.token('chip-edge')};
+  @include m.touch-target;
+  @include m.pixel-frame($fill: var(--_fill), $outer: var(--_edge), $inner: transparent, $width: t.token('button-frame-width'), $inner-width: 0px, $clip: t.token('clip-chip'), $radius: t.token('chip-radius'));
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-1;
+  padding: t.$space-1 calc(#{t.$space-3} + #{t.token('button-frame-width')});
+  border: 0;
+  background: none;
+  color: var(--_ink);
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  cursor: pointer;
+  @include m.focus-ring;
+
+  &[aria-pressed='true'] {
+    --_fill: #{t.token('chip-on-fill')};
+    --_ink: #{t.token('chip-on-ink')};
+    --_edge: #{t.token('chip-on-edge')};
+  }
+
+  // El último chip activo no se puede apagar: se ve igual que los demás, y el cursor avisa que no se puede.
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+  }
+}

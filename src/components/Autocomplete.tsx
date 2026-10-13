@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
+import { createContext, useContext, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
+import type { Entity } from '@/engine/types';
 import { es } from '@/i18n/es';
 import styles from './Autocomplete.module.scss';
 import { ContentImage } from './ContentImage';
@@ -10,7 +11,27 @@ import { buildSearchIndex, search, type SearchItem } from './search';
 export interface AutocompleteItem extends SearchItem {
   /** Imagen de la opción, ver `ContentImage`. */
   imageStem?: string;
+  /** Número en el catálogo de la franquicia (la Pokédex Nacional), si lo tiene: ordena y se muestra en los selectores. */
+  number?: number;
 }
+
+/** Una entidad como opción de un campo de intento. El número sale del atributo `numero`, si la entidad lo tiene. */
+export function autocompleteItemOf(entity: Entity): AutocompleteItem {
+  const number = entity.attrs.numero;
+  return {
+    id: entity.id,
+    label: entity.name.es,
+    aliases: entity.aliases,
+    imageStem: entity.image,
+    ...(typeof number === 'number' ? { number } : {}),
+  };
+}
+
+/**
+ * Opciones de la franquicia para todos los autocompletados de la página (las da `ModeGame` desde su
+ * config): así ningún motor tiene que pasarlas.
+ */
+export const AutocompleteOptions = createContext<{ thumbnails: boolean }>({ thumbnails: true });
 
 interface AutocompleteProps {
   label: string;
@@ -37,6 +58,7 @@ export function Autocomplete({ label, items, excludeIds, onSelect, disabled = fa
   const inputId = `${baseId}-input`;
   const listId = `${baseId}-list`;
   const inputRef = useRef<HTMLInputElement>(null);
+  const { thumbnails } = useContext(AutocompleteOptions);
 
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
@@ -110,56 +132,62 @@ export function Autocomplete({ label, items, excludeIds, onSelect, disabled = fa
       <label className={styles.label} htmlFor={inputId}>
         {label}
       </label>
-      <input
-        ref={inputRef}
-        id={inputId}
-        className={styles.input}
-        type="text"
-        role="combobox"
-        aria-expanded={showPanel && results.length > 0}
-        aria-controls={showPanel && results.length > 0 ? listId : undefined}
-        aria-autocomplete="list"
-        aria-activedescendant={showPanel && active >= 0 ? `${baseId}-option-${active}` : undefined}
-        placeholder={es.autocomplete.placeholder}
-        autoComplete="off"
-        autoCapitalize="off"
-        autoCorrect="off"
-        spellCheck={false}
-        enterKeyHint="go"
-        disabled={disabled}
-        value={query}
-        onChange={(event) => {
-          setQuery(event.target.value);
-          setOpen(true);
-          setActiveIndex(0);
-        }}
-        onKeyDown={handleKeyDown}
-        onFocus={handleFocus}
-        onBlur={() => setOpen(false)}
-      />
+      {/* El marco del campo lo dibuja su envoltorio: un <input> no tiene capas propias para el tema. */}
+      <span className={styles.field}>
+        <input
+          ref={inputRef}
+          id={inputId}
+          className={styles.input}
+          type="text"
+          role="combobox"
+          aria-expanded={showPanel && results.length > 0}
+          aria-controls={showPanel && results.length > 0 ? listId : undefined}
+          aria-autocomplete="list"
+          aria-activedescendant={showPanel && active >= 0 ? `${baseId}-option-${active}` : undefined}
+          placeholder={es.autocomplete.placeholder}
+          autoComplete="off"
+          autoCapitalize="off"
+          autoCorrect="off"
+          spellCheck={false}
+          enterKeyHint="go"
+          disabled={disabled}
+          value={query}
+          onChange={(event) => {
+            setQuery(event.target.value);
+            setOpen(true);
+            setActiveIndex(0);
+          }}
+          onKeyDown={handleKeyDown}
+          onFocus={handleFocus}
+          onBlur={() => setOpen(false)}
+        />
+      </span>
 
       {showPanel && results.length > 0 && (
-        <ul className={styles.list} id={listId} role="listbox" aria-label={label}>
-          {results.map((item, position) => (
-            <li
-              key={item.id}
-              id={`${baseId}-option-${position}`}
-              className={styles.option}
-              role="option"
-              aria-selected={position === active}
-              data-active={position === active}
-              // Evita que el campo pierda el foco (y se cierre la lista) antes del clic.
-              onPointerDown={(event) => event.preventDefault()}
-              onPointerEnter={() => setActiveIndex(position)}
-              onClick={() => choose(item.id)}
-            >
-              {item.imageStem && (
-                <ContentImage className={styles.thumb} stem={item.imageStem} alt="" sizes="2rem" />
-              )}
-              <span>{item.label}</span>
-            </li>
-          ))}
-        </ul>
+        // El marco va en un envoltorio: la lista se desplaza adentro y el marco queda quieto.
+        <div className={styles.popup}>
+          <ul className={styles.list} id={listId} role="listbox" aria-label={label}>
+            {results.map((item, position) => (
+              <li
+                key={item.id}
+                id={`${baseId}-option-${position}`}
+                className={styles.option}
+                role="option"
+                aria-selected={position === active}
+                data-active={position === active}
+                // Evita que el campo pierda el foco (y se cierre la lista) antes del clic.
+                onPointerDown={(event) => event.preventDefault()}
+                onPointerEnter={() => setActiveIndex(position)}
+                onClick={() => choose(item.id)}
+              >
+                {thumbnails && item.imageStem && (
+                  <ContentImage className={styles.thumb} stem={item.imageStem} alt="" sizes="2.5rem" />
+                )}
+                <span>{item.label}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
       {showPanel && results.length === 0 && <p className={styles.empty}>{es.autocomplete.noResults}</p>}
 

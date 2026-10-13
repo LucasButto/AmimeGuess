@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { BackNav } from '@/components/BackNav';
+import { getSkin } from '@/franchises/themes';
 import { franchises, getFranchise } from '@/franchises';
 import { loadFranchiseData } from '@/franchises/data';
 import { es } from '@/i18n/es';
@@ -60,16 +61,21 @@ export default async function ModePage({
       : [{ slug: candidate.slug, name: candidate.name, available: statuses.get(candidate.slug) === 'playable' }],
   );
 
+  // Animación de entrada del tema (slot `PageTransition`): no intercepta la navegación.
+  const { PageTransition } = getSkin(franchise.slug).slots;
+
   return (
     <main className={styles.page}>
+      <PageTransition />
+      <BackNav franchise={franchise} />
       <header className={styles.header}>
         <p className={styles.franchise}>{franchise.name}</p>
         <h1 className={styles.title}>{mode.name}</h1>
       </header>
-      <ModeGame franchise={franchise} mode={mode} modes={modes} playable={statuses.get(mode.slug) === 'playable'} />
-      <Link className={styles.back} href={`/${franchise.slug}`}>
-        {es.mode.backToFranchise}
-      </Link>
+      {/* El área de juego va sobre la placa del tema: el texto nunca queda directo sobre el fondo. */}
+      <div className={styles.plate}>
+        <ModeGame franchise={franchise} mode={mode} modes={modes} playable={statuses.get(mode.slug) === 'playable'} />
+      </div>
     </main>
   );
 }

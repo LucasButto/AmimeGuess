@@ -1,0 +1,12 @@
+@use 'tokens' as t;
+
+// Ocupa todo el alto disponible del body (una columna flexible), así el pie de la franquicia queda al
+// fondo aunque la página sea corta. La fuente y el color se vuelven a declarar acá porque la clase de la
+// piel puede redefinir sus tokens: lo heredado del body ya viene calculado con los del sitio.
+.root {
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  font-family: t.font('body');
+  color: t.token('ink');
+}

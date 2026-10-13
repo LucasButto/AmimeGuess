@@ -1,34 +1,3 @@
-@use 'tokens' as t;
-@use 'mixins' as m;
-
-.button {
-  @include m.touch-target;
-  padding: t.$space-1 t.$space-4;
-  font-size: t.$font-size-sm;
-  font-weight: t.$font-weight-medium;
-  border: t.$border-width solid t.color('border');
-  border-radius: t.$radius-md;
-  background: t.color('surface');
-  color: t.color('text');
-  cursor: pointer;
-
-  &:hover {
-    border-color: t.color('accent');
-  }
-
-  // La acción principal de una pantalla (por ejemplo, compartir el resultado).
-  &[data-variant='primary'] {
-    border-color: t.color('accent');
-    background: t.color('accent');
-    color: t.color('accent-contrast');
-  }
-
-  &:focus-visible {
-    outline: 0.125rem solid t.color('focus');
-    outline-offset: 0.125rem;
-  }
-}
-
 // Campo temporal del plan B para copiar: existe un instante y nadie lo ve.
 .offscreen {
   position: fixed;

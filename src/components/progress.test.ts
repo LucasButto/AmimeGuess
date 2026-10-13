@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { stateKey } from '@/engine/storage';
-import { solvedToday, type KeyedStorage } from './progress';
+import { solvedToday, wonToday, type KeyedStorage } from './progress';
 
 function memory(entries: Record<string, string>): KeyedStorage {
   const keys = Object.keys(entries);
@@ -81,5 +81,28 @@ describe('solvedToday', () => {
       setItem: () => undefined,
     };
     expect([...solvedToday(flaky, 'pokemon', modes, 100)]).toEqual(['clasico']);
+  });
+});
+
+describe('wonToday', () => {
+  const modes = ['clasico', 'silueta'];
+  const game = (mode: string, filterKey: string, day: number, result: string, attempts: number) => ({
+    [stateKey({ franchise: 'pokemon', mode, filterKey, day })]: JSON.stringify({ attempts: Array<string>(attempts).fill('x'), result }),
+  });
+
+  it('da los intentos de cada modo ganado hoy y, con varias combinaciones de filtros, la de menos', () => {
+    const storage = memory({
+      ...game('clasico', 'all', 100, 'won', 7),
+      ...game('clasico', 'g1', 100, 'won', 3),
+      ...game('silueta', 'all', 100, 'lost', 6),
+      ...game('clasico', 'g2', 99, 'won', 1),
+    });
+    expect([...wonToday(storage, 'pokemon', modes, 100)]).toEqual([['clasico', 3]]);
+  });
+
+  it('sin almacenamiento o con datos rotos, no hay nada', () => {
+    expect(wonToday(null, 'pokemon', modes, 100).size).toBe(0);
+    const broken = memory({ [stateKey({ franchise: 'pokemon', mode: 'clasico', filterKey: 'all', day: 100 })]: '{roto' });
+    expect(wonToday(broken, 'pokemon', modes, 100).size).toBe(0);
   });
 });
