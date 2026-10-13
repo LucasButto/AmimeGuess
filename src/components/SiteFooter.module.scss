@@ -10,9 +10,34 @@
   background: t.color('surface');
 }
 
-.notice {
+.inner {
   @include m.container(t.$container-wide);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: t.$space-2;
+}
+
+.notice {
   font-size: t.$font-size-sm;
   color: t.color('text-muted');
   text-align: center;
+}
+
+// Área de 44 × 44 px para el pulgar (SPEC 9.1).
+.link {
+  @include m.touch-target;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: t.color('accent');
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
 }

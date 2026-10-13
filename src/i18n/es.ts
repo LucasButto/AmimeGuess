@@ -1,5 +1,7 @@
 /** Textos de interfaz (regla 8 de CLAUDE.md). Nada de texto visible dentro de los componentes. */
 
+import type { ThemeFont } from '@/franchises/types';
+
 const plural = (count: number, one: string, many: string) => (count === 1 ? one : many);
 
 export const es = {
@@ -28,6 +30,113 @@ export const es = {
     label: 'Aviso legal',
     notice:
       'AnimeGuess es un proyecto de fans, sin afiliación con los titulares de las marcas Pokémon, Dragon Ball, Naruto ni Yu-Gi-Oh. Las marcas, los personajes y las imágenes pertenecen a sus dueños.',
+    credits: 'Créditos',
+  },
+  // Página /creditos (SPEC 10). Los nombres de las fuentes y sus direcciones viven acá con su descripción; la lista de
+  // textos CC BY-SA sale de los datos (cada contenido guarda su página de origen en `payload.source`).
+  credits: {
+    title: 'Créditos',
+    description: 'Fuentes de datos e imágenes, licencias y atribuciones de AnimeGuess.',
+    intro:
+      'AnimeGuess es un proyecto de fans, gratuito, sin publicidad y sin afiliación con los titulares de Pokémon, Dragon Ball, Naruto ni Yu-Gi-Oh. Esta página reconoce de dónde sale cada dato y cada imagen, y atribuye cada texto que se reutiliza.',
+    sources: {
+      title: 'Fuentes de datos e imágenes',
+      text: 'Los datos se descargan una sola vez con los scripts del proyecto y se sirven desde este sitio: mientras jugás no se consulta ninguna de estas fuentes.',
+      groups: [
+        {
+          franchise: 'Pokémon',
+          items: [
+            { name: 'PokéAPI', url: 'https://pokeapi.co', text: 'Especies, tipos, estadísticas, movimientos, descripciones de la Pokédex en español y arte oficial.' },
+            { name: 'TCGdex', url: 'https://tcgdex.dev', text: 'Imágenes de las cartas del juego de cartas coleccionables.' },
+            { name: 'WikiDex', url: 'https://www.wikidex.net', text: 'Descripciones de la Pokédex de Leyendas Arceus y de la novena generación (CC BY-SA, más abajo).' },
+          ],
+        },
+        {
+          franchise: 'Dragon Ball',
+          items: [
+            { name: 'Dragon Ball API', url: 'https://dragonball-api.com', text: 'Personajes, transformaciones, niveles de ki e imágenes.' },
+            {
+              name: 'Dragon Ball Wiki Hispano (Fandom)',
+              url: 'https://dragonball.fandom.com/es',
+              text: 'Series en las que aparece cada personaje, frases (CC BY-SA, más abajo) e imágenes de personajes, técnicas y transformaciones.',
+            },
+          ],
+        },
+        {
+          franchise: 'Naruto',
+          items: [
+            {
+              name: 'Dattebayo API',
+              url: 'https://dattebayo-api.onrender.com',
+              text: 'Personajes, jutsus, naturalezas, kekkei genkai, afiliaciones, ocupaciones, equipos y clanes.',
+            },
+            {
+              name: 'Narutopedia (Fandom)',
+              url: 'https://naruto.fandom.com',
+              text: 'Datos de los jutsus, frases traducidas al español (CC BY-SA, más abajo) e imágenes de personajes y jutsus.',
+            },
+          ],
+        },
+        {
+          franchise: 'Yu-Gi-Oh',
+          items: [
+            { name: 'YGOPRODeck', url: 'https://ygoprodeck.com', text: 'Datos de las cartas e ilustraciones.' },
+            { name: 'YGOResources', url: 'https://db.ygoresources.com', text: 'Nombres y textos oficiales de las cartas en español.' },
+            {
+              name: 'Yugipedia',
+              url: 'https://yugipedia.com',
+              text: 'Datos de los duelistas (género, primera aparición y mazos) e imágenes de los duelistas. Su texto tiene licencia CC BY-SA.',
+            },
+            { name: 'Yu-Gi-Oh! Wiki (Fandom)', url: 'https://yugioh.fandom.com', text: 'Series en las que aparece cada duelista.' },
+          ],
+        },
+      ],
+    },
+    reuse: {
+      title: 'Textos reutilizados (CC BY-SA)',
+      text: 'Estos textos vienen de wikis con licencia Creative Commons Atribución-CompartirIgual. Se reproducen con atribución a la página de la que salen; las frases de Narutopedia se tradujeron al español, y esas traducciones se comparten bajo la misma licencia.',
+      license: { name: 'CC BY-SA 3.0', url: 'https://creativecommons.org/licenses/by-sa/3.0/deed.es' },
+      // Un nombre por sitio de origen (el host de `payload.source`). Un test exige que todo sitio de los datos esté acá.
+      sites: {
+        'www.wikidex.net': { name: 'WikiDex', what: (count: number) => `${count} ${plural(count, 'descripción', 'descripciones')} de la Pokédex` },
+        'dragonball.fandom.com': { name: 'Dragon Ball Wiki Hispano', what: (count: number) => `${count} ${plural(count, 'frase', 'frases')}` },
+        'naruto.fandom.com': {
+          name: 'Narutopedia',
+          what: (count: number) => `${count} ${plural(count, 'frase traducida', 'frases traducidas')} al español`,
+        },
+      } as Record<string, { name: string; what: (count: number) => string }>,
+      summary: (site: string, what: string) => `${site} · ${what}`,
+      pageCount: (title: string, count: number) => (count === 1 ? title : `${title} (${count})`),
+    },
+    fonts: {
+      title: 'Tipografías',
+      text: 'Todas tienen licencia libre y se sirven desde este sitio.',
+      license: { name: 'SIL Open Font License 1.1', url: 'https://openfontlicense.org' },
+      // Una por id de `ThemeFont`: al sumar una tipografía a un tema, el tipo obliga a acreditarla acá.
+      items: {
+        fredoka: { name: 'Fredoka', url: 'https://fonts.google.com/specimen/Fredoka' },
+        bangers: { name: 'Bangers', url: 'https://fonts.google.com/specimen/Bangers' },
+        'kaushan-script': { name: 'Kaushan Script', url: 'https://fonts.google.com/specimen/Kaushan+Script' },
+        cinzel: { name: 'Cinzel', url: 'https://fonts.google.com/specimen/Cinzel' },
+      } satisfies Record<ThemeFont, { name: string; url: string }>,
+    },
+    trademarks: {
+      title: 'Marcas',
+      items: [
+        'Pokémon: © Nintendo, Creatures Inc., GAME FREAK inc. y The Pokémon Company. Pokémon y los nombres de sus personajes son marcas de Nintendo.',
+        'Dragon Ball: © Bird Studio / Shueisha y Toei Animation.',
+        'Naruto: © Masashi Kishimoto / Shueisha, TV Tokyo y Pierrot.',
+        'Yu-Gi-Oh!: © Kazuki Takahashi / Studio Dice / Shueisha, TV Tokyo y Konami.',
+      ],
+      text: 'Las imágenes de personajes, técnicas y cartas pertenecen a sus titulares, vengan de la fuente que vengan, y se usan sin fines comerciales, como parte de un juego de fans.',
+    },
+    art: {
+      title: 'Arte y herramientas',
+      items: [
+        'El arte de la interfaz (fondos, íconos y marcos) es propio: no se usan logotipos, sprites ni tipografías oficiales.',
+        'Las siluetas de las cartas de Yu-Gi-Oh se recortan del fondo con el modelo BiRefNet (licencia MIT), ejecutado en local.',
+      ],
+    },
   },
   notFound: {
     title: 'Página no encontrada',
