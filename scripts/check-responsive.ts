@@ -4,7 +4,9 @@
 // falla si la página se desborda en horizontal y guarda una captura por ruta y
 // viewport en .screenshots/ (ignorada por git). Además falla si hay errores en
 // consola (por ejemplo de hidratación), solicitudes a /_next/image, o botones y
-// enlaces de menos de 44 × 44 px en los viewports de teléfono.
+// enlaces de menos de 44 × 44 px en los viewports de teléfono. Una combinación
+// que falla por net::ERR_NO_BUFFER_SPACE (sockets agotados en Windows) se
+// reintenta hasta dos veces antes de contarla.
 //
 // Usa el build de producción: correr antes `npm run build`. Levanta su propio
 // servidor (`next start`) en un puerto libre; con BASE_URL=http://… usa uno ya
@@ -613,6 +615,16 @@ const IMAGE_MODES = [{ slug: 'silueta' }, { slug: 'zoom' }, { slug: 'carta' }] a
 
 const ROUTES: RouteCheck[] = [
   { name: 'inicio', path: '/' },
+  { name: 'creditos', path: '/creditos' },
+  {
+    // Con las listas de páginas de origen abiertas: los enlaces de adentro también miden 44 px en teléfono.
+    name: 'creditos-abierto',
+    path: '/creditos',
+    before: async (page) => {
+      await page.locator('details').evaluateAll((all) => all.forEach((details) => details.setAttribute('open', '')));
+      return [];
+    },
+  },
   { name: 'pokemon', path: '/pokemon' },
   { name: 'pokemon-clasico', path: '/pokemon/clasico', ready: GAME_READY },
   {
@@ -716,9 +728,8 @@ const ROUTES: RouteCheck[] = [
     storage: seededScoreStats(),
     before: (page, context) => openDialog(page, 'Estadísticas', context),
   },
-  // Sesión 09: los 9 modos de Dragon Ball. Los que dependen de contenido que revisa una persona (frases y
-  // sucesos verificados, capturas de técnicas cargadas a mano) quedan ocultos mientras no haya: sus rutas
-  // se revisan igual (muestran "Próximamente") y sus comprobaciones propias se saltean si el juego no está.
+  // Sesión 09: los 9 modos de Dragon Ball, todos jugables desde que se verificaron las frases y los sucesos
+  // (2026-10-12). Un modo que se quede sin contenido verificado se oculta y su ruta muestra "Próximamente".
   { name: 'dragon-ball', path: '/dragon-ball' },
   { name: 'dragon-ball-clasico', path: '/dragon-ball/clasico', ready: GAME_READY },
   {
@@ -758,15 +769,25 @@ const ROUTES: RouteCheck[] = [
   { name: 'dragon-ball-poder', path: '/dragon-ball/poder', ready: GAME_READY, check: optionsLayout },
   { name: 'dragon-ball-poder-elegida-1', path: '/dragon-ball/poder', ready: GAME_READY, check: afterPicking(0) },
   { name: 'dragon-ball-poder-elegida-2', path: '/dragon-ball/poder', ready: GAME_READY, check: afterPicking(1) },
-  { name: 'dragon-ball-frase', path: '/dragon-ball/frase' },
-  { name: 'dragon-ball-tecnica', path: '/dragon-ball/tecnica' },
-  { name: 'dragon-ball-linea-de-tiempo', path: '/dragon-ball/linea-de-tiempo', check: timelineLayout },
+  { name: 'dragon-ball-frase', path: '/dragon-ball/frase', ready: GAME_READY },
+  {
+    // Con 6 fallos ya se desbloquearon todas las pistas (raza y afiliación).
+    name: 'dragon-ball-frase-6-fallos',
+    path: '/dragon-ball/frase',
+    ready: GAME_READY,
+    storage: seededGame('all', neverAnswers('quote', 6, 'dragon-ball'), 'frase', 'dragon-ball'),
+  },
+  { name: 'dragon-ball-tecnica', path: '/dragon-ball/tecnica', ready: GAME_READY },
+  { name: 'dragon-ball-linea-de-tiempo', path: '/dragon-ball/linea-de-tiempo', ready: GAME_READY, check: timelineLayout },
   // Arrastrar: con el dedo en un teléfono y con el mouse en el resto.
-  { name: 'dragon-ball-linea-de-tiempo-arrastrar', path: '/dragon-ball/linea-de-tiempo', check: timelineDrag },
-  { name: 'dragon-ball-linea-de-tiempo-confirmado', path: '/dragon-ball/linea-de-tiempo', check: timelineConfirm },
-  { name: 'dragon-ball-linea-de-tiempo-terminado', path: '/dragon-ball/linea-de-tiempo', check: timelineFinish },
-  // Sesión 11: los 9 modos de Naruto. Silueta (todas las imágenes tienen fondo) y Frase (frases sin verificar) quedan
-  // ocultos: sus rutas se revisan igual (muestran "Próximamente"). Los demás son jugables con todas las series.
+  { name: 'dragon-ball-linea-de-tiempo-arrastrar', path: '/dragon-ball/linea-de-tiempo', ready: GAME_READY, check: timelineDrag },
+  { name: 'dragon-ball-linea-de-tiempo-confirmado', path: '/dragon-ball/linea-de-tiempo', ready: GAME_READY, check: timelineConfirm },
+  { name: 'dragon-ball-linea-de-tiempo-terminado', path: '/dragon-ball/linea-de-tiempo', ready: GAME_READY, check: timelineFinish },
+  // Solo Daima: 2 sucesos, no alcanza el pool mínimo.
+  { name: 'dragon-ball-linea-de-tiempo-sin-pool', path: '/dragon-ball/linea-de-tiempo?s=daima', check: showsPoolWarning },
+  // Sesión 11: los 9 modos de Naruto. Silueta queda oculto hasta recortar el fondo de las imágenes (sesión 19): su
+  // ruta se revisa igual (muestra "Próximamente"). Los demás son jugables con todas las series (Frase, desde que se
+  // verificaron las frases el 2026-10-12).
   { name: 'naruto', path: '/naruto' },
   { name: 'naruto-clasico', path: '/naruto/clasico', ready: GAME_READY },
   {
@@ -813,7 +834,14 @@ const ROUTES: RouteCheck[] = [
     ready: GAME_READY,
     storage: seededGame('all', neverAnswers('emoji', 6, 'naruto'), 'emoji', 'naruto'),
   },
-  { name: 'naruto-frase', path: '/naruto/frase' },
+  { name: 'naruto-frase', path: '/naruto/frase', ready: GAME_READY },
+  {
+    // Con 6 fallos ya se desbloquearon todas las pistas (a quién se la dijo y en qué arco).
+    name: 'naruto-frase-6-fallos',
+    path: '/naruto/frase',
+    ready: GAME_READY,
+    storage: seededGame('all', neverAnswers('quote', 6, 'naruto'), 'frase', 'naruto'),
+  },
   { name: 'naruto-silueta', path: '/naruto/silueta' },
   { name: 'naruto-conexiones', path: '/naruto/conexiones', ready: GAME_READY, check: connectionsLayout },
   { name: 'naruto-conexiones-seleccion', path: '/naruto/conexiones', ready: GAME_READY, check: connectionsSelect },
@@ -1112,6 +1140,30 @@ async function checkPage(
 }
 
 /**
+ * En Windows, después de cientos de cargas, el navegador a veces se queda sin sockets libres y una solicitud a
+ * /_next/static/ falla con net::ERR_NO_BUFFER_SPACE. Es un problema del equipo, no de la página (cada corrida
+ * falla en una combinación distinta): esa combinación se vuelve a revisar tras una pausa. Se informa el
+ * resultado del último intento, así que cualquier otro problema sigue contando.
+ */
+const TRANSIENT_NETWORK_ERROR = 'net::ERR_NO_BUFFER_SPACE';
+const TRANSIENT_RETRIES = 2;
+const TRANSIENT_PAUSE_MS = 3_000;
+
+async function checkPageWithRetry(
+  browser: Browser,
+  baseUrl: string,
+  route: RouteCheck,
+  viewport: Viewport,
+): Promise<Result & { retries: number }> {
+  for (let retries = 0; ; retries++) {
+    const result = await checkPage(browser, baseUrl, route, viewport);
+    const transient = result.problems.some((problem) => problem.includes(TRANSIENT_NETWORK_ERROR));
+    if (!transient || retries === TRANSIENT_RETRIES) return { ...result, retries };
+    await new Promise((resolve) => setTimeout(resolve, TRANSIENT_PAUSE_MS));
+  }
+}
+
+/**
  * Toda ruta del sitemap (el inicio, cada franquicia y cada modo que se puede jugar) tiene que estar registrada en
  * ROUTES: así una página nueva no se queda sin revisar en los 8 viewports.
  */
@@ -1143,10 +1195,12 @@ async function main(): Promise<void> {
     const nameWidth = Math.max(...ROUTES.map((route) => route.name.length));
     grid.push(`${'ruta'.padEnd(nameWidth)}  ${VIEWPORTS.map((viewport) => viewport.name.padStart(9)).join(' ')}`);
 
+    let retried = 0;
     for (const route of ROUTES) {
       const cells: string[] = [];
       for (const viewport of VIEWPORTS) {
-        const { problems } = await checkPage(browser, server.baseUrl, route, viewport);
+        const { problems, retries } = await checkPageWithRetry(browser, server.baseUrl, route, viewport);
+        retried += retries;
         cells.push((problems.length === 0 ? 'ok' : 'FALLA').padStart(9));
         for (const problem of new Set(problems)) failures.push(`${route.name} @ ${viewport.name}: ${problem}`);
       }
@@ -1155,6 +1209,7 @@ async function main(): Promise<void> {
 
     console.log(grid.join('\n'));
     console.log(`\nCapturas en ${path.relative(ROOT, OUT_DIR)}${path.sep}`);
+    if (retried > 0) console.log(`Reintentos por ${TRANSIENT_NETWORK_ERROR}: ${retried}`);
 
     if (failures.length > 0) {
       console.error(`\n${failures.length} problema(s):`);
