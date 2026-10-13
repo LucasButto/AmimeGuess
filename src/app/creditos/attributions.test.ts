@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { Content } from '@/engine/types';
 import { franchises } from '@/franchises';
 import { loadFranchiseData } from '@/franchises/data';
+import { themeFonts } from '@/franchises/theme';
 import { es } from '@/i18n/es';
 import { attributionsOf, wikiPageTitle } from './attributions';
 
@@ -53,6 +54,8 @@ describe('créditos sobre los datos reales', () => {
   });
 
   it('cada tipografía de un tema está acreditada', () => {
-    for (const franchise of franchises) expect(es.credits.fonts.items[franchise.theme.headingFont.id]).toBeDefined();
+    for (const franchise of franchises) {
+      for (const id of themeFonts(franchise.theme)) expect(es.credits.fonts.items[id]).toBeDefined();
+    }
   });
 });

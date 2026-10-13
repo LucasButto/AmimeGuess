@@ -1,0 +1,42 @@
+@use 'tokens' as t;
+
+// 12 × 12 píxeles del dibujo; cada uno mide `--u` (un píxel de arte o medio), siempre un número entero de
+// píxeles reales.
+.ball {
+  --u: var(--px);
+  position: relative;
+  display: inline-block;
+  flex: none;
+  inline-size: calc(var(--u) * 12);
+  block-size: calc(var(--u) * 12);
+
+  &[data-unit='half'] {
+    --u: #{t.token('px-half')};
+  }
+}
+
+.top,
+.bottom {
+  position: absolute;
+  inset-inline-start: 0;
+  display: block;
+  inline-size: 100%;
+  block-size: 50%;
+}
+
+.art {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.top {
+  inset-block-start: 0;
+
+  .ball[data-open='true'] & {
+    transform: translateY(calc(var(--u) * -2));
+  }
+}
+
+.bottom {
+  inset-block-end: 0;
+}

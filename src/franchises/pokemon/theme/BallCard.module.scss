@@ -1,0 +1,162 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.card {
+  @include m.touch-target;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: t.$space-2;
+  block-size: 100%;
+  padding: t.$space-2 t.$space-1;
+  color: t.token('ink');
+  text-align: center;
+  text-decoration: none;
+  @include m.focus-ring;
+}
+
+// La bola: 30 × 30 píxeles de arte, con sus cuatro capas en su lugar (ver art.ts).
+.ball {
+  position: relative;
+  display: block;
+  flex: none;
+  inline-size: t.px(30);
+  block-size: t.px(30);
+  transform-origin: 50% 100%;
+}
+
+.top,
+.bottom,
+.button,
+.icon {
+  position: absolute;
+}
+
+.top {
+  inset: 0 auto auto 0;
+}
+
+.bottom {
+  inset: t.px(15) auto auto 0;
+}
+
+.button {
+  inset: t.px(6) auto auto t.px(6);
+}
+
+// El ícono (10 × 10) queda centrado en el botón (18 × 18): 3 píxeles de blanco hasta su borde por todos lados.
+.icon {
+  inset: t.px(10) auto auto t.px(10);
+}
+
+// Resuelto hoy: la mitad de arriba se levanta un poco.
+.card[data-state='solved'] .top {
+  transform: translateY(#{t.px(-2)});
+}
+
+// Tilde de "resuelto", sobre la bola: el estado no depende del color (y el nombre accesible lo dice).
+.check {
+  position: absolute;
+  inset: t.px(-1) t.px(-2) auto auto;
+  display: inline-flex;
+  padding: var(--px);
+  background: t.token('cell-correct');
+  color: t.token('cell-ink');
+  font-size: 1rem;
+  clip-path: m.pixel-corners((1));
+}
+
+// Destello corto alrededor de la bola al aparecer resuelta: ocho píxeles amarillos que se encienden y se
+// apagan una sola vez.
+.sparkle {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: var(--px);
+  block-size: var(--px);
+  box-shadow:
+    0 t.px(-17) 0 var(--palette-yellow),
+    0 t.px(17) 0 var(--palette-yellow),
+    t.px(-17) 0 0 var(--palette-yellow),
+    t.px(17) 0 0 var(--palette-yellow),
+    t.px(-12) t.px(-12) 0 var(--palette-yellow),
+    t.px(12) t.px(-12) 0 var(--palette-yellow),
+    t.px(-12) t.px(12) 0 var(--palette-yellow),
+    t.px(12) t.px(12) 0 var(--palette-yellow);
+  opacity: 0;
+
+  @include bp.motion-ok {
+    animation: sparkle 0.6s steps(3, end) 1;
+  }
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 1;
+    transform: scale(0.6);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+// Hover y foco: un balanceo corto de tres pasos, como al capturar (una vez, sin bucle).
+.card:focus-visible .ball {
+  @include bp.motion-ok {
+    animation: wobble 0.45s steps(1, end) 1;
+  }
+}
+
+.card {
+  @include m.hover {
+    .ball {
+      @include bp.motion-ok {
+        animation: wobble 0.45s steps(1, end) 1;
+      }
+    }
+  }
+}
+
+@keyframes wobble {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  33% {
+    transform: rotate(-12deg);
+  }
+
+  66% {
+    transform: rotate(12deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+// Presionada: se achica un paso.
+.card:active .ball {
+  transform: scale(0.92);
+}
+
+.name {
+  // Borde negro y adentro todo blanco (sin el aro celeste interior de los demás marcos).
+  @include m.pixel-frame(
+    $fill: var(--palette-white),
+    $outer: var(--palette-frame),
+    $inner: var(--palette-white),
+    $inner-width: 0px,
+    $clip: t.token('clip-chip'),
+    $radius: t.token('chip-radius')
+  );
+  display: block;
+  max-inline-size: 100%;
+  padding: calc(#{t.$space-1} + #{t.token('frame-width')}) calc(#{t.$space-2} + #{t.token('frame-width')});
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+}

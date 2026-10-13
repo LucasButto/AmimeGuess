@@ -1,0 +1,13 @@
+@use 'tokens' as t;
+
+// Ocupa toda la celda, con su mismo recorte escalonado y borde oscuro.
+.back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--palette-cloud-shade);
+  box-shadow: inset 0 0 0 var(--px) var(--palette-frame);
+  clip-path: t.token('clip-cell');
+}

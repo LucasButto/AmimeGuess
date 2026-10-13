@@ -1,0 +1,123 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+
+// Destello: ocho píxeles amarillos alrededor de la imagen, que se encienden a pasos una sola vez. Con
+// movimiento reducido quedan quietos y a la vista.
+.sparkle {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: t.px(2);
+  block-size: t.px(2);
+  box-shadow:
+    0 t.px(-14) 0 var(--palette-yellow),
+    0 t.px(14) 0 var(--palette-yellow),
+    t.px(-14) 0 0 var(--palette-yellow),
+    t.px(14) 0 0 var(--palette-yellow),
+    t.px(-10) t.px(-10) 0 var(--palette-yellow),
+    t.px(10) t.px(-10) 0 var(--palette-yellow),
+    t.px(-10) t.px(10) 0 var(--palette-yellow),
+    t.px(10) t.px(10) 0 var(--palette-yellow);
+  pointer-events: none;
+
+  @include bp.motion-ok {
+    animation: sparkle 0.8s steps(4, end) both;
+  }
+}
+
+@keyframes sparkle {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+}
+
+.stats {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+}
+
+.statsTitle {
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+}
+
+.list {
+  display: grid;
+  gap: t.$space-1 t.$space-3;
+  margin: 0;
+
+  @include bp.min-width('sm') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 6rem minmax(0, 1fr);
+  align-items: center;
+  gap: t.$space-2;
+}
+
+.label {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+}
+
+.value {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  margin: 0;
+}
+
+.number {
+  min-inline-size: 2.5ch;
+  font-size: t.$font-size-sm;
+  text-align: end;
+}
+
+// Barra estilo Pokédex: pista oscura con borde y relleno verde, amarillo o rojo según el valor.
+.bar {
+  flex: 1;
+  block-size: t.px(2);
+  min-block-size: 0.5rem;
+  border: var(--px-half) solid var(--palette-frame);
+  background: var(--palette-ink);
+  overflow: hidden;
+}
+
+.fill {
+  display: block;
+  block-size: 100%;
+  background: var(--palette-grass-1);
+  transform-origin: left center;
+
+  .bar[data-level='mid'] & {
+    background: var(--palette-yellow);
+  }
+
+  .bar[data-level='low'] & {
+    background: var(--palette-red);
+  }
+
+  @include bp.motion-ok {
+    animation: grow 0.6s steps(6, end) both;
+  }
+}
+
+@keyframes grow {
+  from {
+    transform: scaleX(0);
+  }
+}

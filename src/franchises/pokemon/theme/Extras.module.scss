@@ -1,0 +1,202 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// --- Píldora de tipo -----------------------------------------------------------
+// Los colores son los de la paleta (extras-art.ts); cada uno con contraste suficiente para su ícono.
+$type-fills: 'cloud-shade', 'red', 'blue', 'grass-2', 'yellow', 'sky-1', 'orange', 'violet', 'dawn', 'sky-2', 'dusk',
+  'grass-1', 'gray', 'night', 'cyan', 'ink', 'white', 'pink';
+
+.typePill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--px-half) var(--px);
+  box-shadow: inset 0 0 0 var(--px-half) var(--palette-frame);
+  clip-path: m.pixel-corners((1));
+
+  @each $fill in $type-fills {
+    &[data-fill='#{$fill}'] {
+      background: var(--palette-#{$fill});
+    }
+  }
+}
+
+// 8 × 8 píxeles de dibujo, a medio píxel de arte cada uno (entero a cualquier escala).
+.typeIcon {
+  inline-size: calc(#{t.token('px-half')} * 8);
+  block-size: calc(#{t.token('px-half')} * 8);
+}
+
+// --- Medallero -----------------------------------------------------------------
+
+.medals {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-1 t.$space-2;
+}
+
+.metric {
+  flex: none;
+  inline-size: calc(#{t.token('px-half')} * 21);
+  block-size: calc(#{t.token('px-half')} * 21);
+}
+
+.medalRow {
+  display: inline-flex;
+  gap: var(--px);
+}
+
+.medal {
+  inline-size: calc(#{t.token('px-half')} * 8);
+  block-size: calc(#{t.token('px-half')} * 8);
+}
+
+.streakNumber {
+  @include m.heading;
+  @include m.display-size(t.$font-display-sm);
+  line-height: 1;
+}
+
+// --- Barra de PS ---------------------------------------------------------------
+
+.hp {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-1;
+}
+
+.hpLabel {
+  padding: 0 var(--px);
+  background: var(--palette-yellow);
+  color: var(--palette-frame);
+  font-size: 0.75rem;
+  font-weight: t.$font-weight-bold;
+  line-height: 1.4;
+}
+
+.hpTrack {
+  inline-size: t.px(24);
+  block-size: t.px(2);
+  border: var(--px-half) solid var(--palette-frame);
+  background: var(--palette-ink);
+  overflow: hidden;
+}
+
+.hpFill {
+  display: block;
+  block-size: 100%;
+  background: var(--palette-grass-1);
+  transform-origin: left center;
+
+  .hpTrack[data-level='mid'] & {
+    background: var(--palette-yellow);
+  }
+
+  .hpTrack[data-level='low'] & {
+    background: var(--palette-red);
+  }
+
+  @include bp.motion-ok {
+    transition: transform 0.4s steps(4, end);
+  }
+}
+
+// --- Entrada a un modo -----------------------------------------------------------
+// Seis barras que cubren la pantalla y se van hacia los costados, alternadas, en una sola barrida continua (sin pasos).
+// Con movimiento reducido, nada.
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: t.$layer-transition;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  pointer-events: none;
+
+  @include bp.motion-ok {
+    display: flex;
+  }
+}
+
+.introBar {
+  flex: 1;
+  background: var(--palette-frame);
+  animation: bar-out 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+
+  &[data-side='right'] {
+    animation-name: bar-out-right;
+  }
+}
+
+@keyframes bar-out {
+  to {
+    transform: translateX(-101%);
+  }
+}
+
+@keyframes bar-out-right {
+  to {
+    transform: translateX(101%);
+  }
+}
+
+// --- Salida de un modo -------------------------------------------------------------
+// Lo mismo al revés: las seis barras entran desde los costados y tapan la pantalla (0,4 s, igual que lo que tarda la salida
+// del tema). Con movimiento reducido no se monta.
+
+.outro {
+  position: fixed;
+  inset: 0;
+  z-index: t.$layer-transition;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+
+  @include bp.motion-ok {
+    display: flex;
+  }
+}
+
+.outroBar {
+  flex: 1;
+  background: var(--palette-frame);
+  transform: translateX(-101%);
+  animation: bar-in 0.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+
+  &[data-side='right'] {
+    transform: translateX(101%);
+    animation-name: bar-in-right;
+  }
+}
+
+@keyframes bar-in {
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes bar-in-right {
+  to {
+    transform: translateX(0);
+  }
+}
+
+// --- Indicador de carga -----------------------------------------------------------
+
+.loader {
+  display: inline-flex;
+  flex: none;
+
+  @include bp.motion-ok {
+    animation: roll 0.8s steps(8, end) infinite;
+  }
+}
+
+@keyframes roll {
+  to {
+    transform: rotate(360deg);
+  }
+}

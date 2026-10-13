@@ -1,0 +1,260 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// Carcasa roja con borde oscuro escalonado y un segundo anillo rojo oscuro.
+.dex {
+  @include m.pixel-frame(
+    $fill: var(--palette-red),
+    $outer: var(--palette-frame),
+    $inner: var(--color-accent),
+    $width: var(--px),
+    $inner-width: var(--px),
+    $clip: m.pixel-corners((3, 2, 1)),
+    $radius: 0
+  );
+  display: grid;
+  grid-template-areas: 'top' 'screen' 'play';
+  gap: t.$space-3;
+  inline-size: 100%;
+  max-inline-size: 44rem;
+  // Pegada al borde izquierdo de la página, como el texto de arriba (no centrada).
+  margin-inline: 0;
+  padding: calc(var(--px) * 2 + #{t.$space-3});
+  color: var(--palette-white);
+  text-decoration: none;
+  @include m.focus-ring;
+
+  @include bp.min-width('md') {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas: 'top top' 'screen controls';
+    gap: t.$space-4;
+    padding: calc(var(--px) * 2 + #{t.$space-4});
+  }
+
+  @include m.hover {
+    .lens {
+      transform: translateY(calc(var(--px) * -1));
+    }
+
+    .glow {
+      opacity: 1;
+
+      @include bp.motion-ok {
+        animation: screen-on 0.5s steps(1, end);
+      }
+    }
+  }
+
+  // Con el teclado, la pantalla también se enciende.
+  &:focus-visible .glow {
+    opacity: 1;
+
+    @include bp.motion-ok {
+      animation: screen-on 0.5s steps(1, end);
+    }
+  }
+
+  &:active {
+    transform: translateY(var(--px));
+  }
+}
+
+// Franja de arriba: lente grande y tres luces, separada del resto por una línea oscura.
+.top {
+  grid-area: top;
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
+  padding-block-end: t.$space-2;
+  border-block-end: var(--px) solid var(--palette-frame);
+}
+
+.lights {
+  display: none;
+  align-items: flex-start;
+  gap: t.$space-2;
+  align-self: flex-start;
+
+  @include bp.min-width('md') {
+    display: flex;
+  }
+}
+
+// Pantalla hundida: azul noche con borde oscuro y un aro interior gris.
+.screen {
+  @include m.pixel-frame(
+    $fill: var(--palette-night),
+    $outer: var(--palette-frame),
+    $inner: var(--palette-ink),
+    $width: var(--px),
+    $inner-width: var(--px),
+    $clip: m.pixel-corners((1)),
+    $radius: 0
+  );
+  grid-area: screen;
+  min-inline-size: 0;
+  padding: calc(var(--px) * 2 + #{t.$space-3});
+  color: var(--palette-cream);
+}
+
+// El contenido de la pantalla (el mismo en las dos capas, así miden lo mismo).
+.face {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+}
+
+// La pantalla encendida: cian, con líneas de barrido, y la tinta oscura. Cubre el interior de la pantalla
+// (adentro de su marco). Apagada es invisible; se enciende solo con `opacity`, a pasos, con un parpadeo.
+.glow {
+  position: absolute;
+  inset: calc(var(--px) * 2);
+  padding: t.$space-3;
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 var(--px), color-mix(in srgb, var(--palette-blue) 14%, transparent) var(--px) calc(var(--px) * 2)),
+    var(--palette-cyan);
+  color: var(--palette-night);
+  clip-path: m.pixel-corners((1));
+  opacity: 0;
+  pointer-events: none;
+
+  @include bp.motion-ok {
+    transition: opacity 0.2s steps(3, end);
+  }
+
+  // El estado "resuelto" va en amarillo sobre la pantalla apagada; sobre el cian se lee con la tinta oscura.
+  .dex[data-state='solved'] & .screenStatus {
+    color: inherit;
+    font-weight: t.$font-weight-bold;
+  }
+}
+
+// Como un tubo viejo al prenderse: titila antes de quedarse fijo.
+@keyframes screen-on {
+  0% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.screenName {
+  @include m.heading;
+  @include m.display-size(t.$font-display-md);
+  line-height: t.$line-height-tight;
+  overflow-wrap: anywhere;
+
+  @include bp.min-width('md') {
+    @include m.display-size(t.$font-display-lg);
+  }
+}
+
+.screenStatus {
+  min-block-size: 1.5em;
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-medium;
+
+  .dex[data-state='solved'] & {
+    color: var(--palette-yellow);
+  }
+}
+
+// Fila decorativa de tres celdas del Clásico: correcta, parcial e incorrecta.
+.cells {
+  display: flex;
+  gap: var(--px);
+}
+
+.cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: t.px(7);
+  block-size: t.px(7);
+  color: t.token('cell-ink');
+  font-size: 1rem;
+  clip-path: m.pixel-corners((1));
+
+  &[data-match='exact'] {
+    background: t.token('cell-correct');
+  }
+
+  &[data-match='partial'] {
+    background: t.token('cell-partial');
+  }
+
+  &[data-match='none'] {
+    background: t.token('cell-incorrect');
+  }
+}
+
+// Cruceta, dos botones y un parlante: solo desde tablet.
+.controls {
+  grid-area: controls;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-3;
+
+  @include bp.min-width('md') {
+    display: flex;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: t.$space-2;
+}
+
+.speaker {
+  inline-size: t.px(12);
+  block-size: t.px(7);
+  background: repeating-linear-gradient(to bottom, var(--palette-frame) 0 var(--px), transparent var(--px) t.px(2));
+}
+
+// "Jugar", solo en el teléfono: una cápsula crema dentro de la carcasa (la tarjeta entera es el enlace).
+.play {
+  @include m.pixel-frame(
+    $fill: var(--palette-cream),
+    $outer: var(--palette-frame),
+    $inner: transparent,
+    $width: var(--px),
+    $inner-width: 0px,
+    $clip: m.pixel-corners((3, 1, 1)),
+    $radius: 0
+  );
+  grid-area: play;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  min-block-size: t.$touch-target;
+  padding: t.$space-1 t.$space-6;
+  color: var(--palette-ink);
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+
+  @include bp.min-width('md') {
+    display: none;
+  }
+}

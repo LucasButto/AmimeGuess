@@ -1,0 +1,71 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+
+.wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+// Hover y foco del botón: la bola se abre un poco.
+.ball [data-half='top'] {
+  @include bp.hover-capable {
+    a:hover & {
+      transform: translateY(calc(var(--u) * -1));
+    }
+  }
+
+  a:focus-visible & {
+    transform: translateY(calc(var(--u) * -1));
+  }
+
+  // Al salir: abierta mientras sale el rayo y cerrada al final, justo antes de navegar.
+  .wrap[data-leaving='true'] & {
+    @include bp.motion-ok {
+      animation: recall-ball 250ms steps(1, end) both;
+    }
+  }
+}
+
+@keyframes recall-ball {
+  0% {
+    transform: translateY(calc(var(--u) * -2));
+  }
+
+  80% {
+    transform: translateY(0);
+  }
+}
+
+// Rayo rojo pixel que sale de la bola hacia la página (crece a pasos y se apaga).
+.ray {
+  position: absolute;
+  inset-block-start: calc(50% - var(--px));
+  inset-inline-start: 50%;
+  z-index: t.$layer-raised;
+  inline-size: 40vmin;
+  block-size: t.px(2);
+  background: var(--palette-red);
+  box-shadow: 0 var(--px) 0 var(--palette-frame);
+  transform-origin: left center;
+  pointer-events: none;
+
+  @include bp.motion-ok {
+    animation: recall-ray 250ms steps(5, end) both;
+  }
+}
+
+@keyframes recall-ray {
+  0% {
+    transform: rotate(30deg) scaleX(0);
+  }
+
+  60% {
+    opacity: 1;
+    transform: rotate(30deg) scaleX(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: rotate(30deg) scaleX(1);
+  }
+}

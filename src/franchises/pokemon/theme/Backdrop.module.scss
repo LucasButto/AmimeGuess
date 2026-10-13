@@ -1,0 +1,195 @@
+@use 'sass:list';
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+
+// Estrellas de la noche: posiciones fijas (en píxeles de arte) sacadas de una secuencia pseudoaleatoria
+// determinista, para que el dibujo sea siempre el mismo.
+@function star-field($count, $width, $height) {
+  $seed: 7;
+  $shadows: ();
+  @for $i from 1 through $count {
+    $seed: ($seed * 73 + 41) % 997;
+    $x: $seed % $width;
+    $seed: ($seed * 73 + 41) % 997;
+    $y: $seed % $height;
+    $shadows: list.append($shadows, calc(var(--px) * #{$x}) calc(var(--px) * #{$y}) 0 var(--palette-cream), comma);
+  }
+  @return $shadows;
+}
+
+// Fondo fijo de Pokémon. Todo se mide en píxeles de arte (--px): los mosaicos son los de art.ts (ancho ×
+// alto) y los escalones del tramado miden un píxel de arte, así se ve nítido a cualquier escala.
+.backdrop {
+  // Las tres bandas del cielo, de arriba hacia abajo (la fase 8 las cambia según la hora).
+  --sky-a: var(--palette-sky-1);
+  --sky-b: var(--palette-sky-2);
+  --sky-c: var(--palette-cloud-shade);
+  --ground-h: clamp(5rem, 16dvh, 10rem);
+  position: fixed;
+  inset: 0;
+  z-index: t.$layer-backdrop;
+  overflow: hidden;
+  background: var(--sky-a);
+  pointer-events: none;
+
+  // Las cuatro franjas de la hora local (decoración: el reto no depende de la hora).
+  &[data-time='dawn'] {
+    --sky-a: var(--palette-sky-1);
+    --sky-b: var(--palette-cloud-shade);
+    --sky-c: var(--palette-dawn);
+  }
+
+  // Atardecer: todo el cielo es naranja, más oscuro arriba y más claro en el resto.
+  &[data-time='dusk'] {
+    --sky-a: var(--palette-dusk);
+    --sky-b: var(--palette-dawn);
+    --sky-c: var(--palette-dawn);
+  }
+
+  &[data-time='night'] {
+    --sky-a: var(--palette-night);
+    --sky-b: var(--palette-night);
+    --sky-c: var(--palette-blue);
+  }
+}
+
+// Cielo en tres bandas planas, sin degradé suave: los cortes llevan una franja de tramado.
+.sky {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, var(--sky-a) 0 30%, var(--sky-b) 30% 70%, var(--sky-c) 70%);
+}
+
+// Damero de dos colores de 1 píxel de arte por casilla, centrado sobre el corte entre dos bandas.
+.dither {
+  position: absolute;
+  inset-inline: 0;
+  block-size: t.px(4);
+  transform: translateY(-50%);
+
+  &[data-band='high'] {
+    inset-block-start: 30%;
+    background: repeating-conic-gradient(var(--sky-a) 0 25%, var(--sky-b) 0 50%) 0 0 / t.px(2) t.px(2);
+  }
+
+  &[data-band='low'] {
+    inset-block-start: 70%;
+    background: repeating-conic-gradient(var(--sky-b) 0 25%, var(--sky-c) 0 50%) 0 0 / t.px(2) t.px(2);
+  }
+}
+
+// Estrellas: un punto con muchas sombras, solo de noche. Quietas.
+.stars {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  inline-size: var(--px);
+  block-size: var(--px);
+  box-shadow: star-field(40, 480, 110);
+  opacity: 0;
+
+  .backdrop[data-time='night'] & {
+    opacity: 1;
+  }
+}
+
+// Una tira de nubes un mosaico más ancha que la pantalla: avanzar exactamente un mosaico la deja igual
+// que al principio, así la vuelta no se nota.
+.clouds {
+  position: absolute;
+  inset-inline-start: 0;
+  inline-size: calc(100% + var(--tile-w));
+  block-size: var(--tile-h);
+  background: var(--tile) 0 0 / var(--tile-w) var(--tile-h) repeat-x;
+
+  &[data-layer='back'] {
+    --tile: url('/theme/pokemon/clouds-back.svg');
+    --tile-w: #{t.px(80)};
+    --tile-h: #{t.px(12)};
+    --drift: 150s;
+    inset-block-start: 7%;
+  }
+
+  &[data-layer='front'] {
+    --tile: url('/theme/pokemon/clouds-front.svg');
+    --tile-w: #{t.px(120)};
+    --tile-h: #{t.px(16)};
+    --drift: 90s;
+    inset-block-start: 15%;
+  }
+
+  @include bp.motion-ok {
+    animation: drift var(--drift) linear infinite;
+  }
+
+  // Al atardecer, la base de las nubes es naranja (los mismos dibujos, con otra sombra).
+  .backdrop[data-time='dusk'] &[data-layer='back'] {
+    --tile: url('/theme/pokemon/clouds-back-dusk.svg');
+  }
+
+  .backdrop[data-time='dusk'] &[data-layer='front'] {
+    --tile: url('/theme/pokemon/clouds-front-dusk.svg');
+  }
+
+  // De noche las nubes casi no se ven.
+  .backdrop[data-time='night'] & {
+    opacity: 0.3;
+  }
+}
+
+@keyframes drift {
+  to {
+    transform: translateX(calc(-1 * var(--tile-w)));
+  }
+}
+
+// Suelo: borde oscuro arriba, pasto claro, una fila de tramado y pasto más oscuro abajo.
+.ground {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  block-size: var(--ground-h);
+  background:
+    linear-gradient(var(--palette-grass-3) 0 0) 0 0 / 100% var(--px) no-repeat,
+    repeating-conic-gradient(var(--palette-grass-1) 0 25%, var(--palette-grass-2) 0 50%) 0 t.px(4) / t.px(2) t.px(2) repeat-x,
+    linear-gradient(to bottom, var(--palette-grass-1) 0 t.px(4), var(--palette-grass-2) t.px(4));
+
+  // De noche, el pasto bajo un velo azul.
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--palette-night);
+    opacity: 0;
+
+    .backdrop[data-time='night'] & {
+      opacity: 0.45;
+    }
+
+    .backdrop[data-time='dusk'] & {
+      opacity: 0.15;
+    }
+  }
+}
+
+// Mechones de pasto alto sobre el borde del suelo: se mecen un píxel de arte, a pasos.
+.tufts {
+  --tile-w: #{t.px(32)};
+  --tile-h: #{t.px(5)};
+  position: absolute;
+  inset-block-end: 100%;
+  inset-inline: t.px(-2) 0;
+  block-size: var(--tile-h);
+  margin-block-end: calc(-1 * var(--px));
+  background: url('/theme/pokemon/grass-tufts.svg') 0 100% / var(--tile-w) var(--tile-h) repeat-x;
+
+  @include bp.motion-ok {
+    animation: sway 1.6s steps(1, end) infinite;
+  }
+}
+
+@keyframes sway {
+  50% {
+    transform: translateX(var(--px));
+  }
+}

@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 import { defaultMinPool, hasMinimumPool } from '@/engine/filters';
 import type { Content, Entity } from '@/engine/types';
 import { MAX_ROUNDS, buildRounds, metricOfDay, poolOf } from '@/modes/higher-lower/logic';
-import { candidatesOf as revealCandidates, itemsOf } from '@/modes/reveal-list/logic';
+import { candidatesOf as revealCandidates, itemsOf, lineStates } from '@/modes/reveal-list/logic';
 import { candidatesOf } from '@/modes/text-clue/logic';
 import { leaksName, nameVariants } from '../../../scripts/data/pokemon/transform.ts';
 import entitiesJson from '../../../data/pokemon/entities.json';
@@ -182,10 +182,27 @@ describe('Moveset', () => {
     }
   });
 
+  it('las pistas aparte salen de atributos que tienen todas las respuestas y se desbloquean de menos a más', () => {
+    const hints = config().hints ?? [];
+    expect(hints.map((hint) => hint.label)).toEqual(['Tipos', 'Inicial', 'Generación']);
+    expect(hints.map((hint) => hint.after)).toEqual([...hints.map((hint) => hint.after)].sort((a, b) => a - b));
+    for (const candidate of revealCandidates(entities, contents, pokemonConfig.series, config())) {
+      expect(lineStates(hints, Infinity, candidate.entity, candidate.contents[0]), candidate.id).toHaveLength(hints.length);
+    }
+  });
+
   it('con una serie apagada no aparece nada de ella', () => {
     const active = pokemonConfig.series.filter((id) => id !== 'g9');
     const pool = revealCandidates(entities, contents, active, config());
     expect(pool.some((candidate) => candidate.entity.series.includes('g9'))).toBe(false);
+  });
+});
+
+describe('Silueta', () => {
+  it('es un solo modo: el zoom sobre la sombra del Pokémon, sin un Zoom aparte', () => {
+    const variants = Object.fromEntries(modes.filter((mode) => mode.engine === 'image-reveal').map((mode) => [mode.slug, mode.imageReveal?.variant]));
+    expect(variants.silueta).toBe('zoom-silhouette');
+    expect(modes.some((mode) => mode.slug === 'zoom')).toBe(false);
   });
 });
 
@@ -239,5 +256,32 @@ describe('Mayor o Menor', () => {
     const forward = poolOf(entities, pokemonConfig.series, config().metrics);
     const backward = poolOf([...entities].reverse(), pokemonConfig.series, config().metrics);
     expect(ids(buildRounds(backward, 'peso', ctx))).toEqual(ids(buildRounds(forward, 'peso', ctx)));
+  });
+});
+
+describe('selector de Pokémon y Clásico', () => {
+  it('cada Pokémon tiene su número de la Pokédex Nacional, del 1 al último, en orden', () => {
+    expect(entities.map((entity) => entity.attrs.numero)).toEqual(entities.map((_, index) => index + 1));
+  });
+
+  it('el número no se sale de su generación: cada generación es un tramo seguido', () => {
+    const generations = entities.map((entity) => entity.attrs.generacion as number);
+    expect(generations).toEqual([...generations].sort((a, b) => a - b));
+  });
+
+  it('la inicial es la primera letra del nombre, sin acento y en mayúscula', () => {
+    const strip = (text: string) => text.normalize('NFD').replace(/\p{Diacritic}/gu, '');
+    for (const entity of entities) {
+      expect(entity.attrs.inicial, entity.id).toBe(strip(entity.name.es).charAt(0).toUpperCase());
+    }
+  });
+
+  it('el Clásico tiene la columna Inicial (y ya no Grupo huevo), y todas sus columnas existen en los datos', () => {
+    const columns = modes.find((mode) => mode.slug === 'clasico')?.classic?.columns ?? [];
+    const keys = columns.map((column) => column.key);
+    expect(keys).toContain('inicial');
+    expect(keys).not.toContain('gruposHuevo');
+    for (const key of keys) expect(entities.every((entity) => key in entity.attrs), key).toBe(true);
+    expect(columns.find((column) => column.key === 'inicial')?.compare).toBe('exact');
   });
 });

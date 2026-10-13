@@ -1,0 +1,66 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// Carcasa: en el teléfono solo el borde oscuro a los costados (4 px de arte) más el bisel de la pantalla
+// (otros 4): 0,5 rem en total. Desde md, la carcasa roja se ve alrededor.
+.dex {
+  @include m.pixel-frame(
+    $fill: var(--palette-red),
+    $outer: var(--palette-frame),
+    $inner: transparent,
+    $width: var(--px),
+    $inner-width: 0px,
+    $clip: m.pixel-corners((2, 1)),
+    $radius: 0
+  );
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  padding: 0 var(--px) var(--px);
+
+  @include bp.min-width('md') {
+    padding: 0 t.px(4) t.px(4);
+  }
+}
+
+// Franja de arriba con la lente y tres luces.
+.strip {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  padding: t.$space-2 t.$space-2 t.$space-2 calc(#{t.$space-2} + var(--px));
+}
+
+.lens {
+  inline-size: calc(#{t.token('px-half')} * 14);
+  block-size: calc(#{t.token('px-half')} * 14);
+
+  @include bp.min-width('md') {
+    inline-size: t.px(14);
+    block-size: t.px(14);
+  }
+}
+
+.light {
+  inline-size: calc(#{t.token('px-half')} * 6);
+  block-size: calc(#{t.token('px-half')} * 6);
+  align-self: flex-start;
+}
+
+// Pantalla de borde hundido: un bisel azul noche alrededor de la tabla.
+.screen {
+  min-inline-size: 0;
+  padding: var(--px);
+  background: var(--palette-night);
+  box-shadow: inset var(--px) var(--px) 0 var(--palette-frame);
+
+  @include bp.min-width('md') {
+    padding: t.px(2);
+  }
+
+  // Lo que no es la tabla (el aviso de que todavía no hay intentos) va sobre crema, no sobre el azul.
+  > p {
+    background: var(--palette-cream);
+  }
+}

@@ -1,0 +1,16 @@
+@use 'tokens' as t;
+
+// Lugar de 2 rem para la miniatura; el dibujo mide 12 medios píxeles de arte (entero a cualquier escala).
+.mini {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+}
+
+.dex {
+  inline-size: calc(#{t.token('px-half')} * 12);
+  block-size: calc(#{t.token('px-half')} * 12);
+}

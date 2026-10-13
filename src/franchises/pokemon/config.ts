@@ -1,4 +1,9 @@
+import { es } from '../../i18n/es';
 import type { FranchiseConfig } from '../types';
+import { POKEMON_PALETTE } from './palette';
+
+// Ayudas (botón ⓘ) de las columnas del Clásico.
+const help = es.help.pokemon;
 
 export const pokemonConfig = {
   slug: 'pokemon',
@@ -15,6 +20,20 @@ export const pokemonConfig = {
     g8: 'Gen 8',
     g9: 'Gen 9',
   },
+  // La región de cada generación: los chips de filtro la muestran desde `sm` (sesión 15).
+  seriesDetails: {
+    g1: 'Kanto',
+    g2: 'Johto',
+    g3: 'Hoenn',
+    g4: 'Sinnoh',
+    g5: 'Teselia',
+    g6: 'Kalos',
+    g7: 'Alola',
+    g8: 'Galar',
+    g9: 'Paldea',
+  },
+  // Sugerencias del autocompletado con la miniatura de cada Pokémon (sesión 15).
+  autocompleteThumbnails: true,
   modes: [
     {
       slug: 'clasico',
@@ -22,17 +41,18 @@ export const pokemonConfig = {
       engine: 'classic',
       classic: {
         columns: [
-          { key: 'tipo1', label: 'Tipo 1', compare: 'exact' },
-          { key: 'tipo2', label: 'Tipo 2', compare: 'exact' },
-          { key: 'generacion', label: 'Generación', compare: 'ordered' },
-          { key: 'colores', label: 'Color', compare: 'set' },
-          { key: 'etapa', label: 'Etapa evolutiva', compare: 'ordered' },
-          { key: 'altura', label: 'Altura', compare: 'ordered', unit: 'm' },
-          { key: 'peso', label: 'Peso', compare: 'ordered', unit: 'kg' },
-          { key: 'gruposHuevo', label: 'Grupo huevo', compare: 'set' },
+          { key: 'tipo1', label: 'Tipo 1', compare: 'exact', help: help.tipo1 },
+          { key: 'tipo2', label: 'Tipo 2', compare: 'exact', help: help.tipo2 },
+          { key: 'generacion', label: 'Generación', compare: 'ordered', help: help.generacion },
+          { key: 'colores', label: 'Color', compare: 'set', help: help.colores },
+          { key: 'etapa', label: 'Etapa evolutiva', compare: 'ordered', help: help.etapa },
+          { key: 'altura', label: 'Altura', compare: 'ordered', unit: 'm', help: help.altura },
+          { key: 'peso', label: 'Peso', compare: 'ordered', unit: 'kg', help: help.peso },
+          // La primera letra del nombre: verde si es la misma que la de la respuesta, rojo si no.
+          { key: 'inicial', label: 'Inicial', compare: 'exact', large: true, help: help.inicial },
           // PokéAPI solo tiene hábitat de g1 a g3 (386 de 1025): la columna aparece
           // únicamente cuando todas las series activas son de ese rango (SPEC 3.4).
-          { key: 'habitat', label: 'Hábitat', compare: 'exact', onlyForSeries: ['g1', 'g2', 'g3'] },
+          { key: 'habitat', label: 'Hábitat', compare: 'exact', onlyForSeries: ['g1', 'g2', 'g3'], help: help.habitat },
         ],
         hints: [
           { kind: 'attr', label: 'Habilidad', after: 4, key: 'habilidad' },
@@ -42,7 +62,8 @@ export const pokemonConfig = {
         ],
       },
     },
-    { slug: 'silueta', name: 'Silueta', engine: 'image-reveal', imageReveal: { variant: 'silhouette' } },
+    // Un zoom sobre la sombra negra del Pokémon: parte de un costado y se abre hacia el centro (la silueta no se ilumina).
+    { slug: 'silueta', name: 'Silueta', engine: 'image-reveal', imageReveal: { variant: 'zoom-silhouette' } },
     {
       slug: 'descripcion',
       name: 'Descripción',
@@ -79,7 +100,6 @@ export const pokemonConfig = {
         ],
       },
     },
-    { slug: 'zoom', name: 'Zoom', engine: 'image-reveal', imageReveal: { variant: 'zoom' } },
     {
       slug: 'mayor-o-menor',
       name: 'Mayor o Menor',
@@ -98,31 +118,77 @@ export const pokemonConfig = {
       name: 'Moveset',
       engine: 'reveal-list',
       // Sus 4 movimientos menos comunes, del más común al menos común: cada fallo revela uno más.
-      revealList: { contentKind: 'moveset', field: 'items', label: 'Movimientos' },
+      revealList: {
+        contentKind: 'moveset',
+        field: 'items',
+        label: 'Movimientos',
+        // Aparte de los movimientos, tres pistas sobre el Pokémon que se desbloquean al fallar.
+        hints: [
+          { kind: 'attr', label: 'Tipos', after: 2, keys: ['tipo1', 'tipo2'] },
+          { kind: 'attr', label: 'Inicial', after: 4, keys: ['inicial'] },
+          { kind: 'attr', label: 'Generación', after: 6, keys: ['generacion'] },
+        ],
+      },
     },
   ],
-  // Luminoso: cielo y pasto, bordes bien redondeados y una tipografía amable.
+  // Retro de Game Boy Advance (sesión 15): paleta corta y plana, panel crema con tinta oscura, marcos negros
+  // y rojo de Poké Ball. La piel (theme/) la usa a través de los tokens y de las variables --palette-*.
   theme: {
     scheme: 'light',
     colors: {
-      bg: '#e6f4ff',
-      surface: '#ffffff',
-      stage: '#ffffff',
-      text: '#10263d',
-      'text-muted': '#42607e',
-      border: '#a9cdea',
-      accent: '#1565c0',
+      bg: '#b8e8f8',
+      surface: '#f8f8f0',
+      stage: '#f8f8f0',
+      text: '#383838',
+      'text-muted': '#585858',
+      border: '#202020',
+      accent: '#b82828',
       'accent-contrast': '#ffffff',
-      focus: '#0b3d91',
-      match: '#1b7a33',
-      partial: '#a84b00',
-      miss: '#b3261e',
+      focus: '#202020',
+      match: '#2c6c2c',
+      partial: '#a85400',
+      miss: '#b82828',
       'on-result': '#ffffff',
     },
-    headingFont: { id: 'fredoka', fallback: 'ui-rounded, "Trebuchet MS", system-ui, sans-serif' },
-    radius: { sm: '0.5rem', md: '0.875rem', lg: '1.5rem' },
-    cardShadow: '0 0.25rem 0.75rem color-mix(in srgb, var(--color-text) 14%, transparent)',
+    // Press Start 2P (grilla de 8 px) para títulos; Jersey 10 para el resto: letras comunes y dígitos que no se confunden.
+    // Jersey es más angosta y de mayúsculas más bajas: la piel sube los tamaños de texto con `--font-scale`.
+    headingFont: { id: 'press-start-2p', fallback: '"Courier New", ui-monospace, monospace' },
+    bodyFont: { id: 'jersey-10', fallback: 'system-ui, sans-serif' },
+    radius: { sm: '0', md: '0', lg: '0' },
+    cardShadow: 'none',
     headingStyle: { letterSpacing: '0', textTransform: 'none' },
     background: '/themes/pokemon.svg',
+    // La paleta GBA (palette.ts): 24 colores como mucho, contando los de `colors`.
+    palette: POKEMON_PALETTE,
+    pairs: [
+      { text: 'ink', background: 'cream', kind: 'text', where: 'Texto de paneles, cuadros de diálogo y celdas de la tabla' },
+      { text: 'text-muted', background: 'cream', kind: 'text', where: 'Texto secundario sobre los paneles' },
+      { text: 'accent', background: 'cream', kind: 'text', where: 'Enlaces sobre los paneles' },
+      { text: 'cream', background: 'night', kind: 'text', where: 'Texto de la pantalla de la Pokédex' },
+      { text: 'yellow', background: 'night', kind: 'text', where: 'Estado resaltado en la pantalla de la Pokédex' },
+      { text: 'white', background: 'red', kind: 'text', where: 'Botón principal (cápsula roja) y botón A' },
+      { text: 'white', background: 'blue', kind: 'text', where: 'Botón secundario (cápsula azul) y barra de título de los modales' },
+      { text: 'text-muted', background: 'cloud-shade', kind: 'text', where: 'Chip de filtro apagado y botón deshabilitado' },
+      { text: 'ink', background: 'gray', kind: 'text', where: 'Botón B (cerrar, volver)' },
+      { text: 'ink', background: 'yellow', kind: 'text', where: 'Chips y marcas sobre amarillo' },
+      { text: 'white', background: 'grass-3', kind: 'text', where: 'Celda correcta' },
+      { text: 'white', background: 'orange', kind: 'text', where: 'Celda parcial' },
+      { text: 'white', background: 'accent', kind: 'text', where: 'Celda incorrecta' },
+      { text: 'frame', background: 'sky-2', kind: 'ui', where: 'Marcos sobre el cielo claro' },
+      { text: 'frame', background: 'sky-1', kind: 'ui', where: 'Marcos sobre el cielo' },
+      { text: 'frame', background: 'cream', kind: 'ui', where: 'Marcos y anillo de foco sobre los paneles' },
+      { text: 'cream', background: 'red', kind: 'ui', where: 'Halo del anillo de foco sobre rojo' },
+      { text: 'cream', background: 'blue', kind: 'ui', where: 'Halo del anillo de foco sobre azul' },
+      { text: 'cream', background: 'night', kind: 'ui', where: 'Estrellas del cielo de noche' },
+      { text: 'red', background: 'frame', kind: 'ui', where: 'Bola roja contra su contorno' },
+      { text: 'blue', background: 'frame', kind: 'ui', where: 'Bola azul contra su contorno' },
+      { text: 'yellow', background: 'frame', kind: 'ui', where: 'Bola dorada contra su contorno' },
+      { text: 'grass-2', background: 'frame', kind: 'ui', where: 'Bola verde contra su contorno' },
+      { text: 'cyan', background: 'frame', kind: 'ui', where: 'Bola turquesa contra su contorno' },
+      { text: 'night', background: 'cyan', kind: 'text', where: 'Pantalla de la Pokédex encendida (hover y foco)' },
+      { text: 'pink', background: 'frame', kind: 'ui', where: 'Bola rosa contra su contorno' },
+      { text: 'frame', background: 'dawn', kind: 'ui', where: 'Marcos sobre el cielo del amanecer' },
+      { text: 'frame', background: 'dusk', kind: 'ui', where: 'Marcos sobre el cielo del atardecer' },
+    ],
   },
 } as const satisfies FranchiseConfig;

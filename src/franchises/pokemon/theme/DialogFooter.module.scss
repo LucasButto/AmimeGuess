@@ -1,0 +1,59 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.footer {
+  // Al fondo de la ventana aunque la página sea corta; deja lugar para la barra de gestos.
+  margin-block-start: auto;
+  padding-block: t.$space-4 max(#{t.$space-4}, env(safe-area-inset-bottom));
+}
+
+.inner {
+  @include m.container(t.$container-wide);
+}
+
+.box {
+  --panel-pad: #{t.$space-4};
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: t.$space-2;
+}
+
+.notice {
+  @include m.pixel-text;
+  font-size: t.$font-size-sm;
+  line-height: t.$line-height-base;
+}
+
+.link {
+  @include m.touch-target;
+  @include m.pixel-text;
+  display: inline-flex;
+  align-items: center;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  color: t.color('accent');
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  @include m.focus-ring;
+}
+
+// ▼ en la esquina, como en los cuadros de texto de los juegos: parpadea una vez por segundo, a pasos.
+.more {
+  position: absolute;
+  inset-inline-end: calc(var(--px) * 3);
+  inset-block-end: calc(var(--px) * 3);
+  color: t.token('ink');
+  font-size: 0.75rem;
+
+  @include bp.motion-ok {
+    animation: blink 1s steps(1, end) infinite;
+  }
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}

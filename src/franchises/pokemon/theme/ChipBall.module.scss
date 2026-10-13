@@ -1,0 +1,10 @@
+@use 'tokens' as t;
+
+.mark {
+  flex: none;
+}
+
+.empty {
+  inline-size: calc(#{t.token('px-half')} * 12);
+  block-size: calc(#{t.token('px-half')} * 12);
+}

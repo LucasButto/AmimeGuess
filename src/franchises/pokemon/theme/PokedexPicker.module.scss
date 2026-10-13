@@ -1,0 +1,261 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// Llena el alto que le dé quien lo contiene (la fila del campo de intento, al lado de las pistas o la dificultad).
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  block-size: 100%;
+}
+
+// La Poké Ball grande: el marco del recuadro de pistas hecho botón, con la bola a la izquierda y el texto al lado;
+// llena el alto que le dé quien lo contiene.
+.bigBall {
+  @include m.pixel-frame;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-5;
+  // En una pantalla baja (un teléfono en horizontal) casi sin aire arriba y abajo: la imagen y el botón tienen que entrar
+  // juntos en la pantalla.
+  padding: calc(#{t.token('frame-width')} + #{t.token('frame-inner-width')}) calc(#{t.$space-4} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
+  border: 0;
+  background: none;
+  color: t.token('ink');
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  appearance: none;
+  @include m.focus-ring;
+
+  @include bp.min-height('tall') {
+    padding-block: calc(#{t.$space-4} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
+  }
+
+  // Con el cursor o el teclado, la bola se balancea tres pasos, como al capturar (una vez, sin bucle).
+  &:focus-visible .wobbler {
+    @include bp.motion-ok {
+      animation: wobble 0.45s steps(1, end) 1;
+    }
+  }
+
+  @include m.hover {
+    .wobbler {
+      @include bp.motion-ok {
+        animation: wobble 0.45s steps(1, end) 1;
+      }
+    }
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(#{t.token('button-press')});
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.wobbler {
+  // La bola de las tarjetas ya tiene el origen del giro abajo, en el medio.
+  flex: none;
+}
+
+// El botón del medio (10 × 10) en el centro de la bola (30 × 30), sobre la costura de las dos mitades.
+.ballButton {
+  position: absolute;
+  inset: t.px(10) auto auto t.px(10);
+}
+
+.bigBallText {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
+  min-inline-size: 0;
+}
+
+.bigBallTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-2;
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+}
+
+.bigBallCount {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: t.token('ink-muted');
+}
+
+// El cursor ▶ de menú: dice que se puede entrar.
+.go {
+  display: inline-flex;
+  flex: none;
+  font-size: 1rem;
+}
+
+@keyframes wobble {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  33% {
+    transform: rotate(-12deg);
+  }
+
+  66% {
+    transform: rotate(12deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+// La Pokédex es roja: la barra del título y el anillo del marco, en el rojo del tema (el resto de los modales, azules).
+.dialog {
+  --dialog-bar-fill: var(--palette-red);
+  --frame-dialog-inner: var(--palette-red);
+}
+
+.picker {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-3;
+}
+
+// El buscador queda a la vista mientras se recorre la grilla.
+.bar {
+  position: sticky;
+  inset-block-start: calc(-1 * #{t.$space-4});
+  z-index: t.$layer-sticky;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: t.$space-1 t.$space-3;
+  margin: calc(-1 * #{t.$space-4}) calc(-1 * #{t.$space-4}) 0;
+  padding: t.$space-3 t.$space-4;
+  border-block-end: t.$border-width solid t.token('frame-color');
+  background: t.token('surface-dialog');
+}
+
+.searchLabel {
+  grid-column: 1 / -1;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: t.token('ink-muted');
+}
+
+.search {
+  @include m.touch-target;
+  inline-size: 100%;
+  padding: t.$space-2 t.$space-3;
+  // 1rem (16 px) como mínimo: con menos, iOS hace zoom al enfocar el campo.
+  font-size: t.$font-size-base;
+  border: t.token('frame-width') solid t.token('frame-color');
+  border-radius: t.$radius-md;
+  background: var(--palette-white);
+  color: t.token('ink');
+  @include m.focus-ring(0.0625rem);
+}
+
+.count {
+  padding-block-end: t.$space-2;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  white-space: nowrap;
+}
+
+.empty {
+  padding: t.$space-5 t.$space-3;
+  text-align: center;
+  color: t.token('ink-muted');
+}
+
+// Todas las celdas miden lo mismo (el nombre largo se corta en dos líneas).
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5.75rem, 1fr));
+  gap: t.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  // Con más lugar, celdas más anchas: "Charmeleon" o "Butterfree" tienen que entrar en una línea.
+  @include bp.min-width('sm') {
+    grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+  }
+}
+
+// Una celda por Pokémon. Son más de mil: borde simple (no el marco de dos capas, que se pagaría mil veces).
+.cell {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+  inline-size: 100%;
+  block-size: 100%;
+  padding: t.$space-1 t.$space-1 t.$space-2;
+  border: var(--px-half) solid var(--palette-frame);
+  background: var(--palette-white);
+  color: t.token('ink');
+  text-align: center;
+  cursor: pointer;
+  @include m.focus-ring;
+
+  @include m.hover {
+    background: var(--palette-cloud-shade);
+  }
+
+  // Ya probado: su silueta en negro (la imagen es transparente, el filtro deja solo la forma) sobre el gris.
+  &[data-tried='true'] {
+    background: var(--palette-cloud-shade);
+    color: t.token('ink-muted');
+    cursor: not-allowed;
+
+    .thumb {
+      filter: brightness(0);
+    }
+  }
+}
+
+.thumb {
+  inline-size: 100%;
+  max-inline-size: 4.5rem;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.number {
+  font-size: calc(0.75rem * var(--font-scale, 1));
+  font-weight: t.$font-weight-medium;
+  color: t.token('ink-muted');
+}
+
+.name {
+  // 13 px en el teléfono (la etiqueta más chica que se permite es 12); desde sm, el tamaño de siempre.
+  font-size: calc(0.8125rem * var(--font-scale, 1));
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+  overflow-wrap: break-word;
+
+  @include bp.min-width('sm') {
+    font-size: t.$font-size-sm;
+  }
+}
+
+// La cruz de "ya probado": el estado no depende solo de lo apagado.
+.mark {
+  position: absolute;
+  inset-block-start: t.$space-1;
+  inset-inline-end: t.$space-1;
+  color: var(--palette-red);
+  font-size: 1rem;
+}

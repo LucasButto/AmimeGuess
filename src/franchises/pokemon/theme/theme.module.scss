@@ -1,0 +1,245 @@
+@use 'sass:list';
+@use 'breakpoints' as bp;
+@use 'mixins' as m;
+
+// Contorno escalonado alrededor de las letras: una copia oscura en cada casilla de un cuadrado de
+// `$steps` pasos de radio (sin la del centro), y una sombra más abajo. Cada paso mide `--title-step`.
+@function outline-shadow($steps, $ink, $shadow: null) {
+  $list: ();
+  @for $y from -$steps through $steps {
+    @for $x from -$steps through $steps {
+      @if $x != 0 or $y != 0 {
+        $list: list.append($list, calc(var(--title-step) * #{$x}) calc(var(--title-step) * #{$y}) 0 $ink, comma);
+      }
+    }
+  }
+  @if $shadow {
+    $list: list.append($list, calc(var(--title-step) * #{$steps + 1}) calc(var(--title-step) * #{$steps + 1}) 0 $shadow, comma);
+  }
+  @return $list;
+}
+
+// Piel de Pokémon (sesión 15): retro de Game Boy Advance. Redefine los tokens semánticos de
+// src/styles/_tokens.scss sobre la raíz del tema; los colores salen de la paleta de config.ts
+// (variables --palette-*), que cubre el test de contraste.
+.root {
+  // Superficies y tintas: panel crema con tinta oscura y sombra gris; la pantalla, azul noche.
+  --surface-page: var(--palette-sky-2);
+  --surface-panel: var(--palette-cream);
+  --surface-dialog: var(--palette-cream);
+  --surface-screen: var(--palette-night);
+  --surface-sunken: var(--palette-cloud-shade);
+  --ink: var(--palette-ink);
+  --ink-screen: var(--palette-cream);
+  --ink-shadow: var(--palette-ink-shadow);
+
+  // Acentos: cápsula roja (principal) y azul (secundaria), con texto blanco.
+  --accent-primary: var(--palette-red);
+  --accent-primary-ink: var(--palette-white);
+  --accent-secondary: var(--palette-blue);
+  --accent-secondary-ink: var(--palette-white);
+
+  // Marcos de dos tonos con esquinas escalonadas, en píxeles de arte.
+  --frame-width: var(--px);
+  --frame-color: var(--palette-frame);
+  --frame-inner-width: var(--px);
+  --frame-inner: var(--palette-cloud-shade);
+  --frame-dialog-inner: var(--palette-blue);
+  // El resumen de una partida ganada va con el anillo verde de los aciertos.
+  --frame-won-inner: var(--palette-grass-1);
+  // El recuadro del modo infinito va con el anillo amarillo, para que se note.
+  --frame-practice-inner: var(--palette-yellow);
+  --frame-screen-inner: var(--palette-ink);
+  --clip-panel: #{m.pixel-corners((2, 1))};
+  --clip-button: #{m.pixel-corners((4, 2, 1, 1))};
+  --clip-chip: #{m.pixel-corners((2, 1))};
+  --clip-cell: #{m.pixel-corners((1))};
+  --clip-icon: #{m.pixel-corners((3, 2, 1, 1))};
+
+  // Botones que recuerdan a Pokémon, no rectángulos planos: cápsulas de extremos escalonados con borde
+  // oscuro. Principal roja con una bolita blanca que se enciende (amarilla) con el foco y el hover;
+  // secundaria azul; fantasma crema con un cursor ▶; de ícono, redondos: A rojo para enviar y B gris
+  // para cerrar. Presionados bajan un paso; deshabilitados, borde punteado.
+  --button-edge: var(--palette-frame);
+  --button-frame-width: var(--px);
+  --button-ghost-hover-edge: var(--palette-frame);
+  --button-press: var(--px);
+  --button-lead-display: inline-block;
+  --button-lead: var(--palette-white);
+  --button-lead-glow: var(--palette-yellow);
+  --button-cursor-display: inline-block;
+  --button-disabled-outline: var(--px-half) dashed var(--palette-frame);
+  --icon-a-fill: var(--palette-red);
+  --icon-a-ink: var(--palette-white);
+  --icon-b-fill: var(--palette-gray);
+  --icon-b-ink: var(--palette-ink);
+  --icon-hover-ink: var(--palette-ink);
+  --icon-frame-width: var(--px);
+
+  --chip-radius: 0;
+
+  // Todas las generaciones miden lo mismo: lo que entra "Gen 1" con su bola en el teléfono, y "Gen 8 · Galar"
+  // desde sm (donde se agrega la región).
+  --filter-chip-min: 6.75rem;
+
+  @include bp.min-width('sm') {
+    --filter-chip-min: 10.5rem;
+  }
+
+  // Chips de filtro: crema y tinta oscura prendidos, celeste apagado; la bola (slot ChipMark) dice el estado.
+  --chip-fill: var(--palette-cloud-shade);
+  --chip-ink: var(--color-text-muted);
+  --chip-edge: var(--palette-frame);
+  --chip-on-fill: var(--palette-cream);
+  --chip-on-ink: var(--palette-ink);
+  --chip-on-edge: var(--palette-frame);
+
+  // Botones de volver: todo blanco con borde negro, sin el aro celeste de adentro.
+  --nav-fill: var(--palette-white);
+  // Navegación entre modos: el modo actual no se destaca (fondo blanco como los demás) y los resueltos hoy van en verde.
+  --pill-current-fill: var(--palette-white);
+  --pill-current-ink: var(--palette-ink);
+  // El modo actual se marca con el cursor ▶ (el relleno queda para lo resuelto: verde, o blanco si no).
+  --pill-solved-fill: var(--color-match);
+  --pill-solved-ink: var(--palette-white);
+  --nav-inner: var(--palette-white);
+  --nav-inner-width: 0px;
+
+  // Botón ⓘ: un círculo pixel azul con la "i" blanca (rojo mientras está abierto).
+  --infotip-fill: var(--palette-blue);
+  --infotip-open-fill: var(--palette-red);
+  --infotip-ink: var(--palette-white);
+  --infotip-radius: 0;
+  --clip-infotip: #{m.pixel-corners((1))};
+
+  // Motores: sin franja de acento (los marcos ya separan), ▼ que parpadea cuando se desbloquea una pista y
+  // cursor ▶ en la pista recién revelada, como en un menú de la época.
+  --panel-accent-width: 0px;
+  --result-mark-width: 0px;
+  --dialog-more-display: inline-flex;
+  --menu-cursor-display: inline-flex;
+
+  // Barras proporcionales (Mayor o Menor): con aspecto de barra de PS, a pasos.
+  --meter-height: calc(var(--px) * 2);
+  --meter-track: var(--palette-ink);
+  --meter-border: var(--px-half) solid var(--palette-frame);
+  --meter-fill-high: var(--palette-grass-1);
+  --meter-fill-mid: var(--palette-yellow);
+  --meter-fill-low: var(--palette-red);
+  --meter-ease: steps(6, end);
+
+  // Modales: barra de título azul con texto blanco, y el cerrar del pie como un botón B.
+  --dialog-bar-fill: var(--palette-blue);
+  --dialog-bar-ink: var(--palette-white);
+  --modal-close-fill: var(--palette-gray);
+  --modal-close-ink: var(--palette-ink);
+
+  // Foco: línea oscura con halo crema, visible sobre el cielo, el crema, el rojo y el azul.
+  --focus-color: var(--palette-frame);
+  --focus-width: 0.1875rem;
+  --focus-halo: var(--palette-cream);
+  --focus-halo-width: 0.1875rem;
+
+  --shadow-card: none;
+  --shadow-pop: calc(var(--px) * 1) calc(var(--px) * 1) 0 0 color-mix(in srgb, var(--palette-frame) 35%, transparent);
+
+  // Tipografía: Press Start 2P (títulos, grilla de 8 px) y Jersey 10 (el resto). Las dos vienen del tema base
+  // (config.ts) y tienen un solo peso: el navegador no inventa negritas ni cursivas, que en una fuente pixel
+  // se ven borroneadas.
+  --display-grid: 8px;
+  font-synthesis: none;
+  // Jersey 10 es más angosta y de mayúsculas más bajas que Pixelify Sans: todos los tamaños de texto suben un 25 %
+  // (a 16 px base queda en 20 px, el doble de su grilla de 10 px: píxeles enteros).
+  --font-scale: 1.25;
+
+  // Cabecera: el nombre del sitio y el título en letras pixel blancas con contorno oscuro de 2 pasos y
+  // sombra (van directo sobre el cielo), con una bola como viñeta. Un paso es 1/16 de la letra,
+  // redondeado a píxeles enteros.
+  --title-step: 0.0625em;
+  --title-ink: var(--palette-white);
+  --title-shadow: #{outline-shadow(2, var(--palette-frame), var(--palette-ink))};
+  --title-bullet: url('/theme/pokemon/ball.svg');
+  --title-bullet-size: calc(var(--px) * 6);
+  --header-site-display: block;
+  --kicker-ink: var(--palette-white);
+  --kicker-shadow: #{outline-shadow(1, var(--palette-frame))};
+
+  // Placa crema con marco de dos tonos debajo del texto suelto de las páginas: con margen mínimo en el
+  // teléfono, para no quitarle ancho a la tabla del Clásico.
+  --plate-fill: var(--palette-cream);
+  --plate-edge: var(--palette-frame);
+  --plate-inner: var(--palette-cloud-shade);
+  --plate-width: var(--px);
+  --plate-inner-width: var(--px);
+  --plate-pad: 0.5rem;
+
+  @include bp.min-width('md') {
+    --plate-pad: 1rem;
+  }
+
+  // Página de la franquicia: la Pokédex a lo ancho y las Poké Balls en 2 columnas en el teléfono, 3 desde
+  // md y 4 desde xl, con un ancho máximo.
+  --mode-cols: 2;
+  --mode-cols-md: 3;
+  --mode-cols-xl: 4;
+  --mode-grid-max: 60rem;
+
+  // Desde lg, la Pokédex a la izquierda (pegada al borde, como el texto de arriba) y las Poké Balls a su
+  // derecha: 3 columnas, y 4 desde xl.
+  @include bp.min-width('lg') {
+    --mode-template-lg: minmax(0, 26rem) repeat(3, minmax(0, 1fr));
+    --mode-main-column: 1;
+    --mode-main-row: span 3;
+    --mode-main-align: center;
+    --mode-grid-max: 72rem;
+    --mode-column-gap-lg: 2rem;
+  }
+
+  @include bp.min-width('xl') {
+    --mode-template-xl: minmax(0, 26rem) repeat(4, minmax(0, 1fr));
+    --mode-main-row: span 2;
+  }
+
+  // Celdas del Clásico: marco escalonado oscuro, texto en dos líneas como mucho y una flecha pixel como
+  // indicio de que la tabla sigue a la derecha.
+  --cell-frame-width: var(--px);
+  --cell-edge: var(--palette-frame);
+  --cell-lines: 2;
+  --cell-text-shadow: color-mix(in srgb, var(--palette-frame) 45%, transparent);
+  --scroll-hint-arrow: inline-flex;
+
+  // La revelación del Clásico avanza a pasos, como en los juegos de la época: 3 por cada medio giro, 6
+  // en total (las celdas giran en dos mitades, ver AttemptsTable).
+  --flip-duration: 450ms;
+  --flip-stagger: 280ms;
+  --flip-ease: steps(3, end);
+}
+
+// Botones de volver ("Poké Ball que se recoge", ver BackNavBall): mientras sale, la página se encoge a
+// pasos hacia la bola. `BackNav` navega a los 250 ms.
+.root[data-recall] main {
+  overflow: clip;
+  transform-origin: var(--recall-x) var(--recall-y);
+
+  @include bp.motion-ok {
+    animation: recall 250ms steps(5, end) forwards;
+  }
+}
+
+@keyframes recall {
+  0%,
+  40% {
+    transform: none;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(0.05);
+  }
+}
+
+@supports (inline-size: round(up, 1em, 1px)) {
+  .root {
+    --title-step: round(up, 0.0625em, 1px);
+  }
+}
