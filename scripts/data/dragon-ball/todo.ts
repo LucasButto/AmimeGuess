@@ -90,7 +90,7 @@ export function renderTodoSection(input: TodoInput): string {
     lines.push(
       `### Imágenes con fondo, que no sirven para Silueta (${input.opaque.length})`,
       '',
-      'Quedan fuera del pool de Silueta (`imagenTransparente: 0`) pero sirven para Borroso y Zoom. Para que entren, reemplazalas por una versión recortada con fondo transparente (mismo nombre de archivo en `data-src/dragon-ball/images/`).',
+      'Quedan fuera del pool de Silueta (`imagenTransparente: 0`) pero sirven para Borroso y Zoom. La sesión 19 les quita el fondo con el recorte automático de Yu-Gi-Oh; también se pueden reemplazar a mano por una versión con fondo transparente (mismo nombre de archivo en `data-src/dragon-ball/images/`).',
       '',
       ...input.opaque.map((item) => `- ${item.name} (\`${item.id}\`)`),
       '',

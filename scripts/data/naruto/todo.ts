@@ -98,7 +98,7 @@ export function renderTodoSection(input: TodoInput): string {
     lines.push(
       `### Imágenes con fondo, que no sirven para Silueta (${input.opaque.length}${all ? ', todas las cargadas' : ''})`,
       '',
-      `Quedan fuera del pool de Silueta (\`imagenTransparente: 0\`) pero sirven para Borroso, Zoom y Ojo. Para que entren hay dos caminos: reemplazar cada una por una versión recortada con fondo transparente (mismo nombre de archivo en \`data-src/naruto/images/characters/\`), o quitar los fondos con un paso automático, que necesita una dependencia nueva. **Hay que decidirlo** (la sesión 10 pide frenar y preguntar antes de agregarla).`,
+      `Quedan fuera del pool de Silueta (\`imagenTransparente: 0\`) pero sirven para Borroso, Zoom y Ojo. Para abrir el modo, la sesión 19 les quita el fondo con el mismo recorte automático que usa Yu-Gi-Oh y guarda cada silueta como contenido aparte, sin tocar estas capturas.`,
       '',
       ...(all ? ['Son capturas del anime (900 px de ancho, sin canal alfa), así que ninguna alcanza.'] : input.opaque.map((item) => `- ${item.name} (\`${item.id}\`)`)),
       '',
@@ -123,6 +123,16 @@ export function renderTodoSection(input: TodoInput): string {
   }
   lines.push('');
 
+  if (input.quotesUnverified === 0) {
+    lines.push(
+      '### Frases',
+      '',
+      `Las ${input.quotesTotal} frases de \`data-src/naruto/quotes.json\` están verificadas: el modo Frase tiene frases de ${input.quoteAnswersVerified} personajes distintos. Son traducciones de la sección "Quotes" de Narutopedia (el original en inglés está en el campo \`context\` de cada una); si alguna está mal, se corrige ahí y se corre \`npm run data:naruto\`.`,
+      '',
+      TODO_END,
+    );
+    return lines.join('\n');
+  }
   lines.push('### Frases sin verificar', '');
   lines.push(
     `Las ${input.quotesTotal} frases de \`data-src/naruto/quotes.json\` están en español, traducidas por Claude a partir de la sección "Quotes" de Narutopedia (el original en inglés está en el campo \`context\` de cada una) y marcadas \`verified: false\`: hay ${input.quotesUnverified} sin verificar. Las frases sin verificar no entran al pool de producción, así que el modo Frase queda oculto hasta que se revisen y haya frases verificadas de al menos ${input.quotePoolMinimum} personajes distintos (ahora hay ${input.quoteAnswersVerified}). Para verificar: comprobar la traducción, el destinatario y el arco, y cambiar \`verified\` a \`true\`. Las observaciones de la revisión están en \`docs/REVISION_CONTENIDO.md\`.`,

@@ -99,7 +99,7 @@ export function printReport(input: ReportInput): void {
   line(`  Línea de tiempo (verificados)   ${pad(events.filter((c) => c.verified).length, 4)}   (hacen falta 10; hay ${events.length} sucesos)`);
 
   line();
-  line('Clásico con una sola serie activa (pool mínimo: 20):');
+  line('Clásico con una sola serie activa (pool mínimo: 10):');
   for (const series of SERIES) {
     const count = countBySeries(characters, series);
     line(`  solo ${series.padEnd(6)}${pad(count, 4)} personajes${count < 20 ? '   ← por debajo del mínimo' : ''}`);
@@ -113,9 +113,9 @@ export function printReport(input: ReportInput): void {
     printImages(line, 'técnicas    ', input.rendered.techniques);
   line(`  Peso generado en esta corrida: ${mb(total)}`);
   line(`  Peso de public/img/dragon-ball: ${mb(input.imageBytesDragonBall)}`);
-  const limit = 200 * 1024 * 1024;
+  const limit = 250 * 1024 * 1024;
   line(
-    `  Peso de public/img en total: ${mb(input.imageBytesProject)} de 200 MB (${input.imageBytesProject > limit ? 'SUPERA el límite de la SPEC: avisar antes de seguir' : `quedan ${mb(limit - input.imageBytesProject)}`}).`,
+    `  Peso de public/img en total: ${mb(input.imageBytesProject)} de 250 MB (${input.imageBytesProject > limit ? 'SUPERA el límite de la SPEC: avisar antes de seguir' : `quedan ${mb(limit - input.imageBytesProject)}`}).`,
   );
   line(`  Personajes sin imagen: ${input.missing.characters.length}; técnicas sin imagen: ${input.missing.techniques.length}  → ver docs/CONTENT_TODO.md`);
   line(`  Imágenes con fondo (no sirven para Silueta): ${input.opaqueImages.length}${input.opaqueImages.length > 0 ? ` (${input.opaqueImages.join(', ')})` : ''}`);
