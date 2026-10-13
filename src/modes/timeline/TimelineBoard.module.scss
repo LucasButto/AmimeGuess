@@ -159,8 +159,10 @@
   background: transparent;
   cursor: pointer;
 
-  &:hover:not(:disabled) {
-    background: color-mix(in srgb, #{t.color('accent')} 12%, transparent);
+  &:not(:disabled) {
+    @include m.hover {
+      background: color-mix(in srgb, #{t.color('accent')} 12%, transparent);
+    }
   }
 
   &:focus-visible {

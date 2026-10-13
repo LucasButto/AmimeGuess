@@ -3,6 +3,11 @@
 // Todo es JSON plano, para poder pasarlo de un componente de servidor a uno de
 // cliente.
 
+import type { TextClueLine } from '../text-clue/types';
+
+/** Una pista sobre la respuesta (atributos de la entidad): se muestra tras `after` intentos fallidos. */
+export type RevealListHint = Extract<TextClueLine, { kind: 'attr' }>;
+
 export interface RevealListConfig {
   /**
    * `kind` de los contenidos con la lista de pistas. La respuesta es la entidad
@@ -20,4 +25,9 @@ export interface RevealListConfig {
   readonly label: string;
   /** Pistas que se ven al empezar. Por defecto, 1: cada intento fallido revela una más. */
   readonly initial?: number;
+  /**
+   * Pistas aparte de la lista, sobre la propia respuesta (sus tipos, su inicial…): cada una se desbloquea tras `after`
+   * intentos fallidos. Se ven en un recuadro "Más pistas" al lado del campo de intento. Sin esto, no hay recuadro.
+   */
+  readonly hints?: readonly RevealListHint[];
 }

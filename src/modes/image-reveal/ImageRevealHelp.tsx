@@ -20,7 +20,7 @@ export function ImageRevealHelp({ variant }: ImageRevealHelpProps) {
 
       <section>
         <h3 className={styles.title}>{es.imageReveal.help.difficultyTitle}</h3>
-        <p>{es.imageReveal.help.difficulty}</p>
+        <p>{variant === 'zoom-silhouette' ? es.imageReveal.help.difficultyNoColors : es.imageReveal.help.difficulty}</p>
       </section>
     </div>
   );

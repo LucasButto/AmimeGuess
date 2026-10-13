@@ -184,7 +184,14 @@ export function zoomWindow(focus: Focus, scale: number): { x: number; y: number 
   return { x: corner(focus.x), y: corner(focus.y) };
 }
 
-/** Lo que se ve en un paso. Sin "mostrar colores", todo lo que no es la imagen entera sale en grises. */
+/** El centro de la imagen: adonde llega el recorte de `zoom-silhouette` en el último paso. */
+const CENTER: Focus = { x: 0.5, y: 0.5 };
+
+/**
+ * Lo que se ve en un paso. Sin "mostrar colores", todo lo que no es la imagen entera sale en grises.
+ * `focus` es el punto que abre el zoom; en `zoom-silhouette` es el punto de partida (una zona de un costado) y el
+ * recorte se va corriendo hacia el centro a medida que se abre.
+ */
 export function revealVisual(variant: RevealVariant, step: number, colors: boolean, focus: Focus): RevealVisual {
   const index = Math.min(Math.max(step, 0), REVEAL_STEPS - 1);
   const grayscale = colors ? 0 : 1;
@@ -193,10 +200,15 @@ export function revealVisual(variant: RevealVariant, step: number, colors: boole
       return { ...REVEALED, brightness: BRIGHTNESS[index], grayscale };
     case 'blur':
       return { ...REVEALED, blur: BLUR_REM[index], grayscale };
-    case 'zoom': {
+    case 'zoom':
+    case 'zoom-silhouette': {
       const scale = ZOOM_SCALE[index];
-      const corner = zoomWindow(focus, scale);
-      return { ...REVEALED, scale, x: round(-corner.x * 100), y: round(-corner.y * 100), grayscale };
+      const shadow = variant === 'zoom-silhouette';
+      // La sombra no tiene detalle en el medio: parte de un costado y llega al centro en el último paso.
+      const along = index / (REVEAL_STEPS - 1);
+      const center = shadow ? { x: focus.x + (CENTER.x - focus.x) * along, y: focus.y + (CENTER.y - focus.y) * along } : focus;
+      const corner = zoomWindow(center, scale);
+      return { ...REVEALED, scale, x: round(-corner.x * 100), y: round(-corner.y * 100), grayscale, brightness: shadow ? 0 : 1 };
     }
   }
 }
@@ -212,6 +224,32 @@ const FOCUS_SPAN = 0.4;
 export function randomFocus(ctx: DailyContext): Focus {
   const rng = mulberry32(seedFor(ctx));
   return { x: round(FOCUS_MIN + rng() * FOCUS_SPAN), y: round(FOCUS_MIN + rng() * FOCUS_SPAN) };
+}
+
+// Dónde parte el zoom de la silueta: a esta distancia del borde (fracción de la imagen). El arte deja un poco de aire
+// alrededor, así que ahí ya se ve la sombra (un recorte pegado al borde mostraría solo vacío).
+const EDGE_MIN = 0.22;
+const EDGE_SPAN = 0.06;
+
+/**
+ * Punto de partida del zoom de la silueta: un costado elegido por el PRNG del día (izquierda, derecha, arriba o abajo) y
+ * una posición a lo largo de él, lejos de las esquinas. Igual en todos los dispositivos.
+ */
+export function edgeFocus(ctx: DailyContext): Focus {
+  const rng = mulberry32((seedFor(ctx) + 0x2545f491) >>> 0);
+  const side = Math.floor(rng() * 4);
+  const along = round(FOCUS_MIN + rng() * FOCUS_SPAN);
+  const depth = round(EDGE_MIN + rng() * EDGE_SPAN);
+  switch (side) {
+    case 0:
+      return { x: depth, y: along };
+    case 1:
+      return { x: round(1 - depth), y: along };
+    case 2:
+      return { x: along, y: depth };
+    default:
+      return { x: along, y: round(1 - depth) };
+  }
 }
 
 // --- Intentos y resultado -----------------------------------------------------

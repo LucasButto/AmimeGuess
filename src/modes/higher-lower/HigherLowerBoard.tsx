@@ -1,8 +1,10 @@
 'use client';
 
-import { useEffect, useId, useMemo, useRef, useState, type Ref } from 'react';
+import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type Ref } from 'react';
 import { ContentImage } from '@/components/ContentImage';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
+import { useSkin } from '@/components/skin/context';
+import { InfoTip } from '@/components/ui/InfoTip';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import type { DailyContext } from '@/engine/daily';
 import { getLocalStorage, readState, writeState } from '@/engine/storage';
@@ -60,6 +62,7 @@ function reportOf(picks: readonly string[], progress: Progress, rounds: readonly
 export function HigherLowerBoard({ session, metric, rounds }: HigherLowerBoardProps) {
   const { franchise, mode, filterKey, day, onFinish } = session;
   const questionId = useId();
+  const { MetricMark } = useSkin().skin.slots;
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
 
   const [picks, setPicks] = useState<string[]>(() => restorePicks(readState(getLocalStorage(), ctx)?.attempts, rounds));
@@ -118,9 +121,13 @@ export function HigherLowerBoard({ session, metric, rounds }: HigherLowerBoardPr
   return (
     <div className={styles.root} data-game-ready="true" data-ended={ended}>
       <header className={styles.header}>
-        <h2 className={styles.question} id={questionId}>
-          {metric.question}
-        </h2>
+        <div className={styles.questionRow}>
+          <MetricMark metric={metric.key} />
+          <h2 className={styles.question} id={questionId}>
+            {metric.question}
+          </h2>
+          <InfoTip compact text={es.help.metric} label={es.help.button(metric.label)} />
+        </div>
         <p className={styles.meta}>
           <span>{es.higherLower.roundLabel(roundNumber)}</span>
           <span className={styles.score}>{es.higherLower.score(progress.score)}</span>
@@ -133,6 +140,7 @@ export function HigherLowerBoard({ session, metric, rounds }: HigherLowerBoardPr
             key={`${index}-${entity.id}`}
             entity={entity}
             value={position === 0 ? round.aValue : round.bValue}
+            max={Math.max(round.aValue, round.bValue)}
             metric={metric}
             revealed={revealed}
             isWinner={entity.id === winner.id}
@@ -168,6 +176,8 @@ export function HigherLowerBoard({ session, metric, rounds }: HigherLowerBoardPr
 interface OptionProps {
   entity: Entity;
   value: number;
+  /** El mayor de los dos valores: la barra de cada opción es proporcional a él. */
+  max: number;
   metric: HigherLowerMetric;
   revealed: boolean;
   isWinner: boolean;
@@ -176,8 +186,14 @@ interface OptionProps {
   buttonRef?: Ref<HTMLButtonElement>;
 }
 
+/** Nivel de una barra según cuánto la llena su valor: el tema puede pintar cada nivel distinto. */
+function meterLevel(share: number): 'high' | 'mid' | 'low' {
+  return share >= 0.5 ? 'high' : share >= 0.2 ? 'mid' : 'low';
+}
+
 /** Una de las dos opciones: se toca para elegirla y, ya elegida, muestra su valor y si era la mayor. */
-function Option({ entity, value, metric, revealed, isWinner, isPicked, onChoose, buttonRef }: OptionProps) {
+function Option({ entity, value, max, metric, revealed, isWinner, isPicked, onChoose, buttonRef }: OptionProps) {
+  const share = max > 0 ? Math.max(0, value) / max : 0;
   return (
     <button
       type="button"
@@ -196,6 +212,12 @@ function Option({ entity, value, metric, revealed, isWinner, isPicked, onChoose,
       <span className={styles.details}>
         <span className={styles.name}>{entity.name.es}</span>
         {revealed && <span className={styles.value}>{formatMetric(metric, value)}</span>}
+        {revealed && (
+          // Barra proporcional al valor (el mayor llena la barra). Decorativa: el valor ya está escrito.
+          <span className={styles.meter} aria-hidden="true" data-level={meterLevel(share)}>
+            <span className={styles.meterFill} style={{ '--share': share } as CSSProperties} />
+          </span>
+        )}
         {revealed && (
           <span className={styles.badges}>
             {/* El resultado va en texto con su ícono: no depende del color. */}

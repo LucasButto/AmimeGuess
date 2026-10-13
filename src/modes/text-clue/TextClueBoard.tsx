@@ -1,8 +1,12 @@
 'use client';
 
 import { useEffect, useId, useMemo, useState } from 'react';
-import { Autocomplete, type AutocompleteItem } from '@/components/Autocomplete';
+import { autocompleteItemOf, type AutocompleteItem } from '@/components/Autocomplete';
+import { GuessField } from '@/components/GuessField';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
+import { useSkin } from '@/components/skin/context';
+import { PixelIcon } from '@/components/ui/icons';
+import { InfoTip } from '@/components/ui/InfoTip';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import { pickDaily, type DailyContext } from '@/engine/daily';
 import { getLocalStorage, readState, writeState } from '@/engine/storage';
@@ -53,6 +57,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
   const clueTitleId = useId();
   const hintsTitleId = useId();
   const failedTitleId = useId();
+  const { skin } = useSkin();
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
   const answer = useMemo(() => pickDaily(candidates, ctx), [candidates, ctx]);
   const content = useMemo(() => pickContent(answer, ctx), [answer, ctx]);
@@ -80,7 +85,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
   const failed = failedCount(attemptIds, answer.id, content);
 
   const items = useMemo<AutocompleteItem[]>(
-    () => options.map((entity) => ({ id: entity.id, label: entity.name.es, aliases: entity.aliases, imageStem: entity.image })),
+    () => options.map(autocompleteItemOf),
     [options],
   );
 
@@ -91,6 +96,8 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
   );
   const mainLines = states.filter((state) => state.line.after === 0);
   const hintLines = states.filter((state) => state.line.after > 0);
+  // ¿El último fallo acaba de desbloquear una pista? El tema puede avisarlo (un ▼ que parpadea, como en los juegos).
+  const newHint = !won && failed > 0 && hintLines.some((state) => state.line.after === failed);
 
   // Del más reciente al más antiguo: lo último que se probó queda arriba.
   const failedNames = useMemo(
@@ -122,9 +129,13 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
   const lastName = lastAttempt && !isCorrect(lastAttempt, answer.id, content) ? byId.get(lastAttempt)?.name.es : undefined;
 
   return (
-    <div className={styles.root} data-game-ready="true" data-won={won}>
+    <div className={styles.root} data-game-ready="true" data-won={won} data-hints={hintLines.length > 0}>
       {/* Al ganar, el marco muestra la respuesta y el resumen (ver `FinishReport`). */}
-      {!won && <Autocomplete label={es.textClue.inputLabel} items={items} excludeIds={attempted} onSelect={addAttempt} />}
+      {!won && (
+        <div className={styles.field}>
+          <GuessField label={es.textClue.inputLabel} items={items} excludeIds={attempted} onSelect={addAttempt} />
+        </div>
+      )}
 
       <section className={styles.clue} aria-labelledby={clueTitleId}>
         <h2 className={styles.clueTitle} id={clueTitleId}>
@@ -141,10 +152,13 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
       </section>
 
       {hintLines.length > 0 && (
-        <section className={styles.hints} aria-labelledby={hintsTitleId}>
-          <h2 className={styles.hintsTitle} id={hintsTitleId}>
-            {es.textClue.hintsTitle}
-          </h2>
+        <section className={styles.hints} aria-labelledby={hintsTitleId} data-new-hint={newHint}>
+          <div className={styles.titleRow}>
+            <h2 className={styles.hintsTitle} id={hintsTitleId}>
+              {es.textClue.hintsTitle}
+            </h2>
+            <InfoTip compact text={es.help.hints} label={es.help.button(es.textClue.hintsTitle)} />
+          </div>
           <ul className={styles.hintList}>
             {hintLines.map(({ line, unlocked, remaining, text }) => (
               <li key={line.label} className={styles.hint} data-unlocked={unlocked}>
@@ -153,6 +167,11 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
               </li>
             ))}
           </ul>
+          {newHint && (
+            <span className={styles.more} aria-hidden="true">
+              <PixelIcon name="more" />
+            </span>
+          )}
         </section>
       )}
 
@@ -166,8 +185,9 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
           <ul className={styles.chips}>
             {failedNames.map((attempt) => (
               <li key={attempt.id} className={styles.chip}>
-                {/* La cruz acompaña al color: el fallo no depende de verlo en rojo. */}
-                <span aria-hidden="true">✕</span> {attempt.label}
+                {/* La cruz acompaña al color, si el tema la quiere: el título de la lista ya dice que son fallos. */}
+                {skin.cellMarks === 'all' && <span aria-hidden="true">✕ </span>}
+                {attempt.label}
               </li>
             ))}
           </ul>

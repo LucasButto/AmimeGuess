@@ -21,6 +21,13 @@ export interface ClassicColumn {
   /** Clave del atributo en `Entity.attrs`. */
   readonly key: string;
   readonly label: string;
+  /**
+   * Ayuda de la columna (botón ⓘ en su encabezado): qué es y cómo se compara, sin pistas sobre la respuesta.
+   * Un texto de `es.help`, de 140 caracteres como mucho. Sin esto, la columna no lleva ayuda.
+   */
+  readonly help?: string;
+  /** El valor es muy corto (una letra, por ejemplo): se muestra en grande para que se lea bien. */
+  readonly large?: boolean;
   /** `exact` (=), `set` (⊂) u `ordered` (↕, con flecha). */
   readonly compare: CompareKind;
   /** Unidad que se agrega al valor, por ejemplo `m` o `kg`. */

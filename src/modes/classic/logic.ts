@@ -4,6 +4,7 @@
 import { compareExact, compareOrdered, compareSet, type Direction } from '@/engine/compare';
 import { filterAttrValue } from '@/engine/filters';
 import type { AttrValue, Content, Entity } from '@/engine/types';
+import { es } from '@/i18n/es';
 import type { ClassicColumn, ClassicHint } from './types';
 
 export type CellMatch = 'exact' | 'partial' | 'none';
@@ -91,6 +92,25 @@ const MATCH_EMOJI: Record<CellMatch, string> = { exact: '🟩', partial: '🟧',
  */
 export function shareGrid(rows: readonly AttemptRow[]): string[] {
   return rows.map((row) => row.cells.map((cell) => MATCH_EMOJI[cell.match]).join(''));
+}
+
+/**
+ * El resumen de una fila para lectores de pantalla, al terminar su revelación: el nombre y, por columna,
+ * si coincide (o hacia dónde está la respuesta en las ordenables).
+ */
+export function rowSummary(row: AttemptRow): string {
+  const words = es.classic.cellSummary;
+  const parts = row.cells.map((cell) => {
+    const word = cell.hidden
+      ? words.hidden
+      : cell.direction === 'up'
+        ? words.higher
+        : cell.direction === 'down'
+          ? words.lower
+          : words[cell.match];
+    return `${cell.column.label} ${word}`;
+  });
+  return es.classic.revealSummary(row.entity.name.es, parts);
 }
 
 /** Intentos que no fueron la respuesta: son los que desbloquean pistas. */

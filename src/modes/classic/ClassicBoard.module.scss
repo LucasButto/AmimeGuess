@@ -1,5 +1,6 @@
 @use 'breakpoints' as bp;
 @use 'tokens' as t;
+@use 'mixins' as m;
 
 .root {
   display: flex;
@@ -7,14 +8,31 @@
   gap: t.$space-4;
 }
 
+// Tu intento y las pistas: una al lado de la otra desde `md`; si no hay pistas que mostrar, el intento ocupa todo.
+.top {
+  display: grid;
+  gap: t.$space-4;
+
+  // Ganada la partida no queda nada adentro: que no deje su separación.
+  &:empty {
+    display: none;
+  }
+
+  &[data-split='true'] {
+    @include bp.min-width('md') {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      // Las dos mitades miden lo mismo de alto: el intento (grande) se estira hasta el alto de las pistas.
+      align-items: stretch;
+    }
+  }
+}
+
 .hints {
+  @include m.pixel-frame;
   display: flex;
   flex-direction: column;
   gap: t.$space-2;
-  padding: t.$space-4;
-  border: t.$border-width solid t.color('border');
-  border-radius: t.$radius-lg;
-  background: t.color('surface');
+  padding: calc(#{t.$space-4} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
 }
 
 .hintsTitle {
@@ -43,30 +61,41 @@
 
   // Pista aún bloqueada: se ve apagada y dice cuánto falta.
   &[data-unlocked='false'] {
-    color: t.color('text-muted');
+    color: t.token('ink-muted');
   }
 }
 
 .hintLabel {
   flex: none;
   font-weight: t.$font-weight-bold;
-  color: t.color('text');
+  color: t.token('ink');
 
   @include bp.min-width('sm') {
     min-inline-size: 6.5rem;
   }
 }
 
+// Cuántos intentos van y, si el tema tiene uno, su medidor (slot `AttemptsMeter`).
 .counter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-2 t.$space-4;
   font-size: t.$font-size-sm;
   font-weight: t.$font-weight-medium;
-  color: t.color('text-muted');
+  color: t.token('ink-muted');
 }
 
 .empty {
   padding: t.$space-5 t.$space-4;
   text-align: center;
-  border: t.$border-width dashed t.color('border');
+  border: t.$border-width dashed t.token('frame-color');
   border-radius: t.$radius-lg;
-  color: t.color('text-muted');
+  color: t.token('ink-muted');
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
 }

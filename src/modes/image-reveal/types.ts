@@ -8,8 +8,10 @@
  *  - `silhouette`: una sombra negra que se va iluminando.
  *  - `blur`: desenfocada, y el desenfoque baja con cada paso.
  *  - `zoom`: un recorte ampliado que se va abriendo hasta mostrar casi todo.
+ *  - `zoom-silhouette`: lo mismo que `zoom`, pero el recorte es la sombra negra de la imagen (la silueta no se ilumina:
+ *    solo se abre). Al acertar se ve la imagen entera, a color.
  */
-export type RevealVariant = 'silhouette' | 'blur' | 'zoom';
+export type RevealVariant = 'silhouette' | 'blur' | 'zoom' | 'zoom-silhouette';
 
 /** Una condición sobre un atributo de la entidad respuesta. */
 export interface AttrRequirement {

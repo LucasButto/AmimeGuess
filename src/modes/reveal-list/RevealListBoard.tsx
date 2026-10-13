@@ -1,8 +1,12 @@
 'use client';
 
 import { useEffect, useId, useMemo, useState } from 'react';
-import { Autocomplete, type AutocompleteItem } from '@/components/Autocomplete';
+import { autocompleteItemOf, type AutocompleteItem } from '@/components/Autocomplete';
+import { GuessField } from '@/components/GuessField';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
+import { useSkin } from '@/components/skin/context';
+import { PixelIcon } from '@/components/ui/icons';
+import { InfoTip } from '@/components/ui/InfoTip';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import { pickDaily, type DailyContext } from '@/engine/daily';
 import { getLocalStorage, readState, writeState } from '@/engine/storage';
@@ -12,6 +16,7 @@ import {
   failedCount,
   isCorrect,
   itemsOf,
+  lineStates,
   pickContent,
   restoreAttempts,
   shareGrid,
@@ -52,7 +57,9 @@ function reportOf(attemptIds: readonly string[], winner: Entity, fresh: boolean)
 export function RevealListBoard({ session, config, candidates, options }: RevealListBoardProps) {
   const { franchise, mode, filterKey, day, onFinish } = session;
   const listTitleId = useId();
+  const hintsTitleId = useId();
   const failedTitleId = useId();
+  const { skin } = useSkin();
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
   const answer = useMemo(() => pickDaily(candidates, ctx), [candidates, ctx]);
   const content = useMemo(() => pickContent(answer, ctx), [answer, ctx]);
@@ -81,13 +88,20 @@ export function RevealListBoard({ session, config, candidates, options }: Reveal
   const failed = failedCount(attemptIds, answer.id, content);
 
   const autocompleteItems = useMemo<AutocompleteItem[]>(
-    () => options.map((entity) => ({ id: entity.id, label: entity.name.es, aliases: entity.aliases, imageStem: entity.image })),
+    () => options.map(autocompleteItemOf),
     [options],
   );
 
   // Al acertar se muestran todas las pistas.
   const slots = useMemo(() => slotsOf(items, won ? Infinity : failed, config.initial), [items, won, failed, config.initial]);
   const hiddenCount = slots.filter((slot) => !slot.revealed).length;
+  // Las pistas sobre la propia respuesta (sus tipos, su inicial…), si la configuración las tiene.
+  const hintLines = useMemo(
+    () => lineStates(config.hints ?? [], won ? Infinity : failed, answer.entity, content),
+    [config.hints, won, failed, answer.entity, content],
+  );
+  // ¿El último fallo acaba de desbloquear una pista? El tema puede avisarlo (un ▼ que parpadea, como en los juegos).
+  const newHint = !won && failed > 0 && hintLines.some((state) => state.line.after === failed);
 
   // Del más reciente al más antiguo: lo último que se probó queda arriba.
   const failedNames = useMemo(
@@ -117,11 +131,17 @@ export function RevealListBoard({ session, config, candidates, options }: Reveal
   }
 
   const lastName = lastAttempt && !isCorrect(lastAttempt.id, answer.id, content) ? byId.get(lastAttempt.id)?.name.es : undefined;
+  // La pista que acaba de revelar el último intento: el tema puede señalarla (un cursor ▶, como en un menú).
+  const latest = lastAttempt?.revealed ? Math.max(0, ...slots.filter((slot) => slot.revealed).map((slot) => slot.position)) : 0;
 
   return (
-    <div className={styles.root} data-game-ready="true" data-won={won}>
+    <div className={styles.root} data-game-ready="true" data-won={won} data-hints={hintLines.length > 0}>
       {/* Al ganar, el marco muestra la respuesta y el resumen (ver `FinishReport`). */}
-      {!won && <Autocomplete label={es.revealList.inputLabel} items={autocompleteItems} excludeIds={attempted} onSelect={addAttempt} />}
+      {!won && (
+        <div className={styles.field}>
+          <GuessField label={es.revealList.inputLabel} items={autocompleteItems} excludeIds={attempted} onSelect={addAttempt} />
+        </div>
+      )}
 
       <section className={styles.list} aria-labelledby={listTitleId}>
         <h2 className={styles.listTitle} id={listTitleId}>
@@ -129,7 +149,10 @@ export function RevealListBoard({ session, config, candidates, options }: Reveal
         </h2>
         <ol className={styles.slots}>
           {slots.map((slot) => (
-            <li key={slot.position} className={styles.slot} data-revealed={slot.revealed}>
+            <li key={slot.position} className={styles.slot} data-revealed={slot.revealed} data-latest={slot.position === latest}>
+              <span className={styles.cursor} aria-hidden="true">
+                <PixelIcon name="cursor" />
+              </span>
               <span className={styles.position} aria-hidden="true">
                 {slot.position}
               </span>
@@ -149,6 +172,30 @@ export function RevealListBoard({ session, config, candidates, options }: Reveal
         </ol>
       </section>
 
+      {hintLines.length > 0 && (
+        <section className={styles.hints} aria-labelledby={hintsTitleId} data-new-hint={newHint}>
+          <div className={styles.titleRow}>
+            <h2 className={styles.hintsTitle} id={hintsTitleId}>
+              {es.revealList.hintsTitle}
+            </h2>
+            <InfoTip compact text={es.help.hints} label={es.help.button(es.revealList.hintsTitle)} />
+          </div>
+          <ul className={styles.hintList}>
+            {hintLines.map(({ line, unlocked, remaining, text }) => (
+              <li key={line.label} className={styles.hint} data-unlocked={unlocked}>
+                <span className={styles.hintLabel}>{line.label}</span>
+                <span>{unlocked ? text : es.revealList.hintLocked(remaining)}</span>
+              </li>
+            ))}
+          </ul>
+          {newHint && (
+            <span className={styles.more} aria-hidden="true">
+              <PixelIcon name="more" />
+            </span>
+          )}
+        </section>
+      )}
+
       <p className={styles.counter}>{es.revealList.attempts(attemptIds.length)}</p>
 
       {failedNames.length > 0 && (
@@ -159,8 +206,9 @@ export function RevealListBoard({ session, config, candidates, options }: Reveal
           <ul className={styles.chips}>
             {failedNames.map((attempt) => (
               <li key={attempt.id} className={styles.chip}>
-                {/* La cruz acompaña al color: el fallo no depende de verlo en rojo. */}
-                <span aria-hidden="true">✕</span> {attempt.label}
+                {/* La cruz acompaña al color, si el tema la quiere: el título de la lista ya dice que son fallos. */}
+                {skin.cellMarks === 'all' && <span aria-hidden="true">✕ </span>}
+                {attempt.label}
               </li>
             ))}
           </ul>

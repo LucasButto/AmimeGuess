@@ -1,3 +1,4 @@
+import { useSkin } from '@/components/skin/context';
 import { es } from '@/i18n/es';
 import styles from './ClassicHelp.module.scss';
 import type { ClassicConfig } from './types';
@@ -8,10 +9,12 @@ interface ClassicHelpProps {
 
 /** Lo que el Clásico aporta al "Cómo se juega": la meta, la leyenda de colores y las pistas de su config. */
 export function ClassicHelp({ config }: ClassicHelpProps) {
+  // Las muestras repiten las celdas del tema: si el verde y el rojo no llevan ícono en la tabla, tampoco acá.
+  const marks = useSkin().skin.cellMarks;
   const legend = [
-    { match: 'exact', icon: '✓', text: es.classic.help.exact },
+    { match: 'exact', icon: marks === 'all' ? '✓' : '', text: es.classic.help.exact },
     { match: 'partial', icon: '≈', text: es.classic.help.partial },
-    { match: 'none', icon: '✕', text: es.classic.help.none },
+    { match: 'none', icon: marks === 'all' ? '✕' : '', text: es.classic.help.none },
     { match: 'none', icon: '↑↓', text: es.classic.help.arrows },
   ] as const;
 

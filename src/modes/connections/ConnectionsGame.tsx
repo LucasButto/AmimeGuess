@@ -58,6 +58,8 @@ export function ConnectionsGame({ franchise, mode, modes, config, entities, cont
       poolSize={poolSize}
       yesterday={yesterday}
       help={<ConnectionsHelp config={config} />}
+      // Sus cuadrados son los colores de los grupos, no aciertos y errores: se comparten tal cual.
+      gridKind="colors"
     >
       {(session) => <ConnectionsSession session={session} config={config} entities={entities} contents={contents} names={names} />}
     </GameShell>

@@ -16,6 +16,7 @@ import {
   revealStep,
   revealVisual,
   shareGrid,
+  edgeFocus,
   zoomWindow,
   type Candidate,
 } from './logic';
@@ -191,6 +192,27 @@ describe('revealVisual', () => {
     expect(values[values.length - 1]).toBeGreaterThan(1);
   });
 
+  it('el zoom con silueta se abre igual que el zoom, siempre es una sombra y termina en el centro', () => {
+    const start = { x: 0.25, y: 0.5 };
+    for (const step of steps) {
+      const plain = revealVisual('zoom', step, true, focus);
+      const shadow = revealVisual('zoom-silhouette', step, true, start);
+      expect(shadow.scale).toBe(plain.scale);
+      expect(shadow.brightness).toBe(0);
+    }
+    // En el último paso el recorte está centrado, como el del zoom con el punto en el medio.
+    const last = steps[steps.length - 1];
+    expect(revealVisual('zoom-silhouette', last, true, start)).toEqual({ ...revealVisual('zoom', last, true, focus), brightness: 0 });
+    // Al principio parte del costado y se va corriendo hacia el centro, sin volver atrás.
+    const centers = steps.map((step) => {
+      const visual = revealVisual('zoom-silhouette', step, true, start);
+      return -visual.x / 100 + 0.5 / visual.scale;
+    });
+    expect(centers[0]).toBeCloseTo(0.25, 2);
+    expect(centers[centers.length - 1]).toBeCloseTo(0.5, 2);
+    for (let i = 1; i < centers.length; i++) expect(centers[i]).toBeGreaterThanOrEqual(centers[i - 1]);
+  });
+
   it('cada variante toca solo lo suyo', () => {
     expect(revealVisual('silhouette', 2, true, focus)).toEqual({ ...REVEALED, brightness: expect.any(Number) });
     expect(revealVisual('blur', 2, true, focus)).toEqual({ ...REVEALED, blur: expect.any(Number) });
@@ -199,8 +221,8 @@ describe('revealVisual', () => {
     expect(zoom.brightness).toBe(1);
   });
 
-  it('sin "mostrar colores" sale en grises, en las tres variantes', () => {
-    for (const variant of ['silhouette', 'blur', 'zoom'] as RevealVariant[]) {
+  it('sin "mostrar colores" sale en grises, en todas las variantes', () => {
+    for (const variant of ['silhouette', 'blur', 'zoom', 'zoom-silhouette'] as RevealVariant[]) {
       expect(revealVisual(variant, 2, false, focus).grayscale).toBe(1);
       expect(revealVisual(variant, 2, true, focus).grayscale).toBe(0);
     }
@@ -213,6 +235,31 @@ describe('revealVisual', () => {
 
   it('la imagen entera es neutra: nítida, a color y sin recorte', () => {
     expect(REVEALED).toEqual({ blur: 0, brightness: 1, grayscale: 0, scale: 1, x: 0, y: 0 });
+  });
+});
+
+describe('edgeFocus', () => {
+  const ctx = { franchise: 'pokemon', mode: 'silueta', filterKey: 'all', day: 100 };
+
+  it('es determinista y parte de un costado, lejos de las esquinas y del centro', () => {
+    expect(edgeFocus(ctx)).toEqual(edgeFocus(ctx));
+    for (let day = 0; day < 200; day++) {
+      const { x, y } = edgeFocus({ ...ctx, day });
+      const nearSide = Math.min(x, 1 - x) < 0.3 || Math.min(y, 1 - y) < 0.3;
+      expect(nearSide, `día ${day}`).toBe(true);
+      const along = Math.min(x, 1 - x) < 0.3 ? y : x;
+      expect(along).toBeGreaterThanOrEqual(0.3);
+      expect(along).toBeLessThanOrEqual(0.7);
+    }
+  });
+
+  it('con los días aparecen los cuatro costados', () => {
+    const sides = new Set<string>();
+    for (let day = 0; day < 200; day++) {
+      const { x, y } = edgeFocus({ ...ctx, day });
+      sides.add(x < 0.3 ? 'izq' : x > 0.7 ? 'der' : y < 0.3 ? 'arr' : 'aba');
+    }
+    expect(sides.size).toBe(4);
   });
 });
 

@@ -8,6 +8,7 @@ import {
   hintStates,
   hintText,
   restoreAttempts,
+  rowSummary,
   shareGrid,
   visibleColumns,
 } from './logic';
@@ -319,5 +320,17 @@ describe('columnas con etiquetas (valueLabels)', () => {
     const cell = buildRow(one('a', 1), one('b', 1), [open], ['db']).cells[0];
     expect(cell.hidden).toBeUndefined();
     expect(cell.match).toBe('exact');
+  });
+});
+
+describe('rowSummary', () => {
+  it('resume la fila: el nombre y, por columna, si coincide o hacia dónde está la respuesta', () => {
+    const row = buildRow(charmander, bulbasaur, columns.slice(0, 4), ['g1']);
+    expect(rowSummary(row)).toBe('charmander: Tipo 1 incorrecto, Tipo 2 incorrecto, Altura mayor, Grupo huevo parcial.');
+  });
+
+  it('una fila que coincide en todo', () => {
+    const row = buildRow(bulbasaur, bulbasaur, columns.slice(0, 2), ['g1']);
+    expect(rowSummary(row)).toBe('bulbasaur: Tipo 1 correcto, Tipo 2 correcto.');
   });
 });

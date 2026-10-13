@@ -9,7 +9,7 @@ import type { Content, Entity } from '@/engine/types';
 import type { Candidate } from '../text-clue/logic';
 import type { RevealListConfig } from './types';
 
-export { failedCount, isCorrect, pickContent, restoreAttempts, shareGrid, winningAttempt } from '../text-clue/logic';
+export { failedCount, isCorrect, lineStates, pickContent, restoreAttempts, shareGrid, winningAttempt } from '../text-clue/logic';
 export type { Candidate } from '../text-clue/logic';
 
 /** Las pistas de un contenido, en el orden en que se revelan. Lo que no es un texto o está vacío no cuenta. */

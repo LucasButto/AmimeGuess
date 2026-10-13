@@ -1,8 +1,12 @@
 'use client';
 
 import { useEffect, useId, useMemo, useState } from 'react';
-import { Autocomplete, type AutocompleteItem } from '@/components/Autocomplete';
+import { autocompleteItemOf, type AutocompleteItem } from '@/components/Autocomplete';
+import { GuessField } from '@/components/GuessField';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
+import { useSkin } from '@/components/skin/context';
+import { Chip } from '@/components/ui/Chip';
+import { InfoTip } from '@/components/ui/InfoTip';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import { pickDaily, type DailyContext } from '@/engine/daily';
 import { getLocalStorage, readState, writeState } from '@/engine/storage';
@@ -13,6 +17,7 @@ import {
   REVEALED,
   REVEAL_STEPS,
   failedCount,
+  edgeFocus,
   isCorrect,
   pickImage,
   randomFocus,
@@ -56,13 +61,23 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   const { franchise, mode, filterKey, day, onFinish } = session;
   const failedTitleId = useId();
   const difficultyId = useId();
+  const revealHintId = useId();
+  const colorsHintId = useId();
+  const { skin } = useSkin();
+  const { ChipMark } = skin.slots;
+  // Una silueta no tiene colores que mostrar: el interruptor no aplica.
+  const hasColors = config.variant !== 'zoom-silhouette';
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
   const answer = useMemo(() => pickDaily(candidates, ctx), [candidates, ctx]);
   const image = useMemo(() => pickImage(answer, ctx), [answer, ctx]);
   // Una imagen puede ser igual de cierta para más de una entidad (una técnica que usan varios personajes).
   const accepted = useMemo(() => image.accepts ?? [], [image]);
-  // El punto del zoom: el del dato si lo trae y, si no, el del PRNG del día.
-  const focus = useMemo(() => image.focus ?? randomFocus(ctx), [image, ctx]);
+  // El punto del zoom: el del dato si lo trae y, si no, el del PRNG del día. El zoom de la silueta parte siempre de un
+  // costado (en el medio de una sombra no se ve nada) y se va corriendo hacia el centro.
+  const focus = useMemo(
+    () => (config.variant === 'zoom-silhouette' ? edgeFocus(ctx) : (image.focus ?? randomFocus(ctx))),
+    [config.variant, image, ctx],
+  );
   const byId = useMemo(() => new Map(options.map((entity) => [entity.id, entity])), [options]);
 
   const [attemptIds, setAttemptIds] = useState<string[]>(() =>
@@ -88,7 +103,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   const visual = won ? REVEALED : revealVisual(config.variant, step, prefs.colors, focus);
 
   const items = useMemo<AutocompleteItem[]>(
-    () => options.map((entity) => ({ id: entity.id, label: entity.name.es, aliases: entity.aliases, imageStem: entity.image })),
+    () => options.map(autocompleteItemOf),
     [options],
   );
 
@@ -127,7 +142,11 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   return (
     <div className={styles.root} data-game-ready="true" data-step={step} data-won={won}>
       {/* Al ganar, el marco muestra la respuesta y el resumen (ver `FinishReport`). */}
-      {!won && <Autocomplete label={es.imageReveal.inputLabel} items={items} excludeIds={attempted} onSelect={addAttempt} />}
+      {!won && (
+        <div className={styles.field}>
+          <GuessField label={es.imageReveal.inputLabel} items={items} excludeIds={attempted} onSelect={addAttempt} />
+        </div>
+      )}
 
       <RevealImage
         stem={image.stem}
@@ -158,8 +177,9 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
           <ul className={styles.chips}>
             {failedNames.map((attempt) => (
               <li key={attempt.id} className={styles.chip}>
-                {/* La cruz acompaña al color: el fallo no depende de verlo en rojo. */}
-                <span aria-hidden="true">✕</span> {attempt.label}
+                {/* La cruz acompaña al color, si el tema la quiere: el título de la lista ya dice que son fallos. */}
+                {skin.cellMarks === 'all' && <span aria-hidden="true">✕ </span>}
+                {attempt.label}
               </li>
             ))}
           </ul>
@@ -171,33 +191,37 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
         <fieldset className={styles.difficulty} aria-labelledby={difficultyId}>
           <legend className={styles.difficultyTitle} id={difficultyId}>
             {es.imageReveal.difficultyTitle}
+            <InfoTip compact text={es.help.difficulty} label={es.help.button(es.imageReveal.difficultyTitle)} className={styles.titleHelp} />
           </legend>
-          <label className={styles.switch}>
-            <input
-              type="checkbox"
-              role="switch"
-              className={styles.switchInput}
-              checked={prefs.reveal}
-              onChange={(event) => updatePrefs({ ...prefs, reveal: event.target.checked })}
-            />
-            <span className={styles.switchText}>
-              <span className={styles.switchLabel}>{es.imageReveal.revealSwitch}</span>
-              <span className={styles.switchHint}>{es.imageReveal.revealHint}</span>
-            </span>
-          </label>
-          <label className={styles.switch}>
-            <input
-              type="checkbox"
-              role="switch"
-              className={styles.switchInput}
-              checked={prefs.colors}
-              onChange={(event) => updatePrefs({ ...prefs, colors: event.target.checked })}
-            />
-            <span className={styles.switchText}>
-              <span className={styles.switchLabel}>{es.imageReveal.colorsSwitch}</span>
-              <span className={styles.switchHint}>{es.imageReveal.colorsHint}</span>
-            </span>
-          </label>
+          {/* Cada opción es un chip que se prende y se apaga, con su explicación debajo. */}
+          <div className={styles.option}>
+            <Chip
+              pressed={prefs.reveal}
+              aria-describedby={revealHintId}
+              mark={<ChipMark on={prefs.reveal} />}
+              onClick={() => updatePrefs({ ...prefs, reveal: !prefs.reveal })}
+            >
+              {es.imageReveal.revealSwitch}
+            </Chip>
+            <p className={styles.optionHint} id={revealHintId}>
+              {es.imageReveal.revealHint}
+            </p>
+          </div>
+          {hasColors && (
+            <div className={styles.option}>
+              <Chip
+                pressed={prefs.colors}
+                aria-describedby={colorsHintId}
+                mark={<ChipMark on={prefs.colors} />}
+                onClick={() => updatePrefs({ ...prefs, colors: !prefs.colors })}
+              >
+                {es.imageReveal.colorsSwitch}
+              </Chip>
+              <p className={styles.optionHint} id={colorsHintId}>
+                {es.imageReveal.colorsHint}
+              </p>
+            </div>
+          )}
         </fieldset>
       )}
 

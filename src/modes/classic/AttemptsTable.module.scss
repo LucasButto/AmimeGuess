@@ -1,4 +1,6 @@
+@use 'breakpoints' as bp;
 @use 'tokens' as t;
+@use 'mixins' as m;
 
 // Medidas de la tabla. En un teléfono (360 px) no entran todas las columnas:
 // cada una tiene un ancho mínimo legible y el resto se desplaza dentro del marco.
@@ -7,10 +9,12 @@ $column-min: 4.75rem;
 
 .frame {
   position: relative;
-  border: t.$border-width solid t.color('border');
+  border: t.token('frame-width') solid t.token('frame-color');
   border-radius: t.$radius-lg;
-  background: t.color('surface');
+  background: t.token('surface-panel');
   overflow: hidden;
+  // Esquinas del tema (escalonadas en una piel pixel); sin recorte por defecto.
+  clip-path: t.token('clip-panel');
 
   // Degradé del borde derecho: indica que hay más columnas por desplazar.
   &::after {
@@ -30,6 +34,24 @@ $column-min: 4.75rem;
   }
 }
 
+// Flecha del indicio de desplazamiento (si el tema la muestra), sobre el degradé.
+.moreHint {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-end: t.$space-1;
+  z-index: t.$layer-sticky-corner;
+  display: t.token('scroll-hint-arrow');
+  color: t.token('ink');
+  font-size: 1rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%);
+
+  .frame[data-more='true'] & {
+    opacity: 1;
+  }
+}
+
 .scroller {
   overflow: auto;
   // Con muchos intentos, la tabla se desplaza dentro de sí misma y el encabezado queda a la vista.
@@ -37,8 +59,8 @@ $column-min: 4.75rem;
   overscroll-behavior-x: contain;
 
   &:focus-visible {
-    outline: 0.125rem solid t.color('focus');
-    outline-offset: -0.125rem;
+    outline: t.token('focus-width') solid t.token('focus-color');
+    outline-offset: calc(-1 * #{t.token('focus-width')});
   }
 }
 
@@ -52,31 +74,31 @@ $column-min: 4.75rem;
 .head {
   position: sticky;
   inset-block-start: 0;
-  z-index: 2;
+  z-index: t.$layer-sticky;
   min-inline-size: $column-min;
   padding: t.$space-2 t.$space-1;
   font-size: t.$font-size-sm;
   font-weight: t.$font-weight-medium;
   line-height: t.$line-height-tight;
   text-align: center;
-  background: t.color('surface');
-  color: t.color('text-muted');
-  border-block-end: t.$border-width solid t.color('border');
+  background: t.token('surface-panel');
+  color: t.token('ink-muted');
+  border-block-end: t.$border-width solid t.token('frame-color');
 }
 
 // La esquina queda fija en los dos sentidos, encima de todo.
 .nameHead {
   inset-inline-start: 0;
-  z-index: 3;
+  z-index: t.$layer-sticky-corner;
   min-inline-size: $name-column;
   inline-size: $name-column;
-  border-inline-end: t.$border-width solid t.color('border');
+  border-inline-end: t.$border-width solid t.token('frame-color');
 }
 
 .name {
   position: sticky;
   inset-inline-start: 0;
-  z-index: 1;
+  z-index: t.$layer-raised;
   display: table-cell;
   min-inline-size: $name-column;
   inline-size: $name-column;
@@ -85,12 +107,26 @@ $column-min: 4.75rem;
   font-weight: t.$font-weight-medium;
   line-height: t.$line-height-tight;
   text-align: center;
-  background: t.color('surface');
-  border-inline-end: t.$border-width solid t.color('border');
+  background: t.token('surface-panel');
+  border-inline-end: t.$border-width solid t.token('frame-color');
   overflow-wrap: anywhere;
 
   span {
     display: block;
+  }
+}
+
+// La imagen y el nombre de la fila nueva aparecen enseguida, con una caída corta.
+.nameInner[data-reveal='revealing'] {
+  @include bp.motion-ok {
+    animation: drop 0.2s ease-out both;
+  }
+}
+
+@keyframes drop {
+  from {
+    opacity: 0;
+    transform: translateY(#{t.px(-2)});
   }
 }
 
@@ -103,45 +139,158 @@ $column-min: 4.75rem;
 
 .cell {
   min-inline-size: $column-min;
+  block-size: 1px;
   padding: t.$space-1;
   vertical-align: middle;
 }
 
+// Contenedor de la celda: la cara siempre en el flujo (reserva la altura) y el dorso encima mientras gira.
+// El giro es sobre estos contenedores, nunca sobre el <td>.
+.flip {
+  --reveal-half: calc(#{t.token('flip-duration')} / 2);
+  position: relative;
+  block-size: 100%;
+}
+
+.back {
+  position: absolute;
+  inset: 0;
+  z-index: t.$layer-raised;
+}
+
+// Cara de la celda: color por resultado, siempre con ícono y texto (el color nunca informa solo).
 .box {
+  --_fill: #{t.token('cell-incorrect')};
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.125rem;
+  block-size: 100%;
   min-block-size: 3.25rem;
-  padding: t.$space-1;
+  padding: calc(#{t.$space-1} + #{t.token('cell-frame-width')});
   font-size: t.$font-size-sm;
   line-height: t.$line-height-tight;
   text-align: center;
   border-radius: t.$radius-md;
-  color: t.color('on-result');
+  background: var(--_fill);
+  box-shadow: inset 0 0 0 t.token('cell-frame-width') t.token('cell-edge');
+  color: t.token('cell-ink');
+  clip-path: t.token('clip-cell');
   // `break-word` (y no `anywhere`): la columna nunca queda más angosta que su
   // palabra más larga, así "Eléctrico" no se parte a mitad.
   overflow-wrap: break-word;
 
   &[data-match='exact'] {
-    background: t.color('match');
+    --_fill: #{t.token('cell-correct')};
   }
 
   &[data-match='partial'] {
-    background: t.color('partial');
-  }
-
-  &[data-match='none'] {
-    background: t.color('miss');
+    --_fill: #{t.token('cell-partial')};
   }
 }
 
 .value {
+  // Una letra sola (la inicial): grande, con la fuente de títulos del tema, en un múltiplo de su grilla.
+  &[data-large] {
+    @include m.heading;
+    @include m.display-size(t.$font-display-md);
+    line-height: 1;
+  }
+
+  @include m.pixel-text(t.token('cell-text-shadow'));
   font-weight: t.$font-weight-bold;
+  // Como mucho las líneas que diga el tema (todas por defecto); el texto completo sigue para lectores.
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: t.token('cell-lines');
+  overflow: hidden;
 }
 
 .icon {
   font-size: t.$font-size-base;
   line-height: 1;
+}
+
+// --- Revelación -------------------------------------------------------------
+// `flip`: el dorso gira hasta quedar de canto y la cara sigue desde el otro canto (dos medios giros, sin
+// caras ocultas en 3D). `swap`: la cara aparece debajo mientras el dorso hace su propia animación (por
+// defecto, desaparece). Duración y curva salen de --flip-duration y --flip-ease (por cada medio giro).
+
+.flip[data-reveal='revealing'] {
+  .back,
+  .box {
+    will-change: transform, opacity;
+  }
+
+  .back {
+    animation: flip-out var(--reveal-half) t.token('flip-ease') var(--reveal-delay, 0ms) both;
+  }
+
+  .box {
+    animation: flip-in var(--reveal-half) t.token('flip-ease') calc(var(--reveal-delay, 0ms) + var(--reveal-half)) both;
+  }
+
+  &[data-mode='swap'] {
+    .back {
+      animation: swap-out t.token('flip-duration') linear var(--reveal-delay, 0ms) both;
+    }
+
+    .box {
+      animation: fade-in var(--reveal-half) linear calc(var(--reveal-delay, 0ms) + var(--reveal-half)) both;
+    }
+  }
+
+  // Movimiento reducido: sin giro 3D ni desfase largo; la cara aparece con un fundido de 150 ms.
+  @include bp.reduced-motion {
+    .back {
+      display: none;
+    }
+
+    .box,
+    &[data-mode='swap'] .box {
+      animation: fade-in 150ms linear 0ms both;
+    }
+  }
+}
+
+@keyframes flip-out {
+  from {
+    transform: perspective(20rem) rotateY(0deg);
+  }
+
+  to {
+    transform: perspective(20rem) rotateY(90deg);
+  }
+}
+
+@keyframes flip-in {
+  from {
+    transform: perspective(20rem) rotateY(-90deg);
+  }
+
+  to {
+    transform: perspective(20rem) rotateY(0deg);
+  }
+}
+
+@keyframes swap-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+// Encabezado con su ayuda ⓘ (si la columna la tiene) al lado del nombre.
+.headInner {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem 0.875rem;
 }
