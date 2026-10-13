@@ -159,8 +159,9 @@ describe('frases', () => {
     expect(leaks.map((quote) => quote.id)).toEqual([]);
   });
 
-  it('todas esperan verificación a mano: ninguna entra al pool sin verified: true', () => {
-    expect(quotes.every((quote) => quote.verified === false)).toBe(true);
+  it('cada frase guarda su página de la wiki, para atribuirla en /creditos (CC BY-SA)', () => {
+    const withoutSource = quotes.filter((quote) => typeof quote.payload.source !== 'string' || !quote.payload.source.startsWith('https://dragonball.fandom.com/es/wiki/'));
+    expect(withoutSource.map((quote) => quote.id)).toEqual([]);
   });
 });
 

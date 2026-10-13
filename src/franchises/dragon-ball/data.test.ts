@@ -24,7 +24,7 @@ import { dragonBallConfig, sagaLabels } from './config';
 const characters = entitiesJson as Entity[];
 const forms = formsJson as Entity[];
 const rawContents = contentJson as Content[];
-// Todas las frases y sucesos están sin verificar hasta que alguien los revise a mano (verified: false en data-src).
+// Las frases y los sucesos solo entran al pool con verified: true (en data-src), y alguno puede volver a quedar sin verificar.
 // Para probar las reglas de exclusión sobre el contenido real se consideran verificados.
 const contents = rawContents.map((content) => ({ ...content, verified: true }));
 const modes: readonly ModeConfig[] = dragonBallConfig.modes;

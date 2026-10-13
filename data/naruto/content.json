@@ -13,7 +13,7 @@
         "obito-uchiha"
       ]
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-naruto-sueno-hokage",
@@ -26,7 +26,7 @@
       "addressee": "Kakashi Hatake",
       "arc": "Prólogo: País de las Olas"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-naruto-ibiki",
@@ -39,7 +39,7 @@
       "addressee": "Ibiki Morino",
       "arc": "Examen Chūnin"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-naruto-neji",
@@ -55,7 +55,7 @@
         "hinata-hyuga"
       ]
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-neji-destino",
@@ -68,7 +68,7 @@
       "addressee": "Naruto Uzumaki",
       "arc": "Examen Chūnin"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-zabuza-ninja",
@@ -81,7 +81,7 @@
       "addressee": "Equipo 7",
       "arc": "Prólogo: País de las Olas"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-zabuza-demonio",
@@ -94,7 +94,7 @@
       "addressee": "Gatō",
       "arc": "Prólogo: País de las Olas"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-haku-fuerte",
@@ -107,7 +107,7 @@
       "addressee": "Naruto Uzumaki",
       "arc": "Prólogo: País de las Olas"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-iruka-mizuki",
@@ -120,7 +120,7 @@
       "addressee": "Mizuki",
       "arc": "Prólogo: País de las Olas"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-lee-sakura",
@@ -133,7 +133,7 @@
       "addressee": "Sakura Haruno",
       "arc": "Examen Chūnin"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-lee-genio",
@@ -146,7 +146,7 @@
       "addressee": "Sasuke Uchiha",
       "arc": "Examen Chūnin"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-gaara-ojos",
@@ -159,7 +159,7 @@
       "addressee": "Sasuke Uchiha",
       "arc": "Examen Chūnin"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-temari-aburrido",
@@ -167,11 +167,11 @@
     "entityId": "temari",
     "series": "naruto",
     "payload": {
-      "text": "No fue gran cosa de pelea; medio aburrida.",
+      "text": "No fue gran cosa como pelea; medio aburrida.",
       "source": "https://naruto.fandom.com/wiki/Temari",
       "arc": "Examen Chūnin"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-deidara-arte",
@@ -183,7 +183,7 @@
       "source": "https://naruto.fandom.com/wiki/Deidara",
       "arc": "Rescate del Kazekage"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-sasori-kankuro",
@@ -196,7 +196,7 @@
       "addressee": "Kankurō",
       "arc": "Rescate del Kazekage"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-sasori-sakura",
@@ -209,7 +209,7 @@
       "addressee": "Sakura Haruno",
       "arc": "Rescate del Kazekage"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-chiyo-sakura",
@@ -217,12 +217,12 @@
     "entityId": "chiyo",
     "series": "shippuden",
     "payload": {
-      "text": "Y Sakura… la próxima vez, salva a quienes te son queridos, no a una vieja bruja. Tú y yo nos parecemos mucho. No hay muchas chicas tan caballerosas como tú. Podrías llegar a ser una kunoichi que supere a su maestra.",
+      "text": "Y Sakura… la próxima vez, salva a quienes te son queridos, no a una vieja bruja. Tú y yo nos parecemos mucho. No hay muchas chicas tan nobles como tú. Podrías llegar a ser una kunoichi que supere a su maestra.",
       "source": "https://naruto.fandom.com/wiki/Chiyo",
       "addressee": "Sakura Haruno",
       "arc": "Rescate del Kazekage"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-kakuzu-infierno",
@@ -235,7 +235,7 @@
       "addressee": "Hidan",
       "arc": "Supresión de Akatsuki"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-shikamaru-voluntad",
@@ -243,12 +243,12 @@
     "entityId": "shikamaru-nara",
     "series": "shippuden",
     "payload": {
-      "text": "Verás, tú y yo tenemos creencias distintas. Yo creo en la Voluntad de Fuego. Ese patético Lord Jashin o como se llame ya no es tu dios. Lo soy yo. El único que hará caer la venganza soy yo.",
+      "text": "Verás, tú y yo tenemos creencias distintas. Yo creo en la Voluntad de Fuego. Ese patético señor Jashin o como se llame ya no es tu dios. Lo soy yo. El único que hará caer la venganza soy yo.",
       "source": "https://naruto.fandom.com/wiki/Shikamaru_Nara",
       "addressee": "Hidan",
       "arc": "Supresión de Akatsuki"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-asuma-choji",
@@ -261,7 +261,7 @@
       "addressee": "Chōji Akimichi",
       "arc": "Supresión de Akatsuki"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-konan-tobi",
@@ -274,7 +274,7 @@
       "addressee": "Tobi",
       "arc": "Asalto de Pain"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-konan-naruto",
@@ -287,7 +287,7 @@
       "addressee": "Naruto Uzumaki",
       "arc": "Asalto de Pain"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-nagato-naruto",
@@ -300,7 +300,7 @@
       "addressee": "Naruto Uzumaki",
       "arc": "Asalto de Pain"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-hinata-fracasado",
@@ -313,7 +313,7 @@
       "addressee": "Naruto Uzumaki",
       "arc": "Asalto de Pain"
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "quote-obito-kakashi-gaiden",
@@ -329,7 +329,7 @@
         "kakashi-hatake"
       ]
     },
-    "verified": false
+    "verified": true
   },
   {
     "id": "team-equipo-7-naruto-uzumaki",
