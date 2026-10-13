@@ -78,6 +78,7 @@ import {
   buildDuelistEntity,
   buildSilhouetteContents,
   buildSummonContents,
+  cardArt,
   evidenceOf,
   isMonster,
   leaksName,
@@ -110,7 +111,7 @@ const TODO_FILE = path.join(ROOT, 'docs', 'CONTENT_TODO.md');
 const REVIEW_FILE = path.join(ROOT, 'docs', 'REVISION_YUGIOH.md');
 
 const IMAGE_TASKS = 4;
-const IMG_LIMIT_BYTES = 200 * 1024 * 1024;
+const IMG_LIMIT_BYTES = 250 * 1024 * 1024;
 
 /** Categoría de personajes de cada serie en la Yu-Gi-Oh! Wiki de Fandom. */
 const FANDOM_CATEGORIES: Readonly<Record<SeriesId, string>> = {
@@ -245,7 +246,10 @@ interface DuelistFacts {
 async function loadDuelistFacts(src: Src): Promise<Map<string, DuelistFacts>> {
   const pagesOf = (duelist: DuelistSrc) => {
     const main = duelist.yugipedia ?? duelist.fandom;
-    return { main, all: [main, `${main}'s Decks`, ...(duelist.extraPages ?? [])] };
+    // La página de mazos es "<nombre>'s Decks", salvo si el nombre termina en s: "Maximillion Pegasus' Decks".
+    // Se piden las dos variantes; la que no existe no aporta nada.
+    const decks = main.endsWith('s') ? [`${main}'s Decks`, `${main}' Decks`] : [`${main}'s Decks`];
+    return { main, all: [main, ...decks, ...(duelist.extraPages ?? [])] };
   };
   const texts = await fetchPageTexts(src.duelists.flatMap((duelist) => pagesOf(duelist).all));
   const problems: string[] = [];
@@ -342,8 +346,9 @@ async function readSilhouetteRecords(): Promise<Map<string, SilhouetteRecord>> {
 }
 
 /**
- * La silueta de cada monstruo: su ilustración sin el fondo, en WebP con transparencia. Un monstruo con decisión previa
- * en data/yugioh/silhouettes.json (y sus archivos, si sirvió) no se vuelve a procesar. Si hay alguno por procesar, el
+ * La silueta de cada monstruo: su ilustración original (`cardArt`) sin el fondo, en WebP con transparencia. Un monstruo
+ * con decisión previa en data/yugioh/silhouettes.json para esa misma ilustración (y sus archivos, si sirvió) no se
+ * vuelve a procesar. Si hay alguno por procesar, el
  * recorte sale de la caché o del modelo (que se carga y se baja recién ahí). Los archivos de monstruos cuyo recorte ya
  * no sirve se borran: public/img/yugioh/silhouettes/ tiene solo lo que usa el sitio.
  */
@@ -354,8 +359,10 @@ async function silhouettes(monsters: ReadonlyArray<{ id: string; api: Ygoprodeck
   const pending: Array<(typeof monsters)[number]> = [];
   for (const monster of monsters) {
     const record = previous.get(monster.id);
-    // Una decisión sirve si sigue siendo la que dan los umbrales de hoy (si se ajustaron, se vuelve a decidir con el recorte en caché).
-    if (record !== undefined && record.usable === isUsable(record) && (!record.usable || (await hasFiles(monster.id)))) records.set(monster.id, record);
+    // Una decisión sirve si es de la misma ilustración y sigue siendo la que dan los umbrales de hoy (si se ajustaron, se
+    // vuelve a decidir con el recorte en caché).
+    const sameArt = record?.art === cardArt(monster.api).id;
+    if (record !== undefined && sameArt && record.usable === isUsable(record) && (!record.usable || (await hasFiles(monster.id)))) records.set(monster.id, record);
     else pending.push(monster);
   }
 
@@ -364,7 +371,9 @@ async function silhouettes(monsters: ReadonlyArray<{ id: string; api: Ygoprodeck
     step(`Siluetas: ${pending.length} monstruos por recortar (cerca de 4 s cada uno; el modelo BiRefNet_lite, de 224 MB, se baja una sola vez)…`);
     let segment: Segmenter | null = null;
     for (const [index, monster] of pending.entries()) {
-      const cacheFile = path.join(SILHOUETTE_CACHE, `${monster.id}.png`);
+      // La caché del modelo va por carta e ilustración: si cambia la ilustración, se vuelve a recortar.
+      const art = cardArt(monster.api).id;
+      const cacheFile = path.join(SILHOUETTE_CACHE, `${monster.id}-${art}.png`);
       let png: Buffer | null = await readFile(cacheFile).catch(() => null);
       if (png === null) {
         segment ??= await loadSegmenter();
@@ -379,17 +388,22 @@ async function silhouettes(monsters: ReadonlyArray<{ id: string; api: Ygoprodeck
       const metrics = { coverage: round3(measured.coverage), connected: round3(measured.connected) };
       const usable = isUsable(metrics);
       if (usable) rendered.push(...(await renderSilhouette(monster.id, png, SILHOUETTE_DIR)));
-      records.set(monster.id, { id: monster.id, ...metrics, usable });
+      records.set(monster.id, { id: monster.id, art, ...metrics, usable });
       if ((index + 1) % 25 === 0) step(`  ${index + 1} de ${pending.length}`);
     }
   }
 
-  const keep = new Set([...records.values()].filter((record) => record.usable).map((record) => record.id));
-  for (const file of await readdir(SILHOUETTE_DIR).catch(() => [])) {
-    const id = file.replace(/-(256|512)\.webp$/, '');
-    if (!keep.has(id)) await rm(path.join(SILHOUETTE_DIR, file));
-  }
+  await removeUnusedImages(SILHOUETTE_DIR, [...records.values()].filter((record) => record.usable).map((record) => record.id));
   return { records: [...records.values()].sort(byId), rendered };
+}
+
+/** Borra de una carpeta de imágenes los archivos de ids que el sitio ya no usa (por ejemplo, cartas que salieron del pool). */
+async function removeUnusedImages(directory: string, ids: Iterable<string>): Promise<void> {
+  const keep = new Set(ids);
+  for (const file of await readdir(directory).catch(() => [])) {
+    const id = file.replace(/-(256|512)\.webp$/, '');
+    if (!keep.has(id)) await rm(path.join(directory, file));
+  }
 }
 
 // --- 4. Escritura ----------------------------------------------------------------
@@ -512,6 +526,7 @@ async function main(): Promise<void> {
     series: cardEntities.find((entity) => entity.name.en === summon.card)?.series as SeriesId[],
     items: summon.materials.map(displayName),
     materialIds: summon.materials.map((name) => cardId.get(name) as string),
+    verified: summon.verified,
   }));
   for (const input of summonInputs) contents.push(...buildSummonContents(input, summonInputs));
 
@@ -545,6 +560,7 @@ async function main(): Promise<void> {
     const buffer = await fetchCardImage((cards.get(name) as CardFacts).api, 'art');
     return renderCardArt(cardId.get(name) as string, buffer, CARD_IMAGE_DIR);
   });
+  await removeUnusedImages(CARD_IMAGE_DIR, cardNames.map((name) => cardId.get(name) as string));
   step('Siluetas de los monstruos…');
   const silhouetteResult = await silhouettes(
     cardNames.flatMap((name) => {
@@ -566,6 +582,7 @@ async function main(): Promise<void> {
     const { width, height } = await imageDimensions(path.join(FACE_IMAGE_DIR, imageFileName(id, 512)));
     return { ace, id, rendered, width, height };
   });
+  await removeUnusedImages(FACE_IMAGE_DIR, faces.map((face) => face.id));
 
   for (const entry of src.signature) {
     const duelist = duelistById.get(entry.duelist) as DuelistSrc;
@@ -575,9 +592,10 @@ async function main(): Promise<void> {
       iconicity: card.iconicity,
       ace: card.ace === true,
     }));
-    contents.push(...buildDeckContents(duelist.id, duelist.series, deck));
+    contents.push(...buildDeckContents(duelist.id, duelist.series, deck, entry.verified));
     const face = faces.find((item) => item.ace.duelist === duelist.id) as (typeof faces)[number];
-    contents.push(...buildAceCardContents(duelist.id, duelist.series, { id: face.id, image: `yugioh/cards-full/${face.id}`, width: face.width, height: face.height }));
+    const card = { id: face.id, image: `yugioh/cards-full/${face.id}`, width: face.width, height: face.height };
+    contents.push(...buildAceCardContents(duelist.id, duelist.series, card, entry.verified));
   }
 
   // --- Validación de la salida ---
@@ -687,7 +705,7 @@ async function main(): Promise<void> {
     imageBytesProject,
   });
   if (imageBytesProject > IMG_LIMIT_BYTES) {
-    console.warn('AVISO: public/img supera los 200 MB de la SPEC (sección 7). Avisar antes de seguir.');
+    console.warn('AVISO: public/img supera los 250 MB de la SPEC (sección 7). Avisar antes de seguir.');
   }
   step('Listo.');
 }

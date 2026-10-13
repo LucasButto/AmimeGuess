@@ -174,6 +174,21 @@ export function isMonster(card: Pick<YgoprodeckCard, 'type'>): boolean {
   return card.type.includes('Monster');
 }
 
+/** Distancia máxima entre el id principal de una carta y los de sus artes alternativos. */
+const ART_FAMILY = 100;
+
+/**
+ * La ilustración que usa el sitio: la original. YGOPRODeck devuelve las ilustraciones de una carta en un orden (y con
+ * un id principal) que cambia de una consulta a otra, así que tomar la primera no es reproducible. Los artes
+ * alternativos llevan ids consecutivos al de la original (Kuriboh: 40640057, 40640058, 40640059), así que se toma el
+ * menor de esa familia; una reimpresión con un id lejano (Dark Magician tiene una, 36996508) no cuenta.
+ */
+export function cardArt(card: Pick<YgoprodeckCard, 'id' | 'card_images'>): YgoprodeckCard['card_images'][number] {
+  const family = card.card_images.filter((image) => Math.abs(image.id - card.id) < ART_FAMILY);
+  const candidates = family.length > 0 ? family : card.card_images;
+  return candidates.reduce((best, image) => (image.id < best.id ? image : best));
+}
+
 /** Cómo se invoca una carta: `null` si no es un monstruo. Falla si el tipo no está en el diccionario. */
 export function summoningOf(card: Pick<YgoprodeckCard, 'type'>, translations: Translations): SummoningKind | null {
   const entry = translations.cardType[card.type];
@@ -279,9 +294,10 @@ export function orderDeck(cards: readonly DeckCard[]): DeckCard[] {
   return [...cards].sort((a, b) => a.iconicity - b.iconicity || Number(a.ace) - Number(b.ace) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
 }
 
-export function buildDeckContents(duelistId: string, series: readonly SeriesId[], cards: readonly DeckCard[]): Content[] {
+/** `verified`: el de la lista de cartas insignia de la que sale (data-src/yugioh/signature-cards.json). */
+export function buildDeckContents(duelistId: string, series: readonly SeriesId[], cards: readonly DeckCard[], verified = false): Content[] {
   const items = orderDeck(cards).map((card) => card.displayName);
-  return perSeries('deck', duelistId, series, () => ({ kind: 'deck', entityId: duelistId, payload: { items }, verified: false }));
+  return perSeries('deck', duelistId, series, () => ({ kind: 'deck', entityId: duelistId, payload: { items }, verified }));
 }
 
 export interface SummonInput {
@@ -292,6 +308,8 @@ export interface SummonInput {
   readonly items: readonly string[];
   /** Ids de los materiales, en orden: dos monstruos con los mismos materiales se aceptan entre sí. */
   readonly materialIds: readonly string[];
+  /** El de la invocación en data-src/yugioh/summons.json. */
+  readonly verified?: boolean;
 }
 
 /** Los monstruos que tienen exactamente los mismos materiales (sin importar el orden): la pista vale para todos. */
@@ -309,20 +327,22 @@ export function buildSummonContents(input: SummonInput, all: readonly SummonInpu
     kind: 'summon',
     entityId: input.cardId,
     payload: { kind: input.kind, items: [...input.items], accepts },
-    verified: false,
+    verified: input.verified ?? false,
   }));
 }
 
+/** `verified`: el de la lista de cartas insignia, que es donde se elige la carta as. */
 export function buildAceCardContents(
   duelistId: string,
   series: readonly SeriesId[],
   card: { id: string; image: string; width: number; height: number },
+  verified = false,
 ): Content[] {
   return perSeries('ace-card', duelistId, series, () => ({
     kind: 'ace-card',
     entityId: duelistId,
     payload: { image: card.image, width: card.width, height: card.height, card: card.id },
-    verified: false,
+    verified,
   }));
 }
 

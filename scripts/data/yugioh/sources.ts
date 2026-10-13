@@ -21,6 +21,7 @@ import {
   yugipediaPagesSchema,
   type YgoprodeckCard,
 } from './schemas.ts';
+import { cardArt } from './transform.ts';
 
 /** Cuántos nombres de carta entran en una consulta a YGOPRODeck (`name=A|B|C`): la URL tiene que seguir siendo corta. */
 const CARDS_PER_QUERY = 20;
@@ -49,9 +50,9 @@ export async function fetchCards(names: readonly string[]): Promise<Map<string, 
   return new Map(responses.flat().map((card) => [card.name, card]));
 }
 
-/** La ilustración recortada y la carta entera (JPG de YGOPRODeck), una sola vez cada una (queda en la caché). */
+/** La ilustración recortada y la carta entera (JPG de YGOPRODeck) del arte original, una sola vez cada una (queda en la caché). */
 export async function fetchCardImage(card: YgoprodeckCard, kind: 'art' | 'full'): Promise<Buffer> {
-  const image = card.card_images[0];
+  const image = cardArt(card);
   return getFile(kind === 'art' ? image.image_url_cropped : image.image_url, `${kind}/${image.id}.jpg`, YGOPRODECK);
 }
 

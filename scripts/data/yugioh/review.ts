@@ -42,6 +42,8 @@ export function renderReview(duelists: readonly ReviewDuelist[], series: readonl
     '',
     'Lo genera `npm run data:yugioh` (sesión 12) con lo que hay en `data-src/yugioh/`; no se edita a mano. Para corregir algo: cambiá `duelists.json`, `signature-cards.json` o `summons.json` y volvé a correr el script. Cuando una lista esté bien, pasá su `verified` a `true`.',
     '',
+    'Revisión del 2026-10-12: cada carta se comprobó contra la sección de Yugipedia de la que sale. Solo quedan cartas de las listas de mazo del anime: se sacaron las que solo figuraban en videojuegos o en duelos promocionales (Ishizu tenía un mazo de Cuidadores de Tumbas de un duelo de exhibición de 2019), las de Marik que eran del mazo de Bandit Keith, y se sumó la página "Maximillion Pegasus\' Decks", que el script no encontraba. Todas las listas quedaron verificadas.',
+    '',
     'Qué revisar:',
     '',
     '- **Rol, afiliaciones y arquetipos** de cada duelista: los redactó una IA a partir de la infobox de Yugipedia (escuela, dormitorio, organización, equipo y deck de anime). Son valores de comparación del Clásico, así que los nombres tienen que repetirse igual entre duelistas que comparten algo.',

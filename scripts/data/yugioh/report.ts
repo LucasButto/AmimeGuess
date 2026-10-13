@@ -103,9 +103,9 @@ export function printReport(input: ReportInput): void {
     printImages(line, 'silueta     ', input.rendered.silhouettes);
   line(`  Peso generado en esta corrida: ${mb(total)}`);
   line(`  Peso de public/img/yugioh: ${mb(input.imageBytesYugioh)}`);
-  const limit = 200 * 1024 * 1024;
+  const limit = 250 * 1024 * 1024;
   line(
-    `  Peso de public/img en total: ${mb(input.imageBytesProject)} de 200 MB (${input.imageBytesProject > limit ? 'SUPERA el límite de la SPEC: avisar antes de seguir' : `quedan ${mb(limit - input.imageBytesProject)}`}).`,
+    `  Peso de public/img en total: ${mb(input.imageBytesProject)} de 250 MB (${input.imageBytesProject > limit ? 'SUPERA el límite de la SPEC: avisar antes de seguir' : `quedan ${mb(limit - input.imageBytesProject)}`}).`,
   );
   line();
 }

@@ -40,8 +40,13 @@ function pageUrl(title: string): string {
 
 export function renderTodoSection(input: TodoInput): string {
   const lines: string[] = [TODO_START, '', '## Yu-Gi-Oh · pendientes de contenido', ''];
+  const { duelists, cards, summons } = input.unverified;
+  const curated =
+    duelists + cards + summons === 0
+      ? 'Todo lo curado está verificado: duelistas (rol, afiliaciones y arquetipos), listas de cartas insignia (cada carta comprobada contra las listas de mazo del anime en Yugipedia) e invocaciones.'
+      : `Queda sin verificar: ${duelists} duelistas (rol, afiliaciones y arquetipos redactados a partir de la infobox de Yugipedia), ${cards} listas de cartas insignia y ${summons} invocaciones.`;
   lines.push(
-    `Hay ${input.duelists} duelistas y ${input.cards} cartas insignia de las series ${input.series.join(', ')} (decisión de la sesión 12: solo Duel Monsters, GX y 5D's por ahora; ZEXAL, ARC-V y VRAINS se suman después con sus duelistas en \`data-src/yugioh/\`). Todo lo curado está sin verificar: ${input.unverified.duelists} duelistas (rol, afiliaciones y arquetipos redactados a partir de la infobox de Yugipedia), ${input.unverified.cards} listas de cartas insignia y ${input.unverified.summons} invocaciones. Los nombres y textos de las cartas, el género y la primera aparición no se redactan: vienen de YGOResources y de Yugipedia.`,
+    `Hay ${input.duelists} duelistas y ${input.cards} cartas insignia de las series ${input.series.join(', ')} (decisión de la sesión 12: solo Duel Monsters, GX y 5D's por ahora; ZEXAL, ARC-V y VRAINS se suman después con sus duelistas en \`data-src/yugioh/\`). ${curated} Los nombres y textos de las cartas, el género y la primera aparición no se redactan: vienen de YGOResources y de Yugipedia.`,
     '',
   );
 
@@ -108,7 +113,7 @@ export function renderTodoSection(input: TodoInput): string {
   lines.push(
     '### Presupuesto de imágenes',
     '',
-    `\`public/img\` pesa ${mb(input.imageBytesProject)} de los 200 MB de la SPEC (7). Si se suman más series o más cartas, la ilustración de cada carta cuesta ~50 KB (256 y 512 px) y cada carta entera de una carta as ~40 KB.`,
+    `\`public/img\` pesa ${mb(input.imageBytesProject)} de los 250 MB de la SPEC (7). Si se suman más series o más cartas, la ilustración de cada carta cuesta ~50 KB (256 y 512 px) y cada carta entera de una carta as ~40 KB.`,
     '',
     TODO_END,
   );

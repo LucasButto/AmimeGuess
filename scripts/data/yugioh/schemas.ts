@@ -245,13 +245,22 @@ const silhouetteSchema = z
 export const contentSchema = z.discriminatedUnion('kind', [cardTextSchema, deckSchema, summonSchema, aceCardSchema, silhouetteSchema]);
 
 /**
- * data/yugioh/silhouettes.json: de cada monstruo, cuánto ocupa y cuán de una pieza es su recorte, y si sirvió para
- * Silueta. Es lo que evita volver a correr el modelo con cada corrida del script.
+ * data/yugioh/silhouettes.json: de cada monstruo, de qué ilustración sale su recorte (`art`, el id de YGOPRODeck),
+ * cuánto ocupa y cuán de una pieza es, y si sirvió para Silueta. Es lo que evita volver a correr el modelo con cada
+ * corrida del script; si cambia la ilustración, se vuelve a recortar.
  */
 export const silhouetteRecordsSchema = z
   .object({
     monsters: z.array(
-      z.object({ id: kebab, coverage: z.number().min(0).max(1), connected: z.number().min(0).max(1), usable: z.boolean() }).strict(),
+      z
+        .object({
+          id: kebab,
+          art: z.number().int().positive(),
+          coverage: z.number().min(0).max(1),
+          connected: z.number().min(0).max(1),
+          usable: z.boolean(),
+        })
+        .strict(),
     ),
   })
   .strict();

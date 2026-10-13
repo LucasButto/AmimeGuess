@@ -12,6 +12,7 @@ import {
   buildDuelistEntity,
   buildSilhouetteContents,
   buildSummonContents,
+  cardArt,
   evidenceOf,
   firstAppearanceText,
   leaksName,
@@ -177,6 +178,23 @@ describe('orderSeries', () => {
   it('ordena como la lista canónica y sin repetidos', () => {
     expect(orderSeries(['5ds', 'dm', 'gx', 'dm'])).toEqual(['dm', 'gx', '5ds']);
     expect(orderSeries([])).toEqual([]);
+  });
+});
+
+describe('cardArt', () => {
+  const images = (...ids: number[]) => ids.map((id) => ({ id, image_url: `https://x/${id}.jpg`, image_url_cropped: `https://x/c/${id}.jpg` }));
+
+  it('toma la ilustración original (el menor id) sin importar el orden ni el id principal', () => {
+    expect(cardArt({ id: 40640059, card_images: images(40640059, 40640058, 40640057) }).id).toBe(40640057);
+    expect(cardArt({ id: 40640057, card_images: images(40640057, 40640059, 40640058) }).id).toBe(40640057);
+  });
+
+  it('no cuenta una reimpresión con un id lejano', () => {
+    expect(cardArt({ id: 46986421, card_images: images(46986421, 46986414, 36996508, 46986419) }).id).toBe(46986414);
+  });
+
+  it('con una sola ilustración, esa', () => {
+    expect(cardArt({ id: 89631139, card_images: images(89631139) }).id).toBe(89631139);
   });
 });
 

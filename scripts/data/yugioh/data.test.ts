@@ -40,7 +40,7 @@ const silhouetteContents = of('silhouette');
 const silhouetteRecords = silhouetteRecordsSchema.parse(silhouettesJson).monsters;
 
 const IMG_ROOT = path.join(ROOT, 'public', 'img');
-const IMG_LIMIT_BYTES = 200 * 1024 * 1024;
+const IMG_LIMIT_BYTES = 250 * 1024 * 1024;
 const sizeOf = (stem: string, size: 256 | 512) => path.join(IMG_ROOT, `${stem}-${size}.webp`);
 const kb = (bytes: number) => bytes / 1024;
 
@@ -118,8 +118,11 @@ describe('duelistas', () => {
     }
   });
 
-  it('todos están sin verificar (rol, afiliaciones y arquetipos los redactó una IA)', () => {
-    expect(duelistsSrc.every((item) => !item.verified)).toBe(true);
+  it('rol, afiliaciones y arquetipos se repiten igual entre duelistas que comparten algo: ninguno difiere solo en mayúsculas', () => {
+    const values = duelistsSrc.flatMap((item) => [...item.affiliations, ...item.decks]);
+    const byLower = new Map<string, Set<string>>();
+    for (const value of values) byLower.set(value.toLowerCase(), (byLower.get(value.toLowerCase()) ?? new Set()).add(value));
+    expect([...byLower.values()].filter((spellings) => spellings.size > 1).map((spellings) => [...spellings])).toEqual([]);
   });
 });
 
@@ -219,11 +222,12 @@ describe('decks', () => {
     }
   });
 
-  it('un deck por serie del duelista, sin verificar', () => {
+  it('un deck por serie del duelista, verificado si su lista de cartas lo está', () => {
     for (const entity of duelists) {
       expect(decks.filter((content) => content.entityId === entity.id).map((content) => content.series).sort(), entity.id).toEqual([...entity.series].sort());
     }
-    expect(decks.every((content) => !content.verified)).toBe(true);
+    const listVerified = new Map(signature.map((entry) => [entry.duelist, entry.verified]));
+    for (const content of decks) expect(content.verified, content.id).toBe(listVerified.get(content.entityId as string));
   });
 });
 
@@ -397,7 +401,7 @@ describe('imágenes', () => {
     for (const content of aces) check(content.payload.image as string, { 256: 25, 512: 60 });
   });
 
-  it('public/img queda por debajo de los 200 MB de la SPEC', () => {
+  it('public/img queda por debajo de los 250 MB de la SPEC', () => {
     expect(directoryBytes(IMG_ROOT)).toBeLessThan(IMG_LIMIT_BYTES);
   });
 });

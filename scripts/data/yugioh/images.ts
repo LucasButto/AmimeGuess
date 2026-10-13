@@ -19,7 +19,7 @@ export const CARD_ART: RenderOptions = {
 /**
  * El monstruo recortado (Silueta): se ve negro y se va aclarando, así que el color importa poco y el borde, algo más.
  * Alfa a 50 y colores desde calidad media hasta muy baja (los monstruos con mucho detalle, como Black Rose Dragon, llegan
- * a 5) para que ~500 siluetas no se coman el presupuesto de public/img (SPEC 7, 200 MB): ≤ 18 KB la de 256 px y ≤ 50 KB la de 512.
+ * a 5) para que ~500 siluetas no se coman el presupuesto de public/img (SPEC 7, que entonces era de 200 MB): ≤ 18 KB la de 256 px y ≤ 50 KB la de 512.
  */
 export const SILHOUETTE: RenderOptions = {
   qualities: [45, 40, 35, 30, 25, 20, 15, 10, 5],
