@@ -10,6 +10,8 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "check:responsive": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-responsive.ts",
+    "check:design": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-design.ts",
+    "design:assets": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/design/assets.ts",
     "data:pokemon": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/data/pokemon/build.ts",
     "data:dragon-ball": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/data/dragon-ball/build.ts",
     "data:naruto": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/data/naruto/build.ts",

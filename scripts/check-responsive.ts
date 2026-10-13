@@ -14,14 +14,28 @@
 //
 // Cada sesión que agrega pantallas suma sus rutas a ROUTES.
 
-import { spawn, type ChildProcess } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { mkdir, rm } from 'node:fs/promises';
-import net from 'node:net';
+import { registerHooks } from 'node:module';
 import path from 'node:path';
-import { chromium, type Browser, type Page } from 'playwright';
+import type { Browser, Page } from 'playwright';
+import { launchBrowser, startServer } from './browser.ts';
 import { getDay } from '../src/engine/day.ts';
 import { stateKey, statsKey } from '../src/engine/storage.ts';
+
+// El motor importa sus módulos sin extensión (como pide Next): para usar `pickDaily` desde Node, se resuelven
+// esas rutas relativas agregando `.ts`.
+registerHooks({
+  resolve(specifier, context, next) {
+    try {
+      return next(specifier, context);
+    } catch (error) {
+      if (specifier.startsWith('.') && !/\.\w+$/.test(specifier)) return next(`${specifier}.ts`, context);
+      throw error;
+    }
+  },
+});
+const { pickDaily } = (await import('../src/engine/daily.ts')) as typeof import('../src/engine/daily.ts');
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const OUT_DIR = path.join(ROOT, '.screenshots');
@@ -124,6 +138,20 @@ function wholeGeneration(series: string): string[] {
 /** Abre un modal desde la barra del juego y comprueba cómo se ve en un teléfono. */
 async function openDialog(page: Page, buttonName: string, { phone }: { phone: boolean }): Promise<string[]> {
   await page.getByRole('button', { name: buttonName }).click();
+  return checkOpenDialog(page, { phone });
+}
+
+/** La Pokédex del selector de Pokémon (modal ancho con una grilla): se abre desde el botón del intento. */
+async function openPicker(page: Page, { phone }: { phone: boolean }): Promise<string[]> {
+  await page.locator('[data-picker-open]').click();
+  const problems = await checkOpenDialog(page, { phone });
+  const cells = await page.locator('dialog[open] button[data-pokemon]').count();
+  if (cells === 0) problems.push('la Pokédex no muestra ningún Pokémon');
+  return problems;
+}
+
+/** Con un modal ya abierto: que el botón de cerrar se alcance y, en un teléfono, que ocupe toda la pantalla. */
+async function checkOpenDialog(page: Page, { phone }: { phone: boolean }): Promise<string[]> {
   await page.waitForSelector('dialog[open]');
   const box = await page.evaluate(() => {
     const dialog = document.querySelector('dialog[open]')!.getBoundingClientRect();
@@ -163,7 +191,9 @@ async function openDialog(page: Page, buttonName: string, { phone }: { phone: bo
  */
 async function imageFitsWithField(page: Page): Promise<string[]> {
   const box = await page.evaluate(() => {
-    const field = document.querySelector('[data-game-ready] input[role="combobox"]')?.getBoundingClientRect();
+    const field = document
+      .querySelector('[data-game-ready] input[role="combobox"], [data-game-ready] [data-picker-open]')
+      ?.getBoundingClientRect();
     const frame = document.querySelector('[data-game-ready] img')?.parentElement?.getBoundingClientRect();
     if (!field || !frame) return null;
     return {
@@ -245,13 +275,29 @@ function afterPicking(index: number): (page: Page) => Promise<string[]> {
 const DB_SIX_ATTEMPTS = ['goku', 'vegeta', 'freezer', 'celula', 'gogeta', 'majin-buu'];
 
 /**
- * Tres personajes sin imagen: en Silueta, Borroso y Zoom no pueden ser la respuesta del día (solo se
- * puede adivinar quien tiene imagen), así que son fallos seguros para sembrar una partida a medias.
+ * Tres fallos seguros para sembrar una partida a medias de un modo de imagen con todas las series: de los
+ * candidatos, los que no son la respuesta de hoy (con datos nuevos o al cambiar el día, cualquiera podría
+ * serlo). La respuesta se calcula como en el juego: `pickDaily` sobre las entidades con imagen.
  */
-const DB_THREE_MISSES = ['oolong', 'puar', 'yajirobe'];
+function threeMisses(
+  franchise: string,
+  mode: string,
+  file: string,
+  candidates: readonly string[],
+  require?: { key: string; equals: unknown },
+): string[] {
+  type Row = { id: string; image?: string; attrs: Record<string, unknown> };
+  const pool = (JSON.parse(readFileSync(path.join(ROOT, 'data', franchise, file), 'utf8')) as Row[]).filter(
+    (entity) => entity.image !== undefined && (require === undefined || entity.attrs[require.key] === require.equals),
+  );
+  const answer = pickDaily(pool, { franchise, mode, filterKey: 'all', day: getDay(new Date()) }).id;
+  return candidates.filter((id) => id !== answer).slice(0, 3);
+}
 
-/** Tres formas para sembrar fallos en Transformación (con tres de 39 posibles, casi seguro que no es ninguna). */
-const DB_THREE_FORMS = ['goku-ssj', 'vegeta-ssj', 'gohan-ssj'];
+const DB_MISS_CANDIDATES = ['oolong', 'puar', 'yajirobe', 'krilin'];
+/** Silueta solo usa las imágenes con fondo transparente (ver su config). */
+const DB_SILHOUETTE = { key: 'imagenTransparente', equals: 1 };
+const DB_THREE_FORMS = threeMisses('dragon-ball', 'transformacion', 'transformations.json', ['goku-ssj', 'vegeta-ssj', 'gohan-ssj', 'trunks-ssj']);
 
 /** Todas las series menos GT: la tabla del Clásico oculta lo que es de esa serie. */
 const WITHOUT_GT = 'db.dbz.super.daima';
@@ -539,8 +585,8 @@ function someIds(franchise: string, entitiesFile: string, count: number): string
 
 // --- Sesión 14: teclado y páginas del sitio -----------------------------------------------------
 
-/** Qué se busca con Tab: el campo de texto, una opción de Mayor o Menor o el botón "Siguiente". */
-type TabTarget = 'combobox' | 'option' | 'next';
+/** Qué se busca con Tab: el campo de texto, el botón que abre la Pokédex, una opción de Mayor o Menor o el botón "Siguiente". */
+type TabTarget = 'combobox' | 'picker' | 'option' | 'next';
 
 /** Se llega al elemento buscado solo con Tab (hasta `limit` tabulaciones desde el principio de la página). */
 async function tabTo(page: Page, target: TabTarget, limit = 80): Promise<boolean> {
@@ -554,6 +600,7 @@ async function tabTo(page: Page, target: TabTarget, limit = 80): Promise<boolean
       const element = document.activeElement;
       if (element === null) return false;
       if (wanted === 'combobox') return element.getAttribute('role') === 'combobox';
+      if (wanted === 'picker') return element.hasAttribute('data-picker-open');
       if (wanted === 'option') return element.hasAttribute('data-option');
       return (element.textContent ?? '').trim() === 'Siguiente';
     }, target);
@@ -567,6 +614,7 @@ async function tabTo(page: Page, target: TabTarget, limit = 80): Promise<boolean
  * la flecha y se elige con Enter. El intento tiene que contar (cambia lo que se ve) y el foco no se pierde.
  */
 async function keyboardGuess(page: Page): Promise<string[]> {
+  if ((await page.locator(`${GAME_READY} [data-picker-open]`).count()) > 0) return keyboardPickerGuess(page);
   if ((await page.locator(`${GAME_READY} input[role="combobox"]`).count()) === 0) return ['no hay campo de texto para jugar'];
   const problems: string[] = [];
   if (!(await tabTo(page, 'combobox'))) return ['no se llegó al campo de texto solo con Tab'];
@@ -581,6 +629,39 @@ async function keyboardGuess(page: Page): Promise<string[]> {
   await page.keyboard.press('Enter');
   await page.waitForTimeout(250);
   if ((await page.locator(GAME_READY).innerText()) === before) problems.push('elegir una sugerencia con Enter no registró ningún intento');
+  return problems;
+}
+
+/**
+ * El selector de Pokémon con el teclado y nada más: se llega al botón con Tab, Enter abre la Pokédex, se escribe,
+ * se pasa a la grilla con Tab, se mueve con la flecha y se elige con Enter. El intento tiene que contar.
+ */
+async function keyboardPickerGuess(page: Page): Promise<string[]> {
+  const problems: string[] = [];
+  if (!(await tabTo(page, 'picker'))) return ['no se llegó al botón de la Pokédex solo con Tab'];
+  const before = await page.locator(GAME_READY).innerText();
+  await page.keyboard.press('Enter');
+  try {
+    await page.waitForSelector('dialog[open] button[data-pokemon]', { timeout: 5_000 });
+  } catch {
+    return ['Enter en el botón no abrió la Pokédex'];
+  }
+  // En un teléfono el campo no se enfoca solo (el teclado taparía la grilla): se llega con Tab desde el botón de cerrar.
+  for (let press = 0; press < 3; press++) {
+    if (await page.evaluate(() => document.activeElement?.tagName === 'INPUT')) break;
+    await page.keyboard.press('Tab');
+  }
+  if (!(await page.evaluate(() => document.activeElement?.tagName === 'INPUT'))) problems.push('en la Pokédex no se llegó al buscador con Tab');
+  await page.keyboard.type('a');
+  await page.waitForTimeout(150);
+  await page.keyboard.press('Tab');
+  const onGrid = await page.evaluate(() => document.activeElement?.hasAttribute('data-pokemon') ?? false);
+  if (!onGrid) problems.push('desde el buscador, Tab no llegó a la grilla de la Pokédex');
+  await page.keyboard.press('ArrowRight');
+  await page.keyboard.press('Enter');
+  await page.waitForTimeout(300);
+  if ((await page.locator('dialog[open]').count()) > 0) problems.push('elegir un Pokémon con Enter no cerró la Pokédex');
+  if ((await page.locator(GAME_READY).innerText()) === before) problems.push('elegir un Pokémon con Enter no registró ningún intento');
   return problems;
 }
 
@@ -611,7 +692,7 @@ const TEXT_MODES = [
 ] as const;
 
 /** Los modos de Pokémon que usan el motor de imagen (sesión 05). */
-const IMAGE_MODES = [{ slug: 'silueta' }, { slug: 'zoom' }, { slug: 'carta' }] as const;
+const IMAGE_MODES = [{ slug: 'silueta' }, { slug: 'carta' }] as const;
 
 const ROUTES: RouteCheck[] = [
   { name: 'inicio', path: '/' },
@@ -648,6 +729,9 @@ const ROUTES: RouteCheck[] = [
     ready: GAME_READY,
     storage: { ...seededGame('g6', wholeGeneration('g6')), ...seededStats() },
   },
+  // El selector de Pokémon (la Pokédex): abierto con todos, y con el filtro de una sola generación.
+  { name: 'pokemon-clasico-pokedex', path: '/pokemon/clasico', ready: GAME_READY, before: (page, context) => openPicker(page, context) },
+  { name: 'pokemon-clasico-pokedex-g1', path: '/pokemon/clasico?s=g1', ready: GAME_READY, before: (page, context) => openPicker(page, context) },
   {
     name: 'pokemon-clasico-ayuda',
     path: '/pokemon/clasico',
@@ -752,7 +836,12 @@ const ROUTES: RouteCheck[] = [
       name: `dragon-ball-${slug}-3-fallos`,
       path: `/dragon-ball/${slug}`,
       ready: GAME_READY,
-      storage: seededGame('all', DB_THREE_MISSES, slug, 'dragon-ball'),
+      storage: seededGame(
+        'all',
+        threeMisses('dragon-ball', slug, 'entities.json', DB_MISS_CANDIDATES, slug === 'silueta' ? DB_SILHOUETTE : undefined),
+        slug,
+        'dragon-ball',
+      ),
       check: imageFitsWithField,
     },
   ]),
@@ -951,78 +1040,6 @@ const ROUTES: RouteCheck[] = [
 /** Tamaño mínimo de lo que se toca (SPEC 9.1, "Móvil"). */
 const TOUCH_TARGET_PX = 44;
 
-// --- Servidor y navegador ---------------------------------------------------
-
-function freePort(): Promise<number> {
-  return new Promise((resolve, reject) => {
-    const probe = net.createServer();
-    probe.once('error', reject);
-    probe.listen(0, '127.0.0.1', () => {
-      const { port } = probe.address() as net.AddressInfo;
-      probe.close(() => resolve(port));
-    });
-  });
-}
-
-async function waitForServer(baseUrl: string, child: ChildProcess | null, log: () => string): Promise<void> {
-  const deadline = Date.now() + 60_000;
-  while (Date.now() < deadline) {
-    if (child && child.exitCode !== null) throw new Error(`El servidor se cerró al arrancar:\n${log()}`);
-    try {
-      if ((await fetch(baseUrl)).ok) return;
-    } catch {
-      // Todavía no escucha.
-    }
-    await new Promise((resolve) => setTimeout(resolve, 250));
-  }
-  throw new Error(`El servidor no respondió en 60 s:\n${log()}`);
-}
-
-async function startServer(): Promise<{ baseUrl: string; stop: () => void }> {
-  if (process.env.BASE_URL) {
-    const baseUrl = process.env.BASE_URL.replace(/\/$/, '');
-    await waitForServer(baseUrl, null, () => '');
-    return { baseUrl, stop: () => {} };
-  }
-
-  if (!existsSync(path.join(ROOT, '.next', 'BUILD_ID'))) {
-    throw new Error('No hay build de producción. Ejecutá `npm run build` y volvé a correr este comando.');
-  }
-
-  const port = await freePort();
-  const nextBin = path.join(ROOT, 'node_modules', 'next', 'dist', 'bin', 'next');
-  const child = spawn(process.execPath, [nextBin, 'start', '-p', String(port)], { cwd: ROOT });
-  let output = '';
-  child.stdout.on('data', (chunk) => (output += String(chunk)));
-  child.stderr.on('data', (chunk) => (output += String(chunk)));
-
-  const baseUrl = `http://127.0.0.1:${port}`;
-  try {
-    await waitForServer(baseUrl, child, () => output);
-  } catch (error) {
-    child.kill();
-    throw error;
-  }
-  return { baseUrl, stop: () => child.kill() };
-}
-
-/** El Chromium de Playwright si está instalado; si no, el Chrome o el Edge del sistema. */
-async function launchBrowser(): Promise<{ browser: Browser; label: string }> {
-  const candidates = [
-    { label: 'Chromium de Playwright', options: {} },
-    { label: 'Google Chrome', options: { channel: 'chrome' } },
-    { label: 'Microsoft Edge', options: { channel: 'msedge' } },
-  ];
-  for (const candidate of candidates) {
-    try {
-      return { browser: await chromium.launch({ headless: true, ...candidate.options }), label: candidate.label };
-    } catch {
-      // Se prueba el siguiente.
-    }
-  }
-  throw new Error('No se encontró ningún navegador. Instalá uno con `npx playwright install chromium`.');
-}
-
 // --- Revisión de una página -------------------------------------------------
 
 interface Result {
@@ -1128,6 +1145,18 @@ async function checkPage(
 
     const file = path.join(OUT_DIR, route.name, `${viewport.name}.png`);
     await mkdir(path.dirname(file), { recursive: true });
+    // Antes de la captura terminan las animaciones cortas (la entrada a un modo del tema, por ejemplo); las
+    // que se repiten siempre, como las nubes del fondo, no se esperan.
+    await page
+      .waitForFunction(
+        () =>
+          document
+            .getAnimations()
+            .every((animation) => animation.playState !== 'running' || animation.effect?.getComputedTiming().iterations === Infinity),
+        null,
+        { timeout: 3000 },
+      )
+      .catch(() => undefined);
     // Con un modal abierto se fotografía lo que se ve en pantalla; el resto, la página entera.
     await page.screenshot({ path: file, fullPage: !route.before });
   } catch (error) {
@@ -1179,8 +1208,15 @@ async function sitemapCoverage(baseUrl: string): Promise<string[]> {
 
 // --- Programa ---------------------------------------------------------------
 
+/**
+ * Con ONLY=teclado,pokedex solo se revisan las rutas cuyo nombre contiene alguna de esas palabras (y no se comprueba
+ * el sitemap ni se vacían las capturas de las demás): para repetir rápido unas pocas rutas. Sin ONLY, todas.
+ */
+const ONLY = process.env.ONLY?.split(',').filter((word) => word !== '') ?? [];
+const SELECTED = ONLY.length === 0 ? ROUTES : ROUTES.filter((route) => ONLY.some((word) => route.name.includes(word)));
+
 async function main(): Promise<void> {
-  await rm(OUT_DIR, { recursive: true, force: true });
+  if (ONLY.length === 0) await rm(OUT_DIR, { recursive: true, force: true });
   const server = await startServer();
   let browser: Browser | undefined;
 
@@ -1188,15 +1224,15 @@ async function main(): Promise<void> {
     const launched = await launchBrowser();
     browser = launched.browser;
     console.log(`Navegador: ${launched.label}. Servidor: ${server.baseUrl}`);
-    console.log(`Revisando ${ROUTES.length} rutas en ${VIEWPORTS.length} viewports…\n`);
+    console.log(`Revisando ${SELECTED.length} rutas en ${VIEWPORTS.length} viewports…\n`);
 
-    const failures: string[] = await sitemapCoverage(server.baseUrl);
+    const failures: string[] = ONLY.length === 0 ? await sitemapCoverage(server.baseUrl) : [];
     const grid: string[] = [];
-    const nameWidth = Math.max(...ROUTES.map((route) => route.name.length));
+    const nameWidth = Math.max(...SELECTED.map((route) => route.name.length));
     grid.push(`${'ruta'.padEnd(nameWidth)}  ${VIEWPORTS.map((viewport) => viewport.name.padStart(9)).join(' ')}`);
 
     let retried = 0;
-    for (const route of ROUTES) {
+    for (const route of SELECTED) {
       const cells: string[] = [];
       for (const viewport of VIEWPORTS) {
         const { problems, retries } = await checkPageWithRetry(browser, server.baseUrl, route, viewport);
