@@ -7,6 +7,57 @@
   gap: t.$space-4;
 }
 
+.result {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-4;
+  // Al bajar sola hasta acá, queda un poco de aire arriba.
+  scroll-margin-block-start: t.$space-4;
+}
+
+.next {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+}
+
+// El recuadro del modo infinito: un panel de diálogo propio, separado de los modos, con el texto y el botón.
+.practiceBox {
+  // El anillo del marco toma el color del tema para destacar el recuadro.
+  --frame-dialog-inner: #{t.token('frame-practice-inner')};
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: t.$space-2;
+}
+
+.practiceTitle {
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+}
+
+.practiceText {
+  font-size: t.$font-size-sm;
+  color: t.token('ink-muted');
+}
+
+// Aviso fijo mientras se juega el modo infinito: dice que no cuenta y ofrece volver al reto de hoy.
+.practiceBanner {
+  @include m.pixel-frame;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-2 t.$space-4;
+  padding: calc(#{t.$space-2} + #{t.token('frame-width')} + #{t.token('frame-inner-width')}) calc(#{t.$space-4} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
+  font-size: t.$font-size-sm;
+}
+
+.nextTitle {
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+}
+
 .toolbar {
   display: flex;
   flex-wrap: wrap;
@@ -21,39 +72,17 @@
   gap: t.$space-2;
 }
 
-.button {
-  @include m.touch-target;
-  padding: t.$space-1 t.$space-4;
-  font-size: t.$font-size-sm;
-  font-weight: t.$font-weight-medium;
-  border: t.$border-width solid t.color('border');
-  border-radius: t.$radius-md;
-  background: t.color('surface');
-  color: t.color('text');
-  cursor: pointer;
-
-  &:hover {
-    border-color: t.color('accent');
-  }
-
-  &:focus-visible {
-    outline: 0.125rem solid t.color('focus');
-    outline-offset: 0.125rem;
-  }
-}
-
 .game {
   min-inline-size: 0;
 }
 
 .yesterday {
+  // El marco de los demás paneles (el del tema; sin tema, el borde simple de siempre).
+  @include m.pixel-frame;
   display: flex;
   align-items: center;
   gap: t.$space-3;
-  padding: t.$space-3 t.$space-4;
-  border: t.$border-width solid t.color('border');
-  border-radius: t.$radius-lg;
-  background: t.color('surface');
+  padding: calc(#{t.$space-3} + #{t.token('frame-width')} + #{t.token('frame-inner-width')}) calc(#{t.$space-4} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
   font-size: t.$font-size-sm;
 }
 
@@ -86,4 +115,14 @@
   gap: t.$space-2;
   margin: 0;
   padding-inline-start: t.$space-5;
+}
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+}
+
+.yesterdayHelp {
+  margin-inline-start: auto;
 }

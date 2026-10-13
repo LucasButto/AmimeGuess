@@ -42,6 +42,10 @@
  *      emojis por intento, en orden, hecha de colores. Nunca nombres, ni la
  *      respuesta, ni nada que la revele. La respuesta va aparte, en `answer`:
  *      el marco la muestra en pantalla al terminar, pero no entra al texto.
+ *      La grilla usa las marcas de `SHARE_MARKS` (acierto, parcial, error),
+ *      que el marco cambia por los emojis del tema al compartir (sesión 15).
+ *      Un motor cuyos cuadrados son otra cosa (los colores de los grupos de
+ *      Conexiones) declara `gridKind: 'colors'` y su grilla va tal cual.
  *   d. Lee `window` y `localStorage` con libertad: el marco monta el juego
  *      solo en el cliente, después de la hidratación.
  *
@@ -86,6 +90,8 @@ export interface ShellFranchise {
   /** Ids de serie en orden canónico. */
   readonly series: readonly string[];
   readonly seriesLabels: Readonly<Record<string, string>>;
+  /** Un dato más de cada serie para los chips, desde `sm` (ver `FranchiseConfig.seriesDetails`). */
+  readonly seriesDetails?: Readonly<Record<string, string>>;
 }
 
 /** Una respuesta del reto, lista para mostrar: la de hoy al terminar, o la de ayer. */
@@ -133,6 +139,11 @@ export interface GameShellProps {
   readonly modes: readonly ModeLink[];
   /** Cómo se mide el resultado de este modo. Por defecto, `attempts`. */
   readonly resultKind?: ResultKind;
+  /**
+   * De qué está hecha la grilla para compartir: `marks` (acierto, parcial, error; se cambian por los
+   * emojis del tema) o `colors` (cuadrados con otro significado, que van tal cual). Por defecto, `marks`.
+   */
+  readonly gridKind?: 'marks' | 'colors';
   /** Mínimo de opciones elegibles para poder jugar. */
   readonly minimumPool: number;
   /** Cuántas opciones quedan elegibles con estas series activas. */

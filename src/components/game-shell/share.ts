@@ -6,6 +6,25 @@
 
 import { es } from '@/i18n/es';
 
+/**
+ * Las marcas con que los motores arman su grilla (acierto, parcial, error). El marco las cambia por los
+ * emojis del tema de la franquicia al compartir (`themeGrid`); por defecto son estas mismas.
+ */
+export const SHARE_MARKS = { correct: '🟩', partial: '🟧', incorrect: '🟥' } as const;
+
+export type ShareEmojis = { readonly [K in keyof typeof SHARE_MARKS]: string };
+
+/** La grilla con las marcas cambiadas por los emojis del tema. Lo que no es una marca queda igual. */
+export function themeGrid(grid: readonly string[], emojis: ShareEmojis): string[] {
+  const swap = new Map<string, string>([
+    [SHARE_MARKS.correct, emojis.correct],
+    [SHARE_MARKS.partial, emojis.partial],
+    [SHARE_MARKS.incorrect, emojis.incorrect],
+  ]);
+  // Array.from recorre por caracteres completos: cada emoji ocupa dos unidades de UTF-16.
+  return grid.map((line) => Array.from(line, (char) => swap.get(char) ?? char).join(''));
+}
+
 /** La dirección de la página con el parámetro `s` de los filtros, sin ancla. */
 export function buildShareUrl(href: string, filterKey: string): string {
   const url = new URL(href);
