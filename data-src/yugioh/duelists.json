@@ -9,7 +9,7 @@
     "role": "protagonista",
     "affiliations": ["Preparatoria Domino", "Objetos del Milenio"],
     "decks": ["Mago Oscuro", "Guerrero Magnético", "Dioses Egipcios"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "seto-kaiba",
@@ -20,7 +20,7 @@
     "role": "rival",
     "affiliations": ["Preparatoria Domino", "KaibaCorp"],
     "decks": ["Dragón Blanco de Ojos Azules", "Máquinas", "Dioses Egipcios"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "joey-wheeler",
@@ -31,7 +31,7 @@
     "role": "aliado",
     "affiliations": ["Preparatoria Domino"],
     "decks": ["Dragón Negro de Ojos Rojos", "Guerreros", "Dragones"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "mai-valentine",
@@ -42,7 +42,7 @@
     "role": "rival",
     "affiliations": ["Doma"],
     "decks": ["Arpía"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "maximillion-pegasus",
@@ -53,7 +53,7 @@
     "role": "antagonista",
     "affiliations": ["Industrial Illusions", "Objetos del Milenio"],
     "decks": ["Toon", "Mil Ojos"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "marik-ishtar",
@@ -61,10 +61,11 @@
     "aliases": ["Marik", "Yami Marik"],
     "series": ["dm"],
     "fandom": "Marik Ishtar",
+    "extraPages": ["Yami Marik", "Yami Marik's Decks"],
     "role": "antagonista",
     "affiliations": ["Rare Hunters", "Objetos del Milenio"],
-    "decks": ["Dioses Egipcios", "Gelatina", "Máquinas"],
-    "verified": false
+    "decks": ["Dioses Egipcios", "Gelatina", "Demonios"],
+    "verified": true
   },
   {
     "id": "yami-bakura",
@@ -75,7 +76,7 @@
     "role": "antagonista",
     "affiliations": ["Objetos del Milenio"],
     "decks": ["Demonios", "Zombis", "Espíritus"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "weevil-underwood",
@@ -86,7 +87,7 @@
     "role": "rival",
     "affiliations": ["Doma"],
     "decks": ["Insectos"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "rex-raptor",
@@ -97,7 +98,7 @@
     "role": "rival",
     "affiliations": ["Doma"],
     "decks": ["Dinosaurios", "Dragones"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "mako-tsunami",
@@ -108,7 +109,7 @@
     "role": "rival",
     "affiliations": [],
     "decks": ["Acuáticos", "Umi"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "tristan-taylor",
@@ -119,7 +120,7 @@
     "role": "aliado",
     "affiliations": ["Preparatoria Domino"],
     "decks": ["Guardián de Batalla", "Máquinas"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "tea-gardner",
@@ -130,7 +131,7 @@
     "role": "aliado",
     "affiliations": ["Preparatoria Domino"],
     "decks": ["Hadas", "Elfos"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "ishizu-ishtar",
@@ -140,8 +141,8 @@
     "fandom": "Ishizu Ishtar",
     "role": "aliado",
     "affiliations": ["Consejo Supremo Egipcio de Antigüedades", "Objetos del Milenio"],
-    "decks": ["Cuidador de Tumbas"],
-    "verified": false
+    "decks": ["Hadas", "Trampas"],
+    "verified": true
   },
   {
     "id": "rafael",
@@ -152,7 +153,7 @@
     "role": "antagonista",
     "affiliations": ["Doma"],
     "decks": ["Guardián"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "zigfried-von-schroeder",
@@ -163,7 +164,7 @@
     "role": "rival",
     "affiliations": ["Schroeder Corp"],
     "decks": ["Valquiria"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "noah-kaiba",
@@ -174,7 +175,7 @@
     "role": "antagonista",
     "affiliations": ["KaibaCorp"],
     "decks": ["Shinato"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "jaden-yuki",
@@ -185,7 +186,7 @@
     "role": "protagonista",
     "affiliations": ["Academia de Duelos", "Slifer Red"],
     "decks": ["HÉROE Elemental", "Neo Espacial", "Kuriboh"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "chazz-princeton",
@@ -196,7 +197,7 @@
     "role": "rival",
     "affiliations": ["Academia de Duelos", "Academia del Norte", "Obelisk Blue", "Slifer Red", "Sociedad de la Luz"],
     "decks": ["Ojama", "Dragón Armado"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "alexis-rhodes",
@@ -207,7 +208,7 @@
     "role": "aliado",
     "affiliations": ["Academia de Duelos", "Obelisk Blue", "Sociedad de la Luz"],
     "decks": ["Ciber", "Ciber Ángel"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "zane-truesdale",
@@ -218,7 +219,7 @@
     "role": "rival",
     "affiliations": ["Academia de Duelos", "Obelisk Blue"],
     "decks": ["Ciber Dragón", "Ciberoscuro"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "syrus-truesdale",
@@ -229,7 +230,7 @@
     "role": "aliado",
     "affiliations": ["Academia de Duelos", "Slifer Red", "Ra Yellow", "Obelisk Blue"],
     "decks": ["Roid"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "bastion-misawa",
@@ -240,7 +241,7 @@
     "role": "aliado",
     "affiliations": ["Academia de Duelos", "Ra Yellow", "Sociedad de la Luz"],
     "decks": ["Mezcla"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "jesse-anderson",
@@ -251,7 +252,7 @@
     "role": "aliado",
     "affiliations": ["Academia del Norte"],
     "decks": ["Bestia de Cristal"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "aster-phoenix",
@@ -262,7 +263,7 @@
     "role": "rival",
     "affiliations": ["Academia de Duelos", "Obelisk Blue", "Grupo Senrigan"],
     "decks": ["HÉROE del Destino", "HÉROE Elemental"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "sartorius",
@@ -273,7 +274,7 @@
     "role": "antagonista",
     "affiliations": ["Academia de Duelos", "Obelisk Blue", "Sociedad de la Luz"],
     "decks": ["Fuerza Arcana"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "tyranno-hassleberry",
@@ -284,7 +285,7 @@
     "role": "aliado",
     "affiliations": ["Academia de Duelos", "Ra Yellow"],
     "decks": ["Dinosaurios"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "vellian-crowler",
@@ -295,7 +296,7 @@
     "role": "rival",
     "affiliations": ["Academia de Duelos", "Obelisk Blue"],
     "decks": ["Mecanismo Antiguo"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "adrian-gecko",
@@ -306,7 +307,7 @@
     "role": "rival",
     "affiliations": ["Academia del Este"],
     "decks": ["Cloudian", "Exodia"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "axel-brodie",
@@ -318,7 +319,7 @@
     "role": "rival",
     "affiliations": ["Academia del Oeste"],
     "decks": ["Volcánico"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "jim-crocodile-cook",
@@ -329,7 +330,7 @@
     "role": "aliado",
     "affiliations": ["Academia del Sur"],
     "decks": ["Fósil"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "lyman-banner",
@@ -340,7 +341,7 @@
     "role": "antagonista",
     "affiliations": ["Academia de Duelos", "Slifer Red", "Jinetes de las Sombras"],
     "decks": ["Alquimia", "Helios"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "yusei-fudo",
@@ -352,7 +353,7 @@
     "role": "protagonista",
     "affiliations": ["Signers", "Team 5D's", "Los Enforcers"],
     "decks": ["Basura", "Polvo de Estrellas", "Sincrón"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "jack-atlas",
@@ -362,8 +363,8 @@
     "fandom": "Jack Atlas",
     "role": "rival",
     "affiliations": ["Signers", "Team 5D's", "Los Enforcers"],
-    "decks": ["Archidemonio"],
-    "verified": false
+    "decks": ["Archidemonio", "Resonador"],
+    "verified": true
   },
   {
     "id": "crow-hogan",
@@ -374,7 +375,7 @@
     "role": "aliado",
     "affiliations": ["Signers", "Team 5D's", "Los Enforcers"],
     "decks": ["Alanegra"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "akiza-izinski",
@@ -385,7 +386,7 @@
     "role": "aliado",
     "affiliations": ["Signers", "Team 5D's", "Movimiento Arcadia"],
     "decks": ["Dragón de la Rosa", "Plantas"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "leo",
@@ -396,7 +397,7 @@
     "role": "aliado",
     "affiliations": ["Signers", "Team 5D's"],
     "decks": ["Morfotrónico"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "luna",
@@ -407,7 +408,7 @@
     "role": "aliado",
     "affiliations": ["Signers", "Team 5D's"],
     "decks": ["Hadas"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "kalin-kessler",
@@ -418,7 +419,7 @@
     "role": "antagonista",
     "affiliations": ["Dark Signers", "Los Enforcers", "Satisfaction Town"],
     "decks": ["Inférnico", "Inmortal Terrestre"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "rex-goodwin",
@@ -429,7 +430,7 @@
     "role": "antagonista",
     "affiliations": ["Dark Signers", "Signers", "Iliaster"],
     "decks": ["Inmortal Terrestre"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "roman-goodwin",
@@ -440,7 +441,7 @@
     "role": "antagonista",
     "affiliations": ["Dark Signers", "Signers"],
     "decks": ["Inmortal Terrestre", "Arañas"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "sherry-leblanc",
@@ -451,7 +452,7 @@
     "role": "rival",
     "affiliations": ["Iliaster"],
     "decks": ["Flor"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "sayer",
@@ -462,7 +463,7 @@
     "role": "antagonista",
     "affiliations": ["Movimiento Arcadia"],
     "decks": ["Psíquicos"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "bruno",
@@ -473,7 +474,7 @@
     "role": "aliado",
     "affiliations": ["Iliaster", "Team 5D's"],
     "decks": ["T.G."],
-    "verified": false
+    "verified": true
   },
   {
     "id": "aporia",
@@ -484,7 +485,7 @@
     "role": "antagonista",
     "affiliations": ["Iliaster"],
     "decks": ["Meklord"],
-    "verified": false
+    "verified": true
   },
   {
     "id": "carly-carmine",
@@ -495,6 +496,6 @@
     "role": "aliado",
     "affiliations": ["Dark Signers"],
     "decks": ["Adivinadora", "Inmortal Terrestre"],
-    "verified": false
+    "verified": true
   }
 ]

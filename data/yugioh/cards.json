@@ -1,5 +1,38 @@
 [
   {
+    "id": "agido",
+    "name": {
+      "es": "Agido",
+      "en": "Agido"
+    },
+    "aliases": [],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/agido",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "TIERRA",
+      "tipo": "Hada",
+      "nivel": 4,
+      "atk": 1500,
+      "def": 1300,
+      "duelistas": [
+        {
+          "value": "Ishizu Ishtar",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "alligators-sword",
     "name": {
       "es": "Aligátor de la Espada",
@@ -1849,6 +1882,39 @@
     }
   },
   {
+    "id": "bickuribox",
+    "name": {
+      "es": "Bickuribox",
+      "en": "Bickuribox"
+    },
+    "aliases": [],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/bickuribox",
+    "attrs": {
+      "clase": "Monstruo de Fusión",
+      "atributo": "OSCURIDAD",
+      "tipo": "Demonio",
+      "nivel": 7,
+      "atk": 2300,
+      "def": 2000,
+      "duelistas": [
+        {
+          "value": "Maximillion Pegasus",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "big-evolution-pill",
     "name": {
       "es": "Gran Píldora de Evolución",
@@ -2024,6 +2090,41 @@
     }
   },
   {
+    "id": "black-illusion-ritual",
+    "name": {
+      "es": "Ritual de la Ilusión Negra",
+      "en": "Black Illusion Ritual"
+    },
+    "aliases": [
+      "Black Illusion Ritual"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/black-illusion-ritual",
+    "attrs": {
+      "clase": "Carta Mágica",
+      "atributo": "MÁGICA",
+      "tipo": "Ritual",
+      "nivel": null,
+      "atk": null,
+      "def": null,
+      "duelistas": [
+        {
+          "value": "Maximillion Pegasus",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "black-rose-dragon",
     "name": {
       "es": "Dragón de la Rosa Negra",
@@ -2173,41 +2274,6 @@
     }
   },
   {
-    "id": "black-whirlwind",
-    "name": {
-      "es": "Remolino Oscuro",
-      "en": "Black Whirlwind"
-    },
-    "aliases": [
-      "Black Whirlwind"
-    ],
-    "series": [
-      "5ds"
-    ],
-    "image": "yugioh/cards/black-whirlwind",
-    "attrs": {
-      "clase": "Carta Mágica",
-      "atributo": "MÁGICA",
-      "tipo": "Continua",
-      "nivel": null,
-      "atk": null,
-      "def": null,
-      "duelistas": [
-        {
-          "value": "Crow Hogan",
-          "series": "5ds"
-        }
-      ],
-      "serie": [
-        {
-          "value": "5D's",
-          "series": "5ds"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
     "id": "black-winged-dragon",
     "name": {
       "es": "Dragón de Alas Negras",
@@ -2237,41 +2303,6 @@
         {
           "value": "5D's",
           "series": "5ds"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "blackland-fire-dragon",
-    "name": {
-      "es": "Dragón de Fuego de la Tierra Negra",
-      "en": "Blackland Fire Dragon"
-    },
-    "aliases": [
-      "Blackland Fire Dragon"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/blackland-fire-dragon",
-    "attrs": {
-      "clase": "Monstruo Normal",
-      "atributo": "OSCURIDAD",
-      "tipo": "Dragón",
-      "nivel": 4,
-      "atk": 1500,
-      "def": 800,
-      "duelistas": [
-        {
-          "value": "Rex Raptor",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
         }
       ],
       "imagenTransparente": 0
@@ -2873,6 +2904,41 @@
     }
   },
   {
+    "id": "blue-eyes-toon-dragon",
+    "name": {
+      "es": "Dragón Toon de Ojos Azules",
+      "en": "Blue-Eyes Toon Dragon"
+    },
+    "aliases": [
+      "Blue-Eyes Toon Dragon"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/blue-eyes-toon-dragon",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "LUZ",
+      "tipo": "Dragón",
+      "nivel": 8,
+      "atk": 3000,
+      "def": 2500,
+      "duelistas": [
+        {
+          "value": "Maximillion Pegasus",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "blue-eyes-ultimate-dragon",
     "name": {
       "es": "Dragón de Ojos Azules Definitivo",
@@ -2978,28 +3044,26 @@
     }
   },
   {
-    "id": "burst-stream-of-destruction",
+    "id": "bowganian",
     "name": {
-      "es": "Rayo Explosivo de Destrucción",
-      "en": "Burst Stream of Destruction"
+      "es": "Bowganian",
+      "en": "Bowganian"
     },
-    "aliases": [
-      "Burst Stream of Destruction"
-    ],
+    "aliases": [],
     "series": [
       "dm"
     ],
-    "image": "yugioh/cards/burst-stream-of-destruction",
+    "image": "yugioh/cards/bowganian",
     "attrs": {
-      "clase": "Carta Mágica",
-      "atributo": "MÁGICA",
-      "tipo": "Normal",
-      "nivel": null,
-      "atk": null,
-      "def": null,
+      "clase": "Monstruo de Efecto",
+      "atributo": "OSCURIDAD",
+      "tipo": "Máquina",
+      "nivel": 3,
+      "atk": 1300,
+      "def": 1000,
       "duelistas": [
         {
-          "value": "Seto Kaiba",
+          "value": "Marik Ishtar",
           "series": "dm"
         }
       ],
@@ -3637,6 +3701,41 @@
     }
   },
   {
+    "id": "coffin-seller",
+    "name": {
+      "es": "Vendedor de Ataúdes",
+      "en": "Coffin Seller"
+    },
+    "aliases": [
+      "Coffin Seller"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/coffin-seller",
+    "attrs": {
+      "clase": "Carta de Trampa",
+      "atributo": "TRAMPA",
+      "tipo": "Continua",
+      "nivel": null,
+      "atk": null,
+      "def": null,
+      "duelistas": [
+        {
+          "value": "Marik Ishtar",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "copy-plant",
     "name": {
       "es": "Copiaplanta",
@@ -4079,41 +4178,6 @@
       "duelistas": [
         {
           "value": "Yugi Muto",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "curse-of-fiend",
-    "name": {
-      "es": "Maldición de Demonio",
-      "en": "Curse of Fiend"
-    },
-    "aliases": [
-      "Curse of Fiend"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/curse-of-fiend",
-    "attrs": {
-      "clase": "Carta Mágica",
-      "atributo": "MÁGICA",
-      "tipo": "Normal",
-      "nivel": null,
-      "atk": null,
-      "def": null,
-      "duelistas": [
-        {
-          "value": "Marik Ishtar",
           "series": "dm"
         }
       ],
@@ -5138,6 +5202,41 @@
     }
   },
   {
+    "id": "dark-jeroid",
+    "name": {
+      "es": "Jeroid Oscuro",
+      "en": "Dark Jeroid"
+    },
+    "aliases": [
+      "Dark Jeroid"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/dark-jeroid",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "OSCURIDAD",
+      "tipo": "Demonio",
+      "nivel": 4,
+      "atk": 1200,
+      "def": 1500,
+      "duelistas": [
+        {
+          "value": "Marik Ishtar",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "dark-magician",
     "name": {
       "es": "Mago Oscuro",
@@ -5348,41 +5447,6 @@
     }
   },
   {
-    "id": "dark-ruler-ha-des",
-    "name": {
-      "es": "Gobernante Oscuro Ha Des",
-      "en": "Dark Ruler Ha Des"
-    },
-    "aliases": [
-      "Dark Ruler Ha Des"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/dark-ruler-ha-des",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "OSCURIDAD",
-      "tipo": "Demonio",
-      "nivel": 6,
-      "atk": 2450,
-      "def": 1600,
-      "duelistas": [
-        {
-          "value": "Yami Bakura",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
     "id": "dark-spider",
     "name": {
       "es": "Araña Oscura",
@@ -5510,41 +5574,6 @@
       "duelistas": [
         {
           "value": "Maximillion Pegasus",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "darkfire-dragon",
-    "name": {
-      "es": "Dragón de Fuego Oscuro",
-      "en": "Darkfire Dragon"
-    },
-    "aliases": [
-      "Darkfire Dragon"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/darkfire-dragon",
-    "attrs": {
-      "clase": "Monstruo de Fusión",
-      "atributo": "OSCURIDAD",
-      "tipo": "Dragón",
-      "nivel": 4,
-      "atk": 1500,
-      "def": 1250,
-      "duelistas": [
-        {
-          "value": "Rex Raptor",
           "series": "dm"
         }
       ],
@@ -6075,41 +6104,6 @@
         {
           "value": "GX",
           "series": "gx"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "destructotron",
-    "name": {
-      "es": "Destructotrón",
-      "en": "Destructotron"
-    },
-    "aliases": [
-      "Destructotron"
-    ],
-    "series": [
-      "5ds"
-    ],
-    "image": "yugioh/cards/destructotron",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "TIERRA",
-      "tipo": "Psíquico",
-      "nivel": 4,
-      "atk": 1600,
-      "def": 400,
-      "duelistas": [
-        {
-          "value": "Sayer",
-          "series": "5ds"
-        }
-      ],
-      "serie": [
-        {
-          "value": "5D's",
-          "series": "5ds"
         }
       ],
       "imagenTransparente": 0
@@ -7617,6 +7611,41 @@
     }
   },
   {
+    "id": "exchange-of-the-spirit",
+    "name": {
+      "es": "Inversión de Sepulturas",
+      "en": "Exchange of the Spirit"
+    },
+    "aliases": [
+      "Exchange of the Spirit"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/exchange-of-the-spirit",
+    "attrs": {
+      "clase": "Carta de Trampa",
+      "atributo": "TRAMPA",
+      "tipo": "Normal",
+      "nivel": null,
+      "atk": null,
+      "def": null,
+      "duelistas": [
+        {
+          "value": "Ishizu Ishtar",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "exodia-the-forbidden-one",
     "name": {
       "es": "Exodia, el Prohibido",
@@ -7784,41 +7813,6 @@
         {
           "value": "5D's",
           "series": "5ds"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "fairy-dragon",
-    "name": {
-      "es": "Dragón Hada",
-      "en": "Fairy Dragon"
-    },
-    "aliases": [
-      "Fairy Dragon"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/fairy-dragon",
-    "attrs": {
-      "clase": "Monstruo Normal",
-      "atributo": "VIENTO",
-      "tipo": "Dragón",
-      "nivel": 4,
-      "atk": 1100,
-      "def": 1200,
-      "duelistas": [
-        {
-          "value": "Rex Raptor",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
         }
       ],
       "imagenTransparente": 0
@@ -8029,41 +8023,6 @@
         {
           "value": "5D's",
           "series": "5ds"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "fire-princess",
-    "name": {
-      "es": "Princesa de Fuego",
-      "en": "Fire Princess"
-    },
-    "aliases": [
-      "Fire Princess"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/fire-princess",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "FUEGO",
-      "tipo": "Piro",
-      "nivel": 4,
-      "atk": 1300,
-      "def": 1500,
-      "duelistas": [
-        {
-          "value": "Téa Gardner",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
         }
       ],
       "imagenTransparente": 0
@@ -9746,286 +9705,6 @@
     }
   },
   {
-    "id": "gravekeepers-assailant",
-    "name": {
-      "es": "Asaltante del Cuidador de Tumbas",
-      "en": "Gravekeeper's Assailant"
-    },
-    "aliases": [
-      "Gravekeeper's Assailant"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/gravekeepers-assailant",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "OSCURIDAD",
-      "tipo": "Lanzador de Conjuros",
-      "nivel": 4,
-      "atk": 1500,
-      "def": 1500,
-      "duelistas": [
-        {
-          "value": "Ishizu Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "gravekeepers-commandant",
-    "name": {
-      "es": "Comandante del Cuidador de Tumbas",
-      "en": "Gravekeeper's Commandant"
-    },
-    "aliases": [
-      "Gravekeeper's Commandant"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/gravekeepers-commandant",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "TIERRA",
-      "tipo": "Lanzador de Conjuros",
-      "nivel": 4,
-      "atk": 1600,
-      "def": 1500,
-      "duelistas": [
-        {
-          "value": "Ishizu Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "gravekeepers-descendant",
-    "name": {
-      "es": "Descendiente del Cuidador de Tumbas",
-      "en": "Gravekeeper's Descendant"
-    },
-    "aliases": [
-      "Gravekeeper's Descendant"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/gravekeepers-descendant",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "OSCURIDAD",
-      "tipo": "Lanzador de Conjuros",
-      "nivel": 4,
-      "atk": 1500,
-      "def": 1200,
-      "duelistas": [
-        {
-          "value": "Ishizu Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "gravekeepers-headman",
-    "name": {
-      "es": "Cabecilla Cuidador de Tumbas",
-      "en": "Gravekeeper's Headman"
-    },
-    "aliases": [
-      "Gravekeeper's Headman"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/gravekeepers-headman",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "OSCURIDAD",
-      "tipo": "Lanzador de Conjuros",
-      "nivel": 3,
-      "atk": 500,
-      "def": 1500,
-      "duelistas": [
-        {
-          "value": "Ishizu Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "gravekeepers-priestess",
-    "name": {
-      "es": "Sacedortisa del Cuidador de Tumbas",
-      "en": "Gravekeeper's Priestess"
-    },
-    "aliases": [
-      "Gravekeeper's Priestess"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/gravekeepers-priestess",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "OSCURIDAD",
-      "tipo": "Lanzador de Conjuros",
-      "nivel": 3,
-      "atk": 1000,
-      "def": 1500,
-      "duelistas": [
-        {
-          "value": "Ishizu Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "gravekeepers-spear-soldier",
-    "name": {
-      "es": "Lancero del Cuidador de Tumbas",
-      "en": "Gravekeeper's Spear Soldier"
-    },
-    "aliases": [
-      "Gravekeeper's Spear Soldier"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/gravekeepers-spear-soldier",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "OSCURIDAD",
-      "tipo": "Lanzador de Conjuros",
-      "nivel": 4,
-      "atk": 1500,
-      "def": 1000,
-      "duelistas": [
-        {
-          "value": "Ishizu Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "gravekeepers-spiritualist",
-    "name": {
-      "es": "Espiritista Cuidador de Tumbas",
-      "en": "Gravekeeper's Spiritualist"
-    },
-    "aliases": [
-      "Gravekeeper's Spiritualist"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/gravekeepers-spiritualist",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "OSCURIDAD",
-      "tipo": "Lanzador de Conjuros",
-      "nivel": 4,
-      "atk": 1500,
-      "def": 1500,
-      "duelistas": [
-        {
-          "value": "Ishizu Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "gravekeepers-supernaturalist",
-    "name": {
-      "es": "Supernaturalista Cuidador de Tumbas",
-      "en": "Gravekeeper's Supernaturalist"
-    },
-    "aliases": [
-      "Gravekeeper's Supernaturalist"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/gravekeepers-supernaturalist",
-    "attrs": {
-      "clase": "Monstruo de Fusión",
-      "atributo": "OSCURIDAD",
-      "tipo": "Lanzador de Conjuros",
-      "nivel": 7,
-      "atk": 2000,
-      "def": 2000,
-      "duelistas": [
-        {
-          "value": "Ishizu Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
     "id": "gravity-axe-grarl",
     "name": {
       "es": "Hacha de Gravedad - Grarl",
@@ -10118,41 +9797,6 @@
       "duelistas": [
         {
           "value": "Mako Tsunami",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "ground-attacker-bugroth",
-    "name": {
-      "es": "Asaltante de Tierra Bugroth",
-      "en": "Ground Attacker Bugroth"
-    },
-    "aliases": [
-      "Ground Attacker Bugroth"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/ground-attacker-bugroth",
-    "attrs": {
-      "clase": "Monstruo Normal",
-      "atributo": "TIERRA",
-      "tipo": "Máquina",
-      "nivel": 4,
-      "atk": 1500,
-      "def": 1000,
-      "duelistas": [
-        {
-          "value": "Marik Ishtar",
           "series": "dm"
         }
       ],
@@ -10759,6 +10403,39 @@
     }
   },
   {
+    "id": "helpoemer",
+    "name": {
+      "es": "Helpoemer",
+      "en": "Helpoemer"
+    },
+    "aliases": [],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/helpoemer",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "OSCURIDAD",
+      "tipo": "Demonio",
+      "nivel": 5,
+      "atk": 2000,
+      "def": 1400,
+      "duelistas": [
+        {
+          "value": "Marik Ishtar",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "hercules-beetle",
     "name": {
       "es": "Escarabajo Hércules",
@@ -11105,28 +10782,28 @@
     }
   },
   {
-    "id": "imperial-tombs-of-necrovalley",
+    "id": "illusionist-faceless-mage",
     "name": {
-      "es": "Tumbas Imperiales del Necrovalle",
-      "en": "Imperial Tombs of Necrovalley"
+      "es": "Mago Ilusionista sin Rostro",
+      "en": "Illusionist Faceless Mage"
     },
     "aliases": [
-      "Imperial Tombs of Necrovalley"
+      "Illusionist Faceless Mage"
     ],
     "series": [
       "dm"
     ],
-    "image": "yugioh/cards/imperial-tombs-of-necrovalley",
+    "image": "yugioh/cards/illusionist-faceless-mage",
     "attrs": {
-      "clase": "Carta de Trampa",
-      "atributo": "TRAMPA",
-      "tipo": "Contraefecto",
-      "nivel": null,
-      "atk": null,
-      "def": null,
+      "clase": "Monstruo Normal",
+      "atributo": "OSCURIDAD",
+      "tipo": "Lanzador de Conjuros",
+      "nivel": 5,
+      "atk": 1200,
+      "def": 2200,
       "duelistas": [
         {
-          "value": "Ishizu Ishtar",
+          "value": "Maximillion Pegasus",
           "series": "dm"
         }
       ],
@@ -11698,41 +11375,6 @@
     }
   },
   {
-    "id": "insect-armor-with-laser-cannon",
-    "name": {
-      "es": "Armadura Insecto con Cañón Láser",
-      "en": "Insect Armor with Laser Cannon"
-    },
-    "aliases": [
-      "Insect Armor with Laser Cannon"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/insect-armor-with-laser-cannon",
-    "attrs": {
-      "clase": "Carta Mágica",
-      "atributo": "MÁGICA",
-      "tipo": "Equipo",
-      "nivel": null,
-      "atk": null,
-      "def": null,
-      "duelistas": [
-        {
-          "value": "Weevil Underwood",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
     "id": "insect-queen",
     "name": {
       "es": "Reina Insecto",
@@ -12289,6 +11931,72 @@
     }
   },
   {
+    "id": "kelbek",
+    "name": {
+      "es": "Kelbek",
+      "en": "Kelbek"
+    },
+    "aliases": [],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/kelbek",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "TIERRA",
+      "tipo": "Hada",
+      "nivel": 4,
+      "atk": 1500,
+      "def": 1800,
+      "duelistas": [
+        {
+          "value": "Ishizu Ishtar",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "keldo",
+    "name": {
+      "es": "Keldo",
+      "en": "Keldo"
+    },
+    "aliases": [],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/keldo",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "TIERRA",
+      "tipo": "Hada",
+      "nivel": 4,
+      "atk": 1200,
+      "def": 1600,
+      "duelistas": [
+        {
+          "value": "Ishizu Ishtar",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "killer-needle",
     "name": {
       "es": "Aguja Asesina",
@@ -12598,6 +12306,41 @@
     }
   },
   {
+    "id": "launcher-spider",
+    "name": {
+      "es": "Araña Lanzadora",
+      "en": "Launcher Spider"
+    },
+    "aliases": [
+      "Launcher Spider"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/launcher-spider",
+    "attrs": {
+      "clase": "Monstruo Normal",
+      "atributo": "FUEGO",
+      "tipo": "Máquina",
+      "nivel": 7,
+      "atk": 2200,
+      "def": 2500,
+      "duelistas": [
+        {
+          "value": "Tristan Taylor",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "lava-battleguard",
     "name": {
       "es": "Guardián de Batalla de Lava",
@@ -12620,6 +12363,41 @@
       "duelistas": [
         {
           "value": "Tristan Taylor",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "lava-golem",
+    "name": {
+      "es": "Golem de Lava",
+      "en": "Lava Golem"
+    },
+    "aliases": [
+      "Lava Golem"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/lava-golem",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "FUEGO",
+      "tipo": "Demonio",
+      "nivel": 8,
+      "atk": 3000,
+      "def": 2500,
+      "duelistas": [
+        {
+          "value": "Marik Ishtar",
           "series": "dm"
         }
       ],
@@ -12703,41 +12481,6 @@
     }
   },
   {
-    "id": "lesser-dragon",
-    "name": {
-      "es": "Dragón Menor",
-      "en": "Lesser Dragon"
-    },
-    "aliases": [
-      "Lesser Dragon"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/lesser-dragon",
-    "attrs": {
-      "clase": "Monstruo Normal",
-      "atributo": "VIENTO",
-      "tipo": "Dragón",
-      "nivel": 4,
-      "atk": 1200,
-      "def": 1000,
-      "duelistas": [
-        {
-          "value": "Rex Raptor",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
     "id": "level-up",
     "name": {
       "es": "¡Nivel Arriba!",
@@ -12767,6 +12510,41 @@
         {
           "value": "GX",
           "series": "gx"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "life-stream-dragon",
+    "name": {
+      "es": "Dragón del Flujo de la Vida",
+      "en": "Life Stream Dragon"
+    },
+    "aliases": [
+      "Life Stream Dragon"
+    ],
+    "series": [
+      "5ds"
+    ],
+    "image": "yugioh/cards/life-stream-dragon",
+    "attrs": {
+      "clase": "Monstruo Sincro",
+      "atributo": "TIERRA",
+      "tipo": "Dragón",
+      "nivel": 8,
+      "atk": 2900,
+      "def": 2400,
+      "duelistas": [
+        {
+          "value": "Leo",
+          "series": "5ds"
+        }
+      ],
+      "serie": [
+        {
+          "value": "5D's",
+          "series": "5ds"
         }
       ],
       "imagenTransparente": 0
@@ -12837,41 +12615,6 @@
         {
           "value": "GX",
           "series": "gx"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "little-d",
-    "name": {
-      "es": "D Pequeño",
-      "en": "Little D"
-    },
-    "aliases": [
-      "Little D"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/little-d",
-    "attrs": {
-      "clase": "Monstruo Normal",
-      "atributo": "TIERRA",
-      "tipo": "Dinosaurio",
-      "nivel": 3,
-      "atk": 1100,
-      "def": 700,
-      "duelistas": [
-        {
-          "value": "Rex Raptor",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
         }
       ],
       "imagenTransparente": 0
@@ -13012,41 +12755,6 @@
         {
           "value": "GX",
           "series": "gx"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "machine-king",
-    "name": {
-      "es": "Rey Máquina",
-      "en": "Machine King"
-    },
-    "aliases": [
-      "Machine King"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/machine-king",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "TIERRA",
-      "tipo": "Máquina",
-      "nivel": 6,
-      "atk": 2200,
-      "def": 2000,
-      "duelistas": [
-        {
-          "value": "Marik Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
         }
       ],
       "imagenTransparente": 0
@@ -13228,39 +12936,6 @@
     }
   },
   {
-    "id": "maiden-of-the-moonlight",
-    "name": {
-      "es": "Maiden of the Moonlight",
-      "en": "Maiden of the Moonlight"
-    },
-    "aliases": [],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/maiden-of-the-moonlight",
-    "attrs": {
-      "clase": "Monstruo Normal",
-      "atributo": "LUZ",
-      "tipo": "Lanzador de Conjuros",
-      "nivel": 4,
-      "atk": 1500,
-      "def": 1300,
-      "duelistas": [
-        {
-          "value": "Téa Gardner",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
     "id": "majestic-red-dragon",
     "name": {
       "es": "Dragón Rojo Majestuoso",
@@ -13366,6 +13041,41 @@
     }
   },
   {
+    "id": "manga-ryu-ran",
+    "name": {
+      "es": "Ryu-Ran Manga",
+      "en": "Manga Ryu-Ran"
+    },
+    "aliases": [
+      "Manga Ryu-Ran"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/manga-ryu-ran",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "FUEGO",
+      "tipo": "Dragón",
+      "nivel": 7,
+      "atk": 2200,
+      "def": 2600,
+      "duelistas": [
+        {
+          "value": "Maximillion Pegasus",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "masaki-the-legendary-swordsman",
     "name": {
       "es": "Masaki el Espadachín Legendario",
@@ -13388,6 +13098,41 @@
       "duelistas": [
         {
           "value": "Joey Wheeler",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "masked-beast-des-gardius",
+    "name": {
+      "es": "Bestia Enmascarada Des Gardius",
+      "en": "Masked Beast Des Gardius"
+    },
+    "aliases": [
+      "Masked Beast Des Gardius"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/masked-beast-des-gardius",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "OSCURIDAD",
+      "tipo": "Demonio",
+      "nivel": 8,
+      "atk": 3300,
+      "def": 2500,
+      "duelistas": [
+        {
+          "value": "Marik Ishtar",
           "series": "dm"
         }
       ],
@@ -13471,41 +13216,6 @@
     }
   },
   {
-    "id": "mechanicalchaser",
-    "name": {
-      "es": "Cazamecánico",
-      "en": "Mechanicalchaser"
-    },
-    "aliases": [
-      "Mechanicalchaser"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/mechanicalchaser",
-    "attrs": {
-      "clase": "Monstruo Normal",
-      "atributo": "OSCURIDAD",
-      "tipo": "Máquina",
-      "nivel": 4,
-      "atk": 1850,
-      "def": 800,
-      "duelistas": [
-        {
-          "value": "Marik Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
     "id": "medium-piece-golem",
     "name": {
       "es": "Golem de Partes Medianas",
@@ -13535,41 +13245,6 @@
         {
           "value": "5D's",
           "series": "5ds"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "megasonic-eye",
-    "name": {
-      "es": "Ojo Megasónico",
-      "en": "Megasonic Eye"
-    },
-    "aliases": [
-      "Megasonic Eye"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/megasonic-eye",
-    "attrs": {
-      "clase": "Monstruo Normal",
-      "atributo": "OSCURIDAD",
-      "tipo": "Máquina",
-      "nivel": 5,
-      "atk": 1500,
-      "def": 1800,
-      "duelistas": [
-        {
-          "value": "Marik Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
         }
       ],
       "imagenTransparente": 0
@@ -13887,6 +13562,76 @@
     }
   },
   {
+    "id": "melchid-the-four-face-beast",
+    "name": {
+      "es": "Melchid la Bestia de las Cuatro Caras",
+      "en": "Melchid the Four-Face Beast"
+    },
+    "aliases": [
+      "Melchid the Four-Face Beast"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/melchid-the-four-face-beast",
+    "attrs": {
+      "clase": "Monstruo Normal",
+      "atributo": "OSCURIDAD",
+      "tipo": "Demonio",
+      "nivel": 4,
+      "atk": 1500,
+      "def": 1200,
+      "duelistas": [
+        {
+          "value": "Marik Ishtar",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "metal-reflect-slime",
+    "name": {
+      "es": "Limo Reflectametal",
+      "en": "Metal Reflect Slime"
+    },
+    "aliases": [
+      "Metal Reflect Slime"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/metal-reflect-slime",
+    "attrs": {
+      "clase": "Carta de Trampa",
+      "atributo": "TRAMPA",
+      "tipo": "Continua",
+      "nivel": null,
+      "atk": null,
+      "def": null,
+      "duelistas": [
+        {
+          "value": "Marik Ishtar",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "meteor-flare",
     "name": {
       "es": "Meteoro Bengala",
@@ -13909,41 +13654,6 @@
       "duelistas": [
         {
           "value": "Rex Goodwin",
-          "series": "5ds"
-        }
-      ],
-      "serie": [
-        {
-          "value": "5D's",
-          "series": "5ds"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "mind-master",
-    "name": {
-      "es": "Amo de las Mentes",
-      "en": "Mind Master"
-    },
-    "aliases": [
-      "Mind Master"
-    ],
-    "series": [
-      "5ds"
-    ],
-    "image": "yugioh/cards/mind-master",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "LUZ",
-      "tipo": "Psíquico",
-      "nivel": 1,
-      "atk": 100,
-      "def": 200,
-      "duelistas": [
-        {
-          "value": "Sayer",
           "series": "5ds"
         }
       ],
@@ -14552,6 +14262,74 @@
     }
   },
   {
+    "id": "mudora",
+    "name": {
+      "es": "Mudora",
+      "en": "Mudora"
+    },
+    "aliases": [],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/mudora",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "TIERRA",
+      "tipo": "Hada",
+      "nivel": 4,
+      "atk": 1500,
+      "def": 1800,
+      "duelistas": [
+        {
+          "value": "Ishizu Ishtar",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "muko",
+    "name": {
+      "es": "Negación",
+      "en": "Muko"
+    },
+    "aliases": [
+      "Muko"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/muko",
+    "attrs": {
+      "clase": "Carta de Trampa",
+      "atributo": "TRAMPA",
+      "tipo": "Normal",
+      "nivel": null,
+      "atk": null,
+      "def": null,
+      "duelistas": [
+        {
+          "value": "Ishizu Ishtar",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "mystical-elf",
     "name": {
       "es": "Duende Místico",
@@ -14616,76 +14394,6 @@
         {
           "value": "5D's",
           "series": "5ds"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "necrovalley",
-    "name": {
-      "es": "Necrovalle",
-      "en": "Necrovalley"
-    },
-    "aliases": [
-      "Necrovalley"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/necrovalley",
-    "attrs": {
-      "clase": "Carta Mágica",
-      "atributo": "MÁGICA",
-      "tipo": "Campo",
-      "nivel": null,
-      "atk": null,
-      "def": null,
-      "duelistas": [
-        {
-          "value": "Ishizu Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "necrovalley-throne",
-    "name": {
-      "es": "Trono del Necrovalle",
-      "en": "Necrovalley Throne"
-    },
-    "aliases": [
-      "Necrovalley Throne"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/necrovalley-throne",
-    "attrs": {
-      "clase": "Carta Mágica",
-      "atributo": "MÁGICA",
-      "tipo": "Normal",
-      "nivel": null,
-      "atk": null,
-      "def": null,
-      "duelistas": [
-        {
-          "value": "Ishizu Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
         }
       ],
       "imagenTransparente": 0
@@ -14762,6 +14470,39 @@
     }
   },
   {
+    "id": "newdoria",
+    "name": {
+      "es": "Newdoria",
+      "en": "Newdoria"
+    },
+    "aliases": [],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/newdoria",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "OSCURIDAD",
+      "tipo": "Demonio",
+      "nivel": 4,
+      "atk": 1200,
+      "def": 800,
+      "duelistas": [
+        {
+          "value": "Marik Ishtar",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "nightmare-archfiends",
     "name": {
       "es": "Archidemonios de Pesadilla",
@@ -14791,6 +14532,41 @@
         {
           "value": "5D's",
           "series": "5ds"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "nightmare-wheel",
+    "name": {
+      "es": "Rueda de la Pesadilla",
+      "en": "Nightmare Wheel"
+    },
+    "aliases": [
+      "Nightmare Wheel"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/nightmare-wheel",
+    "attrs": {
+      "clase": "Carta de Trampa",
+      "atributo": "TRAMPA",
+      "tipo": "Continua",
+      "nivel": null,
+      "atk": null,
+      "def": null,
+      "duelistas": [
+        {
+          "value": "Marik Ishtar",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
         }
       ],
       "imagenTransparente": 0
@@ -15182,39 +14958,6 @@
     }
   },
   {
-    "id": "ooguchi",
-    "name": {
-      "es": "Ooguchi",
-      "en": "Ooguchi"
-    },
-    "aliases": [],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/ooguchi",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "AGUA",
-      "tipo": "Aqua",
-      "nivel": 1,
-      "atk": 300,
-      "def": 250,
-      "duelistas": [
-        {
-          "value": "Tristan Taylor",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
     "id": "overload-fusion",
     "name": {
       "es": "Sobrecarga de Fusión",
@@ -15478,74 +15221,6 @@
       "duelistas": [
         {
           "value": "Téa Gardner",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "petit-dragon",
-    "name": {
-      "es": "Petit Dragón",
-      "en": "Petit Dragon"
-    },
-    "aliases": [
-      "Petit Dragon"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/petit-dragon",
-    "attrs": {
-      "clase": "Monstruo Normal",
-      "atributo": "VIENTO",
-      "tipo": "Dragón",
-      "nivel": 2,
-      "atk": 600,
-      "def": 700,
-      "duelistas": [
-        {
-          "value": "Rex Raptor",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "petit-moth",
-    "name": {
-      "es": "Petit Moth",
-      "en": "Petit Moth"
-    },
-    "aliases": [],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/petit-moth",
-    "attrs": {
-      "clase": "Monstruo Normal",
-      "atributo": "TIERRA",
-      "tipo": "Insecto",
-      "nivel": 1,
-      "atk": 300,
-      "def": 200,
-      "duelistas": [
-        {
-          "value": "Weevil Underwood",
           "series": "dm"
         }
       ],
@@ -16214,41 +15889,6 @@
         {
           "value": "GX",
           "series": "gx"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "raise-body-heat",
-    "name": {
-      "es": "Elevar el Calor Corporal",
-      "en": "Raise Body Heat"
-    },
-    "aliases": [
-      "Raise Body Heat"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/raise-body-heat",
-    "attrs": {
-      "clase": "Carta Mágica",
-      "atributo": "MÁGICA",
-      "tipo": "Equipo",
-      "nivel": null,
-      "atk": null,
-      "def": null,
-      "duelistas": [
-        {
-          "value": "Rex Raptor",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
         }
       ],
       "imagenTransparente": 0
@@ -17126,39 +16766,6 @@
     }
   },
   {
-    "id": "seiyaryu",
-    "name": {
-      "es": "Seiyaryu",
-      "en": "Seiyaryu"
-    },
-    "aliases": [],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/seiyaryu",
-    "attrs": {
-      "clase": "Monstruo Normal",
-      "atributo": "LUZ",
-      "tipo": "Dragón",
-      "nivel": 7,
-      "atk": 2500,
-      "def": 2300,
-      "duelistas": [
-        {
-          "value": "Marik Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
     "id": "serpent-night-dragon",
     "name": {
       "es": "Dragón Serpiente de la Noche",
@@ -17433,41 +17040,6 @@
         {
           "value": "5D's",
           "series": "5ds"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "sinister-serpent",
-    "name": {
-      "es": "Serpiente Siniestra",
-      "en": "Sinister Serpent"
-    },
-    "aliases": [
-      "Sinister Serpent"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/sinister-serpent",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "AGUA",
-      "tipo": "Reptil",
-      "nivel": 1,
-      "atk": 300,
-      "def": 250,
-      "duelistas": [
-        {
-          "value": "Tristan Taylor",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
         }
       ],
       "imagenTransparente": 0
@@ -18129,41 +17701,6 @@
         {
           "value": "GX",
           "series": "gx"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "steel-scorpion",
-    "name": {
-      "es": "Escorpión de Acero",
-      "en": "Steel Scorpion"
-    },
-    "aliases": [
-      "Steel Scorpion"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/steel-scorpion",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "TIERRA",
-      "tipo": "Máquina",
-      "nivel": 1,
-      "atk": 250,
-      "def": 300,
-      "duelistas": [
-        {
-          "value": "Tristan Taylor",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
         }
       ],
       "imagenTransparente": 0
@@ -19426,6 +18963,41 @@
     }
   },
   {
+    "id": "the-mask-of-remnants",
+    "name": {
+      "es": "Máscara del Vestigio",
+      "en": "The Mask of Remnants"
+    },
+    "aliases": [
+      "The Mask of Remnants"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/the-mask-of-remnants",
+    "attrs": {
+      "clase": "Carta Mágica",
+      "atributo": "MÁGICA",
+      "tipo": "Normal",
+      "nivel": null,
+      "atk": null,
+      "def": null,
+      "duelistas": [
+        {
+          "value": "Marik Ishtar",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
     "id": "the-portraits-secret",
     "name": {
       "es": "EL Secreto del Retrato",
@@ -19490,41 +19062,6 @@
         {
           "value": "GX",
           "series": "gx"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "the-unhappy-maiden",
-    "name": {
-      "es": "La Dama Infeliz",
-      "en": "The Unhappy Maiden"
-    },
-    "aliases": [
-      "The Unhappy Maiden"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/the-unhappy-maiden",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "LUZ",
-      "tipo": "Lanzador de Conjuros",
-      "nivel": 1,
-      "atk": 0,
-      "def": 100,
-      "duelistas": [
-        {
-          "value": "Tristan Taylor",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
         }
       ],
       "imagenTransparente": 0
@@ -19763,6 +19300,216 @@
       "duelistas": [
         {
           "value": "Joey Wheeler",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "toon-alligator",
+    "name": {
+      "es": "Caimán Toon",
+      "en": "Toon Alligator"
+    },
+    "aliases": [
+      "Toon Alligator"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/toon-alligator",
+    "attrs": {
+      "clase": "Monstruo Normal",
+      "atributo": "AGUA",
+      "tipo": "Reptil",
+      "nivel": 4,
+      "atk": 800,
+      "def": 1600,
+      "duelistas": [
+        {
+          "value": "Maximillion Pegasus",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "toon-dark-magician-girl",
+    "name": {
+      "es": "Chica Maga Oscura Toon",
+      "en": "Toon Dark Magician Girl"
+    },
+    "aliases": [
+      "Toon Dark Magician Girl"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/toon-dark-magician-girl",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "OSCURIDAD",
+      "tipo": "Lanzador de Conjuros",
+      "nivel": 6,
+      "atk": 2000,
+      "def": 1700,
+      "duelistas": [
+        {
+          "value": "Maximillion Pegasus",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "toon-masked-sorcerer",
+    "name": {
+      "es": "Brujo Enmascarado Toon",
+      "en": "Toon Masked Sorcerer"
+    },
+    "aliases": [
+      "Toon Masked Sorcerer"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/toon-masked-sorcerer",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "OSCURIDAD",
+      "tipo": "Lanzador de Conjuros",
+      "nivel": 4,
+      "atk": 900,
+      "def": 1400,
+      "duelistas": [
+        {
+          "value": "Maximillion Pegasus",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "toon-mermaid",
+    "name": {
+      "es": "Sirena Toon",
+      "en": "Toon Mermaid"
+    },
+    "aliases": [
+      "Toon Mermaid"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/toon-mermaid",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "AGUA",
+      "tipo": "Aqua",
+      "nivel": 4,
+      "atk": 1400,
+      "def": 1500,
+      "duelistas": [
+        {
+          "value": "Maximillion Pegasus",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "toon-summoned-skull",
+    "name": {
+      "es": "Cráneo Invocado Toon",
+      "en": "Toon Summoned Skull"
+    },
+    "aliases": [
+      "Toon Summoned Skull"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/toon-summoned-skull",
+    "attrs": {
+      "clase": "Monstruo de Efecto",
+      "atributo": "OSCURIDAD",
+      "tipo": "Demonio",
+      "nivel": 6,
+      "atk": 2500,
+      "def": 1200,
+      "duelistas": [
+        {
+          "value": "Maximillion Pegasus",
+          "series": "dm"
+        }
+      ],
+      "serie": [
+        {
+          "value": "Duel Monsters",
+          "series": "dm"
+        }
+      ],
+      "imagenTransparente": 0
+    }
+  },
+  {
+    "id": "toon-table-of-contents",
+    "name": {
+      "es": "Tabla de Contenidos Toon",
+      "en": "Toon Table of Contents"
+    },
+    "aliases": [
+      "Toon Table of Contents"
+    ],
+    "series": [
+      "dm"
+    ],
+    "image": "yugioh/cards/toon-table-of-contents",
+    "attrs": {
+      "clase": "Carta Mágica",
+      "atributo": "MÁGICA",
+      "tipo": "Normal",
+      "nivel": null,
+      "atk": null,
+      "def": null,
+      "duelistas": [
+        {
+          "value": "Maximillion Pegasus",
           "series": "dm"
         }
       ],
@@ -21779,109 +21526,6 @@
       "duelistas": [
         {
           "value": "Seto Kaiba",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "zera-ritual",
-    "name": {
-      "es": "Ritual de Zera",
-      "en": "Zera Ritual"
-    },
-    "aliases": [
-      "Zera Ritual"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/zera-ritual",
-    "attrs": {
-      "clase": "Carta Mágica",
-      "atributo": "MÁGICA",
-      "tipo": "Ritual",
-      "nivel": null,
-      "atk": null,
-      "def": null,
-      "duelistas": [
-        {
-          "value": "Marik Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "zera-the-mant",
-    "name": {
-      "es": "Zera el Mant",
-      "en": "Zera the Mant"
-    },
-    "aliases": [
-      "Zera the Mant"
-    ],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/zera-the-mant",
-    "attrs": {
-      "clase": "Monstruo de Ritual",
-      "atributo": "OSCURIDAD",
-      "tipo": "Demonio",
-      "nivel": 8,
-      "atk": 2800,
-      "def": 2300,
-      "duelistas": [
-        {
-          "value": "Marik Ishtar",
-          "series": "dm"
-        }
-      ],
-      "serie": [
-        {
-          "value": "Duel Monsters",
-          "series": "dm"
-        }
-      ],
-      "imagenTransparente": 0
-    }
-  },
-  {
-    "id": "zone-eater",
-    "name": {
-      "es": "Zone Eater",
-      "en": "Zone Eater"
-    },
-    "aliases": [],
-    "series": [
-      "dm"
-    ],
-    "image": "yugioh/cards/zone-eater",
-    "attrs": {
-      "clase": "Monstruo de Efecto",
-      "atributo": "AGUA",
-      "tipo": "Aqua",
-      "nivel": 1,
-      "atk": 250,
-      "def": 200,
-      "duelistas": [
-        {
-          "value": "Tristan Taylor",
           "series": "dm"
         }
       ],

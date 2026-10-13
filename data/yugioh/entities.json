@@ -190,12 +190,11 @@
       "arquetipos": [
         "Dioses Egipcios",
         "Gelatina",
-        "Máquinas"
+        "Demonios"
       ],
       "metodosInvocacion": [
         "Normal",
-        "Fusión",
-        "Ritual"
+        "Fusión"
       ],
       "primeraAparicion": "Duel Monsters, episodio 50",
       "imagenTransparente": 0
@@ -289,8 +288,7 @@
         "Dragones"
       ],
       "metodosInvocacion": [
-        "Normal",
-        "Fusión"
+        "Normal"
       ],
       "primeraAparicion": "Duel Monsters, episodio 2",
       "imagenTransparente": 0
@@ -410,11 +408,11 @@
         "Objetos del Milenio"
       ],
       "arquetipos": [
-        "Cuidador de Tumbas"
+        "Hadas",
+        "Trampas"
       ],
       "metodosInvocacion": [
-        "Normal",
-        "Fusión"
+        "Normal"
       ],
       "primeraAparicion": "Duel Monsters, episodio 52",
       "imagenTransparente": 0
@@ -1050,7 +1048,8 @@
         "Los Enforcers"
       ],
       "arquetipos": [
-        "Archidemonio"
+        "Archidemonio",
+        "Resonador"
       ],
       "metodosInvocacion": [
         "Normal",

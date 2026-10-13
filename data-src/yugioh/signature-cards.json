@@ -1,7 +1,7 @@
 [
   {
     "duelist": "yugi-muto",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Dark Magician", "iconicity": 3, "ace": true},
       {"name": "Dark Magician Girl", "iconicity": 3},
@@ -30,7 +30,7 @@
   },
   {
     "duelist": "seto-kaiba",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Blue-Eyes White Dragon", "iconicity": 3, "ace": true},
       {"name": "Blue-Eyes Ultimate Dragon", "iconicity": 3},
@@ -39,7 +39,6 @@
       {"name": "Lord of D.", "iconicity": 2},
       {"name": "XYZ-Dragon Cannon", "iconicity": 2},
       {"name": "Crush Card Virus", "iconicity": 2},
-      {"name": "Burst Stream of Destruction", "iconicity": 2},
       {"name": "Vorse Raider", "iconicity": 1},
       {"name": "X-Head Cannon", "iconicity": 1},
       {"name": "Y-Dragon Head", "iconicity": 1},
@@ -54,7 +53,7 @@
   },
   {
     "duelist": "joey-wheeler",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Red-Eyes Black Dragon", "iconicity": 3, "ace": true},
       {"name": "Time Wizard", "iconicity": 2},
@@ -79,7 +78,7 @@
   },
   {
     "duelist": "mai-valentine",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Harpie Lady", "iconicity": 3, "ace": true},
       {"name": "Harpie Lady Sisters", "iconicity": 2},
@@ -94,45 +93,58 @@
   },
   {
     "duelist": "maximillion-pegasus",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Relinquished", "iconicity": 3, "ace": true},
       {"name": "Toon World", "iconicity": 3},
+      {"name": "Blue-Eyes Toon Dragon", "iconicity": 3},
       {"name": "Thousand-Eyes Restrict", "iconicity": 2},
+      {"name": "Toon Summoned Skull", "iconicity": 2},
+      {"name": "Toon Mermaid", "iconicity": 2},
+      {"name": "Manga Ryu-Ran", "iconicity": 2},
+      {"name": "Toon Dark Magician Girl", "iconicity": 2},
+      {"name": "Black Illusion Ritual", "iconicity": 2},
+      {"name": "Toon Alligator", "iconicity": 1},
+      {"name": "Dark-Eyes Illusionist", "iconicity": 1},
       {"name": "Thousand-Eyes Idol", "iconicity": 1},
-      {"name": "Dark-Eyes Illusionist", "iconicity": 1}
+      {"name": "Illusionist Faceless Mage", "iconicity": 1},
+      {"name": "Bickuribox", "iconicity": 1},
+      {"name": "Toon Table of Contents", "iconicity": 1},
+      {"name": "Toon Masked Sorcerer", "iconicity": 1}
     ]
   },
   {
     "duelist": "marik-ishtar",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "The Winged Dragon of Ra", "iconicity": 3, "ace": true},
+      {"name": "Lava Golem", "iconicity": 3},
+      {"name": "Helpoemer", "iconicity": 2},
+      {"name": "Masked Beast Des Gardius", "iconicity": 2},
       {"name": "Revival Jam", "iconicity": 2},
-      {"name": "Zera the Mant", "iconicity": 2},
-      {"name": "Zera Ritual", "iconicity": 2},
       {"name": "Humanoid Worm Drake", "iconicity": 2},
-      {"name": "Jam Defender", "iconicity": 1},
-      {"name": "Jam Breeding Machine", "iconicity": 1},
-      {"name": "Mechanicalchaser", "iconicity": 1},
+      {"name": "Metal Reflect Slime", "iconicity": 2},
+      {"name": "Nightmare Wheel", "iconicity": 2},
+      {"name": "Dark Jeroid", "iconicity": 2},
       {"name": "Humanoid Slime", "iconicity": 1},
       {"name": "Worm Drake", "iconicity": 1},
-      {"name": "Machine King", "iconicity": 1},
-      {"name": "Seiyaryu", "iconicity": 1},
-      {"name": "Ground Attacker Bugroth", "iconicity": 1},
-      {"name": "Megasonic Eye", "iconicity": 1},
-      {"name": "Curse of Fiend", "iconicity": 1}
+      {"name": "Jam Breeding Machine", "iconicity": 1},
+      {"name": "Jam Defender", "iconicity": 1},
+      {"name": "Newdoria", "iconicity": 1},
+      {"name": "Bowganian", "iconicity": 1},
+      {"name": "Coffin Seller", "iconicity": 1},
+      {"name": "Melchid the Four-Face Beast", "iconicity": 1},
+      {"name": "The Mask of Remnants", "iconicity": 1}
     ]
   },
   {
     "duelist": "yami-bakura",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Dark Necrofear", "iconicity": 3, "ace": true},
       {"name": "Destiny Board", "iconicity": 3},
       {"name": "The Earl of Demise", "iconicity": 2},
       {"name": "Headless Knight", "iconicity": 2},
-      {"name": "Dark Ruler Ha Des", "iconicity": 2},
       {"name": "Man-Eater Bug", "iconicity": 1},
       {"name": "The Portrait's Secret", "iconicity": 1},
       {"name": "The Gross Ghost of Fled Dreams", "iconicity": 1},
@@ -147,14 +159,13 @@
   },
   {
     "duelist": "weevil-underwood",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Perfectly Ultimate Great Moth", "iconicity": 3, "ace": true},
       {"name": "Insect Queen", "iconicity": 2},
       {"name": "Larvae Moth", "iconicity": 2},
       {"name": "Great Moth", "iconicity": 2},
       {"name": "Cocoon of Evolution", "iconicity": 2},
-      {"name": "Petit Moth", "iconicity": 2},
       {"name": "Parasite Paracide", "iconicity": 2},
       {"name": "Gokibore", "iconicity": 1},
       {"name": "Basic Insect", "iconicity": 1},
@@ -163,13 +174,12 @@
       {"name": "Hercules Beetle", "iconicity": 1},
       {"name": "Laser Cannon Armor", "iconicity": 1},
       {"name": "Pinch Hopper", "iconicity": 1},
-      {"name": "Insect Armor with Laser Cannon", "iconicity": 1},
       {"name": "Flying Kamakiri #1", "iconicity": 1}
     ]
   },
   {
     "duelist": "rex-raptor",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Two-Headed King Rex", "iconicity": 3, "ace": true},
       {"name": "Sword Arm of Dragon", "iconicity": 2},
@@ -179,19 +189,12 @@
       {"name": "Crawling Dragon #2", "iconicity": 1},
       {"name": "Uraby", "iconicity": 1},
       {"name": "Trakodon", "iconicity": 1},
-      {"name": "Little D", "iconicity": 1},
-      {"name": "Fairy Dragon", "iconicity": 1},
-      {"name": "Lesser Dragon", "iconicity": 1},
-      {"name": "Raise Body Heat", "iconicity": 1},
-      {"name": "Darkfire Dragon", "iconicity": 1},
-      {"name": "Black Tyranno", "iconicity": 1},
-      {"name": "Petit Dragon", "iconicity": 1},
-      {"name": "Blackland Fire Dragon", "iconicity": 1}
+      {"name": "Black Tyranno", "iconicity": 1}
     ]
   },
   {
     "duelist": "mako-tsunami",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "The Legendary Fisherman", "iconicity": 3, "ace": true},
       {"name": "Umi", "iconicity": 2},
@@ -206,53 +209,42 @@
   },
   {
     "duelist": "tristan-taylor",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Swamp Battleguard", "iconicity": 3, "ace": true},
       {"name": "Lava Battleguard", "iconicity": 3},
       {"name": "Cyber Commander", "iconicity": 2},
       {"name": "Super Roboyarou", "iconicity": 2},
-      {"name": "Ooguchi", "iconicity": 1},
-      {"name": "Sinister Serpent", "iconicity": 1},
-      {"name": "Steel Scorpion", "iconicity": 1},
-      {"name": "The Unhappy Maiden", "iconicity": 1},
-      {"name": "Zone Eater", "iconicity": 1}
+      {"name": "Launcher Spider", "iconicity": 1}
     ]
   },
   {
     "duelist": "tea-gardner",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Petit Angel", "iconicity": 3, "ace": true},
       {"name": "Happy Lover", "iconicity": 2},
       {"name": "Ancient Elf", "iconicity": 2},
       {"name": "Gemini Elf", "iconicity": 2},
       {"name": "Shining Friendship", "iconicity": 2},
-      {"name": "Fairy's Gift", "iconicity": 1},
-      {"name": "Maiden of the Moonlight", "iconicity": 1},
-      {"name": "Fire Princess", "iconicity": 1}
+      {"name": "Fairy's Gift", "iconicity": 1}
     ]
   },
   {
     "duelist": "ishizu-ishtar",
-    "verified": false,
+    "verified": true,
     "cards": [
-      {"name": "Gravekeeper's Assailant", "iconicity": 3, "ace": true},
-      {"name": "Gravekeeper's Spear Soldier", "iconicity": 2},
-      {"name": "Gravekeeper's Spiritualist", "iconicity": 2},
-      {"name": "Necrovalley", "iconicity": 2},
-      {"name": "Gravekeeper's Priestess", "iconicity": 1},
-      {"name": "Gravekeeper's Commandant", "iconicity": 1},
-      {"name": "Gravekeeper's Descendant", "iconicity": 1},
-      {"name": "Gravekeeper's Headman", "iconicity": 1},
-      {"name": "Gravekeeper's Supernaturalist", "iconicity": 1},
-      {"name": "Necrovalley Throne", "iconicity": 1},
-      {"name": "Imperial Tombs of Necrovalley", "iconicity": 1}
+      {"name": "Exchange of the Spirit", "iconicity": 3, "ace": true},
+      {"name": "Mudora", "iconicity": 2},
+      {"name": "Keldo", "iconicity": 2},
+      {"name": "Kelbek", "iconicity": 2},
+      {"name": "Agido", "iconicity": 2},
+      {"name": "Muko", "iconicity": 2}
     ]
   },
   {
     "duelist": "rafael",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Guardian Eatos", "iconicity": 3, "ace": true},
       {"name": "Guardian Dreadscythe", "iconicity": 2},
@@ -268,7 +260,7 @@
   },
   {
     "duelist": "zigfried-von-schroeder",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Valkyrie Brunhilde", "iconicity": 3, "ace": true},
       {"name": "Valkyrie Dritte", "iconicity": 2},
@@ -286,7 +278,7 @@
   },
   {
     "duelist": "noah-kaiba",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Shinato, King of a Higher Plane", "iconicity": 3, "ace": true},
       {"name": "Shinato's Ark", "iconicity": 2},
@@ -298,7 +290,7 @@
   },
   {
     "duelist": "jaden-yuki",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Elemental HERO Neos", "iconicity": 3, "ace": true},
       {"name": "Yubel", "iconicity": 3},
@@ -328,7 +320,7 @@
   },
   {
     "duelist": "chazz-princeton",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Armed Dragon LV7", "iconicity": 3, "ace": true},
       {"name": "Ojama Yellow", "iconicity": 3},
@@ -352,7 +344,7 @@
   },
   {
     "duelist": "alexis-rhodes",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Cyber Blader", "iconicity": 3, "ace": true},
       {"name": "Etoile Cyber", "iconicity": 2},
@@ -370,7 +362,7 @@
   },
   {
     "duelist": "zane-truesdale",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Cyber End Dragon", "iconicity": 3, "ace": true},
       {"name": "Cyber Dragon", "iconicity": 3},
@@ -393,7 +385,7 @@
   },
   {
     "duelist": "syrus-truesdale",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Super Vehicroid Jumbo Drill", "iconicity": 3, "ace": true},
       {"name": "Drillroid", "iconicity": 2},
@@ -417,7 +409,7 @@
   },
   {
     "duelist": "bastion-misawa",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Hydrogeddon", "iconicity": 3, "ace": true},
       {"name": "Oxygeddon", "iconicity": 2},
@@ -435,7 +427,7 @@
   },
   {
     "duelist": "jesse-anderson",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Rainbow Dragon", "iconicity": 3, "ace": true},
       {"name": "Crystal Beast Ruby Carbuncle", "iconicity": 2},
@@ -455,7 +447,7 @@
   },
   {
     "duelist": "aster-phoenix",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Destiny HERO - Plasma", "iconicity": 3, "ace": true},
       {"name": "Destiny HERO - Dreadmaster", "iconicity": 2},
@@ -478,7 +470,7 @@
   },
   {
     "duelist": "sartorius",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Arcana Force EX - The Light Ruler", "iconicity": 3, "ace": true},
       {"name": "Arcana Force EX - The Dark Ruler", "iconicity": 3},
@@ -499,7 +491,7 @@
   },
   {
     "duelist": "tyranno-hassleberry",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Ultimate Tyranno", "iconicity": 3, "ace": true},
       {"name": "Super Conductor Tyranno", "iconicity": 2},
@@ -524,7 +516,7 @@
   },
   {
     "duelist": "vellian-crowler",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Ultimate Ancient Gear Golem", "iconicity": 3, "ace": true},
       {"name": "Ancient Gear Golem", "iconicity": 3},
@@ -545,7 +537,7 @@
   },
   {
     "duelist": "adrian-gecko",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Cloudian - Eye of the Typhoon", "iconicity": 3, "ace": true},
       {"name": "Cloudian - Ghost Fog", "iconicity": 1},
@@ -565,7 +557,7 @@
   },
   {
     "duelist": "axel-brodie",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Volcanic Doomfire", "iconicity": 3, "ace": true},
       {"name": "Volcanic Scattershot", "iconicity": 2},
@@ -585,7 +577,7 @@
   },
   {
     "duelist": "jim-crocodile-cook",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Fossil Dyna Pachycephalo", "iconicity": 3, "ace": true},
       {"name": "Fossil Dragon Skullgar", "iconicity": 2},
@@ -606,7 +598,7 @@
   },
   {
     "duelist": "lyman-banner",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Helios Duo Megistus", "iconicity": 3, "ace": true},
       {"name": "Helios - The Primordial Sun", "iconicity": 2},
@@ -620,7 +612,7 @@
   },
   {
     "duelist": "yusei-fudo",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Stardust Dragon", "iconicity": 3, "ace": true},
       {"name": "Junk Warrior", "iconicity": 3},
@@ -651,7 +643,7 @@
   },
   {
     "duelist": "jack-atlas",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Red Dragon Archfiend", "iconicity": 3, "ace": true},
       {"name": "Red Nova Dragon", "iconicity": 2},
@@ -675,7 +667,7 @@
   },
   {
     "duelist": "crow-hogan",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Black-Winged Dragon", "iconicity": 3, "ace": true},
       {"name": "Blackwing - Sirocco the Dawn", "iconicity": 2},
@@ -690,7 +682,6 @@
       {"name": "Blackwing - Vayu the Emblem of Honor", "iconicity": 1},
       {"name": "D.D. Crow", "iconicity": 1},
       {"name": "Fake Feather", "iconicity": 1},
-      {"name": "Black Whirlwind", "iconicity": 1},
       {"name": "Blackwing - Fane the Steel Chain", "iconicity": 1},
       {"name": "Blackwing - Elphin the Raven", "iconicity": 1},
       {"name": "Blackwing - Mistral the Silver Shield", "iconicity": 1}
@@ -698,7 +689,7 @@
   },
   {
     "duelist": "akiza-izinski",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Black Rose Dragon", "iconicity": 3, "ace": true},
       {"name": "Blue Rose Dragon", "iconicity": 2},
@@ -722,7 +713,7 @@
   },
   {
     "duelist": "leo",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Power Tool Dragon", "iconicity": 3, "ace": true},
       {"name": "Morphtronic Datatron", "iconicity": 2},
@@ -739,12 +730,13 @@
       {"name": "Morphtronic Remoten", "iconicity": 1},
       {"name": "Gadget Driver", "iconicity": 1},
       {"name": "Gadget Hauler", "iconicity": 1},
-      {"name": "Double Tool C&D", "iconicity": 1}
+      {"name": "Double Tool C&D", "iconicity": 1},
+      {"name": "Life Stream Dragon", "iconicity": 2}
     ]
   },
   {
     "duelist": "luna",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Ancient Fairy Dragon", "iconicity": 3, "ace": true},
       {"name": "Sunlight Unicorn", "iconicity": 2},
@@ -764,7 +756,7 @@
   },
   {
     "duelist": "kalin-kessler",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Infernity Archfiend", "iconicity": 3, "ace": true},
       {"name": "Earthbound Immortal Ccapac Apu", "iconicity": 3},
@@ -787,7 +779,7 @@
   },
   {
     "duelist": "rex-goodwin",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Earthbound Immortal Wiraqocha Rasca", "iconicity": 3, "ace": true},
       {"name": "Sun Dragon Inti", "iconicity": 2},
@@ -802,7 +794,7 @@
   },
   {
     "duelist": "roman-goodwin",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Earthbound Immortal Uru", "iconicity": 3, "ace": true},
       {"name": "Earthbound Whirlwind", "iconicity": 1},
@@ -817,7 +809,7 @@
   },
   {
     "duelist": "sherry-leblanc",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Sorciere de Fleur", "iconicity": 3, "ace": true},
       {"name": "Necro Fleur", "iconicity": 2},
@@ -830,7 +822,7 @@
   },
   {
     "duelist": "sayer",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Thought Ruler Archfiend", "iconicity": 3, "ace": true},
       {"name": "Magical Android", "iconicity": 2},
@@ -842,14 +834,12 @@
       {"name": "Battle Teleportation", "iconicity": 1},
       {"name": "Telekinetic Shocker", "iconicity": 1},
       {"name": "Psi-Station", "iconicity": 1},
-      {"name": "Mind Master", "iconicity": 1},
-      {"name": "Psychic Commander", "iconicity": 1},
-      {"name": "Destructotron", "iconicity": 1}
+      {"name": "Psychic Commander", "iconicity": 1}
     ]
   },
   {
     "duelist": "bruno",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "T.G. Blade Blaster", "iconicity": 3, "ace": true},
       {"name": "T.G. Cyber Magician", "iconicity": 2},
@@ -871,7 +861,7 @@
   },
   {
     "duelist": "aporia",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Meklord Emperor Granel", "iconicity": 3, "ace": true},
       {"name": "Meklord Emperor Skiel", "iconicity": 2},
@@ -885,7 +875,7 @@
   },
   {
     "duelist": "carly-carmine",
-    "verified": false,
+    "verified": true,
     "cards": [
       {"name": "Fortune Lady Light", "iconicity": 3, "ace": true},
       {"name": "Fortune Lady Earth", "iconicity": 2},
