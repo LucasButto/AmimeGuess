@@ -1,4 +1,6 @@
+import type { PoolNoun } from '@/components/FilterPanel';
 import { defaultMinPool, eligibleEntities } from '@/engine/filters';
+import { es } from '@/i18n/es';
 import { poolOf as connectionsPool } from '@/modes/connections/logic';
 import { candidatesOf as imageCandidates } from '@/modes/image-reveal/logic';
 import { poolOf as higherLowerPool } from '@/modes/higher-lower/logic';
@@ -6,7 +8,7 @@ import { candidatesOf as listCandidates } from '@/modes/reveal-list/logic';
 import { candidatesOf as textCandidates } from '@/modes/text-clue/logic';
 import { poolOf as timelinePool } from '@/modes/timeline/logic';
 import { entitiesOfMode, type FranchiseData } from './data';
-import type { ModeConfig } from './types';
+import type { FranchiseConfig, ModeConfig } from './types';
 
 /**
  * Cuántas opciones tiene un modo con las series activas: lo que cada motor llama su pool
@@ -32,6 +34,17 @@ export function modePoolSize(mode: ModeConfig, data: FranchiseData, active: read
     case 'connections':
       return mode.connections === undefined ? null : connectionsPool(entities, data.contents, active, mode.connections).length;
   }
+}
+
+/**
+ * Cómo se llama lo que cuenta el contador de posibles de un modo: los sucesos de una línea de tiempo, los grupos de las
+ * conexiones o, en los demás, las entidades que se adivinan (las de su conjunto, o las principales de la franquicia).
+ * `undefined` si la config no las nombra: el contador dice solo "N posibles".
+ */
+export function modePoolNoun(franchise: FranchiseConfig, mode: ModeConfig): PoolNoun | undefined {
+  if (mode.engine === 'timeline') return es.filters.nouns.events;
+  if (mode.engine === 'connections') return es.filters.nouns.groups;
+  return mode.entitySet === undefined ? franchise.entityNoun : franchise.entitySetNouns?.[mode.entitySet];
 }
 
 /** El mínimo de pool de un modo (regla 6 de la SPEC): el de su motor. */

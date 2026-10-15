@@ -1,5 +1,6 @@
 import type { ComponentType, ReactNode } from 'react';
 import type { AutocompleteItem } from '../components/Autocomplete';
+import type { PoolNoun } from '../components/FilterPanel';
 import type { ClassicConfig } from '../modes/classic/types';
 import type { ConnectionsConfig } from '../modes/connections/types';
 import type { HigherLowerConfig } from '../modes/higher-lower/types';
@@ -65,7 +66,7 @@ export const THEME_COLORS = [
 export type ThemeColor = (typeof THEME_COLORS)[number];
 
 /** Fuentes de Google Fonts que cargan los temas (ver src/app/fonts.ts). Cada una es una variable CSS `--font-<id>`. */
-export type ThemeFont = 'press-start-2p' | 'jersey-10' | 'bangers' | 'kaushan-script' | 'cinzel';
+export type ThemeFont = 'press-start-2p' | 'jersey-10' | 'rubik' | 'bangers' | 'kaushan-script' | 'cinzel';
 
 /**
  * El tema de una franquicia (SPEC 9): paleta, tipografía de títulos, forma y tratamiento de fondo. Son solo
@@ -123,6 +124,10 @@ export interface FranchiseConfig {
   readonly theme: FranchiseTheme;
   /** Si las sugerencias del autocompletado muestran la miniatura de cada opción. Por defecto, sí. */
   readonly autocompleteThumbnails?: boolean;
+  /** Cómo se llaman las entidades principales ("personaje"/"personajes"): el contador de posibles las nombra. */
+  readonly entityNoun?: PoolNoun;
+  /** Lo mismo para cada conjunto de entidades con nombre (`ModeConfig.entitySet`): "forma"/"formas", "carta"/"cartas". */
+  readonly entitySetNouns?: Readonly<Record<string, PoolNoun>>;
 }
 
 // --- Piel (SPEC 9.2, sesiones 15 a 18) --------------------------------------
@@ -169,6 +174,13 @@ export interface ModeIconProps {
   readonly solved: boolean;
 }
 
+/** Lo que recibe el slot `TitleMark`: el modo cuyo título se está dibujando. */
+export interface TitleMarkProps {
+  readonly slug: string;
+  /** Posición en la lista; el 0 es el modo principal. */
+  readonly index: number;
+}
+
 export interface ModeFrameProps {
   readonly mode: string;
   readonly engine: EngineId;
@@ -182,6 +194,8 @@ export interface CellBackProps {
 
 export interface ChipMarkProps {
   readonly on: boolean;
+  /** A qué opción corresponde (el id de la serie en los filtros), para que el tema dibuje una marca distinta en cada una. */
+  readonly id?: string;
 }
 
 export interface BackNavIconProps {
@@ -198,6 +212,8 @@ export interface AttemptsMeterProps {
   /** Intentos fallidos hasta ahora. */
   readonly failed: number;
   readonly won: boolean;
+  /** Cuántos intentos hay en total, si el modo los limita (la línea de tiempo); los modos que no, no lo pasan. */
+  readonly total?: number;
 }
 
 export interface WinCelebrationProps {
@@ -217,6 +233,8 @@ export interface WinCelebrationProps {
 export interface DailyRewardProps {
   readonly solved: number;
   readonly total: number;
+  /** Los slugs de los modos terminados hoy, para un premio que depende de modos concretos. */
+  readonly solvedSlugs: ReadonlySet<string>;
 }
 
 export interface ValueMarkProps {
@@ -240,6 +258,8 @@ export interface SkinSlots {
   readonly ModeCard: ComponentType<ModeCardProps>;
   /** Miniatura de cada modo en la navegación de los juegos (por defecto, ninguna). */
   readonly ModeIcon: ComponentType<ModeIconProps>;
+  /** Una marca antes del título de la página de un modo, a la altura de las letras (por defecto, ninguna). */
+  readonly TitleMark: ComponentType<TitleMarkProps>;
   readonly ModeFrame: ComponentType<ModeFrameProps>;
   readonly Footer: ComponentType;
   readonly CellBack: ComponentType<CellBackProps>;
@@ -278,17 +298,19 @@ export interface SkinData {
   /** Cuánto dura la animación de salida de los botones de volver antes de navegar (300 ms como máximo). */
   readonly backNavExitMs: number;
   /**
-   * Cuánto dura la animación de salida (slot `PageExit`) al cambiar de modo antes de navegar (500 ms como máximo).
+   * Cuánto dura la animación de salida (slot `PageExit`) al cambiar de modo antes de navegar (900 ms como máximo).
    * 0 es sin animación: se navega enseguida. Con movimiento reducido tampoco hay animación.
    */
   readonly pageExitMs: number;
   /** Íconos de las celdas del Clásico: los caracteres de siempre (✓ ≈ ✕ ↑ ↓) o los íconos pixel. */
   readonly cellIcons: 'text' | 'pixel';
   /**
-   * Qué celdas del Clásico llevan ícono: `all` (✓, ≈, ✕ y flechas, como siempre) o `hints` (solo el parcial y las
-   * flechas: el verde y el rojo ya lo dicen con el color). El texto para lectores de pantalla siempre está.
+   * Qué marcas llevan los resultados: `all` (✓, ≈, ✕ y flechas, como siempre), `hints` (solo el parcial y las flechas: el
+   * verde y el rojo ya lo dicen con el color) o `arrows` (solo las flechas de mayor y menor: sin tildes, cruces ni el
+   * símbolo del parcial en ningún modo; el verde, el amarillo o naranja y el rojo lo dicen solos). El texto para
+   * lectores de pantalla siempre está.
    */
-  readonly cellMarks: 'all' | 'hints';
+  readonly cellMarks: 'all' | 'hints' | 'arrows';
   /** Los chips de filtro miden todos lo mismo, en vez de ajustarse a su texto. */
   readonly uniformFilterChips: boolean;
   /** Título del resumen al ganar: el de siempre ("¡Lo adivinaste!") o la respuesta ("¡Es X!"). */

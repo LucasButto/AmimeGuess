@@ -8,6 +8,7 @@ const help = es.help.pokemon;
 export const pokemonConfig = {
   slug: 'pokemon',
   name: 'Pokémon',
+  entityNoun: { one: 'Pokémon', many: 'Pokémon' },
   series: ['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9'],
   seriesLabels: {
     g1: 'Gen 1',

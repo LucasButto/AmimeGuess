@@ -41,6 +41,20 @@
   list-style: none;
 }
 
+// Los interruptores de la partida, en una fila que baja de renglón si no entran.
+.toggles {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 t.$space-5;
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: t.$space-1;
+}
+
 .note {
   font-size: t.$font-size-sm;
   color: t.token('ink-muted');

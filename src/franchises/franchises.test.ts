@@ -6,8 +6,8 @@ describe('configs de franquicia', () => {
     expect(franchises.map((f) => f.slug)).toEqual(['pokemon', 'dragon-ball', 'naruto', 'yugioh']);
   });
 
-  it('la cantidad de modos es 7, 9, 9 y 10 (Pokémon unió Silueta y Zoom)', () => {
-    expect(franchises.map((f) => f.modes.length)).toEqual([7, 9, 9, 10]);
+  it('la cantidad de modos es 7, 8, 9 y 10 (Pokémon y Dragon Ball unieron Silueta y Zoom)', () => {
+    expect(franchises.map((f) => f.modes.length)).toEqual([7, 8, 9, 10]);
   });
 
   it('los slugs de modo no se repiten dentro de una franquicia', () => {
@@ -19,7 +19,7 @@ describe('configs de franquicia', () => {
 
   it('las series están en el orden canónico de la SPEC 3.1', () => {
     expect(getFranchise('pokemon')?.series).toEqual(['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9']);
-    expect(getFranchise('dragon-ball')?.series).toEqual(['db', 'dbz', 'gt', 'super', 'daima']);
+    expect(getFranchise('dragon-ball')?.series).toEqual(['db', 'dbz', 'daima', 'super', 'gt']);
     expect(getFranchise('naruto')?.series).toEqual(['naruto', 'shippuden', 'boruto']);
     expect(getFranchise('yugioh')?.series).toEqual(['dm', 'gx', '5ds']);
   });

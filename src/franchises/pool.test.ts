@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import type { Content, Entity } from '@/engine/types';
 import type { FranchiseData } from './data';
-import { minimumPoolOf, modePoolSize } from './pool';
-import type { ModeConfig } from './types';
+import { minimumPoolOf, modePoolNoun, modePoolSize } from './pool';
+import type { FranchiseConfig, ModeConfig } from './types';
 
 const entity = (id: string, series: string[], attrs: Entity['attrs'] = {}): Entity => ({ id, name: { es: id }, aliases: [], series, image: `x/${id}`, attrs });
 
@@ -80,5 +80,27 @@ describe('minimumPoolOf', () => {
     expect(minimumPoolOf({ ...base, engine: 'timeline' })).toBe(10);
     expect(minimumPoolOf({ ...base, engine: 'higher-lower' })).toBe(10);
     expect(minimumPoolOf({ ...base, engine: 'connections' })).toBe(4);
+  });
+});
+
+describe('modePoolNoun', () => {
+  const franchise = {
+    entityNoun: { one: 'personaje', many: 'personajes' },
+    entitySetNouns: { forms: { one: 'forma', many: 'formas' } },
+  } as unknown as FranchiseConfig;
+
+  it('los modos de entidades usan las principales, o las de su conjunto', () => {
+    expect(modePoolNoun(franchise, classic)?.many).toBe('personajes');
+    expect(modePoolNoun(franchise, { ...base, engine: 'image-reveal', entitySet: 'forms', imageReveal: { variant: 'blur' } })?.many).toBe('formas');
+  });
+
+  it('la línea de tiempo cuenta sucesos y las conexiones, grupos', () => {
+    expect(modePoolNoun(franchise, { ...base, engine: 'timeline' })?.many).toBe('sucesos');
+    expect(modePoolNoun(franchise, { ...base, engine: 'connections' })?.many).toBe('grupos');
+  });
+
+  it('sin nombre en la config, no hay', () => {
+    expect(modePoolNoun({} as FranchiseConfig, classic)).toBeUndefined();
+    expect(modePoolNoun(franchise, { ...base, engine: 'image-reveal', entitySet: 'otro', imageReveal: { variant: 'blur' } })).toBeUndefined();
   });
 });

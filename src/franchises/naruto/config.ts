@@ -49,6 +49,7 @@ const arcDebutLabels: Readonly<Record<string, ClassicValueLabel>> = Object.fromE
 export const narutoConfig = {
   slug: 'naruto',
   name: 'Naruto',
+  entityNoun: { one: 'personaje', many: 'personajes' },
   series: ['naruto', 'shippuden', 'boruto'],
   seriesLabels: {
     naruto: 'Naruto',

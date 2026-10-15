@@ -26,6 +26,13 @@ describe('ayudas ⓘ', () => {
     }
   });
 
+  it('las siete columnas del Clásico de Dragon Ball explican cómo se comparan', () => {
+    const dragonBall = franchises.find((franchise) => franchise.slug === 'dragon-ball');
+    const columns = dragonBall?.modes.find((mode) => mode.slug === 'clasico')?.classic?.columns ?? [];
+    expect(columns).toHaveLength(7);
+    for (const column of columns) expect(column.help, column.key).toBeTruthy();
+  });
+
   it('las ocho columnas del Clásico de Pokémon (y la de hábitat) explican cómo se comparan', () => {
     const pokemon = franchises.find((franchise) => franchise.slug === 'pokemon');
     const columns = pokemon?.modes.find((mode) => mode.slug === 'clasico')?.classic?.columns ?? [];

@@ -122,6 +122,7 @@ export const es = {
       items: {
         'press-start-2p': { name: 'Press Start 2P', url: 'https://fonts.google.com/specimen/Press+Start+2P' },
         'jersey-10': { name: 'Jersey 10', url: 'https://fonts.google.com/specimen/Jersey+10' },
+        rubik: { name: 'Rubik', url: 'https://fonts.google.com/specimen/Rubik' },
         bangers: { name: 'Bangers', url: 'https://fonts.google.com/specimen/Bangers' },
         'kaushan-script': { name: 'Kaushan Script', url: 'https://fonts.google.com/specimen/Kaushan+Script' },
         cinzel: { name: 'Cinzel', url: 'https://fonts.google.com/specimen/Cinzel' },
@@ -176,11 +177,20 @@ export const es = {
     linkCopyFailed: 'No se pudo copiar el link',
   },
   filters: {
+    // Interruptores de la partida (debajo de las series), en los modos donde cambian algo.
+    filler: 'Relleno',
+    manga: 'Arcos del manga',
     title: 'Filtros',
     hint: 'Apagá las series que no querés que aparezcan.',
     groupLabel: 'Filtrar por serie',
-    remaining: (count: number) => `${count} ${plural(count, 'posible', 'posibles')}`,
-    remainingLabel: 'Respuestas posibles',
+    // "171 personajes posibles"; sin nombre, solo "171 posibles".
+    remaining: (count: number, noun?: { readonly one: string; readonly many: string }) =>
+      `${count} ${noun ? `${plural(count, noun.one, noun.many)} ` : ''}${plural(count, 'posible', 'posibles')}`,
+    // Lo que cuentan los modos que no adivinan entidades de la franquicia.
+    nouns: {
+      events: { one: 'suceso', many: 'sucesos' },
+      groups: { one: 'grupo', many: 'grupos' },
+    },
     belowMinimum: (remaining: number, minimum: number) =>
       `Con estos filtros quedan ${remaining} y hacen falta al menos ${minimum} para jugar este modo. Activá más series.`,
     keepOne: 'Tiene que quedar al menos una serie activa.',
@@ -262,7 +272,7 @@ export const es = {
   textClue: {
     inputLabel: 'Tu intento',
     clueTitle: 'La pista',
-    hintsTitle: 'Más pistas',
+    hintsTitle: 'Pistas',
     hintLocked: (remaining: number) =>
       `Se desbloquea con ${remaining} ${plural(remaining, 'intento fallido más', 'intentos fallidos más')}`,
     attempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
@@ -324,25 +334,34 @@ export const es = {
     listLabel: 'Sucesos para ordenar',
     attempt: (current: number, total: number) => `Intento ${current} de ${total}`,
     confirm: 'Confirmar orden',
-    moveFirst: 'Cambiá algo del orden antes de volver a confirmar.',
+    wrongOrder: 'Orden incorrecto. Cambiá algo y volvé a confirmar.',
     moveUp: (text: string) => `Subir: ${text}`,
     moveDown: (text: string) => `Bajar: ${text}`,
     moved: (text: string, position: number, total: number) => `${text}: posición ${position} de ${total}.`,
     stateLocked: 'En su lugar',
-    stateWrong: 'No va ahí',
-    confirmed: (attempt: number, correct: number, total: number) =>
-      `Intento ${attempt}: ${correct} de ${total} en su lugar.`,
+    confirmed: (attempt: number) => `Intento ${attempt}: orden incorrecto.`,
     solvedAnnouncement: '¡Ordenados!',
     lostAnnouncement: 'Se acabaron los intentos.',
     correctOrderTitle: 'El orden correcto',
     answerLabel: (first: string, last: string) => `de «${first}» a «${last}»`,
     noPuzzle: 'Con estos filtros no hay suficientes sucesos para armar el reto. Activá más series.',
+    noPuzzleLevel: 'Con estos filtros no hay suficientes sucesos para esta dificultad. Activá más series o elegí una más fácil.',
+    levelsLabel: 'Dificultad',
+    levelNames: ['Fácil', 'Normal', 'Difícil'],
+    level: (number: number) => `Dificultad ${number}`,
+    levelCount: (count: number) => `${count} sucesos`,
+    levelLocked: (name: string, needed: number, available: number) => `${name} necesita ${needed} sucesos y con estos filtros hay ${available}.`,
+    orderHelpTopic: 'orden de los sucesos',
     help: {
       goal: (count: number) =>
         `Ordená ${count} sucesos del más antiguo (arriba) al más reciente (abajo).`,
+      goalLevels: (counts: readonly number[]) =>
+        `Ordená los sucesos del más antiguo (arriba) al más reciente (abajo). Elegí la dificultad: ${counts.join(', ')} sucesos. Cada una es un reto distinto del día, con su propia partida; las estadísticas y la racha cuentan todas juntas.`,
+      attemptsLevels: (attempts: readonly number[]) =>
+        `Tenés ${attempts.join(', ')} intentos según la dificultad. Al confirmar solo te decimos si el orden es correcto; no cuáles están bien. Al mover cualquiera, empezás de nuevo con la lista limpia.`,
       move: 'Arrastrá un suceso desde su asa (las rayitas de la izquierda) o usá los botones de subir y bajar; con el teclado, los botones.',
       attempts: (total: number) =>
-        `Tenés ${total} intentos. Al confirmar, los sucesos que están en su lugar quedan fijos y el resto se sigue moviendo.`,
+        `Tenés ${total} intentos. Al confirmar solo te decimos si el orden es correcto; no cuáles están bien.`,
     },
   },
   connections: {
@@ -443,6 +462,22 @@ export const es = {
     },
   },
   // Textos propios de la piel de Pokémon (sesión 15).
+  // Textos de la piel de Dragon Ball (sesión 16): lo que se ve en sus tarjetas, su premio y sus efectos.
+  dragonBallSkin: {
+    capsuleSolved: (attempts: number) => `Resuelto en ${attempts} ${plural(attempts, 'intento', 'intentos')}`,
+    capsuleSolvedToday: 'Resuelto hoy',
+    capsulePending: 'Pendiente',
+    wish: '¡Pedí un deseo!',
+    ki: 'KI',
+    // Antes de las semillas del ermitaño que marcan los intentos que quedan (línea de tiempo).
+    attempts: 'Intentos',
+    // Encabezado decorativo de la lente del rastreador (el campo del intento).
+    scanning: 'Escaneando…',
+    // El objetivo marcado en la lista de coincidencias del rastreador.
+    locked: 'Objetivo fijado',
+    // Lo que aparece un instante sobre cada celda del Clásico al revelarse, como en el manga.
+    onomatopoeia: ['¡ZAS!', '¡PUM!', '¡DOOM!', '¡BAM!', '¡KRASH!', '¡FUUM!'],
+  },
   pokemonSkin: {
     pokedexPending: 'Hoy: pendiente',
     pokedexSolved: (attempts: number) => `Resuelto en ${attempts} ${plural(attempts, 'intento', 'intentos')}`,
@@ -479,14 +514,24 @@ export const es = {
     button: (topic: string) => `Ayuda: ${topic}`,
     filters:
       'Las mismas series activas dan el mismo reto a todo el mundo. Cambiarlas cambia el reto de hoy.',
-    remaining: 'Cuántas respuestas posibles quedan con las series que tenés activas.',
-    copyLink: 'El link lleva tus series activas: quien lo abra juega exactamente el mismo reto que vos.',
     hints: 'Cada pista se desbloquea sola después de una cantidad de intentos fallidos.',
     yesterday: 'La respuesta de ayer para esta misma combinación de series.',
-    streak: 'Días seguidos en que terminaste este modo, con cualquier combinación de series.',
-    stats: 'Tus partidas de este modo. Se guardan solo en este dispositivo.',
     difficulty: 'Estas opciones solo cambian cómo ves la imagen. El reto y la respuesta del día son los mismos.',
     metric: 'La medida que se compara hoy. Cambia cada día y es la misma para todo el mundo.',
+    filler: 'Si está activo, también sale el relleno: personajes y sucesos que están en el anime o en sus películas, pero no en el manga.',
+    manga: 'Si está activo, también salen los arcos del manga aún sin adaptar al anime, como Moro y Granolah. Las películas siempre salen.',
+    // Línea de tiempo de Dragon Ball: en qué orden van las series.
+    timelineOrder: 'Los sucesos siguen la historia: Dragon Ball, Dragon Ball Z, Dragon Ball Daima, Dragon Ball Super y Dragon Ball GT, en ese orden.',
+    // Columnas del Clásico de Dragon Ball.
+    dragonBall: {
+      genero: 'El género del personaje. Verde si es el mismo que el de la respuesta; rojo si no.',
+      razas: 'Su raza (puede tener más de una). Verde si son las mismas que las de la respuesta; naranja si comparten alguna.',
+      afiliaciones: 'Los grupos a los que pertenece. Verde si son los mismos que los de la respuesta; naranja si comparten alguno.',
+      planeta: 'El planeta donde nació. Verde si es el mismo que el de la respuesta; rojo si no.',
+      transformaciones: 'Las formas que alcanzó en las series activas. Verde si son las mismas; naranja si comparten alguna.',
+      serieDebut: 'La serie en la que apareció por primera vez. La flecha indica si la respuesta debutó antes o después.',
+      sagaDebut: 'La saga en la que apareció por primera vez. La flecha indica si la respuesta debutó antes o después.',
+    },
     // Columnas del Clásico de Pokémon.
     pokemon: {
       tipo1: 'El primer tipo del Pokémon. Verde si es el mismo primer tipo que el de la respuesta; rojo si no.',

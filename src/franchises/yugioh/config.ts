@@ -23,6 +23,8 @@ const serieDebutLabels: Readonly<Record<string, ClassicValueLabel>> = Object.fro
 export const yugiohConfig = {
   slug: 'yugioh',
   name: 'Yu-Gi-Oh',
+  entityNoun: { one: 'duelista', many: 'duelistas' },
+  entitySetNouns: { cards: { one: 'carta', many: 'cartas' } },
   series: ['dm', 'gx', '5ds'],
   seriesLabels: {
     dm: seriesLabels.dm,

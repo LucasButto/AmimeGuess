@@ -26,15 +26,17 @@ const loaders: Record<string, () => Promise<FranchiseData>> = {
     return { entities: entities.default as Entity[], contents: publishableContents(contents.default as Content[]) };
   },
   'dragon-ball': async () => {
-    const [entities, transformations, contents] = await Promise.all([
+    const [entities, transformations, power, contents] = await Promise.all([
       import('../../data/dragon-ball/entities.json'),
       import('../../data/dragon-ball/transformations.json'),
+      import('../../data/dragon-ball/power.json'),
       import('../../data/dragon-ball/content.json'),
     ]);
     return {
-      entities: entities.default as Entity[],
+      entities: entities.default as unknown as Entity[],
       contents: publishableContents(contents.default as Content[]),
-      entitySets: { transformations: transformations.default as Entity[] },
+      // `power`: las entradas de Nivel de poder (personajes y formas en un momento de la historia, con su ki).
+      entitySets: { transformations: transformations.default as unknown as Entity[], power: power.default as unknown as Entity[] },
     };
   },
   naruto: async () => {
@@ -72,4 +74,32 @@ export async function loadFranchiseData(slug: string): Promise<FranchiseData | u
 export function entitiesOfMode(data: FranchiseData, entitySet: string | undefined): Entity[] {
   if (entitySet === undefined) return data.entities;
   return data.entitySets?.[entitySet] ?? [];
+}
+
+/**
+ * Lo que la persona deja afuera con los interruptores de la partida: lo de relleno (lo que está en el anime o en sus
+ * películas pero no en el manga) y lo de los arcos del manga que todavía no se adaptaron al anime.
+ */
+export interface DataFlags {
+  readonly skipFiller: boolean;
+  readonly skipMangaOnly: boolean;
+}
+
+/** ¿Lleva la marca? En una entidad es un atributo en 1; en un contenido, un campo del `payload` en `true`. */
+const marked = (value: unknown): boolean => value === 1 || value === true;
+
+/**
+ * Los datos sin lo que dejan afuera los interruptores: entidades (principales y de cada conjunto) con `filler` o
+ * `mangaOnly` en sus atributos, y contenidos con esas marcas en el `payload`. Sin nada que dejar afuera, los mismos datos.
+ */
+export function withoutFlagged(data: FranchiseData, flags: DataFlags): FranchiseData {
+  if (!flags.skipFiller && !flags.skipMangaOnly) return data;
+  const keep = (bag: Readonly<Record<string, unknown>>) =>
+    !(flags.skipFiller && marked(bag.filler)) && !(flags.skipMangaOnly && marked(bag.mangaOnly));
+  return {
+    entities: data.entities.filter((entity) => keep(entity.attrs)),
+    contents: data.contents.filter((content) => keep(content.payload)),
+    entitySets:
+      data.entitySets && Object.fromEntries(Object.entries(data.entitySets).map(([name, list]) => [name, list.filter((entity) => keep(entity.attrs))])),
+  };
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { getDay, msUntilNextDay } from '@/engine/day';
 import { hasMinimumPool } from '@/engine/filters';
 import { activeStreak, getLocalStorage, readState, readStats, recordResult } from '@/engine/storage';
@@ -19,6 +19,7 @@ import { InfoTip } from '../ui/InfoTip';
 import { Switch } from '../ui/Switch';
 import { useSeriesFilters } from '../useSeriesFilters';
 import { Countdown } from './Countdown';
+import { GameFlagsContext } from './flags';
 import styles from './GameShell.module.scss';
 import { ModeNav } from './ModeNav';
 import { clearPracticeStates, newPracticeDay, practiceStorage } from './practice';
@@ -49,8 +50,13 @@ export function GameShell({
   poolSize,
   yesterday,
   help,
+  variant: engineVariant,
+  beforeGame,
   children,
 }: GameShellProps) {
+  // La variante de la partida: la del motor (una dificultad) más la de los interruptores (relleno, arcos del manga).
+  const flags = useContext(GameFlagsContext);
+  const variant = `${engineVariant ?? ''}${flags.variant}` || undefined;
   const { active, filterKey, setActive } = useSeriesFilters(franchise.slug, franchise.series);
   const [day, setDay] = useState(() => getDay(new Date()));
   const [stats, setStats] = useState(() => readStats(getLocalStorage(), franchise.slug, mode.slug));
@@ -76,7 +82,7 @@ export function GameShell({
   const [practiceDay, setPracticeDay] = useState<number | null>(null);
   const practicing = practiceDay !== null;
   const playDay = practiceDay ?? day;
-  const sessionKey = `${filterKey}:${playDay}`;
+  const sessionKey = `${filterKey}:${playDay}${variant ? `:${variant}` : ''}`;
   const report = finished?.key === sessionKey ? finished.report : null;
 
   // Al terminar una partida (no al recargar una ya terminada), la página baja sola hasta el resumen.
@@ -109,8 +115,11 @@ export function GameShell({
   const playable = hasMinimumPool(remaining, minimumPool);
 
   const yesterdayAnswer = useMemo(
-    () => (playable ? yesterday({ franchise: franchise.slug, mode: mode.slug, filterKey, day }, active) : null),
-    [playable, yesterday, franchise.slug, mode.slug, filterKey, day, active],
+    () =>
+      playable
+        ? yesterday({ franchise: franchise.slug, mode: mode.slug, filterKey: variant ? `${filterKey}~${variant}` : filterKey, day }, active)
+        : null,
+    [playable, yesterday, franchise.slug, mode.slug, filterKey, variant, day, active],
   );
 
   // Modos ya resueltos hoy con estos filtros. Se vuelve a leer al terminar una partida.
@@ -130,7 +139,7 @@ export function GameShell({
 
   const handleFinish = useCallback(
     (reported: FinishReport) => {
-      setFinished({ key: `${filterKey}:${playDay}`, report: reported });
+      setFinished({ key: sessionKey, report: reported });
       // Solo la partida que terminó ahora suma; una restaurada al recargar ya está contada.
       if (reported.fresh) {
         // Fanfarria del tema (si hay sonidos) al ganar un reto de intentos; los de puntaje no se "ganan".
@@ -147,7 +156,7 @@ export function GameShell({
         );
       }
     },
-    [filterKey, playDay, practicing, day, franchise.slug, mode.slug, play],
+    [sessionKey, practicing, day, franchise.slug, mode.slug, play],
   );
 
   const getShareText = useCallback(() => {
@@ -195,6 +204,7 @@ export function GameShell({
         onChange={setActive}
         remaining={remaining}
         minimum={minimumPool}
+        toggles={flags.toggles}
       >
         <CopyLinkButton filterKey={filterKey} />
       </FilterPanel>
@@ -210,10 +220,19 @@ export function GameShell({
         </div>
       )}
 
-      {/* Otra combinación de filtros o de día es otra partida: el juego se vuelve a montar. */}
+      {playable && beforeGame?.({ remaining })}
+
+      {/* Otra combinación de filtros, de día o de variante es otra partida: el juego se vuelve a montar. */}
       {playable && (
-        <div key={sessionKey} ref={gameRef} className={styles.game}>
-          {children({ franchise: franchise.slug, mode: mode.slug, day: playDay, filterKey, active, onFinish: handleFinish })}
+        <div key={sessionKey} ref={gameRef} className={styles.game} data-game-mode={mode.slug}>
+          {children({
+            franchise: franchise.slug,
+            mode: mode.slug,
+            day: playDay,
+            filterKey: variant ? `${filterKey}~${variant}` : filterKey,
+            active,
+            onFinish: handleFinish,
+          })}
         </div>
       )}
 

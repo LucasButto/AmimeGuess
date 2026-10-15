@@ -1,12 +1,26 @@
 'use client';
 
-import { useId, type ReactNode } from 'react';
+import { createContext, useContext, useId, type ReactNode } from 'react';
 import { es } from '@/i18n/es';
 import styles from './FilterPanel.module.scss';
 import { useSkin } from './skin/context';
 import { Chip } from './ui/Chip';
+import type { GameToggle } from './game-shell/flags';
 import { InfoTip } from './ui/InfoTip';
 import { Panel } from './ui/Panel';
+import { Switch } from './ui/Switch';
+
+/** Cómo se llama lo que se cuenta en "N … posibles" ("personaje" / "personajes"). */
+export interface PoolNoun {
+  readonly one: string;
+  readonly many: string;
+}
+
+/**
+ * Lo que cuenta el contador de posibles en el modo de la página (las respuestas de un modo, sus formas, sus
+ * sucesos…): lo da `ModeGame` desde la config, así ningún motor tiene que pasarlo. Sin valor, el contador no nombra nada.
+ */
+export const PoolNounContext = createContext<PoolNoun | undefined>(undefined);
 
 interface FilterPanelProps {
   /** Ids de serie en orden canónico. */
@@ -21,6 +35,8 @@ interface FilterPanelProps {
   remaining: number;
   /** Mínimo para poder jugar el modo (regla 6 de la SPEC). */
   minimum: number;
+  /** Interruptores de la partida (relleno, arcos del manga), debajo de las series; cada uno con su ⓘ. */
+  toggles?: readonly GameToggle[];
   /** Acciones que dependen de los filtros, al pie del panel (por ejemplo, copiar el link). */
   children?: ReactNode;
 }
@@ -29,8 +45,9 @@ interface FilterPanelProps {
  * Chips por serie: se apagan para excluir (SPEC 9). Muestra cuántas entidades
  * quedan, avisa si no alcanzan el mínimo e impide apagar la última serie.
  */
-export function FilterPanel({ series, labels, details, active, onChange, remaining, minimum, children }: FilterPanelProps) {
+export function FilterPanel({ series, labels, details, active, onChange, remaining, minimum, toggles, children }: FilterPanelProps) {
   const { skin } = useSkin();
+  const noun = useContext(PoolNounContext);
   const { ChipMark } = skin.slots;
   const titleId = useId();
   const keepOneId = useId();
@@ -51,12 +68,9 @@ export function FilterPanel({ series, labels, details, active, onChange, remaini
           </h2>
           <InfoTip compact text={es.help.filters} label={es.help.button(es.filters.title)} />
         </div>
-        <div className={styles.titleRow}>
-          <p className={styles.count} role="status">
-            {es.filters.remaining(remaining)}
-          </p>
-          <InfoTip compact text={es.help.remaining} label={es.help.button(es.filters.remainingLabel)} />
-        </div>
+        <p className={styles.count} role="status">
+          {es.filters.remaining(remaining, noun)}
+        </p>
       </div>
       <p className={styles.hint}>{es.filters.hint}</p>
 
@@ -72,7 +86,7 @@ export function FilterPanel({ series, labels, details, active, onChange, remaini
                 aria-describedby={locked ? keepOneId : undefined}
                 onClick={() => toggle(id)}
                 // La marca acompaña al color: el estado no depende solo de él.
-                mark={<ChipMark on={on} />}
+                mark={<ChipMark on={on} id={id} />}
               >
                 {labels[id] ?? id}
                 {details?.[id] && <span className={styles.detail}>{details[id]}</span>}
@@ -82,6 +96,16 @@ export function FilterPanel({ series, labels, details, active, onChange, remaini
         })}
       </ul>
 
+      {toggles && toggles.length > 0 && (
+        <div className={styles.toggles}>
+          {toggles.map((toggle) => (
+            <div key={toggle.id} className={styles.toggle}>
+              <Switch label={toggle.label} checked={toggle.on} onChange={toggle.onChange} />
+              <InfoTip compact text={toggle.help} label={es.help.button(toggle.label)} />
+            </div>
+          ))}
+        </div>
+      )}
       {onlyOne && (
         <p className={styles.note} id={keepOneId}>
           {es.filters.keepOne}
