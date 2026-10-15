@@ -29,9 +29,9 @@
   { "id": "gohan-definitivo", "api": 24, "character": "gohan", "forma": "Definitivo", "name": "Gohan Definitivo", "aliases": ["Gohan Ultimate", "Ultimate Gohan", "Gohan Místico", "Gohan Mystic"], "series": "dbz", "verified": false },
   { "id": "gohan-bestia", "api": 25, "character": "gohan", "forma": "Bestia", "name": "Gohan Bestia", "aliases": ["Gohan Beast", "Beast Gohan"], "series": "super", "verified": false },
 
-  { "id": "trunks-ssj", "api": 26, "character": "trunks", "forma": "Supersaiyano", "name": "Trunks Supersaiyano", "aliases": ["Trunks SSJ", "Trunks Super Saiyan"], "series": "dbz", "verified": false },
-  { "id": "trunks-ssj2", "api": 27, "character": "trunks", "forma": "Supersaiyano 2", "name": "Trunks Supersaiyano 2", "aliases": ["Trunks SSJ2", "Trunks Super Saiyan 2"], "series": "dbz", "verified": false },
-  { "id": "trunks-furioso", "api": 29, "character": "trunks", "forma": "Supersaiyano Furioso", "name": "Trunks Supersaiyano Furioso", "aliases": ["Trunks Rage", "Rage Trunks", "Trunks Super Saiyan Rage"], "series": "super", "verified": false },
+  { "id": "trunks-ssj", "api": 26, "character": "trunks-del-futuro", "forma": "Supersaiyano", "name": "Trunks Supersaiyano", "aliases": ["Trunks SSJ", "Trunks Super Saiyan"], "series": "dbz", "verified": false },
+  { "id": "trunks-ssj2", "api": 27, "character": "trunks-del-futuro", "forma": "Supersaiyano 2", "name": "Trunks Supersaiyano 2", "aliases": ["Trunks SSJ2", "Trunks Super Saiyan 2"], "series": "super", "verified": false },
+  { "id": "trunks-furioso", "api": 29, "character": "trunks-del-futuro", "forma": "Supersaiyano Furioso", "name": "Trunks Supersaiyano Furioso", "aliases": ["Trunks Rage", "Rage Trunks", "Trunks Super Saiyan Rage"], "series": "super", "verified": false },
 
   { "id": "gotenks-ssj", "api": 30, "character": "gotenks", "forma": "Supersaiyano", "name": "Gotenks Supersaiyano", "aliases": ["Gotenks SSJ", "Gotenks Super Saiyan"], "series": "dbz", "verified": false },
   { "id": "gotenks-ssj3", "api": 31, "character": "gotenks", "forma": "Supersaiyano 3", "name": "Gotenks Supersaiyano 3", "aliases": ["Gotenks SSJ3", "Gotenks Super Saiyan 3"], "series": "dbz", "verified": false },
@@ -41,13 +41,13 @@
   { "id": "buu-super-buu-gohan", "api": 34, "character": "majin-buu", "forma": "Super Buu con Gohan", "name": "Super Buu con Gohan", "aliases": ["Majin Buu (Gohan)", "Super Buu absorbió a Gohan", "Super Buu Gohan"], "series": "dbz", "verified": false },
   { "id": "buu-kid-buu", "api": 35, "character": "majin-buu", "forma": "Kid Buu", "name": "Kid Buu", "aliases": ["Majin Buu (Pure)", "Boo Puro", "Buu Puro", "Majin Buu puro"], "series": "dbz", "verified": false },
 
-  { "id": "gogeta-ssj", "api": 36, "character": "gogeta", "forma": "Supersaiyano", "name": "Gogeta Supersaiyano", "aliases": ["Gogeta SSJ", "Gogeta Super Saiyan"], "series": "dbz", "verified": false },
+  { "id": "gogeta-ssj", "api": 36, "character": "gogeta", "forma": "Supersaiyano", "name": "Gogeta Supersaiyano", "aliases": ["Gogeta SSJ", "Gogeta Super Saiyan"], "series": "dbz", "filler":true,"verified": false },
   { "id": "gogeta-ssj4", "api": 37, "character": "gogeta", "forma": "Supersaiyano 4", "name": "Gogeta Supersaiyano 4", "aliases": ["Gogeta SSJ4", "Gogeta Super Saiyan 4"], "series": "gt", "verified": false },
   { "id": "gogeta-ssb", "api": 38, "character": "gogeta", "forma": "Supersaiyano Azul", "name": "Gogeta Supersaiyano Azul", "aliases": ["Gogeta SSJB", "Gogeta Super Saiyan Blue"], "series": "super", "verified": false },
 
   { "id": "vegetto-ssj", "api": 40, "character": "vegetto", "forma": "Supersaiyano", "name": "Vegetto Supersaiyano", "aliases": ["Vegetto SSJ", "Vegito Super Saiyan", "Vegetto Super Saiyan"], "series": "dbz", "verified": false },
   { "id": "vegetto-ssb", "api": 41, "character": "vegetto", "forma": "Supersaiyano Azul", "name": "Vegetto Supersaiyano Azul", "aliases": ["Vegetto SSJB", "Vegito Blue", "Vegetto Super Saiyan Blue"], "series": "super", "verified": false },
 
-  { "id": "janemba-super-janemba", "api": 42, "character": "janemba", "forma": "Super Janemba", "name": "Super Janemba", "aliases": ["Janemba Super", "Janenba Super"], "series": "dbz", "verified": false },
+  { "id": "janemba-super-janemba", "api": 42, "character": "janemba", "forma": "Super Janemba", "name": "Super Janemba", "aliases": ["Janemba Super", "Janenba Super"], "series": "dbz", "filler":true,"verified": false },
   { "id": "broly-ssj-legendario", "api": 43, "character": "broly", "forma": "Supersaiyano Legendario", "name": "Broly Supersaiyano Legendario", "aliases": ["Broly SSJ Legendary", "Broly Legendary Super Saiyan", "Broly Super Saiyajin Legendario"], "series": "super", "verified": false }
 ]

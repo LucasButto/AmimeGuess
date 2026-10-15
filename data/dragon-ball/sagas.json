@@ -9,15 +9,15 @@
       "order": 2
     },
     {
-      "id": "super",
+      "id": "daima",
       "order": 3
     },
     {
-      "id": "gt",
+      "id": "super",
       "order": 4
     },
     {
-      "id": "daima",
+      "id": "gt",
       "order": 5
     }
   ],
@@ -101,87 +101,87 @@
       "order": 13
     },
     {
+      "id": "reino-demoniaco",
+      "name": "Dragon Ball Daima",
+      "series": "daima",
+      "order": 14
+    },
+    {
       "id": "beerus",
       "name": "Arco del Dios de la Destrucción Beerus",
       "series": "super",
-      "order": 14
+      "order": 15
     },
     {
       "id": "freezer-dorado",
       "name": "Arco de Freezer Dorado",
       "series": "super",
-      "order": 15
+      "order": 16
     },
     {
       "id": "universo-6",
       "name": "Arco del Universo 6 contra el Universo 7",
       "series": "super",
-      "order": 16
+      "order": 17
     },
     {
       "id": "trunks-futuro",
       "name": "Arco de Trunks del Futuro",
       "series": "super",
-      "order": 17
+      "order": 18
     },
     {
       "id": "supervivencia",
       "name": "Arco de la Supervivencia del Universo",
       "series": "super",
-      "order": 18
+      "order": 19
     },
     {
       "id": "super-broly",
       "name": "Película Dragon Ball Super: Broly",
       "series": "super",
-      "order": 19
+      "order": 20
     },
     {
       "id": "prisionero-patrulla-galactica",
       "name": "Arco del Prisionero de la Patrulla Galáctica",
       "series": "super",
-      "order": 20
+      "order": 21
     },
     {
       "id": "sobreviviente-granolah",
       "name": "Arco del Sobreviviente Granolah",
       "series": "super",
-      "order": 21
+      "order": 22
     },
     {
       "id": "super-hero",
       "name": "Película Dragon Ball Super: Super Hero",
       "series": "super",
-      "order": 22
+      "order": 23
     },
     {
       "id": "esferas-definitivas",
       "name": "Arco de las Esferas del Dragón Definitivas",
       "series": "gt",
-      "order": 23
+      "order": 24
     },
     {
       "id": "baby",
       "name": "Arco del Demonio Vengador Baby",
       "series": "gt",
-      "order": 24
+      "order": 25
     },
     {
       "id": "androide-definitivo",
       "name": "Arco del Androide Definitivo",
       "series": "gt",
-      "order": 25
+      "order": 26
     },
     {
       "id": "dragones-malignos",
       "name": "Arco de los Siete Dragones Malignos",
       "series": "gt",
-      "order": 26
-    },
-    {
-      "id": "reino-demoniaco",
-      "name": "Dragon Ball Daima",
-      "series": "daima",
       "order": 27
     }
   ]

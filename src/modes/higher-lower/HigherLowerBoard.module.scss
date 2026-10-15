@@ -47,6 +47,8 @@
 }
 
 .options {
+  // El botón "Siguiente" se posa en el medio de las dos opciones.
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: t.$space-3;
@@ -96,7 +98,7 @@
   // El resultado se marca con borde y fondo, y además con texto e ícono (ver `badge`).
   &[data-winner='true'] {
     --_edge: #{t.token('cell-correct')};
-    --_fill: color-mix(in srgb, #{t.token('cell-correct')} 10%, #{t.token('surface-panel')});
+    --_fill: color-mix(in srgb, #{t.token('cell-correct')} 28%, #{t.token('surface-panel')});
   }
 
   &[data-picked='true']:not([data-winner='true']) {
@@ -136,9 +138,21 @@
   overflow-wrap: anywhere;
 }
 
+// El valor y, debajo en la misma celda, el más largo del día invisible: el lugar queda reservado desde antes de elegir.
 .value {
+  display: grid;
   font-size: t.$font-size-lg;
   font-variant-numeric: tabular-nums;
+  // Un valor muy grande, escrito completo (25 cifras), baja de renglón en vez de salirse de la tarjeta.
+  overflow-wrap: anywhere;
+
+  > * {
+    grid-area: 1 / 1;
+  }
+}
+
+.valueSizer {
+  visibility: hidden;
 }
 
 .badges {
@@ -160,7 +174,17 @@
   }
 }
 
+// El tachado del que no era: por defecto no se ve; una piel puede dibujarlo (con `data-part='strike'`).
+.strike {
+  display: none;
+}
+
 .outcome {
+  // Antes de elegir, invisible: solo guarda su lugar.
+  &[data-pending='true'] {
+    visibility: hidden;
+  }
+
   // La franja de la izquierda dice con color lo que el texto dice con palabras: acierto o error.
   --_mark: #{t.token('cell-incorrect')};
   @include m.pixel-frame(
@@ -200,7 +224,12 @@
     $clip: t.token('clip-button'),
     $radius: t.$radius-md
   );
-  padding: t.$space-2 calc(#{t.$space-5} + #{t.token('button-frame-width')});
+  position: absolute;
+  z-index: 2;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  transform: translate(-50%, -50%);
+  padding: t.$space-2 calc(#{t.$space-4} + #{t.token('button-frame-width')});
   border: 0;
   background: none;
   font: inherit;
@@ -210,7 +239,7 @@
   @include m.focus-ring;
 
   &:active {
-    transform: translateY(#{t.token('button-press')});
+    transform: translate(-50%, calc(-50% + #{t.token('button-press')}));
   }
 }
 
@@ -256,4 +285,29 @@
   display: flex;
   align-items: center;
   gap: 0.875rem;
+}
+
+// Al pasar de ronda, lo de adentro de las dos opciones (y "Siguiente") se desvanece y lo de la ronda nueva aparece. Solo
+// opacidad; con movimiento reducido no hay fundido (y la ronda cambia sin esperar, ver `LEAVE_MS`).
+@include bp.motion-ok {
+  .option > * {
+    animation: option-in 0.25s ease-out both;
+  }
+
+  .options[data-leaving='true'] .option > *,
+  .options[data-leaving='true'] .next {
+    animation: option-out 0.2s ease-in both;
+  }
+}
+
+@keyframes option-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes option-out {
+  to {
+    opacity: 0;
+  }
 }

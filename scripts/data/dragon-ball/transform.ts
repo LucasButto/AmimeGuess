@@ -111,17 +111,17 @@ export interface CharacterInput {
   /** Posición cronológica de la serie de debut y de la saga de debut. */
   readonly debutSeriesRank: number;
   readonly debutSagaRank: number;
-  readonly power: PowerSrc | undefined;
   readonly image: EntityImage | null;
 }
 
 /**
  * Un personaje. Los atributos de tipo conjunto son listas; los valores de `transformaciones` llevan
  * la serie en la que se ve la forma (regla 3). Lo que no se puede ordenar o no existe va como `null`.
- * `imagenTransparente` y `kiOficial` son 1 o 0 porque un atributo no puede ser un booleano.
+ * `imagenTransparente` es 1 o 0 porque un atributo no puede ser un booleano; `filler` y `mangaOnly` van con 1 solo si
+ * corresponde (ver `withoutFlagged`).
  */
 export function buildCharacterEntity(input: CharacterInput): Entity {
-  const { src, series, power, image } = input;
+  const { src, series, image } = input;
   const entity: Entity = {
     id: src.id,
     name: { es: src.name },
@@ -137,12 +137,33 @@ export function buildCharacterEntity(input: CharacterInput): Entity {
       sagaDebut: input.debutSagaRank,
       estadoVital: src.estadoVital,
       tecnica: src.tecnica,
-      ki: power?.ki ?? null,
-      kiOficial: power?.ki == null ? null : power.official ? 1 : 0,
       imagenTransparente: image === null ? null : image.transparent ? 1 : 0,
+      ...(src.filler === true ? { filler: 1 } : {}),
+      ...(src.mangaOnly === true ? { mangaOnly: 1 } : {}),
     },
   };
   if (image !== null) entity.image = image.path;
+  return entity;
+}
+
+/**
+ * Una entrada de Nivel de poder como entidad: el nombre con su saga, la imagen y las marcas del personaje o la forma de
+ * la que sale (`of`), y el ki. `kiOficial` es 1 o 0.
+ */
+export function buildPowerEntity(src: PowerSrc, of: Entity): Entity {
+  const entity: Entity = {
+    id: src.id,
+    name: { es: src.name },
+    aliases: [],
+    series: [src.series],
+    attrs: {
+      ki: src.ki,
+      kiOficial: src.official ? 1 : 0,
+      ...(of.attrs.filler === 1 ? { filler: 1 } : {}),
+      ...(of.attrs.mangaOnly === 1 ? { mangaOnly: 1 } : {}),
+    },
+  };
+  if (of.image !== undefined) entity.image = of.image;
   return entity;
 }
 
@@ -157,6 +178,7 @@ export function buildTransformationEntity(src: TransformationSrc, characterName:
       personaje: characterName,
       forma: src.forma,
       imagenTransparente: image === null ? null : image.transparent ? 1 : 0,
+      ...(src.filler === true ? { filler: 1 } : {}),
     },
   };
   if (image !== null) entity.image = image.path;
@@ -182,5 +204,11 @@ export function eventOrders(events: readonly EventSrc[], seriesOrder: readonly S
 }
 
 export function buildEventContent(event: EventSrc, order: number): Content {
-  return { id: `event-${event.id}`, kind: 'event', series: event.series, payload: { text: event.text, order }, verified: event.verified };
+  const payload = {
+    text: event.text,
+    order,
+    ...(event.filler === true ? { filler: true as const } : {}),
+    ...(event.mangaOnly === true ? { mangaOnly: true as const } : {}),
+  };
+  return { id: `event-${event.id}`, kind: 'event', series: event.series, payload, verified: event.verified };
 }

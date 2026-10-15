@@ -1,0 +1,2445 @@
+[
+  {
+    "id": "zeno",
+    "name": {
+      "es": "Zeno"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 1e+24,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/zeno"
+  },
+  {
+    "id": "gran-sacerdote",
+    "name": {
+      "es": "Gran Sacerdote"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 1e+22,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/gran-sacerdote"
+  },
+  {
+    "id": "whis",
+    "name": {
+      "es": "Whis"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 1e+21,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/whis"
+  },
+  {
+    "id": "vados",
+    "name": {
+      "es": "Vados"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 1e+21,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/vados"
+  },
+  {
+    "id": "marcarita",
+    "name": {
+      "es": "Marcarita"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 1e+21,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/marcarita"
+  },
+  {
+    "id": "merus",
+    "name": {
+      "es": "Merus (saga de Granolah)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 120000000000000000000,
+      "kiOficial": 0,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/merus"
+  },
+  {
+    "id": "bills",
+    "name": {
+      "es": "Bills"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 150000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/bills"
+  },
+  {
+    "id": "vermoud",
+    "name": {
+      "es": "Vermoud"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 150000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/vermoud"
+  },
+  {
+    "id": "granolah",
+    "name": {
+      "es": "Granolah (saga de Granolah)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 100000000000000000000,
+      "kiOficial": 0,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/granolah"
+  },
+  {
+    "id": "gogeta",
+    "name": {
+      "es": "Gogeta (película Broly)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 100000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/gogeta"
+  },
+  {
+    "id": "champa",
+    "name": {
+      "es": "Champa"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 90000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/champa"
+  },
+  {
+    "id": "goku",
+    "name": {
+      "es": "Goku (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 80000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/goku"
+  },
+  {
+    "id": "gohan",
+    "name": {
+      "es": "Gohan (Super Hero)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 80000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/gohan"
+  },
+  {
+    "id": "jiren",
+    "name": {
+      "es": "Jiren (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 80000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/jiren"
+  },
+  {
+    "id": "moro",
+    "name": {
+      "es": "Moro (saga de Moro)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 70000000000000000000,
+      "kiOficial": 0,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/moro"
+  },
+  {
+    "id": "broly",
+    "name": {
+      "es": "Broly (película Broly)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 60000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/broly"
+  },
+  {
+    "id": "freezer",
+    "name": {
+      "es": "Freezer (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 40000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/freezer"
+  },
+  {
+    "id": "piccolo",
+    "name": {
+      "es": "Piccolo (Super Hero)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 3000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/piccolo"
+  },
+  {
+    "id": "vegeta",
+    "name": {
+      "es": "Vegeta (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 30000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/vegeta"
+  },
+  {
+    "id": "gamma-1",
+    "name": {
+      "es": "Gamma 1"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 30000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/gamma-1"
+  },
+  {
+    "id": "gamma-2",
+    "name": {
+      "es": "Gamma 2"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 30000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/gamma-2"
+  },
+  {
+    "id": "androide-17",
+    "name": {
+      "es": "Androide 17 (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 60000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/androide-17"
+  },
+  {
+    "id": "toppo",
+    "name": {
+      "es": "Toppo (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 20000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/toppo"
+  },
+  {
+    "id": "kefla",
+    "name": {
+      "es": "Kefla (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 10000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/kefla"
+  },
+  {
+    "id": "dyspo",
+    "name": {
+      "es": "Dyspo (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 10000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/dyspo"
+  },
+  {
+    "id": "zamasu",
+    "name": {
+      "es": "Zamasu (saga de Black)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 6000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/zamasu"
+  },
+  {
+    "id": "kale",
+    "name": {
+      "es": "Kale (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 6000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/kale"
+  },
+  {
+    "id": "hit",
+    "name": {
+      "es": "Hit (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 6000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/hit"
+  },
+  {
+    "id": "vegetto",
+    "name": {
+      "es": "Vegetto (saga de Black)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 5000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/vegetto"
+  },
+  {
+    "id": "caulifla",
+    "name": {
+      "es": "Caulifla (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 5000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/caulifla"
+  },
+  {
+    "id": "goku-black",
+    "name": {
+      "es": "Goku Black (saga de Black)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 3000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/goku-black"
+  },
+  {
+    "id": "trunks-del-futuro",
+    "name": {
+      "es": "Trunks del Futuro (saga de Black)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 3000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/trunks-del-futuro"
+  },
+  {
+    "id": "trunks",
+    "name": {
+      "es": "Trunks (Super)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 100000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/trunks"
+  },
+  {
+    "id": "cabba",
+    "name": {
+      "es": "Cabba (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 1000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/cabba"
+  },
+  {
+    "id": "frost",
+    "name": {
+      "es": "Frost (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 500000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/frost"
+  },
+  {
+    "id": "goten",
+    "name": {
+      "es": "Goten (Super)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 100000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/goten"
+  },
+  {
+    "id": "super-17",
+    "name": {
+      "es": "Super Androide 17"
+    },
+    "aliases": [],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "ki": 60000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/super-17"
+  },
+  {
+    "id": "baby",
+    "name": {
+      "es": "Baby"
+    },
+    "aliases": [],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "ki": 50000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/baby"
+  },
+  {
+    "id": "androide-18",
+    "name": {
+      "es": "Androide 18 (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 20000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/androide-18"
+  },
+  {
+    "id": "krilin",
+    "name": {
+      "es": "Krilin (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 10000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/krilin"
+  },
+  {
+    "id": "tenshinhan",
+    "name": {
+      "es": "Tenshinhan (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 10000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/tenshinhan"
+  },
+  {
+    "id": "maestro-roshi",
+    "name": {
+      "es": "Maestro Roshi (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 10000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/maestro-roshi"
+  },
+  {
+    "id": "majin-buu",
+    "name": {
+      "es": "Majin Buu (Super)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 10000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/majin-buu"
+  },
+  {
+    "id": "oob",
+    "name": {
+      "es": "Oob (GT)"
+    },
+    "aliases": [],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "ki": 5000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/oob"
+  },
+  {
+    "id": "glorio",
+    "name": {
+      "es": "Glorio"
+    },
+    "aliases": [],
+    "series": [
+      "daima"
+    ],
+    "attrs": {
+      "ki": 2000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/glorio"
+  },
+  {
+    "id": "janemba",
+    "name": {
+      "es": "Janemba (película La fusión)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 300000000000,
+      "kiOficial": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/janemba"
+  },
+  {
+    "id": "gomah",
+    "name": {
+      "es": "Gomah (estado base)"
+    },
+    "aliases": [],
+    "series": [
+      "daima"
+    ],
+    "attrs": {
+      "ki": 500000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/gomah"
+  },
+  {
+    "id": "super-buu",
+    "name": {
+      "es": "Super Buu (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 200000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/super-buu"
+  },
+  {
+    "id": "gotenks",
+    "name": {
+      "es": "Gotenks (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 150000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/gotenks"
+  },
+  {
+    "id": "kid-buu",
+    "name": {
+      "es": "Kid Buu"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 100000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/kid-buu"
+  },
+  {
+    "id": "yamcha",
+    "name": {
+      "es": "Yamcha (Super)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 20000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/yamcha"
+  },
+  {
+    "id": "deges",
+    "name": {
+      "es": "Deges"
+    },
+    "aliases": [],
+    "series": [
+      "daima"
+    ],
+    "attrs": {
+      "ki": 130000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/deges"
+  },
+  {
+    "id": "coola",
+    "name": {
+      "es": "Coola"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 5000000000,
+      "kiOficial": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/coola"
+  },
+  {
+    "id": "celula",
+    "name": {
+      "es": "Célula (saga de Cell)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 5000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/celula"
+  },
+  {
+    "id": "gran-kaioshin",
+    "name": {
+      "es": "Gran Kaio-shin"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 5000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/gran-kaioshin"
+  },
+  {
+    "id": "dabura",
+    "name": {
+      "es": "Dabura"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 3000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/dabura"
+  },
+  {
+    "id": "bojack",
+    "name": {
+      "es": "Bojack"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 3000000000,
+      "kiOficial": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/bojack"
+  },
+  {
+    "id": "kibitoshin",
+    "name": {
+      "es": "Kibitoshin"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 3000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/kibitoshin"
+  },
+  {
+    "id": "cell-jr",
+    "name": {
+      "es": "Cell Jr."
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 2000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/cell-jr"
+  },
+  {
+    "id": "androide-13",
+    "name": {
+      "es": "Androide 13"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 1500000000,
+      "kiOficial": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/androide-13"
+  },
+  {
+    "id": "androide-16",
+    "name": {
+      "es": "Androide 16"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 1200000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/androide-16"
+  },
+  {
+    "id": "kaioshin-del-este",
+    "name": {
+      "es": "Kaio-shin del Este (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 1000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/kaioshin-del-este"
+  },
+  {
+    "id": "kaioshin-del-norte",
+    "name": {
+      "es": "Kaio-shin del Norte"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 1000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/kaioshin-del-norte"
+  },
+  {
+    "id": "kaioshin-del-sur",
+    "name": {
+      "es": "Kaio-shin del Sur"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 1000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/kaioshin-del-sur"
+  },
+  {
+    "id": "kaioshin-del-oeste",
+    "name": {
+      "es": "Kaio-shin del Oeste"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 1000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/kaioshin-del-oeste"
+  },
+  {
+    "id": "androide-14",
+    "name": {
+      "es": "Androide 14"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 300000000,
+      "kiOficial": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/androide-14"
+  },
+  {
+    "id": "androide-15",
+    "name": {
+      "es": "Androide 15"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 300000000,
+      "kiOficial": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/androide-15"
+  },
+  {
+    "id": "kibito",
+    "name": {
+      "es": "Kibito"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 300000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/kibito"
+  },
+  {
+    "id": "dr-gero",
+    "name": {
+      "es": "Dr. Gero"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 250000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/dr-gero"
+  },
+  {
+    "id": "androide-19",
+    "name": {
+      "es": "Androide 19"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 200000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/androide-19"
+  },
+  {
+    "id": "slug",
+    "name": {
+      "es": "Slug"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 200000000,
+      "kiOficial": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/slug"
+  },
+  {
+    "id": "goku-jr",
+    "name": {
+      "es": "Goku Jr."
+    },
+    "aliases": [],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "ki": 35,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/goku-jr"
+  },
+  {
+    "id": "arins",
+    "name": {
+      "es": "Dr. Arinsu"
+    },
+    "aliases": [],
+    "series": [
+      "daima"
+    ],
+    "attrs": {
+      "ki": 100000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/arins"
+  },
+  {
+    "id": "chaoz",
+    "name": {
+      "es": "Chaoz (Super)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 100000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/chaoz"
+  },
+  {
+    "id": "turles",
+    "name": {
+      "es": "Turles"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 30000000,
+      "kiOficial": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/turles"
+  },
+  {
+    "id": "kaioshin-anciano",
+    "name": {
+      "es": "Kaioshin Anciano"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 10000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/kaioshin-anciano"
+  },
+  {
+    "id": "ginyu",
+    "name": {
+      "es": "Capitán Ginyu"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 120000,
+      "kiOficial": 1
+    },
+    "image": "dragon-ball/ginyu"
+  },
+  {
+    "id": "gran-kaio",
+    "name": {
+      "es": "Gran Kaio"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 100000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/gran-kaio"
+  },
+  {
+    "id": "burter",
+    "name": {
+      "es": "Burter"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 45000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/burter"
+  },
+  {
+    "id": "nail",
+    "name": {
+      "es": "Nail"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 42000,
+      "kiOficial": 1
+    },
+    "image": "dragon-ball/nail"
+  },
+  {
+    "id": "recoome",
+    "name": {
+      "es": "Recoome"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 40000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/recoome"
+  },
+  {
+    "id": "jeice",
+    "name": {
+      "es": "Jeice"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 40000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/jeice"
+  },
+  {
+    "id": "zarbon",
+    "name": {
+      "es": "Zarbon"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 23000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/zarbon"
+  },
+  {
+    "id": "dodoria",
+    "name": {
+      "es": "Dodoria"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 22000,
+      "kiOficial": 1
+    },
+    "image": "dragon-ball/dodoria"
+  },
+  {
+    "id": "guldo",
+    "name": {
+      "es": "Guldo"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 13500,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/guldo"
+  },
+  {
+    "id": "bardock",
+    "name": {
+      "es": "Bardock"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 10000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/bardock"
+  },
+  {
+    "id": "rey-enma",
+    "name": {
+      "es": "Rey Enma"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 10000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/rey-enma"
+  },
+  {
+    "id": "nappa",
+    "name": {
+      "es": "Nappa"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 4000,
+      "kiOficial": 1
+    },
+    "image": "dragon-ball/nappa"
+  },
+  {
+    "id": "kaio-del-norte",
+    "name": {
+      "es": "Kaio del Norte"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 3500,
+      "kiOficial": 1
+    },
+    "image": "dragon-ball/kaio-del-norte"
+  },
+  {
+    "id": "kaio-del-sur",
+    "name": {
+      "es": "Kaio del Sur"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 3500,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/kaio-del-sur"
+  },
+  {
+    "id": "kaio-del-este",
+    "name": {
+      "es": "Kaio del Este"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 3500,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/kaio-del-este"
+  },
+  {
+    "id": "kaio-del-oeste",
+    "name": {
+      "es": "Kaio del Oeste"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 3500,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/kaio-del-oeste"
+  },
+  {
+    "id": "babidi",
+    "name": {
+      "es": "Babidi"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 3000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/babidi"
+  },
+  {
+    "id": "raditz",
+    "name": {
+      "es": "Raditz"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 1500,
+      "kiOficial": 1
+    },
+    "image": "dragon-ball/raditz"
+  },
+  {
+    "id": "mr-popo",
+    "name": {
+      "es": "Mr. Popo"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 1030,
+      "kiOficial": 1
+    },
+    "image": "dragon-ball/mr-popo"
+  },
+  {
+    "id": "dr-mu",
+    "name": {
+      "es": "Dr. Mu"
+    },
+    "aliases": [],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "ki": 1000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/dr-mu"
+  },
+  {
+    "id": "dende",
+    "name": {
+      "es": "Dende"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 1000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/dende"
+  },
+  {
+    "id": "yajirobe",
+    "name": {
+      "es": "Yajirobe"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 970,
+      "kiOficial": 1
+    },
+    "image": "dragon-ball/yajirobe"
+  },
+  {
+    "id": "monaka",
+    "name": {
+      "es": "Monaka"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 500,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/monaka"
+  },
+  {
+    "id": "neva",
+    "name": {
+      "es": "Neva"
+    },
+    "aliases": [],
+    "series": [
+      "daima"
+    ],
+    "attrs": {
+      "ki": 400,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/neva"
+  },
+  {
+    "id": "kami",
+    "name": {
+      "es": "Kami-sama"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 330,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/kami"
+  },
+  {
+    "id": "videl",
+    "name": {
+      "es": "Videl (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 300,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/videl"
+  },
+  {
+    "id": "tao-pai-pai",
+    "name": {
+      "es": "Tao Pai Pai"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 300,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/tao-pai-pai"
+  },
+  {
+    "id": "rey-gyuma",
+    "name": {
+      "es": "Rey Gyuma"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 300,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/rey-gyuma"
+  },
+  {
+    "id": "gran-rey-demonio-piccolo",
+    "name": {
+      "es": "Gran Rey Demonio Piccolo"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 260,
+      "kiOficial": 1
+    },
+    "image": "dragon-ball/gran-rey-demonio-piccolo"
+  },
+  {
+    "id": "chi-chi",
+    "name": {
+      "es": "Chi-Chi"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 150,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/chi-chi"
+  },
+  {
+    "id": "general-blue",
+    "name": {
+      "es": "General Blue"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 150,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/general-blue"
+  },
+  {
+    "id": "karin",
+    "name": {
+      "es": "Karin"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 100,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/karin"
+  },
+  {
+    "id": "bubbles",
+    "name": {
+      "es": "Bubbles"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 100,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/bubbles"
+  },
+  {
+    "id": "mr-satan",
+    "name": {
+      "es": "Mr. Satán"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 50,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/mr-satan"
+  },
+  {
+    "id": "baba",
+    "name": {
+      "es": "Gran Adivina Baba"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 50,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/baba"
+  },
+  {
+    "id": "gregory",
+    "name": {
+      "es": "Gregory"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 50,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/gregory"
+  },
+  {
+    "id": "lunch",
+    "name": {
+      "es": "Lunch"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 25,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/lunch"
+  },
+  {
+    "id": "mai",
+    "name": {
+      "es": "Mai"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 12,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/mai"
+  },
+  {
+    "id": "panzy",
+    "name": {
+      "es": "Panzy"
+    },
+    "aliases": [],
+    "series": [
+      "daima"
+    ],
+    "attrs": {
+      "ki": 10,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/panzy"
+  },
+  {
+    "id": "shu",
+    "name": {
+      "es": "Shu"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 10,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/shu"
+  },
+  {
+    "id": "dr-hedo",
+    "name": {
+      "es": "Dr. Hedo"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 7,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/dr-hedo"
+  },
+  {
+    "id": "bulma",
+    "name": {
+      "es": "Bulma"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 6,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/bulma"
+  },
+  {
+    "id": "pilaf",
+    "name": {
+      "es": "Emperador Pilaf"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 5,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/pilaf"
+  },
+  {
+    "id": "puar",
+    "name": {
+      "es": "Puar"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 4,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/puar"
+  },
+  {
+    "id": "oolong",
+    "name": {
+      "es": "Oolong"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "ki": 3,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/oolong"
+  },
+  {
+    "id": "goku-base-saga-de-buu",
+    "name": {
+      "es": "Goku (base, saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 1000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/goku"
+  },
+  {
+    "id": "vegeta-base-saga-de-buu",
+    "name": {
+      "es": "Vegeta (base, saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 800000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/vegeta"
+  },
+  {
+    "id": "goku-ssj",
+    "name": {
+      "es": "Goku Supersaiyano (saga de Namek)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 150000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/goku-ssj"
+  },
+  {
+    "id": "goku-ssj2",
+    "name": {
+      "es": "Goku Supersaiyano 2 (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 30000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/goku-ssj2"
+  },
+  {
+    "id": "goku-ssj3",
+    "name": {
+      "es": "Goku Supersaiyano 3 (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 80000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/goku-ssj3"
+  },
+  {
+    "id": "goku-ssj4",
+    "name": {
+      "es": "Goku Supersaiyano 4 (GT)"
+    },
+    "aliases": [],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "ki": 10000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/goku-ssj4"
+  },
+  {
+    "id": "goku-ssb",
+    "name": {
+      "es": "Goku Supersaiyano Azul (La resurrección de Freezer)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 300000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/goku-ssb"
+  },
+  {
+    "id": "goku-ultra-instinto",
+    "name": {
+      "es": "Goku Ultra Instinto (Torneo del Poder)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 50000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/goku-ultra-instinto"
+  },
+  {
+    "id": "vegeta-ssj",
+    "name": {
+      "es": "Vegeta Supersaiyano (saga de los Androides)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 600000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/vegeta-ssj"
+  },
+  {
+    "id": "vegeta-ssj2",
+    "name": {
+      "es": "Vegeta Supersaiyano 2 (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 30000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/vegeta-ssj2"
+  },
+  {
+    "id": "vegeta-ssj4",
+    "name": {
+      "es": "Vegeta Supersaiyano 4 (GT)"
+    },
+    "aliases": [],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "ki": 10000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/vegeta-ssj4"
+  },
+  {
+    "id": "vegeta-ssb",
+    "name": {
+      "es": "Vegeta Supersaiyano Azul (La resurrección de Freezer)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 300000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/vegeta-ssb"
+  },
+  {
+    "id": "piccolo-naranja",
+    "name": {
+      "es": "Piccolo Naranja (Super Hero)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 40000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/piccolo-naranja"
+  },
+  {
+    "id": "freezer-segunda-forma",
+    "name": {
+      "es": "Freezer Segunda Forma (saga de Namek)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 1000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/freezer-segunda-forma"
+  },
+  {
+    "id": "freezer-tercera-forma",
+    "name": {
+      "es": "Freezer Tercera Forma (saga de Namek)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 2000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/freezer-tercera-forma"
+  },
+  {
+    "id": "freezer-forma-final",
+    "name": {
+      "es": "Freezer Forma Final (saga de Namek)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 120000000,
+      "kiOficial": 1
+    },
+    "image": "dragon-ball/transformations/freezer-forma-final"
+  },
+  {
+    "id": "freezer-dorado",
+    "name": {
+      "es": "Freezer Forma Dorada (La resurrección de Freezer)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 300000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/freezer-dorado"
+  },
+  {
+    "id": "zarbon-transformado",
+    "name": {
+      "es": "Zarbon Transformado (saga de Namek)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 30000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/zarbon-transformado"
+  },
+  {
+    "id": "celula-imperfecto",
+    "name": {
+      "es": "Célula Forma Imperfecta (saga de Cell)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 400000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/celula-imperfecto"
+  },
+  {
+    "id": "celula-semiperfecto",
+    "name": {
+      "es": "Célula Forma Semiperfecta (saga de Cell)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 1000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/celula-semiperfecto"
+  },
+  {
+    "id": "celula-super-perfecto",
+    "name": {
+      "es": "Célula Forma Súper Perfecta (saga de Cell)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 5000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/celula-super-perfecto"
+  },
+  {
+    "id": "gohan-ssj",
+    "name": {
+      "es": "Gohan Supersaiyano (saga de Cell)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 1000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/gohan-ssj"
+  },
+  {
+    "id": "gohan-ssj2",
+    "name": {
+      "es": "Gohan Supersaiyano 2 (saga de Cell)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 10000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/gohan-ssj2"
+  },
+  {
+    "id": "gohan-definitivo",
+    "name": {
+      "es": "Gohan Definitivo (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 155000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/gohan-definitivo"
+  },
+  {
+    "id": "gohan-bestia",
+    "name": {
+      "es": "Gohan Bestia (Super Hero)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 80000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/gohan-bestia"
+  },
+  {
+    "id": "trunks-ssj",
+    "name": {
+      "es": "Trunks Supersaiyano (saga de los Androides)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 300000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/trunks-ssj"
+  },
+  {
+    "id": "trunks-ssj2",
+    "name": {
+      "es": "Trunks Supersaiyano 2 (saga de Black)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 100000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/trunks-ssj2"
+  },
+  {
+    "id": "trunks-furioso",
+    "name": {
+      "es": "Trunks Supersaiyano Furioso (saga de Black)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 3000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/trunks-furioso"
+  },
+  {
+    "id": "gotenks-ssj",
+    "name": {
+      "es": "Gotenks Supersaiyano (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 50000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/gotenks-ssj"
+  },
+  {
+    "id": "gotenks-ssj3",
+    "name": {
+      "es": "Gotenks Supersaiyano 3 (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 150000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/gotenks-ssj3"
+  },
+  {
+    "id": "buu-super-buu",
+    "name": {
+      "es": "Super Buu (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 100000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/buu-super-buu"
+  },
+  {
+    "id": "buu-super-buu-gotenks",
+    "name": {
+      "es": "Super Buu con Gotenks (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 160000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/buu-super-buu-gotenks"
+  },
+  {
+    "id": "buu-super-buu-gohan",
+    "name": {
+      "es": "Super Buu con Gohan (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 200000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/buu-super-buu-gohan"
+  },
+  {
+    "id": "buu-kid-buu",
+    "name": {
+      "es": "Kid Buu (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 100000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/buu-kid-buu"
+  },
+  {
+    "id": "gogeta-ssj",
+    "name": {
+      "es": "Gogeta Supersaiyano (película La fusión)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 3000000000000,
+      "kiOficial": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/transformations/gogeta-ssj"
+  },
+  {
+    "id": "gogeta-ssj4",
+    "name": {
+      "es": "Gogeta Supersaiyano 4 (GT)"
+    },
+    "aliases": [],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "ki": 100000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/gogeta-ssj4"
+  },
+  {
+    "id": "gogeta-ssb",
+    "name": {
+      "es": "Gogeta Supersaiyano Azul (película Broly)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 100000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/gogeta-ssb"
+  },
+  {
+    "id": "vegetto-ssj",
+    "name": {
+      "es": "Vegetto Supersaiyano (saga de Buu)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 1000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/vegetto-ssj"
+  },
+  {
+    "id": "vegetto-ssb",
+    "name": {
+      "es": "Vegetto Supersaiyano Azul (saga de Black)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 5000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/vegetto-ssb"
+  },
+  {
+    "id": "janemba-super-janemba",
+    "name": {
+      "es": "Super Janemba (película La fusión)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "ki": 300000000000,
+      "kiOficial": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/transformations/janemba-super-janemba"
+  },
+  {
+    "id": "broly-ssj-legendario",
+    "name": {
+      "es": "Broly Supersaiyano Legendario (película Broly)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "ki": 60000000000000000000,
+      "kiOficial": 0
+    },
+    "image": "dragon-ball/transformations/broly-ssj-legendario"
+  }
+]

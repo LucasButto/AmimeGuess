@@ -89,13 +89,13 @@ export function printReport(input: ReportInput): void {
   line('Tamaño del pool de cada modo con todas las series activas:');
   line(`  Clásico (personajes)            ${pad(characters.length, 4)}`);
   line(`  Silueta (arte transparente)     ${pad(characters.filter(transparent).length, 4)}`);
-  line(`  Borroso y Zoom (con imagen)     ${pad(characters.filter(withImage).length, 4)}`);
+  line(`  Borroso (con imagen)            ${pad(characters.filter(withImage).length, 4)}`);
   // El pool de Frase cuenta personajes distintos que dijeron alguna frase verificada, no frases.
   const verifiedQuotes = quotes.filter((c) => c.verified);
   line(`  Frase (personajes distintos)    ${pad(new Set(verifiedQuotes.map((c) => c.entityId)).size, 4)}   (hacen falta 10; ${verifiedQuotes.length} de ${quotes.length} frases verificadas)`);
   line(`  Técnica (personajes distintos)  ${pad(input.techniqueAnswers, 4)}   (hacen falta 10; ${techniques.length} de ${input.techniquesTotal} técnicas con imagen)`);
   line(`  Transformación (con imagen)     ${pad(forms.filter(withImage).length, 4)}`);
-  line(`  Nivel de poder (con ki)         ${pad(input.powerWithValue, 4)}   (${input.powerOfficial} con valor oficial)`);
+  line(`  Nivel de poder (entradas)       ${pad(input.powerWithValue, 4)}   (${input.powerOfficial} con valor oficial)`);
   line(`  Línea de tiempo (verificados)   ${pad(events.filter((c) => c.verified).length, 4)}   (hacen falta 10; hay ${events.length} sucesos)`);
 
   line();

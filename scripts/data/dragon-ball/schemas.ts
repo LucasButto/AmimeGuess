@@ -81,6 +81,10 @@ export const characterSrcSchema = z
     tecnica: z.string().min(1).nullable(),
     /** La imagen de la API no sirve (no es el personaje): queda sin imagen hasta cargar otra a mano. */
     sinImagen: z.boolean().optional(),
+    /** `true` si solo está en el anime o en sus películas, no en el manga: los modos lo dejan afuera con "Relleno" apagado. */
+    filler: z.boolean().optional(),
+    /** `true` si solo está en arcos del manga que todavía no se adaptaron al anime: afuera si se apagan los "Arcos del manga". */
+    mangaOnly: z.boolean().optional(),
     verified: z.boolean(),
   })
   .strict();
@@ -97,6 +101,8 @@ export const transformationSrcSchema = z
     name: z.string().min(1),
     aliases: z.array(z.string().min(1)),
     series: seriesId,
+    /** `true` si solo está en el anime o en sus películas, no en el manga (por ejemplo, las de las películas de Z). */
+    filler: z.boolean().optional(),
     verified: z.boolean(),
   })
   .strict();
@@ -134,17 +140,30 @@ export const eventSrcSchema = z
     series: seriesId,
     /** Posición dentro de su serie, desde 1, sin repetir. El orden entre series lo da `seriesOrder`. */
     order: z.number().int().positive(),
+    /** `true` si es de relleno del anime (no está en el manga): la línea de tiempo puede dejarlo afuera. */
+    filler: z.boolean().optional(),
+    /** `true` si es de un arco del manga que todavía no se adaptó al anime: la línea de tiempo puede dejarlo afuera. */
+    mangaOnly: z.boolean().optional(),
     verified: z.boolean(),
   })
   .strict();
 
+/**
+ * Una entrada del modo Nivel de poder: un personaje o una transformación en un momento de la historia. Un mismo
+ * personaje puede tener más de una (Goku en el Torneo del Poder y Goku base en la saga de Buu).
+ */
 export const powerSrcSchema = z
   .object({
-    /** Id del personaje. */
+    /** Id de la entrada, estable. */
     id: kebab,
-    /** Ki máximo; `null` si es desconocido o no se puede comparar. */
-    ki: z.number().positive().finite().nullable(),
-    /** `true` solo si el valor figura en una fuente oficial (manga o guías) citada en `source`. */
+    /** El personaje o la transformación: de ahí salen la imagen y las marcas de relleno y de solo manga. */
+    of: kebab,
+    /** Lo que se muestra: el nombre y, si hace falta aclararlo, la saga entre paréntesis. */
+    name: z.string().min(1),
+    /** La serie de ese momento: es la que filtra el chip. */
+    series: seriesId,
+    ki: z.number().positive().finite(),
+    /** `true` solo si el valor figura en una fuente oficial (manga o guías). */
     official: z.boolean(),
     source: z.string().min(1),
   })
@@ -180,6 +199,11 @@ export const characterEntitySchema = z
   .object({ ...entityBase, series: z.array(seriesId).min(1) })
   .strict();
 
+/** Una entrada de Nivel de poder: una sola serie, la del momento que se compara. */
+export const powerEntitySchema = z
+  .object({ ...entityBase, series: z.array(seriesId).length(1) })
+  .strict();
+
 /** Una forma: pertenece a una sola serie. */
 export const transformationEntitySchema = z
   .object({ ...entityBase, series: z.array(seriesId).length(1) })
@@ -201,7 +225,14 @@ const eventContentSchema = z
   .object({
     ...contentBase,
     kind: z.literal('event'),
-    payload: z.object({ text: z.string().min(1), order: z.number().int().positive() }).strict(),
+    payload: z
+      .object({
+        text: z.string().min(1),
+        order: z.number().int().positive(),
+        filler: z.literal(true).optional(),
+        mangaOnly: z.literal(true).optional(),
+      })
+      .strict(),
   })
   .strict();
 

@@ -463,7 +463,7 @@
       "dbz"
     ],
     "attrs": {
-      "personaje": "Trunks",
+      "personaje": "Trunks del Futuro",
       "forma": "Supersaiyano",
       "imagenTransparente": 1
     },
@@ -479,10 +479,10 @@
       "Trunks Super Saiyan 2"
     ],
     "series": [
-      "dbz"
+      "super"
     ],
     "attrs": {
-      "personaje": "Trunks",
+      "personaje": "Trunks del Futuro",
       "forma": "Supersaiyano 2",
       "imagenTransparente": 0
     },
@@ -502,7 +502,7 @@
       "super"
     ],
     "attrs": {
-      "personaje": "Trunks",
+      "personaje": "Trunks del Futuro",
       "forma": "Supersaiyano Furioso",
       "imagenTransparente": 1
     },
@@ -641,7 +641,8 @@
     "attrs": {
       "personaje": "Gogeta",
       "forma": "Supersaiyano",
-      "imagenTransparente": 1
+      "imagenTransparente": 1,
+      "filler": 1
     },
     "image": "dragon-ball/transformations/gogeta-ssj"
   },
@@ -738,7 +739,8 @@
     "attrs": {
       "personaje": "Janemba",
       "forma": "Super Janemba",
-      "imagenTransparente": 1
+      "imagenTransparente": 1,
+      "filler": 1
     },
     "image": "dragon-ball/transformations/janemba-super-janemba"
   },

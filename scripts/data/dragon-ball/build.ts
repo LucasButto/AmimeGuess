@@ -57,6 +57,7 @@ import {
   sagasFileSchema,
   sagasOutputSchema,
   techniqueSrcSchema,
+  powerEntitySchema,
   transformationEntitySchema,
   transformationSrcSchema,
   wikiCategoryMembersSchema,
@@ -75,6 +76,7 @@ import { renderTodoSection, writeTodoSection, type MissingImage } from './todo.t
 import {
   buildCharacterEntity,
   buildEventContent,
+  buildPowerEntity,
   buildTransformationEntity,
   canonicalSeries,
   debutSeries,
@@ -220,9 +222,9 @@ function checkSrc(src: Src): void {
       problems.push(`quotes.json: ${quote.id} dice el nombre de ${character.name}`);
     }
   }
+  const formIds = new Set(src.transformations.map((form) => form.id));
   for (const entry of src.power) {
-    if (!characterIds.has(entry.id)) problems.push(`power.json: ${entry.id} no es un personaje`);
-    if (entry.official && entry.ki === null) problems.push(`power.json: ${entry.id} es oficial pero no tiene valor`);
+    if (!characterIds.has(entry.of) && !formIds.has(entry.of)) problems.push(`power.json: ${entry.id} sale de ${entry.of}, que no es un personaje ni una forma`);
   }
   if (problems.length > 0) fail('Los archivos de data-src/dragon-ball/ no son coherentes', problems);
 }
@@ -327,6 +329,7 @@ async function validate(
   src: Src,
   characters: Entity[],
   forms: Entity[],
+  power: Entity[],
   contents: Content[],
   debutOf: Map<string, SeriesId>,
   sagaSeries: Map<string, SeriesId>,
@@ -341,6 +344,10 @@ async function validate(
     const result = transformationEntitySchema.safeParse(entity);
     if (!result.success) problems.push(`forma ${entity.id}: ${result.error.message}`);
   });
+  power.forEach((entity) => {
+    const result = powerEntitySchema.safeParse(entity);
+    if (!result.success) problems.push(`nivel de poder ${entity.id}: ${result.error.message}`);
+  });
   contents.forEach((content) => {
     const result = contentSchema.safeParse(content);
     if (!result.success) problems.push(`contenido ${content.id}: ${result.error.message}`);
@@ -348,6 +355,7 @@ async function validate(
 
   for (const id of duplicates(characters.map((entity) => entity.id))) problems.push(`hay dos personajes con el id ${id}`);
   for (const id of duplicates(forms.map((entity) => entity.id))) problems.push(`hay dos formas con el id ${id}`);
+  for (const id of duplicates(power.map((entity) => entity.id))) problems.push(`hay dos entradas de nivel de poder con el id ${id}`);
   for (const id of duplicates(contents.map((content) => content.id))) problems.push(`hay dos contenidos con el id ${id}`);
 
   // Referencias: un contenido no puede apuntar a un personaje que no existe.
@@ -514,7 +522,6 @@ async function main(): Promise<void> {
   });
 
   step('Armando entidades y contenidos…');
-  const powerById = new Map(src.power.map((entry) => [entry.id, entry]));
   const characters: Entity[] = src.characters.map((character, index) => {
     const series = seriesByCharacter.get(character.id) ?? [];
     const debut = debutOf.get(character.id) as SeriesId;
@@ -523,7 +530,6 @@ async function main(): Promise<void> {
       series: canonicalSeries(series),
       debutSeriesRank: seriesRank.get(debut) as number,
       debutSagaRank: sagaRank.get(character.sagaDebut) as number,
-      power: powerById.get(character.id),
       image: characterImages[index].image,
     });
   });
@@ -531,6 +537,9 @@ async function main(): Promise<void> {
   const forms: Entity[] = src.transformations.map((form, index) =>
     buildTransformationEntity(form, (characterById.get(form.character) as CharacterSrc).name, formImages[index].image),
   );
+
+  const entityById = new Map([...characters, ...forms].map((entity) => [entity.id, entity]));
+  const power: Entity[] = src.power.map((entry) => buildPowerEntity(entry, entityById.get(entry.of) as Entity));
 
   const orders = eventOrders(src.events, src.sagas.seriesOrder);
   const quotes: Content[] = src.quotes.map((quote) => ({
@@ -574,11 +583,12 @@ async function main(): Promise<void> {
   if (!sagasCheck.success) fail('sagas.json generado no cumple el esquema', [sagasCheck.error.message]);
 
   step('Validando…');
-  await validate(src, characters, forms, contents, debutOf, sagaSeries);
+  await validate(src, characters, forms, power, contents, debutOf, sagaSeries);
 
   step('Escribiendo data/dragon-ball/…');
   await writeJson(path.join(DATA_DIR, 'entities.json'), characters);
   await writeJson(path.join(DATA_DIR, 'transformations.json'), forms);
+  await writeJson(path.join(DATA_DIR, 'power.json'), power);
   await writeJson(path.join(DATA_DIR, 'content.json'), contents);
   await writeJson(path.join(DATA_DIR, 'sagas.json'), sagasOutput);
 
@@ -640,8 +650,8 @@ async function main(): Promise<void> {
     opaqueImages: opaque.map((item) => item.id),
     techniquesTotal: src.techniques.length,
     techniqueAnswers,
-    powerWithValue: characters.filter((entity) => entity.attrs.ki !== null).length,
-    powerOfficial: characters.filter((entity) => entity.attrs.kiOficial === 1).length,
+    powerWithValue: power.length,
+    powerOfficial: power.filter((entity) => entity.attrs.kiOficial === 1).length,
     imageBytesDragonBall: await directoryBytes(IMAGE_DIR),
     imageBytesProject,
   });

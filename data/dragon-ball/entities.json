@@ -63,8 +63,6 @@
       "sagaDebut": 1,
       "estadoVital": "Vivo",
       "tecnica": "Kamehameha",
-      "ki": 9e+25,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/goku"
@@ -123,8 +121,6 @@
       "sagaDebut": 7,
       "estadoVital": "Vivo",
       "tecnica": "Cañón Galick",
-      "ki": 1.984e+25,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/vegeta"
@@ -164,8 +160,6 @@
       "sagaDebut": 6,
       "estadoVital": "Vivo",
       "tecnica": "Makankosappo",
-      "ki": 500000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/piccolo"
@@ -198,8 +192,6 @@
       "sagaDebut": 1,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/bulma"
@@ -250,8 +242,6 @@
       "sagaDebut": 8,
       "estadoVital": "Vivo",
       "tecnica": "Bola Mortal",
-      "ki": 5.271e+25,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/freezer"
@@ -286,8 +276,6 @@
       "sagaDebut": 8,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": 30000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/zarbon"
@@ -317,8 +305,6 @@
       "sagaDebut": 8,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": 20000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/dodoria"
@@ -353,8 +339,6 @@
       "sagaDebut": 8,
       "estadoVital": "Desconocido",
       "tecnica": "Cambio de cuerpo",
-      "ki": 25000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/ginyu"
@@ -399,8 +383,6 @@
       "sagaDebut": 10,
       "estadoVital": "Muerto",
       "tecnica": "Absorción",
-      "ki": 5000000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/celula"
@@ -454,8 +436,6 @@
       "sagaDebut": 7,
       "estadoVital": "Vivo",
       "tecnica": "Masenko",
-      "ki": 4e+25,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/gohan"
@@ -490,8 +470,6 @@
       "sagaDebut": 2,
       "estadoVital": "Vivo",
       "tecnica": "Kienzan",
-      "ki": 1000000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/krilin"
@@ -527,8 +505,6 @@
       "sagaDebut": 4,
       "estadoVital": "Vivo",
       "tecnica": "Kikoho",
-      "ki": 80000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/tenshinhan"
@@ -560,8 +536,6 @@
       "sagaDebut": 1,
       "estadoVital": "Vivo",
       "tecnica": "Golpe Colmillo de Lobo",
-      "ki": 4000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/yamcha"
@@ -595,8 +569,6 @@
       "sagaDebut": 1,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/chi-chi"
@@ -635,8 +607,6 @@
       "sagaDebut": 12,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": 34800000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/gotenks"
@@ -670,10 +640,47 @@
         {
           "value": "Supersaiyano",
           "series": "dbz"
+        }
+      ],
+      "serieDebut": 2,
+      "sagaDebut": 10,
+      "estadoVital": "Vivo",
+      "tecnica": "Danza de la Fusión",
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/trunks"
+  },
+  {
+    "id": "trunks-del-futuro",
+    "name": {
+      "es": "Trunks del Futuro"
+    },
+    "aliases": [
+      "Mirai Trunks",
+      "Future Trunks"
+    ],
+    "series": [
+      "dbz",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Saiyano",
+        "Terrícola"
+      ],
+      "afiliaciones": [
+        "Guerreros Z"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [
+        {
+          "value": "Supersaiyano",
+          "series": "dbz"
         },
         {
           "value": "Supersaiyano 2",
-          "series": "dbz"
+          "series": "super"
         },
         {
           "value": "Supersaiyano Furioso",
@@ -684,11 +691,9 @@
       "sagaDebut": 10,
       "estadoVital": "Vivo",
       "tecnica": "Ataque Ardiente",
-      "ki": 3.74e+25,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
-    "image": "dragon-ball/trunks"
+    "image": "dragon-ball/trunks-del-futuro"
   },
   {
     "id": "maestro-roshi",
@@ -725,8 +730,6 @@
       "sagaDebut": 1,
       "estadoVital": "Vivo",
       "tecnica": "Mafuba",
-      "ki": 350000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/maestro-roshi"
@@ -757,8 +760,6 @@
       "sagaDebut": 13,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": 180000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/bardock"
@@ -790,8 +791,6 @@
       "sagaDebut": 2,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/lunch"
@@ -824,8 +823,6 @@
       "sagaDebut": 10,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": 5000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/mr-satan"
@@ -856,8 +853,6 @@
       "sagaDebut": 8,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": 3200,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/dende"
@@ -893,8 +888,6 @@
       "sagaDebut": 10,
       "estadoVital": "Vivo",
       "tecnica": "Granada Infernal",
-      "ki": 40000000000000000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/androide-17"
@@ -926,8 +919,6 @@
       "sagaDebut": 10,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": 440000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/androide-16"
@@ -962,8 +953,6 @@
       "sagaDebut": 10,
       "estadoVital": "Muerto",
       "tecnica": "Absorción",
-      "ki": 160000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/androide-19"
@@ -1002,8 +991,6 @@
       "sagaDebut": 10,
       "estadoVital": "Muerto",
       "tecnica": "Absorción",
-      "ki": 158100000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/dr-gero"
@@ -1036,9 +1023,8 @@
       "sagaDebut": 13,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": 562500000,
-      "kiOficial": 0,
-      "imagenTransparente": 1
+      "imagenTransparente": 1,
+      "filler": 1
     },
     "image": "dragon-ball/androide-13"
   },
@@ -1070,9 +1056,8 @@
       "sagaDebut": 13,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": 192500000,
-      "kiOficial": 0,
-      "imagenTransparente": 1
+      "imagenTransparente": 1,
+      "filler": 1
     },
     "image": "dragon-ball/androide-14"
   },
@@ -1104,9 +1089,8 @@
       "sagaDebut": 13,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": 175000000,
-      "kiOficial": 0,
-      "imagenTransparente": 1
+      "imagenTransparente": 1,
+      "filler": 1
     },
     "image": "dragon-ball/androide-15"
   },
@@ -1134,8 +1118,6 @@
       "sagaDebut": 8,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": 42000,
-      "kiOficial": 1,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/nail"
@@ -1165,8 +1147,6 @@
       "sagaDebut": 7,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": 1500,
-      "kiOficial": 1,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/raditz"
@@ -1199,8 +1179,6 @@
       "sagaDebut": 12,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/babidi"
@@ -1254,8 +1232,6 @@
       "sagaDebut": 12,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": 100000000000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/majin-buu"
@@ -1283,12 +1259,10 @@
       ],
       "planeta": "Planeta de Bills",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 14,
+      "serieDebut": 4,
+      "sagaDebut": 15,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": 1e+26,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/bills"
@@ -1314,12 +1288,10 @@
       ],
       "planeta": "Cielo",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 14,
+      "serieDebut": 4,
+      "sagaDebut": 15,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": 1.1e+26,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/whis"
@@ -1347,12 +1319,10 @@
       ],
       "planeta": "Templo del Rey de Todo",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 16,
+      "serieDebut": 4,
+      "sagaDebut": 17,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": 5e+26,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/zeno"
@@ -1384,8 +1354,6 @@
       "sagaDebut": 12,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": 3200000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kibitoshin"
@@ -1410,12 +1378,10 @@
       ],
       "planeta": "Universo 11",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 18,
+      "serieDebut": 4,
+      "sagaDebut": 19,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": 1.21e+25,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/jiren"
@@ -1440,12 +1406,10 @@
       ],
       "planeta": "Universo 11",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 18,
+      "serieDebut": 4,
+      "sagaDebut": 19,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": 7.5e+21,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/toppo"
@@ -1470,12 +1434,10 @@
       ],
       "planeta": "Universo 11",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 18,
+      "serieDebut": 4,
+      "sagaDebut": 19,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": 150000000000000000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/dyspo"
@@ -1500,12 +1462,10 @@
       ],
       "planeta": "Cielo",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 18,
+      "serieDebut": 4,
+      "sagaDebut": 19,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": 9.95e+25,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/marcarita"
@@ -1533,12 +1493,10 @@
       ],
       "planeta": "Universo 11",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 18,
+      "serieDebut": 4,
+      "sagaDebut": 19,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": 1e+26,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/vermoud"
@@ -1566,12 +1524,10 @@
       ],
       "planeta": "Cielo",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 17,
+      "serieDebut": 4,
+      "sagaDebut": 18,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/gran-sacerdote"
@@ -1605,8 +1561,6 @@
       "sagaDebut": 7,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": 6000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kaio-del-norte"
@@ -1643,8 +1597,6 @@
       "sagaDebut": 10,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": 300000000,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/androide-18"
@@ -1682,12 +1634,10 @@
           "series": "super"
         }
       ],
-      "serieDebut": 4,
-      "sagaDebut": 26,
+      "serieDebut": 5,
+      "sagaDebut": 27,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": 1.5e+25,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/gogeta"
@@ -1728,8 +1678,6 @@
       "sagaDebut": 12,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": 1.08e+25,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/vegetto"
@@ -1764,9 +1712,8 @@
       "sagaDebut": 13,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": 75000000000,
-      "kiOficial": 0,
-      "imagenTransparente": 1
+      "imagenTransparente": 1,
+      "filler": 1
     },
     "image": "dragon-ball/janemba"
   },
@@ -1794,12 +1741,10 @@
           "series": "super"
         }
       ],
-      "serieDebut": 3,
-      "sagaDebut": 19,
+      "serieDebut": 4,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": 1.12e+25,
-      "kiOficial": 0,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/broly"
@@ -1829,8 +1774,6 @@
       "sagaDebut": 11,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kaio-del-sur"
@@ -1860,8 +1803,6 @@
       "sagaDebut": 11,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kaio-del-este"
@@ -1891,8 +1832,6 @@
       "sagaDebut": 11,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kaio-del-oeste"
@@ -1922,8 +1861,6 @@
       "sagaDebut": 11,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 0
     },
     "image": "dragon-ball/gran-kaio"
@@ -1958,8 +1895,6 @@
       "sagaDebut": 12,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kaioshin-del-este"
@@ -1989,8 +1924,6 @@
       "sagaDebut": 12,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kaioshin-del-norte"
@@ -2021,8 +1954,6 @@
       "sagaDebut": 12,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kaioshin-del-sur"
@@ -2052,8 +1983,6 @@
       "sagaDebut": 12,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kaioshin-del-oeste"
@@ -2084,8 +2013,6 @@
       "sagaDebut": 12,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/gran-kaioshin"
@@ -2115,8 +2042,6 @@
       "sagaDebut": 12,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kibito"
@@ -2149,8 +2074,6 @@
       "sagaDebut": 1,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/oolong"
@@ -2184,8 +2107,6 @@
       "sagaDebut": 1,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/puar"
@@ -2218,8 +2139,6 @@
       "sagaDebut": 5,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/yajirobe"
@@ -2255,8 +2174,6 @@
       "sagaDebut": 4,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/chaoz"
@@ -2289,8 +2206,6 @@
       "sagaDebut": 3,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/karin"
@@ -2323,8 +2238,6 @@
       "sagaDebut": 5,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/mr-popo"
@@ -2358,8 +2271,6 @@
       "sagaDebut": 1,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/pilaf"
@@ -2389,8 +2300,6 @@
       "sagaDebut": 1,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/mai"
@@ -2420,8 +2329,6 @@
       "sagaDebut": 1,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/shu"
@@ -2455,8 +2362,6 @@
       "sagaDebut": 3,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/tao-pai-pai"
@@ -2488,8 +2393,6 @@
       "sagaDebut": 3,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/general-blue"
@@ -2523,8 +2426,6 @@
       "sagaDebut": 1,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/rey-gyuma"
@@ -2557,8 +2458,6 @@
       "sagaDebut": 3,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/baba"
@@ -2593,8 +2492,6 @@
       "sagaDebut": 5,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/gran-rey-demonio-piccolo"
@@ -2628,8 +2525,6 @@
       "sagaDebut": 1,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/shenlong"
@@ -2660,8 +2555,6 @@
       "sagaDebut": 5,
       "estadoVital": "Desconocido",
       "tecnica": "Mafuba",
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kami"
@@ -2696,8 +2589,6 @@
       "sagaDebut": 7,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/nappa"
@@ -2731,8 +2622,6 @@
       "sagaDebut": 8,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/recoome"
@@ -2765,8 +2654,6 @@
       "sagaDebut": 8,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/burter"
@@ -2800,8 +2687,6 @@
       "sagaDebut": 8,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/jeice"
@@ -2834,8 +2719,6 @@
       "sagaDebut": 8,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/guldo"
@@ -2871,9 +2754,8 @@
       "sagaDebut": 13,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
-      "imagenTransparente": 1
+      "imagenTransparente": 1,
+      "filler": 1
     },
     "image": "dragon-ball/turles"
   },
@@ -2903,9 +2785,8 @@
       "sagaDebut": 13,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
-      "imagenTransparente": 1
+      "imagenTransparente": 1,
+      "filler": 1
     },
     "image": "dragon-ball/slug"
   },
@@ -2936,9 +2817,8 @@
       "sagaDebut": 13,
       "estadoVital": "Muerto",
       "tecnica": "Rayo Mortal",
-      "ki": null,
-      "kiOficial": null,
-      "imagenTransparente": 1
+      "imagenTransparente": 1,
+      "filler": 1
     },
     "image": "dragon-ball/coola"
   },
@@ -2967,8 +2847,6 @@
       "sagaDebut": 12,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/videl"
@@ -3007,8 +2885,6 @@
       "sagaDebut": 12,
       "estadoVital": "Vivo",
       "tecnica": "Kamehameha",
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/goten"
@@ -3041,8 +2917,6 @@
       "sagaDebut": 12,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/oob"
@@ -3075,8 +2949,6 @@
       "sagaDebut": 12,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 0
     },
     "image": "dragon-ball/dabura"
@@ -3111,8 +2983,6 @@
       "sagaDebut": 12,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/super-buu"
@@ -3146,8 +3016,6 @@
       "sagaDebut": 12,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kid-buu"
@@ -3180,8 +3048,6 @@
       "sagaDebut": 10,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/cell-jr"
@@ -3211,9 +3077,8 @@
       "sagaDebut": 13,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
-      "imagenTransparente": 1
+      "imagenTransparente": 1,
+      "filler": 1
     },
     "image": "dragon-ball/bojack"
   },
@@ -3246,8 +3111,6 @@
       "sagaDebut": 12,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kaioshin-anciano"
@@ -3277,8 +3140,6 @@
       "sagaDebut": 7,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/bubbles"
@@ -3309,8 +3170,6 @@
       "sagaDebut": 7,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 0
     },
     "image": "dragon-ball/gregory"
@@ -3341,8 +3200,6 @@
       "sagaDebut": 7,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/rey-enma"
@@ -3369,12 +3226,10 @@
       ],
       "planeta": "Planeta Plant",
       "transformaciones": [],
-      "serieDebut": 4,
-      "sagaDebut": 24,
+      "serieDebut": 5,
+      "sagaDebut": 25,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/baby"
@@ -3402,12 +3257,10 @@
       ],
       "planeta": null,
       "transformaciones": [],
-      "serieDebut": 4,
-      "sagaDebut": 25,
+      "serieDebut": 5,
+      "sagaDebut": 26,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/super-17"
@@ -3435,12 +3288,10 @@
       ],
       "planeta": "Planeta M2",
       "transformaciones": [],
-      "serieDebut": 4,
-      "sagaDebut": 25,
+      "serieDebut": 5,
+      "sagaDebut": 26,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/dr-mu"
@@ -3468,12 +3319,10 @@
       ],
       "planeta": "Tierra",
       "transformaciones": [],
-      "serieDebut": 4,
-      "sagaDebut": 26,
+      "serieDebut": 5,
+      "sagaDebut": 27,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/goku-jr"
@@ -3498,12 +3347,10 @@
       ],
       "planeta": "Universo 6",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 15,
+      "serieDebut": 4,
+      "sagaDebut": 16,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/champa"
@@ -3528,12 +3375,10 @@
       ],
       "planeta": "Cielo",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 15,
+      "serieDebut": 4,
+      "sagaDebut": 16,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/vados"
@@ -3557,12 +3402,10 @@
       ],
       "planeta": "Universo 6",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 16,
+      "serieDebut": 4,
+      "sagaDebut": 17,
       "estadoVital": "Vivo",
       "tecnica": "Salto Temporal",
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/hit"
@@ -3590,12 +3433,10 @@
       ],
       "planeta": "Universo 10",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 17,
+      "serieDebut": 4,
+      "sagaDebut": 18,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/zamasu"
@@ -3629,12 +3470,10 @@
           "series": "super"
         }
       ],
-      "serieDebut": 3,
-      "sagaDebut": 17,
+      "serieDebut": 4,
+      "sagaDebut": 18,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/goku-black"
@@ -3665,12 +3504,10 @@
           "series": "super"
         }
       ],
-      "serieDebut": 3,
-      "sagaDebut": 16,
+      "serieDebut": 4,
+      "sagaDebut": 17,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/cabba"
@@ -3706,12 +3543,10 @@
           "series": "super"
         }
       ],
-      "serieDebut": 3,
-      "sagaDebut": 18,
+      "serieDebut": 4,
+      "sagaDebut": 19,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/caulifla"
@@ -3742,12 +3577,10 @@
           "series": "super"
         }
       ],
-      "serieDebut": 3,
-      "sagaDebut": 18,
+      "serieDebut": 4,
+      "sagaDebut": 19,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kale"
@@ -3782,12 +3615,10 @@
           "series": "super"
         }
       ],
-      "serieDebut": 3,
-      "sagaDebut": 18,
+      "serieDebut": 4,
+      "sagaDebut": 19,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/kefla"
@@ -3814,12 +3645,10 @@
       ],
       "planeta": "Universo 6",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 16,
+      "serieDebut": 4,
+      "sagaDebut": 17,
       "estadoVital": "Vivo",
       "tecnica": "Rayo Mortal",
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/frost"
@@ -3841,12 +3670,10 @@
       "afiliaciones": [],
       "planeta": "Planeta Wagashi",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 16,
+      "serieDebut": 4,
+      "sagaDebut": 17,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/monaka"
@@ -3873,12 +3700,10 @@
       ],
       "planeta": "Tierra",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 22,
+      "serieDebut": 4,
+      "sagaDebut": 23,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/gamma-1"
@@ -3905,12 +3730,10 @@
       ],
       "planeta": "Tierra",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 22,
+      "serieDebut": 4,
+      "sagaDebut": 23,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/gamma-2"
@@ -3937,12 +3760,10 @@
       ],
       "planeta": "Tierra",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 22,
+      "serieDebut": 4,
+      "sagaDebut": 23,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/dr-hedo"
@@ -3966,13 +3787,12 @@
       "afiliaciones": [],
       "planeta": "Planeta Cereal",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 21,
+      "serieDebut": 4,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
-      "imagenTransparente": 1
+      "imagenTransparente": 1,
+      "mangaOnly": 1
     },
     "image": "dragon-ball/granolah"
   },
@@ -3995,13 +3815,12 @@
       ],
       "planeta": "Universo 7",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 20,
+      "serieDebut": 4,
+      "sagaDebut": 21,
       "estadoVital": "Muerto",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
-      "imagenTransparente": 1
+      "imagenTransparente": 1,
+      "mangaOnly": 1
     },
     "image": "dragon-ball/moro"
   },
@@ -4027,13 +3846,12 @@
       ],
       "planeta": "Cielo",
       "transformaciones": [],
-      "serieDebut": 3,
-      "sagaDebut": 20,
+      "serieDebut": 4,
+      "sagaDebut": 21,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
-      "imagenTransparente": 1
+      "imagenTransparente": 1,
+      "mangaOnly": 1
     },
     "image": "dragon-ball/merus"
   },
@@ -4056,12 +3874,10 @@
       ],
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
-      "serieDebut": 5,
-      "sagaDebut": 27,
+      "serieDebut": 3,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/glorio"
@@ -4085,12 +3901,10 @@
       ],
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
-      "serieDebut": 5,
-      "sagaDebut": 27,
+      "serieDebut": 3,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/panzy"
@@ -4115,12 +3929,10 @@
       ],
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
-      "serieDebut": 5,
-      "sagaDebut": 27,
+      "serieDebut": 3,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/gomah"
@@ -4144,12 +3956,10 @@
       ],
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
-      "serieDebut": 5,
-      "sagaDebut": 27,
+      "serieDebut": 3,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/deges"
@@ -4177,12 +3987,10 @@
       ],
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
-      "serieDebut": 5,
-      "sagaDebut": 27,
+      "serieDebut": 3,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/arins"
@@ -4206,12 +4014,10 @@
       ],
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
-      "serieDebut": 5,
-      "sagaDebut": 27,
+      "serieDebut": 3,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
-      "ki": null,
-      "kiOficial": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/neva"

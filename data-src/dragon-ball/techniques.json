@@ -17,7 +17,7 @@
   { "id": "puno-del-dragon", "name": "Puño del Dragón", "users": ["goku"], "series": "db", "verified": false },
   { "id": "teletransportacion", "name": "Teletransportación", "users": ["goku"], "series": "dbz", "verified": false },
   { "id": "kaio-ken", "name": "Kaio-ken", "users": ["goku"], "series": "dbz", "verified": false },
-  { "id": "ataque-ardiente", "name": "Ataque Ardiente", "users": ["trunks", "vegeta"], "series": "dbz", "verified": false },
+  { "id": "ataque-ardiente", "name": "Ataque Ardiente", "users": ["trunks-del-futuro", "vegeta"], "series": "dbz", "verified": false },
   { "id": "kamehameha-padre-e-hijo", "name": "Kamehameha Padre e Hijo", "users": ["gohan", "goku"], "series": "dbz", "verified": false },
   { "id": "granada-infernal", "name": "Granada Infernal", "users": ["androide-17"], "series": "super", "verified": false },
   { "id": "cambio-de-cuerpo", "name": "Cambio de cuerpo", "users": ["ginyu"], "series": "dbz", "verified": false },

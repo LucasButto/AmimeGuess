@@ -3,6 +3,7 @@ import type { CharacterSrc, EventSrc, SagasFile, TransformationSrc } from './sch
 import {
   buildCharacterEntity,
   buildEventContent,
+  buildPowerEntity,
   buildTransformationEntity,
   canonicalSeries,
   debutSeries,
@@ -117,7 +118,7 @@ const character: CharacterSrc = {
 };
 
 describe('buildCharacterEntity', () => {
-  const base = { src: character, series: ['db', 'dbz'] as const, debutSeriesRank: 1, debutSagaRank: 1, power: undefined, image: null };
+  const base = { src: character, series: ['db', 'dbz'] as const, debutSeriesRank: 1, debutSagaRank: 1, image: null };
 
   it('arma los atributos del Clásico y deja null lo que no hay', () => {
     const entity = buildCharacterEntity(base);
@@ -131,8 +132,6 @@ describe('buildCharacterEntity', () => {
       sagaDebut: 1,
       estadoVital: 'Vivo',
       tecnica: 'Kamehameha',
-      ki: null,
-      kiOficial: null,
       imagenTransparente: null,
     });
     expect(entity.image).toBeUndefined();
@@ -142,10 +141,10 @@ describe('buildCharacterEntity', () => {
     expect(buildCharacterEntity(base).aliases).toEqual(['Son Goku', 'Kakarotto']);
   });
 
-  it('el ki y su marca de oficial salen de power.json; 1 es oficial y 0 no', () => {
-    expect(buildCharacterEntity({ ...base, power: { id: 'goku', ki: 1500, official: true, source: 'x' } }).attrs).toMatchObject({ ki: 1500, kiOficial: 1 });
-    expect(buildCharacterEntity({ ...base, power: { id: 'goku', ki: 9e25, official: false, source: 'x' } }).attrs).toMatchObject({ ki: 9e25, kiOficial: 0 });
-    expect(buildCharacterEntity({ ...base, power: { id: 'goku', ki: null, official: false, source: 'x' } }).attrs).toMatchObject({ ki: null, kiOficial: null });
+  it('marca con 1 lo que es de relleno o solo del manga, y no agrega nada si no lo es', () => {
+    expect(buildCharacterEntity({ ...base, src: { ...character, filler: true } }).attrs.filler).toBe(1);
+    expect(buildCharacterEntity({ ...base, src: { ...character, mangaOnly: true } }).attrs.mangaOnly).toBe(1);
+    expect('filler' in buildCharacterEntity(base).attrs).toBe(false);
   });
 
   it('marca si la imagen es de fondo transparente (1) o no (0)', () => {
@@ -207,5 +206,19 @@ describe('eventOrders', () => {
 
   it('el contenido del suceso lleva su lugar global y conserva verified', () => {
     expect(buildEventContent(events[0], 4)).toEqual({ id: 'event-super-1', kind: 'event', series: 'super', payload: { text: 'super-1', order: 4 }, verified: false });
+  });
+});
+
+describe('buildPowerEntity', () => {
+  const goku = { id: 'goku', name: { es: 'Goku' }, aliases: [], series: ['dbz'], image: 'dragon-ball/goku', attrs: {} };
+
+  it('lleva el nombre con su saga, la serie de ese momento, el ki y la imagen de la que sale', () => {
+    const entity = buildPowerEntity({ id: 'goku-base', of: 'goku', name: 'Goku (base, saga de Buu)', series: 'dbz', ki: 1e9, official: false, source: 'x' }, goku);
+    expect(entity).toEqual({ id: 'goku-base', name: { es: 'Goku (base, saga de Buu)' }, aliases: [], series: ['dbz'], image: 'dragon-ball/goku', attrs: { ki: 1e9, kiOficial: 0 } });
+  });
+
+  it('hereda las marcas de relleno y de solo manga', () => {
+    const moro = { ...goku, id: 'moro', attrs: { mangaOnly: 1 } };
+    expect(buildPowerEntity({ id: 'moro', of: 'moro', name: 'Moro', series: 'super', ki: 1, official: true, source: 'x' }, moro).attrs).toEqual({ ki: 1, kiOficial: 1, mangaOnly: 1 });
   });
 });

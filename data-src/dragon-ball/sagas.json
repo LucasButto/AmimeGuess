@@ -1,5 +1,5 @@
 {
-  "seriesOrder": ["db", "dbz", "super", "gt", "daima"],
+  "seriesOrder": ["db", "dbz", "daima", "super", "gt"],
   "sagas": [
     { "id": "pilaf", "series": "db", "name": "Arco de la Búsqueda de las Esferas del Dragón" },
     { "id": "torneo-21", "series": "db", "name": "Arco del 21.º Torneo Mundial de las Artes Marciales" },

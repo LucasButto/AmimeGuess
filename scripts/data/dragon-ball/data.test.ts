@@ -14,7 +14,7 @@ import { ROOT } from './api.ts';
 import { SERIES } from './schemas.ts';
 import { leaksName } from './transform.ts';
 
-const characters = charactersJson as Entity[];
+const characters = charactersJson as unknown as Entity[];
 const forms = formsJson as Entity[];
 const contents = contentJson as Content[];
 const sagas = sagasJson as { series: Array<{ id: string; order: number }>; sagas: Array<{ id: string; name: string; series: string; order: number }> };
@@ -27,7 +27,7 @@ const techniques = contents.filter((content) => content.kind === 'technique');
 
 const CLASSIC_KEYS = [
   'genero', 'razas', 'afiliaciones', 'planeta', 'transformaciones', 'serieDebut', 'sagaDebut',
-  'estadoVital', 'tecnica', 'ki', 'kiOficial', 'imagenTransparente',
+  'estadoVital', 'tecnica', 'imagenTransparente',
 ];
 
 describe('personajes', () => {
@@ -85,18 +85,6 @@ describe('personajes', () => {
     expect(total).toBeGreaterThan(40);
   });
 
-  it('el ki es positivo y solo es oficial si tiene valor', () => {
-    for (const entity of characters) {
-      const { ki, kiOficial } = entity.attrs;
-      if (ki === null) {
-        expect(kiOficial, entity.id).toBeNull();
-      } else {
-        expect(typeof ki === 'number' && ki > 0 && Number.isFinite(ki), entity.id).toBe(true);
-        expect([0, 1], entity.id).toContain(kiOficial);
-      }
-    }
-    expect(characters.filter((entity) => entity.attrs.ki !== null).length).toBeGreaterThan(10);
-  });
 
   it('con una sola serie activa el Clásico llega al pool mínimo de 20', () => {
     for (const series of SERIES) {

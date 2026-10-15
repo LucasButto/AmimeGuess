@@ -4,6 +4,7 @@ import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type R
 import { ContentImage } from '@/components/ContentImage';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { TitleWords } from '@/components/TitleWords';
 import { InfoTip } from '@/components/ui/InfoTip';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import type { DailyContext } from '@/engine/daily';
@@ -23,6 +24,12 @@ interface HigherLowerBoardProps {
   rounds: readonly Round[];
 }
 
+/** Un espacio sin ancho después de cada punto: un número de 25 cifras baja de renglón entre grupos de tres. */
+const breakable = (text: string): string => text.replaceAll('.', '.​');
+
+/** Lo que dura el fundido de salida al pasar de ronda (el mismo que `option-out` en el `.module.scss`). */
+const LEAVE_MS = 200;
+
 /** El aviso al marco de que terminó la partida: el puntaje, la última ronda y la grilla para compartir. */
 function reportOf(picks: readonly string[], progress: Progress, rounds: readonly Round[], metric: HigherLowerMetric, fresh: boolean): FinishReport {
   const failed = progress.failedAt !== null;
@@ -41,9 +48,9 @@ function reportOf(picks: readonly string[], progress: Progress, rounds: readonly
         failed && winner && loser && winnerValue !== undefined && loserValue !== undefined
           ? es.higherLower.lastRound(
               winner.name.es,
-              formatMetric(metric, winnerValue),
+              breakable(formatMetric(metric, winnerValue)),
               loser.name.es,
-              formatMetric(metric, loserValue),
+              breakable(formatMetric(metric, loserValue)),
             )
           : '',
       imageStem: failed ? winner?.image : undefined,
@@ -64,10 +71,24 @@ export function HigherLowerBoard({ session, metric, rounds }: HigherLowerBoardPr
   const questionId = useId();
   const { MetricMark } = useSkin().skin.slots;
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
+  // El valor más largo del día, escrito como se ve: reserva su lugar en las dos opciones desde antes de elegir, así
+  // mostrar los números no agranda las tarjetas. Es el mismo en todas las rondas, así no dice nada de la ronda.
+  const valueSizer = useMemo(
+    () =>
+      rounds
+        .flatMap((round) => [round.aValue, round.bValue])
+        .map((value) => breakable(formatMetric(metric, value)).replace(/\d/g, '0'))
+        .reduce((longest, text) => (text.length > longest.length ? text : longest), ''),
+    [rounds, metric],
+  );
 
   const [picks, setPicks] = useState<string[]>(() => restorePicks(readState(getLocalStorage(), ctx)?.attempts, rounds));
   // Tras un acierto se muestran los valores de esa ronda hasta que se toca "Siguiente".
   const [awaitingNext, setAwaitingNext] = useState(false);
+  // Al tocar "Siguiente", lo de las dos opciones se desvanece antes de que entre la ronda nueva.
+  const [leaving, setLeaving] = useState(false);
+  const leaveTimer = useRef<number | undefined>(undefined);
+  useEffect(() => () => window.clearTimeout(leaveTimer.current), []);
   const progress = progressOf(picks, rounds);
   const { ended } = progress;
   const revealed = ended || awaitingNext;
@@ -100,6 +121,19 @@ export function HigherLowerBoard({ session, metric, rounds }: HigherLowerBoardPr
     }
     if (!revealed) firstOptionRef.current?.focus();
   }, [roundNumber, revealed]);
+
+  function advance() {
+    if (leaving) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setAwaitingNext(false);
+      return;
+    }
+    setLeaving(true);
+    leaveTimer.current = window.setTimeout(() => {
+      setLeaving(false);
+      setAwaitingNext(false);
+    }, LEAVE_MS);
+  }
 
   function choose(id: string) {
     if (revealed) return;
@@ -134,7 +168,7 @@ export function HigherLowerBoard({ session, metric, rounds }: HigherLowerBoardPr
         </p>
       </header>
 
-      <div className={styles.options} role="group" aria-labelledby={questionId}>
+      <div className={styles.options} role="group" aria-labelledby={questionId} data-part="duel" data-leaving={leaving}>
         {([round.a, round.b] as const).map((entity, position) => (
           <Option
             key={`${index}-${entity.id}`}
@@ -142,6 +176,7 @@ export function HigherLowerBoard({ session, metric, rounds }: HigherLowerBoardPr
             value={position === 0 ? round.aValue : round.bValue}
             max={Math.max(round.aValue, round.bValue)}
             metric={metric}
+            sizer={valueSizer}
             revealed={revealed}
             isWinner={entity.id === winner.id}
             isPicked={entity.id === picked}
@@ -149,24 +184,26 @@ export function HigherLowerBoard({ session, metric, rounds }: HigherLowerBoardPr
             buttonRef={position === 0 ? firstOptionRef : undefined}
           />
         ))}
+        {/* En el medio del duelo, donde se cruzan los dos: pasa a la ronda siguiente. */}
+        {awaitingNext && !ended && (
+          <button type="button" className={styles.next} data-part="next" ref={nextRef} onClick={advance}>
+            <TitleWords text={es.higherLower.next} />
+          </button>
+        )}
       </div>
 
-      {revealed && (
-        <div className={styles.outcome} data-correct={picked === winner.id}>
-          <p className={styles.outcomeText}>
-            {ended && progress.failedAt === null
+      {/* Antes de elegir ya ocupa su lugar (invisible, con el texto de un acierto): mostrar el resultado no mueve la página. */}
+      <div className={styles.outcome} data-correct={picked === winner.id} data-pending={!revealed}>
+        <p className={styles.outcomeText}>
+          {!revealed
+            ? es.higherLower.correct
+            : ended && progress.failedAt === null
               ? es.higherLower.perfect
               : picked === winner.id
                 ? es.higherLower.correct
                 : es.higherLower.wrong(winner.name.es)}
-          </p>
-          {!ended && (
-            <button type="button" className={styles.next} ref={nextRef} onClick={() => setAwaitingNext(false)}>
-              {es.higherLower.next}
-            </button>
-          )}
-        </div>
-      )}
+        </p>
+      </div>
 
       <VisuallyHidden role="status">{status}</VisuallyHidden>
     </div>
@@ -179,6 +216,8 @@ interface OptionProps {
   /** El mayor de los dos valores: la barra de cada opción es proporcional a él. */
   max: number;
   metric: HigherLowerMetric;
+  /** El valor más largo del día (con cifras en 0): reserva el lugar del valor desde antes de elegir. */
+  sizer: string;
   revealed: boolean;
   isWinner: boolean;
   isPicked: boolean;
@@ -192,7 +231,8 @@ function meterLevel(share: number): 'high' | 'mid' | 'low' {
 }
 
 /** Una de las dos opciones: se toca para elegirla y, ya elegida, muestra su valor y si era la mayor. */
-function Option({ entity, value, max, metric, revealed, isWinner, isPicked, onChoose, buttonRef }: OptionProps) {
+function Option({ entity, value, max, metric, sizer, revealed, isWinner, isPicked, onChoose, buttonRef }: OptionProps) {
+  const marks = useSkin().skin.cellMarks;
   const share = max > 0 ? Math.max(0, value) / max : 0;
   return (
     <button
@@ -209,23 +249,35 @@ function Option({ entity, value, max, metric, revealed, isWinner, isPicked, onCh
       {entity.image && (
         <ContentImage className={styles.image} stem={entity.image} alt="" sizes="(min-width: 48rem) 10rem, 5rem" priority />
       )}
-      <span className={styles.details}>
+      <span className={styles.details} data-part="reading">
         <span className={styles.name}>{entity.name.es}</span>
-        {revealed && <span className={styles.value}>{formatMetric(metric, value)}</span>}
+        <span className={styles.value} data-part="value">
+          <span className={styles.valueSizer} aria-hidden="true">
+            {sizer}
+          </span>
+          {revealed && <span>{breakable(formatMetric(metric, value))}</span>}
+        </span>
         {revealed && (
           // Barra proporcional al valor (el mayor llena la barra). Decorativa: el valor ya está escrito.
-          <span className={styles.meter} aria-hidden="true" data-level={meterLevel(share)}>
+          <span className={styles.meter} aria-hidden="true" data-part="meter" data-level={meterLevel(share)}>
             <span className={styles.meterFill} style={{ '--share': share } as CSSProperties} />
           </span>
         )}
         {revealed && (
-          <span className={styles.badges}>
+          <span className={styles.badges} data-part="badges">
             {/* El resultado va en texto con su ícono: no depende del color. */}
-            {isWinner && <span className={styles.badge} data-kind="winner">✓ {es.higherLower.higher}</span>}
+            {isWinner && (
+              <span className={styles.badge} data-kind="winner">
+                {marks !== 'arrows' && '✓ '}
+                {es.higherLower.higher}
+              </span>
+            )}
             {isPicked && <span className={styles.badge} data-kind="picked">{es.higherLower.picked}</span>}
           </span>
         )}
       </span>
+      {/* El tachado del que no era: decorativo (el resultado ya está escrito); por defecto no se ve, lo dibuja la piel. */}
+      {revealed && !isWinner && <span className={styles.strike} data-part="strike" aria-hidden="true" />}
     </button>
   );
 }

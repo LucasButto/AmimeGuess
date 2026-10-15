@@ -585,7 +585,7 @@
   {
     "id": "quote-trunks-2",
     "kind": "quote",
-    "entityId": "trunks",
+    "entityId": "trunks-del-futuro",
     "series": "dbz",
     "payload": {
       "text": "¿Tú eres Freeza, no es verdad?, no tienes por qué sorprenderte, sé todo sobre ti. Hasta sé exactamente el lugar donde vas a morir",
@@ -596,7 +596,7 @@
   {
     "id": "quote-trunks-3",
     "kind": "quote",
-    "entityId": "trunks",
+    "entityId": "trunks-del-futuro",
     "series": "dbz",
     "payload": {
       "text": "Como podrás darte cuenta, la espada no es la que me daba la fuerza",
@@ -607,7 +607,7 @@
   {
     "id": "quote-trunks-6",
     "kind": "quote",
-    "entityId": "trunks",
+    "entityId": "trunks-del-futuro",
     "series": "dbz",
     "payload": {
       "text": "¡No permitiré que ustedes los androides se salgan con la suya, ya no puedo soportarlo, no permitiré que esa desgracia suceda en el futuro!...¡No volveremos a vivir en ese infierno jamás!",
@@ -618,7 +618,7 @@
   {
     "id": "quote-trunks-8",
     "kind": "quote",
-    "entityId": "trunks",
+    "entityId": "trunks-del-futuro",
     "series": "dbz",
     "payload": {
       "text": "Número 17, Número 18, ha llegado su fin malditos...¡Acabaré con ustedes!",
@@ -629,7 +629,7 @@
   {
     "id": "quote-trunks-11",
     "kind": "quote",
-    "entityId": "trunks",
+    "entityId": "trunks-del-futuro",
     "series": "dbz",
     "payload": {
       "text": "¡Desaparece para siempre, Cell!",
@@ -648,12 +648,92 @@
     "verified": true
   },
   {
+    "id": "event-goku-y-bulma-inician-la-busqueda",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku y Bulma comienzan a recorrer el mundo en busca de las Esferas del Dragón",
+      "order": 2
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-conoce-a-oolong",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku y Bulma conocen a Oolong y lo ayudan a enfrentarse a los problemas de su aldea",
+      "order": 3
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-conoce-a-yamcha",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku y Bulma se enfrentan a Yamcha y Puar, que luego se convierten en sus aliados",
+      "order": 4
+    },
+    "verified": true
+  },
+  {
+    "id": "event-chi-chi-conoce-a-goku",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku conoce a Chi-Chi durante su viaje y promete casarse con ella cuando sean mayores",
+      "order": 5
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-conoce-al-maestro-roshi",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku conoce al Maestro Roshi y recibe la nube voladora",
+      "order": 6
+    },
+    "verified": true
+  },
+  {
+    "id": "event-pilaf-reune-las-esferas",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Pilaf consigue reunir las Esferas del Dragón y convoca a Shenlong",
+      "order": 7
+    },
+    "verified": true
+  },
+  {
+    "id": "event-oolong-pide-un-deseo-a-shenlong",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Oolong se adelanta a Pilaf y pide un deseo para impedir que domine el mundo",
+      "order": 8
+    },
+    "verified": true
+  },
+  {
     "id": "event-goku-y-krilin-entrenan-con-roshi",
     "kind": "event",
     "series": "db",
     "payload": {
-      "text": "Goku y Krilin entrenan con el Maestro Roshi",
-      "order": 2
+      "text": "Goku y Krilin entrenan con el Maestro Roshi para participar en el torneo",
+      "order": 9
+    },
+    "verified": true
+  },
+  {
+    "id": "event-lunch-se-une-a-la-casa-kame",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Lunch llega a la casa del Maestro Roshi y se queda a vivir con el grupo",
+      "order": 10
     },
     "verified": true
   },
@@ -663,7 +743,78 @@
     "series": "db",
     "payload": {
       "text": "Goku pierde la final del 21.º Torneo de las Artes Marciales contra Jackie Chun",
-      "order": 3
+      "order": 11
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-busca-la-esfera-de-cuatro-estrellas",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku parte en busca de la Esfera de Cuatro Estrellas y se enfrenta al Ejército del Listón Rojo",
+      "order": 12
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-derrota-a-la-torre-musculo",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku derrota a los soldados del Ejército del Listón Rojo en la Torre del Músculo",
+      "order": 13
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-y-krilin-se-enfrentan-a-general-blue",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku y Krilin exploran una cueva pirata y se enfrentan al General Blue",
+      "order": 14
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-conoce-a-arale",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku visita Villa Pingüino y conoce a Arale en un crossover con Dr. Slump (relleno)",
+      "order": 15,
+      "filler": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-tao-pai-pai-asesina-a-bora",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Tao Pai Pai derrota a Goku y asesina a Bora frente a Upa",
+      "order": 16
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-entrena-en-la-torre-de-karin",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku escala la Torre de Karin y entrena para hacerse más fuerte",
+      "order": 17
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-derrota-a-tao-pai-pai",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku regresa y derrota a Tao Pai Pai",
+      "order": 18
     },
     "verified": true
   },
@@ -672,8 +823,18 @@
     "kind": "event",
     "series": "db",
     "payload": {
-      "text": "Goku acaba con el Ejército del Listón Rojo",
-      "order": 4
+      "text": "Goku acaba con el Ejército del Listón Rojo y derrota al comandante Black",
+      "order": 19
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-participa-en-el-torneo-de-baba",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku participa en el torneo de Uranai Baba y vuelve a encontrarse con su abuelo Gohan",
+      "order": 20
     },
     "verified": true
   },
@@ -682,8 +843,18 @@
     "kind": "event",
     "series": "db",
     "payload": {
-      "text": "Tenshinhan gana el 22.º Torneo de las Artes Marciales",
-      "order": 5
+      "text": "Tenshinhan gana el 22.º Torneo de las Artes Marciales tras derrotar a Goku en la final",
+      "order": 21
+    },
+    "verified": true
+  },
+  {
+    "id": "event-tenshinhan-y-chiaotzu-abandonan-la-escuela-grulla",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Tenshinhan y Chiaotzu cuestionan las enseñanzas de la Escuela Grulla",
+      "order": 22
     },
     "verified": true
   },
@@ -692,8 +863,38 @@
     "kind": "event",
     "series": "db",
     "payload": {
-      "text": "Tambourine asesina a Krilin",
-      "order": 6
+      "text": "Tambourine asesina a Krilin y roba la lista de participantes del torneo",
+      "order": 23
+    },
+    "verified": true
+  },
+  {
+    "id": "event-piccolo-daimaoh-rejuvenece",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Piccolo Daimaō reúne las Esferas del Dragón y pide recuperar su juventud",
+      "order": 24
+    },
+    "verified": true
+  },
+  {
+    "id": "event-piccolo-daimaoh-mata-a-shenlong",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Piccolo Daimaō destruye a Shenlong para impedir que vuelvan a pedir deseos",
+      "order": 25
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-bebe-el-agua-ultradivina",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku bebe el Agua Ultradivina para despertar su potencial y enfrentar a Piccolo Daimaō",
+      "order": 26
     },
     "verified": true
   },
@@ -703,7 +904,38 @@
     "series": "db",
     "payload": {
       "text": "Goku derrota al Gran Rey Demonio Piccolo",
-      "order": 7
+      "order": 27
+    },
+    "verified": true
+  },
+  {
+    "id": "event-piccolo-jr-nace",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Piccolo Daimaō deja un huevo antes de morir y nace Piccolo Jr.",
+      "order": 28
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-derrota-a-piccolo-jr-en-el-torneo-23",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku derrota a Piccolo Jr. en la final del 23.º Torneo de las Artes Marciales",
+      "order": 29
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-y-chichi-buscan-el-vestido-de-boda",
+    "kind": "event",
+    "series": "db",
+    "payload": {
+      "text": "Goku y Chi-Chi buscan el vestido de boda y ayudan a apagar el incendio del Monte Frypan (relleno)",
+      "order": 30,
+      "filler": true
     },
     "verified": true
   },
@@ -713,7 +945,7 @@
     "series": "db",
     "payload": {
       "text": "Goku se casa con Chi-Chi",
-      "order": 8
+      "order": 31
     },
     "verified": true
   },
@@ -722,8 +954,18 @@
     "kind": "event",
     "series": "dbz",
     "payload": {
-      "text": "Raditz llega a la Tierra y se lleva a Gohan",
-      "order": 9
+      "text": "Raditz llega a la Tierra, revela el origen saiyajin de Goku y se lleva a Gohan",
+      "order": 32
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-y-piccolo-derrotan-a-raditz",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku y Piccolo unen fuerzas para detener a Raditz",
+      "order": 33
     },
     "verified": true
   },
@@ -733,7 +975,7 @@
     "series": "dbz",
     "payload": {
       "text": "Goku muere al sacrificarse para detener a Raditz",
-      "order": 10
+      "order": 34
     },
     "verified": true
   },
@@ -742,8 +984,71 @@
     "kind": "event",
     "series": "dbz",
     "payload": {
-      "text": "Piccolo entrena a Gohan en el desierto",
-      "order": 11
+      "text": "Piccolo entrena a Gohan en el desierto para prepararlo para la llegada de los saiyajin",
+      "order": 35
+    },
+    "verified": true
+  },
+  {
+    "id": "event-gohan-sobrevive-con-un-robot-herido",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Gohan sobrevive a sus primeras semanas de entrenamiento y se hace amigo de un robot herido (relleno)",
+      "order": 36,
+      "filler": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-gohan-ayuda-a-ninos-huerfanos",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Gohan conoce a un grupo de niños huérfanos y los ayuda a escapar de unos adultos abusivos (relleno)",
+      "order": 37,
+      "filler": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-recorre-el-camino-de-la-serpiente",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku recorre el Camino de la Serpiente y llega al planeta del Kaio del Norte",
+      "order": 38
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-visita-el-castillo-de-la-princesa-serpiente",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku cae en el castillo de la Princesa Serpiente durante el Camino de la Serpiente (relleno)",
+      "order": 39,
+      "filler": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-entrena-con-kaio-del-norte",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku aprende el Kaio-ken y la Genkidama entrenando con Kaio del Norte",
+      "order": 40
+    },
+    "verified": true
+  },
+  {
+    "id": "event-gohan-sobrevive-solo-en-la-naturaleza",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Gohan sobrevive solo en la naturaleza y fortalece su vínculo con Piccolo",
+      "order": 41
     },
     "verified": true
   },
@@ -752,8 +1057,169 @@
     "kind": "event",
     "series": "dbz",
     "payload": {
-      "text": "Nappa y Vegeta llegan a la Tierra",
-      "order": 12
+      "text": "Nappa y Vegeta llegan a la Tierra y comienzan a combatir contra los Guerreros Z",
+      "order": 42
+    },
+    "verified": true
+  },
+  {
+    "id": "event-saibaman-mata-a-yamcha",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Un Saibaman se autodestruye y mata a Yamcha",
+      "order": 43
+    },
+    "verified": true
+  },
+  {
+    "id": "event-chiaotzu-se-sacrifica-contra-nappa",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Chiaotzu se sacrifica con una explosión contra Nappa, pero no logra derrotarlo",
+      "order": 44
+    },
+    "verified": true
+  },
+  {
+    "id": "event-tenshinhan-muere-tras-atacar-a-nappa",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Tenshinhan agota sus fuerzas y muere después de atacar a Nappa",
+      "order": 45
+    },
+    "verified": true
+  },
+  {
+    "id": "event-piccolo-muere-protegiendo-a-gohan",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Piccolo muere protegiendo a Gohan del ataque de Nappa",
+      "order": 46
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-derrota-a-nappa",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku llega al campo de batalla y derrota a Nappa",
+      "order": 47
+    },
+    "verified": true
+  },
+  {
+    "id": "event-gohan-y-krilin-ayudan-con-la-genkidama",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Gohan y Krilin ayudan a Goku a lanzar la Genkidama contra Vegeta",
+      "order": 48
+    },
+    "verified": true
+  },
+  {
+    "id": "event-yajirobe-corta-la-cola-de-vegeta",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Yajirobe corta la cola de Vegeta cuando este se transforma en Ōzaru",
+      "order": 49
+    },
+    "verified": true
+  },
+  {
+    "id": "event-gohan-se-transforma-en-ozaru-contra-vegeta",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Gohan se transforma en Ōzaru y aplasta a Vegeta durante la batalla final",
+      "order": 50
+    },
+    "verified": true
+  },
+  {
+    "id": "event-vegeta-es-derrotado-y-escapa",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Vegeta es derrotado por Goku, Gohan, Krilin y Yajirobe, pero consigue escapar",
+      "order": 51
+    },
+    "verified": true
+  },
+  {
+    "id": "event-krilin-gohan-y-bulma-viajan-a-namek",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Krilin, Gohan y Bulma viajan a Namek para buscar las Esferas del Dragón namekianas",
+      "order": 52
+    },
+    "verified": true
+  },
+  {
+    "id": "event-falsa-namek",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Krilin, Gohan y Bulma llegan a una falsa Namek y logran escapar (relleno)",
+      "order": 53,
+      "filler": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-vegeta-se-enfrenta-a-las-fuerzas-de-freezer",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Vegeta se enfrenta a las fuerzas de Freezer mientras busca las Esferas del Dragón",
+      "order": 54
+    },
+    "verified": true
+  },
+  {
+    "id": "event-gohan-y-krilin-conocen-a-dende",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Gohan y Krilin conocen a Dende y ayudan a los habitantes de Namek",
+      "order": 55
+    },
+    "verified": true
+  },
+  {
+    "id": "event-vegeta-derrota-a-dodoria",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Vegeta derrota a Dodoria y descubre parte de la verdad sobre la destrucción del planeta Vegeta",
+      "order": 56
+    },
+    "verified": true
+  },
+  {
+    "id": "event-freezer-reune-las-esferas-de-namek",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Freezer reúne las Esferas del Dragón de Namek e intenta conseguir la inmortalidad",
+      "order": 57
+    },
+    "verified": true
+  },
+  {
+    "id": "event-llegan-las-fuerzas-especiales-guiniu",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Las Fuerzas Especiales Ginyu llegan a Namek para detener a los Guerreros Z",
+      "order": 58
     },
     "verified": true
   },
@@ -762,8 +1228,68 @@
     "kind": "event",
     "series": "dbz",
     "payload": {
-      "text": "Goku llega a Namek",
-      "order": 13
+      "text": "Goku llega a Namek y derrota a varios miembros de las Fuerzas Especiales Ginyu",
+      "order": 59
+    },
+    "verified": true
+  },
+  {
+    "id": "event-ginyu-intercambia-cuerpos-con-goku",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Capitán Ginyu intercambia su cuerpo con el de Goku",
+      "order": 60
+    },
+    "verified": true
+  },
+  {
+    "id": "event-piccolo-se-fusiona-con-nail",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Piccolo se fusiona con Nail para aumentar su poder",
+      "order": 61
+    },
+    "verified": true
+  },
+  {
+    "id": "event-freezer-se-transforma-en-su-segunda-forma",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Freezer revela sus transformaciones y supera a los Guerreros Z",
+      "order": 62
+    },
+    "verified": true
+  },
+  {
+    "id": "event-freezer-alcanza-su-tercera-forma",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Freezer revela su tercera forma y supera a Piccolo",
+      "order": 63
+    },
+    "verified": true
+  },
+  {
+    "id": "event-gohan-ataca-a-freezer-por-la-muerte-de-krilin",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Gohan desata su furia y ataca a Freezer para proteger a sus amigos",
+      "order": 64
+    },
+    "verified": true
+  },
+  {
+    "id": "event-freezer-alcanza-su-forma-final",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Freezer revela su forma final y comienza a luchar usando solo una parte de su poder",
+      "order": 65
     },
     "verified": true
   },
@@ -772,8 +1298,8 @@
     "kind": "event",
     "series": "dbz",
     "payload": {
-      "text": "Freezer mata a Krilin",
-      "order": 14
+      "text": "Freezer mata a Krilin frente a Goku",
+      "order": 66
     },
     "verified": true
   },
@@ -783,7 +1309,17 @@
     "series": "dbz",
     "payload": {
       "text": "Goku se transforma en Supersaiyano por primera vez",
-      "order": 15
+      "order": 67
+    },
+    "verified": true
+  },
+  {
+    "id": "event-freezer-es-derrotado-por-goku",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku supera a Freezer y lo deja gravemente derrotado antes de intentar escapar de Namek",
+      "order": 68
     },
     "verified": true
   },
@@ -792,8 +1328,30 @@
     "kind": "event",
     "series": "dbz",
     "payload": {
-      "text": "El planeta Namek explota",
-      "order": 16
+      "text": "El planeta Namek explota después de la batalla entre Goku y Freezer",
+      "order": 69
+    },
+    "verified": true
+  },
+  {
+    "id": "event-garlic-jr-libera-la-niebla-negra",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Garlic Jr. regresa y libera la Niebla de Agua Negra sobre la Tierra (relleno)",
+      "order": 70,
+      "filler": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-gohan-derrota-a-garlic-jr",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Gohan y sus aliados derrotan a Garlic Jr. y lo encierran otra vez en la Zona Muerta (relleno)",
+      "order": 71,
+      "filler": true
     },
     "verified": true
   },
@@ -802,8 +1360,49 @@
     "kind": "event",
     "series": "dbz",
     "payload": {
-      "text": "Trunks del futuro llega a la Tierra y derrota a Freezer",
-      "order": 17
+      "text": "Trunks del futuro llega a la Tierra y derrota a Freezer y al Rey Cold",
+      "order": 72
+    },
+    "verified": true
+  },
+  {
+    "id": "event-trunks-advierte-sobre-los-androides",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Trunks del futuro advierte a Goku sobre los androides y una enfermedad cardíaca",
+      "order": 73
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-regresa-de-yardrat",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku regresa a la Tierra tras aprender la teletransportación en Yardrat",
+      "order": 74
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-y-piccolo-aprenden-a-conducir",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku y Piccolo toman clases de conducción (relleno)",
+      "order": 75,
+      "filler": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-aparecen-los-androides-19-y-20",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Los androides 19 y 20 atacan la ciudad y Goku sufre la enfermedad cardíaca",
+      "order": 76
     },
     "verified": true
   },
@@ -812,8 +1411,38 @@
     "kind": "event",
     "series": "dbz",
     "payload": {
-      "text": "El Dr. Gero activa a los Androides 17 y 18",
-      "order": 18
+      "text": "El Dr. Gero activa a los Androides 17 y 18, que se rebelan contra él",
+      "order": 77
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-y-piccolo-se-fusionan-con-kami",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Piccolo se fusiona con Kami y recupera el poder de un namekiano unido",
+      "order": 78
+    },
+    "verified": true
+  },
+  {
+    "id": "event-celula-aparece-en-su-primera-forma",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Célula aparece y comienza a absorber humanos para aumentar su poder",
+      "order": 79
+    },
+    "verified": true
+  },
+  {
+    "id": "event-vegeta-y-trunks-entran-en-la-habitacion-del-tiempo",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Vegeta y Trunks entrenan en la Habitación del Tiempo para superar sus límites",
+      "order": 80
     },
     "verified": true
   },
@@ -823,7 +1452,27 @@
     "series": "dbz",
     "payload": {
       "text": "Célula absorbe a los Androides 17 y 18 y alcanza su forma perfecta",
-      "order": 19
+      "order": 81
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-y-gohan-entran-en-la-habitacion-del-tiempo",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku y Gohan entrenan juntos en la Habitación del Tiempo",
+      "order": 82
+    },
+    "verified": true
+  },
+  {
+    "id": "event-comienza-el-torneo-de-celula",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Célula organiza los Juegos de Célula para desafiar a los defensores de la Tierra",
+      "order": 83
     },
     "verified": true
   },
@@ -833,7 +1482,7 @@
     "series": "dbz",
     "payload": {
       "text": "Goku se sacrifica para llevarse a Célula lejos de la Tierra",
-      "order": 20
+      "order": 84
     },
     "verified": true
   },
@@ -843,7 +1492,58 @@
     "series": "dbz",
     "payload": {
       "text": "Gohan derrota a Célula con un Kamehameha Padre e Hijo",
-      "order": 21
+      "order": 85
+    },
+    "verified": true
+  },
+  {
+    "id": "event-torneo-del-otro-mundo",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku participa en el Torneo del Otro Mundo y se enfrenta a Pikkon (relleno)",
+      "order": 86,
+      "filler": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-gohan-comienza-la-escuela-secundaria",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Gohan comienza la escuela secundaria y adopta la identidad de Gran Saiyaman",
+      "order": 87
+    },
+    "verified": true
+  },
+  {
+    "id": "event-videl-descubre-la-identidad-de-gohan",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Videl descubre que Gohan es Gran Saiyaman y lo convence de enseñarle a volar",
+      "order": 88
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-regresa-por-un-dia-al-torneo-25",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku regresa al mundo de los vivos por un día para participar en el 25.º Torneo de las Artes Marciales",
+      "order": 89
+    },
+    "verified": true
+  },
+  {
+    "id": "event-vegeta-se-convierte-en-majin",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Vegeta permite que Babidi controle su mente para luchar contra Goku",
+      "order": 90
     },
     "verified": true
   },
@@ -853,7 +1553,7 @@
     "series": "dbz",
     "payload": {
       "text": "Babidi despierta a Majin Buu",
-      "order": 22
+      "order": 91
     },
     "verified": true
   },
@@ -863,7 +1563,47 @@
     "series": "dbz",
     "payload": {
       "text": "Vegeta se sacrifica para intentar destruir a Majin Buu",
-      "order": 23
+      "order": 92
+    },
+    "verified": true
+  },
+  {
+    "id": "event-majin-buu-se-divide-en-buu-bueno-y-malo",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Majin Buu se divide en dos entidades y el Buu malvado absorbe al Buu bueno",
+      "order": 93
+    },
+    "verified": true
+  },
+  {
+    "id": "event-gotenks-se-transforma-en-supersaiyano-3",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Gotenks alcanza el nivel de Supersaiyano 3 para luchar contra Buu",
+      "order": 94
+    },
+    "verified": true
+  },
+  {
+    "id": "event-gohan-despierta-su-potencial-con-kaio-shin-anciano",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Gohan libera su potencial oculto gracias al Kaio-shin Anciano",
+      "order": 95
+    },
+    "verified": true
+  },
+  {
+    "id": "event-buu-absorbe-a-gotenks-y-gohan",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Buu absorbe a Gotenks y después a Gohan para incrementar su poder",
+      "order": 96
     },
     "verified": true
   },
@@ -872,8 +1612,28 @@
     "kind": "event",
     "series": "dbz",
     "payload": {
-      "text": "Goku y Vegeta se fusionan en Vegetto",
-      "order": 24
+      "text": "Goku y Vegeta se fusionan mediante los pendientes Pothala y forman a Vegetto",
+      "order": 97
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-y-vegeta-rescatan-a-sus-amigos-del-interior-de-buu",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Goku y Vegeta rescatan a sus amigos del interior de Buu y provocan su transformación en Kid Buu",
+      "order": 98
+    },
+    "verified": true
+  },
+  {
+    "id": "event-kid-buu-destruye-la-tierra",
+    "kind": "event",
+    "series": "dbz",
+    "payload": {
+      "text": "Kid Buu destruye la Tierra y Goku, Vegeta y sus aliados se refugian en el planeta de los Kaio-shin",
+      "order": 99
     },
     "verified": true
   },
@@ -882,8 +1642,18 @@
     "kind": "event",
     "series": "dbz",
     "payload": {
-      "text": "Goku derrota a Kid Buu con la Genkidama",
-      "order": 25
+      "text": "Goku derrota a Kid Buu con la Genkidama, alimentada por la energía de los habitantes de la Tierra",
+      "order": 100
+    },
+    "verified": true
+  },
+  {
+    "id": "event-gomah-planea-vengarse-de-los-guerreros-z",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "Gomah y Degesu planean reducir a los Guerreros Z tras la derrota de Majin Buu",
+      "order": 101
     },
     "verified": true
   },
@@ -892,8 +1662,18 @@
     "kind": "event",
     "series": "daima",
     "payload": {
-      "text": "Goku y sus amigos quedan transformados en niños",
-      "order": 45
+      "text": "Goku y sus amigos quedan transformados en niños por un deseo a Shenlong",
+      "order": 102
+    },
+    "verified": true
+  },
+  {
+    "id": "event-glorio-recluta-a-goku-y-shin",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "Glorio aparece en la Tierra y propone a Goku y al Supremo Kai viajar al Reino Demoníaco",
+      "order": 103
     },
     "verified": true
   },
@@ -902,8 +1682,118 @@
     "kind": "event",
     "series": "daima",
     "payload": {
-      "text": "Goku y sus amigos viajan al Reino Demoníaco",
-      "order": 46
+      "text": "Goku y sus amigos viajan al Reino Demoníaco para detener los planes de Gomah",
+      "order": 104
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-shin-y-glorio-conocen-a-panzy",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "Goku, Shin y Glorio conocen a Panzy, quien se une a su viaje",
+      "order": 105
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-derrota-al-tamagami-numero-tres",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "Goku supera el desafío del Tamagami número tres y obtiene una Esfera del Dragón Demoníaca",
+      "order": 106
+    },
+    "verified": true
+  },
+  {
+    "id": "event-vegeta-y-los-demas-llegan-al-segundo-mundo-demoniaco",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "Vegeta, Piccolo y los demás llegan al Segundo Mundo Demoníaco y se reúnen con el grupo",
+      "order": 107
+    },
+    "verified": true
+  },
+  {
+    "id": "event-vegeta-derrota-al-tamagami-numero-dos",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "Vegeta se transforma en Supersaiyano 3 y derrota al Tamagami número dos",
+      "order": 108
+    },
+    "verified": true
+  },
+  {
+    "id": "event-arinsu-crea-a-majin-kuu-y-majin-duu",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "La doctora Arinsu crea a Majin Kuu y Majin Duu a partir de restos de Majin Buu",
+      "order": 109
+    },
+    "verified": true
+  },
+  {
+    "id": "event-majin-kuu-y-duu-obtienen-la-tercera-esfera",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "Majin Kuu y Majin Duu superan el desafío del Tamagami número uno y obtienen la última esfera",
+      "order": 110
+    },
+    "verified": true
+  },
+  {
+    "id": "event-neva-ayuda-a-los-heroes-a-llegar-al-primer-mundo",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "Neva ayuda a Goku y sus aliados a llegar al Primer Mundo Demoníaco",
+      "order": 111
+    },
+    "verified": true
+  },
+  {
+    "id": "event-gomah-obtiene-el-tercer-ojo",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "Gomah consigue el Tercer Ojo Maligno y obtiene un poder extraordinario",
+      "order": 112
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-se-transforma-en-supersaiyano-4-en-daima",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "Goku alcanza la transformación de Supersaiyano 4 durante la batalla final contra Gomah",
+      "order": 113
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-y-sus-aliados-derrotan-a-gomah",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "Goku y sus aliados derrotan a Gomah con la ayuda de sus compañeros del Reino Demoníaco",
+      "order": 114
+    },
+    "verified": true
+  },
+  {
+    "id": "event-los-guerreros-z-recuperan-sus-edades",
+    "kind": "event",
+    "series": "daima",
+    "payload": {
+      "text": "Los héroes revierten la transformación y regresan a sus edades habituales",
+      "order": 115
     },
     "verified": true
   },
@@ -913,7 +1803,17 @@
     "series": "super",
     "payload": {
       "text": "Bills despierta y empieza a buscar al Dios Supersaiyano",
-      "order": 26
+      "order": 116
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-se-enfrenta-a-bills-en-el-planeta-kaio",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Goku se enfrenta a Bills en el planeta de Kaio del Norte y es derrotado",
+      "order": 117
     },
     "verified": true
   },
@@ -922,8 +1822,28 @@
     "kind": "event",
     "series": "super",
     "payload": {
-      "text": "Goku se convierte en Supersaiyano Dios",
-      "order": 27
+      "text": "Goku se convierte en Supersaiyano Dios gracias al ritual de los seis saiyajin de corazón puro",
+      "order": 118
+    },
+    "verified": true
+  },
+  {
+    "id": "event-bills-perdona-a-la-tierra",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Bills combate contra Goku y decide perdonar a la Tierra",
+      "order": 119
+    },
+    "verified": true
+  },
+  {
+    "id": "event-whis-entrena-a-goku-y-vegeta",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Goku y Vegeta comienzan a entrenar con Whis en el planeta de Bills",
+      "order": 120
     },
     "verified": true
   },
@@ -933,7 +1853,7 @@
     "series": "super",
     "payload": {
       "text": "Freezer es resucitado por sus soldados",
-      "order": 28
+      "order": 121
     },
     "verified": true
   },
@@ -942,8 +1862,28 @@
     "kind": "event",
     "series": "super",
     "payload": {
-      "text": "Freezer alcanza su forma dorada",
-      "order": 29
+      "text": "Freezer alcanza su forma dorada y se enfrenta a Goku y Vegeta",
+      "order": 122
+    },
+    "verified": true
+  },
+  {
+    "id": "event-whis-rebobina-el-tiempo-contra-freezer",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Whis rebobina el tiempo y Goku derrota a Freezer antes de que destruya la Tierra",
+      "order": 123
+    },
+    "verified": true
+  },
+  {
+    "id": "event-champa-y-vados-visitan-el-universo-7",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Champa y Vados llegan al Universo 7 y proponen un torneo entre universos",
+      "order": 124
     },
     "verified": true
   },
@@ -953,7 +1893,48 @@
     "series": "super",
     "payload": {
       "text": "Se enfrentan el Universo 6 y el Universo 7 en un torneo",
-      "order": 30
+      "order": 125
+    },
+    "verified": true
+  },
+  {
+    "id": "event-cabba-le-ensena-la-transformacion-a-vegeta",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Vegeta se enfrenta a Cabba y le muestra el poder del Supersaiyano",
+      "order": 126
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-se-enfrenta-a-hit",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Goku se enfrenta a Hit y descubre su técnica para saltar en el tiempo",
+      "order": 127
+    },
+    "verified": true
+  },
+  {
+    "id": "event-zeno-conoce-a-goku",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Zeno conoce a Goku y promete organizar un torneo entre todos los universos",
+      "order": 128
+    },
+    "verified": true
+  },
+  {
+    "id": "event-vegeta-es-reemplazado-por-un-clon",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Un duplicado de Vegeta aparece y desafía a Goku y sus amigos (relleno)",
+      "order": 129,
+      "filler": true
     },
     "verified": true
   },
@@ -963,7 +1944,27 @@
     "series": "super",
     "payload": {
       "text": "Trunks del futuro llega al presente para pedir ayuda contra Goku Black",
-      "order": 31
+      "order": 130
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-y-vegeta-viajan-al-futuro-de-trunks",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Goku y Vegeta viajan al futuro y se enfrentan a Goku Black y Zamasu",
+      "order": 131
+    },
+    "verified": true
+  },
+  {
+    "id": "event-se-revela-que-goku-black-es-zamasu",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Se descubre que Goku Black es Zamasu usando el cuerpo de Goku",
+      "order": 132
     },
     "verified": true
   },
@@ -973,7 +1974,49 @@
     "series": "super",
     "payload": {
       "text": "Goku Black y Zamasu se fusionan",
-      "order": 32
+      "order": 133
+    },
+    "verified": true
+  },
+  {
+    "id": "event-zeno-borra-la-linea-temporal-de-trunks",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Zeno borra la línea temporal futura para acabar con Zamasu",
+      "order": 134
+    },
+    "verified": true
+  },
+  {
+    "id": "event-trunks-del-futuro-se-marcha-a-otra-linea-temporal",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Trunks y Mai parten hacia otra línea temporal para comenzar una nueva vida",
+      "order": 135
+    },
+    "verified": true
+  },
+  {
+    "id": "event-arale-visita-la-tierra-en-super",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Arale visita la Tierra y se enfrenta a Goku en un crossover cómico (relleno)",
+      "order": 136,
+      "filler": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-y-sus-amigos-juegan-beisbol-con-bills",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Goku, Vegeta y los demás juegan un partido de béisbol contra el grupo de Bills (relleno)",
+      "order": 137,
+      "filler": true
     },
     "verified": true
   },
@@ -982,8 +2025,38 @@
     "kind": "event",
     "series": "super",
     "payload": {
-      "text": "El Rey de Todo anuncia el Torneo del Poder",
-      "order": 33
+      "text": "El Rey de Todo anuncia el Torneo del Poder entre los universos",
+      "order": 138
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-recluta-a-los-diez-luchadores-del-universo-7",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Goku reúne a los diez luchadores del Universo 7, incluido Freezer",
+      "order": 139
+    },
+    "verified": true
+  },
+  {
+    "id": "event-comienza-el-torneo-del-poder",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Comienza el Torneo del Poder y los universos empiezan a ser eliminados",
+      "order": 140
+    },
+    "verified": true
+  },
+  {
+    "id": "event-kale-pierde-el-control-de-su-poder",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Kale pierde el control de su poder durante el Torneo del Poder",
+      "order": 141
     },
     "verified": true
   },
@@ -992,8 +2065,28 @@
     "kind": "event",
     "series": "super",
     "payload": {
-      "text": "Goku logra el Ultra Instinto",
-      "order": 34
+      "text": "Goku despierta el Ultra Instinto durante su combate contra Jiren",
+      "order": 142
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-domina-el-ultra-instinto",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Goku alcanza el Ultra Instinto dominado y se enfrenta a Jiren al máximo de su poder",
+      "order": 143
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-freezer-y-17-derrotan-a-jiren",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Goku y Freezer se sacrifican para sacar a Jiren de la plataforma; Androide 17 queda como último participante",
+      "order": 144
     },
     "verified": true
   },
@@ -1002,8 +2095,8 @@
     "kind": "event",
     "series": "super",
     "payload": {
-      "text": "El Universo 7 gana el Torneo del Poder",
-      "order": 35
+      "text": "El Universo 7 gana el Torneo del Poder y el Androide 17 desea restaurar los universos borrados",
+      "order": 145
     },
     "verified": true
   },
@@ -1012,8 +2105,8 @@
     "kind": "event",
     "series": "super",
     "payload": {
-      "text": "Gogeta Supersaiyano Azul supera a Broly",
-      "order": 36
+      "text": "Gogeta Supersaiyano Azul supera a Broly y Goku se asegura de que pueda vivir en paz",
+      "order": 146
     },
     "verified": true
   },
@@ -1023,7 +2116,136 @@
     "series": "super",
     "payload": {
       "text": "Moro escapa de la prisión de la Patrulla Galáctica",
-      "order": 37
+      "order": 147,
+      "mangaOnly": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-moro-absorbe-la-energia-de-los-planetas",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Moro absorbe la energía de planetas y derrota inicialmente a Goku y Vegeta",
+      "order": 148,
+      "mangaOnly": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-vegeta-entrena-en-yardrat-contra-moro",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Vegeta entrena en Yardrat y aprende técnicas para contrarrestar a Moro",
+      "order": 149,
+      "mangaOnly": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-entrena-con-merus-y-mejora-el-ultra-instinto",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Goku entrena con Merus y mejora su capacidad de usar el Ultra Instinto",
+      "order": 150,
+      "mangaOnly": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-derrota-a-moro",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Goku derrota a Moro con ayuda de sus aliados y de la Patrulla Galáctica",
+      "order": 151,
+      "mangaOnly": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-granolah-pide-ser-el-guerrero-mas-poderoso",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Granolah utiliza las Esferas del Dragón de Cereal para convertirse en el guerrero más poderoso",
+      "order": 152,
+      "mangaOnly": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-vegeta-despierta-el-ultra-ego",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Vegeta despierta el Ultra Ego durante la batalla contra Granolah",
+      "order": 153,
+      "mangaOnly": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-gas-es-potenciado-por-las-esferas-del-dragon",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Gas obtiene un poder inmenso gracias a un deseo de los Heeters",
+      "order": 154,
+      "mangaOnly": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-freezer-negro-derrota-a-goku-y-vegeta",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Freezer revela su nueva forma Black Freezer y derrota a Goku y Vegeta",
+      "order": 155,
+      "mangaOnly": true
+    },
+    "verified": true
+  },
+  {
+    "id": "event-la-patrulla-roja-regresa",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "La Patrulla Roja resurge y pone en marcha un nuevo plan con los androides Gamma",
+      "order": 156
+    },
+    "verified": true
+  },
+  {
+    "id": "event-piccolo-se-infiltra-en-la-base-de-la-patrulla-roja",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Piccolo se infiltra en la base de la Patrulla Roja para descubrir sus planes",
+      "order": 157
+    },
+    "verified": true
+  },
+  {
+    "id": "event-piccolo-despierta-su-forma-naranja",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "Piccolo despierta su forma Naranja gracias al poder liberado por Shenlong",
+      "order": 158
+    },
+    "verified": true
+  },
+  {
+    "id": "event-cell-max-es-despertado",
+    "kind": "event",
+    "series": "super",
+    "payload": {
+      "text": "La Patrulla Roja libera a Cell Max antes de que esté completamente terminado",
+      "order": 159
     },
     "verified": true
   },
@@ -1032,8 +2254,18 @@
     "kind": "event",
     "series": "super",
     "payload": {
-      "text": "Gohan despierta su forma Bestia contra Cell Max",
-      "order": 38
+      "text": "Gohan despierta su forma Bestia contra Cell Max y ayuda a derrotarlo",
+      "order": 160
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-entrena-a-ub",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Goku continúa entrenando a Uub en el Palacio de Kami",
+      "order": 161
     },
     "verified": true
   },
@@ -1043,7 +2275,17 @@
     "series": "gt",
     "payload": {
       "text": "Pilaf convierte a Goku en niño con las Esferas del Dragón Definitivas",
-      "order": 39
+      "order": 162
+    },
+    "verified": true
+  },
+  {
+    "id": "event-las-esferas-negras-se-esparcen-por-el-universo",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Las Esferas del Dragón Definitivas se dispersan por el universo y amenazan con destruir la Tierra",
+      "order": 163
     },
     "verified": true
   },
@@ -1053,7 +2295,37 @@
     "series": "gt",
     "payload": {
       "text": "Goku, Trunks y Pan viajan al espacio en busca de las Esferas",
-      "order": 40
+      "order": 164
+    },
+    "verified": true
+  },
+  {
+    "id": "event-giru-se-traga-el-radar-del-dragon",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Giru se traga el radar del dragón y se une al viaje como compañero del grupo",
+      "order": 165
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-se-enfrenta-al-general-lydoo",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Goku y sus compañeros luchan contra el general Rilldo en el planeta M-2",
+      "order": 166
+    },
+    "verified": true
+  },
+  {
+    "id": "event-baby-revela-su-origen-tsufur",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Baby revela su origen tsufur y su deseo de vengarse de los saiyajin",
+      "order": 167
     },
     "verified": true
   },
@@ -1062,8 +2334,18 @@
     "kind": "event",
     "series": "gt",
     "payload": {
-      "text": "Baby domina la Tierra",
-      "order": 41
+      "text": "Baby domina la Tierra al poseer a varios habitantes, incluido Vegeta",
+      "order": 168
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-regresa-a-la-tierra-para-enfrentar-a-baby",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Goku regresa a la Tierra y se enfrenta a Baby Vegeta, pero queda en desventaja",
+      "order": 169
     },
     "verified": true
   },
@@ -1072,8 +2354,108 @@
     "kind": "event",
     "series": "gt",
     "payload": {
-      "text": "Goku se transforma en Supersaiyano 4",
-      "order": 42
+      "text": "Goku se transforma en Supersaiyano 4 tras recuperar su cola y convertirse en Ōzaru Dorado",
+      "order": 170
+    },
+    "verified": true
+  },
+  {
+    "id": "event-baby-es-derrotado-con-la-genkidama",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Goku derrota a Baby con una Genkidama y libera a sus amigos de su control",
+      "order": 171
+    },
+    "verified": true
+  },
+  {
+    "id": "event-los-humanos-evacuan-la-tierra-antes-de-su-destruccion",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Los habitantes son evacuados a Plant mientras la Tierra se acerca a su destrucción por las Esferas Definitivas",
+      "order": 172
+    },
+    "verified": true
+  },
+  {
+    "id": "event-piccolo-se-queda-en-la-tierra-que-explota",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Piccolo decide quedarse en la Tierra y muere cuando el planeta explota",
+      "order": 173
+    },
+    "verified": true
+  },
+  {
+    "id": "event-los-villanos-escapan-del-infierno",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Un portal entre el Infierno y la Tierra permite que antiguos enemigos regresen al mundo de los vivos",
+      "order": 174
+    },
+    "verified": true
+  },
+  {
+    "id": "event-android-17-y-hell-fighter-17-se-fusionan",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "El Androide 17 y Hell Fighter 17 se fusionan para crear a Súper 17",
+      "order": 175
+    },
+    "verified": true
+  },
+  {
+    "id": "event-super-17-mata-a-krilin",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Súper 17 mata a Krilin y provoca que Androide 18 luche contra él",
+      "order": 176
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-derrota-a-super-17",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Goku derrota a Súper 17 aprovechando su vulnerabilidad mientras absorbe energía",
+      "order": 177
+    },
+    "verified": true
+  },
+  {
+    "id": "event-aparece-shenlong-de-humo-negro",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "La acumulación de energía negativa provoca la aparición de Shenlong de Humo Negro y los Dragones Oscuros",
+      "order": 178
+    },
+    "verified": true
+  },
+  {
+    "id": "event-nuova-shenlong-ayuda-a-goku",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Nuova Shenlong ayuda temporalmente a Goku a combatir a los Dragones Oscuros",
+      "order": 179
+    },
+    "verified": true
+  },
+  {
+    "id": "event-syn-shenlong-se-convierte-en-omega",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Syn Shenlong absorbe las Esferas del Dragón y se transforma en Omega Shenlong",
+      "order": 180
     },
     "verified": true
   },
@@ -1082,8 +2464,18 @@
     "kind": "event",
     "series": "gt",
     "payload": {
-      "text": "Goku derrota a Omega Shenlong con la Genkidama",
-      "order": 43
+      "text": "Goku y Vegeta se fusionan en Gogeta Supersaiyano 4 y se enfrentan a Omega Shenlong, pero la fusión termina antes de derrotarlo",
+      "order": 181
+    },
+    "verified": true
+  },
+  {
+    "id": "event-goku-derrota-a-omega-shenlong-con-la-genkidama",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Goku derrota a Omega Shenlong con una Genkidama universal",
+      "order": 182
     },
     "verified": true
   },
@@ -1092,8 +2484,18 @@
     "kind": "event",
     "series": "gt",
     "payload": {
-      "text": "Goku se va con Shenlong",
-      "order": 44
+      "text": "Goku se va con Shenlong después de despedirse de sus amigos",
+      "order": 183
+    },
+    "verified": true
+  },
+  {
+    "id": "event-pan-conoce-a-goku-jr",
+    "kind": "event",
+    "series": "gt",
+    "payload": {
+      "text": "Décadas después, Pan conoce a Goku Jr., descendiente de Goku",
+      "order": 184
     },
     "verified": true
   },
@@ -1365,7 +2767,7 @@
   {
     "id": "technique-ataque-ardiente",
     "kind": "technique",
-    "entityId": "trunks",
+    "entityId": "trunks-del-futuro",
     "series": "dbz",
     "payload": {
       "name": "Ataque Ardiente",
