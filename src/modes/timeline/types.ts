@@ -8,6 +8,12 @@ export const DEFAULT_COUNT = 5;
 /** Intentos de ordenar, si la configuración no dice otra cosa. */
 export const DEFAULT_ATTEMPTS = 4;
 
+/** Una dificultad: cuántos sucesos se ordenan y, si difiere de la configuración, cuántos intentos hay. */
+export interface TimelineLevel {
+  readonly count: number;
+  readonly attempts?: number;
+}
+
 export interface TimelineConfig {
   /**
    * `kind` de los contenidos que son los sucesos a ordenar. Cada uno trae en su
@@ -23,4 +29,11 @@ export interface TimelineConfig {
   readonly count?: number;
   /** Cuántas veces se puede confirmar un orden. Por defecto, `DEFAULT_ATTEMPTS`. */
   readonly attempts?: number;
+  /** Una ayuda (botón ⓘ) junto a las instrucciones: por ejemplo, en qué orden van las series. */
+  readonly orderHelp?: string;
+  /**
+   * Las dificultades, de la más fácil a la más difícil. Quien juega elige una; cada una es un reto distinto del
+   * día. Sin esto, hay una sola (`count` y `attempts`).
+   */
+  readonly levels?: readonly TimelineLevel[];
 }

@@ -8,10 +8,22 @@ import { seedFor, type DailyContext } from '@/engine/daily';
 import { eligibleContents } from '@/engine/filters';
 import { mulberry32, pickN, shuffle } from '@/engine/rng';
 import type { Content } from '@/engine/types';
-import { DEFAULT_ATTEMPTS, DEFAULT_COUNT, type TimelineConfig } from './types';
+import { DEFAULT_ATTEMPTS, DEFAULT_COUNT, type TimelineConfig, type TimelineLevel } from './types';
 
 export const countOf = (config: TimelineConfig): number => config.count ?? DEFAULT_COUNT;
 export const attemptsOf = (config: TimelineConfig): number => config.attempts ?? DEFAULT_ATTEMPTS;
+
+/** Las dificultades de la configuración; una sola si no define `levels`. Siempre hay al menos una. */
+export function levelsOf(config: TimelineConfig): readonly TimelineLevel[] {
+  return config.levels !== undefined && config.levels.length > 0 ? config.levels : [{ count: countOf(config), attempts: attemptsOf(config) }];
+}
+
+/** La configuración tal como queda con una dificultad elegida: sus sucesos e intentos reemplazan a los de la base. */
+export function configForLevel(config: TimelineConfig, index: number): TimelineConfig {
+  const levels = levelsOf(config);
+  const level = levels[Math.min(Math.max(index, 0), levels.length - 1)];
+  return { ...config, count: level.count, attempts: level.attempts ?? attemptsOf(config) };
+}
 
 // --- Pool ---------------------------------------------------------------------
 
@@ -96,17 +108,6 @@ export function isSolved(arrangement: readonly string[], puzzle: Puzzle): boolea
   return arrangement.length === puzzle.solution.length && marksOf(arrangement, puzzle).every(Boolean);
 }
 
-/** Las posiciones que ya acertaron en algún intento: quedan fijas, el resto se sigue moviendo. */
-export function lockedPositions(attempts: readonly (readonly string[])[], puzzle: Puzzle): Set<number> {
-  const locked = new Set<number>();
-  for (const attempt of attempts) {
-    marksOf(attempt, puzzle).forEach((correct, index) => {
-      if (correct) locked.add(index);
-    });
-  }
-  return locked;
-}
-
 export interface Outcome {
   readonly solved: boolean;
   /** Ya no se puede seguir: se resolvió o se gastaron los intentos. */
@@ -135,6 +136,17 @@ export function restoreAttempts(stored: readonly unknown[] | undefined, puzzle: 
     if (isSolved(attempt, puzzle)) break;
   }
   return restored;
+}
+
+/**
+ * El orden a medias que se guardó: solo vale si tiene exactamente los sucesos de hoy, sin repetir ni faltar (el dataset
+ * pudo cambiar); si no, `undefined`.
+ */
+export function restoreDraft(stored: unknown, puzzle: Puzzle): string[] | undefined {
+  const expected = new Set(puzzle.start);
+  if (!Array.isArray(stored) || stored.length !== expected.size) return undefined;
+  if (!stored.every((id): id is string => typeof id === 'string' && expected.has(id)) || new Set(stored).size !== expected.size) return undefined;
+  return [...stored];
 }
 
 /**

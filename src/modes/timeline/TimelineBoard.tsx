@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import { flushSync } from 'react-dom';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
+import { useSkin } from '@/components/skin/context';
+import { InfoTip } from '@/components/ui/InfoTip';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import type { DailyContext } from '@/engine/daily';
 import { getLocalStorage, readState, writeState } from '@/engine/storage';
@@ -10,11 +12,10 @@ import { es } from '@/i18n/es';
 import {
   attemptsOf,
   dropRank,
-  lockedPositions,
-  marksOf,
   moveToRank,
   outcomeOf,
   restoreAttempts,
+  restoreDraft,
   shareGrid,
   step,
   type Puzzle,
@@ -59,31 +60,39 @@ interface DragState {
 
 type Direction = -1 | 1;
 
+/** Ningún suceso queda fijo: al confirmar no se dice cuáles estaban bien (ver `TimelineBoard`). */
+const NO_LOCKS: ReadonlySet<number> = new Set();
+
 /**
  * Una partida: el reto de un día para una combinación de filtros. El marco la vuelve a
  * montar cuando cambia cualquiera de los dos, y así recupera desde `localStorage` los
  * órdenes que se confirmaron. Se ordena arrastrando (eventos de puntero, con el dedo o el
  * mouse) o con los botones de subir y bajar, que también sirven con el teclado. Al
- * confirmar, los sucesos que están en su lugar quedan fijos.
+ * confirmar solo se dice si el orden es correcto: no se marca cuáles sucesos están en su lugar ni se fijan, y en cuanto se
+ * mueve uno, desaparece el aviso y se puede volver a confirmar. Es a propósito: no se da ninguna ayuda.
  */
 export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
   const { franchise, mode, filterKey, day, onFinish } = session;
+  const { skin } = useSkin();
+  const { AttemptsMeter } = skin.slots;
   const solutionTitleId = useId();
   const maxAttempts = attemptsOf(config);
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
   const itemById = useMemo(() => new Map(puzzle.solution.map((item) => [item.id, item])), [puzzle]);
 
   const [attempts, setAttempts] = useState<string[][]>(() => restoreAttempts(readState(getLocalStorage(), ctx)?.attempts, puzzle, maxAttempts));
-  // El orden que se está armando: arranca desde el último confirmado, o desde el desorden del día.
+  // El orden que se está armando: arranca desde como se dejó la última vez (aunque no se haya confirmado), o desde el
+  // último confirmado, o desde el desorden del día. Así cambiar de dificultad y volver no deshace lo acomodado.
   const [arrangement, setArrangement] = useState<string[]>(() => {
-    const last = restoreAttempts(readState(getLocalStorage(), ctx)?.attempts, puzzle, maxAttempts).at(-1);
-    return last ?? [...puzzle.start];
+    const state = readState(getLocalStorage(), ctx);
+    const last = restoreAttempts(state?.attempts, puzzle, maxAttempts).at(-1);
+    return restoreDraft(state?.draft, puzzle) ?? last ?? [...puzzle.start];
   });
   const [announcement, setAnnouncement] = useState('');
   const [draggingId, setDraggingId] = useState<string | null>(null);
 
   const { solved, over } = outcomeOf(attempts, puzzle, maxAttempts);
-  const locked = useMemo(() => lockedPositions(attempts, puzzle), [attempts, puzzle]);
+  const locked = NO_LOCKS;
   const lastSubmitted = attempts[attempts.length - 1];
 
   // Si el reto ya había terminado al montarse (se recargó la página), el marco tiene que mostrar
@@ -105,6 +114,18 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
     arrangementRef.current = arrangement;
     lockedRef.current = locked;
   }, [arrangement, locked]);
+
+  // Guarda el orden que se va armando (sin confirmar) para recuperarlo al volver a esta dificultad. No se guarda al
+  // montarse (todavía es lo que ya estaba guardado) ni cuando el reto terminó.
+  const mounted = useRef(false);
+  useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
+    }
+    if (over) return;
+    writeState(getLocalStorage(), ctx, { attempts, result: 'playing', draft: arrangement });
+  }, [arrangement, over, attempts, ctx]);
   const focusRequest = useRef<{ id: string; direction: Direction } | null>(null);
 
   // Registro de los elementos que se miden (sucesos) y se enfocan (botones). Funciones estables: se pasan como `ref`.
@@ -231,7 +252,6 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
     if (over) return;
     const next = [...attempts, arrangement];
     const nextOutcome = outcomeOf(next, puzzle, maxAttempts);
-    const correct = marksOf(arrangement, puzzle).filter(Boolean).length;
 
     setAttempts(next);
     writeState(getLocalStorage(), ctx, { attempts: next, result: nextOutcome.solved ? 'won' : nextOutcome.over ? 'lost' : 'playing' });
@@ -239,31 +259,43 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
       nextOutcome.solved
         ? es.timeline.solvedAnnouncement
         : nextOutcome.over
-          ? `${es.timeline.confirmed(next.length, correct, arrangement.length)} ${es.timeline.lostAnnouncement}`
-          : es.timeline.confirmed(next.length, correct, arrangement.length),
+          ? `${es.timeline.confirmed(next.length)} ${es.timeline.lostAnnouncement}`
+          : es.timeline.confirmed(next.length),
     );
     if (nextOutcome.over) onFinish(reportOf(next, puzzle, nextOutcome.solved, true));
   }
 
   const unchanged = sameSequence(lastSubmitted, arrangement);
+  // El veredicto, para el aspecto de la lista entera (no de cada suceso): rojo mientras el orden confirmado esté sin tocar
+  // y no sea el correcto; verde al resolverlo. En cuanto se mueve un suceso, vuelve a lo neutro.
+  const verdict = solved ? 'right' : attempts.length > 0 && unchanged ? 'wrong' : undefined;
+  // El color del último veredicto, que queda aunque el veredicto se vaya: así un tema puede animar también su salida.
+  const tint = solved ? 'right' : attempts.length > 0 ? 'wrong' : undefined;
 
   return (
     <div className={styles.root} data-game-ready="true" data-over={over} data-won={solved}>
       <header className={styles.header}>
-        <p className={styles.instructions}>{es.timeline.instructions}</p>
-        <p className={styles.counter}>{es.timeline.attempt(Math.min(attempts.length + 1, maxAttempts), maxAttempts)}</p>
+        <p className={styles.instructions}>
+          {es.timeline.instructions}
+          {config.orderHelp && <InfoTip compact text={config.orderHelp} label={es.help.button(es.timeline.orderHelpTopic)} />}
+        </p>
+        <div className={styles.counter}>
+          {/* El texto queda siempre (lectores de pantalla); un tema con medidor propio puede ocultarlo a la vista. */}
+          <p data-part="attempts">{es.timeline.attempt(Math.min(attempts.length + 1, maxAttempts), maxAttempts)}</p>
+          <AttemptsMeter failed={attempts.length - (solved ? 1 : 0)} won={solved} total={maxAttempts} />
+        </div>
       </header>
 
       <p className={styles.end}>
         <span aria-hidden="true">↑</span> {es.timeline.oldest}
       </p>
-      <ol ref={listRef} className={styles.list} aria-label={es.timeline.listLabel}>
+      <ol ref={listRef} className={styles.list} aria-label={es.timeline.listLabel} data-part="path" data-verdict={verdict} data-tint={tint}>
         {arrangement.map((id, index) => {
           const item = itemById.get(id);
           if (!item) return null;
-          const fixed = locked.has(index);
-          const state = fixed ? 'locked' : lastSubmitted?.[index] === id ? 'wrong' : 'free';
-          const movable = !over && !fixed;
+          // Solo al resolverlo se ven los sucesos en su lugar (todos); antes, ninguno lleva marca.
+          const state = solved ? 'locked' : 'free';
+          const movable = !over;
           const canMove = (direction: Direction) => movable && step(arrangement, locked, index, direction) !== null;
 
           return (
@@ -274,14 +306,12 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
                   {index + 1}
                 </span>
                 {item.text}
-                {state !== 'free' && (
-                  <VisuallyHidden>{` (${state === 'locked' ? es.timeline.stateLocked : es.timeline.stateWrong})`}</VisuallyHidden>
-                )}
+                {state === 'locked' && <VisuallyHidden>{` (${es.timeline.stateLocked})`}</VisuallyHidden>}
               </p>
               {/* La marca acompaña al color: el estado no depende de verlo en verde o en rojo. */}
-              {state !== 'free' && (
+              {state === 'locked' && skin.cellMarks !== 'arrows' && (
                 <span className={styles.mark} aria-hidden="true">
-                  {state === 'locked' ? '✓' : '✕'}
+                  ✓
                 </span>
               )}
               {movable && (
@@ -321,7 +351,12 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
           <button type="button" className={styles.confirm} onClick={confirm} disabled={unchanged}>
             {es.timeline.confirm}
           </button>
-          {unchanged && <p className={styles.hint}>{es.timeline.moveFirst}</p>}
+          {/* El orden confirmado estaba mal: se dice, sin más. Al mover cualquier suceso, el aviso se va. */}
+          {unchanged && (
+            <p className={styles.wrong} data-part="wrong">
+              {es.timeline.wrongOrder}
+            </p>
+          )}
         </div>
       )}
 

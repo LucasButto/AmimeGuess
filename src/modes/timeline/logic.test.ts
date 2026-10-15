@@ -4,15 +4,17 @@ import type { Content } from '@/engine/types';
 import {
   attemptsOf,
   buildPuzzle,
+  configForLevel,
   countOf,
   dropRank,
   isSolved,
-  lockedPositions,
+  levelsOf,
   marksOf,
   moveToRank,
   outcomeOf,
   poolOf,
   restoreAttempts,
+  restoreDraft,
   shareGrid,
   step,
   type Puzzle,
@@ -167,12 +169,6 @@ describe('evaluar un orden', () => {
     expect(isSolved(['b', 'a', 'c'], tie)).toBe(false);
   });
 
-  it('lockedPositions junta las posiciones acertadas de todos los intentos', () => {
-    expect([...lockedPositions([], PUZZLE)]).toEqual([]);
-    expect([...lockedPositions([['w', 'y', 'x', 'z']], PUZZLE)].sort()).toEqual([0, 3]);
-    expect([...lockedPositions([['w', 'y', 'x', 'z'], ['x', 'w', 'y', 'z']], PUZZLE)].sort()).toEqual([0, 2, 3]);
-  });
-
   it('outcomeOf: resuelto, en juego o sin intentos', () => {
     const wrong = ['y', 'w', 'z', 'x'];
     expect(outcomeOf([], PUZZLE, 4)).toEqual({ solved: false, over: false });
@@ -215,6 +211,20 @@ describe('restoreAttempts', () => {
     const stored = [['y', 'w', 'z', 'x']];
     restoreAttempts(stored, PUZZLE, 4)[0].push('basura');
     expect(stored[0]).toEqual(['y', 'w', 'z', 'x']);
+  });
+});
+
+describe('restoreDraft', () => {
+  it('devuelve el orden guardado si tiene exactamente los sucesos de hoy', () => {
+    expect(restoreDraft(['z', 'y', 'x', 'w'], PUZZLE)).toEqual(['z', 'y', 'x', 'w']);
+  });
+
+  it('descarta lo que no sirve: otro tipo, de otro largo, repetido o con sucesos ajenos', () => {
+    expect(restoreDraft(undefined, PUZZLE)).toBeUndefined();
+    expect(restoreDraft('wxyz', PUZZLE)).toBeUndefined();
+    expect(restoreDraft(['w', 'x', 'y'], PUZZLE)).toBeUndefined();
+    expect(restoreDraft(['w', 'w', 'y', 'z'], PUZZLE)).toBeUndefined();
+    expect(restoreDraft(['w', 'x', 'y', 'q'], PUZZLE)).toBeUndefined();
   });
 });
 
@@ -291,5 +301,37 @@ describe('dropRank', () => {
 
   it('con alturas distintas sigue los centros reales', () => {
     expect(dropRank([20, 90, 130], 95)).toBe(2);
+  });
+});
+
+describe('dificultades', () => {
+  it('sin `levels` hay una sola dificultad, la de siempre', () => {
+    expect(levelsOf(CONFIG)).toEqual([{ count: 5, attempts: 4 }]);
+    expect(levelsOf({ ...CONFIG, count: 7, attempts: 3 })).toEqual([{ count: 7, attempts: 3 }]);
+  });
+
+  it('con `levels`, cada una trae sus sucesos y, si no dice otra cosa, los intentos de la base', () => {
+    const config: TimelineConfig = { ...CONFIG, attempts: 4, levels: [{ count: 5 }, { count: 10, attempts: 6 }, { count: 15, attempts: 8 }] };
+    expect(levelsOf(config)).toHaveLength(3);
+    expect([0, 1, 2].map((index) => [countOf(configForLevel(config, index)), attemptsOf(configForLevel(config, index))])).toEqual([
+      [5, 4],
+      [10, 6],
+      [15, 8],
+    ]);
+    // Un índice fuera de rango se ajusta al extremo.
+    expect(countOf(configForLevel(config, 9))).toBe(15);
+    expect(countOf(configForLevel(config, -1))).toBe(5);
+  });
+
+  it('cada dificultad es otro reto del día (otra clave de filtro) y con más sucesos', () => {
+    const pool: TimelineItem[] = Array.from({ length: 40 }, (_, index) => ({ id: `e${String(index).padStart(2, '0')}`, text: `e${index}`, order: index + 1 }));
+    const first = buildPuzzle(pool, ctx, 5);
+    const second = buildPuzzle(pool, { ...ctx, filterKey: 'all~d2' }, 10);
+    const third = buildPuzzle(pool, { ...ctx, filterKey: 'all~d3' }, 15);
+    expect([first?.solution.length, second?.solution.length, third?.solution.length]).toEqual([5, 10, 15]);
+    // La primera dificultad no cambia: es la misma que antes de que hubiera dificultades.
+    expect(buildPuzzle(pool, ctx, 5)).toEqual(first);
+    // Con menos sucesos que los que pide la dificultad, no hay reto.
+    expect(buildPuzzle(pool.slice(0, 12), { ...ctx, filterKey: 'all~d3' }, 15)).toBeNull();
   });
 });

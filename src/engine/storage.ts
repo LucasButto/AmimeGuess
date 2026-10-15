@@ -97,6 +97,11 @@ export type GameResult = 'playing' | 'won' | 'lost';
 export interface GameState {
   attempts: unknown[];
   result: GameResult;
+  /**
+   * Trabajo a medias que un motor quiera recordar (por ejemplo, el orden que se está armando en la línea de tiempo,
+   * todavía sin confirmar). Qué es lo define cada motor; quien lo lea tiene que validarlo.
+   */
+  draft?: unknown;
 }
 
 function isGameState(value: unknown): value is GameState {

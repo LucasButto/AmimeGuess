@@ -1,0 +1,49 @@
+@use 'tokens' as t;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-1 t.$space-5;
+}
+
+.levels {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-2 t.$space-3;
+}
+
+.title {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  color: t.token('ink-muted');
+}
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// El detalle (cuántos sucesos) va chico, al lado del nombre.
+.detail {
+  margin-inline-start: t.$space-2;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-regular;
+  opacity: 0.85;
+}
+
+.warning {
+  font-size: t.$font-size-sm;
+  color: t.token('ink-muted');
+}

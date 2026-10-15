@@ -15,10 +15,18 @@
 }
 
 .instructions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 t.$space-2;
   line-height: t.$line-height-base;
 }
 
 .counter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-1 t.$space-3;
   font-size: t.$font-size-sm;
   font-weight: t.$font-weight-medium;
   color: t.color('text-muted');
@@ -46,6 +54,16 @@
   margin: 0;
   padding: 0;
   list-style: none;
+
+  // El veredicto de lo confirmado, para toda la lista: un aro rojo (orden incorrecto) o verde (resuelto).
+  &[data-verdict] {
+    outline: 0.1875rem solid t.color('miss');
+    outline-offset: 0.375rem;
+  }
+
+  &[data-verdict='right'] {
+    outline-color: t.color('match');
+  }
 }
 
 .item {
@@ -59,15 +77,10 @@
   border-radius: t.$radius-md;
   background: t.color('surface');
 
-  // Un suceso en su lugar queda fijo; uno confirmado que no iba ahí se marca. Siempre con ícono y texto.
+  // Al resolverlo, todos los sucesos quedan en su lugar. Siempre con ícono y texto.
   &[data-state='locked'] {
     border-color: t.color('match');
     background: color-mix(in srgb, #{t.color('match')} 12%, #{t.color('surface')});
-  }
-
-  &[data-state='wrong'] {
-    border-color: t.color('miss');
-    background: color-mix(in srgb, #{t.color('miss')} 10%, #{t.color('surface')});
   }
 
   // El que se arrastra sigue al puntero (`--drag-offset` se calcula en cada movimiento) y se despega de la lista.
@@ -128,10 +141,6 @@
   .item[data-state='locked'] & {
     color: t.color('match');
   }
-
-  .item[data-state='wrong'] & {
-    color: t.color('miss');
-  }
 }
 
 // En un teléfono vertical los botones se apilan para dejarle ancho al texto.
@@ -188,20 +197,30 @@
   }
 }
 
+// El botón principal con el aspecto del tema (los mismos tokens que el "Siguiente" de Mayor o Menor); sin piel se ve
+// como antes: relleno de acento, borde fino y esquinas redondeadas.
 .confirm {
   @include m.touch-target;
-  padding: t.$space-2 t.$space-5;
+  @include m.pixel-frame(
+    $fill: t.token('accent-primary'),
+    $outer: var(--button-edge, #{t.token('accent-primary')}),
+    $inner: transparent,
+    $width: t.token('button-frame-width'),
+    $inner-width: 0px,
+    $clip: t.token('clip-button'),
+    $radius: t.$radius-md
+  );
+  padding: t.$space-2 calc(#{t.$space-5} + #{t.token('button-frame-width')});
+  border: 0;
+  background: none;
   font: inherit;
   font-weight: t.$font-weight-bold;
-  color: t.color('accent-contrast');
-  border: t.$border-width solid t.color('accent');
-  border-radius: t.$radius-md;
-  background: t.color('accent');
+  color: t.token('accent-primary-ink');
   cursor: pointer;
+  @include m.focus-ring;
 
-  &:focus-visible {
-    outline: 0.125rem solid t.color('focus');
-    outline-offset: 0.125rem;
+  &:active:not(:disabled) {
+    transform: translateY(#{t.token('button-press')});
   }
 
   &:disabled {
@@ -210,9 +229,11 @@
   }
 }
 
-.hint {
+// El aviso de que el orden confirmado no era el correcto: sin decir qué estaba bien.
+.wrong {
   font-size: t.$font-size-sm;
-  color: t.color('text-muted');
+  font-weight: t.$font-weight-bold;
+  color: t.color('miss');
 }
 
 .solution {
