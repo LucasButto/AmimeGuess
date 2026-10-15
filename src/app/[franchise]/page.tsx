@@ -1,8 +1,10 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { BackNav } from '@/components/BackNav';
+import { TitleWords } from '@/components/TitleWords';
 import { franchises, getFranchise } from '@/franchises';
 import { loadFranchiseData } from '@/franchises/data';
+import { getSkin } from '@/franchises/themes';
 import { es } from '@/i18n/es';
 import { OG_SIZE, ogImage } from '../site';
 import { modeStatus } from './[mode]/playable';
@@ -45,13 +47,19 @@ export default async function FranchisePage({ params }: { params: Promise<{ fran
   const found = await playableModes(slug);
   if (!found) notFound();
   const { franchise, modes } = found;
+  // Animación de entrada del tema (slot `PageTransition`): también al volver desde un modo con los botones de volver
+  // (esos solo hacen su animación de salida; sin esto, la página de la franquicia aparecía sin abrirse).
+  const { PageTransition } = getSkin(franchise.slug).slots;
 
   return (
     <main className={styles.page}>
+      <PageTransition />
       <BackNav franchise={franchise} atFranchise />
       <header className={styles.header}>
         <p className={styles.site}>{es.site.name}</p>
-        <h1 className={styles.title}>{franchise.name}</h1>
+        <h1 className={styles.title}>
+          <TitleWords text={franchise.name} />
+        </h1>
       </header>
       {modes.length === 0 ? (
         <p className={styles.plate}>{es.franchise.provisional}</p>

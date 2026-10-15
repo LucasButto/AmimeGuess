@@ -118,8 +118,8 @@ describe('themeCss', () => {
     expect(themeCss(pokemon)).toBe(themeCss(pokemon));
   });
 
-  it('Pokémon y Naruto son claros; Dragon Ball y Yu-Gi-Oh, oscuros, y el CSS lo declara', () => {
-    expect(franchises.map((franchise) => franchise.theme.scheme)).toEqual(['light', 'dark', 'light', 'dark']);
+  it('Pokémon, Dragon Ball y Naruto son claros; Yu-Gi-Oh, oscuro, y el CSS lo declara', () => {
+    expect(franchises.map((franchise) => franchise.theme.scheme)).toEqual(['light', 'light', 'light', 'dark']);
     for (const franchise of franchises) {
       expect(themeCss(franchise.theme)).toContain(`color-scheme: ${franchise.theme.scheme};`);
     }

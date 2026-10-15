@@ -1,0 +1,217 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+
+// Shenlong cruzando la pantalla de izquierda a derecha, con un resplandor dorado que la tapa en el medio. La transición dura
+// 1,8 s: la salida (900 ms, hasta el medio, donde se navega) y la entrada (900 ms, del medio hasta que se va la cola). El
+// estado del medio es el mismo al final de la salida y al principio de la entrada: el resplandor tapa todo y el dragón está
+// en el mismo lugar, con la misma fase de la onda.
+//
+// El dragón es la imagen `public/theme/dragon-ball/shenlong.webp` (espejada: la cabeza a la derecha, adelante) cortada en
+// tajadas verticales. Cada tajada sube y baja (`translate`) y se inclina (`skewY`) con un retraso creciente hacia la cola:
+// la onda viaja por el cuerpo y no se ve ningún corte. Solo se animan `transform`, `translate` y `opacity`.
+//
+// Su largo (`--w`) sale de la ventana: al menos 2,8 anchos (en un teléfono vertical, 3 alturas), así tapa bien tanto un
+// monitor apaisado como un teléfono vertical. Más largo es más alto (la imagen mantiene su proporción).
+$slices: 48;
+$wave: 1.5s;        // lo que dura una vuelta de la onda
+$waves: 6;          // cuántas vueltas dura la onda (9 s): cubre una navegación lenta sin que el dragón se "aplane" a mitad de camino
+$step: 0.0625s;     // cuánto se atrasa la onda de una tajada a la siguiente (la imagen entera lleva dos ondas)
+$half: 0.9s;        // lo que dura la salida, y también la entrada
+$skew: 11.8deg;     // la inclinación máxima de una tajada: la pendiente de la onda (amplitud × velocidad / ancho de tajada)
+
+.root {
+  --w: max(calc(100vw * 2.8), calc(100dvh * 3));
+
+  position: fixed;
+  inset: 0;
+  z-index: t.$layer-transition;
+  display: none;
+  overflow: hidden;
+
+  @include bp.motion-ok {
+    display: block;
+  }
+
+  // La entrada no recibe toques; la salida los tapa mientras dura.
+  &[data-phase='in'] {
+    pointer-events: none;
+  }
+}
+
+// El resplandor dorado, del blanco del centro al naranja de los bordes (colores de la paleta de la piel).
+.glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    var(--palette-white),
+    color-mix(in srgb, var(--palette-yellow) 60%, var(--palette-cream)) 45%,
+    var(--palette-orange)
+  );
+}
+
+// El eje del vuelo: un punto en el medio de la ventana. El dragón se mueve hacia la derecha (`translateX`); sale con el
+// hocico fuera de la pantalla por la izquierda y termina con la cola fuera por la derecha. Es un efecto de pantalla, no de
+// texto: usa `left` y `top` a propósito (no se espeja).
+.axis {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  inline-size: 0;
+  block-size: 0;
+}
+
+.run {
+  position: absolute;
+  left: 0;
+  top: 0;
+  inline-size: 0;
+  block-size: 0;
+}
+
+// La imagen mide `--w` de largo y su alto sale de su proporción. El borde derecho (el hocico) queda en el punto del vuelo:
+// la cola va detrás. Sin filtros (un `drop-shadow` sobre una capa así de grande se rehace en cada cuadro).
+.dragon {
+  --n: #{$slices};
+  --amp: calc(var(--w) * 0.0167);
+
+  position: absolute;
+  left: calc(var(--w) * -1);
+  top: calc(var(--w) * -0.124);
+  inline-size: var(--w);
+  aspect-ratio: 1600 / 397;
+}
+
+// Cada tajada muestra su parte de la imagen (el fondo se corre lo que vale su lugar) y se solapa un poco con la siguiente
+// para que no queden rendijas.
+.slice {
+  position: absolute;
+  top: 0;
+  block-size: 100%;
+  left: calc(var(--i) * var(--w) / var(--n));
+  inline-size: calc(var(--w) / var(--n) + 0.1875rem);
+  background: url('/theme/dragon-ball/shenlong.webp') no-repeat;
+  background-size: var(--w) 100%;
+  background-position: calc(var(--i) * var(--w) / var(--n) * -1) 0;
+}
+
+// --- Salida: de afuera por la izquierda hasta el medio (la cabeza ya pasó el borde derecho) -----------------------------------
+.root[data-phase='out'] {
+  .glow {
+    opacity: 0;
+  }
+
+  .run {
+    transform: translateX(calc(100vw * -0.55));
+  }
+
+  @include bp.motion-ok {
+    .glow {
+      animation: glow-in $half linear forwards;
+    }
+
+    .run {
+      animation: fly-out $half linear forwards;
+    }
+
+    .slice {
+      animation:
+        wave-lift $wave ease-in-out $waves,
+        wave-bend $wave ease-in-out $waves;
+      animation-delay:
+        calc(var(--k) * -#{$step}),
+        calc(var(--k) * -#{$step});
+    }
+  }
+}
+
+// --- Entrada: del medio hasta que se va la cola por la derecha ---------------------------------------------------------------
+// La onda sigue donde la dejó la salida: el retraso suma lo que ya duró.
+.root[data-phase='in'] {
+  .run {
+    transform: translateX(calc(var(--w) * 0.5));
+  }
+
+  @include bp.motion-ok {
+    .glow {
+      animation: glow-out $half linear forwards;
+    }
+
+    .run {
+      animation: fly-in $half linear forwards;
+    }
+
+    .slice {
+      animation:
+        wave-lift $wave ease-in-out $waves,
+        wave-bend $wave ease-in-out $waves;
+      animation-delay:
+        calc(var(--k) * -#{$step} - #{$half}),
+        calc(var(--k) * -#{$step} - #{$half});
+    }
+  }
+}
+
+@keyframes glow-in {
+  0%,
+  10% {
+    opacity: 0;
+  }
+
+  70%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes glow-out {
+  0%,
+  30% {
+    opacity: 1;
+  }
+
+  90%,
+  100% {
+    opacity: 0;
+  }
+}
+
+// El medio del vuelo: el centro de la imagen (la mitad de su largo) en el centro de la ventana.
+@keyframes fly-out {
+  to {
+    transform: translateX(calc(var(--w) * 0.5));
+  }
+}
+
+@keyframes fly-in {
+  to {
+    transform: translateX(calc(100vw * 0.55 + var(--w)));
+  }
+}
+
+@keyframes wave-lift {
+  0%,
+  100% {
+    translate: 0 calc(var(--amp) * -1);
+  }
+
+  50% {
+    translate: 0 var(--amp);
+  }
+}
+
+@keyframes wave-bend {
+  0%,
+  50%,
+  100% {
+    transform: skewY(0deg);
+  }
+
+  25% {
+    transform: skewY(-#{$skew});
+  }
+
+  75% {
+    transform: skewY(#{$skew});
+  }
+}

@@ -51,6 +51,7 @@ export const DEFAULT_SLOTS: SkinSlots = {
   GuessInput: Autocomplete,
   ModeCard: DefaultModeCard,
   ModeIcon: Nothing,
+  TitleMark: Nothing,
   ModeFrame: DefaultModeFrame,
   Footer: SiteFooter,
   CellBack: DefaultCellBack,

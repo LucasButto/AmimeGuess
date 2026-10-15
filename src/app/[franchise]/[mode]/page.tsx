@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { BackNav } from '@/components/BackNav';
+import { TitleWords } from '@/components/TitleWords';
 import { getSkin } from '@/franchises/themes';
 import { franchises, getFranchise } from '@/franchises';
 import { loadFranchiseData } from '@/franchises/data';
@@ -61,8 +62,9 @@ export default async function ModePage({
       : [{ slug: candidate.slug, name: candidate.name, available: statuses.get(candidate.slug) === 'playable' }],
   );
 
-  // Animación de entrada del tema (slot `PageTransition`): no intercepta la navegación.
-  const { PageTransition } = getSkin(franchise.slug).slots;
+  // Animación de entrada del tema (slot `PageTransition`): no intercepta la navegación. Y la marca del modo antes del
+  // título (slot `TitleMark`): por defecto, ninguna.
+  const { PageTransition, TitleMark } = getSkin(franchise.slug).slots;
 
   return (
     <main className={styles.page}>
@@ -70,7 +72,10 @@ export default async function ModePage({
       <BackNav franchise={franchise} />
       <header className={styles.header}>
         <p className={styles.franchise}>{franchise.name}</p>
-        <h1 className={styles.title}>{mode.name}</h1>
+        <h1 className={styles.title}>
+          <TitleMark slug={mode.slug} index={franchise.modes.indexOf(mode)} />
+          <TitleWords text={mode.name} />
+        </h1>
       </header>
       {/* El área de juego va sobre la placa del tema: el texto nunca queda directo sobre el fondo. */}
       <div className={styles.plate}>

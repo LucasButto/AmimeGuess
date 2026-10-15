@@ -1,0 +1,14 @@
+.mark {
+  flex: none;
+  // Un poco más grande que antes: se tienen que contar las estrellas (1 a 5) para distinguir las series.
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+}
+
+// Apagada: un anillo punteado gris, sin relleno.
+.off circle {
+  fill: none;
+  stroke: var(--palette-gray);
+  stroke-width: 3;
+  stroke-dasharray: 5 4;
+}

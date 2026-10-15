@@ -1,0 +1,344 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// El campo del intento como la lente de un rastreador. La caja llena el lugar del campo (si la fila es más alta, el cristal
+// se estira); la pieza de la oreja asoma a la izquierda.
+.scouter {
+  position: relative;
+  display: flex;
+  min-inline-size: 0;
+  padding-inline-start: 1.75rem;
+}
+
+// La pieza que sostiene la lente: un brazo gris con una oreja naranja.
+.arm {
+  position: absolute;
+  inset-block: 0.75rem;
+  inset-inline-start: 0;
+  inline-size: 2.75rem;
+  border: 0.1875rem solid var(--palette-ink);
+  border-radius: 1.5rem 0.5rem 0.5rem 1.5rem;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--palette-gray) 55%, var(--palette-ink)),
+    var(--palette-gray) 55%,
+    color-mix(in srgb, var(--palette-gray) 70%, var(--palette-ink))
+  );
+}
+
+.ear {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: -0.5rem;
+  inline-size: 1.375rem;
+  block-size: 1.375rem;
+  border: 0.1875rem solid var(--palette-ink);
+  border-radius: 50%;
+  background: var(--palette-orange);
+  transform: translateY(-50%);
+}
+
+// La lente: cristal verde oscuro, con un borde de tinta y un aro interior verde.
+.lens {
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  gap: t.$space-1;
+  min-inline-size: 0;
+  padding: t.$space-3 clamp(1.25rem, 5%, 2.5rem) t.$space-4 t.$space-4;
+  border: 0.25rem solid var(--palette-ink);
+  border-radius: 1.5rem 3.25rem 1.5rem 3.25rem;
+  background: linear-gradient(150deg, color-mix(in srgb, var(--palette-scouter) 18%, var(--palette-scouter-dark)), var(--palette-scouter-dark) 60%);
+  box-shadow:
+    inset 0 0 0 0.1875rem color-mix(in srgb, var(--palette-scouter) 55%, transparent),
+    0.25rem 0.375rem 0 var(--palette-ink);
+  color: var(--palette-scouter);
+
+  // Enfocado, la lente "se enciende": un resplandor verde alrededor.
+  &:focus-within {
+    box-shadow:
+      inset 0 0 0 0.1875rem var(--palette-scouter),
+      0 0 1rem 0.125rem color-mix(in srgb, var(--palette-scouter) 60%, transparent),
+      0.25rem 0.375rem 0 var(--palette-ink);
+  }
+
+  // Lo que está dentro va por encima del cristal.
+  > :not(.glass) {
+    position: relative;
+  }
+}
+
+// El cristal: el reflejo diagonal. Recorta lo suyo sin recortar la lista de objetivos.
+.glass {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+  pointer-events: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block: -30%;
+    inset-inline-start: -8%;
+    inline-size: 38%;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--palette-white) 20%, transparent), transparent);
+    transform: rotate(22deg);
+  }
+}
+
+.scanning {
+  @include m.heading;
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  font-size: t.$font-size-sm;
+  line-height: 1;
+  color: var(--palette-scouter);
+  letter-spacing: 0.1em;
+}
+
+// Un punto que late (1 Hz) mientras el scouter "escanea"; quieto con movimiento reducido.
+.dot {
+  inline-size: 0.5rem;
+  block-size: 0.5rem;
+  border-radius: 50%;
+  background: var(--palette-yellow);
+
+  @include bp.motion-ok {
+    animation: scan-pulse 1s steps(1, end) infinite;
+  }
+}
+
+@keyframes scan-pulse {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+// La etiqueta ("Tu intento") queda solo para los lectores de pantalla: a la vista, la lente dice "Escaneando…".
+.lens > .label {
+  position: absolute;
+  inline-size: 0.0625rem;
+  block-size: 0.0625rem;
+  margin: -0.0625rem;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+// El campo: la lectura del scouter. El marco lo dibuja el envoltorio (un <input> no tiene capas propias).
+.fieldWrap {
+  position: relative;
+}
+
+.field {
+  display: block;
+  border: 0.125rem solid var(--palette-scouter);
+  background: var(--palette-scouter-dark);
+
+  &:focus-within {
+    outline: 0.125rem solid var(--palette-yellow);
+    outline-offset: 0.125rem;
+  }
+
+  &:has(.input:disabled) {
+    opacity: 0.6;
+  }
+}
+
+.input {
+  @include m.touch-target;
+  display: block;
+  inline-size: 100%;
+  padding: t.$space-2 t.$space-3;
+  // 1rem (16 px) como mínimo: con menos, iOS hace zoom al enfocar el campo.
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-medium;
+  border: 0;
+  background: transparent;
+  color: var(--palette-scouter);
+  caret-color: var(--palette-yellow);
+  outline: 0;
+
+  &::placeholder {
+    color: var(--palette-scouter);
+    opacity: 0.8;
+  }
+}
+
+// El panel de objetivos: flota debajo del campo, sin mover lo que hay abajo.
+.panel,
+.empty {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 100%;
+  z-index: t.$layer-dropdown;
+  margin: t.$space-1 0 0;
+  border: 0.125rem solid var(--palette-scouter);
+  background: var(--palette-scouter-dark);
+  box-shadow: 0.25rem 0.25rem 0 var(--palette-ink);
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-3;
+  padding: t.$space-3;
+}
+
+.empty {
+  padding: t.$space-3;
+}
+
+// El objetivo fijado: el retrato grande, con esquinas de mira y un resplandor amarillo, y su nombre al lado.
+.lock {
+  display: flex;
+  align-items: center;
+  gap: t.$space-4;
+  padding-block-end: t.$space-3;
+  border-block-end: 0.125rem dashed color-mix(in srgb, var(--palette-scouter) 45%, transparent);
+}
+
+.portrait {
+  position: relative;
+  flex: none;
+  inline-size: clamp(6rem, 28vw, 9rem);
+  block-size: clamp(6rem, 28vw, 9rem);
+  border: 0.1875rem solid var(--palette-yellow);
+  background: linear-gradient(to bottom, var(--palette-sky-blue), var(--palette-cloud));
+  box-shadow: 0 0 1rem 0.1875rem color-mix(in srgb, var(--palette-yellow) 55%, transparent);
+
+  // Las esquinas de mira, arriba a la izquierda y abajo a la derecha.
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    border: 0.1875rem solid var(--palette-scouter);
+  }
+
+  &::before {
+    inset-block-start: 0.3125rem;
+    inset-inline-start: 0.3125rem;
+    border-block-end: 0;
+    border-inline-end: 0;
+  }
+
+  &::after {
+    inset-block-end: 0.3125rem;
+    inset-inline-end: 0.3125rem;
+    border-block-start: 0;
+    border-inline-start: 0;
+  }
+}
+
+.portraitImage {
+  position: absolute;
+  inset: 0.1875rem;
+  inline-size: calc(100% - 0.375rem);
+  block-size: calc(100% - 0.375rem);
+  object-fit: contain;
+}
+
+.lockText {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
+  min-inline-size: 0;
+}
+
+.lockLabel {
+  @include m.heading;
+  font-size: t.$font-size-sm;
+  letter-spacing: 0.1em;
+  color: var(--palette-scouter);
+}
+
+.lockName {
+  @include m.heading;
+  font-size: clamp(1.75rem, 7vw, 2.75rem);
+  line-height: 1;
+  color: var(--palette-yellow);
+  text-shadow: 0.125rem 0.125rem 0 var(--palette-ink);
+  overflow-wrap: anywhere;
+}
+
+// La tira: un retrato por coincidencia, que se desplaza hacia el costado (el marcado se mantiene a la vista).
+.strip {
+  display: flex;
+  gap: t.$space-2;
+  margin: 0;
+  padding: 0.25rem;
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior: contain;
+  scroll-snap-type: x proximity;
+
+  // La barra de desplazamiento, del visor: una pista oscura con marcas de escala y el cursor verde encendido. Firefox
+  // solo deja elegir los colores; los demás navegadores, la forma.
+  @supports not selector(::-webkit-scrollbar) {
+    scrollbar-color: var(--palette-scouter) color-mix(in srgb, var(--palette-scouter) 15%, var(--palette-scouter-dark));
+    scrollbar-width: thin;
+  }
+
+  &::-webkit-scrollbar {
+    block-size: 0.75rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    border: 0.0625rem solid color-mix(in srgb, var(--palette-scouter) 45%, transparent);
+    background:
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--palette-scouter) 35%, transparent) 0 0.0625rem, transparent 0.0625rem 0.5rem),
+      color-mix(in srgb, var(--palette-scouter) 8%, var(--palette-scouter-dark));
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: 0.125rem solid var(--palette-scouter-dark);
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--palette-scouter) 55%, var(--palette-white)), var(--palette-scouter) 60%);
+  }
+
+  @include bp.hover-capable {
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--palette-yellow);
+    }
+  }
+}
+
+.tile {
+  position: relative;
+  flex: none;
+  inline-size: 3.75rem;
+  block-size: 3.75rem;
+  border: 0.1875rem solid var(--palette-ink);
+  background: linear-gradient(to bottom, var(--palette-sky-blue), var(--palette-cloud));
+  cursor: pointer;
+  scroll-snap-align: center;
+
+  &[data-active='true'] {
+    border-color: var(--palette-yellow);
+    outline: 0.125rem solid var(--palette-scouter);
+  }
+}
+
+.thumb {
+  position: absolute;
+  inset: 0.125rem;
+  inline-size: calc(100% - 0.25rem);
+  block-size: calc(100% - 0.25rem);
+  object-fit: contain;
+}
+
+.initial {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--palette-ink);
+  font-weight: t.$font-weight-bold;
+}

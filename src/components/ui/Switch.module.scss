@@ -1,16 +1,18 @@
+@use 'breakpoints' as bp;
 @use 'tokens' as t;
 @use 'mixins' as m;
 
 .switch {
   @include m.touch-target;
+  position: relative;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: t.$space-3;
   padding-block: t.$space-2;
   border-radius: t.$radius-md;
   cursor: pointer;
 
-  // El anillo de foco rodea toda la fila (la casilla sola es chica).
+  // El anillo de foco rodea toda la fila (el riel solo es chico).
   &:has(:focus-visible) {
     outline: t.token('focus-width') solid t.token('focus-color');
     outline-offset: 0.125rem;
@@ -18,16 +20,55 @@
   }
 }
 
+// La casilla de verdad queda encima del riel, invisible: recibe el foco y el toque.
 .input {
-  flex: none;
-  inline-size: 1.5rem;
-  block-size: 1.5rem;
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inline-size: 3rem;
+  block-size: 100%;
+  z-index: 1;
   margin: 0;
-  accent-color: t.token('accent-primary');
+  opacity: 0;
   cursor: pointer;
 
   &:focus-visible {
     outline: none;
+  }
+}
+
+// El riel: apagado, del color de un chip apagado; prendido, del de un chip prendido. La perilla se corre con `transform`.
+.track {
+  position: relative;
+  flex: none;
+  inline-size: 3rem;
+  block-size: 1.625rem;
+  border: 0.125rem solid t.token('chip-edge');
+  border-radius: t.token('chip-radius');
+  background: t.token('chip-fill');
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block: 0.125rem;
+    inset-inline-start: 0.125rem;
+    inline-size: 1.125rem;
+    border-radius: t.token('chip-radius');
+    background: t.token('chip-ink');
+
+    @include bp.motion-ok {
+      transition: transform 0.15s ease-out;
+    }
+  }
+
+  .input:checked ~ & {
+    border-color: t.token('chip-on-edge');
+    background: t.token('chip-on-fill');
+
+    &::before {
+      background: t.token('chip-on-ink');
+      transform: translateX(1.375rem);
+    }
   }
 }
 

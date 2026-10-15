@@ -34,7 +34,7 @@
 
 .title {
   @include m.heading;
-  @include m.display-size(t.fluid(1.5rem, 2.5rem));
+  @include m.display-size(calc(#{t.fluid(1.5rem, 2.5rem)} * #{t.token('title-scale')}));
   @include m.page-title;
   font-weight: t.$font-weight-bold;
   line-height: t.$line-height-tight;
@@ -42,5 +42,8 @@
 
 .plate {
   @include m.plate;
+  // La placa aísla su capa (`isolation`): sin un z-index propio, el pie (que va después) se pintaba encima de los
+  // desplegables del juego, como las sugerencias del campo del intento, y tapaba su barra de desplazamiento.
+  z-index: 1;
   min-inline-size: 0;
 }

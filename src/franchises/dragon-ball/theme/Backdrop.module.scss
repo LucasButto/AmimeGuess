@@ -1,0 +1,29 @@
+@use 'tokens' as t;
+
+// Fondo fijo de Dragon Ball: una ilustración de mesetas de roca y pasto (la elige la hora, ver Backdrop.tsx). Se escala
+// para cubrir la ventana, pegada al borde de abajo: en un teléfono vertical se ve el centro de la escena. Mientras la
+// imagen carga queda el color del cielo de esa franja.
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: t.$layer-backdrop;
+  pointer-events: none;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &[data-time='day'] {
+    background-color: var(--palette-sky-blue);
+    background-image: url('/theme/dragon-ball/fondo-dia.webp');
+  }
+
+  &[data-time='dusk'] {
+    background-color: var(--palette-orange);
+    background-image: url('/theme/dragon-ball/fondo-tarde.webp');
+  }
+
+  &[data-time='night'] {
+    background-color: var(--palette-navy);
+    background-image: url('/theme/dragon-ball/fondo-noche.webp');
+  }
+}

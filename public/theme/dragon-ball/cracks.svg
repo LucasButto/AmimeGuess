@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" preserveAspectRatio="none">
+  <!-- Grietas de la baldosa del ring: líneas quebradas de tinta que salen del centro. -->
+  <g fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.7">
+    <path d="M100 100 L84 76 L92 58 L74 36 L78 14 L70 0"/>
+    <path d="M100 100 L122 88 L138 96 L160 78 L176 84 L200 70"/>
+    <path d="M100 100 L108 126 L96 144 L110 166 L102 186 L108 200"/>
+    <path d="M100 100 L78 114 L60 108 L40 128 L22 124 L0 138"/>
+    <path d="M92 58 L110 52 M138 96 L142 114 M96 144 L78 150"/>
+  </g>
+</svg>

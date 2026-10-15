@@ -22,9 +22,17 @@ export interface SkinContextValue {
   readonly leaveTo: (event: MouseEvent<HTMLAnchorElement>, href: string) => void;
 }
 
-export const SkinContext = createContext<SkinContextValue>({ slug: null, skin: DEFAULT_SKIN, root: null, leaveTo: () => undefined });
+export const SkinContext = createContext<SkinContextValue | null>(null);
+
+// El valor de fuera de una franquicia se arma al usarlo y no al cargar el módulo: los valores por defecto importan
+// componentes (la tarjeta de modo) que a su vez usan este contexto, y un valor armado al cargar sería una importación
+// circular sin inicializar.
+let outside: SkinContextValue | undefined;
 
 /** La piel de la franquicia de la página (o la de por defecto) y su elemento raíz. */
 export function useSkin(): SkinContextValue {
-  return useContext(SkinContext);
+  const value = useContext(SkinContext);
+  if (value) return value;
+  outside ??= { slug: null, skin: DEFAULT_SKIN, root: null, leaveTo: () => undefined };
+  return outside;
 }

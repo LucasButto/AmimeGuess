@@ -1,30 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
-  <!-- Dragon Ball: azul profundo con rayos de energía naranja en diagonal. Oscuro y de poco contraste para que el texto claro se lea. -->
+  <!-- Dragon Ball: el cielo de día de la serie (celeste intenso que se aclara en el horizonte), nubes esponjosas con contorno de tinta y el mar turquesa abajo. Dibujo propio, con los colores de la paleta del tema. -->
   <defs>
-    <linearGradient id="base" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#08153a"/>
-      <stop offset="1" stop-color="#0b2260"/>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3478d0"/>
+      <stop offset="0.42" stop-color="#4aa3f0"/>
+      <stop offset="0.82" stop-color="#c9ecff"/>
     </linearGradient>
-    <radialGradient id="aura" cx="0.18" cy="0.95" r="0.7">
-      <stop offset="0" stop-color="#ff9422" stop-opacity="0.38"/>
-      <stop offset="0.5" stop-color="#ff9422" stop-opacity="0.1"/>
-      <stop offset="1" stop-color="#ff9422" stop-opacity="0"/>
-    </radialGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b9fc6"/>
+      <stop offset="1" stop-color="#1f4fa8"/>
+    </linearGradient>
+    <g id="cloud">
+      <path fill="#ffffff" d="M18 78 A17 17 0 0 1 28 50 A25 25 0 0 1 70 30 A30 30 0 0 1 124 30 A24 24 0 0 1 166 46 A19 19 0 0 1 184 78 Z"/>
+      <path fill="#d3e7f7" d="M22 78 C40 66 58 70 72 62 C90 70 110 60 128 66 C146 58 164 66 182 78 Z"/>
+      <path fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" d="M60 58 Q68 46 82 47 M116 54 Q124 42 138 45"/>
+      <path fill="none" stroke="#1a1a1a" stroke-width="3" stroke-linejoin="round" d="M18 78 A17 17 0 0 1 28 50 A25 25 0 0 1 70 30 A30 30 0 0 1 124 30 A24 24 0 0 1 166 46 A19 19 0 0 1 184 78 Z"/>
+    </g>
   </defs>
-  <rect width="1600" height="900" fill="url(#base)"/>
-  <rect width="1600" height="900" fill="url(#aura)"/>
-  <!-- Rayos que salen de la esquina inferior izquierda. -->
-  <g fill="#ff9422" opacity="0.1">
-    <polygon points="0,900 1600,120 1600,230"/>
-    <polygon points="0,900 1600,330 1600,380"/>
-    <polygon points="0,900 1180,0 1320,0"/>
-    <polygon points="0,900 760,0 800,0"/>
-    <polygon points="0,900 1600,560 1600,600"/>
-  </g>
-  <!-- Rayos finos de la otra diagonal, apenas visibles. -->
-  <g stroke="#6f8de0" stroke-width="3" opacity="0.14">
-    <line x1="1600" y1="0" x2="1100" y2="900"/>
-    <line x1="1600" y1="120" x2="1260" y2="900"/>
-    <line x1="1500" y1="0" x2="1010" y2="620"/>
+  <rect width="1600" height="900" fill="url(#sky)"/>
+  <use href="#cloud" transform="translate(110 90) scale(2.2)"/>
+  <use href="#cloud" transform="translate(1080 180) scale(2.4)"/>
+  <use href="#cloud" transform="translate(620 470) scale(1.4)"/>
+  <rect y="760" width="1600" height="140" fill="url(#sea)"/>
+  <rect y="756" width="1600" height="5" fill="#1a1a1a"/>
+  <g fill="#ffffff" opacity="0.3">
+    <rect y="790" width="1600" height="3"/>
+    <rect y="826" width="1600" height="3"/>
+    <rect y="862" width="1600" height="3"/>
   </g>
 </svg>

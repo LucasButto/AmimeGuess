@@ -1,6 +1,9 @@
+'use client';
+
 import Link from 'next/link';
 import type { ModeCardProps } from '@/franchises/types';
 import { es } from '@/i18n/es';
+import { useSkin } from './context';
 import styles from './DefaultModeCard.module.scss';
 
 /**
@@ -9,8 +12,9 @@ import styles from './DefaultModeCard.module.scss';
  */
 export function DefaultModeCard({ name, href, index, state }: ModeCardProps) {
   const isMain = index === 0;
+  const { leaveTo } = useSkin();
   return (
-    <Link className={styles.card} href={href} data-main={isMain} data-state={state}>
+    <Link className={styles.card} href={href} data-main={isMain} data-state={state} onClick={(event) => leaveTo(event, href)}>
       {isMain && <span className={styles.badge}>{es.franchise.mainMode}</span>}
       <span className={styles.name}>{name}</span>
       {/* El estado se dice con texto y con un ícono, además del color del borde. */}

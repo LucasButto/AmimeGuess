@@ -16,13 +16,15 @@ import { modeStatus } from '@/app/[franchise]/[mode]/playable';
 import contentJson from '../../../data/dragon-ball/content.json';
 import entitiesJson from '../../../data/dragon-ball/entities.json';
 import formsJson from '../../../data/dragon-ball/transformations.json';
+import powerJson from '../../../data/dragon-ball/power.json';
 import sagasJson from '../../../data/dragon-ball/sagas.json';
 import { entitiesOfMode, loadFranchiseData, type FranchiseData } from '../data';
 import type { ModeConfig } from '../types';
 import { dragonBallConfig, sagaLabels } from './config';
 
-const characters = entitiesJson as Entity[];
+const characters = entitiesJson as unknown as Entity[];
 const forms = formsJson as Entity[];
+const power = powerJson as unknown as Entity[];
 const rawContents = contentJson as Content[];
 // Las frases y los sucesos solo entran al pool con verified: true (en data-src), y alguno puede volver a quedar sin verificar.
 // Para probar las reglas de exclusión sobre el contenido real se consideran verificados.
@@ -41,14 +43,13 @@ const without = (series: string) => allSeries.filter((id) => id !== series);
 const ctx: DailyContext = { franchise: 'dragon-ball', mode: 'x', filterKey: 'all', day: 200 };
 
 describe('config', () => {
-  it('tiene los 9 modos de la SPEC, en orden y con su motor', () => {
+  it('tiene los 8 modos de la SPEC, en orden y con su motor', () => {
     expect(modes.map((m) => [m.slug, m.engine])).toEqual([
       ['clasico', 'classic'],
       ['silueta', 'image-reveal'],
       ['frase', 'text-clue'],
       ['borroso', 'image-reveal'],
       ['tecnica', 'image-reveal'],
-      ['zoom', 'image-reveal'],
       ['poder', 'higher-lower'],
       ['transformacion', 'image-reveal'],
       ['linea-de-tiempo', 'timeline'],
@@ -86,9 +87,10 @@ describe('config', () => {
     }
   });
 
-  it('el modo Transformación adivina las formas, no los personajes', () => {
+  it('Transformación adivina las formas y Nivel de poder compara sus entradas; los demás, los personajes', () => {
     expect(mode('transformacion').entitySet).toBe('transformations');
-    for (const other of modes.filter((candidate) => candidate.slug !== 'transformacion')) expect(other.entitySet, other.slug).toBeUndefined();
+    expect(mode('poder').entitySet).toBe('power');
+    for (const other of modes.filter((candidate) => !['transformacion', 'poder'].includes(candidate.slug))) expect(other.entitySet, other.slug).toBeUndefined();
   });
 });
 
@@ -119,7 +121,7 @@ describe('carga de datos', () => {
   });
 
   it('los modos con contenido de sobra están disponibles; los demás dependen de lo que haya y se oculta el que no alcanza', () => {
-    for (const slug of ['clasico', 'silueta', 'borroso', 'zoom', 'poder', 'transformacion']) {
+    for (const slug of ['clasico', 'silueta', 'borroso', 'poder', 'transformacion']) {
       expect(modeStatus(dragonBallConfig, mode(slug), data), slug).toBe('playable');
     }
     // Un modo sin pool suficiente con todas las series se oculta de la navegación; nunca queda como "próximamente".
@@ -155,7 +157,7 @@ describe('con una serie apagada no aparece nada de ella', () => {
         const options = eligibleEntities(characters, active);
         expect(options.some((entity) => exclusiveTo(entity, off))).toBe(false);
         expect(options.every((entity) => entity.series.some((id) => active.includes(id)))).toBe(true);
-        for (const slug of ['silueta', 'borroso', 'zoom']) {
+        for (const slug of ['silueta', 'borroso']) {
           const candidates = imageCandidates(characters, contents, active, mode(slug).imageReveal!);
           expect(candidates.some((candidate) => exclusiveTo(candidate.entity, off)), slug).toBe(false);
         }
@@ -272,12 +274,15 @@ describe('Silueta', () => {
     expect(eligibleEntities(characters, allSeries)).toHaveLength(characters.length);
   });
 
-  it('Borroso y Zoom aceptan también las imágenes con fondo', () => {
+  it('es un solo modo: el zoom sobre la sombra del personaje, sin un Zoom aparte', () => {
+    expect(mode('silueta').imageReveal?.variant).toBe('zoom-silhouette');
+    expect(modes.some((candidate) => candidate.slug === 'zoom')).toBe(false);
+  });
+
+  it('Borroso acepta también las imágenes con fondo', () => {
     const silhouette = imageCandidates(characters, contents, allSeries, mode('silueta').imageReveal!);
-    for (const slug of ['borroso', 'zoom']) {
-      const candidates = imageCandidates(characters, contents, allSeries, mode(slug).imageReveal!);
-      expect(candidates.length, slug).toBeGreaterThan(silhouette.length);
-    }
+    const blur = imageCandidates(characters, contents, allSeries, mode('borroso').imageReveal!);
+    expect(blur.length).toBeGreaterThan(silhouette.length);
   });
 });
 
@@ -300,15 +305,22 @@ describe('Transformación', () => {
 describe('Nivel de poder', () => {
   const higherLower = () => mode('poder').higherLower!;
 
-  it('tiene al menos 10 personajes con ki y todos los valores son positivos', () => {
-    const pool = higherLowerPool(characters, allSeries, higherLower().metrics);
+  it('están todos los personajes (menos Shenlong) y todas las formas, con ki positivo', () => {
+    const sources = new Set(power.map((entry) => entry.image));
+    for (const entity of [...characters, ...forms]) {
+      if (entity.id === 'shenlong') continue;
+      expect(sources.has(entity.image), entity.id).toBe(true);
+    }
+    expect(power.some((entry) => entry.image === characters.find((entity) => entity.id === 'shenlong')?.image)).toBe(false);
+    const pool = higherLowerPool(power, allSeries, higherLower().metrics);
+    expect(pool.length).toBe(power.length);
     expect(hasMinimumPool(pool.length, defaultMinPool('higher-lower'))).toBe(true);
     for (const entity of pool) expect(entity.attrs.ki as number, entity.id).toBeGreaterThan(0);
   });
 
   it('solo ofrece pares con al menos un orden de magnitud de diferencia, todos los días', () => {
     const metrics = higherLower().metrics;
-    const pool = higherLowerPool(characters, allSeries, metrics);
+    const pool = higherLowerPool(power, allSeries, metrics);
     let total = 0;
     for (let day = 0; day < 60; day++) {
       const rounds = buildRounds(pool, metricOfDay(metrics, day).key, { ...ctx, mode: 'poder', day }, MAX_ROUNDS, higherLower().minRatio);
@@ -323,8 +335,18 @@ describe('Nivel de poder', () => {
 
   it('la secuencia es la misma para quien tenga los mismos filtros', () => {
     const metrics = higherLower().metrics;
-    const pool = higherLowerPool(characters, allSeries, metrics);
+    const pool = higherLowerPool(power, allSeries, metrics);
     const ids = () => buildRounds(pool, 'ki', { ...ctx, mode: 'poder' }, MAX_ROUNDS, 10).map((round) => `${round.a.id}|${round.b.id}`);
     expect(ids()).toEqual(ids());
+  });
+
+  it('Goku base de la saga de Buu queda entre Goku Supersaiyano de Namek y Gohan Supersaiyano 2 de Cell', () => {
+    const ki = (id: string) => power.find((entry) => entry.id === id)?.attrs.ki as number;
+    expect(ki('goku-base-saga-de-buu')).toBeGreaterThan(ki('goku-ssj'));
+    expect(ki('goku-base-saga-de-buu')).toBeLessThan(ki('gohan-ssj2'));
+    expect(ki('neva')).toBeGreaterThan(ki('kami'));
+    expect(ki('glorio')).toBeGreaterThan(ki('yamcha'));
+    expect(ki('glorio')).toBeLessThan(ki('krilin'));
+    expect(ki('goku-ssj4')).toBeLessThan(ki('goku-ssb'));
   });
 });

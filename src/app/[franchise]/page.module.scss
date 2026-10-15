@@ -34,7 +34,7 @@
 
 .title {
   @include m.heading;
-  @include m.display-size(t.fluid(2rem, 3rem));
+  @include m.display-size(calc(#{t.fluid(2rem, 3rem)} * #{t.token('title-scale')}));
   @include m.page-title;
   font-weight: t.$font-weight-bold;
   line-height: t.$line-height-tight;

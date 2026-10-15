@@ -1,7 +1,6 @@
 import { useId } from 'react';
 import type { Stats } from '@/engine/storage';
 import { es } from '@/i18n/es';
-import { InfoTip } from '../ui/InfoTip';
 import { VisuallyHidden } from '../VisuallyHidden';
 import styles from './StatsView.module.scss';
 import { bestScore, distributionRows, rowHolds, winRate } from './stats';
@@ -29,12 +28,12 @@ export function StatsView({ stats, streak, latestWin, kind = 'attempts' }: Stats
   const scored = kind === 'score';
   const rows = distributionRows(stats.distribution, 12, scored ? 0 : 1);
   const tallest = Math.max(1, ...rows.map((row) => row.count));
-  const tiles: Array<{ label: string; value: string; help?: string }> = [
-    { label: es.shell.statsView.played, value: String(stats.played), help: es.help.stats },
+  const tiles: Array<{ label: string; value: string }> = [
+    { label: es.shell.statsView.played, value: String(stats.played) },
     scored
       ? { label: es.shell.statsView.bestScore, value: String(bestScore(stats.distribution)) }
       : { label: es.shell.statsView.winRate, value: `${winRate(stats)}%` },
-    { label: es.shell.statsView.currentStreak, value: String(streak), help: es.help.streak },
+    { label: es.shell.statsView.currentStreak, value: String(streak) },
     { label: es.shell.statsView.maxStreak, value: String(stats.maxStreak) },
   ];
 
@@ -45,7 +44,6 @@ export function StatsView({ stats, streak, latestWin, kind = 'attempts' }: Stats
           <div key={tile.label} className={styles.tile}>
             <dt className={styles.label}>
               {tile.label}
-              {tile.help && <InfoTip compact text={tile.help} label={es.help.button(tile.label)} />}
             </dt>
             <dd className={styles.value}>{tile.value}</dd>
           </div>

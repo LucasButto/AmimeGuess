@@ -31,7 +31,7 @@ export function RevealImage({ stem, width, height, alt, visual }: RevealImagePro
   } as CSSProperties;
 
   return (
-    <div className={styles.frame} style={style}>
+    <div className={styles.frame} style={style} data-part="visor">
       <ContentImage
         className={styles.image}
         stem={stem}

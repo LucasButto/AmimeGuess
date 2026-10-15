@@ -137,13 +137,15 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
         </div>
       )}
 
-      <section className={styles.clue} aria-labelledby={clueTitleId}>
+      <section className={styles.clue} aria-labelledby={clueTitleId} data-part="clue">
         <h2 className={styles.clueTitle} id={clueTitleId}>
           {es.textClue.clueTitle}
         </h2>
         {mainLines.map(({ line, text }) => (
           <div key={line.label} className={styles.clueLine}>
-            <p className={styles.clueLabel}>{line.label}</p>
+            <p className={styles.clueLabel} data-part="clue-label">
+              {line.label}
+            </p>
             <p className={styles.clueText} data-display={line.kind === 'content' ? (line.display ?? 'text') : 'text'}>
               {text}
             </p>

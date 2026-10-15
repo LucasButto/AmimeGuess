@@ -1,0 +1,96 @@
+@use 'breakpoints' as bp;
+
+// Los dos dibujos son imágenes que asoman de la caja común de los botones de volver (el lugar del ícono mide 2 rem; la
+// caja no cambia). El hover y el foco se miran en el enlace entero (`a:hover`), no solo en la imagen.
+
+// --- Nube voladora: el botón "Inicio" entero ------------------------------------------------------------------------------
+// Va detrás del texto (z-index -1 dentro del enlace, que aísla su capa) y un poco más ancha que la caja: el cuerpo de la
+// nube queda detrás del texto y la cola, justo en el borde derecho. No se anima sola: el movimiento (el hover, el foco y la
+// salida) se lo da el enlace entero, así la nube y el texto van juntos.
+.nimbus {
+  position: absolute;
+  z-index: -1;
+  inset-block-start: 50%;
+  inset-inline-start: -0.375rem;
+  inline-size: 7.25rem;
+  block-size: auto;
+  pointer-events: none;
+  transform: translateY(-50%);
+}
+
+// --- Radar del dragón: el botón de la franquicia -------------------------------------------------------------------------
+// La imagen mide 2,75 rem de alto y está centrada en el lugar del ícono (2 rem): asoma 0,375 rem arriba y abajo.
+.radar {
+  position: relative;
+  display: inline-flex;
+  inline-size: 2rem;
+  block-size: 2rem;
+
+  @include bp.motion-ok {
+    transition:
+      transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.25s;
+  }
+
+  @include bp.hover-capable {
+    a:hover & {
+      @include bp.motion-ok {
+        transform: rotate(-9deg) scale(1.08);
+      }
+    }
+  }
+
+  a:focus-visible & {
+    @include bp.motion-ok {
+      transform: rotate(-9deg) scale(1.08);
+    }
+  }
+
+  // Al salir: el radar se achica hacia su punto (como cuando detecta una esfera cerca y se enfoca).
+  &[data-leaving='true'] {
+    @include bp.motion-ok {
+      transform: scale(0.4);
+      opacity: 0.2;
+    }
+  }
+}
+
+.radarImage {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: auto;
+  block-size: 2.75rem;
+  max-inline-size: none;
+  transform: translate(-50%, -50%);
+}
+
+// Un anillo amarillo sobre una de las esferas de la pantalla (a 41 % de ancho y 58 % de alto de la imagen): late una vez
+// por segundo; quieto con movimiento reducido.
+.ping {
+  position: absolute;
+  inset-block-start: 58%;
+  inset-inline-start: 38%;
+  inline-size: 0.625rem;
+  block-size: 0.625rem;
+  margin: -0.3125rem 0 0 -0.3125rem;
+  border: 0.125rem solid var(--palette-yellow);
+  border-radius: 50%;
+  pointer-events: none;
+
+  @include bp.motion-ok {
+    animation: ping 1s ease-out infinite;
+  }
+}
+
+@keyframes ping {
+  from {
+    opacity: 1;
+    transform: scale(0.5);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(2.2);
+  }
+}

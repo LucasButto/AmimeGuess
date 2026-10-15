@@ -1,0 +1,21 @@
+@use 'breakpoints' as bp;
+
+.loader {
+  display: inline-flex;
+  flex: none;
+
+  @include bp.motion-ok {
+    animation: spin 1.2s linear infinite;
+  }
+}
+
+.ball {
+  inline-size: 2rem;
+  block-size: 2rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

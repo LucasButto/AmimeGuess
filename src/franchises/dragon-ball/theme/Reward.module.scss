@@ -1,0 +1,130 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+
+// El premio del día: Shenlong cruzando el cielo del fondo. La capa es fija y tiene el mismo z-index que el fondo: como se
+// dibuja después en el documento, queda sobre el paisaje y por detrás de todo el contenido (que no está posicionado o tiene
+// z-index automático). Solo se ve con las siete esferas resueltas.
+//
+// El dragón es la imagen `public/theme/dragon-ball/shenlong.webp` (la misma de la transición), cortada en tajadas verticales.
+// Cada tajada sube y baja (`translate`) y se inclina (`skewY`) con un retraso creciente hacia la cola: la onda viaja por el
+// cuerpo sin cortes. Solo se animan `transform`, `translate` y `opacity`. Con movimiento reducido no se mueve: queda quieto
+// en el cielo, arriba a la derecha.
+$slices: 24;
+$wave: 1.5s;      // lo que dura una vuelta de la onda
+$step: 0.125s;    // cuánto se atrasa la onda de una tajada a la siguiente (la imagen entera lleva dos ondas)
+$skew: 11.8deg;   // la inclinación máxima de una tajada: la pendiente de la onda
+$cross: 54s;      // un cruce de lado a lado y la pausa antes del siguiente
+
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: t.$layer-backdrop;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.flight {
+  --w: clamp(13rem, 24vw, 26rem);
+  --amp: calc(var(--w) * 0.0167);
+
+  position: absolute;
+  left: 0;
+  top: clamp(4rem, 13dvh, 9rem);
+  inline-size: var(--w);
+  aspect-ratio: 1600 / 397;
+  // Quieto: asoma en el cielo, arriba a la derecha.
+  transform: translateX(calc(100vw - var(--w) - 4vw));
+
+  @include bp.motion-ok {
+    animation: cross $cross linear infinite;
+  }
+}
+
+// Un balanceo lento de todo el cuerpo mientras cruza.
+.bob {
+  position: absolute;
+  inset: 0;
+
+  @include bp.motion-ok {
+    animation: bob 5s ease-in-out infinite alternate;
+  }
+}
+
+.dragon {
+  --n: #{$slices};
+
+  position: relative;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+// Cada tajada muestra su parte de la imagen (el fondo se corre lo que vale su lugar) y se solapa un poco con la siguiente
+// para que no queden rendijas.
+.slice {
+  position: absolute;
+  top: 0;
+  block-size: 100%;
+  left: calc(var(--i) * var(--w) / var(--n));
+  inline-size: calc(var(--w) / var(--n) + 0.125rem);
+  background: url('/theme/dragon-ball/shenlong.webp') no-repeat;
+  background-size: var(--w) 100%;
+  background-position: calc(var(--i) * var(--w) / var(--n) * -1) 0;
+
+  @include bp.motion-ok {
+    animation:
+      wave-lift $wave ease-in-out infinite,
+      wave-bend $wave ease-in-out infinite;
+    animation-delay:
+      calc(var(--k) * -#{$step}),
+      calc(var(--k) * -#{$step});
+  }
+}
+
+// El cruce: entra por la izquierda con el hocico, sale por la derecha con la cola y espera fuera de la pantalla.
+@keyframes cross {
+  0% {
+    transform: translateX(calc(var(--w) * -1));
+  }
+
+  64%,
+  100% {
+    transform: translateX(100vw);
+  }
+}
+
+@keyframes bob {
+  from {
+    transform: translateY(-1rem) rotate(-1.5deg);
+  }
+
+  to {
+    transform: translateY(1rem) rotate(1.5deg);
+  }
+}
+
+@keyframes wave-lift {
+  0%,
+  100% {
+    translate: 0 calc(var(--amp) * -1);
+  }
+
+  50% {
+    translate: 0 var(--amp);
+  }
+}
+
+@keyframes wave-bend {
+  0%,
+  50%,
+  100% {
+    transform: skewY(0deg);
+  }
+
+  25% {
+    transform: skewY(-#{$skew});
+  }
+
+  75% {
+    transform: skewY(#{$skew});
+  }
+}

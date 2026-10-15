@@ -74,8 +74,8 @@
 
   // Resuelto y además el modo actual: con relleno propio para lo resuelto, gana el de lo resuelto.
   &[data-state='current'][data-solved='true'] {
-    --_fill: var(--pill-solved-fill, var(--pill-current-fill, #{t.token('accent-primary')}));
-    --_ink: var(--pill-solved-ink, var(--pill-current-ink, #{t.token('accent-primary-ink')}));
+    --_fill: var(--pill-current-solved-fill, var(--pill-solved-fill, var(--pill-current-fill, #{t.token('accent-primary')})));
+    --_ink: var(--pill-current-solved-ink, var(--pill-solved-ink, var(--pill-current-ink, #{t.token('accent-primary-ink')})));
   }
 
   // Modo que todavía no existe: apagado, con borde punteado y sin link.

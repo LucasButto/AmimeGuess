@@ -61,47 +61,55 @@
   }
 }
 
-// Flecha escalonada hacia el botón: arriba del recuadro si se abrió abajo, y al revés.
+// Flecha hacia el botón: arriba del recuadro si se abrió abajo, y al revés. Por defecto es una flecha escalonada de
+// pixel art; una piel cambia su tamaño y su forma con `--infotip-tail-width`, `--infotip-tail-height`,
+// `--infotip-tail-below` y `--infotip-tail-above` (un `clip-path` cada una).
 .arrow {
   position: absolute;
-  inset-inline-start: calc(var(--arrow-x, 50%) - var(--px) * 3);
-  inline-size: t.px(6);
-  block-size: t.px(3);
+  inset-inline-start: calc(var(--arrow-x, 50%) - var(--infotip-tail-width, #{t.px(6)}) / 2);
+  inline-size: var(--infotip-tail-width, #{t.px(6)});
+  block-size: var(--infotip-tail-height, #{t.px(3)});
   background: t.token('frame-color');
 
   .tip[data-side='below'] & {
     inset-block-end: 100%;
-    clip-path: polygon(
-      #{t.px(2)} 0,
-      #{t.px(4)} 0,
-      #{t.px(4)} var(--px),
-      #{t.px(5)} var(--px),
-      #{t.px(5)} #{t.px(2)},
-      100% #{t.px(2)},
-      100% 100%,
-      0 100%,
-      0 #{t.px(2)},
-      var(--px) #{t.px(2)},
-      var(--px) var(--px),
-      #{t.px(2)} var(--px)
+    clip-path: var(
+      --infotip-tail-below,
+      polygon(
+        #{t.px(2)} 0,
+        #{t.px(4)} 0,
+        #{t.px(4)} var(--px),
+        #{t.px(5)} var(--px),
+        #{t.px(5)} #{t.px(2)},
+        100% #{t.px(2)},
+        100% 100%,
+        0 100%,
+        0 #{t.px(2)},
+        var(--px) #{t.px(2)},
+        var(--px) var(--px),
+        #{t.px(2)} var(--px)
+      )
     );
   }
 
   .tip[data-side='above'] & {
     inset-block-start: 100%;
-    clip-path: polygon(
-      0 0,
-      100% 0,
-      100% var(--px),
-      #{t.px(5)} var(--px),
-      #{t.px(5)} #{t.px(2)},
-      #{t.px(4)} #{t.px(2)},
-      #{t.px(4)} 100%,
-      #{t.px(2)} 100%,
-      #{t.px(2)} #{t.px(2)},
-      var(--px) #{t.px(2)},
-      var(--px) var(--px),
-      0 var(--px)
+    clip-path: var(
+      --infotip-tail-above,
+      polygon(
+        0 0,
+        100% 0,
+        100% var(--px),
+        #{t.px(5)} var(--px),
+        #{t.px(5)} #{t.px(2)},
+        #{t.px(4)} #{t.px(2)},
+        #{t.px(4)} 100%,
+        #{t.px(2)} 100%,
+        #{t.px(2)} #{t.px(2)},
+        var(--px) #{t.px(2)},
+        var(--px) var(--px),
+        0 var(--px)
+      )
     );
   }
 }

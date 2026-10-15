@@ -1,0 +1,323 @@
+@use 'sass:list';
+@use 'breakpoints' as bp;
+@use 'mixins' as m;
+@use 'logo-words' as l;
+
+// Esquina cortada en diagonal arriba a la izquierda y abajo a la derecha, como una viñeta de manga: un polígono
+// con el corte `$size` (las otras dos esquinas, rectas).
+@function cut($size) {
+  @return polygon(
+    #{$size} 0,
+    100% 0,
+    100% calc(100% - #{$size}),
+    calc(100% - #{$size}) 100%,
+    0 100%,
+    0 #{$size}
+  );
+}
+
+// Contorno de tinta alrededor de las letras: una copia oscura en las ocho direcciones a `$width` y una sombra dura
+// más abajo a la derecha. Sirve para el título cuando va directo sobre el cielo.
+@function ink-outline($width, $ink, $shadow: null) {
+  $list: ();
+  @each $x, $y in (-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1) {
+    $list: list.append($list, calc(#{$width} * #{$x}) calc(#{$width} * #{$y}) 0 $ink, comma);
+  }
+  @if $shadow {
+    $list: list.append($list, calc(#{$width} * 2.5) calc(#{$width} * 2.5) 0 $shadow, comma);
+  }
+  @return $list;
+}
+
+// Piel de Dragon Ball (sesión 16): manga de acción. Redefine los tokens semánticos de src/styles/_tokens.scss sobre
+// la raíz del tema; los colores salen de la paleta de config.ts (variables --palette-*), que cubre el test de
+// contraste. Tinta negra gruesa, papel crema, esquinas cortadas en diagonal y sombras duras: nada redondeado.
+.root {
+  // Superficies y tintas: papel crema con tinta negra; la pantalla es el visor verde del scouter.
+  --surface-panel: var(--palette-cream);
+  --surface-dialog: var(--palette-cream);
+  --surface-screen: var(--palette-scouter-dark);
+  --surface-sunken: var(--palette-paper-shade);
+  --ink: var(--palette-ink);
+  --ink-screen: var(--palette-scouter);
+  --ink-shadow: var(--palette-ink);
+
+  // Acentos: placa naranja con tinta negra (principal) y placa azul con texto blanco (secundaria).
+  --accent-primary: var(--palette-orange);
+  --accent-primary-ink: var(--palette-ink);
+  --accent-secondary: var(--palette-blue);
+  --accent-secondary-ink: var(--palette-white);
+
+  // Marcos: tinta gruesa por fuera y un filete interior de papel oscuro; los cuadros de diálogo llevan el filete
+  // naranja, las pantallas el verde del scouter, el resumen ganado el verde y el modo infinito el amarillo.
+  --frame-width: 0.1875rem;
+  --frame-color: var(--palette-ink);
+  --frame-inner-width: 0.125rem;
+  --frame-inner: var(--palette-paper-shade);
+  --frame-dialog-inner: var(--palette-orange);
+  --frame-screen-inner: var(--palette-scouter);
+  --frame-won-inner: var(--palette-scouter);
+  --frame-practice-inner: var(--palette-yellow);
+
+  // Formas: viñetas de manga, con dos esquinas cortadas en diagonal. Cuanto más chico el objeto, más chico el corte.
+  --clip-panel: #{cut(0.75rem)};
+  --clip-button: #{cut(0.5rem)};
+  --clip-chip: #{cut(0.375rem)};
+  // Las celdas del Clásico no se recortan: el corte en diagonal de dos esquinas se veía borroso (ver Games.module.scss).
+  --clip-cell: none;
+  --clip-icon: #{cut(0.375rem)};
+
+  // Botones: placas con borde de tinta, sombra dura al presionar y sin redondeos. Principal naranja, secundaria
+  // azul, fantasma de papel; los de ícono, A rojo (confirmar) y B gris (cerrar, volver).
+  --button-edge: var(--palette-ink);
+  --button-frame-width: 0.1875rem;
+  --button-ghost-hover-edge: var(--palette-ink);
+  --button-press: 0.125rem;
+  --button-disabled-outline: 0.125rem dashed var(--palette-ink);
+  --icon-a-fill: var(--palette-red);
+  --icon-a-ink: var(--palette-white);
+  --icon-b-fill: var(--palette-gray);
+  --icon-b-ink: var(--palette-ink);
+  --icon-hover-ink: var(--palette-ink);
+  --icon-frame-width: 0.1875rem;
+
+  // Modales: barra del título azul con texto blanco, y el cerrar del pie como un botón B gris. La barra se recorta con la
+  // misma esquina cortada arriba a la izquierda que el marco (0,75 rem, ver `--clip-panel`): sin eso, su esquina cuadrada
+  // asomaba por fuera del corte en diagonal.
+  dialog[open] header {
+    clip-path: polygon(0.75rem 0, 100% 0, 100% 100%, 0 100%, 0 0.75rem);
+  }
+
+  --dialog-bar-fill: var(--palette-blue);
+  --dialog-bar-ink: var(--palette-white);
+  --modal-close-fill: var(--palette-gray);
+  --modal-close-ink: var(--palette-ink);
+
+  // Chips de filtro: amarillo (esfera del dragón) prendido, papel oscuro apagado.
+  --chip-radius: 0;
+  --chip-fill: var(--palette-paper-shade);
+  --chip-ink: var(--color-text-muted);
+  --chip-edge: var(--palette-ink);
+  --chip-on-fill: var(--palette-yellow);
+  --chip-on-ink: var(--palette-ink);
+  --chip-on-edge: var(--palette-ink);
+
+  // Navegación entre modos: papel con tinta; el modo actual, amarillo; el resuelto hoy, verde con letras blancas (como los aciertos).
+  --pill-current-fill: var(--palette-yellow);
+  --pill-current-ink: var(--palette-ink);
+  --pill-current-solved-fill: var(--palette-yellow);
+  --pill-current-solved-ink: var(--palette-ink);
+  --pill-solved-fill: var(--color-match);
+  --pill-solved-ink: var(--color-on-result);
+
+  // Botones de volver: sin marco ni relleno; lo que se ve es la imagen (la nube voladora y el radar, ver BackNavIcons.tsx).
+  --nav-fill: transparent;
+  --nav-edge: transparent;
+  --nav-inner: transparent;
+  --nav-inner-width: 0px;
+
+  // Ni siquiera las dos capas del marco (relleno y borde) se dibujan: sin esto, un borde que no se aplique deja un
+  // recuadro negro detrás de la nube y del radar.
+  a[data-kind='home']::before,
+  a[data-kind='home']::after,
+  a[data-kind='franchise']::before,
+  a[data-kind='franchise']::after {
+    display: none;
+  }
+
+  // El hover, el foco y la salida mueven el enlace entero (la nube y el texto juntos): al pasar el cursor se levanta un poco
+  // y al hacer clic se disipa en el lugar (sube un poco, se agranda y se desvanece) antes de navegar (250 ms, ver
+  // `backNavExitMs`). No se mueve de lado: dentro de un juego, el radar está justo a la derecha y la nube pasaba por detrás.
+  a[data-kind='home'] {
+    @include bp.motion-ok {
+      transition:
+        transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.25s ease-out;
+    }
+
+    @include bp.hover-capable {
+      &:hover {
+        @include bp.motion-ok {
+          transform: translateY(-0.1875rem);
+        }
+      }
+    }
+
+    &:focus-visible {
+      @include bp.motion-ok {
+        transform: translateY(-0.1875rem);
+      }
+    }
+  }
+
+  nav[data-leaving='home'] a[data-kind='home'] {
+    @include bp.motion-ok {
+      transform: translateY(-0.5rem) scale(1.1);
+      opacity: 0;
+    }
+  }
+
+  // "Inicio": el texto va adentro de la nube, que se dibuja detrás del enlace. El lugar del ícono se cierra y el texto se
+  // centra en el cuerpo de la nube (la cola queda a la derecha, sin texto).
+  a[data-kind='home'] {
+    gap: 0;
+    padding-inline: 0.25rem 2.7rem;
+
+    > span:first-child {
+      inline-size: 0;
+    }
+
+    > span:last-child {
+      flex: 1;
+      text-align: center;
+      color: var(--palette-ink);
+    }
+  }
+
+  // "Dragon Ball": el nombre al lado del radar, con las letras del logo como el título (primera palabra amarilla y la otra
+  // roja, cada una con su degradado) y contorno de tinta, directo sobre el paisaje.
+  a[data-kind='franchise'] > span:last-child {
+    @include l.logo-words(2, 1.1);
+  }
+
+  a[data-kind='home'] > span:last-child,
+  a[data-kind='franchise'] > span:last-child {
+    @include m.heading;
+    font-size: 1.25rem;
+    line-height: 1;
+  }
+
+  // Botón ⓘ, minimalista (ya hay esferas del dragón en los filtros y en los modos): un círculo blanco con aro de tinta y la
+  // "i" en tinta; abierto, se rellena de amarillo. Su recuadro es un globo de manga como el del pie (ver `[role='tooltip']`).
+  --infotip-radius: 50%;
+  --infotip-fill: var(--palette-white);
+  --infotip-open-fill: var(--palette-yellow);
+  --infotip-ink: var(--palette-ink);
+
+  // Motores: sin franja de acento a la izquierda de las pistas (la frase va en un globo), ni la del resumen y la de
+  // Nivel de poder (se veía como una línea suelta), ni el ▼ de los cuadros de texto de los juegos de rol.
+  --panel-accent-width: 0rem;
+  --result-mark-width: 0rem;
+  --dialog-more-display: none;
+
+  // Barras proporcionales: sin tope de la pista, con borde de tinta.
+  --meter-height: 0.75rem;
+  --meter-track: var(--palette-ink);
+  --meter-border: 0.125rem solid var(--palette-ink);
+  --meter-fill-high: var(--palette-yellow);
+  --meter-fill-mid: var(--palette-orange);
+  --meter-fill-low: var(--palette-red);
+  --meter-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+
+  // Foco: línea de tinta con halo de papel, visible sobre naranja, azul y papel.
+  --focus-halo: var(--palette-cream);
+  --focus-halo-width: 0.1875rem;
+
+  // Sombras duras de manga (sin desenfoque).
+  --shadow-card: 0.25rem 0.25rem 0 var(--palette-ink);
+  --shadow-pop: 0.25rem 0.25rem 0 0 var(--palette-ink);
+
+  // Cabecera: el título (ver el bloque `main > header > h1` más abajo) y, sobre él, el nombre del sitio en amarillo con
+  // contorno negro y sombra dura, y el de la franquicia en papel con contorno de tinta. Más grande que el título base:
+  // Bangers es condensada y a 1× se veía chica al lado de la de Pokémon.
+  --title-scale: 1.7;
+  --title-ink: var(--palette-yellow);
+  --title-shadow: #{ink-outline(0.0625em, var(--palette-ink), var(--palette-ink))};
+  --header-site-display: block;
+  --kicker-ink: var(--palette-cream);
+  --kicker-shadow: #{ink-outline(0.0625em, var(--palette-ink))};
+
+  // Placa de papel con marco de tinta debajo del texto suelto de las páginas: con margen mínimo en el teléfono,
+  // para no quitarle ancho a la tabla del Clásico.
+  --plate-fill: var(--palette-cream);
+  --plate-edge: var(--palette-ink);
+  --plate-inner: var(--palette-paper-shade);
+  --plate-width: 0.1875rem;
+  --plate-inner-width: 0.125rem;
+  --plate-pad: 0.5rem;
+
+  @include bp.min-width('md') {
+    --plate-pad: 1rem;
+  }
+
+  // Página de la franquicia: la cápsula del Clásico a lo ancho y las siete esferas en 2 columnas en el teléfono, 4 desde
+  // md y, en pantalla grande, las siete en una sola fila (1 a 7 estrellas, de izquierda a derecha), con un ancho máximo.
+  --mode-cols: 2;
+  --mode-cols-md: 4;
+  --mode-cols-xl: 7;
+  --mode-grid-max: 60rem;
+
+  @include bp.min-width('xl') {
+    --mode-grid-max: 72rem;
+  }
+
+  // En el teléfono (2 columnas), la séptima esfera queda sola en la última fila: ocupa el ancho entero y su contenido,
+  // centrado, la deja en el medio. Desde md (4 columnas) vuelve a su lugar.
+  li:last-child:nth-child(even):has(> [data-card='sphere']) {
+    grid-column: 1 / -1;
+
+    @include bp.min-width('md') {
+      grid-column: auto;
+    }
+  }
+
+  // El título de la página, con las letras del logo (ver `_logo-words.scss`).
+  main > header > h1 {
+    @include l.logo-words;
+  }
+
+  // El aro de tinta del botón ⓘ (el círculo es de 1,25 rem y el aro suma 0,125 rem alrededor). Todos los botones de ayuda
+  // llevan "Ayuda: ..." de nombre accesible.
+  button[aria-label^='Ayuda'] > span {
+    box-shadow: 0 0 0 0.125rem var(--palette-ink);
+  }
+
+  // El recuadro de la ayuda: un globo de diálogo de manga, como el del pie. Blanco, con borde de tinta grueso, esquinas muy
+  // redondas y una colita hacia el botón; sin la sombra dura de siempre (con el marco recortado y una sombra rectangular,
+  // en la esquina de abajo a la derecha quedaba un borde negro suelto). Se vuelven a declarar, solo acá, los tokens que
+  // usa el marco; el recuadro vive dentro de la raíz del tema, así que los hereda.
+  [role='tooltip'] {
+    --radius-md: 1.5rem;
+    --clip-panel: none;
+    --frame-width: 0.25rem;
+    --frame-inner-width: 0rem;
+    --surface-dialog: var(--palette-white);
+    --frame-dialog-inner: transparent;
+    --infotip-tail-width: 1rem;
+    --infotip-tail-height: 1rem;
+    --infotip-tail-below: none;
+    --infotip-tail-above: none;
+    border-radius: 1.5rem;
+    box-shadow: none;
+
+    // La colita: un cuadrado girado 45° con los dos bordes de afuera, a caballo del borde del globo (el relleno blanco
+    // tapa el borde del globo donde se unen). Arriba si el globo se abrió abajo del botón, y abajo si se abrió arriba.
+    > span[aria-hidden='true'] {
+      background: var(--palette-white);
+      border: 0.25rem solid var(--palette-ink);
+    }
+
+    &[data-side='below'] > span[aria-hidden='true'] {
+      border-block-end: 0;
+      border-inline-end: 0;
+      transform: translateY(50%) rotate(45deg);
+    }
+
+    &[data-side='above'] > span[aria-hidden='true'] {
+      border-block-start: 0;
+      border-inline-start: 0;
+      transform: translateY(-50%) rotate(45deg);
+    }
+  }
+
+  // Celdas del Clásico: borde de tinta y el nombre largo cortado en dos líneas.
+  --cell-frame-width: 0.1875rem;
+  --cell-edge: var(--palette-ink);
+  --cell-lines: 2;
+
+  // La revelación del Clásico (`swap`): el escaneo recorre cada celda en medio segundo y las columnas arrancan una tras
+  // otra cada 170 ms (7 columnas: menos de 1,6 s en total, bajo el tope de 2,4 s).
+  --flip-duration: 520ms;
+  --flip-stagger: 170ms;
+  --flip-ease: linear;
+}

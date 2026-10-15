@@ -44,11 +44,11 @@ function pixelIconOf(cell: Cell): IconName {
 
 /**
  * ¿La celda lleva ícono? Con `all`, siempre. Con `hints`, solo las que el color no explica del todo: el parcial
- * y las que tienen flecha. Lo que está bien (verde) o mal sin más pistas (rojo) se lee por el color; el texto
+ * y las que tienen flecha. Con `arrows`, solo las que tienen flecha. Lo que está bien (verde) o mal sin más pistas (rojo) se lee por el color; el texto
  * para lectores de pantalla (`descriptionOf`) está en todas.
  */
-function hasMark(cell: Cell, marks: 'all' | 'hints'): boolean {
-  return marks === 'all' || cell.match === 'partial' || cell.direction !== null;
+function hasMark(cell: Cell, marks: 'all' | 'hints' | 'arrows'): boolean {
+  return marks === 'all' || (marks === 'hints' && cell.match === 'partial') || cell.direction !== null;
 }
 
 function descriptionOf(cell: Cell): string {

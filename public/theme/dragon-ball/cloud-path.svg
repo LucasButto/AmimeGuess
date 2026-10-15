@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" preserveAspectRatio="none">
+  <!-- Camino de nubes de la línea de tiempo: una curva en S de bolitas con contorno de tinta. Un mosaico que se repite hacia abajo. -->
+  <g fill="none" stroke-linecap="round">
+    <path d="M70 0 C 70 70, 330 50, 330 120 S 70 170, 70 240" stroke="#1a1a1a" stroke-width="40" stroke-dasharray="0 30"/>
+    <path d="M70 0 C 70 70, 330 50, 330 120 S 70 170, 70 240" stroke="#fff6e5" stroke-width="30" stroke-dasharray="0 30"/>
+  </g>
+</svg>

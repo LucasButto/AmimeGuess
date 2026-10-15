@@ -18,7 +18,7 @@
 
 .link {
   @include m.touch-target;
-  @include m.pixel-frame($fill: t.token('nav-fill'), $inner: t.token('nav-inner'), $inner-width: t.token('nav-inner-width'), $radius: t.$radius-md, $clip: t.token('clip-chip'));
+  @include m.pixel-frame($fill: t.token('nav-fill'), $outer: var(--nav-edge, #{t.token('frame-color')}), $inner: t.token('nav-inner'), $inner-width: t.token('nav-inner-width'), $radius: t.$radius-md, $clip: t.token('clip-chip'));
   display: inline-flex;
   align-items: center;
   gap: t.$space-2;

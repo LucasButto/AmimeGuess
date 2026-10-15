@@ -1,0 +1,65 @@
+@use 'breakpoints' as bp;
+
+// El aura dorada de la victoria: un resplandor detrás de la imagen de la respuesta que late dos veces (transform y opacity)
+// y queda encendido. Con movimiento reducido no late.
+.aura {
+  position: absolute;
+  inset: -0.75rem;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--palette-yellow) 35%, transparent 70%);
+  opacity: 0.85;
+
+  @include bp.motion-ok {
+    animation: aura-pulse 0.9s ease-in-out 2;
+  }
+}
+
+@keyframes aura-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+// El scouter: dibujo de 2,25 rem que acompaña la pregunta del Nivel de poder.
+.scouter {
+  flex: none;
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+}
+
+.band {
+  fill: var(--palette-ink);
+}
+
+.arm,
+.glint {
+  fill: none;
+  stroke: var(--palette-ink);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+}
+
+.glint {
+  stroke: var(--palette-cream);
+  stroke-width: 1.4;
+}
+
+.lens {
+  fill: var(--palette-scouter);
+  stroke: var(--palette-ink);
+  stroke-width: 2;
+}
+
+.tip {
+  fill: var(--palette-red);
+  stroke: var(--palette-ink);
+  stroke-width: 1;
+}

@@ -2,11 +2,13 @@
 // tiene, o lo que su piel no define, usa los valores por defecto de src/components/skin/defaults.tsx.
 
 import { DEFAULT_SKIN, DEFAULT_SKIN_DATA, DEFAULT_SLOTS } from '@/components/skin/defaults';
+import { dragonBallSkin } from './dragon-ball/theme';
 import { pokemonSkin } from './pokemon/theme';
 import type { FranchiseSkin, ResolvedSkin } from './types';
 
 const skins: Readonly<Record<string, FranchiseSkin>> = {
   pokemon: pokemonSkin,
+  'dragon-ball': dragonBallSkin,
 };
 
 const resolved = new Map<string, ResolvedSkin>();
@@ -23,7 +25,7 @@ export function getSkin(slug: string | null): ResolvedSkin {
         shareEmojis: skin.shareEmojis ?? DEFAULT_SKIN_DATA.shareEmojis,
         sounds: skin.sounds ?? DEFAULT_SKIN_DATA.sounds,
         backNavExitMs: Math.min(300, skin.backNavExitMs ?? DEFAULT_SKIN_DATA.backNavExitMs),
-        pageExitMs: Math.min(500, skin.pageExitMs ?? DEFAULT_SKIN_DATA.pageExitMs),
+        pageExitMs: Math.min(900, skin.pageExitMs ?? DEFAULT_SKIN_DATA.pageExitMs),
         cellIcons: skin.cellIcons ?? DEFAULT_SKIN_DATA.cellIcons,
         cellMarks: skin.cellMarks ?? DEFAULT_SKIN_DATA.cellMarks,
         uniformFilterChips: skin.uniformFilterChips ?? DEFAULT_SKIN_DATA.uniformFilterChips,

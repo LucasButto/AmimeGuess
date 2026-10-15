@@ -19,7 +19,7 @@ interface ModesGridProps {
  * tarjeta la dibuja el slot `ModeCard` de la piel; la grilla (columnas y ancho) se ajusta con sus tokens.
  */
 export function ModesGrid({ franchise, intro, modes }: ModesGridProps) {
-  const { ModeCard } = useSkin().skin.slots;
+  const { ModeCard, DailyReward } = useSkin().skin.slots;
   const today = useTodayProgress(
     franchise,
     modes.map((mode) => mode.slug),
@@ -53,6 +53,8 @@ export function ModesGrid({ franchise, intro, modes }: ModesGridProps) {
           );
         })}
       </ul>
+      {/* El premio visual del día (según los modos resueltos); la piel decide si hay y cómo se ve. */}
+      {solved !== null && <DailyReward solved={solved.size} total={modes.length} solvedSlugs={solved} />}
     </>
   );
 }

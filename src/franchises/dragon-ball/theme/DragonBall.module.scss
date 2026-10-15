@@ -1,0 +1,50 @@
+// Colores de la esfera del dragón: salen de la paleta de la piel (los atributos SVG no leen variables CSS). El cuerpo
+// es un degradé radial: amarillo claro donde pega la luz, naranja en el medio y naranja tirando a rojo en el borde.
+.rim {
+  fill: var(--palette-ink);
+}
+
+.core {
+  stop-color: color-mix(in srgb, var(--palette-yellow) 55%, var(--palette-white));
+}
+
+.mid {
+  stop-color: var(--palette-orange);
+}
+
+.edge {
+  stop-color: color-mix(in srgb, var(--palette-orange) 70%, var(--palette-red));
+}
+
+// La luz que rebota en la parte de abajo de la bola.
+.bounce {
+  fill: var(--palette-yellow);
+  opacity: 0.55;
+}
+
+.shine {
+  fill: var(--palette-white);
+  opacity: 0.9;
+}
+
+.glint {
+  fill: var(--palette-white);
+}
+
+.star {
+  fill: var(--palette-red);
+  stroke: color-mix(in srgb, var(--palette-red) 55%, var(--palette-ink));
+  stroke-width: 0.5;
+  stroke-linejoin: round;
+}
+
+// Apagada (un modo pendiente): la misma esfera, sin el punto de brillo y con el reflejo más tenue.
+[data-dull='true'] {
+  .glint {
+    display: none;
+  }
+
+  .shine {
+    opacity: 0.45;
+  }
+}

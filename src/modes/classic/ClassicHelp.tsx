@@ -13,7 +13,7 @@ export function ClassicHelp({ config }: ClassicHelpProps) {
   const marks = useSkin().skin.cellMarks;
   const legend = [
     { match: 'exact', icon: marks === 'all' ? '✓' : '', text: es.classic.help.exact },
-    { match: 'partial', icon: '≈', text: es.classic.help.partial },
+    { match: 'partial', icon: marks === 'arrows' ? '' : '≈', text: es.classic.help.partial },
     { match: 'none', icon: marks === 'all' ? '✕' : '', text: es.classic.help.none },
     { match: 'none', icon: '↑↓', text: es.classic.help.arrows },
   ] as const;

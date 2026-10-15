@@ -1,0 +1,34 @@
+// Las letras del logo de la serie (sin copiarlo): la primera palabra amarilla y las demás rojas, cada color con su degradado de
+// arriba hacia abajo (el amarillo, de #feef00 a #c59000; el rojo, de #e7000a a #b0060f). No hay mezcla de un color al otro: el
+// degradado es solo vertical. Cada palabra (ver `TitleWords`) lleva su relleno con `background-clip: text`; el degradado se
+// reparte entre el alto de la caja de la palabra, y las mayúsculas ocupan el medio, por eso los extremos quedan en 12 % y 88 %.
+// El contorno negro y la sombra dura no pueden ser un `text-shadow` (taparía el relleno): son un `filter` de `drop-shadow` en
+// cada palabra, con cuatro copias en cruz (0,03 em) y cuatro en diagonal (0,02 em) para un contorno casi redondo de 0,07 em;
+// la última es la sombra. `$k` agranda el contorno (en letras chicas, 0,03 em serían menos de un píxel) y `$shadow-k` la sombra.
+// Va en cada palabra y no en el texto entero: así no engorda el contorno de lo que va antes (la esfera o la nave del título).
+// Estático: no se anima.
+@mixin logo-words($k: 1, $shadow-k: 1) {
+  $cross: 0.03em * $k;
+  $diagonal: 0.02em * $k;
+  color: transparent;
+  text-shadow: none;
+  // Las palabras van más juntas, como en el logo (cada una es un bloque en línea y el contorno las separa de más).
+  word-spacing: -0.07em;
+
+  [data-word] {
+    display: inline-block;
+    color: transparent;
+    filter: drop-shadow($cross 0 0 var(--palette-ink)) drop-shadow((-$cross) 0 0 var(--palette-ink))
+      drop-shadow(0 $cross 0 var(--palette-ink)) drop-shadow(0 (-$cross) 0 var(--palette-ink))
+      drop-shadow($diagonal $diagonal 0 var(--palette-ink)) drop-shadow((-$diagonal) $diagonal 0 var(--palette-ink))
+      drop-shadow($diagonal (-$diagonal) 0 var(--palette-ink)) drop-shadow((-$diagonal) (-$diagonal) 0 var(--palette-ink))
+      drop-shadow((0.09em * $shadow-k) (0.11em * $shadow-k) 0 var(--palette-ink));
+    -webkit-background-clip: text;
+    background-clip: text;
+    background-image: linear-gradient(to bottom, var(--palette-logo-red-top) 12%, var(--palette-logo-red-bottom) 88%);
+  }
+
+  [data-word='0'] {
+    background-image: linear-gradient(to bottom, var(--palette-logo-yellow-top) 12%, var(--palette-logo-yellow-bottom) 88%);
+  }
+}

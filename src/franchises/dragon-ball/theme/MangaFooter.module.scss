@@ -1,0 +1,60 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.footer {
+  // Pegado al fondo de la ventana aunque la página sea corta (el body es una columna flexible).
+  margin-block-start: auto;
+  padding-block: t.$space-6 t.$space-5;
+}
+
+.inner {
+  @include m.container(t.$container-wide);
+}
+
+// El globo de diálogo: blanco, borde de tinta grueso, esquinas muy redondeadas y una colita hacia arriba a la izquierda.
+.balloon {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: t.$space-1;
+  padding: t.$space-4 t.$space-6;
+  border: 0.25rem solid var(--palette-ink);
+  border-radius: 2.25rem;
+  background: var(--palette-white);
+  box-shadow: t.token('shadow-card');
+
+  // La colita: un cuadrado girado 45° con los dos bordes de afuera (el de abajo queda tapado por el globo).
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block-start: -0.875rem;
+    inset-inline-start: 3rem;
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+    border-block-start: 0.25rem solid var(--palette-ink);
+    border-inline-start: 0.25rem solid var(--palette-ink);
+    background: var(--palette-white);
+    transform: rotate(45deg);
+  }
+}
+
+.notice {
+  font-size: t.$font-size-sm;
+  color: t.token('ink-muted');
+  text-align: center;
+}
+
+// Área de 44 × 44 px para el pulgar (SPEC 9.1).
+.link {
+  @include m.touch-target;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  color: t.color('accent');
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  @include m.focus-ring;
+}

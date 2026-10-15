@@ -242,6 +242,8 @@ $semantic: (
   'title-shadow': none,
   'title-bullet': none,
   'title-bullet-size': 0px,
+  // Cuánto se agranda el título de la página respecto del tamaño base (1 = el de siempre).
+  'title-scale': 1,
   // Nombre del sitio sobre el título de la franquicia (oculto por defecto) y la línea chica sobre el
   // título de un modo (el nombre de la franquicia): color y sombra.
   'header-site-display': none,

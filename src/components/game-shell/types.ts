@@ -125,9 +125,14 @@ export interface GameSession {
   readonly mode: string;
   /** Número de día del reto, ver `getDay`. */
   readonly day: number;
-  /** Clave de filtro canónica (`all`, `g1.g2`…). */
+  /**
+   * Clave de filtro canónica (`all`, `g1.g2`…). Si el motor declaró una `variant` (por ejemplo, una dificultad), lleva
+   * al final `~<variante>`: así cada variante es otra partida y guarda su estado y su reto por separado.
+   */
   readonly filterKey: string;
-  /** Series activas, en orden canónico. */
+  /**
+   * Series activas, en orden canónico.
+   */
   readonly active: readonly string[];
   readonly onFinish: (report: FinishReport) => void;
 }
@@ -156,6 +161,14 @@ export interface GameShellProps {
   readonly yesterday: (ctx: DailyContext, active: readonly string[]) => AnswerInfo | null;
   /** Contenido del "Cómo se juega" propio del motor. */
   readonly help: ReactNode;
+  /**
+   * Una variante de la partida que elige quien juega (una dificultad, por ejemplo). Cada variante es otra partida:
+   * el marco vuelve a montar el juego y reinicia el resumen al cambiarla, y la `filterKey` de la sesión la incluye.
+   * Sin variante (la de siempre), nada cambia. Las estadísticas y la racha son de todo el modo.
+   */
+  readonly variant?: string;
+  /** Algo que va arriba del juego y que no se vuelve a montar al cambiar de variante (el selector de dificultad). */
+  readonly beforeGame?: (info: { readonly remaining: number }) => ReactNode;
   /** El juego. */
   readonly children: (session: GameSession) => ReactNode;
 }

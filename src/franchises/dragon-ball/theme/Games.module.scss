@@ -1,0 +1,649 @@
+// Lo propio de cada modo de Dragon Ball en su piel (sesión 16): se apoya en `data-game-mode` (el modo, en el área de juego
+// que pone el marco) y en los `data-part` de los motores (`visor`, `clue`, `duel`, `reading`, `path`), así no depende de
+// los nombres de clase de los motores, que cambian al compilar. La clase `.root` va en la raíz del tema junto con la de
+// `theme.module.scss`.
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+@use 'logo-words' as l;
+
+// Una esfera del dragón dibujada con CSS (para los números de la línea de tiempo): el mismo degradé que la de SVG.
+@mixin sphere-fill {
+  border: 0.125rem solid var(--palette-ink);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 38% 32%,
+    color-mix(in srgb, var(--palette-yellow) 55%, var(--palette-white)) 0,
+    var(--palette-orange) 50%,
+    color-mix(in srgb, var(--palette-orange) 70%, var(--palette-red)) 100%
+  );
+}
+
+// --- Visor de viñeta (silueta, borroso, técnica y transformación) ----------------------------------------------------------
+// La imagen del reto en un panel de manga: borde de tinta grueso y sombra dura, sin el recorte de esquinas.
+
+.root [data-part='visor'] {
+  clip-path: none;
+  border-width: 0.25rem;
+  border-radius: 0;
+  box-shadow: 0.375rem 0.375rem 0 var(--palette-ink);
+}
+
+// --- Clásico: las celdas, como viñetas de manga ----------------------------------------------------------------------------
+// Rectangulares, con el marco de tinta grueso (token `cell-frame-width`) y sin esquinas cortadas: el recorte en diagonal de
+// dos esquinas se veía borroso. Sobre el color del resultado, una trama de puntos de tinta (la de las viñetas) y una franja
+// más oscura abajo, como un sombreado plano; las dos oscurecen, así el texto blanco gana contraste en lugar de perderlo.
+
+.root td [data-match] {
+  background:
+    radial-gradient(circle, color-mix(in srgb, var(--palette-ink) 18%, transparent) 0 0.0625rem, transparent 0.09375rem) 0 0 / 0.3125rem 0.3125rem,
+    linear-gradient(to bottom, transparent 0 58%, color-mix(in srgb, var(--palette-ink) 16%, transparent) 58%),
+    var(--_fill);
+}
+
+// --- Frase: la frase en un globo de diálogo de manga -------------------------------------------------------------------------
+// Un globo blanco de bordes muy redondeados, con tinta gruesa. En el globo va solo la frase; la etiqueta ("Frase") va
+// afuera, arriba a la izquierda, y la colita del globo sube hasta ella, como si la dijera. La colita son dos triángulos
+// pegados al título (que no está posicionado, así que se ubican respecto del globo): uno de tinta y otro blanco encima,
+// que tapa el borde donde se unen. El título ("La pista") queda para los lectores de pantalla; no se esconde del todo
+// (sin letra ni alto) porque lleva la colita.
+
+.root [data-game-mode='frase'] [data-part='clue'] {
+  --frame-width: 0.25rem;
+  --frame-inner-width: 0rem;
+  --surface-dialog: var(--palette-white);
+  gap: 0;
+  // Arriba, el lugar de la etiqueta y de la colita.
+  margin-block-start: 3.5rem;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+  font-size: t.$font-size-xl;
+
+  > h2 {
+    margin: 0;
+    font-size: 0;
+    line-height: 0;
+  }
+
+  // La etiqueta, encima de la punta de la colita.
+  [data-part='clue-label'] {
+    @include m.heading;
+    position: absolute;
+    inset-block-end: calc(100% + 1.5rem);
+    inset-inline-start: 1.75rem;
+    font-size: t.$font-size-xl;
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--palette-ink);
+  }
+
+  &::before,
+  &::after {
+    clip-path: none;
+    border-radius: 2.5rem;
+  }
+
+  &::after {
+    border-radius: 2.25rem;
+  }
+
+  // La colita sale del borde de arriba y sube, inclinada, hacia la etiqueta.
+  > h2::before,
+  > h2::after {
+    content: '';
+    position: absolute;
+    inset-block-end: calc(100% - 0.25rem);
+    clip-path: polygon(0 100%, 100% 100%, 8% 0);
+  }
+
+  > h2::before {
+    inset-inline-start: 3rem;
+    inline-size: 2.75rem;
+    block-size: 1.75rem;
+    background: var(--palette-ink);
+  }
+
+  > h2::after {
+    inset-inline-start: calc(3rem + 0.3rem);
+    inline-size: calc(2.75rem - 0.95rem);
+    block-size: calc(1.75rem - 0.6rem);
+    background: var(--palette-white);
+  }
+}
+
+// --- Nivel de poder: dos luchadores medidos por rastreadores ----------------------------------------------------------------
+// Los dos se miran sobre un fondo de líneas de impacto de manga (rayos amarillos y naranjas desde el centro). Cada uno está
+// dentro de la lente de un rastreador; entre los dos, un radar que barre mientras se elige. Al elegir, cada lente muestra
+// su lectura, el que no era queda tachado con una línea roja de esquina a esquina y el ganador se enciende y crece un poco.
+// El radar y "Siguiente" van siempre al centro; apilados (un teléfono vertical), las dos tarjetas se separan para dejarles
+// lugar y que no tapen la lectura.
+
+@mixin side-by-side {
+  @include bp.landscape {
+    @content;
+  }
+
+  @include bp.min-width('md') {
+    @content;
+  }
+}
+
+.root [data-game-mode='poder'] [data-part='duel'] {
+  --_emblem: 3rem;
+  position: relative;
+  // Apilados, el hueco entre las dos tarjetas es donde van el radar y "Siguiente" (lado a lado hay una sola fila). Las
+  // dos filas miden lo mismo: así el hueco queda justo en el medio del duelo, que es donde se ubican.
+  grid-auto-rows: 1fr;
+  row-gap: 3.5rem;
+  padding: t.$space-4;
+  border: 0.1875rem solid var(--palette-ink);
+  background:
+    radial-gradient(circle at 50% 50%, var(--palette-white) 0 6%, transparent 40%),
+    repeating-conic-gradient(from 0deg at 50% 50%, var(--palette-yellow) 0deg 5deg, var(--palette-orange) 5deg 10deg);
+  box-shadow: 0.25rem 0.25rem 0 var(--palette-ink);
+
+  @include side-by-side {
+    --_emblem: 4.25rem;
+  }
+
+  // El de la derecha (o el de abajo, si están apilados) mira hacia el otro lado.
+  > :nth-child(2) img {
+    transform: scaleX(-1);
+  }
+
+  // El radar: una pantalla redonda con cruz y aros (`::before`) y, encima, el haz que gira (`::after`, solo `transform`;
+  // quieto con movimiento reducido). Decorativo: no recibe toques. Ya elegido, se va (ahí aparece "Siguiente").
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    inline-size: var(--_emblem);
+    block-size: var(--_emblem);
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+  }
+
+  &::before {
+    border: 0.1875rem solid var(--palette-ink);
+    background:
+      linear-gradient(var(--palette-scouter), var(--palette-scouter)) 50% 50% / 0.0625rem 76% no-repeat,
+      linear-gradient(var(--palette-scouter), var(--palette-scouter)) 50% 50% / 76% 0.0625rem no-repeat,
+      radial-gradient(circle closest-side, transparent 0 44%, var(--palette-scouter) 44% 50%, transparent 50% 86%, var(--palette-scouter) 86% 92%, transparent 92%),
+      radial-gradient(circle, color-mix(in srgb, var(--palette-scouter) 26%, var(--palette-scouter-dark)), var(--palette-scouter-dark) 70%);
+    box-shadow: 0.1875rem 0.25rem 0 var(--palette-ink);
+  }
+
+  &::after {
+    inline-size: calc(var(--_emblem) - 0.375rem);
+    block-size: calc(var(--_emblem) - 0.375rem);
+    background: conic-gradient(transparent 0 260deg, color-mix(in srgb, var(--palette-scouter) 75%, transparent) 360deg);
+
+    @include bp.motion-ok {
+      animation: radar-sweep 2.4s linear infinite;
+    }
+  }
+
+  &:has([data-revealed='true'])::before,
+  &:has([data-revealed='true'])::after {
+    display: none;
+  }
+}
+
+@keyframes radar-sweep {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+// Cada luchador, medido por un rastreador (como la lente del Clásico, en verde): la tarjeta es la lente de cristal y, de un
+// costado, asoma la pieza blanca que va en la oreja, con su ranura. Apilados, la pieza va a la derecha de las dos; lado a
+// lado, va afuera de cada una, así las dos lentes se miran. Las capas del marco (`pixel-frame`) dejan de ser el borde y el
+// relleno: `::before` es la pieza de la oreja y `::after`, la lente.
+// Dentro de la lente, el luchador queda fijado en una mira: un aro con cuatro triángulos que lo apuntan. Mientras no se
+// elige, un punto amarillo late como "escaneando"; al elegir, una línea de escaneo cruza la lectura y aparece el número.
+.root [data-game-mode='poder'] [data-option] {
+  // Ancho de la pieza de la oreja (lo que asoma fuera de la lente), lado de la imagen, esquinas de la lente y color del aro
+  // interior. Apilados (un teléfono vertical) la pieza es más angosta y todo va más junto: así el nombre entra sin cortarse.
+  --_house: 1.25rem;
+  --_img: 4.75rem;
+  --_lens-radius: 2.5rem 0.75rem 0.75rem 1.5rem;
+  --_ring: color-mix(in srgb, var(--palette-scouter) 55%, transparent);
+  --_glass: linear-gradient(150deg, color-mix(in srgb, var(--palette-scouter) 26%, var(--palette-scouter-dark)), var(--palette-scouter-dark) 65%);
+  --_fill:
+    linear-gradient(115deg, transparent 0 16%, color-mix(in srgb, var(--palette-white) 9%, transparent) 16% 27%, transparent 27%),
+    repeating-linear-gradient(to bottom, color-mix(in srgb, var(--palette-scouter) 10%, transparent) 0 0.0625rem, transparent 0.0625rem 0.25rem),
+    var(--_glass);
+  gap: t.$space-2;
+  padding: t.$space-4 calc(var(--_house) + #{t.$space-2}) t.$space-4 t.$space-2;
+  color: var(--palette-scouter);
+
+  // Lado a lado, la imagen grande, pero sin pasarse del 40 % del alto (un teléfono acostado).
+  @include side-by-side {
+    --_house: 2.25rem;
+    --_img: min(11rem, 40vh);
+    gap: t.$space-4;
+    padding: t.$space-4 calc(var(--_house) + #{t.$space-4}) t.$space-4 t.$space-4;
+  }
+
+  &:disabled {
+    color: var(--palette-scouter);
+  }
+
+  &:not(:disabled) {
+    @include m.hover {
+      --_ring: var(--palette-yellow);
+    }
+  }
+
+  // La pieza de la oreja: plástico blanco con sombra gris y una ranura con estrías. Se mete un poco debajo de la lente.
+  &::before {
+    inset: 16% 0 16% auto;
+    inline-size: calc(var(--_house) + 1rem);
+    clip-path: none;
+    border: 0.1875rem solid var(--palette-ink);
+    border-radius: 0.5rem 1.25rem 1.25rem 0.5rem;
+    background:
+      repeating-linear-gradient(to bottom, color-mix(in srgb, var(--palette-gray) 45%, var(--palette-ink)) 0 0.1875rem, var(--palette-gray) 0.1875rem 0.375rem)
+        calc(100% - 0.4rem) 50% / 0.375rem 50% no-repeat,
+      linear-gradient(90deg, var(--palette-white) 30%, color-mix(in srgb, var(--palette-gray) 55%, var(--palette-white)));
+    box-shadow: 0.25rem 0.3125rem 0 var(--palette-ink);
+  }
+
+  // La lente: cristal verde con un brillo en diagonal y líneas de pantalla; el borde de tinta y el aro interior.
+  &::after {
+    inset: 0 var(--_house) 0 0;
+    clip-path: none;
+    border: 0.1875rem solid var(--palette-ink);
+    border-radius: var(--_lens-radius);
+    box-shadow:
+      inset 0 0 0 0.125rem var(--_ring),
+      0.25rem 0.3125rem 0 var(--palette-ink);
+  }
+
+  // Lado a lado, la de la izquierda lleva la pieza a la izquierda: las dos lentes quedan mirándose.
+  @include side-by-side {
+    &:first-child {
+      --_lens-radius: 0.75rem 2.5rem 1.5rem 0.75rem;
+      padding-inline: calc(var(--_house) + #{t.$space-4}) t.$space-4;
+
+      &::before {
+        inset-inline: 0 auto;
+        border-radius: 1.25rem 0.5rem 0.5rem 1.25rem;
+        background-position:
+          0.4rem 50%,
+          0 0;
+        background-image:
+          repeating-linear-gradient(to bottom, color-mix(in srgb, var(--palette-gray) 45%, var(--palette-ink)) 0 0.1875rem, var(--palette-gray) 0.1875rem 0.375rem),
+          linear-gradient(270deg, var(--palette-white) 30%, color-mix(in srgb, var(--palette-gray) 55%, var(--palette-white)));
+      }
+
+      &::after,
+      [data-part='strike'] {
+        inset-inline: var(--_house) 0;
+      }
+    }
+  }
+
+  // El nombre del objetivo fijado, en amarillo como en la lente del Clásico.
+  // Apilados, un poco más chico: "Supersaiyano" entra entero en un teléfono de 360 px.
+  [data-part='reading'] > :first-child {
+    color: var(--palette-yellow);
+    font-size: t.$font-size-base;
+    letter-spacing: 0.02em;
+
+    @include side-by-side {
+      font-size: t.$font-size-lg;
+    }
+  }
+
+  // La mira: un aro y cuatro triángulos que apuntan al luchador (arriba, abajo, izquierda y derecha). Cada triángulo es
+  // un gradiente cónico con la punta hacia el aro, en una caja de 14 × 9 % (o 9 × 14 %) pegada a un borde de la imagen;
+  // el relleno de la imagen (un décimo del lado) deja al luchador casi del tamaño del aro.
+  img {
+    --_aim: var(--palette-scouter);
+    inline-size: var(--_img);
+    block-size: var(--_img);
+    padding: calc(var(--_img) / 10);
+    background:
+      conic-gradient(from -38deg at 50% 100%, var(--_aim) 0 76deg, transparent 0) 50% 0 / 14% 9% no-repeat,
+      conic-gradient(from 142deg at 50% 0, var(--_aim) 0 76deg, transparent 0) 50% 100% / 14% 9% no-repeat,
+      conic-gradient(from 52deg at 0 50%, var(--_aim) 0 76deg, transparent 0) 100% 50% / 9% 14% no-repeat,
+      conic-gradient(from 232deg at 100% 50%, var(--_aim) 0 76deg, transparent 0) 0 50% / 9% 14% no-repeat,
+      radial-gradient(
+        circle closest-side,
+        color-mix(in srgb, var(--palette-scouter) 14%, transparent) 0 calc(78% - 0.125rem),
+        var(--_aim) calc(78% - 0.125rem) 78%,
+        transparent 78%
+      );
+  }
+
+  // "Escaneando": un punto amarillo que late (1 Hz) donde va a aparecer el número; quieto con movimiento reducido.
+  &[data-revealed='false'] [data-part='reading']::after {
+    content: '';
+    position: absolute;
+    inset-block-end: t.$space-3;
+    inset-inline-start: t.$space-2;
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+    border-radius: 50%;
+    background: var(--palette-yellow);
+
+    @include side-by-side {
+      inset-inline-start: calc(50% - 0.25rem);
+    }
+
+    @include bp.motion-ok {
+      animation: scouter-blink 1s steps(1, end) infinite;
+    }
+  }
+
+  // Sin barra ni etiquetas ("Mayor", "Tu elección"): lo dicen los números, el tachado y la lente encendida.
+  [data-part='meter'],
+  [data-part='badges'] {
+    display: none;
+  }
+
+  // El ganador: la lente se enciende (más verde, aro grueso y un resplandor) y la tarjeta crece un poco, con un salto
+  // al aparecer (sin el salto con movimiento reducido).
+  &[data-winner='true'] {
+    --_ring: var(--palette-scouter);
+    --_glass: linear-gradient(150deg, color-mix(in srgb, var(--color-match) 65%, var(--palette-scouter-dark)), color-mix(in srgb, var(--color-match) 45%, var(--palette-scouter-dark)) 65%);
+    transform: scale(1.03);
+
+    @include bp.motion-ok {
+      animation: winner-pop 0.45s ease-out 0.3s both;
+    }
+
+    &::after {
+      box-shadow:
+        inset 0 0 0 0.25rem var(--palette-scouter),
+        0 0 1.25rem 0.375rem color-mix(in srgb, var(--palette-scouter) 75%, transparent),
+        0.25rem 0.3125rem 0 var(--palette-ink);
+    }
+  }
+
+  // El que no era: el luchador se apaga y la lente queda tachada (ver `strike`).
+  &[data-revealed='true'][data-winner='false'] img {
+    filter: grayscale(0.85) brightness(0.85);
+  }
+
+  // Si además fue tu elección: la lente roja (como la de un rastreador de verdad) y agrietada.
+  &[data-picked='true']:not([data-winner='true']) {
+    --_ring: color-mix(in srgb, var(--color-miss) 70%, var(--palette-white));
+    --_fill:
+      url('/theme/dragon-ball/cracks.svg') center / 100% 100% no-repeat,
+      linear-gradient(150deg, color-mix(in srgb, var(--color-miss) 55%, var(--palette-ink)), color-mix(in srgb, var(--color-miss) 40%, var(--palette-ink)) 65%);
+
+    img {
+      --_aim: color-mix(in srgb, var(--color-miss) 60%, var(--palette-white));
+    }
+  }
+
+  // El tachado: una línea roja con borde de tinta desde la esquina de arriba a la izquierda hasta la de abajo a la
+  // derecha de la lente, encima de todo. Aparece de golpe, como un sello, cuando termina el escaneo.
+  [data-part='strike'] {
+    position: absolute;
+    z-index: 1;
+    display: block;
+    inset: 0 var(--_house) 0 0;
+    border-radius: var(--_lens-radius);
+    pointer-events: none;
+    background:
+      linear-gradient(to top right, transparent calc(50% - 0.1875rem), var(--palette-red) calc(50% - 0.1875rem) calc(50% + 0.1875rem), transparent calc(50% + 0.1875rem)),
+      linear-gradient(to top right, transparent calc(50% - 0.3125rem), var(--palette-ink) calc(50% - 0.3125rem) calc(50% + 0.3125rem), transparent calc(50% + 0.3125rem));
+
+    @include bp.motion-ok {
+      animation: strike-in 0.25s ease-out 0.5s both;
+    }
+  }
+}
+
+@keyframes scouter-blink {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes winner-pop {
+  from {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.07);
+  }
+
+  to {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes strike-in {
+  from {
+    opacity: 0;
+    transform: scale(1.15);
+  }
+}
+
+// La lectura: un panel de pantalla que está desde antes de elegir (apagado, con su lugar ya reservado: el número aparece
+// sin agrandar la tarjeta). Al revelar se enciende y la línea de escaneo lo cruza una vez (solo `transform`).
+.root [data-game-mode='poder'] [data-option] [data-part='reading'] {
+  position: relative;
+  overflow: hidden;
+  padding: t.$space-2;
+  border: 0.125rem solid color-mix(in srgb, var(--palette-scouter) 35%, transparent);
+  color: var(--palette-scouter);
+
+  @include side-by-side {
+    padding-inline: t.$space-3;
+  }
+}
+
+.root [data-game-mode='poder'] [data-option][data-revealed='true'] [data-part='reading'] {
+  border-color: var(--palette-scouter);
+  background: color-mix(in srgb, var(--palette-scouter) 10%, var(--palette-scouter-dark));
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      transparent 0 42%,
+      color-mix(in srgb, var(--palette-scouter) 35%, transparent) 42% 47%,
+      var(--palette-scouter) 47% 53%,
+      color-mix(in srgb, var(--palette-scouter) 35%, transparent) 53% 58%,
+      transparent 58%
+    );
+    transform: translateY(100%);
+
+    @include bp.motion-ok {
+      animation: scouter-sweep 0.7s linear both;
+    }
+  }
+}
+
+@keyframes scouter-sweep {
+  from {
+    transform: translateY(-100%);
+  }
+
+  to {
+    transform: translateY(100%);
+  }
+}
+
+// "Siguiente": una etiqueta del visor con punta de flecha, de tinta y cristal verde, con la palabra en las letras del logo.
+// Va donde estaba el radar y aparece cuando termina el escaneo.
+.root [data-game-mode='poder'] [data-part='next'] {
+  $arrow: polygon(0 0, calc(100% - 1.25rem) 0, 100% 50%, calc(100% - 1.25rem) 100%, 0 100%);
+  padding: 0.55rem 1.85rem 0.55rem 1rem;
+  font-family: t.font('heading');
+  font-size: 1.35rem;
+  line-height: 1;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  filter: drop-shadow(0.1875rem 0.25rem 0 var(--palette-ink));
+  // La palabra, con las letras del logo (amarillo con degradado y contorno de tinta).
+  @include l.logo-words(1.4, 0.9);
+
+  @include side-by-side {
+    padding: 0.75rem 2.25rem 0.75rem 1.35rem;
+    font-size: 1.85rem;
+  }
+
+  &::before,
+  &::after {
+    border-radius: 0;
+    clip-path: $arrow;
+  }
+
+  &::before {
+    background: var(--palette-ink);
+  }
+
+  &::after {
+    inset: 0.1875rem;
+    background:
+      repeating-linear-gradient(to bottom, color-mix(in srgb, var(--palette-scouter) 14%, transparent) 0 0.0625rem, transparent 0.0625rem 0.25rem),
+      linear-gradient(150deg, color-mix(in srgb, var(--palette-scouter) 40%, var(--palette-scouter-dark)), var(--palette-scouter-dark) 70%);
+    box-shadow: none;
+  }
+
+  @include m.hover {
+    &::after {
+      background:
+        repeating-linear-gradient(to bottom, color-mix(in srgb, var(--palette-scouter) 14%, transparent) 0 0.0625rem, transparent 0.0625rem 0.25rem),
+        linear-gradient(150deg, color-mix(in srgb, var(--palette-scouter) 60%, var(--palette-scouter-dark)), color-mix(in srgb, var(--palette-scouter) 20%, var(--palette-scouter-dark)) 70%);
+    }
+  }
+
+  @include bp.motion-ok {
+    animation: next-in 0.3s ease-out 0.55s both;
+  }
+}
+
+@keyframes next-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+}
+
+// Al pasar de ronda (ver `HigherLowerBoard`), el tachado y "Siguiente" se desvanecen junto con el luchador: sus propias
+// animaciones de entrada ganarían a la de salida del motor.
+@include bp.motion-ok {
+  .root [data-game-mode='poder'] [data-leaving='true'] [data-part='strike'],
+  .root [data-game-mode='poder'] [data-leaving='true'] [data-part='next'] {
+    animation: power-fade-out 0.2s ease-in both;
+  }
+}
+
+@keyframes power-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+// --- Línea de tiempo: intentos con semillas ---------------------------------------------------------------------------------
+// El texto "Intento N de M" queda solo para lectores de pantalla: a la vista lo dicen las semillas del ermitaño.
+
+.root [data-game-mode='linea-de-tiempo'] [data-part='attempts'] {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+// --- Línea de tiempo: sucesos sobre el cielo ---------------------------------------------------------------------------------
+// La lista va sobre un panel de cielo; cada suceso es una viñeta de papel con tinta, y su número aparece dentro de una
+// esfera del dragón. Sigue funcionando con arrastre y con botones.
+
+.root [data-game-mode='linea-de-tiempo'] [data-part='path'] {
+  padding: t.$space-4 t.$space-3;
+  border: 0.1875rem solid var(--palette-ink);
+  background: linear-gradient(to bottom, var(--palette-sky-blue), var(--palette-cloud));
+  box-shadow: 0.25rem 0.25rem 0 var(--palette-ink);
+
+  // El veredicto de lo confirmado: el cielo se tiñe de rojo mientras el orden confirmado esté mal y de verde al
+  // resolverlo (cada suceso sigue de papel, sin marca: no se dice cuáles están bien). El color es una capa encima del
+  // cielo y debajo de los sucesos, del color del último veredicto (`data-tint`), plegada mientras no hay veredicto. Al
+  // confirmar baja desde arriba; al mover un suceso se pliega hacia abajo y el cielo vuelve desde arriba. Solo
+  // `transform`, con transición: al volver a una partida a medias (recargar, cambiar de dificultad) aparece quieta, y
+  // con movimiento reducido cambia de golpe.
+  &[data-verdict] {
+    outline: 0;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    transform: scaleY(0);
+    transform-origin: bottom;
+
+    @include bp.motion-ok {
+      transition: transform 0.6s ease-out;
+    }
+  }
+
+  &[data-verdict]::before {
+    transform: none;
+    transform-origin: top;
+  }
+
+  &[data-tint='wrong']::before {
+    background: linear-gradient(to bottom, var(--palette-red), color-mix(in srgb, var(--color-miss) 80%, var(--palette-ink)));
+  }
+
+  &[data-tint='right']::before {
+    background: linear-gradient(to bottom, color-mix(in srgb, var(--color-match) 65%, var(--palette-scouter)), var(--color-match));
+  }
+
+  // Cada suceso es una viñeta de papel con tinta.
+  > li {
+    border-width: 0.1875rem;
+    border-radius: 0;
+    box-shadow: 0.1875rem 0.1875rem 0 var(--palette-ink);
+  }
+
+  > li[data-state] {
+    border-color: var(--palette-ink);
+    background: var(--palette-cream);
+  }
+
+  // El que se arrastra se despega más.
+  > li[data-dragging='true'] {
+    box-shadow: 0.5rem 0.5rem 0 var(--palette-ink);
+  }
+
+  // El número del lugar, dentro de una esfera.
+  > li p > span[aria-hidden='true']:first-child {
+    @include sphere-fill;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 1.875rem;
+    block-size: 1.875rem;
+    margin-inline-end: t.$space-2;
+    vertical-align: middle;
+    font-family: t.font('heading');
+    font-size: 1.0625rem;
+    line-height: 1;
+    color: var(--palette-ink);
+  }
+}
