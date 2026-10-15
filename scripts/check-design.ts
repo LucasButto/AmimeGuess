@@ -141,6 +141,57 @@ async function pokemonCards(ctx: Ctx): Promise<string[]> {
   return problems;
 }
 
+/** /dragon-ball: la cápsula del Clásico y siete esferas con 1 a 7 estrellas, cada una un único enlace con nombre accesible. */
+async function dragonBallCards(ctx: Ctx): Promise<string[]> {
+  const context = await newContext(ctx, { viewport: { width: 390, height: 844 } });
+  const page = await open(ctx, context, '/dragon-ball', '[data-card]');
+  const cards = await page.$$eval('ul[aria-label="Modos de juego"] > li', (items) =>
+    items.map((item) => {
+      const links = item.querySelectorAll('a');
+      const svg = item.querySelector('svg');
+      return {
+        links: links.length,
+        card: links[0]?.getAttribute('data-card'),
+        name: links[0]?.getAttribute('aria-label') ?? '',
+        stars: svg ? svg.querySelectorAll('polygon').length : 0,
+      };
+    }),
+  );
+  await shot(page, 'dragon-ball-tarjetas');
+  await context.close();
+  const problems: string[] = [];
+  if (cards.length !== 8) problems.push(`hay ${cards.length} tarjetas (se esperaban 8)`);
+  if (cards[0]?.card !== 'capsule') problems.push('la primera tarjeta no es la cápsula');
+  const spheres = cards.slice(1);
+  if (spheres.some((card) => card.card !== 'sphere')) problems.push('las siete tarjetas que siguen a la cápsula no son esferas');
+  if (spheres.map((card) => card.stars).join() !== '1,2,3,4,5,6,7') problems.push(`las estrellas de las esferas son ${spheres.map((card) => card.stars).join()} y no 1 a 7`);
+  for (const card of cards) {
+    if (card.links !== 1) problems.push(`una tarjeta tiene ${card.links} enlaces`);
+    if (!/^[^:]+(: (resuelto hoy|pendiente))?$/.test(card.name)) problems.push(`nombre accesible raro: "${card.name}"`);
+  }
+  return problems;
+}
+
+/** Con las 7 esferas resueltas hoy (estado preparado) aparece el dragón con "¡Pedí un deseo!"; con una menos, no. */
+async function dragonBallReward(ctx: Ctx): Promise<string[]> {
+  const problems: string[] = [];
+  const spheres = ['silueta', 'frase', 'borroso', 'tecnica', 'poder', 'transformacion', 'linea-de-tiempo'];
+  const solved = (slugs: string[]) => Object.assign({}, ...slugs.map((slug) => savedGame('dragon-ball', slug, ['x'], 'won')));
+  for (const [slugs, expected] of [
+    [spheres, true],
+    [spheres.slice(1), false],
+  ] as const) {
+    const context = await newContext(ctx, { viewport: { width: 1366, height: 768 } }, solved([...slugs]));
+    const page = await open(ctx, context, '/dragon-ball', '[data-card]');
+    await page.waitForTimeout(500);
+    const shown = (await page.getByText('¡Pedí un deseo!').count()) > 0;
+    if (shown !== expected) problems.push(`con ${slugs.length} esferas resueltas el dragón ${shown ? 'aparece' : 'no aparece'} y ${expected ? 'tenía que aparecer' : 'no tenía que aparecer'}`);
+    if (expected) await shot(page, 'dragon-ball-deseo');
+    await context.close();
+  }
+  return problems;
+}
+
 /** Tras un intento, tantas celdas girando como columnas, con retrasos crecientes y 2,4 s como mucho; al recargar, nada gira. */
 function revealCheck(route: string, franchise: string, candidates: readonly string[], prefix: (id: string) => string) {
   return async (ctx: Ctx): Promise<string[]> => {
@@ -216,15 +267,48 @@ async function reducedMotion(ctx: Ctx): Promise<string[]> {
   return problems;
 }
 
-/** /pokemon durante 5 s: nada anima propiedades de layout y el fondo no tiene más de 3 capas animadas. */
+/** Con movimiento reducido en Dragon Ball: ni el fondo, ni el escaneo, ni las líneas de velocidad ni la nube se animan, y la fila queda completa enseguida. */
+async function reducedMotionDragonBall(ctx: Ctx): Promise<string[]> {
+  const problems: string[] = [];
+  const context = await newContext(ctx, { reducedMotion: 'reduce' });
+  const page = await open(ctx, context, '/dragon-ball/clasico');
+  const moving = () =>
+    page.evaluate(() => {
+      const names = /(drift|scan|sweep|pulse|spin|ping|pop|glint|aura)/;
+      return document.getAnimations().filter((animation) => names.test((animation as CSSAnimation).animationName ?? '')).length;
+    });
+  if ((await moving()) > 0) problems.push('hay animaciones del tema corriendo al abrir el Clásico');
+  const [miss] = misses('dragon-ball', ['oolong', 'puar', 'yajirobe']);
+  await guess(page, miss);
+  await page.waitForSelector('tbody tr');
+  await page.waitForTimeout(400);
+  if ((await moving()) > 0) problems.push('hay animaciones del tema (escaneo, onomatopeya) con movimiento reducido');
+  await context.close();
+  return problems;
+}
+
+/** /pokemon y /dragon-ball durante 5 s: nada anima propiedades de layout y el fondo no tiene más de 3 capas animadas. */
 async function animationProperties(ctx: Ctx): Promise<string[]> {
   const problems = new Set<string>();
-  const context = await newContext(ctx);
-  const page = await open(ctx, context, '/pokemon', '[data-card]');
-  for (let sample = 0; sample < 10; sample++) {
-    const found = await page.evaluate(() => {
+  for (const route of ['/pokemon', '/dragon-ball']) {
+    const context = await newContext(ctx);
+    const page = await open(ctx, context, route, '[data-card]');
+    for (let sample = 0; sample < 10; sample++) {
+      const found = await sampleAnimations(page);
+      for (const property of found.bad) problems.add(`${route}: se anima ${property}`);
+      if (found.layers > 3) problems.add(`${route}: el fondo tiene ${found.layers} capas animadas`);
+      await page.waitForTimeout(500);
+    }
+    await context.close();
+  }
+  return [...problems];
+}
+
+/** Qué propiedades de layout se están animando ahora y cuántas capas del fondo se mueven. */
+async function sampleAnimations(page: Page): Promise<{ bad: string[]; layers: number }> {
+  return page.evaluate(() => {
       const layout = /^(width|height|top|left|right|bottom|margin.*|padding.*|inset.*|inlineSize|blockSize)$/;
-      const backdrop = document.querySelector('[data-time]');
+      const backdrop = document.querySelector('[data-time], [data-backdrop]');
       const layers = new Set<Element>();
       const bad: string[] = [];
       for (const animation of document.getAnimations()) {
@@ -235,19 +319,18 @@ async function animationProperties(ctx: Ctx): Promise<string[]> {
         if (effect.target && backdrop?.contains(effect.target)) layers.add(effect.target);
       }
       return { bad, layers: layers.size };
-    });
-    for (const property of found.bad) problems.add(`se anima ${property}`);
-    if (found.layers > 3) problems.add(`el fondo tiene ${found.layers} capas animadas`);
-    await page.waitForTimeout(500);
-  }
-  await context.close();
-  return [...problems];
+  });
 }
 
-/** Las ayudas ⓘ de /pokemon/clasico: abren con foco, con toque y con hover; Escape cierra; enteras en la ventana. */
-async function infoTips(ctx: Ctx): Promise<string[]> {
+/** Las ayudas ⓘ del Clásico de una franquicia: abren con foco, con toque y con hover; Escape cierra; enteras en la ventana. */
+function infoTips(franchise: string, candidates: readonly string[]) {
+  return (ctx: Ctx) => infoTipsOf(ctx, franchise, candidates);
+}
+
+async function infoTipsOf(ctx: Ctx, franchise: string, candidates: readonly string[]): Promise<string[]> {
   const problems: string[] = [];
-  const storage = savedGame('pokemon', 'clasico', misses('pokemon', ['gyarados', 'snorlax', 'mewtwo']));
+  const route = `/${franchise}/clasico`;
+  const storage = savedGame(franchise, 'clasico', misses(franchise, candidates));
   const tipBox = (page: Page) =>
     page.evaluate((edge) => {
       const tip = document.querySelector('[role="tooltip"]');
@@ -267,7 +350,7 @@ async function infoTips(ctx: Ctx): Promise<string[]> {
   ]) {
     const size = `${viewport.width}x${viewport.height}`;
     const context = await newContext(ctx, { viewport, hasTouch: true }, storage);
-    const page = await open(ctx, context, '/pokemon/clasico');
+    const page = await open(ctx, context, route);
     await page.waitForSelector('tbody tr');
     const buttons = page.locator('button[aria-label^="Ayuda"]');
     const count = await buttons.count();
@@ -299,7 +382,7 @@ async function infoTips(ctx: Ctx): Promise<string[]> {
 
   // Con el cursor encima (un mouse): se abre tras la demora y se cierra con Escape sin moverlo.
   const context = await newContext(ctx, {}, storage);
-  const page = await open(ctx, context, '/pokemon/clasico');
+  const page = await open(ctx, context, route);
   await page.waitForSelector('tbody tr');
   const buttons = page.locator('button[aria-label^="Ayuda"]');
   const count = await buttons.count();
@@ -339,12 +422,14 @@ async function themeFont(ctx: Ctx): Promise<string[]> {
   return problems;
 }
 
-/** La suma de saltos de layout en /pokemon y /pokemon/clasico es menor a 0,05. */
+/** La suma de saltos de layout en el inicio y el Clásico de Pokémon y de Dragon Ball es menor a 0,05. */
 async function layoutShift(ctx: Ctx): Promise<string[]> {
   const problems: string[] = [];
   for (const [route, ready] of [
     ['/pokemon', '[data-card]'],
     ['/pokemon/clasico', GAME_READY],
+    ['/dragon-ball', '[data-card]'],
+    ['/dragon-ball/clasico', GAME_READY],
   ] as const) {
     const context = await newContext(ctx, { viewport: { width: 390, height: 844 } });
     await context.addInitScript(() => {
@@ -373,28 +458,49 @@ async function backNav(ctx: Ctx): Promise<string[]> {
     { width: 1366, height: 768 },
   ]) {
     const context = await newContext(ctx, { viewport });
-    let reference: string | null = null;
-    for (const route of ['/pokemon', '/pokemon/clasico', '/pokemon/silueta', '/dragon-ball', '/naruto/clasico', '/yugioh/duelista']) {
+    let reference: unknown[][] | null = null;
+    // La página de la franquicia solo tiene "Inicio" (su propio botón llevaría a donde ya está); las de modo, los dos.
+    for (const [route, onlyHome] of [
+      ['/pokemon/clasico', false],
+      ['/pokemon', true],
+      ['/pokemon/silueta', false],
+      ['/dragon-ball', true],
+      ['/dragon-ball/clasico', false],
+      ['/naruto', true],
+      ['/naruto/clasico', false],
+      ['/yugioh/duelista', false],
+    ] as const) {
       const page = await open(ctx, context, route, 'nav[aria-label="Volver"]');
       // "Inicio": la caja entera. El de la franquicia: posición y alto (su ancho depende del nombre).
-      const boxes = JSON.stringify(
-        await page.$$eval('nav[aria-label="Volver"] a', (links) =>
-          links.map((link, index) => {
-            const rect = link.getBoundingClientRect();
-            const box = [Math.round(rect.left), Math.round(rect.top + window.scrollY), Math.round(rect.height)];
-            return index === 0 ? [...box, Math.round(rect.width)] : box;
-          }),
-        ),
+      const boxes = await page.$$eval('nav[aria-label="Volver"] a', (links) =>
+        links.map((link, index) => {
+          const rect = link.getBoundingClientRect();
+          const box = [Math.round(rect.left), Math.round(rect.top + window.scrollY), Math.round(rect.height)];
+          return index === 0 ? [...box, Math.round(rect.width)] : box;
+        }),
       );
       reference ??= boxes;
-      if (boxes !== reference) problems.push(`${viewport.width}: en ${route} los botones de volver están en ${boxes} y no en ${reference}`);
+      const expected = onlyHome ? reference.slice(0, 1) : reference;
+      if (JSON.stringify(boxes) !== JSON.stringify(expected)) problems.push(`${viewport.width}: en ${route} los botones de volver están en ${JSON.stringify(boxes)} y no en ${JSON.stringify(expected)}`);
       await page.close();
     }
     await context.close();
   }
-  // La "Poké Ball que se recoge" demora la navegación 300 ms como mucho.
+  // La salida del tema (la Poké Ball que se recoge, la nube que se aleja) demora la navegación 300 ms como mucho.
+  for (const [route, home] of [
+    ['/pokemon/clasico', /\/pokemon$/],
+    ['/dragon-ball/clasico', /\/dragon-ball$/],
+  ] as const) {
+    const delay = await backNavDelay(ctx, route, home);
+    if (!(delay <= 300)) problems.push(`${route}: la salida de los botones de volver demora ${Math.round(delay)} ms`);
+  }
+  return problems;
+}
+
+/** Cuánto pasa entre el clic en el botón de volver a la franquicia y la navegación. */
+async function backNavDelay(ctx: Ctx, route: string, home: RegExp): Promise<number> {
   const context = await newContext(ctx);
-  const page = await open(ctx, context, '/pokemon/clasico');
+  const page = await open(ctx, context, route);
   await page.evaluate(() => {
     const times = { click: 0, push: 0 };
     (window as unknown as { __nav: typeof times }).__nav = times;
@@ -406,13 +512,43 @@ async function backNav(ctx: Ctx): Promise<string[]> {
     };
   });
   await page.click('nav[aria-label="Volver"] a[data-kind="franchise"]');
-  await page.waitForURL(/\/pokemon$/);
+  await page.waitForURL(home);
   const delay = await page.evaluate(() => {
     const times = (window as unknown as { __nav: { click: number; push: number } }).__nav;
     return times.push - times.click;
   });
-  if (!(delay <= 300)) problems.push(`la salida de los botones de volver demora ${Math.round(delay)} ms`);
   await context.close();
+  return delay;
+}
+
+/** Al cambiar de modo, el tema tapa la pantalla (hasta 900 ms) antes de navegar: ni sin animación ni mucho más de lo que dice. */
+async function pageExit(ctx: Ctx): Promise<string[]> {
+  const problems: string[] = [];
+  for (const [route, target, linkName] of [
+    ['/pokemon/clasico', '/pokemon/silueta', /^Silueta/],
+    ['/dragon-ball/clasico', '/dragon-ball/silueta', /^Silueta/],
+  ] as const) {
+    const context = await newContext(ctx);
+    const page = await open(ctx, context, route);
+    await page.evaluate(() => {
+      const times = { click: 0, push: 0 };
+      (window as unknown as { __nav: typeof times }).__nav = times;
+      document.addEventListener('click', () => (times.click ||= performance.now()), true);
+      const push = history.pushState.bind(history);
+      history.pushState = (...args: Parameters<History['pushState']>) => {
+        times.push ||= performance.now();
+        push(...args);
+      };
+    });
+    await page.getByRole('link', { name: linkName }).first().click();
+    await page.waitForURL(new RegExp(`${target}(\\?.*)?$`));
+    const delay = await page.evaluate(() => {
+      const times = (window as unknown as { __nav: { click: number; push: number } }).__nav;
+      return times.push - times.click;
+    });
+    if (!(delay >= 250 && delay <= 1100)) problems.push(`${route} → ${target}: navega a los ${Math.round(delay)} ms (se espera la salida del tema, de 250 a 1100 ms)`);
+    await context.close();
+  }
   return problems;
 }
 
@@ -452,7 +588,7 @@ async function shareEmojis(ctx: Ctx): Promise<string[]> {
   const problems: string[] = [];
   for (const [franchise, expected, unexpected] of [
     ['pokemon', '🟢', '🟩'],
-    ['dragon-ball', '🟩', '🟢'],
+    ['dragon-ball', '🟠', '🟩'],
   ] as const) {
     const answer = classicAnswer(franchise);
     const [miss] = misses(franchise, franchise === 'pokemon' ? ['gyarados', 'snorlax'] : ['oolong', 'puar']);
@@ -469,26 +605,21 @@ async function shareEmojis(ctx: Ctx): Promise<string[]> {
 }
 
 /** El fondo cambia de paleta en las cuatro franjas horarias y el reto del día no cambia. */
-async function timeOfDay(ctx: Ctx): Promise<string[]> {
+async function timeOfDay(ctx: Ctx, franchise: string, bands: ReadonlyArray<readonly [string, string]>): Promise<string[]> {
   const problems: string[] = [];
   const date = new Date(Date.now() - 3 * 3600 * 1000).toISOString().slice(0, 10); // fecha de hoy en Argentina
   const seen: string[] = [];
-  for (const [expected, hour] of [
-    ['dawn', '07'],
-    ['day', '12'],
-    ['dusk', '19'],
-    ['night', '22'],
-  ] as const) {
+  for (const [expected, hour] of bands) {
     const context = await newContext(ctx, { timezoneId: 'America/Argentina/Buenos_Aires' });
     const page = await context.newPage();
     await page.clock.install({ time: new Date(`${date}T${hour}:00:00-03:00`) });
-    await page.goto(`${ctx.baseUrl}/pokemon/clasico`, { waitUntil: 'domcontentloaded' });
+    await page.goto(`${ctx.baseUrl}/${franchise}/clasico`, { waitUntil: 'domcontentloaded' });
     await page.waitForSelector(GAME_READY);
     await page.waitForTimeout(200);
     const time = await page.locator('[data-time]').first().getAttribute('data-time');
     if (time !== expected) problems.push(`a las ${hour} el fondo es "${time}" y no "${expected}"`);
     seen.push((await page.locator('section[aria-label="Ayer fue"] strong').textContent()) ?? '');
-    await shot(page, `hora-${expected}`);
+    await shot(page, `hora-${franchise}-${expected}`);
     await context.close();
   }
   if (new Set(seen).size !== 1) problems.push(`el reto cambia con la hora local: ${seen.join(', ')}`);
@@ -497,20 +628,44 @@ async function timeOfDay(ctx: Ctx): Promise<string[]> {
 
 const CHECKS: ReadonlyArray<{ name: string; run: (ctx: Ctx) => Promise<string[]> }> = [
   { name: '/pokemon: Pokédex y 6 bolas, un enlace cada una', run: pokemonCards },
+  { name: '/dragon-ball: cápsula y 7 esferas numeradas, un enlace cada una', run: dragonBallCards },
+  { name: '/dragon-ball: el dragón aparece con las 7 esferas resueltas hoy', run: dragonBallReward },
   { name: 'Revelación en /pokemon/clasico', run: revealCheck('/pokemon/clasico', 'pokemon', ['gyarados', 'snorlax', 'mewtwo'], (id) => id) },
   { name: 'Revelación en /dragon-ball/clasico', run: revealCheck('/dragon-ball/clasico', 'dragon-ball', ['oolong', 'puar', 'yajirobe'], (id) => id) },
   { name: 'Revelación en /naruto/clasico', run: revealCheck('/naruto/clasico', 'naruto', ['naruto-uzumaki', 'sasuke-uchiha', 'sakura-haruno'], (id) => id.split('-')[0]) },
   { name: 'Revelación en /yugioh/duelista', run: revealCheck('/yugioh/duelista', 'yugioh', ['yugi-muto', 'seto-kaiba', 'jaden-yuki'], (id) => id.split('-')[0]) },
   { name: 'Revelación en /yugioh/carta', run: cardReveal },
   { name: 'Movimiento reducido', run: reducedMotion },
+  { name: 'Movimiento reducido en Dragon Ball', run: reducedMotionDragonBall },
   { name: 'Solo transform y opacity; fondo con 3 capas animadas como máximo', run: animationProperties },
-  { name: 'Ayudas ⓘ', run: infoTips },
+  { name: 'Ayudas ⓘ de Pokémon', run: infoTips('pokemon', ['gyarados', 'snorlax', 'mewtwo']) },
+  { name: 'Ayudas ⓘ de Dragon Ball', run: infoTips('dragon-ball', ['oolong', 'puar', 'yajirobe']) },
   { name: 'Tipografía del tema en modales y ayudas', run: themeFont },
   { name: 'Saltos de layout', run: layoutShift },
   { name: 'Botones de volver', run: backNav },
+  { name: 'Salida al cambiar de modo', run: pageExit },
   { name: 'Preferencias', run: preferences },
   { name: 'Emojis para compartir', run: shareEmojis },
-  { name: 'Fondo según la hora', run: timeOfDay },
+  {
+    name: 'Fondo de Pokémon según la hora',
+    run: (ctx) =>
+      timeOfDay(ctx, 'pokemon', [
+        ['dawn', '07'],
+        ['day', '12'],
+        ['dusk', '19'],
+        ['night', '22'],
+      ]),
+  },
+  {
+    name: 'Fondo de Dragon Ball según la hora (tres paisajes)',
+    run: (ctx) =>
+      timeOfDay(ctx, 'dragon-ball', [
+        ['dusk', '07'],
+        ['day', '12'],
+        ['dusk', '19'],
+        ['night', '22'],
+      ]),
+  },
 ];
 
 /** En el Clásico de cartas las respuestas salen del conjunto de cartas, no de los duelistas. */

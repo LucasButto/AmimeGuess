@@ -406,14 +406,14 @@ async function timelineConfirm(page: Page, { phone }: { phone: boolean }): Promi
   const problems = await timelineKeyboard(page);
   await page.getByRole('button', { name: 'Confirmar orden' }).click();
   const counter = await page.locator('[data-game-ready] p', { hasText: /^Intento \d de \d$/ }).innerText();
-  if (counter !== 'Intento 2 de 4') problems.push(`después de confirmar se esperaba "Intento 2 de 4" y dice "${counter}"`);
+  if (counter !== 'Intento 2 de 3') problems.push(`después de confirmar se esperaba "Intento 2 de 3" (Fácil) y dice "${counter}"`);
   return [...problems, ...(await timelineLayout(page, { phone }))];
 }
 
-/** Gasta los 4 intentos (o resuelve por suerte): el juego termina, muestra el orden correcto y el resumen del marco. */
+/** Gasta los 3 intentos de la dificultad Fácil (o resuelve por suerte): el juego termina, muestra el orden correcto y el resumen del marco. */
 async function timelineFinish(page: Page, { phone }: { phone: boolean }): Promise<string[]> {
   if (!(await hasTimelineGame(page))) return [];
-  for (let attempt = 0; attempt < 4; attempt++) {
+  for (let attempt = 0; attempt < 3; attempt++) {
     if ((await page.locator(TIMELINE_GAME).getAttribute('data-over')) === 'true') break;
     // Un cambio cualquiera para poder confirmar de nuevo: el primer botón de mover que se pueda usar.
     const move = page.locator('[data-item] button:not([disabled])').first();
@@ -421,8 +421,8 @@ async function timelineFinish(page: Page, { phone }: { phone: boolean }): Promis
     await page.getByRole('button', { name: 'Confirmar orden' }).click();
   }
   const problems: string[] = [];
-  if ((await page.locator(TIMELINE_GAME).getAttribute('data-over')) !== 'true') problems.push('después de 4 intentos el juego no terminó');
-  if ((await page.locator('[data-game-ready] [data-handle], [data-game-ready] button[aria-label]').count()) > 0) {
+  if ((await page.locator(TIMELINE_GAME).getAttribute('data-over')) !== 'true') problems.push('después de 3 intentos el juego no terminó');
+  if ((await page.locator('[data-game-ready] [data-handle], [data-game-ready] button[aria-label]:not([aria-label^="Ayuda"])').count()) > 0) {
     problems.push('al terminar siguen los controles para mover los sucesos');
   }
   if ((await page.locator('section[data-won]').count()) === 0) problems.push('no aparece el resumen del marco al terminar');
@@ -680,8 +680,12 @@ async function keyboardPick(page: Page): Promise<string[]> {
   if (!(await tabTo(page, 'next'))) return ['no se llegó a "Siguiente" solo con Tab'];
   const before = await page.locator('[data-option]').first().innerText();
   await page.keyboard.press('Enter');
-  await page.waitForTimeout(250);
-  if ((await page.locator('[data-option]').first().innerText()) === before) problems.push('"Siguiente" con Enter no pasó a la ronda siguiente');
+  // La ronda nueva entra después del fundido de salida (200 ms, ver `LEAVE_MS` en HigherLowerBoard).
+  const advanced = await page
+    .waitForFunction((text) => (document.querySelector('[data-option]') as HTMLElement | null)?.innerText !== text, before, { timeout: 2_000 })
+    .then(() => true)
+    .catch(() => false);
+  if (!advanced) problems.push('"Siguiente" con Enter no pasó a la ronda siguiente');
   return problems;
 }
 
@@ -830,7 +834,7 @@ const ROUTES: RouteCheck[] = [
     ready: GAME_READY,
     storage: seededGame(WITHOUT_GT, DB_SIX_ATTEMPTS, 'clasico', 'dragon-ball'),
   },
-  ...['silueta', 'borroso', 'zoom'].flatMap((slug) => [
+  ...['silueta', 'borroso'].flatMap((slug) => [
     { name: `dragon-ball-${slug}`, path: `/dragon-ball/${slug}`, ready: GAME_READY, check: imageFitsWithField },
     {
       name: `dragon-ball-${slug}-3-fallos`,
@@ -872,8 +876,7 @@ const ROUTES: RouteCheck[] = [
   { name: 'dragon-ball-linea-de-tiempo-arrastrar', path: '/dragon-ball/linea-de-tiempo', ready: GAME_READY, check: timelineDrag },
   { name: 'dragon-ball-linea-de-tiempo-confirmado', path: '/dragon-ball/linea-de-tiempo', ready: GAME_READY, check: timelineConfirm },
   { name: 'dragon-ball-linea-de-tiempo-terminado', path: '/dragon-ball/linea-de-tiempo', ready: GAME_READY, check: timelineFinish },
-  // Solo Daima: 2 sucesos, no alcanza el pool mínimo.
-  { name: 'dragon-ball-linea-de-tiempo-sin-pool', path: '/dragon-ball/linea-de-tiempo?s=daima', check: showsPoolWarning },
+  // Sin escenario de pool insuficiente: desde que cada serie tiene al menos 15 sucesos, ninguna combinación se queda por debajo del mínimo.
   // Sesión 11: los 9 modos de Naruto. Silueta queda oculto hasta recortar el fondo de las imágenes (sesión 19): su
   // ruta se revisa igual (muestra "Próximamente"). Los demás son jugables con todas las series (Frase, desde que se
   // verificaron las frases el 2026-10-12).
