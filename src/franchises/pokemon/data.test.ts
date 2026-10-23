@@ -218,8 +218,15 @@ describe('Mayor o Menor', () => {
     expect(pool).toHaveLength(entities.length);
   });
 
-  it('alterna peso, altura y total de estadísticas por día', () => {
-    expect([0, 1, 2, 3].map((day) => metricOfDay(config().metrics, day).key)).toEqual(['peso', 'altura', 'totalEstadisticas', 'peso']);
+  it('alterna las medidas por día: peso, altura, total, cada estadística base y el número', () => {
+    const metrics = config().metrics;
+    const keys = ['peso', 'altura', 'totalEstadisticas', 'ps', 'ataque', 'defensa', 'ataqueEspecial', 'defensaEspecial', 'velocidad', 'numero'];
+    expect(metrics.map((metric) => metric.key)).toEqual(keys);
+    expect([0, 1, 2, 9, 10].map((day) => metricOfDay(metrics, day).key)).toEqual(['peso', 'altura', 'totalEstadisticas', 'numero', 'peso']);
+  });
+
+  it('cada medida tiene nombre corto o es lo bastante corta para un botón', () => {
+    for (const metric of config().metrics) expect((metric.short ?? metric.label).length, metric.key).toBeLessThanOrEqual(16);
   });
 
   it('alcanza el pool mínimo con todas las series y con cualquiera sola', () => {
@@ -229,7 +236,7 @@ describe('Mayor o Menor', () => {
     }
   });
 
-  it('las tres métricas dan una secuencia completa y sin empates, todos los días probados', () => {
+  it('todas las medidas dan una secuencia completa y sin empates, todos los días probados', () => {
     for (const metric of config().metrics) {
       const pool = poolOf(entities, pokemonConfig.series, config().metrics);
       for (let day = 0; day < 40; day++) {

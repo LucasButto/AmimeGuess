@@ -105,12 +105,20 @@ export const pokemonConfig = {
       slug: 'mayor-o-menor',
       name: 'Mayor o Menor',
       engine: 'higher-lower',
-      // Una métrica por día, en este orden. Los tres atributos existen para los 1025 Pokémon.
+      // Una métrica por día, en este orden; quien juega también puede elegir cuál comparar. Los atributos existen para
+      // los 1025 Pokémon.
       higherLower: {
         metrics: [
           { key: 'peso', label: 'Peso', question: '¿Cuál pesa más?', unit: 'kg' },
           { key: 'altura', label: 'Altura', question: '¿Cuál es más alto?', unit: 'm' },
-          { key: 'totalEstadisticas', label: 'Total de estadísticas base', question: '¿Cuál tiene más estadísticas base en total?' },
+          { key: 'totalEstadisticas', label: 'Total de estadísticas base', short: 'Total', question: '¿Cuál tiene más estadísticas base en total?' },
+          { key: 'ps', label: 'PS', question: '¿Cuál tiene más PS base?' },
+          { key: 'ataque', label: 'Ataque', question: '¿Cuál tiene más Ataque base?' },
+          { key: 'defensa', label: 'Defensa', question: '¿Cuál tiene más Defensa base?' },
+          { key: 'ataqueEspecial', label: 'Ataque especial', short: 'At. especial', question: '¿Cuál tiene más Ataque especial base?' },
+          { key: 'defensaEspecial', label: 'Defensa especial', short: 'Def. especial', question: '¿Cuál tiene más Defensa especial base?' },
+          { key: 'velocidad', label: 'Velocidad', question: '¿Cuál tiene más Velocidad base?' },
+          { key: 'numero', label: 'Número de la Pokédex', short: 'N.º Pokédex', question: '¿Cuál tiene el número de la Pokédex más alto?' },
         ],
       },
     },
@@ -187,6 +195,7 @@ export const pokemonConfig = {
       { text: 'grass-2', background: 'frame', kind: 'ui', where: 'Bola verde contra su contorno' },
       { text: 'cyan', background: 'frame', kind: 'ui', where: 'Bola turquesa contra su contorno' },
       { text: 'night', background: 'cyan', kind: 'text', where: 'Pantalla de la Pokédex encendida (hover y foco)' },
+      { text: 'ink', background: 'cyan', kind: 'text', where: 'Chip de filtro prendido' },
       { text: 'pink', background: 'frame', kind: 'ui', where: 'Bola rosa contra su contorno' },
       { text: 'frame', background: 'dawn', kind: 'ui', where: 'Marcos sobre el cielo del amanecer' },
       { text: 'frame', background: 'dusk', kind: 'ui', where: 'Marcos sobre el cielo del atardecer' },

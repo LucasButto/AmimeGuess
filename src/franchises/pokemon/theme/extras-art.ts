@@ -98,8 +98,8 @@ export const MEDAL_COUNT = MEDAL_ROWS.length;
 // --- Íconos de las métricas de Mayor o Menor (14 × 14) ---------------------------
 // K trazo, y el color propio de cada uno. Van al lado de la pregunta ("¿Cuál pesa más?"), para que se note qué se compara.
 
-/** Lo que se compara en Mayor o Menor y tiene ícono: el peso, la altura y el total de estadísticas base. */
-export const METRIC_ICON_KEYS = ['peso', 'altura', 'totalEstadisticas'] as const;
+/** Lo que se compara en Mayor o Menor y tiene ícono propio: el peso, la altura, las estadísticas base y el número de la Pokédex. */
+export const METRIC_ICON_KEYS = ['peso', 'altura', 'totalEstadisticas', 'numero'] as const;
 export type MetricIconKey = (typeof METRIC_ICON_KEYS)[number];
 
 export const METRIC_ICONS: Readonly<Record<MetricIconKey, PaletteArt>> = {
@@ -143,7 +143,27 @@ export const METRIC_ICONS: Readonly<Record<MetricIconKey, PaletteArt>> = {
       '.KKKKKKKKKKKK.',
     ],
   },
-  // Tres barras de distinta altura: el total de las estadísticas base.
+  // Una chapa con un "#": el número de la Pokédex.
+  numero: {
+    colors: { K: 'frame', W: 'white', B: 'blue' },
+    rows: [
+      '..KKKKKKKKKK..',
+      '.KWWWWWWWWWWK.',
+      'KWWWBWWWBWWWWK',
+      'KWWWBWWWBWWWWK',
+      'KWBBBBBBBBBBWK',
+      'KWWWBWWWBWWWWK',
+      'KWWWBWWWBWWWWK',
+      'KWBBBBBBBBBBWK',
+      'KWWWBWWWBWWWWK',
+      'KWWWBWWWBWWWWK',
+      'KWWWBWWWBWWWWK',
+      'KWWWWWWWWWWWWK',
+      '.KWWWWWWWWWWK.',
+      '..KKKKKKKKKK..',
+    ],
+  },
+  // Tres barras de distinta altura: las estadísticas base (el total y cada una).
   totalEstadisticas: {
     colors: { K: 'frame', R: 'red', Y: 'yellow', G: 'grass-1' },
     rows: [
@@ -165,6 +185,11 @@ export const METRIC_ICONS: Readonly<Record<MetricIconKey, PaletteArt>> = {
   },
 };
 
-export function isMetricKey(value: string): value is MetricIconKey {
-  return (METRIC_ICON_KEYS as readonly string[]).includes(value);
+/** Las estadísticas base que se comparan una por una (PS, Ataque…): usan las barras del total. */
+const STAT_KEYS = ['ps', 'ataque', 'defensa', 'ataqueEspecial', 'defensaEspecial', 'velocidad'] as const;
+
+/** El ícono de lo que se compara, o `null` si no tiene. */
+export function metricIconKey(value: string): MetricIconKey | null {
+  if ((STAT_KEYS as readonly string[]).includes(value)) return 'totalEstadisticas';
+  return (METRIC_ICON_KEYS as readonly string[]).includes(value) ? (value as MetricIconKey) : null;
 }

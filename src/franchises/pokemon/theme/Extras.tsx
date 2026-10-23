@@ -3,7 +3,7 @@ import { es } from '@/i18n/es';
 import type { AttemptsMeterProps, MetricMarkProps, StreakDisplayProps, ValueMarkProps } from '../../types';
 import { inlineArt } from './art';
 import styles from './Extras.module.scss';
-import { METRIC_ICONS, MEDAL_COUNT, isMetricKey, isTypeName, medal, typeIcon } from './extras-art';
+import { METRIC_ICONS, MEDAL_COUNT, isTypeName, medal, metricIconKey, typeIcon } from './extras-art';
 import { PokeBall } from './PokeBall';
 
 /** Columnas del Clásico cuyo valor es un tipo. */
@@ -25,11 +25,12 @@ export function TypeMark({ column, value }: ValueMarkProps) {
 
 /**
  * Slot `MetricMark`: al lado de la pregunta de Mayor o Menor, el ícono de lo que se compara (una pesa para el peso,
- * una flecha doble para la altura, barras para las estadísticas). Decorativo: la pregunta ya lo dice con palabras.
+ * una flecha doble para la altura, barras para las estadísticas, una chapa con "#" para el número de la Pokédex). Decorativo: la pregunta ya lo dice con palabras.
  */
 export function MetricIcon({ metric }: MetricMarkProps) {
-  if (!isMetricKey(metric)) return null;
-  return <PixelArt art={inlineArt(METRIC_ICONS[metric])} size="fill" className={styles.metric} />;
+  const key = metricIconKey(metric);
+  if (key === null) return null;
+  return <PixelArt art={inlineArt(METRIC_ICONS[key])} size="fill" className={styles.metric} />;
 }
 
 /** Racha que se muestra entera con medallas: desde ahí, "+N". */

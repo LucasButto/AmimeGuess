@@ -167,8 +167,11 @@ export interface GameShellProps {
    * Sin variante (la de siempre), nada cambia. Las estadísticas y la racha son de todo el modo.
    */
   readonly variant?: string;
-  /** Algo que va arriba del juego y que no se vuelve a montar al cambiar de variante (el selector de dificultad). */
-  readonly beforeGame?: (info: { readonly remaining: number }) => ReactNode;
+  /**
+   * Algo que va arriba del juego y que no se vuelve a montar al cambiar de variante (el selector de dificultad):
+   * recibe cuántos hay con los filtros de ahora y el día de la partida (el de hoy o el del modo infinito).
+   */
+  readonly beforeGame?: (info: { readonly remaining: number; readonly day: number }) => ReactNode;
   /** El juego. */
   readonly children: (session: GameSession) => ReactNode;
 }

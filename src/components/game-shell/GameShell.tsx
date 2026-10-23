@@ -220,7 +220,7 @@ export function GameShell({
         </div>
       )}
 
-      {playable && beforeGame?.({ remaining })}
+      {playable && beforeGame?.({ remaining, day: playDay })}
 
       {/* Otra combinación de filtros, de día o de variante es otra partida: el juego se vuelve a montar. */}
       {playable && (

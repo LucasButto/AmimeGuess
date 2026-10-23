@@ -9,6 +9,8 @@ export interface HigherLowerMetric {
   readonly key: string;
   /** Nombre de la métrica, para la ayuda y para mostrar los valores. */
   readonly label: string;
+  /** Nombre corto, para el botón que elige qué comparar (por ejemplo, "Total" en lugar de "Total de estadísticas base"). Sin esto, `label`. */
+  readonly short?: string;
   /** La pregunta de cada ronda, escrita como corresponde a la métrica: "¿Cuál pesa más?". */
   readonly question: string;
   /** Unidad que se agrega al valor, por ejemplo `kg`. */
@@ -25,8 +27,9 @@ export interface HigherLowerMetric {
 export interface HigherLowerConfig {
   /**
    * Las métricas que se alternan: cada día se juega una (la del número de día
-   * módulo la cantidad de métricas). Solo entran al pool las entidades que
-   * tienen un valor numérico en todas, así cualquier día se puede jugar.
+   * módulo la cantidad de métricas), y con más de una quien juega también puede elegir
+   * cuál comparar (cada una es otra partida del día). Solo entran al pool las entidades
+   * que tienen un valor numérico en todas, así cualquier día y cualquier elección se pueden jugar.
    */
   readonly metrics: readonly HigherLowerMetric[];
   /**
