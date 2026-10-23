@@ -19,6 +19,8 @@ import {
   failedCount,
   edgeFocus,
   isCorrect,
+  isLost,
+  MAX_FAILED,
   pickImage,
   randomFocus,
   restoreAttempts,
@@ -41,10 +43,13 @@ interface ImageRevealBoardProps {
   options: readonly Entity[];
 }
 
-/** El aviso al marco de que terminó el reto: la respuesta, los intentos y la grilla para compartir. */
-function reportOf(attemptIds: readonly string[], answer: Candidate, accepted: readonly string[], fresh: boolean): FinishReport {
+/**
+ * El aviso al marco de que terminó el reto, ganado o perdido (se gastaron los intentos): la respuesta, los intentos y la
+ * grilla para compartir.
+ */
+function reportOf(attemptIds: readonly string[], answer: Candidate, accepted: readonly string[], won: boolean, fresh: boolean): FinishReport {
   return {
-    won: true,
+    won,
     attempts: attemptIds.length,
     answer: { label: answer.entity.name.es, imageStem: answer.entity.image },
     grid: shareGrid(attemptIds, answer.id, accepted),
@@ -55,7 +60,8 @@ function reportOf(attemptIds: readonly string[], answer: Candidate, accepted: re
 /**
  * Una partida: el reto de un día para una combinación de filtros. El marco la
  * vuelve a montar cuando cambia cualquiera de los dos, y así recupera desde
- * `localStorage` los intentos de esa combinación.
+ * `localStorage` los intentos de esa combinación. Se pierde al fallar tantas veces como pasos de revelado
+ * (`MAX_FAILED`): el último fallo cae en el último paso, cuando ya no hay más pistas.
  */
 export function ImageRevealBoard({ session, config, candidates, options }: ImageRevealBoardProps) {
   const { franchise, mode, filterKey, day, onFinish } = session;
@@ -86,11 +92,12 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   const [lastAttempt, setLastAttempt] = useState<{ id: string; revealed: boolean } | null>(null);
   const [prefs, setPrefs] = useState<RevealPrefs>(() => readPrefs(getLocalStorage(), franchise, mode));
 
-  // Si la partida ya estaba ganada al montarse (se recargó la página), el marco tiene que
+  // Si la partida ya había terminado al montarse (se recargó la página), el marco tiene que
   // mostrar su resumen, pero sin volver a sumarla a las estadísticas.
-  const [restored] = useState<FinishReport | null>(() =>
-    attemptIds.some((id) => isCorrect(id, answer.id, accepted)) ? reportOf(attemptIds, answer, accepted, false) : null,
-  );
+  const [restored] = useState<FinishReport | null>(() => {
+    if (attemptIds.some((id) => isCorrect(id, answer.id, accepted))) return reportOf(attemptIds, answer, accepted, true, false);
+    return isLost(failedCount(attemptIds, answer.id, accepted)) ? reportOf(attemptIds, answer, accepted, false, false) : null;
+  });
   useEffect(() => {
     if (restored) onFinish(restored);
   }, [restored, onFinish]);
@@ -98,9 +105,12 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   const attempted = useMemo(() => new Set(attemptIds), [attemptIds]);
   const won = attemptIds.some((id) => isCorrect(id, answer.id, accepted));
   const failed = failedCount(attemptIds, answer.id, accepted);
+  const lost = !won && isLost(failed);
+  // Ganado o perdido: ya no se puede seguir y se muestra la imagen entera.
+  const over = won || lost;
   const step = revealStep(failed, prefs.reveal);
-  // Al acertar, la imagen se muestra entera, a color y nítida.
-  const visual = won ? REVEALED : revealVisual(config.variant, step, prefs.colors, focus);
+  // Al terminar, la imagen se muestra entera, a color y nítida.
+  const visual = over ? REVEALED : revealVisual(config.variant, step, prefs.colors, focus);
 
   const items = useMemo<AutocompleteItem[]>(
     () => options.map(autocompleteItemOf),
@@ -121,15 +131,17 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   );
 
   function addAttempt(id: string) {
-    if (won || attempted.has(id) || !byId.has(id)) return;
+    if (over || attempted.has(id) || !byId.has(id)) return;
     const next = [...attemptIds, id];
     const solved = isCorrect(id, answer.id, accepted);
+    // Con este fallo se gastaron los intentos: se perdió.
+    const spent = !solved && isLost(failedCount(next, answer.id, accepted));
 
     setAttemptIds(next);
     setLastAttempt({ id, revealed: prefs.reveal });
-    writeState(getLocalStorage(), ctx, { attempts: next, result: solved ? 'won' : 'playing' });
+    writeState(getLocalStorage(), ctx, { attempts: next, result: solved ? 'won' : spent ? 'lost' : 'playing' });
 
-    if (solved) onFinish(reportOf(next, answer, accepted, true));
+    if (solved || spent) onFinish(reportOf(next, answer, accepted, solved, true));
   }
 
   function updatePrefs(next: RevealPrefs) {
@@ -141,8 +153,8 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
 
   return (
     <div className={styles.root} data-game-ready="true" data-step={step} data-won={won}>
-      {/* Al ganar, el marco muestra la respuesta y el resumen (ver `FinishReport`). */}
-      {!won && (
+      {/* Al terminar, ganado o perdido, el marco muestra la respuesta y el resumen (ver `FinishReport`). */}
+      {!over && (
         <div className={styles.field}>
           <GuessField label={es.imageReveal.inputLabel} items={items} excludeIds={attempted} onSelect={addAttempt} />
         </div>
@@ -152,11 +164,12 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
         stem={image.stem}
         width={image.width}
         height={image.height}
-        alt={won ? es.imageReveal.imageSolvedAlt(answer.entity.name.es) : es.imageReveal.imageAlt}
+        alt={over ? es.imageReveal.imageSolvedAlt(answer.entity.name.es) : es.imageReveal.imageAlt}
         visual={visual}
+        kind={config.imageContentKind}
       />
 
-      {!won && prefs.reveal && (
+      {!over && prefs.reveal && (
         <div className={styles.progress}>
           <p className={styles.step}>{es.imageReveal.step(step + 1, REVEAL_STEPS)}</p>
           <div className={styles.segments} aria-hidden="true">
@@ -168,6 +181,12 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
       )}
 
       <p className={styles.counter}>{es.imageReveal.attempts(attemptIds.length)}</p>
+      {/* Antes del último intento se avisa: si falla, se pierde. */}
+      {!over && failed === MAX_FAILED - 1 && (
+        <p className={styles.lastChance} role="status">
+          {es.imageReveal.lastChance}
+        </p>
+      )}
 
       {failedNames.length > 0 && (
         <section className={styles.failed} aria-labelledby={failedTitleId}>
@@ -185,9 +204,9 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
           </ul>
         </section>
       )}
-      {failedNames.length === 0 && !won && <p className={styles.empty}>{es.imageReveal.empty}</p>}
+      {failedNames.length === 0 && !over && <p className={styles.empty}>{es.imageReveal.empty}</p>}
 
-      {!won && (
+      {!over && (
         <fieldset className={styles.difficulty} aria-labelledby={difficultyId}>
           <legend className={styles.difficultyTitle} id={difficultyId}>
             {es.imageReveal.difficultyTitle}
@@ -225,7 +244,9 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
         </fieldset>
       )}
 
-      <VisuallyHidden role="status">{lastName ? es.imageReveal.wrongAttempt(lastName, lastAttempt?.revealed ?? false) : ''}</VisuallyHidden>
+      <VisuallyHidden role="status">
+        {lastName ? `${es.imageReveal.wrongAttempt(lastName, lastAttempt?.revealed ?? false)}${lost ? ` ${es.imageReveal.lostAnnouncement}` : ''}` : ''}
+      </VisuallyHidden>
     </div>
   );
 }

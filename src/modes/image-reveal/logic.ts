@@ -259,6 +259,17 @@ export function isCorrect(guessId: string, answerId: string, accepted: readonly 
   return guessId === answerId || accepted.includes(guessId);
 }
 
+/**
+ * Cuántos intentos fallidos se permiten: uno por paso de revelado. Se falla en el último paso (la imagen ya está lo más
+ * clara que se puede) y se pierde: no hay más pistas que dar. Vale con "revelar con cada intento" apagado también.
+ */
+export const MAX_FAILED = REVEAL_STEPS;
+
+/** ¿Se gastaron los intentos? Con tantos fallos como pasos de revelado, el reto se perdió. */
+export function isLost(failed: number): boolean {
+  return failed >= MAX_FAILED;
+}
+
 /** Intentos que no acertaron: cada uno revela un paso más. */
 export function failedCount(attemptIds: readonly string[], answerId: string, accepted: readonly string[] = []): number {
   return attemptIds.filter((id) => !isCorrect(id, answerId, accepted)).length;

@@ -9,6 +9,8 @@ import {
   candidatesOf,
   failedCount,
   isCorrect,
+  isLost,
+  MAX_FAILED,
   meetsRequirement,
   pickImage,
   randomFocus,
@@ -341,6 +343,20 @@ describe('el reto del día con la imagen', () => {
     const reversed = candidatesOf([...entities].reverse(), [...contents].reverse(), ['g1'], CARD_CONFIG);
     const answer = pickDaily(reversed, ctx);
     expect({ id: answer.id, image: pickImage(answer, ctx).id }).toEqual({ id: play().id, image: play().image });
+  });
+});
+
+describe('perder al gastar los intentos', () => {
+  it('se pierde al fallar tantas veces como pasos de revelado', () => {
+    expect(MAX_FAILED).toBe(REVEAL_STEPS);
+    expect(isLost(0)).toBe(false);
+    expect(isLost(MAX_FAILED - 1)).toBe(false);
+    expect(isLost(MAX_FAILED)).toBe(true);
+    expect(isLost(MAX_FAILED + 3)).toBe(true);
+  });
+
+  it('el último fallo cae en el último paso: ahí la imagen ya no se puede revelar más', () => {
+    expect(revealStep(MAX_FAILED - 1, true)).toBe(REVEAL_STEPS - 1);
   });
 });
 
