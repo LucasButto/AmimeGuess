@@ -10,6 +10,9 @@ const nextConfig: NextConfig = {
   sassOptions: {
     loadPaths: [path.join(process.cwd(), 'src', 'styles')],
   },
+  experimental: {
+    agentUpgrade: 'security',
+  },
 };
 
 export default nextConfig;
