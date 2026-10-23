@@ -181,23 +181,6 @@ export const CARD_BALL_BOTTOM = [
   '............KKKKKK............',
 ];
 
-/** El botón central de la bola sin ícono (10 × 10), el de la bola grande del selector: va centrado, a 10 píxeles del borde. */
-export const PICKER_BALL_BUTTON: PaletteArt = {
-  colors: { K: 'frame', B: 'white' },
-  rows: [
-    '...KKKK...',
-    '..KBBBBK..',
-    '.KBBBBBBK.',
-    'KBBBBBBBBK',
-    'KBBBBBBBBK',
-    'KBBBBBBBBK',
-    'KBBBBBBBBK',
-    '.KBBBBBBK.',
-    '..KBBBBK..',
-    '...KKKK...',
-  ],
-};
-
 /** El botón central (18 × 18): el ícono del modo (10 × 10) va encima, centrado, con 3 píxeles de aire. */
 export const CARD_BALL_BUTTON: PaletteArt = {
   colors: { K: 'frame', B: 'white' },
@@ -386,6 +369,29 @@ export const MINI_POKEDEX: PaletteArt = {
     'KRKKKKKKKKRK',
     'KRRRRRRRRRRK',
     '.KKKKKKKKKK.',
+  ],
+};
+
+/**
+ * La Pokédex del botón "Elegir en la Pokédex" (14 × 13): la de la navegación entre modos (`MINI_POKEDEX`, 12 × 12), un
+ * píxel más ancha que alta y con la pantalla más grande (filas 7 a 9, columnas 3 a 10: ahí se enciende).
+ */
+export const PICKER_POKEDEX: PaletteArt = {
+  colors: { K: 'frame', R: 'red', L: 'blue', Y: 'yellow', G: 'grass-1', N: 'night' },
+  rows: [
+    '.KKKKKKKKKKKK.',
+    'KRRRRRRRRRRRRK',
+    'KRKKKRRRRRRRRK',
+    'KRKLKRYRGRRRRK',
+    'KRKKKRRRRRRRRK',
+    'KRRRRRRRRRRRRK',
+    'KRKKKKKKKKKKRK',
+    'KRKNNNNNNNNKRK',
+    'KRKNNNNNNNNKRK',
+    'KRKNNNNNNNNKRK',
+    'KRKKKKKKKKKKRK',
+    'KRRRRRRRRRRRRK',
+    '.KKKKKKKKKKKK.',
   ],
 };
 

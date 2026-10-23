@@ -10,7 +10,7 @@
   block-size: 100%;
 }
 
-// La Poké Ball grande: el marco del recuadro de pistas hecho botón, con la bola a la izquierda y el texto al lado;
+// El botón grande: el marco del recuadro de pistas hecho botón, con la Pokédex chica a la izquierda y el texto al lado;
 // llena el alto que le dé quien lo contiene.
 .bigBall {
   @include m.pixel-frame;
@@ -32,20 +32,26 @@
   @include m.focus-ring;
 
   @include bp.min-height('tall') {
-    padding-block: calc(#{t.$space-4} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
+    padding-block: calc(#{t.$space-3} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
   }
 
-  // Con el cursor o el teclado, la bola se balancea tres pasos, como al capturar (una vez, sin bucle).
-  &:focus-visible .wobbler {
+  // Con el cursor o el teclado, la pantalla de la Pokédex se enciende (con un parpadeo, como un tubo viejo).
+  &:focus-visible .dexGlow {
+    opacity: 1;
+
     @include bp.motion-ok {
-      animation: wobble 0.45s steps(1, end) 1;
+      animation: screen-on 0.5s steps(1, end);
     }
   }
 
-  @include m.hover {
-    .wobbler {
-      @include bp.motion-ok {
-        animation: wobble 0.45s steps(1, end) 1;
+  &:not(:disabled) {
+    @include m.hover {
+      .dexGlow {
+        opacity: 1;
+
+        @include bp.motion-ok {
+          animation: screen-on 0.5s steps(1, end);
+        }
       }
     }
   }
@@ -60,15 +66,69 @@
   }
 }
 
-.wobbler {
-  // La bola de las tarjetas ya tiene el origen del giro abajo, en el medio.
+// La Pokédex del botón: el dibujo de la navegación entre modos, un píxel más ancho que alto (14 × 13), con cada píxel de
+// arte de 4 medios píxeles (entero a cualquier escala). En una pantalla baja (un teléfono en horizontal), de 3: más chica,
+// así la imagen del reto y el botón siguen entrando juntos en la pantalla.
+.dex {
+  position: relative;
   flex: none;
+  inline-size: calc(#{t.token('px-half')} * 14 * 3);
+  block-size: calc(#{t.token('px-half')} * 13 * 3);
+
+  @include bp.min-height('tall') {
+    inline-size: calc(#{t.token('px-half')} * 14 * 4);
+    block-size: calc(#{t.token('px-half')} * 13 * 4);
+  }
 }
 
-// El botón del medio (10 × 10) en el centro de la bola (30 × 30), sobre la costura de las dos mitades.
-.ballButton {
+.dexArt {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+// La pantalla encendida: cian con líneas de barrido, justo sobre la pantalla del dibujo (filas 7 a 9, columnas 3 a 10 de
+// 13 × 14). Apagada es invisible; se enciende solo con `opacity`, a pasos.
+.dexGlow {
   position: absolute;
-  inset: t.px(10) auto auto t.px(10);
+  inset-block-start: calc(100% * 7 / 13);
+  inset-inline-start: calc(100% * 3 / 14);
+  inline-size: calc(100% * 8 / 14);
+  block-size: calc(100% * 3 / 13);
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 var(--px-half), color-mix(in srgb, var(--palette-blue) 14%, transparent) var(--px-half) var(--px)),
+    var(--palette-cyan);
+  opacity: 0;
+
+  @include bp.motion-ok {
+    transition: opacity 0.2s steps(3, end);
+  }
+}
+
+// Como un tubo viejo al prenderse: titila antes de quedarse fijo.
+@keyframes screen-on {
+  0% {
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0.25;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .bigBallText {
@@ -100,28 +160,59 @@
   font-size: 1rem;
 }
 
-@keyframes wobble {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  33% {
-    transform: rotate(-12deg);
-  }
-
-  66% {
-    transform: rotate(12deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
-  }
-}
-
 // La Pokédex es roja: la barra del título y el anillo del marco, en el rojo del tema (el resto de los modales, azules).
 .dialog {
   --dialog-bar-fill: var(--palette-red);
   --frame-dialog-inner: var(--palette-red);
+  // Las rayitas del agarre de la esquina se iluminan en el mismo rojo.
+  --grip-hover: var(--palette-red);
+}
+
+// La barra del título, como la carcasa de la tabla de intentos: la lente a la izquierda, las tres luces arriba y el
+// nombre de la Pokédex abajo de las luces, más grande y blanco con sombra dura (así no se pierde sobre el rojo); el botón
+// de cerrar, a la derecha. Es una grilla de tres columnas: `HeaderLights` pone la lente y las luces como piezas sueltas
+// de la barra. Cada píxel de arte mide 1,5 medios píxeles (3 px a la escala de siempre).
+.dialog header[data-part='modal-header'] {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  column-gap: t.$space-3;
+  row-gap: t.$space-1;
+
+  > button {
+    grid-column: 3;
+    grid-row: 1 / 3;
+  }
+}
+
+.dialog h2[data-part='modal-title'] {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: t.$font-size-xl;
+  letter-spacing: 0.04em;
+  color: var(--palette-white);
+  text-shadow: var(--px-half) var(--px-half) 0 var(--palette-frame);
+}
+
+.headerLights {
+  grid-column: 2;
+  grid-row: 1;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: t.$space-2;
+}
+
+.headerLens {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  inline-size: calc(#{t.token('px-half')} * 14 * 1.5);
+  block-size: calc(#{t.token('px-half')} * 14 * 1.5);
+}
+
+.headerLight {
+  inline-size: calc(#{t.token('px-half')} * 6 * 1.5);
+  block-size: calc(#{t.token('px-half')} * 6 * 1.5);
 }
 
 .picker {
@@ -258,4 +349,34 @@
   inset-inline-end: t.$space-1;
   color: var(--palette-red);
   font-size: 1rem;
+}
+
+// La barra de desplazamiento de la Pokédex, de pixel art como el resto: pista gris azulada con borde oscuro a la izquierda
+// y el cursor rojo de la carcasa, con borde oscuro (en el cursor encima, el cian de la pantalla). Firefox solo deja elegir
+// los colores; los demás navegadores, también la forma.
+.dialog [data-part='modal-body'] {
+  @supports not selector(::-webkit-scrollbar) {
+    scrollbar-color: var(--palette-red) var(--palette-cloud-shade);
+    scrollbar-width: auto;
+  }
+
+  &::-webkit-scrollbar {
+    inline-size: 1.25rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-inline-start: var(--px-half) solid var(--palette-frame);
+    background:
+      repeating-linear-gradient(to bottom, color-mix(in srgb, var(--palette-frame) 18%, transparent) 0 var(--px-half), transparent var(--px-half) var(--px)),
+      var(--palette-cloud-shade);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border: var(--px-half) solid var(--palette-frame);
+    background: linear-gradient(to right, var(--palette-red) 0 70%, color-mix(in srgb, var(--palette-red) 65%, var(--palette-frame)) 70%);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(to right, var(--palette-cyan) 0 70%, color-mix(in srgb, var(--palette-cyan) 65%, var(--palette-frame)) 70%);
+  }
 }

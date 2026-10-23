@@ -2,9 +2,18 @@
 @use 'tokens' as t;
 @use 'mixins' as m;
 
-// Con un modal abierto, la página de atrás no se desplaza.
+// Con un modal abierto, la página de atrás no se desplaza. Con uno movible (como cuadro centrado) sí: se trata de poder
+// ver lo de atrás; con la rueda fuera del cuadro se mueve la página y dentro, el cuadro.
 :global(body:has(dialog[open])) {
   overflow: hidden;
+}
+
+@include bp.min-width('md') {
+  @include bp.min-height('tall') {
+    :global(body:has(dialog[open][data-movable='true'])) {
+      overflow: visible;
+    }
+  }
 }
 
 // El <dialog> solo ubica el cuadro: el fondo y el marco los dibuja el Panel de adentro.
@@ -52,6 +61,100 @@
   }
 }
 
+// Un modal movible (ver `onMove`), como cuadro centrado: corrido donde lo dejó la persona, con el fondo apenas oscuro
+// (se trata de ver lo que hay detrás) y la barra del título como asa. A pantalla completa no se mueve.
+.dialog[data-movable='true'] {
+  @include bp.min-width('md') {
+    @include bp.min-height('tall') {
+      translate: var(--modal-x, 0) var(--modal-y, 0);
+
+      &::backdrop {
+        background: color-mix(in srgb, #{t.color('text')} 25%, transparent);
+      }
+
+      .header {
+        cursor: grab;
+        touch-action: none;
+        user-select: none;
+      }
+    }
+  }
+}
+
+.dialog[data-dragging='true'] .header {
+  cursor: grabbing;
+}
+
+// Un modal redimensionable (ver `onResize`), como cuadro centrado: con el tamaño que dejó la persona (sin salirse de la
+// pantalla) y un agarre en la esquina de abajo a la derecha. A pantalla completa no se redimensiona.
+.grip {
+  display: none;
+}
+
+@include bp.min-width('md') {
+  @include bp.min-height('tall') {
+    .dialog[data-resizable='true'] {
+      .grip {
+        position: absolute;
+        z-index: 2;
+        inset-block-end: 0.5rem;
+        inset-inline-end: 0.5rem;
+        display: block;
+        inline-size: 1.75rem;
+        block-size: 1.75rem;
+        // Sin borde ni fondo propio: se ven solo tres rayas a 45° en la mitad de abajo a la derecha, cada una del borde de
+        // abajo al borde derecho (la primera, de punta a punta), bien separadas. Con el cursor encima se iluminan.
+        background: linear-gradient(
+          135deg,
+          transparent 0 48%,
+          var(--_grip-ink) 48% 57%,
+          transparent 57% 67%,
+          var(--_grip-ink) 67% 76%,
+          transparent 76% 86%,
+          var(--_grip-ink) 86% 95%,
+          transparent 95%
+        );
+        cursor: nwse-resize;
+        touch-action: none;
+        --_grip-ink: #{t.token('frame-color')};
+
+        // Titila sin parar para que se note que ahí hay algo que se puede agarrar (solo `opacity`, sin llegar a
+        // desaparecer; quieto con movimiento reducido). Con el cursor encima, o al arrastrar, queda fijo y las rayas se iluminan.
+        @include bp.motion-ok {
+          animation: grip-blink 1.4s ease-in-out infinite;
+        }
+
+        @include bp.hover-capable {
+          &:hover {
+            --_grip-ink: var(--grip-hover, #{t.token('chip-on-fill')});
+            animation: none;
+          }
+        }
+      }
+
+      &[data-dragging='true'] .grip {
+        --_grip-ink: var(--grip-hover, #{t.token('chip-on-fill')});
+        animation: none;
+      }
+
+      // El agarre no tapa el botón de cerrar del pie.
+      .footer {
+        padding-inline-end: 3.25rem;
+      }
+    }
+
+    .dialog[data-resizable='true'][data-sized='true'] {
+      inline-size: min(var(--modal-w), calc(100% - #{t.$space-6}));
+      block-size: min(var(--modal-h), calc(100dvh - #{t.$space-6}));
+      max-block-size: none;
+    }
+
+    .dialog[data-dragging='true'] {
+      user-select: none;
+    }
+  }
+}
+
 // El cuadro: una columna que llena el diálogo (y se achica con él), con el cuerpo desplazable.
 .panel {
   --panel-pad: 0rem;
@@ -90,6 +193,9 @@
 }
 
 .title {
+  // Ocupa el lugar que sobra: con un adorno a la izquierda, el botón de cerrar sigue a la derecha.
+  flex: 1 1 auto;
+  min-inline-size: 0;
   font-size: t.$font-size-lg;
   font-weight: t.$font-weight-bold;
   line-height: t.$line-height-tight;
@@ -129,5 +235,16 @@
     @include bp.min-height('tall') {
       flex: none;
     }
+  }
+}
+
+@keyframes grip-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.45;
   }
 }

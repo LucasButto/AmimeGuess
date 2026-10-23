@@ -3,15 +3,14 @@
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import { type AutocompleteItem } from '@/components/Autocomplete';
 import { ContentImage } from '@/components/ContentImage';
-import { Modal } from '@/components/Modal';
+import { Modal, type ModalOffset, type ModalSize } from '@/components/Modal';
 import { buildSearchIndex, search, type SearchIndex } from '@/components/search';
 import { PixelIcon } from '@/components/ui/icons';
 import { PixelArt } from '@/components/ui/PixelArt';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import { es } from '@/i18n/es';
 import type { GuessInputProps } from '../../types';
-import ball from './BallCard.module.scss';
-import { CARD_BALL_BOTTOM, CARD_BALL_TOP, PICKER_BALL_BUTTON, ballColors, inlineArt } from './art';
+import { PICKER_POKEDEX, POKEDEX_LENS, POKEDEX_LIGHT_ROWS, inlineArt } from './art';
 import styles from './PokedexPicker.module.scss';
 
 /** Los que coinciden con lo escrito: por nombre (o alias) o por número, siempre en el orden de la Pokédex. */
@@ -29,10 +28,15 @@ interface DialogProps {
   excludeIds: ReadonlySet<string>;
   onPick: (id: string) => void;
   onClose: () => void;
+  /** Dónde y de qué tamaño se dejó la Pokédex la última vez (se arrastra desde la barra del título y se agranda desde la esquina). */
+  offset: ModalOffset;
+  size?: ModalSize;
+  onMove: (offset: ModalOffset) => void;
+  onResize: (size: ModalSize, offset: ModalOffset) => void;
 }
 
 /** La Pokédex abierta: un buscador y la grilla de todos los Pokémon posibles, en el orden de la Pokédex Nacional. */
-function PickerDialog({ items, excludeIds, onPick, onClose }: DialogProps) {
+function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove, onResize }: DialogProps) {
   const searchId = useId();
   const gridRef = useRef<HTMLUListElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -69,7 +73,17 @@ function PickerDialog({ items, excludeIds, onPick, onClose }: DialogProps) {
   }
 
   return (
-    <Modal title={es.pokemonSkin.picker.title} onClose={onClose} wide className={styles.dialog}>
+    <Modal
+      title={es.pokemonSkin.picker.title}
+      onClose={onClose}
+      wide
+      className={styles.dialog}
+      offset={offset}
+      onMove={onMove}
+      size={size}
+      onResize={onResize}
+      decoration={<HeaderLights />}
+    >
       <div className={styles.picker}>
         <div className={styles.bar}>
           <label className={styles.searchLabel} htmlFor={searchId}>
@@ -142,19 +156,42 @@ function PickerDialog({ items, excludeIds, onPick, onClose }: DialogProps) {
   );
 }
 
-/**
- * El botón grande: una Poké Ball de arte pixel (la de las tarjetas de modo, con un botón del medio más chico porque
- * no lleva ícono) y el texto al lado, dentro del marco del recuadro de pistas. Con el cursor o el foco la bola se balancea.
- */
-function BigBall({ count, disabled, onOpen }: { count: number; disabled: boolean; onOpen: () => void }) {
-  const colors = ballColors('red');
+/** Las luces de la barra del título de la Pokédex: las de la carcasa de la tabla de intentos. */
+const HEADER_LIGHTS = ['red', 'yellow', 'grass-1'] as const;
 
+/**
+ * La lente a la izquierda y las tres luces arriba del título de la Pokédex (como en la carcasa de la tabla de intentos).
+ * Son dos piezas sueltas dentro de la barra, que el estilo acomoda en una grilla: lente, luces arriba y título abajo.
+ */
+function HeaderLights() {
+  return (
+    <>
+      <PixelArt art={inlineArt(POKEDEX_LENS)} size="fill" className={styles.headerLens} />
+      <span className={styles.headerLights} aria-hidden="true">
+        {HEADER_LIGHTS.map((color) => (
+          <PixelArt
+            key={color}
+            art={inlineArt({ rows: POKEDEX_LIGHT_ROWS, colors: { K: 'frame', H: 'white', C: color } })}
+            size="fill"
+            className={styles.headerLight}
+          />
+        ))}
+      </span>
+    </>
+  );
+}
+
+/**
+ * El botón grande: la Pokédex de la navegación entre modos, más alta, y el texto al lado, dentro del marco del recuadro
+ * de pistas. Con el cursor o el foco la pantalla se enciende con un parpadeo, como la de la tarjeta del Clásico en el
+ * inicio.
+ */
+function DexButton({ count, disabled, onOpen }: { count: number; disabled: boolean; onOpen: () => void }) {
   return (
     <button type="button" className={styles.bigBall} disabled={disabled} aria-haspopup="dialog" data-picker-open="" onClick={onOpen}>
-      <span className={`${ball.ball} ${styles.wobbler}`} aria-hidden="true">
-        <PixelArt art={inlineArt({ rows: CARD_BALL_TOP, colors })} className={ball.top} />
-        <PixelArt art={inlineArt({ rows: CARD_BALL_BOTTOM, colors })} className={ball.bottom} />
-        <PixelArt art={inlineArt(PICKER_BALL_BUTTON)} className={styles.ballButton} />
+      <span className={styles.dex} aria-hidden="true">
+        <PixelArt art={inlineArt(PICKER_POKEDEX)} size="fill" className={styles.dexArt} />
+        <span className={styles.dexGlow} />
       </span>
       <span className={styles.bigBallText}>
         <span className={styles.bigBallTitle}>
@@ -172,18 +209,30 @@ function BigBall({ count, disabled, onOpen }: { count: number; disabled: boolean
 /**
  * Slot `GuessInput` de Pokémon: en lugar de escribir el nombre, un botón abre la Pokédex (un modal) con todos los
  * Pokémon posibles con las series activas, en el orden de la Pokédex Nacional. Se elige uno y el intento queda
- * hecho; adentro hay un buscador para llegar rápido. Los que ya se probaron aparecen apagados.
+ * hecho; adentro hay un buscador para llegar rápido. Los que ya se probaron aparecen apagados. La Pokédex se puede
+ * arrastrar desde su barra para ver la tabla de atrás y agrandar o achicar desde la esquina de abajo a la derecha
+ * (con un mínimo); se vuelve a abrir donde y como se la dejó.
  */
 export function PokedexPicker({ label, items, excludeIds, onSelect, disabled = false }: GuessInputProps) {
   const [open, setOpen] = useState(false);
+  // Dónde y de qué tamaño se dejó la Pokédex: al volver a abrirla (en el intento siguiente) aparece igual.
+  const [offset, setOffset] = useState<ModalOffset>({ x: 0, y: 0 });
+  const [size, setSize] = useState<ModalSize | undefined>(undefined);
 
   return (
     <div className={styles.root} role="group" aria-label={label}>
-      <BigBall count={items.length} disabled={disabled} onOpen={() => setOpen(true)} />
+      <DexButton count={items.length} disabled={disabled} onOpen={() => setOpen(true)} />
       {open && (
         <PickerDialog
           items={items}
           excludeIds={excludeIds}
+          offset={offset}
+          size={size}
+          onMove={setOffset}
+          onResize={(nextSize, nextOffset) => {
+            setSize(nextSize);
+            setOffset(nextOffset);
+          }}
           onClose={() => setOpen(false)}
           onPick={(id) => {
             setOpen(false);

@@ -245,6 +245,9 @@ export const es = {
     empty: 'Todavía no hiciste ningún intento.',
     wrongAttempt: (name: string, revealed: boolean) =>
       revealed ? `${name} no es. Se reveló un poco más de la imagen.` : `${name} no es.`,
+    // El último intento: la imagen ya está lo más clara posible y, si falla, se pierde.
+    lastChance: 'Último intento: si fallás, perdés.',
+    lostAnnouncement: 'Se acabaron los intentos.',
     difficultyTitle: 'Dificultad',
     revealSwitch: 'Revelar con cada intento',
     revealHint: 'Cada intento fallido muestra un poco más de la imagen.',
@@ -260,7 +263,7 @@ export const es = {
       },
       stepsTitle: 'Pistas',
       steps: (total: number) =>
-        `Cada intento fallido revela un poco más de la imagen, en ${total} pasos. Al acertar se ve completa.`,
+        `Cada intento fallido revela un poco más de la imagen, en ${total} pasos. Tenés ${total} intentos: si fallás el último, perdés. Al acertar se ve completa.`,
       difficultyTitle: 'Dificultad',
       difficulty:
         'Podés apagar "Revelar con cada intento" para que la imagen no cambie hasta que aciertes, y "Mostrar colores" para verla en grises. Tus elecciones se recuerdan en este dispositivo.',
@@ -291,6 +294,9 @@ export const es = {
     roundLabel: (round: number) => `Ronda ${round}`,
     score: (score: number) => `Aciertos seguidos: ${score}`,
     optionsLabel: 'Opciones',
+    // Elegir qué comparar (en las franquicias con varias medidas).
+    metricsLabel: 'Qué comparar',
+    metricDaily: 'Del día',
     higher: 'Mayor',
     picked: 'Tu elección',
     next: 'Siguiente',
@@ -306,7 +312,7 @@ export const es = {
       goal: 'Elegí cuál de los dos tiene el valor mayor. Si acertás, sigue otro par; la partida termina con el primer error y tu puntaje son los aciertos seguidos.',
       sequence: 'Los pares son los mismos para todo el mundo con los mismos filtros, y nunca empatan.',
       metricsTitle: 'Qué se compara',
-      metricsIntro: 'Cada día se juega una de estas medidas, en rotación:',
+      metricsIntro: 'Cada día se juega una de estas medidas, en rotación ("Del día"), y también podés elegir cuál comparar. Cada una es otra partida:',
     },
   },
   revealList: {
@@ -417,6 +423,10 @@ export const es = {
     help: 'Cómo se juega',
     stats: 'Estadísticas',
     close: 'Cerrar',
+    // Al pasar el cursor por la barra del título de un modal que se puede mover (por ejemplo, la Pokédex).
+    dragHint: 'Arrastrá la barra del título para mover la ventana',
+    // Al pasar el cursor por el agarre de la esquina de una ventana que se puede agrandar y achicar.
+    resizeHint: 'Arrastrá la esquina para cambiar el tamaño',
     nextChallenge: 'Próximo reto en',
     yesterday: 'Ayer fue',
     helpTitle: 'Cómo se juega',
@@ -430,7 +440,7 @@ export const es = {
       wonTitle: '¡Lo adivinaste!',
       // Título del resumen en los temas que nombran la respuesta al ganar.
       answerTitle: (label: string) => `¡Es ${label}!`,
-      lostTitle: 'Hoy no salió',
+      lostTitle: 'Fallaste',
       answerWas: (label: string) => `Era ${label}.`,
       wonSummary: (attempts: number, streak: number) =>
         `Lo resolviste en ${attempts} ${plural(attempts, 'intento', 'intentos')}. Racha: ${streak} ${plural(streak, 'día', 'días')}.`,
@@ -517,7 +527,7 @@ export const es = {
     hints: 'Cada pista se desbloquea sola después de una cantidad de intentos fallidos.',
     yesterday: 'La respuesta de ayer para esta misma combinación de series.',
     difficulty: 'Estas opciones solo cambian cómo ves la imagen. El reto y la respuesta del día son los mismos.',
-    metric: 'La medida que se compara hoy. Cambia cada día y es la misma para todo el mundo.',
+    metric: 'La medida que se compara. Con "Del día" cambia cada día y es la misma para todos; también podés elegir una.',
     filler: 'Si está activo, también sale el relleno: personajes y sucesos que están en el anime o en sus películas, pero no en el manga.',
     manga: 'Si está activo, también salen los arcos del manga aún sin adaptar al anime, como Moro y Granolah. Las películas siempre salen.',
     // Línea de tiempo de Dragon Ball: en qué orden van las series.
