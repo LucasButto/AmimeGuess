@@ -279,11 +279,6 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
           {es.timeline.instructions}
           {config.orderHelp && <InfoTip compact text={config.orderHelp} label={es.help.button(es.timeline.orderHelpTopic)} />}
         </p>
-        <div className={styles.counter}>
-          {/* El texto queda siempre (lectores de pantalla); un tema con medidor propio puede ocultarlo a la vista. */}
-          <p data-part="attempts">{es.timeline.attempt(Math.min(attempts.length + 1, maxAttempts), maxAttempts)}</p>
-          <AttemptsMeter failed={attempts.length - (solved ? 1 : 0)} won={solved} total={maxAttempts} />
-        </div>
       </header>
 
       <p className={styles.end}>
@@ -299,7 +294,21 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
           const canMove = (direction: Direction) => movable && step(arrangement, locked, index, direction) !== null;
 
           return (
-            <li key={id} ref={(element) => registerItem(id, element)} className={styles.item} data-item="true" data-state={state} data-dragging={draggingId === id}>
+            <li
+              key={id}
+              ref={(element) => registerItem(id, element)}
+              className={styles.item}
+              data-item="true"
+              data-state={state}
+              data-dragging={draggingId === id}
+              // Con el mouse o el lápiz también se agarra desde el medio (el texto), no solo desde el asa; los botones de la
+              // derecha no. Con el dedo solo vale el asa: arrastrar desde el texto tiene que seguir desplazando la página.
+              onPointerDown={(event) => {
+                if (!movable || event.pointerType === 'touch') return;
+                if (event.target instanceof Element && event.target.closest('button, [data-handle]')) return;
+                startDrag(event, id);
+              }}
+            >
               {movable && <span className={styles.handle} data-handle="true" aria-hidden="true" onPointerDown={(event) => startDrag(event, id)} />}
               <p className={styles.text}>
                 <span className={styles.position} aria-hidden="true">
@@ -346,19 +355,27 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
         <span aria-hidden="true">↓</span> {es.timeline.newest}
       </p>
 
-      {!over && (
-        <div className={styles.actions}>
-          <button type="button" className={styles.confirm} onClick={confirm} disabled={unchanged}>
-            {es.timeline.confirm}
-          </button>
-          {/* El orden confirmado estaba mal: se dice, sin más. Al mover cualquier suceso, el aviso se va. */}
-          {unchanged && (
-            <p className={styles.wrong} data-part="wrong">
-              {es.timeline.wrongOrder}
-            </p>
+      <div className={styles.actions}>
+        {/* Los intentos van a la derecha del botón de confirmar, bien a la vista (y siguen cuando el reto terminó). */}
+        <div className={styles.confirmRow}>
+          {!over && (
+            <button type="button" className={styles.confirm} onClick={confirm} disabled={unchanged}>
+              {es.timeline.confirm}
+            </button>
           )}
+          <div className={styles.counter}>
+            {/* El texto queda siempre (lectores de pantalla); un tema con medidor propio puede ocultarlo a la vista. */}
+            <p data-part="attempts">{es.timeline.attempt(Math.min(attempts.length + 1, maxAttempts), maxAttempts)}</p>
+            <AttemptsMeter failed={attempts.length - (solved ? 1 : 0)} won={solved} total={maxAttempts} />
+          </div>
         </div>
-      )}
+        {/* El orden confirmado estaba mal: se dice, sin más. Al mover cualquier suceso, el aviso se va. */}
+        {!over && unchanged && (
+          <p className={styles.wrong} data-part="wrong">
+            {es.timeline.wrongOrder}
+          </p>
+        )}
+      </div>
 
       {over && !solved && (
         <section className={styles.solution} aria-labelledby={solutionTitleId}>

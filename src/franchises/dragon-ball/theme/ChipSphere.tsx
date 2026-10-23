@@ -2,8 +2,8 @@ import type { ChipMarkProps } from '../../types';
 import { DragonBall } from './DragonBall';
 import styles from './ChipSphere.module.scss';
 
-/** Las estrellas de la esfera de cada serie en los filtros: Dragon Ball 1, Z 2, GT 3, Super 4 y Daima 5. */
-const SERIES_STARS: Readonly<Record<string, number>> = { db: 1, dbz: 2, gt: 3, super: 4, daima: 5 };
+/** Las estrellas de la esfera de cada serie en los filtros: uno por lugar, en el orden de los chips: Dragon Ball 1, Z 2, Daima 3, Super 4 y GT 5. */
+const SERIES_STARS: Readonly<Record<string, number>> = { db: 1, dbz: 2, daima: 3, super: 4, gt: 5 };
 
 /**
  * Slot `ChipMark` de Dragon Ball: una mini esfera encendida (naranja, con tantas estrellas como diga la serie) con la

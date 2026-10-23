@@ -58,7 +58,7 @@
 .beansLabel {
   @include m.heading;
   margin-inline-end: t.$space-1;
-  font-size: t.$font-size-lg;
+  font-size: t.$font-size-xl;
   line-height: 1;
   color: var(--palette-ink);
 }
@@ -67,7 +67,7 @@
 // lugar. Al consumirse, la semilla se va y queda la silueta.
 .bean {
   display: inline-grid;
-  inline-size: 1.75rem;
+  inline-size: 2.75rem;
 
   > img {
     grid-area: 1 / 1;

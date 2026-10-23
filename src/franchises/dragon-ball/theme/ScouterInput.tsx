@@ -148,8 +148,15 @@ export function ScouterInput({ label, items, excludeIds, onSelect, disabled = fa
 
           {showPanel && results.length > 0 && target && (
             <div className={styles.panel}>
-              {/* El objetivo fijado: el marcado, grande y con su nombre. Es solo una vista: la opción es la de la tira. */}
-              <div className={styles.lock} aria-hidden="true">
+              {/* El objetivo fijado: el marcado, grande y con su nombre. Es una vista, y un clic sobre él también lo elige (el
+                  nombre accesible de la opción es el de la tira, así que no es una parada más para lectores de pantalla). */}
+              <div
+                className={styles.lock}
+                aria-hidden="true"
+                // Evita que el campo pierda el foco (y se cierre la lista) antes del clic.
+                onPointerDown={(event) => event.preventDefault()}
+                onClick={() => choose(target.id)}
+              >
                 <span className={styles.portrait}>
                   {target.imageStem && <ContentImage className={styles.portraitImage} stem={target.imageStem} alt="" sizes="9rem" priority />}
                 </span>

@@ -27,7 +27,7 @@
   flex-wrap: wrap;
   align-items: center;
   gap: t.$space-1 t.$space-3;
-  font-size: t.$font-size-sm;
+  font-size: t.$font-size-base;
   font-weight: t.$font-weight-medium;
   color: t.color('text-muted');
 }
@@ -93,7 +93,7 @@
   }
 }
 
-// El asa: lo único desde donde se arrastra, así el resto de la tarjeta deja desplazar la página con el dedo.
+// El asa: desde donde se arrastra con el dedo (con el mouse también se agarra desde el texto), así el resto de la tarjeta deja desplazar la página.
 .handle {
   position: relative;
   flex: none;
@@ -122,6 +122,17 @@
 }
 
 .text {
+  // Con el mouse, también se agarra desde acá (ver `onPointerDown` en `TimelineBoard`).
+  @include bp.hover-capable {
+    .item:not([data-state='locked']) & {
+      cursor: grab;
+    }
+
+    .item[data-dragging='true'] & {
+      cursor: grabbing;
+    }
+  }
+
   flex: 1;
   min-inline-size: 0;
   line-height: t.$line-height-tight;
@@ -195,6 +206,14 @@
   @include bp.min-width('sm') {
     align-items: flex-start;
   }
+}
+
+// El botón de confirmar y, a su derecha, los intentos (bajan de renglón si no entran).
+.confirmRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-2 t.$space-5;
 }
 
 // El botón principal con el aspecto del tema (los mismos tokens que el "Siguiente" de Mayor o Menor); sin piel se ve
