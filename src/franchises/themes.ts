@@ -29,6 +29,7 @@ export function getSkin(slug: string | null): ResolvedSkin {
         cellIcons: skin.cellIcons ?? DEFAULT_SKIN_DATA.cellIcons,
         cellMarks: skin.cellMarks ?? DEFAULT_SKIN_DATA.cellMarks,
         uniformFilterChips: skin.uniformFilterChips ?? DEFAULT_SKIN_DATA.uniformFilterChips,
+        imageBack: skin.imageBack ?? DEFAULT_SKIN_DATA.imageBack,
         winHeadline: skin.winHeadline ?? DEFAULT_SKIN_DATA.winHeadline,
         className: skin.className,
         slots: { ...DEFAULT_SLOTS, ...skin.slots },

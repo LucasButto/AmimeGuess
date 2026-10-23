@@ -192,6 +192,12 @@ export interface CellBackProps {
   readonly index: number;
 }
 
+/** El dorso de una imagen que se da vuelta al aparecer (por ejemplo, el de una carta). */
+export interface ImageBackProps {
+  /** De qué es la imagen: el `imageContentKind` del modo (`tcg-card`…). */
+  readonly kind: string;
+}
+
 export interface ChipMarkProps {
   readonly on: boolean;
   /** A qué opción corresponde (el id de la serie en los filtros), para que el tema dibuje una marca distinta en cada una. */
@@ -263,6 +269,8 @@ export interface SkinSlots {
   readonly ModeFrame: ComponentType<ModeFrameProps>;
   readonly Footer: ComponentType;
   readonly CellBack: ComponentType<CellBackProps>;
+  /** El dorso que se ve antes de que se dé vuelta una imagen de `SkinData.imageBack` (decorativo; llena el marco). */
+  readonly ImageBack: ComponentType<ImageBackProps>;
   readonly ChipMark: ComponentType<ChipMarkProps>;
   /** El dibujo de un botón de volver; la caja y la posición son comunes (`BackNav`). */
   readonly BackNav: ComponentType<BackNavIconProps>;
@@ -313,6 +321,11 @@ export interface SkinData {
   readonly cellMarks: 'all' | 'hints' | 'arrows';
   /** Los chips de filtro miden todos lo mismo, en vez de ajustarse a su texto. */
   readonly uniformFilterChips: boolean;
+  /**
+   * Los `imageContentKind` de los modos de imagen cuya imagen aparece de espaldas y se da vuelta (slot `ImageBack`) al
+   * quedar a la vista: por ejemplo, las cartas. Sin esto (`[]`), la imagen aparece directamente.
+   */
+  readonly imageBack: readonly string[];
   /** Título del resumen al ganar: el de siempre ("¡Lo adivinaste!") o la respuesta ("¡Es X!"). */
   readonly winHeadline: 'result' | 'answer';
 }

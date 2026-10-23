@@ -1,0 +1,39 @@
+@use 'tokens' as t;
+
+// Todo el dorso en azul de la paleta, con un anillo claro y otro oscuro, y una trama de rombos en diagonal que se
+// repite cada 4 píxeles de arte. Llena el marco de la carta (que ya lleva el borde negro y las esquinas escalonadas).
+.back {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--px) * 3);
+  background:
+    repeating-linear-gradient(45deg, color-mix(in srgb, var(--palette-white) 10%, transparent) 0 var(--px), transparent var(--px) calc(var(--px) * 4)),
+    repeating-linear-gradient(-45deg, color-mix(in srgb, var(--palette-white) 10%, transparent) 0 var(--px), transparent var(--px) calc(var(--px) * 4)),
+    var(--palette-blue);
+}
+
+.ring {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  border: var(--px) solid var(--palette-frame);
+  box-shadow: inset 0 0 0 var(--px) var(--palette-cream);
+}
+
+// La bola va sobre un círculo crema con borde oscuro, como el emblema del medio.
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--px) * 2);
+  background: var(--palette-cream);
+  border: var(--px) solid var(--palette-frame);
+  border-radius: 50%;
+  // Un poco más grande que la bola de las tarjetas: se ve de lejos.
+  transform: scale(1.6);
+}

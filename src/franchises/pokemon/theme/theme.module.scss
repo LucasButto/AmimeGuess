@@ -86,11 +86,12 @@
     --filter-chip-min: 10.5rem;
   }
 
-  // Chips de filtro: crema y tinta oscura prendidos, celeste apagado; la bola (slot ChipMark) dice el estado.
+  // Chips de filtro: cian con tinta oscura prendidos (el de la pantalla de la Pokédex encendida; se distingue del panel
+  // crema) y celeste apagado; la bola (slot ChipMark) también dice el estado.
   --chip-fill: var(--palette-cloud-shade);
   --chip-ink: var(--color-text-muted);
   --chip-edge: var(--palette-frame);
-  --chip-on-fill: var(--palette-cream);
+  --chip-on-fill: var(--palette-cyan);
   --chip-on-ink: var(--palette-ink);
   --chip-on-edge: var(--palette-frame);
 
@@ -217,6 +218,20 @@
 
 // Botones de volver ("Poké Ball que se recoge", ver BackNavBall): mientras sale, la página se encoge a
 // pasos hacia la bola. `BackNav` navega a los 250 ms.
+// Las cartas: marco negro con las esquinas redondeadas en pixel art (una escalera de cuatro pasos, más suave que la de los
+// demás marcos), y detrás el mismo negro, así las esquinas redondeadas de la imagen de la carta no dejan un hueco blanco.
+.root [data-game-mode='carta'] [data-part='visor'] {
+  --clip-panel: #{m.pixel-corners((5, 3, 2, 1, 1))};
+  border-radius: 0;
+  background: var(--palette-frame);
+
+  // El borde negro va por encima de la carta: la carta misma se recorta con esquinas de pixel art, más grandes que las suyas
+  // (las redondeadas de la imagen se ven como un arco con un hueco negro), y lo que sobra queda negro.
+  > div > div:first-child {
+    clip-path: #{m.pixel-corners((6, 4, 3, 2, 2, 1, 1))};
+  }
+}
+
 .root[data-recall] main {
   overflow: clip;
   transform-origin: var(--recall-x) var(--recall-y);

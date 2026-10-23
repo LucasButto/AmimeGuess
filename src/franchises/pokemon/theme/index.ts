@@ -4,6 +4,7 @@
 import type { FranchiseSkin } from '../../types';
 import { PokemonBackdrop } from './Backdrop';
 import { BackNavBall } from './BackNavBall';
+import { CardBack } from './CardBack';
 import { CellBall } from './CellBall';
 import { ChipBall } from './ChipBall';
 import { DialogFooter } from './DialogFooter';
@@ -26,6 +27,8 @@ export const pokemonSkin: FranchiseSkin = {
   cellMarks: 'hints',
   // Los chips de las generaciones miden todos lo mismo.
   uniformFilterChips: true,
+  // Las cartas aparecen de espaldas y se dan vuelta al quedar a la vista.
+  imageBack: ['tcg-card'],
   // Al ganar, el resumen dice "¡Es X!".
   winHeadline: 'answer',
   // Al compartir: círculos en lugar de cuadrados (se distinguen por color y por forma de los de las otras
@@ -63,6 +66,7 @@ export const pokemonSkin: FranchiseSkin = {
     Footer: DialogFooter,
     ChipMark: ChipBall,
     CellBack: CellBall,
+    ImageBack: CardBack,
     ModeFrame: PokedexFrame,
     WinCelebration: PokemonWinCelebration,
     StreakDisplay: StreakMedals,

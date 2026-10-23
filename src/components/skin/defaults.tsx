@@ -55,6 +55,7 @@ export const DEFAULT_SLOTS: SkinSlots = {
   ModeFrame: DefaultModeFrame,
   Footer: SiteFooter,
   CellBack: DefaultCellBack,
+  ImageBack: Nothing,
   ChipMark: DefaultChipMark,
   BackNav: DefaultBackNav,
   PageTransition: Nothing,
@@ -78,6 +79,7 @@ export const DEFAULT_SKIN_DATA: SkinData = {
   cellIcons: 'text',
   cellMarks: 'all',
   uniformFilterChips: false,
+  imageBack: [],
   winHeadline: 'result',
 };
 

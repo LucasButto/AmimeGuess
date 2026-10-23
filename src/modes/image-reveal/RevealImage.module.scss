@@ -22,6 +22,41 @@ $max-height: min(28rem, 60dvh);
   background: t.color('stage');
 }
 
+// El giro: el marco da la perspectiva y la pieza de adentro se da vuelta con sus dos caras (la imagen y, si el tema le
+// pone dorso, el dorso). Sin dorso, la pieza no gira y la imagen se ve como siempre.
+.frame {
+  perspective: 60rem;
+}
+
+.flipper {
+  position: relative;
+  inline-size: 100%;
+  block-size: 100%;
+  transform-style: preserve-3d;
+}
+
+.front,
+.back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+// De espaldas hasta que quede a la vista; después se da vuelta (solo `transform`; con movimiento reducido ya empieza de frente).
+.frame[data-back='true'] .flipper {
+  @include bp.motion-ok {
+    transition: transform 0.9s cubic-bezier(0.3, 0.1, 0.2, 1);
+  }
+}
+
+.frame[data-back='true'][data-face-up='false'] .flipper {
+  transform: rotateY(180deg);
+}
+
 .image {
   display: block;
   inline-size: 100%;
