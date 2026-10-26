@@ -1,0 +1,132 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+@use 'scroll-art' as art;
+
+// --- Pie: pergamino horizontal --------------------------------------------------------------------------------------------
+
+.footer {
+  // Pegado al fondo de la ventana aunque la página sea corta (el body es una columna flexible).
+  margin-block-start: auto;
+  padding-block: t.$space-5;
+}
+
+.inner {
+  @include m.container(t.$container-wide);
+  display: flex;
+  align-items: stretch;
+  filter: drop-shadow(0.1875rem 0.25rem 0 color-mix(in srgb, var(--palette-ink) 35%, transparent));
+}
+
+// Los rollos de los extremos: tela con bandas granate y topes oscuros, como los de las tarjetas.
+.roller {
+  @include art.roller-vertical;
+  z-index: 1;
+  flex: none;
+  inline-size: 1.375rem;
+  margin-block: -0.375rem;
+}
+
+.sheet {
+  @include art.sheet;
+  position: relative;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  gap: t.$space-1;
+  min-inline-size: 0;
+  margin-inline: -0.125rem;
+  padding: t.$space-4 t.$space-5;
+  border-block: 0.125rem solid var(--palette-ink);
+}
+
+// La cruz: un sello rojo (hanko) con un filete blanco, como el de las tarjetas de modo, sobre el papel del pergamino. El área
+// táctil es el sello.
+.close {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-end: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2.375rem;
+  block-size: 2.375rem;
+  padding: 0;
+  border: 0.125rem solid var(--palette-ink);
+  border-radius: 0.3125rem;
+  background: var(--palette-seal);
+  box-shadow: inset 0 0 0 0.1875rem color-mix(in srgb, var(--palette-white) 55%, var(--palette-seal));
+  color: var(--palette-white);
+  font-size: 1rem;
+  font-weight: t.$font-weight-bold;
+  line-height: 1;
+  transform: rotate(-6deg);
+  cursor: pointer;
+  @include m.focus-ring;
+
+  @include m.hover {
+    transform: rotate(0deg);
+  }
+}
+
+.notice {
+  // No pasa por debajo de la cruz (que queda a la derecha): el mismo aire a los dos lados, para que siga centrado.
+  padding-inline: 3.25rem;
+  font-size: t.$font-size-sm;
+  color: t.color('text-muted');
+  text-align: center;
+}
+
+// Área de 44 × 44 px para el pulgar (SPEC 9.1).
+.link {
+  @include m.touch-target;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  color: t.color('accent');
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  @include m.focus-ring;
+}
+
+// --- Marca de los chips de filtro: placa de metal --------------------------------------------------------------------------
+
+.plate {
+  flex: none;
+  inline-size: 1.75rem;
+  block-size: 1.25rem;
+}
+
+.metal {
+  fill: var(--palette-metal);
+  stroke: var(--palette-ink);
+  stroke-width: 1.5;
+}
+
+.leaf {
+  fill: none;
+  stroke: var(--palette-ink);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.cross {
+  fill: none;
+  stroke: var(--palette-ink);
+  stroke-width: 2.25;
+  stroke-linecap: butt;
+}
+
+// Apagada: la placa pierde el brillo y el grabado se borra.
+.plate[data-on='false'] {
+  .metal {
+    fill: var(--palette-washi-shade);
+  }
+
+  .leaf {
+    opacity: 0.35;
+  }
+}

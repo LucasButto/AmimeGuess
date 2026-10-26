@@ -1,0 +1,410 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+@use 'scroll-art' as art;
+
+// Tarjetas de modo de Naruto: pergaminos de papel washi con topes de madera, un tablón de misiones y el sello rojo de
+// "resuelto". Solo se anima `transform` (el papel que se despliega, los papelitos que se mecen).
+
+$paper: var(--palette-paper);
+$ink: var(--palette-ink);
+
+// --- Ícono de tinta -----------------------------------------------------------------------------------------------------
+
+.glyphLine {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.glyphFill {
+  fill: currentColor;
+}
+
+// --- Sello rojo ---------------------------------------------------------------------------------------------------------
+
+.hankoInk {
+  fill: var(--palette-seal);
+}
+
+.hankoEdge {
+  fill: none;
+  stroke: var(--palette-white);
+  stroke-width: 1.5;
+  opacity: 0.6;
+}
+
+.hankoTick {
+  fill: none;
+  stroke: var(--palette-white);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hanko,
+.openHanko {
+  position: absolute;
+  z-index: 2;
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.hanko {
+  inset-block-start: -0.5rem;
+  inset-inline-end: -0.25rem;
+}
+
+// --- Papel con fibras y madera, comunes a las tres tarjetas ------------------------------------------------------------
+
+%washi {
+  background:
+    repeating-linear-gradient(83deg, color-mix(in srgb, var(--palette-wood) 6%, transparent) 0 0.0625rem, transparent 0.0625rem 0.8rem),
+    $paper;
+}
+
+%wood {
+  background:
+    repeating-linear-gradient(90deg, color-mix(in srgb, var(--palette-wood-dark) 45%, transparent) 0 0.0625rem, transparent 0.0625rem 0.35rem),
+    linear-gradient(var(--palette-wood), var(--palette-wood-dark));
+}
+
+.openGlyph,
+.flap,
+.note {
+  @include bp.motion-ok {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+// --- Pergamino abierto (Clásico) ----------------------------------------------------------------------------------------
+
+.open {
+  @include m.touch-target;
+  @include m.focus-ring;
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  padding-block: 0.5rem;
+  color: $ink;
+  text-decoration: none;
+  filter: drop-shadow(0.1875rem 0.25rem 0 color-mix(in srgb, $ink 35%, transparent));
+
+  @include m.hover {
+    .openGlyph {
+      transform: rotate(-8deg) scale(1.08);
+    }
+  }
+
+  &:focus-visible .openGlyph {
+    transform: rotate(-8deg) scale(1.08);
+  }
+}
+
+// Los rollos de los extremos: tela con bandas granate y topes oscuros; el de la derecha, donde está enrollado casi todo el
+// papel, es más grueso.
+.roller {
+  @include art.roller-vertical;
+  z-index: 1;
+  flex: none;
+  inline-size: clamp(1rem, 2.5vw, 1.375rem);
+  margin-block: -0.375rem;
+
+  &[data-side='end'] {
+    inline-size: clamp(2rem, 5vw, 2.75rem);
+  }
+}
+
+.sheet {
+  @include art.sheet;
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: t.$space-3;
+  min-inline-size: 0;
+  padding: clamp(1rem, 3vw, 1.75rem) clamp(1rem, 4vw, 2.5rem);
+  padding-inline-end: clamp(4rem, 12vw, 7rem);
+  margin-inline: -0.125rem;
+  border-block: 0.125rem solid $ink;
+}
+
+.openGlyph {
+  flex: none;
+  inline-size: clamp(2.5rem, 7vw, 3.5rem);
+  block-size: clamp(2.5rem, 7vw, 3.5rem);
+  color: var(--palette-seal);
+}
+
+.openText {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
+  min-inline-size: 0;
+}
+
+.openName {
+  @include m.heading;
+  @include m.fluid-text(1.75rem, 3rem);
+  line-height: 1.05;
+}
+
+.status {
+  min-block-size: 1.4em;
+  color: t.token('ink-muted');
+  font-weight: t.$font-weight-bold;
+}
+
+.openHanko {
+  inset-block-start: calc(50% - clamp(1.375rem, 4vw, 2rem));
+  inset-inline-end: clamp(1rem, 4vw, 2.5rem);
+  inline-size: clamp(2.75rem, 8vw, 4rem);
+  block-size: clamp(2.75rem, 8vw, 4rem);
+}
+
+// --- Pergamino enrollado ------------------------------------------------------------------------------------------------
+// El rollo arriba y, debajo, la punta del papel con el ícono, que asoma del rollo y baja más con el hover o el foco.
+
+.rolled,
+.board {
+  @include m.touch-target;
+  @include m.focus-ring;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+  color: $ink;
+  text-align: center;
+  text-decoration: none;
+}
+
+.rolled {
+  justify-content: flex-start;
+  min-block-size: 6rem;
+
+  @include m.hover {
+    .flap {
+      transform: translateY(1.5rem);
+    }
+  }
+
+  &:focus-visible .flap {
+    transform: translateY(1.5rem);
+  }
+}
+
+// El rollo cerrado, acostado: tela con sombra de cilindro, el estampado, una banda granate en cada punta y un cordón
+// atado; los topes oscuros asoman a los costados.
+.roll {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 3.25rem;
+  margin-inline: 0.5rem;
+  padding: t.$space-2 clamp(1.5rem, 5vw, 2.5rem);
+  border: 0.125rem solid $ink;
+  border-radius: 0.375rem;
+  background: art.cylinder(to bottom), art.bands(to right), art.$pattern, art.$cloth;
+  filter: drop-shadow(0.125rem 0.1875rem 0 color-mix(in srgb, $ink 35%, transparent));
+
+  // El cordón: una vuelta trenzada a la izquierda de la etiqueta, que se pasa un poco del rollo.
+  &::after {
+    content: '';
+    position: absolute;
+    inset-block: -0.25rem;
+    inset-inline-start: clamp(0.875rem, 3vw, 1.375rem);
+    inline-size: 0.5625rem;
+    border: 0.125rem solid $ink;
+    border-radius: 0.25rem;
+    background: repeating-linear-gradient(
+      -40deg,
+      color-mix(in srgb, var(--palette-crimson) 60%, var(--palette-white)) 0 0.1875rem,
+      var(--palette-crimson) 0.1875rem 0.375rem
+    );
+  }
+}
+
+// Los topes: la punta del palo, oscura, un poco más angosta que el rollo.
+.cap {
+  position: absolute;
+  inset-block: 18%;
+  inline-size: 0.625rem;
+  border: 0.125rem solid $ink;
+  background: linear-gradient(to bottom, art.$cap, color-mix(in srgb, #{art.$cap} 70%, var(--palette-white)) 45%, art.$cap);
+
+  &[data-side='start'] {
+    inset-inline-start: -0.625rem;
+    border-radius: 0.3125rem 0.0625rem 0.0625rem 0.3125rem;
+  }
+
+  &[data-side='end'] {
+    inset-inline-end: -0.625rem;
+    border-radius: 0.0625rem 0.3125rem 0.3125rem 0.0625rem;
+  }
+}
+
+.tag {
+  @include m.heading;
+  font-size: clamp(1rem, 3.6vw, 1.25rem);
+  line-height: 1.1;
+  overflow-wrap: break-word;
+}
+
+// La etiqueta con el nombre: una tira de papel pegada sobre la tela, con un filete granate.
+.roll .tag {
+  min-inline-size: 0;
+  padding: t.$space-1 clamp(0.375rem, 2vw, 0.75rem);
+  border: 0.125rem solid $ink;
+  background: var(--palette-paper);
+  box-shadow: inset 0 0 0 0.125rem color-mix(in srgb, var(--palette-crimson) 35%, var(--palette-paper));
+}
+
+// La punta del papel con el ícono: asoma debajo del rollo y baja más con el hover o el foco.
+.flap {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  block-size: 3rem;
+  margin-block-start: -2.25rem;
+  margin-inline: 1.75rem;
+  padding-block-end: 0.75rem;
+}
+
+.flapPaper {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+
+  path {
+    fill: var(--palette-paper);
+    stroke: var(--palette-crimson);
+    stroke-width: 3;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+}
+
+.glyph {
+  position: relative;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  color: var(--palette-seal);
+}
+
+// Sin hover (teléfonos), el papel queda desplegado: el ícono se ve siempre.
+@media not (hover: hover) {
+  .flap {
+    transform: translateY(1.5rem);
+  }
+}
+
+// --- Tablón de misiones (Conexiones) ------------------------------------------------------------------------------------
+
+.board {
+  @extend %wood;
+  justify-content: space-between;
+  gap: t.$space-2;
+  padding: t.$space-2;
+  border: 0.1875rem solid $ink;
+  border-radius: 0.25rem;
+  box-shadow: 0.125rem 0.1875rem 0 color-mix(in srgb, $ink 35%, transparent);
+
+  @include m.hover {
+    .note {
+      transform: rotate(0deg) translateY(-0.125rem);
+    }
+  }
+
+  &:focus-visible .note {
+    transform: rotate(0deg) translateY(-0.125rem);
+  }
+}
+
+.notes {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: t.$space-1;
+}
+
+.note {
+  @extend %washi;
+  position: relative;
+  block-size: 1.75rem;
+  border: 0.0625rem solid $ink;
+
+  &[data-note='0'] {
+    transform: rotate(-5deg);
+  }
+
+  &[data-note='1'] {
+    transform: rotate(3deg);
+  }
+
+  &[data-note='2'] {
+    transform: rotate(-2deg);
+  }
+
+  &[data-note='3'] {
+    transform: rotate(6deg);
+  }
+}
+
+.pin {
+  position: absolute;
+  inset-block-start: 0.125rem;
+  inset-inline-start: calc(50% - 0.1875rem);
+  inline-size: 0.375rem;
+  block-size: 0.375rem;
+  border-radius: 50%;
+  background: var(--palette-seal);
+  box-shadow: 0 0 0 0.0625rem $ink;
+}
+
+.board > .tag {
+  @extend %washi;
+  padding: t.$space-1 t.$space-2;
+  border: 0.0625rem solid $ink;
+}
+
+// --- Navegación entre modos y título ------------------------------------------------------------------------------------
+
+.mini {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+
+  &[data-solved='true']::after {
+    content: '';
+    position: absolute;
+    inset-block-end: -0.125rem;
+    inset-inline-end: -0.125rem;
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+    border-radius: 0.125rem;
+    background: var(--palette-seal);
+  }
+}
+
+.miniGlyph {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.titleMark {
+  display: inline-block;
+  inline-size: 0.9em;
+  block-size: 0.9em;
+  margin-inline-end: 0.3em;
+  vertical-align: -0.1em;
+  color: var(--palette-seal);
+}

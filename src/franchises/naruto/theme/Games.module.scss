@@ -1,0 +1,336 @@
+// Lo propio de cada modo de Naruto en su piel (sesión 17): se apoya en `data-game-mode` (el modo, en el área de juego que
+// pone el marco) y en los `data-part` y `data-*` de los motores, así no depende de los nombres de clase de los motores. La
+// clase `.root` va en la raíz del tema junto con la de `theme.module.scss`.
+@use 'sass:list';
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+@use 'scroll-art' as art;
+
+$ink: var(--palette-ink);
+
+// --- Visor (silueta, borroso, jutsu y ojo): la imagen en un marco de pergamino ---------------------------------------------
+// Un marco granate con un margen de papel y el filete de tinta por fuera, como el papel de un pergamino.
+
+.root [data-part='visor'] {
+  clip-path: none;
+  border: 0.3125rem solid var(--palette-crimson);
+  border-radius: 0;
+  box-shadow:
+    0 0 0 0.375rem var(--palette-paper),
+    0 0 0 0.5rem $ink,
+    0.375rem 0.4375rem 0 0.5rem color-mix(in srgb, #{$ink} 35%, transparent);
+}
+
+// --- Frase y Emoji: la pista dentro de un pergamino desplegado ----------------------------------------------------------------
+// El panel de la pista es el papel con marco granate, con un rollo de tela arriba y otro abajo.
+
+.root [data-game-mode='frase'] [data-part='clue'],
+.root [data-game-mode='emoji'] [data-part='clue'] {
+  --frame-width: 0rem;
+  --frame-inner-width: 0rem;
+  --clip-panel: none;
+  --panel-accent-width: 0rem;
+  @include art.sheet;
+  position: relative;
+  margin-block: 0.875rem;
+  padding: clamp(1.25rem, 4vw, 2rem) clamp(1.25rem, 4vw, 2.5rem);
+  border-inline: 0.125rem solid $ink;
+
+  // Los rollos: barras de tela a lo ancho, un poco más anchas que el papel, con sus bandas y topes.
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inset-inline: -0.5rem;
+    block-size: 1.125rem;
+    border: 0.125rem solid $ink;
+    border-radius: 0.5rem / 50%;
+    clip-path: none;
+    box-shadow: none;
+    background: art.cylinder(to bottom), art.bands(to right), art.$pattern, art.$cloth;
+  }
+
+  // (Las capas del marco del panel usan estas dos pseudo; acá se reemplazan del todo.)
+  &::before {
+    inset-block: -0.875rem auto;
+  }
+
+  &::after {
+    inset-block: auto -0.875rem;
+  }
+}
+
+.root [data-game-mode='frase'] [data-part='clue'] p:last-child {
+  @include m.heading;
+  font-size: clamp(1.25rem, 3.5vw, 1.625rem);
+  line-height: 1.35;
+}
+
+// --- Pistas que se desbloquean: un sello de manos por pista -----------------------------------------------------------------
+// Cada pista lleva una ficha con el nombre de un sello de manos (los doce animales del zodíaco chino, que dan nombre a los
+// sellos): roja con letras blancas cuando está desbloqueada y gris cuando no. Decorativa (el texto alternativo vacío la
+// esconde de los lectores de pantalla).
+
+.root li[data-unlocked] {
+  position: relative;
+  padding-inline-start: 2.5rem;
+  min-block-size: 2rem;
+
+  &::before {
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 1.875rem;
+    block-size: 1.875rem;
+    border: 0.125rem solid $ink;
+    border-radius: 0.3125rem;
+    background: var(--palette-seal);
+    box-shadow: inset 0 0 0 0.125rem color-mix(in srgb, var(--palette-white) 55%, var(--palette-seal));
+    color: var(--palette-white);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  &[data-unlocked='false']::before {
+    border-style: dashed;
+    background: var(--palette-washi-shade);
+    box-shadow: none;
+    color: color-mix(in srgb, #{$ink} 45%, var(--palette-washi-shade));
+  }
+
+  // Los doce sellos, en orden: rata, buey, tigre, liebre, dragón, serpiente, caballo, carnero, mono, pájaro, perro y jabalí.
+  $seals: '子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥';
+  @for $i from 1 through 12 {
+    &:nth-child(12n + #{$i})::before {
+      content: '#{list.nth($seals, $i)}' / '';
+    }
+  }
+}
+
+// La inicial (columna del Clásico, la única de valor grande, y pista): con la letra de los títulos.
+.root td [data-large] {
+  @include m.heading;
+  line-height: 1;
+}
+
+.root li[data-hint='inicial'][data-unlocked='true'] > span:last-child {
+  @include m.heading;
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--palette-seal);
+}
+
+// --- Línea de tiempo: tiras de papel sobre un pergamino -------------------------------------------------------------------
+// La lista de sucesos es un pergamino desplegado (papel con marco granate); cada suceso, una tira de papel con el número en
+// un sello rojo. El veredicto del motor (aro rojo si el orden está mal, verde si se resolvió) se conserva.
+
+.root [data-game-mode='linea-de-tiempo'] [data-part='path'] {
+  padding: 0.75rem;
+  border: 0.125rem solid $ink;
+  @include art.sheet;
+
+  > li[data-item] {
+    border: 0.125rem solid $ink;
+    border-radius: 0.125rem;
+    background: var(--palette-washi-shade);
+    box-shadow: 0.125rem 0.125rem 0 color-mix(in srgb, #{$ink} 35%, transparent);
+
+    &[data-state='locked'] {
+      border-color: var(--palette-leaf);
+      background: color-mix(in srgb, var(--palette-leaf) 22%, var(--palette-paper));
+    }
+
+    &[data-dragging='true'] {
+      box-shadow: 0.375rem 0.375rem 0 color-mix(in srgb, #{$ink} 40%, transparent);
+    }
+  }
+
+  // El número de cada suceso, en un sello rojo.
+  [aria-hidden='true']:first-child:not([data-handle]) {
+    color: var(--palette-seal);
+  }
+}
+
+// --- Conexiones: el tablón de misiones ----------------------------------------------------------------------------------------
+// Las fichas son papelitos clavados en la madera; cada grupo resuelto se clava como un papel de misión, con el rango (D, C,
+// B o A según la dificultad) en un sello. Enviar es un sello rojo y Deseleccionar, una placa de madera.
+
+.root [data-game-mode='conexiones'] {
+  // En el teléfono el tablón no lleva marco ni relleno: cada píxel es de las fichas, porque Shippori Mincho es ancha y un
+  // nombre largo ("Konohamaru") tiene que entrar entero en su casilla.
+  [role='group'] {
+    border-radius: 0.25rem;
+    background:
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--palette-wood-dark) 40%, transparent) 0 0.0625rem, transparent 0.0625rem 0.45rem),
+      linear-gradient(var(--palette-wood), var(--palette-wood-dark));
+
+    @include bp.min-width('sm') {
+      padding: t.$space-2;
+      border: 0.1875rem solid $ink;
+    }
+  }
+
+  [data-tile] {
+    padding-inline: 0;
+    border: 0.0625rem solid $ink;
+    font-size: t.fluid(0.6875rem, 1rem);
+    border-radius: 0.125rem;
+    background: var(--palette-paper);
+    box-shadow: 0.125rem 0.125rem 0 color-mix(in srgb, #{$ink} 40%, transparent);
+    color: $ink;
+
+    // La chincheta.
+    &::after {
+      content: '';
+      position: absolute;
+      inset-block-start: 0.1875rem;
+      inset-inline-start: calc(50% - 0.1875rem);
+      inline-size: 0.375rem;
+      block-size: 0.375rem;
+      border-radius: 50%;
+      background: var(--palette-seal);
+      box-shadow: 0 0 0 0.0625rem $ink;
+    }
+
+    &[aria-pressed='true'] {
+      background: var(--palette-orange);
+      color: $ink;
+      transform: translateY(-0.125rem);
+    }
+  }
+
+  li[data-band] {
+    position: relative;
+    padding-inline-end: 3.5rem;
+    border: 0.125rem solid $ink;
+    border-radius: 0.125rem;
+    background: var(--palette-paper);
+    box-shadow:
+      inset 0.375rem 0 0 var(--band),
+      0.125rem 0.1875rem 0 color-mix(in srgb, #{$ink} 40%, transparent);
+    color: $ink;
+    text-align: start;
+    padding-inline-start: 1.25rem;
+
+    // El rango de la misión, en un sello rojo.
+    &::after {
+      position: absolute;
+      inset-block-start: calc(50% - 1.125rem);
+      inset-inline-end: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      inline-size: 2.25rem;
+      block-size: 2.25rem;
+      border: 0.1875rem double var(--palette-white);
+      border-radius: 0.3125rem;
+      background: var(--palette-seal);
+      box-shadow: 0 0 0 0.0625rem $ink;
+      color: var(--palette-white);
+      @include m.heading;
+      font-size: 1.25rem;
+      transform: rotate(-8deg);
+    }
+
+    &[data-difficulty='1']::after {
+      content: 'D' / '';
+    }
+
+    &[data-difficulty='2']::after {
+      content: 'C' / '';
+    }
+
+    &[data-difficulty='3']::after {
+      content: 'B' / '';
+    }
+
+    &[data-difficulty='4']::after {
+      content: 'A' / '';
+    }
+  }
+
+  button[data-part='submit'],
+  button[data-part='clear'] {
+    border: 0.1875rem solid $ink;
+    border-radius: 0.3125rem;
+  }
+
+  button[data-part='submit'] {
+    background: var(--palette-seal);
+    box-shadow: inset 0 0 0 0.25rem color-mix(in srgb, var(--palette-white) 45%, var(--palette-seal));
+    color: var(--palette-white);
+  }
+
+  button[data-part='clear'] {
+    background:
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--palette-wood-dark) 35%, transparent) 0 0.0625rem, transparent 0.0625rem 0.45rem),
+      var(--palette-wood);
+    color: var(--palette-white);
+  }
+
+  button[data-part='submit']:disabled,
+  button[data-part='clear']:disabled {
+    border-style: dashed;
+    background: var(--palette-washi-shade);
+    box-shadow: none;
+    color: t.color('text-muted');
+  }
+}
+
+// --- Equipo: una foto instantánea del equipo que se va completando ------------------------------------------------------------
+// La lista es una foto con marco blanco (más ancho abajo); cada miembro es una figura: revelada, una silueta a color con su
+// nombre debajo; por revelar, una silueta gris punteada.
+
+.root [data-game-mode='equipo'] ol:has(> li[data-revealed]) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(6.5rem, 1fr));
+  gap: t.$space-2;
+  padding: 0.75rem 0.75rem 2.5rem;
+  border: 0.125rem solid $ink;
+  background:
+    linear-gradient(to bottom, color-mix(in srgb, var(--palette-chakra) 25%, var(--palette-paper)), var(--palette-paper)) padding-box;
+  box-shadow:
+    inset 0 0 0 0.75rem var(--palette-white),
+    0.25rem 0.3125rem 0 color-mix(in srgb, #{$ink} 35%, transparent);
+  transform: rotate(-1deg);
+
+  > li {
+    flex-direction: column;
+    justify-content: flex-end;
+    min-block-size: 8rem;
+    border: 0;
+    background: transparent;
+    text-align: center;
+
+    // La silueta: una cabeza y unos hombros.
+    &::before {
+      content: '';
+      flex: none;
+      inline-size: 3.25rem;
+      block-size: 4.25rem;
+      background:
+        radial-gradient(circle at 50% 28%, var(--_figure) 0 0.875rem, transparent 0.9375rem),
+        radial-gradient(ellipse 1.625rem 1.5rem at 50% 100%, var(--_figure) 0 98%, transparent 100%);
+      --_figure: var(--palette-night);
+    }
+
+    &[data-revealed='false'] {
+      border-style: none;
+
+      &::before {
+        --_figure: color-mix(in srgb, #{$ink} 25%, var(--palette-washi-shade));
+        opacity: 0.8;
+      }
+    }
+
+    &[data-latest='true']::before {
+      --_figure: var(--palette-seal);
+    }
+  }
+}

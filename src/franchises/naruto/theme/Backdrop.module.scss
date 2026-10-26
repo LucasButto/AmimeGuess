@@ -1,0 +1,83 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+
+// Fondo fijo de Naruto: una ilustración de la aldea (la elige la hora, ver Backdrop.tsx). Se escala para cubrir la ventana,
+// pegada al borde de abajo: en un teléfono vertical se ve el centro de la escena. Mientras la imagen carga queda el color
+// del cielo de esa franja.
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: t.$layer-backdrop;
+  overflow: hidden;
+  pointer-events: none;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &[data-time='day'] {
+    background-color: #5b9bd5;
+    background-image: url('/theme/naruto/fondo-dia.webp');
+  }
+
+  &[data-time='dusk'] {
+    background-color: var(--palette-orange);
+    background-image: url('/theme/naruto/fondo-tarde.webp');
+  }
+
+  &[data-time='night'] {
+    background-color: var(--palette-night);
+    background-image: url('/theme/naruto/fondo-noche.webp');
+  }
+}
+
+// Pétalos que caen muy lento, meciéndose (solo `transform`). Con movimiento reducido no aparecen.
+.leaves {
+  position: absolute;
+  inset: 0;
+  display: none;
+
+  @include bp.motion-ok {
+    display: block;
+  }
+}
+
+// Un grupo de pétalos: ocupa todo el fondo y cae entero, meciéndose de lado a lado (solo `transform`). Recorre la ventana y
+// lo que está más arriba de ella, donde empiezan los pétalos que arrancan más atrás.
+.leafGroup {
+  position: absolute;
+  inset: 0;
+  animation: fall var(--fall) linear var(--delay) infinite;
+}
+
+.leaf {
+  position: absolute;
+  inset-block-start: calc(var(--y) - 2rem);
+  inset-inline-start: var(--x);
+  inline-size: 0.875rem;
+  block-size: 0.5rem;
+  border-radius: 0 100% 0 100%;
+  background: var(--palette-sakura);
+  transform: rotate(var(--turn));
+}
+
+@keyframes fall {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(2.5rem, 46vh);
+  }
+
+  50% {
+    transform: translate(-1.5rem, 92vh);
+  }
+
+  75% {
+    transform: translate(2rem, 138vh);
+  }
+
+  100% {
+    transform: translate(0, calc(185vh + 3rem));
+  }
+}

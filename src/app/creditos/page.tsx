@@ -98,6 +98,15 @@ export default async function CreditsPage() {
                 <a className={styles.link} href={font.url} rel="noopener noreferrer">
                   {font.name}
                 </a>
+                {'license' in font && (
+                  <>
+                    {' ('}
+                    <a className={styles.link} href={font.license.url} rel="license noopener noreferrer">
+                      {font.license.name}
+                    </a>
+                    {')'}
+                  </>
+                )}
               </li>
             ))}
           </ul>

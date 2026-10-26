@@ -172,10 +172,10 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
       {!over && (
         <div className={styles.actions}>
           <p className={styles.count}>{es.connections.selectedCount(selected.length, GROUP_SIZE)}</p>
-          <button type="button" className={styles.submit} onClick={submit} disabled={selected.length !== GROUP_SIZE}>
+          <button type="button" className={styles.submit} data-part="submit" onClick={submit} disabled={selected.length !== GROUP_SIZE}>
             {es.connections.submit}
           </button>
-          <button type="button" className={styles.clear} onClick={() => setSelected([])} disabled={selected.length === 0}>
+          <button type="button" className={styles.clear} data-part="clear" onClick={() => setSelected([])} disabled={selected.length === 0}>
             {es.connections.clear}
           </button>
         </div>

@@ -3,12 +3,14 @@
 
 import { DEFAULT_SKIN, DEFAULT_SKIN_DATA, DEFAULT_SLOTS } from '@/components/skin/defaults';
 import { dragonBallSkin } from './dragon-ball/theme';
+import { narutoSkin } from './naruto/theme';
 import { pokemonSkin } from './pokemon/theme';
 import type { FranchiseSkin, ResolvedSkin } from './types';
 
 const skins: Readonly<Record<string, FranchiseSkin>> = {
   pokemon: pokemonSkin,
   'dragon-ball': dragonBallSkin,
+  naruto: narutoSkin,
 };
 
 const resolved = new Map<string, ResolvedSkin>();

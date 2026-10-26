@@ -1,0 +1,328 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+
+// --- Kunai (botones de volver) ----------------------------------------------------------------------------------------
+// El lugar del ícono mide 2 rem; el kunai, un poco más ancho, asoma a la izquierda sin cambiar la caja.
+
+.kunaiBox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+
+  @include bp.motion-ok {
+    transition:
+      transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.25s;
+  }
+
+  @include bp.hover-capable {
+    a:hover &:not([data-kind='log']) {
+      @include bp.motion-ok {
+        transform: rotate(-14deg);
+      }
+    }
+  }
+
+  a:focus-visible &:not([data-kind='log']) {
+    @include bp.motion-ok {
+      transform: rotate(-14deg);
+    }
+  }
+
+  // El kunai sale disparado hacia la izquierda.
+  &[data-leaving='true']:not([data-kind='log']) {
+    @include bp.motion-ok {
+      transform: translateX(-3.5rem);
+      opacity: 0;
+    }
+  }
+
+  // El kunai y el shuriken del tronco no se van: los tapa el humo y desaparecen adentro.
+  &[data-kind='log'][data-leaving='true'] .stuckKunai,
+  &[data-kind='log'][data-leaving='true'] .stuckShuriken {
+    @include bp.motion-ok {
+      opacity: 0;
+      transition: opacity 0.2s 0.05s;
+    }
+  }
+}
+
+.kunai {
+  inline-size: 2.5rem;
+  block-size: auto;
+  overflow: visible;
+}
+
+.blade {
+  fill: var(--palette-metal);
+  stroke: var(--palette-ink);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.edge {
+  stroke: var(--palette-metal-dark);
+  stroke-width: 1.5;
+}
+
+.grip {
+  fill: var(--palette-night);
+  stroke: var(--palette-ink);
+  stroke-width: 2;
+}
+
+.wrap {
+  stroke: var(--palette-washi-shade);
+  stroke-width: 1.5;
+}
+
+.ring {
+  fill: none;
+  stroke: var(--palette-ink);
+  stroke-width: 2.5;
+}
+
+// El kunai y el shuriken clavados en el tronco. El lugar del ícono del tronco ocupa el botón entero (ver theme.module.scss):
+// el kunai va a la izquierda y el shuriken a la derecha, antes del corte con anillos.
+.kunaiBox[data-kind='log'] {
+  position: absolute;
+  inset: 0;
+  inline-size: auto;
+  block-size: auto;
+  pointer-events: none;
+}
+
+.stuckKunai {
+  position: absolute;
+  inset-block-start: -0.1875rem;
+  inset-inline-start: 0.1875rem;
+  inline-size: 1.625rem;
+  block-size: 1.625rem;
+  overflow: visible;
+}
+
+.stuckShuriken {
+  position: absolute;
+  inset-block-start: calc(50% - 0.5rem);
+  inset-inline-end: 1rem;
+  inline-size: 1rem;
+  block-size: 1rem;
+  transform: rotate(18deg);
+}
+
+.crack {
+  fill: none;
+  stroke: var(--palette-wood-dark);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.handle {
+  stroke: var(--palette-ink);
+  stroke-width: 3.5;
+  stroke-linecap: round;
+}
+
+.wraps {
+  stroke: var(--palette-metal);
+  stroke-width: 1.25;
+}
+
+.shine {
+  stroke: var(--palette-white);
+  stroke-width: 1.25;
+  stroke-linecap: round;
+  opacity: 0.8;
+}
+
+.starShadow {
+  fill: color-mix(in srgb, var(--palette-ink) 45%, transparent);
+}
+
+.starDark {
+  fill: var(--palette-metal-dark);
+  stroke: var(--palette-ink);
+  stroke-width: 1.25;
+  stroke-linejoin: round;
+}
+
+.starHole {
+  fill: var(--palette-wood-dark);
+  stroke: var(--palette-ink);
+  stroke-width: 1;
+}
+
+// "¡Puf!": tres bocanadas de humo que crecen y se desvanecen al hacer clic (solo `transform` y `opacity`).
+.smoke {
+  position: absolute;
+  inset: -0.5rem;
+  pointer-events: none;
+
+  i {
+    position: absolute;
+    inline-size: 1.75rem;
+    block-size: 1.75rem;
+    border-radius: 50%;
+    background: var(--palette-smoke);
+    box-shadow: inset -0.25rem -0.25rem 0 color-mix(in srgb, var(--palette-ink) 12%, transparent);
+    opacity: 0;
+    transform: scale(0.2);
+  }
+
+  i:nth-child(1) {
+    inset-block-start: 0.25rem;
+    inset-inline-start: 0;
+  }
+
+  i:nth-child(2) {
+    inset-block-start: 0;
+    inset-inline-start: 1.25rem;
+  }
+
+  i:nth-child(3) {
+    inset-block-start: 1.25rem;
+    inset-inline-start: 0.75rem;
+  }
+
+  [data-leaving='true'] > & i {
+    @include bp.motion-ok {
+      animation: puff 0.25s ease-out both;
+    }
+  }
+
+  [data-leaving='true'] > & i:nth-child(2) {
+    animation-delay: 0.03s;
+  }
+
+  [data-leaving='true'] > & i:nth-child(3) {
+    animation-delay: 0.06s;
+  }
+}
+
+@keyframes puff {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+
+  45% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  100% {
+    opacity: 0.9;
+    transform: scale(1.35);
+  }
+}
+
+// --- Shuriken (indicador de carga) ------------------------------------------------------------------------------------
+
+.loader {
+  display: inline-flex;
+  flex: none;
+
+  @include bp.motion-ok {
+    animation: spin 0.9s linear infinite;
+  }
+}
+
+.shuriken {
+  inline-size: 2rem;
+  block-size: 2rem;
+}
+
+.star {
+  fill: var(--palette-metal);
+  stroke: var(--palette-ink);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.hole {
+  fill: var(--palette-paper);
+  stroke: var(--palette-ink);
+  stroke-width: 1.5;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// --- Transición: humo que se abre ------------------------------------------------------------------------------------
+// Cinco bocanadas grandes tapan la pantalla al entrar y se abren hacia afuera mientras se desvanecen (850 ms). Con
+// movimiento reducido no aparece.
+
+.transition {
+  position: fixed;
+  inset: 0;
+  z-index: t.$layer-transition;
+  display: none;
+  overflow: hidden;
+  pointer-events: none;
+
+  @include bp.motion-ok {
+    display: block;
+  }
+
+  i {
+    position: absolute;
+    inline-size: 90vmax;
+    block-size: 90vmax;
+    border-radius: 50%;
+    background: var(--palette-smoke);
+    animation: clear 0.85s ease-out both;
+  }
+
+  i:nth-child(1) {
+    inset-block-start: -30vmax;
+    inset-inline-start: -30vmax;
+    --dx: -40vmax;
+    --dy: -40vmax;
+  }
+
+  i:nth-child(2) {
+    inset-block-start: -30vmax;
+    inset-inline-end: -30vmax;
+    --dx: 40vmax;
+    --dy: -40vmax;
+  }
+
+  i:nth-child(3) {
+    inset-block-end: -30vmax;
+    inset-inline-start: -30vmax;
+    --dx: -40vmax;
+    --dy: 40vmax;
+  }
+
+  i:nth-child(4) {
+    inset-block-end: -30vmax;
+    inset-inline-end: -30vmax;
+    --dx: 40vmax;
+    --dy: 40vmax;
+  }
+
+  i:nth-child(5) {
+    inset-block-start: calc(50% - 45vmax);
+    inset-inline-start: calc(50% - 45vmax);
+    --dx: 0;
+    --dy: 0;
+  }
+}
+
+@keyframes clear {
+  from {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(1.3);
+  }
+}

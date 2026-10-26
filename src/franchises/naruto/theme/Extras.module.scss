@@ -1,0 +1,119 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// --- Racha: tazones de ramen ---------------------------------------------------------------------------------------------
+
+.ramen {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-1 t.$space-2;
+}
+
+.bowls {
+  display: inline-flex;
+  gap: 0.125rem;
+}
+
+.bowl {
+  inline-size: 1.75rem;
+  block-size: auto;
+}
+
+.china {
+  fill: var(--palette-paper);
+  stroke: var(--palette-ink);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+.band {
+  stroke: var(--palette-seal);
+  stroke-width: 2;
+}
+
+.foot {
+  fill: var(--palette-ink);
+}
+
+.broth {
+  stroke: var(--palette-ink);
+  stroke-width: 1.5;
+}
+
+.noodles {
+  fill: none;
+  stroke: var(--palette-orange);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.fishcake {
+  fill: var(--palette-white);
+  stroke: var(--palette-seal);
+  stroke-width: 1.25;
+}
+
+.sticks {
+  stroke: var(--palette-wood);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.more {
+  font-weight: t.$font-weight-bold;
+}
+
+.streakNumber {
+  @include m.heading;
+  @include m.display-size(t.$font-display-sm);
+  line-height: 1;
+}
+
+// --- Barra de chakra -------------------------------------------------------------------------------------------------------
+
+.chakra {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-1;
+}
+
+.chakraLabel {
+  padding: 0 t.$space-1;
+  border-radius: 0.125rem;
+  background: var(--palette-chakra);
+  color: var(--palette-white);
+  font-size: 0.75rem;
+  font-weight: t.$font-weight-bold;
+  line-height: 1.5;
+}
+
+.chakraTrack {
+  inline-size: 7rem;
+  block-size: 0.75rem;
+  border: 0.125rem solid var(--palette-ink);
+  border-radius: 0.3125rem;
+  background: var(--palette-washi-shade);
+  overflow: hidden;
+}
+
+// El chakra: azul con un brillo claro en el medio, como si fluyera.
+.chakraFill {
+  display: block;
+  block-size: 100%;
+  background: linear-gradient(
+    var(--palette-chakra),
+    color-mix(in srgb, var(--palette-chakra) 55%, var(--palette-white)) 45%,
+    var(--palette-chakra)
+  );
+  transform-origin: left center;
+
+  .chakraTrack[data-low='true'] & {
+    background: var(--palette-seal);
+  }
+
+  @include bp.motion-ok {
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}

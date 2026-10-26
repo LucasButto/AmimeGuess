@@ -40,7 +40,7 @@ export function ModeNav({ franchise, modes, current, solved, filterKey, label = 
   }, [revealCurrent]);
 
   return (
-    <nav aria-label={label}>
+    <nav aria-label={label} data-part="mode-nav">
       <ul className={styles.list}>
         {modes.map((mode, index) => {
           const isCurrent = mode.slug === current;

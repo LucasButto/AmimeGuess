@@ -1,0 +1,376 @@
+@use 'sass:list';
+@use 'breakpoints' as bp;
+@use 'mixins' as m;
+
+// Contorno de tinta alrededor de las letras (una copia oscura en las ocho direcciones y una sombra dura más abajo): sirve
+// para el título cuando va directo sobre la ilustración de fondo, que cambia con la hora.
+@function ink-outline($width, $ink, $shadow: null) {
+  $list: ();
+  @each $x, $y in (-1, -1), (0, -1), (1, -1), (-1, 0), (1, 0), (-1, 1), (0, 1), (1, 1) {
+    $list: list.append($list, calc(#{$width} * #{$x}) calc(#{$width} * #{$y}) 0 $ink, comma);
+  }
+  @if $shadow {
+    $list: list.append($list, calc(#{$width} * 2.5) calc(#{$width} * 2.5) 0 $shadow, comma);
+  }
+  @return $list;
+}
+
+// Un polígono con las cuatro esquinas cortadas en diagonal (placas de madera y de metal).
+@function cut($size) {
+  @return polygon(#{$size} 0, calc(100% - #{$size}) 0, 100% #{$size}, 100% calc(100% - #{$size}), calc(100% - #{$size}) 100%, #{$size} 100%, 0 calc(100% - #{$size}), 0 #{$size});
+}
+
+// Piel de Naruto (sesión 17): pergamino, tinta y mundo ninja. Redefine los tokens semánticos de
+// src/styles/_tokens.scss sobre la raíz del tema; los colores salen de la paleta de config.ts (variables --palette-*),
+// que cubre el test de contraste. Papel washi con tinta casi negra, marcos de pincel gruesos con un filete de papel más
+// oscuro, esquinas apenas redondeadas (papel, no plástico) y sombras de tinta suaves.
+.root {
+  // Superficies y tintas: papel con tinta; la pantalla (el visor de los modos de imagen) es papel claro.
+  --surface-panel: var(--palette-paper);
+  --surface-dialog: var(--palette-paper);
+  --surface-screen: var(--palette-paper);
+  --surface-sunken: var(--palette-washi-shade);
+  --ink: var(--palette-ink);
+  --ink-screen: var(--palette-ink);
+  --ink-shadow: transparent;
+
+  // Acentos: sello rojo con letras blancas (principal) y placa de madera con letras blancas (secundaria).
+  --accent-primary: var(--palette-seal);
+  --accent-primary-ink: var(--palette-white);
+  --accent-secondary: var(--palette-wood);
+  --accent-secondary-ink: var(--palette-white);
+
+  // Marcos: tinta de pincel por fuera y un filete de papel oscuro por dentro; los cuadros de diálogo llevan el filete
+  // naranja, el resumen ganado el verde hoja y el modo infinito el rojo del sello.
+  --frame-width: 0.1875rem;
+  --frame-color: var(--palette-ink);
+  --frame-inner-width: 0.125rem;
+  --frame-inner: var(--palette-washi-shade);
+  --frame-dialog-inner: var(--palette-orange);
+  --frame-screen-inner: var(--palette-washi-shade);
+  --frame-won-inner: var(--palette-leaf);
+  --frame-practice-inner: var(--palette-seal);
+
+  // Botones: borde de tinta y un paso hacia abajo al presionarlos. Los de ícono: A un sello rojo (confirmar), B una
+  // placa de metal (cerrar, volver).
+  --button-edge: var(--palette-ink);
+  --button-frame-width: 0.1875rem;
+  --button-ghost-hover-edge: var(--palette-ink);
+  --button-press: 0.125rem;
+  // Ningún botón es un rectángulo plano: placas con las esquinas cortadas (madera, metal) y el sello con un filete blanco.
+  --clip-button: #{cut(0.375rem)};
+  --clip-chip: #{cut(0.25rem)};
+  --clip-icon: #{cut(0.3125rem)};
+  --button-disabled-outline: 0.125rem dashed var(--palette-ink);
+  --icon-a-fill: var(--palette-seal);
+  --icon-a-ink: var(--palette-white);
+  --icon-b-fill: var(--palette-metal);
+  --icon-b-ink: var(--palette-ink);
+  --icon-hover-ink: var(--palette-ink);
+  --icon-frame-width: 0.1875rem;
+
+  // Modales: barra del título azul noche con letras de papel; el cerrar del pie, una placa de metal.
+  --dialog-bar-fill: var(--palette-night);
+  --dialog-bar-ink: var(--palette-paper);
+  --modal-close-fill: var(--palette-metal);
+  --modal-close-ink: var(--palette-ink);
+
+  // Chips de filtro: papel oscuro apagado y naranja con tinta prendido; la marca es una placa de metal (grabada o tachada,
+  // ver Footer.tsx).
+  --chip-radius: 0.25rem;
+  --chip-fill: var(--palette-washi-shade);
+  --chip-ink: var(--color-text-muted);
+  --chip-edge: var(--palette-ink);
+  --chip-on-fill: var(--palette-orange);
+  --chip-on-ink: var(--palette-ink);
+  --chip-on-edge: var(--palette-ink);
+
+  // Navegación entre modos: papel con tinta; el modo actual, naranja; el resuelto hoy, verde con letras blancas.
+  --pill-current-fill: var(--palette-orange);
+  --pill-current-ink: var(--palette-ink);
+  --pill-current-solved-fill: var(--palette-orange);
+  --pill-current-solved-ink: var(--palette-ink);
+  --pill-solved-fill: var(--color-match);
+  --pill-solved-ink: var(--color-on-result);
+
+  // Botón ⓘ: un sello redondo rojo con la "i" blanca. Su recuadro es un papelito con los bordes rasgados (ver
+  // `[role='tooltip']`).
+  --infotip-fill: var(--palette-seal);
+  --infotip-open-fill: var(--palette-ink);
+  --infotip-ink: var(--palette-white);
+
+  // Medidores: pista de papel oscuro con borde de tinta y relleno de chakra.
+  --meter-height: 0.625rem;
+  --meter-track: var(--palette-washi-shade);
+  --meter-fill-high: var(--palette-chakra);
+  --meter-fill-mid: var(--palette-chakra);
+  --meter-fill-low: var(--palette-chakra);
+  --meter-border: 0.125rem solid var(--palette-ink);
+
+  // Placa de papel con marco de tinta debajo del texto suelto de las páginas (el fondo es una escena): con margen mínimo
+  // en el teléfono, para no quitarle ancho a la tabla del Clásico.
+  --plate-fill: var(--palette-paper);
+  --plate-edge: var(--palette-ink);
+  --plate-inner: var(--palette-washi-shade);
+  --plate-width: 0.1875rem;
+  --plate-inner-width: 0.125rem;
+  --plate-pad: 0.5rem;
+
+  @include bp.min-width('md') {
+    --plate-pad: 1rem;
+  }
+
+  // Botones de volver: placas de papel con borde de tinta; el kunai asoma de la caja (ver Ninja.tsx).
+  a[data-kind='home'] > span:last-child,
+  a[data-kind='franchise'] > span:last-child {
+    @include m.heading;
+    font-size: 1.0625rem;
+    line-height: 1;
+  }
+
+  // Inicio es un tronco (el de la técnica de sustitución), con la misma caja que en todo el sitio: la corteza con vetas y
+  // sombra de cilindro ocupa el botón, y a la derecha se ve el corte con sus anillos. "Inicio" va escrito en el medio de
+  // la corteza, en letras de papel con contorno de tinta, entre el kunai y el shuriken clavados (Ninja.tsx). Con el hover
+  // y el foco el tronco se tambalea y las letras se ponen naranjas.
+  a[data-kind='home'] {
+    justify-content: center;
+
+    // El lugar del ícono ocupa el tronco entero, para que "Inicio" quede centrado entre el kunai y el shuriken.
+    > span:first-child {
+      position: absolute;
+      inset: 0;
+      inline-size: auto;
+      block-size: auto;
+    }
+
+    @include bp.motion-ok {
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    @include m.hover {
+      transform: rotate(-4deg);
+
+      > span:last-child {
+        color: var(--palette-orange);
+      }
+    }
+
+    &:focus-visible {
+      transform: rotate(-4deg);
+
+      > span:last-child {
+        color: var(--palette-orange);
+      }
+    }
+
+    &::before {
+      clip-path: none;
+      border-radius: 0.875rem 0.5rem 0.5rem 0.875rem / 50%;
+      background: var(--palette-ink);
+    }
+
+    &::after {
+      clip-path: none;
+      border-radius: 0.75rem 0.375rem 0.375rem 0.75rem / 50%;
+      background:
+        linear-gradient(
+          to bottom,
+          color-mix(in srgb, var(--palette-ink) 35%, transparent),
+          transparent 30%,
+          color-mix(in srgb, var(--palette-white) 18%, transparent) 45%,
+          transparent 60%,
+          color-mix(in srgb, var(--palette-ink) 45%, transparent)
+        ),
+        repeating-linear-gradient(
+          to bottom,
+          transparent 0 0.3125rem,
+          color-mix(in srgb, var(--palette-wood-dark) 70%, transparent) 0.3125rem 0.4375rem
+        ),
+        var(--palette-wood);
+      box-shadow: none;
+    }
+
+    > span:last-child {
+      color: var(--palette-paper);
+      font-size: 0.875rem;
+      text-shadow: #{ink-outline(0.0625rem, var(--palette-ink))};
+
+      // El corte del tronco, en el borde derecho del botón (el <a> es el que lo ubica): madera clara con anillos.
+      &::after {
+        content: '';
+        position: absolute;
+        inset-block: 0;
+        inset-inline-end: -0.125rem;
+        inline-size: 0.875rem;
+        border: 0.125rem solid var(--palette-ink);
+        border-radius: 50%;
+        background: repeating-radial-gradient(
+          ellipse at center,
+          color-mix(in srgb, var(--palette-wood) 35%, var(--palette-paper)) 0 0.125rem,
+          color-mix(in srgb, var(--palette-wood) 70%, var(--palette-paper)) 0.125rem 0.1875rem
+        );
+      }
+    }
+
+    @include m.hover {
+      color: var(--palette-paper);
+    }
+  }
+
+  // La navegación entre modos es una banda frontal: tela azul noche con su trama y, al principio, una placa de metal
+  // con la hoja de Konoha grabada (pedida por el usuario el 2026-10-23). La hoja es una máscara sobre el metal oscuro.
+  nav[data-part='mode-nav'] > ul {
+    padding: 0.5rem 0.625rem 0.625rem 4rem;
+    border: 0.1875rem solid var(--palette-ink);
+    border-radius: 0.375rem;
+    background:
+      repeating-linear-gradient(0deg, color-mix(in srgb, var(--palette-white) 7%, transparent) 0 0.0625rem, transparent 0.0625rem 0.25rem),
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--palette-ink) 18%, transparent) 0 0.0625rem, transparent 0.0625rem 0.3125rem),
+      var(--palette-night);
+    box-shadow: 0.1875rem 0.1875rem 0 color-mix(in srgb, var(--palette-ink) 35%, transparent);
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      inset-block-start: 50%;
+      inset-inline-start: 0.5rem;
+      inline-size: 3rem;
+      block-size: 2.25rem;
+      transform: translateY(-50%);
+    }
+
+    &::before {
+      border: 0.125rem solid var(--palette-ink);
+      border-radius: 0.3125rem;
+      background: linear-gradient(160deg, var(--palette-white) 0%, var(--palette-metal) 35%, var(--palette-metal-dark) 100%);
+    }
+
+    &::after {
+      background: var(--palette-metal-dark);
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath d='M37 14.2 A 17 17 0 1 0 43 28 A 11 11 0 0 0 21 28 A 5.5 5.5 0 0 0 32 28 A 2.4 2.4 0 0 0 27.2 28 M11.5 18 Q 5 30 3 44 Q 12 46 22 44.6 M37 14.2 L 45 6.2' fill='none' stroke='black' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 1.75rem 1.75rem no-repeat;
+    }
+  }
+
+  // Botón principal: un sello rojo (hanko) con un filete blanco por dentro, como la marca de un sello estampado.
+  button[data-variant='primary'],
+  a[data-variant='primary'] {
+    &::after {
+      box-shadow:
+        inset 0 0 0 0.1875rem var(--palette-seal),
+        inset 0 0 0 0.3125rem color-mix(in srgb, var(--palette-white) 75%, transparent);
+    }
+  }
+
+  // Botón secundario: una placa de madera con vetas.
+  button[data-variant='secondary'],
+  a[data-variant='secondary'] {
+    --_fill:
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--palette-wood-dark) 35%, transparent) 0 0.0625rem, transparent 0.0625rem 0.45rem),
+      linear-gradient(var(--palette-wood), color-mix(in srgb, var(--palette-wood) 70%, var(--palette-wood-dark)));
+  }
+
+  // El recuadro de la ayuda: un papelito con los bordes de arriba y de abajo rasgados, sin marco ni colita (el borde
+  // rasgado no deja dibujar una línea de tinta pareja). Se vuelven a declarar, solo acá, los tokens que usa el marco.
+  [role='tooltip'] {
+    --clip-panel: polygon(0% 3%, 6% 0%, 11% 4%, 17% 1%, 24% 3%, 30% 0%, 37% 4%, 43% 1%, 50% 3%, 56% 0%, 63% 4%, 70% 1%, 76% 3%, 83% 0%, 89% 4%, 95% 1%, 100% 3%, 100% 97%, 94% 100%, 88% 96%, 81% 99%, 75% 97%, 68% 100%, 62% 96%, 55% 99%, 49% 97%, 42% 100%, 36% 96%, 29% 99%, 23% 97%, 16% 100%, 10% 96%, 4% 99%, 0% 97%);
+    --frame-width: 0rem;
+    --frame-inner-width: 0rem;
+    --surface-dialog: var(--palette-paper);
+    --infotip-tail-below: none;
+    --infotip-tail-above: none;
+    padding-block: 0.875rem;
+    box-shadow: none;
+    filter: drop-shadow(0.125rem 0.1875rem 0 color-mix(in srgb, var(--palette-ink) 45%, transparent));
+
+    > span[aria-hidden='true'] {
+      display: none;
+    }
+  }
+
+  // Los modales se abren como un pergamino que se desenrolla: el cuadro crece de arriba hacia abajo (quieto con
+  // movimiento reducido).
+  dialog[open] > * {
+    @include bp.motion-ok {
+      transform-origin: top center;
+      animation: unroll 0.32s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+    }
+  }
+
+  // Títulos directo sobre la ilustración: letras de papel con contorno de tinta (se leen de día y de noche).
+  --title-ink: var(--palette-paper);
+  --title-shadow: #{ink-outline(0.0625em, var(--palette-ink), var(--palette-ink))};
+  --kicker-ink: var(--palette-paper);
+  --kicker-shadow: #{ink-outline(0.0625rem, var(--palette-ink))};
+
+  // Grilla de modos: el pergamino del Clásico de lado a lado y los rollos en 2, 3 y 4 columnas.
+  --mode-cols: 2;
+  --mode-cols-md: 3;
+  --mode-cols-xl: 4;
+  --mode-grid-max: 64rem;
+
+  // Estadísticas como una ficha del Libro Bingo: casilleros de papel con renglones de tinta, el número a pincel y la
+  // distribución con barras de chakra.
+  [data-part='stats'] {
+    dl > div {
+      border: 0.125rem solid var(--palette-ink);
+      border-radius: 0.125rem;
+      background:
+        repeating-linear-gradient(0deg, color-mix(in srgb, var(--palette-ink) 10%, transparent) 0 0.0625rem, transparent 0.0625rem 1.25rem),
+        var(--palette-paper);
+    }
+
+    dd {
+      @include m.heading;
+    }
+
+    // El título de la distribución, subrayado a pincel y con el sello rojo de la ficha al final.
+    h3 {
+      @include m.heading;
+      display: flex;
+      align-items: center;
+      border-block-end: 0.125rem solid var(--palette-ink);
+
+      &::after {
+        content: '';
+        flex: none;
+        inline-size: 1.75rem;
+        block-size: 1.75rem;
+        margin-inline-start: auto;
+        margin-block-end: 0.25rem;
+        border: 0.1875rem double var(--palette-white);
+        border-radius: 0.3125rem;
+        background: var(--palette-seal);
+        transform: rotate(-10deg);
+      }
+    }
+
+    // La barra de cada fila (etiqueta, barra y cantidad): un tubo de chakra.
+    ol li > span:nth-last-of-type(2) {
+      border: 0.125rem solid var(--palette-ink);
+      border-radius: 0.3125rem;
+      background: var(--palette-washi-shade);
+      overflow: hidden;
+
+      > span {
+        background: var(--palette-chakra);
+      }
+
+      > span[data-latest='true'] {
+        background: var(--palette-seal);
+      }
+    }
+  }
+}
+
+@keyframes unroll {
+  from {
+    opacity: 0.4;
+    transform: scaleY(0.08);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}

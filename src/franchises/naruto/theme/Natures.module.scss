@@ -1,0 +1,105 @@
+@use 'tokens' as t;
+
+// Los íconos de las naturalezas de chakra en la celda del Clásico: octágonos con borde de tinta y el kanji en el medio.
+
+// Con los íconos, el texto de la celda no se muestra: cada ícono dice su nombre (y lo lee un lector de pantalla).
+:global([data-match]):has(> .natures) > :global([data-part='value']) {
+  display: none;
+}
+
+// El botón del ícono: sin subrayado (el de los términos) y sin el área de 44 px, que en una celda llena de íconos no entra.
+.tip {
+  display: inline-flex;
+  text-decoration: none;
+}
+
+.natures {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  max-inline-size: 6.5rem;
+}
+
+$octagon: polygon(30% 0, 70% 0, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0 70%, 0 30%);
+
+// Dos octágonos: el de tinta por fuera (el borde) y, adentro, el del color de la naturaleza. Así el borde sigue las ocho
+// caras (un `border` común se cortaría en las diagonales).
+.nature {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  background: var(--palette-ink);
+  clip-path: $octagon;
+  font-size: 1rem;
+  font-weight: t.$font-weight-bold;
+  line-height: 1;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0.1875rem;
+    background: var(--_fill);
+    clip-path: $octagon;
+  }
+
+  // El kanji, encima del relleno.
+  > * {
+    position: relative;
+  }
+
+  &[data-nature='Fuego'] {
+    --_fill: var(--palette-seal);
+    color: var(--palette-white);
+  }
+
+  &[data-nature='Viento'] {
+    --_fill: var(--palette-leaf);
+    color: var(--palette-white);
+  }
+
+  &[data-nature='Rayo'] {
+    --_fill: var(--palette-gold);
+    color: var(--palette-ink);
+  }
+
+  &[data-nature='Tierra'] {
+    --_fill: var(--palette-wood);
+    color: var(--palette-white);
+  }
+
+  &[data-nature='Agua'] {
+    --_fill: var(--palette-chakra);
+    color: var(--palette-white);
+  }
+
+  &[data-nature='Yin'] {
+    --_fill: var(--palette-ink);
+    color: var(--palette-white);
+  }
+
+  &[data-nature='Yang'] {
+    --_fill: var(--palette-white);
+    color: var(--palette-ink);
+  }
+
+  &[data-nature='Yin-Yang'] {
+    --_fill: linear-gradient(90deg, var(--palette-ink) 50%, var(--palette-white) 50%);
+    font-size: 0.625rem;
+  }
+}
+
+.half {
+  display: inline-flex;
+  justify-content: center;
+  inline-size: 50%;
+  color: var(--palette-white);
+
+  & + & {
+    color: var(--palette-ink);
+  }
+}

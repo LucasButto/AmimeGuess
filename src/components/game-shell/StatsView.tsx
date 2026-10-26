@@ -38,7 +38,7 @@ export function StatsView({ stats, streak, latestWin, kind = 'attempts' }: Stats
   ];
 
   return (
-    <div className={styles.root}>
+    <div className={styles.root} data-part="stats">
       <dl className={styles.tiles}>
         {tiles.map((tile) => (
           <div key={tile.label} className={styles.tile}>

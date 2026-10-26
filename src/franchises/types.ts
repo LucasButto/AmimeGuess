@@ -66,7 +66,7 @@ export const THEME_COLORS = [
 export type ThemeColor = (typeof THEME_COLORS)[number];
 
 /** Fuentes de Google Fonts que cargan los temas (ver src/app/fonts.ts). Cada una es una variable CSS `--font-<id>`. */
-export type ThemeFont = 'press-start-2p' | 'jersey-10' | 'rubik' | 'bangers' | 'kaushan-script' | 'cinzel';
+export type ThemeFont = 'press-start-2p' | 'jersey-10' | 'rubik' | 'bangers' | 'permanent-marker' | 'shippori-mincho' | 'cinzel';
 
 /**
  * El tema de una franquicia (SPEC 9): paleta, tipografía de títulos, forma y tratamiento de fondo. Son solo

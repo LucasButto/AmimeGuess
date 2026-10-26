@@ -37,6 +37,7 @@ export const es = {
     notice:
       'AnimeGuess es un proyecto de fans, sin afiliación con los titulares de las marcas Pokémon, Dragon Ball, Naruto ni Yu-Gi-Oh. Las marcas, los personajes y las imágenes pertenecen a sus dueños.',
     credits: 'Créditos',
+    dismiss: 'Cerrar el aviso',
   },
   // Página /creditos (SPEC 10). Los nombres de las fuentes y sus direcciones viven acá con su descripción; la lista de
   // textos CC BY-SA sale de los datos (cada contenido guarda su página de origen en `payload.source`).
@@ -116,7 +117,7 @@ export const es = {
     },
     fonts: {
       title: 'Tipografías',
-      text: 'Todas tienen licencia libre y se sirven desde este sitio.',
+      text: 'Todas tienen licencia libre y se sirven desde este sitio. Salvo que se indique otra, la licencia es esta:',
       license: { name: 'SIL Open Font License 1.1', url: 'https://openfontlicense.org' },
       // Una por id de `ThemeFont`: al sumar una tipografía a un tema, el tipo obliga a acreditarla acá.
       items: {
@@ -124,9 +125,14 @@ export const es = {
         'jersey-10': { name: 'Jersey 10', url: 'https://fonts.google.com/specimen/Jersey+10' },
         rubik: { name: 'Rubik', url: 'https://fonts.google.com/specimen/Rubik' },
         bangers: { name: 'Bangers', url: 'https://fonts.google.com/specimen/Bangers' },
-        'kaushan-script': { name: 'Kaushan Script', url: 'https://fonts.google.com/specimen/Kaushan+Script' },
+        'permanent-marker': {
+          name: 'Permanent Marker',
+          url: 'https://fonts.google.com/specimen/Permanent+Marker',
+          license: { name: 'Apache 2.0', url: 'https://www.apache.org/licenses/LICENSE-2.0' },
+        },
+        'shippori-mincho': { name: 'Shippori Mincho', url: 'https://fonts.google.com/specimen/Shippori+Mincho' },
         cinzel: { name: 'Cinzel', url: 'https://fonts.google.com/specimen/Cinzel' },
-      } satisfies Record<ThemeFont, { name: string; url: string }>,
+      } satisfies Record<ThemeFont, { name: string; url: string; license?: { name: string; url: string } }>,
     },
     trademarks: {
       title: 'Marcas',
@@ -488,6 +494,18 @@ export const es = {
     // Lo que aparece un instante sobre cada celda del Clásico al revelarse, como en el manga.
     onomatopoeia: ['¡ZAS!', '¡PUM!', '¡DOOM!', '¡BAM!', '¡KRASH!', '¡FUUM!'],
   },
+  narutoSkin: {
+    pending: 'Misión pendiente',
+    solved: (attempts: number) => `Cumplida en ${attempts} ${plural(attempts, 'intento', 'intentos')}`,
+    solvedToday: 'Cumplida hoy',
+    bowlsMore: (extra: number) => `+${extra}`,
+    chakra: 'Chakra',
+    // La tapa del selector del intento y la ficha del personaje marcado.
+    bingoTitle: 'Libro Bingo',
+    // El sello rojo que se estampa al ganar.
+    missionComplete: '¡Misión cumplida!',
+    wanted: 'Se busca',
+  },
   pokemonSkin: {
     pokedexPending: 'Hoy: pendiente',
     pokedexSolved: (attempts: number) => `Resuelto en ${attempts} ${plural(attempts, 'intento', 'intentos')}`,
@@ -532,6 +550,97 @@ export const es = {
     manga: 'Si está activo, también salen los arcos del manga aún sin adaptar al anime, como Moro y Granolah. Las películas siempre salen.',
     // Línea de tiempo de Dragon Ball: en qué orden van las series.
     timelineOrder: 'Los sucesos siguen la historia: Dragon Ball, Dragon Ball Z, Dragon Ball Daima, Dragon Ball Super y Dragon Ball GT, en ese orden.',
+    // Línea de tiempo de Yu-Gi-Oh: en qué orden van las series.
+    yugiohTimelineOrder: "Los sucesos siguen la historia: Duel Monsters, GX y 5D's, en ese orden. El relleno se puede apagar.",
+    // Qué es cada valor de las columnas de lista de Naruto (se ve al pasar el cursor, enfocar o tocar el valor). Sin pistas
+    // sobre ningún personaje. Redactado, no verificado contra el canon (ver docs/CONTENT_TODO.md).
+    naruto: {
+      timelineOrder: 'Los sucesos siguen la historia: Naruto, Naruto Shippūden y Boruto, en ese orden. El relleno y los arcos del manga se pueden apagar.',
+      afiliaciones: {
+        Akatsuki: 'Organización de ninjas renegados que reúne a criminales muy poderosos y busca capturar a las bestias con cola.',
+        Ame: 'Amegakure, la Aldea Oculta de la Lluvia: una aldea shinobi en un país donde llueve casi siempre.',
+        'Bosque Shikkotsu': 'Bosque donde viven las babosas invocables: un territorio aparte de las aldeas.',
+        'Cueva Ryūchi': 'Cueva donde viven las serpientes invocables: un territorio aparte de las aldeas.',
+        Iwa: 'Iwagakure, la Aldea Oculta de la Roca: la aldea shinobi del País de la Tierra.',
+        Kiri: 'Kirigakure, la Aldea Oculta de la Niebla: la aldea shinobi del País del Agua.',
+        Konoha: 'Konohagakure, la Aldea Oculta de la Hoja: la aldea shinobi del País del Fuego.',
+        Kumo: 'Kumogakure, la Aldea Oculta de las Nubes: la aldea shinobi del País del Rayo.',
+        Kusa: 'Kusagakure, la Aldea Oculta de la Hierba: una aldea shinobi pequeña.',
+        Luna: 'La Luna: allí vive una rama del clan Ōtsutsuki, lejos de la Tierra.',
+        'Monte Myōboku': 'Monte donde viven los sapos invocables y se enseña el modo Sabio.',
+        Oto: 'Otogakure, la Aldea Oculta del Sonido: una aldea shinobi del País de los Arrozales.',
+        'País de las Olas': 'Nami no Kuni: un país isleño pequeño, sin aldea shinobi propia.',
+        Raíz: 'Organización secreta de Konoha que actúa en las sombras, fuera del control del Hokage.',
+        Suna: 'Sunagakure, la Aldea Oculta de la Arena: la aldea shinobi del País del Viento, en el desierto.',
+        Taki: 'Takigakure, la Aldea Oculta de la Cascada: una aldea shinobi pequeña, escondida y bien protegida.',
+        Uzushio: 'Uzushiogakure, la Aldea Oculta del Remolino: una aldea aliada de Konoha, hoy destruida.',
+        Yu: 'Yugakure, la Aldea Oculta de las Aguas Termales: una aldea shinobi pequeña.',
+        Kara: 'Organización secreta de Boruto, con un plan propio que esconde de las aldeas.',
+        'Fuerzas Aliadas Shinobi': 'La alianza de las aldeas shinobi, formada para enfrentar juntas la Cuarta Guerra Ninja.',
+      },
+      tiposDeJutsu: {
+        Ninjutsu: 'Técnicas que usan chakra para crear efectos: elementos, clones, invocaciones y más.',
+        Taijutsu: 'Técnicas de combate cuerpo a cuerpo, basadas en la fuerza, la velocidad y el entrenamiento físico.',
+        Genjutsu: 'Ilusiones que se lanzan con chakra sobre la mente del rival; se rompen alterando su flujo de chakra.',
+        Fūinjutsu: 'Técnicas de sellado: encierran, atan o bloquean un objeto, un poder o un ser con sellos y chakra.',
+        Kenjutsu: 'El arte de la espada: técnicas de combate con espadas.',
+        Senjutsu: 'Técnicas que usan la energía de la naturaleza, además del chakra.',
+        'Ninjutsu médico': 'Técnicas que usan chakra para curar heridas y tratar el cuerpo.',
+      },
+      atributos: {
+        'Bestia con cola': 'Criatura hecha de chakra enorme, con una o más colas; hay nueve y cada una tiene su propia fuerza.',
+        Invocación: 'Puede invocar a un animal con un contrato, o es una de esas criaturas invocadas.',
+        Jinchūriki: 'Persona que lleva sellada dentro a una bestia con cola y puede usar parte de su poder.',
+        Mercenario: 'Ninja que trabaja por encargo a cambio de dinero, sin lealtad a una aldea.',
+        'Ninja médico': 'Ninja entrenado para curar heridas y enfermedades con chakra.',
+        'Ninja renegado': 'Ninja que abandonó su aldea, traicionándola, y por eso se lo busca como criminal.',
+        'Rango S': 'La categoría de peligro más alta del libro Bingo: ninjas capaces de enfrentar a ejércitos enteros.',
+        Sabio: 'Ninja que domina la energía de la naturaleza y entra en el modo Sabio, que aumenta su fuerza.',
+        Sannin: 'Los tres ninjas legendarios de Konoha, reconocidos como los más fuertes de su generación.',
+        Sensor: 'Ninja que percibe a distancia el chakra y la presencia de otros.',
+      },
+      // Por id de arco (data/naruto/arcs.json).
+      arcos: {
+        'tierra-de-las-olas': 'El equipo 7 protege a un constructor de puentes de un ninja mercenario, en su primera misión de rango alto.',
+        'examen-chunin': 'Ninjas de varias aldeas compiten para ascender a chūnin: pruebas escritas, el Bosque de la Muerte y combates.',
+        'invasion-de-konoha': 'Durante la final del examen, Konoha sufre un ataque sorpresa de otras aldeas.',
+        'busqueda-de-tsunade': 'Naruto y Jiraiya viajan a buscar a Tsunade para proponerle ser la nueva Hokage.',
+        'recuperacion-de-sasuke': 'Un grupo de genin intenta traer de vuelta a Sasuke, que dejó la aldea para buscar poder.',
+        'rescate-del-kazekage': 'Empieza Shippūden: Akatsuki secuestra al Kazekage de Suna y un equipo de Konoha va a rescatarlo.',
+        'puente-tenchi': 'Misión de reconocimiento del equipo de Kakashi para investigar el Puente Tenchi, una guarida de Orochimaru.',
+        'supresion-de-akatsuki': 'Los ninjas de Konoha enfrentan a miembros de Akatsuki, que buscan capturar a las bestias con cola.',
+        'persecucion-de-itachi': 'Sasuke, ya con su propio equipo, sale a buscar a su hermano Itachi.',
+        'historia-de-jiraiya': 'Relata cómo era Jiraiya de joven y a quiénes conoció en esa etapa.',
+        'batalla-entre-hermanos': 'El enfrentamiento decisivo entre Sasuke e Itachi.',
+        'asalto-de-pain': 'Pain, un líder de Akatsuki, ataca Konoha en busca de Naruto y destruye gran parte de la aldea.',
+        'cumbre-de-los-kage': 'Los cinco líderes de las grandes aldeas se reúnen para decidir cómo enfrentar a Akatsuki y a Sasuke.',
+        'guerra-cuenta-regresiva': 'Empieza la Cuarta Guerra Shinobi y las aldeas aliadas se preparan para el combate.',
+        'guerra-confrontacion': 'La alianza de aldeas combate contra el ejército enemigo en pleno campo de batalla.',
+        'guerra-climax': 'Los combates decisivos de la Cuarta Guerra Shinobi, con las peleas más importantes.',
+        'jinchuriki-del-diez-colas': 'Surge el jinchūriki del Diez Colas, la bestia con cola más poderosa, en medio de la guerra.',
+        'kaguya': 'Aparece Kaguya Ōtsutsuki, el origen del chakra, y los ninjas deben enfrentarla.',
+        'konoha-hiden': 'Relatos ambientados en Konoha, con misiones y vida cotidiana de los ninjas.',
+        'ingreso-a-la-academia': 'Empieza Boruto: la nueva generación entra a entrenar en la Academia ninja.',
+        'arco-de-sarada': 'Una historia centrada en Sarada Uchiha, hija de Sasuke, que quiere reencontrarse con su padre.',
+        'excursion-escolar': 'Los alumnos de la Academia salen de excursión y la salida se complica.',
+        'examen-de-graduacion': 'Los alumnos de la Academia rinden la prueba para graduarse y convertirse en genin.',
+        'mision-de-genin': 'Los nuevos genin hacen una misión como equipo.',
+        'banda-de-byakuya': 'Los ninjas de Konoha enfrentan a una banda criminal liderada por Byakuya.',
+        'contra-momoshiki': 'Momoshiki Ōtsutsuki llega a la Tierra durante el examen chūnin y debe ser enfrentado.',
+        'desaparicion-de-mitsuki': 'Mitsuki desaparece y sus compañeros salen a buscarlo.',
+        'activacion-de-kara': 'Kara, una organización secreta, empieza a moverse y amenaza a Konoha.',
+        'arco-de-kawaki': 'Kawaki llega a Konoha y es acogido por la familia de Naruto.',
+        'reexamen-chunin': 'Se repite el examen chūnin que quedó interrumpido, con nuevos participantes.',
+        'asalto-de-code': 'Code, un miembro de Kara, ataca la aldea.',
+      },
+    },
+    // Columnas del Clásico de Naruto que no se explican solas (las demás ya dicen qué es cada valor al pasar el cursor).
+    narutoClassic: {
+      kekkeiGenkai: 'Habilidades que se heredan por la sangre, como un dōjutsu. Verde si son las mismas; naranja si comparten alguna.',
+      naturalezas: 'Las naturalezas de chakra que domina (Fuego, Agua, Yin…). Verde si son las mismas; naranja si comparten alguna.',
+      atributos: 'Rasgos especiales: jinchūriki, sabio, sensor, rango S… Verde si son los mismos; naranja si comparten alguno.',
+      arcoDebut: 'El arco en el que apareció por primera vez. La flecha indica si la respuesta debutó antes o después.',
+    },
     // Columnas del Clásico de Dragon Ball.
     dragonBall: {
       genero: 'El género del personaje. Verde si es el mismo que el de la respuesta; rojo si no.',
