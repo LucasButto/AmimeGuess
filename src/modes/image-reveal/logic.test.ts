@@ -171,6 +171,21 @@ describe('revealStep', () => {
   });
 });
 
+describe('revealVisual con aumentos propios', () => {
+  const focus = { x: 0.5, y: 0.5 };
+
+  it('usa los aumentos dados en lugar de los de siempre, paso a paso', () => {
+    const scales = [5.2, 4.5, 3.9, 3.4, 3, 2.6];
+    const values = Array.from({ length: REVEAL_STEPS }, (_, step) => revealVisual('zoom', step, true, focus, scales).scale);
+    expect(values).toEqual(scales);
+  });
+
+  it('sin aumentos propios, los de siempre; y uno que falte cae en el de siempre', () => {
+    expect(revealVisual('zoom', 0, true, focus).scale).toBe(3.2);
+    expect(revealVisual('zoom', 5, true, focus, [5]).scale).toBe(1.15);
+  });
+});
+
 describe('revealVisual', () => {
   const focus = { x: 0.5, y: 0.5 };
   const steps = Array.from({ length: REVEAL_STEPS }, (_, step) => step);

@@ -47,4 +47,10 @@ export interface ImageRevealConfig {
    * una opción del autocompletado: se pueden intentar, pero no son la respuesta.
    */
   readonly requireAttr?: AttrRequirement;
+  /**
+   * Solo en los modos de zoom: el aumento del recorte en cada paso, del más cerrado al más abierto (una entrada por paso,
+   * `REVEAL_STEPS`). Sin esto, los de siempre (de 3,2 a 1,15). Sirve para un modo que parte más cerca de un detalle, como
+   * el ojo de un personaje.
+   */
+  readonly zoomScales?: readonly number[];
 }

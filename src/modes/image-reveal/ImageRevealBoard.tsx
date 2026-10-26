@@ -110,7 +110,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   const over = won || lost;
   const step = revealStep(failed, prefs.reveal);
   // Al terminar, la imagen se muestra entera, a color y nítida.
-  const visual = over ? REVEALED : revealVisual(config.variant, step, prefs.colors, focus);
+  const visual = over ? REVEALED : revealVisual(config.variant, step, prefs.colors, focus, config.zoomScales);
 
   const items = useMemo<AutocompleteItem[]>(
     () => options.map(autocompleteItemOf),

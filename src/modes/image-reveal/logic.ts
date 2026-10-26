@@ -190,9 +190,10 @@ const CENTER: Focus = { x: 0.5, y: 0.5 };
 /**
  * Lo que se ve en un paso. Sin "mostrar colores", todo lo que no es la imagen entera sale en grises.
  * `focus` es el punto que abre el zoom; en `zoom-silhouette` es el punto de partida (una zona de un costado) y el
- * recorte se va corriendo hacia el centro a medida que se abre.
+ * recorte se va corriendo hacia el centro a medida que se abre. `scales` reemplaza los aumentos del zoom (ver
+ * `ImageRevealConfig.zoomScales`).
  */
-export function revealVisual(variant: RevealVariant, step: number, colors: boolean, focus: Focus): RevealVisual {
+export function revealVisual(variant: RevealVariant, step: number, colors: boolean, focus: Focus, scales: readonly number[] = ZOOM_SCALE): RevealVisual {
   const index = Math.min(Math.max(step, 0), REVEAL_STEPS - 1);
   const grayscale = colors ? 0 : 1;
   switch (variant) {
@@ -202,7 +203,7 @@ export function revealVisual(variant: RevealVariant, step: number, colors: boole
       return { ...REVEALED, blur: BLUR_REM[index], grayscale };
     case 'zoom':
     case 'zoom-silhouette': {
-      const scale = ZOOM_SCALE[index];
+      const scale = scales[index] ?? ZOOM_SCALE[index];
       const shadow = variant === 'zoom-silhouette';
       // La sombra no tiene detalle en el medio: parte de un costado y llega al centro en el último paso.
       const along = index / (REVEAL_STEPS - 1);
