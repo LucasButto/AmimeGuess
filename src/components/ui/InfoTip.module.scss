@@ -1,3 +1,4 @@
+@use 'breakpoints' as bp;
 @use 'tokens' as t;
 @use 'mixins' as m;
 
@@ -17,6 +18,27 @@
   vertical-align: middle;
   cursor: pointer;
   @include m.focus-ring(-0.25rem);
+}
+
+// Un término con descripción dentro de un texto: se lee como el resto, con un subrayado de puntos que avisa que hay ayuda.
+.term {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: underline dotted;
+  text-decoration-thickness: 0.0625rem;
+  text-underline-offset: 0.2em;
+  cursor: help;
+  @include m.focus-ring(0.0625rem);
+
+  @include bp.hover-capable {
+    &:hover {
+      text-decoration-style: solid;
+    }
+  }
 }
 
 .dot {

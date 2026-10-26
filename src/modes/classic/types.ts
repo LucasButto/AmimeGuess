@@ -26,6 +26,11 @@ export interface ClassicColumn {
    * Un texto de `es.help`, de 140 caracteres como mucho. Sin esto, la columna no lleva ayuda.
    */
   readonly help?: string;
+  /**
+   * Qué es cada valor de una columna de listas, por su texto exacto (un texto de `es.help`, de 140 caracteres como mucho,
+   * sin pistas sobre la respuesta). Al pasar el cursor, enfocar o tocar un valor con descripción se muestra en un recuadro.
+   */
+  readonly valueHelp?: Readonly<Record<string, string>>;
   /** El valor es muy corto (una letra, por ejemplo): se muestra en grande para que se lea bien. */
   readonly large?: boolean;
   /** `exact` (=), `set` (⊂) u `ordered` (↕, con flecha). */

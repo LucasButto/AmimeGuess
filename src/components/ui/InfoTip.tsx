@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties } from 'react';
+import { useCallback, useEffect, useId, useLayoutEffect, useRef, useState, type CSSProperties, type ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { useSkin } from '../skin/context';
 import { PixelIcon } from './icons';
@@ -9,8 +9,10 @@ import styles from './InfoTip.module.scss';
 interface InfoTipProps {
   /** El texto de ayuda (de `es.help.*`, 140 caracteres como mucho). */
   text: string;
-  /** Nombre accesible del botón ("Ayuda: Tipo 1"); el texto largo va en el recuadro, nunca acá. */
-  label: string;
+  /** Nombre accesible del botón ("Ayuda: Tipo 1"); el texto largo va en el recuadro, nunca acá. Con `children` y sin esto, el nombre es el texto. */
+  label?: string;
+  /** En lugar del ícono ⓘ, un texto que abre el recuadro (un término subrayado a puntos): su nombre accesible es ese texto. */
+  children?: ReactNode;
   /** Junto a un texto (un título, un encabezado de tabla): ocupa menos lugar sin achicar el área táctil. */
   compact?: boolean;
   className?: string;
@@ -49,7 +51,7 @@ interface Placement {
  * en el diálogo abierto que contiene al botón), con posición fija: nunca queda recortado dentro de un
  * contenedor con desplazamiento, como la tabla del Clásico.
  */
-export function InfoTip({ text, label, compact = false, className }: InfoTipProps) {
+export function InfoTip({ text, label, children, compact = false, className }: InfoTipProps) {
   const tipId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const tipRef = useRef<HTMLDivElement>(null);
@@ -151,7 +153,7 @@ export function InfoTip({ text, label, compact = false, className }: InfoTipProp
       <button
         ref={buttonRef}
         type="button"
-        className={className ? `${styles.button} ${className}` : styles.button}
+        className={[children === undefined ? styles.button : styles.term, className].filter(Boolean).join(' ')}
         data-compact={compact}
         aria-label={label}
         aria-describedby={open ? tipId : undefined}
@@ -186,9 +188,13 @@ export function InfoTip({ text, label, compact = false, className }: InfoTipProp
           else show();
         }}
       >
-        <span className={styles.dot} aria-hidden="true">
-          <PixelIcon name="info" />
-        </span>
+        {children === undefined ? (
+          <span className={styles.dot} aria-hidden="true">
+            <PixelIcon name="info" />
+          </span>
+        ) : (
+          children
+        )}
       </button>
       {open &&
         host &&

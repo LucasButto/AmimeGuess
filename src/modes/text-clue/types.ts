@@ -27,6 +27,8 @@ export type TextClueLine =
       readonly after: number;
       /** Atributos de la entidad respuesta que se muestran juntos, separados por " / ". Los que no tienen valor se omiten. */
       readonly keys: readonly string[];
+      /** Qué es cada valor, por su texto exacto: se muestra al pasar el cursor, enfocar o tocar el valor (140 caracteres como mucho). */
+      readonly valueHelp?: Readonly<Record<string, string>>;
     };
 
 export interface TextClueConfig {

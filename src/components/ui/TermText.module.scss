@@ -1,0 +1,9 @@
+// Un término con su separador: la coma no se separa del valor (el botón del término es un bloque en línea y, si no, la
+// coma podía quedar sola en un renglón). Adentro del término el texto sí puede cortarse.
+.item {
+  white-space: nowrap;
+
+  > button {
+    white-space: normal;
+  }
+}

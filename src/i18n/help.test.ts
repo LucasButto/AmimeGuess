@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest';
+import entities from '../../data/naruto/entities.json';
 import { franchises } from '@/franchises';
 import { es } from './es';
 
@@ -23,6 +24,25 @@ describe('ayudas ⓘ', () => {
           if (column.help !== undefined) expect(column.help.length, `${franchise.slug}/${column.key}`).toBeLessThanOrEqual(140);
         }
       }
+    }
+  });
+
+  it('cada afiliación, tipo de jutsu y atributo de Naruto tiene su descripción', () => {
+    const naruto = franchises.find((franchise) => franchise.slug === 'naruto');
+    const columns = naruto?.modes.find((mode) => mode.slug === 'clasico')?.classic?.columns ?? [];
+    const arcColumn = columns.find((column) => column.key === 'arcoDebut');
+    for (const { label } of Object.values(arcColumn?.valueLabels ?? {})) {
+      expect(arcColumn?.valueHelp?.[label], `arco ${label}`).toBeTruthy();
+    }
+    for (const key of ['afiliaciones', 'tiposDeJutsu', 'atributos']) {
+      const help = columns.find((column) => column.key === key)?.valueHelp ?? {};
+      const values = new Set(
+        entities.flatMap((entity) => {
+          const attr = (entity.attrs as Record<string, unknown>)[key];
+          return Array.isArray(attr) ? attr.map((item) => (typeof item === 'string' ? item : (item as { value: string }).value)) : [];
+        }),
+      );
+      for (const value of values) expect(help[value], `${key}/${value}`).toBeTruthy();
     }
   });
 

@@ -224,7 +224,7 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
             </div>
             <ul className={styles.hintList}>
               {visibleHints.map(({ hint, unlocked, remaining, text }) => (
-                <li key={hint.label} className={styles.hint} data-unlocked={unlocked}>
+                <li key={hint.label} className={styles.hint} data-unlocked={unlocked} data-hint={hint.kind === 'attr' ? hint.key : hint.contentKind}>
                   <span className={styles.hintLabel}>{hint.label}</span>
                   <span>{unlocked ? text : es.classic.hintLocked(remaining)}</span>
                 </li>

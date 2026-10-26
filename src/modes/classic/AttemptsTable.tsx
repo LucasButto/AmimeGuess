@@ -5,6 +5,7 @@ import { ContentImage } from '@/components/ContentImage';
 import { useSkin } from '@/components/skin/context';
 import { PixelIcon, type IconName } from '@/components/ui/icons';
 import { InfoTip } from '@/components/ui/InfoTip';
+import { TermText } from '@/components/ui/TermText';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import { es } from '@/i18n/es';
 import styles from './AttemptsTable.module.scss';
@@ -160,12 +161,14 @@ export function AttemptsTable({ rows, columns, revealing = null, onRevealEnd }: 
                         >
                           <div className={styles.box} data-match={cell.match} onAnimationEnd={handleEnd}>
                             <ValueMark column={cell.column.key} value={text ?? ''} />
-                            <span className={styles.value} data-large={cell.column.large || undefined}>
-                              {text ?? (
+                            <span className={styles.value} data-part="value" data-large={cell.column.large || undefined}>
+                              {text === null ? (
                                 <>
                                   <span aria-hidden="true">—</span>
                                   <VisuallyHidden>{cell.hidden ? es.classic.hiddenValue : es.classic.noValue}</VisuallyHidden>
                                 </>
+                              ) : (
+                                <TermText text={text} help={cell.column.valueHelp} />
                               )}
                             </span>
                             {hasMark(cell, skin.cellMarks) && (

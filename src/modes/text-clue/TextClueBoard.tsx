@@ -7,6 +7,7 @@ import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
 import { PixelIcon } from '@/components/ui/icons';
 import { InfoTip } from '@/components/ui/InfoTip';
+import { TermText } from '@/components/ui/TermText';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import { pickDaily, type DailyContext } from '@/engine/daily';
 import { getLocalStorage, readState, writeState } from '@/engine/storage';
@@ -147,7 +148,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
               {line.label}
             </p>
             <p className={styles.clueText} data-display={line.kind === 'content' ? (line.display ?? 'text') : 'text'}>
-              {text}
+              <TermText text={text} help={line.kind === 'attr' ? line.valueHelp : undefined} />
             </p>
           </div>
         ))}
@@ -165,7 +166,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
             {hintLines.map(({ line, unlocked, remaining, text }) => (
               <li key={line.label} className={styles.hint} data-unlocked={unlocked}>
                 <span className={styles.hintLabel}>{line.label}</span>
-                <span>{unlocked ? text : es.textClue.hintLocked(remaining)}</span>
+                <span>{unlocked ? <TermText text={text} help={line.kind === 'attr' ? line.valueHelp : undefined} /> : es.textClue.hintLocked(remaining)}</span>
               </li>
             ))}
           </ul>
