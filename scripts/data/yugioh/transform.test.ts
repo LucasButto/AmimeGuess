@@ -10,9 +10,11 @@ import {
   buildCardTextContents,
   buildDeckContents,
   buildDuelistEntity,
+  buildEventContent,
   buildSilhouetteContents,
   buildSummonContents,
   cardArt,
+  eventOrders,
   evidenceOf,
   firstAppearanceText,
   leaksName,
@@ -487,5 +489,34 @@ describe('silueta: qué recortes sirven', () => {
     const metrics = await measureCutout(png);
     expect(metrics.coverage).toBeCloseTo(101 / 400, 10);
     expect(metrics.connected).toBeCloseTo(100 / 101, 10);
+  });
+});
+
+describe('sucesos de la línea de tiempo', () => {
+  const event = (id: string, series: 'dm' | 'gx' | '5ds', order: number, extra: Record<string, unknown> = {}) => ({
+    id,
+    text: `Suceso ${id}`,
+    series,
+    order,
+    verified: false,
+    ...extra,
+  });
+
+  it('eventOrders ordena primero por serie y después por posición, desde 1', () => {
+    const orders = eventOrders([event('c', '5ds', 1), event('b', 'gx', 2), event('a', 'dm', 5), event('d', 'gx', 1)]);
+    expect([...orders.entries()].sort((x, y) => x[1] - y[1]).map(([id]) => id)).toEqual(['a', 'd', 'b', 'c']);
+    expect(orders.get('a')).toBe(1);
+    expect(orders.get('c')).toBe(4);
+  });
+
+  it('eventOrders falla si dos sucesos de una serie comparten posición', () => {
+    expect(() => eventOrders([event('a', 'dm', 1), event('b', 'dm', 1)])).toThrow(/misma posición/);
+  });
+
+  it('buildEventContent guarda el texto y el lugar, y la marca de relleno solo si la tiene', () => {
+    expect(buildEventContent(event('a', 'dm', 1), 7)).toEqual({ id: 'event-a', kind: 'event', series: 'dm', payload: { text: 'Suceso a', order: 7 }, verified: false });
+    const filler = buildEventContent(event('b', 'gx', 2, { filler: true, verified: true }), 3);
+    expect(filler.payload).toEqual({ text: 'Suceso b', order: 3, filler: true });
+    expect(filler.verified).toBe(true);
   });
 });

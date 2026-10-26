@@ -288,7 +288,8 @@ describe('referencias', () => {
     const entities = new Set([...duelists, ...cards].map((entity) => entity.id));
     expect(entities.size).toBe(duelists.length + cards.length);
     expect(new Set(contents.map((content) => content.id)).size).toBe(contents.length);
-    for (const content of contents) expect(entities.has(content.entityId as string), content.id).toBe(true);
+    // Los sucesos de la línea de tiempo no tienen entidad dueña: la respuesta es el orden.
+    for (const content of contents.filter((candidate) => candidate.kind !== 'event')) expect(entities.has(content.entityId as string), content.id).toBe(true);
   });
 
   it('deck y carta as responden con un duelista; texto e invocación, con una carta', () => {
@@ -415,5 +416,29 @@ describe('pools mínimos con todas las series', () => {
     expect(new Set(decks.map((content) => content.entityId)).size).toBeGreaterThanOrEqual(10);
     expect(new Set(silhouetteContents.map((content) => content.entityId)).size).toBeGreaterThanOrEqual(10);
     expect(cards.filter((card) => String(card.attrs.clase).startsWith('Monstruo') && typeof card.attrs.atk === 'number').length).toBeGreaterThanOrEqual(10);
+  });
+});
+
+describe('sucesos de la línea de tiempo', () => {
+  const events = of('event');
+
+  it('hay de sobra, cada uno con un lugar único y seguido en la historia', () => {
+    const orders = events.map((event) => event.payload.order as number).sort((a, b) => a - b);
+    expect(orders).toEqual(orders.map((_, index) => index + 1));
+    expect(events.length).toBeGreaterThanOrEqual(60);
+  });
+
+  it('el orden respeta el de las series (Duel Monsters, GX, 5D\'s) y cada una tiene sucesos', () => {
+    const sorted = [...events].sort((a, b) => (a.payload.order as number) - (b.payload.order as number));
+    const ranks = sorted.map((event) => SERIES.indexOf(event.series as SeriesId));
+    expect(ranks).toEqual([...ranks].sort((a, b) => a - b));
+    for (const series of ['dm', 'gx', '5ds'] as const) expect(events.some((event) => event.series === series), series).toBe(true);
+  });
+
+  it('no tienen entidad dueña: la respuesta es el orden, no un duelista ni una carta', () => {
+    for (const event of events) {
+      expect(event.entityId, event.id).toBeUndefined();
+      expect(typeof event.payload.text, event.id).toBe('string');
+    }
   });
 });

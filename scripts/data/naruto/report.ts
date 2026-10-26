@@ -63,6 +63,7 @@ export function printReport(input: ReportInput): void {
   const jutsus = of('jutsu');
   const teams = of('team');
   const emojis = of('emoji');
+  const events = of('event');
   const groups = of('group');
   const transparent = (entity: Entity) => entity.attrs.imagenTransparente === 1;
   const withImage = (entity: Entity) => entity.image !== undefined;
@@ -88,7 +89,7 @@ export function printReport(input: ReportInput): void {
   line();
   line('Sin verificar (verified: false), a revisar en data-src/naruto/:');
   for (const item of input.unverified) line(`  ${item.label.padEnd(16)}${pad(item.unverified, 4)} de ${pad(item.total, 4)}`);
-  line('  Solo las frases esperan verified: true para entrar al pool de producción.');
+  line('  Las frases y los sucesos esperan verified: true para entrar al pool de producción.');
   line('  Las traducciones de translations.json también están sin verificar, pero se usan: sin ellas el Clásico no tendría atributos.');
 
   line();
@@ -102,6 +103,7 @@ export function printReport(input: ReportInput): void {
   line(`  Jutsu (personajes distintos)    ${pad(input.jutsuAnswers, 4)}   (hacen falta 10; ${jutsus.length} de ${input.jutsusTotal} jutsus con imagen)`);
   line(`  Equipo (personajes distintos)   ${pad(new Set(teams.map((c) => c.entityId)).size, 4)}   (${teams.length} contenidos de ${new Set(teams.map((c) => c.payload.team)).size} equipos)`);
   line(`  Emoji (personajes distintos)    ${pad(new Set(emojis.map((c) => c.entityId)).size, 4)}   (${of('emoji-arc').length} arcos con emojis, sin modo que los use todavía)`);
+  line(`  Línea de tiempo (verificados)   ${pad(events.filter((c) => c.verified).length, 4)}   (hacen falta 10; hay ${events.length} sucesos)`);
   line(`  Conexiones (tableros)           ${pad(input.boards.all, 4)}   (hacen falta 30; ${input.groupCount} grupos, ${input.sharedMembers} personajes en más de un grupo)`);
 
   line();

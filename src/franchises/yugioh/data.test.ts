@@ -2,7 +2,7 @@
 // pueden ver. Yu-Gi-Oh es la única franquicia con dos clases de entidad: los duelistas (las principales) y
 // las cartas insignia (el conjunto `cards`). La regla central de la SPEC: lo que se apaga no aparece nunca.
 // Con cada serie apagada, ningún duelista ni carta suyos sale como respuesta, como opción ni como valor
-// visible en ninguno de los 10 modos.
+// visible en ninguno de los 11 modos.
 
 import { beforeAll, describe, expect, it } from 'vitest';
 import { modeStatus } from '@/app/[franchise]/[mode]/playable';
@@ -15,6 +15,7 @@ import { MAX_ROUNDS, buildRounds, metricOfDay, poolOf as higherLowerPool } from 
 import { candidatesOf as imageCandidates } from '@/modes/image-reveal/logic';
 import { candidatesOf as listCandidates, itemsOf } from '@/modes/reveal-list/logic';
 import { candidatesOf as textCandidates, lineStates } from '@/modes/text-clue/logic';
+import { buildPuzzle, countOf, poolOf as timelinePool } from '@/modes/timeline/logic';
 import cardsJson from '../../../data/yugioh/cards.json';
 import contentJson from '../../../data/yugioh/content.json';
 import entitiesJson from '../../../data/yugioh/entities.json';
@@ -55,7 +56,7 @@ const SUMMONS_WITH_OTHER_SERIES_MATERIAL: Readonly<Record<string, string[]>> = {
 };
 
 describe('config', () => {
-  it('tiene los 10 modos de la SPEC, en orden y con su motor, y Duelista es el principal (el primero)', () => {
+  it('tiene los 11 modos, en orden y con su motor, y Duelista es el principal (el primero)', () => {
     expect(modes.map((m) => [m.slug, m.engine])).toEqual([
       ['duelista', 'classic'],
       ['carta', 'classic'],
@@ -67,6 +68,7 @@ describe('config', () => {
       ['mayor-o-menor', 'higher-lower'],
       ['invocacion', 'reveal-list'],
       ['deck', 'reveal-list'],
+      ['linea-de-tiempo', 'timeline'],
     ]);
     expect(modes[0].slug).toBe('duelista');
   });
@@ -79,6 +81,7 @@ describe('config', () => {
         'text-clue': m.textClue,
         'reveal-list': m.revealList,
         'higher-lower': m.higherLower,
+        timeline: m.timeline,
       }[m.engine as string];
       expect(config, m.slug).toBeDefined();
     }
@@ -174,7 +177,7 @@ describe('carga de datos', () => {
     }
   });
 
-  it('los 10 modos están disponibles con todas las series', () => {
+  it('los 11 modos están disponibles con todas las series', () => {
     for (const m of modes) expect(modeStatus(yugiohConfig, m, data), m.slug).toBe('playable');
   });
 
@@ -263,6 +266,19 @@ describe('con una serie apagada no aparece nada de ella', () => {
         }
         for (const candidate of imageCandidates(cards, rawContents, active, mode('silueta').imageReveal!)) {
           for (const image of candidate.images) expect(seriesOf.get(image.id), image.id).not.toBe(off);
+        }
+      });
+
+      it('ningún suceso de la serie sale en la línea de tiempo, ni en los retos que se arman con su pool', () => {
+        const config = mode('linea-de-tiempo').timeline!;
+        const pool = timelinePool(rawContents, active, config);
+        const bySeries = new Map(rawContents.map((content) => [content.id, content.series]));
+        expect(pool.some((item) => bySeries.get(item.id) === off)).toBe(false);
+        if (pool.length >= countOf(config)) {
+          for (let day = 0; day < 100; day++) {
+            const puzzle = buildPuzzle(pool, { franchise: 'yugioh', mode: 'linea-de-tiempo', filterKey: active.join('.'), day }, countOf(config));
+            expect(puzzle?.solution.some((item) => bySeries.get(item.id) === off), `día ${day}`).toBe(false);
+          }
         }
       });
 

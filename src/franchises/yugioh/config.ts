@@ -1,4 +1,5 @@
 import seriesJson from '../../../data/yugioh/series.json';
+import { es } from '../../i18n/es';
 import type { ClassicValueLabel } from '../../modes/classic/types';
 import type { FranchiseConfig } from '../types';
 
@@ -155,6 +156,21 @@ export const yugiohConfig = {
       engine: 'reveal-list',
       // Las cartas de un duelista, de la menos a la más icónica: cada fallo revela una más. La respuesta es el duelista.
       revealList: { contentKind: 'deck', field: 'items', label: 'Cartas' },
+    },
+    {
+      slug: 'linea-de-tiempo',
+      name: 'Línea de tiempo',
+      engine: 'timeline',
+      // Sucesos de la historia (solo los verificados) para ordenar del más antiguo al más reciente, con las mismas tres
+      // dificultades que Dragon Ball y Naruto: 5 sucesos y 3 intentos, 10 y 4, y 15 y 5. El relleno lo deja afuera el
+      // interruptor común a todos los modos (ver `withoutFlagged`).
+      timeline: {
+        contentKind: 'event',
+        textField: 'text',
+        orderField: 'order',
+        orderHelp: es.help.yugiohTimelineOrder,
+        levels: [{ count: 5, attempts: 3 }, { count: 10, attempts: 4 }, { count: 15, attempts: 5 }],
+      },
     },
   ],
   // Oscuro y dorado, con el marco doble de una carta en las tarjetas y títulos en mayúsculas clásicas.

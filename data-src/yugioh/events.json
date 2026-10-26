@@ -1,0 +1,1266 @@
+[
+  {
+    "id": "el-oricalcos-corrompe-a-dartz",
+    "text": "El Oricalcos corrompe a Dartz, rey de la Atlántida, y los Dragones Legendarios se enfrentan a él (relleno)",
+    "series": "dm",
+    "order": 1,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "akhenaden-forja-los-objetos-del-milenio",
+    "text": "Akhenaden forja los Objetos del Milenio sacrificando a la aldea de Kul Elna",
+    "series": "dm",
+    "order": 2,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "atem-se-convierte-en-faraon",
+    "text": "Atem se convierte en faraón tras la muerte de su padre",
+    "series": "dm",
+    "order": 3,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "bakura-profana-la-tumba-del-padre-de-atem",
+    "text": "Bakura, el Rey de los Ladrones, profana la tumba del padre de Atem",
+    "series": "dm",
+    "order": 4,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "mahad-se-convierte-en-el-mago-oscuro",
+    "text": "Mahad se une a su espíritu y se convierte en el Mago Oscuro",
+    "series": "dm",
+    "order": 5,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "kisara-muere-protegiendo-a-seto",
+    "text": "Kisara muere protegiendo al sacerdote Seto, y su espíritu, el Dragón Blanco de Ojos Azules, pasa a él",
+    "series": "dm",
+    "order": 6,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "atem-sella-a-zorc-en-el-rompecabezas",
+    "text": "Atem sella a Zorc junto con su propia alma en el Rompecabezas del Milenio",
+    "series": "dm",
+    "order": 7,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "seto-sucede-a-atem",
+    "text": "El sacerdote Seto sucede a Atem como faraón",
+    "series": "dm",
+    "order": 8,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "pegasus-recibe-el-ojo-del-milenio",
+    "text": "Pegasus recibe el Ojo del Milenio en Egipto y crea el juego Duel Monsters",
+    "series": "dm",
+    "order": 9,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-resuelve-el-rompecabezas-del-milenio",
+    "text": "Yugi resuelve el Rompecabezas del Milenio y despierta el espíritu del faraón",
+    "series": "dm",
+    "order": 10,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "kaiba-rompe-el-ojos-azules-del-abuelo",
+    "text": "Kaiba derrota al abuelo de Yugi y rompe su Dragón Blanco de Ojos Azules",
+    "series": "dm",
+    "order": 11,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-vence-a-kaiba-con-exodia",
+    "text": "Yugi vence a Kaiba invocando a Exodia, el Prohibido",
+    "series": "dm",
+    "order": 12,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "pegasus-atrapa-el-alma-del-abuelo",
+    "text": "Pegasus atrapa el alma del abuelo de Yugi para obligarlo a ir al Reino de los Duelistas",
+    "series": "dm",
+    "order": 13,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "weevil-arroja-a-exodia-al-mar",
+    "text": "Weevil arroja al mar las cartas de Exodia de Yugi",
+    "series": "dm",
+    "order": 14,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-derrota-a-weevil",
+    "text": "Yugi derrota a Weevil Underwood en el Reino de los Duelistas",
+    "series": "dm",
+    "order": 15,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "joey-derrota-a-mai",
+    "text": "Joey derrota a Mai Valentine en el Reino de los Duelistas",
+    "series": "dm",
+    "order": 16,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-derrota-a-mako",
+    "text": "Yugi derrota a Mako Tsunami",
+    "series": "dm",
+    "order": 17,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "joey-gana-el-dragon-negro-de-ojos-rojos",
+    "text": "Joey derrota a Rex Raptor y gana el Dragón Negro de Ojos Rojos",
+    "series": "dm",
+    "order": 18,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-derrota-a-panik",
+    "text": "Yugi derrota a Panik en un duelo en la oscuridad",
+    "series": "dm",
+    "order": 19,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "kaiba-llega-al-castillo-y-vence-a-joey",
+    "text": "Kaiba llega al castillo de Pegasus y vence a Joey",
+    "series": "dm",
+    "order": 20,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-y-joey-vencen-a-los-hermanos-paradox",
+    "text": "Yugi y Joey vencen a los Hermanos Paradox en el laberinto",
+    "series": "dm",
+    "order": 21,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "kaiba-vence-a-yugi-en-el-castillo",
+    "text": "Kaiba vence a Yugi en lo alto del castillo cuando Yugi duda en dar el último ataque",
+    "series": "dm",
+    "order": 22,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "pegasus-le-quita-el-alma-a-kaiba",
+    "text": "Pegasus derrota a Kaiba con el Mundo Toon y le quita el alma",
+    "series": "dm",
+    "order": 23,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-vence-a-mai-en-semifinales",
+    "text": "Yugi vence a Mai en las semifinales del Reino de los Duelistas",
+    "series": "dm",
+    "order": 24,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "joey-derrota-a-bandit-keith",
+    "text": "Joey derrota a Bandit Keith en las semifinales",
+    "series": "dm",
+    "order": 25,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-vence-a-joey-en-la-final",
+    "text": "Yugi vence a Joey en la final del Reino de los Duelistas",
+    "series": "dm",
+    "order": 26,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-derrota-a-pegasus",
+    "text": "Yugi derrota a Pegasus y libera las almas de su abuelo, Kaiba y Mokuba",
+    "series": "dm",
+    "order": 27,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yami-bakura-roba-el-ojo-del-milenio",
+    "text": "Yami Bakura le roba el Ojo del Milenio a Pegasus",
+    "series": "dm",
+    "order": 28,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "rebecca-desafia-a-yugi",
+    "text": "Rebecca Hawkins desafía a Yugi por el Dragón Blanco de Ojos Azules de su abuelo (relleno)",
+    "series": "dm",
+    "order": 29,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "legendary-heroes",
+    "text": "Los Cinco Grandes atrapan a Kaiba en un juego de realidad virtual y Yugi y sus amigos lo rescatan (relleno)",
+    "series": "dm",
+    "order": 30,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "duke-devlin-vence-a-joey",
+    "text": "Duke Devlin vence a Joey en Dungeon Dice Monsters y lo obliga a obedecerle",
+    "series": "dm",
+    "order": 31,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-derrota-a-duke-devlin",
+    "text": "Yugi derrota a Duke Devlin en Dungeon Dice Monsters",
+    "series": "dm",
+    "order": 32,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "ishizu-le-entrega-obelisco-a-kaiba",
+    "text": "Ishizu le entrega a Kaiba a Obelisco el Atormentador y Kaiba organiza el torneo Battle City",
+    "series": "dm",
+    "order": 33,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "joey-pierde-el-dragon-negro-de-ojos-rojos",
+    "text": "Joey pierde su Dragón Negro de Ojos Rojos ante un Rare Hunter",
+    "series": "dm",
+    "order": 34,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-vence-al-rare-hunter-de-exodia",
+    "text": "Yugi vence al Rare Hunter que usaba a Exodia y recupera el Dragón Negro de Ojos Rojos",
+    "series": "dm",
+    "order": 35,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-derrota-a-arkana",
+    "text": "Yugi derrota a Arkana, controlado por Marik",
+    "series": "dm",
+    "order": 36,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-gana-a-slifer",
+    "text": "Yugi derrota a Strings y gana a Slifer el Dragón del Cielo",
+    "series": "dm",
+    "order": 37,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-y-kaiba-vencen-a-lumis-y-umbra",
+    "text": "Yugi y Kaiba vencen a Lumis y Umbra en un duelo por parejas",
+    "series": "dm",
+    "order": 38,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "marik-controla-la-mente-de-joey",
+    "text": "Marik controla la mente de Joey y lo obliga a enfrentarse a Yugi",
+    "series": "dm",
+    "order": 39,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "joey-se-libera-del-control-de-marik",
+    "text": "Joey se libera del control mental de Marik",
+    "series": "dm",
+    "order": 40,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "comienzan-las-finales-de-battle-city",
+    "text": "Comienzan las finales de Battle City a bordo del dirigible de KaibaCorp",
+    "series": "dm",
+    "order": 41,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-derrota-a-yami-bakura-en-battle-city",
+    "text": "Yugi derrota a Yami Bakura en la primera ronda de las finales",
+    "series": "dm",
+    "order": 42,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yami-marik-toma-el-control-de-marik",
+    "text": "Joey vence a Odion y Yami Marik se apodera del cuerpo de Marik",
+    "series": "dm",
+    "order": 43,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yami-marik-envia-a-mai-al-reino-de-las-sombras",
+    "text": "Yami Marik derrota a Mai y la envía al Reino de las Sombras",
+    "series": "dm",
+    "order": 44,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "kaiba-vence-a-ishizu",
+    "text": "Kaiba vence a Ishizu y cambia el futuro que ella había visto",
+    "series": "dm",
+    "order": 45,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yami-marik-derrota-a-yami-bakura",
+    "text": "Yami Marik derrota a Yami Bakura con El Dragón Alado de Ra",
+    "series": "dm",
+    "order": 46,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "noah-atrapa-a-todos-en-su-mundo-virtual",
+    "text": "Noah atrapa a Yugi, Kaiba y sus amigos en su mundo virtual (relleno)",
+    "series": "dm",
+    "order": 47,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "noah-revela-que-es-hijo-de-gozaburo",
+    "text": "Noah revela que es el hijo biológico de Gozaburo Kaiba (relleno)",
+    "series": "dm",
+    "order": 48,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "yugi-y-joey-vencen-a-los-cinco-grandes",
+    "text": "Yugi y Joey vencen a los Cinco Grandes y a su Dragón de Cinco Cabezas (relleno)",
+    "series": "dm",
+    "order": 49,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "kaiba-derrota-a-gozaburo",
+    "text": "Kaiba derrota a Gozaburo, que había invocado a Exodia Necross (relleno)",
+    "series": "dm",
+    "order": 50,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "noah-destruye-su-mundo-virtual",
+    "text": "Noah deja que su mundo virtual se destruya para que todos puedan escapar (relleno)",
+    "series": "dm",
+    "order": 51,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "duelo-de-cuatro-en-battle-city",
+    "text": "Yugi, Kaiba, Joey y Yami Marik se enfrentan en un duelo de cuatro para definir las semifinales",
+    "series": "dm",
+    "order": 52,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "joey-se-desmaya-ante-yami-marik",
+    "text": "Joey se desmaya justo antes de vencer a Yami Marik",
+    "series": "dm",
+    "order": 53,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-vence-a-kaiba-en-semifinales",
+    "text": "Yugi vence a Kaiba en las semifinales de Battle City",
+    "series": "dm",
+    "order": 54,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "kaiba-vence-a-joey-por-el-tercer-puesto",
+    "text": "Kaiba vence a Joey en el duelo por el tercer puesto (relleno)",
+    "series": "dm",
+    "order": 55,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "yugi-derrota-a-yami-marik",
+    "text": "Yugi derrota a Yami Marik en la final de Battle City y libera a Marik",
+    "series": "dm",
+    "order": 56,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-recibe-los-dioses-egipcios",
+    "text": "Yugi recibe las tres cartas de los dioses egipcios",
+    "series": "dm",
+    "order": 57,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "joey-recupera-el-dragon-negro-de-ojos-rojos",
+    "text": "Joey recupera su Dragón Negro de Ojos Rojos en un duelo contra Yugi (relleno)",
+    "series": "dm",
+    "order": 58,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "yugi-libera-a-timaeus",
+    "text": "Yugi y el Faraón liberan al dragón Timaeus en el Mundo de los Espíritus (relleno)",
+    "series": "dm",
+    "order": 59,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "mai-se-une-a-doma",
+    "text": "Mai se une a Doma y se enfrenta a Joey (relleno)",
+    "series": "dm",
+    "order": 60,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "yugi-pierde-su-alma-ante-rafael",
+    "text": "El Faraón juega el Sello de Oricalcos contra Rafael, pierde y Yugi entrega su alma para salvarlo (relleno)",
+    "series": "dm",
+    "order": 61,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "kaiba-derrota-a-alister",
+    "text": "Kaiba derrota a Alister a bordo de su avión (relleno)",
+    "series": "dm",
+    "order": 62,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "joey-pierde-contra-mai",
+    "text": "Joey pierde contra Mai, dominada por el Sello de Oricalcos (relleno)",
+    "series": "dm",
+    "order": 63,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "los-caballeros-legendarios-derrotan-a-dartz",
+    "text": "Los Caballeros Legendarios derrotan a Dartz y Yugi, Joey y Kaiba recuperan sus almas (relleno)",
+    "series": "dm",
+    "order": 64,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "el-faraon-destruye-al-gran-leviatan",
+    "text": "El Faraón invoca a los dioses egipcios y destruye al Gran Leviatán (relleno)",
+    "series": "dm",
+    "order": 65,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "kaiba-derrota-a-zigfried",
+    "text": "Kaiba derrota a Zigfried von Schroeder, que saboteaba el KC Grand Championship (relleno)",
+    "series": "dm",
+    "order": 66,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "yugi-gana-el-kc-grand-championship",
+    "text": "Yugi gana el KC Grand Championship al vencer a Leon von Schroeder (relleno)",
+    "series": "dm",
+    "order": 67,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "el-faraon-entra-en-el-mundo-de-los-recuerdos",
+    "text": "El Faraón coloca las cartas de los dioses egipcios ante su tablilla y entra en el Mundo de los Recuerdos",
+    "series": "dm",
+    "order": 68,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-derrota-a-yami-bakura-en-el-mundo-de-los-recuerdos",
+    "text": "Yugi derrota a Yami Bakura en el Juego de las Sombras final",
+    "series": "dm",
+    "order": 69,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "atem-recupera-su-nombre",
+    "text": "El Faraón recupera su nombre, Atem, y destruye a Zorc con el Creador de la Luz",
+    "series": "dm",
+    "order": 70,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-vence-a-atem-en-el-duelo-ceremonial",
+    "text": "Yugi vence a Atem en el Duelo Ceremonial",
+    "series": "dm",
+    "order": 71,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "atem-parte-al-mas-alla",
+    "text": "Atem cruza la puerta hacia el más allá y los Objetos del Milenio quedan sepultados",
+    "series": "dm",
+    "order": 72,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yugi-le-da-kuriboh-alado-a-jaden",
+    "text": "Yugi le da a Jaden la carta Kuriboh Alado antes del examen de ingreso",
+    "series": "gx",
+    "order": 1,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-vence-a-crowler-en-el-examen",
+    "text": "Jaden vence a Crowler en el examen de ingreso a la Academia de Duelos",
+    "series": "gx",
+    "order": 2,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-y-syrus-vencen-a-los-hermanos-paradox",
+    "text": "Jaden y Syrus vencen a los Hermanos Paradox en un duelo por parejas y evitan la expulsión",
+    "series": "gx",
+    "order": 3,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-pierde-contra-zane",
+    "text": "Jaden pierde contra Zane Truesdale",
+    "series": "gx",
+    "order": 4,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "chazz-abandona-la-academia",
+    "text": "Chazz pierde contra Bastion y abandona la Academia de Duelos",
+    "series": "gx",
+    "order": 5,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-vence-a-chazz-de-la-academia-del-norte",
+    "text": "Chazz vuelve como campeón de la Academia del Norte y pierde contra Jaden en el duelo entre escuelas",
+    "series": "gx",
+    "order": 6,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-recibe-una-llave-espiritual",
+    "text": "Jaden y otros seis duelistas reciben las Llaves Espirituales que protegen a las Bestias Sagradas",
+    "series": "gx",
+    "order": 7,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-libera-a-atticus",
+    "text": "Jaden derrota a Nightshroud y libera a Atticus, el hermano de Alexis",
+    "series": "gx",
+    "order": 8,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-derrota-a-camula",
+    "text": "Jaden derrota a la vampira Camula, que había atrapado las almas de Crowler y Zane",
+    "series": "gx",
+    "order": 9,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "banner-es-amnael",
+    "text": "Se revela que el profesor Banner es Amnael, de los Jinetes de las Sombras, y Jaden lo derrota",
+    "series": "gx",
+    "order": 10,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-derrota-a-kagemaru",
+    "text": "Kagemaru libera a las Bestias Sagradas y Jaden lo derrota",
+    "series": "gx",
+    "order": 11,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-y-zane-empatan-en-la-graduacion",
+    "text": "Jaden y Zane empatan en el duelo de graduación de Zane",
+    "series": "gx",
+    "order": 12,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "aster-llega-a-la-academia",
+    "text": "Aster Phoenix llega a la Academia de Duelos",
+    "series": "gx",
+    "order": 13,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "aster-vence-a-zane",
+    "text": "Aster Phoenix vence a Zane",
+    "series": "gx",
+    "order": 14,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-deja-de-ver-sus-cartas",
+    "text": "Aster vence a Jaden y Jaden deja de ver las imágenes de sus cartas",
+    "series": "gx",
+    "order": 15,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "chazz-se-une-a-la-sociedad-de-la-luz",
+    "text": "Sartorius vence a Chazz y lo convierte en miembro de la Sociedad de la Luz",
+    "series": "gx",
+    "order": 16,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-recibe-a-neos",
+    "text": "Jaden viaja al Neoespacio y vuelve con HÉROE Elemental Neos",
+    "series": "gx",
+    "order": 17,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "zane-se-vuelve-despiadado",
+    "text": "Zane pierde su carrera profesional y se vuelve un duelista despiadado",
+    "series": "gx",
+    "order": 18,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-derrota-a-aster",
+    "text": "Jaden derrota a Aster en el duelo de su regreso",
+    "series": "gx",
+    "order": 19,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "alexis-se-une-a-la-sociedad-de-la-luz",
+    "text": "Chazz vence a Alexis y ella se une a la Sociedad de la Luz",
+    "series": "gx",
+    "order": 20,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-libera-a-chazz",
+    "text": "Jaden libera a Chazz de la Sociedad de la Luz gracias a las cartas Ojama",
+    "series": "gx",
+    "order": 21,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-libera-a-alexis",
+    "text": "Jaden derrota a Alexis y la libera de la Sociedad de la Luz",
+    "series": "gx",
+    "order": 22,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "zane-vence-a-syrus",
+    "text": "Zane, ahora despiadado, vence a su hermano Syrus",
+    "series": "gx",
+    "order": 23,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "sartorius-vence-a-aster",
+    "text": "Sartorius vence a Aster con su mazo de Fuerza Arcana",
+    "series": "gx",
+    "order": 24,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-derrota-a-sartorius",
+    "text": "Jaden derrota a Sartorius y lo libera de la Luz de la Destrucción",
+    "series": "gx",
+    "order": 25,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "llegan-los-estudiantes-de-intercambio",
+    "text": "El profesor Viper llega a la Academia de Duelos con los estudiantes de intercambio, entre ellos Jesse Anderson",
+    "series": "gx",
+    "order": 26,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "axel-secuestra-a-syrus",
+    "text": "Axel Brodie secuestra a Syrus para obligar a Jaden a enfrentarse a él",
+    "series": "gx",
+    "order": 27,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "la-academia-viaja-a-otra-dimension",
+    "text": "Jaden derrota al profesor Viper y la Academia de Duelos es transportada a otra dimensión",
+    "series": "gx",
+    "order": 28,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jesse-desaparece-con-yubel",
+    "text": "Jesse invoca al Dragón Arco Iris y desaparece junto a Yubel",
+    "series": "gx",
+    "order": 29,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "los-amigos-de-jaden-desaparecen",
+    "text": "Chazz, Hassleberry, Alexis y Atticus desaparecen mientras Jaden busca a Jesse",
+    "series": "gx",
+    "order": 30,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-se-convierte-en-el-rey-supremo",
+    "text": "Jaden se convierte en el Rey Supremo",
+    "series": "gx",
+    "order": 31,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-rescata-a-jesse-de-yubel",
+    "text": "Jaden rescata a Jesse del control de Yubel",
+    "series": "gx",
+    "order": 32,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-se-fusiona-con-yubel",
+    "text": "Jaden se fusiona con Yubel usando Súper Polimerización",
+    "series": "gx",
+    "order": 33,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "trueman-destruye-a-honest",
+    "text": "Trueman destruye a Honest y amenaza con acabar con todos",
+    "series": "gx",
+    "order": 34,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "alexis-vence-a-blair-en-la-fiesta",
+    "text": "En la fiesta de duelos, Alexis forma pareja con Jaden y vence a Blair (relleno)",
+    "series": "gx",
+    "order": 35,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "syrus-se-enfrenta-a-makoto-inotsume",
+    "text": "Syrus ocupa el lugar de Zane ante Makoto Inotsume y usa el Dragón Ciberoscuro (relleno)",
+    "series": "gx",
+    "order": 36,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "trueman-borra-a-axel",
+    "text": "Trueman derrota a Axel y lo borra de la memoria de todos",
+    "series": "gx",
+    "order": 37,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-y-jesse-vencen-a-fujiwara",
+    "text": "Jaden y Jesse vencen juntos a Fujiwara",
+    "series": "gx",
+    "order": 38,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-derrota-a-nightshroud",
+    "text": "Jaden fusiona a Neos y Yubel y derrota al verdadero Nightshroud",
+    "series": "gx",
+    "order": 39,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jaden-se-gradua",
+    "text": "Jaden se gradúa y deja la Academia de Duelos en busca de nuevas aventuras",
+    "series": "gx",
+    "order": 40,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "zero-reverse",
+    "text": "El Dr. Fudo pone a salvo a su hijo Yusei antes del Zero Reverse, que deja aislado al Satélite",
+    "series": "5ds",
+    "order": 1,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "se-forman-los-enforcers",
+    "text": "Yusei, Jack, Crow y Kalin forman Los Enforcers en el Satélite",
+    "series": "5ds",
+    "order": 2,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "kalin-termina-preso",
+    "text": "Kalin se vuelve contra Seguridad, Los Enforcers se separan y Kalin termina preso",
+    "series": "5ds",
+    "order": 3,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jack-roba-el-dragon-de-polvo-de-estrellas",
+    "text": "Jack le roba a Yusei el Dragón de Polvo de Estrellas y se va a Nueva Ciudad Domino",
+    "series": "5ds",
+    "order": 4,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-escapa-del-satelite",
+    "text": "Yusei escapa del Satélite hacia Nueva Ciudad Domino por una tubería",
+    "series": "5ds",
+    "order": 5,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-y-jack-empatan",
+    "text": "Yusei se enfrenta a Jack, pero el duelo termina sin ganador por un apagón",
+    "series": "5ds",
+    "order": 6,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-es-enviado-a-la-instalacion",
+    "text": "Yusei es arrestado y enviado a la Instalación, donde conoce a Yanagi y Tanner",
+    "series": "5ds",
+    "order": 7,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-conoce-a-leo-y-luna",
+    "text": "Yusei conoce a los gemelos Leo y Luna",
+    "series": "5ds",
+    "order": 8,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jack-devuelve-el-dragon-de-polvo-de-estrellas",
+    "text": "Jack le devuelve a Yusei el Dragón de Polvo de Estrellas",
+    "series": "5ds",
+    "order": 9,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-derrota-a-greiger",
+    "text": "Yusei derrota a Greiger en la Copa Fortuna",
+    "series": "5ds",
+    "order": 10,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-derrota-a-akiza",
+    "text": "Yusei derrota a Akiza en la Copa Fortuna y su máscara se rompe",
+    "series": "5ds",
+    "order": 11,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-se-convierte-en-rey-de-los-duelos",
+    "text": "Yusei derrota a Jack, se convierte en el nuevo Rey de los Duelos y aparece el Dragón Carmesí",
+    "series": "5ds",
+    "order": 12,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-y-kalin-primer-duelo",
+    "text": "Yusei se enfrenta por primera vez a Kalin, convertido en Dark Signer, y el duelo queda sin terminar",
+    "series": "5ds",
+    "order": 13,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "carly-se-convierte-en-dark-signer",
+    "text": "Carly muere tras caer por una ventana y regresa como Dark Signer",
+    "series": "5ds",
+    "order": 14,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "rally-se-sacrifica-contra-roman",
+    "text": "Rally se sacrifica para vencer a Uru, el Inmortal Terrestre de Roman Goodwin",
+    "series": "5ds",
+    "order": 15,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-derrota-a-kalin",
+    "text": "Yusei derrota a Kalin, que deja de ser un Dark Signer",
+    "series": "5ds",
+    "order": 16,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-derrota-a-roman-goodwin",
+    "text": "Yusei derrota a Roman Goodwin, responsable del Zero Reverse",
+    "series": "5ds",
+    "order": 17,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-jack-y-crow-derrotan-a-rex-goodwin",
+    "text": "Yusei, Jack y Crow derrotan a Rex Goodwin, que se había convertido en Dark Signer",
+    "series": "5ds",
+    "order": 18,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "crow-se-convierte-en-signer",
+    "text": "Yusei le entrega a Crow la Marca de la Cola y Crow se convierte en Signer",
+    "series": "5ds",
+    "order": 19,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "se-completa-el-puente-daedalus",
+    "text": "Se completa el Puente Daedalus, que une el Satélite con Nueva Ciudad Domino",
+    "series": "5ds",
+    "order": 20,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-derrota-a-ghost",
+    "text": "Yusei derrota a Ghost, un robot de duelo que robaba monstruos de Sincronía",
+    "series": "5ds",
+    "order": 21,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-salva-a-leo-y-luna-de-la-expulsion",
+    "text": "Yusei derrota a Heitmann y evita que expulsen a Leo, Luna y sus amigos de la Academia de Duelos (relleno)",
+    "series": "5ds",
+    "order": 22,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "sherry-invita-a-yusei-al-wrgp",
+    "text": "Sherry LeBlanc le pide a Yusei que forme equipo con ella para el WRGP",
+    "series": "5ds",
+    "order": 23,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "akiza-obtiene-su-licencia",
+    "text": "Akiza construye su Duel Runner y obtiene su licencia venciendo a Trudge (relleno)",
+    "series": "5ds",
+    "order": 24,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "lester-atrapa-a-leo-y-luna",
+    "text": "Lester atrapa a Leo y Luna en un duelo con el Emperador Meklord Skiel (relleno)",
+    "series": "5ds",
+    "order": 25,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "aparece-bruno",
+    "text": "Bruno, un mecánico sin memoria, ayuda a Yusei a preparar el motor para la Sincronía Acelerada",
+    "series": "5ds",
+    "order": 26,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jack-obtiene-el-dragon-rojo-majestuoso",
+    "text": "Jack derrota a un impostor que se hacía pasar por él y obtiene el Dragón Rojo Majestuoso",
+    "series": "5ds",
+    "order": 27,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-va-a-crash-town",
+    "text": "Yusei viaja a Crash Town para ayudar a Kalin (relleno)",
+    "series": "5ds",
+    "order": 28,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "nace-satisfaction-town",
+    "text": "Yusei y Kalin derrotan a Lawton y Crash Town pasa a llamarse Satisfaction Town (relleno)",
+    "series": "5ds",
+    "order": 29,
+    "filler": true,
+    "verified": true
+  },
+  {
+    "id": "team-5ds-vence-al-team-unicorn",
+    "text": "El Team 5D's vence al Team Unicorn en el WRGP",
+    "series": "5ds",
+    "order": 30,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "team-5ds-vence-al-team-catastrophe",
+    "text": "El Team 5D's vence al Team Catastrophe y pasa a cuartos de final",
+    "series": "5ds",
+    "order": 31,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-derrota-a-primo",
+    "text": "Yusei invoca al Dragón de la Estrella Fugaz y derrota a Primo",
+    "series": "5ds",
+    "order": 32,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jack-obtiene-el-dragon-de-nova-roja",
+    "text": "Jack derrota a un enviado del Demonio Carmesí en Nazca y obtiene el Dragón de Nova Roja",
+    "series": "5ds",
+    "order": 33,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "aparece-el-ark-cradle",
+    "text": "El Team 5D's vence al Team Taiyo y el Ark Cradle aparece en el cielo",
+    "series": "5ds",
+    "order": 34,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "team-5ds-vence-al-team-ragnarok",
+    "text": "El Team 5D's vence al Team Ragnarok en las semifinales del WRGP",
+    "series": "5ds",
+    "order": 35,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jack-vence-a-lester",
+    "text": "Jack vence a Lester en la final del WRGP",
+    "series": "5ds",
+    "order": 36,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "crow-le-pasa-el-dragon-de-alas-negras-a-yusei",
+    "text": "Jakob vence a Jack y a Crow, y Crow le pasa a Yusei el Dragón de Alas Negras",
+    "series": "5ds",
+    "order": 37,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "nace-aporia",
+    "text": "Lester, Primo y Jakob se fusionan en Aporia",
+    "series": "5ds",
+    "order": 38,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "team-5ds-gana-el-wrgp",
+    "text": "Yusei vence a Aporia y el Team 5D's gana el WRGP",
+    "series": "5ds",
+    "order": 39,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "el-ark-cradle-desciende",
+    "text": "El Ark Cradle desciende sobre Nueva Ciudad Domino y el Team 5D's sube para detenerlo",
+    "series": "5ds",
+    "order": 40,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "akiza-y-crow-vencen-a-sherry",
+    "text": "Akiza y Crow vencen a Sherry LeBlanc en el Ark Cradle",
+    "series": "5ds",
+    "order": 41,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "leo-se-convierte-en-signer",
+    "text": "Leo despierta como el sexto Signer con el Dragón del Flujo de la Vida",
+    "series": "5ds",
+    "order": 42,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "jack-derrota-a-aporia",
+    "text": "Jack derrota a Aporia con el Dragón de Nova Roja",
+    "series": "5ds",
+    "order": 43,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "bruno-se-sacrifica-por-yusei",
+    "text": "Bruno recupera la memoria como Antinomy y se sacrifica para salvar a Yusei",
+    "series": "5ds",
+    "order": 44,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-derrota-a-z-one",
+    "text": "Yusei derrota a Z-one con el Dragón de Polvo de Estrellas y el Ark Cradle deja de caer",
+    "series": "5ds",
+    "order": 45,
+    "filler": false,
+    "verified": true
+  },
+  {
+    "id": "yusei-vence-a-jack-en-el-ultimo-duelo",
+    "text": "Yusei vence a Jack en un último duelo y el Team 5D's toma caminos distintos",
+    "series": "5ds",
+    "order": 46,
+    "filler": false,
+    "verified": true
+  }
+]

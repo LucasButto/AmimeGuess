@@ -20,7 +20,7 @@ export interface ReportInput {
   readonly rendered: { duelists: Rendered[]; art: Rendered[]; faces: Rendered[]; silhouettes: Rendered[] };
   readonly silhouettes: { readonly monsters: number; readonly usable: number };
   readonly images: { fromYugipedia: number; manual: number; missing: number };
-  readonly unverified: { duelists: number; cards: number; summons: number };
+  readonly unverified: { duelists: number; cards: number; summons: number; events: number };
   readonly imageBytesYugioh: number;
   readonly imageBytesProject: number;
 }
@@ -72,7 +72,7 @@ export function printReport(input: ReportInput): void {
   line(`  Silueta del monstruo (silhouette) ${pad(of('silhouette').length, 2)}   (${input.silhouettes.usable} de ${input.silhouettes.monsters} monstruos tienen recorte que sirve)`);
 
   line();
-  line(`Sin verificar: ${input.unverified.duelists} de ${input.duelists.length} duelistas, ${input.unverified.cards} listas de cartas, ${input.unverified.summons} invocaciones.`);
+  line(`Sin verificar: ${input.unverified.duelists} de ${input.duelists.length} duelistas, ${input.unverified.cards} listas de cartas, ${input.unverified.summons} invocaciones, ${input.unverified.events} sucesos.`);
   if (input.withoutSpanish.length > 0) {
     line();
     line(`Cartas sin clave "es" en YGOResources (${input.withoutSpanish.length}; quedan fuera del modo Texto y se ven con su nombre en inglés):`);
@@ -92,6 +92,7 @@ export function printReport(input: ReportInput): void {
   line(`  Carta insignia       ${pad(verifiedPool('ace-card'), 4)} duelistas con su carta as`);
   line(`  Deck                 ${pad(verifiedPool('deck'), 4)} duelistas`);
   line(`  Invocación           ${pad(verifiedPool('summon'), 4)} monstruos (de ${input.summonCandidates} fusión/sincro/xyz/ritual del pool)`);
+  line(`  Línea de tiempo      ${pad(of('event').filter((content) => content.verified).length, 4)} sucesos verificados (hay ${of('event').length})`);
 
   line();
   line('Imágenes (WebP):');

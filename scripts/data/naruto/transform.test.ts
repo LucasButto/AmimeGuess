@@ -13,7 +13,10 @@ import {
   cleanList,
   cleanValue,
   countBoards,
+  buildEventContent,
   deriveAttributes,
+  eventOrders,
+  initialOf,
   jutsuTypesOf,
   leaksName,
   parseDebut,
@@ -384,5 +387,42 @@ describe('grupos de Conexiones', () => {
     expect(countBoards(groups, (id) => !id.startsWith('d'))).toBe(0);
     expect(countBoards(groups, (id) => id !== 'a0')).toBe(1);
     expect(countBoards(groups, (id) => id !== 'a0' && id !== 'a1')).toBe(0);
+  });
+});
+
+describe('initialOf', () => {
+  it('es la primera letra del nombre, en mayúscula y sin acento ni macrón', () => {
+    expect(initialOf('Hiruzen Sarutobi')).toBe('H');
+    expect(initialOf('Ōnoki')).toBe('O');
+    expect(initialOf('A (Cuarto Raikage)')).toBe('A');
+  });
+});
+
+describe('sucesos de la línea de tiempo', () => {
+  const event = (id: string, series: 'naruto' | 'shippuden' | 'boruto', order: number, extra: Record<string, unknown> = {}) => ({
+    id,
+    text: `Suceso ${id}`,
+    series,
+    order,
+    verified: false,
+    ...extra,
+  });
+
+  it('eventOrders usa el `order` global, sin importar la serie, y renumera desde 1', () => {
+    const orders = eventOrders([event('c', 'boruto', 40), event('b', 'shippuden', 7), event('a', 'naruto', 20), event('d', 'shippuden', 2)]);
+    expect([...orders.entries()].sort((x, y) => x[1] - y[1]).map(([id]) => id)).toEqual(['d', 'b', 'a', 'c']);
+    expect(orders.get('d')).toBe(1);
+    expect(orders.get('c')).toBe(4);
+  });
+
+  it('eventOrders falla si dos sucesos comparten posición, aunque sean de series distintas', () => {
+    expect(() => eventOrders([event('a', 'naruto', 1), event('b', 'shippuden', 1)])).toThrow(/misma posición/);
+  });
+
+  it('buildEventContent guarda el texto y el lugar, y las marcas de relleno y de manga solo si las tiene', () => {
+    expect(buildEventContent(event('a', 'naruto', 1), 7)).toEqual({ id: 'event-a', kind: 'event', series: 'naruto', payload: { text: 'Suceso a', order: 7 }, verified: false });
+    const marked = buildEventContent(event('b', 'boruto', 2, { filler: true, mangaOnly: true, verified: true }), 3);
+    expect(marked.payload).toEqual({ text: 'Suceso b', order: 3, filler: true, mangaOnly: true });
+    expect(marked.verified).toBe(true);
   });
 });

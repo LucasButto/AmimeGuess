@@ -242,7 +242,46 @@ const silhouetteSchema = z
   })
   .strict();
 
-export const contentSchema = z.discriminatedUnion('kind', [cardTextSchema, deckSchema, summonSchema, aceCardSchema, silhouetteSchema]);
+/**
+ * Un suceso de la historia para la línea de tiempo: sin entidad dueña (la respuesta es el orden). `order` es su lugar en
+ * toda la historia (único), calculado a partir de la posición dentro de la serie y del orden de las series.
+ */
+const eventSchema = z
+  .object({
+    ...contentBase,
+    kind: z.literal('event'),
+    payload: z
+      .object({
+        text: z.string().min(1),
+        order: z.number().int().positive(),
+        filler: z.literal(true).optional(),
+      })
+      .strict(),
+  })
+  .strict();
+
+export const contentSchema = z.discriminatedUnion('kind', [cardTextSchema, deckSchema, summonSchema, aceCardSchema, silhouetteSchema, eventSchema]);
+
+/**
+ * data-src/yugioh/events.json: los sucesos a ordenar. `order` es la posición dentro de su serie (desde 1, sin repetir);
+ * el orden entre series es el de `SERIES`, que también es el de la historia.
+ */
+export const eventSrcSchema = z
+  .array(
+    z
+      .object({
+        id: kebab,
+        text: z.string().min(1),
+        series: seriesId,
+        order: z.number().int().positive(),
+        /** `true` si es de relleno del anime (no está en el manga): la línea de tiempo puede dejarlo afuera. */
+        filler: z.boolean().optional(),
+        verified: z.boolean(),
+      })
+      .strict(),
+  )
+  .min(1);
+export type EventSrc = z.infer<typeof eventSrcSchema>[number];
 
 /**
  * data/yugioh/silhouettes.json: de cada monstruo, de qué ilustración sale su recorte (`art`, el id de YGOPRODeck),

@@ -219,6 +219,25 @@ export const emojiSrcSchema = z
     message: 'Una entrada describe a un personaje o a un arco, no a los dos',
   });
 
+/**
+ * Un suceso para la línea de tiempo. `order` es su posición en toda la historia (desde 1, sin repetir): la de la historia
+ * real, no la de emisión, así los orígenes (Kaguya, Hashirama y Madara…) van antes que la serie original aunque se cuenten
+ * en Shippūden. La serie solo sirve para los filtros: con una apagada, sus sucesos no salen.
+ */
+export const eventSrcSchema = z
+  .object({
+    id: kebab,
+    text: z.string().min(1),
+    series: seriesId,
+    order: z.number().int().positive(),
+    /** `true` si es de relleno del anime (no está en el manga): la línea de tiempo puede dejarlo afuera. */
+    filler: z.boolean().optional(),
+    /** `true` si es de un arco del manga que todavía no se adaptó al anime: la línea de tiempo puede dejarlo afuera. */
+    mangaOnly: z.boolean().optional(),
+    verified: z.boolean(),
+  })
+  .strict();
+
 const DERIVED_KINDS = ['clan', 'village', 'akatsuki', 'kara', 'kekkei-genkai', 'classification'] as const;
 
 export const groupSrcSchema = z
@@ -267,6 +286,7 @@ export type QuoteSrc = z.infer<typeof quoteSrcSchema>;
 export type JutsuSrc = z.infer<typeof jutsuSrcSchema>;
 export type TeamSrc = z.infer<typeof teamSrcSchema>;
 export type EmojiSrc = z.infer<typeof emojiSrcSchema>;
+export type EventSrc = z.infer<typeof eventSrcSchema>;
 export type GroupSrc = z.infer<typeof groupSrcSchema>;
 export type FocusSrc = z.infer<typeof focusSrcSchema>;
 
@@ -346,6 +366,21 @@ const emojiContentSchema = z
   .strict();
 
 /** Un arco descrito con emojis. Todavía ningún modo lo usa: no tiene una entidad que sea la respuesta. */
+const eventContentSchema = z
+  .object({
+    ...contentBase,
+    kind: z.literal('event'),
+    payload: z
+      .object({
+        text: z.string().min(1),
+        order: z.number().int().positive(),
+        filler: z.literal(true).optional(),
+        mangaOnly: z.literal(true).optional(),
+      })
+      .strict(),
+  })
+  .strict();
+
 const emojiArcContentSchema = z
   .object({
     ...contentBase,
@@ -394,6 +429,7 @@ export const contentSchema = z.discriminatedUnion('kind', [
   teamContentSchema,
   emojiContentSchema,
   emojiArcContentSchema,
+  eventContentSchema,
   eyeContentSchema,
   groupContentSchema,
 ]);

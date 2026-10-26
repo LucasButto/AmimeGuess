@@ -7,6 +7,7 @@ import {
   SERIES,
   SUMMONING,
   type DuelistSrc,
+  type EventSrc,
   type SeriesId,
   type SummoningKind,
   type Translations,
@@ -319,6 +320,27 @@ export function acceptedSummons(target: SummonInput, all: readonly SummonInput[]
     .filter((other) => other.cardId !== target.cardId && key(other) === key(target))
     .map((other) => other.cardId)
     .sort();
+}
+
+/**
+ * Posición (desde 1) de cada suceso en toda la historia: primero por serie (el orden de `SERIES`) y dentro de la serie por
+ * su `order`. Dos sucesos de una serie no pueden tener la misma posición.
+ */
+export function eventOrders(events: readonly EventSrc[]): Map<string, number> {
+  const seen = new Set<string>();
+  for (const event of events) {
+    const key = `${event.series}:${event.order}`;
+    if (seen.has(key)) throw new Error(`Dos sucesos de ${event.series} tienen la misma posición (${event.order})`);
+    seen.add(key);
+  }
+  const sorted = [...events].sort((a, b) => SERIES.indexOf(a.series) - SERIES.indexOf(b.series) || a.order - b.order);
+  return new Map(sorted.map((event, index) => [event.id, index + 1]));
+}
+
+/** El contenido de un suceso: su texto y su lugar en la historia (`order`, único entre todos los sucesos). */
+export function buildEventContent(event: EventSrc, order: number): Content {
+  const payload = { text: event.text, order, ...(event.filler === true ? { filler: true as const } : {}) };
+  return { id: `event-${event.id}`, kind: 'event', series: event.series, payload, verified: event.verified };
 }
 
 export function buildSummonContents(input: SummonInput, all: readonly SummonInput[]): Content[] {

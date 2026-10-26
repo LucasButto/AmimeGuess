@@ -26,7 +26,7 @@ export interface TodoInput {
   readonly withoutSpanish: ReadonlyArray<{ name: string; owners: string }>;
   /** Cartas cuyo único respaldo en Yugipedia es una mención en la página del duelista, no su lista de deck. */
   readonly weakEvidence: ReadonlyArray<{ duelist: string; card: string }>;
-  readonly unverified: { readonly duelists: number; readonly cards: number; readonly summons: number };
+  readonly unverified: { readonly duelists: number; readonly cards: number; readonly summons: number; readonly events: number };
   /** Monstruos que tienen silueta y monstruos cuyo recorte no sirvió (sin silueta: no son respuesta de Silueta, pero sí de los demás modos). */
   readonly silhouettes: { readonly monsters: number; readonly usable: number; readonly rejected: readonly string[] };
   readonly imageBytesProject: number;
@@ -40,11 +40,11 @@ function pageUrl(title: string): string {
 
 export function renderTodoSection(input: TodoInput): string {
   const lines: string[] = [TODO_START, '', '## Yu-Gi-Oh · pendientes de contenido', ''];
-  const { duelists, cards, summons } = input.unverified;
+  const { duelists, cards, summons, events } = input.unverified;
   const curated =
-    duelists + cards + summons === 0
-      ? 'Todo lo curado está verificado: duelistas (rol, afiliaciones y arquetipos), listas de cartas insignia (cada carta comprobada contra las listas de mazo del anime en Yugipedia) e invocaciones.'
-      : `Queda sin verificar: ${duelists} duelistas (rol, afiliaciones y arquetipos redactados a partir de la infobox de Yugipedia), ${cards} listas de cartas insignia y ${summons} invocaciones.`;
+    duelists + cards + summons + events === 0
+      ? 'Todo lo curado está verificado: duelistas (rol, afiliaciones y arquetipos), listas de cartas insignia (cada carta comprobada contra las listas de mazo del anime en Yugipedia) e invocaciones, además de los sucesos de la línea de tiempo.'
+      : `Queda sin verificar: ${duelists} duelistas (rol, afiliaciones y arquetipos redactados a partir de la infobox de Yugipedia), ${cards} listas de cartas insignia, ${summons} invocaciones y ${events} sucesos.`;
   lines.push(
     `Hay ${input.duelists} duelistas y ${input.cards} cartas insignia de las series ${input.series.join(', ')} (decisión de la sesión 12: solo Duel Monsters, GX y 5D's por ahora; ZEXAL, ARC-V y VRAINS se suman después con sus duelistas en \`data-src/yugioh/\`). ${curated} Los nombres y textos de las cartas, el género y la primera aparición no se redactan: vienen de YGOResources y de Yugipedia.`,
     '',

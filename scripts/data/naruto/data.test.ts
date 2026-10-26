@@ -24,10 +24,11 @@ const quotes = of('quote');
 const teams = of('team');
 const emojis = of('emoji');
 const groups = of('group');
+const events = of('event');
 
 const CLASSIC_KEYS = [
   'genero', 'afiliaciones', 'tiposDeJutsu', 'kekkeiGenkai', 'naturalezas', 'atributos', 'arcoDebut',
-  'estadoVital', 'ocupacion', 'imagenTransparente',
+  'estadoVital', 'ocupacion', 'inicial', 'imagenTransparente',
 ];
 const SET_KEYS = ['afiliaciones', 'tiposDeJutsu', 'kekkeiGenkai', 'naturalezas', 'atributos'];
 
@@ -240,6 +241,25 @@ describe('grupos de Conexiones', () => {
         for (const other of others) expect(membersOf.get(other)?.has(member)).toBe(true);
       }
       expect(Object.keys(shared).every((member) => (content.payload.members as string[]).includes(member)), id).toBe(true);
+    }
+  });
+});
+
+describe('sucesos de la línea de tiempo', () => {
+  it('hay de sobra, cada uno con un lugar único y seguido en la historia', () => {
+    const orders = events.map((event) => event.payload.order as number).sort((a, b) => a - b);
+    expect(orders).toEqual(orders.map((_, index) => index + 1));
+    expect(events.length).toBeGreaterThanOrEqual(60);
+  });
+
+  it('cada serie tiene sucesos (la serie solo sirve para filtrar: el orden es el de la historia)', () => {
+    for (const series of SERIES) expect(events.some((event) => event.series === series), series).toBe(true);
+  });
+
+  it('ningún suceso trae el nombre de su serie como respuesta ni una entidad dueña', () => {
+    for (const event of events) {
+      expect(event.entityId, event.id).toBeUndefined();
+      expect(typeof event.payload.text, event.id).toBe('string');
     }
   });
 });

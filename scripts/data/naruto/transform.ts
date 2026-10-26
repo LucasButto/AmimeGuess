@@ -7,6 +7,7 @@ import {
   type ArcsFile,
   type CharacterSrc,
   type EmojiSrc,
+  type EventSrc,
   type FocusSrc,
   type GroupSrc,
   type QuoteSrc,
@@ -284,6 +285,16 @@ export interface CharacterInput {
 }
 
 /**
+ * La inicial del nombre para la pista "Inicial" del Clásico: la primera letra, en mayúscula y sin acento ni macrón
+ * ("Ōnoki" da "O"), igual que en Pokémon.
+ */
+export function initialOf(name: string): string {
+  const letter = [...name.normalize('NFD').replace(/\p{Diacritic}/gu, '')].find((char) => /\p{L}/u.test(char));
+  if (letter === undefined) throw new Error(`El nombre "${name}" no tiene ninguna letra`);
+  return letter.toUpperCase();
+}
+
+/**
  * Un personaje. Los atributos de tipo conjunto son listas (vacía = ninguno); las afiliaciones que solo se
  * conocen desde una serie llevan su etiqueta (regla 3). `imagenTransparente` es 1 o 0 (un atributo no puede
  * ser un booleano) y `null` mientras no haya imagen.
@@ -308,6 +319,7 @@ export function buildCharacterEntity(input: CharacterInput): Entity {
       arcoDebut: input.arcRank,
       estadoVital: attributes.estadoVital,
       ocupacion: attributes.ocupacion,
+      inicial: initialOf(src.name),
       imagenTransparente: image === null ? null : image.transparent ? 1 : 0,
     },
   };
@@ -388,6 +400,31 @@ export function buildQuoteContent(quote: QuoteSrc, arcName: string): Content {
     },
     verified: quote.verified,
   };
+}
+
+/**
+ * Posición (desde 1) de cada suceso en toda la historia: la de su `order`, que ya es global (la serie solo sirve para los
+ * filtros). Dos sucesos no pueden tener la misma posición; se renumera de corrido por si faltara alguna.
+ */
+export function eventOrders(events: readonly EventSrc[]): Map<string, number> {
+  const seen = new Set<number>();
+  for (const event of events) {
+    if (seen.has(event.order)) throw new Error(`Dos sucesos tienen la misma posición (${event.order})`);
+    seen.add(event.order);
+  }
+  const sorted = [...events].sort((a, b) => a.order - b.order);
+  return new Map(sorted.map((event, index) => [event.id, index + 1]));
+}
+
+/** El contenido de un suceso: su texto y su lugar en la historia (`order`, único entre todos los sucesos). */
+export function buildEventContent(event: EventSrc, order: number): Content {
+  const payload = {
+    text: event.text,
+    order,
+    ...(event.filler === true ? { filler: true as const } : {}),
+    ...(event.mangaOnly === true ? { mangaOnly: true as const } : {}),
+  };
+  return { id: `event-${event.id}`, kind: 'event', series: event.series, payload, verified: event.verified };
 }
 
 export function buildEmojiContent(item: EmojiSrc): Content {

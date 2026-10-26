@@ -44,12 +44,14 @@ import {
   cardEntitySchema,
   duelistEntitySchema,
   duelistSrcSchema,
+  eventSrcSchema,
   seriesOutputSchema,
   signatureCardsSrcSchema,
   silhouetteRecordsSchema,
   summonSrcSchema,
   translationsSchema,
   type DuelistSrc,
+  type EventSrc,
   type SilhouetteRecord,
   type SeriesId,
   type SignatureCardsSrc,
@@ -77,8 +79,10 @@ import {
   buildDeckContents,
   buildDuelistEntity,
   buildSilhouetteContents,
+  buildEventContent,
   buildSummonContents,
   cardArt,
+  eventOrders,
   evidenceOf,
   isMonster,
   leaksName,
@@ -167,6 +171,7 @@ interface Src {
   readonly duelists: DuelistSrc[];
   readonly signature: SignatureCardsSrc;
   readonly summons: SummonSrc;
+  readonly events: EventSrc[];
   readonly translations: Translations;
 }
 
@@ -175,6 +180,7 @@ async function loadSrc(): Promise<Src> {
     duelists: await readSrc('duelists.json', z.array(duelistSrcSchema).min(1)),
     signature: await readSrc('signature-cards.json', signatureCardsSrcSchema),
     summons: await readSrc('summons.json', summonSrcSchema),
+    events: await readSrc('events.json', eventSrcSchema),
     translations: await readSrc('translations.json', translationsSchema),
   };
 }
@@ -210,6 +216,7 @@ function checkSrc(src: Src): void {
     for (const material of summon.materials) if (!pool.has(material)) problems.push(`summons.json: el material "${material}" de "${summon.card}" no es una carta insignia`);
   }
   for (const name of duplicates(src.summons.map((summon) => summon.card))) problems.push(`summons.json: "${name}" está dos veces`);
+  for (const id of duplicates(src.events.map((event) => event.id))) problems.push(`events.json: el id ${id} está repetido`);
 
   for (const duelist of src.duelists) {
     if (!duelist.series.every((id, index) => index === 0 || SERIES.indexOf(duelist.series[index - 1]) < SERIES.indexOf(id))) {
@@ -529,6 +536,8 @@ async function main(): Promise<void> {
     verified: summon.verified,
   }));
   for (const input of summonInputs) contents.push(...buildSummonContents(input, summonInputs));
+  const orders = eventOrders(src.events);
+  for (const event of src.events) contents.push(buildEventContent(event, orders.get(event.id) as number));
 
   // Imágenes de los duelistas (antes que las entidades: `image` e `imagenTransparente` salen de ellas).
   step('Imágenes de los duelistas…');
@@ -646,6 +655,7 @@ async function main(): Promise<void> {
         duelists: src.duelists.filter((duelist) => !duelist.verified).length,
         cards: src.signature.filter((entry) => !entry.verified).length,
         summons: src.summons.filter((summon) => !summon.verified).length,
+        events: src.events.filter((event) => !event.verified).length,
       },
       silhouettes: {
         monsters: silhouetteResult.records.length,
@@ -700,6 +710,7 @@ async function main(): Promise<void> {
       duelists: src.duelists.filter((duelist) => !duelist.verified).length,
       cards: src.signature.filter((entry) => !entry.verified).length,
       summons: src.summons.filter((summon) => !summon.verified).length,
+      events: src.events.filter((event) => !event.verified).length,
     },
     imageBytesYugioh,
     imageBytesProject,

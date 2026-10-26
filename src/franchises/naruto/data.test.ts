@@ -13,6 +13,7 @@ import { GROUP_SIZE } from '@/modes/connections/types';
 import { candidatesOf as imageCandidates } from '@/modes/image-reveal/logic';
 import { candidatesOf as listCandidates, itemsOf } from '@/modes/reveal-list/logic';
 import { candidatesOf as textCandidates, lineStates } from '@/modes/text-clue/logic';
+import { buildPuzzle, countOf, poolOf as timelinePool } from '@/modes/timeline/logic';
 import arcsJson from '../../../data/naruto/arcs.json';
 import contentJson from '../../../data/naruto/content.json';
 import entitiesJson from '../../../data/naruto/entities.json';
@@ -47,7 +48,7 @@ const combinations: string[][] = Array.from({ length: 2 ** allSeries.length - 1 
 );
 
 describe('config', () => {
-  it('tiene los 9 modos de la SPEC, en orden y con su motor', () => {
+  it('tiene los 10 modos, en orden y con su motor', () => {
     expect(modes.map((m) => [m.slug, m.engine])).toEqual([
       ['clasico', 'classic'],
       ['silueta', 'image-reveal'],
@@ -57,13 +58,14 @@ describe('config', () => {
       ['ojo', 'image-reveal'],
       ['equipo', 'reveal-list'],
       ['emoji', 'text-clue'],
+      ['linea-de-tiempo', 'timeline'],
       ['conexiones', 'connections'],
     ]);
   });
 
   it('cada modo trae la configuración de su motor', () => {
     for (const m of modes) {
-      const config = { classic: m.classic, 'image-reveal': m.imageReveal, 'text-clue': m.textClue, 'reveal-list': m.revealList, connections: m.connections }[m.engine as string];
+      const config = { classic: m.classic, 'image-reveal': m.imageReveal, 'text-clue': m.textClue, 'reveal-list': m.revealList, connections: m.connections, timeline: m.timeline }[m.engine as string];
       expect(config, m.slug).toBeDefined();
     }
   });
@@ -131,9 +133,16 @@ describe('carga de datos', () => {
       expect(modeStatus(narutoConfig, mode(slug), data), slug).toBe('playable');
     }
     // Silueta (todas las imágenes tienen fondo) y Frase (sin verificar) se ocultan en vez de quedar como "próximamente".
-    for (const slug of ['silueta', 'frase']) {
+    for (const slug of ['silueta', 'frase', 'linea-de-tiempo']) {
       expect(['playable', 'hidden'], slug).toContain(modeStatus(narutoConfig, mode(slug), data));
     }
+  });
+
+  it('los sucesos sin verificar no llegan al pool de la línea de tiempo; con todos verificados hay de sobra', () => {
+    const config = mode('linea-de-tiempo').timeline!;
+    const verified = rawContents.filter((content) => content.kind === 'event' && content.verified).length;
+    expect(timelinePool(publishableContents(rawContents), allSeries, config)).toHaveLength(verified);
+    expect(hasMinimumPool(timelinePool(contents, allSeries, config).length, defaultMinPool('timeline'))).toBe(true);
   });
 
   it('el pool de Conexiones son los grupos que forman parte de algún tablero', () => {
@@ -206,6 +215,19 @@ describe('con una serie apagada no aparece nada de ella', () => {
           const candidates = textCandidates(characters, contents, active, mode(slug).textClue!);
           expect(candidates.flatMap((candidate) => candidate.contents).some((content) => content.series === off), slug).toBe(false);
           expect(candidates.some((candidate) => exclusiveTo(candidate.entity, off)), slug).toBe(false);
+        }
+      });
+
+      it('ningún suceso de la serie sale en la línea de tiempo, ni en los retos que se arman con su pool', () => {
+        const config = mode('linea-de-tiempo').timeline!;
+        const pool = timelinePool(contents, active, config);
+        const bySeries = new Map(contents.map((content) => [content.id, content.series]));
+        expect(pool.some((item) => bySeries.get(item.id) === off)).toBe(false);
+        if (pool.length >= countOf(config)) {
+          for (let day = 0; day < 100; day++) {
+            const puzzle = buildPuzzle(pool, { franchise: 'naruto', mode: 'linea-de-tiempo', filterKey: without(off).join('.'), day }, countOf(config));
+            expect(puzzle?.solution.some((item) => bySeries.get(item.id) === off), `día ${day}`).toBe(false);
+          }
         }
       });
 
@@ -321,8 +343,8 @@ describe('Conexiones', () => {
     expect(JSON.stringify(buildBoard(pool, { ...ctx, filterKey: 'naruto.shippuden' }))).not.toBe(board);
   });
 
-  it('con solo Boruto no hay tablero posible: el modo no alcanza el pool mínimo', () => {
-    expect(hasMinimumPool(connectionsPool(characters, contents, only('boruto'), config()).length, defaultMinPool('connections'))).toBe(false);
+  it('con solo Boruto hay tablero posible (desde los grupos de Boruto del 2026-10-23): el modo alcanza el pool mínimo', () => {
+    expect(hasMinimumPool(connectionsPool(characters, contents, only('boruto'), config()).length, defaultMinPool('connections'))).toBe(true);
   });
 
   it('cada miembro de cada grupo es un personaje que existe', () => {

@@ -46,6 +46,7 @@ import {
   characterSrcSchema,
   contentSchema,
   emojiSrcSchema,
+  eventSrcSchema,
   focusSrcSchema,
   groupSrcSchema,
   jutsuSrcSchema,
@@ -56,6 +57,7 @@ import {
   type ArcsFile,
   type CharacterSrc,
   type EmojiSrc,
+  type EventSrc,
   type FocusSrc,
   type GroupSrc,
   type JutsuSrc,
@@ -71,6 +73,7 @@ import {
   asList,
   buildCharacterEntity,
   buildEmojiContent,
+  buildEventContent,
   buildEyeContents,
   buildGroupContent,
   buildQuoteContent,
@@ -78,6 +81,7 @@ import {
   cleanList,
   countBoards,
   deriveAttributes,
+  eventOrders,
   jutsuTypesOf,
   leaksName,
   namesOf,
@@ -147,6 +151,7 @@ interface Src {
   readonly jutsus: JutsuSrc[];
   readonly teams: TeamSrc[];
   readonly emojis: EmojiSrc[];
+  readonly events: EventSrc[];
   readonly groups: GroupSrc[];
   readonly focus: FocusSrc;
 }
@@ -160,6 +165,7 @@ async function loadSrc(): Promise<Src> {
     jutsus: await readSrc('jutsus.json', z.array(jutsuSrcSchema)),
     teams: await readSrc('teams.json', z.array(teamSrcSchema)),
     emojis: await readSrc('emojis.json', z.array(emojiSrcSchema)),
+    events: await readSrc('events.json', z.array(eventSrcSchema)),
     groups: await readSrc('groups.json', z.array(groupSrcSchema)),
     focus: await readSrc('focus.json', focusSrcSchema),
   };
@@ -178,6 +184,7 @@ function checkSrc(src: Src): void {
     ['jutsus.json', src.jutsus.map((item) => item.id)],
     ['teams.json', src.teams.map((item) => item.id)],
     ['emojis.json', src.emojis.map((item) => item.id)],
+    ['events.json', src.events.map((item) => item.id)],
     ['groups.json', src.groups.map((item) => item.id)],
   ] as const) {
     for (const id of duplicates(ids)) problems.push(`${file}: el id ${id} está repetido`);
@@ -598,6 +605,8 @@ async function main(): Promise<void> {
   });
   const teams = buildTeamContents(src.teams, nameById);
   const emojis = src.emojis.map(buildEmojiContent);
+  const orders = eventOrders(src.events);
+  const events = src.events.map((event) => buildEventContent(event, orders.get(event.id) as number));
   const eyes = buildEyeContents(src.focus, seriesOf, (id) => characters.find((entity) => entity.id === id)?.image !== undefined);
   const shared = sharedMembers(src.groups);
   const groups = src.groups.map((group) => buildGroupContent(group, shared.get(group.id) ?? new Map()));
@@ -651,7 +660,7 @@ async function main(): Promise<void> {
   if (jutsuProblems.length > 0) fail('Los jutsus de data-src/naruto/jutsus.json no coinciden con Narutopedia', jutsuProblems);
 
   // Primero lo que no depende de las imágenes, después los jutsus: cargar imágenes no reordena el resto.
-  const contents = [...quotes, ...teams, ...emojis, ...groups, ...eyes, ...jutsuContents];
+  const contents = [...quotes, ...teams, ...emojis, ...events, ...groups, ...eyes, ...jutsuContents];
 
   const arcsOutput = {
     series: SERIES.map((id, index) => ({ id, order: index + 1 })),
@@ -747,6 +756,7 @@ async function main(): Promise<void> {
       { label: 'jutsus', unverified: src.jutsus.filter((item) => !item.verified).length, total: src.jutsus.length },
       { label: 'equipos', unverified: src.teams.filter((item) => !item.verified).length, total: src.teams.length },
       { label: 'emojis', unverified: src.emojis.filter((item) => !item.verified).length, total: src.emojis.length },
+      { label: 'sucesos', unverified: src.events.filter((item) => !item.verified).length, total: src.events.length },
       { label: 'grupos', unverified: src.groups.filter((item) => !item.verified).length, total: src.groups.length },
     ],
     missing: { characters: missingCharacters.length, jutsus: missingJutsus.length },
