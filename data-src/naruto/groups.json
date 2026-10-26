@@ -738,5 +738,1358 @@
       "name": "Rinnegan"
     },
     "verified": false
+  },
+  {
+    "id": "equipo-7-original",
+    "name": "Equipo 7 original",
+    "category": "equipo",
+    "difficulty": 1,
+    "series": "naruto",
+    "members": [
+      "naruto-uzumaki",
+      "sasuke-uchiha",
+      "sakura-haruno",
+      "kakashi-hatake"
+    ],
+    "verified": false
+  },
+  {
+    "id": "equipo-8",
+    "name": "Equipo 8 (Kurenai)",
+    "category": "equipo",
+    "difficulty": 1,
+    "series": "naruto",
+    "members": [
+      "hinata-hyuga",
+      "kiba-inuzuka",
+      "shino-aburame",
+      "kurenai-yuhi",
+      "akamaru"
+    ],
+    "verified": false
+  },
+  {
+    "id": "equipo-guy",
+    "name": "Equipo Guy",
+    "category": "equipo",
+    "difficulty": 1,
+    "series": "naruto",
+    "members": [
+      "neji-hyuga",
+      "rock-lee",
+      "tenten",
+      "might-guy"
+    ],
+    "verified": false
+  },
+  {
+    "id": "equipo-minato",
+    "name": "Equipo Minato",
+    "category": "equipo",
+    "difficulty": 2,
+    "series": "shippuden",
+    "members": [
+      "kakashi-hatake",
+      "obito-uchiha",
+      "rin-nohara",
+      "minato-namikaze"
+    ],
+    "verified": false
+  },
+  {
+    "id": "equipo-baki",
+    "name": "Baki y los hermanos de la Arena",
+    "category": "equipo",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "temari",
+      "kankuro",
+      "gaara",
+      "baki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "equipo-7-boruto",
+    "name": "Equipo 7 de Boruto",
+    "category": "equipo",
+    "difficulty": 2,
+    "series": "boruto",
+    "members": [
+      "boruto-uzumaki",
+      "sarada-uchiha",
+      "mitsuki",
+      "konohamaru-sarutobi"
+    ],
+    "verified": false
+  },
+  {
+    "id": "hiruzen-y-sus-alumnos",
+    "name": "Hiruzen y sus alumnos (los Sannin)",
+    "category": "equipo",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "jiraiya",
+      "tsunade",
+      "orochimaru",
+      "hiruzen-sarutobi"
+    ],
+    "verified": false
+  },
+  {
+    "id": "equipo-recuperacion-sasuke",
+    "name": "Equipo de recuperación de Sasuke",
+    "category": "equipo",
+    "difficulty": 3,
+    "series": "naruto",
+    "members": [
+      "shikamaru-nara",
+      "neji-hyuga",
+      "kiba-inuzuka",
+      "choji-akimichi",
+      "akamaru",
+      "naruto-uzumaki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "sapos-myoboku",
+    "name": "Sapos del Monte Myōboku",
+    "category": "invocación",
+    "difficulty": 3,
+    "series": "naruto",
+    "members": [
+      "gamabunta",
+      "gamakichi",
+      "fukasaku",
+      "shima"
+    ],
+    "verified": false
+  },
+  {
+    "id": "mizukage",
+    "name": "Mizukage",
+    "category": "cargo",
+    "difficulty": 3,
+    "series": "shippuden",
+    "members": [
+      "gengetsu-hozuki",
+      "yagura-karatachi",
+      "mei-terumi",
+      "chojuro"
+    ],
+    "verified": false
+  },
+  {
+    "id": "sabios",
+    "name": "Sabios (usan la energía natural)",
+    "category": "rol",
+    "difficulty": 4,
+    "series": "shippuden",
+    "members": [
+      "naruto-uzumaki",
+      "jiraiya",
+      "minato-namikaze",
+      "hashirama-senju",
+      "kabuto-yakushi",
+      "gamakichi",
+      "kurama",
+      "madara-uchiha",
+      "hagoromo-otsutsuki",
+      "hamura-otsutsuki",
+      "asura-otsutsuki",
+      "jugo",
+      "fukasaku",
+      "shima",
+      "son-goku",
+      "mitsuki",
+      "koji-kashin"
+    ],
+    "verified": false
+  },
+  {
+    "id": "sensores",
+    "name": "Ninjas sensores",
+    "category": "rol",
+    "difficulty": 4,
+    "series": "naruto",
+    "members": [
+      "naruto-uzumaki",
+      "hiruzen-sarutobi",
+      "ino-yamanaka",
+      "kurenai-yuhi",
+      "minato-namikaze",
+      "tobirama-senju",
+      "inoichi-yamanaka",
+      "gaara",
+      "kidomaru",
+      "kurama",
+      "obito-uchiha",
+      "madara-uchiha",
+      "konan",
+      "nagato",
+      "kaguya-otsutsuki",
+      "hagoromo-otsutsuki",
+      "indra-otsutsuki",
+      "asura-otsutsuki",
+      "karin",
+      "utakata",
+      "mu",
+      "boruto-uzumaki",
+      "mitsuki",
+      "inojin-yamanaka",
+      "kinshiki-otsutsuki",
+      "toneri-otsutsuki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "mangekyo-sharingan",
+    "name": "Despertaron el Mangekyō Sharingan",
+    "category": "kekkei genkai",
+    "difficulty": 4,
+    "series": "shippuden",
+    "members": [
+      "sasuke-uchiha",
+      "kakashi-hatake",
+      "fugaku-uchiha",
+      "itachi-uchiha",
+      "obito-uchiha",
+      "madara-uchiha",
+      "danzo-shimura",
+      "shisui-uchiha",
+      "indra-otsutsuki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "otsutsuki-era-boruto",
+    "name": "Ōtsutsuki de la era Boruto",
+    "category": "clan",
+    "difficulty": 1,
+    "series": "boruto",
+    "members": [
+      "toneri-otsutsuki",
+      "momoshiki-otsutsuki",
+      "kinshiki-otsutsuki",
+      "isshiki-otsutsuki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "creaciones-de-amado",
+    "name": "Clones y cíborgs creados por Amado",
+    "category": "organización",
+    "difficulty": 4,
+    "series": "boruto",
+    "members": [
+      "eida",
+      "daemon",
+      "delta",
+      "koji-kashin"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kage-era-boruto",
+    "name": "Kage de la era Boruto",
+    "category": "cargo",
+    "difficulty": 3,
+    "series": "boruto",
+    "members": [
+      "naruto-uzumaki",
+      "gaara",
+      "chojuro",
+      "darui"
+    ],
+    "verified": false
+  },
+  {
+    "id": "equipo-10-asuma",
+    "name": "Equipo 10 (Asuma)",
+    "category": "equipo",
+    "difficulty": 1,
+    "series": "naruto",
+    "members": [
+      "asuma-sarutobi",
+      "shikamaru-nara",
+      "ino-yamanaka",
+      "choji-akimichi"
+    ],
+    "verified": false
+  },
+  {
+    "id": "equipo-15-hanabi",
+    "name": "Equipo 15 original (Hanabi)",
+    "category": "equipo",
+    "difficulty": 2,
+    "series": "boruto",
+    "members": [
+      "hanabi-hyuga",
+      "sumire-kakei",
+      "wasabi-izuno",
+      "namida-suzumeno"
+    ],
+    "verified": false
+  },
+  {
+    "id": "equipo-dosu",
+    "name": "Equipo Dosu y Orochimaru",
+    "category": "equipo",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "dosu-kinuta",
+      "zaku-abumi",
+      "kin-tsuchi",
+      "orochimaru"
+    ],
+    "verified": false
+  },
+  {
+    "id": "cinco-del-sonido",
+    "name": "Los Cinco del Sonido",
+    "category": "equipo",
+    "difficulty": 3,
+    "series": "naruto",
+    "members": [
+      "jirobo",
+      "kidomaru",
+      "tayuya",
+      "sakon-y-ukon",
+      "kimimaro"
+    ],
+    "verified": false
+  },
+  {
+    "id": "anbu-konoha",
+    "name": "Integrantes de ANBU de Konoha",
+    "category": "organización",
+    "difficulty": 3,
+    "series": "shippuden",
+    "members": [
+      "kakashi-hatake",
+      "itachi-uchiha",
+      "yamato",
+      "shisui-uchiha"
+    ],
+    "verified": false
+  },
+  {
+    "id": "sensei-equipos-genin",
+    "name": "Sensei de equipos genin",
+    "category": "rol",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "kakashi-hatake",
+      "asuma-sarutobi",
+      "kurenai-yuhi",
+      "might-guy",
+      "minato-namikaze",
+      "baki",
+      "konohamaru-sarutobi",
+      "hanabi-hyuga",
+      "hiruzen-sarutobi"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kara-miembros-internos",
+    "name": "Miembros internos de Kara",
+    "category": "organización",
+    "difficulty": 3,
+    "series": "boruto",
+    "members": [
+      "jigen",
+      "delta",
+      "boro",
+      "code",
+      "koji-kashin",
+      "amado"
+    ],
+    "verified": false
+  },
+  {
+    "id": "colaboradores-orochimaru",
+    "name": "Subordinados y aliados de Orochimaru",
+    "category": "organización",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "kabuto-yakushi",
+      "kimimaro",
+      "sasuke-uchiha",
+      "suigetsu-hozuki",
+      "karin",
+      "jugo",
+      "jirobo",
+      "kidomaru",
+      "tayuya",
+      "sakon-y-ukon"
+    ],
+    "verified": false
+  },
+  {
+    "id": "familia-naruto",
+    "name": "Familia de Naruto Uzumaki",
+    "category": "clan",
+    "difficulty": 2,
+    "series": "boruto",
+    "members": [
+      "minato-namikaze",
+      "kushina-uzumaki",
+      "naruto-uzumaki",
+      "hinata-hyuga",
+      "boruto-uzumaki",
+      "himawari-uzumaki",
+      "kawaki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "familia-sasuke",
+    "name": "Familia de Sasuke Uchiha",
+    "category": "clan",
+    "difficulty": 2,
+    "series": "boruto",
+    "members": [
+      "fugaku-uchiha",
+      "mikoto-uchiha",
+      "itachi-uchiha",
+      "sasuke-uchiha",
+      "sakura-haruno",
+      "sarada-uchiha"
+    ],
+    "verified": false
+  },
+  {
+    "id": "familia-nara",
+    "name": "Familia Nara",
+    "category": "clan",
+    "difficulty": 2,
+    "series": "boruto",
+    "members": [
+      "shikaku-nara",
+      "shikamaru-nara",
+      "temari",
+      "shikadai-nara"
+    ],
+    "verified": false
+  },
+  {
+    "id": "familia-akimichi",
+    "name": "Familia Akimichi",
+    "category": "clan",
+    "difficulty": 2,
+    "series": "boruto",
+    "members": [
+      "choza-akimichi",
+      "choji-akimichi",
+      "karui",
+      "chocho-akimichi"
+    ],
+    "verified": false
+  },
+  {
+    "id": "hermanos-mayores",
+    "name": "Hermanos mayores",
+    "category": "rol",
+    "difficulty": 4,
+    "series": "boruto",
+    "members": [
+      "hashirama-senju",
+      "itachi-uchiha",
+      "temari",
+      "kankuro",
+      "hinata-hyuga",
+      "boruto-uzumaki",
+      "eida"
+    ],
+    "verified": false
+  },
+  {
+    "id": "hermanos-menores",
+    "name": "Hermanos menores",
+    "category": "rol",
+    "difficulty": 4,
+    "series": "boruto",
+    "members": [
+      "tobirama-senju",
+      "sasuke-uchiha",
+      "kankuro",
+      "gaara",
+      "hanabi-hyuga",
+      "himawari-uzumaki",
+      "daemon"
+    ],
+    "verified": false
+  },
+  {
+    "id": "padres-nuevos-genin",
+    "name": "Padres de ninjas de la nueva generación",
+    "category": "generación",
+    "difficulty": 2,
+    "series": "boruto",
+    "members": [
+      "naruto-uzumaki",
+      "sasuke-uchiha",
+      "shikamaru-nara",
+      "choji-akimichi",
+      "rock-lee",
+      "orochimaru"
+    ],
+    "verified": false
+  },
+  {
+    "id": "madres-nuevos-genin",
+    "name": "Madres de ninjas de la nueva generación",
+    "category": "generación",
+    "difficulty": 2,
+    "series": "boruto",
+    "members": [
+      "hinata-hyuga",
+      "sakura-haruno",
+      "temari",
+      "karui",
+      "ino-yamanaka"
+    ],
+    "verified": false
+  },
+  {
+    "id": "ino-shika-cho-era-boruto",
+    "name": "Ino-Shika-Chō de padres e hijos",
+    "category": "generación",
+    "difficulty": 2,
+    "series": "boruto",
+    "members": [
+      "shikamaru-nara",
+      "ino-yamanaka",
+      "choji-akimichi",
+      "shikadai-nara",
+      "inojin-yamanaka",
+      "chocho-akimichi"
+    ],
+    "verified": false
+  },
+  {
+    "id": "aldea-konoha",
+    "name": "Aldea Oculta de la Hoja (Konoha)",
+    "category": "aldea",
+    "difficulty": 1,
+    "series": "naruto",
+    "members": [
+      "hashirama-senju",
+      "tobirama-senju",
+      "hiruzen-sarutobi",
+      "minato-namikaze",
+      "tsunade",
+      "naruto-uzumaki",
+      "kakashi-hatake",
+      "sasuke-uchiha",
+      "sakura-haruno",
+      "hinata-hyuga",
+      "hiashi-hyuga",
+      "hanabi-hyuga",
+      "neji-hyuga",
+      "shikamaru-nara",
+      "shikaku-nara",
+      "choji-akimichi",
+      "choza-akimichi",
+      "ino-yamanaka",
+      "inoichi-yamanaka",
+      "kiba-inuzuka",
+      "shino-aburame",
+      "rock-lee",
+      "tenten",
+      "might-guy",
+      "kurenai-yuhi",
+      "asuma-sarutobi",
+      "konohamaru-sarutobi",
+      "mirai-sarutobi",
+      "shizune",
+      "yamato",
+      "itachi-uchiha",
+      "shisui-uchiha",
+      "fugaku-uchiha",
+      "mikoto-uchiha",
+      "obito-uchiha",
+      "rin-nohara",
+      "kushina-uzumaki",
+      "jiraiya",
+      "danzo-shimura",
+      "sarada-uchiha",
+      "boruto-uzumaki",
+      "himawari-uzumaki",
+      "shikadai-nara",
+      "inojin-yamanaka",
+      "chocho-akimichi",
+      "metal-lee",
+      "denki-kaminarimon",
+      "iwabee-yuino",
+      "namida-suzumeno",
+      "wasabi-izuno",
+      "sumire-kakei",
+      "mitsuki",
+      "kawaki",
+      "karui"
+    ],
+    "verified": false
+  },
+  {
+    "id": "comandantes-alianza-shinobi",
+    "name": "Comandantes de divisiones de la Alianza Shinobi",
+    "category": "cargo",
+    "difficulty": 3,
+    "series": "shippuden",
+    "members": [
+      "darui",
+      "kitsuchi",
+      "kakashi-hatake",
+      "gaara"
+    ],
+    "verified": false
+  },
+  {
+    "id": "hokage-reanimados",
+    "name": "Los cuatro Hokage reanimados en la guerra",
+    "category": "cargo",
+    "difficulty": 3,
+    "series": "shippuden",
+    "members": [
+      "hashirama-senju",
+      "tobirama-senju",
+      "hiruzen-sarutobi",
+      "minato-namikaze"
+    ],
+    "verified": false
+  },
+  {
+    "id": "reanimados-edo-tensei",
+    "name": "Reanimados mediante Edo Tensei",
+    "category": "rol",
+    "difficulty": 2,
+    "series": "shippuden",
+    "members": [
+      "hashirama-senju",
+      "tobirama-senju",
+      "hiruzen-sarutobi",
+      "minato-namikaze",
+      "madara-uchiha",
+      "itachi-uchiha",
+      "nagato",
+      "deidara",
+      "sasori",
+      "kakuzu",
+      "asuma-sarutobi",
+      "haku",
+      "zabuza-momochi",
+      "kimimaro",
+      "chiyo",
+      "pakura",
+      "gari",
+      "mu",
+      "gengetsu-hozuki",
+      "rasa",
+      "yugito-nii",
+      "roshi",
+      "han",
+      "utakata",
+      "fu",
+      "yagura-karatachi",
+      "mangetsu-hozuki",
+      "ameyuri-ringo",
+      "kushimaru-kuriarare",
+      "jinpachi-munashi",
+      "fuguki-suikazan",
+      "hanzo"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kage-reanimados",
+    "name": "Kage reanimados con Edo Tensei",
+    "category": "cargo",
+    "difficulty": 3,
+    "series": "shippuden",
+    "members": [
+      "hashirama-senju",
+      "tobirama-senju",
+      "hiruzen-sarutobi",
+      "minato-namikaze",
+      "gengetsu-hozuki",
+      "mu",
+      "rasa"
+    ],
+    "verified": false
+  },
+  {
+    "id": "examen-chunin-naruto",
+    "name": "Participantes de los exámenes Chūnin de Naruto",
+    "category": "generación",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "naruto-uzumaki",
+      "sasuke-uchiha",
+      "sakura-haruno",
+      "hinata-hyuga",
+      "kiba-inuzuka",
+      "shino-aburame",
+      "ino-yamanaka",
+      "shikamaru-nara",
+      "choji-akimichi",
+      "neji-hyuga",
+      "rock-lee",
+      "tenten",
+      "gaara",
+      "temari",
+      "kankuro",
+      "dosu-kinuta",
+      "zaku-abumi",
+      "kin-tsuchi",
+      "kabuto-yakushi"
+    ],
+    "verified": false
+  },
+  {
+    "id": "invasion-konoha-orochimaru",
+    "name": "Invasión de Konoha (Orochimaru y la Arena)",
+    "category": "organización",
+    "difficulty": 3,
+    "series": "naruto",
+    "members": [
+      "orochimaru",
+      "kabuto-yakushi",
+      "gaara",
+      "temari",
+      "kankuro",
+      "baki",
+      "sakon-y-ukon",
+      "tayuya",
+      "jirobo",
+      "kidomaru"
+    ],
+    "verified": false
+  },
+  {
+    "id": "batalla-kaguya",
+    "name": "Batalla final contra Kaguya",
+    "category": "rol",
+    "difficulty": 3,
+    "series": "shippuden",
+    "members": [
+      "naruto-uzumaki",
+      "sasuke-uchiha",
+      "sakura-haruno",
+      "kakashi-hatake",
+      "obito-uchiha",
+      "kaguya-otsutsuki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "rescate-kazekage",
+    "name": "Misión de rescate del Kazekage",
+    "category": "equipo",
+    "difficulty": 2,
+    "series": "shippuden",
+    "members": [
+      "naruto-uzumaki",
+      "sakura-haruno",
+      "kakashi-hatake",
+      "might-guy",
+      "neji-hyuga",
+      "rock-lee",
+      "tenten",
+      "chiyo"
+    ],
+    "verified": false
+  },
+  {
+    "id": "defensores-contra-pain",
+    "name": "Defendieron Konoha del ataque de Pain",
+    "category": "rol",
+    "difficulty": 3,
+    "series": "shippuden",
+    "members": [
+      "naruto-uzumaki",
+      "kakashi-hatake",
+      "konohamaru-sarutobi",
+      "hinata-hyuga",
+      "tsunade",
+      "shizune",
+      "choji-akimichi"
+    ],
+    "verified": false
+  },
+  {
+    "id": "combatientes-contra-madara",
+    "name": "Enfrentaron a Madara Uchiha",
+    "category": "rol",
+    "difficulty": 3,
+    "series": "shippuden",
+    "members": [
+      "naruto-uzumaki",
+      "sasuke-uchiha",
+      "hashirama-senju",
+      "might-guy",
+      "gaara",
+      "onoki",
+      "tsunade",
+      "mei-terumi",
+      "a-cuarto-raikage",
+      "kakashi-hatake"
+    ],
+    "verified": false
+  },
+  {
+    "id": "batalla-valle-del-fin",
+    "name": "Combatieron en el Valle del Fin",
+    "category": "rol",
+    "difficulty": 3,
+    "series": "shippuden",
+    "members": [
+      "hashirama-senju",
+      "madara-uchiha",
+      "naruto-uzumaki",
+      "sasuke-uchiha"
+    ],
+    "verified": false
+  },
+  {
+    "id": "batalla-sannin",
+    "name": "Enfrentamiento de los tres Sannin",
+    "category": "rol",
+    "difficulty": 3,
+    "series": "naruto",
+    "members": [
+      "jiraiya",
+      "tsunade",
+      "orochimaru",
+      "naruto-uzumaki",
+      "kabuto-yakushi",
+      "shizune"
+    ],
+    "verified": false
+  },
+  {
+    "id": "examen-chunin-boruto",
+    "name": "Participantes de los exámenes Chūnin de Boruto",
+    "category": "generación",
+    "difficulty": 2,
+    "series": "boruto",
+    "members": [
+      "boruto-uzumaki",
+      "sarada-uchiha",
+      "mitsuki",
+      "shikadai-nara",
+      "inojin-yamanaka",
+      "chocho-akimichi",
+      "metal-lee",
+      "iwabee-yuino",
+      "denki-kaminarimon",
+      "wasabi-izuno",
+      "namida-suzumeno",
+      "sumire-kakei"
+    ],
+    "verified": false
+  },
+  {
+    "id": "combate-momoshiki",
+    "name": "Combatieron contra Momoshiki",
+    "category": "rol",
+    "difficulty": 3,
+    "series": "boruto",
+    "members": [
+      "naruto-uzumaki",
+      "sasuke-uchiha",
+      "boruto-uzumaki",
+      "gaara",
+      "chojuro",
+      "darui",
+      "kurotsuchi"
+    ],
+    "verified": false
+  },
+  {
+    "id": "combate-isshiki",
+    "name": "Enfrentaron a Isshiki Ōtsutsuki",
+    "category": "rol",
+    "difficulty": 4,
+    "series": "boruto",
+    "members": [
+      "naruto-uzumaki",
+      "sasuke-uchiha",
+      "boruto-uzumaki",
+      "kawaki",
+      "koji-kashin"
+    ],
+    "verified": false
+  },
+  {
+    "id": "rescate-naruto-boro",
+    "name": "Equipo de rescate de Naruto (contra Boro)",
+    "category": "equipo",
+    "difficulty": 3,
+    "series": "boruto",
+    "members": [
+      "boruto-uzumaki",
+      "sarada-uchiha",
+      "mitsuki",
+      "kawaki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "victimas-akatsuki",
+    "name": "Asesinados por miembros de Akatsuki",
+    "category": "rol",
+    "difficulty": 4,
+    "series": "shippuden",
+    "members": [
+      "asuma-sarutobi",
+      "jiraiya",
+      "gaara",
+      "kakashi-hatake",
+      "shizune"
+    ],
+    "verified": false
+  },
+  {
+    "id": "alumnos-jiraiya",
+    "name": "Discípulos de Jiraiya",
+    "category": "rol",
+    "difficulty": 2,
+    "series": "shippuden",
+    "members": [
+      "minato-namikaze",
+      "naruto-uzumaki",
+      "nagato",
+      "konan",
+      "yahiko"
+    ],
+    "verified": false
+  },
+  {
+    "id": "maestros-naruto",
+    "name": "Mentores que entrenaron a Naruto",
+    "category": "rol",
+    "difficulty": 2,
+    "series": "shippuden",
+    "members": [
+      "kakashi-hatake",
+      "jiraiya",
+      "fukasaku",
+      "killer-bee",
+      "yamato"
+    ],
+    "verified": false
+  },
+  {
+    "id": "mentores-boruto",
+    "name": "Mentores que entrenaron a Boruto",
+    "category": "rol",
+    "difficulty": 3,
+    "series": "boruto",
+    "members": [
+      "sasuke-uchiha",
+      "konohamaru-sarutobi",
+      "kakashi-hatake",
+      "koji-kashin"
+    ],
+    "verified": false
+  },
+  {
+    "id": "legado-indra-asura",
+    "name": "Indra, Asura y sus reencarnaciones",
+    "category": "generación",
+    "difficulty": 4,
+    "series": "shippuden",
+    "members": [
+      "indra-otsutsuki",
+      "asura-otsutsuki",
+      "madara-uchiha",
+      "hashirama-senju",
+      "sasuke-uchiha",
+      "naruto-uzumaki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "usuarios-rasengan",
+    "name": "Usuarios del Rasengan",
+    "category": "rol",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "minato-namikaze",
+      "jiraiya",
+      "naruto-uzumaki",
+      "konohamaru-sarutobi",
+      "boruto-uzumaki",
+      "kakashi-hatake",
+      "koji-kashin"
+    ],
+    "verified": false
+  },
+  {
+    "id": "usuarios-clones-sombra",
+    "name": "Usuarios de clones de sombra",
+    "category": "rol",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "naruto-uzumaki",
+      "boruto-uzumaki",
+      "kakashi-hatake",
+      "konohamaru-sarutobi",
+      "hiruzen-sarutobi",
+      "tobirama-senju",
+      "itachi-uchiha",
+      "minato-namikaze"
+    ],
+    "verified": false
+  },
+  {
+    "id": "usuarios-genjutsu",
+    "name": "Usuarios de genjutsu",
+    "category": "rol",
+    "difficulty": 3,
+    "series": "naruto",
+    "members": [
+      "itachi-uchiha",
+      "sasuke-uchiha",
+      "shisui-uchiha",
+      "kurenai-yuhi",
+      "madara-uchiha",
+      "obito-uchiha",
+      "sarada-uchiha",
+      "gengetsu-hozuki",
+      "kakashi-hatake",
+      "danzo-shimura"
+    ],
+    "verified": false
+  },
+  {
+    "id": "usuarios-susanoo",
+    "name": "Usuarios del Susanoo",
+    "category": "rol",
+    "difficulty": 4,
+    "series": "shippuden",
+    "members": [
+      "itachi-uchiha",
+      "sasuke-uchiha",
+      "madara-uchiha",
+      "kakashi-hatake"
+    ],
+    "verified": false
+  },
+  {
+    "id": "elemento-fuego",
+    "name": "Usuarios del elemento Fuego",
+    "category": "rol",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "sasuke-uchiha",
+      "itachi-uchiha",
+      "madara-uchiha",
+      "obito-uchiha",
+      "hiruzen-sarutobi",
+      "asuma-sarutobi",
+      "sarada-uchiha",
+      "konohamaru-sarutobi",
+      "shisui-uchiha",
+      "fugaku-uchiha"
+    ],
+    "verified": false
+  },
+  {
+    "id": "elemento-agua",
+    "name": "Usuarios del elemento Agua",
+    "category": "rol",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "tobirama-senju",
+      "kisame-hoshigaki",
+      "zabuza-momochi",
+      "suigetsu-hozuki",
+      "mei-terumi",
+      "gengetsu-hozuki",
+      "kakashi-hatake",
+      "hiruzen-sarutobi"
+    ],
+    "verified": false
+  },
+  {
+    "id": "elemento-rayo",
+    "name": "Usuarios del elemento Rayo",
+    "category": "rol",
+    "difficulty": 2,
+    "series": "shippuden",
+    "members": [
+      "kakashi-hatake",
+      "sasuke-uchiha",
+      "sarada-uchiha",
+      "boruto-uzumaki",
+      "darui",
+      "killer-bee",
+      "a-cuarto-raikage",
+      "mitsuki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "elemento-viento",
+    "name": "Usuarios del elemento Viento",
+    "category": "rol",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "naruto-uzumaki",
+      "temari",
+      "danzo-shimura",
+      "asuma-sarutobi",
+      "boruto-uzumaki",
+      "mitsuki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "elemento-tierra",
+    "name": "Usuarios del elemento Tierra",
+    "category": "rol",
+    "difficulty": 2,
+    "series": "shippuden",
+    "members": [
+      "onoki",
+      "kurotsuchi",
+      "kitsuchi",
+      "akatsuchi",
+      "mu",
+      "kakashi-hatake",
+      "hiruzen-sarutobi",
+      "yamato",
+      "hashirama-senju"
+    ],
+    "verified": false
+  },
+  {
+    "id": "especialistas-taijutsu",
+    "name": "Especialistas en taijutsu",
+    "category": "rol",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "might-guy",
+      "rock-lee",
+      "metal-lee",
+      "neji-hyuga",
+      "hinata-hyuga",
+      "hiashi-hyuga",
+      "hanabi-hyuga"
+    ],
+    "verified": false
+  },
+  {
+    "id": "usuarios-puno-suave",
+    "name": "Usuarios del Puño Suave (Jūken)",
+    "category": "rol",
+    "difficulty": 3,
+    "series": "boruto",
+    "members": [
+      "neji-hyuga",
+      "hinata-hyuga",
+      "hiashi-hyuga",
+      "hanabi-hyuga",
+      "himawari-uzumaki",
+      "boruto-uzumaki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "invocadores-serpientes",
+    "name": "Invocadores de serpientes",
+    "category": "invocación",
+    "difficulty": 3,
+    "series": "boruto",
+    "members": [
+      "orochimaru",
+      "sasuke-uchiha",
+      "kabuto-yakushi",
+      "boruto-uzumaki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "invocadores-sapos",
+    "name": "Invocadores de sapos",
+    "category": "invocación",
+    "difficulty": 3,
+    "series": "naruto",
+    "members": [
+      "jiraiya",
+      "naruto-uzumaki",
+      "minato-namikaze",
+      "konohamaru-sarutobi"
+    ],
+    "verified": false
+  },
+  {
+    "id": "usuarios-tecnica-invocacion",
+    "name": "Usuarios de técnicas de invocación",
+    "category": "invocación",
+    "difficulty": 2,
+    "series": "naruto",
+    "members": [
+      "naruto-uzumaki",
+      "sasuke-uchiha",
+      "sakura-haruno",
+      "jiraiya",
+      "tsunade",
+      "orochimaru",
+      "kakashi-hatake",
+      "konohamaru-sarutobi",
+      "minato-namikaze",
+      "kabuto-yakushi",
+      "boruto-uzumaki",
+      "nagato"
+    ],
+    "verified": false
+  },
+  {
+    "id": "portadores-sello-maldito",
+    "name": "Portadores del sello maldito de Orochimaru",
+    "category": "rol",
+    "difficulty": 3,
+    "series": "naruto",
+    "members": [
+      "sasuke-uchiha",
+      "kimimaro",
+      "sakon-y-ukon",
+      "tayuya",
+      "jirobo",
+      "kidomaru"
+    ],
+    "verified": false
+  },
+  {
+    "id": "tecnicas-espacio-tiempo",
+    "name": "Usuarios de ninjutsu espacio-temporal",
+    "category": "rol",
+    "difficulty": 4,
+    "series": "shippuden",
+    "members": [
+      "minato-namikaze",
+      "tobirama-senju",
+      "obito-uchiha",
+      "kakashi-hatake",
+      "sasuke-uchiha",
+      "kaguya-otsutsuki",
+      "isshiki-otsutsuki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "expertos-fuinjutsu",
+    "name": "Usuarios de técnicas de sellado",
+    "category": "rol",
+    "difficulty": 3,
+    "series": "shippuden",
+    "members": [
+      "minato-namikaze",
+      "kushina-uzumaki",
+      "hiruzen-sarutobi",
+      "orochimaru",
+      "jiraiya",
+      "tsunade"
+    ],
+    "verified": false
+  },
+  {
+    "id": "expertos-kenjutsu",
+    "name": "Expertos en combate con espada",
+    "category": "rol",
+    "difficulty": 3,
+    "series": "shippuden",
+    "members": [
+      "sasuke-uchiha",
+      "killer-bee",
+      "darui",
+      "chojuro",
+      "suigetsu-hozuki",
+      "zabuza-momochi",
+      "kisame-hoshigaki",
+      "mangetsu-hozuki",
+      "ameyuri-ringo"
+    ],
+    "verified": false
+  },
+  {
+    "id": "personajes-cyborg-kara",
+    "name": "Cíborgs de Kara",
+    "category": "organización",
+    "difficulty": 3,
+    "series": "boruto",
+    "members": [
+      "delta",
+      "boro",
+      "code",
+      "eida",
+      "daemon",
+      "koji-kashin",
+      "kawaki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "portadores-karma",
+    "name": "Portadores de Kāma (Karma)",
+    "category": "rol",
+    "difficulty": 4,
+    "series": "boruto",
+    "members": [
+      "boruto-uzumaki",
+      "kawaki",
+      "jigen",
+      "code"
+    ],
+    "verified": false
+  },
+  {
+    "id": "creados-alterados-laboratorio",
+    "name": "Creados o alterados mediante experimentos",
+    "category": "rol",
+    "difficulty": 3,
+    "series": "boruto",
+    "members": [
+      "mitsuki",
+      "koji-kashin",
+      "delta",
+      "kawaki",
+      "eida",
+      "daemon",
+      "yamato"
+    ],
+    "verified": false
+  },
+  {
+    "id": "modo-sabio-sapos",
+    "name": "Sabios y maestros del Monte Myōboku",
+    "category": "rol",
+    "difficulty": 4,
+    "series": "shippuden",
+    "members": [
+      "jiraiya",
+      "naruto-uzumaki",
+      "minato-namikaze",
+      "fukasaku",
+      "shima"
+    ],
+    "verified": false
   }
 ]

@@ -251,5 +251,715 @@
     "accepts": ["kakashi-hatake"],
     "context": "Narutopedia, Quotes de Obito Uchiha: (To Kakashi) \"Those who break the rules are trash, but those who abandon their comrades are worse than trash!\" (el original sigue con otra frase; se toma hasta aquí). Dicha en Kakashi Gaiden (episodios 119 y 120 de Shippūden).",
     "verified": true
+  },
+  {
+    "id": "raikage-agachar-cabeza",
+    "character": "a-cuarto-raikage",
+    "text": "Los shinobi no deberían agachar la cabeza tan fácilmente. ¡La acción y el poder es lo que respetan los shinobi!",
+    "addressee": "Naruto Uzumaki",
+    "arc": "cumbre-de-los-kage",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de A (Fourth Raikage): (To Naruto) \"Shinobi ought not lower their heads so easily, action and power are what shinobi respect! There should be no compromise between shinobi. The history of the human race is a history of war! Ever since the three Shinobi World Wars… Every country… every village has fought for the strongest techniques. The weak will be crushed! That is inescapable truth of the ninja world!\" [Naruto chapter 457, page 14] Naruto le pide que perdone a Sasuke.",
+    "verified": true
+  },
+  {
+    "id": "anko-sangre-bosque",
+    "character": "anko-mitarashi",
+    "text": "Los tipos rudos como tú suelen dejar su sangre por todo este bosque.",
+    "addressee": "Naruto Uzumaki",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Anko Mitarashi: (To Naruto) \"Tough guys like you usually leave their blood all over this forest.\" [Naruto chapter 45, pages 2-3] Antes de la segunda prueba, en el Bosque de la Muerte.",
+    "verified": true
+  },
+  {
+    "id": "boruto-discipulo",
+    "character": "boruto-uzumaki",
+    "text": "¡Entonces, por favor, hazme tu discípulo! ¡Hay alguien a quien quiero vencer sin importar qué!",
+    "addressee": "Sasuke Uchiha",
+    "arc": "contra-momoshiki",
+    "series": "boruto",
+    "context": "Narutopedia, Quotes de Boruto Uzumaki: (To Sasuke) \"Then, please, make me your disciple! There's someone I want to defeat no matter what!\" [] Antes del examen chūnin.",
+    "verified": true
+  },
+  {
+    "id": "choji-rencor-comida",
+    "character": "choji-akimichi",
+    "text": "¿Nunca escuchaste el dicho de que el rencor por la comida es más profundo que el océano? Ese golpe fue por comerte el último bocado de mi bocadillo…",
+    "addressee": "Jirōbō",
+    "arc": "recuperacion-de-sasuke",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Chōji Akimichi: (To Jirōbō) \"You've never heard of the phrase: \"a grudge over food is deeper than the ocean\"? That strike was for eating the last piece of my snack…\" [Naruto chapter 190, page 17] Durante su pelea con Jirōbō.",
+    "verified": true
+  },
+  {
+    "id": "choza-corazon-bondadoso",
+    "character": "choza-akimichi",
+    "text": "Chōji, tienes el corazón más bondadoso de todos los que conozco. Habrá alguien que lo vea y se haga tu amigo. Si lo conoces, trátalo como a tu mejor amigo.",
+    "addressee": "Chōji Akimichi",
+    "arc": "recuperacion-de-sasuke",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Chōza Akimichi: (To Chōji) \"Chōji, you've got a kinder heart than anyone I know. There will be someone who will see that in you, and become your friend. If you meet him, treat him as your best friend, and become comrades who will trust in each other more than anything else.\" [Naruto chapter 190, page 11] Recuerdo de Chōji durante la pelea con Jirōbō.",
+    "verified": true
+  },
+  {
+    "id": "chojuro-sonrisa-mizukage",
+    "character": "chojuro",
+    "text": "Es tan amable. Voy a hacer todo lo posible para proteger esa sonrisa de nuestra gentil Mizukage. Ojalá pueda.",
+    "addressee": null,
+    "arc": "cumbre-de-los-kage",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Chōjūrō: (About the Fifth Mizukage) \"She's so kind. I will do everything to protect that smile on our gentle Mizukage. I hope I can.\" [Naruto chapter 454, page 7] Camino a la Cumbre de los Cinco Kage.",
+    "verified": true
+  },
+  {
+    "id": "danzo-emociones-odio",
+    "character": "danzo-shimura",
+    "text": "Las emociones llevan al odio… y el odio lleva al conflicto y a la guerra…",
+    "addressee": "Sai",
+    "arc": "puente-tenchi",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Danzō Shimura: (To Sai) \"Emotions lead one to hate… and hate leads one to conflict and war…\" [Naruto chapter 310, page 12]",
+    "verified": true
+  },
+  {
+    "id": "darui-palabras",
+    "character": "darui",
+    "text": "Es cierto que las palabras pueden usarse como herramientas para mentir y engañar. Pero cuando de verdad importa… también son la única forma de decir la verdad sobre lo que sientes aquí.",
+    "addressee": "Kinkaku",
+    "arc": "guerra-confrontacion",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Darui: (To Kinkaku) \"It's true that words can be used as tools, to lie and deceive. But when it really counts… (pointing to heart) — they're also the only way to tell the truth about how you feel right here.\" [Naruto chapter 528, page 13] Señalándose el corazón.",
+    "verified": true
+  },
+  {
+    "id": "dosu-esfuerzo",
+    "character": "dosu-kinuta",
+    "text": "El esfuerzo por sí solo no sirve de nada. Ahora mira: te vamos a mostrar algo llamado el muro.",
+    "addressee": "Rock Lee",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Dosu Kinuta: (To Lee) \"Effort by itself does nothing. Now watch, we're going to show you something called the wall.\" [Naruto episode 31] En el Bosque de la Muerte.",
+    "verified": true
+  },
+  {
+    "id": "ebisu-ciudadano-konoha",
+    "character": "ebisu",
+    "text": "¡Naruto es un ciudadano de Konoha! ¡No tengo intención de contarles nada a ustedes, los de Akatsuki!",
+    "addressee": "Pain",
+    "arc": "asalto-de-pain",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Ebisu: (To Pain) \"Naruto is a citizen of Konoha! I have no intention of telling you Akatsuki people anything!\" [Naruto chapter 426, page 16]",
+    "verified": true
+  },
+  {
+    "id": "fugaku-propio-camino",
+    "character": "fugaku-uchiha",
+    "text": "Te diré una cosa… De ahora en adelante, sigue tu propio camino y no las huellas de tu hermano.",
+    "addressee": "Sasuke Uchiha",
+    "arc": "recuperacion-de-sasuke",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Fugaku Uchiha: (To Sasuke) \"I will say one thing… From now on walk your own path not in the footsteps of your brother.\" [Naruto chapter 223, pages 15-16] Recuerdo de Sasuke.",
+    "verified": true
+  },
+  {
+    "id": "gengetsu-sin-cejas",
+    "character": "gengetsu-hozuki",
+    "text": "¡El carisma brota de la gente sin cejas, ¿sabes?! ¡Yo tampoco tengo cejas!",
+    "addressee": null,
+    "arc": "guerra-confrontacion",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Gengetsu Hōzuki: (About Gaara and himself) \"Charisma oozes out of people without eyebrows, you know! Hot-damn! I don't have eyebrows either!\" [Naruto chapter 547, page 3] Sobre Gaara y sobre sí mismo.",
+    "verified": true
+  },
+  {
+    "id": "genma-pajaros-jaula",
+    "character": "genma-shiranui",
+    "text": "Cuando los pájaros enjaulados se vuelven más sabios, intentan abrir la jaula con el pico. No se rinden, porque quieren volver a volar.",
+    "addressee": "Neji Hyūga",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Genma Shiranui: (To Neji) \"When captured birds grow wiser, they try to open the cage with their beaks. They don't give up, because they want to fly again.\" [Naruto chapter 105, page 6] En las finales del examen chūnin.",
+    "verified": true
+  },
+  {
+    "id": "hanzo-fe",
+    "character": "hanzo",
+    "text": "Una última cosa. La vida de las personas no termina cuando mueren. Termina cuando pierden la fe.",
+    "addressee": "Mifune",
+    "arc": "guerra-confrontacion",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Hanzō: (To Mifune) \"One last thing. People's lives don't end when they die. It ends when they lose their faith.\" [Naruto chapter 532, pages 4-5]",
+    "verified": true
+  },
+  {
+    "id": "hashirama-ser-hokage",
+    "character": "hashirama-senju",
+    "text": "Los habitantes de Konoha forman cada parte de mi cuerpo… La aldea cree en mí, y yo creo en ellos… ¡Eso es ser Hokage!",
+    "addressee": "Hiruzen Sarutobi",
+    "arc": "invasion-de-konoha",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Hashirama Senju: (To Hiruzen) \"The fellow countrymen of the Konoha make up each part of my body… those of the village believe in me, and I believe in them… That's what it means to be Hokage!\" [C123P14] Recuerdo de Hiruzen durante su pelea con Orochimaru.",
+    "verified": true
+  },
+  {
+    "id": "hiashi-preciado-recuerdo",
+    "character": "hiashi-hyuga",
+    "text": "Hinata es mi preciada hija. Y tú eres el preciado recuerdo de mi difunto hermano.",
+    "addressee": "Neji Hyūga",
+    "arc": "asalto-de-pain",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Hiashi Hyūga: (To Neji) \"Hinata is my precious daughter. And you are the precious memento of my late brother.\" [Naruto: Shippūden episode 192] Recuerdo de Neji.",
+    "verified": true
+  },
+  {
+    "id": "hidan-sufrimiento",
+    "character": "hidan",
+    "text": "¡Ahora! ¡Saboreemos juntos el máximo sufrimiento!",
+    "addressee": null,
+    "arc": "supresion-de-akatsuki",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Hidan: \"Now! Let's savour the utmost of suffering together!\" [Chapter 323, page 17]",
+    "verified": true
+  },
+  {
+    "id": "hiruzen-hojas-danzan",
+    "character": "hiruzen-sarutobi",
+    "text": "Donde las hojas danzan, arde el fuego. La sombra del fuego iluminará la aldea, y las hojas volverán a brotar.",
+    "addressee": null,
+    "arc": "invasion-de-konoha",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Hiruzen Sarutobi: (Last words) \"When the tree leaves dance, one shall find flames. The fire's shadow will illuminate the village, and once again, tree leaves shall bud anew.\" [Naruto chapter 137, pages 17-19] Sus últimas palabras.",
+    "verified": true
+  },
+  {
+    "id": "ibiki-informacion",
+    "character": "ibiki-morino",
+    "text": "Porque… a veces la información es más importante que la vida… y en las misiones y en el campo de batalla, la gente arriesga la vida para conseguirla.",
+    "addressee": "Los aspirantes del examen chūnin",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Ibiki Morino: (To the Chūnin Exams candidates) \"Because… in times, information is more important than life… and on missions and on the battlefield, people risk their lives to get their hands on it.\" [Naruto chapter 44, page 6] En la primera prueba.",
+    "verified": true
+  },
+  {
+    "id": "ino-flor-hermosa",
+    "character": "ino-yamanaka",
+    "text": "Te convertiste en una flor hermosa.",
+    "addressee": "Sakura Haruno",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Ino Yamanaka: (To Sakura) \"You've bloomed into a beautiful flower.\" [Naruto chapter 73, page 18] Tras su combate en las preliminares.",
+    "verified": true
+  },
+  {
+    "id": "itachi-no-llores",
+    "character": "itachi-uchiha",
+    "text": "No llores, Sasuke. Tu hermano mayor está aquí para protegerte, pase lo que pase.",
+    "addressee": "Sasuke Uchiha (de bebé)",
+    "arc": "guerra-cuenta-regresiva",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Itachi Uchiha: (To an infant Sasuke) \"Don't cry, Sasuke. Your big brother is here to protect you, no matter what happens.\" [Naruto chapter 502, page 2] Durante el ataque del Nueve Colas, en el recuerdo de Kushina.",
+    "verified": true
+  },
+  {
+    "id": "jiraiya-super-pervertido",
+    "character": "jiraiya",
+    "text": "No soy un pervertido… ¡Soy un súper pervertido!",
+    "addressee": "Naruto Uzumaki",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Jiraiya: (To Naruto) \"I'm not a pervert… I'm a super pervert!\" [Naruto chapter 91, page 9] Al empezar a entrenar a Naruto antes de las finales.",
+    "verified": true
+  },
+  {
+    "id": "jirobo-el-peon",
+    "character": "jirobo",
+    "text": "Junta a cinco personas y siempre hay uno que sobra. El que tienen cerca solo para reírse. Y en un aprieto, siempre es el primero en caer. Tú eres el peón.",
+    "addressee": "Chōji Akimichi",
+    "arc": "recuperacion-de-sasuke",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Jirōbō: (To Chōji) \"Hmph...you know something? You get five people together, one of them is always the reject. The guy they only keep around for a laugh. And in a pinch, he's always the first one to go, a pawn among knights. You are the pawn.\" [Naruto chapter 189, pages 10]",
+    "verified": true
+  },
+  {
+    "id": "jugo-recordar-kimimaro",
+    "character": "jugo",
+    "text": "No puedo dejarte morir… Eres todo lo que me queda para recordar a Kimimaro.",
+    "addressee": "Sasuke Uchiha",
+    "arc": "batalla-entre-hermanos",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Jūgo: (To Sasuke) \"I can't let you die… You're all I have left to remember Kimimaro.\" [Naruto chapter 414, page 3] Durante la pelea de Taka contra Killer Bee.",
+    "verified": true
+  },
+  {
+    "id": "kabuto-nuevo-yo",
+    "character": "kabuto-yakushi",
+    "text": "Decidí que yo también quería ser como tú, Naruto, y por eso… con Orochimaru ahora dentro de este cuerpo, pienso encontrar un nuevo \"yo\", ¡uno más fuerte que el propio Orochimaru!",
+    "addressee": "Naruto Uzumaki",
+    "arc": "persecucion-de-itachi",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Kabuto Yakushi: (To Naruto) \"I decided I wished to be like you as well, Naruto, and for that reason… with Lord Orochimaru now integrated into this body, I plan on finding a new \"me\", one stronger than Lord Orochimaru himself! Finding a new me, that is the lesson you taught me.\" [Naruto chapter 356, pages 18-19]",
+    "verified": true
+  },
+  {
+    "id": "kaguya-todo-el-chakra",
+    "character": "kaguya-otsutsuki",
+    "text": "Todo el chakra… me pertenece. ¡¡Una vez más, todo el chakra volverá a ser uno!!",
+    "addressee": "Naruto Uzumaki",
+    "arc": "kaguya",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Kaguya Ōtsutsuki: (To Naruto) \"All chakra… belongs to me. Once again, all chakra shall become one!!!\" [Naruto chapter 680, pages 13-14]",
+    "verified": true
+  },
+  {
+    "id": "kankuro-emboscada",
+    "character": "kankuro",
+    "text": "Lo bien o lo mal que hagamos esta emboscada va a tener un gran impacto en esta guerra y en cuántas bajas suframos. Si quieres proteger a tus amigos y a tu familia, lo único en lo que deberías pensar es en que esta operación salga bien.",
+    "addressee": "Omoi",
+    "arc": "guerra-confrontacion",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Kankurō: (To Omoi) \"How well or poorly we execute our ambush will have a huge impact on this war and how many casualties we suffer. If you wanna protect your friends and family, the only thing you should be thinking about is how to make this operation a success!\" [Naruto chapter 517, pages 1-2]",
+    "verified": true
+  },
+  {
+    "id": "karin-odio-suigetsu",
+    "character": "karin",
+    "text": "Odio que Suigetsu esté siempre hablando.",
+    "addressee": "Sasuke Uchiha",
+    "arc": "persecucion-de-itachi",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Karin: (To Sasuke about Suigetsu) \"I hate Suigetsu always running his mouth.\" [Naruto chapter 350, page 13]",
+    "verified": true
+  },
+  {
+    "id": "karui-por-que-lloras",
+    "character": "karui",
+    "text": "¿Por qué lloras? ¡La que quiere llorar soy yo! ¡Tu llanto no va a traer de vuelta a Yugito ni a Killer Bee! ¡Si tienes tiempo para llorar, dime lo que sabes de Sasuke!",
+    "addressee": "Sakura Haruno",
+    "arc": "cumbre-de-los-kage",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Karui: (To Sakura) \"What are you crying for? I'm the one who wants to cry! Your crying won't bring Yugito or Killer B back! If you got time to cry, then tell me what you know about Sasuke!\" [Naruto chapter 453, page 10]",
+    "verified": true
+  },
+  {
+    "id": "kiba-peleaste-bien",
+    "character": "kiba-inuzuka",
+    "text": "Akamaru… peleaste bien. Gracias a ti pudimos retrasarlos un buen rato. Hasta logramos herirlos. Ya está bien, yo te voy a proteger.",
+    "addressee": "Akamaru",
+    "arc": "recuperacion-de-sasuke",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Kiba Inuzuka: (To Akamaru) \"Akamaru… you fought well. We were able to delay them for quite a while because of you. We even managed to wound them. It's all-right now, I'll protect you.\" [Naruto chapter 205, page 9] Durante la pelea contra Sakon y Ukon.",
+    "verified": true
+  },
+  {
+    "id": "kidomaru-dificultad",
+    "character": "kidomaru",
+    "text": "¡Este juego tiene un nivel de dificultad más alto de lo que pensaba!",
+    "addressee": null,
+    "arc": "recuperacion-de-sasuke",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Kidōmaru: \"This game has a higher difficulty level than I thought!\" [Naruto chapter 194, page 14] Durante su pelea con Neji.",
+    "verified": true
+  },
+  {
+    "id": "bee-interrumpirme",
+    "character": "killer-bee",
+    "text": "¡El único que puede interrumpirme soy yo!",
+    "addressee": "Suigetsu Hōzuki",
+    "arc": "batalla-entre-hermanos",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Killer B: (To Suigetsu) \"I'm the only one who gets to interrupt me!\" [Naruto chapter 410, page 3]",
+    "verified": true
+  },
+  {
+    "id": "kimimaro-razon-de-vivir",
+    "character": "kimimaro",
+    "text": "Hace poco me di cuenta… de que a todos se nos da la vida por una razón. Todos tienen algo importante que cumplir. Buscar qué es… es la única libertad que se nos dio a los humanos.",
+    "addressee": "Kabuto Yakushi",
+    "arc": "recuperacion-de-sasuke",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Kimimaro: (To Kabuto) \"I've realised recently… that everyone is given life for a reason. Everyone has something important to accomplish. The quest to discover what that is… …is the only freedom us humans have been given.\" [Naruto chapter 199, page 7] Recuerdo, antes de salir tras Sasuke.",
+    "verified": true
+  },
+  {
+    "id": "kin-campanas",
+    "character": "kin-tsuchi",
+    "text": "Nunca preguntes por quién doblan las campanas, porque doblan por ti.",
+    "addressee": "Shikamaru Nara",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Kin Tsuchi: (To Shikamaru) \"Don't ever ask for whom the bell tolls, because it tolls for thee.\" [Naruto episode 43] En las preliminares del examen chūnin.",
+    "verified": true
+  },
+  {
+    "id": "kisame-mas-fuerte",
+    "character": "kisame-hoshigaki",
+    "text": "Me hago más fuerte en proporción directa a lo fuerte que sea mi rival. No me canso, y no se me puede vencer.",
+    "addressee": "Killer Bee",
+    "arc": "cumbre-de-los-kage",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Kisame Hoshigaki: (To Killer B) \"I get stronger in direct proportion to how strong my opponent is. I do not tire, and cannot be defeated.\" [Naruto chapter 471, page 15]",
+    "verified": true
+  },
+  {
+    "id": "kurama-recompensar-valor",
+    "character": "kurama",
+    "text": "Es cierto que si tú mueres, yo también muero, pero que te atrevas a amenazarme… ¡Tienes agallas! Muy bien… recompensaré tu valor… ¡Toma!",
+    "addressee": "Naruto Uzumaki",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Kurama: (To Naruto) \"It's true that if you die, I will die too, but the fact that you'd dare to threaten me… You've got some nerve! Very well… I'll reward your courage… Here you go!\" [Naruto chapter 95, pages 16-17] Durante el entrenamiento con Jiraiya antes de las finales.",
+    "verified": true
+  },
+  {
+    "id": "kurenai-bien-hecho",
+    "character": "kurenai-yuhi",
+    "text": "Hinata, ya basta… Puede que hayas perdido, pero cambiaste… Bien hecho…",
+    "addressee": "Hinata Hyūga",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Kurenai Yūhi: (About Hinata) \"Hinata, that's enough… You may have lost but you have changed… Good job…\" [Naruto chapter 80, page 11] Tras su combate contra Neji en las preliminares.",
+    "verified": true
+  },
+  {
+    "id": "kushina-no-estes-triste",
+    "character": "kushina-uzumaki",
+    "text": "No pongas esa cara tan triste… Minato. Soy… soy feliz. Feliz de que me hayas amado. Feliz de que sea… el cumpleaños… de nuestro hijo.",
+    "addressee": "Minato Namikaze",
+    "arc": "guerra-cuenta-regresiva",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Kushina Uzumaki: (To Minato) \"Don't look so sad… Minato. I'm… I'm happy. Happy that you loved me. Happy that it's… our son's… birthday. Like… If I try to imagine surviving and the three of us… living together… I can't think of anything… beyond 'I'd be so happy.' If I had any regrets… It would be that I won't see Naruto grow up.\" [Naruto chapter 503, pages 15-16] En su recuerdo del ataque del Nueve Colas.",
+    "verified": true
+  },
+  {
+    "id": "madara-mujer-debil",
+    "character": "madara-uchiha",
+    "text": "No eres más que una mujer débil… Los débiles son feos, y los Senju débiles son todavía más feos.",
+    "addressee": "Tsunade",
+    "arc": "guerra-climax",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Madara Uchiha: (To Tsunade) \"You are just a weak woman... Weak people are ugly, and weak Senju are even more ugly.\" [Naruto chapter 576, page 16]",
+    "verified": true
+  },
+  {
+    "id": "manda-cien-sacrificios",
+    "character": "manda",
+    "text": "Orochimaru, más te vale preparar al menos cien sacrificios después de esto, ¿entendido?",
+    "addressee": "Orochimaru",
+    "arc": "busqueda-de-tsunade",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Manda: (To Orochimaru) \"Orochimaru, you'd better prepare at least one hundred sacrifices after this, you got that?\" [c170p5]",
+    "verified": true
+  },
+  {
+    "id": "mei-pesadilla",
+    "character": "mei-terumi",
+    "text": "La pesadilla del Cuarto Mizukage terminó hace mucho… deja de hablar de los viejos tiempos.",
+    "addressee": "Ao",
+    "arc": "cumbre-de-los-kage",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Mei Terumī: (To Ao) \"The Fourth Mizukage's nightmare is long over… quit talking about the old days.\" [Naruto chapter 456, page 14]",
+    "verified": true
+  },
+  {
+    "id": "guy-juventud",
+    "character": "might-guy",
+    "text": "¡Sí! ¡De esto se trata la juventud!",
+    "addressee": "Rock Lee",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Might Guy: (To Lee) \"Yes!! This is what youth is all about!\" [Naruto chapter 38, page 10]",
+    "verified": true
+  },
+  {
+    "id": "minato-verdadero-talento",
+    "character": "minato-namikaze",
+    "text": "Eres un hombre con verdadero talento… un ejemplo que todos deberíamos seguir. ¡No se me ocurre un shinobi mejor que tú!",
+    "addressee": "Jiraiya",
+    "arc": "historia-de-jiraiya",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Minato Namikaze: (To Jiraiya) \"You're a man with a true skill… an example we should all follow. I can't think of a finer shinobi than you!\" [Naruto chapter 382, page 11] Recuerdo de Jiraiya.",
+    "verified": true
+  },
+  {
+    "id": "mitsuki-decidir-solo",
+    "character": "mitsuki",
+    "text": "Ustedes, los adultos, no pueden decirme qué hacer. ¡Voy a decidir por mí mismo lo que quiero hacer!",
+    "addressee": "Orochimaru y Log",
+    "arc": "arco-de-sarada",
+    "series": "boruto",
+    "context": "Narutopedia, Quotes de Mitsuki: (To Orochimaru and Log) \"You adults can't tell me what to do. I'll decide what I want to do for myself!\" [NarutoGaiden FullMoon]",
+    "verified": true
+  },
+  {
+    "id": "mu-alianza",
+    "character": "mu",
+    "text": "Cuando termina el conflicto, una alianza se convierte en una pelea por el botín de guerra. El que gane ahí es la nueva potencia dominante.",
+    "addressee": "Ōnoki",
+    "arc": "guerra-confrontacion",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Mū: (To Ōnoki) \"After the conflict ends, an alliance becomes squabble over spoils of war. The victor there becomes the new dominant power.\" [Naruto chapter 547, page 8]",
+    "verified": true
+  },
+  {
+    "id": "omoi-mayonesa",
+    "character": "omoi",
+    "text": "¿Qué querrá? ¿Será algo grave…? ¿O nos va a regañar por algo? ¿No debería haberle puesto mayonesa a las papas fritas?",
+    "addressee": null,
+    "arc": "batalla-entre-hermanos",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Omoi: (After being summoned by the Raikage) \"What the hell does he want? Is it something big…? Or… is he gonna scold us for something? Should I have not put mayonnaise on my fries?\" [Naruto chapter 417, page 16] Cuando el Raikage los manda a llamar.",
+    "verified": true
+  },
+  {
+    "id": "orochimaru-nota-al-pie",
+    "character": "orochimaru",
+    "text": "¡Qué tontería! En la gran escala del tiempo, no eres más que una nota al pie en la breve historia de un puñado de chozas llamado \"Konoha\". Con el tiempo, los rostros de piedra de los Hokage se desmoronarán y se gastarán hasta no ser nada…",
+    "addressee": "Hiruzen Sarutobi",
+    "arc": "invasion-de-konoha",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Orochimaru: (To Hiruzen) \"What nonsense! In the grand scheme of time, you're nothing more than a trivial footnote in the brief history of a cluster of huts called \"Konoha\"! In time, the Hokage Stone Faces will crumble and be worn down to nothing…\" [Naruto chapter 122, page 15]",
+    "verified": true
+  },
+  {
+    "id": "pakkun-tocar-pata",
+    "character": "pakkun",
+    "text": "Mira, si tienes éxito en esta misión, hasta te dejo tocar mi pata.",
+    "addressee": "Shikamaru Nara",
+    "arc": "invasion-de-konoha",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Pakkun: (To Shikamaru) \"Look, if you succeed in this mission, I'll even let you touch my paw.\" [Naruto episode 69]",
+    "verified": true
+  },
+  {
+    "id": "pakura-mas-fuerte",
+    "character": "pakura",
+    "text": "Quieres hacerte más fuerte para vengarte, ¿no? ¡Ese sentimiento te hará más fuerte! ¡Lo que vuelve fuerte a un shinobi es lo que siente por su familia, su aldea, sus amigos y el deseo de defender la aldea!",
+    "addressee": "Maki",
+    "arc": "guerra-confrontacion",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Pakura: (To Maki) \"You want to get stronger to have revenge, right? Those feelings will make you stronger! Your feelings for your family, this village, your friends in this village and the desire to defend this village is what makes a shinobi strong!\" [ship285] Recuerdo de Maki.",
+    "verified": true
+  },
+  {
+    "id": "rasa-confiar-en-los-hijos",
+    "character": "rasa",
+    "text": "De verdad creciste, Gaara… Lo único que tiene que hacer un padre es confiar en sus hijos. Nada más… Y eso en sí mismo tiene un verdadero valor.",
+    "addressee": "Gaara",
+    "arc": "guerra-confrontacion",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Rasa: (To Gaara) \"You've truly grown Gaara… The only thing a parent needs to do, is trust in their children. That's all… And that in itself has true value.\" [Naruto chapter 547, page 14]",
+    "verified": true
+  },
+  {
+    "id": "rin-hokage-genial",
+    "character": "rin-nohara",
+    "text": "¡Esfuérzate, Obito! Conviértete en un Hokage genial y déjame ver cómo salvas el mundo. Es una promesa.",
+    "addressee": "Obito Uchiha",
+    "arc": "jinchuriki-del-diez-colas",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Rin Nohara: (To Obito) \"Do your best Obito! Become a cool Hokage and let me see how you save the world! It's a promise.\" [Naruto chapter 653, page 13]",
+    "verified": true
+  },
+  {
+    "id": "sai-sonrisa",
+    "character": "sai",
+    "text": "Una sonrisa puede sacarte de una situación difícil, aunque sea falsa.",
+    "addressee": "Sakura Haruno",
+    "arc": "puente-tenchi",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Sai: (To Sakura) \"A smile can get you out of a tough situation, even if it is fake.\" [Naruto chapter 286, page 11]",
+    "verified": true
+  },
+  {
+    "id": "samui-no-es-genial",
+    "character": "samui",
+    "text": "Si ustedes dos son de verdad los mismos Kinkaku y Ginkaku de los libros de historia, prefiero que no nos llamen \"de los suyos\"… No es genial.",
+    "addressee": "Kinkaku y Ginkaku",
+    "arc": "guerra-confrontacion",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Samui: (To the Gold and Silver Brothers) \"If you two really are the same Kinkaku and Ginkaku from the history books, I'd rather you don't call us one of \"your own\"… Not cool.\" [Naruto chapter 527, page 1]",
+    "verified": true
+  },
+  {
+    "id": "sakura-mi-turno",
+    "character": "sakura-haruno",
+    "text": "Siempre me consideré una verdadera ninja… pero eran palabras vacías, porque Sasuke y Naruto siempre iban adelante. ¡Pero ahora me toca a mí ir adelante, y ustedes pueden mirarme desde atrás!",
+    "addressee": null,
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Sakura Haruno: (To herself) \"I've always considered myself to be a true ninja… but those were just empty words, because Sasuke and Naruto were always in the lead! But now it's my turn to take the lead, and all of you can watch me from the background!\" [Naruto chapter 53, page 16] En el Bosque de la Muerte.",
+    "verified": true
+  },
+  {
+    "id": "sarada-cara-de-tu-hija",
+    "character": "sarada-uchiha",
+    "text": "¡No estuviste con nosotras para nada! ¿Por qué no vives con mamá? ¿Te importa siquiera haberte olvidado de la cara de tu hija?",
+    "addressee": "Sasuke Uchiha",
+    "arc": "arco-de-sarada",
+    "series": "boruto",
+    "context": "Narutopedia, Quotes de Sarada Uchiha: (To her father) \"Did… something happen… you ask?! …You haven't been there for us at all!! Why won't you stay and live with Mom?! Do you even care that you've forgotten your daughter's face?! And who is this lady next to you with the glasses?! Do you think this is something a daughter can ask her Mom? Mom doesn't say anything, and you were never around! I don't even know if I can believe you two anymore! Problems?!! We've got a lot of them!!! What… what actually have you been doing and where were you all this time?!\" []",
+    "verified": true
+  },
+  {
+    "id": "sasuke-venganza",
+    "character": "sasuke-uchiha",
+    "text": "Sé que los cuatro trabajamos juntos. Y por un tiempo pensé que podía elegir ese camino… pero al final… decidí la venganza. Ese siempre fue mi propósito para vivir.",
+    "addressee": "Sakura Haruno",
+    "arc": "recuperacion-de-sasuke",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Sasuke Uchiha: (To Sakura about Team 7) \"I know the four of us have worked together. And for a while, I thought I could choose that path instead… but in the end… I've decided on revenge. That's always been my purpose of living.\" [Naruto chapter 181, page 10] Al irse de la aldea.",
+    "verified": true
+  },
+  {
+    "id": "shikaku-mujer-fuerte",
+    "character": "shikaku-nara",
+    "text": "No importa lo fuerte de carácter que sea una mujer: siempre será amable con el hombre que ama.",
+    "addressee": "Shikamaru Nara",
+    "arc": "recuperacion-de-sasuke",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Shikaku Nara: (To Shikamaru) \"No matter how strong-minded a woman is, she will show kindness to the man she loves.\" [Naruto chapter 182, page 8]",
+    "verified": true
+  },
+  {
+    "id": "shino-rindete",
+    "character": "shino-aburame",
+    "text": "Pelea conmigo y nunca te recuperarás. Ríndete y retírate.",
+    "addressee": "Zaku Abumi",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Shino Aburame: (To Zaku) \"Fight me, and you shall never recover. Forfeit and withdraw.\" [Naruto chapter 69, page 6] En las preliminares del examen chūnin.",
+    "verified": true
+  },
+  {
+    "id": "shisui-justicia",
+    "character": "shisui-uchiha",
+    "text": "Ni siquiera sé si existe algo como la justicia en el mundo shinobi. Peleamos creyendo en nuestra propia justicia. Pero si el enemigo hace lo mismo, ¿quién tiene razón?",
+    "addressee": "Itachi Uchiha",
+    "arc": "kaguya",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Shisui Uchiha: (To Itachi) \"I don't even know if there is such a thing as justice in the shinobi world. We fight believing in our own justice. But if the enemy is doing the same thing, who's right?\" [Naruto: Shippūden episode 454] Historia de Itachi (Itachi Shinden).",
+    "verified": true
+  },
+  {
+    "id": "shizune-no-puede",
+    "character": "shizune",
+    "text": "¡Lady Tsunade! ¡No puede! No escuche las ofertas de estos mentirosos. ¡Su hermano y mi tío tampoco querrían que haga esto!",
+    "addressee": "Tsunade",
+    "arc": "busqueda-de-tsunade",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Shizune: (To Tsunade) \"Lady Tsunade! You can't!! Don't listen to the offers of these liars. Your brother and my uncle wouldn't want you to do this either!!\" [Naruto chapter 157, page 5] Ante la oferta de Orochimaru.",
+    "verified": true
+  },
+  {
+    "id": "suigetsu-descanso",
+    "character": "suigetsu-hozuki",
+    "text": "¿No están cansados? Tomemos un descanso.",
+    "addressee": "Su equipo, Taka",
+    "arc": "persecucion-de-itachi",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Suigetsu Hōzuki: (To his team) \"Aren't you guys tired? Let's take a break.\" [Chapter 349, page 3]",
+    "verified": true
+  },
+  {
+    "id": "tayuya-melodia",
+    "character": "tayuya",
+    "text": "¡Te voy a tocar una melodía de muerte!",
+    "addressee": "Shikamaru Nara",
+    "arc": "recuperacion-de-sasuke",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Tayuya: (To Shikamaru) \"I'll play you a melody of death!\" [Naruto chapter 202, page 13]",
+    "verified": true
+  },
+  {
+    "id": "tenten-hombre-o-mujer",
+    "character": "tenten",
+    "text": "No es porque sean chicas, Neji. Es que las dos se están conteniendo. En la batalla no importa si eres hombre o mujer.",
+    "addressee": "Neji Hyūga",
+    "arc": "examen-chunin",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Tenten: (To Neji about Ino and Sakura fighting) \"It's not because they're girls you know, Neji. It's just that those two are using kid gloves. It doesn't matter if you're a man or woman in battle.\" [Naruto episode 42] Durante el combate entre Ino y Sakura.",
+    "verified": true
+  },
+  {
+    "id": "tobirama-saru",
+    "character": "tobirama-senju",
+    "text": "Saru, debes proteger a quienes tienen fe en ti y aman la aldea, y formar a quienes puedan hacerse cargo de la próxima generación… ¡Desde mañana, tú serás el Hokage!",
+    "addressee": "Hiruzen Sarutobi",
+    "arc": "cumbre-de-los-kage",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Tobirama Senju: (To Hiruzen) \"Saru, you must protect those who have faith in you and who love the village, and train up to those to whom you can entrust the next generation… from tomorrow, you will be the Hokage…!\" [Naruto chapter 481, page 9] Recuerdo de Danzō.",
+    "verified": true
+  },
+  {
+    "id": "tsume-akamaru",
+    "character": "tsume-inuzuka",
+    "text": "Se llama Akamaru. Y de ahora en adelante, vas a cuidarlo tú.",
+    "addressee": "Kiba Inuzuka",
+    "arc": "recuperacion-de-sasuke",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Tsume Inuzuka: (To Kiba when receiving Akamaru) \"His name is Akamaru. And from now on, you'll be lookin' after him.\" [Naruto episode 121] Cuando Kiba recibe a Akamaru, en un recuerdo.",
+    "verified": true
+  },
+  {
+    "id": "tsunade-apuesto-por-ti",
+    "character": "tsunade",
+    "text": "Es porque ser Hokage… es tu sueño, ¿verdad, Naruto? Una última vez… solo una última vez… apuesto por ti.",
+    "addressee": "Naruto Uzumaki (inconsciente)",
+    "arc": "busqueda-de-tsunade",
+    "series": "naruto",
+    "context": "Narutopedia, Quotes de Tsunade: (To an unconscious Naruto) \"It's because to be Hokage… is your dream… isn't it, Naruto? One last time… just one last time… I place the odds on you.\" [Naruto chapter 168, pages 15-16]",
+    "verified": true
+  },
+  {
+    "id": "utakata-razon-para-pelear",
+    "character": "utakata",
+    "text": "Mi única razón para pelear es proteger mi propia vida.",
+    "addressee": "Hotaru",
+    "arc": "batalla-entre-hermanos",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Utakata: (To Hotaru) \"My only reason for fighting, is to protect my own life.\" [Naruto: Shippūden episode 144] Relleno del Seis Colas.",
+    "verified": true
+  },
+  {
+    "id": "yagura-bienvenido",
+    "character": "yagura-karatachi",
+    "text": "¡Bienvenido! ¡Te lo agradezco en nombre de todos los jinchūriki y las bestias con cola! ¡Quería conocerte, Naruto Uzumaki!",
+    "addressee": "Naruto Uzumaki",
+    "arc": "guerra-climax",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Yagura Karatachi: (To Naruto) \"Welcome! I thank you on behalf of all of us jinchūriki and tailed beasts! I've wanted to meet you, Naruto Uzumaki!\" [Naruto: Shippūden episode 329]",
+    "verified": true
+  },
+  {
+    "id": "yahiko-gobernar-el-mundo",
+    "character": "yahiko",
+    "text": "¡Voy a gobernar el mundo!",
+    "addressee": "Nagato",
+    "arc": "asalto-de-pain",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Yahiko: (To Nagato) \"I'm gonna' rule the world!!\" [Naruto chapter 445, page 12] Recuerdo de Nagato.",
+    "verified": true
+  },
+  {
+    "id": "yamato-sentimientos",
+    "character": "yamato",
+    "text": "No importa si lo que haces es grande o pequeño; lo importante… es la magnitud de lo que sientes por Naruto.",
+    "addressee": "Sakura Haruno",
+    "arc": "puente-tenchi",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Yamato: (To Sakura) \"It's not important whether the things you do are large or small, what's important… is the magnitude of the feelings you have for Naruto.\" [Naruto chapter 297, page 11]",
+    "verified": true
+  },
+  {
+    "id": "yugito-atrapados",
+    "character": "yugito-nii",
+    "text": "Tontos. Creen que me tienen atrapada, ¿no? Pues no. ¡En realidad, la que los atrapó a ustedes soy yo!",
+    "addressee": "Hidan y Kakuzu",
+    "arc": "supresion-de-akatsuki",
+    "series": "shippuden",
+    "context": "Narutopedia, Quotes de Yugito Nii: (To Hidan and Kakuzu) \"You fools. You think you have me trapped, don't you? Well, you haven't. In fact, I'm the one who's trapped you!\" [Naruto: Shippūden episode 72]",
+    "verified": true
   }
 ]

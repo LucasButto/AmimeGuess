@@ -52,6 +52,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": "Hokage",
+      "inicial": "N",
       "imagenTransparente": 0
     },
     "image": "naruto/naruto-uzumaki"
@@ -103,6 +104,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": "Líder del clan Uchiha",
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/sasuke-uchiha"
@@ -150,6 +152,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": "Jefe del Departamento Médico de Konoha",
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/sakura-haruno"
@@ -201,6 +204,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": "Hokage",
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kakashi-hatake"
@@ -241,6 +245,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": "Director de la Academia",
+      "inicial": "I",
       "imagenTransparente": 0
     },
     "image": "naruto/iruka-umino"
@@ -287,6 +292,7 @@
       "arcoDebut": 1,
       "estadoVital": "Muerto",
       "ocupacion": "Hokage",
+      "inicial": "H",
       "imagenTransparente": 0
     },
     "image": "naruto/hiruzen-sarutobi"
@@ -325,6 +331,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/konohamaru-sarutobi"
@@ -358,6 +365,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": "Instructor de la Academia (ex)",
+      "inicial": "M",
       "imagenTransparente": 0
     },
     "image": "naruto/mizuki"
@@ -399,6 +407,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": "Heredera del clan Hyūga (ex)",
+      "inicial": "H",
       "imagenTransparente": 0
     },
     "image": "naruto/hinata-hyuga"
@@ -439,6 +448,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": "Asistente principal del Hokage",
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/shikamaru-nara"
@@ -479,6 +489,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "C",
       "imagenTransparente": 0
     },
     "image": "naruto/choji-akimichi"
@@ -524,6 +535,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": "Florista",
+      "inicial": "I",
       "imagenTransparente": 0
     },
     "image": "naruto/ino-yamanaka"
@@ -563,6 +575,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kiba-inuzuka"
@@ -602,6 +615,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": "Maestro de la Academia",
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/shino-aburame"
@@ -640,6 +654,7 @@
       "arcoDebut": 2,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "N",
       "imagenTransparente": 0
     },
     "image": "naruto/neji-hyuga"
@@ -675,6 +690,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Examinador del Examen Chūnin",
+      "inicial": "R",
       "imagenTransparente": 0
     },
     "image": "naruto/rock-lee"
@@ -709,6 +725,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Vendedor de armas",
+      "inicial": "T",
       "imagenTransparente": 0
     },
     "image": "naruto/tenten"
@@ -749,6 +766,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "M",
       "imagenTransparente": 0
     },
     "image": "naruto/might-guy"
@@ -782,6 +800,7 @@
       "arcoDebut": 1,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "A",
       "imagenTransparente": 0
     },
     "image": "naruto/asuma-sarutobi"
@@ -815,6 +834,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kurenai-yuhi"
@@ -854,6 +874,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Examinador del Examen Chūnin",
+      "inicial": "A",
       "imagenTransparente": 0
     },
     "image": "naruto/anko-mitarashi"
@@ -885,6 +906,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Jefe de la Fuerza de Tortura e Interrogación de Konoha",
+      "inicial": "I",
       "imagenTransparente": 0
     },
     "image": "naruto/ibiki-morino"
@@ -918,6 +940,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Examinador del Examen Chūnin",
+      "inicial": "G",
       "imagenTransparente": 0
     },
     "image": "naruto/genma-shiranui"
@@ -949,6 +972,7 @@
       "arcoDebut": 2,
       "estadoVital": "Muerto",
       "ocupacion": "Examinador del Examen Chūnin",
+      "inicial": "H",
       "imagenTransparente": 0
     },
     "image": "naruto/hayate-gekko"
@@ -985,6 +1009,7 @@
       "arcoDebut": 4,
       "estadoVital": "Vivo",
       "ocupacion": "Asistente del Hokage",
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/shizune"
@@ -1034,6 +1059,7 @@
       "arcoDebut": 4,
       "estadoVital": "Vivo",
       "ocupacion": "Hokage",
+      "inicial": "T",
       "imagenTransparente": 0
     },
     "image": "naruto/tsunade"
@@ -1077,6 +1103,7 @@
       "arcoDebut": 2,
       "estadoVital": "Muerto",
       "ocupacion": "Escritor",
+      "inicial": "J",
       "imagenTransparente": 0
     },
     "image": "naruto/jiraiya"
@@ -1128,6 +1155,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Fundador y líder de Oto",
+      "inicial": "O",
       "imagenTransparente": 0
     },
     "image": "naruto/orochimaru"
@@ -1175,6 +1203,7 @@
       "arcoDebut": 1,
       "estadoVital": "Muerto",
       "ocupacion": "Hokage",
+      "inicial": "M",
       "imagenTransparente": 0
     },
     "image": "naruto/minato-namikaze"
@@ -1209,6 +1238,7 @@
       "arcoDebut": 4,
       "estadoVital": "Muerto",
       "ocupacion": "Líder del clan Uchiha",
+      "inicial": "F",
       "imagenTransparente": 0
     },
     "image": "naruto/fugaku-uchiha"
@@ -1237,6 +1267,7 @@
       "arcoDebut": 4,
       "estadoVital": "Muerto",
       "ocupacion": "Ama de casa",
+      "inicial": "M",
       "imagenTransparente": 0
     },
     "image": "naruto/mikoto-uchiha"
@@ -1281,6 +1312,7 @@
       "arcoDebut": 3,
       "estadoVital": "Muerto",
       "ocupacion": "Capitán de ANBU (ex)",
+      "inicial": "I",
       "imagenTransparente": 0
     },
     "image": "naruto/itachi-uchiha"
@@ -1320,6 +1352,7 @@
       "arcoDebut": 3,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kisame-hoshigaki"
@@ -1369,6 +1402,7 @@
       "arcoDebut": 3,
       "estadoVital": "Muerto",
       "ocupacion": "Hokage",
+      "inicial": "H",
       "imagenTransparente": 0
     },
     "image": "naruto/hashirama-senju"
@@ -1414,6 +1448,7 @@
       "arcoDebut": 3,
       "estadoVital": "Muerto",
       "ocupacion": "Hokage",
+      "inicial": "T",
       "imagenTransparente": 0
     },
     "image": "naruto/tobirama-senju"
@@ -1442,6 +1477,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Consejero",
+      "inicial": "H",
       "imagenTransparente": 0
     },
     "image": "naruto/homura-mitokado"
@@ -1470,6 +1506,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Consejero",
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/koharu-utatane"
@@ -1501,6 +1538,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Heredera del clan Hyūga",
+      "inicial": "H",
       "imagenTransparente": 0
     },
     "image": "naruto/hanabi-hyuga"
@@ -1536,6 +1574,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Líder del clan Hyūga",
+      "inicial": "H",
       "imagenTransparente": 0
     },
     "image": "naruto/hiashi-hyuga"
@@ -1573,6 +1612,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Líder del clan Akimichi",
+      "inicial": "C",
       "imagenTransparente": 0
     },
     "image": "naruto/choza-akimichi"
@@ -1611,6 +1651,7 @@
       "arcoDebut": 2,
       "estadoVital": "Muerto",
       "ocupacion": "Líder del clan Yamanaka",
+      "inicial": "I",
       "imagenTransparente": 0
     },
     "image": "naruto/inoichi-yamanaka"
@@ -1645,6 +1686,7 @@
       "arcoDebut": 2,
       "estadoVital": "Muerto",
       "ocupacion": "Líder del clan Nara",
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/shikaku-nara"
@@ -1675,6 +1717,7 @@
       "arcoDebut": 3,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "T",
       "imagenTransparente": 0
     },
     "image": "naruto/tsume-inuzuka"
@@ -1707,6 +1750,7 @@
       "arcoDebut": 3,
       "estadoVital": "Vivo",
       "ocupacion": "Líder del clan Aburame",
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/shibi-aburame"
@@ -1759,6 +1803,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Espía y mano derecha de Orochimaru",
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kabuto-yakushi"
@@ -1791,6 +1836,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": "Entrenador personal",
+      "inicial": "E",
       "imagenTransparente": 0
     },
     "image": "naruto/ebisu"
@@ -1820,6 +1866,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Cocinero de ramen",
+      "inicial": "T",
       "imagenTransparente": 0
     },
     "image": "naruto/teuchi"
@@ -1845,6 +1892,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": "Carpintero",
+      "inicial": "T",
       "imagenTransparente": 0
     },
     "image": "naruto/tazuna"
@@ -1880,6 +1928,7 @@
       "arcoDebut": 1,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "Z",
       "imagenTransparente": 0
     },
     "image": "naruto/zabuza-momochi"
@@ -1915,6 +1964,7 @@
       "arcoDebut": 1,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "H",
       "imagenTransparente": 0
     },
     "image": "naruto/haku"
@@ -1959,6 +2009,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Kazekage",
+      "inicial": "G",
       "imagenTransparente": 0
     },
     "image": "naruto/gaara"
@@ -1997,6 +2048,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Capitán de la División de Ataque Sorpresa de las Fuerzas Aliadas Shinobi",
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kankuro"
@@ -2033,6 +2085,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": "Guardaespaldas del Quinto Kazekage",
+      "inicial": "T",
       "imagenTransparente": 0
     },
     "image": "naruto/temari"
@@ -2070,6 +2123,7 @@
       "arcoDebut": 2,
       "estadoVital": "Muerto",
       "ocupacion": "Kazekage",
+      "inicial": "R",
       "imagenTransparente": 0
     },
     "image": "naruto/rasa"
@@ -2098,6 +2152,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "B",
       "imagenTransparente": 0
     },
     "image": "naruto/baki"
@@ -2125,6 +2180,7 @@
       "arcoDebut": 2,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "D",
       "imagenTransparente": 0
     },
     "image": "naruto/dosu-kinuta"
@@ -2152,6 +2208,7 @@
       "arcoDebut": 2,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "Z",
       "imagenTransparente": 0
     },
     "image": "naruto/zaku-abumi"
@@ -2181,6 +2238,7 @@
       "arcoDebut": 2,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kin-tsuchi"
@@ -2209,6 +2267,7 @@
       "arcoDebut": 5,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kimimaro"
@@ -2238,6 +2297,7 @@
       "arcoDebut": 3,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "T",
       "imagenTransparente": 0
     },
     "image": "naruto/tayuya"
@@ -2265,6 +2325,7 @@
       "arcoDebut": 3,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "J",
       "imagenTransparente": 0
     },
     "image": "naruto/jirobo"
@@ -2292,6 +2353,7 @@
       "arcoDebut": 3,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kidomaru"
@@ -2323,6 +2385,7 @@
       "arcoDebut": 3,
       "estadoVital": "Muerto",
       "ocupacion": "Líder de facto de los Cuatro del Sonido",
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/sakon-y-ukon"
@@ -2359,6 +2422,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "G",
       "imagenTransparente": 0
     },
     "image": "naruto/gamabunta"
@@ -2395,6 +2459,7 @@
       "arcoDebut": 4,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/katsuyu"
@@ -2424,6 +2489,7 @@
       "arcoDebut": 4,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "M",
       "imagenTransparente": 0
     },
     "image": "naruto/manda"
@@ -2453,6 +2519,7 @@
       "arcoDebut": 1,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "P",
       "imagenTransparente": 0
     },
     "image": "naruto/pakkun"
@@ -2487,6 +2554,7 @@
       "arcoDebut": 2,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "A",
       "imagenTransparente": 0
     },
     "image": "naruto/akamaru"
@@ -2528,6 +2596,7 @@
       "arcoDebut": 3,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "G",
       "imagenTransparente": 0
     },
     "image": "naruto/gamakichi"
@@ -2569,6 +2638,7 @@
       "arcoDebut": 1,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kurama"
@@ -2607,6 +2677,7 @@
       "arcoDebut": 3,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/shukaku"
@@ -2640,6 +2711,7 @@
       "arcoDebut": 6,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/sasori"
@@ -2670,6 +2742,7 @@
       "arcoDebut": 6,
       "estadoVital": "Muerto",
       "ocupacion": "Consejero (retirado)",
+      "inicial": "C",
       "imagenTransparente": 0
     },
     "image": "naruto/chiyo"
@@ -2707,6 +2780,7 @@
       "arcoDebut": 6,
       "estadoVital": "Muerto",
       "ocupacion": "Bombardero terrorista",
+      "inicial": "D",
       "imagenTransparente": 0
     },
     "image": "naruto/deidara"
@@ -2736,6 +2810,7 @@
       "arcoDebut": 8,
       "estadoVital": "Incapacitado",
       "ocupacion": null,
+      "inicial": "H",
       "imagenTransparente": 0
     },
     "image": "naruto/hidan"
@@ -2771,6 +2846,7 @@
       "arcoDebut": 8,
       "estadoVital": "Muerto",
       "ocupacion": "Tesorero de Akatsuki",
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kakuzu"
@@ -2825,6 +2901,7 @@
       "arcoDebut": 6,
       "estadoVital": "Muerto",
       "ocupacion": "Líder de Akatsuki",
+      "inicial": "O",
       "imagenTransparente": 0
     },
     "image": "naruto/obito-uchiha"
@@ -2859,6 +2936,7 @@
       "arcoDebut": 9,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "R",
       "imagenTransparente": 0
     },
     "image": "naruto/rin-nohara"
@@ -2912,6 +2990,7 @@
       "arcoDebut": 10,
       "estadoVital": "Muerto",
       "ocupacion": "Cofundador de Konoha",
+      "inicial": "M",
       "imagenTransparente": 0
     },
     "image": "naruto/madara-uchiha"
@@ -2955,6 +3034,7 @@
       "arcoDebut": 6,
       "estadoVital": "Muerto",
       "ocupacion": "Líder de la Raíz",
+      "inicial": "D",
       "imagenTransparente": 0
     },
     "image": "naruto/danzo-shimura"
@@ -2993,6 +3073,7 @@
       "arcoDebut": 6,
       "estadoVital": "Vivo",
       "ocupacion": "Jefe de ANBU",
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/sai"
@@ -3035,6 +3116,7 @@
       "arcoDebut": 7,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "Y",
       "imagenTransparente": 0
     },
     "image": "naruto/yamato"
@@ -3073,6 +3155,7 @@
       "arcoDebut": 13,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/shisui-uchiha"
@@ -3107,6 +3190,7 @@
       "arcoDebut": 10,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kushina-uzumaki"
@@ -3143,6 +3227,7 @@
       "arcoDebut": 9,
       "estadoVital": "Muerto",
       "ocupacion": "Líder de Ame",
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/konan"
@@ -3184,6 +3269,7 @@
       "arcoDebut": 10,
       "estadoVital": "Muerto",
       "ocupacion": "Líder de Akatsuki",
+      "inicial": "N",
       "imagenTransparente": 0
     },
     "image": "naruto/nagato"
@@ -3216,6 +3302,7 @@
       "arcoDebut": 10,
       "estadoVital": "Muerto",
       "ocupacion": "Fundador y líder de Akatsuki",
+      "inicial": "Y",
       "imagenTransparente": 0
     },
     "image": "naruto/yahiko"
@@ -3255,6 +3342,7 @@
       "arcoDebut": 18,
       "estadoVital": "Incapacitado",
       "ocupacion": "Princesa",
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kaguya-otsutsuki"
@@ -3300,6 +3388,7 @@
       "arcoDebut": 16,
       "estadoVital": "Muerto",
       "ocupacion": "Sacerdote",
+      "inicial": "H",
       "imagenTransparente": 0
     },
     "image": "naruto/hagoromo-otsutsuki"
@@ -3342,6 +3431,7 @@
       "arcoDebut": 17,
       "estadoVital": "Muerto",
       "ocupacion": "Líder del clan Ōtsutsuki",
+      "inicial": "H",
       "imagenTransparente": 0
     },
     "image": "naruto/hamura-otsutsuki"
@@ -3378,6 +3468,7 @@
       "arcoDebut": 13,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "I",
       "imagenTransparente": 0
     },
     "image": "naruto/indra-otsutsuki"
@@ -3420,6 +3511,7 @@
       "arcoDebut": 13,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "A",
       "imagenTransparente": 0
     },
     "image": "naruto/asura-otsutsuki"
@@ -3455,6 +3547,7 @@
       "arcoDebut": 9,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/suigetsu-hozuki"
@@ -3492,6 +3585,7 @@
       "arcoDebut": 9,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/karin"
@@ -3532,6 +3626,7 @@
       "arcoDebut": 9,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "J",
       "imagenTransparente": 0
     },
     "image": "naruto/jugo"
@@ -3576,6 +3671,7 @@
       "arcoDebut": 11,
       "estadoVital": "Vivo",
       "ocupacion": "Guardián de Kumo",
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/killer-bee"
@@ -3607,6 +3703,7 @@
       "arcoDebut": 8,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "Y",
       "imagenTransparente": 0
     },
     "image": "naruto/yugito-nii"
@@ -3639,6 +3736,7 @@
       "arcoDebut": 9,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "R",
       "imagenTransparente": 0
     },
     "image": "naruto/roshi"
@@ -3674,6 +3772,7 @@
       "arcoDebut": 13,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "H",
       "imagenTransparente": 0
     },
     "image": "naruto/han"
@@ -3707,6 +3806,7 @@
       "arcoDebut": 11,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "U",
       "imagenTransparente": 0
     },
     "image": "naruto/utakata"
@@ -3734,6 +3834,7 @@
       "arcoDebut": 13,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "F",
       "imagenTransparente": 0
     },
     "image": "naruto/fu"
@@ -3770,6 +3871,7 @@
       "arcoDebut": 13,
       "estadoVital": "Muerto",
       "ocupacion": "Mizukage",
+      "inicial": "Y",
       "imagenTransparente": 0
     },
     "image": "naruto/yagura-karatachi"
@@ -3811,6 +3913,7 @@
       "arcoDebut": 13,
       "estadoVital": "Vivo",
       "ocupacion": "Mizukage",
+      "inicial": "M",
       "imagenTransparente": 0
     },
     "image": "naruto/mei-terumi"
@@ -3850,6 +3953,7 @@
       "arcoDebut": 13,
       "estadoVital": "Muerto",
       "ocupacion": "Tsuchikage",
+      "inicial": "O",
       "imagenTransparente": 0
     },
     "image": "naruto/onoki"
@@ -3888,6 +3992,7 @@
       "arcoDebut": 13,
       "estadoVital": "Vivo",
       "ocupacion": "Tsuchikage",
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kurotsuchi"
@@ -3929,6 +4034,7 @@
       "arcoDebut": 12,
       "estadoVital": "Vivo",
       "ocupacion": "Raikage",
+      "inicial": "A",
       "imagenTransparente": 0
     },
     "image": "naruto/a-cuarto-raikage"
@@ -3967,6 +4073,7 @@
       "arcoDebut": 13,
       "estadoVital": "Vivo",
       "ocupacion": "Raikage",
+      "inicial": "D",
       "imagenTransparente": 0
     },
     "image": "naruto/darui"
@@ -4005,6 +4112,7 @@
       "arcoDebut": 14,
       "estadoVital": "Muerto",
       "ocupacion": "Tsuchikage",
+      "inicial": "M",
       "imagenTransparente": 0
     },
     "image": "naruto/mu"
@@ -4040,6 +4148,7 @@
       "arcoDebut": 15,
       "estadoVital": "Muerto",
       "ocupacion": "Mizukage",
+      "inicial": "G",
       "imagenTransparente": 0
     },
     "image": "naruto/gengetsu-hozuki"
@@ -4071,6 +4180,7 @@
       "arcoDebut": 10,
       "estadoVital": "Muerto",
       "ocupacion": "Líder de Ame",
+      "inicial": "H",
       "imagenTransparente": 0
     },
     "image": "naruto/hanzo"
@@ -4101,6 +4211,7 @@
       "arcoDebut": 15,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "P",
       "imagenTransparente": 0
     },
     "image": "naruto/pakura"
@@ -4135,6 +4246,7 @@
       "arcoDebut": 13,
       "estadoVital": "Vivo",
       "ocupacion": "Mizukage",
+      "inicial": "C",
       "imagenTransparente": 0
     },
     "image": "naruto/chojuro"
@@ -4167,6 +4279,7 @@
       "arcoDebut": 15,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "A",
       "imagenTransparente": 0
     },
     "image": "naruto/ameyuri-ringo"
@@ -4196,6 +4309,7 @@
       "arcoDebut": 15,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kushimaru-kuriarare"
@@ -4223,6 +4337,7 @@
       "arcoDebut": 15,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "J",
       "imagenTransparente": 0
     },
     "image": "naruto/jinpachi-munashi"
@@ -4252,6 +4367,7 @@
       "arcoDebut": 14,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "F",
       "imagenTransparente": 0
     },
     "image": "naruto/fuguki-suikazan"
@@ -4283,6 +4399,7 @@
       "arcoDebut": 15,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "M",
       "imagenTransparente": 0
     },
     "image": "naruto/mangetsu-hozuki"
@@ -4313,6 +4430,7 @@
       "arcoDebut": 14,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "G",
       "imagenTransparente": 0
     },
     "image": "naruto/gari"
@@ -4345,6 +4463,7 @@
       "arcoDebut": 12,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/karui"
@@ -4374,6 +4493,7 @@
       "arcoDebut": 12,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/samui"
@@ -4409,6 +4529,7 @@
       "arcoDebut": 12,
       "estadoVital": "Vivo",
       "ocupacion": "Guardaespaldas del Quinto Raikage",
+      "inicial": "O",
       "imagenTransparente": 0
     },
     "image": "naruto/omoi"
@@ -4440,6 +4561,7 @@
       "arcoDebut": 13,
       "estadoVital": "Vivo",
       "ocupacion": "Asistente del Tsuchikage",
+      "inicial": "A",
       "imagenTransparente": 0
     },
     "image": "naruto/akatsuchi"
@@ -4471,6 +4593,7 @@
       "arcoDebut": 14,
       "estadoVital": "Vivo",
       "ocupacion": "Comandante de la Segunda División de las Fuerzas Aliadas Shinobi",
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kitsuchi"
@@ -4509,6 +4632,7 @@
       "arcoDebut": 10,
       "estadoVital": "Vivo",
       "ocupacion": "Anciano sapo",
+      "inicial": "F",
       "imagenTransparente": 0
     },
     "image": "naruto/fukasaku"
@@ -4545,6 +4669,7 @@
       "arcoDebut": 10,
       "estadoVital": "Vivo",
       "ocupacion": "Anciano sapo",
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/shima"
@@ -4581,6 +4706,7 @@
       "arcoDebut": 15,
       "estadoVital": "Vivo",
       "ocupacion": "Guardaespaldas del Hokage",
+      "inicial": "M",
       "imagenTransparente": 0
     },
     "image": "naruto/mirai-sarutobi"
@@ -4613,6 +4739,7 @@
       "arcoDebut": 8,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "M",
       "imagenTransparente": 0
     },
     "image": "naruto/matatabi"
@@ -4649,6 +4776,7 @@
       "arcoDebut": 8,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "I",
       "imagenTransparente": 0
     },
     "image": "naruto/isobu"
@@ -4688,6 +4816,7 @@
       "arcoDebut": 12,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/son-goku"
@@ -4726,6 +4855,7 @@
       "arcoDebut": 12,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kokuo"
@@ -4761,6 +4891,7 @@
       "arcoDebut": 11,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/saiken"
@@ -4794,6 +4925,7 @@
       "arcoDebut": 12,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "C",
       "imagenTransparente": 0
     },
     "image": "naruto/chomei"
@@ -4828,6 +4960,7 @@
       "arcoDebut": 11,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "G",
       "imagenTransparente": 0
     },
     "image": "naruto/gyuki"
@@ -4868,6 +5001,7 @@
       "arcoDebut": 20,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "B",
       "imagenTransparente": 0
     },
     "image": "naruto/boruto-uzumaki"
@@ -4908,6 +5042,7 @@
       "arcoDebut": 20,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/sarada-uchiha"
@@ -4948,6 +5083,7 @@
       "arcoDebut": 20,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "M",
       "imagenTransparente": 0
     },
     "image": "naruto/mitsuki"
@@ -4977,6 +5113,7 @@
       "arcoDebut": 20,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "H",
       "imagenTransparente": 0
     },
     "image": "naruto/himawari-uzumaki"
@@ -5010,6 +5147,7 @@
       "arcoDebut": 20,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/shikadai-nara"
@@ -5043,6 +5181,7 @@
       "arcoDebut": 20,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "I",
       "imagenTransparente": 0
     },
     "image": "naruto/inojin-yamanaka"
@@ -5073,6 +5212,7 @@
       "arcoDebut": 20,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "C",
       "imagenTransparente": 0
     },
     "image": "naruto/chocho-akimichi"
@@ -5098,6 +5238,7 @@
       "arcoDebut": 20,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "M",
       "imagenTransparente": 0
     },
     "image": "naruto/metal-lee"
@@ -5132,6 +5273,7 @@
       "arcoDebut": 20,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "I",
       "imagenTransparente": 0
     },
     "image": "naruto/iwabee-yuino"
@@ -5164,6 +5306,7 @@
       "arcoDebut": 20,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "D",
       "imagenTransparente": 0
     },
     "image": "naruto/denki-kaminarimon"
@@ -5193,6 +5336,7 @@
       "arcoDebut": 20,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "W",
       "imagenTransparente": 0
     },
     "image": "naruto/wasabi-izuno"
@@ -5225,6 +5369,7 @@
       "arcoDebut": 20,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "N",
       "imagenTransparente": 0
     },
     "image": "naruto/namida-suzumeno"
@@ -5254,6 +5399,7 @@
       "arcoDebut": 20,
       "estadoVital": "Vivo",
       "ocupacion": "Asistente de Katasuke Tōno",
+      "inicial": "S",
       "imagenTransparente": 0
     },
     "image": "naruto/sumire-kakei"
@@ -5289,6 +5435,7 @@
       "arcoDebut": 20,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kawaki"
@@ -5322,6 +5469,7 @@
       "arcoDebut": 31,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "E",
       "imagenTransparente": 0
     },
     "image": "naruto/eida"
@@ -5351,6 +5499,7 @@
       "arcoDebut": 31,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "D",
       "imagenTransparente": 0
     },
     "image": "naruto/daemon"
@@ -5379,6 +5528,7 @@
       "arcoDebut": 28,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "J",
       "imagenTransparente": 0
     },
     "image": "naruto/jigen"
@@ -5409,6 +5559,7 @@
       "arcoDebut": 28,
       "estadoVital": "Vivo",
       "ocupacion": "Líder de Kara",
+      "inicial": "C",
       "imagenTransparente": 0
     },
     "image": "naruto/code"
@@ -5445,6 +5596,7 @@
       "arcoDebut": 29,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "I",
       "imagenTransparente": 0
     },
     "image": "naruto/isshiki-otsutsuki"
@@ -5481,6 +5633,7 @@
       "arcoDebut": 20,
       "estadoVital": "Muerto",
       "ocupacion": null,
+      "inicial": "M",
       "imagenTransparente": 0
     },
     "image": "naruto/momoshiki-otsutsuki"
@@ -5512,6 +5665,7 @@
       "arcoDebut": 20,
       "estadoVital": "Muerto",
       "ocupacion": "Guardián de Momoshiki",
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/kinshiki-otsutsuki"
@@ -5543,6 +5697,7 @@
       "arcoDebut": 28,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "D",
       "imagenTransparente": 0
     },
     "image": "naruto/delta"
@@ -5576,6 +5731,7 @@
       "arcoDebut": 28,
       "estadoVital": "Vivo",
       "ocupacion": "Científico",
+      "inicial": "A",
       "imagenTransparente": 0
     },
     "image": "naruto/amado"
@@ -5613,6 +5769,7 @@
       "arcoDebut": 28,
       "estadoVital": "Muerto",
       "ocupacion": "Líder de culto",
+      "inicial": "B",
       "imagenTransparente": 0
     },
     "image": "naruto/boro"
@@ -5653,6 +5810,7 @@
       "arcoDebut": 26,
       "estadoVital": "Vivo",
       "ocupacion": null,
+      "inicial": "K",
       "imagenTransparente": 0
     },
     "image": "naruto/koji-kashin"
@@ -5697,6 +5855,7 @@
       "arcoDebut": 20,
       "estadoVital": "Incapacitado",
       "ocupacion": null,
+      "inicial": "T",
       "imagenTransparente": 0
     },
     "image": "naruto/toneri-otsutsuki"
