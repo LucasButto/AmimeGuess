@@ -63,13 +63,23 @@ describe('search', () => {
     expect(ids('raichu de alola')).toEqual(['raichu']);
   });
 
-  it('solo ofrece lo que empieza igual: no lo que contiene el texto en el medio, al final ni en otra palabra', () => {
-    // "chu": Pichu, Pikachu y Raichu lo llevan al final, pero ninguno empieza con "chu".
-    expect(ids('chu')).toEqual([]);
-    // "mime": Mime Jr. empieza igual; Mr. Mime lleva "mime" como segunda palabra y no entra.
-    expect(ids('mime')).toEqual(['mime-jr']);
-    // "m": empiezan Mime Jr. y Mr. Mime; Charmander lleva una M adentro y no entra.
+  it('también encuentra lo que contiene el texto: primero lo que empieza igual, después otra palabra y al final el medio', () => {
+    // "chu": Pichu, Pikachu y Raichu lo llevan al final.
+    expect(ids('chu')).toEqual(['pichu', 'pikachu', 'raichu']);
+    // "mime": Mime Jr. empieza igual; Mr. Mime lo lleva como segunda palabra y sale después.
+    expect(ids('mime')).toEqual(['mime-jr', 'mr-mime']);
+    // "m": empiezan Mime Jr. y Mr. Mime; Charmander lleva una M adentro y, con una sola letra, no entra.
     expect(ids('m')).toEqual(['mime-jr', 'mr-mime']);
+  });
+
+  it('encuentra por el apellido o cualquier otra palabra del nombre ("sar" → Hiruzen Sarutobi)', () => {
+    const list = buildSearchIndex([
+      { id: 'hiruzen', label: 'Hiruzen Sarutobi' },
+      { id: 'sakura', label: 'Sakura Haruno' },
+      { id: 'kisame', label: 'Kisame Hoshigaki' },
+    ]);
+    expect(search(list, 'sar').map((item) => item.id)).toEqual(['hiruzen']);
+    expect(search(list, 'sa').map((item) => item.id)).toEqual(['sakura', 'hiruzen', 'kisame']);
   });
 
   it('con una letra, ofrece solo los que empiezan con esa letra, aunque otros la lleven', () => {
