@@ -485,6 +485,7 @@
 // Va donde estaba el radar y aparece cuando termina el escaneo.
 .root [data-game-mode='poder'] [data-part='next'] {
   $arrow: polygon(0 0, calc(100% - 1.25rem) 0, 100% 50%, calc(100% - 1.25rem) 100%, 0 100%);
+  min-block-size: 2.75rem;
   padding: 0.55rem 1.85rem 0.55rem 1rem;
   font-family: t.font('heading');
   font-size: 1.35rem;

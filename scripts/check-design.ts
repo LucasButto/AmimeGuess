@@ -172,6 +172,111 @@ async function dragonBallCards(ctx: Ctx): Promise<string[]> {
   return problems;
 }
 
+/** /naruto: el pergamino abierto del Clásico, el tablón de Conexiones y rollos para los demás, cada uno un único enlace con nombre accesible. */
+async function narutoCards(ctx: Ctx): Promise<string[]> {
+  const context = await newContext(ctx, { viewport: { width: 390, height: 844 } });
+  const page = await open(ctx, context, '/naruto', '[data-card]');
+  const cards = await page.$$eval('ul[aria-label="Modos de juego"] > li', (items) =>
+    items.map((item) => {
+      const links = item.querySelectorAll('a');
+      return {
+        links: links.length,
+        card: links[0]?.getAttribute('data-card'),
+        href: links[0]?.getAttribute('href') ?? '',
+        name: links[0]?.getAttribute('aria-label') ?? '',
+      };
+    }),
+  );
+  await shot(page, 'naruto-tarjetas');
+  await context.close();
+  const problems: string[] = [];
+  if (cards.length < 7) problems.push(`hay ${cards.length} tarjetas`);
+  if (cards[0]?.card !== 'open-scroll') problems.push('la primera tarjeta no es el pergamino abierto');
+  for (const card of cards.slice(1)) {
+    const expected = card.href.endsWith('/conexiones') ? 'board' : 'scroll';
+    if (card.card !== expected) problems.push(`${card.href}: la tarjeta es "${card.card}" y no "${expected}"`);
+  }
+  for (const card of cards) {
+    if (card.links !== 1) problems.push(`una tarjeta tiene ${card.links} enlaces`);
+    if (!/^[^:]+(: (resuelto hoy|pendiente))?$/.test(card.name)) problems.push(`nombre accesible raro: "${card.name}"`);
+  }
+  return problems;
+}
+
+/** Con movimiento reducido en Naruto: ni los pétalos, ni el humo, ni el tronco de las celdas se animan, y la fila queda completa enseguida. */
+async function reducedMotionNaruto(ctx: Ctx): Promise<string[]> {
+  const problems: string[] = [];
+  const context = await newContext(ctx, { reducedMotion: 'reduce' });
+  const page = await open(ctx, context, '/naruto/clasico');
+  const moving = () =>
+    page.evaluate(() => {
+      const names = /(fall|puff|log-away|clear|unroll|stamp-in|open-page|spin)/;
+      return document.getAnimations().filter((animation) => names.test((animation as CSSAnimation).animationName ?? '')).length;
+    });
+  if ((await moving()) > 0) problems.push('hay animaciones del tema corriendo al abrir el Clásico');
+  const [miss] = misses('naruto', ['naruto-uzumaki', 'sasuke-uchiha', 'sakura-haruno']);
+  await guess(page, miss);
+  await page.waitForSelector('tbody tr');
+  await page.waitForTimeout(400);
+  if ((await moving()) > 0) problems.push('hay animaciones del tema (humo, tronco) con movimiento reducido');
+  await context.close();
+  return problems;
+}
+
+/**
+ * Naruto: los términos (afiliaciones, tipos de jutsu, atributos, arcos) y los íconos de naturaleza abren su recuadro con el
+ * foco y con un toque, sin salirse de la ventana ni quedar dentro de la tabla; Escape lo cierra. El recuadro empieza con el
+ * nombre del término.
+ */
+async function narutoTerms(ctx: Ctx): Promise<string[]> {
+  const problems: string[] = [];
+  const storage = savedGame('naruto', 'clasico', misses('naruto', ['naruto-uzumaki', 'sasuke-uchiha', 'sakura-haruno']));
+  for (const viewport of [
+    { width: 360, height: 640 },
+    { width: 1920, height: 1080 },
+  ]) {
+    const size = `${viewport.width}x${viewport.height}`;
+    const context = await newContext(ctx, { viewport, hasTouch: true }, storage);
+    const page = await open(ctx, context, '/naruto/clasico');
+    await page.waitForSelector('tbody tr');
+    const terms = page.locator('tbody button[type="button"]');
+    const count = await terms.count();
+    if (count < 10) problems.push(`${size}: solo ${count} términos con recuadro en la tabla`);
+    for (const index of [0, Math.floor(count / 2), count - 1]) {
+      const term = terms.nth(index);
+      const name = ((await term.getAttribute('aria-label')) ?? (await term.textContent()) ?? '').trim();
+      await term.scrollIntoViewIfNeeded();
+      await page.keyboard.press('Shift');
+      await term.focus();
+      const tip = await page.evaluate((edge) => {
+        const element = document.querySelector('[role="tooltip"]');
+        if (!element) return null;
+        const rect = element.getBoundingClientRect();
+        const width = document.documentElement.clientWidth;
+        return {
+          text: element.textContent ?? '',
+          inside: rect.left >= edge - 0.5 && rect.top >= edge - 0.5 && rect.right <= width - edge + 0.5 && rect.bottom <= window.innerHeight - edge + 0.5,
+          clipped: Boolean(element.closest('table, [role="region"]')),
+        };
+      }, EDGE);
+      if (!tip) problems.push(`${size} "${name}": no abre con el foco`);
+      else {
+        if (!tip.text.startsWith(name)) problems.push(`${size} "${name}": el recuadro dice "${tip.text}"`);
+        if (!tip.inside) problems.push(`${size} "${name}": el recuadro se sale de la ventana`);
+        if (tip.clipped) problems.push(`${size} "${name}": el recuadro queda dentro de la tabla`);
+      }
+      await page.keyboard.press('Escape');
+      if (await page.$('[role="tooltip"]')) problems.push(`${size} "${name}": Escape no lo cierra`);
+      await term.tap();
+      if (!(await page.$('[role="tooltip"]'))) problems.push(`${size} "${name}": no abre con un toque`);
+      await page.keyboard.press('Escape');
+    }
+    if (viewport.width === 360) await shot(page, 'naruto-terminos-360');
+    await context.close();
+  }
+  return problems;
+}
+
 /** Con las 7 esferas resueltas hoy (estado preparado) aparece el dragón con "¡Pedí un deseo!"; con una menos, no. */
 async function dragonBallReward(ctx: Ctx): Promise<string[]> {
   const problems: string[] = [];
@@ -287,10 +392,10 @@ async function reducedMotionDragonBall(ctx: Ctx): Promise<string[]> {
   return problems;
 }
 
-/** /pokemon y /dragon-ball durante 5 s: nada anima propiedades de layout y el fondo no tiene más de 3 capas animadas. */
+/** /pokemon, /dragon-ball y /naruto durante 5 s: nada anima propiedades de layout y el fondo no tiene más de 3 capas animadas. */
 async function animationProperties(ctx: Ctx): Promise<string[]> {
   const problems = new Set<string>();
-  for (const route of ['/pokemon', '/dragon-ball']) {
+  for (const route of ['/pokemon', '/dragon-ball', '/naruto']) {
     const context = await newContext(ctx);
     const page = await open(ctx, context, route, '[data-card]');
     for (let sample = 0; sample < 10; sample++) {
@@ -422,7 +527,7 @@ async function themeFont(ctx: Ctx): Promise<string[]> {
   return problems;
 }
 
-/** La suma de saltos de layout en el inicio y el Clásico de Pokémon y de Dragon Ball es menor a 0,05. */
+/** La suma de saltos de layout en el inicio y el Clásico de Pokémon, de Dragon Ball y de Naruto es menor a 0,05. */
 async function layoutShift(ctx: Ctx): Promise<string[]> {
   const problems: string[] = [];
   for (const [route, ready] of [
@@ -430,6 +535,8 @@ async function layoutShift(ctx: Ctx): Promise<string[]> {
     ['/pokemon/clasico', GAME_READY],
     ['/dragon-ball', '[data-card]'],
     ['/dragon-ball/clasico', GAME_READY],
+    ['/naruto', '[data-card]'],
+    ['/naruto/clasico', GAME_READY],
   ] as const) {
     const context = await newContext(ctx, { viewport: { width: 390, height: 844 } });
     await context.addInitScript(() => {
@@ -490,6 +597,7 @@ async function backNav(ctx: Ctx): Promise<string[]> {
   for (const [route, home] of [
     ['/pokemon/clasico', /\/pokemon$/],
     ['/dragon-ball/clasico', /\/dragon-ball$/],
+    ['/naruto/clasico', /\/naruto$/],
   ] as const) {
     const delay = await backNavDelay(ctx, route, home);
     if (!(delay <= 300)) problems.push(`${route}: la salida de los botones de volver demora ${Math.round(delay)} ms`);
@@ -589,9 +697,11 @@ async function shareEmojis(ctx: Ctx): Promise<string[]> {
   for (const [franchise, expected, unexpected] of [
     ['pokemon', '🟢', '🟩'],
     ['dragon-ball', '🟠', '🟩'],
+    ['naruto', '🍥', '🟩'],
   ] as const) {
     const answer = classicAnswer(franchise);
-    const [miss] = misses(franchise, franchise === 'pokemon' ? ['gyarados', 'snorlax'] : ['oolong', 'puar']);
+    const candidates = { pokemon: ['gyarados', 'snorlax'], 'dragon-ball': ['oolong', 'puar'], naruto: ['naruto-uzumaki', 'sasuke-uchiha'] }[franchise];
+    const [miss] = misses(franchise, candidates);
     const context = await newContext(ctx, { permissions: ['clipboard-read', 'clipboard-write'] }, savedGame(franchise, 'clasico', [miss, answer], 'won'));
     const page = await open(ctx, context, `/${franchise}/clasico`);
     await page.getByRole('button', { name: 'Compartir resultado' }).click();
@@ -630,6 +740,7 @@ const CHECKS: ReadonlyArray<{ name: string; run: (ctx: Ctx) => Promise<string[]>
   { name: '/pokemon: Pokédex y 6 bolas, un enlace cada una', run: pokemonCards },
   { name: '/dragon-ball: cápsula y 7 esferas numeradas, un enlace cada una', run: dragonBallCards },
   { name: '/dragon-ball: el dragón aparece con las 7 esferas resueltas hoy', run: dragonBallReward },
+  { name: '/naruto: pergamino abierto, tablón y rollos, un enlace cada uno', run: narutoCards },
   { name: 'Revelación en /pokemon/clasico', run: revealCheck('/pokemon/clasico', 'pokemon', ['gyarados', 'snorlax', 'mewtwo'], (id) => id) },
   { name: 'Revelación en /dragon-ball/clasico', run: revealCheck('/dragon-ball/clasico', 'dragon-ball', ['oolong', 'puar', 'yajirobe'], (id) => id) },
   { name: 'Revelación en /naruto/clasico', run: revealCheck('/naruto/clasico', 'naruto', ['naruto-uzumaki', 'sasuke-uchiha', 'sakura-haruno'], (id) => id.split('-')[0]) },
@@ -637,9 +748,11 @@ const CHECKS: ReadonlyArray<{ name: string; run: (ctx: Ctx) => Promise<string[]>
   { name: 'Revelación en /yugioh/carta', run: cardReveal },
   { name: 'Movimiento reducido', run: reducedMotion },
   { name: 'Movimiento reducido en Dragon Ball', run: reducedMotionDragonBall },
+  { name: 'Movimiento reducido en Naruto', run: reducedMotionNaruto },
   { name: 'Solo transform y opacity; fondo con 3 capas animadas como máximo', run: animationProperties },
   { name: 'Ayudas ⓘ de Pokémon', run: infoTips('pokemon', ['gyarados', 'snorlax', 'mewtwo']) },
   { name: 'Ayudas ⓘ de Dragon Ball', run: infoTips('dragon-ball', ['oolong', 'puar', 'yajirobe']) },
+  { name: 'Términos e íconos con recuadro en el Clásico de Naruto', run: narutoTerms },
   { name: 'Tipografía del tema en modales y ayudas', run: themeFont },
   { name: 'Saltos de layout', run: layoutShift },
   { name: 'Botones de volver', run: backNav },
@@ -660,6 +773,16 @@ const CHECKS: ReadonlyArray<{ name: string; run: (ctx: Ctx) => Promise<string[]>
     name: 'Fondo de Dragon Ball según la hora (tres paisajes)',
     run: (ctx) =>
       timeOfDay(ctx, 'dragon-ball', [
+        ['dusk', '07'],
+        ['day', '12'],
+        ['dusk', '19'],
+        ['night', '22'],
+      ]),
+  },
+  {
+    name: 'Fondo de Naruto según la hora (tres versiones de la aldea)',
+    run: (ctx) =>
+      timeOfDay(ctx, 'naruto', [
         ['dusk', '07'],
         ['day', '12'],
         ['dusk', '19'],

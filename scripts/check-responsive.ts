@@ -940,8 +940,13 @@ const ROUTES: RouteCheck[] = [
   { name: 'naruto-conexiones-terminado', path: '/naruto/conexiones', ready: GAME_READY, check: connectionsFinish },
   // Solo la serie original: pocos grupos, pero alcanzan para un tablero.
   { name: 'naruto-conexiones-solo-naruto', path: '/naruto/conexiones?s=naruto', ready: GAME_READY, check: connectionsLayout },
-  // Solo Boruto: no hay un grupo de cada dificultad, no alcanza el pool mínimo.
-  { name: 'naruto-conexiones-sin-pool', path: '/naruto/conexiones?s=boruto', check: showsPoolWarning },
+  // Solo Boruto: desde los grupos de Boruto del 2026-10-23 hay tableros (pocos, se repiten).
+  { name: 'naruto-conexiones-solo-boruto', path: '/naruto/conexiones?s=boruto', ready: GAME_READY, check: connectionsLayout },
+  // Línea de tiempo (2026-10-26): el mismo juego que el de Dragon Ball, con sus cuatro revisiones.
+  { name: 'naruto-linea-de-tiempo', path: '/naruto/linea-de-tiempo', ready: GAME_READY, check: timelineLayout },
+  { name: 'naruto-linea-de-tiempo-arrastrar', path: '/naruto/linea-de-tiempo', ready: GAME_READY, check: timelineDrag },
+  { name: 'naruto-linea-de-tiempo-confirmado', path: '/naruto/linea-de-tiempo', ready: GAME_READY, check: timelineConfirm },
+  { name: 'naruto-linea-de-tiempo-terminado', path: '/naruto/linea-de-tiempo', ready: GAME_READY, check: timelineFinish },
   // Sesión 13: los 10 modos de Yu-Gi-Oh. Duelista, el principal, va primero; con una sola serie (14 a 16 duelistas)
   // también se puede jugar.
   { name: 'yugioh', path: '/yugioh' },
@@ -1025,6 +1030,11 @@ const ROUTES: RouteCheck[] = [
     ready: GAME_READY,
     storage: seededGame('all', someIds('yugioh', 'entities.json', 3), 'deck', 'yugioh'),
   },
+  // Línea de tiempo (2026-10-26): el mismo juego que el de Dragon Ball, con sus cuatro revisiones.
+  { name: 'yugioh-linea-de-tiempo', path: '/yugioh/linea-de-tiempo', ready: GAME_READY, check: timelineLayout },
+  { name: 'yugioh-linea-de-tiempo-arrastrar', path: '/yugioh/linea-de-tiempo', ready: GAME_READY, check: timelineDrag },
+  { name: 'yugioh-linea-de-tiempo-confirmado', path: '/yugioh/linea-de-tiempo', ready: GAME_READY, check: timelineConfirm },
+  { name: 'yugioh-linea-de-tiempo-terminado', path: '/yugioh/linea-de-tiempo', ready: GAME_READY, check: timelineFinish },
   // Sesión 14: la 404 propia y todos los motores jugados solo con el teclado (uno por motor; Línea de tiempo y
   // Conexiones ya lo comprueban en sus rutas). Yu-Gi-Oh repite el Clásico con el tema oscuro.
   { name: 'no-existe', path: '/no-existe', expectNotFound: true },
@@ -1128,14 +1138,27 @@ async function checkPage(
       problems.push(`desborde horizontal: la página mide ${measured} px en un viewport de ${viewport.width} px`);
     }
 
-    // Lo que se toca, en teléfono: al menos 44 × 44 px.
+    // Lo que se toca, en teléfono: al menos 44 × 44 px. Se mide con las animaciones de entrada ya terminadas (un botón que
+    // crece desde el 60 % al aparecer mediría 26 px a mitad de camino); las que se repiten siempre no se esperan.
     if (phone) {
+      await page.evaluate(() => {
+        for (const animation of document.getAnimations()) {
+          if (animation.effect?.getComputedTiming().iterations !== Infinity) animation.finish();
+        }
+      });
       const small = await page.evaluate((minimum: number) => {
         const targets = document.querySelectorAll<HTMLElement>('button, a[href], [role="option"]');
         const found: string[] = [];
         for (const element of targets) {
           const box = element.getBoundingClientRect();
           if (box.width === 0 || box.height === 0) continue;
+          // Los íconos de una celda (las naturalezas de Naruto) piden el mínimo de WCAG 2.5.8, 24 px; los términos dentro de un
+          // texto entran en su excepción para objetivos en línea (miden lo que la letra). Ninguno pide los 44 px del resto.
+          if (element.closest('[data-inline-targets]')) {
+            const icons = element.closest('[data-natures]') !== null;
+            if (icons && (box.width < 23.5 || box.height < 23.5)) found.push(`ícono "${(element.getAttribute('aria-label') ?? '').slice(0, 30)}" mide ${Math.round(box.width)}×${Math.round(box.height)} px`);
+            continue;
+          }
           if (box.width < minimum - 0.5 || box.height < minimum - 0.5) {
             const label = (element.textContent ?? '').trim().slice(0, 30) || element.tagName.toLowerCase();
             found.push(`"${label}" mide ${Math.round(box.width)}×${Math.round(box.height)} px`);
