@@ -1,6 +1,7 @@
 import { franchises } from '@/franchises';
 import { loadFranchiseData } from '@/franchises/data';
 import { themeCss, themeScope } from '@/franchises/theme';
+import { DismissibleFooter } from '@/components/DismissibleFooter';
 import { SiteFooter } from '@/components/SiteFooter';
 import { es } from '@/i18n/es';
 import { FranchiseCard } from './FranchiseCard';
@@ -34,7 +35,9 @@ export default async function HomePage() {
           ))}
         </ul>
       </main>
-      <SiteFooter />
+      <DismissibleFooter>
+        <SiteFooter />
+      </DismissibleFooter>
     </>
   );
 }

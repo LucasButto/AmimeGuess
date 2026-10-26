@@ -12,10 +12,17 @@
 
 .inner {
   @include m.container(t.$container-wide);
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: t.$space-2;
+}
+
+.inner .close {
+  position: absolute;
+  inset-block-start: calc(#{t.$space-2} * -1);
+  inset-inline-end: 0;
 }
 
 .notice {

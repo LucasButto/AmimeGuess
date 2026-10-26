@@ -4,6 +4,7 @@ import { useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEv
 import { es } from '@/i18n/es';
 import styles from './Modal.module.scss';
 import { Button } from './ui/Button';
+import { CloseCross } from './ui/CloseCross';
 import { Panel } from './ui/Panel';
 
 /** Cuánto está corrido un modal movible desde el centro, en píxeles. */
@@ -325,7 +326,7 @@ export function Modal({ title, onClose, wide = false, className, offset, onMove,
             {title}
           </h2>
           <Button variant="icon" tone="b" aria-label={es.shell.close} onClick={onClose}>
-            <span aria-hidden="true">✕</span>
+            <CloseCross />
           </Button>
         </header>
         <div className={styles.body} data-part="modal-body">{children}</div>

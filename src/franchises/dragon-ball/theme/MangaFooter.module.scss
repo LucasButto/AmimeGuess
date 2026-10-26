@@ -39,7 +39,35 @@
   }
 }
 
+// La cruz: un círculo amarillo con aro de tinta, de la misma tinta que el globo (chico, para no competir con el aviso).
+.close {
+  position: absolute;
+  inset-block-start: 0.625rem;
+  inset-inline-end: 1.125rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  padding: 0;
+  border: 0.1875rem solid var(--palette-ink);
+  border-radius: 50%;
+  background: var(--palette-yellow);
+  color: var(--palette-ink);
+  font-size: 0.875rem;
+  font-weight: t.$font-weight-bold;
+  line-height: 1;
+  cursor: pointer;
+  @include m.focus-ring;
+
+  @include m.hover {
+    background: var(--palette-orange);
+  }
+}
+
 .notice {
+  // No pasa por debajo de la cruz (que queda a la derecha): el mismo aire a los dos lados, para que siga centrado.
+  padding-inline: 3.25rem;
   font-size: t.$font-size-sm;
   color: t.token('ink-muted');
   text-align: center;

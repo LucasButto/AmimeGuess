@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
+import { DismissibleFooter } from '@/components/DismissibleFooter';
 import { SkinRoot } from '@/components/skin/SkinRoot';
 import { getFranchise } from '@/franchises';
 import { themeCss } from '@/franchises/theme';
@@ -32,7 +33,9 @@ export default async function FranchiseLayout({
       <SkinRoot slug={franchise.slug}>
         <Backdrop />
         {children}
-        <Footer />
+        <DismissibleFooter>
+          <Footer />
+        </DismissibleFooter>
       </SkinRoot>
     </>
   );

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { FooterDismissButton } from '@/components/DismissibleFooter';
 import { PixelIcon } from '@/components/ui/icons';
 import { Panel } from '@/components/ui/Panel';
 import { es } from '@/i18n/es';
@@ -18,6 +19,7 @@ export function DialogFooter() {
           <Link className={styles.link} href="/creditos">
             {es.footer.credits}
           </Link>
+          <FooterDismissButton className={styles.close} />
           <span className={styles.more} aria-hidden="true">
             <PixelIcon name="more" />
           </span>

@@ -13,15 +13,29 @@
 }
 
 .box {
-  --panel-pad: #{t.$space-4};
+  // Compacto y centrado, como el globo de Dragon Ball: el aviso y el enlace uno debajo del otro, en el medio.
+  --panel-pad: #{t.$space-3};
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  gap: t.$space-2;
+  align-items: center;
+  gap: t.$space-1;
+  text-align: center;
+}
+
+// La cruz para cerrar, adentro del cuadro de diálogo, en su esquina de arriba a la derecha.
+// La cruz para cerrar (el botón de ícono del tema, con su esquina simétrica). Va con `.box` adelante: el botón del tema trae su
+// propio `position: relative` y, según el orden en que carguen las hojas de estilo, le ganaba y lo dejaba abajo.
+.box .close {
+  position: absolute;
+  // Un poco de aire contra el marco doble del cuadro (que ocupa unos 2 píxeles): que no quede pegado a los bordes.
+  inset-block-start: calc(var(--px) * 3);
+  inset-inline-end: calc(var(--px) * 3);
 }
 
 .notice {
   @include m.pixel-text;
+  // No pasa por debajo de la cruz: el mismo aire a los dos lados, para que siga centrado.
+  padding-inline: 3rem;
   font-size: t.$font-size-sm;
   line-height: t.$line-height-base;
 }

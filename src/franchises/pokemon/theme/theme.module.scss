@@ -54,7 +54,9 @@
   --clip-button: #{m.pixel-corners((4, 2, 1, 1))};
   --clip-chip: #{m.pixel-corners((2, 1))};
   --clip-cell: #{m.pixel-corners((1))};
-  --clip-icon: #{m.pixel-corners((3, 2, 1, 1))};
+  // La esquina simétrica: con (3, 2, 1, 1) una fila de más dejaba dos salientes en los costados de los botones de ícono (la cruz de
+  // cerrar), con el tramo plano de arriba (5 píxeles) distinto del de los lados.
+  --clip-icon: #{m.pixel-corners((3, 2, 1))};
 
   // Botones que recuerdan a Pokémon, no rectángulos planos: cápsulas de extremos escalonados con borde
   // oscuro. Principal roja con una bolita blanca que se enciende (amarilla) con el foco y el hover;
