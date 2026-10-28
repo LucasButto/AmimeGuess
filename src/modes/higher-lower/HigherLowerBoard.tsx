@@ -4,6 +4,7 @@ import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type R
 import { ContentImage } from '@/components/ContentImage';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { SkinAttemptsMeter, SkinComparisonMedia } from '@/components/skin/gameSlots';
 import { TitleWords } from '@/components/TitleWords';
 import { InfoTip } from '@/components/ui/InfoTip';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
@@ -69,7 +70,8 @@ function reportOf(picks: readonly string[], progress: Progress, rounds: readonly
 export function HigherLowerBoard({ session, metric, rounds }: HigherLowerBoardProps) {
   const { franchise, mode, filterKey, day, onFinish } = session;
   const questionId = useId();
-  const { MetricMark } = useSkin().skin.slots;
+  const { skin } = useSkin();
+  const { MetricMark } = skin.slots;
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
   // El valor más largo del día, escrito como se ve: reserva su lugar en las dos opciones desde antes de elegir, así
   // mostrar los números no agranda las tarjetas. Es el mismo en todas las rondas, así no dice nada de la ronda.
@@ -167,6 +169,8 @@ export function HigherLowerBoard({ session, metric, rounds }: HigherLowerBoardPr
           <span className={styles.score}>{es.higherLower.score(progress.score)}</span>
         </p>
       </header>
+      {/* Se juega hasta el primer fallo: un solo intento fallido agota el medidor. */}
+      <SkinAttemptsMeter skin={skin} engine="higher-lower" failed={progress.failedAt === null ? 0 : 1} won={ended && progress.failedAt === null} total={1} />
 
       <div className={styles.options} role="group" aria-labelledby={questionId} data-part="duel" data-leaving={leaving}>
         {([round.a, round.b] as const).map((entity, position) => (
@@ -232,7 +236,8 @@ function meterLevel(share: number): 'high' | 'mid' | 'low' {
 
 /** Una de las dos opciones: se toca para elegirla y, ya elegida, muestra su valor y si era la mayor. */
 function Option({ entity, value, max, metric, sizer, revealed, isWinner, isPicked, onChoose, buttonRef }: OptionProps) {
-  const marks = useSkin().skin.cellMarks;
+  const { skin } = useSkin();
+  const marks = skin.cellMarks;
   const share = max > 0 ? Math.max(0, value) / max : 0;
   return (
     <button
@@ -246,12 +251,14 @@ function Option({ entity, value, max, metric, sizer, revealed, isWinner, isPicke
       disabled={revealed}
       onClick={() => onChoose(entity.id)}
     >
-      {entity.image && (
-        <ContentImage className={styles.image} stem={entity.image} alt="" sizes="(min-width: 48rem) 10rem, 5rem" priority />
-      )}
+      <SkinComparisonMedia skin={skin} entity={entity} metric={metric.key} revealed={revealed}>
+        {entity.image && (
+          <ContentImage className={styles.image} stem={entity.image} alt="" sizes="(min-width: 48rem) 10rem, 5rem" priority />
+        )}
+      </SkinComparisonMedia>
       <span className={styles.details} data-part="reading">
-        <span className={styles.name}>{entity.name.es}</span>
-        <span className={styles.value} data-part="value">
+        <span className={styles.name} aria-hidden={skin.customComparisonMedia || undefined}>{entity.name.es}</span>
+        <span className={styles.value} data-part="value" aria-hidden={skin.customComparisonMedia || undefined}>
           <span className={styles.valueSizer} aria-hidden="true">
             {sizer}
           </span>

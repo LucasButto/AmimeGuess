@@ -5,6 +5,7 @@ import { autocompleteItemOf, type AutocompleteItem } from '@/components/Autocomp
 import { GuessField } from '@/components/GuessField';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { SkinAttemptsMeter, SkinGameFrame, SkinRevealListItem, revealListPosition } from '@/components/skin/gameSlots';
 import { PixelIcon } from '@/components/ui/icons';
 import { InfoTip } from '@/components/ui/InfoTip';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
@@ -143,34 +144,38 @@ export function RevealListBoard({ session, config, candidates, options }: Reveal
         </div>
       )}
 
-      <section className={styles.list} aria-labelledby={listTitleId}>
-        <h2 className={styles.listTitle} id={listTitleId}>
-          {config.label}
-        </h2>
-        <ol className={styles.slots}>
-          {slots.map((slot) => (
-            <li key={slot.position} className={styles.slot} data-revealed={slot.revealed} data-latest={slot.position === latest}>
-              <span className={styles.cursor} aria-hidden="true">
-                <PixelIcon name="cursor" />
-              </span>
-              <span className={styles.position} aria-hidden="true">
-                {slot.position}
-              </span>
-              {slot.revealed ? (
-                <span className={styles.text}>{slot.text}</span>
-              ) : (
-                <>
-                  {/* Un hueco por revelar: se ve como "???" y se lee como "todavía oculta". */}
-                  <span className={styles.text} aria-hidden="true">
-                    ???
+      <SkinGameFrame skin={skin} mode={mode} engine="reveal-list">
+        <section className={styles.list} aria-labelledby={listTitleId}>
+          <h2 className={styles.listTitle} id={listTitleId}>
+            {config.label}
+          </h2>
+          <ol className={styles.slots}>
+            {slots.map((slot) => (
+              <li key={slot.position} className={styles.slot} data-revealed={slot.revealed} data-latest={slot.position === latest}>
+                <SkinRevealListItem skin={skin} position={slot.position} revealed={slot.revealed} text={slot.revealed ? slot.text : undefined}>
+                  <span className={styles.cursor} aria-hidden="true">
+                    <PixelIcon name="cursor" />
                   </span>
-                  <VisuallyHidden>{`${es.revealList.position(slot.position)}: ${es.revealList.hidden}`}</VisuallyHidden>
-                </>
-              )}
-            </li>
-          ))}
-        </ol>
-      </section>
+                  <span className={styles.position} aria-hidden="true">
+                    {revealListPosition(slot.position, skin.revealListPositionPrefix)}
+                  </span>
+                  {slot.revealed ? (
+                    <span className={styles.text}>{slot.text}</span>
+                  ) : (
+                    <>
+                      {/* Un hueco por revelar: se ve como "???" y se lee como "todavía oculta". */}
+                      <span className={styles.text} aria-hidden="true">
+                        ???
+                      </span>
+                      <VisuallyHidden>{`${es.revealList.position(slot.position)}: ${es.revealList.hidden}`}</VisuallyHidden>
+                    </>
+                  )}
+                </SkinRevealListItem>
+              </li>
+            ))}
+          </ol>
+        </section>
+      </SkinGameFrame>
 
       {hintLines.length > 0 && (
         <section className={styles.hints} aria-labelledby={hintsTitleId} data-new-hint={newHint}>
@@ -197,6 +202,7 @@ export function RevealListBoard({ session, config, candidates, options }: Reveal
       )}
 
       <p className={styles.counter}>{es.revealList.attempts(attemptIds.length)}</p>
+      <SkinAttemptsMeter skin={skin} engine="reveal-list" failed={failed} won={won} />
 
       {failedNames.length > 0 && (
         <section className={styles.failed} aria-labelledby={failedTitleId}>

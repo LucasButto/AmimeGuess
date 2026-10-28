@@ -5,6 +5,7 @@ import { autocompleteItemOf, type AutocompleteItem } from '@/components/Autocomp
 import { GuessField } from '@/components/GuessField';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { SkinAttemptsMeter, SkinGameFrame } from '@/components/skin/gameSlots';
 import { Chip } from '@/components/ui/Chip';
 import { InfoTip } from '@/components/ui/InfoTip';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
@@ -160,14 +161,16 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
         </div>
       )}
 
-      <RevealImage
-        stem={image.stem}
-        width={image.width}
-        height={image.height}
-        alt={over ? es.imageReveal.imageSolvedAlt(answer.entity.name.es) : es.imageReveal.imageAlt}
-        visual={visual}
-        kind={config.imageContentKind}
-      />
+      <SkinGameFrame skin={skin} mode={mode} engine="image-reveal">
+        <RevealImage
+          stem={image.stem}
+          width={image.width}
+          height={image.height}
+          alt={over ? es.imageReveal.imageSolvedAlt(answer.entity.name.es) : es.imageReveal.imageAlt}
+          visual={visual}
+          kind={config.imageContentKind}
+        />
+      </SkinGameFrame>
 
       {!over && prefs.reveal && (
         <div className={styles.progress}>
@@ -181,6 +184,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
       )}
 
       <p className={styles.counter}>{es.imageReveal.attempts(attemptIds.length)}</p>
+      <SkinAttemptsMeter skin={skin} engine="image-reveal" failed={failed} won={won} total={MAX_FAILED} />
       {/* Antes del último intento se avisa: si falla, se pierde. */}
       {!over && failed === MAX_FAILED - 1 && (
         <p className={styles.lastChance} role="status">

@@ -5,6 +5,7 @@ import { autocompleteItemOf, type AutocompleteItem } from '@/components/Autocomp
 import { GuessField } from '@/components/GuessField';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { SkinAttemptsMeter, SkinGameFrame } from '@/components/skin/gameSlots';
 import { PixelIcon } from '@/components/ui/icons';
 import { InfoTip } from '@/components/ui/InfoTip';
 import { TermText } from '@/components/ui/TermText';
@@ -138,21 +139,23 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
         </div>
       )}
 
-      <section className={styles.clue} aria-labelledby={clueTitleId} data-part="clue">
-        <h2 className={styles.clueTitle} id={clueTitleId}>
-          {es.textClue.clueTitle}
-        </h2>
-        {mainLines.map(({ line, text }) => (
-          <div key={line.label} className={styles.clueLine}>
-            <p className={styles.clueLabel} data-part="clue-label">
-              {line.label}
-            </p>
-            <p className={styles.clueText} data-display={line.kind === 'content' ? (line.display ?? 'text') : 'text'}>
-              <TermText text={text} help={line.kind === 'attr' ? line.valueHelp : undefined} />
-            </p>
-          </div>
-        ))}
-      </section>
+      <SkinGameFrame skin={skin} mode={mode} engine="text-clue">
+        <section className={styles.clue} aria-labelledby={clueTitleId} data-part="clue">
+          <h2 className={styles.clueTitle} id={clueTitleId}>
+            {es.textClue.clueTitle}
+          </h2>
+          {mainLines.map(({ line, text }) => (
+            <div key={line.label} className={styles.clueLine}>
+              <p className={styles.clueLabel} data-part="clue-label">
+                {line.label}
+              </p>
+              <p className={styles.clueText} data-display={line.kind === 'content' ? (line.display ?? 'text') : 'text'}>
+                <TermText text={text} help={line.kind === 'attr' ? line.valueHelp : undefined} />
+              </p>
+            </div>
+          ))}
+        </section>
+      </SkinGameFrame>
 
       {hintLines.length > 0 && (
         <section className={styles.hints} aria-labelledby={hintsTitleId} data-new-hint={newHint}>
@@ -179,6 +182,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
       )}
 
       <p className={styles.counter}>{es.textClue.attempts(attemptIds.length)}</p>
+      <SkinAttemptsMeter skin={skin} engine="text-clue" failed={failed} won={won} />
 
       {failedNames.length > 0 && (
         <section className={styles.failed} aria-labelledby={failedTitleId}>

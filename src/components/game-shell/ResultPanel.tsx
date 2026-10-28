@@ -5,6 +5,7 @@ import { es } from '@/i18n/es';
 import { ContentImage } from '../ContentImage';
 import { CopyButton } from '../CopyButton';
 import { useSkin } from '../skin/context';
+import { celebratesResult } from '../skin/gameSlots';
 import { Panel } from '../ui/Panel';
 import styles from './ResultPanel.module.scss';
 import type { AnswerInfo } from './types';
@@ -37,7 +38,7 @@ export function ResultPanel({ won, attempts, score, answer, streak, getShareText
   const { skin } = useSkin();
   const { WinCelebration, StreakDisplay } = skin.slots;
   const scored = score !== undefined;
-  const celebrate = won && !scored;
+  const celebrate = celebratesResult(won, scored, skin);
   const namesAnswer = celebrate && skin.winHeadline === 'answer';
   const title = scored
     ? es.shell.result.scoreTitle

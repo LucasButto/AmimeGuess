@@ -47,6 +47,8 @@ function DefaultLoader() {
 }
 
 export const DEFAULT_SLOTS: SkinSlots = {
+  ComparisonMedia: Nothing,
+  RevealListItem: Nothing,
   Backdrop: Nothing,
   GuessInput: Autocomplete,
   ModeCard: DefaultModeCard,
@@ -70,6 +72,12 @@ export const DEFAULT_SLOTS: SkinSlots = {
 };
 
 export const DEFAULT_SKIN_DATA: SkinData = {
+  customComparisonMedia: false,
+  customRevealListItems: false,
+  additionalAttemptsMeters: [],
+  additionalModeFrames: [],
+  revealListPositionPrefix: '',
+  celebrateScoredResults: false,
   revealMode: 'flip',
   // Las marcas de siempre: el parcial es naranja, como la celda del Clásico.
   shareEmojis: SHARE_MARKS,

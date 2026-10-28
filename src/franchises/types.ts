@@ -1,4 +1,5 @@
 import type { ComponentType, ReactNode } from 'react';
+import type { Entity } from '../engine/types';
 import type { AutocompleteItem } from '../components/Autocomplete';
 import type { PoolNoun } from '../components/FilterPanel';
 import type { ClassicConfig } from '../modes/classic/types';
@@ -66,7 +67,7 @@ export const THEME_COLORS = [
 export type ThemeColor = (typeof THEME_COLORS)[number];
 
 /** Fuentes de Google Fonts que cargan los temas (ver src/app/fonts.ts). Cada una es una variable CSS `--font-<id>`. */
-export type ThemeFont = 'press-start-2p' | 'jersey-10' | 'rubik' | 'bangers' | 'permanent-marker' | 'shippori-mincho' | 'cinzel';
+export type ThemeFont = 'press-start-2p' | 'jersey-10' | 'rubik' | 'bangers' | 'permanent-marker' | 'shippori-mincho' | 'cinzel-decorative';
 
 /**
  * El tema de una franquicia (SPEC 9): paleta, tipografía de títulos, forma y tratamiento de fondo. Son solo
@@ -218,7 +219,7 @@ export interface AttemptsMeterProps {
   /** Intentos fallidos hasta ahora. */
   readonly failed: number;
   readonly won: boolean;
-  /** Cuántos intentos hay en total, si el modo los limita (la línea de tiempo); los modos que no, no lo pasan. */
+  /** Cuántos fallos admite el modo si los limita; los modos sin límite no lo pasan. */
   readonly total?: number;
 }
 
@@ -255,8 +256,24 @@ export interface MetricMarkProps {
   readonly metric: string;
 }
 
+/** Imagen alternativa de una opción; nunca decide el resultado ni modifica el botón. */
+export interface ComparisonMediaProps {
+  readonly entity: Entity;
+  readonly metric: string;
+  readonly revealed: boolean;
+}
+
+/** Contenido visual de un eslabón. El texto de posiciones ocultas no se entrega al slot. */
+export interface RevealListItemProps {
+  readonly position: number;
+  readonly revealed: boolean;
+  readonly text?: string;
+}
+
 /** Los componentes que una piel puede reemplazar (SPEC 9.2). */
 export interface SkinSlots {
+  readonly ComparisonMedia: ComponentType<ComparisonMediaProps>;
+  readonly RevealListItem: ComponentType<RevealListItemProps>;
   /** Fondo de toda la franquicia: fijo detrás del contenido, decorativo. */
   readonly Backdrop: ComponentType;
   /** Dónde se elige el intento en los modos de adivinar (por defecto, un campo de texto con sugerencias). */
@@ -298,6 +315,18 @@ export interface SoundRecipe {
 export type SoundName = 'reveal' | 'miss' | 'win';
 
 export interface SkinData {
+  /** Reemplaza solo la imagen de las opciones con ComparisonMedia; false por defecto. */
+  readonly customComparisonMedia?: boolean;
+  /** Reemplaza el contenido de cada posición con RevealListItem; false por defecto. */
+  readonly customRevealListItems?: boolean;
+  /** Motores adicionales que montan AttemptsMeter; no altera los montajes nativos. Vacío por defecto. */
+  readonly additionalAttemptsMeters?: readonly EngineId[];
+  /** Motores adicionales cuyo contenido se envuelve con ModeFrame. Vacío por defecto. */
+  readonly additionalModeFrames?: readonly EngineId[];
+  /** Prefijo visible de la posición de reveal-list; sin él se conserva solo el número. */
+  readonly revealListPositionPrefix?: string;
+  /** Permite WinCelebration en resúmenes por puntaje ganados. Desactivado por defecto. */
+  readonly celebrateScoredResults?: boolean;
   /** Cómo se revela una celda del Clásico: girando desde su dorso o apareciendo debajo de él. */
   readonly revealMode: 'flip' | 'swap';
   /** Emojis del texto para compartir; los tres tienen que distinguirse entre sí. */
