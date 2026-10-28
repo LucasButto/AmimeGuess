@@ -19,11 +19,12 @@ export default async function HomePage() {
   );
 
   return (
-    <>
+    <div className={styles.room} data-hub="cartridges">
       <main className={styles.page}>
         {/* El tema de cada franquicia, con alcance de tarjeta: el Home muestra las cuatro identidades a la vez. */}
         <style>{franchises.map((franchise) => themeCss(franchise.theme, themeScope(franchise.slug))).join('\n')}</style>
         <header className={styles.header}>
+          <p className={styles.kicker}>{es.home.room}</p>
           <h1 className={styles.title}>{es.home.title}</h1>
           <p className={styles.subtitle}>{es.home.subtitle}</p>
         </header>
@@ -38,6 +39,6 @@ export default async function HomePage() {
       <DismissibleFooter>
         <SiteFooter />
       </DismissibleFooter>
-    </>
+    </div>
   );
 }
