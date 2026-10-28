@@ -43,14 +43,13 @@
 // La cruz: un sello rojo (hanko) con un filete blanco, como el de las tarjetas de modo, sobre el papel del pergamino. El área
 // táctil es el sello.
 .close {
+  @include m.touch-target;
   position: absolute;
   inset-block-start: 0.5rem;
   inset-inline-end: 0.75rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  inline-size: 2.375rem;
-  block-size: 2.375rem;
   padding: 0;
   border: 0.125rem solid var(--palette-ink);
   border-radius: 0.3125rem;

@@ -41,14 +41,13 @@
 
 // La cruz: un círculo amarillo con aro de tinta, de la misma tinta que el globo (chico, para no competir con el aviso).
 .close {
+  @include m.touch-target;
   position: absolute;
   inset-block-start: 0.625rem;
   inset-inline-end: 1.125rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  inline-size: 2rem;
-  block-size: 2rem;
   padding: 0;
   border: 0.1875rem solid var(--palette-ink);
   border-radius: 50%;
