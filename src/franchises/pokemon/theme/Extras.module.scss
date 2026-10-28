@@ -2,32 +2,6 @@
 @use 'tokens' as t;
 @use 'mixins' as m;
 
-// --- Píldora de tipo -----------------------------------------------------------
-// Los colores son los de la paleta (extras-art.ts); cada uno con contraste suficiente para su ícono.
-$type-fills: 'cloud-shade', 'red', 'blue', 'grass-2', 'yellow', 'sky-1', 'orange', 'violet', 'dawn', 'sky-2', 'dusk',
-  'grass-1', 'gray', 'night', 'cyan', 'ink', 'white', 'pink';
-
-.typePill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--px-half) var(--px);
-  box-shadow: inset 0 0 0 var(--px-half) var(--palette-frame);
-  clip-path: m.pixel-corners((1));
-
-  @each $fill in $type-fills {
-    &[data-fill='#{$fill}'] {
-      background: var(--palette-#{$fill});
-    }
-  }
-}
-
-// 8 × 8 píxeles de dibujo, a medio píxel de arte cada uno (entero a cualquier escala).
-.typeIcon {
-  inline-size: calc(#{t.token('px-half')} * 8);
-  block-size: calc(#{t.token('px-half')} * 8);
-}
-
 // --- Medallero -----------------------------------------------------------------
 
 .medals {

@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
-import type { Entity } from '@/engine/types';
+import type { AttrValue, Entity } from '@/engine/types';
 import { es } from '@/i18n/es';
 import styles from './Autocomplete.module.scss';
 import { ContentImage } from './ContentImage';
@@ -13,6 +13,8 @@ export interface AutocompleteItem extends SearchItem {
   imageStem?: string;
   /** Número en el catálogo de la franquicia (la Pokédex Nacional), si lo tiene: ordena y se muestra en los selectores. */
   number?: number;
+  /** Atributos opcionales para que los selectores puedan ofrecer facetas locales. */
+  attrs?: Readonly<Record<string, AttrValue>>;
 }
 
 /** Una entidad como opción de un campo de intento. El número sale del atributo `numero`, si la entidad lo tiene. */
@@ -23,6 +25,7 @@ export function autocompleteItemOf(entity: Entity): AutocompleteItem {
     label: entity.name.es,
     aliases: entity.aliases,
     imageStem: entity.image,
+    attrs: entity.attrs,
     ...(typeof number === 'number' ? { number } : {}),
   };
 }

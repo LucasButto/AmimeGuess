@@ -3,24 +3,19 @@ import { es } from '@/i18n/es';
 import type { AttemptsMeterProps, MetricMarkProps, StreakDisplayProps, ValueMarkProps } from '../../types';
 import { inlineArt } from './art';
 import styles from './Extras.module.scss';
-import { METRIC_ICONS, MEDAL_COUNT, isTypeName, medal, metricIconKey, typeIcon } from './extras-art';
+import { METRIC_ICONS, MEDAL_COUNT, isTypeName, medal, metricIconKey } from './extras-art';
+import { TypeBadge } from './TypeBadge';
 import { PokeBall } from './PokeBall';
 
 /** Columnas del Clásico cuyo valor es un tipo. */
 const TYPE_COLUMNS = new Set(['tipo1', 'tipo2']);
 
 /**
- * Slot `ValueMark`: en las columnas de tipo, una píldora del color del tipo con su ícono pixel. El nombre del
- * tipo sigue escrito al lado; la píldora es decorativa.
+ * Slot `ValueMark`: insignia de tipo decorativa; el nombre sigue escrito al lado.
  */
 export function TypeMark({ column, value }: ValueMarkProps) {
   if (!TYPE_COLUMNS.has(column) || !isTypeName(value)) return null;
-  const { art, fill } = typeIcon(value);
-  return (
-    <span className={styles.typePill} data-fill={fill} aria-hidden="true">
-      <PixelArt art={inlineArt(art)} size="fill" className={styles.typeIcon} />
-    </span>
-  );
+  return <TypeBadge type={value} />;
 }
 
 /**

@@ -1,29 +1,25 @@
 import { describe, expect, it } from 'vitest';
-import { contrastRatio } from '../../theme';
+import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import path from 'node:path';
 import { POKEMON_PALETTE } from '../palette';
-import { MEDAL_COUNT, TYPE_NAMES, medal, typeIcon } from './extras-art';
+import { MEDAL_COUNT, TYPE_NAMES, medal, typeBadgeFile } from './extras-art';
 
 const palette: Readonly<Record<string, string>> = POKEMON_PALETTE;
 
-describe('íconos de tipo', () => {
-  it('hay uno por cada uno de los 18 tipos, de 8 × 8', () => {
-    expect(TYPE_NAMES).toHaveLength(18);
-    for (const type of TYPE_NAMES) {
-      const { art } = typeIcon(type);
-      expect(art.rows, type).toHaveLength(8);
-      for (const row of art.rows) expect(row, type).toHaveLength(8);
-    }
-  });
-
-  it('todos los dibujos son distintos', () => {
-    expect(new Set(TYPE_NAMES.map((type) => typeIcon(type).art.rows.join('/'))).size).toBe(18);
-  });
-
-  it('el trazo del ícono contrasta con su píldora (3:1, componente de interfaz)', () => {
-    for (const type of TYPE_NAMES) {
-      const { fill, ink } = typeIcon(type);
-      expect(palette[fill], `${type}: ${fill}`).toBeDefined();
-      expect(contrastRatio(palette[ink], palette[fill]), type).toBeGreaterThanOrEqual(3);
+describe('archivos de insignias de tipo', () => {
+  it('los 18 tipos tienen archivos distintos y existentes', () => {
+    const directory = path.resolve(import.meta.dirname, '../../../../public/theme/pokemon/tipos');
+    const files = TYPE_NAMES.map(typeBadgeFile);
+    expect(files).toHaveLength(18);
+    expect(new Set(files).size).toBe(18);
+    expect(readdirSync(directory).sort()).toEqual([...files].sort());
+    for (const file of files) {
+      expect(file).toMatch(/^[a-z]+\.png$/);
+      expect(existsSync(path.join(directory, file)), file).toBe(true);
+      const png = readFileSync(path.join(directory, file));
+      expect([...png.subarray(0, 8)], file).toEqual([137, 80, 78, 71, 13, 10, 26, 10]);
+      expect(png.toString('ascii', 12, 16), file).toBe('IHDR');
+      expect([png.readUInt32BE(16), png.readUInt32BE(20)], file).toEqual([50, 50]);
     }
   });
 });

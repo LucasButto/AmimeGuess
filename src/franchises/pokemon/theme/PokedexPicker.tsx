@@ -1,29 +1,29 @@
 'use client';
 
-import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
+import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import { type AutocompleteItem } from '@/components/Autocomplete';
 import { ContentImage } from '@/components/ContentImage';
 import { Modal, type ModalOffset, type ModalSize } from '@/components/Modal';
-import { buildSearchIndex, search, type SearchIndex } from '@/components/search';
+import { buildSearchIndex } from '@/components/search';
+import { Button } from '@/components/ui/Button';
+import { Chip } from '@/components/ui/Chip';
 import { PixelIcon } from '@/components/ui/icons';
 import { PixelArt } from '@/components/ui/PixelArt';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import { es } from '@/i18n/es';
 import type { GuessInputProps } from '../../types';
+import { pokemonConfig } from '../config';
+import { ChipBall } from './ChipBall';
+import { TypeBadge } from './TypeBadge';
+import { isTypeName } from './extras-art';
+import { pokedexTypes } from './pokedexTypes';
+import { availableGenerations, availableTypes, filterByFacets, type PokedexFilters } from './pokedexFilters';
 import { PICKER_POKEDEX, POKEDEX_LENS, POKEDEX_LIGHT_ROWS, inlineArt } from './art';
 import styles from './PokedexPicker.module.scss';
 
-/** Los que coinciden con lo escrito: por nombre (o alias) o por número, siempre en el orden de la Pokédex. */
-function filterItems(items: readonly AutocompleteItem[], index: SearchIndex<AutocompleteItem>, query: string): AutocompleteItem[] {
-  const text = query.trim();
-  if (text === '') return [...items];
-  const byNumber = /^\d+$/.test(text);
-  const wanted = String(Number(text));
-  const matches = byNumber ? items.filter((item) => item.number !== undefined && String(item.number).startsWith(wanted)) : search(index, text);
-  return [...matches].sort((a, b) => (a.number ?? 0) - (b.number ?? 0));
-}
-
 interface DialogProps {
+  filters: PokedexFilters;
+  onFiltersChange: (filters: PokedexFilters) => void;
   items: readonly AutocompleteItem[];
   excludeIds: ReadonlySet<string>;
   onPick: (id: string) => void;
@@ -36,14 +36,33 @@ interface DialogProps {
 }
 
 /** La Pokédex abierta: un buscador y la grilla de todos los Pokémon posibles, en el orden de la Pokédex Nacional. */
-function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove, onResize }: DialogProps) {
+function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove, onResize, filters, onFiltersChange }: DialogProps) {
   const searchId = useId();
+  const filtersId = useId();
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [coverBar, setCoverBar] = useState(false);
+  const barRef = useRef<HTMLDivElement>(null);
+  const filtersRef = useRef<HTMLDivElement>(null);
+  const filterTriggerRef = useRef<HTMLSpanElement>(null);
+  const closeFilters = useCallback(() => {
+    setFiltersOpen(false);
+    filterTriggerRef.current?.querySelector('button')?.focus({ preventScroll: true });
+  }, []);
   const gridRef = useRef<HTMLUListElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState('');
   const [stop, setStop] = useState<string | null>(null);
   const index = useMemo(() => buildSearchIndex(items), [items]);
-  const shown = useMemo(() => filterItems(items, index, query), [items, index, query]);
+  const generations = useMemo(() => availableGenerations(items), [items]);
+  const types = useMemo(() => availableTypes(items), [items]);
+  // Las selecciones que no existen en el pool recibido no restringen la lista.
+  const activeFilters = useMemo(() => ({
+    generations: filters.generations.filter((value) => generations.includes(value)),
+    types: filters.types.filter((value) => types.includes(value)),
+  }), [filters, generations, types]);
+  const activeCount = activeFilters.generations.length + activeFilters.types.length;
+  const shown = useMemo(() => filterByFacets(items, activeFilters, query, index), [items, activeFilters, index, query]);
+  const clearFilters = () => onFiltersChange({ generations: [], types: [] });
   const firstFree = shown.find((item) => !excludeIds.has(item.id));
   // Un solo Pokémon es parada de Tab (los demás se alcanzan con las flechas): 1025 paradas serían inusables.
   const tabStop = (stop !== null && shown.some((item) => item.id === stop) ? stop : firstFree?.id) ?? null;
@@ -52,6 +71,42 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
   useEffect(() => {
     if (window.matchMedia('(pointer: fine)').matches) searchRef.current?.focus();
   }, []);
+
+  useEffect(() => {
+    if (!filtersOpen) return;
+    const panel = filtersRef.current;
+    const bar = barRef.current;
+    const body = bar?.closest<HTMLElement>('[data-part="modal-body"]');
+    if (!panel || !bar || !body) return;
+    // La altura depende también del tamaño que la persona dejó al redimensionar el modal.
+    const fit = () => setCoverBar(panel.offsetHeight + bar.offsetHeight > body.clientHeight);
+    fit();
+    const observer = new ResizeObserver(fit);
+    observer.observe(panel);
+    observer.observe(bar);
+    observer.observe(body);
+    panel.querySelector('button')?.focus({ preventScroll: true });
+    function outside(event: MouseEvent) {
+      if (!(event.target instanceof Node) || panel?.contains(event.target) || filterTriggerRef.current?.contains(event.target)) return;
+      // El primer clic exterior solo descarta el desplegable: nunca envía un intento.
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      closeFilters();
+    }
+    function escape(event: globalThis.KeyboardEvent) {
+      if (event.key !== 'Escape') return;
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      closeFilters();
+    }
+    document.addEventListener('click', outside, true);
+    document.addEventListener('keydown', escape, true);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('click', outside, true);
+      document.removeEventListener('keydown', escape, true);
+    };
+  }, [filtersOpen, closeFilters]);
 
   function pick(id: string) {
     if (excludeIds.has(id)) return;
@@ -85,7 +140,7 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
       decoration={<HeaderLights />}
     >
       <div className={styles.picker}>
-        <div className={styles.bar}>
+        <div className={styles.bar} ref={barRef}>
           <label className={styles.searchLabel} htmlFor={searchId}>
             {es.pokemonSkin.picker.search}
           </label>
@@ -114,14 +169,61 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
           <p className={styles.count} role="status">
             {es.pokemonSkin.picker.count(shown.length)}
           </p>
+          <div className={styles.filterActions}>
+            <span ref={filterTriggerRef}>
+            <Button variant="ghost" aria-expanded={filtersOpen} aria-controls={filtersId}
+              aria-label={es.pokemonSkin.picker.filtersAccessible(activeCount)}
+              onClick={() => filtersOpen ? closeFilters() : setFiltersOpen(true)}>
+              {es.pokemonSkin.picker.filters(activeCount)}
+            </Button>
+            </span>
+            {activeCount > 0 && <Button variant="ghost" onClick={clearFilters}>{es.pokemonSkin.picker.clearFilters}</Button>}
+          </div>
+
+        <div id={filtersId} ref={filtersRef} hidden={!filtersOpen} className={styles.filters} data-cover-bar={coverBar}
+          role="region" aria-label={es.pokemonSkin.picker.filtersPanel}>
+          <div role="group" aria-label={es.pokemonSkin.picker.generation}>
+            <p className={styles.filterHeading}>{es.pokemonSkin.picker.generation}</p>
+            <div className={styles.chips}>
+              {generations.map((generation) => {
+                const id = `g${generation}` as keyof typeof pokemonConfig.seriesLabels;
+                const pressed = activeFilters.generations.includes(generation);
+                return <Chip key={generation} pressed={pressed} mark={<ChipBall on={pressed} id={id} />}
+                  onClick={() => onFiltersChange({ ...activeFilters, generations: pressed
+                    ? activeFilters.generations.filter((value) => value !== generation)
+                    : [...activeFilters.generations, generation] })}>
+                  {pokemonConfig.seriesLabels[id] ?? es.pokemonSkin.picker.generationNumber(generation)}
+                </Chip>;
+              })}
+            </div>
+          </div>
+          <div role="group" aria-label={es.pokemonSkin.picker.type}>
+            <p className={styles.filterHeading}>{es.pokemonSkin.picker.type}</p>
+            <div className={`${styles.chips} ${styles.typeChips}`}>
+              {types.map((type) => {
+                const pressed = activeFilters.types.includes(type);
+                return <Chip key={type} pressed={pressed} mark={isTypeName(type) ? <span className={styles.typeChipMark} data-on={pressed}><TypeBadge type={type} compact /></span> : undefined}
+                  onClick={() => onFiltersChange({ ...activeFilters, types: pressed
+                    ? activeFilters.types.filter((value) => value !== type)
+                    : [...activeFilters.types, type] })}>{type}</Chip>;
+              })}
+            </div>
+          </div>
+          <div className={styles.filterFooter}>
+            <p>{es.pokemonSkin.picker.count(shown.length)}</p>
+            {activeCount > 0 && <Button variant="ghost" onClick={clearFilters}>{es.pokemonSkin.picker.clearFilters}</Button>}
+            <Button variant="secondary" onClick={closeFilters}>{es.pokemonSkin.picker.done}</Button>
+          </div>
+        </div>
         </div>
 
         {shown.length === 0 ? (
-          <p className={styles.empty}>{es.pokemonSkin.picker.empty}</p>
+          <p className={styles.empty}>{activeCount > 0 ? es.pokemonSkin.picker.emptyFilters : es.pokemonSkin.picker.empty}</p>
         ) : (
           <ul ref={gridRef} className={styles.grid} aria-label={es.pokemonSkin.picker.gridLabel} onKeyDown={handleGridKey}>
             {shown.map((item) => {
               const tried = excludeIds.has(item.id);
+              const itemTypes = pokedexTypes(item);
               return (
                 <li key={item.id}>
                   <button
@@ -134,6 +236,12 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
                     onFocus={() => setStop(item.id)}
                     onClick={() => pick(item.id)}
                   >
+                    {itemTypes.length > 0 && <>
+                      <span className={styles.types} aria-hidden="true">
+                        {itemTypes.map((type) => <TypeBadge key={type} type={type} compact />)}
+                      </span>
+                      <VisuallyHidden> ({es.pokemonSkin.picker.itemTypes(itemTypes)})</VisuallyHidden>
+                    </>}
                     {item.imageStem && <ContentImage className={styles.thumb} stem={item.imageStem} alt="" sizes="5rem" />}
                     {item.number !== undefined && <span className={styles.number}>{es.pokemonSkin.picker.number(item.number)}</span>}
                     <span className={styles.name}>{item.label}</span>
@@ -215,6 +323,7 @@ function DexButton({ count, disabled, onOpen }: { count: number; disabled: boole
  */
 export function PokedexPicker({ label, items, excludeIds, onSelect, disabled = false }: GuessInputProps) {
   const [open, setOpen] = useState(false);
+  const [filters, setFilters] = useState<PokedexFilters>({ generations: [], types: [] });
   // Dónde y de qué tamaño se dejó la Pokédex: al volver a abrirla (en el intento siguiente) aparece igual.
   const [offset, setOffset] = useState<ModalOffset>({ x: 0, y: 0 });
   const [size, setSize] = useState<ModalSize | undefined>(undefined);
@@ -224,6 +333,8 @@ export function PokedexPicker({ label, items, excludeIds, onSelect, disabled = f
       <DexButton count={items.length} disabled={disabled} onOpen={() => setOpen(true)} />
       {open && (
         <PickerDialog
+          filters={filters}
+          onFiltersChange={setFilters}
           items={items}
           excludeIds={excludeIds}
           offset={offset}

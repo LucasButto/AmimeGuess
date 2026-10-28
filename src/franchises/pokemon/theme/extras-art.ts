@@ -1,66 +1,18 @@
-// Pixel art de los extras de Pokémon (sesión 15, fase 8): los 18 íconos de tipo y las 8 medallas de racha.
-// Dibujados acá cuadrícula por cuadrícula, originales (símbolos genéricos: una gota, una hoja, una llama…).
+// Pixel art propio de medallas y métricas; catálogo de las insignias de tipo aportadas.
 
 import type { PaletteArt } from './art';
 
-// --- Tipos (8 × 8) -------------------------------------------------------------
-// `#` es el trazo del ícono; va del color que contrasta con la píldora del tipo (`ink`).
-
-const TYPE_ROWS = {
-  Normal: ['..####..', '.#....#.', '#......#', '#......#', '#......#', '#......#', '.#....#.', '..####..'],
-  Fuego: ['...#....', '..##....', '..###.#.', '.#####..', '.######.', '########', '.######.', '..####..'],
-  Agua: ['...##...', '...##...', '..####..', '.######.', '.######.', '########', '.######.', '..####..'],
-  Planta: ['.....###', '...#####', '..######', '.#####.#', '.####.##', '.###.###', '..#.###.', '.#......'],
-  Eléctrico: ['....###.', '...###..', '..###...', '.######.', '...###..', '..###...', '.###....', '.#......'],
-  Hielo: ['...##...', '.#.##.#.', '..####..', '########', '########', '..####..', '.#.##.#.', '...##...'],
-  Lucha: ['........', '.######.', '########', '#.#.#.##', '########', '########', '.######.', '..####..'],
-  Veneno: ['.....##.', '....#..#', '.....##.', '..###...', '.#...#..', '.#...#..', '..###...', '........'],
-  Tierra: ['........', '........', '...##...', '..####..', '.###.##.', '####.###', '##.#####', '########'],
-  Volador: ['#.......', '##......', '###.....', '####....', '#####...', '.######.', '..######', '....####'],
-  Psíquico: ['..####..', '.#....#.', '#..##..#', '#.#..#.#', '#.#.##.#', '#..#...#', '.#....#.', '..####..'],
-  Bicho: ['.#....#.', '..#..#..', '..####..', '.#.##.#.', '########', '.#.##.#.', '..####..', '.#....#.'],
-  Roca: ['........', '..###...', '.#####..', '.######.', '########', '#######.', '.#####..', '........'],
-  Fantasma: ['..####..', '.######.', '##.##.##', '##.##.##', '########', '########', '########', '#.#..#.#'],
-  Dragón: ['#.......', '##...##.', '.######.', '.##.####', '..######', '..####..', '..###...', '..##....'],
-  Siniestro: ['..####..', '.###....', '###.....', '###.....', '###.....', '###.....', '.###....', '..####..'],
-  Acero: ['..####..', '.######.', '###..###', '##....##', '##....##', '###..###', '.######.', '..####..'],
-  Hada: ['...##...', '..####..', '########', '.######.', '..####..', '.##..##.', '.#....#.', '........'],
-} as const;
-
-export type TypeName = keyof typeof TYPE_ROWS;
-
-/** Color de la píldora de cada tipo (de la paleta) y del trazo de su ícono, con contraste suficiente. */
-const TYPE_LOOK: Readonly<Record<TypeName, { readonly fill: string; readonly ink: 'frame' | 'white' }>> = {
-  Normal: { fill: 'cloud-shade', ink: 'frame' },
-  Fuego: { fill: 'red', ink: 'white' },
-  Agua: { fill: 'blue', ink: 'white' },
-  Planta: { fill: 'grass-2', ink: 'white' },
-  Eléctrico: { fill: 'yellow', ink: 'frame' },
-  Hielo: { fill: 'sky-1', ink: 'frame' },
-  Lucha: { fill: 'orange', ink: 'white' },
-  Veneno: { fill: 'violet', ink: 'white' },
-  Tierra: { fill: 'dawn', ink: 'frame' },
-  Volador: { fill: 'sky-2', ink: 'frame' },
-  Psíquico: { fill: 'dusk', ink: 'frame' },
-  Bicho: { fill: 'grass-1', ink: 'frame' },
-  Roca: { fill: 'gray', ink: 'frame' },
-  Fantasma: { fill: 'night', ink: 'white' },
-  Dragón: { fill: 'cyan', ink: 'frame' },
-  Siniestro: { fill: 'ink', ink: 'white' },
-  Acero: { fill: 'white', ink: 'frame' },
-  Hada: { fill: 'pink', ink: 'frame' },
-};
-
-export const TYPE_NAMES = Object.keys(TYPE_ROWS) as TypeName[];
+// Insignias aportadas por el usuario; sin dibujos de tipo duplicados.
+export const TYPE_NAMES = ["Normal","Fuego","Agua","Planta","Eléctrico","Hielo","Lucha","Veneno","Tierra","Volador","Psíquico","Bicho","Roca","Fantasma","Dragón","Siniestro","Acero","Hada"] as const;
+export type TypeName = (typeof TYPE_NAMES)[number];
 
 export function isTypeName(value: string): value is TypeName {
-  return value in TYPE_ROWS;
+  return (TYPE_NAMES as readonly string[]).includes(value);
 }
 
-/** El ícono de un tipo y el color de su píldora. */
-export function typeIcon(type: TypeName): { readonly art: PaletteArt; readonly fill: string; readonly ink: string } {
-  const look = TYPE_LOOK[type];
-  return { art: { rows: TYPE_ROWS[type], colors: { '#': look.ink } }, fill: look.fill, ink: look.ink };
+/** Nombre de archivo estable, sin tildes; una sola fuente para el mapeo. */
+export function typeBadgeFile(type: TypeName): string {
+  return type.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase() + '.png';
 }
 
 // --- Medallas de racha (8 × 8) ---------------------------------------------------

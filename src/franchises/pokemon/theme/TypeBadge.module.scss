@@ -1,0 +1,25 @@
+@use 'tokens' as t;
+
+.badge {
+  display: inline-block;
+  flex: none;
+  // 25 de imagen + aro de 1 a cada lado a escala base; fuente de 50 × 50.
+  inline-size: calc(#{t.token('px-half')} * 13.5);
+  block-size: calc(#{t.token('px-half')} * 13.5);
+  border-radius: 50%;
+  background-color: var(--palette-frame);
+  background-position: center;
+  background-size: calc(100% - #{t.token('px-half')}) calc(100% - #{t.token('px-half')});
+  background-repeat: no-repeat;
+  // El navegador reduce sin privilegiar filas de píxeles en la versión compacta.
+  image-rendering: auto;
+  &[data-compact='true'] {
+    inline-size: calc(#{t.token('px-half')} * 11);
+    block-size: calc(#{t.token('px-half')} * 11);
+  }
+  @each $file in (
+    'acero', 'agua', 'bicho', 'dragon', 'electrico', 'fantasma', 'fuego', 'hada', 'hielo', 'lucha', 'normal', 'planta', 'psiquico', 'roca', 'siniestro', 'tierra', 'veneno', 'volador'
+  ) {
+    &[data-type='#{$file}.png'] { background-image: url('/theme/pokemon/tipos/#{$file}.png'); }
+  }
+}
