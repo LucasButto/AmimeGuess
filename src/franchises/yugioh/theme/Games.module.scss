@@ -93,6 +93,7 @@
       display: grid;
       grid-template-columns: minmax(0, 1fr);
       grid-template-rows: auto auto;
+      align-content: start;
       gap: 0;
       padding: 0;
       border: 0;
