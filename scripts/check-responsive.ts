@@ -247,8 +247,8 @@ async function showsPoolWarning(page: Page): Promise<string[]> {
  */
 async function optionsLayout(page: Page): Promise<string[]> {
   const info = await page.evaluate(() => {
-    const [a, b] = [...document.querySelectorAll('[data-option]')].map((option) => option.getBoundingClientRect());
-    return a && b ? { aTop: a.top, bTop: b.top, aBottom: a.bottom, width: window.innerWidth, height: window.innerHeight } : null;
+    const [a, b] = [...document.querySelectorAll<HTMLElement>('[data-option]')];
+    return a && b ? { aTop: a.offsetTop, bTop: b.offsetTop, aBottom: a.offsetTop + a.offsetHeight, width: window.innerWidth, height: window.innerHeight } : null;
   });
   if (!info) return ['no se encontraron las dos opciones'];
   const wide = info.width >= 768 || info.width > info.height;
@@ -634,7 +634,8 @@ async function keyboardGuess(page: Page): Promise<string[]> {
 
 /**
  * El selector de Pokémon con el teclado y nada más: se llega al botón con Tab, Enter abre la Pokédex, se escribe,
- * se pasa a la grilla con Tab, se mueve con la flecha y se elige con Enter. El intento tiene que contar.
+ * se comprueba el desplegable de filtros, se pasa a la grilla con Tab, se mueve con la flecha y se elige
+ * con Enter. El intento tiene que contar.
  */
 async function keyboardPickerGuess(page: Page): Promise<string[]> {
   const problems: string[] = [];
@@ -651,12 +652,55 @@ async function keyboardPickerGuess(page: Page): Promise<string[]> {
     if (await page.evaluate(() => document.activeElement?.tagName === 'INPUT')) break;
     await page.keyboard.press('Tab');
   }
-  if (!(await page.evaluate(() => document.activeElement?.tagName === 'INPUT'))) problems.push('en la Pokédex no se llegó al buscador con Tab');
+  if (!(await page.evaluate(() => document.activeElement?.tagName === 'INPUT'))) return ['en la Pokédex no se llegó al buscador con Tab'];
   await page.keyboard.type('a');
   await page.waitForTimeout(150);
   await page.keyboard.press('Tab');
-  const onGrid = await page.evaluate(() => document.activeElement?.hasAttribute('data-pokemon') ?? false);
-  if (!onGrid) problems.push('desde el buscador, Tab no llegó a la grilla de la Pokédex');
+  const trigger = page.getByRole('button', { name: /^Filtros/ });
+  if ((await trigger.count()) !== 1 || !(await trigger.evaluate((button) =>
+    button === document.activeElement && button.hasAttribute('aria-expanded'),
+  ))) return ['desde el buscador, el primer Tab no llegó al botón Filtros con nombre accesible y aria-expanded'];
+
+  // Ambas teclas deben abrir el panel y Escape debe descartarlo antes que el diálogo.
+  for (const key of ['Enter', 'Space']) {
+    await page.keyboard.press(key);
+    const opened = await page.waitForFunction(() => {
+      const button = document.querySelector('dialog[open] button[aria-expanded="true"]');
+      const id = button?.getAttribute('aria-controls');
+      const panel = id ? document.getElementById(id) : null;
+      return panel?.getAttribute('role') === 'region' && panel.getClientRects().length > 0;
+    }, undefined, { timeout: 2_000 }).then(() => true).catch(() => false);
+    if (!opened) return [`${key} en Filtros no abrió una región visible vinculada por aria-controls con aria-expanded="true"`];
+    const focused = await page.waitForFunction(() => {
+      const button = document.querySelector('dialog[open] button[aria-expanded="true"]');
+      const id = button?.getAttribute('aria-controls');
+      const firstChip = id ? document.getElementById(id)?.querySelector('button[aria-pressed]') : null;
+      return firstChip !== null && firstChip !== undefined && document.activeElement === firstChip;
+    }, undefined, { timeout: 2_000 }).then(() => true).catch(() => false);
+    if (!focused) return [`al abrir Filtros con ${key}, el foco no entró al primer chip`];
+    await page.keyboard.press('Escape');
+    const closed = await page.waitForFunction(() => {
+      const button = document.querySelector('dialog[open] button[aria-expanded="false"]');
+      const id = button?.getAttribute('aria-controls');
+      const panel = id ? document.getElementById(id) : null;
+      return panel !== null && panel.getClientRects().length === 0;
+    }, undefined, { timeout: 2_000 }).then(() => true).catch(() => false);
+    if ((await page.locator('dialog[open]').count()) === 0) return ['Escape en Filtros cerró la Pokédex en lugar de cerrar solo el desplegable'];
+    if (!closed) return ['Escape no ocultó el desplegable de Filtros ni restableció aria-expanded="false"'];
+    if (!(await trigger.evaluate((button) => document.activeElement === button))) return ['Escape cerró Filtros pero no devolvió el foco a su botón'];
+  }
+
+  let onGrid = false;
+  for (let press = 0; press < 2; press++) {
+    await page.keyboard.press('Tab');
+    onGrid = await page.evaluate(() => document.activeElement?.matches('dialog[open] button[data-pokemon]') ?? false);
+    if (onGrid) break;
+    const clear = page.getByRole('button', { name: 'Limpiar filtros', exact: true });
+    if ((await clear.count()) !== 1 || !(await clear.evaluate((button) => document.activeElement === button))) {
+      return ['entre Filtros y la grilla, Tab llegó a un elemento distinto de Limpiar filtros o una celda Pokémon'];
+    }
+  }
+  if (!onGrid) return ['desde Filtros, no se llegó a una celda de la grilla en un máximo de dos Tab'];
   await page.keyboard.press('ArrowRight');
   await page.keyboard.press('Enter');
   await page.waitForTimeout(300);
