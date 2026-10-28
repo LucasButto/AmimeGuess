@@ -14,7 +14,7 @@ import games from './Games.module.scss';
 import { LifePoints } from './LifePoints';
 import { DuelCellBack, DuelImageBack, DuelFrame, ClassMark, DuelMetric } from './GameMarks';
 import { DuelVictory } from './Victory';
-import { DuelInput } from './DuelInput';
+import { DuelDiskInput } from './DuelDiskInput';
 import { CardTitleMark } from './TitleMark';
 import { AnimeChainItem, AnimeComparisonMedia } from './AnimeGameCards';
 
@@ -41,7 +41,7 @@ export const yugiohSkin: FranchiseSkin = {
     ComparisonMedia: AnimeComparisonMedia,
     RevealListItem: AnimeChainItem,
     TitleMark: CardTitleMark,
-    GuessInput: DuelInput,
+    GuessInput: DuelDiskInput,
     ModeFrame: DuelFrame,
     AttemptsMeter: LifePoints,
     CellBack: DuelCellBack,

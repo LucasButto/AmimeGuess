@@ -1,0 +1,158 @@
+@use 'tokens' as t;
+@use 'breakpoints' as bp;
+
+// Disco de duelo: cuerpo con la pantalla de puntos de vida, alas que se despliegan y zonas de carta.
+.root { position: relative; display: flex; flex-direction: column; gap: t.$space-2; min-inline-size: 0; inline-size: 100%; }
+.chain { order: -1; color: var(--palette-gold); font-weight: t.$font-weight-bold; }
+
+.disk {
+  position: relative;
+  min-inline-size: 0;
+  &[data-disabled='true'] { filter: grayscale(1); opacity: 0.55; }
+}
+// La zona de monstruo vacía a la izquierda y, al lado, la pastilla y la línea dorada donde se escribe.
+.row { display: flex; align-items: center; gap: t.$space-4; }
+.zone {
+  position: relative;
+  flex: none;
+  display: grid;
+  place-items: center;
+  inline-size: 4rem;
+  aspect-ratio: 399 / 583;
+  border: 0.125rem dashed var(--palette-oldGold);
+  border-radius: 0.25rem;
+  background: var(--palette-lapis);
+  overflow: hidden;
+  &[data-lit='true'] { border-style: solid; border-color: var(--palette-gold); }
+}
+.plus { color: var(--palette-gold); font-size: 2rem; line-height: 1; }
+.sent {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  @include bp.motion-ok { animation: disk-sent 420ms var(--temple-ease-out) both; }
+}
+@keyframes disk-sent { 0% { opacity: 0; transform: translateY(-1.5rem) scale(1.3); } 60% { opacity: 1; transform: translateY(0) scale(1); } 100% { opacity: 1; transform: none; } }
+.field { flex: 1; min-inline-size: 0; display: grid; justify-items: start; gap: t.$space-2; }
+.label {
+  padding: 0.125rem t.$space-4;
+  border: 0.09375rem solid var(--palette-gold);
+  border-radius: 999px;
+  background: var(--palette-sandstoneDark);
+  color: var(--palette-gold);
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  line-height: 1.4;
+}
+.input {
+  inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: 3rem;
+  padding-inline: t.$space-2;
+  border: 0;
+  border-block-end: 0.1875rem solid var(--palette-gold);
+  border-radius: 0;
+  outline: 0;
+  background: linear-gradient(0deg, color-mix(in srgb, var(--palette-lapis) 35%, transparent), transparent);
+  color: var(--palette-papyrus);
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1.375rem;
+  &::placeholder { color: var(--palette-sandstoneLight); }
+  &:focus-visible { outline: 0.1875rem solid var(--palette-gold); outline-offset: 0.125rem; }
+}
+
+.empty {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: calc(100% + 0.5rem);
+  z-index: 20;
+  padding: t.$space-3;
+  border: 0.0625rem solid var(--palette-gold);
+  border-radius: t.$radius-sm;
+  background: var(--palette-tomb);
+  color: var(--palette-sandstoneLight);
+  text-align: center;
+}
+
+// El panel abierto flota debajo del disco: no empuja el contenido de abajo.
+.panel {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: calc(100% + 0.5rem);
+  z-index: 20;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: t.$space-3;
+  padding: t.$space-3;
+  border: 0.125rem solid var(--palette-gold);
+  border-radius: 1rem;
+  background: var(--palette-tomb);
+  box-shadow: 0 0.75rem 1.5rem color-mix(in srgb, var(--palette-tomb) 70%, transparent);
+  @include bp.min-width('md') { grid-template-columns: 15rem minmax(0, 1fr); align-items: center; justify-items: stretch; }
+  @include bp.motion-ok { animation: disk-panel 160ms var(--temple-ease-out) both; }
+}
+@keyframes disk-panel { from { opacity: 0; transform: translateY(-0.5rem); } to { opacity: 1; transform: none; } }
+
+// Holograma: la carta marcada, levantada y grande.
+.hologram {
+  position: relative;
+  display: block;
+  inline-size: clamp(7.5rem, 38vw, 9.5rem);
+  cursor: pointer;
+  @include bp.min-width('md') { inline-size: 12rem; justify-self: center; }
+}
+.holo {
+  position: relative;
+  display: grid;
+  gap: t.$space-1;
+  transform: translateY(-0.25rem);
+  filter: drop-shadow(0 0 0.75rem color-mix(in srgb, var(--palette-matchGreen) 45%, transparent));
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent 0 0.1875rem, color-mix(in srgb, var(--palette-matchGreen) 16%, transparent) 0.1875rem 0.25rem);
+    pointer-events: none;
+  }
+  @include bp.motion-ok { animation: disk-holo 180ms var(--temple-ease-out) both; }
+}
+@keyframes disk-holo { from { opacity: 0.4; transform: translateY(0.25rem); } to { opacity: 1; transform: translateY(-0.25rem); } }
+.holoName, .duelistName { color: var(--palette-papyrus); font-family: var(--font-heading), serif; font-size: t.$font-size-sm; text-align: center; line-height: 1.25; }
+// Marco de duelista propio: doble filete dorado sobre piedra.
+.duelist {
+  display: grid;
+  gap: t.$space-1;
+  padding: t.$space-2;
+  border: 0.1875rem double var(--palette-gold);
+  border-radius: t.$radius-sm;
+  background: var(--palette-sandstoneDark);
+}
+.duelistImage { display: block; inline-size: 100%; aspect-ratio: 1; object-fit: cover; border: 0.0625rem solid var(--palette-oldGold); }
+.duelistRole { color: var(--palette-gold); font-size: t.$font-size-sm; text-align: center; }
+
+.zones { display: grid; gap: t.$space-2; min-inline-size: 0; inline-size: 100%; }
+.list { display: flex; justify-content: center; gap: t.$space-2; margin: 0; padding: 0; list-style: none; }
+.card {
+  --frame: var(--palette-normal);
+  position: relative;
+  flex: 0 1 5.5rem;
+  min-inline-size: 0;
+  aspect-ratio: 399 / 583;
+  border: 0.1875rem solid var(--frame);
+  border-radius: 0.1875rem;
+  background: var(--palette-sandstoneDark);
+  cursor: pointer;
+  overflow: hidden;
+  @each $f in ('effect', 'fusion', 'ritual', 'xyz', 'link', 'spell', 'trap') { &[data-frame='#{$f}'] { --frame: var(--palette-#{$f}); } }
+  &[data-frame='synchro'] { --frame: var(--palette-synchro); }
+  &[data-frame='pendulum'] { --frame: var(--palette-effect); }
+  &[data-frame='duelist'] { --frame: var(--palette-gold); }
+  &[data-active='true'] { outline: 0.1875rem solid var(--palette-gold); outline-offset: 0.125rem; transform: translateY(-0.25rem); }
+  @include bp.motion-ok { transition: transform 120ms var(--temple-ease-out); }
+}
+.thumb { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+.initial { display: grid; place-items: center; inline-size: 100%; block-size: 100%; color: var(--palette-papyrus); font-weight: t.$font-weight-bold; }
+.count { display: flex; justify-content: space-between; gap: t.$space-2; margin: 0; color: var(--palette-sandstoneLight); font-size: t.$font-size-sm; }

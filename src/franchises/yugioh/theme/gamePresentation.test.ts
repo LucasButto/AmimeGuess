@@ -19,7 +19,7 @@ it('los motivos repetidos del Backdrop tienen claves únicas entre hermanos', ()
 });
 
 it('las hojas de juegos compilan con los tokens y mixins del proyecto', () => {
-  for (const component of ['Games', 'GameMarks', 'DuelInput', 'LifePoints', 'Victory']) {
+  for (const component of ['Games', 'GameMarks', 'DuelDiskInput', 'LifePoints', 'Victory']) {
     expect(compile(path.join(import.meta.dirname, `${component}.module.scss`), {
       loadPaths: [path.resolve(import.meta.dirname, '../../../styles')],
     }).css.length).toBeGreaterThan(0);

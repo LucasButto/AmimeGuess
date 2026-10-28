@@ -1,3 +1,0 @@
-@use 'tokens' as t;
-.root { display: flex; flex-direction: column; gap: t.$space-2; min-inline-size: 0; inline-size: 100%; }
-.chain { order: -1; color: var(--palette-gold); font-weight: t.$font-weight-bold; }
