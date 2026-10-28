@@ -1191,9 +1191,11 @@ async function yugiohGames(ctx: Ctx): Promise<string[]> {
   return problems;
 }
 
-/** La home mantiene cuatro enlaces, el progreso y la grilla en las ocho escalas. */
-async function hubCartridges(ctx: Ctx): Promise<string[]> {
+
+/** La home es un televisor de tubo: pantalla enlazada, control remoto con los cuatro canales, estática y reduced-motion. */
+async function hubTelevision(ctx: Ctx): Promise<string[]> {
   const problems: string[] = [];
+  const NAME = /^.+: \d+ de \d+ retos? de hoy$/;
   for (const viewport of [
     { width: 360, height: 640 }, { width: 390, height: 844 }, { width: 844, height: 390 },
     { width: 768, height: 1024 }, { width: 1366, height: 768 }, { width: 1920, height: 1080 },
@@ -1201,68 +1203,122 @@ async function hubCartridges(ctx: Ctx): Promise<string[]> {
   ]) {
     const context = await newContext(ctx, { viewport });
     try {
-      const page = await open(ctx, context, '/', '[data-hub="cartridges"]');
+      const page = await open(ctx, context, '/', '[data-hub="tv"]');
       await page.evaluate(() => document.fonts.ready);
-      await page.waitForFunction(() => document.querySelectorAll('[data-cartridge][data-progress-ready="true"]').length === 4);
-      const state = await page.locator('ul[aria-label="Franquicias"]').evaluate((grid) => {
-        const links = [...grid.querySelectorAll<HTMLAnchorElement>('[data-cartridge]')];
-        const boxes = links.map((link) => link.getBoundingClientRect());
+      await page.waitForFunction(() => document.querySelector('[data-tv-screen][data-progress-ready="true"]') !== null);
+      const state = await page.evaluate(() => {
+        const keys = [...document.querySelectorAll<HTMLAnchorElement>('[data-remote-key]')];
+        const screen = document.querySelector<HTMLAnchorElement>('[data-tv-screen]');
+        const badge = document.querySelector('h1');
+        const tuners = [...document.querySelectorAll<HTMLButtonElement>('button[aria-label^="Canal"]')];
+        const frame = document.querySelector('[data-tv-room] > section')!.getBoundingClientRect();
         return {
-          columns: getComputedStyle(grid).gridTemplateColumns.split(' ').length,
-          badLinks: [...grid.children].some((item) => item.querySelectorAll('a').length !== 1) || links.length !== 4,
-          hrefs: links.map((link) => link.getAttribute('href')),
-          badName: links.some((link) => !/^.+: \d+ de \d+ retos? de hoy$/.test(link.getAttribute('aria-label') ?? '')),
-          badSize: boxes.some((box) => Math.abs(box.width - boxes[0].width) > 2 || Math.abs(box.height - boxes[0].height) > 2),
-          badLabel: links.some((link) => {
-            const label = link.querySelector<HTMLElement>('[data-cartridge-label]')!;
-            const name = label.querySelector<HTMLElement>('span')!;
-            const box = name.getBoundingClientRect();
-            const parent = label.getBoundingClientRect();
-            return getComputedStyle(name).whiteSpace !== 'nowrap' || name.scrollWidth > name.clientWidth + 1 || box.left < parent.left || box.right > parent.right;
-          }),
+          keys: keys.map((key) => ({ href: key.getAttribute('href'), name: key.getAttribute('aria-label') ?? '', small: key.getBoundingClientRect().height < 43 })),
+          screen: { href: screen?.getAttribute('href'), name: screen?.getAttribute('aria-label') ?? '' },
+          h1: document.querySelectorAll('h1').length === 1 && /AnimeGuess/i.test(badge?.textContent ?? ''),
+          tuners: tuners.map((button) => ({ name: button.getAttribute('aria-label'), small: button.getBoundingClientRect().height < 43 })),
+          live: document.querySelectorAll('[role="status"][aria-live="polite"]').length,
           overflow: document.documentElement.scrollWidth > innerWidth + 1,
+          frameInside: frame.left >= -1 && frame.right <= innerWidth + 1,
         };
       });
-      const columns = viewport.width >= 1440 ? 4 : viewport.width >= 768 ? 2 : 1;
-      if (state.columns !== columns) problems.push(`Hub ${viewport.width}: se esperaban ${columns} columnas y hay ${state.columns}`);
-      if (state.badLinks || state.hrefs.join('|') !== '/pokemon|/dragon-ball|/naruto|/yugioh') problems.push(`Hub ${viewport.width}: cartuchos, enlaces o rutas incorrectos`);
-      if (state.badName) problems.push(`Hub ${viewport.width}: nombre accesible sin franquicia o conteo`);
-      if (state.badLabel) problems.push(`Hub ${viewport.width}: un nombre se parte o desborda su etiqueta con las fuentes cargadas`);
-      if (state.badSize || state.overflow) problems.push(`Hub ${viewport.width}: cartuchos desiguales o desborde horizontal`);
-      await shot(page, `hub-cartuchos-${viewport.width}`);
-      const cards = page.locator('[data-cartridge]');
-      const first = cards.first();
-      await first.hover();
-      await page.waitForTimeout(220);
-      const allowedMotion = await first.locator('[data-cartridge-body]').evaluate((body) => {
-        const style = getComputedStyle(body);
-        return style.transitionProperty.split(',').every((property) => ['transform', 'opacity'].includes(property.trim())) && new DOMMatrixReadOnly(style.transform === 'none' ? undefined : style.transform).m42 < 0;
-      });
-      if (!allowedMotion) problems.push(`Hub ${viewport.width}: hover sin elevación o con propiedades ajenas a transform/opacity`);
-      await page.mouse.move(0, 0);
-      await first.focus();
-      await page.keyboard.press('Tab');
-      await page.waitForTimeout(220);
-      const focused = await cards.nth(1).evaluate((card) => {
-        const style = getComputedStyle(card);
-        const body = card.querySelector('[data-cartridge-body]')!;
-        const transform = getComputedStyle(body).transform;
-        return card === document.activeElement && style.outlineStyle !== 'none' && Number.parseFloat(style.outlineWidth) > 0 && new DOMMatrixReadOnly(transform === 'none' ? undefined : transform).m42 < 0;
-      });
-      if (!focused) problems.push(`Hub ${viewport.width}: foco invisible o sin elevación del cartucho`);
+      if (state.keys.length !== 4 || state.keys.map((key) => key.href).join('|') !== '/pokemon|/dragon-ball|/naruto|/yugioh') problems.push(`Televisor ${viewport.width}: el control no tiene los cuatro enlaces en orden`);
+      if (state.keys.some((key) => !NAME.test(key.name)) || !NAME.test(state.screen.name)) problems.push(`Televisor ${viewport.width}: nombre accesible sin franquicia o conteo`);
+      if (state.keys.some((key) => key.small) || state.tuners.some((button) => button.small)) problems.push(`Televisor ${viewport.width}: botones menores a 44 px`);
+      if (state.screen.href !== '/pokemon') problems.push(`Televisor ${viewport.width}: la pantalla no enlaza al canal 1`);
+      if (!state.h1) problems.push(`Televisor ${viewport.width}: falta el título (chapa) como único h1`);
+      if (state.tuners.length !== 2 || state.tuners.some((button) => !button.name)) problems.push(`Televisor ${viewport.width}: faltan los botones ▲/▼ con nombre`);
+      if (state.live !== 1) problems.push(`Televisor ${viewport.width}: falta la región aria-live`);
+      if (state.overflow || !state.frameInside) problems.push(`Televisor ${viewport.width}: desborde horizontal`);
+      // El control remoto queda a la vista sin desplazarse en pantallas de escritorio.
+      if (viewport.width >= 1366) {
+        const inside = await page.locator('[data-remote-key]').last().evaluate((key) => key.getBoundingClientRect().bottom <= innerHeight);
+        if (!inside) problems.push(`Televisor ${viewport.width}: el control remoto no entra en la primera pantalla`);
+      }
+      await shot(page, `hub-televisor-${viewport.width}`);
     } finally { await context.close(); }
   }
-  const reduced = await newContext(ctx, { reducedMotion: 'reduce' });
+
+  // Cambio de canal: ▲, flechas y hover, con la estática solo en transform y opacity y el anuncio en aria-live.
+  const context = await newContext(ctx, { viewport: { width: 1366, height: 768 } });
   try {
-    const page = await open(ctx, reduced, '/', '[data-cartridge]');
-    const first = page.locator('[data-cartridge]').first();
-    await first.focus();
-    await page.keyboard.press('Tab');
-    if (!(await page.locator('[data-cartridge]').nth(1).evaluate((card) => {
-      const style = getComputedStyle(card);
-      return document.activeElement === card && style.outlineStyle !== 'none' && getComputedStyle(card.querySelector('[data-cartridge-body]')!).transform === 'none';
-    }))) problems.push('Hub: movimiento con reduced-motion o foco invisible');
+    const page = await open(ctx, context, '/', '[data-hub="tv"]');
+    await page.waitForFunction(() => document.querySelector('[data-tv-screen][data-progress-ready="true"]') !== null);
+    const channel = () => page.locator('[data-tv-room]').getAttribute('data-channel');
+    // La estática ya tapa toda la pantalla en el instante en que el canal cambia (no se ve la imagen nueva a través de ella).
+    const covered = page.evaluate(() => new Promise<number>((resolve) => {
+      const room = document.querySelector('[data-tv-room]')!;
+      const noise = () => document.querySelector<HTMLElement>('[data-tv-noise]')!;
+      new MutationObserver((_records, observer) => { observer.disconnect(); resolve(Number.parseFloat(getComputedStyle(noise()).opacity)); }).observe(room, { attributes: true, attributeFilter: ['data-channel'] });
+      setTimeout(() => resolve(-1), 3000);
+    }));
+    await page.getByRole('button', { name: 'Canal siguiente' }).click();
+    await page.waitForTimeout(60);
+    const kinds = await page.evaluate(() => {
+      const names = new Set<string>();
+      for (const animation of document.getAnimations()) {
+        const target = (animation.effect as KeyframeEffect | null)?.target as HTMLElement | null;
+        if (!target?.closest('[data-tv-noise]')) continue;
+        for (const frame of (animation.effect as KeyframeEffect).getKeyframes()) for (const name of Object.keys(frame)) names.add(name);
+      }
+      return [...names];
+    });
+    if (kinds.length === 0 || kinds.some((name) => !['opacity', 'transform', 'offset', 'easing', 'composite', 'computedOffset'].includes(name))) problems.push(`Televisor: la estática anima ${kinds.join(', ') || 'nada'} y solo puede transform y opacity`);
+    const during = await covered;
+    if (during < 0.99) problems.push(`Televisor: la estática no tapa la pantalla por completo cuando cambia el canal (opacidad ${during})`);
+    await page.waitForTimeout(900);
+    if ((await channel()) !== '2') problems.push('Televisor: ▲ no cambia al canal 2');
+    await page.getByRole('button', { name: 'Canal anterior' }).click();
+    await page.waitForTimeout(900);
+    if ((await channel()) !== '1') problems.push('Televisor: ▼ no vuelve al canal 1');
+    // Pasar rápido por varios canales termina en el último pedido.
+    const keys = page.locator('[data-remote-key]');
+    for (const index of [2, 3, 0, 1, 2]) { await keys.nth(index).hover(); await page.waitForTimeout(40); }
+    await page.waitForTimeout(1800);
+    if ((await channel()) !== '3') problems.push(`Televisor: al pasar rápido por los canales quedó en ${await channel()} y no en 3`);
+    await keys.nth(1).focus();
+    await page.keyboard.press('ArrowRight');
+    await page.waitForTimeout(1800);
+    if ((await channel()) !== '3' && (await channel()) !== '4') problems.push('Televisor: las flechas no cambian de canal');
+    if (!/^Canal \d: /.test((await page.locator('[role="status"][aria-live="polite"]').textContent()) ?? '')) problems.push('Televisor: el cambio de canal no se anuncia');
+  } finally { await context.close(); }
+
+  // Reduced-motion: cambio instantáneo, sin estática ni parpadeo.
+  const reduced = await newContext(ctx, { reducedMotion: 'reduce', viewport: { width: 1366, height: 768 } });
+  try {
+    const page = await open(ctx, reduced, '/', '[data-hub="tv"]');
+    await page.waitForFunction(() => document.querySelector('[data-tv-screen][data-progress-ready="true"]') !== null);
+    await page.getByRole('button', { name: 'Canal siguiente' }).click();
+    await page.waitForTimeout(60);
+    if ((await page.locator('[data-tv-room]').getAttribute('data-channel')) !== '2') problems.push('Televisor: con reduced-motion el canal no cambia al instante');
+    const moving = await page.evaluate(() => document.getAnimations().filter((animation) => animation.playState === 'running').length);
+    if (moving > 0) problems.push(`Televisor: con reduced-motion hay ${moving} animaciones corriendo`);
+    await page.keyboard.press('Shift');
+    await page.locator('[data-tv-screen]').focus();
+    const outline = await page.locator('[data-tv-screen]').evaluate((el) => getComputedStyle(el).outlineStyle !== 'none');
+    if (!outline) problems.push('Televisor: la pantalla enlazada no muestra foco');
   } finally { await reduced.close(); }
+
+  // Entrar: la estática cubre la ventana (también el pie) con solo transform y opacidad, y navega.
+  const enter = await newContext(ctx, { viewport: { width: 1366, height: 1100 } });
+  try {
+    const page = await open(ctx, enter, '/', '[data-hub="tv"]');
+    await page.waitForFunction(() => document.querySelector('[data-tv-screen][data-progress-ready="true"]') !== null);
+    await page.locator('[data-tv-screen]').click();
+    await page.waitForTimeout(350);
+    const info = await page.evaluate(() => {
+      const layer = document.querySelector<HTMLElement>('[data-tv-full-static]');
+      const footer = document.querySelector('footer');
+      return {
+        covers: layer !== null && layer.parentElement === document.body && getComputedStyle(layer).position === 'fixed',
+        opacity: layer ? Number.parseFloat(getComputedStyle(layer).opacity) : 0,
+        footerHidden: footer === null || getComputedStyle(footer).visibility === 'hidden',
+      };
+    });
+    if (!info.covers || info.opacity < 0.99) problems.push('Televisor: al entrar la estática no cubre toda la ventana');
+    if (!info.footerHidden) problems.push('Televisor: el pie se ve durante la transición');
+    await page.waitForURL('**/pokemon', { timeout: 8000 });
+  } finally { await enter.close(); }
   return problems;
 }
 
@@ -1317,7 +1373,8 @@ async function yugiohDuelCards(ctx: Ctx): Promise<string[]> {
         const name = option.querySelector<HTMLElement>('[data-part="reading"] > span:first-child')!;
         const body = frame.lastElementChild!;
         const readings = [...option.querySelectorAll<HTMLElement>('[data-part="value"], [data-part="meter"], [data-part="badges"]')];
-        return Math.abs(option.offsetHeight - name.offsetHeight - frame.offsetHeight) <= 2
+        // El nombre va justo debajo de la carta (sin franja ni hueco entre las dos); las dos opciones comparten alto de fila.
+        return Math.abs(name.offsetTop - (frame.offsetTop + frame.offsetHeight)) <= 2
           && Number.parseFloat(getComputedStyle(body).paddingBottom) <= frame.offsetWidth * 0.025 + 2
           && readings.every((reading) => reading.offsetWidth <= 2 && reading.offsetHeight <= 2 && getComputedStyle(reading).clipPath !== 'none');
       }));
@@ -1346,7 +1403,7 @@ async function yugiohDuelCards(ctx: Ctx): Promise<string[]> {
 }
 
 const CHECKS: ReadonlyArray<{ name: string; run: (ctx: Ctx) => Promise<string[]> }> = [
-  { name: 'Hub nocturno: cuatro cartuchos, progreso, grilla y movimiento', run: hubCartridges },
+  { name: 'Hub: televisor de tubo, canales, control remoto y estática', run: hubTelevision },
   { name: 'Yu-Gi-Oh: cartas enfrentadas sin salto de lectura', run: yugiohDuelCards },
   { name: 'Yu-Gi-Oh: LP, clase de carta y victoria (fase 5)', run: yugiohGames },
   { name: 'Yu-Gi-Oh: papiro, chips, tablillas y ghost (FRENÁ 3)', run: yugiohWindows },

@@ -1,0 +1,211 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+@use '../franchises/dragon-ball/theme/logo-words' as l;
+
+// El televisor de tubo con su mueble, la alfombra y el control remoto. Todo con los tokens `--tv-*` de la sala.
+.stage {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  gap: t.$space-4;
+  inline-size: 100%;
+  min-inline-size: 0;
+  // La luz de la pantalla cae sobre la pared con el color del canal (acento de la franquicia).
+  &::before { content: ''; position: absolute; z-index: -1; inset: -12rem -50vw 0; background: radial-gradient(ellipse 55% 60% at 50% 30%, color-mix(in srgb, var(--color-accent) 24%, transparent), transparent 70%); pointer-events: none; }
+}
+
+.set { position: relative; inline-size: min(100%, 46rem, calc((100dvh - 16rem) * 1.3)); margin-block-start: clamp(2rem, 6vw, 0rem); padding-block-start: clamp(2rem, 5vw, 4rem); transform-origin: 50% 55%; }
+.antenna {
+  position: absolute;
+  inset-block-end: calc(100% - clamp(2rem, 5vw, 4rem) + 0.5rem);
+  inset-inline-start: 50%;
+  inline-size: 0.1875rem;
+  block-size: clamp(2.5rem, 9vw, 6rem);
+  background: linear-gradient(90deg, var(--hub-metal), var(--hub-case-light));
+  transform-origin: bottom center;
+  &::after { content: ''; position: absolute; inset: -0.25rem auto auto -0.25rem; inline-size: 0.6875rem; block-size: 0.6875rem; border-radius: 50%; background: var(--hub-metal); }
+  &[data-side='start'] { transform: rotate(-30deg); }
+  &[data-side='end'] { transform: rotate(30deg); }
+}
+
+.cabinet {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: t.$space-3;
+  padding: clamp(0.75rem, 2.5vw, 1.5rem);
+  border-radius: 1.5rem;
+  background: linear-gradient(145deg, var(--tv-body-light), var(--tv-body) 40%, var(--tv-bezel));
+  box-shadow: inset 0 0.125rem 0 color-mix(in srgb, var(--hub-ink) 25%, transparent), 0 1rem 2rem -0.5rem var(--hub-night);
+  @include bp.min-width('md') { grid-template-columns: minmax(0, 1fr) 8rem; }
+}
+// El marco del tubo: la pantalla tiene curvatura (bordes redondeados y viñeta).
+.bezel {
+  grid-row: 1;
+  grid-column: 1;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  padding: clamp(0.5rem, 1.5vw, 0.875rem);
+  border-radius: 12% / 14%;
+  background: var(--tv-bezel);
+  box-shadow: inset 0 0 0 0.1875rem var(--tv-body), inset 0 0 1.5rem var(--hub-night);
+}
+.screen {
+  position: relative;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: hidden;
+  border-radius: 10% / 12%;
+  clip-path: inset(0 round 10% / 12%);
+  color: var(--color-text, var(--hub-ink));
+  text-decoration: none;
+  &:focus-visible { outline: 0.25rem solid var(--hub-focus); outline-offset: 0.125rem; }
+  // Líneas de barrido y viñeta del tubo.
+  &::before { content: ''; position: absolute; z-index: 3; inset: 0; border-radius: inherit; pointer-events: none; background: repeating-linear-gradient(0deg, color-mix(in srgb, var(--tv-bezel) 22%, transparent) 0 0.0625rem, transparent 0.0625rem 0.1875rem), radial-gradient(ellipse at center, transparent 55%, color-mix(in srgb, var(--tv-bezel) 70%, transparent) 130%); }
+  // Brillo de vidrio.
+  &::after { content: ''; position: absolute; z-index: 4; inset: 0; border-radius: inherit; pointer-events: none; background: linear-gradient(130deg, color-mix(in srgb, var(--hub-ink) 20%, transparent), transparent 32%); }
+}
+
+// La apertura del canal.
+.picture {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-2;
+  padding: t.$space-4;
+  text-align: center;
+  background: var(--color-surface);
+}
+.emblem { position: relative; z-index: 1; inline-size: clamp(5rem, 28%, 9rem); block-size: auto; aspect-ratio: 1; filter: drop-shadow(0.1875rem 0.1875rem 0 color-mix(in srgb, var(--hub-night) 55%, transparent)); }
+.emblem[data-pixel] { image-rendering: pixelated; }
+.kunai { inline-size: clamp(8rem, 50%, 16rem); block-size: auto; aspect-ratio: 480 / 79; margin-block-end: 1.5rem; transform: rotate(-38deg); filter: drop-shadow(0 0 0.1875rem var(--palette-paper)) drop-shadow(0 0 0.375rem var(--palette-paper)); }
+.card { inline-size: auto; aspect-ratio: 250 / 356; block-size: clamp(6rem, 24vw, 11rem); transform: rotate(-6deg); filter: drop-shadow(0.1875rem 0.1875rem 0 color-mix(in srgb, var(--hub-night) 60%, transparent)); }
+.channelName { @include m.heading; position: relative; z-index: 1; color: var(--color-text); font-size: clamp(1.5rem, 7vw, 3.25rem); line-height: 1.1; }
+// Dragon Ball: las letras del logo como en su página (primera palabra amarilla, la otra roja, con contorno negro y sombra).
+.screen[data-franchise='dragon-ball'] .channelName { -webkit-text-stroke: 0; paint-order: normal; font-size: clamp(1.75rem, 8vw, 3.75rem); @include l.logo-words(1.4, 0.9); }
+.channelCount { position: relative; z-index: 1; padding: t.$space-1 t.$space-3; border: 0.125rem solid var(--color-text); border-radius: 1rem; background: var(--color-surface); color: var(--color-text); font: 700 clamp(0.8125rem, 2.4vw, 1.0625rem) / 1.3 var(--hub-body-font); }
+.onomatopoeia { @include m.heading; position: absolute; inset: 8% auto auto 6%; transform: rotate(-8deg); color: var(--color-accent); font-size: clamp(1rem, 4vw, 1.75rem); text-shadow: 0.125rem 0.125rem 0 var(--color-surface), -0.0625rem -0.0625rem 0 var(--color-text); }
+.seal { position: absolute; z-index: 2; inset: auto 6% 8% auto; padding: t.$space-1 t.$space-3; border: 0.1875rem solid var(--hub-focus); border-radius: 0.25rem; background: var(--hub-night); color: var(--hub-focus); font: 700 0.875rem / 1.2 var(--hub-body-font); transform: rotate(-8deg); }
+// El número de canal en la esquina, como en los televisores viejos.
+.osd { position: absolute; z-index: 2; inset: 6% 7% auto auto; padding: 0.25rem 0.5rem; border-radius: 0.25rem; background: color-mix(in srgb, var(--tv-bezel) 82%, transparent); color: var(--tv-osd); font: 700 clamp(0.875rem, 3vw, 1.5rem) / 1 ui-monospace, 'Courier New', monospace; letter-spacing: 0.08em; text-shadow: 0 0 0.375rem var(--tv-osd); }
+
+// El fondo de cada pantalla es el de la página de su franquicia (el efecto de tubo lo pone .screen).
+.screen[data-franchise='pokemon'] .picture {
+  background:
+    url('/theme/pokemon/grass-tufts.svg') repeat-x left bottom / auto 18%,
+    linear-gradient(0deg, var(--palette-grass-2) 0 14%, transparent 14%),
+    url('/theme/pokemon/clouds-front.svg') repeat-x left 70% / 55% auto,
+    url('/theme/pokemon/clouds-back.svg') repeat-x left 30% / 70% auto,
+    linear-gradient(180deg, var(--palette-sky-1), var(--palette-sky-2));
+}
+.screen[data-franchise='dragon-ball'] .picture { background: var(--palette-sky-blue) url('/theme/dragon-ball/fondo-dia.webp') center bottom / cover no-repeat; }
+.screen[data-franchise='naruto'] .picture { background: #5b9bd5 url('/theme/naruto/fondo-dia.webp') center bottom / cover no-repeat; }
+// Yu-Gi-Oh: el muro de piedra de su página, con las juntas de cada hilada.
+.screen[data-franchise='yugioh'] .picture {
+  background-color: var(--palette-wall);
+  background-image: linear-gradient(var(--palette-sandstoneDark) 0.125rem, transparent 0.125rem), linear-gradient(90deg, var(--palette-sandstoneDark) 0.125rem, transparent 0.125rem);
+  background-size: 100% 20%, 25% 40%;
+}
+.channelName { -webkit-text-stroke: 0.3125rem var(--color-surface); paint-order: stroke fill; text-shadow: 0 0 0.5rem var(--color-surface); }
+
+// Perillas, parlante y botones ▲/▼ del lateral del televisor (debajo de la pantalla en el teléfono).
+.panel { grid-row: 2; grid-column: 1; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: t.$space-3; @include bp.min-width('md') { flex-direction: column; justify-content: flex-start; } }
+.speaker { flex: 1; align-self: stretch; min-block-size: 2rem; border-radius: 0.5rem; background: repeating-linear-gradient(0deg, var(--tv-bezel) 0 0.25rem, var(--tv-body) 0.25rem 0.5rem); box-shadow: inset 0 0 0.5rem var(--hub-night); @include bp.min-width('md') { flex: 1 1 auto; inline-size: 100%; } }
+.knob { flex: none; inline-size: 2.5rem; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(var(--tv-body-light), var(--tv-body), var(--tv-body-light), var(--tv-body), var(--tv-body-light)); box-shadow: 0 0.125rem 0.25rem var(--hub-night), inset 0 0 0 0.125rem var(--tv-bezel); &::after { content: ''; display: block; inline-size: 0.125rem; block-size: 0.75rem; margin: 0.25rem auto 0; background: var(--hub-ink); } &[data-small] { inline-size: 1.75rem; } }
+.tuner { display: flex; flex-direction: row; gap: t.$space-2; @include bp.min-width('md') { flex-direction: column; } }
+.tune {
+  @include m.touch-target;
+  border: 0.125rem solid var(--tv-bezel);
+  border-radius: 0.5rem;
+  background: var(--tv-key-light);
+  color: var(--hub-ink);
+  font-size: 0.875rem;
+  cursor: pointer;
+  &:focus-visible { outline: 0.1875rem solid var(--hub-focus); outline-offset: 0.125rem; }
+}
+
+// El mueble de madera donde apoya el televisor.
+.stand { display: block; inline-size: 92%; block-size: 1rem; margin-inline: auto; border-radius: 0 0 0.375rem 0.375rem; background: linear-gradient(180deg, var(--tv-wood-light) 0 0.3125rem, var(--tv-wood) 0.3125rem); box-shadow: 0 0.5rem 1rem -0.25rem var(--hub-night); }
+
+// La alfombra y, encima, el control remoto con los cuatro canales siempre visibles.
+.floor { inline-size: min(100%, 46rem); padding: clamp(0.5rem, 1.5vw, 1rem); border-radius: 0.75rem; background: repeating-linear-gradient(135deg, var(--tv-carpet) 0 0.75rem, var(--tv-carpet-light) 0.75rem 1rem); box-shadow: inset 0 0 0 0.25rem var(--tv-carpet), inset 0 0 0 0.3125rem var(--tv-carpet-light); }
+.remote { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: t.$space-2; padding: t.$space-3; border-radius: 1.25rem; background: linear-gradient(180deg, var(--tv-key-light), var(--tv-key)); box-shadow: 0 0.375rem 0.75rem var(--hub-night), inset 0 0.0625rem 0 color-mix(in srgb, var(--hub-ink) 22%, transparent); @include bp.min-width('md') { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.key {
+  @include m.touch-target;
+  display: grid;
+  gap: 0.125rem;
+  justify-items: center;
+  padding: t.$space-2;
+  border: 0.125rem solid var(--tv-bezel);
+  border-radius: 0.75rem;
+  background: var(--tv-key);
+  color: var(--hub-ink);
+  text-decoration: none;
+  min-inline-size: 0;
+  &[data-active='true'] { border-color: var(--hub-focus); background: var(--tv-key-light); }
+  &:focus-visible { outline: 0.1875rem solid var(--hub-focus); outline-offset: 0.125rem; }
+}
+.keyName { @include m.heading; max-inline-size: 100%; overflow: hidden; font-size: clamp(0.875rem, 3.4vw, 1.125rem); line-height: 1.2; white-space: nowrap; text-overflow: ellipsis; color: var(--hub-ink); }
+.keyCount { color: var(--tv-osd); font: 700 0.8125rem / 1.2 ui-monospace, 'Courier New', monospace; letter-spacing: 0.06em; .key[data-done='true'] & { color: var(--hub-focus); } }
+
+@include bp.motion-ok {
+}
+
+// La estática entre canales: una imagen de ruido propia (public/theme/hub/noise.svg) que se desplaza (transform) y aparece y
+// desaparece (opacity); 240 ms como máximo. Sin movimiento reducido no se muestra nunca.
+.noise { position: absolute; z-index: 5; inset: clamp(0.5rem, 1.5vw, 0.875rem); overflow: hidden; border-radius: 10% / 12%; clip-path: inset(0 round 10% / 12%); isolation: isolate; background: #7b7f86; opacity: 0; pointer-events: none; }
+.noiseLayer { position: absolute; inset: -20%; background: url('/theme/hub/noise.svg') 0 0 / 12rem 12rem; opacity: 0.55; }
+@include bp.motion-ok {
+  .bezel[data-noisy='true'] .noise { animation: tv-static 640ms linear both; }
+  .bezel[data-noisy='true'] .noiseLayer { animation: tv-static-shift 640ms steps(8) both; }
+  // El parpadeo mínimo del tubo: un respiro de brillo cada 4 s (0,25 por segundo, muy por debajo de 3).
+  .picture { animation: tv-flicker 4s ease-in-out infinite; }
+}
+@keyframes tv-static { 0% { opacity: 0; } 20% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes tv-static-shift { from { transform: translate(0, 0); } to { transform: translate(-8%, 6%); } }
+@keyframes tv-flicker { 0%, 100% { opacity: 1; } 50% { opacity: 0.965; } }
+
+// La estática a pantalla completa: al entrar a una franquicia cubre toda la ventana antes de navegar, y al volver a la home
+// (ver RouteStatic) se disipa. Solo opacity y transform; sin movimiento reducido no se muestra.
+.fullStatic { position: fixed; z-index: 1000; inset: 0; overflow: hidden; background: #7b7f86; opacity: 0; pointer-events: none; }
+.fullStatic > span { position: absolute; inset: -20%; background: url('/theme/hub/noise.svg') 0 0 / 14rem 14rem; opacity: 0.55; }
+@include bp.motion-ok {
+  .fullStatic[data-mode='in'] { animation: tv-full-in 640ms linear both; }
+  .fullStatic[data-mode='out'] { animation: tv-full-out 640ms linear both; }
+  .fullStatic > span { animation: tv-static-shift 640ms steps(8) both; }
+}
+@keyframes tv-full-in { 0% { opacity: 0; } 25% { opacity: 1; } 100% { opacity: 1; } }
+@keyframes tv-full-out { 0% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; } }
+
+// El título, como el logo de chapa de un electrodoméstico: placa metálica con remaches abajo a la derecha del televisor.
+.badge {
+  grid-row: 3;
+  grid-column: 1;
+  justify-self: start;
+  margin: 0;
+  padding: 0.25rem;
+  border-radius: 0.375rem;
+  background: linear-gradient(160deg, #e3e6eb, #9aa0aa 45%, #cfd3da 70%, #7d838d);
+  box-shadow: 0 0.125rem 0.25rem var(--hub-night), inset 0 0.0625rem 0 #fff, inset 0 -0.0625rem 0 #5b616b;
+  > span {
+    display: block;
+    position: relative;
+    padding: 0.125rem 1.25rem;
+    border: 0.0625rem solid #6a707a;
+    border-radius: 0.25rem;
+    background-image: radial-gradient(circle at 0.4rem 50%, #4b5058 0 0.1875rem, transparent 0.25rem), radial-gradient(circle at calc(100% - 0.4rem) 50%, #4b5058 0 0.1875rem, transparent 0.25rem);
+    color: #23262b;
+    font: 900 clamp(0.875rem, 2.6vw, 1.25rem) / 1.3 'Arial Black', Impact, system-ui, sans-serif;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-shadow: 0 0.0625rem 0 #f2f4f7, 0 -0.0625rem 0 #7d838d;
+  }
+}
+
+@include bp.min-width('md') { .panel { grid-row: 1; grid-column: 2; } .badge { grid-row: 2; grid-column: 1 / -1; } }

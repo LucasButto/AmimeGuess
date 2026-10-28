@@ -2,7 +2,7 @@
 @use 'tokens' as t;
 @use 'mixins' as m;
 
-// Escena exclusiva de la home, sin cambiar tokens globales ni de franquicias.
+// Escena exclusiva de la home, sin cambiar tokens globales ni de franquicias: una habitación de noche, de fines de los 90.
 .room {
   --hub-night: #0d1220;
   --hub-wall: #171f32;
@@ -13,24 +13,63 @@
   --hub-muted: #b9c6d8;
   --hub-focus: #f6d879;
   --hub-slot: #070a12;
-  --hub-shelf: #263146;
-  --hub-contact: #d2aa5c;
   --hub-body-font: system-ui, sans-serif;
   --hub-ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --tv-body: #3c3a36;
+  --tv-body-light: #5d5a54;
+  --tv-bezel: #141312;
+  --tv-osd: #7dff9a;
+  --tv-wood: #5a3a24;
+  --tv-wood-light: #7d5434;
+  --tv-wood-dark: #34200f;
+  --tv-carpet: #4a2431;
+  --tv-carpet-light: #6b3646;
+  --tv-key: #26272c;
+  --tv-key-light: #3a3c44;
   position: relative;
   isolation: isolate;
   display: flex;
   flex-direction: column;
   min-block-size: 100dvh;
+  overflow-x: clip;
   background: var(--hub-night);
   color: var(--hub-ink);
-  &::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    inset: 0;
-    pointer-events: none;
-    background: radial-gradient(ellipse at 50% 0, var(--hub-wall), transparent 65%), repeating-linear-gradient(90deg, transparent 0 calc(8rem - 0.0625rem), var(--hub-wall) calc(8rem - 0.0625rem) 8rem);
+  // Pared oscura; la luz de la pantalla la tiñe con el color del canal (ver TvRoom).
+  &::before { content: ''; position: absolute; z-index: -2; inset: 0; pointer-events: none; background: linear-gradient(180deg, var(--hub-wall), var(--hub-night)); }
+  // Viñeta en los bordes.
+  &::after { content: ''; position: absolute; z-index: -1; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 50% 45%, transparent 55%, var(--hub-night) 125%); }
+  // Mientras se sale hacia una franquicia (o se vuelve), el pie no se ve (lo marca TvRoom/RouteStatic en el <body>).
+  :global(body[data-tv-leaving]) & footer { visibility: hidden; }
+  // Pie de la sala: la chapa de especificaciones de un electrodoméstico, atornillada al mueble (solo dentro de la sala).
+  footer {
+    --color-surface: transparent;
+    --color-text-muted: var(--hub-ink);
+    --color-accent: var(--hub-focus);
+    --color-border: transparent;
+    --color-focus: var(--hub-focus);
+    position: relative;
+    inline-size: min(calc(100% - 2rem), 46rem);
+    margin: 0 auto 1.5rem;
+    padding: 0.75rem 1.5rem;
+    border: 0.0625rem solid #6a707a;
+    border-radius: 0.5rem;
+    background:
+      radial-gradient(circle at 1rem 1rem, #4b5058 0 0.25rem, transparent 0.3125rem),
+      radial-gradient(circle at calc(100% - 1rem) 1rem, #4b5058 0 0.25rem, transparent 0.3125rem),
+      radial-gradient(circle at 1rem calc(100% - 1rem), #4b5058 0 0.25rem, transparent 0.3125rem),
+      radial-gradient(circle at calc(100% - 1rem) calc(100% - 1rem), #4b5058 0 0.25rem, transparent 0.3125rem),
+      linear-gradient(160deg, #2c2f36, #1b1d22 60%, #25282e);
+    box-shadow: inset 0 0.0625rem 0 #4a4e57, inset 0 -0.0625rem 0 #0b0c0f, 0 0.375rem 1rem var(--hub-night);
+    // El aviso es la "ficha técnica": texto claro con cuerpo de etiqueta y enlace dorado.
+    // El enlace a Créditos va a continuación del aviso, en la misma línea, y la cruz queda en su esquina sin tapar el texto.
+    > div { display: block; padding-inline: 0 2.75rem; text-align: start; }
+    p { display: inline; color: var(--hub-ink); letter-spacing: 0.01em; }
+    // El área táctil del enlace crece con el relleno (no agranda la línea).
+    a { display: inline; min-block-size: 0; min-inline-size: 0; margin-inline-start: 0.5rem; padding-block: 0.875rem; color: var(--hub-focus); }
+    // La cruz de cerrar: dorada y, al pasar el mouse o con foco, el botón se enciende dorado con la cruz oscura (nunca desaparece).
+    // La cruz: la placa visible es chica (1,75 rem) y el área táctil sigue siendo de 44 px.
+    button[data-variant][data-tone] { --_ink: var(--hub-focus); --_fill: transparent; --_edge: transparent; --plate: #2f323a; background: linear-gradient(var(--plate), var(--plate)) center / 1.75rem 1.75rem no-repeat; color: var(--hub-focus); }
+    button[data-variant][data-tone]:hover, button[data-variant][data-tone]:focus-visible { --_ink: #23262b; --plate: var(--hub-focus); color: #23262b; }
   }
 }
 .page {
@@ -39,22 +78,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: t.$space-7;
-  padding-block: clamp(2rem, 6dvh, 5rem);
-}
-.header { display: flex; flex-direction: column; gap: t.$space-3; max-inline-size: 42rem; }
-.kicker { color: var(--hub-focus); font: 700 0.75rem / 1.4 var(--hub-body-font); text-transform: uppercase; letter-spacing: 0.18em; }
-.title { @include m.heading; @include m.fluid-text(2.5rem, 4.5rem); color: var(--hub-ink); font-weight: t.$font-weight-bold; line-height: t.$line-height-tight; overflow-wrap: anywhere; }
-.subtitle { font-size: t.$font-size-lg; color: var(--hub-muted); line-height: t.$line-height-base; }
-.grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  grid-auto-rows: 1fr;
-  gap: t.$space-6;
-  margin: 0;
-  padding: t.$space-5 0 0;
-  list-style: none;
-  > li { position: relative; min-inline-size: 0; padding-block-end: t.$space-4; border-block-end: 0.375rem solid var(--hub-shelf); }
-  @include bp.min-width('md') { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  @include bp.min-width('xl') { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  gap: t.$space-3;
+  padding-block: clamp(0.75rem, 2dvh, 1.5rem);
 }

@@ -3,8 +3,7 @@ import { loadFranchiseData } from '@/franchises/data';
 import { themeCss, themeScope } from '@/franchises/theme';
 import { DismissibleFooter } from '@/components/DismissibleFooter';
 import { SiteFooter } from '@/components/SiteFooter';
-import { es } from '@/i18n/es';
-import { FranchiseCard } from './FranchiseCard';
+import { TvRoom } from './TvRoom';
 import styles from './page.module.scss';
 import { modeStatus } from './[franchise]/[mode]/playable';
 
@@ -19,22 +18,11 @@ export default async function HomePage() {
   );
 
   return (
-    <div className={styles.room} data-hub="cartridges">
+    <div className={styles.room} data-hub="tv">
       <main className={styles.page}>
         {/* El tema de cada franquicia, con alcance de tarjeta: el Home muestra las cuatro identidades a la vez. */}
         <style>{franchises.map((franchise) => themeCss(franchise.theme, themeScope(franchise.slug))).join('\n')}</style>
-        <header className={styles.header}>
-          <p className={styles.kicker}>{es.home.room}</p>
-          <h1 className={styles.title}>{es.home.title}</h1>
-          <p className={styles.subtitle}>{es.home.subtitle}</p>
-        </header>
-        <ul className={styles.grid} aria-label={es.home.franchisesLabel}>
-          {cards.map(({ franchise, modes }) => (
-            <li key={franchise.slug}>
-              <FranchiseCard slug={franchise.slug} name={franchise.name} modes={modes} />
-            </li>
-          ))}
-        </ul>
+        <TvRoom channels={cards.map(({ franchise, modes }) => ({ slug: franchise.slug, name: franchise.name, modes }))} />
       </main>
       <DismissibleFooter>
         <SiteFooter />

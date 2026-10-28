@@ -4,6 +4,7 @@ import { PREFS_BOOT_SCRIPT } from '@/components/prefs';
 import { es } from '@/i18n/es';
 import '@/styles/globals.scss';
 import { fontVariables } from './fonts';
+import { RouteStatic } from './RouteStatic';
 import { OG_SIZE, SITE_URL, ogImage } from './site';
 
 export const metadata: Metadata = {
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {/* Antes de pintar: la "Fuente legible" de las preferencias (ver prefs.ts). */}
         <script dangerouslySetInnerHTML={{ __html: PREFS_BOOT_SCRIPT }} />
         {children}
+        <RouteStatic />
       </body>
     </html>
   );
