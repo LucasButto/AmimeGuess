@@ -133,6 +133,18 @@ export default async function CreditsPage() {
               <li key={item}>{item}</li>
             ))}
           </ul>
+          <ul className={styles.sources}>
+            {art.externalItems.map((item) => (
+              <li key={item.name}>
+                {'url' in item ? (
+                  <a className={styles.link} href={item.url} rel="noopener noreferrer">
+                    {item.name}
+                  </a>
+                ) : item.name}
+                <p className={styles.muted}>{item.text}</p>
+              </li>
+            ))}
+          </ul>
         </section>
       </main>
       <SiteFooter />
