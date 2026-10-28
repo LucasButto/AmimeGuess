@@ -1,0 +1,73 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+@use 'breakpoints' as bp;
+
+.footer {
+  padding: clamp(1rem, 3vw, 2rem) t.$gutter max(1rem, env(safe-area-inset-bottom));
+  color: t.token('ink');
+}
+
+.card {
+  --ink: var(--palette-tomb);
+  --ink-muted: var(--palette-tomb);
+  --focus-color: var(--palette-lapis);
+  --focus-halo: var(--palette-papyrus);
+  --icon-b-fill: var(--palette-tomb);
+  --icon-b-ink: var(--palette-papyrus);
+  --icon-hover-ink: var(--palette-gold);
+  --button-edge: var(--palette-tomb);
+  display: grid;
+  grid-template-columns: 1.25rem minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.5rem;
+  max-inline-size: 60rem;
+  margin-inline: auto;
+  padding: clamp(0.625rem, 2vw, 1rem);
+  border: 1px solid var(--palette-tomb);
+  border-radius: 1.25rem 0.25rem;
+  background: var(--palette-papyrus);
+  color: var(--palette-tomb);
+  box-shadow: inset 0 0.25rem 0 var(--palette-sandstoneLight), inset 0 -0.25rem 0 var(--palette-sandstoneLight), 0 0.5rem 1.5rem color-mix(in srgb, var(--palette-tomb) 65%, transparent);
+}
+.ornament { display: block; inline-size: 1.25rem; block-size: 3rem; color: var(--palette-lapis); }
+
+.text {
+  min-inline-size: 0;
+  padding: 0.75rem;
+  border-inline-start: 1px solid var(--palette-lapis);
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.credits {
+  @include m.touch-target;
+  @include m.focus-ring;
+  display: inline-flex;
+  align-items: center;
+  margin-block-start: 0.25rem;
+  color: var(--palette-lapis);
+  text-underline-offset: 0.2em;
+  @include m.hover { color: var(--palette-tomb); }
+}
+
+.close {
+  @include m.touch-target;
+  flex: none;
+}
+
+// Placa de oro tallada: la interacción y el nombre accesible siguen siendo comunes.
+.card .close[data-variant='icon'][data-tone='b'] {
+  --_fill: var(--palette-gold);
+  --_ink: var(--palette-tomb);
+  --_edge: var(--palette-tomb);
+  --_radius: 0rem;
+  --_clip: polygon(0.5rem 0, calc(100% - 0.5rem) 0, 100% 0.5rem, 100% calc(100% - 0.5rem), calc(100% - 0.5rem) 100%, 0.5rem 100%, 0 calc(100% - 0.5rem), 0 0.5rem);
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  &::after { box-shadow: inset 0.125rem 0.125rem 0 var(--palette-papyrus), inset -0.125rem -0.125rem 0 var(--palette-oldGold); }
+  svg path { stroke-width: 1; stroke-linecap: round; }
+  @include bp.motion-ok {
+    @include bp.hover-capable { &:hover { transform: translateY(-0.0625rem); } }
+  }
+}

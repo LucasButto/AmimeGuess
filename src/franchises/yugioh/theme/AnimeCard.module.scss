@@ -1,0 +1,65 @@
+// La carta del anime usa los marcos del usuario (399 × 583 px) tal cual: todo se ubica en porcentajes de esa plantilla.
+.card {
+  position: relative;
+  container-type: inline-size;
+  display: block;
+  inline-size: 100%;
+  aspect-ratio: 399 / 583;
+  color: var(--palette-tomb);
+}
+// Ventana del arte de la plantilla: x 10 a 389, y 10 a 425.
+.art {
+  position: absolute;
+  inset-inline-start: 2.5%;
+  inset-block-start: 1.7%;
+  inline-size: 95.2%;
+  block-size: 71.4%;
+  overflow: hidden;
+  background: var(--palette-tomb);
+  > img { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+  > img[data-full-card='true'] { position: absolute; inline-size: 132%; max-inline-size: none; block-size: auto; inset-inline-start: -16%; inset-block-start: -35%; }
+}
+.frame { position: absolute; inset: 0; z-index: 1; inline-size: 100%; block-size: 100%; pointer-events: none; user-select: none; }
+.data { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+// Esferas: la tira de n esferas ya viene recortada; 6,33 % del ancho de la carta por esfera, a la izquierda de la franja.
+.level {
+  position: absolute;
+  inset-inline-start: 3%;
+  inset-block-start: 78.7%;
+  inline-size: calc(var(--anime-level) * 6.33%);
+  block-size: auto;
+}
+.question {
+  position: absolute;
+  inset-inline-start: 3%;
+  inset-block-start: 78.4%;
+  padding-inline: 2cqi;
+  background: var(--palette-effectPaper);
+  color: var(--palette-tomb);
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 7cqi;
+  font-weight: bold;
+  line-height: 1.1;
+}
+.attribute { position: absolute; inset-inline-start: 81.5%; inset-block-start: 77%; inline-size: 10.5%; block-size: auto; border-radius: 50%; }
+.card[data-anime-frame='link'] .attribute { inset-inline-start: 44.1%; }
+// Cajas de la plantilla: ATK a la izquierda y DEF a la derecha, y en Enlace la caja larga y el cuadrado rojo.
+.stat {
+  position: absolute;
+  inset-block-start: 85.8%;
+  inline-size: 38.8%;
+  block-size: 10.3%;
+  display: grid;
+  place-items: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 12cqi;
+  line-height: 1;
+  color: var(--palette-tomb);
+  white-space: nowrap;
+  &[data-slot='atk'] { inset-inline-start: 7.5%; }
+  &[data-slot='def'] { inset-inline-start: 53.9%; }
+}
+.card[data-anime-frame='link'] .stat {
+  &[data-slot='atk'] { inset-inline-start: 8.8%; inline-size: 36.3%; }
+  &[data-slot='rating'] { inset-inline-start: 64.7%; inline-size: 16.8%; color: var(--palette-papyrus); }
+}

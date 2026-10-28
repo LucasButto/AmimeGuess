@@ -4,6 +4,7 @@
 import { DEFAULT_SKIN, DEFAULT_SKIN_DATA, DEFAULT_SLOTS } from '@/components/skin/defaults';
 import { dragonBallSkin } from './dragon-ball/theme';
 import { narutoSkin } from './naruto/theme';
+import { yugiohSkin } from './yugioh/theme';
 import { pokemonSkin } from './pokemon/theme';
 import type { FranchiseSkin, ResolvedSkin } from './types';
 
@@ -11,6 +12,7 @@ const skins: Readonly<Record<string, FranchiseSkin>> = {
   pokemon: pokemonSkin,
   'dragon-ball': dragonBallSkin,
   naruto: narutoSkin,
+  yugioh: yugiohSkin,
 };
 
 const resolved = new Map<string, ResolvedSkin>();
@@ -23,6 +25,12 @@ export function getSkin(slug: string | null): ResolvedSkin {
   const skin = skins[slug];
   const result: ResolvedSkin = skin
     ? {
+        customComparisonMedia: skin.customComparisonMedia ?? DEFAULT_SKIN_DATA.customComparisonMedia,
+        customRevealListItems: skin.customRevealListItems ?? DEFAULT_SKIN_DATA.customRevealListItems,
+        additionalAttemptsMeters: skin.additionalAttemptsMeters ?? DEFAULT_SKIN_DATA.additionalAttemptsMeters,
+        additionalModeFrames: skin.additionalModeFrames ?? DEFAULT_SKIN_DATA.additionalModeFrames,
+        revealListPositionPrefix: skin.revealListPositionPrefix ?? DEFAULT_SKIN_DATA.revealListPositionPrefix,
+        celebrateScoredResults: skin.celebrateScoredResults ?? DEFAULT_SKIN_DATA.celebrateScoredResults,
         revealMode: skin.revealMode ?? DEFAULT_SKIN_DATA.revealMode,
         shareEmojis: skin.shareEmojis ?? DEFAULT_SKIN_DATA.shareEmojis,
         sounds: skin.sounds ?? DEFAULT_SKIN_DATA.sounds,

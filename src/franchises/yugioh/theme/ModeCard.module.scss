@@ -1,0 +1,57 @@
+@use 'breakpoints' as bp;
+@use 'mixins' as m;
+
+.card {
+  position: relative;
+  isolation: isolate;
+  display: block;
+  inline-size: 100%;
+  max-inline-size: 13rem;
+  aspect-ratio: 59 / 90;
+  min-inline-size: 0;
+  margin-inline: auto;
+  color: var(--palette-tomb);
+  text-decoration: none;
+  border-radius: 0.375rem;
+  box-shadow: 0 0.35rem 0.75rem color-mix(in srgb, var(--palette-tomb) 65%, transparent);
+  @include m.focus-ring;
+  > span { position: absolute; inset: 0; }
+}
+.stamp {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+  inset-inline-end: -3%;
+  inset-block-end: -0.125rem;
+  inline-size: clamp(3rem, 24cqi, 4.5rem);
+  aspect-ratio: 1;
+  border: 2px solid var(--palette-gold);
+  border-radius: 50%;
+  background: var(--palette-tomb);
+  box-shadow: 0 0.2rem 0.5rem var(--palette-tomb), inset 0 0 0 0.125rem var(--palette-oldGold);
+  transform: rotate(-12deg);
+}
+.smallSeal { display: grid; place-items: center; visibility: hidden; inline-size: 1em; block-size: 1em; flex: none; background: var(--palette-tomb); border-radius: 50%; &[data-visible='true'] { visibility: visible; } .sealGlyph { inline-size: 80%; block-size: 80%; } }
+.sealGlyph {
+  display: block;
+  inline-size: 70%;
+  block-size: 70%;
+  background-color: var(--palette-gold);
+  mask-image: url('/theme/yugioh/glifos/glifo-14.svg');
+  mask-mode: alpha;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+}
+.blueScale, .redScale { display: grid; justify-items: center; font-weight: 700; &::before { content: ''; inline-size: 3cqi; block-size: 4cqi; background: currentColor; clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%); } }
+.blueScale { color: var(--palette-lapis); }
+.redScale { color: var(--palette-carmine); }
+.holo { position: absolute; z-index: -1; inset: -35%; background: linear-gradient(115deg, transparent 25%, var(--palette-wall) 38% 45%, var(--palette-lapis) 50%, var(--palette-wall) 55% 62%, transparent 75%); pointer-events: none; }
+@include bp.min-width('sm') { .card { aspect-ratio: 59 / 86; } }
+@include bp.motion-ok {
+  .card { transition: transform 180ms var(--temple-ease-out); }
+  .holo { animation: sheen 10s ease-in-out infinite alternate; }
+  @include bp.hover-capable { .card:hover, .card:focus-visible { transform: translateY(-0.25rem); } }
+}
+@keyframes sheen { from { transform: translateX(-20%); opacity: 0.75; } to { transform: translateX(20%); opacity: 1; } }

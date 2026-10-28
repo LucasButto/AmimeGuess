@@ -1,0 +1,8 @@
+@use 'tokens' as t;
+.back, .imageBack { display: grid; place-items: center; inline-size: 100%; block-size: 100%; background: transparent; overflow: hidden; > img { inline-size: auto; block-size: 100%; max-inline-size: 100%; object-fit: contain; } }
+.back > img { min-block-size: 3rem; }
+.frame { min-inline-size: 0; }
+.classMark { display: block; inline-size: 2.5rem; block-size: 0.5rem; border: 1px solid var(--palette-tomb); border-radius: t.$radius-sm; background: var(--palette-normal); }
+@each $frame in ('normal', 'effect', 'fusion', 'ritual', 'spell', 'trap', 'synchro', 'xyz', 'link') { .classMark[data-duel-class='#{$frame}'] { background: var(--palette-#{$frame}); } }
+.classMark[data-duel-class='pendulum'] { background: linear-gradient(90deg, var(--palette-effect) 50%, var(--palette-spell) 50%); }
+.metric { display: inline-flex; align-items: center; gap: t.$space-1; padding: t.$space-1 t.$space-2; border: 1px solid var(--palette-gold); background: var(--palette-tomb); color: var(--palette-gold); font-weight: t.$font-weight-bold; > svg { inline-size: 1.5rem; block-size: 1.5rem; fill: none; stroke: currentColor; stroke-width: 2; } }

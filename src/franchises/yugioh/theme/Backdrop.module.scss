@@ -1,0 +1,63 @@
+@use 'tokens' as t;
+@use 'breakpoints' as bp;
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: t.$layer-backdrop;
+  pointer-events: none;
+  overflow: hidden;
+  background-color: var(--palette-wall);
+  background-image: linear-gradient(var(--palette-sandstoneDark) 0.125rem, transparent 0.125rem);
+  background-size: 100% 5rem;
+  // Juntas de piedra alternadas por hilada, sin siluetas de cartas detrás de la grilla.
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(90deg, var(--palette-sandstoneDark) 0.125rem, transparent 0.125rem);
+    background-size: 12rem 100%;
+  }
+  &::before { mask-image: repeating-linear-gradient(var(--palette-tomb) 0 5rem, transparent 5rem 10rem); }
+  &::after {
+    background-position: 6rem 0;
+    mask-image: repeating-linear-gradient(transparent 0 5rem, var(--palette-tomb) 5rem 10rem);
+  }
+}
+
+.pillar {
+  position: absolute;
+  inset-block: 0;
+  inline-size: 0.5rem;
+  opacity: 0.3;
+  border-inline: 1px solid var(--palette-oldGold);
+  background: linear-gradient(90deg, var(--palette-sandstoneDark), var(--palette-wall) 40% 65%, var(--palette-sandstoneDark));
+  box-shadow: 0 0.5rem 2rem var(--palette-tomb);
+  &[data-side='left'] { inset-inline-start: 0; }
+  &[data-side='right'] { inset-inline-end: 0; }
+}
+.glyphColumn {
+  position: absolute;
+  inset: 0.5rem 17.5%;
+  display: none;
+  grid-template-rows: repeat(8, minmax(0, 1fr));
+  gap: clamp(0.25rem, 0.5dvh, 0.5rem);
+  color: var(--palette-oldGold);
+  opacity: 0.5;
+}
+.glyph {
+  display: block;
+  min-block-size: 0;
+  background-color: currentColor;
+  mask-mode: alpha;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  @each $id in ('01', '08', '14', '09', '22', '23') {
+    &[data-glyph='#{$id}'] { mask-image: url('/theme/yugioh/glifos/glifo-#{$id}.svg'); }
+  }
+}
+@include bp.min-width('xl') {
+  // Se reserva todo el contenedor ancho, incluso en rutas de juego más angostas.
+  .pillar { inline-size: clamp(1.5rem, calc((100vw - #{t.$container-wide}) / 2 - 1rem), 9rem); opacity: 1; }
+  .glyphColumn { display: grid; }
+}

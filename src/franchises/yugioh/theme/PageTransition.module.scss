@@ -1,0 +1,30 @@
+@use 'tokens' as t;
+@use 'breakpoints' as bp;
+.transition {
+  position: fixed;
+  inset: 0;
+  z-index: t.$layer-transition;
+  display: none;
+  place-items: center;
+  overflow: hidden;
+  pointer-events: none;
+  perspective: 80rem;
+  opacity: 0;
+  background: color-mix(in srgb, var(--palette-tomb) 85%, transparent);
+  @include bp.motion-ok { display: grid; animation: veil 780ms linear both; }
+}
+.card {
+  display: block;
+  block-size: min(55dvh, 42rem);
+  aspect-ratio: 250 / 356;
+  opacity: 0;
+  backface-visibility: hidden;
+  > img { inline-size: 100%; block-size: 100%; }
+  @include bp.motion-ok { animation: turn 780ms var(--temple-ease-out) both; }
+}
+@keyframes veil { 0%, 60% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes turn {
+  0% { transform: rotateY(0deg) scale(0.9); opacity: 0; }
+  20%, 52% { transform: rotateY(0deg) scale(1); opacity: 1; }
+  100% { transform: rotateY(90deg) scale(1.2); opacity: 0; }
+}

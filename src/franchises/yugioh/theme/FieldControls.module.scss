@@ -1,0 +1,35 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// La fila inferior mantiene los controles en el flujo y cerca del pulgar, sin tapar zonas.
+.controls { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: t.$space-3; inline-size: 100%; max-inline-size: var(--mode-grid-max); margin-inline: 0; }
+
+.control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: t.$space-2;
+  min-inline-size: 0;
+  min-block-size: 2.75rem;
+  padding: t.$space-3;
+  border: 1px solid var(--palette-gold);
+  border-radius: 0.75rem 0.125rem;
+  background: linear-gradient(135deg, var(--palette-wall), var(--palette-sandstoneDark));
+  box-shadow: inset 0.125rem 0.125rem 0 color-mix(in srgb, var(--palette-sandstoneLight) 40%, transparent), inset -0.125rem -0.125rem 0 var(--palette-tomb);
+  color: var(--palette-papyrus);
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  span { display: grid; gap: t.$space-1; }
+  strong { color: var(--palette-gold); font-size: 1rem; }
+  &:focus-visible { @include m.focus-ring; }
+  @include bp.motion-ok {
+    transition: transform 160ms var(--temple-ease-out);
+    @include bp.hover-capable { &:hover { transform: translateY(-0.125rem); } }
+  }
+  @include bp.min-width('md') { flex-direction: row; justify-content: center; }
+}
+.glyph { display: block; flex: none; inline-size: 2.75rem; block-size: 2.75rem; color: var(--palette-gold); }
+.mode { color: var(--palette-gold); margin-block-end: t.$space-3; }
+.answer { color: var(--palette-papyrus); font-size: 1rem; }

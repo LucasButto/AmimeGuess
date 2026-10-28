@@ -1,0 +1,79 @@
+@use 'breakpoints' as bp;
+
+.frame {
+  --card-material: var(--palette-normal);
+  --card-paper: var(--palette-papyrus);
+  --card-name-ink: var(--palette-tomb);
+  position: relative;
+  isolation: isolate;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  container-type: inline-size;
+  &[data-frame='effect'], &[data-frame='maximum'] { --card-material: var(--palette-effect); --card-paper: var(--palette-effectPaper); }
+  &[data-frame='fusion'] { --card-material: var(--palette-fusion); --card-name-ink: var(--palette-papyrus); }
+  &[data-frame='ritual'] { --card-material: var(--palette-ritual); }
+  &[data-frame='spell'] { --card-material: var(--palette-spell); --card-paper: var(--palette-spellPaper); --card-name-ink: var(--palette-papyrus); }
+  &[data-frame='trap'] { --card-material: var(--palette-trap); --card-name-ink: var(--palette-papyrus); }
+  &[data-frame='synchro'] { --card-material: var(--palette-synchro); }
+  &[data-frame='xyz'] { --card-material: var(--palette-xyz); --card-paper: var(--palette-synchro); --card-name-ink: var(--palette-papyrus); }
+  &[data-frame='link'] { --card-material: var(--palette-link); --card-name-ink: var(--palette-papyrus); }
+  &[data-frame='pendulum'] { --card-material: var(--palette-effect); --card-paper: var(--palette-effectPaper); }
+  &[data-frame='neutral'] { --card-material: var(--palette-wall); }
+}
+.surface {
+  position: absolute;
+  inset: 0;
+  border: 2.5cqi solid var(--palette-xyz);
+  border-radius: 3.5cqi;
+  background-color: var(--card-material);
+  background-image: radial-gradient(ellipse at 20% 10%, color-mix(in srgb, var(--palette-papyrus) 6%, transparent), transparent 60%), radial-gradient(ellipse at 80% 70%, color-mix(in srgb, var(--palette-tomb) 6%, transparent), transparent 65%);
+  box-shadow: inset 0 0 0 0.45cqi color-mix(in srgb, var(--palette-papyrus) 55%, transparent), inset 0.9cqi 0.9cqi 0 color-mix(in srgb, var(--palette-papyrus) 20%, transparent), inset -0.9cqi -0.9cqi 0 color-mix(in srgb, var(--palette-tomb) 40%, transparent);
+}
+.frame[data-primary='true'] .surface { border-width: 3.5cqi; border-color: var(--palette-gold); }
+.frame[data-frame='pendulum'] .surface { background-color: var(--palette-effect); background-image: linear-gradient(transparent 0 49%, var(--palette-spell) 50% 100%), radial-gradient(ellipse at 20% 10%, color-mix(in srgb, var(--palette-papyrus) 6%, transparent), transparent 60%); }
+.name {
+  position: absolute;
+  inset-inline: 5.5%;
+  inset-block-start: 3.3%;
+  block-size: 14%;
+  display: flex;
+  align-items: center;
+  padding: 0.75cqi 9cqi 0.75cqi 1cqi;
+  background: var(--card-material);
+  color: var(--card-name-ink);
+  box-shadow: inset 0 0.35cqi 0 color-mix(in srgb, var(--palette-papyrus) 50%, transparent), inset 0 -0.5cqi 0 var(--palette-tomb);
+  font: 700 clamp(0.75rem, 5.5cqi, 0.875rem) / 1.1 var(--font-heading), serif;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+.attribute { position: absolute; inset-inline-end: 6.5%; inset-block-start: 5%; inline-size: 6.5%; aspect-ratio: 1; border-radius: 50%; background: var(--palette-gold); color: var(--palette-tomb); svg { inline-size: 100%; block-size: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; } }
+.level { position: absolute; inset-inline: 6%; inset-block-start: 18%; block-size: 4%; display: flex; align-items: center; justify-content: flex-end; gap: 0.6cqi; background: var(--card-material); color: var(--card-name-ink); font: 0.75rem / 1.1 var(--font-body), sans-serif; svg { inline-size: 4.3cqi; block-size: 4.3cqi; fill: var(--palette-gold); stroke: var(--palette-tomb); stroke-width: 1.5; } }
+.frame[data-frame='xyz'] .level { justify-content: flex-start; }
+.window { position: absolute; inset-inline: 12%; inset-block-start: 23%; block-size: 28%; }
+.art { position: absolute; isolation: isolate; inset: 0; display: grid; place-items: center; border: 0.9cqi solid var(--palette-tomb); box-shadow: 0 0 0 0.4cqi var(--palette-oldGold), inset 0.8cqi 0.8cqi 0 var(--palette-wall), inset -0.8cqi -0.8cqi 0 var(--palette-oldGold); background: radial-gradient(ellipse at 50% 70%, var(--palette-wall), var(--palette-tomb) 75%); color: var(--palette-gold); overflow: hidden; }
+.arrows { position: absolute; inset: -3%; inline-size: 106%; max-inline-size: none; block-size: 106%; fill: var(--palette-xyz); stroke: var(--palette-oldGold); stroke-width: 0.6; pointer-events: none; }
+.frame[data-frame='link'] .art { clip-path: polygon(9% 0, 44% 0, 50% 6%, 56% 0, 91% 0, 100% 9%, 100% 44%, 94% 50%, 100% 56%, 100% 91%, 91% 100%, 56% 100%, 50% 94%, 44% 100%, 9% 100%, 0 91%, 0 56%, 6% 50%, 0 44%, 0 9%); border: 0; }
+.segments { position: absolute; inset: 4%; display: grid; grid-template-columns: 1fr 1.25fr 1fr; pointer-events: none; border-block: 1px solid var(--palette-oldGold); > span + span { border-inline-start: 1px solid var(--palette-oldGold); } }
+.scales { position: absolute; inset-inline: 6.5%; inset-block-start: 42%; block-size: 10%; display: grid; grid-template-columns: 1fr 4fr 1fr; align-items: center; background: var(--palette-pendulumPaper); border: 0.7cqi solid var(--palette-oldGold); color: var(--palette-tomb); font: 0.75rem / 1.1 var(--font-body), sans-serif; text-align: center; > span + span { border-inline-start: 1px solid var(--palette-oldGold); } }
+.frame[data-frame='pendulum'] .window { inset-inline: 6.5%; block-size: 18%; }
+.paper { position: absolute; inset-inline: 6%; inset-block-start: 55%; block-size: 41%; display: flex; flex-direction: column; padding: 1.5cqi; border: 0.7cqi solid var(--palette-oldGold); background: var(--card-paper); color: var(--palette-tomb); font: clamp(0.75rem, 4.8cqi, 0.875rem) / 1.15 var(--font-body), sans-serif; overflow-wrap: anywhere; }
+.copy { display: flex; flex-direction: column; gap: 0.75cqi; strong { font-weight: 700; line-height: 1.1; } }
+.status { display: flex; align-items: center; justify-content: flex-end; gap: 1cqi; min-block-size: 1.2em; margin-block-start: auto; padding-block-start: 0.5cqi; border-block-start: 1px solid var(--palette-oldGold); font-size: 0.75rem; line-height: 1.1; }
+@include bp.min-width('sm') {
+  .name { block-size: 8.6%; }
+  .level { inset-block-start: 12.2%; block-size: 4.6%; }
+  .window { inset-block-start: 17.8%; block-size: 49.2%; }
+  .paper { inset-block-start: 69%; block-size: 28%; }
+  .frame[data-frame='pendulum'] .window { inset-block-start: 17.5%; block-size: 40.5%; }
+  .scales { inset-block-start: 58.6%; block-size: 9.4%; }
+  .frame[data-frame='pendulum'] .paper { inset-block-start: 69%; block-size: 28%; }
+}
+// Las mini-cartas conservan las regiones de la plantilla, sin texto ni métricas de fuente.
+.frame[data-mini='true'] {
+  .name { block-size: 8.6%; padding: 0; }
+  .level { display: none; }
+  .window { inset-block-start: 17.8%; block-size: 53.2%; }
+  .paper { inset-block-start: 74.2%; block-size: 21%; padding: 0; }
+  .copy, .status { display: none; }
+}

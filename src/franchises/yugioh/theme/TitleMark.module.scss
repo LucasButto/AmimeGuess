@@ -1,0 +1,17 @@
+@use 'breakpoints' as bp;
+
+.card {
+  position: relative;
+  display: inline-block;
+  inline-size: calc(var(--title-bullet-size) * 59 / 90);
+  block-size: var(--title-bullet-size);
+  aspect-ratio: 59 / 90;
+  margin-inline-end: calc(var(--title-bullet-size) / 3);
+  vertical-align: middle;
+  > span { position: absolute; inset: 0; }
+
+  @include bp.min-width('sm') {
+    inline-size: calc(var(--title-bullet-size) * 59 / 86);
+    aspect-ratio: 59 / 86;
+  }
+}

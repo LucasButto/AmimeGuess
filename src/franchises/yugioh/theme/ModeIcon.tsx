@@ -1,0 +1,19 @@
+import type { EgyptianIconKind } from './modeCards';
+import styles from './ModeIcon.module.scss';
+/** Trazos originales de la muestra aprobada. */
+const paths: Record<EgyptianIconKind, string> = {
+    duelist: 'M70 28a13 13 0 1 0 0 26 13 13 0 1 0 0-26ZM52 110l6-42h24l9 42M59 66 40 81l-18-6M82 65l19 10M22 75l3-10 32 12-4 13Z M29 70l-2 8m11-5-2 8m11-5-2 8M65 83v27m13-27v27',
+    card: 'M45 22h50l10 10v76l-10 10H45l-10-10V32ZM44 35h52v13H44ZM44 56h52v35H44ZM44 100h52M52 107h36M56 73l14-12 14 12-14 12Z',
+    shadow: 'M29 112V51a41 41 0 0 1 82 0v61M56 112V79a14 14 0 0 1 28 0v33M70 45a10 10 0 1 0 0 20 10 10 0 1 0 0-20Z',
+    scroll: 'M33 30h73v76H39a9 9 0 0 1 0-18h59M33 30a9 9 0 1 0 0 18h8V30M54 49h33M54 61h33M54 73h24',
+    brush: 'M23 30h79v78H23ZM31 38h63v62H31ZM40 85l15-26 20 23 10-12M95 87l17-48 7 3-17 48ZM95 87q-15 6-11 19 15-3 18-16',
+    cartouche: 'M46 20h48q17 0 17 17v66q0 17-17 17H46q-17 0-17-17V37q0-17 17-17ZM44 39h52v63H44ZM70 49l16 19-16 22-16-22Z',
+    eye: 'M19 62q51-45 102 0-51 45-102 0ZM70 45a17 17 0 1 0 0 34 17 17 0 1 0 0-34ZM70 79v22l-21 14M102 75l16 18',
+    balance: 'M70 27v83M48 111h44M27 48h86M70 22l8 10-8 10-8-10ZM34 49 19 81h30ZM106 49 91 81h30ZM19 86q15 18 30 0M91 86q15 18 30 0',
+    summon: 'M70 17a53 53 0 1 0 0 106 53 53 0 1 0 0-106ZM70 28v11m0 62v11M28 70h11m62 0h11M70 89q-29-4-29-31 22 0 29 31 7-31 29-31 0 27-29 31ZM70 89q-19-21 0-45 19 24 0 45ZM51 99h38',
+    deck: 'M40 25h54v74H40ZM47 33h40v54H47ZM49 106h53V35M58 115h53V44M23 28v88m-7-88h14m-14 88h14M124 28v88m-7-88h14m-14 88h14',
+    timeline: 'M24 88h92M33 78v20m25-20v20m25-20v20m25-20v20M33 46h16v22H33ZM58 31h16v37H58ZM83 18h25v50H83Z',
+  };
+export function EgyptianModeIcon({ kind }: { kind: EgyptianIconKind }) {
+  return <svg className={styles.icon} viewBox="0 0 140 140" aria-hidden="true" focusable="false"><path d={paths[kind]} /></svg>;
+}

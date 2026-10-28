@@ -1,0 +1,17 @@
+.card { position: relative; display: block; flex: none; inline-size: 1.75rem; aspect-ratio: 59 / 86; > span:first-child { position: absolute; inset: 0; } &[data-chip-card='muted'] > span:first-child { opacity: 0.4; } }
+.offMark { position: absolute; inset: 42% 0 auto; block-size: 0.125rem; background: var(--palette-tomb); box-shadow: 0 0 0 1px var(--palette-papyrus); transform: rotate(-35deg); }
+.glyph {
+  display: block;
+  // La ventana mide 76cqi: 47.12 / 76 = 62 %, independiente de sus bordes.
+  inline-size: 47.12cqi;
+  block-size: 90%;
+  color: var(--palette-gold);
+  background-color: currentColor;
+  mask-mode: alpha;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  @each $id in ('01', '14', '08') {
+    &[data-chip-glyph='#{$id}'] { mask-image: url('/theme/yugioh/glifos/glifo-#{$id}.svg'); }
+  }
+}

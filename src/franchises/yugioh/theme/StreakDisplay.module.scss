@@ -1,0 +1,13 @@
+@use 'tokens' as t;
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-2;
+  color: var(--palette-gold);
+  padding: t.$space-1 t.$space-3;
+  border: 1px solid var(--palette-gold);
+  border-radius: 2rem;
+  background: var(--palette-tomb);
+  font: 0.875rem / 1.5 var(--font-body), sans-serif;
+}
+.scarab { display: block; flex: none; inline-size: 2rem; block-size: 2rem; }

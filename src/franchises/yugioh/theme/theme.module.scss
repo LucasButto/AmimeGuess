@@ -1,0 +1,247 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+
+@function bevel($size) {
+  @return polygon($size 0, calc(100% - $size) 0, 100% $size, 100% calc(100% - $size), calc(100% - $size) 100%, $size 100%, 0 calc(100% - $size), 0 $size);
+}
+
+.root {
+  ul:has(> li > [data-card='duel']) { grid-auto-rows: 1fr; margin-inline: 0; }
+  --mode-cols: 2;
+  --mode-cols-md: 3;
+  --mode-cols-xl: 6;
+  --mode-grid-max: 27rem;
+  --mode-template-lg: repeat(4, minmax(0, 1fr));
+  --mode-template-xl: repeat(6, minmax(0, 1fr));
+  --mode-main-column: auto;
+  --mode-main-row: auto;
+  --mode-main-align: stretch;
+  --mode-column-gap-lg: 1rem;
+  --temple-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --button-cursor-display: none;
+  --button-lead-display: none;
+  --nav-fill: var(--palette-sandstoneDark);
+  --nav-inner: var(--palette-oldGold);
+  --nav-inner-width: 0;
+  --surface-page: var(--palette-tomb);
+  --surface-panel: var(--palette-sandstoneDark);
+  --surface-dialog: var(--palette-wall);
+  --surface-screen: var(--palette-tomb);
+  --surface-sunken: var(--palette-tomb);
+  --ink: var(--palette-papyrus);
+  --ink-muted: var(--color-text-muted);
+  --ink-screen: var(--palette-gold);
+  --ink-shadow: transparent;
+  --accent-primary: var(--palette-gold);
+  --accent-primary-ink: var(--palette-tomb);
+  --accent-secondary: var(--palette-lapis);
+  --accent-secondary-ink: var(--palette-papyrus);
+  --cell-correct: var(--color-match);
+  --cell-partial: var(--color-partial);
+  --cell-incorrect: var(--color-miss);
+  --cell-ink: var(--palette-tomb);
+  --cell-edge: var(--palette-tomb);
+  --cell-frame-width: 1px;
+  --cell-lines: none;
+  --frame-width: 1px;
+  --frame-color: var(--palette-gold);
+  --frame-inner-width: 1px;
+  --frame-inner: var(--palette-lapis);
+  --frame-dialog-inner: var(--palette-gold);
+  --frame-screen-inner: var(--palette-gold);
+  --frame-won-inner: var(--color-match);
+  --frame-practice-inner: var(--palette-gold);
+  --clip-panel: #{bevel(0.375rem)};
+  --clip-button: #{bevel(0.375rem)};
+  --clip-chip: #{bevel(0.25rem)};
+  --clip-cell: none;
+  --clip-icon: #{bevel(0.25rem)};
+  --clip-infotip: none;
+  --focus-color: var(--palette-gold);
+  --focus-halo: var(--palette-tomb);
+  --focus-width: 0.125rem;
+  --focus-halo-width: 0.125rem;
+  --button-edge: var(--palette-gold);
+  --button-frame-width: 0.125rem;
+  --button-disabled-outline: 1px dashed var(--palette-papyrus);
+  --button-ghost-hover-edge: var(--palette-gold);
+  --button-press: 0rem;
+  --icon-a-fill: var(--palette-gold);
+  --icon-a-ink: var(--palette-tomb);
+  --icon-b-fill: var(--palette-lapis);
+  --icon-b-ink: var(--palette-papyrus);
+  --icon-hover-ink: var(--palette-tomb);
+  --icon-frame-width: 0.125rem;
+  --modal-close-fill: var(--palette-gold);
+  --modal-close-ink: var(--palette-tomb);
+  --dialog-bar-fill: var(--palette-lapis);
+  --dialog-bar-ink: var(--palette-papyrus);
+  --filter-chip-min: 11rem;
+  --chip-radius: 0.25rem;
+  --chip-fill: var(--palette-sandstoneDark);
+  --chip-ink: var(--palette-papyrus);
+  --chip-edge: var(--palette-gold);
+  --chip-on-fill: var(--palette-gold);
+  --chip-on-ink: var(--palette-tomb);
+  --chip-on-edge: var(--palette-gold);
+  --infotip-fill: var(--palette-gold);
+  --infotip-open-fill: var(--palette-gold);
+  --infotip-ink: var(--palette-tomb);
+  --infotip-radius: 50%;
+  --infotip-tail-width: 1rem;
+  --infotip-tail-height: 0.5rem;
+  --infotip-tail-below: polygon(50% 0, 100% 100%, 0 100%);
+  --infotip-tail-above: polygon(0 0, 100% 0, 50% 100%);
+  --title-ink: var(--palette-gold);
+  --title-shadow: 0 0.125rem 0 var(--palette-tomb);
+  --title-scale: 1;
+  --title-bullet: none;
+  --title-bullet-size: clamp(2rem, 4vw, 3rem);
+  --kicker-ink: var(--palette-gold);
+  --kicker-shadow: none;
+  --plate-fill: var(--palette-sandstoneDark);
+  --plate-edge: var(--palette-gold);
+  --plate-inner: var(--palette-oldGold);
+  --plate-width: 1px;
+  --plate-inner-width: 1px;
+  --plate-pad: 0.5rem;
+  --panel-accent-width: 0.125rem;
+  --meter-height: 0.625rem;
+  --meter-track: var(--palette-tomb);
+  --meter-fill-high: var(--palette-gold);
+  --meter-fill-mid: var(--palette-gold);
+  --meter-fill-low: var(--color-miss);
+  --meter-border: 1px solid var(--palette-gold);
+  --shadow-card: 0 0 1rem color-mix(in srgb, var(--palette-gold) 8%, transparent);
+  --shadow-pop: 0 0.5rem 2rem var(--palette-tomb);
+  --flip-duration: 450ms;
+  --flip-stagger: 240ms;
+  --flip-ease: cubic-bezier(0.3, 0.7, 0.4, 1);
+  --display-grid: 1px;
+
+  // Filete biselado interior en las placas: no se recorta el elemento ni su foco.
+  [data-variant='primary'],
+  [data-variant='secondary'],
+  [data-variant='icon'] {
+    --_radius: 0rem;
+    &::after {
+      box-shadow: inset 0.125rem 0.125rem 0 color-mix(in srgb, var(--palette-papyrus) 35%, transparent), inset -0.125rem -0.125rem 0 var(--palette-tomb);
+    }
+    @include bp.hover-capable {
+      &:hover:not(:disabled, [aria-disabled='true']) { --_edge: var(--palette-gold); }
+    }
+    &[data-tone='b'] { --icon-hover-ink: var(--palette-papyrus); }
+  }
+
+  // Un solo marco. El cursor oculto del primitivo no reserva ancho ni gap.
+  [data-variant='ghost'] {
+    --_radius: 0rem;
+    --_frame: 1px;
+    --_fill: var(--palette-sandstoneDark);
+    justify-content: center;
+    gap: t.$space-2;
+    > svg:first-child { display: none; }
+    > svg:not(:first-child) { flex: none; align-self: center; }
+    &::after { box-shadow: none; }
+    &:disabled, &[aria-disabled='true'] { --_fill: var(--palette-tomb); --_ink: var(--palette-sandstoneLight); }
+  }
+  [data-variant='primary'], [data-variant='secondary'], [data-variant='ghost'], [data-variant='icon'] {
+    @include bp.motion-ok {
+      --button-press: 0.0625rem;
+      transition: transform 160ms var(--temple-ease-out);
+    }
+  }
+
+  // Capiteles, cartuchos y superficies de piedra; sin cambiar la geometría de BackNav.
+  main > header > h1::before {
+    // Pseudo-elemento vacío y decorativo: conserva la caja de la viñeta anterior.
+    background-color: currentColor;
+    mask: url('/theme/yugioh/glifos/glifo-14.svg') center / contain no-repeat;
+  }
+  main > header > h1:has([data-duel-title-card])::before { display: none; }
+  [data-part='mode-nav'] { --chip-fill: var(--palette-sandstoneDark); --chip-on-fill: var(--palette-gold); }
+  [data-part='modal-header'] {
+    background: var(--palette-wall);
+    color: var(--palette-gold);
+    box-shadow: inset 0 -0.125rem 0 var(--palette-tomb);
+  }
+  [data-part='modal-title'] {
+    padding: t.$space-2 t.$space-3;
+    border: 1px solid var(--palette-gold);
+    border-radius: 2rem;
+    background: var(--palette-tomb);
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+    &::before {
+      content: '';
+      display: inline-block;
+      inline-size: 1.5rem;
+      block-size: 1rem;
+      margin-inline-end: t.$space-2;
+      background: url('/theme/yugioh/winged-sun.svg') center / contain no-repeat;
+      vertical-align: middle;
+    }
+  }
+
+  [role='tooltip'] {
+    --clip-panel: #{bevel(0.375rem)};
+    --frame-width: 0.125rem;
+    --frame-dialog-inner: var(--palette-lapis);
+    --surface-panel: var(--palette-sandstoneDark);
+    --frame-inner: var(--palette-oldGold);
+    font-size: 1rem;
+  }
+
+  dialog {
+    font-family: var(--font-body);
+    --frame-width: 0.1875rem;
+    --frame-inner-width: 0.125rem;
+    --frame-dialog-inner: var(--palette-oldGold);
+    --clip-panel: #{bevel(0.625rem)};
+    &::backdrop { background: color-mix(in srgb, var(--palette-tomb) 82%, transparent); }
+  }
+
+  dialog[open] > [data-variant='dialog'] {
+    --panel-radius: 0rem;
+    @include bp.motion-ok {
+      animation: tablet-open 280ms var(--temple-ease-out) both;
+    }
+  }
+
+  [data-part='modal-body'] {
+    margin: 0.625rem;
+    border: 1px solid var(--palette-gold);
+    background: var(--palette-tomb);
+    font-size: 1rem;
+  }
+
+  [data-part='stats'] {
+    font-variant-numeric: tabular-nums;
+    dl > div {
+      border-radius: 1rem 1rem 0.25rem 0.25rem;
+      background: var(--palette-sandstoneDark);
+      box-shadow: inset 0.125rem 0.125rem 0 var(--palette-wall), inset -0.125rem -0.125rem 0 var(--palette-tomb);
+    }
+    dd { color: var(--palette-gold); font-family: var(--font-body); }
+    ol > li > span[aria-hidden='true']:nth-last-child(2) {
+      border: 1px solid var(--palette-oldGold);
+      border-radius: 0.25rem;
+    }
+    [data-latest='true'] { outline: 1px solid var(--palette-matchGreen); outline-offset: -1px; }
+  }
+
+  @include bp.min-width('md') { --plate-pad: 1rem; --mode-grid-max: 41rem; }
+  @include bp.min-width('lg') { --mode-grid-max: 55rem; }
+  @include bp.min-width('xl') {
+    --mode-grid-max: 90rem;
+  }
+  @include bp.reduced-motion { --flip-duration: 150ms; --flip-stagger: 0ms; }
+
+}
+
+@keyframes tablet-open {
+  from { transform: translateY(1rem) scale(0.97); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}

@@ -396,21 +396,23 @@ describe('Texto', () => {
 describe('Mayor o Menor', () => {
   const metrics = () => mode('mayor-o-menor').higherLower!.metrics;
 
-  it('solo hay monstruos con ATK y DEF numéricos; ni las magias, ni las trampas, ni los de ATK o DEF "?"', () => {
+  it('solo hay monstruos con ATK, DEF y nivel numéricos; sin magias, trampas, Enlace ni valores "?"', () => {
     const pool = higherLowerPool(cards, allSeries, metrics());
     expect(pool.length).toBeGreaterThanOrEqual(defaultMinPool('higher-lower'));
     for (const entity of pool) {
       expect(String(entity.attrs.clase), entity.id).toMatch(/^Monstruo/);
       expect(typeof entity.attrs.atk, entity.id).toBe('number');
       expect(typeof entity.attrs.def, entity.id).toBe('number');
+      expect(typeof entity.attrs.nivel, entity.id).toBe('number');
+      expect(String(entity.attrs.clase), entity.id).not.toMatch(/Enlace/);
     }
     const leftOut = cards.filter((card) => !pool.includes(card));
-    expect(leftOut.every((card) => typeof card.attrs.atk !== 'number' || typeof card.attrs.def !== 'number')).toBe(true);
+    expect(leftOut.every((card) => metrics().some((metric) => typeof card.attrs[metric.key] !== 'number'))).toBe(true);
   });
 
-  it('ATK y DEF se alternan por día, y cada ronda compara dos monstruos con valores distintos en la métrica del día', () => {
+  it('ATK, DEF y nivel rotan por día, y cada ronda compara dos monstruos con valores distintos', () => {
     expect(metricOfDay(metrics(), 0).key).not.toBe(metricOfDay(metrics(), 1).key);
-    expect(new Set([0, 1, 2, 3].map((day) => metricOfDay(metrics(), day).key))).toEqual(new Set(['atk', 'def']));
+    expect([0, 1, 2, 3].map((day) => metricOfDay(metrics(), day).key)).toEqual(['atk', 'def', 'nivel', 'atk']);
     const pool = higherLowerPool(cards, allSeries, metrics());
     for (let day = 0; day < 40; day++) {
       const key = metricOfDay(metrics(), day).key;
@@ -419,6 +421,23 @@ describe('Mayor o Menor', () => {
       for (const round of rounds) {
         expect(round.a.attrs[key], `día ${day}`).not.toBe(round.b.attrs[key]);
         expect(round.a.id).not.toBe(round.b.id);
+      }
+    }
+  });
+
+  it('Nivel ofrece rondas sin empates con todas las series y con cada serie por separado', () => {
+    const level = metrics().find((metric) => metric.key === 'nivel')!;
+    expect(level.label).toBe('Nivel');
+    expect(level.unit).toBe('★');
+    for (const active of [allSeries, ...allSeries.map((series) => [series])]) {
+      const pool = higherLowerPool(cards, active, metrics());
+      expect(pool.length, active.join(',')).toBeGreaterThanOrEqual(defaultMinPool('higher-lower'));
+      const rounds = buildRounds(pool, level.key, { ...ctx, mode: 'mayor-o-menor', filterKey: active.join(',') }, MAX_ROUNDS);
+      expect(rounds.length, active.join(',')).toBe(MAX_ROUNDS);
+      for (const round of rounds) {
+        expect(round.aValue).not.toBe(round.bValue);
+        expect(round.aValue).toBe(round.a.attrs.nivel);
+        expect(round.bValue).toBe(round.b.attrs.nivel);
       }
     }
   });

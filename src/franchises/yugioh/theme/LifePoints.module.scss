@@ -1,0 +1,8 @@
+@use 'tokens' as t;
+@use 'breakpoints' as bp;
+
+.root { display: grid; gap: t.$space-1; min-inline-size: 0; }
+.meter { display: flex; align-items: center; flex-wrap: wrap; gap: t.$space-2; padding: t.$space-2 t.$space-3; border: 1px solid var(--palette-gold); background: var(--palette-tomb); color: var(--palette-gold); border-radius: t.$radius-sm; }
+.reading { min-inline-size: 7ch; font-variant-numeric: tabular-nums; font-weight: t.$font-weight-bold; }
+.track { display: block; inline-size: clamp(4rem, 12vw, 9rem); block-size: 0.5rem; border: 1px solid var(--palette-gold); background: var(--palette-sandstoneDark); overflow: hidden; > span { display: block; block-size: 100%; background: var(--palette-gold); transform-origin: left; @include bp.motion-ok { transition: transform 320ms var(--temple-ease-out); } } }
+.trap { min-block-size: 1.5em; color: var(--palette-gold); font-size: t.$font-size-sm; }

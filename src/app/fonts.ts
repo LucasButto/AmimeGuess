@@ -1,4 +1,4 @@
-import { Bangers, Cinzel, Jersey_10, Permanent_Marker, Press_Start_2P, Rubik, Shippori_Mincho } from 'next/font/google';
+import { Bangers, Cinzel_Decorative, Jersey_10, Permanent_Marker, Press_Start_2P, Rubik, Shippori_Mincho } from 'next/font/google';
 
 // Tipografías de los temas (SPEC 9.2; como mucho dos por franquicia). `next/font` las baja una sola vez en el
 // build y las sirve desde el propio sitio como archivos estáticos: no se pide nada a Google en producción.
@@ -12,7 +12,7 @@ const rubik = Rubik({ subsets: ['latin'], display: 'swap', preload: false, varia
 const bangers = Bangers({ weight: '400', subsets: ['latin'], display: 'swap', preload: false, variable: '--font-bangers' });
 const marker = Permanent_Marker({ weight: '400', subsets: ['latin'], display: 'swap', preload: false, variable: '--font-permanent-marker' });
 const shippori = Shippori_Mincho({ weight: ['400', '700'], subsets: ['latin'], display: 'swap', preload: false, variable: '--font-shippori-mincho' });
-const cinzel = Cinzel({ subsets: ['latin'], display: 'swap', preload: false, variable: '--font-cinzel' });
+const decorative = Cinzel_Decorative({ weight: ['400', '700'], subsets: ['latin'], display: 'swap', preload: false, variable: '--font-cinzel-decorative' });
 
 /** Clases que declaran las variables `--font-*`: van en `<html>`, así cualquier tema las puede usar. */
-export const fontVariables = [pressStart, jersey, rubik, bangers, marker, shippori, cinzel].map((font) => font.variable).join(' ');
+export const fontVariables = [pressStart, jersey, rubik, bangers, marker, shippori, decorative].map((font) => font.variable).join(' ');

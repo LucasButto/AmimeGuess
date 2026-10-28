@@ -1,0 +1,5 @@
+@use 'tokens' as t;
+@use 'breakpoints' as bp;
+.victory { display: flex; flex-wrap: wrap; gap: t.$space-3; align-items: center; padding: t.$space-3; border: 1px solid var(--palette-gold); background: var(--palette-tomb); color: var(--palette-gold); font-variant-numeric: tabular-nums; > strong { font-family: var(--font-heading), serif; } }
+.seal { position: absolute; inset: auto 0 0 auto; inline-size: 3rem; aspect-ratio: 1; border: 2px solid var(--palette-gold); border-radius: 50%; background: var(--palette-tomb); &::before { content: ''; position: absolute; inset: 15%; background: var(--palette-gold); mask: url('/theme/yugioh/glifos/glifo-14.svg') center / contain no-repeat; } @include bp.motion-ok { animation: seal-in 320ms var(--temple-ease-out) both; } }
+@keyframes seal-in { from { transform: scale(1.2) rotate(-12deg); opacity: 0; } to { transform: scale(1) rotate(0); opacity: 1; } }
