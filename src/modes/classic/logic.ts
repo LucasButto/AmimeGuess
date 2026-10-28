@@ -78,6 +78,12 @@ export function buildRow(
         const cell: Cell = { column, value: hiddenGuess ? null : value, match: 'none', direction: null };
         return hiddenGuess ? { ...cell, hidden: true } : cell;
       }
+      if (column.compare === 'exact' && column.matchAnyOf !== undefined && value !== null) {
+        const matches = compareExact(value, target) === 'exact' || column.matchAnyOf.some(
+          (key) => compareExact(value, attrOf(answer, key, active)) === 'exact',
+        );
+        return { column, value, match: matches ? 'exact' : 'none', direction: null };
+      }
       return { column, value, ...compareColumn(column, value, target) };
     }),
   };

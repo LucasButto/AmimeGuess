@@ -120,6 +120,82 @@ describe('buildRow', () => {
   });
 });
 
+describe('buildRow con matchAnyOf', () => {
+  const linked: ClassicColumn[] = [
+    { key: 'tipo1', label: 'Tipo 1', compare: 'exact', matchAnyOf: ['tipo2'] },
+    { key: 'tipo2', label: 'Tipo 2', compare: 'exact', matchAnyOf: ['tipo1'] },
+  ];
+  const dual = entity('respuesta-dual', { tipo1: 'Siniestro', tipo2: 'Acero' });
+  const single = entity('respuesta-simple', { tipo1: 'Acero', tipo2: null });
+  const cells = (guess: Entity, answer: Entity) => buildRow(guess, answer, linked, ['g1']).cells;
+
+  it.each([
+    ['Acero', 'Fantasma', dual, ['exact', 'none']],
+    ['Siniestro', 'Acero', dual, ['exact', 'exact']],
+    ['Acero', null, dual, ['exact', 'none']],
+    ['Siniestro', 'Acero', single, ['none', 'exact']],
+    ['Acero', null, single, ['exact', 'exact']],
+    ['Acero', 'Siniestro', dual, ['exact', 'exact']],
+  ] as const)('compara %s / %s sin importar la posición de la respuesta', (tipo1, tipo2, answer, expected) => {
+    const guess = entity('intento', { tipo1, tipo2 });
+    const result = cells(guess, answer);
+    expect(result.map((cell) => cell.match)).toEqual(expected);
+    expect(result.map((cell) => cell.value)).toEqual([tipo1, tipo2]);
+    expect(result.every((cell) => cell.direction === null && cell.match !== 'partial')).toBe(true);
+  });
+
+  it('sin matchAnyOf conserva la comparación contra la misma columna', () => {
+    const guess = entity('intento', { tipo1: 'Acero', tipo2: 'Siniestro' });
+    expect(buildRow(guess, dual, columns.slice(0, 2), ['g1']).cells.map((cell) => cell.match))
+      .toEqual(['none', 'none']);
+  });
+
+  it('un null solo coincide con la misma columna, nunca con otra clave vacía', () => {
+    const guess = entity('sin-tipo2', { tipo1: 'Acero' });
+    expect(cells(guess, single)[1]).toMatchObject({ value: null, match: 'exact' });
+    expect(cells(guess, dual)[1]).toMatchObject({ value: null, match: 'none' });
+    const missingFirst = entity('sin-tipo1', { tipo1: null, tipo2: 'Acero' });
+    expect(cells(guess, missingFirst)[1].match).toBe('none');
+    expect(cells(entity('real', { tipo2: 'Acero' }), entity('vacío', {}))[1].match).toBe('none');
+  });
+
+  it('filtra las series inactivas en intento, columna y atributos alternativos', () => {
+    const guess = entity('intento', { tipo1: 'Acero' });
+    const tagged = [{ value: 'Acero', series: 'g2' }];
+    const answer = entity('respuesta', { tipo1: 'Siniestro', tipo2: tagged });
+    expect(buildRow(guess, answer, linked, ['g1']).cells[0].match).toBe('none');
+    expect(buildRow(guess, answer, linked, ['g1', 'g2']).cells[0].match).toBe('exact');
+    const sameColumn = entity('respuesta', { tipo1: tagged });
+    expect(buildRow(guess, sameColumn, linked, ['g1']).cells[0].match).toBe('none');
+    expect(buildRow(guess, sameColumn, linked, ['g1', 'g2']).cells[0].match).toBe('exact');
+    const taggedGuess = entity('intento', { tipo1: tagged });
+    expect(buildRow(taggedGuess, dual, linked, ['g1']).cells[0]).toMatchObject({ value: [], match: 'none' });
+    expect(buildRow(taggedGuess, dual, linked, ['g1', 'g2']).cells[0].match).toBe('exact');
+  });
+
+  it('usa compareExact para listas: una coincidencia parcial nunca es naranja', () => {
+    const column: ClassicColumn = { key: 'a', label: 'A', compare: 'exact', matchAnyOf: ['b', 'c'] };
+    const guess = entity('intento', { a: ['Uno', 'Dos'] });
+    expect(buildRow(guess, entity('respuesta', { b: ['Uno'] }), [column], []).cells[0].match).toBe('none');
+    expect(buildRow(guess, entity('respuesta', { c: ['Dos', 'Uno'] }), [column], []).cells[0].match).toBe('exact');
+  });
+
+  it('ignora matchAnyOf en columnas set y ordered', () => {
+    const set: ClassicColumn = { key: 'a', label: 'A', compare: 'set', matchAnyOf: ['b'] };
+    const ordered: ClassicColumn = { key: 'n', label: 'N', compare: 'ordered', matchAnyOf: ['m'] };
+    const result = buildRow(entity('intento', { a: ['Uno'], n: 1 }),
+      entity('respuesta', { a: ['Dos'], b: ['Uno'], n: 2, m: 1 }), [set, ordered], []).cells;
+    expect(result[0].match).toBe('none');
+    expect(result[1]).toMatchObject({ match: 'none', direction: 'up' });
+  });
+
+  it('compartir y el resumen accesible usan el nuevo resultado conservando las columnas', () => {
+    const row = buildRow(entity('intento', { tipo1: 'Acero', tipo2: 'Fantasma' }), dual, linked, ['g1']);
+    expect(shareGrid([row])).toEqual(['🟩🟥']);
+    expect(rowSummary(row)).toBe('intento: Tipo 1 correcto, Tipo 2 incorrecto.');
+  });
+});
+
 describe('shareGrid', () => {
   const build = (guess: Entity, answer: Entity) => buildRow(guess, answer, columns, ['g1']);
 

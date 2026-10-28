@@ -42,8 +42,8 @@ export const pokemonConfig = {
       engine: 'classic',
       classic: {
         columns: [
-          { key: 'tipo1', label: 'Tipo 1', compare: 'exact', help: help.tipo1 },
-          { key: 'tipo2', label: 'Tipo 2', compare: 'exact', help: help.tipo2 },
+          { key: 'tipo1', label: 'Tipo 1', compare: 'exact', matchAnyOf: ['tipo2'], help: help.tipo1 },
+          { key: 'tipo2', label: 'Tipo 2', compare: 'exact', matchAnyOf: ['tipo1'], help: help.tipo2 },
           { key: 'generacion', label: 'Generación', compare: 'ordered', help: help.generacion },
           { key: 'colores', label: 'Color', compare: 'set', help: help.colores },
           { key: 'etapa', label: 'Etapa evolutiva', compare: 'ordered', help: help.etapa },

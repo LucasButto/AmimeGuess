@@ -35,6 +35,12 @@ export interface ClassicColumn {
   readonly large?: boolean;
   /** `exact` (=), `set` (⊂) u `ordered` (↕, con flecha). */
   readonly compare: CompareKind;
+  /**
+   * Solo para `exact`: otras claves de la respuesta que también pueden coincidir.
+   * Un intento no nulo acierta si coincide con su columna o con cualquiera de estas,
+   * tras filtrar series. Un intento nulo se compara solo contra su propia columna.
+   */
+  readonly matchAnyOf?: readonly string[];
   /** Unidad que se agrega al valor, por ejemplo `m` o `kg`. */
   readonly unit?: string;
   /**
