@@ -3,6 +3,7 @@
     "slug": "pokemon",
     "name": "Pokémon",
     "status": true,
+    "speedTest": false,
     "modes": [
       {
         "slug": "clasico",
@@ -52,8 +53,7 @@
         "status": true,
         "try": 4
       }
-    ],
-    "speedTest": false
+    ]
   },
   {
     "slug": "dragon-ball",
