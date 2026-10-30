@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useId, useMemo, useState } from 'react';
+import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
+import { useSurrender } from '@/components/game-shell/useSurrender';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import type { DailyContext } from '@/engine/daily';
@@ -56,8 +58,9 @@ function difficultyName(group: BoardGroup): string {
  */
 export function ConnectionsBoard({ session, config, board, names }: ConnectionsBoardProps) {
   const { franchise, mode, filterKey, day, onFinish } = session;
+  const { lost: surrendered, surrender } = useSurrender(session);
   const missedTitleId = useId();
-  const maxMistakes = mistakesOf(config);
+  const maxMistakes = session.attemptLimit ?? mistakesOf(config);
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
 
   const [attempts, setAttempts] = useState<string[][]>(() => restoreAttempts(readState(getLocalStorage(), ctx)?.attempts, board, maxMistakes));
@@ -66,7 +69,8 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
   const [announcement, setAnnouncement] = useState('');
 
   const progress = useMemo(() => progressOf(attempts, board, maxMistakes), [attempts, board, maxMistakes]);
-  const { solved, mistakes, won, over } = progress;
+  const { solved, mistakes, won } = progress;
+  const over = progress.over || surrendered;
 
   // Si el reto ya había terminado al montarse (se recargó la página), el marco tiene que mostrar
   // su resumen, pero sin volver a sumarlo a las estadísticas.
@@ -122,14 +126,25 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
     <div className={styles.root} data-game-ready="true" data-over={over} data-won={won}>
       <header className={styles.header}>
         <p className={styles.instructions}>{es.connections.instructions}</p>
-        <p className={styles.mistakes}>
-          <span className={styles.dots} aria-hidden="true">
-            {Array.from({ length: maxMistakes }, (_, index) => (
-              <span key={index} className={styles.dot} data-used={index < mistakes} />
-            ))}
-          </span>
-          {es.connections.mistakes(maxMistakes - mistakes, maxMistakes)}
-        </p>
+        <div className={styles.mistakes}>
+          <div className={styles.remaining}>
+            <span className={styles.dots} aria-hidden="true">
+              {Array.from({ length: maxMistakes }, (_, index) => (
+                <span key={index} className={styles.dot} data-used={index < mistakes} />
+              ))}
+            </span>
+            <span>{es.connections.mistakes(maxMistakes - mistakes, maxMistakes)}</span>
+          </div>
+          {!over && (
+            <SurrenderButton
+              onConfirm={() => {
+                setSelected([]);
+                setFeedback(null);
+                surrender(attempts, reportOf(attempts, board, progress, true));
+              }}
+            />
+          )}
+        </div>
       </header>
 
       {solved.length > 0 && (

@@ -3,7 +3,7 @@
 import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { getDay, msUntilNextDay } from '@/engine/day';
 import { hasMinimumPool } from '@/engine/filters';
-import { activeStreak, getLocalStorage, readState, readStats, recordResult } from '@/engine/storage';
+import { activeStreak, getLocalStorage, readState, readStats, recordResult, writeState } from '@/engine/storage';
 import { es } from '@/i18n/es';
 import { ContentImage } from '../ContentImage';
 import { CopyLinkButton } from '../CopyLinkButton';
@@ -28,6 +28,8 @@ import { scrollToElement } from './scroll';
 import { StatsView } from './StatsView';
 import { buildShareText, buildShareUrl, describeFilters, themeGrid } from './share';
 import type { FinishReport, GameShellProps } from './types';
+import { ActiveAttemptLimit, AttemptRules } from './AttemptRules';
+import { attemptLimit } from './attempts';
 
 type Dialog = 'help' | 'stats' | 'settings' | null;
 
@@ -56,6 +58,7 @@ export function GameShell({
 }: GameShellProps) {
   // La variante de la partida: la del motor (una dificultad) más la de los interruptores (relleno, arcos del manga).
   const flags = useContext(GameFlagsContext);
+  const attemptRules = useContext(AttemptRules);
   const variant = `${engineVariant ?? ''}${flags.variant}` || undefined;
   const { active, filterKey, setActive } = useSeriesFilters(franchise.slug, franchise.series);
   const [day, setDay] = useState(() => getDay(new Date()));
@@ -112,6 +115,8 @@ export function GameShell({
   }, []);
 
   const remaining = useMemo(() => poolSize(active), [poolSize, active]);
+  const fullPool = useMemo(() => poolSize(franchise.series), [poolSize, franchise.series]);
+  const limit = attemptRules ? attemptLimit(attemptRules.base, remaining, fullPool, attemptRules.adaptive) : undefined;
   const playable = hasMinimumPool(remaining, minimumPool);
 
   const yesterdayAnswer = useMemo(
@@ -139,6 +144,11 @@ export function GameShell({
 
   const handleFinish = useCallback(
     (reported: FinishReport) => {
+      // También cierra partidas restauradas que agotaron el límite nuevo.
+      const ctx = { franchise: franchise.slug, mode: mode.slug, filterKey: variant ? `${filterKey}~${variant}` : filterKey, day: playDay };
+      const saved = readState(getLocalStorage(), ctx);
+      const result = reported.won ? 'won' : 'lost';
+      if (saved && saved.result !== result) writeState(getLocalStorage(), ctx, { ...saved, result });
       setFinished({ key: sessionKey, report: reported });
       // Solo la partida que terminó ahora suma; una restaurada al recargar ya está contada.
       if (reported.fresh) {
@@ -156,7 +166,7 @@ export function GameShell({
         );
       }
     },
-    [sessionKey, practicing, day, franchise.slug, mode.slug, play],
+    [sessionKey, practicing, day, franchise.slug, mode.slug, play, filterKey, variant, playDay],
   );
 
   const getShareText = useCallback(() => {
@@ -177,6 +187,7 @@ export function GameShell({
   const closeDialog = () => setDialog(null);
 
   return (
+    <ActiveAttemptLimit.Provider value={limit}>
     <div className={styles.root} data-game="shell">
       <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} solved={solved} filterKey={filterKey} />
 
@@ -224,8 +235,10 @@ export function GameShell({
 
       {/* Otra combinación de filtros, de día o de variante es otra partida: el juego se vuelve a montar. */}
       {playable && (
-        <div key={sessionKey} ref={gameRef} className={styles.game} data-game-mode={mode.slug}>
+        <div key={`${sessionKey}:try-${limit ?? ''}`} ref={gameRef} className={styles.game} data-game-mode={mode.slug}>
           {children({
+            attemptLimit: limit,
+            practice: practicing,
             franchise: franchise.slug,
             mode: mode.slug,
             day: playDay,
@@ -253,6 +266,8 @@ export function GameShell({
       {report && (
         <div ref={resultRef} className={styles.result}>
           <ResultPanel
+            titleOverride={report.title}
+            answerIsSentence={report.answerIsSentence}
             won={report.won}
             attempts={report.attempts}
             score={report.score}
@@ -317,6 +332,7 @@ export function GameShell({
         <Modal title={es.shell.helpTitle} onClose={closeDialog}>
           <div className={styles.help}>
             {help}
+            <p>{es.shell.limits.help}</p>
             <section>
               <h3 className={styles.helpTitle}>{es.shell.helpCommonTitle}</h3>
               <ul className={styles.helpList}>
@@ -359,5 +375,6 @@ export function GameShell({
         </Modal>
       )}
     </div>
+    </ActiveAttemptLimit.Provider>
   );
 }

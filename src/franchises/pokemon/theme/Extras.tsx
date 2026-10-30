@@ -56,8 +56,8 @@ const HP_STEPS = 10;
  * Slot `AttemptsMeter`: una barra de PS que baja con cada intento fallido (verde, amarilla y roja según lo que
  * queda). Solo presentación: el número de intentos ya está escrito al lado.
  */
-export function HpMeter({ failed, won }: AttemptsMeterProps) {
-  const left = won ? Math.max(1, HP_STEPS - failed) / HP_STEPS : Math.max(0, HP_STEPS - failed) / HP_STEPS;
+export function HpMeter({ failed, won, total = HP_STEPS }: AttemptsMeterProps) {
+  const left = won ? Math.max(1, total - failed) / total : Math.max(0, total - failed) / total;
   const level = left > 0.5 ? 'high' : left > 0.2 ? 'mid' : 'low';
   return (
     <span className={styles.hp} aria-hidden="true">

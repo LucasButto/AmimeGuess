@@ -1,6 +1,7 @@
 'use client';
 
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useContext, useMemo, useState } from 'react';
+import { AttemptRules } from '@/components/game-shell/AttemptRules';
 import { GameShell } from '@/components/game-shell/GameShell';
 import type { AnswerInfo, GameSession, ModeLink, ShellFranchise } from '@/components/game-shell/types';
 import type { DailyContext } from '@/engine/daily';
@@ -9,7 +10,7 @@ import { STORAGE_PREFIX, getLocalStorage } from '@/engine/storage';
 import type { Content } from '@/engine/types';
 import { es } from '@/i18n/es';
 import { LevelPicker } from './LevelPicker';
-import { buildPuzzle, configForLevel, countOf, levelsOf, poolOf } from './logic';
+import { buildPuzzle, configForLevel, countOf, levelsOf, poolOf, withAttemptLimit } from './logic';
 import { TimelineBoard } from './TimelineBoard';
 import { TimelineHelp } from './TimelineHelp';
 import type { TimelineConfig } from './types';
@@ -54,7 +55,9 @@ function saveLevel(franchise: string, mode: string, index: number): void {
  * sucesos, la respuesta de ayer, su ayuda y el juego. No sabe de qué franquicia es ni de
  * qué son los sucesos: lo dice la configuración (ver `TimelineConfig`).
  */
-export function TimelineGame({ franchise, mode, modes, config, contents }: TimelineGameProps) {
+export function TimelineGame({ franchise, mode, modes, config: originalConfig, contents }: TimelineGameProps) {
+  const rules = useContext(AttemptRules);
+  const config = useMemo(() => withAttemptLimit(originalConfig, rules?.base), [originalConfig, rules?.base]);
   const levels = useMemo(() => levelsOf(config), [config]);
   const [levelIndex, setLevelIndex] = useState(() => readLevel(franchise.slug, mode.slug, levels.length));
   const levelConfig = useMemo(() => configForLevel(config, levelIndex), [config, levelIndex]);

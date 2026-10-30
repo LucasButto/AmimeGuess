@@ -78,12 +78,19 @@
 // Cuántos intentos van y, si el tema tiene uno, su medidor (slot `AttemptsMeter`).
 .counter {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: t.$space-2 t.$space-4;
   font-size: t.$font-size-sm;
   font-weight: t.$font-weight-medium;
   color: t.token('ink-muted');
+}
+
+.counterInfo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-1 t.$space-4;
+  min-inline-size: 0;
 }
 
 .empty {

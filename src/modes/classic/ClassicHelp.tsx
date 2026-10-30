@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { ActiveAttemptLimit } from '@/components/game-shell/AttemptRules';
+import { fitHints } from '@/components/game-shell/attempts';
 import { useSkin } from '@/components/skin/context';
 import { es } from '@/i18n/es';
 import styles from './ClassicHelp.module.scss';
@@ -9,6 +12,8 @@ interface ClassicHelpProps {
 
 /** Lo que el Clásico aporta al "Cómo se juega": la meta, la leyenda de colores y las pistas de su config. */
 export function ClassicHelp({ config }: ClassicHelpProps) {
+  const limit = useContext(ActiveAttemptLimit);
+  const hints = limit === undefined ? config.hints : fitHints(config.hints, limit);
   // Las muestras repiten las celdas del tema: si el verde y el rojo no llevan ícono en la tabla, tampoco acá.
   const marks = useSkin().skin.cellMarks;
   const legend = [
@@ -44,7 +49,7 @@ export function ClassicHelp({ config }: ClassicHelpProps) {
           <h3 className={styles.title}>{es.classic.help.hintsTitle}</h3>
           <p>{es.classic.help.hintsIntro}</p>
           <ul className={styles.hints}>
-            {config.hints.map((hint) => (
+            {hints.map((hint) => (
               <li key={hint.label}>{es.classic.help.hint(hint.label, hint.after)}</li>
             ))}
           </ul>

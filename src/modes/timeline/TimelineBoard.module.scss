@@ -23,13 +23,22 @@
 }
 
 .counter {
+  flex: 1;
   display: flex;
-  flex-wrap: wrap;
+  min-inline-size: min(100%, 18rem);
   align-items: center;
   gap: t.$space-1 t.$space-3;
   font-size: t.$font-size-base;
   font-weight: t.$font-weight-medium;
   color: t.color('text-muted');
+}
+
+.counterInfo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-1 t.$space-3;
+  min-inline-size: 0;
 }
 
 // Los extremos de la línea: arriba lo más antiguo, abajo lo más reciente.
@@ -203,13 +212,12 @@
   align-items: stretch;
   gap: t.$space-2;
 
-  @include bp.min-width('sm') {
-    align-items: flex-start;
-  }
+
 }
 
 // El botón de confirmar y, a su derecha, los intentos (bajan de renglón si no entran).
 .confirmRow {
+  inline-size: 100%;
   display: flex;
   flex-wrap: wrap;
   align-items: center;

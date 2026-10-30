@@ -142,8 +142,8 @@ export const REVEAL_STEPS = 6;
  * El paso que corresponde a una cantidad de intentos fallidos. Con "revelar con
  * cada intento" apagado, la imagen se queda en el paso más oculto.
  */
-export function revealStep(failed: number, reveal: boolean): number {
-  return reveal ? Math.min(Math.max(failed, 0), REVEAL_STEPS - 1) : 0;
+export function revealStep(failed: number, reveal: boolean, attempts = REVEAL_STEPS): number {
+  return reveal ? Math.min(Math.max(failed * (REVEAL_STEPS - 1) / Math.max(1, attempts - 1), 0), REVEAL_STEPS - 1) : 0;
 }
 
 // Una entrada por paso, de lo más oculto a lo más claro.
@@ -193,20 +193,27 @@ const CENTER: Focus = { x: 0.5, y: 0.5 };
  * recorte se va corriendo hacia el centro a medida que se abre. `scales` reemplaza los aumentos del zoom (ver
  * `ImageRevealConfig.zoomScales`).
  */
-export function revealVisual(variant: RevealVariant, step: number, colors: boolean, focus: Focus, scales: readonly number[] = ZOOM_SCALE): RevealVisual {
-  const index = Math.min(Math.max(step, 0), REVEAL_STEPS - 1);
+export function revealVisual(variant: RevealVariant, step: number, colors: boolean, focus: Focus, scales: readonly number[] = ZOOM_SCALE, blurLevels: readonly number[] = BLUR_REM): RevealVisual {
+  const position = Math.min(Math.max(step, 0), REVEAL_STEPS - 1);
+  const index = Math.floor(position);
+  // Interpola entre pistas cuando `try` no es seis: cada fallo mejora la imagen.
+  const between = (values: readonly number[], defaults: readonly number[] = values): number => {
+    const next = Math.min(index + 1, REVEAL_STEPS - 1);
+    const start = values[index] ?? defaults[index];
+    return start + ((values[next] ?? defaults[next]) - start) * (position - index);
+  };
   const grayscale = colors ? 0 : 1;
   switch (variant) {
     case 'silhouette':
-      return { ...REVEALED, brightness: BRIGHTNESS[index], grayscale };
+      return { ...REVEALED, brightness: between(BRIGHTNESS), grayscale };
     case 'blur':
-      return { ...REVEALED, blur: BLUR_REM[index], grayscale };
+      return { ...REVEALED, blur: between(blurLevels, BLUR_REM), grayscale };
     case 'zoom':
     case 'zoom-silhouette': {
-      const scale = scales[index] ?? ZOOM_SCALE[index];
+      const scale = between(scales, ZOOM_SCALE);
       const shadow = variant === 'zoom-silhouette';
       // La sombra no tiene detalle en el medio: parte de un costado y llega al centro en el último paso.
-      const along = index / (REVEAL_STEPS - 1);
+      const along = position / (REVEAL_STEPS - 1);
       const center = shadow ? { x: focus.x + (CENTER.x - focus.x) * along, y: focus.y + (CENTER.y - focus.y) * along } : focus;
       const corner = zoomWindow(center, scale);
       return { ...REVEALED, scale, x: round(-corner.x * 100), y: round(-corner.y * 100), grayscale, brightness: shadow ? 0 : 1 };
@@ -267,8 +274,8 @@ export function isCorrect(guessId: string, answerId: string, accepted: readonly 
 export const MAX_FAILED = REVEAL_STEPS;
 
 /** ¿Se gastaron los intentos? Con tantos fallos como pasos de revelado, el reto se perdió. */
-export function isLost(failed: number): boolean {
-  return failed >= MAX_FAILED;
+export function isLost(failed: number, limit = MAX_FAILED): boolean {
+  return failed >= limit;
 }
 
 /** Intentos que no acertaron: cada uno revela un paso más. */

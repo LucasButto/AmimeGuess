@@ -84,19 +84,22 @@ export const pokemonConfig = {
       name: 'Carta',
       engine: 'image-reveal',
       // La imagen es una carta del TCG (hasta 2 por Pokémon, una por día) y la respuesta, su Pokémon.
-      imageReveal: { variant: 'blur', imageContentKind: 'tcg-card' },
+      imageReveal: { variant: 'blur', imageContentKind: 'tcg-card', blurLevels: [0.65, 0.5, 0.35, 0.23, 0.12, 0.04] },
     },
     {
       slug: 'movimiento-insignia',
       name: 'Movimiento insignia',
       engine: 'text-clue',
-      // Un movimiento que solo aprende una línea evolutiva: el nombre al principio, y el tipo y el texto si se falla.
+      // Un movimiento que solo aprende una línea evolutiva: el nombre al principio; si se falla, los tipos del Pokémon, el
+      // tipo del movimiento y el texto.
       // Cuenta como acierto cualquier Pokémon de la línea que lo aprenda (ver `accepts` en los datos).
       textClue: {
         contentKind: 'signature-move',
         lines: [
           { kind: 'content', label: 'Movimiento', after: 0, field: 'name' },
-          { kind: 'content', label: 'Tipo', after: 3, field: 'type' },
+          // Los dos tipos del Pokémon (como en las demás pistas de tipos) y, aparte, el tipo del movimiento.
+          { kind: 'attr', label: 'Tipos del Pokémon', after: 3, keys: ['tipo1', 'tipo2'] },
+          { kind: 'content', label: 'Tipo del movimiento', after: 3, field: 'type' },
           { kind: 'content', label: 'Descripción', after: 6, field: 'description' },
         ],
       },

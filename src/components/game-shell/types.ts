@@ -30,7 +30,8 @@
  *   a. Guarda su partida con `writeState` (src/engine/storage.ts) bajo el
  *      contexto `{ franchise, mode, filterKey, day }` de la sesión, con
  *      `result` en `'playing' | 'won' | 'lost'`. El marco la lee para marcar
- *      "resuelto hoy" en la navegación. No usa otras claves.
+ *      "resuelto hoy" en la navegación. Mayor o Menor guarda además su récord
+ *      infinito en la clave independiente documentada en SPEC 6.
  *   b. Llama a `session.onFinish(report)` cuando el reto termina, con un
  *      `FinishReport`:
  *        - al terminar la partida: `fresh: true`. El marco suma la partida a
@@ -49,18 +50,16 @@
  *   d. Lee `window` y `localStorage` con libertad: el marco monta el juego
  *      solo en el cliente, después de la hidratación.
  *
- * Resultados con puntaje (sesión 07). Un modo como Mayor o Menor no se gana ni se
- * pierde: se juega hasta el primer error y lo que cuenta es la racha de aciertos.
+ * Resultados con puntaje. Mayor o Menor se completa al llegar a diez aciertos en
+ * el normal y se pierde al agotar `try` fallos (uno por defecto). El infinito no tiene tope de rondas.
  * Para eso:
  *
  *   e. Declara `resultKind: 'score'` en `GameShellProps` (por defecto es
  *      `'attempts'`). El marco lo usa para el resumen, las estadísticas y el
  *      texto compartido.
- *   f. Al terminar reporta `score` (los aciertos seguidos) y `won: true`: la
- *      partida terminó y cuenta como jugada ese día, así que suma a las
- *      estadísticas, a la racha de días y al "resuelto hoy". Guarda su partida
- *      con `result: 'won'`. Las estadísticas guardan el puntaje donde los modos
- *      de intentos guardan los intentos.
+ *   f. Al terminar reporta `score` (los aciertos) y el resultado real en `won`.
+ *      Guarda `result: 'won' | 'lost'`; las derrotas no suman victorias ni racha
+ *      de días. Las estadísticas guardan el puntaje donde otros modos guardan intentos.
  *   g. `answer.label` es una frase libre (no "Era X.") que el marco muestra tal
  *      cual; puede ir vacía. `grid` es una línea de cuadrados por cada 10 jugadas
  *      (🟩 acierto, 🟥 el error final), no una línea por intento.
@@ -103,6 +102,8 @@ export interface AnswerInfo {
 
 /** Lo que el motor le avisa al marco cuando la persona termina el reto del día. */
 export interface FinishReport {
+  readonly title?: string;
+  readonly answerIsSentence?: boolean;
   readonly won: boolean;
   /** Intentos usados. En un modo de puntaje, las jugadas hechas (los aciertos más el error final). */
   readonly attempts: number;
@@ -121,6 +122,10 @@ export interface FinishReport {
 
 /** Lo que el marco le da al juego. */
 export interface GameSession {
+  /** Intentos totales (o fallos permitidos en comparación y grupos). */
+  readonly attemptLimit?: number;
+  /** Partida extra que no cuenta para estadísticas diarias. */
+  readonly practice?: boolean;
   readonly franchise: string;
   readonly mode: string;
   /** Número de día del reto, ver `getDay`. */

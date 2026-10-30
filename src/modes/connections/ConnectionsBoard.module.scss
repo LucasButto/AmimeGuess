@@ -33,6 +33,13 @@
   gap: t.$space-1;
 }
 
+.remaining {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: t.$space-1 t.$space-2;
+}
+
 .dot {
   inline-size: 0.625rem;
   block-size: 0.625rem;

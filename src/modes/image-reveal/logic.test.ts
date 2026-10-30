@@ -186,6 +186,36 @@ describe('revealVisual con aumentos propios', () => {
   });
 });
 
+describe('revealVisual con desenfoque propio', () => {
+  it('distribuye los seis pasos entre los intentos configurados y pierde en el límite exacto', () => {
+    expect(revealStep(4, true, 5)).toBe(REVEAL_STEPS - 1);
+    expect(revealStep(9, true, 10)).toBe(REVEAL_STEPS - 1);
+    expect(revealStep(8, true, 10)).toBeLessThan(REVEAL_STEPS - 1);
+    expect(revealStep(9, false, 10)).toBe(0);
+    expect(isLost(7, 8)).toBe(false);
+    expect(isLost(8, 8)).toBe(true);
+    for (const variant of ['blur', 'silhouette', 'zoom', 'zoom-silhouette'] as const) {
+      const values = Array.from({ length: 10 }, (_, failed) => revealVisual(variant, revealStep(failed, true, 10), true, { x: 0.5, y: 0.5 }));
+      for (let i = 1; i < values.length; i++) {
+        if (variant === 'blur') expect(values[i].blur).toBeLessThan(values[i - 1].blur);
+        else if (variant === 'silhouette') expect(values[i].brightness).toBeGreaterThan(values[i - 1].brightness);
+        else expect(values[i].scale).toBeLessThan(values[i - 1].scale);
+      }
+    }
+  });
+  it('permite una revelación más clara desde el primer intento sin cambiar otros modos', () => {
+    const levels = [0.65, 0.5, 0.35, 0.23, 0.12, 0.04];
+    const focus = { x: 0.5, y: 0.5 };
+    for (let step = 0; step < REVEAL_STEPS; step++) {
+      const custom = revealVisual('blur', step, true, focus, undefined, levels);
+      expect(custom.blur).toBe(levels[step]);
+      expect(custom.blur).toBeLessThan(revealVisual('blur', step, true, focus).blur);
+      expect(revealVisual('zoom', step, true, focus, undefined, levels)).toEqual(revealVisual('zoom', step, true, focus));
+    }
+    expect(revealVisual('blur', 5, false, focus, undefined, [0.3])).toEqual(revealVisual('blur', 5, false, focus));
+  });
+});
+
 describe('revealVisual', () => {
   const focus = { x: 0.5, y: 0.5 };
   const steps = Array.from({ length: REVEAL_STEPS }, (_, step) => step);

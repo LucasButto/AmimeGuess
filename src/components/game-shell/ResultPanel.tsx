@@ -11,6 +11,8 @@ import styles from './ResultPanel.module.scss';
 import type { AnswerInfo } from './types';
 
 interface ResultPanelProps {
+  titleOverride?: string;
+  answerIsSentence?: boolean;
   won: boolean;
   attempts: number;
   /** Solo en modos de puntaje: los aciertos seguidos. Cambia el título y el resumen, y la respuesta pasa a ser una frase libre. */
@@ -34,13 +36,13 @@ interface ResultPanelProps {
  * cuadro de diálogo del tema (Panel `dialog`). Al ganar un reto de intentos, el slot `WinCelebration` del
  * tema puede festejar sobre la imagen y debajo del resumen, y `StreakDisplay` muestra la racha a su manera.
  */
-export function ResultPanel({ won, attempts, score, answer, streak, getShareText, leadingAction, actions, practice = false }: ResultPanelProps) {
+export function ResultPanel({ won, attempts, score, answer, streak, getShareText, leadingAction, actions, practice = false, titleOverride, answerIsSentence = false }: ResultPanelProps) {
   const { skin } = useSkin();
   const { WinCelebration, StreakDisplay } = skin.slots;
   const scored = score !== undefined;
   const celebrate = celebratesResult(won, scored, skin);
-  const namesAnswer = celebrate && skin.winHeadline === 'answer';
-  const title = scored
+  const namesAnswer = !titleOverride && celebrate && skin.winHeadline === 'answer';
+  const title = titleOverride ?? (scored
     ? es.shell.result.scoreTitle
     : namesAnswer
       ? es.shell.result.answerTitle(answer.label)
@@ -48,7 +50,7 @@ export function ResultPanel({ won, attempts, score, answer, streak, getShareText
         ? es.shell.result.wonTitle
         : practice
           ? es.shell.practice.lostTitle
-          : es.shell.result.lostTitle;
+          : es.shell.result.lostTitle);
 
   return (
     <Panel as="section" variant="dialog" className={styles.root} data-won={won} aria-live="polite">
@@ -64,7 +66,7 @@ export function ResultPanel({ won, attempts, score, answer, streak, getShareText
         <div className={styles.content}>
           <h2 className={styles.title}>{title}</h2>
           {/* En un modo de puntaje la respuesta es una frase libre y puede no haber ninguna. */}
-          {scored ? answer.label && <p>{answer.label}</p> : !namesAnswer && <p>{es.shell.result.answerWas(answer.label)}</p>}
+          {scored || answerIsSentence ? answer.label && <p>{answer.label}</p> : !namesAnswer && <p>{es.shell.result.answerWas(answer.label)}</p>}
           <p className={styles.summary}>
             {practice
               ? scored

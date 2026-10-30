@@ -3,6 +3,9 @@
 import { useEffect, useId, useMemo, useState } from 'react';
 import { autocompleteItemOf, type AutocompleteItem } from '@/components/Autocomplete';
 import { GuessField } from '@/components/GuessField';
+import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
+import { useSurrender } from '@/components/game-shell/useSurrender';
+import { fitHints, restoreLimited } from '@/components/game-shell/attempts';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
 import { SkinAttemptsMeter, SkinGameFrame } from '@/components/skin/gameSlots';
@@ -56,6 +59,8 @@ function reportOf(attemptIds: readonly string[], winner: Entity, fresh: boolean)
  */
 export function TextClueBoard({ session, config, candidates, options }: TextClueBoardProps) {
   const { franchise, mode, filterKey, day, onFinish } = session;
+  const maxAttempts = session.attemptLimit ?? 8;
+  const { lost: surrendered, surrender } = useSurrender(session);
   const clueTitleId = useId();
   const hintsTitleId = useId();
   const failedTitleId = useId();
@@ -65,19 +70,21 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
   const content = useMemo(() => pickContent(answer, ctx), [answer, ctx]);
   const byId = useMemo(() => new Map(options.map((entity) => [entity.id, entity])), [options]);
 
-  const [attemptIds, setAttemptIds] = useState<string[]>(() =>
-    restoreAttempts(readState(getLocalStorage(), ctx)?.attempts, options),
-  );
+  const [attemptIds, setAttemptIds] = useState<string[]>(() => {
+    const state = readState(getLocalStorage(), ctx);
+    return restoreLimited(restoreAttempts(state?.attempts, options), state, maxAttempts);
+  });
   const [lastAttempt, setLastAttempt] = useState<string | null>(null);
 
   const winnerId = winningAttempt(attemptIds, answer.id, content);
   const won = winnerId !== null;
+  const over = won || surrendered || attemptIds.length >= maxAttempts;
 
   // Si la partida ya estaba ganada al montarse (se recargó la página), el marco tiene que
   // mostrar su resumen, pero sin volver a sumarla a las estadísticas.
   const [restored] = useState<FinishReport | null>(() => {
     const winner = winnerId === null ? undefined : byId.get(winnerId);
-    return winner ? reportOf(attemptIds, winner, false) : null;
+    return winner ? reportOf(attemptIds, winner, false) : over ? { ...reportOf(attemptIds, answer.entity, false), won: false } : null;
   });
   useEffect(() => {
     if (restored) onFinish(restored);
@@ -93,13 +100,13 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
 
   // Al acertar se muestran todas las pistas.
   const states = useMemo(
-    () => lineStates(config.lines, won ? Infinity : failed, answer.entity, content),
-    [config.lines, won, failed, answer.entity, content],
+    () => lineStates(fitHints(config.lines, maxAttempts), over ? Infinity : failed, answer.entity, content),
+    [config.lines, maxAttempts, over, failed, answer.entity, content],
   );
   const mainLines = states.filter((state) => state.line.after === 0);
   const hintLines = states.filter((state) => state.line.after > 0);
   // ¿El último fallo acaba de desbloquear una pista? El tema puede avisarlo (un ▼ que parpadea, como en los juegos).
-  const newHint = !won && failed > 0 && hintLines.some((state) => state.line.after === failed);
+  const newHint = !over && failed > 0 && hintLines.some((state) => state.line.after === failed);
 
   // Del más reciente al más antiguo: lo último que se probó queda arriba.
   const failedNames = useMemo(
@@ -115,7 +122,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
   );
 
   function addAttempt(id: string) {
-    if (won || attempted.has(id)) return;
+    if (over || attempted.has(id)) return;
     const guess = byId.get(id);
     if (!guess) return;
     const next = [...attemptIds, id];
@@ -123,17 +130,18 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
 
     setAttemptIds(next);
     setLastAttempt(id);
-    writeState(getLocalStorage(), ctx, { attempts: next, result: solved ? 'won' : 'playing' });
+    const spent = !solved && next.length >= maxAttempts;
+    writeState(getLocalStorage(), ctx, { attempts: next, result: solved ? 'won' : spent ? 'lost' : 'playing' });
 
-    if (solved) onFinish(reportOf(next, guess, true));
+    if (solved || spent) onFinish({ ...reportOf(next, solved ? guess : answer.entity, true), won: solved });
   }
 
   const lastName = lastAttempt && !isCorrect(lastAttempt, answer.id, content) ? byId.get(lastAttempt)?.name.es : undefined;
 
   return (
-    <div className={styles.root} data-game-ready="true" data-won={won} data-hints={hintLines.length > 0}>
+    <div className={styles.root} data-game-ready="true" data-won={won} data-over={over} data-hints={hintLines.length > 0}>
       {/* Al ganar, el marco muestra la respuesta y el resumen (ver `FinishReport`). */}
-      {!won && (
+      {!over && (
         <div className={styles.field}>
           <GuessField label={es.textClue.inputLabel} items={items} excludeIds={attempted} onSelect={addAttempt} />
         </div>
@@ -181,8 +189,15 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
         </section>
       )}
 
-      <p className={styles.counter}>{es.textClue.attempts(attemptIds.length)}</p>
-      <SkinAttemptsMeter skin={skin} engine="text-clue" failed={failed} won={won} />
+      <div className={styles.counter}>
+        <p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p>
+        {!over && (
+          <SurrenderButton
+            onConfirm={() => surrender(attemptIds, reportOf(attemptIds, answer.entity, true))}
+          />
+        )}
+      </div>
+      <SkinAttemptsMeter skin={skin} engine="text-clue" failed={failed} won={won} total={maxAttempts} />
 
       {failedNames.length > 0 && (
         <section className={styles.failed} aria-labelledby={failedTitleId}>
@@ -200,7 +215,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
           </ul>
         </section>
       )}
-      {failedNames.length === 0 && !won && <p className={styles.empty}>{es.textClue.empty}</p>}
+      {failedNames.length === 0 && !over && <p className={styles.empty}>{es.textClue.empty}</p>}
 
       <VisuallyHidden role="status">{lastName ? es.textClue.wrongAttempt(lastName) : ''}</VisuallyHidden>
     </div>

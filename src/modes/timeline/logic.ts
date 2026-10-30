@@ -13,6 +13,14 @@ import { DEFAULT_ATTEMPTS, DEFAULT_COUNT, type TimelineConfig, type TimelineLeve
 export const countOf = (config: TimelineConfig): number => config.count ?? DEFAULT_COUNT;
 export const attemptsOf = (config: TimelineConfig): number => config.attempts ?? DEFAULT_ATTEMPTS;
 
+/** `try` fija el presupuesto normal; conserva la diferencia de intentos entre dificultades. */
+export function withAttemptLimit(config: TimelineConfig, base?: number): TimelineConfig {
+  if (base === undefined) return config;
+  return { ...config, attempts: base, levels: levelsOf(config).map((level) => ({
+    ...level, attempts: Math.max(1, base + (level.attempts ?? attemptsOf(config)) - DEFAULT_ATTEMPTS),
+  })) };
+}
+
 /** Las dificultades de la configuración; una sola si no define `levels`. Siempre hay al menos una. */
 export function levelsOf(config: TimelineConfig): readonly TimelineLevel[] {
   return config.levels !== undefined && config.levels.length > 0 ? config.levels : [{ count: countOf(config), attempts: attemptsOf(config) }];

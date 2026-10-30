@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { ActiveAttemptLimit } from '@/components/game-shell/AttemptRules';
+import { fitHints } from '@/components/game-shell/attempts';
 import { es } from '@/i18n/es';
 import styles from './TextClueHelp.module.scss';
 import type { TextClueConfig } from './types';
@@ -8,7 +11,9 @@ interface TextClueHelpProps {
 
 /** Lo que el motor de texto aporta al "Cómo se juega": la meta y las pistas que se desbloquean, sacadas de su config. */
 export function TextClueHelp({ config }: TextClueHelpProps) {
-  const unlockable = config.lines.filter((line) => line.after > 0);
+  const limit = useContext(ActiveAttemptLimit);
+  const lines = limit === undefined ? config.lines : fitHints(config.lines, limit);
+  const unlockable = lines.filter((line) => line.after > 0);
 
   return (
     <div className={styles.root}>

@@ -53,4 +53,6 @@ export interface ImageRevealConfig {
    * el ojo de un personaje.
    */
   readonly zoomScales?: readonly number[];
+  /** Radio de desenfoque en rem por paso, de mayor a menor. */
+  readonly blurLevels?: readonly number[];
 }

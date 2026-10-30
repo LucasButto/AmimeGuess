@@ -19,7 +19,7 @@
       }
 
       // Ganada la partida no queda campo: las pistas se muestran enteras, a todo el ancho.
-      &[data-hints='true'][data-won='false'] {
+      &[data-hints='true'][data-over='false'] {
         > .field {
           grid-column: 1;
           grid-row: 1;
@@ -185,6 +185,9 @@
 }
 
 .counter {
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
   font-size: t.$font-size-sm;
   font-weight: t.$font-weight-medium;
   color: t.token('ink-muted');

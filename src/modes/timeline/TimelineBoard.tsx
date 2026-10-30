@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import { flushSync } from 'react-dom';
+import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
+import { useSurrender } from '@/components/game-shell/useSurrender';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
 import { InfoTip } from '@/components/ui/InfoTip';
@@ -73,6 +75,7 @@ const NO_LOCKS: ReadonlySet<number> = new Set();
  */
 export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
   const { franchise, mode, filterKey, day, onFinish } = session;
+  const { lost: surrendered, surrender } = useSurrender(session);
   const { skin } = useSkin();
   const { AttemptsMeter } = skin.slots;
   const solutionTitleId = useId();
@@ -91,7 +94,9 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
   const [announcement, setAnnouncement] = useState('');
   const [draggingId, setDraggingId] = useState<string | null>(null);
 
-  const { solved, over } = outcomeOf(attempts, puzzle, maxAttempts);
+  const outcome = outcomeOf(attempts, puzzle, maxAttempts);
+  const solved = outcome.solved;
+  const over = outcome.over || surrendered;
   const locked = NO_LOCKS;
   const lastSubmitted = attempts[attempts.length - 1];
 
@@ -150,6 +155,7 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
 
   // --- Mover con botones ------------------------------------------------------------
   function moveByStep(index: number, direction: Direction) {
+    if (over) return;
     const id = arrangement[index];
     const moved = step(arrangement, locked, index, direction);
     if (!moved) return;
@@ -364,9 +370,17 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
             </button>
           )}
           <div className={styles.counter}>
-            {/* El texto queda siempre (lectores de pantalla); un tema con medidor propio puede ocultarlo a la vista. */}
-            <p data-part="attempts">{es.timeline.attempt(Math.min(attempts.length + 1, maxAttempts), maxAttempts)}</p>
-            <AttemptsMeter failed={attempts.length - (solved ? 1 : 0)} won={solved} total={maxAttempts} />
+            <div className={styles.counterInfo}>
+              {/* El texto queda siempre (lectores de pantalla); un tema con medidor propio puede ocultarlo a la vista. */}
+              <p data-part="attempts">{es.timeline.attempt(Math.min(attempts.length + 1, maxAttempts), maxAttempts)}</p>
+              <AttemptsMeter failed={attempts.length - (solved ? 1 : 0)} won={solved} total={maxAttempts} />
+            </div>
+            {!over && (
+              <SurrenderButton
+                disabled={draggingId !== null}
+                onConfirm={() => surrender(attempts, reportOf(attempts, puzzle, false, true), arrangement)}
+              />
+            )}
           </div>
         </div>
         {/* El orden confirmado estaba mal: se dice, sin más. Al mover cualquier suceso, el aviso se va. */}

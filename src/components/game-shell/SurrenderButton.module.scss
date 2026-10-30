@@ -1,0 +1,30 @@
+@use 'tokens' as t;
+
+.root {
+  display: flex;
+  flex: none;
+  margin-inline-start: auto;
+}
+
+.confirmation {
+  display: grid;
+  gap: t.$space-5;
+  color: t.token('ink');
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-3;
+}
+
+.action[data-variant='ghost']:not(:disabled) {
+  --_fill: #{t.color('miss')};
+  --_ink: #{t.color('on-result')};
+  font-weight: t.$font-weight-bold;
+}
+
+.cancel[data-variant='ghost'] {
+  --_fill: #{t.token('chip-fill')};
+  --_ink: #{t.token('ink')};
+}

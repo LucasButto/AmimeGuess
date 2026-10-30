@@ -13,6 +13,7 @@ import {
   type GameToggle,
 } from "@/components/game-shell/flags";
 import type { ModeLink } from "@/components/game-shell/types";
+import { AttemptRules } from "@/components/game-shell/AttemptRules";
 import {
   entitiesOfMode,
   loadFranchiseData,
@@ -57,7 +58,9 @@ export function ModeGame(props: ModeGameProps) {
       <PoolNounContext.Provider
         value={modePoolNoun(props.franchise, props.mode)}
       >
-        <ModeEngine {...props} />
+        <AttemptRules.Provider value={{ base: props.mode.try ?? 8, adaptive: ['classic', 'image-reveal', 'text-clue', 'reveal-list'].includes(props.mode.engine) }}>
+          <ModeEngine {...props} />
+        </AttemptRules.Provider>
       </PoolNounContext.Provider>
     </AutocompleteOptions.Provider>
   );

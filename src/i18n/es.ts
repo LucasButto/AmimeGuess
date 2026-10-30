@@ -316,7 +316,7 @@ export const es = {
       },
       stepsTitle: 'Pistas',
       steps: (total: number) =>
-        `Cada intento fallido revela un poco más de la imagen, en ${total} pasos. Tenés ${total} intentos: si fallás el último, perdés. Al acertar se ve completa.`,
+        `La imagen se aclara progresivamente en ${total} pasos. El contador indica tus intentos disponibles: si fallás el último, perdés. Al acertar se ve completa.`,
       difficultyTitle: 'Dificultad',
       difficulty:
         'Podés apagar "Revelar con cada intento" para que la imagen no cambie hasta que aciertes, y "Mostrar colores" para verla en grises. Tus elecciones se recuerdan en este dispositivo.',
@@ -336,7 +336,7 @@ export const es = {
     empty: 'Todavía no hiciste ningún intento.',
     wrongAttempt: (name: string) => `${name} no es.`,
     help: {
-      goal: 'Adiviná la respuesta del día a partir de la pista. Escribí un nombre, elegí una opción de la lista y probá las veces que haga falta.',
+      goal: 'Adiviná la respuesta del día a partir de la pista. Escribí un nombre y elegí una opción de la lista antes de agotar los intentos.',
       hintsTitle: 'Pistas',
       hintsIntro: 'Cuando fallás varias veces se desbloquean más pistas:',
       hint: (label: string, after: number) =>
@@ -382,7 +382,7 @@ export const es = {
     wrongAttempt: (name: string, revealed: boolean) =>
       revealed ? `${name} no es. Se reveló una pista más.` : `${name} no es.`,
     help: {
-      goal: 'Adiviná la respuesta del día con las pistas. Escribí un nombre, elegí una opción de la lista y probá las veces que haga falta.',
+      goal: 'Adiviná la respuesta del día con las pistas. Escribí un nombre y elegí una opción de la lista antes de agotar los intentos.',
       reveal: 'Al empezar ves una sola pista; cada intento fallido revela una más.',
     },
   },
@@ -454,6 +454,20 @@ export const es = {
     },
   },
   shell: {
+    limits: {
+      counter: (used: number, total: number) => `Intentos: ${used}/${total}`,
+      mistakes: (used: number, total: number) => `Fallos: ${used}/${total}`,
+      help: 'Los intentos disponibles se muestran en la partida. Al agotarlos sin resolver el reto, perdés. Con menos opciones activas, los modos de adivinar pueden tener menos intentos.',
+    },
+    surrender: {
+      button: 'Rendirse',
+      title: '¿Rendirse en esta partida?',
+      description: 'Vas a ver la solución y esta partida quedará como perdida. Después podés seguir jugando en modo infinito.',
+      scoreDescription: 'La partida termina acá. Conservás tus aciertos, pero no cuenta como una victoria. Después podés seguir jugando en modo infinito.',
+      cancel: 'Seguir jugando',
+      confirm: 'Sí, rendirme',
+      ended: 'Te rendiste',
+    },
     modesLabel: 'Modos de juego',
     nextModes: 'Seguí jugando',
     nextModesLabel: 'Seguir con otro modo',

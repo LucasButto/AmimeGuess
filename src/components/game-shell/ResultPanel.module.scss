@@ -13,6 +13,10 @@
   &[data-won='true'] {
     --frame-dialog-inner: #{t.token('frame-won-inner')};
   }
+
+  &[data-won='false'] {
+    --frame-dialog-inner: #{t.token('cell-incorrect')};
+  }
 }
 
 // Franja de color del resultado: verde al ganar, roja al perder. El título dice lo mismo con palabras.

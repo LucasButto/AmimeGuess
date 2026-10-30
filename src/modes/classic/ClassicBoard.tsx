@@ -3,6 +3,9 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { autocompleteItemOf, type AutocompleteItem } from '@/components/Autocomplete';
 import { GuessField } from '@/components/GuessField';
+import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
+import { useSurrender } from '@/components/game-shell/useSurrender';
+import { fitHints, restoreLimited } from '@/components/game-shell/attempts';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
 import { useSound } from '@/components/skin/useSound';
@@ -83,6 +86,8 @@ function timingFor(element: HTMLElement | null, columns: number): RevealTiming {
  */
 export function ClassicBoard({ session, pool, columns, hints, contents }: ClassicBoardProps) {
   const { franchise, mode, filterKey, day, active, onFinish } = session;
+  const maxAttempts = session.attemptLimit ?? 10;
+  const { lost: surrendered, surrender } = useSurrender(session);
   const hintsTitleId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
   const { skin } = useSkin();
@@ -92,9 +97,10 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
   const answer = useMemo(() => pickDaily(pool, ctx), [pool, ctx]);
   const byId = useMemo(() => new Map(pool.map((entity) => [entity.id, entity])), [pool]);
 
-  const [attemptIds, setAttemptIds] = useState<string[]>(() =>
-    restoreAttempts(readState(getLocalStorage(), ctx)?.attempts, pool),
-  );
+  const [attemptIds, setAttemptIds] = useState<string[]>(() => {
+    const state = readState(getLocalStorage(), ctx);
+    return restoreLimited(restoreAttempts(state?.attempts, pool), state, maxAttempts);
+  });
   const [revealing, setRevealing] = useState<{ id: string; timing: RevealTiming } | null>(null);
   const [announcement, setAnnouncement] = useState('');
   // La victoria se le avisa al marco y la fila se resume al terminar la revelación.
@@ -110,7 +116,8 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
   // Si la partida ya estaba ganada al montarse (se recargó la página), el marco tiene que
   // mostrar su resumen, pero sin volver a sumarla a las estadísticas.
   const [restored] = useState<FinishReport | null>(() =>
-    attemptIds.includes(answer.id) ? reportOf(attemptIds, byId, answer, columns, active, false) : null,
+    attemptIds.includes(answer.id) || surrendered || attemptIds.length >= maxAttempts
+      ? { ...reportOf(attemptIds, byId, answer, columns, active, false), won: attemptIds.includes(answer.id) && !surrendered } : null,
   );
   useEffect(() => {
     if (restored) onFinish(restored);
@@ -118,6 +125,7 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
 
   const attempted = useMemo(() => new Set(attemptIds), [attemptIds]);
   const won = attempted.has(answer.id);
+  const over = won || surrendered || attemptIds.length >= maxAttempts;
   const failed = failedCount(attemptIds, answer.id);
 
   const items = useMemo<AutocompleteItem[]>(
@@ -133,12 +141,12 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
 
   const visibleHints = useMemo(
     () =>
-      hintStates(hints, failed).flatMap((state) => {
+      hintStates(fitHints(hints, maxAttempts), failed).flatMap((state) => {
         const text = hintText(state.hint, answer, contents);
         // Una pista cuyo dato no existe para esta respuesta no se muestra: ni bloqueada ni abierta.
         return text === null ? [] : [{ ...state, text }];
       }),
-    [hints, failed, answer, contents],
+    [hints, maxAttempts, failed, answer, contents],
   );
 
   /** Termina la revelación de la fila `id` (o la que esté en curso): resume la fila y, si ganó, avisa al marco. */
@@ -166,20 +174,21 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
   useEffect(() => () => clearTimeout(fallback.current), []);
 
   function addAttempt(id: string) {
-    if (won || attempted.has(id) || !byId.has(id)) return;
+    if (over || attempted.has(id) || !byId.has(id)) return;
     const next = [...attemptIds, id];
     const solved = next.includes(answer.id);
     const entity = byId.get(id);
 
     // El intento se guarda antes de la animación: recargar a mitad de la revelación muestra la fila completa.
     setAttemptIds(next);
-    writeState(getLocalStorage(), ctx, { attempts: next, result: solved ? 'won' : 'playing' });
+    const spent = !solved && next.length >= maxAttempts;
+    writeState(getLocalStorage(), ctx, { attempts: next, result: solved ? 'won' : spent ? 'lost' : 'playing' });
 
     // Una revelación en curso termina acá: su fila queda en su estado final.
     finishReveal();
     const timing = timingFor(rootRef.current, columns.length);
     const summary = entity ? rowSummary(buildRow(entity, answer, columns, active)) : '';
-    const report = solved ? reportOf(next, byId, answer, columns, active, true) : null;
+    const report = solved || spent ? { ...reportOf(next, byId, answer, columns, active, true), won: solved } : null;
     // El resumen de la fila llega al final, en un único aviso.
     setAnnouncement('');
 
@@ -208,13 +217,13 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
   }
 
   return (
-    <div ref={rootRef} className={styles.root} data-game-ready="true">
+    <div ref={rootRef} className={styles.root} data-game-ready="true" data-over={over} data-won={won}>
       {/* El intento y las pistas, uno al lado del otro (apilados en un teléfono). Al ganar, el marco muestra la
           respuesta y el resumen (ver `FinishReport`) y esto queda vacío. */}
-      <div className={styles.top} data-split={!won && visibleHints.length > 0}>
-        {!won && <GuessField label={es.classic.inputLabel} items={items} excludeIds={attempted} onSelect={addAttempt} />}
+      <div className={styles.top} data-split={!over && visibleHints.length > 0}>
+        {!over && <GuessField label={es.classic.inputLabel} items={items} excludeIds={attempted} onSelect={addAttempt} />}
 
-        {!won && visibleHints.length > 0 && (
+        {!over && visibleHints.length > 0 && (
           <section className={styles.hints} aria-labelledby={hintsTitleId}>
             <div className={styles.titleRow}>
               <h2 className={styles.hintsTitle} id={hintsTitleId}>
@@ -235,8 +244,18 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
       </div>
 
       <div className={styles.counter}>
-        <p>{es.classic.attempts(attemptIds.length)}</p>
-        <AttemptsMeter failed={failed} won={won} />
+        <div className={styles.counterInfo}>
+          <p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p>
+          <AttemptsMeter failed={failed} won={won} total={maxAttempts} />
+        </div>
+        {!over && (
+          <SurrenderButton
+            onConfirm={() => {
+              finishReveal();
+              surrender(attemptIds, reportOf(attemptIds, byId, answer, columns, active, true));
+            }}
+          />
+        )}
       </div>
 
       <ModeFrame mode={mode} engine="classic">

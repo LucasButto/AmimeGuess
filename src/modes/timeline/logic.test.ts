@@ -17,12 +17,22 @@ import {
   restoreDraft,
   shareGrid,
   step,
+  withAttemptLimit,
   type Puzzle,
   type TimelineItem,
 } from './logic';
 import type { TimelineConfig } from './types';
 
 const CONFIG: TimelineConfig = { contentKind: 'event', textField: 'text', orderField: 'order' };
+
+describe('try en Línea de tiempo', () => {
+  it('permite modificar el presupuesto y conserva la diferencia de dificultad', () => {
+    const original = { ...CONFIG, levels: [{ count: 5, attempts: 3 }, { count: 10, attempts: 4 }, { count: 15, attempts: 5 }] };
+    expect(levelsOf(withAttemptLimit(original, 6)).map((level) => level.attempts)).toEqual([5, 6, 7]);
+    expect(levelsOf(withAttemptLimit(original, 1)).map((level) => level.attempts)).toEqual([1, 1, 2]);
+    expect(withAttemptLimit(original)).toBe(original);
+  });
+});
 const ctx: DailyContext = { franchise: 'test', mode: 'linea-de-tiempo', filterKey: 'all', day: 100 };
 
 const event = (id: string, series: string, order: unknown, text: unknown = id, kind = 'event'): Content => ({
