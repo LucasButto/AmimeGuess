@@ -1,20 +1,19 @@
 'use client';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState, type MouseEvent } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
+import { type MouseEvent } from 'react';
 import { es } from '@/i18n/es';
 import styles from './BackNav.module.scss';
 import { useSkin } from './skin/context';
 import { TitleWords } from './TitleWords';
+import { useDeparture } from './skin/useDeparture';
 
 interface BackNavProps {
   franchise: { slug: string; name: string };
   /** `true` en la página de la franquicia: ahí no se muestra su botón, porque llevaría a esa misma página. */
   atFranchise?: boolean;
 }
-
-type Kind = 'home' | 'franchise';
 
 /**
  * Los botones de volver (SPEC 9.2): "Inicio" y la franquicia, siempre en la misma posición y con la misma
@@ -27,24 +26,22 @@ export function BackNav({ franchise, atFranchise = false }: BackNavProps) {
   const { skin } = useSkin();
   const Icon = skin.slots.BackNav;
   const router = useRouter();
-  const [leaving, setLeaving] = useState<Kind | null>(null);
-  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-
-  useEffect(() => () => clearTimeout(timer.current), []);
+  const pathname = usePathname();
+  const { departure, pending } = useDeparture(pathname);
 
   const links = [
     { kind: 'home' as const, href: '/', label: es.nav.home },
     ...(atFranchise ? [] : [{ kind: 'franchise' as const, href: `/${franchise.slug}`, label: franchise.name }]),
   ];
+  const leaving = links.find((link) => link.href === pending?.href)?.kind ?? null;
 
-  function handleClick(event: MouseEvent<HTMLAnchorElement>, kind: Kind, href: string) {
+  function handleClick(event: MouseEvent<HTMLAnchorElement>, href: string) {
     const delay = skin.backNavExitMs;
     const plain = event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey;
-    if (delay <= 0 || !plain || leaving !== null) return;
+    if (delay <= 0 || !plain) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     event.preventDefault();
-    setLeaving(kind);
-    timer.current = setTimeout(() => router.push(href), delay);
+    if (departure.start(pathname, href, delay, (href) => router.push(href))) router.prefetch(href);
   }
 
   return (
@@ -56,7 +53,7 @@ export function BackNav({ franchise, atFranchise = false }: BackNavProps) {
               className={styles.link}
               href={href}
               data-kind={kind}
-              onClick={(event) => handleClick(event, kind, href)}
+              onClick={(event) => handleClick(event, href)}
             >
               <span className={styles.icon}>
                 <Icon kind={kind} leaving={leaving === kind} />

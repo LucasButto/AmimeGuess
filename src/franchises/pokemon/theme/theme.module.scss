@@ -237,7 +237,7 @@
   }
 }
 
-.root[data-recall] main {
+.root main[data-recall] {
   overflow: clip;
   transform-origin: var(--recall-x) var(--recall-y);
 

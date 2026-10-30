@@ -98,20 +98,28 @@
 .introBar {
   flex: 1;
   background: var(--palette-frame);
-  animation: bar-out 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  transform: translateX(-101%);
+  animation: bar-out 0.7s cubic-bezier(0.65, 0, 0.35, 1) backwards;
 
   &[data-side='right'] {
+    transform: translateX(101%);
     animation-name: bar-out-right;
   }
 }
 
 @keyframes bar-out {
+  from {
+    transform: translateX(0);
+  }
   to {
     transform: translateX(-101%);
   }
 }
 
 @keyframes bar-out-right {
+  from {
+    transform: translateX(0);
+  }
   to {
     transform: translateX(101%);
   }
@@ -138,7 +146,7 @@
   flex: 1;
   background: var(--palette-frame);
   transform: translateX(-101%);
-  animation: bar-in 0.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  animation: bar-in 0.8s cubic-bezier(0.65, 0, 0.35, 1) backwards;
 
   &[data-side='right'] {
     transform: translateX(101%);
@@ -147,14 +155,20 @@
 }
 
 @keyframes bar-in {
-  to {
+  50% {
     transform: translateX(0);
+  }
+  to {
+    transform: translateX(101%);
   }
 }
 
 @keyframes bar-in-right {
-  to {
+  50% {
     transform: translateX(0);
+  }
+  to {
+    transform: translateX(-101%);
   }
 }
 
