@@ -10,6 +10,7 @@ export const es = {
     description: 'Juegos diarios de adivinanza de Pokémon, Dragon Ball, Naruto y Yu-Gi-Oh.',
   },
   home: {
+    noChannels: 'No hay juegos disponibles por el momento.',
     title: 'AnimeGuess',
     progress: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy`,
     loading: 'Leyendo progreso…',

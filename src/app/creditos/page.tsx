@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { SiteFooter } from '@/components/SiteFooter';
-import { franchises } from '@/franchises';
+import { allFranchises as franchises } from '@/franchises';
 import { loadFranchiseData } from '@/franchises/data';
 import { themeFonts } from '@/franchises/theme';
 import { es } from '@/i18n/es';

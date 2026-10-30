@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { franchises } from './index';
+import { allFranchises as franchises } from './index';
 import { AA_MINIMUM, contrastRatio, themeColor, themeCss, themeScope } from './theme';
 import { THEME_COLORS } from './types';
 

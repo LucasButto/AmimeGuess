@@ -1,0 +1,253 @@
+[
+  {
+    "slug": "pokemon",
+    "name": "Pokémon",
+    "status": true,
+    "modes": [
+      {
+        "slug": "clasico",
+        "name": "Clásico",
+        "status": true,
+        "try": 10
+      },
+      {
+        "slug": "silueta",
+        "name": "Silueta",
+        "status": true,
+        "try": 7
+      },
+      {
+        "slug": "descripcion",
+        "name": "Descripción",
+        "status": true,
+        "try": 8
+      },
+      {
+        "slug": "carta",
+        "name": "Carta",
+        "status": true,
+        "try": 7
+      },
+      {
+        "slug": "movimiento-insignia",
+        "name": "Movimiento insignia",
+        "status": false,
+        "try": 8
+      },
+      {
+        "slug": "mayor-o-menor",
+        "name": "Mayor o Menor",
+        "status": true,
+        "try": 1
+      },
+      {
+        "slug": "moveset",
+        "name": "Moveset",
+        "status": false,
+        "try": 9
+      },
+      {
+        "slug": "estadisticas",
+        "name": "Estadísticas",
+        "status": true,
+        "try": 4
+      }
+    ],
+    "speedTest": false
+  },
+  {
+    "slug": "dragon-ball",
+    "name": "Dragon Ball",
+    "status": true,
+    "modes": [
+      {
+        "slug": "clasico",
+        "name": "Clásico",
+        "status": true,
+        "try": 8
+      },
+      {
+        "slug": "silueta",
+        "name": "Silueta",
+        "status": true,
+        "try": 7
+      },
+      {
+        "slug": "frase",
+        "name": "Frase",
+        "status": true,
+        "try": 8
+      },
+      {
+        "slug": "borroso",
+        "name": "Borroso",
+        "status": true,
+        "try": 7
+      },
+      {
+        "slug": "tecnica",
+        "name": "Técnica",
+        "status": true,
+        "try": 7
+      },
+      {
+        "slug": "poder",
+        "name": "Nivel de poder",
+        "status": true,
+        "try": 1
+      },
+      {
+        "slug": "transformacion",
+        "name": "Transformación",
+        "status": true,
+        "try": 8
+      },
+      {
+        "slug": "linea-de-tiempo",
+        "name": "Línea de tiempo",
+        "status": true,
+        "try": 4
+      }
+    ]
+  },
+  {
+    "slug": "naruto",
+    "name": "Naruto",
+    "status": true,
+    "modes": [
+      {
+        "slug": "clasico",
+        "name": "Clásico",
+        "status": true,
+        "try": 10
+      },
+      {
+        "slug": "silueta",
+        "name": "Silueta",
+        "status": true,
+        "try": 7
+      },
+      {
+        "slug": "frase",
+        "name": "Frase",
+        "status": true,
+        "try": 8
+      },
+      {
+        "slug": "borroso",
+        "name": "Borroso",
+        "status": true,
+        "try": 7
+      },
+      {
+        "slug": "jutsu",
+        "name": "Jutsu",
+        "status": true,
+        "try": 8
+      },
+      {
+        "slug": "ojo",
+        "name": "Ojo",
+        "status": true,
+        "try": 8
+      },
+      {
+        "slug": "equipo",
+        "name": "Equipo",
+        "status": true,
+        "try": 7
+      },
+      {
+        "slug": "emoji",
+        "name": "Emoji",
+        "status": true,
+        "try": 8
+      },
+      {
+        "slug": "linea-de-tiempo",
+        "name": "Línea de tiempo",
+        "status": true,
+        "try": 4
+      },
+      {
+        "slug": "conexiones",
+        "name": "Conexiones",
+        "status": true,
+        "try": 4
+      }
+    ]
+  },
+  {
+    "slug": "yugioh",
+    "name": "Yu-Gi-Oh",
+    "status": false,
+    "modes": [
+      {
+        "slug": "duelista",
+        "name": "Duelista",
+        "status": true,
+        "try": 7
+      },
+      {
+        "slug": "carta",
+        "name": "Carta",
+        "status": true,
+        "try": 10
+      },
+      {
+        "slug": "silueta",
+        "name": "Silueta",
+        "status": true,
+        "try": 8
+      },
+      {
+        "slug": "texto",
+        "name": "Texto",
+        "status": true,
+        "try": 8
+      },
+      {
+        "slug": "arte",
+        "name": "Arte",
+        "status": true,
+        "try": 7
+      },
+      {
+        "slug": "carta-insignia",
+        "name": "Carta insignia",
+        "status": true,
+        "try": 7
+      },
+      {
+        "slug": "zoom",
+        "name": "Zoom",
+        "status": true,
+        "try": 8
+      },
+      {
+        "slug": "mayor-o-menor",
+        "name": "Mayor o Menor",
+        "status": true,
+        "try": 1
+      },
+      {
+        "slug": "invocacion",
+        "name": "Invocación",
+        "status": true,
+        "try": 8
+      },
+      {
+        "slug": "deck",
+        "name": "Deck",
+        "status": true,
+        "try": 7
+      },
+      {
+        "slug": "linea-de-tiempo",
+        "name": "Línea de tiempo",
+        "status": true,
+        "try": 4
+      }
+    ]
+  }
+]

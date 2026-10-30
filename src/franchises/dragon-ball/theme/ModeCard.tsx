@@ -115,12 +115,12 @@ function Pod({ className }: { className: string }) {
 
 /** Slot `ModeCard` de Dragon Ball: el modo principal es una cápsula; los otros siete, las esferas del dragón. */
 export function DragonModeCard(props: ModeCardProps) {
-  return props.index === 0 ? <CapsuleCard {...props} /> : <SphereCard {...props} />;
+  return props.slug === 'clasico' ? <CapsuleCard {...props} /> : <SphereCard {...props} />;
 }
 
 /** Slot `ModeIcon`: miniaturas de 1,5 rem en la navegación entre modos (la nave Saiyajin del Clásico o la esfera del modo). */
-export function DragonModeIcon({ slug, index, solved }: ModeIconProps) {
-  if (index === 0) {
+export function DragonModeIcon({ slug, solved }: ModeIconProps) {
+  if (slug === 'clasico') {
     return (
       <span className={styles.mini} aria-hidden="true">
         <Pod className={styles.miniBall} />
@@ -138,8 +138,8 @@ export function DragonModeIcon({ slug, index, solved }: ModeIconProps) {
  * Slot `TitleMark`: antes del título de la página de un modo, su esfera del dragón (con sus estrellas) o, en el Clásico, la
  * nave Saiyajin. Mide lo que las letras (en `em`), así sigue al título en cualquier tamaño. Decorativa.
  */
-export function DragonTitleMark({ slug, index }: TitleMarkProps) {
-  return index === 0 ? (
+export function DragonTitleMark({ slug }: TitleMarkProps) {
+  return slug === 'clasico' ? (
     <Pod className={`${styles.titleMark} ${styles.titleBall}`} />
   ) : (
     <DragonBall stars={starsOf(slug)} className={`${styles.titleMark} ${styles.titleBall}`} />

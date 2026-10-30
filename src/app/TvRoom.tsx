@@ -152,6 +152,8 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
     }
   }
 
+  if (!current) return <p role="status">{es.home.noChannels}</p>;
+
   return (
     <div className={styles.stage} data-franchise={current.slug} data-tv-room data-channel={index + 1} onKeyDown={handleKeyDown}>
       {/* Va en el <body>: tapa toda la ventana, también el pie. */}

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { franchises, getFranchise } from './index';
+import { allFranchises as franchises, getFranchise } from './index';
 
 describe('configs de franquicia', () => {
   it('hay 4 franquicias con slugs únicos', () => {
@@ -18,14 +18,14 @@ describe('configs de franquicia', () => {
   });
 
   it('las series están en el orden canónico de la SPEC 3.1', () => {
-    expect(getFranchise('pokemon')?.series).toEqual(['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9']);
-    expect(getFranchise('dragon-ball')?.series).toEqual(['db', 'dbz', 'daima', 'super', 'gt']);
-    expect(getFranchise('naruto')?.series).toEqual(['naruto', 'shippuden', 'boruto']);
-    expect(getFranchise('yugioh')?.series).toEqual(['dm', 'gx', '5ds']);
+    expect(franchises.find((f) => f.slug === 'pokemon')?.series).toEqual(['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9']);
+    expect(franchises.find((f) => f.slug === 'dragon-ball')?.series).toEqual(['db', 'dbz', 'daima', 'super', 'gt']);
+    expect(franchises.find((f) => f.slug === 'naruto')?.series).toEqual(['naruto', 'shippuden', 'boruto']);
+    expect(franchises.find((f) => f.slug === 'yugioh')?.series).toEqual(['dm', 'gx', '5ds']);
   });
 
   it('Duelista es el primer modo de Yu-Gi-Oh', () => {
-    expect(getFranchise('yugioh')?.modes[0]?.slug).toBe('duelista');
+    expect(franchises.find((f) => f.slug === 'yugioh')?.modes[0]?.slug).toBe('duelista');
   });
 
   it('getFranchise devuelve undefined si no existe', () => {

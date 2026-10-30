@@ -106,7 +106,7 @@ function RolledScroll({ slug, name, href, state, label }: ModeCardProps) {
 
 /** Slot `ModeCard` de Naruto: el Clásico es el pergamino abierto; Conexiones, el tablón de misiones; el resto, rollos. */
 export function NarutoModeCard(props: ModeCardProps) {
-  if (props.index === 0) return <OpenScroll {...props} />;
+  if (props.slug === 'clasico') return <OpenScroll {...props} />;
   if (props.slug === 'conexiones') return <MissionBoard {...props} />;
   return <RolledScroll {...props} />;
 }

@@ -21,6 +21,8 @@ export type EngineId =
   | 'connections';
 
 export interface ModeConfig {
+  /** Límite base editable en data/mode.json; los filtros ajustan los modos de adivinar. */
+  readonly try?: number;
   /** Segmento de URL: /<franquicia>/<slug>. Estable, nunca se reutiliza. */
   readonly slug: string;
   readonly name: string;
