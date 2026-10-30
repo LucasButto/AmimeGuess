@@ -37,7 +37,7 @@ interface FilterPanelProps {
   minimum: number;
   /** Interruptores de la partida (relleno, arcos del manga), debajo de las series; cada uno con su ⓘ. */
   toggles?: readonly GameToggle[];
-  /** Acciones que dependen de los filtros, al pie del panel (por ejemplo, copiar el link). */
+  /** Acciones que dependen de los filtros, junto a las series (por ejemplo, copiar el link). */
   children?: ReactNode;
 }
 
@@ -94,6 +94,7 @@ export function FilterPanel({ series, labels, details, active, onChange, remaini
             </li>
           );
         })}
+        {children && <li className={styles.actionCell}>{children}</li>}
       </ul>
 
       {toggles && toggles.length > 0 && (
@@ -116,7 +117,6 @@ export function FilterPanel({ series, labels, details, active, onChange, remaini
           {es.filters.belowMinimum(remaining, minimum)}
         </p>
       )}
-      {children && <div className={styles.actions}>{children}</div>}
     </Panel>
   );
 }

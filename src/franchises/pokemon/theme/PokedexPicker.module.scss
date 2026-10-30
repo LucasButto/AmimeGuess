@@ -291,41 +291,48 @@
   box-shadow: var(--px) var(--px) 0 var(--palette-frame);
   transform-origin: top center;
   &[data-cover-bar='true'] { inset-block-start: 0; }
+  // Una sola columna (tipos arriba, generaciones abajo) y scroll propio si la pantalla es baja.
+  max-block-size: var(--filters-max, calc(100dvh - 9rem));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  // El pie fijo tapa hasta el borde inferior: sin hueco por el que se vea lo de atrás.
+  padding-block-end: 0;
   &[hidden] { display: none; }
-  @include bp.min-width('md') { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
   @include bp.motion-ok {
-    transition: transform 160ms t.token('flip-ease'), opacity 160ms t.token('flip-ease');
+    // Entra y sale hacia arriba: `display` se transiciona en modo discreto para que `hidden` no corte la salida.
+    transition: transform 160ms t.token('flip-ease'), opacity 160ms t.token('flip-ease'), display 160ms allow-discrete;
     @starting-style { transform: translateY(-0.5rem); opacity: 0; }
+    &[hidden] { transform: translateY(-0.5rem); opacity: 0; pointer-events: none; }
   }
 }
 
 .filterHeading {
   margin: 0 0 t.$space-1;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   line-height: 1.25;
   font-weight: t.$font-weight-bold;
 }
 
 .chips {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.125rem;
+  // Cada botón tiene ancho suficiente para su texto completo; las filas se acomodan solas.
+  grid-template-columns: repeat(auto-fill, minmax(5rem, 1fr));
+  gap: 0.25rem;
   > button {
     min-inline-size: 2.75rem;
     min-block-size: 2.75rem;
-    padding: t.$space-1 0.125rem;
-    gap: 0.125rem;
-    font-size: 0.75rem;
-    line-height: 1.1;
-    overflow-wrap: anywhere;
+    padding: t.$space-1 t.$space-2;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.15;
+    white-space: normal;
+    overflow-wrap: normal;
     > svg, > span { flex: none; }
   }
-  @include bp.min-width('md') { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 .typeChips {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  @include bp.min-width('md') { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
 }
 
 .typeChipMark {
@@ -335,14 +342,22 @@
 
 .filterFooter {
   grid-column: 1 / -1;
+  // Siempre visible al pie del panel, aunque el resto scrollee.
+  position: sticky;
+  inset-block-end: 0;
+  z-index: 1;
+  padding-block: t.$space-1;
+  // Cubre también el relleno del panel: nada se asoma por debajo.
+  box-shadow: 0 var(--px) 0 t.token('surface-dialog');
+  background: t.token('surface-dialog');
   display: flex;
   align-items: center;
   justify-content: flex-end;
   flex-wrap: wrap;
   gap: t.$space-1;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   > p { margin-inline-end: auto; }
-  > button { font-size: 0.75rem; --_pad-inline: #{t.$space-2}; }
+  > button { font-size: 0.875rem; --_pad-inline: #{t.$space-2}; }
 }
 
 // Todas las celdas miden lo mismo (el nombre largo se corta en dos líneas).
@@ -382,15 +397,12 @@
     background: var(--palette-cloud-shade);
   }
 
-  // Ya probado: su silueta en negro (la imagen es transparente, el filtro deja solo la forma) sobre el gris.
+  // Ya probado: el retrato sad atenuado (o el normal gris) conserva la cruz sobre el fondo apagado.
   &[data-tried='true'] {
     background: var(--palette-cloud-shade);
     color: t.token('ink-muted');
     cursor: not-allowed;
 
-    .thumb {
-      filter: brightness(0);
-    }
     .types { opacity: 0.45; }
   }
 }
@@ -399,10 +411,9 @@
   // Reserva el carril izquierdo de tipos sin cambiar la altura ni las columnas.
   inline-size: calc(100% - var(--picker-type-lane));
   margin-inline-start: var(--picker-type-lane);
-  block-size: 4.5rem;
-  max-inline-size: 4.5rem;
+  block-size: 5rem;
+  max-inline-size: 5rem;
   aspect-ratio: 1;
-  object-fit: contain;
 }
 
 .types {
@@ -445,7 +456,8 @@
 // La barra de desplazamiento de la Pokédex, de pixel art como el resto: pista gris azulada con borde oscuro a la izquierda
 // y el cursor rojo de la carcasa, con borde oscuro (en el cursor encima, el cian de la pantalla). Firefox solo deja elegir
 // los colores; los demás navegadores, también la forma.
-.dialog [data-part='modal-body'] {
+.dialog [data-part='modal-body'],
+.filters {
   @supports not selector(::-webkit-scrollbar) {
     scrollbar-color: var(--palette-red) var(--palette-cloud-shade);
     scrollbar-width: auto;

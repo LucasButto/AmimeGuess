@@ -48,6 +48,8 @@ interface ModalProps {
    */
   size?: ModalSize;
   onResize?: (size: ModalSize, offset: ModalOffset) => void;
+  /** Alto mínimo al achicarlo, en `rem` (por defecto 28,5). */
+  minHeightRem?: number;
   /** Un adorno a la izquierda del título, en la barra (por ejemplo, la lente y las luces de la Pokédex). Decorativo. */
   decoration?: ReactNode;
   children: ReactNode;
@@ -116,7 +118,7 @@ function baseRect(dialog: HTMLElement, offset: ModalOffset): DOMRect {
  *
  * Se monta solo mientras está abierto: `{abierto && <Modal …>}`.
  */
-export function Modal({ title, onClose, wide = false, className, offset, onMove, size, onResize, decoration, children }: ModalProps) {
+export function Modal({ title, onClose, wide = false, className, offset, onMove, size, onResize, minHeightRem = MIN_HEIGHT_REM, decoration, children }: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const unmounting = useRef(false);
@@ -237,9 +239,9 @@ export function Modal({ title, onClose, wide = false, className, offset, onMove,
       // Crece hasta el borde de la pantalla (con un poco de aire); nunca baja del mínimo, ni si ya es más chico.
       max: {
         width: Math.max(MIN_WIDTH_REM * rem, window.innerWidth - rect.left - EDGE_GAP),
-        height: Math.max(MIN_HEIGHT_REM * rem, window.innerHeight - rect.top - EDGE_GAP),
+        height: Math.max(minHeightRem * rem, window.innerHeight - rect.top - EDGE_GAP),
       },
-      min: { width: MIN_WIDTH_REM * rem, height: MIN_HEIGHT_REM * rem },
+      min: { width: MIN_WIDTH_REM * rem, height: minHeightRem * rem },
     };
     setDragging(true);
   }

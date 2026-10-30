@@ -1,0 +1,35 @@
+.portrait {
+  display: grid;
+  place-items: center;
+
+  &[data-fallback='true'] {
+    &::before,
+    &::after {
+      content: '';
+      grid-area: 1 / 1;
+      inline-size: var(--pmd-portrait-size, 2.5rem);
+      block-size: var(--pmd-portrait-size, 2.5rem);
+    }
+    &::before { background: var(--palette-cream); }
+    &::after {
+      background: var(--palette-ink);
+      // Original 8x8 question mark, five native pixels per cell at the smallest portrait size.
+      mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' shape-rendering='crispEdges'%3E%3Cpath d='M2 0h4v1H2zM1 1h2v1H1zM5 1h2v2H5zM4 3h2v1H4zM3 4h2v2H3zM3 7h2v1H3z'/%3E%3C/svg%3E") center / contain no-repeat;
+    }
+  }
+}
+
+.image {
+  grid-area: 1 / 1;
+  inline-size: var(--pmd-portrait-size, auto);
+  block-size: var(--pmd-portrait-size, auto);
+  image-rendering: pixelated;
+  object-fit: contain;
+
+  &[hidden] { display: none; }
+}
+
+.portrait[data-tried='true'] {
+  .image { opacity: 0.7; }
+  &[data-emotion='normal'] .image { filter: grayscale(1); }
+}

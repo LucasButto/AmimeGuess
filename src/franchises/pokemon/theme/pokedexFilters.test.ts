@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { AutocompleteItem } from '@/components/Autocomplete';
-import { availableGenerations, availableTypes, filterByFacets } from './pokedexFilters';
+import { MONOTYPE_FILTER, availableGenerations, availableTypes, filterByFacets } from './pokedexFilters';
 
 const items: AutocompleteItem[] = [
   { id: 'bulbasaur', label: 'Bulbasaur', number: 1, attrs: { generacion: 1, tipo1: 'Planta', tipo2: 'Veneno' } },
@@ -62,5 +62,13 @@ describe('facetas de la Pokédex', () => {
   it('no duplica un Pokémon que coincide con dos tipos elegidos', () => {
     expect(ids(filterByFacets(items, { ...none, types: ['Planta', 'Veneno'] })))
       .toEqual(['bulbasaur', 'gastly', 'chikorita']);
+  });
+
+  it('el guion deja solo los Pokémon sin tipo secundario, dentro de los tipos elegidos', () => {
+    const mono = filterByFacets(items, { ...none, types: [MONOTYPE_FILTER] });
+    expect(mono.length).toBeGreaterThan(0);
+    expect(mono.every(({ attrs }) => !attrs?.tipo2)).toBe(true);
+    expect(ids(filterByFacets(items, { ...none, types: [MONOTYPE_FILTER, 'Veneno'] }))).toEqual([]);
+    expect(ids(filterByFacets(items, { ...none, types: [MONOTYPE_FILTER, 'Planta', 'Veneno'] }))).toEqual(['chikorita']);
   });
 });

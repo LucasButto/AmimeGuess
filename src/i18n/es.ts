@@ -641,6 +641,8 @@ export const es = {
       generation: 'Generación',
       generationNumber: (value: number) => `Gen. ${value}`,
       type: 'Tipo',
+      monotype: 'Sin tipo secundario',
+      monotypeHint: 'Solo Pokémon de un único tipo (sin segundo tipo)',
       clearFilters: 'Limpiar filtros',
       emptyFilters: 'Ningún Pokémon coincide con los filtros y la búsqueda. Usá «Limpiar filtros» o cambiá lo escrito para volver a ver Pokémon.',
       tried: 'ya probado',

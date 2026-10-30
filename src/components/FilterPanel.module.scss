@@ -60,11 +60,9 @@
   color: t.token('ink-muted');
 }
 
-.actions {
+.actionCell {
   display: flex;
-  flex-wrap: wrap;
-  gap: t.$space-2;
-  margin-block-start: t.$space-1;
+  align-items: center;
 }
 
 .warning {
@@ -104,8 +102,12 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(var(--filter-chip-min, 7rem), 1fr));
 
-  > li > * {
+  > li > button {
     inline-size: 100%;
     white-space: nowrap;
+  }
+
+  > .actionCell > button {
+    white-space: normal;
   }
 }
