@@ -55,6 +55,21 @@ export const es = {
   // Página /creditos (SPEC 10). Los nombres de las fuentes y sus direcciones viven acá con su descripción; la lista de
   // textos CC BY-SA sale de los datos (cada contenido guarda su página de origen en `payload.source`).
   credits: {
+    pmd: {
+      title: 'PMD SpriteCollab',
+      text: 'Usamos sprites de Pokémon Mystery Dungeon para los Pokémon que recorren el fondo y retratos Normal para las miniaturas de la Pokédex. Las imágenes de los retos y de las respuestas conservan su arte original.',
+      license: 'CC BY-NC 4.0',
+      licenseText: 'Uso no comercial, con atribución a los artistas. Las hojas se recortaron por dirección y cuadros, se ajustaron algunos tiempos de animación y se optimizaron sin pérdida; los retratos conservan sus píxeles originales.',
+      repository: 'Repositorio de SpriteCollab',
+      website: { name: 'Explorador de sprites y retratos', url: 'https://sprites.pmdcollab.org' },
+      snapshot: 'Instantánea fijada',
+      artists: (count: number) => `Artistas de los recursos descargados (${count})`,
+      artistsText: 'Lista generada desde los créditos de cada recurso, incluidas las coautorías históricas y los retratos Happy y Sad descargados para usos futuros. Solo Normal se muestra actualmente en la Pokédex.',
+      forms: (count: number) => `Formas especiales y sus autores (${count})`,
+      formsText: 'Los autores corresponden a las carpetas exactas de cada forma y variante utilizadas. No se atribuyen automáticamente los recursos de una forma a los artistas de la forma base.',
+      formLabels: { altcolor: 'Altcolor', alternate: 'Alternate', cutscene: 'Cutscene', alola: 'Alola', galar: 'Galar' } as Readonly<Record<string, string>>,
+      variantLabels: { normal: 'Normal', shiny: 'Variocolor' } as Readonly<Record<string, string>>,
+    },
     title: 'Créditos',
     description: 'Fuentes de datos e imágenes, licencias y atribuciones de AnimeGuess.',
     intro:

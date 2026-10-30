@@ -24,16 +24,31 @@
   --sky-a: var(--palette-sky-1);
   --sky-b: var(--palette-sky-2);
   --sky-c: var(--palette-cloud-shade);
-  --ground-h: clamp(5rem, 16dvh, 10rem);
+  --ground-h: clamp(11.2rem, 35dvh, 14rem);
+  --landscape-h: clamp(4rem, 15dvh, 9rem);
+  --trees-h: calc(var(--landscape-h) * 0.32);
+  --far-bank-h: calc(var(--trees-h) * 0.25);
+  --bank-h: calc(var(--landscape-h) * 0.12);
+  --water-h: calc(var(--landscape-h) - var(--trees-h) - var(--far-bank-h) - var(--bank-h));
+  --water-top: calc(100% - var(--ground-h) - var(--bank-h) - var(--water-h));
+  --landscape-veil: var(--palette-night);
+  --landscape-shade: 0;
+  --water-shade: 0;
   position: fixed;
   inset: 0;
-  z-index: t.$layer-backdrop;
+  z-index: 0;
   overflow: hidden;
   background: var(--sky-a);
   pointer-events: none;
 
+  @include bp.min-width('md') { --ground-h: clamp(14rem, 32.2dvh, 21rem); }
+  &[data-pmd-low='true'] { --ground-h: 9.8rem; }
+
   // Las cuatro franjas de la hora local (decoración: el reto no depende de la hora).
   &[data-time='dawn'] {
+    --water-shade: 0.1;
+    --landscape-veil: var(--palette-dawn);
+    --landscape-shade: 0.12;
     --sky-a: var(--palette-sky-1);
     --sky-b: var(--palette-cloud-shade);
     --sky-c: var(--palette-dawn);
@@ -41,16 +56,98 @@
 
   // Atardecer: todo el cielo es naranja, más oscuro arriba y más claro en el resto.
   &[data-time='dusk'] {
+    --water-shade: 0.16;
+    --landscape-veil: var(--palette-dusk);
+    --landscape-shade: 0.22;
     --sky-a: var(--palette-dusk);
     --sky-b: var(--palette-dawn);
     --sky-c: var(--palette-dawn);
   }
 
   &[data-time='night'] {
+    --water-shade: 0.45;
+    --landscape-shade: 0.6;
     --sky-a: var(--palette-night);
     --sky-b: var(--palette-night);
     --sky-c: var(--palette-blue);
   }
+}
+
+// The water ends at the near bank; the grass retains its original fixed height.
+// These small static repeats keep the three existing ambient animation layers.
+.trees,
+.farBank,
+.water,
+.bank {
+  position: absolute;
+  inset-inline: 0;
+  image-rendering: pixelated;
+  background-repeat: repeat-x;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--landscape-veil);
+    opacity: var(--landscape-shade);
+    pointer-events: none;
+  }
+}
+
+.trees {
+  inset-block-end: calc(var(--ground-h) + var(--bank-h) + var(--water-h) + var(--far-bank-h) - var(--px));
+  block-size: var(--trees-h);
+  background-image: url('/theme/pokemon/trees.svg');
+  background-position: 0 100%;
+  background-size: auto 100%;
+  // Tint only the trees themselves; a solid veil would cover the sky above their crowns.
+  &::after {
+    mask: url('/theme/pokemon/trees.svg') 0 100% / auto 100% repeat-x;
+  }
+}
+
+.farBank {
+  inset-block-start: calc(var(--water-top) - var(--far-bank-h));
+  block-size: var(--far-bank-h);
+  background-image: url('/theme/pokemon/far-bank.svg');
+  background-size: auto 100%;
+}
+
+.water {
+  inset-block-start: var(--water-top);
+  block-size: var(--water-h);
+  background-color: var(--palette-blue);
+  background-image: url('/theme/pokemon/water.svg');
+  background-size: auto 100%;
+  &::after { opacity: var(--water-shade); }
+}
+
+.bank {
+  inset-block-end: var(--ground-h);
+  block-size: var(--bank-h);
+  background-image: url('/theme/pokemon/bank.svg');
+  background-size: auto 100%;
+  &::after {
+    mask: url('/theme/pokemon/bank.svg') 0 0 / auto 100% repeat-x;
+  }
+}
+
+// Layout gaps pass through; all direct content surfaces keep their entire hit
+// area. This includes the game plate while loading and every board/control inside it.
+.backdrop[data-pmd-scene='true'] ~ main {
+  position: relative;
+  // Preserve game dropdowns above the footer as well as above the scene.
+  z-index: t.$layer-sticky;
+  pointer-events: none;
+
+  > :not(ul):not([aria-hidden='true']),
+  a,
+  button { pointer-events: auto; }
+}
+
+.backdrop[data-pmd-scene='true'] ~ footer {
+  position: relative;
+  z-index: t.$layer-raised;
 }
 
 // Cielo en tres bandas planas, sin degradé suave: los cortes llevan una franja de tramado.
@@ -185,6 +282,22 @@
 
   @include bp.motion-ok {
     animation: sway 1.6s steps(1, end) infinite;
+  }
+
+  &[data-pmd-grass-patches='true'] {
+    // One moving surface, including the skyline: still only three ambient CSS layers.
+    // All patches stay behind the actors, so their tips never slice through a sprite.
+    --grass-patch: url('/theme/pokemon/grass-tufts.svg');
+    inset-block-start: calc(var(--px) - var(--tile-h));
+    inset-block-end: auto;
+    block-size: calc(100% + var(--tile-h) - var(--px));
+    background:
+      var(--grass-patch) 0 0 / var(--tile-w) var(--tile-h) repeat-x,
+      var(--grass-patch) 6% 34% / var(--tile-w) var(--tile-h) no-repeat,
+      var(--grass-patch) 72% 41% / var(--tile-w) var(--tile-h) no-repeat,
+      var(--grass-patch) 36% 61% / var(--tile-w) var(--tile-h) no-repeat,
+      var(--grass-patch) 94% 76% / var(--tile-w) var(--tile-h) no-repeat,
+      var(--grass-patch) 14% 88% / var(--tile-w) var(--tile-h) no-repeat;
   }
 }
 

@@ -5,6 +5,7 @@ import { loadFranchiseData } from '@/franchises/data';
 import { themeFonts } from '@/franchises/theme';
 import { es } from '@/i18n/es';
 import { attributionsOf } from './attributions';
+import { PmdCredits } from './PmdCredits';
 import styles from './page.module.scss';
 
 export const metadata: Metadata = { title: es.credits.title, description: es.credits.description };
@@ -50,6 +51,8 @@ export default async function CreditsPage() {
             ))}
           </div>
         </section>
+
+        <PmdCredits />
 
         <section className={styles.section} aria-labelledby="creditos-textos">
           <h2 id="creditos-textos" className={styles.heading}>

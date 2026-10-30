@@ -16,6 +16,8 @@ import type { Browser, BrowserContext, BrowserContextOptions, Page } from 'playw
 import { launchBrowser, startServer } from './browser.ts';
 import { getDay } from '../src/engine/day.ts';
 import { filtersKey, stateKey } from '../src/engine/storage.ts';
+import type { WalkerManifest } from '../src/franchises/pokemon/theme/walkerMotion.ts';
+import { walkerScale, walkerPopulation, WALKER_MAX, withWalkerHeights } from '../src/franchises/pokemon/theme/walkerMotion.ts';
 
 // El motor importa sus módulos sin extensión (como pide Next): para usar `pickDaily` desde Node, se resuelven
 // esas rutas relativas agregando `.ts`.
@@ -140,6 +142,283 @@ async function pokemonCards(ctx: Ctx): Promise<string[]> {
     if (card.links !== 1) problems.push(`una tarjeta tiene ${card.links} enlaces`);
     if (!/^[^:]+(: (resuelto hoy|pendiente))?$/.test(card.name)) problems.push(`nombre accesible raro: "${card.name}"`);
   }
+  return problems;
+}
+
+/** PMD actors on the Pokémon skin; fixtures narrow the real manifest, without a production debug hook. */
+async function pokemonWalkers(ctx: Ctx): Promise<string[]> {
+  const problems: string[] = [];
+  const manifest: WalkerManifest = JSON.parse(readFileSync(path.join(ROOT, 'public/theme/pokemon/pmd/manifest.json'), 'utf8'));
+  manifest.pokemon = withWalkerHeights(manifest.pokemon, JSON.parse(readFileSync(path.join(ROOT, 'data/pokemon/entities.json'), 'utf8')));
+  const viewports = [{ width: 360, height: 640 }, { width: 844, height: 390 }, { width: 1920, height: 1080 }, { width: 3840, height: 2160 }];
+  for (const viewport of viewports) {
+    const context = await newContext(ctx, { viewport });
+    await context.addInitScript(() => { Math.random = () => 0.5; });
+    const auditEntrances = viewport.width === 360 || viewport.width === 1920;
+    if (auditEntrances) await context.addInitScript(() => {
+      const report = { samples: 0, births: 0, max: 0, problems: [] as string[] };
+      (window as Window & { __pmdEntryAudit?: typeof report }).__pmdEntryAudit = report;
+      const seen = new WeakSet<Element>();
+      const sample = () => {
+        const actors = Array.from(document.querySelectorAll<HTMLElement>('[data-pmd-walker]'));
+        report.samples++;
+        report.max = Math.max(report.max, actors.length);
+        for (const actor of actors) {
+          if (seen.has(actor)) continue;
+          seen.add(actor); report.births++;
+          const frame = actor.querySelector<HTMLElement>('[data-pmd-frame]');
+          if (!frame) { report.problems.push('actor sin caja de cuadro'); continue; }
+          const rect = frame.getBoundingClientRect();
+          const outside = actor.dataset.direction === 'east' ? rect.right <= 0 : rect.left >= innerWidth;
+          const burrow = actor.dataset.burrow === 'true';
+          if (burrow) {
+            if (!['diglett', 'dugtrio'].includes(actor.dataset.pmdWalker ?? '') || actor.dataset.phase !== 'emerge'
+              || !actor.querySelector('[data-pmd-shadow]') || actor.dataset.canTrip !== 'false' || actor.dataset.canSleep !== 'false') {
+              report.problems.push(`${actor.dataset.pmdWalker}: secuencia nativa de salir del suelo incompleta`);
+            }
+          } else if (!outside || rect.width <= 0 || rect.height <= 0) report.problems.push(`${actor.dataset.pmdWalker}: naci? dentro del viewport`);
+          if (getComputedStyle(frame.parentElement!.parentElement!.parentElement!).opacity !== '1') report.problems.push(`${actor.dataset.pmdWalker}: fade-in de aparici?n`);
+        }
+      };
+      // Observe births before their first RAF; also poll the entire scene every ~50 ms.
+      new MutationObserver(sample).observe(document, { childList: true, subtree: true });
+      setInterval(sample, 50);
+    });
+    await context.route('**/theme/pokemon/pmd/manifest.json', (route) => route.fulfill({ json: { version: 1, pokemon: manifest.pokemon.filter((entry) => ['bulbasaur', 'charizard'].includes(entry.entityId)) } }));
+    const page = await open(ctx, context, '/pokemon', '[data-card]');
+    const prefix = `PMD ${viewport.width}×${viewport.height}: `;
+    await page.waitForSelector('[data-pmd-ready="true"]');
+    // Check the open footer before dismissing it to expose the full grass for the actor checks.
+    const originalFooter = page.locator('footer');
+    if (await originalFooter.count()) {
+      await originalFooter.scrollIntoViewIfNeeded();
+      const blocksBackground = await originalFooter.evaluate((footer) => {
+        const box = footer.getBoundingClientRect(), layer = document.querySelector('[data-pmd-walkers]')!;
+        const probe = document.createElement('span');
+        const x = box.left + box.width / 2, y = box.top + box.height / 2;
+        Object.assign(probe.style, { position: 'absolute', width: '1rem', height: '1rem', transform: `translate(${x}px,${y}px)`, pointerEvents: 'auto', zIndex: '100000' });
+        layer.append(probe);
+        const top = document.elementFromPoint(x, y);
+        probe.remove();
+        return Boolean(top && footer.contains(top));
+      });
+      if (!blocksBackground) problems.push(prefix + 'el pie abierto permite interacción con el fondo');
+      await originalFooter.getByRole('button').first().click();
+    }
+    await page.locator('a[data-card="ball"]').last().scrollIntoViewIfNeeded();
+    await page.mouse.move(0, 0);
+    await page.waitForSelector('[data-pmd-walker]', { state: 'attached', timeout: 15_000 });
+    await page.evaluate(() => document.fonts.ready);
+    if (auditEntrances) {
+      await page.waitForTimeout(20000);
+      const audit = await page.evaluate(() => (window as Window & { __pmdEntryAudit?: { samples: number; births: number; max: number; problems: string[] } }).__pmdEntryAudit!);
+      if (audit.samples < 300 || audit.births < 2) problems.push(prefix + 'muestreo de entradas insuficiente durante 20 s');
+      if (audit.max > WALKER_MAX) problems.push(prefix + `se observaron ${audit.max} actores; nunca debe haber mas de ${WALKER_MAX} a la vez`);
+      for (const problem of audit.problems) problems.push(prefix + problem);
+    }
+    const rootRem = await page.evaluate(() => parseFloat(getComputedStyle(document.documentElement).fontSize));
+    const target = walkerPopulation(viewport.width, viewport.height, rootRem);
+    // Los mínimos son un objetivo: a veces no hay carril libre en el pasto (tarjetas que lo tapan). Se informan, no fallan.
+    await page.waitForFunction(({ ground, sky }) => document.querySelectorAll('[data-pmd-walker][data-zone="ground"]').length >= ground
+      && document.querySelectorAll('[data-pmd-walker][data-zone="sky"]').length >= sky,
+      { ground: target.ground.min, sky: target.sky.min }, { timeout: 30000 }).catch(async () => {
+      const seen = await page.evaluate(() => ({ ground: document.querySelectorAll('[data-pmd-walker][data-zone="ground"]').length, sky: document.querySelectorAll('[data-pmd-walker][data-zone="sky"]').length }));
+      console.log(`      aviso ${prefix}mínimos no alcanzados en 30 s: suelo ${seen.ground}/${target.ground.min}, cielo ${seen.sky}/${target.sky.min}`);
+      if (seen.ground + seen.sky === 0) problems.push(prefix + 'no hay ningún caminante en pantalla');
+    });
+    const scene = await page.evaluate(() => {
+      const backdrop = document.querySelector('[data-pmd-scene="true"]')!;
+      const layer = backdrop.querySelector('[data-pmd-walkers]')!;
+      const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+      const ground = backdrop.querySelector('[data-pmd-ground]')!.getBoundingClientRect().height;
+      const clamp = (a: number, b: number, c: number) => Math.max(a, Math.min(b, c));
+      const expected = innerWidth > innerHeight && innerHeight <= 26 * rem ? 9.8 * rem
+        : innerWidth >= 768 ? clamp(14 * rem, innerHeight * 0.322, 21 * rem) : clamp(11.2 * rem, innerHeight * 0.35, 14 * rem);
+      const actors = Array.from(layer.querySelectorAll<HTMLElement>('[data-pmd-walker]'));
+      const accessible = layer.getAttribute('aria-hidden') === 'true' && actors.every((actor) => actor.getAttribute('aria-hidden') === 'true' && !actor.textContent?.trim())
+        && !layer.querySelector('a,button,input,select,textarea,[tabindex],[contenteditable="true"]');
+      const properties = actors.flatMap((actor) => actor.getAnimations({ subtree: true }).flatMap((animation) =>
+        (animation.effect as KeyframeEffect).getKeyframes().flatMap((frame) => Object.keys(frame))));
+      // Force an overlap only for a synchronous paint/hit-test. The next RAF restores the actual journey.
+      const actor = actors[0], original = actor.style.transform;
+      const cards = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-card]'));
+      const blocked = cards.every((card) => {
+        const box = card.getBoundingClientRect();
+        const x = box.left + box.width / 2, y = box.top + box.height / 2;
+        if (y < 0 || y >= innerHeight) return true;
+        actor.style.transform = `translate(${x}px,${y}px)`;
+        const hit = document.elementFromPoint(x, y);
+        return Boolean(hit && card.contains(hit));
+      });
+      actor.style.transform = original;
+      return { ground, expected, accessible, blocked, count: actors.length,
+        zones: actors.map((actor) => ({ zone: actor.dataset.zone, phase: actor.dataset.phase, canSleep: actor.dataset.canSleep, sleepDuration: Number(actor.dataset.sleepDuration ?? 0) })),
+        rem, artPixel: layer.firstElementChild!.getBoundingClientRect().width,
+        pixels: actors.every((entry) => Number.isFinite(Number(entry.dataset.scale)) && Number(entry.dataset.scale) > 0 && getComputedStyle(entry.querySelector('img')!).imageRendering === 'pixelated'),
+        actorData: actors.map((entry) => ({ id: entry.dataset.pmdWalker, zone: entry.dataset.zone, scale: Number(entry.dataset.scale), lane: Number(entry.dataset.lane), feet: Number(entry.dataset.feetY), depth: Number(getComputedStyle(entry).zIndex), meters: Number(entry.dataset.heightMeters), height: Number(entry.dataset.visibleHeight), single: entry.dataset.singleDirection === 'true', mirrored: entry.dataset.mirrored === 'true', direction: entry.dataset.direction })),
+        skyFloor: backdrop.querySelector('[data-pmd-trees]')?.getBoundingClientRect().top || undefined,
+        patches: backdrop.querySelector('[data-pmd-grass-patches="true"]') !== null,
+        properties, overflow: document.documentElement.scrollWidth > innerWidth,
+        debug: Boolean((window as Window & { __pokemonWalkers?: unknown }).__pokemonWalkers) };
+    });
+    if (Math.abs(scene.ground - scene.expected) > 1) problems.push(prefix + 'altura de pasto incorrecta en el inicio');
+    if (!scene.accessible) problems.push(prefix + 'los caminantes tienen texto, foco o no son aria-hidden');
+    if (!scene.blocked) problems.push(prefix + 'un caminante intercepta el área de clic de una tarjeta');
+    const population = walkerPopulation(viewport.width, viewport.height, scene.rem);
+    for (const zone of ['ground', 'sky'] as const) {
+      const count = scene.zones.filter((actor) => actor.zone === zone).length;
+      // El máximo es duro; el mínimo es un objetivo que puede bajar un instante cuando uno sale de pantalla.
+      if (count > population[zone].max) problems.push(prefix + `${zone}: poblaci?n por encima del m?ximo`);
+      else if (count < population[zone].min) console.log(`      aviso ${prefix}${zone}: ${count} por debajo del mínimo objetivo ${population[zone].min}`);
+    }
+    if (scene.zones.some((actor) => actor.canSleep !== String(actor.zone === 'ground') || (['sleep', 'lie', 'wake'].includes(actor.phase ?? '') && (actor.sleepDuration < 10000 || actor.sleepDuration > 20000)))) problems.push(prefix + 'capacidad o duraci?n del sue?o incorrecta');
+    if (!scene.pixels || scene.overflow || scene.count < 1 || scene.count > Math.min(WALKER_MAX, population.ground.max + population.sky.max)) problems.push(prefix + 'escala, límite de actores o desborde incorrectos');
+    if (!scene.patches || scene.actorData.some((entry) => {
+      const fixture = manifest.pokemon.find((pokemon) => pokemon.entityId === entry.id)!;
+      const expectedScale = walkerScale(fixture, fixture.variants.normal, { ...viewport, rem: scene.rem, artPixel: scene.artPixel, ground: scene.ground, skyFloor: scene.skyFloor });
+      const bad = Math.abs(entry.scale - expectedScale) > 0.001 || entry.meters !== fixture.heightMeters || entry.height <= 0;
+      if (bad) console.log('      detalle', JSON.stringify({ id: entry.id, scale: entry.scale, expectedScale, meters: entry.meters, fm: fixture.heightMeters, height: entry.height }));
+      return Math.abs(entry.scale - expectedScale) > 0.001 || entry.meters !== fixture.heightMeters || entry.height <= 0
+        || (entry.zone === 'ground' && (entry.lane < 0 || entry.lane > 1 || entry.feet < viewport.height - scene.ground || entry.feet > viewport.height));
+    })) problems.push(prefix + 'faltan mechones interiores, proporci?n f?sica o carril dentro del pasto');
+    const ordered = scene.actorData.filter((entry) => entry.zone === 'ground').sort((a, b) => a.lane - b.lane);
+    if (ordered.some((entry, index) => index > 0 && entry.lane > ordered[index - 1].lane && entry.depth <= ordered[index - 1].depth)) problems.push(prefix + 'un carril m?s bajo no se dibuja delante');
+    if (scene.actorData.some((entry) => entry.mirrored !== (entry.single && entry.direction === 'west'))) problems.push(prefix + 'la orientación no corresponde a la dirección y las filas disponibles');
+    if (scene.debug) problems.push(prefix + 'el gancho de depuración existe en producción');
+    if (scene.properties.some((property) => !['transform', 'opacity', 'offset', 'easing', 'composite', 'computedOffset'].includes(property))) problems.push(prefix + 'un caminante anima propiedades distintas de transform/opacity');
+    const animatedStyles = await page.evaluate(async () => {
+      const layer = document.querySelector('[data-pmd-walkers]')!;
+      const existing = new Set(layer.querySelectorAll('*'));
+      const changed = new Set<string>();
+      const observer = new MutationObserver((records) => {
+        for (const record of records) {
+          if (!existing.has(record.target as Element)) continue;
+          const before = document.createElement('span').style;
+          before.cssText = record.oldValue ?? '';
+          const after = (record.target as HTMLElement).style;
+          for (const property of new Set([...Array.from(before), ...Array.from(after)])) {
+            if (before.getPropertyValue(property) !== after.getPropertyValue(property)) changed.add(property);
+          }
+        }
+      });
+      observer.observe(layer, { subtree: true, attributes: true, attributeFilter: ['style'], attributeOldValue: true });
+      await new Promise((resolve) => setTimeout(resolve, 250));
+      observer.disconnect();
+      return [...changed];
+    });
+    if (!animatedStyles.includes('transform') || animatedStyles.some((property) => property !== 'transform' && property !== 'opacity')) problems.push(prefix + 'el reloj JS no mueve el sprite sólo con transform/opacity');
+    const paused = await page.evaluate(async () => {
+      const actor = document.querySelector<HTMLElement>('[data-pmd-walker]')!;
+      Object.defineProperty(document, 'hidden', { configurable: true, value: true });
+      document.dispatchEvent(new Event('visibilitychange'));
+      const before = actor.style.transform;
+      await new Promise((resolve) => setTimeout(resolve, 200));
+      const same = actor.style.transform === before;
+      Reflect.deleteProperty(document, 'hidden');
+      document.dispatchEvent(new Event('visibilitychange'));
+      return same;
+    });
+    if (!paused) problems.push(prefix + 'el actor avanzó con la pestaña oculta');
+    await shot(page, `pokemon-pmd-${viewport.width}x${viewport.height}`);
+    const footer = page.locator('footer');
+    if (await footer.count()) {
+      await footer.scrollIntoViewIfNeeded();
+      const protectedFooter = await footer.evaluate((element) => {
+        const box = element.getBoundingClientRect(), actor = document.querySelector<HTMLElement>('[data-pmd-walker]');
+        if (!actor) return false;
+        const before = actor.style.transform, x = box.left + box.width / 2, y = box.top + box.height / 2;
+        actor.style.transform = `translate(${x}px,${y}px)`;
+        const hit = document.elementFromPoint(x, y);
+        actor.style.transform = before;
+        return Boolean(hit && element.contains(hit));
+      });
+      if (!protectedFooter) problems.push(prefix + 'el pie abierto no bloquea el hit-test de los caminantes');
+    }
+    const destination = await page.locator('a[data-card="ball"]').first().getAttribute('href');
+    await page.locator('a[data-card="ball"]').first().click();
+    await page.waitForURL(`**${destination}`);
+    await page.waitForSelector(GAME_READY);
+    if (!await page.locator('[data-pmd-scene="true"] [data-pmd-walkers]').count()) problems.push(prefix + 'la escena desapareció al navegar desde el inicio a un modo');
+    await context.close();
+    for (const route of ['/pokemon/clasico', '/pokemon/silueta']) {
+      problems.push(...await pokemonModeWalkers(ctx, viewport, route, manifest));
+    }
+    const quiet = await newContext(ctx, { viewport, reducedMotion: 'reduce' });
+    let requests = 0;
+    quiet.on('request', (request) => { if (/\/theme\/pokemon\/pmd\//.test(request.url())) requests++; });
+    for (const route of ['/pokemon', '/pokemon/clasico', '/pokemon/silueta']) {
+      const quietPage = await open(ctx, quiet, route, route === '/pokemon' ? '[data-card]' : GAME_READY);
+      await quietPage.waitForTimeout(500);
+      if (requests || await quietPage.locator('[data-pmd-walkers], [data-pmd-walker]').count()) problems.push(prefix + route + ': hay caminantes o descargas PMD con movimiento reducido');
+      await quietPage.close();
+    }
+    await quiet.close();
+  }
+  const skyContext = await newContext(ctx, { viewport: { width: 1920, height: 1080 } });
+  await skyContext.route('**/theme/pokemon/pmd/manifest.json', (route) => route.fulfill({ json: { version: 1, pokemon: manifest.pokemon.filter((entry) => entry.entityId === 'charizard') } }));
+  const skyPage = await open(ctx, skyContext, '/pokemon', '[data-card]');
+  await skyPage.waitForSelector('[data-pmd-walker][data-zone="sky"]', { state: 'attached', timeout: 15_000 });
+  const sky = await skyPage.locator('[data-pmd-walker]').first().evaluate((actor) => ({ zone: (actor as HTMLElement).dataset.zone, trip: (actor as HTMLElement).dataset.canTrip }));
+  if (sky.zone !== 'sky' || sky.trip !== 'false') problems.push('PMD: los voladores no están en el cielo o reaccionan al tropiezo');
+  await shot(skyPage, 'pokemon-pmd-cielo');
+  await skyContext.close();
+  return problems;
+}
+
+/** Boards, controls, modal Pokédex and footer must all remain above the same scene. */
+async function pokemonModeWalkers(ctx: Ctx, viewport: { width: number; height: number }, route: string, manifest: WalkerManifest): Promise<string[]> {
+  const problems: string[] = [];
+  const prefix = `PMD ${route} ${viewport.width}×${viewport.height}: `;
+  const context = await newContext(ctx, { viewport });
+  await context.addInitScript(() => { Math.random = () => 0.5; });
+  await context.route('**/theme/pokemon/pmd/manifest.json', (request) => request.fulfill({ json: { version: 1, pokemon: manifest.pokemon.filter((entry) => ['bulbasaur', 'charizard'].includes(entry.entityId)) } }));
+  const page = await open(ctx, context, route);
+  await page.waitForSelector('[data-pmd-ready="true"]');
+  await page.waitForSelector('[data-pmd-walker]', { state: 'attached', timeout: 15_000 });
+  const state = await page.evaluate(() => {
+    const scene = document.querySelector('[data-pmd-scene="true"]')!;
+    const layer = scene.querySelector('[data-pmd-walkers]')!;
+    const main = document.querySelector('main')!, panel = main.querySelector(':scope > div')!;
+    const footer = document.querySelector('footer');
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
+    const ground = scene.querySelector('[data-pmd-ground]')!.getBoundingClientRect().height;
+    const expected = innerWidth > innerHeight && innerHeight <= 26 * rem ? 9.8 * rem
+      : innerWidth >= 768 ? Math.max(14 * rem, Math.min(innerHeight * 0.322, 21 * rem)) : Math.max(11.2 * rem, Math.min(innerHeight * 0.35, 14 * rem));
+    const box = panel.getBoundingClientRect();
+    const x = (Math.max(0, box.left) + Math.min(innerWidth, box.right)) / 2;
+    const y = (Math.max(0, box.top) + Math.min(innerHeight, box.bottom)) / 2;
+    const probe = document.createElement('span');
+    Object.assign(probe.style, { position: 'absolute', width: '1rem', height: '1rem', transform: `translate(${x}px,${y}px)`, pointerEvents: 'auto', zIndex: '100000' });
+    layer.append(probe);
+    const hit = document.elementFromPoint(x, y);
+    probe.remove();
+    return { ground, expected, blocked: Boolean(hit && panel.contains(hit)), pointer: getComputedStyle(panel).pointerEvents,
+      footerBelow: !footer || footer.getBoundingClientRect().top >= main.getBoundingClientRect().bottom - 1,
+      layers: Number(getComputedStyle(main).zIndex) > Number(getComputedStyle(scene).zIndex),
+      hidden: layer.getAttribute('aria-hidden') === 'true', overflow: document.documentElement.scrollWidth > innerWidth };
+  });
+  if (Math.abs(state.ground - state.expected) > 1) problems.push(prefix + 'el pasto no tiene la misma altura aprobada que en el inicio');
+  if (!state.blocked || state.pointer !== 'auto' || !state.layers) problems.push(prefix + 'el fondo intercepta o se dibuja sobre el área de juego');
+  if (!state.footerBelow || state.overflow || !state.hidden) problems.push(prefix + 'el pie se superpone, hay desborde o falta aria-hidden');
+  await page.locator('[data-picker-open]').click();
+  await page.waitForSelector('dialog[open]');
+  const modalProtected = await page.locator('dialog[open]').evaluate((dialog) => {
+    const header = dialog.querySelector('[data-part="modal-header"]')!;
+    const box = header.getBoundingClientRect();
+    const x = box.left + box.width / 2, y = box.top + box.height / 2;
+    const layer = document.querySelector('[data-pmd-walkers]')!;
+    const probe = document.createElement('span');
+    Object.assign(probe.style, { position: 'absolute', width: '1rem', height: '1rem', transform: `translate(${x}px,${y}px)`, pointerEvents: 'auto', zIndex: '100000' });
+    layer.append(probe);
+    const hit = document.elementFromPoint(x, y);
+    probe.remove();
+    return Boolean(hit && dialog.contains(hit));
+  });
+  if (!modalProtected) problems.push(prefix + 'un caminante puede interceptar la Pokédex abierta');
+  await page.keyboard.press('Escape');
+  await page.waitForSelector('dialog[open]', { state: 'detached' });
+  await shot(page, `pokemon-pmd-${route.split('/').at(-1)}-${viewport.width}x${viewport.height}`);
+  await context.close();
   return problems;
 }
 
@@ -1411,6 +1690,7 @@ const CHECKS: ReadonlyArray<{ name: string; run: (ctx: Ctx) => Promise<string[]>
   { name: '/yugioh: once cartas, enlaces, orden, hidratación y movimiento reducido', run: yugiohField },
   { name: '/yugioh: Cementerio y filtros de Zona de Campo', run: yugiohGraveyard },
   { name: '/pokemon: Pokédex y 6 bolas, un enlace cada una', run: pokemonCards },
+  { name: 'Pokémon: PMD en inicio, Clásico y Silueta; capas, Pokédex y movimiento reducido', run: pokemonWalkers },
   { name: '/dragon-ball: cápsula y 7 esferas numeradas, un enlace cada una', run: dragonBallCards },
   { name: '/dragon-ball: el dragón aparece con las 7 esferas resueltas hoy', run: dragonBallReward },
   { name: '/naruto: pergamino abierto, tablón y rollos, un enlace cada uno', run: narutoCards },

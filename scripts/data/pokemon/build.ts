@@ -38,6 +38,7 @@ import {
 import { buildSignatureContents, countLearners, learnerPokemonId, type SignatureResult } from './moves.ts';
 import { MOVES_PER_POKEMON, buildMovesetContents } from './moveset.ts';
 import { printReport } from './report.ts';
+import { attachPmdPortraits } from './pmd-portraits.ts';
 import {
   contentSchema,
   entitySchema,
@@ -482,10 +483,11 @@ async function main(): Promise<void> {
   const allContents = [...contents, ...cards.contents, ...signature.contents, ...moveset.contents];
 
   step('Validando…');
-  await validate(entities, allContents, apiCount);
+  const withPortraits = await attachPmdPortraits(entities, ROOT);
+  await validate(withPortraits, allContents, apiCount);
 
   step('Escribiendo data/pokemon/…');
-  await writeJson(path.join(DATA_DIR, 'entities.json'), entities);
+  await writeJson(path.join(DATA_DIR, 'entities.json'), withPortraits);
   await writeJson(path.join(DATA_DIR, 'content.json'), allContents);
 
   printReport({

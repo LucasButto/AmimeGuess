@@ -1,0 +1,40 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// Reserve a development-only strip: the four controls cannot overlap either BackNav link.
+// The portal is outside SkinRoot; :has becomes false as soon as the tool unmounts.
+:global(body:has([data-pmd-speed]) [data-theme-root][data-skin='pokemon']) {
+  padding-block-start: 4rem;
+}
+
+.toggle {
+  position: fixed;
+  inset-block-start: t.$space-2;
+  inset-inline-end: t.$space-2;
+  z-index: t.$layer-nav;
+  display: flex;
+  gap: t.$space-1;
+  padding: t.$space-1;
+  background: var(--palette-ink);
+  --focus-color: var(--palette-yellow);
+  --focus-halo: var(--palette-ink);
+  border-radius: t.$radius-sm;
+}
+
+.button {
+  min-block-size: 2.75rem;
+  min-inline-size: 2.75rem;
+  padding-inline: t.$space-2;
+  border: 1px solid var(--palette-white);
+  border-radius: t.$radius-sm;
+  background: transparent;
+  color: var(--palette-white);
+  font: inherit;
+  font-size: t.$font-size-sm;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: inset 0 calc(-1 * var(--px-half)) 0 var(--palette-frame);
+  @include m.focus-ring;
+
+  &[aria-pressed='true'] { background: var(--palette-white); color: var(--palette-ink); }
+}

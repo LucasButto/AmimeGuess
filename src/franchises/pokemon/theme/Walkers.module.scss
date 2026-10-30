@@ -1,0 +1,75 @@
+@use 'breakpoints' as bp;
+
+.layer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  @include bp.reduced-motion { display: none; }
+}
+
+.unit {
+  position: absolute;
+  inline-size: var(--px);
+  block-size: 0;
+  pointer-events: none;
+}
+
+.actor,
+.motion,
+.scale,
+.facing,
+.crop,
+.sheet,
+.target {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+
+.actor {
+  inline-size: 0;
+  block-size: 0;
+  will-change: transform;
+
+}
+
+.crop { overflow: hidden; }
+.sheet { max-inline-size: none; image-rendering: pixelated; }
+.target { inset: 0; }
+.actor[data-can-trip='true'] .target { pointer-events: auto; touch-action: pan-y; }
+
+// Easter egg: un clic o toque sobre un Pokémon dormido lo despierta.
+.actor[data-phase='lie'] .target,
+.actor[data-phase='sleep'] .target { pointer-events: auto; touch-action: pan-y; }
+
+@include bp.hover-capable {
+  .actor[data-phase='lie'] .target,
+  .actor[data-phase='sleep'] .target { cursor: pointer; }
+}
+
+// Destellos de variocolor: estrella de cuatro puntas que titila sobre el Pokémon (solo transform y opacity).
+.sparkle {
+  position: absolute;
+  inset-inline-start: -0.625rem;
+  inset-block-start: -0.625rem;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  background: #ffe35a;
+  clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%);
+  pointer-events: none;
+  animation: sparkle-twinkle 1.4s steps(4, end) infinite;
+  animation-delay: var(--sparkle-delay, 0s);
+}
+
+@keyframes sparkle-twinkle {
+  0%, 100% { opacity: 0; scale: 0.5; }
+  35%, 65% { opacity: 1; scale: 1; }
+}
+
+.layer[data-paused='true'] .sparkle {
+  animation-play-state: paused;
+}
