@@ -15,7 +15,8 @@ export function isPlayable(franchise: FranchiseConfig, mode: ModeConfig): boolea
     (mode.engine === 'reveal-list' && mode.revealList !== undefined) ||
     (mode.engine === 'higher-lower' && mode.higherLower !== undefined) ||
     (mode.engine === 'timeline' && mode.timeline !== undefined) ||
-    (mode.engine === 'connections' && mode.connections !== undefined);
+    (mode.engine === 'connections' && mode.connections !== undefined) ||
+    (mode.engine === 'stat-builder' && mode.statBuilder !== undefined);
   return configured && hasFranchiseData(franchise.slug);
 }
 

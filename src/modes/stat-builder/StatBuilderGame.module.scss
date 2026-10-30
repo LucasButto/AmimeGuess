@@ -1,0 +1,44 @@
+@use 'tokens' as t;
+@use 'breakpoints' as bp;
+@use 'mixins' as m;
+.root { display: grid; gap: t.$space-4; }
+.settingsHeader { display: flex; align-items: center; gap: t.$space-2; }
+.settingsTitle { font-size: t.$font-size-base; font-weight: t.$font-weight-bold; }
+.choices, .flags { display: flex; flex-wrap: wrap; gap: t.$space-2; }
+.board { display: grid; gap: t.$space-4; @include bp.min-width('md') { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+.slot { @include m.engine-panel; display: flex; align-items: center; justify-content: space-between; gap: t.$space-2; min-block-size: 3.5rem; inline-size: 100%; text-align: start; }
+.slot:disabled { opacity: 1; }
+.slot[data-locked='true'] { --surface-panel: #{t.token('chip-fill')}; }
+.slots { display: grid; gap: t.$space-2; min-inline-size: 0; }
+.slot, .spinner { font: inherit; color: t.token('ink'); cursor: pointer; border: 0; background: none; }
+.slot > span:not(.fill) { position: relative; }
+.fill {
+  position: absolute;
+  inset: t.token('frame-width');
+  clip-path: t.token('clip-panel');
+  pointer-events: none;
+}
+.fillColor {
+  position: absolute;
+  inset: 0;
+  background: t.token('chip-on-fill');
+  transform: scaleX(var(--fill));
+  transform-origin: left;
+  @include bp.motion-ok { animation: fill-in 250ms cubic-bezier(0.23, 1, 0.32, 1); }
+}
+.fillColor.resultFill { animation: none; }
+.spinner .resultTotal { font-size: calc(#{t.$font-size-2xl} * 2); font-weight: t.$font-weight-bold; line-height: t.$line-height-tight; font-variant-numeric: tabular-nums; }
+.resultMessage { text-align: center; }
+.resultMessage > span { display: block; white-space: nowrap; }
+@keyframes fill-in { from { transform: scaleX(0); } to { transform: scaleX(var(--fill)); } }
+.slot { padding: t.$space-3 t.$space-4; color: var(--button-neutral-ink, #{t.token('ink')}); }
+.slot .value, .slot .reveal { color: inherit; }
+.slot:disabled, .spinner:disabled { cursor: default; }
+.slot[data-locked='true'] { cursor: not-allowed; }
+.continuePrompt { font-size: t.$font-size-lg; font-weight: t.$font-weight-bold; line-height: t.$line-height-tight; }
+.slot:focus-visible, .spinner:focus-visible { outline: 0.1875rem solid #{t.token('ink')}; outline-offset: 0.1875rem; }
+.spinner { @include m.engine-panel; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: t.$space-3; min-inline-size: 0; min-block-size: 17rem; inline-size: 100%; padding: t.$space-4; }
+.image { inline-size: min(100%, 15rem); block-size: 13rem; object-fit: contain; }
+.summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: t.$space-3; }
+.value { font-weight: t.$font-weight-bold; color: t.token('ink'); }
+.reveal { font-size: t.$font-size-sm; color: t.token('ink-muted'); }

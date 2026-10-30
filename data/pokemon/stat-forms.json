@@ -1,0 +1,5975 @@
+[
+  {
+    "id": "venusaur-mega",
+    "name": {
+      "es": "Venusaur Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/venusaur-mega",
+    "attrs": {
+      "numero": 3,
+      "inicial": "V",
+      "tipo1": "Planta",
+      "tipo2": "Veneno",
+      "generacion": 1,
+      "colores": [
+        "Verde"
+      ],
+      "etapa": 3,
+      "altura": 2,
+      "peso": 100,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Monstruo",
+        "Planta"
+      ],
+      "habilidad": "Espesura",
+      "ps": 80,
+      "ataque": 100,
+      "defensa": 123,
+      "ataqueEspecial": 122,
+      "defensaEspecial": 120,
+      "velocidad": 80,
+      "totalEstadisticas": 525,
+      "pmdPortrait": "/img/pokemon/pmd/0003/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "charizard-mega-x",
+    "name": {
+      "es": "Charizard Mega X"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/charizard-mega-x",
+    "attrs": {
+      "numero": 6,
+      "inicial": "C",
+      "tipo1": "Fuego",
+      "tipo2": "Volador",
+      "generacion": 1,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 3,
+      "altura": 1.7,
+      "peso": 90.5,
+      "habitat": "Montaña",
+      "gruposHuevo": [
+        "Monstruo",
+        "Dragón"
+      ],
+      "habilidad": "Mar Llamas",
+      "ps": 78,
+      "ataque": 130,
+      "defensa": 111,
+      "ataqueEspecial": 130,
+      "defensaEspecial": 85,
+      "velocidad": 100,
+      "totalEstadisticas": 534,
+      "pmdPortrait": "/img/pokemon/pmd/0006/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "charizard-mega-y",
+    "name": {
+      "es": "Charizard Mega Y"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/charizard-mega-y",
+    "attrs": {
+      "numero": 6,
+      "inicial": "C",
+      "tipo1": "Fuego",
+      "tipo2": "Volador",
+      "generacion": 1,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 3,
+      "altura": 1.7,
+      "peso": 90.5,
+      "habitat": "Montaña",
+      "gruposHuevo": [
+        "Monstruo",
+        "Dragón"
+      ],
+      "habilidad": "Mar Llamas",
+      "ps": 78,
+      "ataque": 104,
+      "defensa": 78,
+      "ataqueEspecial": 159,
+      "defensaEspecial": 115,
+      "velocidad": 100,
+      "totalEstadisticas": 534,
+      "pmdPortrait": "/img/pokemon/pmd/0006/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "blastoise-mega",
+    "name": {
+      "es": "Blastoise Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/blastoise-mega",
+    "attrs": {
+      "numero": 9,
+      "inicial": "B",
+      "tipo1": "Agua",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 3,
+      "altura": 1.6,
+      "peso": 85.5,
+      "habitat": "Agua salada",
+      "gruposHuevo": [
+        "Monstruo",
+        "Agua 1"
+      ],
+      "habilidad": "Torrente",
+      "ps": 79,
+      "ataque": 103,
+      "defensa": 120,
+      "ataqueEspecial": 135,
+      "defensaEspecial": 115,
+      "velocidad": 78,
+      "totalEstadisticas": 530,
+      "pmdPortrait": "/img/pokemon/pmd/0009/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "alakazam-mega",
+    "name": {
+      "es": "Alakazam Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/alakazam-mega",
+    "attrs": {
+      "numero": 65,
+      "inicial": "A",
+      "tipo1": "Psíquico",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 3,
+      "altura": 1.5,
+      "peso": 48,
+      "habitat": "Ciudad",
+      "gruposHuevo": [
+        "Humanoide"
+      ],
+      "habilidad": "Sincronía",
+      "ps": 55,
+      "ataque": 50,
+      "defensa": 65,
+      "ataqueEspecial": 175,
+      "defensaEspecial": 105,
+      "velocidad": 150,
+      "totalEstadisticas": 500,
+      "pmdPortrait": "/img/pokemon/pmd/0065/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "gengar-mega",
+    "name": {
+      "es": "Gengar Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/gengar-mega",
+    "attrs": {
+      "numero": 94,
+      "inicial": "G",
+      "tipo1": "Fantasma",
+      "tipo2": "Veneno",
+      "generacion": 1,
+      "colores": [
+        "Morado"
+      ],
+      "etapa": 3,
+      "altura": 1.5,
+      "peso": 40.5,
+      "habitat": "Caverna",
+      "gruposHuevo": [
+        "Amorfo"
+      ],
+      "habilidad": "Cuerpo Maldito",
+      "ps": 60,
+      "ataque": 65,
+      "defensa": 80,
+      "ataqueEspecial": 170,
+      "defensaEspecial": 95,
+      "velocidad": 130,
+      "totalEstadisticas": 500,
+      "pmdPortrait": "/img/pokemon/pmd/0094/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "kangaskhan-mega",
+    "name": {
+      "es": "Kangaskhan Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/kangaskhan-mega",
+    "attrs": {
+      "numero": 115,
+      "inicial": "K",
+      "tipo1": "Normal",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 1,
+      "altura": 2.2,
+      "peso": 80,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Monstruo"
+      ],
+      "habilidad": "Madrugar",
+      "ps": 105,
+      "ataque": 125,
+      "defensa": 100,
+      "ataqueEspecial": 60,
+      "defensaEspecial": 100,
+      "velocidad": 100,
+      "totalEstadisticas": 490,
+      "pmdPortrait": "/img/pokemon/pmd/0115/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "pinsir-mega",
+    "name": {
+      "es": "Pinsir Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/pinsir-mega",
+    "attrs": {
+      "numero": 127,
+      "inicial": "P",
+      "tipo1": "Bicho",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 1,
+      "altura": 1.5,
+      "peso": 55,
+      "habitat": "Bosque",
+      "gruposHuevo": [
+        "Bicho"
+      ],
+      "habilidad": "Corte Fuerte",
+      "ps": 65,
+      "ataque": 155,
+      "defensa": 120,
+      "ataqueEspecial": 65,
+      "defensaEspecial": 90,
+      "velocidad": 105,
+      "totalEstadisticas": 500,
+      "pmdPortrait": "/img/pokemon/pmd/0127/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "gyarados-mega",
+    "name": {
+      "es": "Gyarados Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/gyarados-mega",
+    "attrs": {
+      "numero": 130,
+      "inicial": "G",
+      "tipo1": "Agua",
+      "tipo2": "Volador",
+      "generacion": 1,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 2,
+      "altura": 6.5,
+      "peso": 235,
+      "habitat": "Agua salada",
+      "gruposHuevo": [
+        "Agua 2",
+        "Dragón"
+      ],
+      "habilidad": "Intimidación",
+      "ps": 95,
+      "ataque": 155,
+      "defensa": 109,
+      "ataqueEspecial": 70,
+      "defensaEspecial": 130,
+      "velocidad": 81,
+      "totalEstadisticas": 540,
+      "pmdPortrait": "/img/pokemon/pmd/0130/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "aerodactyl-mega",
+    "name": {
+      "es": "Aerodactyl Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/aerodactyl-mega",
+    "attrs": {
+      "numero": 142,
+      "inicial": "A",
+      "tipo1": "Roca",
+      "tipo2": "Volador",
+      "generacion": 1,
+      "colores": [
+        "Morado"
+      ],
+      "etapa": 1,
+      "altura": 1.8,
+      "peso": 59,
+      "habitat": "Montaña",
+      "gruposHuevo": [
+        "Volador"
+      ],
+      "habilidad": "Cabeza Roca",
+      "ps": 80,
+      "ataque": 135,
+      "defensa": 85,
+      "ataqueEspecial": 70,
+      "defensaEspecial": 95,
+      "velocidad": 150,
+      "totalEstadisticas": 515,
+      "pmdPortrait": "/img/pokemon/pmd/0142/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "mewtwo-mega-x",
+    "name": {
+      "es": "Mewtwo Mega X"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/mewtwo-mega-x",
+    "attrs": {
+      "numero": 150,
+      "inicial": "M",
+      "tipo1": "Psíquico",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Morado"
+      ],
+      "etapa": 1,
+      "altura": 2,
+      "peso": 122,
+      "habitat": "Raro",
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Presión",
+      "ps": 106,
+      "ataque": 190,
+      "defensa": 100,
+      "ataqueEspecial": 154,
+      "defensaEspecial": 100,
+      "velocidad": 130,
+      "totalEstadisticas": 680,
+      "pmdPortrait": "/img/pokemon/pmd/0150/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "mewtwo-mega-y",
+    "name": {
+      "es": "Mewtwo Mega Y"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/mewtwo-mega-y",
+    "attrs": {
+      "numero": 150,
+      "inicial": "M",
+      "tipo1": "Psíquico",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Morado"
+      ],
+      "etapa": 1,
+      "altura": 2,
+      "peso": 122,
+      "habitat": "Raro",
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Presión",
+      "ps": 106,
+      "ataque": 150,
+      "defensa": 70,
+      "ataqueEspecial": 194,
+      "defensaEspecial": 120,
+      "velocidad": 140,
+      "totalEstadisticas": 680,
+      "pmdPortrait": "/img/pokemon/pmd/0150/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "ampharos-mega",
+    "name": {
+      "es": "Ampharos Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/ampharos-mega",
+    "attrs": {
+      "numero": 181,
+      "inicial": "A",
+      "tipo1": "Eléctrico",
+      "tipo2": null,
+      "generacion": 2,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 3,
+      "altura": 1.4,
+      "peso": 61.5,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Monstruo",
+        "Campo"
+      ],
+      "habilidad": "Electricidad Estática",
+      "ps": 90,
+      "ataque": 95,
+      "defensa": 105,
+      "ataqueEspecial": 165,
+      "defensaEspecial": 110,
+      "velocidad": 45,
+      "totalEstadisticas": 510,
+      "pmdPortrait": "/img/pokemon/pmd/0181/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "scizor-mega",
+    "name": {
+      "es": "Scizor Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/scizor-mega",
+    "attrs": {
+      "numero": 212,
+      "inicial": "S",
+      "tipo1": "Bicho",
+      "tipo2": "Acero",
+      "generacion": 2,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 2,
+      "altura": 1.8,
+      "peso": 118,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Bicho"
+      ],
+      "habilidad": "Enjambre",
+      "ps": 70,
+      "ataque": 150,
+      "defensa": 140,
+      "ataqueEspecial": 65,
+      "defensaEspecial": 100,
+      "velocidad": 75,
+      "totalEstadisticas": 500,
+      "pmdPortrait": "/img/pokemon/pmd/0212/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "heracross-mega",
+    "name": {
+      "es": "Heracross Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/heracross-mega",
+    "attrs": {
+      "numero": 214,
+      "inicial": "H",
+      "tipo1": "Bicho",
+      "tipo2": "Lucha",
+      "generacion": 2,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 1,
+      "altura": 1.5,
+      "peso": 54,
+      "habitat": "Bosque",
+      "gruposHuevo": [
+        "Bicho"
+      ],
+      "habilidad": "Enjambre",
+      "ps": 80,
+      "ataque": 185,
+      "defensa": 115,
+      "ataqueEspecial": 40,
+      "defensaEspecial": 105,
+      "velocidad": 75,
+      "totalEstadisticas": 500,
+      "pmdPortrait": "/img/pokemon/pmd/0214/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "houndoom-mega",
+    "name": {
+      "es": "Houndoom Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/houndoom-mega",
+    "attrs": {
+      "numero": 229,
+      "inicial": "H",
+      "tipo1": "Siniestro",
+      "tipo2": "Fuego",
+      "generacion": 2,
+      "colores": [
+        "Negro"
+      ],
+      "etapa": 2,
+      "altura": 1.4,
+      "peso": 35,
+      "habitat": "Campo",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Madrugar",
+      "ps": 75,
+      "ataque": 90,
+      "defensa": 90,
+      "ataqueEspecial": 140,
+      "defensaEspecial": 90,
+      "velocidad": 115,
+      "totalEstadisticas": 500,
+      "pmdPortrait": "/img/pokemon/pmd/0229/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "tyranitar-mega",
+    "name": {
+      "es": "Tyranitar Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/tyranitar-mega",
+    "attrs": {
+      "numero": 248,
+      "inicial": "T",
+      "tipo1": "Roca",
+      "tipo2": "Siniestro",
+      "generacion": 2,
+      "colores": [
+        "Verde"
+      ],
+      "etapa": 3,
+      "altura": 2,
+      "peso": 202,
+      "habitat": "Montaña",
+      "gruposHuevo": [
+        "Monstruo"
+      ],
+      "habilidad": "Chorro Arena",
+      "ps": 100,
+      "ataque": 164,
+      "defensa": 150,
+      "ataqueEspecial": 95,
+      "defensaEspecial": 120,
+      "velocidad": 71,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0248/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "blaziken-mega",
+    "name": {
+      "es": "Blaziken Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/blaziken-mega",
+    "attrs": {
+      "numero": 257,
+      "inicial": "B",
+      "tipo1": "Fuego",
+      "tipo2": "Lucha",
+      "generacion": 3,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 3,
+      "altura": 1.9,
+      "peso": 52,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Mar Llamas",
+      "ps": 80,
+      "ataque": 160,
+      "defensa": 80,
+      "ataqueEspecial": 130,
+      "defensaEspecial": 80,
+      "velocidad": 100,
+      "totalEstadisticas": 530,
+      "pmdPortrait": "/img/pokemon/pmd/0257/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "gardevoir-mega",
+    "name": {
+      "es": "Gardevoir Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/gardevoir-mega",
+    "attrs": {
+      "numero": 282,
+      "inicial": "G",
+      "tipo1": "Psíquico",
+      "tipo2": "Hada",
+      "generacion": 3,
+      "colores": [
+        "Blanco"
+      ],
+      "etapa": 3,
+      "altura": 1.6,
+      "peso": 48.4,
+      "habitat": "Ciudad",
+      "gruposHuevo": [
+        "Humanoide",
+        "Amorfo"
+      ],
+      "habilidad": "Sincronía",
+      "ps": 68,
+      "ataque": 85,
+      "defensa": 65,
+      "ataqueEspecial": 165,
+      "defensaEspecial": 135,
+      "velocidad": 100,
+      "totalEstadisticas": 518,
+      "pmdPortrait": "/img/pokemon/pmd/0282/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "mawile-mega",
+    "name": {
+      "es": "Mawile Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/mawile-mega",
+    "attrs": {
+      "numero": 303,
+      "inicial": "M",
+      "tipo1": "Acero",
+      "tipo2": "Hada",
+      "generacion": 3,
+      "colores": [
+        "Negro"
+      ],
+      "etapa": 1,
+      "altura": 0.6,
+      "peso": 11.5,
+      "habitat": "Caverna",
+      "gruposHuevo": [
+        "Campo",
+        "Hada"
+      ],
+      "habilidad": "Corte Fuerte",
+      "ps": 50,
+      "ataque": 105,
+      "defensa": 125,
+      "ataqueEspecial": 55,
+      "defensaEspecial": 95,
+      "velocidad": 50,
+      "totalEstadisticas": 380,
+      "pmdPortrait": "/img/pokemon/pmd/0303/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "aggron-mega",
+    "name": {
+      "es": "Aggron Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/aggron-mega",
+    "attrs": {
+      "numero": 306,
+      "inicial": "A",
+      "tipo1": "Acero",
+      "tipo2": "Roca",
+      "generacion": 3,
+      "colores": [
+        "Gris"
+      ],
+      "etapa": 3,
+      "altura": 2.1,
+      "peso": 360,
+      "habitat": "Montaña",
+      "gruposHuevo": [
+        "Monstruo"
+      ],
+      "habilidad": "Robustez",
+      "ps": 70,
+      "ataque": 140,
+      "defensa": 230,
+      "ataqueEspecial": 60,
+      "defensaEspecial": 80,
+      "velocidad": 50,
+      "totalEstadisticas": 530,
+      "pmdPortrait": "/img/pokemon/pmd/0306/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "medicham-mega",
+    "name": {
+      "es": "Medicham Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/medicham-mega",
+    "attrs": {
+      "numero": 308,
+      "inicial": "M",
+      "tipo1": "Lucha",
+      "tipo2": "Psíquico",
+      "generacion": 3,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 2,
+      "altura": 1.3,
+      "peso": 31.5,
+      "habitat": "Montaña",
+      "gruposHuevo": [
+        "Humanoide"
+      ],
+      "habilidad": "Energía Pura",
+      "ps": 60,
+      "ataque": 100,
+      "defensa": 85,
+      "ataqueEspecial": 80,
+      "defensaEspecial": 85,
+      "velocidad": 100,
+      "totalEstadisticas": 410,
+      "pmdPortrait": "/img/pokemon/pmd/0308/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "manectric-mega",
+    "name": {
+      "es": "Manectric Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/manectric-mega",
+    "attrs": {
+      "numero": 310,
+      "inicial": "M",
+      "tipo1": "Eléctrico",
+      "tipo2": null,
+      "generacion": 3,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 2,
+      "altura": 1.5,
+      "peso": 40.2,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Electricidad Estática",
+      "ps": 70,
+      "ataque": 75,
+      "defensa": 80,
+      "ataqueEspecial": 135,
+      "defensaEspecial": 80,
+      "velocidad": 135,
+      "totalEstadisticas": 475,
+      "pmdPortrait": "/img/pokemon/pmd/0310/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "banette-mega",
+    "name": {
+      "es": "Banette Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/banette-mega",
+    "attrs": {
+      "numero": 354,
+      "inicial": "B",
+      "tipo1": "Fantasma",
+      "tipo2": null,
+      "generacion": 3,
+      "colores": [
+        "Negro"
+      ],
+      "etapa": 2,
+      "altura": 1.1,
+      "peso": 12.5,
+      "habitat": "Ciudad",
+      "gruposHuevo": [
+        "Amorfo"
+      ],
+      "habilidad": "Insomnio",
+      "ps": 64,
+      "ataque": 165,
+      "defensa": 75,
+      "ataqueEspecial": 93,
+      "defensaEspecial": 83,
+      "velocidad": 75,
+      "totalEstadisticas": 455,
+      "pmdPortrait": "/img/pokemon/pmd/0354/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "absol-mega",
+    "name": {
+      "es": "Absol Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/absol-mega",
+    "attrs": {
+      "numero": 359,
+      "inicial": "A",
+      "tipo1": "Siniestro",
+      "tipo2": null,
+      "generacion": 3,
+      "colores": [
+        "Blanco"
+      ],
+      "etapa": 1,
+      "altura": 1.2,
+      "peso": 47,
+      "habitat": "Montaña",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Presión",
+      "ps": 65,
+      "ataque": 150,
+      "defensa": 60,
+      "ataqueEspecial": 115,
+      "defensaEspecial": 60,
+      "velocidad": 115,
+      "totalEstadisticas": 465,
+      "pmdPortrait": "/img/pokemon/pmd/0359/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "garchomp-mega",
+    "name": {
+      "es": "Garchomp Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g4"
+    ],
+    "image": "pokemon/stat-forms/garchomp-mega",
+    "attrs": {
+      "numero": 445,
+      "inicial": "G",
+      "tipo1": "Dragón",
+      "tipo2": "Tierra",
+      "generacion": 4,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 3,
+      "altura": 1.9,
+      "peso": 95,
+      "habitat": null,
+      "gruposHuevo": [
+        "Monstruo",
+        "Dragón"
+      ],
+      "habilidad": "Velo Arena",
+      "ps": 108,
+      "ataque": 170,
+      "defensa": 115,
+      "ataqueEspecial": 120,
+      "defensaEspecial": 95,
+      "velocidad": 92,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0445/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "lucario-mega",
+    "name": {
+      "es": "Lucario Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g4"
+    ],
+    "image": "pokemon/stat-forms/lucario-mega",
+    "attrs": {
+      "numero": 448,
+      "inicial": "L",
+      "tipo1": "Lucha",
+      "tipo2": "Acero",
+      "generacion": 4,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 2,
+      "altura": 1.2,
+      "peso": 54,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo",
+        "Humanoide"
+      ],
+      "habilidad": "Impasible",
+      "ps": 70,
+      "ataque": 145,
+      "defensa": 88,
+      "ataqueEspecial": 140,
+      "defensaEspecial": 70,
+      "velocidad": 112,
+      "totalEstadisticas": 525,
+      "pmdPortrait": "/img/pokemon/pmd/0448/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "abomasnow-mega",
+    "name": {
+      "es": "Abomasnow Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g4"
+    ],
+    "image": "pokemon/stat-forms/abomasnow-mega",
+    "attrs": {
+      "numero": 460,
+      "inicial": "A",
+      "tipo1": "Planta",
+      "tipo2": "Hielo",
+      "generacion": 4,
+      "colores": [
+        "Blanco"
+      ],
+      "etapa": 2,
+      "altura": 2.2,
+      "peso": 135.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Monstruo",
+        "Planta"
+      ],
+      "habilidad": "Nevada",
+      "ps": 90,
+      "ataque": 132,
+      "defensa": 105,
+      "ataqueEspecial": 132,
+      "defensaEspecial": 105,
+      "velocidad": 30,
+      "totalEstadisticas": 494,
+      "pmdPortrait": "/img/pokemon/pmd/0460/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "latias-mega",
+    "name": {
+      "es": "Latias Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/latias-mega",
+    "attrs": {
+      "numero": 380,
+      "inicial": "L",
+      "tipo1": "Dragón",
+      "tipo2": "Psíquico",
+      "generacion": 3,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 1,
+      "altura": 1.4,
+      "peso": 40,
+      "habitat": "Agua salada",
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Levitación",
+      "ps": 80,
+      "ataque": 100,
+      "defensa": 120,
+      "ataqueEspecial": 140,
+      "defensaEspecial": 150,
+      "velocidad": 110,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0380/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "latios-mega",
+    "name": {
+      "es": "Latios Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/latios-mega",
+    "attrs": {
+      "numero": 381,
+      "inicial": "L",
+      "tipo1": "Dragón",
+      "tipo2": "Psíquico",
+      "generacion": 3,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 1,
+      "altura": 2,
+      "peso": 60,
+      "habitat": "Agua salada",
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Levitación",
+      "ps": 80,
+      "ataque": 130,
+      "defensa": 100,
+      "ataqueEspecial": 160,
+      "defensaEspecial": 120,
+      "velocidad": 110,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0381/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "swampert-mega",
+    "name": {
+      "es": "Swampert Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/swampert-mega",
+    "attrs": {
+      "numero": 260,
+      "inicial": "S",
+      "tipo1": "Agua",
+      "tipo2": "Tierra",
+      "generacion": 3,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 3,
+      "altura": 1.5,
+      "peso": 81.9,
+      "habitat": "Agua salada",
+      "gruposHuevo": [
+        "Monstruo",
+        "Agua 1"
+      ],
+      "habilidad": "Torrente",
+      "ps": 100,
+      "ataque": 150,
+      "defensa": 110,
+      "ataqueEspecial": 95,
+      "defensaEspecial": 110,
+      "velocidad": 70,
+      "totalEstadisticas": 535,
+      "pmdPortrait": "/img/pokemon/pmd/0260/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "sceptile-mega",
+    "name": {
+      "es": "Sceptile Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/sceptile-mega",
+    "attrs": {
+      "numero": 254,
+      "inicial": "S",
+      "tipo1": "Planta",
+      "tipo2": null,
+      "generacion": 3,
+      "colores": [
+        "Verde"
+      ],
+      "etapa": 3,
+      "altura": 1.7,
+      "peso": 52.2,
+      "habitat": "Bosque",
+      "gruposHuevo": [
+        "Monstruo",
+        "Dragón"
+      ],
+      "habilidad": "Espesura",
+      "ps": 70,
+      "ataque": 110,
+      "defensa": 75,
+      "ataqueEspecial": 145,
+      "defensaEspecial": 85,
+      "velocidad": 145,
+      "totalEstadisticas": 530,
+      "pmdPortrait": "/img/pokemon/pmd/0254/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "sableye-mega",
+    "name": {
+      "es": "Sableye Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/sableye-mega",
+    "attrs": {
+      "numero": 302,
+      "inicial": "S",
+      "tipo1": "Siniestro",
+      "tipo2": "Fantasma",
+      "generacion": 3,
+      "colores": [
+        "Morado"
+      ],
+      "etapa": 1,
+      "altura": 0.5,
+      "peso": 11,
+      "habitat": "Caverna",
+      "gruposHuevo": [
+        "Humanoide"
+      ],
+      "habilidad": "Vista Lince",
+      "ps": 50,
+      "ataque": 85,
+      "defensa": 125,
+      "ataqueEspecial": 85,
+      "defensaEspecial": 115,
+      "velocidad": 20,
+      "totalEstadisticas": 380,
+      "pmdPortrait": "/img/pokemon/pmd/0302/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "altaria-mega",
+    "name": {
+      "es": "Altaria Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/altaria-mega",
+    "attrs": {
+      "numero": 334,
+      "inicial": "A",
+      "tipo1": "Dragón",
+      "tipo2": "Volador",
+      "generacion": 3,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 2,
+      "altura": 1.1,
+      "peso": 20.6,
+      "habitat": "Bosque",
+      "gruposHuevo": [
+        "Volador",
+        "Dragón"
+      ],
+      "habilidad": "Cura Natural",
+      "ps": 75,
+      "ataque": 110,
+      "defensa": 110,
+      "ataqueEspecial": 110,
+      "defensaEspecial": 105,
+      "velocidad": 80,
+      "totalEstadisticas": 490,
+      "pmdPortrait": "/img/pokemon/pmd/0334/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "gallade-mega",
+    "name": {
+      "es": "Gallade Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g4"
+    ],
+    "image": "pokemon/stat-forms/gallade-mega",
+    "attrs": {
+      "numero": 475,
+      "inicial": "G",
+      "tipo1": "Psíquico",
+      "tipo2": "Lucha",
+      "generacion": 4,
+      "colores": [
+        "Blanco"
+      ],
+      "etapa": 3,
+      "altura": 1.6,
+      "peso": 52,
+      "habitat": null,
+      "gruposHuevo": [
+        "Humanoide",
+        "Amorfo"
+      ],
+      "habilidad": "Impasible",
+      "ps": 68,
+      "ataque": 165,
+      "defensa": 95,
+      "ataqueEspecial": 65,
+      "defensaEspecial": 115,
+      "velocidad": 110,
+      "totalEstadisticas": 518,
+      "pmdPortrait": "/img/pokemon/pmd/0475/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "audino-mega",
+    "name": {
+      "es": "Audino Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/audino-mega",
+    "attrs": {
+      "numero": 531,
+      "inicial": "A",
+      "tipo1": "Normal",
+      "tipo2": null,
+      "generacion": 5,
+      "colores": [
+        "Rosa"
+      ],
+      "etapa": 1,
+      "altura": 1.1,
+      "peso": 31,
+      "habitat": null,
+      "gruposHuevo": [
+        "Hada"
+      ],
+      "habilidad": "Alma Cura",
+      "ps": 103,
+      "ataque": 60,
+      "defensa": 126,
+      "ataqueEspecial": 80,
+      "defensaEspecial": 126,
+      "velocidad": 50,
+      "totalEstadisticas": 445,
+      "pmdPortrait": "/img/pokemon/pmd/0531/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "sharpedo-mega",
+    "name": {
+      "es": "Sharpedo Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/sharpedo-mega",
+    "attrs": {
+      "numero": 319,
+      "inicial": "S",
+      "tipo1": "Agua",
+      "tipo2": "Siniestro",
+      "generacion": 3,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 2,
+      "altura": 1.8,
+      "peso": 88.8,
+      "habitat": "Mar",
+      "gruposHuevo": [
+        "Agua 2"
+      ],
+      "habilidad": "Piel Tosca",
+      "ps": 70,
+      "ataque": 140,
+      "defensa": 70,
+      "ataqueEspecial": 110,
+      "defensaEspecial": 65,
+      "velocidad": 105,
+      "totalEstadisticas": 460,
+      "pmdPortrait": "/img/pokemon/pmd/0319/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "slowbro-mega",
+    "name": {
+      "es": "Slowbro Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/slowbro-mega",
+    "attrs": {
+      "numero": 80,
+      "inicial": "S",
+      "tipo1": "Agua",
+      "tipo2": "Psíquico",
+      "generacion": 1,
+      "colores": [
+        "Rosa"
+      ],
+      "etapa": 2,
+      "altura": 1.6,
+      "peso": 78.5,
+      "habitat": "Agua salada",
+      "gruposHuevo": [
+        "Monstruo",
+        "Agua 1"
+      ],
+      "habilidad": "Despiste",
+      "ps": 95,
+      "ataque": 75,
+      "defensa": 180,
+      "ataqueEspecial": 130,
+      "defensaEspecial": 80,
+      "velocidad": 30,
+      "totalEstadisticas": 490,
+      "pmdPortrait": "/img/pokemon/pmd/0080/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "steelix-mega",
+    "name": {
+      "es": "Steelix Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/steelix-mega",
+    "attrs": {
+      "numero": 208,
+      "inicial": "S",
+      "tipo1": "Acero",
+      "tipo2": "Tierra",
+      "generacion": 2,
+      "colores": [
+        "Gris"
+      ],
+      "etapa": 2,
+      "altura": 9.2,
+      "peso": 400,
+      "habitat": "Caverna",
+      "gruposHuevo": [
+        "Mineral"
+      ],
+      "habilidad": "Cabeza Roca",
+      "ps": 75,
+      "ataque": 125,
+      "defensa": 230,
+      "ataqueEspecial": 55,
+      "defensaEspecial": 95,
+      "velocidad": 30,
+      "totalEstadisticas": 510,
+      "pmdPortrait": "/img/pokemon/pmd/0208/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "pidgeot-mega",
+    "name": {
+      "es": "Pidgeot Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/pidgeot-mega",
+    "attrs": {
+      "numero": 18,
+      "inicial": "P",
+      "tipo1": "Normal",
+      "tipo2": "Volador",
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 3,
+      "altura": 1.5,
+      "peso": 39.5,
+      "habitat": "Bosque",
+      "gruposHuevo": [
+        "Volador"
+      ],
+      "habilidad": "Vista Lince",
+      "ps": 83,
+      "ataque": 80,
+      "defensa": 80,
+      "ataqueEspecial": 135,
+      "defensaEspecial": 80,
+      "velocidad": 121,
+      "totalEstadisticas": 479,
+      "pmdPortrait": "/img/pokemon/pmd/0018/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "glalie-mega",
+    "name": {
+      "es": "Glalie Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/glalie-mega",
+    "attrs": {
+      "numero": 362,
+      "inicial": "G",
+      "tipo1": "Hielo",
+      "tipo2": null,
+      "generacion": 3,
+      "colores": [
+        "Gris"
+      ],
+      "etapa": 2,
+      "altura": 1.5,
+      "peso": 256.5,
+      "habitat": "Caverna",
+      "gruposHuevo": [
+        "Hada",
+        "Mineral"
+      ],
+      "habilidad": "Fuerza Mental",
+      "ps": 80,
+      "ataque": 120,
+      "defensa": 80,
+      "ataqueEspecial": 120,
+      "defensaEspecial": 80,
+      "velocidad": 100,
+      "totalEstadisticas": 480,
+      "pmdPortrait": "/img/pokemon/pmd/0362/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "diancie-mega",
+    "name": {
+      "es": "Diancie Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/diancie-mega",
+    "attrs": {
+      "numero": 719,
+      "inicial": "D",
+      "tipo1": "Roca",
+      "tipo2": "Hada",
+      "generacion": 6,
+      "colores": [
+        "Rosa"
+      ],
+      "etapa": 1,
+      "altura": 0.7,
+      "peso": 8.8,
+      "habitat": null,
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Cuerpo Puro",
+      "ps": 50,
+      "ataque": 160,
+      "defensa": 110,
+      "ataqueEspecial": 160,
+      "defensaEspecial": 110,
+      "velocidad": 110,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0719/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "metagross-mega",
+    "name": {
+      "es": "Metagross Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/metagross-mega",
+    "attrs": {
+      "numero": 376,
+      "inicial": "M",
+      "tipo1": "Acero",
+      "tipo2": "Psíquico",
+      "generacion": 3,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 3,
+      "altura": 1.6,
+      "peso": 550,
+      "habitat": "Campo",
+      "gruposHuevo": [
+        "Mineral"
+      ],
+      "habilidad": "Cuerpo Puro",
+      "ps": 80,
+      "ataque": 145,
+      "defensa": 150,
+      "ataqueEspecial": 105,
+      "defensaEspecial": 110,
+      "velocidad": 110,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0376/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "rayquaza-mega",
+    "name": {
+      "es": "Rayquaza Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/rayquaza-mega",
+    "attrs": {
+      "numero": 384,
+      "inicial": "R",
+      "tipo1": "Dragón",
+      "tipo2": "Volador",
+      "generacion": 3,
+      "colores": [
+        "Verde"
+      ],
+      "etapa": 1,
+      "altura": 7,
+      "peso": 206.5,
+      "habitat": "Raro",
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Bucle Aire",
+      "ps": 105,
+      "ataque": 180,
+      "defensa": 100,
+      "ataqueEspecial": 180,
+      "defensaEspecial": 100,
+      "velocidad": 115,
+      "totalEstadisticas": 680,
+      "pmdPortrait": "/img/pokemon/pmd/0384/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "camerupt-mega",
+    "name": {
+      "es": "Camerupt Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/camerupt-mega",
+    "attrs": {
+      "numero": 323,
+      "inicial": "C",
+      "tipo1": "Fuego",
+      "tipo2": "Tierra",
+      "generacion": 3,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 2,
+      "altura": 1.9,
+      "peso": 220,
+      "habitat": "Montaña",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Escudo Magma",
+      "ps": 70,
+      "ataque": 120,
+      "defensa": 100,
+      "ataqueEspecial": 145,
+      "defensaEspecial": 105,
+      "velocidad": 20,
+      "totalEstadisticas": 460,
+      "pmdPortrait": "/img/pokemon/pmd/0323/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "lopunny-mega",
+    "name": {
+      "es": "Lopunny Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g4"
+    ],
+    "image": "pokemon/stat-forms/lopunny-mega",
+    "attrs": {
+      "numero": 428,
+      "inicial": "L",
+      "tipo1": "Normal",
+      "tipo2": null,
+      "generacion": 4,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 2,
+      "altura": 1.2,
+      "peso": 33.3,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo",
+        "Humanoide"
+      ],
+      "habilidad": "Gran Encanto",
+      "ps": 65,
+      "ataque": 136,
+      "defensa": 94,
+      "ataqueEspecial": 54,
+      "defensaEspecial": 96,
+      "velocidad": 135,
+      "totalEstadisticas": 480,
+      "pmdPortrait": "/img/pokemon/pmd/0428/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "salamence-mega",
+    "name": {
+      "es": "Salamence Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/salamence-mega",
+    "attrs": {
+      "numero": 373,
+      "inicial": "S",
+      "tipo1": "Dragón",
+      "tipo2": "Volador",
+      "generacion": 3,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 3,
+      "altura": 1.5,
+      "peso": 102.6,
+      "habitat": "Campo",
+      "gruposHuevo": [
+        "Dragón"
+      ],
+      "habilidad": "Intimidación",
+      "ps": 95,
+      "ataque": 145,
+      "defensa": 130,
+      "ataqueEspecial": 120,
+      "defensaEspecial": 90,
+      "velocidad": 120,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0373/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "beedrill-mega",
+    "name": {
+      "es": "Beedrill Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/beedrill-mega",
+    "attrs": {
+      "numero": 15,
+      "inicial": "B",
+      "tipo1": "Bicho",
+      "tipo2": "Veneno",
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 3,
+      "altura": 1,
+      "peso": 29.5,
+      "habitat": "Bosque",
+      "gruposHuevo": [
+        "Bicho"
+      ],
+      "habilidad": "Enjambre",
+      "ps": 65,
+      "ataque": 150,
+      "defensa": 40,
+      "ataqueEspecial": 15,
+      "defensaEspecial": 80,
+      "velocidad": 145,
+      "totalEstadisticas": 395,
+      "pmdPortrait": "/img/pokemon/pmd/0015/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "rattata-alola",
+    "name": {
+      "es": "Rattata de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/rattata-alola",
+    "attrs": {
+      "numero": 19,
+      "inicial": "R",
+      "tipo1": "Normal",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Morado"
+      ],
+      "etapa": 1,
+      "altura": 0.3,
+      "peso": 3.5,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Fuga",
+      "ps": 30,
+      "ataque": 56,
+      "defensa": 35,
+      "ataqueEspecial": 25,
+      "defensaEspecial": 35,
+      "velocidad": 72,
+      "totalEstadisticas": 253,
+      "pmdPortrait": "/img/pokemon/pmd/0019/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "raticate-alola",
+    "name": {
+      "es": "Raticate de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/raticate-alola",
+    "attrs": {
+      "numero": 20,
+      "inicial": "R",
+      "tipo1": "Normal",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 2,
+      "altura": 0.7,
+      "peso": 18.5,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Fuga",
+      "ps": 75,
+      "ataque": 71,
+      "defensa": 70,
+      "ataqueEspecial": 40,
+      "defensaEspecial": 80,
+      "velocidad": 77,
+      "totalEstadisticas": 413,
+      "pmdPortrait": "/img/pokemon/pmd/0020/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "pikachu-alola-cap",
+    "name": {
+      "es": "Pikachu alola cap"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/pikachu-alola-cap",
+    "attrs": {
+      "numero": 25,
+      "inicial": "P",
+      "tipo1": "Eléctrico",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 2,
+      "altura": 0.4,
+      "peso": 6,
+      "habitat": "Bosque",
+      "gruposHuevo": [
+        "Campo",
+        "Hada"
+      ],
+      "habilidad": "Electricidad Estática",
+      "ps": 35,
+      "ataque": 55,
+      "defensa": 40,
+      "ataqueEspecial": 50,
+      "defensaEspecial": 50,
+      "velocidad": 90,
+      "totalEstadisticas": 320,
+      "pmdPortrait": "/img/pokemon/pmd/0025/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "raichu-alola",
+    "name": {
+      "es": "Raichu de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/raichu-alola",
+    "attrs": {
+      "numero": 26,
+      "inicial": "R",
+      "tipo1": "Eléctrico",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 3,
+      "altura": 0.8,
+      "peso": 30,
+      "habitat": "Bosque",
+      "gruposHuevo": [
+        "Campo",
+        "Hada"
+      ],
+      "habilidad": "Electricidad Estática",
+      "ps": 60,
+      "ataque": 85,
+      "defensa": 50,
+      "ataqueEspecial": 95,
+      "defensaEspecial": 85,
+      "velocidad": 110,
+      "totalEstadisticas": 485,
+      "pmdPortrait": "/img/pokemon/pmd/0026/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "sandshrew-alola",
+    "name": {
+      "es": "Sandshrew de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/sandshrew-alola",
+    "attrs": {
+      "numero": 27,
+      "inicial": "S",
+      "tipo1": "Tierra",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 1,
+      "altura": 0.6,
+      "peso": 12,
+      "habitat": "Campo",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Velo Arena",
+      "ps": 50,
+      "ataque": 75,
+      "defensa": 90,
+      "ataqueEspecial": 10,
+      "defensaEspecial": 35,
+      "velocidad": 40,
+      "totalEstadisticas": 300,
+      "pmdPortrait": "/img/pokemon/pmd/0027/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "sandslash-alola",
+    "name": {
+      "es": "Sandslash de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/sandslash-alola",
+    "attrs": {
+      "numero": 28,
+      "inicial": "S",
+      "tipo1": "Tierra",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 2,
+      "altura": 1,
+      "peso": 29.5,
+      "habitat": "Campo",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Velo Arena",
+      "ps": 75,
+      "ataque": 100,
+      "defensa": 120,
+      "ataqueEspecial": 25,
+      "defensaEspecial": 65,
+      "velocidad": 65,
+      "totalEstadisticas": 450,
+      "pmdPortrait": "/img/pokemon/pmd/0028/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "vulpix-alola",
+    "name": {
+      "es": "Vulpix de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/vulpix-alola",
+    "attrs": {
+      "numero": 37,
+      "inicial": "V",
+      "tipo1": "Fuego",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 1,
+      "altura": 0.6,
+      "peso": 9.9,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Absorbe Fuego",
+      "ps": 38,
+      "ataque": 41,
+      "defensa": 40,
+      "ataqueEspecial": 50,
+      "defensaEspecial": 65,
+      "velocidad": 65,
+      "totalEstadisticas": 299,
+      "pmdPortrait": "/img/pokemon/pmd/0037/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "ninetales-alola",
+    "name": {
+      "es": "Ninetales de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/ninetales-alola",
+    "attrs": {
+      "numero": 38,
+      "inicial": "N",
+      "tipo1": "Fuego",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 2,
+      "altura": 1.1,
+      "peso": 19.9,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Absorbe Fuego",
+      "ps": 73,
+      "ataque": 67,
+      "defensa": 75,
+      "ataqueEspecial": 81,
+      "defensaEspecial": 100,
+      "velocidad": 109,
+      "totalEstadisticas": 505,
+      "pmdPortrait": "/img/pokemon/pmd/0038/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "diglett-alola",
+    "name": {
+      "es": "Diglett de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/diglett-alola",
+    "attrs": {
+      "numero": 50,
+      "inicial": "D",
+      "tipo1": "Tierra",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 1,
+      "altura": 0.2,
+      "peso": 0.8,
+      "habitat": "Caverna",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Velo Arena",
+      "ps": 10,
+      "ataque": 55,
+      "defensa": 30,
+      "ataqueEspecial": 35,
+      "defensaEspecial": 45,
+      "velocidad": 90,
+      "totalEstadisticas": 265,
+      "pmdPortrait": "/img/pokemon/pmd/0050/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "dugtrio-alola",
+    "name": {
+      "es": "Dugtrio de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/dugtrio-alola",
+    "attrs": {
+      "numero": 51,
+      "inicial": "D",
+      "tipo1": "Tierra",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 2,
+      "altura": 0.7,
+      "peso": 33.3,
+      "habitat": "Caverna",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Velo Arena",
+      "ps": 35,
+      "ataque": 100,
+      "defensa": 60,
+      "ataqueEspecial": 50,
+      "defensaEspecial": 70,
+      "velocidad": 110,
+      "totalEstadisticas": 425,
+      "pmdPortrait": "/img/pokemon/pmd/0051/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "meowth-alola",
+    "name": {
+      "es": "Meowth de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/meowth-alola",
+    "attrs": {
+      "numero": 52,
+      "inicial": "M",
+      "tipo1": "Normal",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 1,
+      "altura": 0.4,
+      "peso": 4.2,
+      "habitat": "Ciudad",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Recogida",
+      "ps": 40,
+      "ataque": 35,
+      "defensa": 35,
+      "ataqueEspecial": 50,
+      "defensaEspecial": 40,
+      "velocidad": 90,
+      "totalEstadisticas": 290,
+      "pmdPortrait": "/img/pokemon/pmd/0052/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "persian-alola",
+    "name": {
+      "es": "Persian de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/persian-alola",
+    "attrs": {
+      "numero": 53,
+      "inicial": "P",
+      "tipo1": "Normal",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 2,
+      "altura": 1,
+      "peso": 32,
+      "habitat": "Ciudad",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Flexibilidad",
+      "ps": 65,
+      "ataque": 60,
+      "defensa": 60,
+      "ataqueEspecial": 75,
+      "defensaEspecial": 65,
+      "velocidad": 115,
+      "totalEstadisticas": 440,
+      "pmdPortrait": "/img/pokemon/pmd/0053/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "geodude-alola",
+    "name": {
+      "es": "Geodude de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/geodude-alola",
+    "attrs": {
+      "numero": 74,
+      "inicial": "G",
+      "tipo1": "Roca",
+      "tipo2": "Tierra",
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 1,
+      "altura": 0.4,
+      "peso": 20,
+      "habitat": "Montaña",
+      "gruposHuevo": [
+        "Mineral"
+      ],
+      "habilidad": "Cabeza Roca",
+      "ps": 40,
+      "ataque": 80,
+      "defensa": 100,
+      "ataqueEspecial": 30,
+      "defensaEspecial": 30,
+      "velocidad": 20,
+      "totalEstadisticas": 300,
+      "pmdPortrait": "/img/pokemon/pmd/0074/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "graveler-alola",
+    "name": {
+      "es": "Graveler de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/graveler-alola",
+    "attrs": {
+      "numero": 75,
+      "inicial": "G",
+      "tipo1": "Roca",
+      "tipo2": "Tierra",
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 2,
+      "altura": 1,
+      "peso": 105,
+      "habitat": "Montaña",
+      "gruposHuevo": [
+        "Mineral"
+      ],
+      "habilidad": "Cabeza Roca",
+      "ps": 55,
+      "ataque": 95,
+      "defensa": 115,
+      "ataqueEspecial": 45,
+      "defensaEspecial": 45,
+      "velocidad": 35,
+      "totalEstadisticas": 390,
+      "pmdPortrait": "/img/pokemon/pmd/0075/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "golem-alola",
+    "name": {
+      "es": "Golem de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/golem-alola",
+    "attrs": {
+      "numero": 76,
+      "inicial": "G",
+      "tipo1": "Roca",
+      "tipo2": "Tierra",
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 3,
+      "altura": 1.4,
+      "peso": 300,
+      "habitat": "Montaña",
+      "gruposHuevo": [
+        "Mineral"
+      ],
+      "habilidad": "Cabeza Roca",
+      "ps": 80,
+      "ataque": 120,
+      "defensa": 130,
+      "ataqueEspecial": 55,
+      "defensaEspecial": 65,
+      "velocidad": 45,
+      "totalEstadisticas": 495,
+      "pmdPortrait": "/img/pokemon/pmd/0076/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "grimer-alola",
+    "name": {
+      "es": "Grimer de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/grimer-alola",
+    "attrs": {
+      "numero": 88,
+      "inicial": "G",
+      "tipo1": "Veneno",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Morado"
+      ],
+      "etapa": 1,
+      "altura": 0.9,
+      "peso": 30,
+      "habitat": "Ciudad",
+      "gruposHuevo": [
+        "Amorfo"
+      ],
+      "habilidad": "Hedor",
+      "ps": 80,
+      "ataque": 80,
+      "defensa": 50,
+      "ataqueEspecial": 40,
+      "defensaEspecial": 50,
+      "velocidad": 25,
+      "totalEstadisticas": 325,
+      "pmdPortrait": "/img/pokemon/pmd/0088/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "muk-alola",
+    "name": {
+      "es": "Muk de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/muk-alola",
+    "attrs": {
+      "numero": 89,
+      "inicial": "M",
+      "tipo1": "Veneno",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Morado"
+      ],
+      "etapa": 2,
+      "altura": 1.2,
+      "peso": 30,
+      "habitat": "Ciudad",
+      "gruposHuevo": [
+        "Amorfo"
+      ],
+      "habilidad": "Hedor",
+      "ps": 105,
+      "ataque": 105,
+      "defensa": 75,
+      "ataqueEspecial": 65,
+      "defensaEspecial": 100,
+      "velocidad": 50,
+      "totalEstadisticas": 500,
+      "pmdPortrait": "/img/pokemon/pmd/0089/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "exeggutor-alola",
+    "name": {
+      "es": "Exeggutor de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/exeggutor-alola",
+    "attrs": {
+      "numero": 103,
+      "inicial": "E",
+      "tipo1": "Planta",
+      "tipo2": "Psíquico",
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 2,
+      "altura": 2,
+      "peso": 120,
+      "habitat": "Bosque",
+      "gruposHuevo": [
+        "Planta"
+      ],
+      "habilidad": "Clorofila",
+      "ps": 95,
+      "ataque": 105,
+      "defensa": 85,
+      "ataqueEspecial": 125,
+      "defensaEspecial": 75,
+      "velocidad": 45,
+      "totalEstadisticas": 530,
+      "pmdPortrait": "/img/pokemon/pmd/0103/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "marowak-alola",
+    "name": {
+      "es": "Marowak de Alola"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/marowak-alola",
+    "attrs": {
+      "numero": 105,
+      "inicial": "M",
+      "tipo1": "Tierra",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 2,
+      "altura": 1,
+      "peso": 45,
+      "habitat": "Montaña",
+      "gruposHuevo": [
+        "Monstruo"
+      ],
+      "habilidad": "Cabeza Roca",
+      "ps": 60,
+      "ataque": 80,
+      "defensa": 110,
+      "ataqueEspecial": 50,
+      "defensaEspecial": 80,
+      "velocidad": 45,
+      "totalEstadisticas": 425,
+      "pmdPortrait": "/img/pokemon/pmd/0105/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "meowth-galar",
+    "name": {
+      "es": "Meowth de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/meowth-galar",
+    "attrs": {
+      "numero": 52,
+      "inicial": "M",
+      "tipo1": "Normal",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 1,
+      "altura": 0.4,
+      "peso": 4.2,
+      "habitat": "Ciudad",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Recogida",
+      "ps": 50,
+      "ataque": 65,
+      "defensa": 55,
+      "ataqueEspecial": 40,
+      "defensaEspecial": 40,
+      "velocidad": 40,
+      "totalEstadisticas": 290,
+      "pmdPortrait": "/img/pokemon/pmd/0052/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "ponyta-galar",
+    "name": {
+      "es": "Ponyta de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/ponyta-galar",
+    "attrs": {
+      "numero": 77,
+      "inicial": "P",
+      "tipo1": "Fuego",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 1,
+      "altura": 1,
+      "peso": 30,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Fuga",
+      "ps": 50,
+      "ataque": 85,
+      "defensa": 55,
+      "ataqueEspecial": 65,
+      "defensaEspecial": 65,
+      "velocidad": 90,
+      "totalEstadisticas": 410,
+      "pmdPortrait": "/img/pokemon/pmd/0077/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "rapidash-galar",
+    "name": {
+      "es": "Rapidash de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/rapidash-galar",
+    "attrs": {
+      "numero": 78,
+      "inicial": "R",
+      "tipo1": "Fuego",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 2,
+      "altura": 1.7,
+      "peso": 95,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Fuga",
+      "ps": 65,
+      "ataque": 100,
+      "defensa": 70,
+      "ataqueEspecial": 80,
+      "defensaEspecial": 80,
+      "velocidad": 105,
+      "totalEstadisticas": 500,
+      "pmdPortrait": "/img/pokemon/pmd/0078/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "slowpoke-galar",
+    "name": {
+      "es": "Slowpoke de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/slowpoke-galar",
+    "attrs": {
+      "numero": 79,
+      "inicial": "S",
+      "tipo1": "Agua",
+      "tipo2": "Psíquico",
+      "generacion": 1,
+      "colores": [
+        "Rosa"
+      ],
+      "etapa": 1,
+      "altura": 1.2,
+      "peso": 36,
+      "habitat": "Agua salada",
+      "gruposHuevo": [
+        "Monstruo",
+        "Agua 1"
+      ],
+      "habilidad": "Despiste",
+      "ps": 90,
+      "ataque": 65,
+      "defensa": 65,
+      "ataqueEspecial": 40,
+      "defensaEspecial": 40,
+      "velocidad": 15,
+      "totalEstadisticas": 315,
+      "pmdPortrait": "/img/pokemon/pmd/0079/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "slowbro-galar",
+    "name": {
+      "es": "Slowbro de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/slowbro-galar",
+    "attrs": {
+      "numero": 80,
+      "inicial": "S",
+      "tipo1": "Agua",
+      "tipo2": "Psíquico",
+      "generacion": 1,
+      "colores": [
+        "Rosa"
+      ],
+      "etapa": 2,
+      "altura": 1.6,
+      "peso": 78.5,
+      "habitat": "Agua salada",
+      "gruposHuevo": [
+        "Monstruo",
+        "Agua 1"
+      ],
+      "habilidad": "Despiste",
+      "ps": 95,
+      "ataque": 100,
+      "defensa": 95,
+      "ataqueEspecial": 100,
+      "defensaEspecial": 70,
+      "velocidad": 30,
+      "totalEstadisticas": 490,
+      "pmdPortrait": "/img/pokemon/pmd/0080/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "farfetchd-galar",
+    "name": {
+      "es": "Farfetch’d de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/farfetchd-galar",
+    "attrs": {
+      "numero": 83,
+      "inicial": "F",
+      "tipo1": "Normal",
+      "tipo2": "Volador",
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 1,
+      "altura": 0.8,
+      "peso": 15,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Volador",
+        "Campo"
+      ],
+      "habilidad": "Vista Lince",
+      "ps": 52,
+      "ataque": 95,
+      "defensa": 55,
+      "ataqueEspecial": 58,
+      "defensaEspecial": 62,
+      "velocidad": 55,
+      "totalEstadisticas": 377,
+      "pmdPortrait": "/img/pokemon/pmd/0083/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "weezing-galar",
+    "name": {
+      "es": "Weezing de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/weezing-galar",
+    "attrs": {
+      "numero": 110,
+      "inicial": "W",
+      "tipo1": "Veneno",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Morado"
+      ],
+      "etapa": 2,
+      "altura": 1.2,
+      "peso": 9.5,
+      "habitat": "Ciudad",
+      "gruposHuevo": [
+        "Amorfo"
+      ],
+      "habilidad": "Levitación",
+      "ps": 65,
+      "ataque": 90,
+      "defensa": 120,
+      "ataqueEspecial": 85,
+      "defensaEspecial": 70,
+      "velocidad": 60,
+      "totalEstadisticas": 490,
+      "pmdPortrait": "/img/pokemon/pmd/0110/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "mr-mime-galar",
+    "name": {
+      "es": "Mr. Mime de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/mr-mime-galar",
+    "attrs": {
+      "numero": 122,
+      "inicial": "M",
+      "tipo1": "Psíquico",
+      "tipo2": "Hada",
+      "generacion": 1,
+      "colores": [
+        "Rosa"
+      ],
+      "etapa": 2,
+      "altura": 1.3,
+      "peso": 54.5,
+      "habitat": "Ciudad",
+      "gruposHuevo": [
+        "Humanoide"
+      ],
+      "habilidad": "Insonorizar",
+      "ps": 50,
+      "ataque": 65,
+      "defensa": 65,
+      "ataqueEspecial": 90,
+      "defensaEspecial": 90,
+      "velocidad": 100,
+      "totalEstadisticas": 460,
+      "pmdPortrait": "/img/pokemon/pmd/0122/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "articuno-galar",
+    "name": {
+      "es": "Articuno de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/articuno-galar",
+    "attrs": {
+      "numero": 144,
+      "inicial": "A",
+      "tipo1": "Hielo",
+      "tipo2": "Volador",
+      "generacion": 1,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 1,
+      "altura": 1.7,
+      "peso": 55.4,
+      "habitat": "Raro",
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Presión",
+      "ps": 90,
+      "ataque": 85,
+      "defensa": 85,
+      "ataqueEspecial": 125,
+      "defensaEspecial": 100,
+      "velocidad": 95,
+      "totalEstadisticas": 580,
+      "pmdPortrait": "/img/pokemon/pmd/0144/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "zapdos-galar",
+    "name": {
+      "es": "Zapdos de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/zapdos-galar",
+    "attrs": {
+      "numero": 145,
+      "inicial": "Z",
+      "tipo1": "Eléctrico",
+      "tipo2": "Volador",
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 1,
+      "altura": 1.6,
+      "peso": 52.6,
+      "habitat": "Raro",
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Presión",
+      "ps": 90,
+      "ataque": 125,
+      "defensa": 90,
+      "ataqueEspecial": 85,
+      "defensaEspecial": 90,
+      "velocidad": 100,
+      "totalEstadisticas": 580,
+      "pmdPortrait": "/img/pokemon/pmd/0145/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "moltres-galar",
+    "name": {
+      "es": "Moltres de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/moltres-galar",
+    "attrs": {
+      "numero": 146,
+      "inicial": "M",
+      "tipo1": "Fuego",
+      "tipo2": "Volador",
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 1,
+      "altura": 2,
+      "peso": 60,
+      "habitat": "Raro",
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Presión",
+      "ps": 90,
+      "ataque": 85,
+      "defensa": 90,
+      "ataqueEspecial": 100,
+      "defensaEspecial": 125,
+      "velocidad": 90,
+      "totalEstadisticas": 580,
+      "pmdPortrait": "/img/pokemon/pmd/0146/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "slowking-galar",
+    "name": {
+      "es": "Slowking de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/slowking-galar",
+    "attrs": {
+      "numero": 199,
+      "inicial": "S",
+      "tipo1": "Agua",
+      "tipo2": "Psíquico",
+      "generacion": 2,
+      "colores": [
+        "Rosa"
+      ],
+      "etapa": 2,
+      "altura": 2,
+      "peso": 79.5,
+      "habitat": "Agua salada",
+      "gruposHuevo": [
+        "Monstruo",
+        "Agua 1"
+      ],
+      "habilidad": "Despiste",
+      "ps": 95,
+      "ataque": 65,
+      "defensa": 80,
+      "ataqueEspecial": 110,
+      "defensaEspecial": 110,
+      "velocidad": 30,
+      "totalEstadisticas": 490,
+      "pmdPortrait": "/img/pokemon/pmd/0199/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "corsola-galar",
+    "name": {
+      "es": "Corsola de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/corsola-galar",
+    "attrs": {
+      "numero": 222,
+      "inicial": "C",
+      "tipo1": "Agua",
+      "tipo2": "Roca",
+      "generacion": 2,
+      "colores": [
+        "Rosa"
+      ],
+      "etapa": 1,
+      "altura": 0.6,
+      "peso": 5,
+      "habitat": "Mar",
+      "gruposHuevo": [
+        "Agua 1",
+        "Agua 3"
+      ],
+      "habilidad": "Entusiasmo",
+      "ps": 60,
+      "ataque": 55,
+      "defensa": 100,
+      "ataqueEspecial": 65,
+      "defensaEspecial": 100,
+      "velocidad": 30,
+      "totalEstadisticas": 410,
+      "pmdPortrait": "/img/pokemon/pmd/0222/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "zigzagoon-galar",
+    "name": {
+      "es": "Zigzagoon de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/zigzagoon-galar",
+    "attrs": {
+      "numero": 263,
+      "inicial": "Z",
+      "tipo1": "Normal",
+      "tipo2": null,
+      "generacion": 3,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 1,
+      "altura": 0.4,
+      "peso": 17.5,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Recogida",
+      "ps": 38,
+      "ataque": 30,
+      "defensa": 41,
+      "ataqueEspecial": 30,
+      "defensaEspecial": 41,
+      "velocidad": 60,
+      "totalEstadisticas": 240,
+      "pmdPortrait": "/img/pokemon/pmd/0263/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "linoone-galar",
+    "name": {
+      "es": "Linoone de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/linoone-galar",
+    "attrs": {
+      "numero": 264,
+      "inicial": "L",
+      "tipo1": "Normal",
+      "tipo2": null,
+      "generacion": 3,
+      "colores": [
+        "Blanco"
+      ],
+      "etapa": 2,
+      "altura": 0.5,
+      "peso": 32.5,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Recogida",
+      "ps": 78,
+      "ataque": 70,
+      "defensa": 61,
+      "ataqueEspecial": 50,
+      "defensaEspecial": 61,
+      "velocidad": 100,
+      "totalEstadisticas": 420,
+      "pmdPortrait": "/img/pokemon/pmd/0264/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "darumaka-galar",
+    "name": {
+      "es": "Darumaka de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/darumaka-galar",
+    "attrs": {
+      "numero": 554,
+      "inicial": "D",
+      "tipo1": "Fuego",
+      "tipo2": null,
+      "generacion": 5,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 1,
+      "altura": 0.6,
+      "peso": 37.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Entusiasmo",
+      "ps": 70,
+      "ataque": 90,
+      "defensa": 45,
+      "ataqueEspecial": 15,
+      "defensaEspecial": 45,
+      "velocidad": 50,
+      "totalEstadisticas": 315,
+      "pmdPortrait": "/img/pokemon/pmd/0554/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "darmanitan-galar-standard",
+    "name": {
+      "es": "Darmanitan galar standard"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/darmanitan-galar-standard",
+    "attrs": {
+      "numero": 555,
+      "inicial": "D",
+      "tipo1": "Fuego",
+      "tipo2": null,
+      "generacion": 5,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 2,
+      "altura": 1.3,
+      "peso": 92.9,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Potencia Bruta",
+      "ps": 105,
+      "ataque": 140,
+      "defensa": 55,
+      "ataqueEspecial": 30,
+      "defensaEspecial": 55,
+      "velocidad": 95,
+      "totalEstadisticas": 480,
+      "pmdPortrait": "/img/pokemon/pmd/0555/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "darmanitan-galar-zen",
+    "name": {
+      "es": "Darmanitan galar zen"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/darmanitan-galar-zen",
+    "attrs": {
+      "numero": 555,
+      "inicial": "D",
+      "tipo1": "Fuego",
+      "tipo2": null,
+      "generacion": 5,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 2,
+      "altura": 1.3,
+      "peso": 92.9,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Potencia Bruta",
+      "ps": 105,
+      "ataque": 160,
+      "defensa": 55,
+      "ataqueEspecial": 30,
+      "defensaEspecial": 55,
+      "velocidad": 135,
+      "totalEstadisticas": 480,
+      "pmdPortrait": "/img/pokemon/pmd/0555/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "yamask-galar",
+    "name": {
+      "es": "Yamask de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/yamask-galar",
+    "attrs": {
+      "numero": 562,
+      "inicial": "Y",
+      "tipo1": "Fantasma",
+      "tipo2": null,
+      "generacion": 5,
+      "colores": [
+        "Negro"
+      ],
+      "etapa": 1,
+      "altura": 0.5,
+      "peso": 1.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Mineral",
+        "Amorfo"
+      ],
+      "habilidad": "Momia",
+      "ps": 38,
+      "ataque": 55,
+      "defensa": 85,
+      "ataqueEspecial": 30,
+      "defensaEspecial": 65,
+      "velocidad": 30,
+      "totalEstadisticas": 303,
+      "pmdPortrait": "/img/pokemon/pmd/0562/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "stunfisk-galar",
+    "name": {
+      "es": "Stunfisk de Galar"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/stunfisk-galar",
+    "attrs": {
+      "numero": 618,
+      "inicial": "S",
+      "tipo1": "Tierra",
+      "tipo2": "Eléctrico",
+      "generacion": 5,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 1,
+      "altura": 0.7,
+      "peso": 11,
+      "habitat": null,
+      "gruposHuevo": [
+        "Agua 1",
+        "Amorfo"
+      ],
+      "habilidad": "Electricidad Estática",
+      "ps": 109,
+      "ataque": 81,
+      "defensa": 99,
+      "ataqueEspecial": 66,
+      "defensaEspecial": 84,
+      "velocidad": 32,
+      "totalEstadisticas": 471,
+      "pmdPortrait": "/img/pokemon/pmd/0618/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "growlithe-hisui",
+    "name": {
+      "es": "Growlithe de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/growlithe-hisui",
+    "attrs": {
+      "numero": 58,
+      "inicial": "G",
+      "tipo1": "Fuego",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 1,
+      "altura": 0.7,
+      "peso": 19,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Intimidación",
+      "ps": 60,
+      "ataque": 75,
+      "defensa": 45,
+      "ataqueEspecial": 65,
+      "defensaEspecial": 50,
+      "velocidad": 55,
+      "totalEstadisticas": 350,
+      "pmdPortrait": "/img/pokemon/pmd/0058/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "arcanine-hisui",
+    "name": {
+      "es": "Arcanine de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/arcanine-hisui",
+    "attrs": {
+      "numero": 59,
+      "inicial": "A",
+      "tipo1": "Fuego",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 2,
+      "altura": 1.9,
+      "peso": 155,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Intimidación",
+      "ps": 95,
+      "ataque": 115,
+      "defensa": 80,
+      "ataqueEspecial": 95,
+      "defensaEspecial": 80,
+      "velocidad": 90,
+      "totalEstadisticas": 555,
+      "pmdPortrait": "/img/pokemon/pmd/0059/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "voltorb-hisui",
+    "name": {
+      "es": "Voltorb de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/voltorb-hisui",
+    "attrs": {
+      "numero": 100,
+      "inicial": "V",
+      "tipo1": "Eléctrico",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 1,
+      "altura": 0.5,
+      "peso": 10.4,
+      "habitat": "Ciudad",
+      "gruposHuevo": [
+        "Mineral"
+      ],
+      "habilidad": "Insonorizar",
+      "ps": 40,
+      "ataque": 30,
+      "defensa": 50,
+      "ataqueEspecial": 55,
+      "defensaEspecial": 55,
+      "velocidad": 100,
+      "totalEstadisticas": 330,
+      "pmdPortrait": "/img/pokemon/pmd/0100/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "electrode-hisui",
+    "name": {
+      "es": "Electrode de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/electrode-hisui",
+    "attrs": {
+      "numero": 101,
+      "inicial": "E",
+      "tipo1": "Eléctrico",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 2,
+      "altura": 1.2,
+      "peso": 66.6,
+      "habitat": "Ciudad",
+      "gruposHuevo": [
+        "Mineral"
+      ],
+      "habilidad": "Insonorizar",
+      "ps": 60,
+      "ataque": 50,
+      "defensa": 70,
+      "ataqueEspecial": 80,
+      "defensaEspecial": 80,
+      "velocidad": 150,
+      "totalEstadisticas": 490,
+      "pmdPortrait": "/img/pokemon/pmd/0101/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "typhlosion-hisui",
+    "name": {
+      "es": "Typhlosion de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/typhlosion-hisui",
+    "attrs": {
+      "numero": 157,
+      "inicial": "T",
+      "tipo1": "Fuego",
+      "tipo2": null,
+      "generacion": 2,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 3,
+      "altura": 1.7,
+      "peso": 79.5,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Mar Llamas",
+      "ps": 73,
+      "ataque": 84,
+      "defensa": 78,
+      "ataqueEspecial": 119,
+      "defensaEspecial": 85,
+      "velocidad": 95,
+      "totalEstadisticas": 534,
+      "pmdPortrait": "/img/pokemon/pmd/0157/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "qwilfish-hisui",
+    "name": {
+      "es": "Qwilfish de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/qwilfish-hisui",
+    "attrs": {
+      "numero": 211,
+      "inicial": "Q",
+      "tipo1": "Agua",
+      "tipo2": "Veneno",
+      "generacion": 2,
+      "colores": [
+        "Gris"
+      ],
+      "etapa": 1,
+      "altura": 0.5,
+      "peso": 3.9,
+      "habitat": "Mar",
+      "gruposHuevo": [
+        "Agua 2"
+      ],
+      "habilidad": "Punto Tóxico",
+      "ps": 65,
+      "ataque": 95,
+      "defensa": 85,
+      "ataqueEspecial": 55,
+      "defensaEspecial": 55,
+      "velocidad": 85,
+      "totalEstadisticas": 440,
+      "pmdPortrait": "/img/pokemon/pmd/0211/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "sneasel-hisui",
+    "name": {
+      "es": "Sneasel de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/sneasel-hisui",
+    "attrs": {
+      "numero": 215,
+      "inicial": "S",
+      "tipo1": "Siniestro",
+      "tipo2": "Hielo",
+      "generacion": 2,
+      "colores": [
+        "Negro"
+      ],
+      "etapa": 1,
+      "altura": 0.9,
+      "peso": 28,
+      "habitat": "Bosque",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Fuerza Mental",
+      "ps": 55,
+      "ataque": 95,
+      "defensa": 55,
+      "ataqueEspecial": 35,
+      "defensaEspecial": 75,
+      "velocidad": 115,
+      "totalEstadisticas": 430,
+      "pmdPortrait": "/img/pokemon/pmd/0215/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "samurott-hisui",
+    "name": {
+      "es": "Samurott de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/samurott-hisui",
+    "attrs": {
+      "numero": 503,
+      "inicial": "S",
+      "tipo1": "Agua",
+      "tipo2": null,
+      "generacion": 5,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 3,
+      "altura": 1.5,
+      "peso": 94.6,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Torrente",
+      "ps": 90,
+      "ataque": 108,
+      "defensa": 80,
+      "ataqueEspecial": 100,
+      "defensaEspecial": 65,
+      "velocidad": 85,
+      "totalEstadisticas": 528,
+      "pmdPortrait": "/img/pokemon/pmd/0503/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "lilligant-hisui",
+    "name": {
+      "es": "Lilligant de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/lilligant-hisui",
+    "attrs": {
+      "numero": 549,
+      "inicial": "L",
+      "tipo1": "Planta",
+      "tipo2": null,
+      "generacion": 5,
+      "colores": [
+        "Verde"
+      ],
+      "etapa": 2,
+      "altura": 1.1,
+      "peso": 16.3,
+      "habitat": null,
+      "gruposHuevo": [
+        "Planta"
+      ],
+      "habilidad": "Clorofila",
+      "ps": 70,
+      "ataque": 105,
+      "defensa": 75,
+      "ataqueEspecial": 50,
+      "defensaEspecial": 75,
+      "velocidad": 105,
+      "totalEstadisticas": 480,
+      "pmdPortrait": "/img/pokemon/pmd/0549/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "zorua-hisui",
+    "name": {
+      "es": "Zorua de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/zorua-hisui",
+    "attrs": {
+      "numero": 570,
+      "inicial": "Z",
+      "tipo1": "Siniestro",
+      "tipo2": null,
+      "generacion": 5,
+      "colores": [
+        "Gris"
+      ],
+      "etapa": 1,
+      "altura": 0.7,
+      "peso": 12.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Ilusión",
+      "ps": 35,
+      "ataque": 60,
+      "defensa": 40,
+      "ataqueEspecial": 85,
+      "defensaEspecial": 40,
+      "velocidad": 70,
+      "totalEstadisticas": 330,
+      "pmdPortrait": "/img/pokemon/pmd/0570/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "zoroark-hisui",
+    "name": {
+      "es": "Zoroark de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/zoroark-hisui",
+    "attrs": {
+      "numero": 571,
+      "inicial": "Z",
+      "tipo1": "Siniestro",
+      "tipo2": null,
+      "generacion": 5,
+      "colores": [
+        "Gris"
+      ],
+      "etapa": 2,
+      "altura": 1.6,
+      "peso": 81.1,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Ilusión",
+      "ps": 55,
+      "ataque": 100,
+      "defensa": 60,
+      "ataqueEspecial": 125,
+      "defensaEspecial": 60,
+      "velocidad": 110,
+      "totalEstadisticas": 510,
+      "pmdPortrait": "/img/pokemon/pmd/0571/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "braviary-hisui",
+    "name": {
+      "es": "Braviary de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/braviary-hisui",
+    "attrs": {
+      "numero": 628,
+      "inicial": "B",
+      "tipo1": "Normal",
+      "tipo2": "Volador",
+      "generacion": 5,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 2,
+      "altura": 1.5,
+      "peso": 41,
+      "habitat": null,
+      "gruposHuevo": [
+        "Volador"
+      ],
+      "habilidad": "Vista Lince",
+      "ps": 110,
+      "ataque": 83,
+      "defensa": 70,
+      "ataqueEspecial": 112,
+      "defensaEspecial": 70,
+      "velocidad": 65,
+      "totalEstadisticas": 510,
+      "pmdPortrait": "/img/pokemon/pmd/0628/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "sliggoo-hisui",
+    "name": {
+      "es": "Sliggoo de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/sliggoo-hisui",
+    "attrs": {
+      "numero": 705,
+      "inicial": "S",
+      "tipo1": "Dragón",
+      "tipo2": null,
+      "generacion": 6,
+      "colores": [
+        "Morado"
+      ],
+      "etapa": 2,
+      "altura": 0.8,
+      "peso": 17.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Dragón"
+      ],
+      "habilidad": "Herbívoro",
+      "ps": 58,
+      "ataque": 75,
+      "defensa": 83,
+      "ataqueEspecial": 83,
+      "defensaEspecial": 113,
+      "velocidad": 40,
+      "totalEstadisticas": 452,
+      "pmdPortrait": "/img/pokemon/pmd/0705/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "goodra-hisui",
+    "name": {
+      "es": "Goodra de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/goodra-hisui",
+    "attrs": {
+      "numero": 706,
+      "inicial": "G",
+      "tipo1": "Dragón",
+      "tipo2": null,
+      "generacion": 6,
+      "colores": [
+        "Morado"
+      ],
+      "etapa": 3,
+      "altura": 2,
+      "peso": 150.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Dragón"
+      ],
+      "habilidad": "Herbívoro",
+      "ps": 80,
+      "ataque": 100,
+      "defensa": 100,
+      "ataqueEspecial": 110,
+      "defensaEspecial": 150,
+      "velocidad": 60,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0706/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "avalugg-hisui",
+    "name": {
+      "es": "Avalugg de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/avalugg-hisui",
+    "attrs": {
+      "numero": 713,
+      "inicial": "A",
+      "tipo1": "Hielo",
+      "tipo2": null,
+      "generacion": 6,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 2,
+      "altura": 2,
+      "peso": 505,
+      "habitat": null,
+      "gruposHuevo": [
+        "Monstruo",
+        "Mineral"
+      ],
+      "habilidad": "Ritmo Propio",
+      "ps": 95,
+      "ataque": 127,
+      "defensa": 184,
+      "ataqueEspecial": 34,
+      "defensaEspecial": 36,
+      "velocidad": 38,
+      "totalEstadisticas": 514,
+      "pmdPortrait": "/img/pokemon/pmd/0713/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "decidueye-hisui",
+    "name": {
+      "es": "Decidueye de Hisui"
+    },
+    "aliases": [],
+    "series": [
+      "g7"
+    ],
+    "image": "pokemon/stat-forms/decidueye-hisui",
+    "attrs": {
+      "numero": 724,
+      "inicial": "D",
+      "tipo1": "Planta",
+      "tipo2": "Fantasma",
+      "generacion": 7,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 3,
+      "altura": 1.6,
+      "peso": 36.6,
+      "habitat": null,
+      "gruposHuevo": [
+        "Volador"
+      ],
+      "habilidad": "Espesura",
+      "ps": 88,
+      "ataque": 112,
+      "defensa": 80,
+      "ataqueEspecial": 95,
+      "defensaEspecial": 95,
+      "velocidad": 60,
+      "totalEstadisticas": 530,
+      "pmdPortrait": "/img/pokemon/pmd/0724/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "tauros-paldea-combat-breed",
+    "name": {
+      "es": "Tauros paldea combat breed"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/tauros-paldea-combat-breed",
+    "attrs": {
+      "numero": 128,
+      "inicial": "T",
+      "tipo1": "Normal",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 1,
+      "altura": 1.4,
+      "peso": 88.4,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Intimidación",
+      "ps": 75,
+      "ataque": 110,
+      "defensa": 105,
+      "ataqueEspecial": 30,
+      "defensaEspecial": 70,
+      "velocidad": 100,
+      "totalEstadisticas": 490,
+      "pmdPortrait": "/img/pokemon/pmd/0128/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "tauros-paldea-blaze-breed",
+    "name": {
+      "es": "Tauros paldea blaze breed"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/tauros-paldea-blaze-breed",
+    "attrs": {
+      "numero": 128,
+      "inicial": "T",
+      "tipo1": "Normal",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 1,
+      "altura": 1.4,
+      "peso": 88.4,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Intimidación",
+      "ps": 75,
+      "ataque": 110,
+      "defensa": 105,
+      "ataqueEspecial": 30,
+      "defensaEspecial": 70,
+      "velocidad": 100,
+      "totalEstadisticas": 490,
+      "pmdPortrait": "/img/pokemon/pmd/0128/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "tauros-paldea-aqua-breed",
+    "name": {
+      "es": "Tauros paldea aqua breed"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/tauros-paldea-aqua-breed",
+    "attrs": {
+      "numero": 128,
+      "inicial": "T",
+      "tipo1": "Normal",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 1,
+      "altura": 1.4,
+      "peso": 88.4,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Intimidación",
+      "ps": 75,
+      "ataque": 110,
+      "defensa": 105,
+      "ataqueEspecial": 30,
+      "defensaEspecial": 70,
+      "velocidad": 100,
+      "totalEstadisticas": 490,
+      "pmdPortrait": "/img/pokemon/pmd/0128/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "wooper-paldea",
+    "name": {
+      "es": "Wooper de Paldea"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/wooper-paldea",
+    "attrs": {
+      "numero": 194,
+      "inicial": "W",
+      "tipo1": "Agua",
+      "tipo2": "Tierra",
+      "generacion": 2,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 1,
+      "altura": 0.4,
+      "peso": 8.5,
+      "habitat": "Agua salada",
+      "gruposHuevo": [
+        "Agua 1",
+        "Campo"
+      ],
+      "habilidad": "Humedad",
+      "ps": 55,
+      "ataque": 45,
+      "defensa": 45,
+      "ataqueEspecial": 25,
+      "defensaEspecial": 25,
+      "velocidad": 15,
+      "totalEstadisticas": 210,
+      "pmdPortrait": "/img/pokemon/pmd/0194/normal.png",
+      "statForm": "regional"
+    }
+  },
+  {
+    "id": "clefable-mega",
+    "name": {
+      "es": "Clefable Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/clefable-mega",
+    "attrs": {
+      "numero": 36,
+      "inicial": "C",
+      "tipo1": "Hada",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Rosa"
+      ],
+      "etapa": 3,
+      "altura": 1.3,
+      "peso": 40,
+      "habitat": "Montaña",
+      "gruposHuevo": [
+        "Hada"
+      ],
+      "habilidad": "Gran Encanto",
+      "ps": 95,
+      "ataque": 80,
+      "defensa": 93,
+      "ataqueEspecial": 135,
+      "defensaEspecial": 110,
+      "velocidad": 70,
+      "totalEstadisticas": 483,
+      "pmdPortrait": "/img/pokemon/pmd/0036/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "victreebel-mega",
+    "name": {
+      "es": "Victreebel Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/victreebel-mega",
+    "attrs": {
+      "numero": 71,
+      "inicial": "V",
+      "tipo1": "Planta",
+      "tipo2": "Veneno",
+      "generacion": 1,
+      "colores": [
+        "Verde"
+      ],
+      "etapa": 3,
+      "altura": 1.7,
+      "peso": 15.5,
+      "habitat": "Bosque",
+      "gruposHuevo": [
+        "Planta"
+      ],
+      "habilidad": "Clorofila",
+      "ps": 80,
+      "ataque": 125,
+      "defensa": 85,
+      "ataqueEspecial": 135,
+      "defensaEspecial": 95,
+      "velocidad": 70,
+      "totalEstadisticas": 490,
+      "pmdPortrait": "/img/pokemon/pmd/0071/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "starmie-mega",
+    "name": {
+      "es": "Starmie Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/starmie-mega",
+    "attrs": {
+      "numero": 121,
+      "inicial": "S",
+      "tipo1": "Agua",
+      "tipo2": "Psíquico",
+      "generacion": 1,
+      "colores": [
+        "Morado"
+      ],
+      "etapa": 2,
+      "altura": 1.1,
+      "peso": 80,
+      "habitat": "Mar",
+      "gruposHuevo": [
+        "Agua 3"
+      ],
+      "habilidad": "Iluminación",
+      "ps": 60,
+      "ataque": 100,
+      "defensa": 105,
+      "ataqueEspecial": 130,
+      "defensaEspecial": 105,
+      "velocidad": 120,
+      "totalEstadisticas": 520,
+      "pmdPortrait": "/img/pokemon/pmd/0121/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "dragonite-mega",
+    "name": {
+      "es": "Dragonite Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/dragonite-mega",
+    "attrs": {
+      "numero": 149,
+      "inicial": "D",
+      "tipo1": "Dragón",
+      "tipo2": "Volador",
+      "generacion": 1,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 3,
+      "altura": 2.2,
+      "peso": 210,
+      "habitat": "Agua salada",
+      "gruposHuevo": [
+        "Agua 1",
+        "Dragón"
+      ],
+      "habilidad": "Fuerza Mental",
+      "ps": 91,
+      "ataque": 124,
+      "defensa": 115,
+      "ataqueEspecial": 145,
+      "defensaEspecial": 125,
+      "velocidad": 100,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0149/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "meganium-mega",
+    "name": {
+      "es": "Meganium Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/meganium-mega",
+    "attrs": {
+      "numero": 154,
+      "inicial": "M",
+      "tipo1": "Planta",
+      "tipo2": null,
+      "generacion": 2,
+      "colores": [
+        "Verde"
+      ],
+      "etapa": 3,
+      "altura": 1.8,
+      "peso": 100.5,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Monstruo",
+        "Planta"
+      ],
+      "habilidad": "Espesura",
+      "ps": 80,
+      "ataque": 92,
+      "defensa": 115,
+      "ataqueEspecial": 143,
+      "defensaEspecial": 115,
+      "velocidad": 80,
+      "totalEstadisticas": 525,
+      "pmdPortrait": "/img/pokemon/pmd/0154/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "feraligatr-mega",
+    "name": {
+      "es": "Feraligatr Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/feraligatr-mega",
+    "attrs": {
+      "numero": 160,
+      "inicial": "F",
+      "tipo1": "Agua",
+      "tipo2": null,
+      "generacion": 2,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 3,
+      "altura": 2.3,
+      "peso": 88.8,
+      "habitat": "Agua salada",
+      "gruposHuevo": [
+        "Monstruo",
+        "Agua 1"
+      ],
+      "habilidad": "Torrente",
+      "ps": 85,
+      "ataque": 160,
+      "defensa": 125,
+      "ataqueEspecial": 89,
+      "defensaEspecial": 93,
+      "velocidad": 78,
+      "totalEstadisticas": 530,
+      "pmdPortrait": "/img/pokemon/pmd/0160/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "skarmory-mega",
+    "name": {
+      "es": "Skarmory Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g2"
+    ],
+    "image": "pokemon/stat-forms/skarmory-mega",
+    "attrs": {
+      "numero": 227,
+      "inicial": "S",
+      "tipo1": "Acero",
+      "tipo2": "Volador",
+      "generacion": 2,
+      "colores": [
+        "Gris"
+      ],
+      "etapa": 1,
+      "altura": 1.7,
+      "peso": 50.5,
+      "habitat": "Campo",
+      "gruposHuevo": [
+        "Volador"
+      ],
+      "habilidad": "Vista Lince",
+      "ps": 65,
+      "ataque": 140,
+      "defensa": 110,
+      "ataqueEspecial": 40,
+      "defensaEspecial": 100,
+      "velocidad": 110,
+      "totalEstadisticas": 465,
+      "pmdPortrait": "/img/pokemon/pmd/0227/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "froslass-mega",
+    "name": {
+      "es": "Froslass Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g4"
+    ],
+    "image": "pokemon/stat-forms/froslass-mega",
+    "attrs": {
+      "numero": 478,
+      "inicial": "F",
+      "tipo1": "Hielo",
+      "tipo2": "Fantasma",
+      "generacion": 4,
+      "colores": [
+        "Blanco"
+      ],
+      "etapa": 2,
+      "altura": 1.3,
+      "peso": 26.6,
+      "habitat": null,
+      "gruposHuevo": [
+        "Hada",
+        "Mineral"
+      ],
+      "habilidad": "Manto Níveo",
+      "ps": 70,
+      "ataque": 80,
+      "defensa": 70,
+      "ataqueEspecial": 140,
+      "defensaEspecial": 100,
+      "velocidad": 120,
+      "totalEstadisticas": 480,
+      "pmdPortrait": "/img/pokemon/pmd/0478/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "emboar-mega",
+    "name": {
+      "es": "Emboar Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/emboar-mega",
+    "attrs": {
+      "numero": 500,
+      "inicial": "E",
+      "tipo1": "Fuego",
+      "tipo2": "Lucha",
+      "generacion": 5,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 3,
+      "altura": 1.6,
+      "peso": 150,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Mar Llamas",
+      "ps": 110,
+      "ataque": 148,
+      "defensa": 75,
+      "ataqueEspecial": 110,
+      "defensaEspecial": 110,
+      "velocidad": 75,
+      "totalEstadisticas": 528,
+      "pmdPortrait": "/img/pokemon/pmd/0500/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "excadrill-mega",
+    "name": {
+      "es": "Excadrill Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/excadrill-mega",
+    "attrs": {
+      "numero": 530,
+      "inicial": "E",
+      "tipo1": "Tierra",
+      "tipo2": "Acero",
+      "generacion": 5,
+      "colores": [
+        "Gris"
+      ],
+      "etapa": 2,
+      "altura": 0.7,
+      "peso": 40.4,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Ímpetu Arena",
+      "ps": 110,
+      "ataque": 165,
+      "defensa": 100,
+      "ataqueEspecial": 65,
+      "defensaEspecial": 65,
+      "velocidad": 103,
+      "totalEstadisticas": 508,
+      "pmdPortrait": "/img/pokemon/pmd/0530/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "scolipede-mega",
+    "name": {
+      "es": "Scolipede Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/scolipede-mega",
+    "attrs": {
+      "numero": 545,
+      "inicial": "S",
+      "tipo1": "Bicho",
+      "tipo2": "Veneno",
+      "generacion": 5,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 3,
+      "altura": 2.5,
+      "peso": 200.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Bicho"
+      ],
+      "habilidad": "Punto Tóxico",
+      "ps": 60,
+      "ataque": 140,
+      "defensa": 149,
+      "ataqueEspecial": 75,
+      "defensaEspecial": 99,
+      "velocidad": 62,
+      "totalEstadisticas": 485,
+      "pmdPortrait": "/img/pokemon/pmd/0545/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "scrafty-mega",
+    "name": {
+      "es": "Scrafty Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/scrafty-mega",
+    "attrs": {
+      "numero": 560,
+      "inicial": "S",
+      "tipo1": "Siniestro",
+      "tipo2": "Lucha",
+      "generacion": 5,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 2,
+      "altura": 1.1,
+      "peso": 30,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo",
+        "Dragón"
+      ],
+      "habilidad": "Mudar",
+      "ps": 65,
+      "ataque": 130,
+      "defensa": 135,
+      "ataqueEspecial": 55,
+      "defensaEspecial": 135,
+      "velocidad": 68,
+      "totalEstadisticas": 488,
+      "pmdPortrait": "/img/pokemon/pmd/0560/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "eelektross-mega",
+    "name": {
+      "es": "Eelektross Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/eelektross-mega",
+    "attrs": {
+      "numero": 604,
+      "inicial": "E",
+      "tipo1": "Eléctrico",
+      "tipo2": null,
+      "generacion": 5,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 3,
+      "altura": 2.1,
+      "peso": 80.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Amorfo"
+      ],
+      "habilidad": "Levitación",
+      "ps": 85,
+      "ataque": 145,
+      "defensa": 80,
+      "ataqueEspecial": 135,
+      "defensaEspecial": 90,
+      "velocidad": 80,
+      "totalEstadisticas": 515,
+      "pmdPortrait": "/img/pokemon/pmd/0604/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "chandelure-mega",
+    "name": {
+      "es": "Chandelure Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/chandelure-mega",
+    "attrs": {
+      "numero": 609,
+      "inicial": "C",
+      "tipo1": "Fantasma",
+      "tipo2": "Fuego",
+      "generacion": 5,
+      "colores": [
+        "Negro"
+      ],
+      "etapa": 3,
+      "altura": 1,
+      "peso": 34.3,
+      "habitat": null,
+      "gruposHuevo": [
+        "Amorfo"
+      ],
+      "habilidad": "Absorbe Fuego",
+      "ps": 60,
+      "ataque": 75,
+      "defensa": 110,
+      "ataqueEspecial": 175,
+      "defensaEspecial": 110,
+      "velocidad": 90,
+      "totalEstadisticas": 520,
+      "pmdPortrait": "/img/pokemon/pmd/0609/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "chesnaught-mega",
+    "name": {
+      "es": "Chesnaught Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/chesnaught-mega",
+    "attrs": {
+      "numero": 652,
+      "inicial": "C",
+      "tipo1": "Planta",
+      "tipo2": "Lucha",
+      "generacion": 6,
+      "colores": [
+        "Verde"
+      ],
+      "etapa": 3,
+      "altura": 1.6,
+      "peso": 90,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Espesura",
+      "ps": 88,
+      "ataque": 137,
+      "defensa": 172,
+      "ataqueEspecial": 74,
+      "defensaEspecial": 115,
+      "velocidad": 44,
+      "totalEstadisticas": 530,
+      "pmdPortrait": "/img/pokemon/pmd/0652/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "delphox-mega",
+    "name": {
+      "es": "Delphox Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/delphox-mega",
+    "attrs": {
+      "numero": 655,
+      "inicial": "D",
+      "tipo1": "Fuego",
+      "tipo2": "Psíquico",
+      "generacion": 6,
+      "colores": [
+        "Rojo"
+      ],
+      "etapa": 3,
+      "altura": 1.5,
+      "peso": 39,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Mar Llamas",
+      "ps": 75,
+      "ataque": 69,
+      "defensa": 72,
+      "ataqueEspecial": 159,
+      "defensaEspecial": 125,
+      "velocidad": 134,
+      "totalEstadisticas": 534,
+      "pmdPortrait": "/img/pokemon/pmd/0655/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "greninja-mega",
+    "name": {
+      "es": "Greninja Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/greninja-mega",
+    "attrs": {
+      "numero": 658,
+      "inicial": "G",
+      "tipo1": "Agua",
+      "tipo2": "Siniestro",
+      "generacion": 6,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 3,
+      "altura": 1.5,
+      "peso": 40,
+      "habitat": null,
+      "gruposHuevo": [
+        "Agua 1"
+      ],
+      "habilidad": "Torrente",
+      "ps": 72,
+      "ataque": 125,
+      "defensa": 77,
+      "ataqueEspecial": 133,
+      "defensaEspecial": 81,
+      "velocidad": 142,
+      "totalEstadisticas": 530,
+      "pmdPortrait": "/img/pokemon/pmd/0658/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "pyroar-mega",
+    "name": {
+      "es": "Pyroar Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/pyroar-mega",
+    "attrs": {
+      "numero": 668,
+      "inicial": "P",
+      "tipo1": "Fuego",
+      "tipo2": "Normal",
+      "generacion": 6,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 2,
+      "altura": 1.5,
+      "peso": 81.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Rivalidad",
+      "ps": 86,
+      "ataque": 88,
+      "defensa": 92,
+      "ataqueEspecial": 129,
+      "defensaEspecial": 86,
+      "velocidad": 126,
+      "totalEstadisticas": 507,
+      "pmdPortrait": "/img/pokemon/pmd/0668/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "floette-mega",
+    "name": {
+      "es": "Floette Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/floette-mega",
+    "attrs": {
+      "numero": 670,
+      "inicial": "F",
+      "tipo1": "Hada",
+      "tipo2": null,
+      "generacion": 6,
+      "colores": [
+        "Blanco"
+      ],
+      "etapa": 2,
+      "altura": 0.2,
+      "peso": 0.9,
+      "habitat": null,
+      "gruposHuevo": [
+        "Hada"
+      ],
+      "habilidad": "Velo Flor",
+      "ps": 74,
+      "ataque": 85,
+      "defensa": 87,
+      "ataqueEspecial": 155,
+      "defensaEspecial": 148,
+      "velocidad": 102,
+      "totalEstadisticas": 371,
+      "pmdPortrait": "/img/pokemon/pmd/0670/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "malamar-mega",
+    "name": {
+      "es": "Malamar Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/malamar-mega",
+    "attrs": {
+      "numero": 687,
+      "inicial": "M",
+      "tipo1": "Siniestro",
+      "tipo2": "Psíquico",
+      "generacion": 6,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 2,
+      "altura": 1.5,
+      "peso": 47,
+      "habitat": null,
+      "gruposHuevo": [
+        "Agua 1",
+        "Agua 2"
+      ],
+      "habilidad": "Respondón",
+      "ps": 86,
+      "ataque": 102,
+      "defensa": 88,
+      "ataqueEspecial": 98,
+      "defensaEspecial": 120,
+      "velocidad": 88,
+      "totalEstadisticas": 482,
+      "pmdPortrait": "/img/pokemon/pmd/0687/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "barbaracle-mega",
+    "name": {
+      "es": "Barbaracle Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/barbaracle-mega",
+    "attrs": {
+      "numero": 689,
+      "inicial": "B",
+      "tipo1": "Roca",
+      "tipo2": "Agua",
+      "generacion": 6,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 2,
+      "altura": 1.3,
+      "peso": 96,
+      "habitat": null,
+      "gruposHuevo": [
+        "Agua 3"
+      ],
+      "habilidad": "Garra Dura",
+      "ps": 72,
+      "ataque": 140,
+      "defensa": 130,
+      "ataqueEspecial": 64,
+      "defensaEspecial": 106,
+      "velocidad": 88,
+      "totalEstadisticas": 500,
+      "pmdPortrait": "/img/pokemon/pmd/0689/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "dragalge-mega",
+    "name": {
+      "es": "Dragalge Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/dragalge-mega",
+    "attrs": {
+      "numero": 691,
+      "inicial": "D",
+      "tipo1": "Veneno",
+      "tipo2": "Dragón",
+      "generacion": 6,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 2,
+      "altura": 1.8,
+      "peso": 81.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Agua 1",
+        "Dragón"
+      ],
+      "habilidad": "Punto Tóxico",
+      "ps": 65,
+      "ataque": 85,
+      "defensa": 105,
+      "ataqueEspecial": 132,
+      "defensaEspecial": 163,
+      "velocidad": 44,
+      "totalEstadisticas": 494,
+      "pmdPortrait": "/img/pokemon/pmd/0691/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "hawlucha-mega",
+    "name": {
+      "es": "Hawlucha Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/hawlucha-mega",
+    "attrs": {
+      "numero": 701,
+      "inicial": "H",
+      "tipo1": "Lucha",
+      "tipo2": "Volador",
+      "generacion": 6,
+      "colores": [
+        "Verde"
+      ],
+      "etapa": 1,
+      "altura": 0.8,
+      "peso": 21.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Volador",
+        "Humanoide"
+      ],
+      "habilidad": "Flexibilidad",
+      "ps": 78,
+      "ataque": 137,
+      "defensa": 100,
+      "ataqueEspecial": 74,
+      "defensaEspecial": 93,
+      "velocidad": 118,
+      "totalEstadisticas": 500,
+      "pmdPortrait": "/img/pokemon/pmd/0701/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "zygarde-mega",
+    "name": {
+      "es": "Zygarde Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/zygarde-mega",
+    "attrs": {
+      "numero": 718,
+      "inicial": "Z",
+      "tipo1": "Dragón",
+      "tipo2": "Tierra",
+      "generacion": 6,
+      "colores": [
+        "Verde"
+      ],
+      "etapa": 1,
+      "altura": 5,
+      "peso": 305,
+      "habitat": null,
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Rompeaura",
+      "ps": 216,
+      "ataque": 70,
+      "defensa": 91,
+      "ataqueEspecial": 216,
+      "defensaEspecial": 85,
+      "velocidad": 100,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0718/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "drampa-mega",
+    "name": {
+      "es": "Drampa Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g7"
+    ],
+    "image": "pokemon/stat-forms/drampa-mega",
+    "attrs": {
+      "numero": 780,
+      "inicial": "D",
+      "tipo1": "Normal",
+      "tipo2": "Dragón",
+      "generacion": 7,
+      "colores": [
+        "Blanco"
+      ],
+      "etapa": 1,
+      "altura": 3,
+      "peso": 185,
+      "habitat": null,
+      "gruposHuevo": [
+        "Monstruo",
+        "Dragón"
+      ],
+      "habilidad": "Cólera",
+      "ps": 78,
+      "ataque": 85,
+      "defensa": 110,
+      "ataqueEspecial": 160,
+      "defensaEspecial": 116,
+      "velocidad": 36,
+      "totalEstadisticas": 485,
+      "pmdPortrait": "/img/pokemon/pmd/0780/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "falinks-mega",
+    "name": {
+      "es": "Falinks Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g8"
+    ],
+    "image": "pokemon/stat-forms/falinks-mega",
+    "attrs": {
+      "numero": 870,
+      "inicial": "F",
+      "tipo1": "Lucha",
+      "tipo2": null,
+      "generacion": 8,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 1,
+      "altura": 3,
+      "peso": 62,
+      "habitat": null,
+      "gruposHuevo": [
+        "Hada",
+        "Mineral"
+      ],
+      "habilidad": "Armadura Batalla",
+      "ps": 65,
+      "ataque": 135,
+      "defensa": 135,
+      "ataqueEspecial": 70,
+      "defensaEspecial": 65,
+      "velocidad": 100,
+      "totalEstadisticas": 470,
+      "pmdPortrait": "/img/pokemon/pmd/0870/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "raichu-mega-x",
+    "name": {
+      "es": "Raichu Mega X"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/raichu-mega-x",
+    "attrs": {
+      "numero": 26,
+      "inicial": "R",
+      "tipo1": "Eléctrico",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 3,
+      "altura": 0.8,
+      "peso": 30,
+      "habitat": "Bosque",
+      "gruposHuevo": [
+        "Campo",
+        "Hada"
+      ],
+      "habilidad": "Electricidad Estática",
+      "ps": 60,
+      "ataque": 135,
+      "defensa": 95,
+      "ataqueEspecial": 90,
+      "defensaEspecial": 95,
+      "velocidad": 110,
+      "totalEstadisticas": 485,
+      "pmdPortrait": "/img/pokemon/pmd/0026/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "raichu-mega-y",
+    "name": {
+      "es": "Raichu Mega Y"
+    },
+    "aliases": [],
+    "series": [
+      "g1"
+    ],
+    "image": "pokemon/stat-forms/raichu-mega-y",
+    "attrs": {
+      "numero": 26,
+      "inicial": "R",
+      "tipo1": "Eléctrico",
+      "tipo2": null,
+      "generacion": 1,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 3,
+      "altura": 0.8,
+      "peso": 30,
+      "habitat": "Bosque",
+      "gruposHuevo": [
+        "Campo",
+        "Hada"
+      ],
+      "habilidad": "Electricidad Estática",
+      "ps": 60,
+      "ataque": 100,
+      "defensa": 55,
+      "ataqueEspecial": 160,
+      "defensaEspecial": 80,
+      "velocidad": 130,
+      "totalEstadisticas": 485,
+      "pmdPortrait": "/img/pokemon/pmd/0026/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "chimecho-mega",
+    "name": {
+      "es": "Chimecho Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/chimecho-mega",
+    "attrs": {
+      "numero": 358,
+      "inicial": "C",
+      "tipo1": "Psíquico",
+      "tipo2": null,
+      "generacion": 3,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 2,
+      "altura": 0.6,
+      "peso": 1,
+      "habitat": "Pradera",
+      "gruposHuevo": [
+        "Amorfo"
+      ],
+      "habilidad": "Levitación",
+      "ps": 75,
+      "ataque": 50,
+      "defensa": 110,
+      "ataqueEspecial": 135,
+      "defensaEspecial": 120,
+      "velocidad": 65,
+      "totalEstadisticas": 455,
+      "pmdPortrait": "/img/pokemon/pmd/0358/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "absol-mega-z",
+    "name": {
+      "es": "Absol mega z"
+    },
+    "aliases": [],
+    "series": [
+      "g3"
+    ],
+    "image": "pokemon/stat-forms/absol-mega-z",
+    "attrs": {
+      "numero": 359,
+      "inicial": "A",
+      "tipo1": "Siniestro",
+      "tipo2": null,
+      "generacion": 3,
+      "colores": [
+        "Blanco"
+      ],
+      "etapa": 1,
+      "altura": 1.2,
+      "peso": 47,
+      "habitat": "Montaña",
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Presión",
+      "ps": 65,
+      "ataque": 154,
+      "defensa": 60,
+      "ataqueEspecial": 75,
+      "defensaEspecial": 60,
+      "velocidad": 151,
+      "totalEstadisticas": 465,
+      "pmdPortrait": "/img/pokemon/pmd/0359/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "staraptor-mega",
+    "name": {
+      "es": "Staraptor Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g4"
+    ],
+    "image": "pokemon/stat-forms/staraptor-mega",
+    "attrs": {
+      "numero": 398,
+      "inicial": "S",
+      "tipo1": "Normal",
+      "tipo2": "Volador",
+      "generacion": 4,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 3,
+      "altura": 1.2,
+      "peso": 24.9,
+      "habitat": null,
+      "gruposHuevo": [
+        "Volador"
+      ],
+      "habilidad": "Intimidación",
+      "ps": 85,
+      "ataque": 140,
+      "defensa": 100,
+      "ataqueEspecial": 60,
+      "defensaEspecial": 90,
+      "velocidad": 110,
+      "totalEstadisticas": 485,
+      "pmdPortrait": "/img/pokemon/pmd/0398/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "garchomp-mega-z",
+    "name": {
+      "es": "Garchomp mega z"
+    },
+    "aliases": [],
+    "series": [
+      "g4"
+    ],
+    "image": "pokemon/stat-forms/garchomp-mega-z",
+    "attrs": {
+      "numero": 445,
+      "inicial": "G",
+      "tipo1": "Dragón",
+      "tipo2": "Tierra",
+      "generacion": 4,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 3,
+      "altura": 1.9,
+      "peso": 95,
+      "habitat": null,
+      "gruposHuevo": [
+        "Monstruo",
+        "Dragón"
+      ],
+      "habilidad": "Velo Arena",
+      "ps": 108,
+      "ataque": 130,
+      "defensa": 85,
+      "ataqueEspecial": 141,
+      "defensaEspecial": 85,
+      "velocidad": 151,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0445/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "lucario-mega-z",
+    "name": {
+      "es": "Lucario mega z"
+    },
+    "aliases": [],
+    "series": [
+      "g4"
+    ],
+    "image": "pokemon/stat-forms/lucario-mega-z",
+    "attrs": {
+      "numero": 448,
+      "inicial": "L",
+      "tipo1": "Lucha",
+      "tipo2": "Acero",
+      "generacion": 4,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 2,
+      "altura": 1.2,
+      "peso": 54,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo",
+        "Humanoide"
+      ],
+      "habilidad": "Impasible",
+      "ps": 70,
+      "ataque": 100,
+      "defensa": 70,
+      "ataqueEspecial": 164,
+      "defensaEspecial": 70,
+      "velocidad": 151,
+      "totalEstadisticas": 525,
+      "pmdPortrait": "/img/pokemon/pmd/0448/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "heatran-mega",
+    "name": {
+      "es": "Heatran Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g4"
+    ],
+    "image": "pokemon/stat-forms/heatran-mega",
+    "attrs": {
+      "numero": 485,
+      "inicial": "H",
+      "tipo1": "Fuego",
+      "tipo2": "Acero",
+      "generacion": 4,
+      "colores": [
+        "Marrón"
+      ],
+      "etapa": 1,
+      "altura": 1.7,
+      "peso": 430,
+      "habitat": null,
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Absorbe Fuego",
+      "ps": 91,
+      "ataque": 120,
+      "defensa": 106,
+      "ataqueEspecial": 175,
+      "defensaEspecial": 141,
+      "velocidad": 67,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0485/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "darkrai-mega",
+    "name": {
+      "es": "Darkrai Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g4"
+    ],
+    "image": "pokemon/stat-forms/darkrai-mega",
+    "attrs": {
+      "numero": 491,
+      "inicial": "D",
+      "tipo1": "Siniestro",
+      "tipo2": null,
+      "generacion": 4,
+      "colores": [
+        "Negro"
+      ],
+      "etapa": 1,
+      "altura": 1.5,
+      "peso": 50.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Mal Sueño",
+      "ps": 70,
+      "ataque": 120,
+      "defensa": 130,
+      "ataqueEspecial": 165,
+      "defensaEspecial": 130,
+      "velocidad": 85,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0491/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "golurk-mega",
+    "name": {
+      "es": "Golurk Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g5"
+    ],
+    "image": "pokemon/stat-forms/golurk-mega",
+    "attrs": {
+      "numero": 623,
+      "inicial": "G",
+      "tipo1": "Tierra",
+      "tipo2": "Fantasma",
+      "generacion": 5,
+      "colores": [
+        "Verde"
+      ],
+      "etapa": 2,
+      "altura": 2.8,
+      "peso": 330,
+      "habitat": null,
+      "gruposHuevo": [
+        "Mineral"
+      ],
+      "habilidad": "Puño Férreo",
+      "ps": 89,
+      "ataque": 159,
+      "defensa": 105,
+      "ataqueEspecial": 70,
+      "defensaEspecial": 105,
+      "velocidad": 55,
+      "totalEstadisticas": 483,
+      "pmdPortrait": "/img/pokemon/pmd/0623/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "meowstic-male-mega",
+    "name": {
+      "es": "Meowstic male mega"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/meowstic-male-mega",
+    "attrs": {
+      "numero": 678,
+      "inicial": "M",
+      "tipo1": "Psíquico",
+      "tipo2": null,
+      "generacion": 6,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 2,
+      "altura": 0.6,
+      "peso": 8.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Vista Lince",
+      "ps": 74,
+      "ataque": 48,
+      "defensa": 76,
+      "ataqueEspecial": 143,
+      "defensaEspecial": 101,
+      "velocidad": 124,
+      "totalEstadisticas": 466,
+      "pmdPortrait": "/img/pokemon/pmd/0678/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "crabominable-mega",
+    "name": {
+      "es": "Crabominable Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g7"
+    ],
+    "image": "pokemon/stat-forms/crabominable-mega",
+    "attrs": {
+      "numero": 740,
+      "inicial": "C",
+      "tipo1": "Lucha",
+      "tipo2": "Hielo",
+      "generacion": 7,
+      "colores": [
+        "Blanco"
+      ],
+      "etapa": 2,
+      "altura": 1.7,
+      "peso": 180,
+      "habitat": null,
+      "gruposHuevo": [
+        "Agua 3"
+      ],
+      "habilidad": "Corte Fuerte",
+      "ps": 97,
+      "ataque": 157,
+      "defensa": 122,
+      "ataqueEspecial": 62,
+      "defensaEspecial": 107,
+      "velocidad": 33,
+      "totalEstadisticas": 478,
+      "pmdPortrait": "/img/pokemon/pmd/0740/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "golisopod-mega",
+    "name": {
+      "es": "Golisopod Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g7"
+    ],
+    "image": "pokemon/stat-forms/golisopod-mega",
+    "attrs": {
+      "numero": 768,
+      "inicial": "G",
+      "tipo1": "Bicho",
+      "tipo2": "Agua",
+      "generacion": 7,
+      "colores": [
+        "Gris"
+      ],
+      "etapa": 2,
+      "altura": 2,
+      "peso": 108,
+      "habitat": null,
+      "gruposHuevo": [
+        "Bicho",
+        "Agua 3"
+      ],
+      "habilidad": "Retirada",
+      "ps": 75,
+      "ataque": 150,
+      "defensa": 175,
+      "ataqueEspecial": 70,
+      "defensaEspecial": 120,
+      "velocidad": 40,
+      "totalEstadisticas": 530,
+      "pmdPortrait": "/img/pokemon/pmd/0768/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "magearna-mega",
+    "name": {
+      "es": "Magearna Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g7"
+    ],
+    "image": "pokemon/stat-forms/magearna-mega",
+    "attrs": {
+      "numero": 801,
+      "inicial": "M",
+      "tipo1": "Acero",
+      "tipo2": "Hada",
+      "generacion": 7,
+      "colores": [
+        "Gris"
+      ],
+      "etapa": 1,
+      "altura": 1,
+      "peso": 80.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Coránima",
+      "ps": 80,
+      "ataque": 125,
+      "defensa": 115,
+      "ataqueEspecial": 170,
+      "defensaEspecial": 115,
+      "velocidad": 95,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0801/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "magearna-original-mega",
+    "name": {
+      "es": "Magearna original mega"
+    },
+    "aliases": [],
+    "series": [
+      "g7"
+    ],
+    "image": "pokemon/stat-forms/magearna-original-mega",
+    "attrs": {
+      "numero": 801,
+      "inicial": "M",
+      "tipo1": "Acero",
+      "tipo2": "Hada",
+      "generacion": 7,
+      "colores": [
+        "Gris"
+      ],
+      "etapa": 1,
+      "altura": 1,
+      "peso": 80.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Coránima",
+      "ps": 80,
+      "ataque": 125,
+      "defensa": 115,
+      "ataqueEspecial": 170,
+      "defensaEspecial": 115,
+      "velocidad": 95,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0801/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "zeraora-mega",
+    "name": {
+      "es": "Zeraora Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g7"
+    ],
+    "image": "pokemon/stat-forms/zeraora-mega",
+    "attrs": {
+      "numero": 807,
+      "inicial": "Z",
+      "tipo1": "Eléctrico",
+      "tipo2": null,
+      "generacion": 7,
+      "colores": [
+        "Amarillo"
+      ],
+      "etapa": 1,
+      "altura": 1.5,
+      "peso": 44.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Desconocido"
+      ],
+      "habilidad": "Absorbe Electricidad",
+      "ps": 88,
+      "ataque": 157,
+      "defensa": 75,
+      "ataqueEspecial": 147,
+      "defensaEspecial": 80,
+      "velocidad": 153,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0807/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "scovillain-mega",
+    "name": {
+      "es": "Scovillain Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g9"
+    ],
+    "image": "pokemon/stat-forms/scovillain-mega",
+    "attrs": {
+      "numero": 952,
+      "inicial": "S",
+      "tipo1": "Planta",
+      "tipo2": "Fuego",
+      "generacion": 9,
+      "colores": [
+        "Verde"
+      ],
+      "etapa": 2,
+      "altura": 0.9,
+      "peso": 15,
+      "habitat": null,
+      "gruposHuevo": [
+        "Planta"
+      ],
+      "habilidad": "Clorofila",
+      "ps": 65,
+      "ataque": 138,
+      "defensa": 85,
+      "ataqueEspecial": 138,
+      "defensaEspecial": 85,
+      "velocidad": 75,
+      "totalEstadisticas": 486,
+      "pmdPortrait": "/img/pokemon/pmd/0952/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "glimmora-mega",
+    "name": {
+      "es": "Glimmora Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g9"
+    ],
+    "image": "pokemon/stat-forms/glimmora-mega",
+    "attrs": {
+      "numero": 970,
+      "inicial": "G",
+      "tipo1": "Roca",
+      "tipo2": "Veneno",
+      "generacion": 9,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 2,
+      "altura": 1.5,
+      "peso": 45,
+      "habitat": null,
+      "gruposHuevo": [
+        "Mineral"
+      ],
+      "habilidad": "Capa Tóxica",
+      "ps": 83,
+      "ataque": 90,
+      "defensa": 105,
+      "ataqueEspecial": 150,
+      "defensaEspecial": 96,
+      "velocidad": 101,
+      "totalEstadisticas": 525,
+      "pmdPortrait": "/img/pokemon/pmd/0970/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "tatsugiri-curly-mega",
+    "name": {
+      "es": "Tatsugiri curly mega"
+    },
+    "aliases": [],
+    "series": [
+      "g9"
+    ],
+    "image": "pokemon/stat-forms/tatsugiri-curly-mega",
+    "attrs": {
+      "numero": 978,
+      "inicial": "T",
+      "tipo1": "Dragón",
+      "tipo2": "Agua",
+      "generacion": 9,
+      "colores": [
+        "Rosa"
+      ],
+      "etapa": 1,
+      "altura": 0.3,
+      "peso": 8,
+      "habitat": null,
+      "gruposHuevo": [
+        "Agua 2"
+      ],
+      "habilidad": "Comandar",
+      "ps": 68,
+      "ataque": 65,
+      "defensa": 90,
+      "ataqueEspecial": 135,
+      "defensaEspecial": 125,
+      "velocidad": 92,
+      "totalEstadisticas": 475,
+      "pmdPortrait": "/img/pokemon/pmd/0978/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "tatsugiri-droopy-mega",
+    "name": {
+      "es": "Tatsugiri droopy mega"
+    },
+    "aliases": [],
+    "series": [
+      "g9"
+    ],
+    "image": "pokemon/stat-forms/tatsugiri-droopy-mega",
+    "attrs": {
+      "numero": 978,
+      "inicial": "T",
+      "tipo1": "Dragón",
+      "tipo2": "Agua",
+      "generacion": 9,
+      "colores": [
+        "Rosa"
+      ],
+      "etapa": 1,
+      "altura": 0.3,
+      "peso": 8,
+      "habitat": null,
+      "gruposHuevo": [
+        "Agua 2"
+      ],
+      "habilidad": "Comandar",
+      "ps": 68,
+      "ataque": 65,
+      "defensa": 90,
+      "ataqueEspecial": 135,
+      "defensaEspecial": 125,
+      "velocidad": 92,
+      "totalEstadisticas": 475,
+      "pmdPortrait": "/img/pokemon/pmd/0978/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "tatsugiri-stretchy-mega",
+    "name": {
+      "es": "Tatsugiri stretchy mega"
+    },
+    "aliases": [],
+    "series": [
+      "g9"
+    ],
+    "image": "pokemon/stat-forms/tatsugiri-stretchy-mega",
+    "attrs": {
+      "numero": 978,
+      "inicial": "T",
+      "tipo1": "Dragón",
+      "tipo2": "Agua",
+      "generacion": 9,
+      "colores": [
+        "Rosa"
+      ],
+      "etapa": 1,
+      "altura": 0.3,
+      "peso": 8,
+      "habitat": null,
+      "gruposHuevo": [
+        "Agua 2"
+      ],
+      "habilidad": "Comandar",
+      "ps": 68,
+      "ataque": 65,
+      "defensa": 90,
+      "ataqueEspecial": 135,
+      "defensaEspecial": 125,
+      "velocidad": 92,
+      "totalEstadisticas": 475,
+      "pmdPortrait": "/img/pokemon/pmd/0978/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "baxcalibur-mega",
+    "name": {
+      "es": "Baxcalibur Mega"
+    },
+    "aliases": [],
+    "series": [
+      "g9"
+    ],
+    "image": "pokemon/stat-forms/baxcalibur-mega",
+    "attrs": {
+      "numero": 998,
+      "inicial": "B",
+      "tipo1": "Dragón",
+      "tipo2": "Hielo",
+      "generacion": 9,
+      "colores": [
+        "Gris"
+      ],
+      "etapa": 3,
+      "altura": 2.1,
+      "peso": 210,
+      "habitat": null,
+      "gruposHuevo": [
+        "Mineral",
+        "Dragón"
+      ],
+      "habilidad": "Termoconversión",
+      "ps": 115,
+      "ataque": 175,
+      "defensa": 117,
+      "ataqueEspecial": 105,
+      "defensaEspecial": 101,
+      "velocidad": 87,
+      "totalEstadisticas": 600,
+      "pmdPortrait": "/img/pokemon/pmd/0998/normal.png",
+      "statForm": "mega"
+    }
+  },
+  {
+    "id": "meowstic-female-mega",
+    "name": {
+      "es": "Meowstic female mega"
+    },
+    "aliases": [],
+    "series": [
+      "g6"
+    ],
+    "image": "pokemon/stat-forms/meowstic-female-mega",
+    "attrs": {
+      "numero": 678,
+      "inicial": "M",
+      "tipo1": "Psíquico",
+      "tipo2": null,
+      "generacion": 6,
+      "colores": [
+        "Azul"
+      ],
+      "etapa": 2,
+      "altura": 0.6,
+      "peso": 8.5,
+      "habitat": null,
+      "gruposHuevo": [
+        "Campo"
+      ],
+      "habilidad": "Vista Lince",
+      "ps": 74,
+      "ataque": 48,
+      "defensa": 76,
+      "ataqueEspecial": 143,
+      "defensaEspecial": 101,
+      "velocidad": 124,
+      "totalEstadisticas": 466,
+      "pmdPortrait": "/img/pokemon/pmd/0678/normal.png",
+      "statForm": "mega"
+    }
+  }
+]

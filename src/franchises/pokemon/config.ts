@@ -9,6 +9,7 @@ export const pokemonConfig = {
   slug: 'pokemon',
   name: 'Pokémon',
   entityNoun: { one: 'Pokémon', many: 'Pokémon' },
+  entitySetNouns: { 'stat-builder': { one: 'Pokémon', many: 'Pokémon' } },
   series: ['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9'],
   seriesLabels: {
     g1: 'Gen 1',
@@ -141,6 +142,13 @@ export const pokemonConfig = {
           { kind: 'attr', label: 'Generación', after: 6, keys: ['generacion'] },
         ],
       },
+    },
+    {
+      slug: 'estadisticas', name: 'Estadísticas', engine: 'stat-builder', entitySet: 'stat-builder',
+      statBuilder: { targets: [500, 550, 600], stats: [
+        { key: 'ps', label: 'PS' }, { key: 'ataque', label: 'Ataque' }, { key: 'defensa', label: 'Defensa' },
+        { key: 'ataqueEspecial', label: 'Ataque especial' }, { key: 'defensaEspecial', label: 'Defensa especial' }, { key: 'velocidad', label: 'Velocidad' },
+      ] },
     },
   ],
   // Retro de Game Boy Advance (sesión 15): paleta corta y plana, panel crema con tinta oscura, marcos negros

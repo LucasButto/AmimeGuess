@@ -6,8 +6,8 @@ describe('configs de franquicia', () => {
     expect(franchises.map((f) => f.slug)).toEqual(['pokemon', 'dragon-ball', 'naruto', 'yugioh']);
   });
 
-  it('la cantidad de modos es 7, 8, 10 y 11 (Pokémon y Dragon Ball unieron Silueta y Zoom; Naruto y Yu-Gi-Oh suman la línea de tiempo)', () => {
-    expect(franchises.map((f) => f.modes.length)).toEqual([7, 8, 10, 11]);
+  it('la cantidad de modos es 8, 8, 10 y 11, con Estadísticas en Pokémon', () => {
+    expect(franchises.map((f) => f.modes.length)).toEqual([8, 8, 10, 11]);
   });
 
   it('los slugs de modo no se repiten dentro de una franquicia', () => {

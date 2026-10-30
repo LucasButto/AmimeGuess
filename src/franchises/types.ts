@@ -9,8 +9,9 @@ import type { ImageRevealConfig } from '../modes/image-reveal/types';
 import type { RevealListConfig } from '../modes/reveal-list/types';
 import type { TextClueConfig } from '../modes/text-clue/types';
 import type { TimelineConfig } from '../modes/timeline/types';
+import type { StatBuilderConfig } from '../modes/stat-builder/types';
 
-/** Los 7 motores de juego (SPEC 3.2). Ninguno contiene lógica de una franquicia. */
+/** Los motores de juego (SPEC 3.2). Ninguno contiene lógica de una franquicia. */
 export type EngineId =
   | 'classic'
   | 'image-reveal'
@@ -18,9 +19,11 @@ export type EngineId =
   | 'reveal-list'
   | 'higher-lower'
   | 'timeline'
-  | 'connections';
+  | 'connections'
+  | 'stat-builder';
 
 export interface ModeConfig {
+  readonly statBuilder?: StatBuilderConfig;
   /** Límite base editable en data/mode.json; los filtros ajustan los modos de adivinar. */
   readonly try?: number;
   /** Segmento de URL: /<franquicia>/<slug>. Estable, nunca se reutiliza. */

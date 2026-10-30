@@ -19,11 +19,12 @@ export interface FranchiseData {
 // Los JSON los genera y valida scripts/data/<franquicia> con los esquemas de Entity y Content.
 const loaders: Record<string, () => Promise<FranchiseData>> = {
   pokemon: async () => {
-    const [entities, contents] = await Promise.all([
+    const [entities, contents, forms] = await Promise.all([
       import('../../data/pokemon/entities.json'),
       import('../../data/pokemon/content.json'),
+      import('../../data/pokemon/stat-forms.json'),
     ]);
-    return { entities: entities.default as Entity[], contents: publishableContents(contents.default as Content[]) };
+    return { entities: entities.default as Entity[], contents: publishableContents(contents.default as Content[]), entitySets: { 'stat-builder': [...entities.default as Entity[], ...forms.default as Entity[]] } };
   },
   'dragon-ball': async () => {
     const [entities, transformations, power, contents] = await Promise.all([

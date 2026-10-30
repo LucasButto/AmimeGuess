@@ -30,6 +30,7 @@ import { ImageRevealGame } from "@/modes/image-reveal/ImageRevealGame";
 import { RevealListGame } from "@/modes/reveal-list/RevealListGame";
 import { TextClueGame } from "@/modes/text-clue/TextClueGame";
 import { TimelineGame } from "@/modes/timeline/TimelineGame";
+import { StatBuilderGame } from "@/modes/stat-builder/StatBuilderGame";
 import styles from "./ModeGame.module.scss";
 
 interface ModeGameProps {
@@ -184,6 +185,7 @@ function ModeEngine({ franchise, mode, modes, playable }: ModeGameProps) {
   function renderGame(data: FranchiseData) {
     // Las entidades que se adivinan: las de un conjunto con nombre (las formas de Dragon Ball) o las principales.
     const entities = entitiesOfMode(data, mode.entitySet);
+    if (mode.engine === 'stat-builder' && mode.statBuilder) return <StatBuilderGame franchise={franchise} mode={mode} modes={modes} config={mode.statBuilder} entities={entities} />;
 
     if (imageReveal) {
       return (

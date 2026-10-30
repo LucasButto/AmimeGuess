@@ -19,6 +19,8 @@ import type { FranchiseConfig, ModeConfig } from './types';
 export function modePoolSize(mode: ModeConfig, data: FranchiseData, active: readonly string[]): number | null {
   const entities = entitiesOfMode(data, mode.entitySet);
   switch (mode.engine) {
+    case 'stat-builder':
+      return mode.statBuilder === undefined ? null : eligibleEntities(entities, active).filter((entity) => mode.statBuilder!.stats.every((stat) => typeof entity.attrs[stat.key] === 'number')).length;
     case 'classic':
       return mode.classic === undefined ? null : eligibleEntities(entities, active).length;
     case 'image-reveal':

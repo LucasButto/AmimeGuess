@@ -5,6 +5,28 @@ import type { ModeCardState, ThemeFont } from '@/franchises/types';
 const plural = (count: number, one: string, many: string) => (count === 1 ? one : many);
 
 export const es = {
+  statBuilder: {
+    settings: 'Configuración de la partida',
+    settingsHelp: 'La dificultad define la meta de puntos y cuántas combinaciones completas podés intentar. Activá las formas regionales o las megaevoluciones para incluirlas en el sorteo; ambas opciones vienen desactivadas. Respetan las generaciones seleccionadas según su especie base.',
+    viewResult: 'Ver resultado',
+    countingResult: 'Revelando resultado…',
+    locked: 'Ya seleccionada',
+    nextPokemon: 'Tocá para el siguiente Pokémon',
+    fraction: (score: number, target: number) => `${score}/${target}`,
+    won: '¡Meta superada!',
+    difficulty: 'Dificultad', forms: 'Formas opcionales', regional: 'Formas regionales', mega: 'Megaevoluciones',
+    level: (level: number, target: number) => `${['Fácil', 'Normal', 'Difícil'][level]} · superar ${target}`,
+    stop: 'Tocá para detener', choose: 'Elegí una estadística', finished: 'Combinación terminada', stats: 'Asignar estadística',
+    progress: (attempt: number, limit: number) => `Partida ${Math.min(attempt, limit)}/${limit}`,
+    total: (score: number, target: number) => `Total: ${score} · Meta: superar ${target}`,
+    assigned: (count: number, total: number) => `${count}/${total} estadísticas asignadas`,
+    revealing: 'Estadísticas reveladas. Preparando el siguiente Pokémon…',
+    retry: 'Esta combinación no superó la meta.',
+    remaining: (remaining: number) => remaining > 0 ? `Te ${remaining === 1 ? 'queda 1 intento' : `quedan ${remaining} intentos`}.` : 'No te quedan intentos.',
+    next: 'Intentá nuevamente',
+    result: (score: number, target: number) => `Tu combinación sumó ${score} puntos. La meta era superar ${target}.`,
+    help: 'Detené la ruleta y elegí una estadística del Pokémon sin ver sus valores. Esa categoría queda seleccionada y se revelan sus seis valores hasta que toques para pasar al siguiente Pokémon. Al completar las seis categorías, tocá Ver resultado: las barras se cargan una por una y el contador suma desde cero. Al terminar Velocidad vas a saber si superaste la meta: fácil 500, normal 550 o difícil 600. Tenés 3, 4 o 5 partidas completas respectivamente. Regionales y megas son opcionales y siguen la generación de su especie base.',
+  },
   site: {
     name: 'AnimeGuess',
     description: 'Juegos diarios de adivinanza de Pokémon, Dragon Ball, Naruto y Yu-Gi-Oh.',
