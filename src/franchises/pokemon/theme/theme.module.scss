@@ -64,6 +64,7 @@
   // para cerrar. Presionados bajan un paso; deshabilitados, borde punteado.
   --button-edge: var(--palette-frame);
   --button-frame-width: var(--px);
+  --button-neutral-ink: var(--palette-frame);
   --button-ghost-hover-edge: var(--palette-frame);
   --button-press: var(--px);
   --button-lead-display: inline-block;
@@ -91,20 +92,22 @@
   // Chips de filtro: cian con tinta oscura prendidos (el de la pantalla de la Pokédex encendida; se distingue del panel
   // crema) y celeste apagado; la bola (slot ChipMark) también dice el estado.
   --chip-fill: var(--palette-cloud-shade);
-  --chip-ink: var(--color-text-muted);
+  --chip-ink: var(--palette-frame);
   --chip-edge: var(--palette-frame);
   --chip-on-fill: var(--palette-cyan);
-  --chip-on-ink: var(--palette-ink);
+  --chip-on-ink: var(--palette-frame);
   --chip-on-edge: var(--palette-frame);
 
   // Botones de volver: todo blanco con borde negro, sin el aro celeste de adentro.
   --nav-fill: var(--palette-white);
-  // Navegación entre modos: el modo actual no se destaca (fondo blanco como los demás) y los resueltos hoy van en verde.
-  --pill-current-fill: var(--palette-white);
-  --pill-current-ink: var(--palette-ink);
-  // El modo actual se marca con el cursor ▶ (el relleno queda para lo resuelto: verde, o blanco si no).
-  --pill-solved-fill: var(--color-match);
-  --pill-solved-ink: var(--palette-white);
+  // El modo actual usa el azul de los filtros; los demás quedan blancos, incluso si están resueltos.
+  --pill-idle-fill: var(--palette-white);
+  --pill-current-fill: var(--chip-on-fill);
+  --pill-current-ink: var(--chip-on-ink);
+  --pill-current-solved-fill: var(--chip-on-fill);
+  --pill-current-solved-ink: var(--chip-on-ink);
+  --pill-solved-fill: var(--palette-white);
+  --pill-solved-ink: var(--palette-ink);
   --nav-inner: var(--palette-white);
   --nav-inner-width: 0px;
 

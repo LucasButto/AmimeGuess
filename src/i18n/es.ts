@@ -465,6 +465,10 @@ export const es = {
       mistakes: (used: number, total: number) => `Fallos: ${used}/${total}`,
       help: 'Los intentos disponibles se muestran en la partida. Al agotarlos sin resolver el reto, perdés. Con menos opciones activas, los modos de adivinar pueden tener menos intentos.',
     },
+    modePickerTitle: 'Modos de juego:',
+    previousMode: 'Mostrar modo anterior',
+    nextMode: 'Mostrar modo siguiente',
+    currentMode: 'Modo actual',
     surrender: {
       button: 'Rendirse',
       title: '¿Rendirse en esta partida?',

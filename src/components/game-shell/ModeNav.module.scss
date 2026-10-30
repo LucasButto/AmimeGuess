@@ -2,25 +2,103 @@
 @use 'tokens' as t;
 @use 'mixins' as m;
 
-.list {
-  // Es el contenedor de lo que se desplaza: sin esto, el texto oculto para lectores de pantalla
-  // (position: absolute) de las pastillas que quedan fuera de la vista se escapa del recorte y
-  // el navegador del teléfono ensancha toda la ventana para que quepa.
-  position: relative;
-  display: flex;
+.root {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
   gap: t.$space-2;
-  margin: 0;
-  // Un poco de aire para que el anillo de foco no se recorte al desplazar.
-  padding: 0.375rem 0.375rem t.$space-2;
-  list-style: none;
-  // Teléfono: una fila que se desplaza; el modo siguiente asoma por el borde.
-  overflow-x: auto;
-  scrollbar-width: thin;
-  overscroll-behavior-x: contain;
 
   @include bp.min-width('md') {
+    display: block;
+  }
+}
+
+.label {
+  grid-column: 1 / -1;
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+  text-align: center;
+}
+
+.previous,
+.next {
+  --icon-b-fill: #{t.token('surface-panel')};
+  --icon-b-ink: #{t.token('ink')};
+  --icon-hover-ink: #{t.token('ink')};
+  inline-size: t.$touch-target;
+  block-size: t.$touch-target;
+  flex: none;
+}
+
+.previous { grid-column: 1; grid-row: 2; }
+.next { grid-column: 3; grid-row: 2; }
+.leftArrow { transform: rotate(180deg); }
+
+.label,
+.previous,
+.next,
+.announcement {
+  @include bp.min-width('md') {
+    display: none;
+  }
+}
+
+.list {
+  position: relative;
+  grid-column: 2;
+  grid-row: 2;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  align-items: center;
+  // Reserva dos líneas para los nombres largos, sin saltos al recorrer los modos.
+  min-block-size: 4rem;
+
+  > li {
+    display: none;
+    min-inline-size: 0;
+
+    &[data-visible='true'] { display: block; }
+  }
+
+  .pill {
+    inline-size: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    --_fill: var(--pill-idle-fill, #{t.token('surface-panel')});
+    --_ink: #{t.token('ink')};
+
+    &[aria-current='page'] {
+      --_fill: #{t.token('chip-on-fill')};
+      --_ink: #{t.token('chip-on-ink')};
+      --_edge: #{t.token('chip-on-edge')};
+    }
+  }
+
+  @include bp.min-width('md') {
+    display: flex;
     flex-wrap: wrap;
-    overflow: visible;
+    gap: t.$space-2;
+    min-block-size: 0;
+    padding: t.$space-1;
+
+    > li,
+    > li[data-visible='true'] { display: block; }
+
+    .pill {
+      inline-size: auto;
+      white-space: nowrap;
+      &[data-state='current'] {
+        --_fill: var(--pill-current-fill, #{t.token('accent-primary')});
+        --_ink: var(--pill-current-ink, #{t.token('accent-primary-ink')});
+      }
+      &[data-state='solved'] {
+        --_fill: var(--pill-solved-fill, #{t.token('surface-panel')});
+        --_ink: var(--pill-solved-ink, #{t.token('ink')});
+      }
+    }
   }
 }
 
@@ -103,4 +181,23 @@
 .check {
   color: t.color('match');
   font-weight: t.$font-weight-bold;
+}
+
+// La selección sigue visible aunque el reto ya esté resuelto.
+.root .list .pill[aria-current='page'] {
+  --_fill: #{t.token('chip-on-fill')};
+  --_ink: #{t.token('chip-on-ink')};
+  --_edge: #{t.token('chip-on-edge')};
+
+  @include bp.min-width('md') {
+    --_fill: var(--pill-current-fill, #{t.token('accent-primary')});
+    --_ink: var(--pill-current-ink, #{t.token('accent-primary-ink')});
+    --_edge: var(--button-edge, #{t.token('accent-primary')});
+  }
+}
+
+.root .list .pill[data-solved='true'] {
+  --_fill: #{t.color('match')};
+  --_ink: #{t.color('on-result')};
+  --_edge: var(--button-edge, #{t.color('match')});
 }

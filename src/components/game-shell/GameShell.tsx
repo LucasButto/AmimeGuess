@@ -308,7 +308,6 @@ export function GameShell({
               solved={solved}
               filterKey={filterKey}
               label={es.shell.nextModesLabel}
-              revealCurrent={false}
             />
           </section>
           {/* Un recuadro aparte, del estilo de los cuadros de diálogo (como el aviso legal), para que no se pierda. */}

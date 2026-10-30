@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useId, useState } from 'react';
+import { Button } from '../ui/Button';
 import { es } from '@/i18n/es';
 import { useSkin } from '../skin/context';
 import { PixelIcon } from '../ui/icons';
@@ -20,37 +21,39 @@ interface ModeNavProps {
   filterKey?: string;
   /** Nombre de la navegación para lectores de pantalla; si hay dos en la página, el de la segunda tiene que ser otro. */
   label?: string;
-  /** Si al montarse lleva el modo actual a la vista dentro de la fila (la navegación de arriba sí; la del final no). */
-  revealCurrent?: boolean;
 }
 
-/**
- * Navegación entre los modos de la franquicia. En un teléfono es una fila que
- * se desplaza hacia los costados, con el modo actual a la vista; desde tablet
- * se acomoda en varias líneas. Los modos que todavía no existen se ven
- * apagados y sin link.
- */
-export function ModeNav({ franchise, modes, current, solved, filterKey, label = es.shell.modesLabel, revealCurrent = true }: ModeNavProps) {
-  const currentRef = useRef<HTMLElement | null>(null);
+/** En móvil se exploran los modos con flechas y se entra tocando el nombre; desde tablet se ven todos. */
+export function ModeNav({ franchise, modes, current, solved, filterKey, label = es.shell.modesLabel }: ModeNavProps) {
+  const listId = useId();
+  const [preview, setPreview] = useState<{ page: string; slug: string } | null>(null);
+  const page = `${franchise}/${current}`;
+  const selectedSlug = preview?.page === page ? preview.slug : current;
+  const selectedIndex = Math.max(0, modes.findIndex((mode) => mode.slug === selectedSlug));
   const { skin, leaveTo } = useSkin();
   const { ModeIcon } = skin.slots;
 
-  useEffect(() => {
-    if (revealCurrent) currentRef.current?.scrollIntoView({ block: 'nearest', inline: 'center' });
-  }, [revealCurrent]);
+  function browse(direction: -1 | 1) {
+    if (modes.length < 2) return;
+    const index = (selectedIndex + direction + modes.length) % modes.length;
+    setPreview({ page, slug: modes[index].slug });
+  }
 
   return (
-    <nav aria-label={label} data-part="mode-nav">
-      <ul className={styles.list}>
+    <nav className={styles.root} aria-label={label} data-part="mode-nav">
+      <p className={styles.label}>{es.shell.modePickerTitle}</p>
+      <Button variant="icon" tone="b" className={styles.previous} aria-label={es.shell.previousMode} aria-controls={listId} disabled={modes.length < 2} onClick={() => browse(-1)}>
+        <PixelIcon name="cursor" className={styles.leftArrow} />
+      </Button>
+      <ul id={listId} className={styles.list}>
         {modes.map((mode, index) => {
           const isCurrent = mode.slug === current;
           const isSolved = solved?.has(mode.slug) ?? false;
-          const setRef = isCurrent ? (element: HTMLElement | null) => void (currentRef.current = element) : undefined;
 
           if (!mode.available) {
             return (
-              <li key={mode.slug}>
-                <span ref={setRef} className={styles.pill} data-state="soon" aria-current={isCurrent ? 'page' : undefined}>
+              <li key={mode.slug} data-visible={index === selectedIndex}>
+                <span className={styles.pill} data-state="soon" aria-current={isCurrent ? 'page' : undefined}>
                   <ModeIcon slug={mode.slug} index={index} current={isCurrent} solved={false} />
                   {mode.name}
                   <VisuallyHidden> ({es.shell.modeSoon})</VisuallyHidden>
@@ -60,9 +63,8 @@ export function ModeNav({ franchise, modes, current, solved, filterKey, label = 
           }
 
           return (
-            <li key={mode.slug}>
+            <li key={mode.slug} data-visible={index === selectedIndex}>
               <Link
-                ref={setRef}
                 className={styles.pill}
                 href={`/${franchise}/${mode.slug}${filterKey ? `?s=${filterKey}` : ''}`}
                 onClick={(event) => leaveTo(event, `/${franchise}/${mode.slug}${filterKey ? `?s=${filterKey}` : ''}`)}
@@ -75,24 +77,20 @@ export function ModeNav({ franchise, modes, current, solved, filterKey, label = 
                     <PixelIcon name="cursor" />
                   </span>
                 )}
-                <ModeIcon slug={mode.slug} index={index} current={isCurrent} solved={isSolved} />
+                <ModeIcon slug={mode.slug} index={index} current={isCurrent} solved={false} />
                 {mode.name}
-                {isSolved && (
-                  <>
-                    {/* La tilde acompaña al color, si el tema la quiere: el estado no depende solo de él. */}
-                    {skin.cellMarks === 'all' && (
-                      <span aria-hidden="true" className={styles.check}>
-                        ✓
-                      </span>
-                    )}
-                    <VisuallyHidden> ({es.shell.modeSolved})</VisuallyHidden>
-                  </>
-                )}
+                {isSolved && <VisuallyHidden> ({es.shell.modeSolved})</VisuallyHidden>}
               </Link>
             </li>
           );
         })}
       </ul>
+      <Button variant="icon" tone="b" className={styles.next} aria-label={es.shell.nextMode} aria-controls={listId} disabled={modes.length < 2} onClick={() => browse(1)}>
+        <PixelIcon name="cursor" />
+      </Button>
+      <VisuallyHidden className={styles.announcement} role="status">
+        {modes[selectedIndex]?.name}{modes[selectedIndex]?.slug === current ? ` · ${es.shell.currentMode}` : ''}
+      </VisuallyHidden>
     </nav>
   );
 }

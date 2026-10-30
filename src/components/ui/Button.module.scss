@@ -7,7 +7,7 @@
 // 1 px y esquinas redondeadas; una piel cambia el recorte, el borde y las decoraciones.
 .button {
   --_fill: #{t.token('surface-panel')};
-  --_ink: #{t.token('ink')};
+  --_ink: var(--button-neutral-ink, #{t.token('ink')});
   --_edge: #{t.token('frame-color')};
   --_frame: #{t.token('button-frame-width')};
   --_clip: #{t.token('clip-button')};
