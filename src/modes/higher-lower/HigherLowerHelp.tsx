@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { AttemptRules } from '@/components/game-shell/AttemptRules';
 import { es } from '@/i18n/es';
 import styles from './HigherLowerHelp.module.scss';
 import type { HigherLowerConfig } from './types';
@@ -8,9 +10,10 @@ interface HigherLowerHelpProps {
 
 /** Lo que Mayor o Menor aporta al "Cómo se juega": la meta, cómo termina y qué se compara cada día. */
 export function HigherLowerHelp({ config }: HigherLowerHelpProps) {
+  const mistakes = useContext(AttemptRules)?.base ?? 1;
   return (
     <div className={styles.root}>
-      <p>{es.higherLower.help.goal}</p>
+      <p>{mistakes === 1 ? es.higherLower.help.goal : es.higherLower.help.goalWithMistakes(mistakes)}</p>
       <p>{es.higherLower.help.sequence}</p>
 
       <section>

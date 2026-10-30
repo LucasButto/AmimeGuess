@@ -9,7 +9,7 @@ import type { Entity } from '@/engine/types';
 import { es } from '@/i18n/es';
 import { HigherLowerBoard } from './HigherLowerBoard';
 import { HigherLowerHelp } from './HigherLowerHelp';
-import { MAX_ROUNDS, buildRounds, metricOfDay, poolOf } from './logic';
+import { MAX_ROUNDS, buildRounds, endlessRounds, metricOfDay, poolOf } from './logic';
 import { MetricPicker } from './MetricPicker';
 import type { HigherLowerConfig, HigherLowerMetric } from './types';
 
@@ -113,11 +113,15 @@ function HigherLowerSession({ session, config, entities, chosen }: HigherLowerSe
     [config.metrics, chosen, day],
   );
   const pool = useMemo(() => poolOf(entities, active, config.metrics), [entities, active, config.metrics]);
+  const sequence = useMemo(
+    () => session.practice ? endlessRounds(pool, metric.key, { franchise, mode, filterKey, day }, config.minRatio) : undefined,
+    [session.practice, pool, metric.key, franchise, mode, filterKey, day, config.minRatio],
+  );
   const rounds = useMemo(
-    () => buildRounds(pool, metric.key, { franchise, mode, filterKey, day }, MAX_ROUNDS, config.minRatio),
-    [pool, metric.key, franchise, mode, filterKey, day, config.minRatio],
+    () => sequence?.(1) ?? buildRounds(pool, metric.key, { franchise, mode, filterKey, day }, MAX_ROUNDS + (session.attemptLimit ?? 1) - 1, config.minRatio),
+    [sequence, session.attemptLimit, pool, metric.key, franchise, mode, filterKey, day, config.minRatio],
   );
 
   if (rounds.length === 0) return <p role="status">{es.higherLower.noRounds}</p>;
-  return <HigherLowerBoard session={session} metric={metric} rounds={rounds} />;
+  return <HigherLowerBoard session={session} metric={metric} rounds={rounds} extendRounds={sequence} />;
 }

@@ -7,6 +7,7 @@ import {
   GRID_ROW,
   MAX_ROUNDS,
   buildRounds,
+  endlessRounds,
   formatMetric,
   formatScientific,
   formatValue,
@@ -16,6 +17,7 @@ import {
   progressOf,
   restorePicks,
   shareGrid,
+  sharePicks,
   valueOf,
   winnerOf,
   type Round,
@@ -192,6 +194,55 @@ describe('buildRounds', () => {
   });
 });
 
+describe('normal e infinito', () => {
+  it('try permite editar los fallos: el normal sigue hasta diez aciertos y el infinito hasta agotarlos', () => {
+    const rounds = buildRounds(POOL, 'peso', ctx, 12);
+    const loser = (i: number) => winnerOf(rounds[i]) === rounds[i].a ? rounds[i].b.id : rounds[i].a.id;
+    const picks = rounds.slice(0, 11).map((round) => winnerOf(round).id);
+    picks[0] = loser(0);
+    expect(progressOf(picks.slice(0, 10), rounds, 2, 10)).toEqual({ score: 9, ended: false, failedAt: null });
+    expect(progressOf(picks, rounds, 2, 10)).toEqual({ score: 10, ended: true, failedAt: null });
+    expect(progressOf(picks, rounds, 2).ended).toBe(false);
+    expect(progressOf([...picks, loser(11)], rounds, 2)).toEqual({ score: 10, ended: true, failedAt: 11 });
+    expect(restorePicks([...picks, loser(11)], rounds, 2)).toHaveLength(12);
+    expect(sharePicks(picks, rounds)).toEqual(['🟥' + '🟩'.repeat(9), '🟩']);
+  });
+  it('el normal termina exactamente al décimo acierto', () => {
+    const rounds = buildRounds(POOL, 'peso', ctx);
+    expect(rounds).toHaveLength(10);
+    const picks = rounds.map((round) => winnerOf(round).id);
+    expect(progressOf(picks.slice(0, 9), rounds).ended).toBe(false);
+    expect(progressOf(picks, rounds)).toEqual({ score: 10, ended: true, failedAt: null });
+  });
+
+  it('infinito conserva los pares jugados y sigue después de 10, 30 y 1000 aciertos', () => {
+    const sequence = endlessRounds(POOL, 'peso', ctx);
+    const first = [...sequence(1)];
+    const picks: string[] = [];
+    for (let i = 0; i < 1001; i++) {
+      picks.push(winnerOf(sequence(i + 1)[i]).id);
+      expect(progressOf(picks, sequence(picks.length + 1))).toEqual({ score: picks.length, ended: false, failedAt: null });
+    }
+    expect(sequence(1002).slice(0, first.length)).toEqual(first);
+    expect(endlessRounds(POOL, 'peso', ctx)(1002)).toEqual(sequence(1002));
+    const rounds = sequence(1002);
+    const last = rounds[picks.length];
+    const loser = winnerOf(last) === last.a ? last.b : last.a;
+    expect(progressOf([...picks, loser.id], rounds)).toEqual({ score: 1001, ended: true, failedAt: 1001 });
+  });
+
+  it('continúa con pocos pares posibles y respeta minRatio', () => {
+    const sequence = endlessRounds(POOL.slice(0, 3), 'peso', ctx, 2);
+    const rounds = sequence(101);
+    expect(rounds.length).toBeGreaterThanOrEqual(101);
+    expect(rounds.every((round) => hasRatio(round.aValue, round.bValue, 2))).toBe(true);
+    const picks = rounds.slice(0, 100).map((round) => winnerOf(round).id);
+    expect(restorePicks(picks, rounds)).toEqual(picks);
+    expect(progressOf(picks, rounds).ended).toBe(false);
+    expect(endlessRounds([], 'peso', ctx)(100)).toEqual([]);
+  });
+});
+
 describe('progressOf y restorePicks', () => {
   const rounds: Round[] = [
     { a: entity('a1', ['g1'], {}), b: entity('b1', ['g1'], {}), aValue: 10, bValue: 5 }, // gana a1
@@ -316,7 +367,7 @@ describe('minRatio · pares con diferencia suficiente', () => {
 
   it('todos los pares ofrecidos difieren al menos en un orden de magnitud', () => {
     const rounds = buildRounds(WIDE, 'peso', ctx, MAX_ROUNDS, 10);
-    expect(rounds.length).toBeGreaterThan(10);
+    expect(rounds.length).toBe(MAX_ROUNDS);
     for (const round of rounds) expect(Math.max(round.aValue, round.bValue) / Math.min(round.aValue, round.bValue)).toBeGreaterThanOrEqual(10);
   });
 

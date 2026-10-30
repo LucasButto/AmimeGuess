@@ -2,8 +2,9 @@ import { STORAGE_PREFIX } from '@/engine/storage';
 
 // Modo infinito: partidas extra de un modo, con los mismos filtros, después de terminar el reto del día.
 // Cada partida es un reto más del mismo motor: en lugar del número de un día real (el día 0 es el 2026-01-01, así que
-// hoy va por unos cientos) usa un "día" de práctica, un número enorme elegido al empezar. El motor no se entera: el
-// reto sale de (franquicia, modo, filtros, ese número) y del dataset, como siempre.
+// hoy va por unos cientos) usa un "día" de práctica, un número enorme elegido al empezar. El reto sale de
+// (franquicia, modo, filtros, ese número) y del dataset. La sesión también indica `practice` para que
+// Mayor o Menor pueda extender la secuencia y conservar su récord sin cambiar las estadísticas diarias.
 
 /** Desde acá un número es un día de práctica; ningún día real llega ni cerca. */
 export const PRACTICE_FROM = 1_000_000;

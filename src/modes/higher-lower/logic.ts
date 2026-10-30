@@ -11,7 +11,9 @@ import type { Entity } from '@/engine/types';
 import type { HigherLowerMetric } from './types';
 
 /** Rondas de una partida: quien las acierta todas termina con puntaje perfecto. */
-export const MAX_ROUNDS = 30;
+export const MAX_ROUNDS = 10;
+/** Tamaño de generación, sin limitar la duración del modo infinito. */
+const ENDLESS_BATCH = 30;
 
 // --- Métrica y pool -----------------------------------------------------------
 
@@ -104,6 +106,27 @@ export function buildRounds(
   return rounds;
 }
 
+/**
+ * Secuencia infinita por tandas deterministas. La tanda es una unidad de generación,
+ * nunca un límite de la partida; pueden repetirse pares entre tandas.
+ * Conserva el prefijo ya entregado y solo genera más cuando se necesitan.
+ */
+export function endlessRounds(pool: readonly Entity[], metricKey: string, ctx: DailyContext, minRatio = 1) {
+  const first = buildRounds(pool, metricKey, ctx, ENDLESS_BATCH, minRatio);
+  let cached = first;
+  let batch = 1;
+  return (length: number): readonly Round[] => {
+    if (first.length === 0) return first;
+    while (cached.length < length) {
+      const next = buildRounds(pool, metricKey, { ...ctx, mode: `${ctx.mode}~endless-${batch++}` }, ENDLESS_BATCH, minRatio);
+      // Un sorteo puede no encontrar pares en un pool con muchos empates: los
+      // de la primera tanda siguen siendo válidos y permiten continuar.
+      cached = [...cached, ...(next.length ? next : first)];
+    }
+    return cached;
+  };
+}
+
 // --- Partida ------------------------------------------------------------------
 
 /** Cómo va una partida con las elecciones hechas (el id de la entidad elegida en cada ronda). */
@@ -116,13 +139,15 @@ export interface Progress {
   readonly failedAt: number | null;
 }
 
-export function progressOf(picks: readonly string[], rounds: readonly Round[]): Progress {
+export function progressOf(picks: readonly string[], rounds: readonly Round[], maxMistakes = 1, target = rounds.length): Progress {
   let score = 0;
+  let mistakes = 0;
   for (let index = 0; index < picks.length && index < rounds.length; index++) {
-    if (picks[index] !== winnerOf(rounds[index]).id) return { score, ended: true, failedAt: index };
-    score++;
+    if (picks[index] !== winnerOf(rounds[index]).id) {
+      if (++mistakes >= maxMistakes) return { score, ended: true, failedAt: index };
+    } else score++;
   }
-  return { score, ended: score >= rounds.length, failedAt: null };
+  return { score, ended: score >= target || picks.length >= rounds.length, failedAt: null };
 }
 
 /**
@@ -130,19 +155,28 @@ export function progressOf(picks: readonly string[], rounds: readonly Round[]): 
  * uno de los dos de su ronda (el dataset pudo cambiar) y no hay nada después del
  * primer error. Se queda con la parte válida desde el principio.
  */
-export function restorePicks(stored: readonly unknown[] | undefined, rounds: readonly Round[]): string[] {
+export function restorePicks(stored: readonly unknown[] | undefined, rounds: readonly Round[], maxMistakes = 1): string[] {
   const picks: string[] = [];
+  let mistakes = 0;
   for (const id of stored ?? []) {
     const round = rounds[picks.length];
     if (round === undefined || typeof id !== 'string' || (id !== round.a.id && id !== round.b.id)) break;
     picks.push(id);
-    if (id !== winnerOf(round).id) break;
+    if (id !== winnerOf(round).id && ++mistakes >= maxMistakes) break;
   }
   return picks;
 }
 
 /** Cuadrados por línea en la grilla para compartir. */
 export const GRID_ROW = 10;
+
+/** Conserva también los errores intermedios cuando `try` permite más de uno. */
+export function sharePicks(picks: readonly string[], rounds: readonly Round[]): string[] {
+  const marks = picks.map((id, index) => id === winnerOf(rounds[index]).id ? '🟩' : '🟥');
+  const lines: string[] = [];
+  for (let start = 0; start < marks.length; start += GRID_ROW) lines.push(marks.slice(start, start + GRID_ROW).join(''));
+  return lines;
+}
 
 /**
  * Grilla para compartir: un cuadrado por jugada, 🟩 por cada acierto y 🟥 por el

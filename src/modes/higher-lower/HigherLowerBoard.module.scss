@@ -33,12 +33,18 @@
 }
 
 .meta {
+  align-items: center;
   display: flex;
-  flex-wrap: wrap;
   gap: t.$space-1 t.$space-4;
   font-size: t.$font-size-sm;
   font-weight: t.$font-weight-medium;
   color: t.token('ink-muted');
+}
+
+.scoreInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-1 t.$space-4;
 }
 
 .score {
@@ -187,6 +193,9 @@
 
   // La franja de la izquierda dice con color lo que el texto dice con palabras: acierto o error.
   --_mark: #{t.token('cell-incorrect')};
+  &[data-correct='false'] {
+    --frame-dialog-inner: #{t.token('cell-incorrect')};
+  }
   @include m.pixel-frame(
     $fill: (linear-gradient(to right, var(--_mark) 0 #{t.token('result-mark-width')}, transparent #{t.token('result-mark-width')}), t.token('surface-dialog')),
     $inner: t.token('frame-dialog-inner')

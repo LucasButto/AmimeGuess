@@ -346,6 +346,11 @@ export const es = {
   higherLower: {
     roundLabel: (round: number) => `Ronda ${round}`,
     score: (score: number) => `Aciertos seguidos: ${score}`,
+    totalScore: (score: number) => `Aciertos: ${score}`,
+    dailyScore: (score: number, total: number) => `Aciertos: ${score}/${total}`,
+    record: (score: number) => `Récord histórico: ${score}`,
+    target: (score: number) => `Objetivo: ${score} ${plural(score, 'acierto', 'aciertos')}`,
+    newRecord: '¡Nuevo récord!',
     optionsLabel: 'Opciones',
     // Elegir qué comparar (en las franquicias con varias medidas).
     metricsLabel: 'Qué comparar',
@@ -363,7 +368,8 @@ export const es = {
       `Tenía el mayor valor ${winner} (${winnerValue}), frente a ${loser} (${loserValue}).`,
     help: {
       goal: 'Elegí cuál de los dos tiene el valor mayor. Si acertás, sigue otro par; la partida termina con el primer error y tu puntaje son los aciertos seguidos.',
-      sequence: 'Los pares son los mismos para todo el mundo con los mismos filtros, y nunca empatan.',
+      goalWithMistakes: (total: number) => `Elegí cuál de los dos tiene el valor mayor. Cada acierto suma un punto; la partida termina cuando acumulás ${total} fallos.`,
+      sequence: 'El reto normal se completa con 10 aciertos. Los pares son los mismos para todo el mundo con los mismos filtros, y nunca empatan. En modo infinito no hay límite de rondas: superá tu récord histórico para esa medida y esos filtros.',
       metricsTitle: 'Qué se compara',
       metricsIntro: 'Cada día se juega una de estas medidas, en rotación ("Del día"), y también podés elegir cuál comparar. Cada una es otra partida:',
     },

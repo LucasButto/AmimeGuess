@@ -324,13 +324,13 @@ describe('Nivel de poder', () => {
     let total = 0;
     for (let day = 0; day < 60; day++) {
       const rounds = buildRounds(pool, metricOfDay(metrics, day).key, { ...ctx, mode: 'poder', day }, MAX_ROUNDS, higherLower().minRatio);
-      expect(rounds.length, `día ${day}`).toBeGreaterThan(10);
+      expect(rounds.length, `día ${day}`).toBe(MAX_ROUNDS);
       for (const round of rounds) {
         total++;
         expect(Math.max(round.aValue, round.bValue) / Math.min(round.aValue, round.bValue), `${round.a.id} vs ${round.b.id}`).toBeGreaterThanOrEqual(10);
       }
     }
-    expect(total).toBeGreaterThan(600);
+    expect(total).toBe(60 * MAX_ROUNDS);
   });
 
   it('la secuencia es la misma para quien tenga los mismos filtros', () => {
