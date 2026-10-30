@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
+import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent } from 'react';
 import { TitleWords } from '@/components/TitleWords';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import { useSolvedToday } from '@/components/useSolvedToday';
@@ -172,14 +172,14 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
             <span className={styles.knob} aria-hidden="true" />
             <span className={styles.knob} aria-hidden="true" data-small />
             <div className={styles.tuner}>
-              <button type="button" className={styles.tune} aria-label={es.home.channelUp} onClick={() => tune(wanted.current + 1)}>▲</button>
-              <button type="button" className={styles.tune} aria-label={es.home.channelDown} onClick={() => tune(wanted.current - 1)}>▼</button>
+              <button type="button" className={styles.tune} aria-label={es.home.channelDown} onClick={() => tune(wanted.current - 1)}>◀</button>
+              <button type="button" className={styles.tune} aria-label={es.home.channelUp} onClick={() => tune(wanted.current + 1)}>▶</button>
             </div>
           </div>
         </div>
         <span className={styles.stand} aria-hidden="true" />
       </section>
-      <div className={styles.floor}>
+      <div className={styles.floor} style={{ '--channel-count': channels.length, '--mobile-columns': Math.min(2, channels.length) } as CSSProperties}>
         <nav className={styles.remote} aria-label={es.home.remoteLabel}>
           {channels.map((channel, position) => (
             <RemoteButton key={channel.slug} channel={channel} active={position === index} onTune={() => tune(position)} onNavigate={enter} />
