@@ -4,6 +4,28 @@ import type { Entity } from '@/engine/types';
 import type { StatBuilderConfig } from './types';
 
 export interface Assignment { readonly key: string; readonly entityId: string }
+/** Try every assignment of the drawn occurrences (including repeated entities).
+ * Six slots have only 720 permutations; ties keep the player's combination. */
+export function bestBuild(build: readonly Assignment[], pool: readonly Entity[]): Assignment[] {
+  let best = [...build];
+  let maximum = totalOf(best, pool);
+  const used = new Set<number>();
+  function visit(next: Assignment[]) {
+    if (next.length === build.length) {
+      const total = totalOf(next, pool);
+      if (total > maximum) { maximum = total; best = [...next]; }
+      return;
+    }
+    for (let index = 0; index < build.length; index++) {
+      if (used.has(index)) continue;
+      used.add(index);
+      visit([...next, { key: build[next.length].key, entityId: build[index].entityId }]);
+      used.delete(index);
+    }
+  }
+  visit([]);
+  return best;
+}
 export const limitFor = (base: number, level: number): number => Math.max(1, base + level - 1);
 export function outcomeOf(attempts: readonly (readonly Assignment[])[], pool: readonly Entity[], target: number, limit: number) {
   const won = attempts.some((attempt) => totalOf(attempt, pool) > target);

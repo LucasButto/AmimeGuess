@@ -2,7 +2,7 @@
 @use 'breakpoints' as bp;
 @use 'mixins' as m;
 .root { display: grid; gap: t.$space-4; }
-.settingsHeader { display: flex; align-items: center; gap: t.$space-2; }
+.settingsHeader { display: flex; align-items: center; gap: t.$space-3; }
 .settingsTitle { font-size: t.$font-size-base; font-weight: t.$font-weight-bold; }
 .choices, .flags { display: flex; flex-wrap: wrap; gap: t.$space-2; }
 .board { display: grid; gap: t.$space-4; @include bp.min-width('md') { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
@@ -42,3 +42,14 @@
 .summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: t.$space-3; }
 .value { font-weight: t.$font-weight-bold; color: t.token('ink'); }
 .reveal { font-size: t.$font-size-sm; color: t.token('ink-muted'); }
+
+.name { min-block-size: 2rem; }
+
+.optimal { @include m.engine-panel; font-size: t.$font-size-lg; line-height: t.$line-height-base; display: grid; gap: t.$space-3; padding: t.$space-4; }
+.optimal h2 { font-size: t.$font-size-lg; }
+.optimalList { display: grid; gap: t.$space-3; list-style: none; margin: 0; padding: 0; @include bp.min-width('lg') { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.optimalItem { display: flex; align-items: center; gap: t.$space-3; min-inline-size: 0; overflow-wrap: anywhere; }
+.optimalImage { display: none; @include bp.min-width('sm') { display: block; } inline-size: 3rem; block-size: 3rem; object-fit: contain; flex: none; }
+.change { color: t.token('ink-muted'); }
+
+.optimalDetails { min-inline-size: 0; }
