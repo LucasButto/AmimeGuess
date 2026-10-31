@@ -182,14 +182,19 @@ describe('PMD archivos generados', () => {
     expect(manifest.portraitIndex).toBe('/img/pokemon/pmd/index.json');
     expect(portraitIndex.snapshot).toBe(PMD_SNAPSHOT);
     expect(Object.keys(portraitIndex.portraits)).toHaveLength(1025);
-    const tracker: Record<string, { portrait_files: Record<string, boolean> }> = JSON.parse(readFileSync(path.join(root, 'data-src/pokemon/pmd', PMD_SNAPSHOT, 'tracker.json'), 'utf8'));
+    const trackerPath = path.join(root, 'data-src/pokemon/pmd', PMD_SNAPSHOT, 'tracker.json');
+    const tracker: Record<string, { portrait_files: Record<string, boolean> }> | null = existsSync(trackerPath) ? JSON.parse(readFileSync(trackerPath, 'utf8')) : null;
+    const resources = new Set(credits.resources.map((resource) => resource.id));
     for (const emotion of Object.keys(PMD_PORTRAIT_EMOTIONS) as PortraitEmotion[]) {
       const available: number[] = [], missing: number[] = [];
       for (const entity of entities) {
         const number = entity.attrs.numero, dex = String(number).padStart(4, '0');
         const entry = portraitIndex.portraits[dex];
         expect(entry.entityId).toBe(entity.id);
-        if (Object.hasOwn(tracker[dex].portrait_files, PMD_PORTRAIT_EMOTIONS[emotion])) {
+        const hasPortrait = resources.has(`portrait/${dex}/${PMD_PORTRAIT_EMOTIONS[emotion]}`);
+        // Optional source audit: clean checkouts validate committed outputs without downloading the cache.
+        if (tracker) expect(hasPortrait).toBe(Object.hasOwn(tracker[dex].portrait_files, PMD_PORTRAIT_EMOTIONS[emotion]));
+        if (hasPortrait) {
           expect(entry[emotion]).toBe(`/img/pokemon/pmd/${dex}/${emotion}.png`);
           available.push(number);
         } else {
@@ -217,8 +222,11 @@ describe('PMD archivos generados', () => {
         expect(image.subarray(1, 4).toString()).toBe('PNG');
         expect(image.readUInt32BE(16)).toBe(40);
         expect(image.readUInt32BE(20)).toBe(40);
-        const original = readFileSync(path.join(root, 'data-src/pokemon/pmd', PMD_SNAPSHOT, `portrait/${dex}/${name}.png`));
-        expect(sameVisiblePixels(await sharp(original).ensureAlpha().raw().toBuffer(), await sharp(image).ensureAlpha().raw().toBuffer())).toBe(true);
+        const originalPath = path.join(root, 'data-src/pokemon/pmd', PMD_SNAPSHOT, `portrait/${dex}/${name}.png`);
+        if (existsSync(originalPath)) {
+          const original = readFileSync(originalPath);
+          expect(sameVisiblePixels(await sharp(original).ensureAlpha().raw().toBuffer(), await sharp(image).ensureAlpha().raw().toBuffer())).toBe(true);
+        }
         expect(resource?.contributions.length).toBeGreaterThan(0);
       }
     }
