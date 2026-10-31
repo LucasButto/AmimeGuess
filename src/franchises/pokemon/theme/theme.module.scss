@@ -24,6 +24,9 @@
 // (variables --palette-*), que cubre el test de contraste.
 .root {
   // Superficies y tintas: panel crema con tinta oscura y sombra gris; la pantalla, azul noche.
+  --game-menu-selection: var(--palette-orange);
+  --game-menu-icon-edge: var(--palette-frame);
+  --game-menu-icon-fill: var(--palette-red);
   --surface-page: var(--palette-sky-2);
   --surface-panel: var(--palette-cream);
   --surface-dialog: var(--palette-cream);

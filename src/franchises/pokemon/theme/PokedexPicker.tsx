@@ -4,6 +4,7 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState, type Keyboard
 import { type AutocompleteItem } from '@/components/Autocomplete';
 import { Modal, type ModalOffset, type ModalSize } from '@/components/Modal';
 import { buildSearchIndex } from '@/components/search';
+import { Switch } from '@/components/ui/Switch';
 import { Button } from '@/components/ui/Button';
 import { Chip } from '@/components/ui/Chip';
 import { PixelIcon } from '@/components/ui/icons';
@@ -63,16 +64,18 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
   const types = useMemo(() => [...plainTypes, MONOTYPE_FILTER], [plainTypes]);
   // Por defecto todo activo (las generaciones son las series activas del modo, que ya recortan el pool) menos el guion.
   const activeFilters = useMemo(() => ({
+    exactTypes: filters?.exactTypes ?? false,
     generations: (filters?.generations ?? generations).filter((value) => generations.includes(value)),
     types: (filters?.types ?? plainTypes).filter((value) => types.includes(value)),
   }), [filters, generations, plainTypes, types]);
   const monotype = activeFilters.types.includes(MONOTYPE_FILTER);
   const chosenTypes = activeFilters.types.filter((type) => type !== MONOTYPE_FILTER);
-  const activeCount = generations.length - activeFilters.generations.length + plainTypes.length - chosenTypes.length + (monotype ? 1 : 0);
+  const activeCount = generations.length - activeFilters.generations.length + plainTypes.length - chosenTypes.length + (monotype ? 1 : 0) + (activeFilters.exactTypes ? 1 : 0);
   // Todo activo no restringe; nada activo no muestra nada (una lista vacía, para filterByFacets, es "sin filtro").
   const facetQuery = useMemo(() => ({
+    exactTypes: activeFilters.exactTypes,
     generations: activeFilters.generations.length === generations.length ? [] : activeFilters.generations.length ? activeFilters.generations : [-1],
-    types: [...(chosenTypes.length === plainTypes.length ? [] : chosenTypes.length ? chosenTypes : ['']), ...(monotype ? [MONOTYPE_FILTER] : [])],
+    types: [...(!activeFilters.exactTypes && chosenTypes.length === plainTypes.length ? [] : chosenTypes.length ? chosenTypes : ['']), ...(monotype ? [MONOTYPE_FILTER] : [])],
   }), [activeFilters, chosenTypes, generations, monotype, plainTypes]);
   const shown = useMemo(() => filterByFacets(items, facetQuery, query, index), [items, facetQuery, index, query]);
   const clearFilters = () => onFiltersChange(null);
@@ -230,6 +233,7 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
               })}
             </div>
           </div>
+          <Switch label={es.pokemonSkin.picker.exactTypes} hint={es.pokemonSkin.picker.exactTypesHint} checked={activeFilters.exactTypes} onChange={(exactTypes) => onFiltersChange({ ...activeFilters, exactTypes })} />
           <div role="group" aria-label={es.pokemonSkin.picker.generation}>
             <p className={styles.filterHeading}>{es.pokemonSkin.picker.generation}</p>
             <div className={styles.chips}>

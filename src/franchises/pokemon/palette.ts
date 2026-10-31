@@ -10,7 +10,7 @@ export const POKEMON_PALETTE = {
   'grass-2': '#3c8c34',
   'grass-3': '#2c6c2c',
   cream: '#f8f8f0',
-  ink: '#383838',
+  ink: '#181818',
   'ink-shadow': '#a8a8a8',
   frame: '#202020',
   red: '#d83030',

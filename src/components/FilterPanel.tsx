@@ -1,9 +1,10 @@
 'use client';
 
-import { createContext, useContext, useId, type ReactNode } from 'react';
+import { createContext, useContext, useId, useState, type ReactNode } from 'react';
 import { es } from '@/i18n/es';
 import styles from './FilterPanel.module.scss';
 import { useSkin } from './skin/context';
+import { PixelIcon } from './ui/icons';
 import { Chip } from './ui/Chip';
 import type { GameToggle } from './game-shell/flags';
 import { InfoTip } from './ui/InfoTip';
@@ -50,6 +51,8 @@ export function FilterPanel({ series, labels, details, active, onChange, remaini
   const noun = useContext(PoolNounContext);
   const { ChipMark } = skin.slots;
   const titleId = useId();
+  const bodyId = useId();
+  const [open, setOpen] = useState(true);
   const keepOneId = useId();
   const onlyOne = active.length === 1;
 
@@ -64,7 +67,7 @@ export function FilterPanel({ series, labels, details, active, onChange, remaini
       <div className={styles.header}>
         <div className={styles.titleRow}>
           <h2 className={styles.title} id={titleId}>
-            {es.filters.title}
+            <button type="button" className={styles.collapse} aria-expanded={open} aria-controls={bodyId} onClick={() => setOpen(!open)}><PixelIcon name="cursor" className={styles.collapseArrow} />{es.filters.title}</button>
           </h2>
           <InfoTip compact text={es.help.filters} label={es.help.button(es.filters.title)} />
         </div>
@@ -72,6 +75,7 @@ export function FilterPanel({ series, labels, details, active, onChange, remaini
           {es.filters.remaining(remaining, noun)}
         </p>
       </div>
+      <div id={bodyId} hidden={!open} className={styles.body}>
       <p className={styles.hint}>{es.filters.hint}</p>
 
       <ul className={styles.chips} data-uniform={skin.uniformFilterChips} aria-label={es.filters.groupLabel}>
@@ -112,6 +116,7 @@ export function FilterPanel({ series, labels, details, active, onChange, remaini
           {es.filters.keepOne}
         </p>
       )}
+      </div>
       {remaining < minimum && (
         <p className={styles.warning} role="alert">
           {es.filters.belowMinimum(remaining, minimum)}

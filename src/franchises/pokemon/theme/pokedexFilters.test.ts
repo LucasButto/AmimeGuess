@@ -72,3 +72,12 @@ describe('facetas de la Pokédex', () => {
     expect(ids(filterByFacets(items, { ...none, types: [MONOTYPE_FILTER, 'Planta', 'Veneno'] }))).toEqual(['chikorita']);
   });
 });
+
+it('matches exact type combinations regardless of order and respects generation/search', () => {
+  const exact = { generations: [], types: ['Veneno', 'Planta'], exactTypes: true };
+  expect(ids(filterByFacets(items, exact))).toEqual(['bulbasaur']);
+  expect(filterByFacets(items, { ...exact, generations: [2] })).toEqual([]);
+  expect(filterByFacets(items, exact, 'gast')).toEqual([]);
+  expect(ids(filterByFacets(items, { ...exact, types: ['Planta'] }))).toEqual(['chikorita']);
+  expect(filterByFacets(items, { ...exact, types: ['Planta', 'Veneno', 'Fuego'] })).toEqual([]);
+});

@@ -1,5 +1,6 @@
 @use 'breakpoints' as bp;
 @use 'tokens' as t;
+@use 'mixins' as m;
 
 .root {
   display: flex;
@@ -111,3 +112,9 @@
     white-space: normal;
   }
 }
+
+.body:not([hidden]) { display: grid; gap: t.$space-2; }
+.collapse { display: inline-flex; align-items: center; gap: t.$space-2; font: inherit; color: inherit; background: none; border: 0; padding: 0; min-block-size: 2.75rem; cursor: pointer; @include m.focus-ring; }
+
+.collapseArrow { flex: none; }
+.collapse[aria-expanded='true'] .collapseArrow { transform: rotate(90deg); }
