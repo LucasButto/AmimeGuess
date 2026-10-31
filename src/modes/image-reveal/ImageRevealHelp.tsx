@@ -1,6 +1,5 @@
 import { es } from '@/i18n/es';
 import styles from './ImageRevealHelp.module.scss';
-import { REVEAL_STEPS } from './logic';
 import type { RevealVariant } from './types';
 
 interface ImageRevealHelpProps {
@@ -15,7 +14,7 @@ export function ImageRevealHelp({ variant }: ImageRevealHelpProps) {
 
       <section>
         <h3 className={styles.title}>{es.imageReveal.help.stepsTitle}</h3>
-        <p>{es.imageReveal.help.steps(REVEAL_STEPS)}</p>
+        <p>{es.imageReveal.help.steps}</p>
       </section>
 
       <section>

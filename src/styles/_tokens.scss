@@ -39,10 +39,10 @@ $gutter: fluid(1rem, 2rem);
 // --- Tipografía -------------------------------------------------------------
 // Cada tamaño se multiplica por `--font-scale` (1 si el tema no lo define): una piel con una fuente de texto más chica
 // que la normal (Jersey 10, por ejemplo) sube todos los tamaños de una vez.
-$font-size-sm: calc(#{fluid(0.875rem, 0.9375rem)} * var(--font-scale, 1));
+$font-size-sm: calc(#{fluid(0.875rem, 0.9375rem)} * var(--font-scale, 1) * var(--reading-scale, 1));
 // Los campos de texto usan este tamaño o más (16 px) para que iOS no haga zoom al enfocar.
-$font-size-base: calc(1rem * var(--font-scale, 1));
-$font-size-lg: calc(#{fluid(1.125rem, 1.25rem)} * var(--font-scale, 1));
+$font-size-base: calc(1rem * var(--font-scale, 1) * var(--reading-scale, 1));
+$font-size-lg: calc(#{fluid(1.125rem, 1.25rem)} * var(--font-scale, 1) * var(--reading-scale, 1));
 $font-size-xl: calc(#{fluid(1.5rem, 1.875rem)} * var(--font-scale, 1));
 $font-size-2xl: calc(#{fluid(2rem, 3rem)} * var(--font-scale, 1));
 

@@ -31,6 +31,7 @@ import { RevealListGame } from "@/modes/reveal-list/RevealListGame";
 import { TextClueGame } from "@/modes/text-clue/TextClueGame";
 import { TimelineGame } from "@/modes/timeline/TimelineGame";
 import { StatBuilderGame } from "@/modes/stat-builder/StatBuilderGame";
+import { RouletteCandidates } from "@/modes/stat-builder/RoulettePreview";
 import styles from "./ModeGame.module.scss";
 
 interface ModeGameProps {
@@ -176,10 +177,12 @@ function ModeEngine({ franchise, mode, modes, playable }: ModeGameProps) {
     variant: `${skipFiller ? "x" : ""}${skipMangaOnly ? "a" : ""}`,
   };
   const game = renderGame(data);
+  const rouletteMode = franchise.modes.find((item) => item.engine === "stat-builder");
+  const rouletteCandidates = rouletteMode ? data.entities : [];
   return game === null ? (
     comingSoon
   ) : (
-    <GameFlagsContext.Provider value={flags}>{game}</GameFlagsContext.Provider>
+    <RouletteCandidates.Provider value={rouletteCandidates}><GameFlagsContext.Provider value={flags}>{game}</GameFlagsContext.Provider></RouletteCandidates.Provider>
   );
 
   function renderGame(data: FranchiseData) {

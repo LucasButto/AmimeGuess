@@ -144,6 +144,6 @@
   color: t.token('ink-muted');
 }
 
-.titleHelp {
-  margin-inline-start: 0.25rem;
+.difficultyTitle .titleHelp[data-compact='true'] {
+  margin-inline-start: 0;
 }

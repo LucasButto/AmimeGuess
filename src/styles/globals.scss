@@ -6,6 +6,7 @@
   @include t.root-vars;
   @include t.px-rounding;
   color-scheme: light;
+  --reading-scale: 1.08;
 }
 
 // Cada tarjeta del inicio lleva el tema base de su franquicia (`[data-franchise]`): los tokens
@@ -109,4 +110,13 @@ body {
     background: var(--background-image) center / cover no-repeat;
     pointer-events: none;
   }
+}
+
+:root[data-text-scale='2'] { --reading-scale: 1.2; }
+:root[data-text-scale='3'] { --reading-scale: 1.32; }
+// Headings and decorative title typography retain their designed size.
+h1, h2, h3, h4, h5, h6 { --reading-scale: 1; }
+:root[data-text-scale='2'], :root[data-text-scale='3'] {
+  button, label, p, li { overflow-wrap: anywhere; }
+  button { white-space: normal; }
 }

@@ -6,6 +6,7 @@ import { STORAGE_PREFIX, type StorageLike } from '@/engine/storage';
 // componentes está en usePrefs.ts.
 
 export interface Prefs {
+  readonly textScale?: 1 | 2 | 3;
   /** Reemplaza las fuentes del tema por una de sistema muy legible. */
   readonly legibleFont: boolean;
   /** Efectos de sonido cortos (Web Audio). */
@@ -24,8 +25,8 @@ export function parsePrefs(raw: string | null): Prefs {
   try {
     const value: unknown = JSON.parse(raw);
     if (typeof value !== 'object' || value === null) return DEFAULT_PREFS;
-    const { legibleFont, sounds } = value as Record<string, unknown>;
-    return { legibleFont: legibleFont === true, sounds: sounds === true };
+    const { legibleFont, sounds, textScale } = value as Record<string, unknown>;
+    return { legibleFont: legibleFont === true, sounds: sounds === true, ...(textScale === 2 || textScale === 3 ? { textScale } : {}) };
   } catch {
     return DEFAULT_PREFS;
   }
@@ -51,4 +52,4 @@ export function writePrefs(storage: StorageLike | null, prefs: Prefs): void {
  * Script que va al principio del `<body>`: aplica la fuente legible antes de pintar, así no se ve un
  * instante la fuente del tema. Repite a mano lo que hace `parsePrefs` (corre antes que React).
  */
-export const PREFS_BOOT_SCRIPT = `try{var p=JSON.parse(localStorage.getItem(${JSON.stringify(PREFS_KEY)})||'{}');if(p&&p.legibleFont===true)document.documentElement.setAttribute(${JSON.stringify(LEGIBLE_FONT_ATTRIBUTE)},'')}catch(e){}`;
+export const PREFS_BOOT_SCRIPT = `try{var p=JSON.parse(localStorage.getItem(${JSON.stringify(PREFS_KEY)})||'{}');if(p&&(p.textScale===2||p.textScale===3))document.documentElement.setAttribute('data-text-scale',p.textScale);if(p&&p.legibleFont===true)document.documentElement.setAttribute(${JSON.stringify(LEGIBLE_FONT_ATTRIBUTE)},'')}catch(e){}`;

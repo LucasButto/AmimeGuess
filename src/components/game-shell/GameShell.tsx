@@ -1,6 +1,7 @@
 'use client';
 
-import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useId, useMemo, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { getDay, msUntilNextDay } from '@/engine/day';
 import { hasMinimumPool } from '@/engine/filters';
 import { activeStreak, getLocalStorage, readState, readStats, recordResult, writeState } from '@/engine/storage';
@@ -14,7 +15,6 @@ import { useSkin } from '../skin/context';
 import { useSound } from '../skin/useSound';
 import { Button } from '../ui/Button';
 import { Panel } from '../ui/Panel';
-import { PixelIcon } from '../ui/icons';
 import { InfoTip } from '../ui/InfoTip';
 import { Switch } from '../ui/Switch';
 import { useSeriesFilters } from '../useSeriesFilters';
@@ -30,6 +30,8 @@ import { buildShareText, buildShareUrl, describeFilters, themeGrid } from './sha
 import type { FinishReport, GameShellProps } from './types';
 import { ActiveAttemptLimit, AttemptRules } from './AttemptRules';
 import { attemptLimit } from './attempts';
+
+import { useRouletteImages } from '@/modes/stat-builder/RoulettePreview';
 
 type Dialog = 'help' | 'stats' | 'settings' | null;
 
@@ -61,6 +63,7 @@ export function GameShell({
   const attemptRules = useContext(AttemptRules);
   const variant = `${engineVariant ?? ''}${flags.variant}` || undefined;
   const { active, filterKey, setActive } = useSeriesFilters(franchise.slug, franchise.series);
+  useRouletteImages(active);
   const [day, setDay] = useState(() => getDay(new Date()));
   const [stats, setStats] = useState(() => readStats(getLocalStorage(), franchise.slug, mode.slug));
   const [finished, setFinished] = useState<{ key: string; report: FinishReport } | null>(null);
@@ -185,25 +188,59 @@ export function GameShell({
   }, [report, franchise, mode.name, active, filterKey, gridKind, skin.shareEmojis]);
 
   const closeDialog = () => setDialog(null);
+  const actionsId = useId();
+  const [menuSelection, setMenuSelection] = useState(0);
+  const actionsRef = useRef<HTMLDivElement>(null);
+  const openDialog = (next: Dialog) => { actionsRef.current?.hidePopover(); setDialog(next); };
 
   return (
     <ActiveAttemptLimit.Provider value={limit}>
     <div className={styles.root} data-game="shell">
+      {document.getElementById('game-actions') && createPortal(
+        <div className={styles.floatingActions}>
+          <button type="button" popoverTarget={actionsId} aria-label={es.shell.actions} className={styles.menuTrigger}>
+            <svg className={styles.menuSymbol} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges">
+              <path d="M5 5h14v3H5zm0 6h14v3H5zm0 6h14v3H5z" fill="currentColor" />
+            </svg>
+          </button>
+          <div id={actionsId} popover="auto" ref={actionsRef} className={styles.actionsMenu}>
+          <div className={styles.buttons} role="group" aria-label={es.shell.actions} onKeyDown={(event) => {
+            const buttons = [...event.currentTarget.querySelectorAll<HTMLButtonElement>('button')];
+            const current = buttons.indexOf(document.activeElement as HTMLButtonElement);
+            const next = event.key === 'ArrowDown' ? (current + 1) % buttons.length : event.key === 'ArrowUp' ? (current + buttons.length - 1) % buttons.length : event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : null;
+            if (next === null) return;
+            event.preventDefault(); buttons[next].focus();
+          }}>
+            {(['help', 'stats', 'settings'] as const).map((action, index) => <button
+              type="button" key={action} className={styles.menuOption} data-selected={menuSelection === index}
+              onFocus={() => setMenuSelection(index)}
+              onPointerEnter={(event) => { if (event.pointerType === 'mouse' && window.matchMedia('(hover: hover)').matches) setMenuSelection(index); }}
+              onClick={() => openDialog(action)}>
+              <svg className={styles.optionIcon} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges">
+                {action === 'help' ? <>
+                  <path d="M3 3h8l1 2 1-2h8v18h-8l-1 1-1-1H3z" fill="var(--game-menu-icon-edge, currentColor)" />
+                  <path d="M5 5h5v14H5zm9 0h5v14h-5z" fill="var(--game-menu-icon-fill, currentColor)" />
+                  <path d="M6 7h3v1H6zm0 4h3v1H6zm9-4h3v1h-3zm0 4h3v1h-3z" fill="var(--surface-panel)" />
+                </> : action === 'stats' ? <>
+                  <path d="M3 3h18v19H3z" fill="var(--game-menu-icon-edge, currentColor)" />
+                  <path d="M5 5h14v15H5z" fill="var(--surface-panel)" />
+                  <path d="M6 13h3v5H6zm5-4h3v9h-3zm5-3h2v12h-2z" fill="var(--game-menu-icon-fill, currentColor)" />
+                </> : <>
+                  <path d="M3 3h18v19H3z" fill="var(--game-menu-icon-edge, currentColor)" />
+                  <path d="M5 5h14v15H5z" fill="var(--surface-panel)" />
+                  <path d="M6 7h12v2H6zm0 5h12v2H6zm0 5h12v2H6z" fill="var(--game-menu-icon-edge, currentColor)" />
+                  <path d="M8 6h3v4H8zm6 5h3v4h-3zm-6 5h3v4H8z" fill="var(--game-menu-icon-fill, currentColor)" />
+                </>}
+              </svg>
+              <span>{action === 'help' ? es.shell.help : action === 'stats' ? es.shell.stats : es.settings.button}</span>
+            </button>)}
+          </div>
+          </div></div>
+        , document.getElementById('game-actions')!
+      )}
       <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} solved={solved} filterKey={filterKey} />
 
       <div className={styles.toolbar}>
-        <div className={styles.buttons}>
-          <Button variant="ghost" onClick={() => setDialog('help')}>
-            {es.shell.help}
-          </Button>
-          <Button variant="ghost" onClick={() => setDialog('stats')}>
-            {es.shell.stats}
-          </Button>
-          <Button variant="ghost" onClick={() => setDialog('settings')}>
-            <PixelIcon name="gear" />
-            {es.settings.button}
-          </Button>
-        </div>
         <Countdown />
       </div>
 
@@ -328,8 +365,9 @@ export function GameShell({
       )}
 
       {dialog === 'help' && (
-        <Modal title={es.shell.helpTitle} onClose={closeDialog}>
+        <Modal title={es.shell.helpTitle(mode.name)} onClose={closeDialog}>
           <div className={styles.help}>
+            {es.modeHelp[franchise.slug]?.[mode.slug] && <p>{es.modeHelp[franchise.slug][mode.slug]}</p>}
             {help}
             <p>{es.shell.limits.help}</p>
             <section>
@@ -347,6 +385,11 @@ export function GameShell({
       {dialog === 'settings' && (
         <Modal title={es.settings.title} onClose={closeDialog}>
           <div className={styles.settings}>
+            <fieldset className={styles.textSizes}>
+              <legend>{es.settings.textSize}</legend>
+              <p>{es.settings.textSizeHint}</p>
+              <div className={styles.buttons}>{([1, 2, 3] as const).map((textScale) => <Button key={textScale} className={styles.sizeChoice} variant="ghost" aria-pressed={(prefs.textScale ?? 1) === textScale} onClick={() => setPrefs({ ...prefs, textScale })}>{es.settings.scale(textScale)}</Button>)}</div>
+            </fieldset>
             <Switch
               label={es.settings.legibleFont}
               hint={es.settings.legibleFontHint}

@@ -39,6 +39,7 @@ export function usePrefs(): Prefs {
 /** Guarda las preferencias y avisa a todos los que las leen. */
 export function setPrefs(prefs: Prefs): void {
   writePrefs(getLocalStorage(), prefs);
+  document.documentElement.setAttribute('data-text-scale', String(prefs.textScale ?? 1));
   document.documentElement.toggleAttribute(LEGIBLE_FONT_ATTRIBUTE, prefs.legibleFont);
   for (const listener of listeners) listener();
 }

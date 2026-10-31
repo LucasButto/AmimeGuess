@@ -69,7 +69,10 @@ export default async function ModePage({
   return (
     <main className={styles.page}>
       <PageTransition />
-      <BackNav franchise={franchise} />
+      <div className={styles.topbar}>
+        <BackNav franchise={franchise} />
+        <div id="game-actions" className={styles.actionsSlot} />
+      </div>
       <header className={styles.header}>
         <p className={styles.franchise}>{franchise.name}</p>
         <h1 className={styles.title}>

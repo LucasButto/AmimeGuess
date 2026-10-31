@@ -69,7 +69,12 @@
 .buttons {
   display: flex;
   flex-wrap: wrap;
+  justify-content: flex-end;
   gap: t.$space-2;
+}
+.buttons > button {
+  flex: 1 1 auto;
+  padding-inline: t.$space-3;
 }
 
 .game {
@@ -125,4 +130,49 @@
 
 .yesterdayHelp {
   margin-inline-start: auto;
+}
+
+// Keep all help paragraphs and lists readable, including engine-specific notes.
+.help {
+  font-size: calc(#{t.$font-size-base} * 1.05);
+  line-height: t.$line-height-base;
+
+  p, li, h3 { font-size: inherit; }
+}
+
+.floatingActions { position: fixed; inset-block-start: max(1.5rem, env(safe-area-inset-top)); inset-inline-end: max(1.5rem, env(safe-area-inset-right)); z-index: t.$layer-nav; }
+.menuTrigger {
+  @include m.pixel-frame($fill: t.token('surface-panel'), $outer: t.token('frame-color'), $inner: t.token('frame-inner'), $clip: m.pixel-corners((1)), $radius: t.$radius-md);
+  @include m.focus-ring;
+  --reading-scale: 1;
+  display: grid; place-items: center; inline-size: 3rem; block-size: 3rem;
+  padding: 0; border: 0; background: none; color: t.token('ink'); cursor: pointer;
+  @include m.hover { color: t.color('accent'); }
+}
+.menuSymbol { inline-size: 2.25rem; block-size: 2.25rem; }
+.actionsMenu {
+  @include m.pixel-frame($outer: t.token('frame-color'), $inner: t.token('frame-inner'), $clip: m.pixel-corners((1)));
+  position: fixed; inset: auto; inset-block-start: max(5rem, calc(env(safe-area-inset-top) + 3.5rem)); inset-inline-end: max(1.5rem, env(safe-area-inset-right));
+  margin: 0; padding: t.$space-3; inline-size: min(18rem, calc(100vw - 3rem)); max-block-size: calc(100dvh - 6rem); overflow: auto; color: t.token('ink');
+}
+.actionsMenu .buttons { flex-direction: column; gap: 0; }
+.menuOption {
+  @include m.focus-ring;
+  position: relative;
+  display: flex; align-items: center; gap: t.$space-3;
+  min-block-size: 4rem; inline-size: 100%; padding: t.$space-2 t.$space-3;
+  font: inherit; font-size: t.$font-size-lg; text-align: start;
+  color: t.token('ink'); border: 0; background: none; cursor: pointer;
+  &::before { content: ''; position: absolute; inset: 0; border: 0.1875rem solid transparent; border-radius: t.$radius-sm; pointer-events: none; }
+  &[data-selected='true']::before { border-color: var(--game-menu-selection, #{t.token('accent-primary')}); }
+}
+.optionIcon { flex: none; inline-size: 2.5rem; block-size: 2.5rem; filter: grayscale(1); opacity: 0.65; }
+.menuOption[data-selected='true'] .optionIcon { filter: none; opacity: 1; }
+
+.textSizes { border: 0; min-inline-size: 0; display: grid; gap: t.$space-2; }
+
+.sizeChoice[aria-pressed='true'] {
+  --_fill: #{t.token('chip-on-fill')};
+  --_ink: #{t.token('chip-on-ink')};
+  --_edge: #{t.token('frame-color')};
 }

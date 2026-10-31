@@ -5,9 +5,60 @@ import type { ModeCardState, ThemeFont } from '@/franchises/types';
 const plural = (count: number, one: string, many: string) => (count === 1 ? one : many);
 
 export const es = {
+  modeHelp: {
+    "pokemon": {
+        "clasico": "Adiviná el Pokémon comparando sus tipos, generación y otros datos.",
+        "silueta": "Adiviná el Pokémon por su sombra ampliada.",
+        "descripcion": "Leé la descripción de la Pokédex y adiviná de qué Pokémon habla.",
+        "carta": "Adiviná el Pokémon que aparece en la carta borrosa.",
+        "movimiento-insignia": "Adiviná qué Pokémon aprende el movimiento mostrado. Se acepta cualquiera de su línea evolutiva que lo aprenda.",
+        "mayor-o-menor": "Elegí el Pokémon con el valor más alto en la medida indicada.",
+        "moveset": "Adiviná el Pokémon que puede aprender los movimientos de la lista.",
+        "estadisticas": "Elegí seis estadísticas para superar la meta de puntos."
+    },
+    "dragon-ball": {
+        "clasico": "Adiviná el personaje comparando sus datos.",
+        "silueta": "Adiviná el personaje por su sombra ampliada.",
+        "frase": "Adiviná qué personaje dijo la frase.",
+        "borroso": "Adiviná el personaje de la imagen borrosa.",
+        "tecnica": "Mirá la técnica y adiviná qué personaje la usa.",
+        "poder": "Elegí quién tiene más poder en la forma y el momento indicados.",
+        "transformacion": "Adiviná la transformación exacta de la imagen, incluyendo el personaje y su forma.",
+        "linea-de-tiempo": "Ordená los sucesos de Dragon Ball según cuándo ocurren en la historia."
+    },
+    "naruto": {
+        "clasico": "Adiviná el personaje comparando sus datos.",
+        "silueta": "Adiviná el personaje por su sombra.",
+        "frase": "Adiviná qué personaje dijo la frase.",
+        "borroso": "Adiviná el personaje de la imagen borrosa.",
+        "jutsu": "Mirá el jutsu y adiviná qué personaje lo usa.",
+        "ojo": "Adiviná a quién pertenece el ojo de la imagen.",
+        "equipo": "Mirá los miembros del equipo y adiviná quién falta.",
+        "emoji": "Interpretá los emojis y elegí el personaje que representan.",
+        "linea-de-tiempo": "Ordená los sucesos de Naruto según cuándo ocurren en la historia.",
+        "conexiones": "Agrupá a los personajes que comparten un clan, una aldea u otra característica."
+    },
+    "yugioh": {
+        "duelista": "Adiviná el duelista comparando sus datos.",
+        "carta": "Adiviná la carta comparando su clase, atributo y otros datos.",
+        "silueta": "Adiviná la carta por la silueta de su monstruo.",
+        "texto": "Leé el texto de la carta, con su nombre oculto, y adiviná cuál es.",
+        "arte": "Adiviná la carta por su ilustración borrosa.",
+        "carta-insignia": "Mirá la carta y adiviná a qué duelista pertenece.",
+        "zoom": "Adiviná la carta por un detalle ampliado de su ilustración.",
+        "mayor-o-menor": "Elegí la carta con más ATK o DEF, según lo que indique la pregunta.",
+        "invocacion": "Adiviná qué monstruo se invoca con los materiales mostrados.",
+        "deck": "Mirá las cartas del deck y adiviná qué duelista lo usa.",
+        "linea-de-tiempo": "Ordená los sucesos de Yu-Gi-Oh según cuándo ocurren en la historia."
+    }
+} as Readonly<Record<string, Readonly<Record<string, string>>>>,
   statBuilder: {
+    bestTitle: 'Mejor combinación posible',
+    bestSummary: (best: number, actual: number) => best === actual ? `¡Elegiste una combinación óptima! Sumaste ${actual} puntos.` : `Con estos mismos seis Pokémon podías sumar ${best} puntos: ${best - actual} más que tus ${actual}.`,
+    insteadOf: (name: string, value: number) => ` — ${name} ${value}`,
+
     settings: 'Configuración de la partida',
-    settingsHelp: 'La dificultad define la meta de puntos y cuántas combinaciones completas podés intentar. Activá las formas regionales o las megaevoluciones para incluirlas en el sorteo; ambas opciones vienen desactivadas. Respetan las generaciones seleccionadas según su especie base.',
+    settingsHelp: 'Elegí la meta que querés superar. Cada intento es una combinación de seis estadísticas. Podés incluir formas regionales y megaevoluciones; se usan las generaciones de sus Pokémon originales.',
     viewResult: 'Ver resultado',
     countingResult: 'Revelando resultado…',
     locked: 'Ya seleccionada',
@@ -25,7 +76,12 @@ export const es = {
     remaining: (remaining: number) => remaining > 0 ? `Te ${remaining === 1 ? 'queda 1 intento' : `quedan ${remaining} intentos`}.` : 'No te quedan intentos.',
     next: 'Intentá nuevamente',
     result: (score: number, target: number) => `Tu combinación sumó ${score} puntos. La meta era superar ${target}.`,
-    help: 'Detené la ruleta y elegí una estadística del Pokémon sin ver sus valores. Esa categoría queda seleccionada y se revelan sus seis valores hasta que toques para pasar al siguiente Pokémon. Al completar las seis categorías, tocá Ver resultado: las barras se cargan una por una y el contador suma desde cero. Al terminar Velocidad vas a saber si superaste la meta: fácil 500, normal 550 o difícil 600. Tenés 3, 4 o 5 partidas completas respectivamente. Regionales y megas son opcionales y siguen la generación de su especie base.',
+    help: [
+      'Armá un Pokémon con seis estadísticas: una de cada Pokémon que te toque. Buscá sumar la mayor cantidad de puntos.',
+      'Tocá la ruleta para detenerla. Elegí una estadística sin ver su valor; después de elegir, se muestran los valores de ese Pokémon. Cada estadística se puede elegir una sola vez.',
+      'Tocá para pasar al siguiente Pokémon cuando quieras. Después de la sexta elección, podés mirar sus valores y tocar «Ver resultado» para sumar los seis que elegiste.',
+      'Para ganar tenés que superar 500 puntos en Fácil, 550 en Normal o 600 en Difícil. Igualar la meta no alcanza. Si no la superás y te quedan intentos, probá otra combinación de seis.',
+    ],
   },
   site: {
     name: 'AnimeGuess',
@@ -296,12 +352,12 @@ export const es = {
     hintLocked: (remaining: number) =>
       `Se desbloquea con ${remaining} ${plural(remaining, 'intento fallido más', 'intentos fallidos más')}`,
     help: {
-      goal: 'Adiviná la respuesta del día. Escribí un nombre, elegí una opción de la lista y mirá cómo se compara con la respuesta.',
+      goal: 'Elegí un nombre y compará sus datos con los de la respuesta. Usá los colores y las flechas para decidir tu próximo intento.',
       colorsTitle: 'Qué significa cada color',
       exact: 'Verde: el valor coincide con el de la respuesta.',
       partial: 'Naranja: coincide en parte, por ejemplo comparten uno de dos valores.',
       none: 'Rojo: no coincide.',
-      arrows: 'Una flecha hacia arriba o hacia abajo indica que el valor de la respuesta es mayor o menor que el del intento.',
+      arrows: '↑: buscá un valor más alto. ↓: buscá uno más bajo.',
       hintsTitle: 'Pistas',
       hintsIntro: 'Cuando fallás varias veces se desbloquean pistas:',
       hint: (label: string, after: number) =>
@@ -330,15 +386,14 @@ export const es = {
     colorsHint: 'Apagado, la imagen se ve en grises hasta que aciertes.',
     help: {
       goal: {
-        silhouette: 'Adiviná la respuesta del día a partir de su silueta. Escribí un nombre y elegí una opción de la lista.',
-        blur: 'Adiviná la respuesta del día a partir de una imagen desenfocada. Escribí un nombre y elegí una opción de la lista.',
-        zoom: 'Adiviná la respuesta del día a partir de un detalle ampliado de su imagen. Escribí un nombre y elegí una opción de la lista.',
+        silhouette: 'Adiviná la respuesta del día a partir de su silueta. Buscá un nombre y seleccionalo.',
+        blur: 'Adiviná la respuesta del día a partir de una imagen desenfocada. Buscá un nombre y seleccionalo.',
+        zoom: 'Adiviná la respuesta del día a partir de un detalle ampliado de su imagen. Buscá un nombre y seleccionalo.',
         'zoom-silhouette':
-          'Adiviná la respuesta del día a partir de un detalle ampliado de su silueta. Escribí un nombre y elegí una opción de la lista.',
+          'Adiviná la respuesta del día a partir de un detalle ampliado de su silueta. Buscá un nombre y seleccionalo.',
       },
       stepsTitle: 'Pistas',
-      steps: (total: number) =>
-        `La imagen se aclara progresivamente en ${total} pasos. El contador indica tus intentos disponibles: si fallás el último, perdés. Al acertar se ve completa.`,
+      steps: 'Cada fallo deja ver un poco más de la imagen si activaste «Revelar con cada intento». Si acertás, se muestra completa. Si agotás los intentos, perdés.',
       difficultyTitle: 'Dificultad',
       difficulty:
         'Podés apagar "Revelar con cada intento" para que la imagen no cambie hasta que aciertes, y "Mostrar colores" para verla en grises. Tus elecciones se recuerdan en este dispositivo.',
@@ -358,7 +413,7 @@ export const es = {
     empty: 'Todavía no hiciste ningún intento.',
     wrongAttempt: (name: string) => `${name} no es.`,
     help: {
-      goal: 'Adiviná la respuesta del día a partir de la pista. Escribí un nombre y elegí una opción de la lista antes de agotar los intentos.',
+      goal: 'Adiviná la respuesta del día a partir de la pista. Buscá un nombre y seleccionalo antes de quedarte sin intentos.',
       hintsTitle: 'Pistas',
       hintsIntro: 'Cuando fallás varias veces se desbloquean más pistas:',
       hint: (label: string, after: number) =>
@@ -389,11 +444,11 @@ export const es = {
     lastRound: (winner: string, winnerValue: string, loser: string, loserValue: string) =>
       `Tenía el mayor valor ${winner} (${winnerValue}), frente a ${loser} (${loserValue}).`,
     help: {
-      goal: 'Elegí cuál de los dos tiene el valor mayor. Si acertás, sigue otro par; la partida termina con el primer error y tu puntaje son los aciertos seguidos.',
+      goal: 'Elegí cuál de los dos tiene el valor mayor. Después de elegir se muestran ambos valores. Tocá «Siguiente» para continuar. Si fallás, termina la partida.',
       goalWithMistakes: (total: number) => `Elegí cuál de los dos tiene el valor mayor. Cada acierto suma un punto; la partida termina cuando acumulás ${total} fallos.`,
-      sequence: 'El reto normal se completa con 10 aciertos. Los pares son los mismos para todo el mundo con los mismos filtros, y nunca empatan. En modo infinito no hay límite de rondas: superá tu récord histórico para esa medida y esos filtros.',
+      sequence: 'Ganás el reto diario con 10 aciertos. En modo infinito podés seguir hasta agotar los fallos permitidos e intentar superar tu récord. Nunca hay empates entre las dos opciones.',
       metricsTitle: 'Qué se compara',
-      metricsIntro: 'Cada día se juega una de estas medidas, en rotación ("Del día"), y también podés elegir cuál comparar. Cada una es otra partida:',
+      metricsIntro: '«Del día» elige qué comparar. Si hay varias medidas, podés elegir otra y jugar una partida distinta:',
     },
   },
   revealList: {
@@ -410,7 +465,7 @@ export const es = {
     wrongAttempt: (name: string, revealed: boolean) =>
       revealed ? `${name} no es. Se reveló una pista más.` : `${name} no es.`,
     help: {
-      goal: 'Adiviná la respuesta del día con las pistas. Escribí un nombre y elegí una opción de la lista antes de agotar los intentos.',
+      goal: 'Adiviná la respuesta del día con las pistas. Buscá un nombre y seleccionalo antes de quedarte sin intentos.',
       reveal: 'Al empezar ves una sola pista; cada intento fallido revela una más.',
     },
   },
@@ -443,10 +498,10 @@ export const es = {
       goal: (count: number) =>
         `Ordená ${count} sucesos del más antiguo (arriba) al más reciente (abajo).`,
       goalLevels: (counts: readonly number[]) =>
-        `Ordená los sucesos del más antiguo (arriba) al más reciente (abajo). Elegí la dificultad: ${counts.join(', ')} sucesos. Cada una es un reto distinto del día, con su propia partida; las estadísticas y la racha cuentan todas juntas.`,
+        `Ordená los sucesos del más antiguo (arriba) al más reciente (abajo). Elegí la dificultad: ${counts.join(', ')} sucesos. Cada dificultad tiene su propia partida.`,
       attemptsLevels: (attempts: readonly number[]) =>
-        `Tenés ${attempts.join(', ')} intentos según la dificultad. Al confirmar solo te decimos si el orden es correcto; no cuáles están bien. Al mover cualquiera, empezás de nuevo con la lista limpia.`,
-      move: 'Arrastrá un suceso desde su asa (las rayitas de la izquierda) o usá los botones de subir y bajar; con el teclado, los botones.',
+        `Tenés ${attempts.join(', ')} intentos según la dificultad. Tocá «Confirmar orden» para comprobarlo. Si está mal, cambiá el orden y probá de nuevo; no se indica qué posiciones acertaste.`,
+      move: 'Mové los sucesos con las flechas de subir y bajar, o arrastralos desde las rayitas de la izquierda.',
       attempts: (total: number) =>
         `Tenés ${total} intentos. Al confirmar solo te decimos si el orden es correcto; no cuáles están bien.`,
     },
@@ -477,11 +532,12 @@ export const es = {
       result: 'Si acertás, el grupo se revela con su nombre. Si tres de los cuatro son de un mismo grupo, te avisamos que estás cerca.',
       mistakes: (total: number) =>
         `Podés equivocarte ${total} ${plural(total, 'vez', 'veces')}. Repetir una combinación que ya probaste no cuenta como error.`,
-      unique: 'Cada elemento encaja en un solo grupo del tablero, aunque en otros juegos pueda estar en más de uno.',
+      unique: 'En este tablero, cada elemento pertenece a un solo grupo.',
       colors: 'Cada grupo tiene un color y un nivel de dificultad, de fácil a muy difícil.',
     },
   },
   shell: {
+    actions: 'Ayuda y opciones del juego',
     limits: {
       counter: (used: number, total: number) => `Intentos: ${used}/${total}`,
       mistakes: (used: number, total: number) => `Fallos: ${used}/${total}`,
@@ -528,12 +584,12 @@ export const es = {
     resizeHint: 'Arrastrá la esquina para cambiar el tamaño',
     nextChallenge: 'Próximo reto en',
     yesterday: 'Ayer fue',
-    helpTitle: 'Cómo se juega',
+    helpTitle: (mode: string) => `Cómo se juega — ${mode}`,
     helpCommonTitle: 'Reto diario',
     helpCommon: [
-      'Hay un reto nuevo cada día a las 00:00 de Argentina (UTC-3), a la misma hora para todo el mundo.',
+      'El reto cambia cada día a las 00:00 de Argentina.',
       'Dos personas con los mismos filtros ven el mismo reto. Copiá el link para jugar juntos.',
-      'Cada combinación de series tiene su propio reto, y tu partida de cada una se guarda por separado.',
+      'Los filtros eligen qué series o generaciones pueden aparecer. Cada combinación guarda su propia partida.',
     ],
     result: {
       wonTitle: '¡Lo adivinaste!',
@@ -687,6 +743,8 @@ export const es = {
       generation: 'Generación',
       generationNumber: (value: number) => `Gen. ${value}`,
       type: 'Tipo',
+      exactTypes: 'Solo la combinación exacta',
+      exactTypesHint: 'Elegí dos tipos para ver solo Pokémon que tengan ambos. Con un tipo, se muestran solo los de tipo único. Apagado, alcanza con tener cualquiera de los tipos elegidos.',
       monotype: 'Sin tipo secundario',
       monotypeHint: 'Solo Pokémon de un único tipo (sin segundo tipo)',
       clearFilters: 'Limpiar filtros',
@@ -853,6 +911,9 @@ export const es = {
     },
   },
   settings: {
+    textSize: 'Tamaño de lectura',
+    textSizeHint: 'Agrandá los textos y controles. Los títulos conservan su tamaño.',
+    scale: (value: number) => `×${value}`,
     button: 'Ajustes',
     title: 'Ajustes',
     legibleFont: 'Fuente legible',

@@ -75,3 +75,9 @@ describe('preferencias', () => {
     expect(() => writePrefs(broken, DEFAULT_PREFS)).not.toThrow();
   });
 });
+
+it('restores only supported reading sizes and preserves old preferences', () => {
+  expect(parsePrefs('{"textScale":2,"sounds":true}')).toEqual({legibleFont:false,sounds:true,textScale:2});
+  expect(parsePrefs('{"textScale":3}').textScale).toBe(3);
+  expect(parsePrefs('{"textScale":99}')).toEqual(DEFAULT_PREFS);
+});

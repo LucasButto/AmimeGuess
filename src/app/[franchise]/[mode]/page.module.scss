@@ -47,3 +47,16 @@
   z-index: 1;
   min-inline-size: 0;
 }
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: t.$space-3;
+}
+.actionsSlot {
+  inline-size: 100%;
+  min-inline-size: 0;
+  @include bp.min-width('lg') { inline-size: auto; margin-inline-start: auto; }
+}
