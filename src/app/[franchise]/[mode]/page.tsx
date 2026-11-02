@@ -5,8 +5,10 @@ import { TitleWords } from '@/components/TitleWords';
 import { getSkin } from '@/franchises/themes';
 import { franchises, getFranchise } from '@/franchises';
 import { loadFranchiseData } from '@/franchises/data';
+import { appShellEnabled } from '@/franchises/visibility';
 import { es } from '@/i18n/es';
 import { OG_SIZE, ogImage } from '../../site';
+import { GAME_DOCK_ID } from '@/components/game-shell/dockId';
 import { ModeGame } from './ModeGame';
 import styles from './page.module.scss';
 import { modeStatus } from './playable';
@@ -66,24 +68,33 @@ export default async function ModePage({
   // título (slot `TitleMark`): por defecto, ninguna.
   const { PageTransition, TitleMark } = getSkin(franchise.slug).slots;
 
+  const appShell = appShellEnabled(franchise.slug);
+  const heading = (
+    <header className={styles.header}>
+      <p className={styles.franchise}>{franchise.name}{appShell && <span className={styles.appSubtitle}>{es.shell.appSubtitle}</span>}</p>
+      <h1 className={styles.title}>
+        <TitleMark slug={mode.slug} index={franchise.modes.indexOf(mode)} />
+        <TitleWords text={mode.name} />
+      </h1>
+    </header>
+  );
+  const navigation = (
+    <div className={styles.topbar}>
+      <BackNav franchise={franchise} appShell={appShell} />
+      <div id="game-actions" className={styles.actionsSlot} />
+    </div>
+  );
+
   return (
-    <main className={styles.page}>
+    <main className={styles.page} data-shell={appShell ? 'app' : undefined}>
       <PageTransition />
-      <div className={styles.topbar}>
-        <BackNav franchise={franchise} />
-        <div id="game-actions" className={styles.actionsSlot} />
-      </div>
-      <header className={styles.header}>
-        <p className={styles.franchise}>{franchise.name}</p>
-        <h1 className={styles.title}>
-          <TitleMark slug={mode.slug} index={franchise.modes.indexOf(mode)} />
-          <TitleWords text={mode.name} />
-        </h1>
-      </header>
+      {appShell ? <div className={styles.appBar}>{navigation}{heading}</div> : <>{navigation}{heading}</>}
       {/* El área de juego va sobre la placa del tema: el texto nunca queda directo sobre el fondo. */}
-      <div className={styles.plate}>
-        <ModeGame franchise={franchise} mode={mode} modes={modes} playable={statuses.get(mode.slug) === 'playable'} />
+      <div className={styles.plate} data-app-content={appShell ? '' : undefined}>
+        <ModeGame appShell={appShell} franchise={franchise} mode={mode} modes={modes} playable={statuses.get(mode.slug) === 'playable'} />
       </div>
+      {/* La acción principal del juego, fija abajo en el teléfono (GuessField la monta acá por portal). */}
+      {appShell && <div id={GAME_DOCK_ID} className={styles.dock} data-dock="" />}
     </main>
   );
 }

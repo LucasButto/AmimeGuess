@@ -1,4 +1,5 @@
 @use 'tokens' as t;
+@use 'mixins' as m;
 
 .root {
   display: flex;
@@ -15,4 +16,29 @@
   // Cifras del mismo ancho: los dígitos no bailan cada segundo.
   font-variant-numeric: tabular-nums;
   color: t.color('text');
+}
+
+.shortLabel { display: none; }
+.compact {
+  @include m.app-shell {
+    // No se encoge mientras entre; si no entra (letra muy grande), se parte en renglones.
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+    gap: 0 t.$space-1;
+    white-space: normal;
+    font-size: t.$font-display-sm;
+    .label { display: none; }
+    .shortLabel { display: inline; }
+    .time { font-size: inherit; }
+  }
+  @include m.app-shell-desktop {
+    flex: 0 1 auto;
+    flex-wrap: wrap;
+    gap: 0 t.$space-2;
+    white-space: normal;
+    font-size: t.$font-size-sm;
+    .label { display: block; }
+    .shortLabel { display: none; }
+    .time { font-size: t.$font-size-base; }
+  }
 }

@@ -1,10 +1,30 @@
 import { describe, expect, it } from 'vitest';
 import { allFranchises } from './index';
-import { modeSchema, modeSettings, visibleFranchises } from './visibility';
+import { appShellEnabled, modeSchema, modeSettings, sectionSchema, visibleFranchises } from './visibility';
 
 const enabledRules = () => modeSettings.map((section) => ({ ...section, status: true, modes: section.modes.map((mode) => ({ ...mode, status: true })) }));
 
 describe('data/mode.json', () => {
+  it('acepta appShell booleano u omitido y rechaza otros tipos', () => {
+    const section = { slug: 'test', name: 'Test', status: true, modes: [] };
+    expect(sectionSchema.parse(section)).toEqual(section);
+    for (const appShell of [true, false]) expect(sectionSchema.parse({ ...section, appShell }).appShell).toBe(appShell);
+    for (const appShell of ['true', 1, null]) expect(sectionSchema.safeParse({ ...section, appShell }).success).toBe(false);
+  });
+
+  it('activa appShell solo si la sección existe, está activa y lo habilita explícitamente', () => {
+    const section = { slug: 'test', name: 'Test', status: true, modes: [] };
+    expect(appShellEnabled('test', [{ ...section, appShell: true }])).toBe(true);
+    expect(appShellEnabled('test', [{ ...section, appShell: false }])).toBe(false);
+    expect(appShellEnabled('test', [section])).toBe(false);
+    expect(appShellEnabled('test', [{ ...section, status: false, appShell: true }])).toBe(false);
+    expect(appShellEnabled('inexistente', [{ ...section, appShell: true }])).toBe(false);
+  });
+
+  it('con la configuración real, el diseño de app está prendido solo en Pokémon', () => {
+    for (const franchise of allFranchises) expect(appShellEnabled(franchise.slug)).toBe(franchise.slug === 'pokemon');
+  });
+
   it('todos los modos tienen try positivo y cambiarlo modifica la configuración pública', () => {
     for (const section of modeSettings) for (const mode of section.modes) expect(Number.isInteger(mode.try) && mode.try > 0).toBe(true);
     const rules = enabledRules();

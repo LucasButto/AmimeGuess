@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { DismissibleFooter } from '@/components/DismissibleFooter';
 import { SkinRoot } from '@/components/skin/SkinRoot';
 import { getFranchise } from '@/franchises';
+import { appShellEnabled } from '@/franchises/visibility';
 import { themeCss } from '@/franchises/theme';
 import { getSkin } from '@/franchises/themes';
 
@@ -33,7 +34,7 @@ export default async function FranchiseLayout({
       <SkinRoot slug={franchise.slug}>
         <Backdrop />
         {children}
-        <DismissibleFooter>
+        <DismissibleFooter phoneOnce={appShellEnabled(franchise.slug)}>
           <Footer />
         </DismissibleFooter>
       </SkinRoot>

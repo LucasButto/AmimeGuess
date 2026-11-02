@@ -118,3 +118,9 @@
 
 .collapseArrow { flex: none; }
 .collapse[aria-expanded='true'] .collapseArrow { transform: rotate(90deg); }
+
+// Dentro de la hoja del teléfono el título es el de siempre pero sin ser un botón que pliega.
+.sheetTitle {
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+}

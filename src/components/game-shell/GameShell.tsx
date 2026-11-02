@@ -9,11 +9,13 @@ import { es } from '@/i18n/es';
 import { ContentImage } from '../ContentImage';
 import { CopyLinkButton } from '../CopyLinkButton';
 import { FilterPanel } from '../FilterPanel';
+import Link from 'next/link';
 import { Modal } from '../Modal';
+import { Sheet } from '../Sheet';
 import { setPrefs, usePrefs } from '../usePrefs';
 import { useSkin } from '../skin/context';
 import { useSound } from '../skin/useSound';
-import { Button } from '../ui/Button';
+import { Button, ButtonLink } from '../ui/Button';
 import { Panel } from '../ui/Panel';
 import { InfoTip } from '../ui/InfoTip';
 import { Switch } from '../ui/Switch';
@@ -25,11 +27,16 @@ import { ModeNav } from './ModeNav';
 import { clearPracticeStates, newPracticeDay, practiceStorage } from './practice';
 import { ResultPanel } from './ResultPanel';
 import { scrollToElement } from './scroll';
+import { RESULT_SETTLE_MS } from './scrollIntoView';
 import { StatsView } from './StatsView';
 import { buildShareText, buildShareUrl, describeFilters, themeGrid } from './share';
 import type { FinishReport, GameShellProps } from './types';
 import { ActiveAttemptLimit, AttemptRules } from './AttemptRules';
 import { attemptLimit } from './attempts';
+import { AttemptsStatusProvider, AttemptsStatusTarget } from './AttemptsStatus';
+import { useAppShell, useSurrenderAction, useSurrenderRegistry } from './AppShellContext';
+import { DockAction, useDockTarget } from './GameDock';
+import { SheetSection, SheetSlotContext } from './SheetSlot';
 
 import { useRouletteImages } from '@/modes/stat-builder/RoulettePreview';
 
@@ -59,6 +66,13 @@ export function GameShell({
   children,
 }: GameShellProps) {
   // La variante de la partida: la del motor (una dificultad) más la de los interruptores (relleno, arcos del manga).
+  const appShell = useAppShell();
+  const surrender = useSurrenderAction();
+  const surrenderRegistry = useSurrenderRegistry();
+  // En el teléfono, los filtros y las opciones de la partida viven en una hoja que abre el botón de la barra.
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [sheetTarget, setSheetTarget] = useState<HTMLElement | null>(null);
+  const phone = useDockTarget() !== null;
   const flags = useContext(GameFlagsContext);
   const attemptRules = useContext(AttemptRules);
   const variant = `${engineVariant ?? ''}${flags.variant}` || undefined;
@@ -68,7 +82,7 @@ export function GameShell({
   const [stats, setStats] = useState(() => readStats(getLocalStorage(), franchise.slug, mode.slug));
   const [finished, setFinished] = useState<{ key: string; report: FinishReport } | null>(null);
   const [dialog, setDialog] = useState<Dialog>(null);
-  const { skin } = useSkin();
+  const { skin, leaveTo } = useSkin();
   const prefs = usePrefs();
   const play = useSound();
 
@@ -90,13 +104,28 @@ export function GameShell({
   const playDay = practiceDay ?? day;
   const sessionKey = `${filterKey}:${playDay}${variant ? `:${variant}` : ''}`;
   const report = finished?.key === sessionKey ? finished.report : null;
+  // Teléfono (diseño de app): el resultado es una hoja que sube al terminar la partida (no al recargar una ya terminada);
+  // se cierra para ver el tablero y un botón de la barra de abajo la vuelve a abrir.
+  const resultInSheet = appShell && phone && report !== null;
+  // Lo que la persona hizo con la hoja de ESTE resultado; sin haber hecho nada, se abre sola solo si la partida terminó ahora.
+  const [sheetView, setSheetView] = useState<{ report: FinishReport; open: boolean } | null>(null);
+  const resultOpen = report !== null && (sheetView?.report === report ? sheetView.open : report.fresh);
+  const setResultOpen = (open: boolean) => { if (report) setSheetView({ report, open }); };
 
   // Al terminar una partida (no al recargar una ya terminada), la página baja sola hasta el resumen.
   const resultRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const target = resultRef.current;
     if (!report?.fresh || !target) return;
-    return scrollToElement(target);
+    // Con el diseño de app, la última animación del juego (la revelación del Clásico, la comparación) termina antes de bajar.
+    if (!appShell) return scrollToElement(target);
+    let cancel: (() => void) | undefined;
+    const timer = setTimeout(() => { cancel = scrollToElement(target); }, report.settleMs ?? RESULT_SETTLE_MS);
+    return () => {
+      clearTimeout(timer);
+      cancel?.();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [report]);
 
   // Al empezar una partida del modo infinito, baja sola hasta el juego.
@@ -144,6 +173,21 @@ export function GameShell({
     // `report` no se usa adentro, pero cambia justo cuando se guarda una partida terminada.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modes, franchise.slug, filterKey, day, report]);
+
+  // Qué sigue al terminar: el primer modo que hoy no se resolvió con estos filtros, o la franquicia si no queda ninguno.
+  const nextMode = modes.find((candidate) => candidate.available && candidate.slug !== mode.slug && !solved.has(candidate.slug));
+  const nextHref = nextMode ? `/${franchise.slug}/${nextMode.slug}${filterKey ? `?s=${filterKey}` : ''}` : `/${franchise.slug}`;
+
+  // "Ayer fue…" en el teléfono: no ocupa la pantalla de juego; va en la hoja de resultado y en Estadísticas.
+  const yesterdayNote = yesterdayAnswer && !practicing && (
+    <p className={styles.yesterdayNote}>
+      {yesterdayAnswer.imageStem && <ContentImage className={styles.yesterdayImage} stem={yesterdayAnswer.imageStem} alt="" sizes="3rem" />}
+      <span>
+        <span className={styles.yesterdayLabel}>{es.shell.yesterday}</span>{' '}
+        <strong>{yesterdayAnswer.label}</strong>
+      </span>
+    </p>
+  );
 
   const handleFinish = useCallback(
     (reported: FinishReport) => {
@@ -193,19 +237,45 @@ export function GameShell({
   const actionsRef = useRef<HTMLDivElement>(null);
   const openDialog = (next: Dialog) => { actionsRef.current?.hidePopover(); setDialog(next); };
 
+  // Si los filtros dejan de ser los de siempre, el botón de la barra lo avisa con un punto.
+  const filtersChanged = active.length < franchise.series.length || flags.toggles.some((toggle) => !toggle.on);
+  const filters = (inSheet: boolean) => (
+      <FilterPanel
+        series={franchise.series}
+        labels={franchise.seriesLabels}
+        details={franchise.seriesDetails}
+        active={active}
+        onChange={setActive}
+        remaining={remaining}
+        minimum={minimumPool}
+        toggles={flags.toggles}
+        sheet={inSheet}
+      >
+        {!inSheet && <CopyLinkButton filterKey={filterKey} />}
+      </FilterPanel>
+  );
+
   return (
+    <AttemptsStatusProvider>
     <ActiveAttemptLimit.Provider value={limit}>
+    <SheetSlotContext.Provider value={{ phone, target: phone && filtersOpen ? sheetTarget : null }}>
     <div className={styles.root} data-game="shell">
       {document.getElementById('game-actions') && createPortal(
         <div className={styles.floatingActions}>
+          {appShell && <button type="button" className={styles.filterTrigger} aria-label={filtersChanged ? es.shell.filtersChanged : es.shell.filters} aria-haspopup="dialog" aria-expanded={phone && filtersOpen} onClick={() => setFiltersOpen(true)}>
+            <svg viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges"><path d="M4 4h16v3H4zm3 5h10v3H7zm3 5h4v7h-4z" fill="currentColor" /></svg>
+            {filtersChanged && <span className={styles.filterDot} aria-hidden="true" />}
+          </button>}
           <button type="button" popoverTarget={actionsId} aria-label={es.shell.actions} className={styles.menuTrigger}>
             <svg className={styles.menuSymbol} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges">
-              <path d="M5 5h14v3H5zm0 6h14v3H5zm0 6h14v3H5z" fill="currentColor" />
+              <path className={appShell ? styles.hamburger : undefined} d="M5 5h14v3H5zm0 6h14v3H5zm0 6h14v3H5z" fill="currentColor" />
+              {appShell && <path className={styles.ellipsis} d="M10 3h4v4h-4zm0 7h4v4h-4zm0 7h4v4h-4z" fill="currentColor" />}
             </svg>
           </button>
           <div id={actionsId} popover="auto" ref={actionsRef} className={styles.actionsMenu}>
           <div className={styles.buttons} role="group" aria-label={es.shell.actions} onKeyDown={(event) => {
-            const buttons = [...event.currentTarget.querySelectorAll<HTMLButtonElement>('button')];
+            const buttons = [...event.currentTarget.querySelectorAll<HTMLButtonElement>('button')].filter((button) => !button.disabled && button.getClientRects().length > 0);
+            if (!buttons.length) return;
             const current = buttons.indexOf(document.activeElement as HTMLButtonElement);
             const next = event.key === 'ArrowDown' ? (current + 1) % buttons.length : event.key === 'ArrowUp' ? (current + buttons.length - 1) % buttons.length : event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : null;
             if (next === null) return;
@@ -234,6 +304,11 @@ export function GameShell({
               </svg>
               <span>{action === 'help' ? es.shell.help : action === 'stats' ? es.shell.stats : es.settings.button}</span>
             </button>)}
+            {appShell && <Link href="/creditos" className={`${styles.menuOption} ${styles.creditsOption}`}><span>{es.footer.credits}</span></Link>}
+            {appShell && <button type="button" className={`${styles.menuOption} ${styles.surrenderOption}`} disabled={!surrender || surrender.disabled} data-selected={menuSelection === 3} onFocus={() => setMenuSelection(3)} onClick={() => {
+              actionsRef.current?.hidePopover();
+              surrenderRegistry?.open();
+            }}>{es.shell.surrender.button}</button>}
           </div>
           </div></div>
         , document.getElementById('game-actions')!
@@ -241,21 +316,11 @@ export function GameShell({
       <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} solved={solved} filterKey={filterKey} />
 
       <div className={styles.toolbar}>
-        <Countdown />
+        {appShell && <AttemptsStatusTarget />}
+        <Countdown compact={appShell} />
       </div>
 
-      <FilterPanel
-        series={franchise.series}
-        labels={franchise.seriesLabels}
-        details={franchise.seriesDetails}
-        active={active}
-        onChange={setActive}
-        remaining={remaining}
-        minimum={minimumPool}
-        toggles={flags.toggles}
-      >
-        <CopyLinkButton filterKey={filterKey} />
-      </FilterPanel>
+      <SheetSection>{filters}</SheetSection>
 
       {practicing && (
         <div className={styles.practiceBanner} role="status">
@@ -268,7 +333,7 @@ export function GameShell({
         </div>
       )}
 
-      {playable && beforeGame?.({ remaining, day: playDay })}
+      {playable && <SheetSection>{beforeGame?.({ remaining, day: playDay })}</SheetSection>}
 
       {/* Otra combinación de filtros, de día o de variante es otra partida: el juego se vuelve a montar. */}
       {playable && (
@@ -291,7 +356,7 @@ export function GameShell({
           {yesterdayAnswer.imageStem && (
             <ContentImage className={styles.yesterdayImage} stem={yesterdayAnswer.imageStem} alt="" sizes="3rem" />
           )}
-          <p>
+          <p className={styles.yesterdayText}>
             <span className={styles.yesterdayLabel}>{es.shell.yesterday}</span>{' '}
             <strong>{yesterdayAnswer.label}</strong>
           </p>
@@ -300,7 +365,7 @@ export function GameShell({
       )}
 
       {/* El resultado va al final, debajo de los intentos y de "Ayer fue…", con los modos para seguir jugando. */}
-      {report && (
+      {report && !resultInSheet && (
         <div ref={resultRef} className={styles.result}>
           <ResultPanel
             titleOverride={report.title}
@@ -364,6 +429,46 @@ export function GameShell({
         </div>
       )}
 
+      {resultInSheet && resultOpen && report && (
+        <Sheet title={es.shell.result.sheetTitle} onClose={() => setResultOpen(false)}>
+          <ResultPanel
+            inSheet
+            titleOverride={report.title}
+            answerIsSentence={report.answerIsSentence}
+            won={report.won}
+            attempts={report.attempts}
+            score={report.score}
+            answer={report.answer}
+            streak={activeStreak(stats, day)}
+            getShareText={getShareText}
+            practice={practicing}
+            actions={
+              practicing ? (
+                <>
+                  <Button variant="primary" onClick={startPractice}>
+                    {es.shell.practice.next}
+                  </Button>
+                  <Button variant="ghost" onClick={leavePractice}>
+                    {es.shell.practice.back}
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <ButtonLink variant="secondary" href={nextHref} onClick={(event) => leaveTo(event, nextHref)}>
+                    {nextMode ? es.shell.result.nextMode(nextMode.name) : es.shell.result.backTo(franchise.name)}
+                  </ButtonLink>
+                  <Button variant="ghost" onClick={startPractice}>
+                    {es.shell.practice.start}
+                  </Button>
+                </>
+              )
+            }
+          />
+          {yesterdayNote}
+        </Sheet>
+      )}
+      {resultInSheet && !resultOpen && <DockAction label={es.shell.result.viewResult} onClick={() => setResultOpen(true)} />}
+
       {dialog === 'help' && (
         <Modal title={es.shell.helpTitle(mode.name)} onClose={closeDialog}>
           <div className={styles.help}>
@@ -414,9 +519,26 @@ export function GameShell({
             latestWin={report?.won && !practicing ? (report.score ?? report.attempts) : undefined}
             kind={resultKind}
           />
+          {phone && yesterdayNote}
         </Modal>
       )}
+      {phone && filtersOpen && (
+        <Sheet
+          title={es.shell.filtersSheet}
+          onClose={() => setFiltersOpen(false)}
+          footer={
+            <>
+              <CopyLinkButton filterKey={filterKey} />
+              <Button variant="primary" onClick={() => setFiltersOpen(false)}>{es.shell.sheetDone}</Button>
+            </>
+          }
+        >
+          <div ref={setSheetTarget} className={styles.sheetContent} />
+        </Sheet>
+      )}
     </div>
+    </SheetSlotContext.Provider>
     </ActiveAttemptLimit.Provider>
+    </AttemptsStatusProvider>
   );
 }

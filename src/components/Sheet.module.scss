@@ -1,0 +1,108 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// Con una hoja abierta, la página de atrás no se desplaza.
+:global(body:has(dialog[data-sheet][open])) {
+  overflow: hidden;
+}
+
+// El <dialog> solo ubica la hoja pegada abajo; el fondo y el marco los dibuja el Panel de adentro.
+.dialog {
+  inline-size: 100%;
+  max-inline-size: none;
+  max-block-size: min(85dvh, calc(100dvh - env(safe-area-inset-top) - #{t.$space-4}));
+  margin: auto 0 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: t.token('ink');
+
+  &[open] {
+    display: flex;
+    flex-direction: column;
+
+    @include bp.motion-ok {
+      animation: sheet-in 0.22s ease-out both;
+    }
+  }
+
+  &::backdrop {
+    background: color-mix(in srgb, #{t.color('text')} 60%, transparent);
+  }
+
+  // Desde `lg` no hay de dónde subir: un cuadro centrado.
+  @include bp.min-width('lg') {
+    inline-size: min(calc(100% - #{t.$space-6}), 36rem);
+    margin: auto;
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: none;
+  }
+}
+
+.panel {
+  --panel-pad: 0rem;
+  --panel-radius: #{t.$radius-lg};
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-block-size: 0;
+}
+
+// El asa: dice que la hoja se cierra tocando afuera o con el botón de abajo.
+.handle {
+  flex: none;
+  // El dedo arrastra la hoja: el navegador no tiene que desplazar la página con ese gesto.
+  touch-action: none;
+  align-self: center;
+  inline-size: 3rem;
+  block-size: 0.375rem;
+  margin-block: t.$space-2 t.$space-1;
+  background: t.token('frame-color');
+  opacity: 0.5;
+}
+
+.header {
+  touch-action: none;
+  @include m.pixel-text;
+  flex: none;
+  padding: t.$space-1 t.$space-4 t.$space-2;
+  border-block-end: t.$border-width solid t.token('frame-color');
+}
+
+.title {
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+}
+
+.body {
+  display: grid;
+  flex: 1 1 auto;
+  align-content: start;
+  gap: t.$space-4;
+  min-block-size: 0;
+  padding: t.$space-4;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+// Las acciones, fijas al pie y por encima de la barra de gestos.
+.footer {
+  display: flex;
+  flex: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-2 t.$space-3;
+  padding: t.$space-3 t.$space-4 max(#{t.$space-3}, env(safe-area-inset-bottom));
+  border-block-start: t.$border-width solid t.token('frame-color');
+}

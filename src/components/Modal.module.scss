@@ -173,6 +173,8 @@
 
 .header {
   @include m.pixel-text;
+  // Diseño de app: el dedo arrastra el encabezado hacia abajo para cerrar (ver `useSwipeToClose`).
+  @include m.app-shell { touch-action: none; }
   display: flex;
   flex: none;
   align-items: center;
@@ -212,6 +214,9 @@
 .footer {
   display: flex;
   flex: none;
+  // Diseño de app: ya hay una ✕ arriba, así que el "Cerrar" del pie sobra (desde `lg` vuelve).
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: flex; }
   // El botón queda en el borde inferior: se alcanza con el pulgar y no queda bajo la barra de gestos.
   padding: t.$space-3 t.$space-4 max(t.$space-3, env(safe-area-inset-bottom));
   border-block-start: t.$border-width solid t.token('frame-color');

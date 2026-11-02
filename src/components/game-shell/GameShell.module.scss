@@ -82,6 +82,9 @@
 }
 
 .yesterday {
+  // Diseño de app: "Ayer fue…" sale de la pantalla de juego del teléfono (va en el resultado y en Estadísticas).
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: flex; }
   // El marco de los demás paneles (el del tema; sin tema, el borde simple de siempre).
   @include m.pixel-frame;
   display: flex;
@@ -92,10 +95,18 @@
 }
 
 .yesterdayImage {
-  flex: none;
+  flex: 0 1 3rem;
+  min-inline-size: 0;
   inline-size: 3rem;
   block-size: 3rem;
   object-fit: contain;
+}
+
+// Con letra grande el texto se parte en renglones en vez de empujar la ayuda fuera de la pantalla.
+.yesterdayText {
+  flex: 1 1 0;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
 }
 
 .yesterdayLabel {
@@ -175,4 +186,103 @@
   --_fill: #{t.token('chip-on-fill')};
   --_ink: #{t.token('chip-on-ink')};
   --_edge: #{t.token('frame-color')};
+}
+
+.floatingActions {
+  @include m.app-shell { position: static; display: flex; align-items: center; gap: t.$space-1; }
+  @include m.app-shell-desktop { position: fixed; display: block; }
+}
+.filterTrigger {
+  @include m.focus-ring;
+  @include m.touch-target;
+  display: none;
+  border: 0; padding: 0; background: none; color: t.token('app-bar-ink'); cursor: pointer;
+  svg { inline-size: 1.5rem; block-size: 1.5rem; }
+  @include m.app-shell { display: grid; place-items: center; }
+  @include m.app-shell-desktop { display: none; }
+}
+.menuTrigger {
+  @include m.app-shell {
+    inline-size: 2.75rem; block-size: 2.75rem; color: t.token('app-bar-ink');
+    &::before, &::after { display: none; }
+  }
+  @include m.app-shell-desktop {
+    inline-size: 3rem; block-size: 3rem; color: t.token('ink');
+    &::before, &::after { display: block; }
+    @include m.hover { color: t.color('accent'); }
+  }
+}
+.hamburger {
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: inline; }
+}
+.ellipsis {
+  display: none;
+  @include m.app-shell { display: inline; }
+  @include m.app-shell-desktop { display: none; }
+}
+.actionsMenu {
+  @include m.app-shell { inset-block-start: var(--app-bar-h); inset-inline-end: max(#{t.$space-2}, env(safe-area-inset-right)); max-block-size: calc(100dvh - var(--app-bar-h) - #{t.$space-2}); }
+  @include m.app-shell-desktop { inset-block-start: max(1.5rem + 3.5rem, calc(env(safe-area-inset-top) + 3.5rem)); inset-inline-end: max(1.5rem, env(safe-area-inset-right)); max-block-size: calc(100dvh - 6rem); }
+}
+.surrenderOption {
+  &:disabled { opacity: 0.5; cursor: default; }
+  @include m.app-shell-desktop { display: none; }
+}
+.result, .game {
+  @include m.app-shell { scroll-margin-block-start: calc(var(--app-bar-h) + #{t.$space-4}); }
+}
+.result { @include m.app-shell-desktop { scroll-margin-block-start: t.$space-4; } }
+.game { @include m.app-shell-desktop { scroll-margin-block-start: 0; } }
+
+.toolbar {
+  @include m.app-shell {
+    // Con letra muy grande la cuenta regresiva baja a otro renglón en vez de aplastar la línea de estado.
+    flex-wrap: wrap;
+    gap: 0 t.$space-1;
+    min-block-size: 2rem;
+  }
+  @include m.app-shell-desktop {
+    flex-wrap: wrap;
+    gap: t.$space-2 t.$space-4;
+    min-block-size: auto;
+  }
+}
+
+// El punto del botón de filtros: dice que no son los de siempre (y el nombre accesible también).
+.filterTrigger { position: relative; }
+.filterDot {
+  position: absolute;
+  inset-block-start: 0.5rem;
+  inset-inline-end: 0.5rem;
+  inline-size: 0.625rem;
+  block-size: 0.625rem;
+  border-radius: 50%;
+  background: t.color('miss');
+  box-shadow: 0 0 0 0.125rem t.token('app-bar-fill');
+}
+
+// Lo que la hoja de filtros recibe de las otras partes del juego (dificultad, "Qué comparar", configuración).
+.sheetContent {
+  display: grid;
+  gap: t.$space-4;
+  min-inline-size: 0;
+  &:empty { display: none; }
+}
+
+// "Ayer fue…" dentro de la hoja de resultado y de Estadísticas (teléfono): una línea chica con la imagen.
+.yesterdayNote {
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
+  margin: 0;
+  padding-block-start: t.$space-3;
+  border-block-start: t.$border-width solid t.token('frame-color');
+  font-size: t.$font-size-sm;
+}
+
+// "Créditos" en el menú ⋮: el aviso legal se muestra una vez en el teléfono y de ahí en más vive en Créditos.
+.creditsOption {
+  text-decoration: none;
+  @include m.app-shell-desktop { display: none; }
 }

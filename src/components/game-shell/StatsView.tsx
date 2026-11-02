@@ -1,9 +1,10 @@
 import { useId } from 'react';
+import { useDockTarget } from './GameDock';
 import type { Stats } from '@/engine/storage';
 import { es } from '@/i18n/es';
 import { VisuallyHidden } from '../VisuallyHidden';
 import styles from './StatsView.module.scss';
-import { bestScore, distributionRows, rowHolds, winRate } from './stats';
+import { bestScore, distributionRows, rowHolds, winRate, type DistributionRow } from './stats';
 import type { ResultKind } from './types';
 
 interface StatsViewProps {
@@ -23,10 +24,15 @@ interface StatsViewProps {
  */
 export function StatsView({ stats, streak, latestWin, kind = 'attempts' }: StatsViewProps) {
   const titleId = useId();
-  if (stats.played === 0) return <p className={styles.empty}>{es.shell.statsView.noGames}</p>;
+  // En el teléfono, sin partidas se ve igual la estructura (todo en cero) con el aviso encima; en lo demás, solo el aviso.
+  const phone = useDockTarget() !== null;
+  if (stats.played === 0 && !phone) return <p className={styles.empty}>{es.shell.statsView.noGames}</p>;
 
   const scored = kind === 'score';
-  const rows = distributionRows(stats.distribution, 12, scored ? 0 : 1);
+  const first = scored ? 0 : 1;
+  const placeholder: DistributionRow[] = Array.from({ length: 6 }, (_, index) => ({ label: String(first + index), attempts: first + index, count: 0, rangeStart: first + index }));
+  const real = distributionRows(stats.distribution, 12, first);
+  const rows = stats.played === 0 ? placeholder : real;
   const tallest = Math.max(1, ...rows.map((row) => row.count));
   const tiles: Array<{ label: string; value: string }> = [
     { label: es.shell.statsView.played, value: String(stats.played) },
@@ -39,6 +45,7 @@ export function StatsView({ stats, streak, latestWin, kind = 'attempts' }: Stats
 
   return (
     <div className={styles.root} data-part="stats">
+      {stats.played === 0 && <p className={styles.empty}>{es.shell.statsView.noGames}</p>}
       <dl className={styles.tiles}>
         {tiles.map((tile) => (
           <div key={tile.label} className={styles.tile}>

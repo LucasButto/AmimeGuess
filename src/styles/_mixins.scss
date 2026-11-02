@@ -2,6 +2,21 @@
 @use "breakpoints" as bp;
 @use "tokens" as t;
 
+// Estilos de app y restauración de escritorio en el mismo bloque, con igual especificidad.
+@mixin app-shell {
+  [data-shell='app'] & {
+    @content;
+  }
+}
+
+@mixin app-shell-desktop {
+  @include bp.min-width('lg') {
+    [data-shell='app'] & {
+      @content;
+    }
+  }
+}
+
 // Área táctil mínima (44 × 44 px a 16 px de fuente raíz). Para botones, chips
 // y cualquier elemento que se toque.
 @mixin touch-target {

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
 import styles from './Button.module.scss';
 import { PixelIcon } from './icons';
 
@@ -46,9 +46,9 @@ export function Button({ variant = 'primary', tone = 'a', className, children, t
 }
 
 /** Un link que se ve como un botón (para ir a otra página). */
-export function ButtonLink({ variant = 'primary', tone = 'a', className, href, children }: Look & { href: string; children: ReactNode }) {
+export function ButtonLink({ variant = 'primary', tone = 'a', className, href, onClick, children }: Look & { href: string; onClick?: MouseEventHandler<HTMLAnchorElement>; children: ReactNode }) {
   return (
-    <Link className={classOf(className)} data-variant={variant} data-tone={variant === 'icon' ? tone : undefined} href={href}>
+    <Link className={classOf(className)} data-variant={variant} data-tone={variant === 'icon' ? tone : undefined} href={href} onClick={onClick}>
       <Content variant={variant}>{children}</Content>
     </Link>
   );

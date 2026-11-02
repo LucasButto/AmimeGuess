@@ -15,6 +15,8 @@ interface InfoTipProps {
   children?: ReactNode;
   /** Junto a un texto (un título, un encabezado de tabla): ocupa menos lugar sin achicar el área táctil. */
   compact?: boolean;
+  /** Diseño de app (teléfono): la ayuda no va en la pantalla de juego; su contenido está en "Cómo se juega". Desde `lg` vuelve. */
+  hideInApp?: boolean;
   className?: string;
 }
 
@@ -51,7 +53,7 @@ interface Placement {
  * en el diálogo abierto que contiene al botón), con posición fija: nunca queda recortado dentro de un
  * contenedor con desplazamiento, como la tabla del Clásico.
  */
-export function InfoTip({ text, label, children, compact = false, className }: InfoTipProps) {
+export function InfoTip({ text, label, children, compact = false, hideInApp = false, className }: InfoTipProps) {
   const tipId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const tipRef = useRef<HTMLDivElement>(null);
@@ -153,7 +155,7 @@ export function InfoTip({ text, label, children, compact = false, className }: I
       <button
         ref={buttonRef}
         type="button"
-        className={[children === undefined ? styles.button : styles.term, className].filter(Boolean).join(' ')}
+        className={[children === undefined ? styles.button : styles.term, hideInApp && styles.hideInApp, className].filter(Boolean).join(' ')}
         data-compact={compact}
         aria-label={label}
         aria-describedby={open ? tipId : undefined}

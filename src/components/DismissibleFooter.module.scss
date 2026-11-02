@@ -1,0 +1,16 @@
+@use 'breakpoints' as bp;
+
+// Diseño de app, en el teléfono: pasada la primera visita el aviso legal no se muestra más (queda en Créditos). Desde `lg`
+// la caja no existe y el pie es el de siempre.
+.phoneHidden {
+  display: none;
+
+  @include bp.min-width('lg') {
+    display: contents;
+  }
+}
+
+// Mientras se muestra (primera visita), el contenedor no deja caja propia: el pie queda como siempre.
+.shown {
+  display: contents;
+}

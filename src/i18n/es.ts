@@ -67,7 +67,7 @@ export const es = {
     won: '¡Meta superada!',
     difficulty: 'Dificultad', forms: 'Formas opcionales', regional: 'Formas regionales', mega: 'Megaevoluciones',
     level: (level: number, target: number) => `${['Fácil', 'Normal', 'Difícil'][level]} · superar ${target}`,
-    stop: 'Tocá para detener', choose: 'Elegí una estadística', finished: 'Combinación terminada', stats: 'Asignar estadística',
+    stop: 'Tocá para detener', dockStop: 'Detener', dockNextPokemon: 'Siguiente Pokémon', choose: 'Elegí una estadística', finished: 'Combinación terminada', stats: 'Asignar estadística',
     progress: (attempt: number, limit: number) => `Partida ${Math.min(attempt, limit)}/${limit}`,
     total: (score: number, target: number) => `Total: ${score} · Meta: superar ${target}`,
     assigned: (count: number, total: number) => `${count}/${total} estadísticas asignadas`,
@@ -113,6 +113,15 @@ export const es = {
     intro: (name: string) => `Los retos diarios de ${name}.`,
     progress: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy resueltos`,
     mainMode: 'Modo principal',
+    // Teléfono: el hub es una lista con el estado de hoy de cada modo.
+    barProgress: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy`,
+    play: 'Jugar',
+    continue: 'Seguir',
+    rowState: {
+      won: (attempts: number | undefined) => (attempts === undefined ? 'Ganado' : `Ganado · ${attempts} ${plural(attempts, 'intento', 'intentos')}`),
+      lost: 'Perdido',
+      pending: 'Pendiente',
+    },
     solved: 'Resuelto hoy',
     pending: 'Pendiente',
     /** Nombre accesible de una tarjeta de modo: "Modo: estado". */
@@ -120,6 +129,7 @@ export const es = {
       state === 'unknown' ? mode : `${mode}: ${state === 'solved' ? 'resuelto hoy' : 'pendiente'}`,
   },
   nav: {
+    backTo: (franchise: string) => `Volver a ${franchise}`,
     label: 'Volver',
     home: 'Inicio',
   },
@@ -335,6 +345,8 @@ export const es = {
     inputLabel: 'Tu intento',
     tableCaption: 'Intentos, del más reciente al más antiguo',
     nameHeader: 'Nombre',
+    // Teléfono: un solo "?" arriba de las tarjetas explica las columnas (en la tabla de escritorio cada encabezado tiene su ⓘ).
+    columnsHelp: { button: 'Qué significa cada columna', title: 'Las columnas' },
     empty: 'Todavía no hiciste ningún intento.',
     attempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
     lastAttempt: (name: string) => `Intento agregado: ${name}`,
@@ -351,6 +363,9 @@ export const es = {
     hintsTitle: 'Pistas',
     hintLocked: (remaining: number) =>
       `Se desbloquea con ${remaining} ${plural(remaining, 'intento fallido más', 'intentos fallidos más')}`,
+    // En la tarjeta compacta del teléfono (diseño de app).
+    hintLockedShort: (remaining: number) => `en ${remaining} ${plural(remaining, 'intento', 'intentos')}`,
+    hintUnlocked: (labels: string) => `Pista desbloqueada: ${labels}`,
     help: {
       goal: 'Elegí un nombre y compará sus datos con los de la respuesta. Usá los colores y las flechas para decidir tu próximo intento.',
       colorsTitle: 'Qué significa cada color',
@@ -537,6 +552,11 @@ export const es = {
     },
   },
   shell: {
+    filters: 'Filtros del juego',
+    filtersSheet: 'Filtros del juego',
+    filtersChanged: 'Filtros del juego (cambiados)',
+    sheetDone: 'Listo',
+    appSubtitle: ' \u00b7 reto de hoy',
     actions: 'Ayuda y opciones del juego',
     limits: {
       counter: (used: number, total: number) => `Intentos: ${used}/${total}`,
@@ -582,6 +602,7 @@ export const es = {
     dragHint: 'Arrastrá la barra del título para mover la ventana',
     // Al pasar el cursor por el agarre de la esquina de una ventana que se puede agrandar y achicar.
     resizeHint: 'Arrastrá la esquina para cambiar el tamaño',
+    nextChallengeShort: 'Nuevo en',
     nextChallenge: 'Próximo reto en',
     yesterday: 'Ayer fue',
     helpTitle: (mode: string) => `Cómo se juega — ${mode}`,
@@ -604,6 +625,15 @@ export const es = {
       scoreTitle: 'Fin de la racha',
       scoreSummary: (score: number, streak: number) =>
         `${score === 0 ? 'No acertaste ninguna.' : `Acertaste ${score} ${plural(score, 'seguida', 'seguidas')}.`} Racha: ${streak} ${plural(streak, 'día', 'días')}.`,
+      // Teléfono: el resultado es una hoja (ver `ResultPanel` con `inSheet`).
+      sheetTitle: 'Resultado',
+      viewResult: 'Ver resultado',
+      nextMode: (name: string) => `Siguiente: ${name} →`,
+      backTo: (name: string) => `Volver a ${name}`,
+      streakLabel: 'Racha',
+      // En los modos de puntaje de la hoja, la racha de la partida y la de los días llevan cada una su nombre.
+      scoreSummarySheet: (score: number, streak: number) =>
+        `Aciertos seguidos: ${score}. Racha diaria: ${streak} ${plural(streak, 'día', 'días')}.`,
       share: 'Compartir resultado',
       shareCopied: 'Resultado copiado',
       shareFailed: 'No se pudo copiar',
@@ -730,6 +760,13 @@ export const es = {
     // Selector de Pokémon (reemplaza al campo de texto en los modos de adivinar).
     picker: {
       open: 'Elegir en la Pokédex',
+      openDock: 'Abrir la Pokédex',
+      attemptOf: (current: number, total: number) => `Intento ${current} de ${total}`,
+      searchOpen: 'Buscar por nombre o número',
+      typeChip: 'Tipo',
+      generationChip: 'Generación',
+      hideTried: 'Ocultar intentados',
+      choose: (name: string) => `Elegir a ${name}`,
       title: 'Pokédex',
       search: 'Buscar por nombre o número',
       placeholder: 'Pikachu, 25…',

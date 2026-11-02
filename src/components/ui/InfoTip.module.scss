@@ -140,3 +140,9 @@
 .button[data-compact='true'] {
   margin: -0.625rem;
 }
+
+// Diseño de app: sin la ayuda en la pantalla de juego del teléfono (queda en "Cómo se juega"); desde `lg`, como siempre.
+.hideInApp {
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: inline-flex; }
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { AppShellProvider } from "@/components/game-shell/AppShellContext";
 import { AutocompleteOptions } from "@/components/Autocomplete";
 import { PoolNounContext } from "@/components/FilterPanel";
 import { Button } from "@/components/ui/Button";
@@ -35,6 +36,7 @@ import { RouletteCandidates } from "@/modes/stat-builder/RoulettePreview";
 import styles from "./ModeGame.module.scss";
 
 interface ModeGameProps {
+  appShell: boolean;
   franchise: FranchiseConfig;
   mode: ModeConfig;
   /** Todos los modos de la franquicia con su disponibilidad, para la navegación. */
@@ -54,6 +56,7 @@ interface ModeGameProps {
  */
 export function ModeGame(props: ModeGameProps) {
   return (
+    <AppShellProvider enabled={props.appShell}>
     <AutocompleteOptions.Provider
       value={{ thumbnails: props.franchise.autocompleteThumbnails ?? true }}
     >
@@ -65,6 +68,7 @@ export function ModeGame(props: ModeGameProps) {
         </AttemptRules.Provider>
       </PoolNounContext.Provider>
     </AutocompleteOptions.Provider>
+    </AppShellProvider>
   );
 }
 

@@ -29,6 +29,8 @@ interface ResultPanelProps {
   actions?: ReactNode;
   /** Partida del modo infinito: no hay racha ni se comparte, y el resumen no habla de "hoy" ni de "mañana". */
   practice?: boolean;
+  /** Teléfono: va adentro de una hoja (`Sheet`): sin marco ni franja propios, compartir con el menú del sistema y la racha con su nombre. */
+  inSheet?: boolean;
 }
 
 /**
@@ -36,9 +38,10 @@ interface ResultPanelProps {
  * cuadro de diálogo del tema (Panel `dialog`). Al ganar un reto de intentos, el slot `WinCelebration` del
  * tema puede festejar sobre la imagen y debajo del resumen, y `StreakDisplay` muestra la racha a su manera.
  */
-export function ResultPanel({ won, attempts, score, answer, streak, getShareText, leadingAction, actions, practice = false, titleOverride, answerIsSentence = false }: ResultPanelProps) {
+export function ResultPanel({ won, attempts, score, answer, streak, getShareText, leadingAction, actions, practice = false, titleOverride, answerIsSentence = false, inSheet = false }: ResultPanelProps) {
   const { skin } = useSkin();
   const { WinCelebration, StreakDisplay } = skin.slots;
+  const Frame = inSheet ? 'section' : Panel;
   const scored = score !== undefined;
   const celebrate = celebratesResult(won, scored, skin);
   const namesAnswer = !titleOverride && celebrate && skin.winHeadline === 'answer';
@@ -53,9 +56,9 @@ export function ResultPanel({ won, attempts, score, answer, streak, getShareText
           : es.shell.result.lostTitle);
 
   return (
-    <Panel as="section" variant="dialog" className={styles.root} data-won={won} aria-live="polite">
+    <Frame {...(inSheet ? { className: styles.sheetRoot } : { as: 'section' as const, variant: 'dialog' as const, className: styles.root })} data-won={won} aria-live="polite">
       {/* Franja de color del resultado (si el tema la usa): acompaña al título, no lo reemplaza. */}
-      <span className={styles.mark} aria-hidden="true" />
+      {!inSheet && <span className={styles.mark} aria-hidden="true" />}
       <div className={styles.main}>
         {answer.imageStem && (
           <div className={styles.media}>
@@ -75,7 +78,7 @@ export function ResultPanel({ won, attempts, score, answer, streak, getShareText
                   ? es.shell.practice.wonSummary(attempts)
                   : es.shell.practice.lostSummary
               : scored
-                ? es.shell.result.scoreSummary(score, streak)
+                ? inSheet ? es.shell.result.scoreSummarySheet(score, streak) : es.shell.result.scoreSummary(score, streak)
                 : won
                   ? es.shell.result.wonSummary(attempts, streak)
                   : es.shell.result.lostSummary}
@@ -85,11 +88,12 @@ export function ResultPanel({ won, attempts, score, answer, streak, getShareText
             {leadingAction}
             {!practice && (
               <CopyButton
-                variant="accent"
+                variant={inSheet ? 'primary' : 'accent'}
                 getText={getShareText}
                 label={es.shell.result.share}
                 copiedLabel={es.shell.result.shareCopied}
                 failedLabel={es.shell.result.shareFailed}
+                native={inSheet}
               />
             )}
             {actions}
@@ -97,6 +101,6 @@ export function ResultPanel({ won, attempts, score, answer, streak, getShareText
         </div>
       </div>
       {celebrate && <WinCelebration part="details" label={answer.label} imageStem={answer.imageStem} />}
-    </Panel>
+    </Frame>
   );
 }

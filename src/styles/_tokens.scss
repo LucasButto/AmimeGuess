@@ -258,6 +258,10 @@ $semantic: (
   'plate-inner-width': 0px,
   'plate-pad': 0rem,
   // Botones de volver: relleno y aro interior (por defecto, los de los paneles).
+  'app-bar-fill': var(--color-surface),
+  'app-bar-ink': var(--color-text),
+  'app-bar-edge': var(--frame-color),
+  'app-bar-inner': var(--frame-inner),
   'nav-fill': var(--color-surface),
   'nav-inner': transparent,
   'nav-inner-width': 0px,

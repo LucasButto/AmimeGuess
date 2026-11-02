@@ -40,13 +40,15 @@ interface FilterPanelProps {
   toggles?: readonly GameToggle[];
   /** Acciones que dependen de los filtros, junto a las series (por ejemplo, copiar el link). */
   children?: ReactNode;
+  /** Dentro de la hoja del teléfono: sin marco propio ni plegado (la hoja ya tiene título), siempre abierto. */
+  sheet?: boolean;
 }
 
 /**
  * Chips por serie: se apagan para excluir (SPEC 9). Muestra cuántas entidades
  * quedan, avisa si no alcanzan el mínimo e impide apagar la última serie.
  */
-export function FilterPanel({ series, labels, details, active, onChange, remaining, minimum, toggles, children }: FilterPanelProps) {
+export function FilterPanel({ series, labels, details, active, onChange, remaining, minimum, toggles, children, sheet = false }: FilterPanelProps) {
   const { skin } = useSkin();
   const noun = useContext(PoolNounContext);
   const { ChipMark } = skin.slots;
@@ -62,12 +64,13 @@ export function FilterPanel({ series, labels, details, active, onChange, remaini
     onChange(series.filter((candidate) => (candidate === id ? !isActive : active.includes(candidate))));
   }
 
+  const Frame = sheet ? 'section' : Panel;
   return (
-    <Panel as="section" className={styles.root} aria-labelledby={titleId}>
+    <Frame {...(sheet ? { className: styles.root } : { as: 'section' as const, className: styles.root })} aria-labelledby={titleId}>
       <div className={styles.header}>
         <div className={styles.titleRow}>
-          <h2 className={styles.title} id={titleId}>
-            <button type="button" className={styles.collapse} aria-expanded={open} aria-controls={bodyId} onClick={() => setOpen(!open)}><PixelIcon name="cursor" className={styles.collapseArrow} />{es.filters.title}</button>
+          <h2 className={sheet ? styles.sheetTitle : styles.title} id={titleId}>
+            {sheet ? es.filters.title : <button type="button" className={styles.collapse} aria-expanded={open} aria-controls={bodyId} onClick={() => setOpen(!open)}><PixelIcon name="cursor" className={styles.collapseArrow} />{es.filters.title}</button>}
           </h2>
           <InfoTip compact text={es.help.filters} label={es.help.button(es.filters.title)} />
         </div>
@@ -75,7 +78,7 @@ export function FilterPanel({ series, labels, details, active, onChange, remaini
           {es.filters.remaining(remaining, noun)}
         </p>
       </div>
-      <div id={bodyId} hidden={!open} className={styles.body}>
+      <div id={bodyId} hidden={!sheet && !open} className={styles.body}>
       <p className={styles.hint}>{es.filters.hint}</p>
 
       <ul className={styles.chips} data-uniform={skin.uniformFilterChips} aria-label={es.filters.groupLabel}>
@@ -122,6 +125,6 @@ export function FilterPanel({ series, labels, details, active, onChange, remaini
           {es.filters.belowMinimum(remaining, minimum)}
         </p>
       )}
-    </Panel>
+    </Frame>
   );
 }

@@ -60,3 +60,99 @@
   min-inline-size: 0;
   @include bp.min-width('lg') { inline-size: auto; margin-inline-start: auto; }
 }
+
+.page[data-shell='app'] {
+  // La barra de arriba mide lo que el marco y sus botones de 44 px (3,5 rem) y no se achica. La de abajo mide 5 rem, pero
+  // nunca más que el 17 % de la altura (con un piso de 4,25 rem: el botón, su aire y el borde): en un teléfono apaisado
+  // (390 de alto) o con letra muy grande no se come la pantalla.
+  --app-bar-h: calc(3.5rem + env(safe-area-inset-top));
+  --app-dock-h: calc(max(4.25rem, min(5rem, 17dvh)) + env(safe-area-inset-bottom));
+  padding-block-start: calc(var(--app-bar-h) + #{t.$space-4});
+  padding-block-end: calc(var(--app-dock-h) + #{t.$space-4});
+  // Un adorno que se pasa unos píxeles del ancho (letra muy grande) no ensancha la página en el teléfono.
+  overflow-x: clip;
+  @include bp.min-width('lg') { padding-block-start: t.$space-7; padding-block-end: t.$space-7; overflow-x: visible; }
+}
+
+// Barra inferior fija con la acción principal. Vacía no ocupa lugar; desde lg no existe (la acción vive en el tablero).
+.dock {
+  display: none;
+  @include m.app-shell {
+    display: flex;
+    align-items: stretch;
+    position: fixed;
+    inset: auto 0 0;
+    z-index: t.$layer-nav;
+    box-sizing: border-box;
+    block-size: var(--app-dock-h);
+    padding: t.$space-2 max(#{t.$space-2}, env(safe-area-inset-right)) calc(#{t.$space-2} + env(safe-area-inset-bottom)) max(#{t.$space-2}, env(safe-area-inset-left));
+    background: t.token('surface-panel');
+    border-block-start: 0.25rem solid t.token('frame-color');
+    box-shadow: 0 -0.25rem 0 t.token('frame-inner');
+    &:empty { block-size: 0; padding: 0; border: 0; box-shadow: none; overflow: hidden; }
+    > * { flex: 1; min-inline-size: 0; }
+  }
+  @include m.app-shell-desktop { display: none; }
+}
+
+.appBar {
+  @include m.app-shell {
+    @include m.pixel-frame($fill: t.token('app-bar-fill'), $outer: t.token('app-bar-edge'), $inner: t.token('app-bar-inner'), $clip: t.token('clip-panel'), $radius: 0);
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: t.$layer-nav;
+    block-size: var(--app-bar-h);
+    padding-block-start: env(safe-area-inset-top);
+    padding-inline: max(#{t.$space-2}, env(safe-area-inset-left)) max(#{t.$space-2}, env(safe-area-inset-right));
+    display: grid;
+    grid-template-areas: 'back title actions';
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    align-items: center;
+    gap: t.$space-2;
+    background: t.token('app-bar-fill');
+    color: t.token('app-bar-ink');
+  }
+  @include m.app-shell-desktop {
+    display: contents;
+    &::before, &::after { display: none; }
+  }
+}
+.topbar {
+  @include m.app-shell { display: contents; }
+  @include m.app-shell-desktop { display: flex; }
+}
+.actionsSlot {
+  @include m.app-shell { grid-area: actions; inline-size: auto; }
+}
+.header {
+  @include m.app-shell { grid-area: title; min-inline-size: 0; gap: 0; }
+  @include m.app-shell-desktop { gap: t.$space-1; }
+}
+.franchise {
+  @include m.app-shell { order: 1; color: t.token('app-bar-ink'); text-shadow: none; font-size: t.$font-size-sm; line-height: t.$line-height-tight; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  @include m.app-shell-desktop { order: 0; color: t.token('kicker-ink'); text-shadow: t.token('kicker-shadow'); font-size: t.$font-size-sm; line-height: t.$line-height-base; white-space: normal; overflow: visible; }
+}
+.title {
+  @include m.app-shell {
+    // La fuente de títulos necesita aire sobre los glifos dentro de la caja que trunca.
+    // El tamaño display evita aplicar la escala que el tema reserva al texto corrido.
+    font-size: t.$font-display-sm;
+    line-height: t.$line-height-base;
+    color: t.token('app-bar-ink');
+    text-shadow: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &::before { display: none; }
+  }
+  @include m.app-shell-desktop {
+    @include m.display-size(calc(#{t.fluid(1.5rem, 2.5rem)} * #{t.token('title-scale')}));
+    line-height: t.$line-height-tight;
+    color: t.token('title-ink'); text-shadow: t.token('title-shadow');
+    white-space: normal; overflow: visible;
+    &::before { display: inline-block; }
+  }
+}
+.appSubtitle {
+  @include m.app-shell-desktop { display: none; }
+}

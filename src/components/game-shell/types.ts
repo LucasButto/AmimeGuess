@@ -118,6 +118,11 @@ export interface FinishReport {
    * `false`: ya estaba terminada y se restauró al abrir la página.
    */
   readonly fresh: boolean;
+  /**
+   * Solo diseño de app: cuánto espera el marco antes de bajar solo hasta el resumen, para que se lea lo último que mostró
+   * el juego (por ejemplo, los dos valores de una comparación). Sin esto, `RESULT_SETTLE_MS`.
+   */
+  readonly settleMs?: number;
 }
 
 /** Lo que el marco le da al juego. */

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import styles from './CopyButton.module.scss';
+import { shareOrCopy } from './shareResult';
 import { Button } from './ui/Button';
 import { VisuallyHidden } from './VisuallyHidden';
 
@@ -18,17 +19,21 @@ interface CopyButtonProps {
   /** `primary` para la acción principal de una pantalla; por defecto, secundaria. */
   /** `primary` (el color principal), `accent` (el secundario, por ejemplo azul) o `secondary` (discreto, el de siempre). */
   variant?: 'primary' | 'accent' | 'secondary';
+  /** Teléfono: abre el menú de compartir del sistema si existe (`navigator.share`) y copia si no. Por defecto solo copia. */
+  native?: boolean;
 }
 
 /** Botón que copia un texto al portapapeles y lo confirma, a la vista y para lectores de pantalla. */
-export function CopyButton({ getText, label, copiedLabel, failedLabel, variant = 'secondary' }: CopyButtonProps) {
+export function CopyButton({ getText, label, copiedLabel, failedLabel, variant = 'secondary', native = false }: CopyButtonProps) {
   const [status, setStatus] = useState<Status>('idle');
   const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   useEffect(() => () => clearTimeout(timer.current), []);
 
   async function copy() {
-    setStatus((await copyText(getText())) ? 'copied' : 'failed');
+    const outcome = native ? await shareOrCopy(getText(), copyText) : (await copyText(getText())) ? 'copied' : 'failed';
+    // Compartir o cerrar el menú del sistema no necesita aviso: ya se vio. Solo se confirma (o se avisa) la copia.
+    setStatus(outcome === 'copied' ? 'copied' : outcome === 'failed' ? 'failed' : 'idle');
     clearTimeout(timer.current);
     timer.current = setTimeout(() => setStatus('idle'), FEEDBACK_MS);
   }

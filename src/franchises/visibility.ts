@@ -3,16 +3,23 @@ import settings from '../../data/mode.json';
 import type { FranchiseConfig } from './types';
 
 export const modeSchema = z.object({ slug: z.string(), name: z.string(), status: z.boolean(), try: z.number().int().positive() });
-const sectionSchema = z.object({
+export const sectionSchema = z.object({
   slug: z.string(),
   name: z.string(),
   status: z.boolean(),
   modes: z.array(modeSchema),
   speedTest: z.boolean().optional(),
+  appShell: z.boolean().optional(),
 });
 
 export const modeSettings = z.array(sectionSchema).parse(settings);
 export type VisibilitySettings = typeof modeSettings;
+
+/** El diseño de app requiere una sección activa y su interruptor explícito. */
+export function appShellEnabled(slug: string, rules: VisibilitySettings = modeSettings): boolean {
+  const section = rules.find((candidate) => candidate.slug === slug);
+  return section?.status === true && section.appShell === true;
+}
 
 /** Ausencias y estados false se ocultan; nunca modificamos las configs originales. */
 export function visibleFranchises(configs: readonly FranchiseConfig[], rules: VisibilitySettings = modeSettings): readonly FranchiseConfig[] {
