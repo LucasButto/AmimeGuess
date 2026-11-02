@@ -44,6 +44,7 @@ export function StreakMedals({ streak }: StreakDisplayProps) {
           <PixelArt key={index} art={inlineArt(medal(index, index < lit))} size="fill" className={styles.medal} />
         ))}
       </span>
+      <span className={styles.streakLabel}>{es.shell.result.streakLabel}</span>
       <span className={styles.streakNumber}>{streak > MEDALS ? es.pokemonSkin.medalsMore(streak - MEDALS) : streak}</span>
     </span>
   );

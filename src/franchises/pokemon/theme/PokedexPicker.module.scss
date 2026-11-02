@@ -160,6 +160,36 @@
   font-size: 1rem;
 }
 
+// En la barra inferior del teléfono (`#game-dock`, con `data-dock`): un botón rojo de 3,75 rem, con la lente a la izquierda,
+// "Abrir la Pokédex" y debajo cuántos Pokémon quedan (o en qué intento va), y el cursor a la derecha.
+[data-dock] .bigBall {
+  @include m.pixel-frame($fill: var(--palette-red), $outer: var(--palette-frame), $inner: var(--palette-ink-shadow));
+  justify-content: flex-start;
+  gap: t.$space-3;
+  // Con letra muy grande el texto se acorta en vez de empujar el cursor fuera de la pantalla.
+  min-inline-size: 0;
+  overflow: hidden;
+  padding-block: 0;
+  padding-inline: t.$space-3;
+  color: var(--palette-white);
+  text-shadow: var(--px-half) var(--px-half) 0 var(--palette-frame);
+}
+[data-dock] .bigBallText { gap: 0; flex: 1; }
+[data-dock] .bigBallTitle { font-size: t.$font-size-base; }
+[data-dock] .bigBallCount { font-size: t.$font-size-sm; color: var(--palette-white); }
+
+.dockLens {
+  flex: none;
+  inline-size: calc(#{t.token('px-half')} * 14 * 2);
+  block-size: calc(#{t.token('px-half')} * 14 * 2);
+}
+
+.chevron {
+  display: inline-flex;
+  flex: none;
+  font-size: 1rem;
+}
+
 // La Pokédex es roja: la barra del título y el anillo del marco, en el rojo del tema (el resto de los modales, azules).
 .dialog {
   --dialog-bar-fill: var(--palette-red);
@@ -482,4 +512,102 @@
   &::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(to right, var(--palette-cyan) 0 70%, color-mix(in srgb, var(--palette-cyan) 65%, var(--palette-frame)) 70%);
   }
+}
+
+// ---- La Pokédex a pantalla completa con el diseño de app (un teléfono) --------------------------------------------------
+// Encabezado de 3,5 rem con la lente, las luces, el nombre y la ✕; sin "Cerrar" al pie (el botón de confirmar ocupa su lugar).
+.phone {
+  header[data-part='modal-header'] {
+    min-block-size: 3.5rem;
+    padding: max(#{t.$space-1}, env(safe-area-inset-top)) t.$space-3 t.$space-1;
+    row-gap: 0;
+  }
+
+  h2[data-part='modal-title'] {
+    font-size: t.$font-size-lg;
+  }
+
+  footer {
+    display: none;
+  }
+
+  [data-part='modal-body'] {
+    padding: 0 t.$space-2 t.$space-2;
+  }
+}
+
+// La fila de chips: lupa, Tipo, Generación y Ocultar intentados; se desliza si no entra.
+.chipRow {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  overflow-x: auto;
+  padding-block: t.$space-1;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+  > button, .chipGroup > button { flex: none; white-space: nowrap; min-block-size: 2.75rem; }
+}
+
+.chipGroup { display: contents; }
+
+.searchGlyph { inline-size: 1rem; block-size: 1rem; flex: none; }
+
+// El buscador, solo después de tocar la lupa.
+.phoneSearch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-1 t.$space-2;
+  margin-block-start: t.$space-1;
+  .searchLabel { flex-basis: 100%; }
+  .search { flex: 1; min-inline-size: 0; }
+  .count { padding-block-end: 0; }
+}
+
+.picker[data-phone='true'] {
+  gap: t.$space-2;
+
+  .bar {
+    inset-block-start: 0;
+    margin: 0 calc(-1 * #{t.$space-2});
+    padding: t.$space-1 t.$space-2;
+    display: block;
+  }
+
+  // Los filtros se abren debajo de la fila de chips (nunca la tapan, así Tipo y Generación los cierran) y con "Listo" a la vista.
+  .filters,
+  .filters[data-cover-bar='true'] {
+    inset-block-start: 100%;
+    max-block-size: calc(var(--filters-max, 100dvh) - 3.5rem);
+  }
+
+  // Tres columnas: unos 15 Pokémon por pantalla en 390 × 844.
+  .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: t.$space-2;
+  }
+
+  .thumb {
+    block-size: 3.75rem;
+    max-inline-size: 3.75rem;
+  }
+}
+
+// El Pokémon marcado (primer toque): aro rojo; el botón de abajo lo confirma.
+.cell[data-selected='true'] {
+  border-color: var(--palette-red);
+  box-shadow: inset 0 0 0 var(--px-half) var(--palette-red);
+  background: var(--palette-white);
+}
+
+// "Elegir a {nombre}": pegado abajo mientras haya uno marcado.
+.confirm {
+  position: sticky;
+  inset-block-end: calc(-1 * #{t.$space-2});
+  z-index: t.$layer-sticky;
+  margin: 0 calc(-1 * #{t.$space-2}) calc(-1 * #{t.$space-2});
+  padding: t.$space-2 t.$space-3 calc(#{t.$space-2} + env(safe-area-inset-bottom));
+  border-block-start: t.$border-width solid t.token('frame-color');
+  background: t.token('surface-dialog');
+  > button { inline-size: 100%; min-block-size: 3.5rem; }
 }
