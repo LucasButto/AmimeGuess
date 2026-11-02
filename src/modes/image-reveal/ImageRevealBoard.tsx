@@ -12,6 +12,7 @@ import { useSurrender } from '@/components/game-shell/useSurrender';
 import { restoreLimited } from '@/components/game-shell/attempts';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { useMissBuzz } from '@/components/useHaptics';
 import { SkinAttemptsMeter, SkinGameFrame } from '@/components/skin/gameSlots';
 import { Chip } from '@/components/ui/Chip';
 import { InfoTip } from '@/components/ui/InfoTip';
@@ -116,13 +117,16 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   const attempted = useMemo(() => new Set(attemptIds), [attemptIds]);
   const won = attemptIds.some((id) => isCorrect(id, answer.id, accepted));
   const failed = failedCount(attemptIds, answer.id, accepted);
+  useMissBuzz(failed);
   const lost = !won && (surrendered || isLost(failed, maxAttempts));
   // Ganado o perdido: ya no se puede seguir y se muestra la imagen entera.
   const over = won || lost;
   const visualStep = revealStep(failed, prefs.reveal, maxAttempts);
   const step = Math.floor(visualStep);
   // Al terminar, la imagen se muestra entera, a color y nítida.
-  const visual = over ? REVEALED : revealVisual(config.variant, visualStep, prefs.colors, focus, config.zoomScales, config.blurLevels);
+  // Un contenido puede pedir más cerca que el resto (`zoom`): sube todos los aumentos del modo.
+  const zoomScales = image.zoom === undefined || image.zoom === 1 ? config.zoomScales : config.zoomScales?.map((scale) => scale * image.zoom!);
+  const visual = over ? REVEALED : revealVisual(config.variant, visualStep, prefs.colors, focus, zoomScales, config.blurLevels);
 
   const items = useMemo<AutocompleteItem[]>(
     () => options.map(autocompleteItemOf),

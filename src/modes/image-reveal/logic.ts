@@ -29,6 +29,8 @@ export interface RevealImage {
   readonly focus: Focus | null;
   /** Ids de otras entidades que también son respuestas correctas con esta imagen, si el dato las trae. */
   readonly accepts?: readonly string[];
+  /** Cuánto más cerca que lo normal arranca el zoom de esta imagen (1 si el dato no lo trae). */
+  readonly zoom?: number;
 }
 
 /** Una posible respuesta del día, con las imágenes que sirven para mostrarla. */
@@ -59,7 +61,7 @@ function parseFocus(value: unknown): Focus | null {
 }
 
 function imageOfContent(content: Content): RevealImage | null {
-  const { image, width, height, focus, accepts } = content.payload;
+  const { image, width, height, focus, accepts, zoom } = content.payload;
   if (typeof image !== 'string' || image.length === 0) return null;
   const accepted = Array.isArray(accepts) ? accepts.filter((id): id is string => typeof id === 'string') : [];
   return {
@@ -68,6 +70,7 @@ function imageOfContent(content: Content): RevealImage | null {
     width: positiveInt(width) ?? ENTITY_IMAGE_SIZE,
     height: positiveInt(height) ?? ENTITY_IMAGE_SIZE,
     focus: parseFocus(focus),
+    ...(typeof zoom === 'number' && zoom >= 1 && zoom <= 2 ? { zoom } : {}),
     ...(accepted.length > 0 ? { accepts: accepted } : {}),
   };
 }

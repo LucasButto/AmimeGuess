@@ -274,6 +274,8 @@ export const focusSrcSchema = z
         character: kebab,
         x: z.number().min(0).max(1),
         y: z.number().min(0).max(1),
+        /** Cuánto más cerca que el resto arranca el recorte de este personaje (1 si no se dice): un ojo chico pide más. */
+        zoom: z.number().min(1).max(2).optional(),
         verified: z.boolean(),
       })
       .strict(),
@@ -401,6 +403,7 @@ const eyeContentSchema = z
         width: z.literal(512),
         height: z.literal(512),
         focus: z.object({ x: z.number().min(0).max(1), y: z.number().min(0).max(1) }).strict(),
+        zoom: z.number().min(1).max(2).optional(),
       })
       .strict(),
   })

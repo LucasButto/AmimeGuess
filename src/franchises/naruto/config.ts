@@ -83,9 +83,9 @@ export const narutoConfig = {
           { key: 'arcoDebut', label: 'Arco de debut', compare: 'ordered', valueLabels: arcDebutLabels, valueHelp: arcHelp, help: es.help.narutoClassic.arcoDebut },
         ],
         hints: [
-          // La ocupación revela mucho: va última, después de la inicial.
+          // La inicial no es pista acá (con unos 160 personajes, no ayuda tanto como en Pokémon, que tiene más de mil).
+          // La ocupación revela mucho: va última.
           { kind: 'attr', label: 'Estado vital', after: 4, key: 'estadoVital' },
-          { kind: 'attr', label: 'Inicial', after: 7, key: 'inicial' },
           { kind: 'attr', label: 'Ocupación', after: 9, key: 'ocupacion' },
         ],
       },
@@ -124,10 +124,10 @@ export const narutoConfig = {
       slug: 'ojo',
       name: 'Ojo',
       engine: 'image-reveal',
-      // El recorte arranca en el ojo: el punto focal viene en los datos de cada personaje (`focus`). Parte mucho más cerca que
-      // el Zoom de las otras franquicias (5,2 en vez de 3,2) y se abre de a poco (de 2,6 como mucho: nunca llega a mostrar la
-      // cara entera), para que no se sepa quién es al primer vistazo.
-      imageReveal: { variant: 'zoom', imageContentKind: 'eye', zoomScales: [5.2, 4.5, 3.9, 3.4, 3, 2.6] },
+      // El recorte arranca en el ojo: el punto focal viene en los datos de cada personaje (`focus`). Parte con el ojo llenando el
+      // cuadro (8 veces: solo el ojo y un poco de piel, el nivel que pidió el usuario el 2026-11-02) y se abre de a poco hasta 4
+      // como mucho: nunca llega a mostrar la cara, para que no se sepa quién es al primer vistazo.
+      imageReveal: { variant: 'zoom', imageContentKind: 'eye', zoomScales: [8, 7, 6.1, 5.3, 4.6, 4] },
     },
     {
       slug: 'equipo',

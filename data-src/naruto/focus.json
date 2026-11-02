@@ -7,8 +7,8 @@
   },
   {
     "character": "sasuke-uchiha",
-    "x": 0.38,
-    "y": 0.47,
+    "x": 0.4,
+    "y": 0.49,
     "verified": false
   },
   {
@@ -19,32 +19,34 @@
   },
   {
     "character": "kakashi-hatake",
-    "x": 0.41,
-    "y": 0.34,
+    "x": 0.421,
+    "y": 0.37,
+    "zoom": 1.3,
     "verified": false
   },
   {
     "character": "iruka-umino",
-    "x": 0.43,
-    "y": 0.54,
+    "x": 0.392,
+    "y": 0.573,
     "verified": false
   },
   {
     "character": "hiruzen-sarutobi",
     "x": 0.4,
     "y": 0.42,
+    "zoom": 1.3,
     "verified": false
   },
   {
     "character": "konohamaru-sarutobi",
     "x": 0.4,
-    "y": 0.34,
+    "y": 0.405,
     "verified": false
   },
   {
     "character": "mizuki",
-    "x": 0.37,
-    "y": 0.46,
+    "x": 0.395,
+    "y": 0.47,
     "verified": false
   },
   {
@@ -55,20 +57,21 @@
   },
   {
     "character": "shikamaru-nara",
-    "x": 0.42,
-    "y": 0.35,
+    "x": 0.437,
+    "y": 0.452,
+    "zoom": 1.25,
     "verified": false
   },
   {
     "character": "ino-yamanaka",
-    "x": 0.44,
+    "x": 0.413,
     "y": 0.46,
     "verified": false
   },
   {
     "character": "kiba-inuzuka",
-    "x": 0.42,
-    "y": 0.43,
+    "x": 0.415,
+    "y": 0.41,
     "verified": false
   },
   {
@@ -91,44 +94,45 @@
   },
   {
     "character": "tenten",
-    "x": 0.43,
-    "y": 0.52,
+    "x": 0.415,
+    "y": 0.537,
     "verified": false
   },
   {
     "character": "might-guy",
-    "x": 0.37,
+    "x": 0.38,
     "y": 0.4,
     "verified": false
   },
   {
     "character": "asuma-sarutobi",
-    "x": 0.44,
-    "y": 0.45,
+    "x": 0.477,
+    "y": 0.361,
     "verified": false
   },
   {
     "character": "kurenai-yuhi",
-    "x": 0.41,
-    "y": 0.36,
+    "x": 0.46,
+    "y": 0.384,
+    "zoom": 1.25,
     "verified": false
   },
   {
     "character": "anko-mitarashi",
-    "x": 0.37,
-    "y": 0.45,
+    "x": 0.39,
+    "y": 0.47,
     "verified": false
   },
   {
     "character": "ibiki-morino",
-    "x": 0.37,
-    "y": 0.45,
+    "x": 0.31,
+    "y": 0.457,
     "verified": false
   },
   {
     "character": "genma-shiranui",
-    "x": 0.46,
-    "y": 0.36,
+    "x": 0.448,
+    "y": 0.351,
     "verified": false
   },
   {
@@ -139,20 +143,21 @@
   },
   {
     "character": "shizune",
-    "x": 0.44,
-    "y": 0.4,
+    "x": 0.465,
+    "y": 0.388,
     "verified": false
   },
   {
     "character": "tsunade",
-    "x": 0.4,
+    "x": 0.413,
     "y": 0.39,
     "verified": false
   },
   {
     "character": "jiraiya",
-    "x": 0.42,
-    "y": 0.4,
+    "x": 0.413,
+    "y": 0.437,
+    "zoom": 1.3,
     "verified": false
   },
   {
@@ -163,13 +168,13 @@
   },
   {
     "character": "minato-namikaze",
-    "x": 0.45,
-    "y": 0.43,
+    "x": 0.38,
+    "y": 0.44,
     "verified": false
   },
   {
     "character": "fugaku-uchiha",
-    "x": 0.44,
+    "x": 0.462,
     "y": 0.4,
     "verified": false
   },
@@ -181,14 +186,14 @@
   },
   {
     "character": "itachi-uchiha",
-    "x": 0.43,
-    "y": 0.45,
+    "x": 0.455,
+    "y": 0.445,
     "verified": false
   },
   {
     "character": "kisame-hoshigaki",
-    "x": 0.22,
-    "y": 0.51,
+    "x": 0.205,
+    "y": 0.495,
     "verified": false
   },
   {
@@ -199,8 +204,8 @@
   },
   {
     "character": "tobirama-senju",
-    "x": 0.4,
-    "y": 0.29,
+    "x": 0.392,
+    "y": 0.293,
     "verified": false
   },
   {
@@ -211,32 +216,33 @@
   },
   {
     "character": "koharu-utatane",
-    "x": 0.6,
-    "y": 0.5,
+    "x": 0.562,
+    "y": 0.473,
     "verified": false
   },
   {
     "character": "hanabi-hyuga",
-    "x": 0.42,
-    "y": 0.49,
+    "x": 0.298,
+    "y": 0.5,
     "verified": false
   },
   {
     "character": "hiashi-hyuga",
-    "x": 0.47,
-    "y": 0.32,
+    "x": 0.51,
+    "y": 0.335,
+    "zoom": 1.35,
     "verified": false
   },
   {
     "character": "choza-akimichi",
-    "x": 0.4,
-    "y": 0.43,
+    "x": 0.49,
+    "y": 0.345,
     "verified": false
   },
   {
     "character": "inoichi-yamanaka",
-    "x": 0.42,
-    "y": 0.43,
+    "x": 0.408,
+    "y": 0.455,
     "verified": false
   },
   {
@@ -253,14 +259,14 @@
   },
   {
     "character": "shibi-aburame",
-    "x": 0.44,
-    "y": 0.45,
+    "x": 0.452,
+    "y": 0.4,
     "verified": false
   },
   {
     "character": "kabuto-yakushi",
-    "x": 0.43,
-    "y": 0.49,
+    "x": 0.423,
+    "y": 0.472,
     "verified": false
   },
   {
@@ -271,68 +277,71 @@
   },
   {
     "character": "teuchi",
-    "x": 0.36,
-    "y": 0.42,
+    "x": 0.387,
+    "y": 0.413,
     "verified": false
   },
   {
     "character": "tazuna",
     "x": 0.43,
-    "y": 0.5,
+    "y": 0.482,
     "verified": false
   },
   {
     "character": "zabuza-momochi",
-    "x": 0.49,
-    "y": 0.25,
+    "x": 0.502,
+    "y": 0.268,
     "verified": false
   },
   {
     "character": "haku",
-    "x": 0.4,
-    "y": 0.32,
+    "x": 0.422,
+    "y": 0.347,
     "verified": false
   },
   {
     "character": "gaara",
-    "x": 0.35,
-    "y": 0.52,
+    "x": 0.357,
+    "y": 0.497,
     "verified": false
   },
   {
     "character": "kankuro",
-    "x": 0.43,
-    "y": 0.44,
+    "x": 0.457,
+    "y": 0.466,
+    "zoom": 1.3,
     "verified": false
   },
   {
     "character": "temari",
-    "x": 0.47,
-    "y": 0.32,
+    "x": 0.48,
+    "y": 0.326,
+    "zoom": 1.3,
     "verified": false
   },
   {
     "character": "rasa",
-    "x": 0.37,
-    "y": 0.29,
+    "x": 0.382,
+    "y": 0.328,
     "verified": false
   },
   {
     "character": "baki",
-    "x": 0.28,
-    "y": 0.42,
+    "x": 0.367,
+    "y": 0.44,
     "verified": false
   },
   {
     "character": "dosu-kinuta",
-    "x": 0.66,
-    "y": 0.4,
+    "x": 0.675,
+    "y": 0.46,
+    "zoom": 1.3,
     "verified": false
   },
   {
     "character": "zaku-abumi",
-    "x": 0.53,
-    "y": 0.45,
+    "x": 0.517,
+    "y": 0.465,
     "verified": false
   },
   {
@@ -355,14 +364,14 @@
   },
   {
     "character": "jirobo",
-    "x": 0.43,
-    "y": 0.43,
+    "x": 0.432,
+    "y": 0.382,
     "verified": false
   },
   {
     "character": "kidomaru",
-    "x": 0.56,
-    "y": 0.42,
+    "x": 0.542,
+    "y": 0.448,
     "verified": false
   },
   {
@@ -374,19 +383,19 @@
   {
     "character": "pakkun",
     "x": 0.56,
-    "y": 0.44,
+    "y": 0.38,
     "verified": false
   },
   {
     "character": "sasori",
-    "x": 0.26,
-    "y": 0.52,
+    "x": 0.34,
+    "y": 0.528,
     "verified": false
   },
   {
     "character": "chiyo",
-    "x": 0.38,
-    "y": 0.46,
+    "x": 0.402,
+    "y": 0.453,
     "verified": false
   },
   {
@@ -397,20 +406,21 @@
   },
   {
     "character": "hidan",
-    "x": 0.55,
-    "y": 0.35,
+    "x": 0.525,
+    "y": 0.397,
     "verified": false
   },
   {
     "character": "kakuzu",
-    "x": 0.4,
+    "x": 0.402,
     "y": 0.47,
+    "zoom": 1.3,
     "verified": false
   },
   {
     "character": "obito-uchiha",
-    "x": 0.38,
-    "y": 0.45,
+    "x": 0.375,
+    "y": 0.565,
     "verified": false
   },
   {
@@ -421,14 +431,15 @@
   },
   {
     "character": "madara-uchiha",
-    "x": 0.55,
-    "y": 0.36,
+    "x": 0.572,
+    "y": 0.472,
     "verified": false
   },
   {
     "character": "danzo-shimura",
-    "x": 0.59,
-    "y": 0.3,
+    "x": 0.61,
+    "y": 0.327,
+    "zoom": 1.35,
     "verified": false
   },
   {
@@ -439,8 +450,9 @@
   },
   {
     "character": "yamato",
-    "x": 0.4,
-    "y": 0.39,
+    "x": 0.407,
+    "y": 0.393,
+    "zoom": 1.12,
     "verified": false
   },
   {
@@ -451,8 +463,8 @@
   },
   {
     "character": "kushina-uzumaki",
-    "x": 0.43,
-    "y": 0.37,
+    "x": 0.437,
+    "y": 0.392,
     "verified": false
   },
   {
@@ -469,20 +481,20 @@
   },
   {
     "character": "kaguya-otsutsuki",
-    "x": 0.42,
-    "y": 0.38,
+    "x": 0.442,
+    "y": 0.387,
     "verified": false
   },
   {
     "character": "hagoromo-otsutsuki",
-    "x": 0.43,
-    "y": 0.51,
+    "x": 0.442,
+    "y": 0.502,
     "verified": false
   },
   {
     "character": "hamura-otsutsuki",
-    "x": 0.38,
-    "y": 0.41,
+    "x": 0.398,
+    "y": 0.415,
     "verified": false
   },
   {
@@ -505,20 +517,21 @@
   },
   {
     "character": "karin",
-    "x": 0.4,
-    "y": 0.47,
+    "x": 0.405,
+    "y": 0.463,
     "verified": false
   },
   {
     "character": "jugo",
-    "x": 0.37,
-    "y": 0.43,
+    "x": 0.355,
+    "y": 0.429,
+    "zoom": 1.12,
     "verified": false
   },
   {
     "character": "killer-bee",
-    "x": 0.22,
-    "y": 0.39,
+    "x": 0.192,
+    "y": 0.415,
     "verified": false
   },
   {
@@ -541,8 +554,8 @@
   },
   {
     "character": "utakata",
-    "x": 0.43,
-    "y": 0.33,
+    "x": 0.361,
+    "y": 0.34,
     "verified": false
   },
   {
@@ -565,8 +578,8 @@
   },
   {
     "character": "onoki",
-    "x": 0.46,
-    "y": 0.38,
+    "x": 0.44,
+    "y": 0.381,
     "verified": false
   },
   {
@@ -583,20 +596,21 @@
   },
   {
     "character": "darui",
-    "x": 0.59,
-    "y": 0.4,
+    "x": 0.595,
+    "y": 0.375,
+    "zoom": 1.35,
     "verified": false
   },
   {
     "character": "mu",
     "x": 0.32,
-    "y": 0.41,
+    "y": 0.44,
     "verified": false
   },
   {
     "character": "gengetsu-hozuki",
-    "x": 0.3,
-    "y": 0.45,
+    "x": 0.413,
+    "y": 0.448,
     "verified": false
   },
   {
@@ -607,19 +621,19 @@
   },
   {
     "character": "pakura",
-    "x": 0.38,
-    "y": 0.43,
+    "x": 0.365,
+    "y": 0.36,
     "verified": false
   },
   {
     "character": "chojuro",
-    "x": 0.37,
-    "y": 0.45,
+    "x": 0.4,
+    "y": 0.39,
     "verified": false
   },
   {
     "character": "ameyuri-ringo",
-    "x": 0.33,
+    "x": 0.312,
     "y": 0.37,
     "verified": false
   },
@@ -649,8 +663,8 @@
   },
   {
     "character": "samui",
-    "x": 0.45,
-    "y": 0.4,
+    "x": 0.4,
+    "y": 0.393,
     "verified": false
   },
   {
@@ -668,7 +682,7 @@
   {
     "character": "kitsuchi",
     "x": 0.45,
-    "y": 0.28,
+    "y": 0.305,
     "verified": false
   },
   {
@@ -699,6 +713,7 @@
     "character": "boruto-uzumaki",
     "x": 0.44,
     "y": 0.45,
+    "zoom": 1.25,
     "verified": false
   },
   {
@@ -727,8 +742,8 @@
   },
   {
     "character": "inojin-yamanaka",
-    "x": 0.47,
-    "y": 0.43,
+    "x": 0.427,
+    "y": 0.42,
     "verified": false
   },
   {
@@ -745,8 +760,9 @@
   },
   {
     "character": "iwabee-yuino",
-    "x": 0.4,
-    "y": 0.43,
+    "x": 0.495,
+    "y": 0.416,
+    "zoom": 1.3,
     "verified": false
   },
   {
@@ -769,20 +785,20 @@
   },
   {
     "character": "sumire-kakei",
-    "x": 0.42,
-    "y": 0.44,
+    "x": 0.437,
+    "y": 0.457,
     "verified": false
   },
   {
     "character": "kawaki",
-    "x": 0.37,
-    "y": 0.43,
+    "x": 0.403,
+    "y": 0.443,
     "verified": false
   },
   {
     "character": "eida",
-    "x": 0.45,
-    "y": 0.42,
+    "x": 0.44,
+    "y": 0.34,
     "verified": false
   },
   {
@@ -805,8 +821,9 @@
   },
   {
     "character": "isshiki-otsutsuki",
-    "x": 0.48,
-    "y": 0.4,
+    "x": 0.459,
+    "y": 0.398,
+    "zoom": 1.4,
     "verified": false
   },
   {
@@ -817,8 +834,8 @@
   },
   {
     "character": "kinshiki-otsutsuki",
-    "x": 0.52,
-    "y": 0.33,
+    "x": 0.497,
+    "y": 0.407,
     "verified": false
   },
   {
@@ -829,19 +846,19 @@
   },
   {
     "character": "amado",
-    "x": 0.4,
-    "y": 0.44,
+    "x": 0.412,
+    "y": 0.405,
     "verified": false
   },
   {
     "character": "koji-kashin",
     "x": 0.52,
-    "y": 0.52,
+    "y": 0.54,
     "verified": false
   },
   {
     "character": "toneri-otsutsuki",
-    "x": 0.6,
+    "x": 0.612,
     "y": 0.43,
     "verified": false
   }
