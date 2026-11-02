@@ -2,7 +2,7 @@
 
 import { createPortal } from 'react-dom';
 import type { GuessInputProps } from '@/franchises/types';
-import { InDockContext, useDockTarget } from './game-shell/GameDock';
+import { InDockContext, useDockKeyboardLift, useDockTarget } from './game-shell/GameDock';
 import { useSkin } from './skin/context';
 
 /**
@@ -13,6 +13,7 @@ import { useSkin } from './skin/context';
 export function GuessField(props: GuessInputProps) {
   const { GuessInput } = useSkin().skin.slots;
   const dock = useDockTarget();
+  useDockKeyboardLift(dock !== null);
   const field = <GuessInput {...props} />;
   return dock ? createPortal(<InDockContext.Provider value>{field}</InDockContext.Provider>, dock) : field;
 }

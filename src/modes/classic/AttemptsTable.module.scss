@@ -425,16 +425,18 @@ $column-min: 4.75rem;
 
 .cardCells {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  // Las columnas de casillas las elige la piel con `--attempt-card-cols` (valores cortos: 4 y, en pantallas anchas, 8) y
+  // `--attempt-card-cols-md`; con valores largos (Dragon Ball, Naruto) son 2 y 4.
+  grid-template-columns: repeat(var(--attempt-card-cols, 4), minmax(0, 1fr));
   gap: t.$space-2 t.$space-1;
   margin: 0;
   padding: 0;
   list-style: none;
 
-  // Con ancho de sobra (un teléfono apaisado, una tablet) las 8 casillas van en una sola fila: la tarjeta baja de unos 280 a
-  // unos 150 px y entra entera entre las barras aun con 390 de alto.
+  // Con ancho de sobra (un teléfono apaisado, una tablet) las casillas van en menos filas: la tarjeta baja y entra entera entre
+  // las barras aun con 390 de alto.
   @include bp.min-width('md') {
-    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--attempt-card-cols-md, 8), minmax(0, 1fr));
   }
 }
 
@@ -445,13 +447,16 @@ $column-min: 4.75rem;
   min-inline-size: 0;
 
   .flip { block-size: auto; }
+  // Los valores largos (varias afiliaciones, transformaciones) se leen enteros: hasta 5 renglones en vez de los 2 de la tabla.
+  .value { -webkit-line-clamp: 5; }
   .box { block-size: 100%; min-block-size: 3.25rem; padding: calc(#{t.$space-1} + #{t.token('cell-frame-width')}) 0.125rem; }
 }
 
 .cellLabel {
   // 12 px: lo más chico que se lee en el teléfono. Dos renglones reservados para "Etapa evolutiva"; las palabras largas
   // ("Generación") se parten con guion en vez de cortarse con puntos suspensivos.
-  min-block-size: 2.2em;
+  // Con casillas de a dos (Dragon Ball, Naruto) las etiquetas caben en un renglón: la piel baja esta reserva (`--attempt-card-label-h`).
+  min-block-size: var(--attempt-card-label-h, 2.2em);
   font-size: 0.75rem;
   line-height: 1.1;
   color: t.token('ink-muted');

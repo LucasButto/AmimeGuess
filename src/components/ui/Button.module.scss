@@ -14,6 +14,7 @@
   --_radius: #{t.$radius-md};
   --_pad-inline: #{t.$space-5};
   @include m.touch-target;
+  @include m.press;
   @include m.pixel-frame($fill: var(--_fill), $outer: var(--_edge), $inner: transparent, $width: var(--_frame), $inner-width: 0px, $clip: var(--_clip), $radius: var(--_radius));
   display: inline-flex;
   align-items: center;

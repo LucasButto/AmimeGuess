@@ -104,6 +104,23 @@ export const es = {
     complete: '¡Completo!',
     /** Onomatopeya decorativa de cada apertura. */
     onomatopoeia: { pokemon: '¡PIKA!', 'dragon-ball': '¡ZAS!', naruto: '¡DATTEBAYO!', yugioh: '¡DUELO!' } as Readonly<Record<string, string>>,
+    // Teléfono: lo de arriba del televisor y lo que va debajo (Seguí jugando y las tarjetas de franquicia).
+    streak: (days: number) => `Racha ${days} ${plural(days, 'día', 'días')}`,
+    streakLabel: (days: number) => `Racha de ${days} ${plural(days, 'día', 'días')}: ver estadísticas`,
+    todaySummary: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} hoy`,
+    continueTitle: 'Seguí jugando',
+    continueAllDone: '¡Ya resolviste todos los retos de hoy! Volvé mañana por los nuevos.',
+    continuePlay: 'Jugar',
+    continueLabel: (franchise: string, mode: string) => `Seguí jugando: ${franchise}, ${mode}`,
+    cardsLabel: 'Franquicias',
+    cardCount: (solved: number, total: number) => `${solved} de ${total}`,
+    comingSoon: 'Próximamente',
+    comingSoonLabel: (name: string) => `${name}: próximamente`,
+    knobChannel: 'Cambiar de canal',
+    knobSound: 'Sonidos',
+    soundOn: 'SONIDO SÍ',
+    soundOff: 'SONIDO NO',
+    soundAnnounce: (on: boolean) => (on ? 'Sonidos prendidos' : 'Sonidos apagados'),
     cardLoading: (name: string) => `${name}: leyendo los retos de hoy`,
     cardLabel: (name: string, solved: number, total: number) => `${name}: ${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy`,
   },
@@ -117,9 +134,10 @@ export const es = {
     barProgress: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy`,
     play: 'Jugar',
     continue: 'Seguir',
+    // El estado de hoy de un modo, solo la palabra (hub del teléfono y Retos): pendiente, completado o fallado.
     rowState: {
-      won: (attempts: number | undefined) => (attempts === undefined ? 'Ganado' : `Ganado · ${attempts} ${plural(attempts, 'intento', 'intentos')}`),
-      lost: 'Perdido',
+      won: 'Completado',
+      lost: 'Fallado',
       pending: 'Pendiente',
     },
     solved: 'Resuelto hoy',
@@ -133,6 +151,67 @@ export const es = {
     label: 'Volver',
     home: 'Inicio',
   },
+  // Teléfono (SPEC 9.3): la barra de pestañas de abajo y las páginas a las que lleva.
+  tabs: {
+    label: 'Secciones del sitio',
+    home: 'Inicio',
+    challenges: 'Retos',
+    stats: 'Estadísticas',
+    more: 'Más',
+  },
+  challenges: {
+    title: 'Retos de hoy',
+    summary: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto resuelto', 'retos resueltos')} hoy`,
+    loading: 'Leyendo tu progreso…',
+    group: (solved: number, total: number) => `${solved}/${total}`,
+    groupLabel: (name: string, solved: number, total: number) => `${name}: ${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy`,
+    empty: 'No hay retos disponibles por el momento.',
+  },
+  globalStats: {
+    title: 'Tus estadísticas',
+    streak: 'Racha',
+    streakHint: 'Días seguidos con al menos un reto ganado, en cualquier franquicia.',
+    days: (count: number) => `${count} ${plural(count, 'día', 'días')}`,
+    bestStreak: 'Mejor racha',
+    played: 'Partidas',
+    won: 'Ganadas',
+    winRate: 'Aciertos',
+    rate: (won: number, played: number) => (played === 0 ? '—' : `${Math.round((100 * won) / played)} %`),
+    byFranchise: 'Por franquicia',
+    franchiseLine: (won: number, played: number) => `${won} de ${played} ${plural(played, 'ganada', 'ganadas')}`,
+    empty: 'Todavía no jugaste ningún reto. Tus números aparecen acá apenas termines el primero.',
+    note: 'Se guardan solo en este dispositivo.',
+    loading: 'Leyendo tus estadísticas…',
+  },
+  more: {
+    title: 'Más',
+    settings: 'Ajustes',
+    howTo: 'Cómo se juega',
+    credits: 'Créditos',
+    creditsHint: 'Fuentes, licencias y agradecimientos',
+    legal: 'Aviso legal',
+    install: 'Instalar la app',
+    installed: 'La app ya está instalada',
+    installHint: 'Jugá desde la pantalla de inicio, sin la barra del navegador.',
+    installAction: 'Instalar',
+    installTitle: 'Instalar AnimeGuess',
+    installDone: 'Listo',
+    installSteps: {
+      ios: ['Tocá el botón Compartir de Safari (el cuadrado con la flecha hacia arriba).', 'Elegí «Agregar a pantalla de inicio».', 'Confirmá con «Agregar».'],
+      other: ['Abrí el menú del navegador (⋮ o ⋯).', 'Elegí «Instalar app» o «Agregar a pantalla de inicio».', 'Confirmá la instalación.'],
+    },
+    howToTitle: 'Cómo se juega',
+    howToIntro: 'AnimeGuess tiene un reto nuevo por modo cada día. Es el mismo para todos los que juegan ese día, con los mismos filtros.',
+    howToSteps: [
+      'Elegí una franquicia y un modo de juego.',
+      'Probá con tus respuestas: cada intento te da pistas para acercarte a la solución.',
+      'Si no entra a la primera, no pasa nada: tenés varios intentos, y cada modo explica sus reglas en el menú ⋮ (Cómo se juega).',
+      'Al terminar, compartí tu resultado o seguí con otro reto.',
+      'Los retos se renuevan a la medianoche de Argentina.',
+    ],
+    legalTitle: 'Aviso legal',
+    close: 'Cerrar',
+  },
   footer: {
     label: 'Aviso legal',
     notice:
@@ -143,6 +222,8 @@ export const es = {
   // Página /creditos (SPEC 10). Los nombres de las fuentes y sus direcciones viven acá con su descripción; la lista de
   // textos CC BY-SA sale de los datos (cada contenido guarda su página de origen en `payload.source`).
   credits: {
+    /** Teléfono: la ← de la barra superior vuelve a la pestaña Más. */
+    back: 'Volver a Más',
     pmd: {
       title: 'PMD SpriteCollab',
       text: 'Usamos sprites de Pokémon Mystery Dungeon para los Pokémon que recorren el fondo y retratos Normal para las miniaturas de la Pokédex. Las imágenes de los retos y de las respuestas conservan su arte original.',
@@ -291,6 +372,14 @@ export const es = {
     title: 'Página no encontrada',
     text: 'La página que buscás no existe o cambió de lugar.',
     home: 'Volver al inicio',
+  },
+  // Página "Sin conexión": la muestra el service worker cuando no hay red y la página pedida no se había visitado.
+  offline: {
+    heading: 'Sin conexión',
+    title: 'No hay conexión',
+    text: 'Esta página todavía no está guardada en el teléfono. Las que ya abriste con conexión siguen funcionando.',
+    retry: 'Reintentar',
+    home: 'Ir al inicio',
   },
   errorPage: {
     title: 'Algo salió mal',
@@ -529,6 +618,8 @@ export const es = {
     mistakes: (left: number, total: number) => `Errores que podés cometer: ${left} de ${total}`,
     selectedCount: (count: number, total: number) => `${count} de ${total} elegidos`,
     submit: 'Enviar',
+    shuffle: 'Mezclar',
+    clearShort: 'Deseleccionar',
     clear: 'Deseleccionar todo',
     difficulties: ['Fácil', 'Media', 'Difícil', 'Muy difícil'],
     difficultyLabel: (name: string) => `Dificultad: ${name}`,
@@ -957,6 +1048,8 @@ export const es = {
     legibleFontHint: 'Cambia las letras del tema por una fuente de sistema, más fácil de leer.',
     sounds: 'Sonidos',
     soundsHint: 'Efectos cortos al jugar. Están apagados hasta que los prendas.',
+    vibration: 'Vibración',
+    vibrationHint: 'Una vibración corta al acertar y otra al fallar. Está apagada hasta que la prendas.',
   },
   share: {
     header: (franchise: string, mode: string) => `AnimeGuess · ${franchise} · ${mode}`,

@@ -25,6 +25,15 @@
 // que cubre el test de contraste. Papel washi con tinta casi negra, marcos de pincel gruesos con un filete de papel más
 // oscuro, esquinas apenas redondeadas (papel, no plástico) y sombras de tinta suaves.
 .root {
+  // Barra del juego del teléfono (diseño de app): el naranja del uniforme con tinta oscura y un filete dorado.
+  // Tarjetas de intento del teléfono: los valores son largos (afiliaciones, tipos de jutsu): casillas de a dos.
+  --attempt-card-cols: 2;
+  --attempt-card-cols-md: 4;
+  --attempt-card-label-h: 1.2em;
+  --app-bar-fill: var(--palette-orange);
+  --app-bar-ink: var(--palette-ink);
+  --app-bar-edge: var(--palette-ink);
+  --app-bar-inner: var(--palette-gold);
   // Superficies y tintas: papel con tinta; la pantalla (el visor de los modos de imagen) es papel claro.
   --surface-panel: var(--palette-paper);
   --surface-dialog: var(--palette-paper);

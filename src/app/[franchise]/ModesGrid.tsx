@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { ModeStateTag, modeStateText } from '@/components/ModeStateTag';
 import { useSkin } from '@/components/skin/context';
 import { useTodayProgress } from '@/components/useSolvedToday';
 import { es } from '@/i18n/es';
@@ -49,22 +50,20 @@ export function ModesGrid({ franchise, intro, modes, appShell = false, descripti
           {modes.map((mode, index) => {
             const state = stateOf(mode.slug);
             const href = `/${franchise}/${mode.slug}`;
-            const attempts = today?.attempts.get(mode.slug);
-            // Antes de leer las partidas guardadas se reserva el lugar con un texto invisible: así la lista no salta al conocer el estado.
-            const stateText = state === 'won' ? es.franchise.rowState.won(attempts) : state === 'lost' ? es.franchise.rowState.lost : state === 'pending' ? es.franchise.rowState.pending : es.franchise.rowState.pending;
+            const stateText = modeStateText(state);
             return (
               <li key={mode.slug} className={styles.rowItem} data-main={index === 0}>
                 <Link className={styles.row} href={href} data-state={state} onClick={(event) => leaveTo(event, href)} aria-label={state === 'unknown' ? mode.name : `${mode.name}: ${stateText}`}>
                   <span className={styles.rowIcon} aria-hidden="true">
-                    <ModeIcon slug={mode.slug} index={index} current={false} solved={state === 'won'} />
+                    <ModeIcon slug={mode.slug} index={index} current={false} solved={state === 'won'} variant="row" />
                   </span>
                   <span className={styles.rowText}>
                     <span className={styles.rowHead}>
                       <strong className={styles.rowName}>{mode.name}</strong>
-                      {index !== 0 && <span className={styles.rowState} data-state={state} aria-hidden="true">{stateText}</span>}
+                      {index !== 0 && <ModeStateTag state={state} />}
                     </span>
                     {index === 0 ? (
-                      <span className={styles.rowState}>{stateText}</span>
+                      <ModeStateTag state={state} onBar />
                     ) : (
                       descriptions[mode.slug] && <span className={styles.rowLine}>{descriptions[mode.slug]}</span>
                     )}

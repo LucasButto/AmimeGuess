@@ -79,10 +79,11 @@
   @include m.pixel-frame;
   @include m.touch-target;
   @include m.focus-ring;
+  @include m.press(0.98);
   display: flex;
   align-items: center;
   gap: t.$space-3;
-  padding: calc(#{t.$space-2} + #{t.token('frame-width')} + #{t.token('frame-inner-width')}) calc(#{t.$space-3} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
+  padding: calc(#{t.$space-1} + #{t.token('frame-width')} + #{t.token('frame-inner-width')}) calc(#{t.$space-3} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
   color: t.token('ink');
   text-decoration: none;
 }
@@ -91,8 +92,9 @@
   display: grid;
   flex: none;
   place-items: center;
-  inline-size: 2.75rem;
-  block-size: 2.75rem;
+  // Los íconos de las pieles miden como mínimo 2,75 rem y pueden ser más anchos (el pergamino de Naruto).
+  min-inline-size: 2.75rem;
+  min-block-size: 2.75rem;
 }
 
 .rowText {
@@ -117,34 +119,21 @@
 }
 
 .rowLine {
+  // Como mucho dos renglones: con 8 o 9 modos (Dragon Ball, Naruto) la lista no se hace interminable.
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   font-size: t.$font-size-sm;
   line-height: t.$line-height-tight;
   color: t.token('ink-muted');
-}
-
-// El estado de hoy, como una etiqueta al costado (con texto: el color no va solo).
-.rowState {
-  flex: none;
-  font-size: t.$font-size-sm;
-  font-weight: t.$font-weight-bold;
-
-  &[data-state] {
-    padding: 0.125rem t.$space-2;
-    border: t.$border-width solid t.token('frame-color');
-    background: t.token('surface-panel');
-  }
-  &[data-state='won'] { background: t.token('cell-correct'); color: t.token('cell-ink'); }
-  &[data-state='lost'] { background: t.token('cell-incorrect'); color: t.token('cell-ink'); }
 }
 
 // El Clásico: el color de la barra de arriba del tema, su estado debajo del nombre y "Jugar" como único botón.
 .rowItem[data-main='true'] .row {
   @include m.pixel-frame($fill: t.token('app-bar-fill'), $outer: t.token('app-bar-edge'), $inner: t.token('app-bar-inner'), $clip: t.token('clip-panel'), $radius: 0);
   min-block-size: 4.5rem;
-  background: t.token('app-bar-fill');
   color: t.token('app-bar-ink');
-
-  .rowState { padding: 0; border: 0; background: none; color: inherit; font-weight: t.$font-weight-medium; }
 }
 
 .rowPlay {
@@ -172,10 +161,4 @@
   text-underline-offset: 0.2em;
   @include m.app-shell { display: inline-flex; }
   @include m.app-shell-desktop { display: none; }
-}
-
-// Sin leer todavía las partidas guardadas: el estado ocupa su lugar (con el texto de "Pendiente") pero no se ve.
-.rowState[data-state='unknown'],
-.rowItem .row[data-state='unknown'] .rowState {
-  visibility: hidden;
 }

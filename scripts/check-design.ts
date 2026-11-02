@@ -54,7 +54,7 @@ interface Ctx {
 
 /** Un contexto nuevo (cookies y almacenamiento limpios) que registra los pedidos prohibidos. */
 async function newContext(ctx: Ctx, options: BrowserContextOptions = {}, storage: Record<string, string> = {}): Promise<BrowserContext> {
-  const context = await ctx.browser.newContext({ viewport: { width: 1366, height: 768 }, ...options });
+  const context = await ctx.browser.newContext({ viewport: { width: 1366, height: 768 }, serviceWorkers: 'block', ...options });
   context.on('request', (request) => {
     if (FORBIDDEN.some((pattern) => pattern.test(request.url()))) forbiddenRequests.push(request.url());
   });
@@ -126,7 +126,7 @@ function parseMs(value: string): number {
 async function pokemonCards(ctx: Ctx): Promise<string[]> {
   const context = await newContext(ctx, { viewport: { width: 390, height: 844 } });
   const page = await open(ctx, context, '/pokemon', '[data-card]:visible, ul[class*="rows"] > li a:visible');
-  const cards = await page.$$eval('ul[aria-label="Modos de juego"] > li', (items) =>
+  const cards = await page.$$eval('ul[aria-label="Modos de juego"][class*="grid"] > li', (items) =>
     items.map((item) => {
       const links = item.querySelectorAll('a');
       return { links: links.length, card: links[0]?.getAttribute('data-card'), name: links[0]?.getAttribute('aria-label') ?? '' };
@@ -428,11 +428,11 @@ async function pokemonModeWalkers(ctx: Ctx, viewport: { width: number; height: n
   return problems;
 }
 
-/** /dragon-ball: la cápsula del Clásico y siete esferas con 1 a 7 estrellas, cada una un único enlace con nombre accesible. */
+/** /dragon-ball: la cápsula del Clásico y siete esferas con 1 a 7 estrellas, cada una un único enlace con nombre accesible (la grilla de tarjetas, que desde el diseño de app es la de escritorio: en el teléfono el hub es una lista). */
 async function dragonBallCards(ctx: Ctx): Promise<string[]> {
-  const context = await newContext(ctx, { viewport: { width: 390, height: 844 } });
+  const context = await newContext(ctx, { viewport: { width: 1366, height: 768 } });
   const page = await open(ctx, context, '/dragon-ball', '[data-card]');
-  const cards = await page.$$eval('ul[aria-label="Modos de juego"] > li', (items) =>
+  const cards = await page.$$eval('ul[aria-label="Modos de juego"][class*="grid"] > li', (items) =>
     items.map((item) => {
       const links = item.querySelectorAll('a');
       const svg = item.querySelector('svg');
@@ -461,9 +461,10 @@ async function dragonBallCards(ctx: Ctx): Promise<string[]> {
 
 /** /naruto: el pergamino abierto del Clásico, el tablón de Conexiones y rollos para los demás, cada uno un único enlace con nombre accesible. */
 async function narutoCards(ctx: Ctx): Promise<string[]> {
-  const context = await newContext(ctx, { viewport: { width: 390, height: 844 } });
+  // La grilla de tarjetas es la de escritorio: en el teléfono el hub es una lista.
+  const context = await newContext(ctx, { viewport: { width: 1366, height: 768 } });
   const page = await open(ctx, context, '/naruto', '[data-card]');
-  const cards = await page.$$eval('ul[aria-label="Modos de juego"] > li', (items) =>
+  const cards = await page.$$eval('ul[aria-label="Modos de juego"][class*="grid"] > li', (items) =>
     items.map((item) => {
       const links = item.querySelectorAll('a');
       return {
@@ -519,7 +520,7 @@ async function yugiohField(ctx: Ctx): Promise<string[]> {
     const page = await open(ctx, context, '/yugioh', '[data-card="duel"][data-state="solved"]');
     await page.waitForSelector('[data-field-controls]');
     await page.evaluate(() => document.fonts.ready);
-    const cards = await page.$$eval('ul[aria-label="Modos de juego"] > li', (items) => items.map((item) => {
+    const cards = await page.$$eval('ul[aria-label="Modos de juego"][class*="grid"] > li', (items) => items.map((item) => {
       const links = item.querySelectorAll('a');
       const link = links[0];
       const box = link?.getBoundingClientRect() ?? item.getBoundingClientRect();
@@ -683,7 +684,7 @@ async function reducedMotionNaruto(ctx: Ctx): Promise<string[]> {
   if ((await moving()) > 0) problems.push('hay animaciones del tema corriendo al abrir el Clásico');
   const [miss] = misses('naruto', ['naruto-uzumaki', 'sasuke-uchiha', 'sakura-haruno']);
   await guess(page, miss);
-  await page.waitForSelector('tbody tr, [data-attempt-card]');
+  await page.waitForSelector('tbody tr:visible, [data-attempt-card]:visible');
   await page.waitForTimeout(400);
   if ((await moving()) > 0) problems.push('hay animaciones del tema (humo, tronco) con movimiento reducido');
   await context.close();
@@ -705,8 +706,9 @@ async function narutoTerms(ctx: Ctx): Promise<string[]> {
     const size = `${viewport.width}x${viewport.height}`;
     const context = await newContext(ctx, { viewport, hasTouch: true }, storage);
     const page = await open(ctx, context, '/naruto/clasico');
-    await page.waitForSelector('tbody tr, [data-attempt-card]');
-    const terms = page.locator('tbody button[type="button"]');
+    await page.waitForSelector('tbody tr:visible, [data-attempt-card]:visible');
+    // En la tabla (escritorio) o en las tarjetas (teléfono): los que se ven.
+    const terms = page.locator('tbody button[type="button"]:visible, [data-attempt-card] button[type="button"]:visible');
     const count = await terms.count();
     if (count < 10) problems.push(`${size}: solo ${count} términos con recuadro en la tabla`);
     for (const index of [0, Math.floor(count / 2), count - 1]) {
@@ -793,7 +795,7 @@ function revealCheck(route: string, franchise: string, candidates: readonly stri
 
     await page.waitForFunction(() => !document.querySelector('[data-reveal="revealing"]'), null, { timeout: 5000 });
     await page.reload({ waitUntil: 'domcontentloaded' });
-    await page.waitForSelector('tbody tr, [data-attempt-card]');
+    await page.waitForSelector('tbody tr:visible, [data-attempt-card]:visible');
     const afterReload = await page.evaluate(
       () =>
         document.querySelectorAll('[data-reveal="revealing"]').length +
@@ -853,7 +855,7 @@ async function reducedMotionDragonBall(ctx: Ctx): Promise<string[]> {
   if ((await moving()) > 0) problems.push('hay animaciones del tema corriendo al abrir el Clásico');
   const [miss] = misses('dragon-ball', ['oolong', 'puar', 'yajirobe']);
   await guess(page, miss);
-  await page.waitForSelector('tbody tr, [data-attempt-card]');
+  await page.waitForSelector('tbody tr:visible, [data-attempt-card]:visible');
   await page.waitForTimeout(400);
   if ((await moving()) > 0) problems.push('hay animaciones del tema (escaneo, onomatopeya) con movimiento reducido');
   await context.close();
@@ -926,7 +928,7 @@ async function infoTipsOf(ctx: Ctx, franchise: string, candidates: readonly stri
     const size = `${viewport.width}x${viewport.height}`;
     const context = await newContext(ctx, { viewport, hasTouch: true }, storage);
     const page = await open(ctx, context, route);
-    await page.waitForSelector('tbody tr, [data-attempt-card]');
+    await page.waitForSelector('tbody tr:visible, [data-attempt-card]:visible');
     const buttons = page.locator('button[aria-label^="Ayuda"]');
     const count = await buttons.count();
     // Duelista todavía no declara ayudas de columna (fase 5); sí debe tener las ayudas comunes.
@@ -962,7 +964,7 @@ async function infoTipsOf(ctx: Ctx, franchise: string, candidates: readonly stri
   // Con el cursor encima (un mouse): se abre tras la demora y se cierra con Escape sin moverlo.
   const context = await newContext(ctx, {}, storage);
   const page = await open(ctx, context, route);
-  await page.waitForSelector('tbody tr, [data-attempt-card]');
+  await page.waitForSelector('tbody tr:visible, [data-attempt-card]:visible');
   const buttons = page.locator('button[aria-label^="Ayuda"]');
   const count = await buttons.count();
   for (let index = 0; index < count; index++) {
@@ -1160,9 +1162,9 @@ async function layoutShift(ctx: Ctx): Promise<string[]> {
   for (const [route, ready] of [
     ['/pokemon', '[data-card]:visible, ul[class*="rows"] > li a:visible'],
     ['/pokemon/clasico', GAME_READY],
-    ['/dragon-ball', '[data-card]'],
+    ['/dragon-ball', '[data-card]:visible, ul[class*="rows"] > li a:visible'],
     ['/dragon-ball/clasico', GAME_READY],
-    ['/naruto', '[data-card]'],
+    ['/naruto', '[data-card]:visible, ul[class*="rows"] > li a:visible'],
     ['/naruto/clasico', GAME_READY],
   ] as const) {
     const context = await newContext(ctx, { viewport: { width: 390, height: 844 } });

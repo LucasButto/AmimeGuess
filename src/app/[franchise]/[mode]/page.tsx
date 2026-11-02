@@ -86,7 +86,7 @@ export default async function ModePage({
   );
 
   return (
-    <main className={styles.page} data-shell={appShell ? 'app' : undefined}>
+    <main className={styles.page} data-shell={appShell ? 'app' : undefined} data-game-screen>
       <PageTransition />
       {appShell ? <div className={styles.appBar}>{navigation}{heading}</div> : <>{navigation}{heading}</>}
       {/* El área de juego va sobre la placa del tema: el texto nunca queda directo sobre el fondo. */}

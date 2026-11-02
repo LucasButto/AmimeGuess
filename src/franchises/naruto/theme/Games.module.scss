@@ -179,7 +179,9 @@ $ink: var(--palette-ink);
   [data-tile] {
     padding-inline: 0;
     border: 0.0625rem solid $ink;
-    font-size: t.fluid(0.6875rem, 1rem);
+    font-size: max(0.8125rem, #{t.fluid(0.6875rem, 1rem)});
+    // Shippori Mincho es ancha: con 13 px, "Orochimaru" no entra en una casilla de 71 px (360 de ancho). Un poco más apretada, sí.
+    letter-spacing: -0.04em;
     border-radius: 0.125rem;
     background: var(--palette-paper);
     box-shadow: 0.125rem 0.125rem 0 color-mix(in srgb, #{$ink} 40%, transparent);

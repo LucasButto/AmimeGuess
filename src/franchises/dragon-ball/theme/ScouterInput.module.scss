@@ -343,3 +343,138 @@
   color: var(--palette-ink);
   font-weight: t.$font-weight-bold;
 }
+
+// --- En la barra inferior del teléfono ---------------------------------------------------------------------------------------
+// La lente baja a una sola fila (cabe en la barra) y los objetivos son una lista vertical que se abre hacia arriba, con filas de
+// 3,5 rem (retrato, nombre y serie). La fila marcada es el "objetivo fijado": resaltada y con su rótulo.
+.scouter[data-dock='true'] {
+  padding-inline-start: 0;
+  inline-size: 100%;
+
+  .arm,
+  .scanning {
+    display: none;
+  }
+
+  .lens {
+    justify-content: center;
+    padding: t.$space-1 t.$space-2;
+    border-width: 0.1875rem;
+    border-radius: 0.75rem 1.75rem 0.75rem 1.75rem;
+    box-shadow:
+      inset 0 0 0 0.125rem color-mix(in srgb, var(--palette-scouter) 55%, transparent),
+      0.125rem 0.1875rem 0 var(--palette-ink);
+  }
+
+  // La lista se ancla a la lente (no al campo): se abre justo encima de ella.
+  .fieldWrap {
+    position: static;
+  }
+
+  .input {
+    min-block-size: 2.75rem;
+    padding-block: t.$space-1;
+  }
+}
+
+.dockPanel {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: calc(100% + #{t.$space-3});
+  z-index: t.$layer-dropdown;
+  border: 0.125rem solid var(--palette-scouter);
+  background: var(--palette-scouter-dark);
+  box-shadow: 0.25rem 0.25rem 0 var(--palette-ink);
+}
+
+.rows {
+  // Lo que queda entre la barra de arriba y la de abajo (con el teclado simulado, la lista sigue entera a la vista).
+  max-block-size: min(22rem, calc(100dvh - var(--app-bar-h) - var(--app-dock-h) - 1.5rem));
+  margin: 0;
+  padding: t.$space-1;
+  list-style: none;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
+  min-block-size: 3.5rem;
+  padding: t.$space-1 t.$space-2;
+  border: 0.1875rem solid transparent;
+  color: var(--palette-scouter);
+  cursor: pointer;
+
+  &[data-active='true'] {
+    border-color: var(--palette-yellow);
+    background: color-mix(in srgb, var(--palette-scouter) 14%, transparent);
+    box-shadow: 0 0 0.75rem color-mix(in srgb, var(--palette-yellow) 40%, transparent);
+  }
+}
+
+.rowThumb {
+  position: relative;
+  flex: none;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  border: 0.125rem solid var(--palette-ink);
+  background: linear-gradient(to bottom, var(--palette-sky-blue), var(--palette-cloud));
+}
+
+.rowText {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-inline-size: 0;
+}
+
+.rowName {
+  font-weight: t.$font-weight-bold;
+  overflow-wrap: anywhere;
+  .row[data-active='true'] & { color: var(--palette-yellow); }
+}
+
+.rowSeries {
+  font-size: t.$font-size-sm;
+  opacity: 0.8;
+}
+
+.rowLock {
+  @include m.heading;
+  flex: none;
+  font-size: t.$font-size-sm;
+  letter-spacing: 0.08em;
+  color: var(--palette-yellow);
+}
+
+// El objetivo fijado: el retrato lleva las esquinas de mira del scouter y brilla un poco.
+.row[data-active='true'] .rowThumb {
+  border-color: var(--palette-yellow);
+  box-shadow: 0 0 0.5rem color-mix(in srgb, var(--palette-yellow) 55%, transparent);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    inline-size: 0.75rem;
+    block-size: 0.75rem;
+    border: 0.125rem solid var(--palette-scouter);
+  }
+
+  &::before {
+    inset-block-start: 0.125rem;
+    inset-inline-start: 0.125rem;
+    border-block-end: 0;
+    border-inline-end: 0;
+  }
+
+  &::after {
+    inset-block-end: 0.125rem;
+    inset-inline-end: 0.125rem;
+    border-block-start: 0;
+    border-inline-start: 0;
+  }
+}

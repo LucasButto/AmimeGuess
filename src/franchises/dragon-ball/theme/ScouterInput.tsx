@@ -1,7 +1,9 @@
 'use client';
 
-import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
+import { useContext, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
+import { AutocompleteOptions } from '@/components/Autocomplete';
 import { ContentImage } from '@/components/ContentImage';
+import { useInDock } from '@/components/game-shell/GameDock';
 import { buildSearchIndex, search } from '@/components/search';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import { es } from '@/i18n/es';
@@ -24,6 +26,9 @@ export function ScouterInput({ label, items, excludeIds, onSelect, disabled = fa
   const inputId = `${baseId}-input`;
   const listId = `${baseId}-list`;
   const inputRef = useRef<HTMLInputElement>(null);
+  // En la barra inferior del teléfono la lente es más baja y los objetivos son una lista vertical que se abre hacia arriba.
+  const inDock = useInDock();
+  const { seriesLabels } = useContext(AutocompleteOptions);
 
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
@@ -95,14 +100,14 @@ export function ScouterInput({ label, items, excludeIds, onSelect, disabled = fa
   function handleFocus() {
     setOpen(true);
     // En el teléfono, el teclado tapa media pantalla: se sube el campo para que quede visible junto con las sugerencias.
-    if (window.matchMedia('(pointer: coarse)').matches) {
+    if (!inDock && window.matchMedia('(pointer: coarse)').matches) {
       const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
       requestAnimationFrame(() => inputRef.current?.scrollIntoView({ block: 'start', behavior }));
     }
   }
 
   return (
-    <div className={styles.scouter}>
+    <div className={styles.scouter} data-dock={inDock || undefined}>
       <span className={styles.arm} aria-hidden="true">
         <span className={styles.ear} />
       </span>
@@ -146,7 +151,37 @@ export function ScouterInput({ label, items, excludeIds, onSelect, disabled = fa
             />
           </span>
 
-          {showPanel && results.length > 0 && target && (
+          {showPanel && results.length > 0 && target && inDock && (
+            <div className={styles.dockPanel}>
+              {/* Lista vertical de objetivos: la fila marcada es el "objetivo fijado" (resaltada, con su rótulo). */}
+              <ul className={styles.rows} id={listId} role="listbox" aria-label={label}>
+                {results.map((item, position) => (
+                  <li
+                    key={item.id}
+                    id={`${baseId}-option-${position}`}
+                    className={styles.row}
+                    role="option"
+                    aria-selected={position === active}
+                    data-active={position === active}
+                    // Evita que el campo pierda el foco (y se cierre la lista) antes del toque.
+                    onPointerDown={(event) => event.preventDefault()}
+                    onPointerEnter={() => setActiveIndex(position)}
+                    onClick={() => choose(item.id)}
+                  >
+                    <span className={styles.rowThumb} aria-hidden="true">
+                      {item.imageStem ? <ContentImage className={styles.thumb} stem={item.imageStem} alt="" sizes="3rem" /> : <span className={styles.initial}>{item.label.slice(0, 1)}</span>}
+                    </span>
+                    <span className={styles.rowText}>
+                      <span className={styles.rowName}>{item.label}</span>
+                      {item.series?.[0] && <span className={styles.rowSeries}>{seriesLabels[item.series[0]] ?? item.series[0]}</span>}
+                    </span>
+                    {position === active && <span className={styles.rowLock} aria-hidden="true">{es.dragonBallSkin.locked}</span>}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {showPanel && results.length > 0 && target && !inDock && (
             <div className={styles.panel}>
               {/* El objetivo fijado: el marcado, grande y con su nombre. Es una vista, y un clic sobre él también lo elige (el
                   nombre accesible de la opción es el de la tira, así que no es una parada más para lectores de pantalla). */}

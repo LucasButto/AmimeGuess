@@ -58,7 +58,7 @@ export function ModeGame(props: ModeGameProps) {
   return (
     <AppShellProvider enabled={props.appShell}>
     <AutocompleteOptions.Provider
-      value={{ thumbnails: props.franchise.autocompleteThumbnails ?? true }}
+      value={{ thumbnails: props.franchise.autocompleteThumbnails ?? true, seriesLabels: props.franchise.seriesLabels }}
     >
       <PoolNounContext.Provider
         value={modePoolNoun(props.franchise, props.mode)}

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { BackNav } from '@/components/BackNav';
+import { TabBar } from '@/components/tabbar/TabBar';
 import { TitleWords } from '@/components/TitleWords';
 import { franchises, getFranchise } from '@/franchises';
 import { loadFranchiseData } from '@/franchises/data';
@@ -69,20 +70,24 @@ export default async function FranchisePage({ params }: { params: Promise<{ fran
   const navigation = <BackNav franchise={franchise} atFranchise appShell={appShell} />;
 
   return (
-    <main className={styles.page} data-shell={appShell ? 'app' : undefined}>
-      <PageTransition />
-      {appShell ? <div className={styles.appBar}>{navigation}{heading}</div> : <>{navigation}{heading}</>}
-      {modes.length === 0 ? (
-        <p className={styles.plate}>{es.franchise.provisional}</p>
-      ) : (
-        <ModesGrid
-          franchise={franchise.slug}
-          intro={es.franchise.intro(franchise.name)}
-          modes={modes.map((mode) => ({ slug: mode.slug, name: mode.name }))}
-          appShell={appShell}
-          descriptions={es.modeHelp[franchise.slug]}
-        />
-      )}
-    </main>
+    <>
+      <main className={styles.page} data-shell={appShell ? 'app' : undefined}>
+        <PageTransition />
+        {appShell ? <div className={styles.appBar}>{navigation}{heading}</div> : <>{navigation}{heading}</>}
+        {modes.length === 0 ? (
+          <p className={styles.plate}>{es.franchise.provisional}</p>
+        ) : (
+          <ModesGrid
+            franchise={franchise.slug}
+            intro={es.franchise.intro(franchise.name)}
+            modes={modes.map((mode) => ({ slug: mode.slug, name: mode.name }))}
+            appShell={appShell}
+            descriptions={es.modeHelp[franchise.slug]}
+          />
+        )}
+      </main>
+      {/* Teléfono: la barra de pestañas (Inicio, Retos, Estadísticas, Más); el hub cuenta como Inicio. */}
+      {appShell && <TabBar current="home" />}
+    </>
   );
 }

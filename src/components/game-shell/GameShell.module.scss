@@ -133,12 +133,6 @@
   padding-inline-start: t.$space-5;
 }
 
-.settings {
-  display: flex;
-  flex-direction: column;
-  gap: t.$space-2;
-}
-
 .yesterdayHelp {
   margin-inline-start: auto;
 }
@@ -179,14 +173,6 @@
 }
 .optionIcon { flex: none; inline-size: 2.5rem; block-size: 2.5rem; filter: grayscale(1); opacity: 0.65; }
 .menuOption[data-selected='true'] .optionIcon { filter: none; opacity: 1; }
-
-.textSizes { border: 0; min-inline-size: 0; display: grid; gap: t.$space-2; }
-
-.sizeChoice[aria-pressed='true'] {
-  --_fill: #{t.token('chip-on-fill')};
-  --_ink: #{t.token('chip-on-ink')};
-  --_edge: #{t.token('frame-color')};
-}
 
 .floatingActions {
   @include m.app-shell { position: static; display: flex; align-items: center; gap: t.$space-1; }
@@ -285,4 +271,19 @@
 .creditsOption {
   text-decoration: none;
   @include m.app-shell-desktop { display: none; }
+}
+
+// Teléfono: el aviso de que los filtros dejan muy pocos para jugar (los filtros están en la hoja), con el botón que la abre.
+.poolWarning {
+  @include m.pixel-frame;
+  display: grid;
+  gap: t.$space-3;
+  padding: calc(#{t.$space-3} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
+  color: t.token('ink');
+}
+
+// Teléfono: Ajustes no está en el ⋮ del juego sino en la pestaña Más; desde `lg` vuelve a su lugar de siempre.
+.settingsOption {
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: flex; }
 }

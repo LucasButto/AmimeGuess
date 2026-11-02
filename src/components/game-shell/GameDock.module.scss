@@ -6,6 +6,7 @@
 .action {
   @include m.pixel-frame($fill: t.token('app-bar-fill'), $outer: t.token('app-bar-edge'), $inner: t.token('app-bar-inner'), $clip: t.token('clip-panel'), $radius: 0);
   @include m.focus-ring;
+  @include m.press(0.98);
   display: grid;
   align-content: center;
   justify-items: center;
@@ -15,7 +16,7 @@
   min-block-size: 2.75rem;
   padding: 0 t.$space-4;
   border: 0;
-  background: t.token('app-bar-fill');
+  background: none;
   color: t.token('app-bar-ink');
   font: inherit;
   text-align: center;
@@ -36,4 +37,43 @@
 .detail {
   font-size: t.$font-size-sm;
   line-height: t.$line-height-tight;
+}
+
+// Varias acciones juntas: la principal ocupa el doble que cada secundaria.
+.group {
+  display: flex;
+  gap: t.$space-2;
+  min-inline-size: 0;
+
+  > * {
+    flex: 1;
+    min-inline-size: 0;
+  }
+
+  > [data-primary] {
+    flex: 2;
+  }
+}
+
+// Las secundarias: el panel del tema con su tinta, sin el color de la barra.
+.secondary {
+  @include m.pixel-frame($fill: t.token('surface-panel'), $outer: t.token('app-bar-edge'), $inner: t.token('frame-inner'), $clip: t.token('clip-panel'), $radius: 0);
+  @include m.focus-ring;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  box-sizing: border-box;
+  min-block-size: 2.75rem;
+  padding: 0 t.$space-2;
+  border: 0;
+  background: none;
+  color: t.token('ink');
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.55;
+  }
 }

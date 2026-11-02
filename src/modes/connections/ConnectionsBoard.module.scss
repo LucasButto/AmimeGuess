@@ -124,10 +124,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-block-size: 4rem;
+  min-block-size: 4.25rem;
   padding: t.$space-1 0.125rem;
   font: inherit;
-  font-size: t.fluid(0.71875rem, 1rem);
+  // Nunca menos de 0,8125 rem (13 px): con menos, los nombres no se leen en el teléfono.
+  font-size: max(0.8125rem, #{t.fluid(0.71875rem, 1rem)});
   font-weight: t.$font-weight-medium;
   line-height: t.$line-height-tight;
   text-align: center;

@@ -421,7 +421,7 @@ async function hubList(page: Page): Promise<string[]> {
       visible: visible.length,
       gridVisible: !!grid && grid.getClientRects().length > 0,
       lastBottom: Math.max(0, ...visible.map((row) => row.getBoundingClientRect().bottom)),
-      states: visible.filter((row) => /Pendiente|Ganado|Perdido/.test(row.textContent ?? '')).length,
+      states: visible.filter((row) => /Pendiente|Completado|Fallado/.test(row.textContent ?? '')).length,
       play: visible[0]?.textContent?.includes('Jugar') ?? false,
       tall: window.innerHeight >= 800,
       height: window.innerHeight,
@@ -432,7 +432,8 @@ async function hubList(page: Page): Promise<string[]> {
     if (info.gridVisible) problems.push('se ve la lista y también la grilla de tarjetas del hub');
     if (info.states !== info.visible) problems.push(`${info.visible - info.states} fila(s) del hub sin su estado de hoy`);
     if (!info.play) problems.push('el modo destacado del hub no trae "Jugar"');
-    if (info.tall && info.lastBottom > info.height + 0.5) problems.push(`las filas del hub no entran sin scroll: terminan en ${Math.round(info.lastBottom)} de ${info.height}`);
+    // "Todos los modos sin scroll" vale para los hubs de hasta 6 modos (Pokémon); Dragon Ball tiene 8 y Naruto 9.
+    if (info.tall && info.rows <= 6 && info.lastBottom > info.height + 0.5) problems.push(`las filas del hub no entran sin scroll: terminan en ${Math.round(info.lastBottom)} de ${info.height}`);
   } else if (!info.gridVisible) {
     problems.push('no se ve ni la lista ni la grilla del hub');
   }
@@ -517,7 +518,12 @@ async function timelineLayout(page: Page, { phone }: { phone: boolean }): Promis
 async function timelineDrag(page: Page, { phone }: { phone: boolean }): Promise<string[]> {
   if (!(await hasTimelineGame(page))) return [];
   // La lista queda debajo de la navegación y los filtros: se lleva a la vista, como haría una persona antes de arrastrar.
-  await page.evaluate(() => document.querySelector('[data-item]')?.scrollIntoView({ block: 'start' }));
+  // Con el diseño de app hay una barra fija arriba: se deja la lista justo debajo de ella (si no, el dedo caería sobre la barra).
+  await page.evaluate(() => {
+    document.querySelector('[data-item]')?.scrollIntoView({ block: 'start' });
+    const bar = document.querySelector('[class*="appBar"]');
+    if (bar && getComputedStyle(bar).position === 'fixed') window.scrollBy(0, -(bar.getBoundingClientRect().bottom + 8));
+  });
   const before = await timelineTexts(page);
   const boxes = await page.evaluate(() => {
     const items = [...document.querySelectorAll('[data-item]')].map((item) => item.getBoundingClientRect());
@@ -632,6 +638,7 @@ async function connectionsLayout(page: Page): Promise<string[]> {
       probe.style.fontFamily = style.fontFamily;
       probe.style.fontSize = style.fontSize;
       probe.style.fontWeight = style.fontWeight;
+      probe.style.letterSpacing = style.letterSpacing;
       const inner = tile.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
       for (const word of (tile.firstChild?.textContent ?? '').split(/\s+/)) {
         probe.textContent = word;
@@ -687,7 +694,7 @@ async function connectionsSelect(page: Page): Promise<string[]> {
   const pressed = () => page.locator('[data-tile][aria-pressed="true"]').count();
   for (let index = 0; index < 5; index++) await tiles.nth(index).click();
   if ((await pressed()) !== 4) problems.push(`con 5 toques debería haber 4 elegidas y hay ${await pressed()}`);
-  await page.getByRole('button', { name: 'Deseleccionar todo' }).click();
+  await page.getByRole('button', { name: /^Deseleccionar/ }).click();
   if ((await pressed()) !== 0) problems.push('"Deseleccionar todo" no deseleccionó');
   const submit = page.getByRole('button', { name: 'Enviar' });
   if (await submit.isEnabled()) problems.push('"Enviar" está habilitado sin 4 elegidas');
@@ -709,7 +716,7 @@ async function connectionsFinish(page: Page): Promise<string[]> {
   if (!(await hasConnectionsGame(page))) return [];
   const over = async () => (await page.locator(CONNECTIONS_GAME).getAttribute('data-over')) === 'true';
   for (let turn = 0; turn < 60 && !(await over()); turn++) {
-    const clear = page.getByRole('button', { name: 'Deseleccionar todo' });
+    const clear = page.getByRole('button', { name: /^Deseleccionar/ });
     if (await clear.isEnabled()) await clear.click();
     const tiles = page.locator('[data-tile]');
     const total = await tiles.count();
@@ -1102,7 +1109,7 @@ const ROUTES: RouteCheck[] = [
   },
   // Sesión 09: los 9 modos de Dragon Ball, todos jugables desde que se verificaron las frases y los sucesos
   // (2026-10-12). Un modo que se quede sin contenido verificado se oculta y su ruta muestra "Próximamente".
-  { name: 'dragon-ball', path: '/dragon-ball' },
+  { name: 'dragon-ball', path: '/dragon-ball', check: hubList },
   { name: 'dragon-ball-clasico', path: '/dragon-ball/clasico', ready: GAME_READY },
   {
     // 7 columnas, con la serie y la saga de debut con el nombre de cada una.
@@ -1110,6 +1117,7 @@ const ROUTES: RouteCheck[] = [
     path: '/dragon-ball/clasico',
     ready: GAME_READY,
     storage: seededGame('all', DB_SIX_ATTEMPTS, 'clasico', 'dragon-ball'),
+    check: attemptCards,
   },
   {
     // Sin GT: las transformaciones de GT desaparecen y Gogeta, que debutó en GT, ve su debut oculto ("—").
@@ -1164,7 +1172,7 @@ const ROUTES: RouteCheck[] = [
   // Sesión 11: los 9 modos de Naruto. Silueta queda oculto hasta recortar el fondo de las imágenes (sesión 19): su
   // ruta se revisa igual (muestra "Próximamente"). Los demás son jugables con todas las series (Frase, desde que se
   // verificaron las frases el 2026-10-12).
-  { name: 'naruto', path: '/naruto' },
+  { name: 'naruto', path: '/naruto', check: hubList },
   { name: 'naruto-clasico', path: '/naruto/clasico', ready: GAME_READY },
   {
     // 7 columnas, con el arco de debut con su nombre corto.
@@ -1172,6 +1180,7 @@ const ROUTES: RouteCheck[] = [
     path: '/naruto/clasico',
     ready: GAME_READY,
     storage: seededGame('all', NARUTO_SIX_ATTEMPTS, 'clasico', 'naruto'),
+    check: attemptCards,
   },
   {
     // Sin la serie original: quienes debutaron en ella ven su arco de debut oculto.
@@ -1350,7 +1359,9 @@ async function checkPage(
   viewport: Viewport,
 ): Promise<Result> {
   const phone = Math.min(viewport.width, viewport.height) < 500;
+  // Sin service worker: las revisiones miden la página y no lo que el modo sin conexión tenga guardado (public/sw.js).
   const context = await browser.newContext({
+    serviceWorkers: 'block',
     viewport: { width: viewport.width, height: viewport.height },
     deviceScaleFactor: 1,
     isMobile: phone,

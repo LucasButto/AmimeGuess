@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  useContext,
   useEffect,
   useId,
   useMemo,
@@ -8,7 +9,9 @@ import {
   useState,
   type KeyboardEvent,
 } from "react";
+import { AutocompleteOptions } from "@/components/Autocomplete";
 import { ContentImage } from "@/components/ContentImage";
+import { useInDock } from "@/components/game-shell/GameDock";
 import { buildSearchIndex, search } from "@/components/search";
 import { VisuallyHidden } from "@/components/VisuallyHidden";
 import { es } from "@/i18n/es";
@@ -37,6 +40,9 @@ export function BingoBookInput({
   const inputId = `${baseId}-input`;
   const listId = `${baseId}-list`;
   const inputRef = useRef<HTMLInputElement>(null);
+  // En la barra inferior del teléfono el libro es una tira baja y las fichas se abren hacia arriba (sin la ficha grande).
+  const inDock = useInDock();
+  const { seriesLabels } = useContext(AutocompleteOptions);
 
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
@@ -109,7 +115,7 @@ export function BingoBookInput({
   function handleFocus() {
     setOpen(true);
     // En el teléfono, el teclado tapa media pantalla: se sube el campo para que quede visible junto con las sugerencias.
-    if (window.matchMedia("(pointer: coarse)").matches) {
+    if (!inDock && window.matchMedia("(pointer: coarse)").matches) {
       const behavior = window.matchMedia("(prefers-reduced-motion: reduce)")
         .matches
         ? "auto"
@@ -121,7 +127,7 @@ export function BingoBookInput({
   }
 
   return (
-    <div className={styles.book} data-open={showPanel}>
+    <div className={styles.book} data-open={showPanel} data-dock={inDock || undefined}>
       {/* La tapa y las páginas van juntas en un ancla: las páginas se abren pegadas a la tapa aunque la caja del libro se
           estire (en una fila con otro panel más alto, por ejemplo). */}
       <div className={styles.anchor}>
@@ -176,6 +182,7 @@ export function BingoBookInput({
           <div className={styles.spread}>
             {/* Página izquierda: la ficha de "se busca" de la marcada. Es una vista; un clic también la elige (el nombre
               accesible de la opción es el de la lista, así que no es una parada más para lectores de pantalla). */}
+            {!inDock && (
             <div
               className={styles.wanted}
               aria-hidden="true"
@@ -198,6 +205,7 @@ export function BingoBookInput({
               </span>
               <span className={styles.wantedName}>{wanted.label}</span>
             </div>
+            )}
 
             {/* Página derecha: todas las fichas que coinciden. */}
             <ul
@@ -231,7 +239,16 @@ export function BingoBookInput({
                       item.label.slice(0, 1)
                     )}
                   </span>
-                  <span className={styles.entryName}>{item.label}</span>
+                  <span className={styles.entryText}>
+                    {inDock && position === active && <span className={styles.entryWanted}>{es.narutoSkin.wanted}</span>}
+                    <span className={styles.entryName}>{item.label}</span>
+                    {inDock && item.series?.[0] && (
+                      <span className={styles.entrySeries}>{seriesLabels[item.series[0]] ?? item.series[0]}</span>
+                    )}
+                  </span>
+                  {inDock && position === active && (
+                    <span className={styles.entrySeal} aria-hidden="true" />
+                  )}
                 </li>
               ))}
             </ul>

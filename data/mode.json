@@ -62,6 +62,7 @@
     "name": "Dragon Ball",
     "status": true,
     "comingSoon": false,
+    "appShell": true,
     "modes": [
       {
         "slug": "clasico",
@@ -118,6 +119,7 @@
     "name": "Naruto",
     "status": true,
     "comingSoon": false,
+    "appShell": true,
     "modes": [
       {
         "slug": "clasico",

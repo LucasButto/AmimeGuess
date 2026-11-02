@@ -51,9 +51,11 @@
 
 .beans {
   display: inline-flex;
-  flex-wrap: wrap;
   align-items: center;
   gap: t.$space-1;
+  // Diseño de app: las semillas van en la línea de estado, en una sola fila y más chicas (hasta 8 en 390 px).
+  @include m.app-shell { flex-wrap: nowrap; gap: 0.125rem; }
+  @include m.app-shell-desktop { flex-wrap: wrap; gap: t.$space-1; }
 }
 
 .beansLabel {
@@ -62,6 +64,9 @@
   font-size: t.$font-size-xl;
   line-height: 1;
   color: var(--palette-ink);
+  // En el teléfono la línea de estado ya dice "Intentos: 0/8": la palabra de las semillas sobra.
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: inline; font-size: t.$font-size-xl; }
 }
 
 // Cada semilla es una celda de un solo lugar: la silueta gris (`ghost`) abajo y la semilla (`seed`) encima, en el mismo
@@ -69,6 +74,8 @@
 .bean {
   display: inline-grid;
   inline-size: 2.75rem;
+  @include m.app-shell { inline-size: 1.5rem; }
+  @include m.app-shell-desktop { inline-size: 2.75rem; }
 
   > img {
     grid-area: 1 / 1;

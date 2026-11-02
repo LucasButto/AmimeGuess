@@ -33,6 +33,15 @@
 // la raíz del tema; los colores salen de la paleta de config.ts (variables --palette-*), que cubre el test de
 // contraste. Tinta negra gruesa, papel crema, esquinas cortadas en diagonal y sombras duras: nada redondeado.
 .root {
+  // Barra del juego del teléfono (diseño de app): el naranja de la marca, tinta gruesa y un filete amarillo, como un cuadro de manga.
+  // Tarjetas de intento del teléfono: los valores son largos ("Supersaiyano 2", "Clan de Freezer"): casillas de a dos.
+  --attempt-card-cols: 2;
+  --attempt-card-cols-md: 4;
+  --attempt-card-label-h: 1.2em;
+  --app-bar-fill: var(--palette-orange);
+  --app-bar-ink: var(--palette-ink);
+  --app-bar-edge: var(--palette-ink);
+  --app-bar-inner: var(--palette-yellow);
   // Superficies y tintas: papel crema con tinta negra; la pantalla es el visor verde del scouter.
   --surface-panel: var(--palette-cream);
   --surface-dialog: var(--palette-cream);

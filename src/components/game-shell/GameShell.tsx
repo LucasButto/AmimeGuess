@@ -12,13 +12,13 @@ import { FilterPanel } from '../FilterPanel';
 import Link from 'next/link';
 import { Modal } from '../Modal';
 import { Sheet } from '../Sheet';
-import { setPrefs, usePrefs } from '../usePrefs';
+import { SettingsPanel } from '../SettingsPanel';
 import { useSkin } from '../skin/context';
 import { useSound } from '../skin/useSound';
+import { useHaptics } from '../useHaptics';
 import { Button, ButtonLink } from '../ui/Button';
 import { Panel } from '../ui/Panel';
 import { InfoTip } from '../ui/InfoTip';
-import { Switch } from '../ui/Switch';
 import { useSeriesFilters } from '../useSeriesFilters';
 import { Countdown } from './Countdown';
 import { GameFlagsContext } from './flags';
@@ -83,8 +83,8 @@ export function GameShell({
   const [finished, setFinished] = useState<{ key: string; report: FinishReport } | null>(null);
   const [dialog, setDialog] = useState<Dialog>(null);
   const { skin, leaveTo } = useSkin();
-  const prefs = usePrefs();
   const play = useSound();
+  const buzz = useHaptics();
 
   // El reto cambia a medianoche (hora de Argentina): se reprograma al cruzarla y también al
   // volver a la pestaña, porque el navegador frena los temporizadores de una pestaña dormida.
@@ -201,6 +201,8 @@ export function GameShell({
       if (reported.fresh) {
         // Fanfarria del tema (si hay sonidos) al ganar un reto de intentos; los de puntaje no se "ganan".
         if (reported.won && reported.score === undefined) play('win');
+        // Un toque corto al acertar (los fallos vibran en cada tablero, al fallar cada intento).
+        if (reported.won) buzz('hit');
         // Una partida del modo infinito no cuenta para las estadísticas ni para la racha.
         if (practicing) return;
         setStats(
@@ -213,7 +215,7 @@ export function GameShell({
         );
       }
     },
-    [sessionKey, practicing, day, franchise.slug, mode.slug, play, filterKey, variant, playDay],
+    [sessionKey, practicing, day, franchise.slug, mode.slug, play, buzz, filterKey, variant, playDay],
   );
 
   const getShareText = useCallback(() => {
@@ -282,7 +284,7 @@ export function GameShell({
             event.preventDefault(); buttons[next].focus();
           }}>
             {(['help', 'stats', 'settings'] as const).map((action, index) => <button
-              type="button" key={action} className={styles.menuOption} data-selected={menuSelection === index}
+              type="button" key={action} className={action === 'settings' ? `${styles.menuOption} ${styles.settingsOption}` : styles.menuOption} data-selected={menuSelection === index}
               onFocus={() => setMenuSelection(index)}
               onPointerEnter={(event) => { if (event.pointerType === 'mouse' && window.matchMedia('(hover: hover)').matches) setMenuSelection(index); }}
               onClick={() => openDialog(action)}>
@@ -321,6 +323,14 @@ export function GameShell({
       </div>
 
       <SheetSection>{filters}</SheetSection>
+
+      {/* Teléfono: los filtros viven en la hoja; si con ellos no alcanza el mínimo para jugar, se dice acá y se ofrece abrirla. */}
+      {phone && !playable && (
+        <section className={styles.poolWarning} role="status">
+          <p>{es.filters.belowMinimum(remaining, minimumPool)}</p>
+          <Button variant="primary" onClick={() => setFiltersOpen(true)}>{es.shell.filters}</Button>
+        </section>
+      )}
 
       {practicing && (
         <div className={styles.practiceBanner} role="status">
@@ -489,25 +499,7 @@ export function GameShell({
 
       {dialog === 'settings' && (
         <Modal title={es.settings.title} onClose={closeDialog}>
-          <div className={styles.settings}>
-            <fieldset className={styles.textSizes}>
-              <legend>{es.settings.textSize}</legend>
-              <p>{es.settings.textSizeHint}</p>
-              <div className={styles.buttons}>{([1, 2, 3] as const).map((textScale) => <Button key={textScale} className={styles.sizeChoice} variant="ghost" aria-pressed={(prefs.textScale ?? 1) === textScale} onClick={() => setPrefs({ ...prefs, textScale })}>{es.settings.scale(textScale)}</Button>)}</div>
-            </fieldset>
-            <Switch
-              label={es.settings.legibleFont}
-              hint={es.settings.legibleFontHint}
-              checked={prefs.legibleFont}
-              onChange={(legibleFont) => setPrefs({ ...prefs, legibleFont })}
-            />
-            <Switch
-              label={es.settings.sounds}
-              hint={es.settings.soundsHint}
-              checked={prefs.sounds}
-              onChange={(sounds) => setPrefs({ ...prefs, sounds })}
-            />
-          </div>
+          <SettingsPanel />
         </Modal>
       )}
 

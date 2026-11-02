@@ -20,7 +20,7 @@ function SenzuBeans({ failed, total }: { failed: number; total: number }) {
   const [before, setBefore] = useState(failed);
   if (failed < before) setBefore(failed);
   return (
-    <span className={styles.beans} aria-hidden="true">
+    <span className={styles.beans} aria-hidden="true" data-meter="beans">
       <span className={styles.beansLabel}>{es.dragonBallSkin.attempts}</span>
       {Array.from({ length: total }, (_, index) => {
         const spent = index >= total - failed;

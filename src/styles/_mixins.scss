@@ -296,3 +296,16 @@
     }
   }
 }
+
+// Estado presionado propio de lo que se toca (SPEC 9.3): mientras el dedo está encima, el elemento se achica un poco, como los
+// botones de una app. Reemplaza al recuadro gris del navegador (que se saca en globals.scss). Usa la propiedad `scale`, no
+// `transform`: se suma a los transforms que el elemento ya tenga. Solo con movimiento permitido y nunca en un botón desactivado.
+@mixin press($scale: 0.97) {
+  @include bp.motion-ok {
+    transition: scale 90ms ease-out;
+
+    &:active:not(:disabled, [aria-disabled='true']) {
+      scale: $scale;
+    }
+  }
+}
