@@ -4,6 +4,9 @@
 
 .plate {
   @include m.plate;
+  // Diseño de app: el recuadro de presentación sale del teléfono (el progreso va en la barra de arriba).
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: flex; }
   display: flex;
   flex-direction: column;
   gap: t.$space-2;
@@ -26,6 +29,9 @@
 // columna, para el principal) y --mode-main-column, --mode-main-row y --mode-main-align lo ubican.
 // Si un modo se oculta por falta de contenido, la grilla se acomoda sola, sin huecos.
 .grid {
+  // Diseño de app: por debajo de `lg` el hub es una lista (`.rows`); la grilla de tarjetas vuelve desde `lg`.
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: grid; }
   display: grid;
   grid-template-columns: repeat(var(--mode-cols, 1), minmax(0, 1fr));
   gap: t.$space-3;
@@ -54,4 +60,122 @@
   grid-column: var(--mode-main-column, 1 / -1);
   grid-row: var(--mode-main-row, auto);
   align-self: var(--mode-main-align, stretch);
+}
+
+// --- Lista de modos del teléfono ----------------------------------------------------------------------------------------
+// El Clásico va destacado arriba, con el color de la barra del tema y un solo botón; cada modo es una fila con su ícono, su
+// nombre, una línea de qué es y cómo te fue hoy.
+.rows {
+  display: none;
+  @include m.app-shell { display: grid; gap: t.$space-2; }
+  @include m.app-shell-desktop { display: none; }
+  inline-size: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  @include m.pixel-frame;
+  @include m.touch-target;
+  @include m.focus-ring;
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
+  padding: calc(#{t.$space-2} + #{t.token('frame-width')} + #{t.token('frame-inner-width')}) calc(#{t.$space-3} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
+  color: t.token('ink');
+  text-decoration: none;
+}
+
+.rowIcon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+}
+
+.rowText {
+  display: grid;
+  flex: 1;
+  gap: 0.125rem;
+  min-inline-size: 0;
+}
+
+.rowHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-2;
+}
+
+.rowName {
+  min-inline-size: 0;
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+}
+
+.rowLine {
+  font-size: t.$font-size-sm;
+  line-height: t.$line-height-tight;
+  color: t.token('ink-muted');
+}
+
+// El estado de hoy, como una etiqueta al costado (con texto: el color no va solo).
+.rowState {
+  flex: none;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+
+  &[data-state] {
+    padding: 0.125rem t.$space-2;
+    border: t.$border-width solid t.token('frame-color');
+    background: t.token('surface-panel');
+  }
+  &[data-state='won'] { background: t.token('cell-correct'); color: t.token('cell-ink'); }
+  &[data-state='lost'] { background: t.token('cell-incorrect'); color: t.token('cell-ink'); }
+}
+
+// El Clásico: el color de la barra de arriba del tema, su estado debajo del nombre y "Jugar" como único botón.
+.rowItem[data-main='true'] .row {
+  @include m.pixel-frame($fill: t.token('app-bar-fill'), $outer: t.token('app-bar-edge'), $inner: t.token('app-bar-inner'), $clip: t.token('clip-panel'), $radius: 0);
+  min-block-size: 4.5rem;
+  background: t.token('app-bar-fill');
+  color: t.token('app-bar-ink');
+
+  .rowState { padding: 0; border: 0; background: none; color: inherit; font-weight: t.$font-weight-medium; }
+}
+
+.rowPlay {
+  flex: none;
+  padding: t.$space-2 t.$space-4;
+  border: t.$border-width solid t.token('frame-color');
+  background: t.token('surface-panel');
+  color: t.token('ink');
+  font-weight: t.$font-weight-bold;
+}
+
+.creditsLink {
+  @include m.touch-target;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  // Sobre una placa del tema (nunca el texto directo sobre el fondo del paisaje).
+  padding-inline: t.$space-4;
+  border: t.$border-width solid t.token('frame-color');
+  background: t.token('surface-panel');
+  color: t.token('ink');
+  font-size: t.$font-size-sm;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  @include m.app-shell { display: inline-flex; }
+  @include m.app-shell-desktop { display: none; }
+}
+
+// Sin leer todavía las partidas guardadas: el estado ocupa su lugar (con el texto de "Pendiente") pero no se ve.
+.rowState[data-state='unknown'],
+.rowItem .row[data-state='unknown'] .rowState {
+  visibility: hidden;
 }

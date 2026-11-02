@@ -98,3 +98,27 @@ export function wonToday(storage: KeyedStorage | null, franchise: string, modes:
   }
   return won;
 }
+
+/**
+ * Los modos terminados hoy sin ganar (algún intento perdido y ninguna victoria con ninguna combinación de filtros).
+ * Se lee de las mismas partidas que `solvedToday`: `solvedToday` los suma a los ganados, y esto los distingue.
+ */
+export function lostToday(storage: KeyedStorage | null, franchise: string, modes: readonly string[], day: number): Set<string> {
+  const lost = new Set<string>();
+  if (storage === null) return lost;
+  const won = wonToday(storage, franchise, modes, day);
+  const prefix = `${STORAGE_PREFIX}:state:${franchise}:`;
+  const suffix = `:${day}`;
+  try {
+    for (let index = 0; index < storage.length; index++) {
+      const key = storage.key(index);
+      if (key === null || !key.startsWith(prefix) || !key.endsWith(suffix)) continue;
+      const mode = key.slice(prefix.length).split(':')[0];
+      if (!modes.includes(mode) || won.has(mode)) continue;
+      if (isFinished(storage, key)) lost.add(mode);
+    }
+  } catch {
+    // Lo leído hasta el fallo alcanza.
+  }
+  return lost;
+}

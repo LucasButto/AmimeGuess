@@ -4,11 +4,12 @@ import { BackNav } from '@/components/BackNav';
 import { TitleWords } from '@/components/TitleWords';
 import { franchises, getFranchise } from '@/franchises';
 import { loadFranchiseData } from '@/franchises/data';
+import { appShellEnabled } from '@/franchises/visibility';
 import { getSkin } from '@/franchises/themes';
 import { es } from '@/i18n/es';
 import { OG_SIZE, ogImage } from '../site';
 import { modeStatus } from './[mode]/playable';
-import { ModesGrid } from './ModesGrid';
+import { HubBarProgress, ModesGrid } from './ModesGrid';
 import styles from './page.module.scss';
 
 // Solo existen las franquicias de la config; cualquier otra ruta es 404.
@@ -51,16 +52,26 @@ export default async function FranchisePage({ params }: { params: Promise<{ fran
   // (esos solo hacen su animación de salida; sin esto, la página de la franquicia aparecía sin abrirse).
   const { PageTransition } = getSkin(franchise.slug).slots;
 
+  const appShell = appShellEnabled(franchise.slug);
+  const heading = (
+    <header className={styles.header}>
+      <p className={styles.site}>{es.site.name}</p>
+      <h1 className={styles.title}>
+        <TitleWords text={franchise.name} />
+      </h1>
+      {appShell && (
+        <p className={styles.appSubtitle}>
+          <HubBarProgress franchise={franchise.slug} modes={modes.map((mode) => mode.slug)} />
+        </p>
+      )}
+    </header>
+  );
+  const navigation = <BackNav franchise={franchise} atFranchise appShell={appShell} />;
+
   return (
-    <main className={styles.page}>
+    <main className={styles.page} data-shell={appShell ? 'app' : undefined}>
       <PageTransition />
-      <BackNav franchise={franchise} atFranchise />
-      <header className={styles.header}>
-        <p className={styles.site}>{es.site.name}</p>
-        <h1 className={styles.title}>
-          <TitleWords text={franchise.name} />
-        </h1>
-      </header>
+      {appShell ? <div className={styles.appBar}>{navigation}{heading}</div> : <>{navigation}{heading}</>}
       {modes.length === 0 ? (
         <p className={styles.plate}>{es.franchise.provisional}</p>
       ) : (
@@ -68,6 +79,8 @@ export default async function FranchisePage({ params }: { params: Promise<{ fran
           franchise={franchise.slug}
           intro={es.franchise.intro(franchise.name)}
           modes={modes.map((mode) => ({ slug: mode.slug, name: mode.name }))}
+          appShell={appShell}
+          descriptions={es.modeHelp[franchise.slug]}
         />
       )}
     </main>
