@@ -125,7 +125,7 @@ function parseMs(value: string): number {
 /** /pokemon: 1 tarjeta Pokédex y después 6 bolas, cada una un único enlace con nombre accesible. */
 async function pokemonCards(ctx: Ctx): Promise<string[]> {
   const context = await newContext(ctx, { viewport: { width: 390, height: 844 } });
-  const page = await open(ctx, context, '/pokemon', '[data-card]');
+  const page = await open(ctx, context, '/pokemon', '[data-card]:visible, ul[class*="rows"] > li a:visible');
   const cards = await page.$$eval('ul[aria-label="Modos de juego"] > li', (items) =>
     items.map((item) => {
       const links = item.querySelectorAll('a');
@@ -185,7 +185,7 @@ async function pokemonWalkers(ctx: Ctx): Promise<string[]> {
       setInterval(sample, 50);
     });
     await context.route('**/theme/pokemon/pmd/manifest.json', (route) => route.fulfill({ json: { version: 1, pokemon: manifest.pokemon.filter((entry) => ['bulbasaur', 'charizard'].includes(entry.entityId)) } }));
-    const page = await open(ctx, context, '/pokemon', '[data-card]');
+    const page = await open(ctx, context, '/pokemon', '[data-card]:visible, ul[class*="rows"] > li a:visible');
     const prefix = `PMD ${viewport.width}×${viewport.height}: `;
     await page.waitForSelector('[data-pmd-ready="true"]');
     // Check the open footer before dismissing it to expose the full grass for the actor checks.
@@ -205,7 +205,7 @@ async function pokemonWalkers(ctx: Ctx): Promise<string[]> {
       if (!blocksBackground) problems.push(prefix + 'el pie abierto permite interacción con el fondo');
       await originalFooter.getByRole('button').first().click();
     }
-    await page.locator('a[data-card="ball"]').last().scrollIntoViewIfNeeded();
+    await page.locator('a[data-card="ball"]:visible, ul[class*="rows"] li[data-main="false"] a:visible').last().scrollIntoViewIfNeeded();
     await page.mouse.move(0, 0);
     await page.waitForSelector('[data-pmd-walker]', { state: 'attached', timeout: 15_000 });
     await page.evaluate(() => document.fonts.ready);
@@ -241,11 +241,15 @@ async function pokemonWalkers(ctx: Ctx): Promise<string[]> {
         (animation.effect as KeyframeEffect).getKeyframes().flatMap((frame) => Object.keys(frame))));
       // Force an overlap only for a synchronous paint/hit-test. The next RAF restores the actual journey.
       const actor = actors[0], original = actor.style.transform;
-      const cards = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-card]'));
+      // Las tarjetas de la grilla o, en el teléfono, las filas de la lista: las que se ven.
+      const cards = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-card], ul[class*="rows"] > li a')).filter((card) => card.getClientRects().length > 0);
       const blocked = cards.every((card) => {
         const box = card.getBoundingClientRect();
         const x = box.left + box.width / 2, y = box.top + box.height / 2;
         if (y < 0 || y >= innerHeight) return true;
+        // Una tarjeta tapada por la barra fija de arriba (diseño de app, ya desplazada la página) no recibe clics en ese punto.
+        const base = document.elementFromPoint(x, y);
+        if (!(base && card.contains(base))) return true;
         actor.style.transform = `translate(${x}px,${y}px)`;
         const hit = document.elementFromPoint(x, y);
         return Boolean(hit && card.contains(hit));
@@ -334,8 +338,8 @@ async function pokemonWalkers(ctx: Ctx): Promise<string[]> {
       });
       if (!protectedFooter) problems.push(prefix + 'el pie abierto no bloquea el hit-test de los caminantes');
     }
-    const destination = await page.locator('a[data-card="ball"]').first().getAttribute('href');
-    await page.locator('a[data-card="ball"]').first().click();
+    const destination = await page.locator('a[data-card="ball"]:visible, ul[class*="rows"] li[data-main="false"] a:visible').first().getAttribute('href');
+    await page.locator('a[data-card="ball"]:visible, ul[class*="rows"] li[data-main="false"] a:visible').first().click();
     await page.waitForURL(`**${destination}`);
     await page.waitForSelector(GAME_READY);
     if (!await page.locator('[data-pmd-scene="true"] [data-pmd-walkers]').count()) problems.push(prefix + 'la escena desapareció al navegar desde el inicio a un modo');
@@ -347,7 +351,7 @@ async function pokemonWalkers(ctx: Ctx): Promise<string[]> {
     let requests = 0;
     quiet.on('request', (request) => { if (/\/theme\/pokemon\/pmd\//.test(request.url())) requests++; });
     for (const route of ['/pokemon', '/pokemon/clasico', '/pokemon/silueta']) {
-      const quietPage = await open(ctx, quiet, route, route === '/pokemon' ? '[data-card]' : GAME_READY);
+      const quietPage = await open(ctx, quiet, route, route === '/pokemon' ? '[data-card]:visible, ul[class*="rows"] > li a:visible' : GAME_READY);
       await quietPage.waitForTimeout(500);
       if (requests || await quietPage.locator('[data-pmd-walkers], [data-pmd-walker]').count()) problems.push(prefix + route + ': hay caminantes o descargas PMD con movimiento reducido');
       await quietPage.close();
@@ -356,7 +360,7 @@ async function pokemonWalkers(ctx: Ctx): Promise<string[]> {
   }
   const skyContext = await newContext(ctx, { viewport: { width: 1920, height: 1080 } });
   await skyContext.route('**/theme/pokemon/pmd/manifest.json', (route) => route.fulfill({ json: { version: 1, pokemon: manifest.pokemon.filter((entry) => entry.entityId === 'charizard') } }));
-  const skyPage = await open(ctx, skyContext, '/pokemon', '[data-card]');
+  const skyPage = await open(ctx, skyContext, '/pokemon', '[data-card]:visible, ul[class*="rows"] > li a:visible');
   await skyPage.waitForSelector('[data-pmd-walker][data-zone="sky"]', { state: 'attached', timeout: 15_000 });
   const sky = await skyPage.locator('[data-pmd-walker]').first().evaluate((actor) => ({ zone: (actor as HTMLElement).dataset.zone, trip: (actor as HTMLElement).dataset.canTrip }));
   if (sky.zone !== 'sky' || sky.trip !== 'false') problems.push('PMD: los voladores no están en el cielo o reaccionan al tropiezo');
@@ -378,7 +382,9 @@ async function pokemonModeWalkers(ctx: Ctx, viewport: { width: number; height: n
   const state = await page.evaluate(() => {
     const scene = document.querySelector('[data-pmd-scene="true"]')!;
     const layer = scene.querySelector('[data-pmd-walkers]')!;
-    const main = document.querySelector('main')!, panel = main.querySelector(':scope > div')!;
+    const main = document.querySelector('main')!;
+    // Con el diseño de app, el primer div de `main` es la barra superior (fija): el panel es el primero que no lo es y tiene caja.
+    const panel = [...main.querySelectorAll(':scope > div')].find((child) => getComputedStyle(child).position !== 'fixed' && child.getBoundingClientRect().height > 0)!;
     const footer = document.querySelector('footer');
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
     const ground = scene.querySelector('[data-pmd-ground]')!.getBoundingClientRect().height;
@@ -677,7 +683,7 @@ async function reducedMotionNaruto(ctx: Ctx): Promise<string[]> {
   if ((await moving()) > 0) problems.push('hay animaciones del tema corriendo al abrir el Clásico');
   const [miss] = misses('naruto', ['naruto-uzumaki', 'sasuke-uchiha', 'sakura-haruno']);
   await guess(page, miss);
-  await page.waitForSelector('tbody tr');
+  await page.waitForSelector('tbody tr, [data-attempt-card]');
   await page.waitForTimeout(400);
   if ((await moving()) > 0) problems.push('hay animaciones del tema (humo, tronco) con movimiento reducido');
   await context.close();
@@ -699,7 +705,7 @@ async function narutoTerms(ctx: Ctx): Promise<string[]> {
     const size = `${viewport.width}x${viewport.height}`;
     const context = await newContext(ctx, { viewport, hasTouch: true }, storage);
     const page = await open(ctx, context, '/naruto/clasico');
-    await page.waitForSelector('tbody tr');
+    await page.waitForSelector('tbody tr, [data-attempt-card]');
     const terms = page.locator('tbody button[type="button"]');
     const count = await terms.count();
     if (count < 10) problems.push(`${size}: solo ${count} términos con recuadro en la tabla`);
@@ -768,7 +774,8 @@ function revealCheck(route: string, franchise: string, candidates: readonly stri
     await guess(page, prefix(miss ?? ''));
     await page.waitForSelector('[data-reveal="revealing"][data-index]');
     const info = await page.evaluate((ready) => {
-      const cells = [...document.querySelectorAll<HTMLElement>('[data-reveal="revealing"][data-index]')];
+      // Con el diseño de app están la tabla y las tarjetas en el documento: solo giran las casillas de la que se ve.
+      const cells = [...document.querySelectorAll<HTMLElement>('[data-reveal="revealing"][data-index]')].filter((cell) => cell.getClientRects().length > 0);
       const board = document.querySelector<HTMLElement>(ready);
       return {
         columns: document.querySelectorAll('thead th').length - 1,
@@ -786,7 +793,7 @@ function revealCheck(route: string, franchise: string, candidates: readonly stri
 
     await page.waitForFunction(() => !document.querySelector('[data-reveal="revealing"]'), null, { timeout: 5000 });
     await page.reload({ waitUntil: 'domcontentloaded' });
-    await page.waitForSelector('tbody tr');
+    await page.waitForSelector('tbody tr, [data-attempt-card]');
     const afterReload = await page.evaluate(
       () =>
         document.querySelectorAll('[data-reveal="revealing"]').length +
@@ -846,7 +853,7 @@ async function reducedMotionDragonBall(ctx: Ctx): Promise<string[]> {
   if ((await moving()) > 0) problems.push('hay animaciones del tema corriendo al abrir el Clásico');
   const [miss] = misses('dragon-ball', ['oolong', 'puar', 'yajirobe']);
   await guess(page, miss);
-  await page.waitForSelector('tbody tr');
+  await page.waitForSelector('tbody tr, [data-attempt-card]');
   await page.waitForTimeout(400);
   if ((await moving()) > 0) problems.push('hay animaciones del tema (escaneo, onomatopeya) con movimiento reducido');
   await context.close();
@@ -919,7 +926,7 @@ async function infoTipsOf(ctx: Ctx, franchise: string, candidates: readonly stri
     const size = `${viewport.width}x${viewport.height}`;
     const context = await newContext(ctx, { viewport, hasTouch: true }, storage);
     const page = await open(ctx, context, route);
-    await page.waitForSelector('tbody tr');
+    await page.waitForSelector('tbody tr, [data-attempt-card]');
     const buttons = page.locator('button[aria-label^="Ayuda"]');
     const count = await buttons.count();
     // Duelista todavía no declara ayudas de columna (fase 5); sí debe tener las ayudas comunes.
@@ -955,7 +962,7 @@ async function infoTipsOf(ctx: Ctx, franchise: string, candidates: readonly stri
   // Con el cursor encima (un mouse): se abre tras la demora y se cierra con Escape sin moverlo.
   const context = await newContext(ctx, {}, storage);
   const page = await open(ctx, context, route);
-  await page.waitForSelector('tbody tr');
+  await page.waitForSelector('tbody tr, [data-attempt-card]');
   const buttons = page.locator('button[aria-label^="Ayuda"]');
   const count = await buttons.count();
   for (let index = 0; index < count; index++) {
@@ -1151,7 +1158,7 @@ async function yugiohWindows(ctx: Ctx): Promise<string[]> {
 async function layoutShift(ctx: Ctx): Promise<string[]> {
   const problems: string[] = [];
   for (const [route, ready] of [
-    ['/pokemon', '[data-card]'],
+    ['/pokemon', '[data-card]:visible, ul[class*="rows"] > li a:visible'],
     ['/pokemon/clasico', GAME_READY],
     ['/dragon-ball', '[data-card]'],
     ['/dragon-ball/clasico', GAME_READY],
@@ -1759,12 +1766,15 @@ async function main(): Promise<void> {
   const ctx: Ctx = { browser, baseUrl: server.baseUrl };
   let failed = 0;
   try {
-    for (const check of CHECKS) {
+    // Con ONLY=PMD,Hub solo se corren los chequeos cuyo nombre contiene alguna de esas palabras: para repetir rápido unos pocos.
+    const only = process.env.ONLY?.split(',').filter((word) => word !== '') ?? [];
+    for (const check of only.length === 0 ? CHECKS : CHECKS.filter((item) => only.some((word) => item.name.includes(word)))) {
       let problems: string[];
       try {
         problems = await check.run(ctx);
       } catch (error) {
-        problems = [`error: ${error instanceof Error ? error.message.split('\n')[0] : String(error)}`];
+        // La primera línea dice qué falló; las siguientes, qué esperaba (sirve para saber dónde se trabó).
+        problems = [`error: ${error instanceof Error ? error.message.split('\n').filter((line) => line.trim() !== '').slice(0, 3).join(' · ') : String(error)}`];
       }
       console.log(`${problems.length === 0 ? 'ok   ' : 'FALLA'} ${check.name}`);
       for (const problem of problems) console.log(`        - ${problem}`);
