@@ -8,6 +8,7 @@ import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { useMissBuzz } from '@/components/useHaptics';
 import { SkinAttemptsMeter, SkinComparisonMedia } from '@/components/skin/gameSlots';
 import { TitleWords } from '@/components/TitleWords';
 import { InfoTip } from '@/components/ui/InfoTip';
@@ -110,6 +111,7 @@ export function HigherLowerBoard({ session, metric, rounds: initialRounds, exten
   useEffect(() => () => window.clearTimeout(leaveTimer.current), []);
   const progress = progressOf(picks, rounds, maxMistakes, session.practice ? undefined : MAX_ROUNDS);
   const mistakes = picks.filter((id, index) => id !== winnerOf(rounds[index]).id).length;
+  useMissBuzz(mistakes);
   const ended = progress.ended || surrendered;
   const revealed = ended || awaitingNext;
   const nextRef = useRef<HTMLButtonElement>(null);

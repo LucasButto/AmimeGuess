@@ -1,9 +1,11 @@
 'use client';
 
 import { useEffect, useId, useMemo, useState } from 'react';
+import { DockActions, useDockTarget } from '@/components/game-shell/GameDock';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
+import { useMissBuzz } from '@/components/useHaptics';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import type { DailyContext } from '@/engine/daily';
 import { getLocalStorage, readState, writeState } from '@/engine/storage';
@@ -67,9 +69,13 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
   const [selected, setSelected] = useState<string[]>([]);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [announcement, setAnnouncement] = useState('');
+  // En el teléfono las acciones van en la barra inferior; "Mezclar" solo cambia el orden en que se ven los elementos.
+  const phone = useDockTarget() !== null;
+  const [shuffled, setShuffled] = useState<readonly string[] | null>(null);
 
   const progress = useMemo(() => progressOf(attempts, board, maxMistakes), [attempts, board, maxMistakes]);
   const { solved, mistakes, won } = progress;
+  useMissBuzz(mistakes);
   const over = progress.over || surrendered;
 
   // Si el reto ya había terminado al montarse (se recargó la página), el marco tiene que mostrar
@@ -84,6 +90,17 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
   const missed = useMemo(() => board.groups.filter((group) => !solved.includes(group)), [board, solved]);
 
   const nameOf = (id: string) => names.get(id) ?? id;
+  // Los elementos en el orden que se ven: el del día o el que dejó "Mezclar" (los ya resueltos desaparecen).
+  const shown = useMemo(() => (shuffled === null ? remaining : [...shuffled.filter((id) => remaining.includes(id)), ...remaining.filter((id) => !shuffled.includes(id))]), [shuffled, remaining]);
+
+  function shuffle() {
+    const next = [...remaining];
+    for (let at = next.length - 1; at > 0; at--) {
+      const other = Math.floor(Math.random() * (at + 1));
+      [next[at], next[other]] = [next[other], next[at]];
+    }
+    setShuffled(next);
+  }
 
   function toggle(id: string) {
     if (over) return;
@@ -161,7 +178,7 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
 
       {remaining.length > 0 && !over && (
         <div className={styles.grid} role="group" aria-label={es.connections.gridLabel}>
-          {remaining.map((id) => {
+          {shown.map((id) => {
             const isSelected = selected.includes(id);
             return (
               <button
@@ -187,13 +204,26 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
       {!over && (
         <div className={styles.actions}>
           <p className={styles.count}>{es.connections.selectedCount(selected.length, GROUP_SIZE)}</p>
-          <button type="button" className={styles.submit} data-part="submit" onClick={submit} disabled={selected.length !== GROUP_SIZE}>
-            {es.connections.submit}
-          </button>
-          <button type="button" className={styles.clear} data-part="clear" onClick={() => setSelected([])} disabled={selected.length === 0}>
-            {es.connections.clear}
-          </button>
+          {!phone && (
+            <>
+              <button type="button" className={styles.submit} data-part="submit" onClick={submit} disabled={selected.length !== GROUP_SIZE}>
+                {es.connections.submit}
+              </button>
+              <button type="button" className={styles.clear} data-part="clear" onClick={() => setSelected([])} disabled={selected.length === 0}>
+                {es.connections.clear}
+              </button>
+            </>
+          )}
         </div>
+      )}
+      {!over && (
+        <DockActions
+          buttons={[
+            { label: es.connections.shuffle, onClick: shuffle, disabled: remaining.length < 2 },
+            { label: es.connections.clearShort, onClick: () => setSelected([]), disabled: selected.length === 0 },
+            { label: es.connections.submit, onClick: submit, disabled: selected.length !== GROUP_SIZE, primary: true },
+          ]}
+        />
       )}
 
       <p className={styles.feedback} data-visible={feedback !== null}>

@@ -13,6 +13,7 @@ import { fitHints, restoreLimited } from '@/components/game-shell/attempts';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
 import { useSound } from '@/components/skin/useSound';
+import { useHaptics } from '@/components/useHaptics';
 import { InfoTip } from '@/components/ui/InfoTip';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import { pickDaily, type DailyContext } from '@/engine/daily';
@@ -100,6 +101,7 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
   const { skin } = useSkin();
   const { ModeFrame, AttemptsMeter } = skin.slots;
   const play = useSound();
+  const buzz = useHaptics();
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
   const answer = useMemo(() => pickDaily(pool, ctx), [pool, ctx]);
   const byId = useMemo(() => new Map(pool.map((entity) => [entity.id, entity])), [pool]);
@@ -236,7 +238,10 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
     setRevealing({ id, timing });
     // Un blip por celda al darse vuelta y, si no acertó, un tono bajo al final (si "Sonidos" está activo).
     timing.delays.forEach((delay) => play('reveal', delay + timing.duration / 2));
-    if (!solved) play('miss', timing.total);
+    if (!solved) {
+      play('miss', timing.total);
+      buzz('miss', timing.total);
+    }
     fallback.current = setTimeout(() => endReveal(id), timing.total + FALLBACK_MARGIN_MS);
   }
 
