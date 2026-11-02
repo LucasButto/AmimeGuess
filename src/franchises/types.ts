@@ -178,6 +178,8 @@ export interface ModeIconProps {
   readonly index: number;
   readonly current: boolean;
   readonly solved: boolean;
+  /** `chip`: la miniatura de la tira de modos (por defecto). `row`: el ícono más grande de la fila del hub del teléfono. */
+  readonly variant?: 'chip' | 'row';
 }
 
 /** Lo que recibe el slot `TitleMark`: el modo cuyo título se está dibujando. */

@@ -408,3 +408,47 @@ $ink: var(--palette-ink);
   vertical-align: -0.1em;
   color: var(--palette-seal);
 }
+
+// --- El ícono de la fila del hub del teléfono ------------------------------------------------------------------------------
+// El pergamino (una imagen estática) con el ícono del modo en tinta sobre el papel. Resuelto hoy, lleva el sello rojo.
+.rowScroll {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  inline-size: 3.25rem;
+  // La proporción del dibujo recortado (224 × 170).
+  aspect-ratio: 224 / 170;
+}
+
+.rowImage {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+// El papel dentro del dibujo (el rodillo oscuro queda a la izquierda): ahí va el ícono, un poco más abajo del centro porque el
+// borde de arriba del papel es ondulado y el ícono rozaba la franja granate.
+.rowPaper {
+  position: absolute;
+  inset-block: 31% 15%;
+  inset-inline: 30% 7%;
+  display: grid;
+  place-items: center;
+  color: $ink;
+}
+
+.rowGlyph {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+}
+
+.rowHanko {
+  position: absolute;
+  z-index: 2;
+  inset-block-end: -0.5rem;
+  inset-inline-end: -0.5rem;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
