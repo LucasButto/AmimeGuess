@@ -1,11 +1,19 @@
+import type { Viewport } from 'next';
 import { notFound } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { DismissibleFooter } from '@/components/DismissibleFooter';
 import { SkinRoot } from '@/components/skin/SkinRoot';
 import { getFranchise } from '@/franchises';
 import { appShellEnabled } from '@/franchises/visibility';
+import { SITE_THEME_COLOR, THEME_COLORS } from '@/franchises/themeColor';
 import { themeCss } from '@/franchises/theme';
 import { getSkin } from '@/franchises/themes';
+
+/** El color de la barra del navegador: el de la franquicia (de su paleta), para que se vea como la barra superior del juego. */
+export async function generateViewport({ params }: { params: Promise<{ franchise: string }> }): Promise<Viewport> {
+  const { franchise: slug } = await params;
+  return { themeColor: THEME_COLORS[slug] ?? SITE_THEME_COLOR };
+}
 
 /**
  * Aplica el tema de la franquicia a todas sus páginas (SPEC 9.2), en dos capas:
