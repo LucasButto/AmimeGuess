@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { stateKey } from '@/engine/storage';
-import { solvedToday, wonToday, type KeyedStorage } from './progress';
+import { stateKey, statsKey } from '@/engine/storage';
+import { siteTotals, solvedToday, streaksOf, winDays, wonToday, type KeyedStorage } from './progress';
 
 function memory(entries: Record<string, string>): KeyedStorage {
   const keys = Object.keys(entries);
@@ -104,5 +104,72 @@ describe('wonToday', () => {
     expect(wonToday(null, 'pokemon', modes, 100).size).toBe(0);
     const broken = memory({ [stateKey({ franchise: 'pokemon', mode: 'clasico', filterKey: 'all', day: 100 })]: '{roto' });
     expect(wonToday(broken, 'pokemon', modes, 100).size).toBe(0);
+  });
+});
+
+describe('winDays y streaksOf', () => {
+  const won = (franchise: string, mode: string, day: number) => state(franchise, mode, 'all', day, 'won');
+
+  it('junta los días con al menos un reto ganado, de cualquier franquicia, y no cuenta perdidos ni a medias ni práctica', () => {
+    const storage = memory({
+      ...won('pokemon', 'clasico', 100),
+      ...won('naruto', 'clasico', 100),
+      ...won('naruto', 'jutsu', 101),
+      ...state('pokemon', 'silueta', 'all', 102, 'lost'),
+      ...state('pokemon', 'silueta', 'all', 103, 'playing'),
+      ...won('pokemon', 'clasico', 1_000_005),
+    });
+    expect([...winDays(storage)].sort()).toEqual([100, 101]);
+  });
+
+  it('sin almacenamiento o con datos rotos, no hay días', () => {
+    expect(winDays(null).size).toBe(0);
+    expect(winDays(memory({ [stateKey({ franchise: 'pokemon', mode: 'clasico', filterKey: 'all', day: 100 })]: '{roto' })).size).toBe(0);
+  });
+
+  it('la racha son días seguidos y sigue viva si lo último ganado fue hoy o ayer', () => {
+    expect(streaksOf(new Set([98, 99, 100]), 100)).toEqual({ current: 3, best: 3 });
+    expect(streaksOf(new Set([98, 99, 100]), 101)).toEqual({ current: 3, best: 3 });
+    expect(streaksOf(new Set([98, 99, 100]), 102)).toEqual({ current: 0, best: 3 });
+  });
+
+  it('un salto corta la racha y se conserva la mejor', () => {
+    expect(streaksOf(new Set([10, 11, 12, 13, 20, 21]), 21)).toEqual({ current: 2, best: 4 });
+  });
+
+  it('sin días no hay racha, y un día futuro (reloj atrasado) no suma', () => {
+    expect(streaksOf(new Set(), 100)).toEqual({ current: 0, best: 0 });
+    expect(streaksOf(new Set([100, 105]), 100)).toEqual({ current: 1, best: 1 });
+  });
+});
+
+describe('siteTotals', () => {
+  const stats = (played: number, won: number, maxStreak: number) =>
+    JSON.stringify({ played, won, distribution: {}, currentStreak: 0, maxStreak, lastWonDay: null });
+
+  it('suma partidas y victorias de los modos listados por franquicia y en total, y toma la mejor racha', () => {
+    const storage = memory({
+      [statsKey('pokemon', 'clasico')]: stats(10, 7, 4),
+      [statsKey('pokemon', 'silueta')]: stats(5, 5, 6),
+      [statsKey('naruto', 'clasico')]: stats(3, 1, 1),
+      [statsKey('naruto', 'oculto')]: stats(99, 99, 99),
+    });
+    const totals = siteTotals(storage, [
+      { slug: 'pokemon', modes: ['clasico', 'silueta'] },
+      { slug: 'naruto', modes: ['clasico'] },
+    ]);
+    expect(totals).toEqual({
+      played: 18,
+      won: 13,
+      bestModeStreak: 6,
+      franchises: [
+        { slug: 'pokemon', played: 15, won: 12 },
+        { slug: 'naruto', played: 3, won: 1 },
+      ],
+    });
+  });
+
+  it('sin almacenamiento todo es cero', () => {
+    expect(siteTotals(null, [{ slug: 'pokemon', modes: ['clasico'] }])).toEqual({ played: 0, won: 0, bestModeStreak: 0, franchises: [{ slug: 'pokemon', played: 0, won: 0 }] });
   });
 });

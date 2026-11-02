@@ -59,6 +59,8 @@ html {
 
 * {
   margin: 0;
+  // Sin el recuadro gris del navegador al tocar: lo que se toca tiene su propio estado presionado (ver el mixin `press`).
+  -webkit-tap-highlight-color: transparent;
 }
 
 img,
@@ -119,4 +121,21 @@ h1, h2, h3, h4, h5, h6 { --reading-scale: 1; }
 :root[data-text-scale='2'], :root[data-text-scale='3'] {
   button, label, p, li { overflow-wrap: anywhere; }
   button { white-space: normal; }
+}
+
+// Teléfono: con la barra de pestañas fija abajo (ver TabBar), la página deja su lugar al final para que nada quede tapado.
+body:has([data-tab-bar]) {
+  padding-block-end: calc(env(safe-area-inset-bottom) + 3.5rem);
+
+  @include bp.min-width('lg') {
+    padding-block-end: env(safe-area-inset-bottom);
+  }
+}
+
+// App instalada: en la pantalla de juego, arrastrar hacia abajo desde arriba no recarga la página ni rebota.
+@include bp.standalone {
+  :root:has([data-game-screen]),
+  body:has([data-game-screen]) {
+    overscroll-behavior-y: none;
+  }
 }

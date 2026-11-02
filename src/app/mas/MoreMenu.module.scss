@@ -1,0 +1,72 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.settings {
+  display: grid;
+  gap: t.$space-3;
+  padding: t.$space-4;
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+}
+
+.heading {
+  font-size: t.$font-size-lg;
+}
+
+.list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+  overflow: hidden;
+
+  li + li {
+    border-block-start: 0.0625rem solid color-mix(in srgb, t.color('text') 14%, transparent);
+  }
+}
+
+// Una fila de la lista: el nombre y, abajo, una línea que dice qué hace. Es un botón o un enlace, con el mismo aspecto.
+.row {
+  @include m.focus-ring($offset: -0.125rem);
+  @include m.press(0.99);
+  display: grid;
+  gap: 0.125rem;
+  inline-size: 100%;
+  min-block-size: 3.5rem;
+  padding: t.$space-3 t.$space-4;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.7;
+  }
+}
+
+.rowName {
+  font-weight: t.$font-weight-bold;
+}
+
+.rowHint {
+  font-size: t.$font-size-sm;
+  color: t.color('text-muted');
+}
+
+.text {
+  display: grid;
+  gap: t.$space-3;
+
+  ol {
+    display: grid;
+    gap: t.$space-2;
+    margin: 0;
+    padding-inline-start: t.$space-5;
+  }
+}

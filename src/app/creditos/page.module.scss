@@ -22,11 +22,81 @@
   gap: t.$space-3;
 }
 
+// Teléfono: la barra de arriba es fija, con ← a la pestaña Más y el título, y la página le deja su lugar. Desde `lg` vuelve el
+// encabezado de siempre.
+.page[data-shell='app'] {
+  --app-bar-h: calc(3.5rem + env(safe-area-inset-top));
+  padding-block-start: calc(var(--app-bar-h) + #{t.$space-4});
+
+  @include bp.min-width('lg') {
+    padding-block-start: t.$space-8;
+  }
+}
+
+.appBar {
+  @include m.app-shell {
+    @include m.pixel-frame($fill: t.token('app-bar-fill'), $outer: t.token('app-bar-edge'), $inner: t.token('app-bar-inner'), $clip: t.token('clip-panel'), $radius: 0);
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: t.$layer-nav;
+    display: flex;
+    align-items: center;
+    gap: t.$space-2;
+    block-size: var(--app-bar-h);
+    padding-block-start: env(safe-area-inset-top);
+    padding-inline: max(#{t.$space-2}, env(safe-area-inset-left)) max(#{t.$space-2}, env(safe-area-inset-right));
+    color: t.token('app-bar-ink');
+  }
+
+  @include m.app-shell-desktop {
+    display: contents;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+}
+
+.back {
+  @include m.focus-ring;
+  display: grid;
+  place-items: center;
+  flex: none;
+  inline-size: 2.75rem;
+  block-size: 2.75rem;
+  color: inherit;
+
+  @include bp.min-width('lg') {
+    display: none;
+  }
+}
+
+.backArrow {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+}
+
 .title {
   @include m.heading;
-  @include m.fluid-text(2rem, 3rem);
   font-weight: t.$font-weight-bold;
   line-height: t.$line-height-tight;
+
+  @include m.app-shell {
+    min-inline-size: 0;
+    overflow: hidden;
+    font-size: t.$font-size-lg;
+    color: t.token('app-bar-ink');
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  @include m.app-shell-desktop {
+    @include m.fluid-text(2rem, 3rem);
+    overflow: visible;
+    color: inherit;
+    white-space: normal;
+  }
 }
 
 .lead {

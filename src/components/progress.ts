@@ -1,4 +1,5 @@
-import { STORAGE_PREFIX, type StorageLike } from '@/engine/storage';
+import { STORAGE_PREFIX, readStats, type StorageLike } from '@/engine/storage';
+import { isPracticeDay } from './game-shell/practice';
 
 // Cuántos retos de hoy se resolvieron. Lee las partidas guardadas (SPEC 6): la clave de cada una es
 // `md:v1:state:<franquicia>:<modo>:<filtros>:<día>`, así que un modo cuenta si alguna de sus partidas de
@@ -121,4 +122,80 @@ export function lostToday(storage: KeyedStorage | null, franchise: string, modes
     // Lo leído hasta el fallo alcanza.
   }
   return lost;
+}
+
+// --- Totales de todo el sitio (pestaña Estadísticas) -------------------------------------------------------------------
+
+/**
+ * Los días reales en que se ganó al menos un reto de cualquier franquicia o modo. Lee las mismas partidas guardadas que
+ * `solvedToday` (las de práctica no cuentan: su "día" no es un día).
+ */
+export function winDays(storage: KeyedStorage | null): Set<number> {
+  const days = new Set<number>();
+  if (storage === null) return days;
+  const prefix = `${STORAGE_PREFIX}:state:`;
+  try {
+    for (let index = 0; index < storage.length; index++) {
+      const key = storage.key(index);
+      if (key === null || !key.startsWith(prefix)) continue;
+      const day = Number(key.slice(key.lastIndexOf(':') + 1));
+      if (!Number.isInteger(day) || isPracticeDay(day) || days.has(day)) continue;
+      if (wonAttempts(storage, key) !== null) days.add(day);
+    }
+  } catch {
+    // Lo leído hasta el fallo alcanza.
+  }
+  return days;
+}
+
+/**
+ * La racha vigente y la mejor de los días ganados: días seguidos con al menos un reto ganado. Igual que la de cada modo
+ * (`activeStreak`), sigue viva si lo último ganado fue hoy o ayer, y se corta al pasar un día entero sin ganar.
+ */
+export function streaksOf(days: ReadonlySet<number>, today: number): { current: number; best: number } {
+  const sorted = [...days].filter((day) => day <= today).sort((a, b) => a - b);
+  let best = 0;
+  let run = 0;
+  let previous = Number.NEGATIVE_INFINITY;
+  for (const day of sorted) {
+    run = day === previous + 1 ? run + 1 : 1;
+    best = Math.max(best, run);
+    previous = day;
+  }
+  return { current: sorted.length > 0 && today - previous <= 1 ? run : 0, best };
+}
+
+export interface FranchiseTotals {
+  readonly slug: string;
+  readonly played: number;
+  readonly won: number;
+}
+
+export interface SiteTotals {
+  readonly played: number;
+  readonly won: number;
+  /** La mejor racha de un modo (la de cada modo se guarda aparte; esta es la máxima de todas). */
+  readonly bestModeStreak: number;
+  readonly franchises: readonly FranchiseTotals[];
+}
+
+/** Partidas jugadas y ganadas de todos los modos listados, sumadas por franquicia y en total. */
+export function siteTotals(storage: StorageLike | null, franchises: ReadonlyArray<{ slug: string; modes: readonly string[] }>): SiteTotals {
+  let played = 0;
+  let won = 0;
+  let bestModeStreak = 0;
+  const perFranchise = franchises.map(({ slug, modes }) => {
+    let franchisePlayed = 0;
+    let franchiseWon = 0;
+    for (const mode of modes) {
+      const stats = readStats(storage, slug, mode);
+      franchisePlayed += stats.played;
+      franchiseWon += stats.won;
+      bestModeStreak = Math.max(bestModeStreak, stats.maxStreak);
+    }
+    played += franchisePlayed;
+    won += franchiseWon;
+    return { slug, played: franchisePlayed, won: franchiseWon };
+  });
+  return { played, won, bestModeStreak, franchises: perFranchise };
 }
