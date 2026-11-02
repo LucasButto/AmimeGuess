@@ -8,6 +8,9 @@ $name-column: 6.5rem;
 $column-min: 4.75rem;
 
 .frame {
+  // Diseño de app: por debajo de `lg` los intentos son tarjetas (ver `.cards`); la tabla vuelve desde `lg`.
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: block; }
   position: relative;
   border: t.token('frame-width') solid t.token('frame-color');
   border-radius: t.$radius-lg;
@@ -293,4 +296,182 @@ $column-min: 4.75rem;
   align-items: center;
   justify-content: center;
   gap: 0.375rem 0.875rem;
+}
+
+// Diseño de app (teléfono): al dejar a la vista el intento nuevo, ni la barra de arriba ni el dock de abajo lo tapan; y el
+// nombre de la fila recién enviada se resalta un momento (solo `opacity`).
+.row {
+  @include m.app-shell {
+    scroll-margin-block: calc(var(--app-bar-h) + #{t.$space-2}) calc(var(--app-dock-h) + #{t.$space-2});
+  }
+  @include m.app-shell-desktop { scroll-margin-block: 0; }
+}
+
+.nameInner {
+  position: relative;
+}
+
+.nameInner[data-reveal='revealing']::after {
+  content: '';
+  display: none;
+  @include m.app-shell {
+    display: block;
+    position: absolute;
+    inset: calc(-1 * #{t.$space-1});
+    border: 0.1875rem solid t.token('accent-primary');
+    pointer-events: none;
+    opacity: 0;
+    @include bp.motion-ok { animation: new-row 2.2s ease-out both; }
+  }
+  @include m.app-shell-desktop { display: none; }
+}
+
+@keyframes new-row {
+  0%, 60% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+// --- Tarjetas de intento (diseño de app, por debajo de `lg`) -----------------------------------------------------------
+// Cada intento es una tarjeta que se lee entera sin deslizar: retrato y nombre arriba y las 8 casillas en 2 filas de 4, cada
+// una con su etiqueta. Las casillas son las mismas de la tabla (mismo giro, colores e íconos).
+.cards {
+  display: none;
+  @include m.app-shell { display: grid; gap: t.$space-2; }
+  @include m.app-shell-desktop { display: none; }
+}
+
+.cardsHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-2;
+  font-size: t.$font-size-sm;
+  // Va sobre la pantalla oscura del marco del tema, no sobre una tarjeta clara.
+  color: t.token('app-bar-ink');
+}
+
+// El "?" que explica las columnas (en la tabla cada encabezado tiene su ⓘ).
+.cardsHelp {
+  @include m.touch-target;
+  @include m.focus-ring;
+  display: inline-grid;
+  place-items: center;
+  border: 0;
+  background: none;
+  color: t.token('ink');
+  font: inherit;
+  cursor: pointer;
+
+  > span {
+    display: grid;
+    place-items: center;
+    inline-size: 1.75rem;
+    block-size: 1.75rem;
+    border-radius: 50%;
+    border: t.$border-width solid t.token('frame-color');
+    background: t.token('surface-panel');
+    font-weight: t.$font-weight-bold;
+  }
+}
+
+.cardList {
+  display: grid;
+  gap: t.$space-3;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  @include m.pixel-frame;
+  position: relative;
+  display: grid;
+  gap: t.$space-2;
+  min-inline-size: 0;
+  padding: calc(#{t.$space-2} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
+  scroll-margin-block: calc(var(--app-bar-h) + #{t.$space-2}) calc(var(--app-dock-h) + #{t.$space-2});
+  // El intento recién enviado se resalta un momento (solo `opacity`).
+  &[data-reveal='revealing']::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 0.1875rem solid t.token('accent-primary');
+    pointer-events: none;
+    opacity: 0;
+    @include bp.motion-ok { animation: new-row 2.2s ease-out both; }
+  }
+}
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  min-inline-size: 0;
+}
+
+.cardThumb {
+  flex: none;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  object-fit: contain;
+}
+
+.cardName {
+  min-inline-size: 0;
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+  overflow-wrap: anywhere;
+}
+
+.cardCells {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: t.$space-2 t.$space-1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  // Con ancho de sobra (un teléfono apaisado, una tablet) las 8 casillas van en una sola fila: la tarjeta baja de unos 280 a
+  // unos 150 px y entra entera entre las barras aun con 390 de alto.
+  @include bp.min-width('md') {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+
+.cardCell {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0.125rem;
+  min-inline-size: 0;
+
+  .flip { block-size: auto; }
+  .box { block-size: 100%; min-block-size: 3.25rem; padding: calc(#{t.$space-1} + #{t.token('cell-frame-width')}) 0.125rem; }
+}
+
+.cellLabel {
+  // 12 px: lo más chico que se lee en el teléfono. Dos renglones reservados para "Etapa evolutiva"; las palabras largas
+  // ("Generación") se parten con guion en vez de cortarse con puntos suspensivos.
+  min-block-size: 2.2em;
+  font-size: 0.75rem;
+  line-height: 1.1;
+  color: t.token('ink-muted');
+  text-align: center;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  // Los de un renglón quedan pegados a su casilla.
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+// La hoja que explica cada columna.
+.columnsHelp {
+  display: grid;
+  gap: t.$space-3;
+  margin: 0;
+}
+
+.columnsHelpItem {
+  dt { font-weight: t.$font-weight-bold; }
+  dd { margin: 0; color: t.token('ink-muted'); }
 }

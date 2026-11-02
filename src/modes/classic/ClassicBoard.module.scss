@@ -24,6 +24,15 @@
       // Las dos mitades miden lo mismo de alto: el intento (grande) se estira hasta el alto de las pistas.
       align-items: stretch;
     }
+    // Diseño de app: el campo del intento vive en la barra de abajo, así que las pistas ocupan todo el ancho hasta `lg`.
+    @include m.app-shell {
+      grid-template-columns: none;
+      align-items: start;
+    }
+    @include m.app-shell-desktop {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      align-items: stretch;
+    }
   }
 }
 
@@ -103,6 +112,79 @@
 
 .titleRow {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.875rem;
+  gap: 0 0.875rem;
+}
+
+// Diseño de app (teléfono): las pistas bloqueadas son tarjetas chicas, de a dos por fila ("Habilidad · en 4 intentos"); las
+// ya desbloqueadas ocupan toda la fila. El contador ya está en la línea de estado, así que su fila no deja lugar.
+.lockedShort { display: none; }
+.lockedLong { display: inline; }
+
+.hintList {
+  @include m.app-shell {
+    display: grid;
+    // De a dos mientras cada tarjeta tenga 7 rem; con letra muy grande pasan a una por fila.
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 7rem), 1fr));
+    gap: t.$space-2;
+  }
+  @include m.app-shell-desktop {
+    display: flex;
+    grid-template-columns: none;
+    gap: t.$space-2;
+  }
+}
+
+.hint {
+  @include m.app-shell {
+    flex-direction: column;
+    gap: 0.125rem;
+    min-inline-size: 0;
+    padding: t.$space-2;
+    border: t.$border-width dashed t.token('frame-color');
+    &[data-unlocked='true'] { grid-column: 1 / -1; border-style: solid; }
+    .lockedLong { display: none; }
+    .lockedShort { display: inline; }
+  }
+  @include m.app-shell-desktop {
+    flex-direction: row;
+    gap: t.$space-3;
+    padding: 0;
+    border: 0;
+    &[data-unlocked='true'] { grid-column: auto; }
+    .lockedLong { display: inline; }
+    .lockedShort { display: none; }
+  }
+}
+
+.counter {
+  @include m.app-shell { display: contents; }
+  @include m.app-shell-desktop { display: flex; }
+}
+
+.counterInfo {
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: flex; }
+}
+
+// Aviso de "Pista desbloqueada: …" arriba de las pistas (teléfono). Con diseño de app está siempre en el flujo, así el
+// aviso para lectores de pantalla ya existe antes de que cambie su texto; sin texto no ocupa lugar.
+.newHint {
+  display: none;
+  @include m.app-shell {
+    display: block;
+    margin: 0;
+    font-size: t.$font-size-sm;
+    font-weight: t.$font-weight-bold;
+    color: t.token('ink');
+    &[data-shown='false'] { display: none; }
+    @include bp.motion-ok { animation: new-hint 0.3s ease-out both; }
+  }
+  @include m.app-shell-desktop { display: none; }
+}
+
+@keyframes new-hint {
+  from { opacity: 0; transform: translateY(-0.25rem); }
+  to { opacity: 1; transform: none; }
 }

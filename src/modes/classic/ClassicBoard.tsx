@@ -3,6 +3,10 @@
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { autocompleteItemOf, type AutocompleteItem } from '@/components/Autocomplete';
 import { GuessField } from '@/components/GuessField';
+import { useAppShell } from '@/components/game-shell/AppShellContext';
+import { AttemptsStatus } from '@/components/game-shell/AttemptsStatus';
+import { useDockTarget } from '@/components/game-shell/GameDock';
+import { scrollIntoViewNearest } from '@/components/game-shell/scrollIntoView';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
 import { fitHints, restoreLimited } from '@/components/game-shell/attempts';
@@ -88,6 +92,9 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
   const { franchise, mode, filterKey, day, active, onFinish } = session;
   const maxAttempts = session.attemptLimit ?? 10;
   const { lost: surrendered, surrender } = useSurrender(session);
+  const appShell = useAppShell();
+  // Con la barra inferior (teléfono), el intento nuevo se deja a la vista y se anuncian las pistas que se abren.
+  const phoneLayout = useDockTarget() !== null;
   const hintsTitleId = useId();
   const rootRef = useRef<HTMLDivElement>(null);
   const { skin } = useSkin();
@@ -148,6 +155,31 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
       }),
     [hints, maxAttempts, failed, answer, contents],
   );
+
+  // Cada intento nuevo queda entero en pantalla, debajo de la pista (los márgenes de la barra y del dock salen del CSS).
+  const attemptCount = useRef(attemptIds.length);
+  useEffect(() => {
+    const grew = attemptIds.length > attemptCount.current;
+    attemptCount.current = attemptIds.length;
+    if (grew && phoneLayout) scrollIntoViewNearest(rootRef.current?.querySelector('[data-attempt-card]') ?? rootRef.current?.querySelector('tbody tr'));
+  }, [attemptIds.length, phoneLayout]);
+
+  // Una pista que se abre con este intento se anuncia arriba (y por `role="status"` para lectores de pantalla).
+  const unlockedLabels = visibleHints.filter((state) => state.unlocked).map((state) => state.hint.label);
+  const unlockedKey = unlockedLabels.join('|');
+  const knownUnlocked = useRef(unlockedKey);
+  const [newHint, setNewHint] = useState('');
+  useEffect(() => {
+    const before = new Set(knownUnlocked.current ? knownUnlocked.current.split('|') : []);
+    knownUnlocked.current = unlockedKey;
+    const opened = unlockedLabels.filter((label) => !before.has(label));
+    if (opened.length === 0) return;
+    setNewHint(opened.join(', '));
+    const timer = setTimeout(() => setNewHint(''), 6000);
+    return () => clearTimeout(timer);
+    // `unlockedLabels` se recalcula en cada render: el cambio real es `unlockedKey`.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [unlockedKey]);
 
   /** Termina la revelación de la fila `id` (o la que esté en curso): resume la fila y, si ganó, avisa al marco. */
   const finishReveal = useCallback(
@@ -229,13 +261,25 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
               <h2 className={styles.hintsTitle} id={hintsTitleId}>
                 {es.classic.hintsTitle}
               </h2>
-              <InfoTip compact text={es.help.hints} label={es.help.button(es.classic.hintsTitle)} />
+              <InfoTip compact hideInApp text={es.help.hints} label={es.help.button(es.classic.hintsTitle)} />
             </div>
+            {appShell && (
+              <p className={styles.newHint} role="status" data-shown={newHint !== ''}>
+                {newHint && es.classic.hintUnlocked(newHint)}
+              </p>
+            )}
             <ul className={styles.hintList}>
               {visibleHints.map(({ hint, unlocked, remaining, text }) => (
                 <li key={hint.label} className={styles.hint} data-unlocked={unlocked} data-hint={hint.kind === 'attr' ? hint.key : hint.contentKind}>
                   <span className={styles.hintLabel}>{hint.label}</span>
-                  <span>{unlocked ? text : es.classic.hintLocked(remaining)}</span>
+                  {unlocked || !appShell ? (
+                    <span>{unlocked ? text : es.classic.hintLocked(remaining)}</span>
+                  ) : (
+                    <>
+                      <span className={styles.lockedLong}>{es.classic.hintLocked(remaining)}</span>
+                      <span className={styles.lockedShort}>{es.classic.hintLockedShort(remaining)}</span>
+                    </>
+                  )}
                 </li>
               ))}
             </ul>
@@ -245,8 +289,8 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
 
       <div className={styles.counter}>
         <div className={styles.counterInfo}>
-          <p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p>
-          <AttemptsMeter failed={failed} won={won} total={maxAttempts} />
+          <AttemptsStatus><p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
+          <AttemptsStatus><AttemptsMeter failed={failed} won={won} total={maxAttempts} /></AttemptsStatus>
         </div>
         {!over && (
           <SurrenderButton
