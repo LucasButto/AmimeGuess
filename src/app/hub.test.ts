@@ -16,6 +16,8 @@ describe('contraste del televisor y de la sala (AA)', () => {
     ['ink', 'key'], ['osd', 'key'], ['focus', 'key'], ['ink', 'key-light'], ['osd', 'key-light'],
     // El número de canal sobre su recuadro oscuro, dentro de la pantalla.
     ['osd', 'bezel'],
+    // Teléfono: el nombre de la tarjeta y el conteo sobre la tecla, y el cartel de "Próximamente" sobre su placa oscura.
+    ['muted', 'key'], ['ink', 'bezel'], ['focus', 'bezel'],
   ])('%s sobre %s pasa AA de texto', (ink, paper) => {
     expect(contrastRatio(colors[ink], colors[paper])).toBeGreaterThanOrEqual(4.5);
   });
@@ -32,7 +34,7 @@ describe('contraste del televisor y de la sala (AA)', () => {
 
   it.each([
     ['pokemon', 'ink', 'cream'], ['dragon-ball', 'ink', 'cream'],
-    ['naruto', 'ink', 'paper'], ['yugioh', 'gold', 'tomb'],
+    ['naruto', 'ink', 'paper'],
   ])('el conteo de %s se lee sobre su pantalla', (slug, ink, paper) => {
     const theme = franchises.find((franchise) => franchise.slug === slug)!.theme;
     expect(contrastRatio(themeColor(theme, ink)!, themeColor(theme, paper)!)).toBeGreaterThanOrEqual(4.5);

@@ -26,6 +26,11 @@
   --tv-carpet-light: #6b3646;
   --tv-key: #26272c;
   --tv-key-light: #3a3c44;
+  // La barra de pestañas del teléfono toma los colores de la sala (los mismos tokens que la barra superior de una franquicia).
+  --app-bar-fill: #10151f;
+  --app-bar-ink: var(--hub-ink);
+  --app-bar-edge: var(--hub-case-light);
+  --app-bar-inner: transparent;
   position: relative;
   isolation: isolate;
   display: flex;
@@ -80,4 +85,13 @@
   justify-content: center;
   gap: t.$space-3;
   padding-block: clamp(0.75rem, 2dvh, 1.5rem);
+}
+
+// Teléfono: el aviso legal queda en la pestaña Más; el pie de la sala es de escritorio.
+.footerSlot {
+  display: none;
+
+  @include bp.min-width('lg') {
+    display: contents;
+  }
 }

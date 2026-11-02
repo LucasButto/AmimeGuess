@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { allFranchises } from './index';
-import { appShellEnabled, modeSchema, modeSettings, sectionSchema, visibleFranchises } from './visibility';
+import { appShellEnabled, homeChannels, isComingSoon, modeSchema, modeSettings, sectionSchema, visibleFranchises } from './visibility';
 
-const enabledRules = () => modeSettings.map((section) => ({ ...section, status: true, modes: section.modes.map((mode) => ({ ...mode, status: true })) }));
+const enabledRules = () => modeSettings.map((section) => ({ ...section, status: true, comingSoon: false, modes: section.modes.map((mode) => ({ ...mode, status: true })) }));
 
 describe('data/mode.json', () => {
   it('acepta appShell booleano u omitido y rechaza otros tipos', () => {
@@ -21,8 +21,8 @@ describe('data/mode.json', () => {
     expect(appShellEnabled('inexistente', [{ ...section, appShell: true }])).toBe(false);
   });
 
-  it('con la configuración real, el diseño de app está prendido solo en Pokémon', () => {
-    for (const franchise of allFranchises) expect(appShellEnabled(franchise.slug)).toBe(franchise.slug === 'pokemon');
+  it('con la configuración real, el diseño de app está prendido en Pokémon, Dragon Ball y Naruto (Yu-Gi-Oh, no)', () => {
+    for (const franchise of allFranchises) expect(appShellEnabled(franchise.slug)).toBe(franchise.slug !== 'yugioh');
   });
 
   it('todos los modos tienen try positivo y cambiarlo modifica la configuración pública', () => {
@@ -63,5 +63,40 @@ describe('data/mode.json', () => {
 
   it('permite desactivar todas las secciones', () => {
     expect(visibleFranchises(allFranchises, modeSettings.map((entry) => ({ ...entry, status: false })))).toEqual([]);
+  });
+
+  it('acepta comingSoon booleano u omitido y rechaza otros tipos', () => {
+    const section = { slug: 'test', name: 'Test', status: true, modes: [] };
+    for (const comingSoon of [true, false]) expect(sectionSchema.parse({ ...section, comingSoon }).comingSoon).toBe(comingSoon);
+    expect(sectionSchema.parse(section).comingSoon).toBeUndefined();
+    for (const comingSoon of ['true', 1, null]) expect(sectionSchema.safeParse({ ...section, comingSoon }).success).toBe(false);
+  });
+
+  it('con la configuración real, solo Yu-Gi-Oh está "Próximamente"', () => {
+    for (const franchise of allFranchises) expect(isComingSoon(franchise.slug)).toBe(franchise.slug === 'yugioh');
+    expect(isComingSoon('inexistente')).toBe(false);
+  });
+
+  it('comingSoon true bloquea la franquicia aunque su status sea true, y con false manda status', () => {
+    const rules = enabledRules();
+    rules.find((entry) => entry.slug === 'yugioh')!.comingSoon = true;
+    expect(visibleFranchises(allFranchises, rules).map((entry) => entry.slug)).toEqual(['pokemon', 'dragon-ball', 'naruto']);
+    expect(appShellEnabled('yugioh', rules.map((entry) => ({ ...entry, appShell: true })))).toBe(false);
+    rules.find((entry) => entry.slug === 'yugioh')!.comingSoon = false;
+    expect(visibleFranchises(allFranchises, rules).map((entry) => entry.slug)).toEqual(['pokemon', 'dragon-ball', 'naruto', 'yugioh']);
+    rules.find((entry) => entry.slug === 'yugioh')!.status = false;
+    expect(visibleFranchises(allFranchises, rules).map((entry) => entry.slug)).toEqual(['pokemon', 'dragon-ball', 'naruto']);
+  });
+
+  it('los canales del inicio incluyen las "Próximamente" (sin importar status), en orden, y no las apagadas', () => {
+    const rules = enabledRules();
+    expect(homeChannels(allFranchises, rules).map((entry) => [entry.slug, entry.comingSoon])).toEqual([
+      ['pokemon', false], ['dragon-ball', false], ['naruto', false], ['yugioh', false],
+    ]);
+    rules.find((entry) => entry.slug === 'yugioh')!.comingSoon = true;
+    rules.find((entry) => entry.slug === 'yugioh')!.status = false;
+    rules.find((entry) => entry.slug === 'dragon-ball')!.status = false;
+    expect(homeChannels(allFranchises, rules).map((entry) => [entry.slug, entry.comingSoon])).toEqual([['pokemon', false], ['naruto', false], ['yugioh', true]]);
+    expect(homeChannels(allFranchises).map((entry) => entry.slug)).toEqual(['pokemon', 'dragon-ball', 'naruto', 'yugioh']);
   });
 });
