@@ -1,0 +1,2736 @@
+{
+ "_info": "Clips de jutsus encontrados con trace.moe el 2026-11-02 (sesión 27). Las vistas previas son de 320 px; los originales de 640 px se bajan con https://api.trace.moe/video/<videoId>?size=l&mute. Contenido redactado por Claude: verified false.",
+ "existing": [
+  {
+   "id": "amaterasu",
+   "inJutsusJson": true,
+   "clipPreview": "clips/amaterasu.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "379|599",
+    "at": 750.75,
+    "similarity": 0.984,
+    "videoId": "ZkRsOEanRbzCBc2BLMfjtb"
+   }
+  },
+  {
+   "id": "explosive-clay",
+   "inJutsusJson": true,
+   "clipPreview": "clips/explosive-clay.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "3|223",
+    "at": 326.41,
+    "similarity": 0.908,
+    "videoId": "Xm8rUsxDNlzcOUgOaXJziK"
+   }
+  },
+  {
+   "id": "spider-bind",
+   "inJutsusJson": true,
+   "clipPreview": "clips/spider-bind.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "80",
+    "at": 166.83,
+    "similarity": 0.84,
+    "videoId": "78IeC7VVFf16lRjlcKz3SyL"
+   }
+  },
+  {
+   "id": "sand-binding-coffin",
+   "inJutsusJson": true,
+   "clipPreview": "clips/sand-binding-coffin.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "16|236",
+    "at": 1398.02,
+    "similarity": 0.945,
+    "videoId": "VC6rvAZGkZK5vQZxQlZSPTTs"
+   }
+  },
+  {
+   "id": "earth-prison-dome",
+   "inJutsusJson": true,
+   "clipPreview": "clips/earth-prison-dome.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "112",
+    "at": 549.34,
+    "similarity": 0.859,
+    "videoId": "78IECpPcNf16lRjlcBamAz"
+   }
+  },
+  {
+   "id": "chakra-scalpel",
+   "inJutsusJson": true,
+   "clipPreview": "clips/chakra-scalpel.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "93",
+    "at": 554.47,
+    "similarity": 0.948,
+    "videoId": "ImpAnYWIDXPfN1iNELbfWu"
+   }
+  },
+  {
+   "id": "liger-bomb",
+   "inJutsusJson": true,
+   "clipPreview": "clips/liger-bomb.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "203|423",
+    "at": 515.97,
+    "similarity": 0.937,
+    "videoId": "snQlJeZ8Qu178iG8gCI4QxD"
+   }
+  },
+  {
+   "id": "adamantine-sealing-chains",
+   "inJutsusJson": true,
+   "clipPreview": "clips/adamantine-sealing-chains.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "248,249|468,469",
+    "at": 2110.44,
+    "similarity": 0.981,
+    "videoId": "1JRW6ZC1ZJv0xWqVWZ4nHCs6"
+   }
+  },
+  {
+   "id": "chidori",
+   "inJutsusJson": true,
+   "clipPreview": "clips/chidori.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "138|358",
+    "at": 388.97,
+    "similarity": 0.988,
+    "videoId": "Lsxx1gvwf67q81G8KIuZ7HB"
+   }
+  },
+  {
+   "id": "insect-clone",
+   "inJutsusJson": true,
+   "clipPreview": "clips/insect-clone.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "74",
+    "at": 614.41,
+    "similarity": 0.954,
+    "videoId": "X6xjUypPPlzcOUgOaqcSPGh"
+   }
+  },
+  {
+   "id": "fang-passing-fang",
+   "inJutsusJson": true,
+   "clipPreview": "clips/fang-passing-fang.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "45",
+    "at": 315.86,
+    "similarity": 0.957,
+    "videoId": "clK8pwpCAZvpIeXI0d9Ht5A"
+   }
+  },
+  {
+   "id": "demonic-mirroring-ice-crystals",
+   "inJutsusJson": true,
+   "clipPreview": "clips/demonic-mirroring-ice-crystals.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "216|436",
+    "at": 139.97,
+    "similarity": 0.988,
+    "videoId": "218JfLd1D3OACVcCTqtAQvu"
+   }
+  },
+  {
+   "id": "seedling-fern",
+   "inJutsusJson": true,
+   "clipPreview": "clips/seedling-fern.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "127",
+    "at": 1067.07,
+    "similarity": 0.957,
+    "videoId": "MG2gqZ1HS7gURC3RlwJoMWg"
+   }
+  },
+  {
+   "id": "super-beast-imitating-drawing",
+   "inJutsusJson": true,
+   "clipPreview": "clips/super-beast-imitating-drawing.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "33|253",
+    "at": 1202.08,
+    "similarity": 0.972,
+    "videoId": "W2q9ajQfvTNOFMuFAopVfG"
+   }
+  },
+  {
+   "id": "twin-rising-dragons",
+   "inJutsusJson": true,
+   "clipPreview": "clips/twin-rising-dragons.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "43",
+    "at": 442.11,
+    "similarity": 0.854,
+    "videoId": "35TIGMPJweQXKyPKkoqXGew"
+   }
+  },
+  {
+   "id": "exploding-water-colliding-wave",
+   "inJutsusJson": true,
+   "clipPreview": "clips/exploding-water-colliding-wave.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "325|545",
+    "at": 228.06,
+    "similarity": 0.983,
+    "videoId": "Xma6U0jtXlzcOUgOaqSf8xA"
+   }
+  },
+  {
+   "id": "water-severing-wave",
+   "inJutsusJson": true,
+   "clipPreview": "clips/water-severing-wave.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "381|601",
+    "at": 1042.21,
+    "similarity": 0.992,
+    "videoId": "ZkRKO967RbzCBc2BLa1U9R"
+   }
+  },
+  {
+   "id": "melting-apparition",
+   "inJutsusJson": true,
+   "clipPreview": "clips/melting-apparition.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "321|541",
+    "at": 111.94,
+    "similarity": 0.967,
+    "videoId": "goJaMCMCYrnd6zU627PXi8T"
+   }
+  },
+  {
+   "id": "four-pillar-house",
+   "inJutsusJson": true,
+   "clipPreview": "clips/four-pillar-house.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "101|321",
+    "at": 99.55,
+    "similarity": 0.962,
+    "videoId": "pT3pRPnMaIQUDhuDbgqcIcT"
+   }
+  },
+  {
+   "id": "detachment-primitive-world",
+   "inJutsusJson": true,
+   "clipPreview": "clips/detachment-primitive-world.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "218|438",
+    "at": 672.34,
+    "similarity": 0.988,
+    "videoId": "edf73coVlaQarB5r7SFfaes"
+   }
+  },
+  {
+   "id": "extremely-steaming-murder",
+   "inJutsusJson": true,
+   "clipPreview": "clips/extremely-steaming-murder.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "265|485",
+    "at": 1174.59,
+    "similarity": 0.992,
+    "videoId": "J0ZPKYLgh9zv8n98i3WBdOl"
+   }
+  },
+  {
+   "id": "lightning-lariat",
+   "inJutsusJson": true,
+   "clipPreview": "clips/lightning-lariat.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "143|363",
+    "at": 722.35,
+    "similarity": 0.976,
+    "videoId": "J0Q1K0CZA9zv8n98iTE7qj8"
+   }
+  },
+  {
+   "id": "black-panther",
+   "inJutsusJson": true,
+   "clipPreview": "clips/black-panther.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "268|488",
+    "at": 453.54,
+    "similarity": 0.996,
+    "videoId": "4MLLuxKC3i4KaXOaRr6FOCV"
+   }
+  },
+  {
+   "id": "great-sickle-weasel",
+   "inJutsusJson": true,
+   "clipPreview": "clips/great-sickle-weasel.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "203|423",
+    "at": 1185.94,
+    "similarity": 0.985,
+    "videoId": "edfB3i3WoaQarB5r75Qthk"
+   }
+  },
+  {
+   "id": "vacuum-serial-waves",
+   "inJutsusJson": true,
+   "clipPreview": "clips/vacuum-serial-waves.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "210|430",
+    "at": 978.77,
+    "similarity": 0.969,
+    "videoId": "S7moVM1R0vRVA0zAHPum8UK"
+   }
+  },
+  {
+   "id": "phantom-sound-chains",
+   "inJutsusJson": true,
+   "clipPreview": "clips/phantom-sound-chains.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "122",
+    "at": 1104.19,
+    "similarity": 0.805,
+    "videoId": "g3BhMHRvNrnd6zU627MYOCj"
+   }
+  },
+  {
+   "id": "flying-swallow",
+   "inJutsusJson": true,
+   "clipPreview": "clips/flying-swallow.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "78,79|298,299",
+    "at": 334.29,
+    "similarity": 0.976,
+    "videoId": "cQezpjBKSZvpIeXI0jHYYzV"
+   }
+  },
+  {
+   "id": "tree-binding-death",
+   "inJutsusJson": true,
+   "clipPreview": "clips/tree-binding-death.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "81",
+    "at": 1102.77,
+    "similarity": 0.652,
+    "videoId": "khDpyxtOw6bi6Qf6YPkYEvR"
+   }
+  },
+  {
+   "id": "cherry-blossom-impact",
+   "inJutsusJson": true,
+   "clipPreview": "clips/cherry-blossom-impact.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "3|223",
+    "at": 910.41,
+    "similarity": 0.964,
+    "videoId": "IewknpIf0XPfN1iNEXdnhg8"
+   }
+  },
+  {
+   "id": "needle-jizo",
+   "inJutsusJson": true,
+   "clipPreview": "clips/needle-jizo.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "137",
+    "at": 477.6,
+    "similarity": 0.985,
+    "videoId": "zceKwFKJ7tDBpnEpjBXYgN"
+   }
+  },
+  {
+   "id": "partial-multi-size",
+   "inJutsusJson": true,
+   "clipPreview": "clips/partial-multi-size.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "493",
+    "at": 401.36,
+    "similarity": 0.991,
+    "videoId": "rhjM9GKATYv65sG5qyALJzE"
+   }
+  },
+  {
+   "id": "mind-body-switch",
+   "inJutsusJson": true,
+   "clipPreview": "clips/mind-body-switch.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "42",
+    "at": 419.63,
+    "similarity": 0.944,
+    "videoId": "Fj9YS7Wz9lOJicBiXNTkt4"
+   }
+  },
+  {
+   "id": "shadow-imitation",
+   "inJutsusJson": true,
+   "clipPreview": "clips/shadow-imitation.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "273,274|493,494",
+    "at": 1361.94,
+    "similarity": 0.984,
+    "videoId": "QrVRTSUZ3E430ou0RJelig4"
+   }
+  },
+  {
+   "id": "flying-thunder-god",
+   "inJutsusJson": true,
+   "clipPreview": "clips/flying-thunder-god.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "502",
+    "at": 1110.11,
+    "similarity": 0.977,
+    "videoId": "wEiGHTwdqkuNiVxi8uxL0s0"
+   }
+  },
+  {
+   "id": "kamui",
+   "inJutsusJson": true,
+   "clipPreview": "clips/kamui.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "343|563",
+    "at": 1226.52,
+    "similarity": 0.992,
+    "videoId": "f6HWhuMluKQy2nA2K0bQj01"
+   }
+  },
+  {
+   "id": "kotoamatsukami",
+   "inJutsusJson": true,
+   "clipPreview": "clips/kotoamatsukami.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "298|518",
+    "at": 978.89,
+    "similarity": 0.984,
+    "videoId": "yIZSsWnNGivGRkURp7eQyS9"
+   }
+  },
+  {
+   "id": "front-lotus",
+   "inJutsusJson": true,
+   "clipPreview": "clips/front-lotus.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "48",
+    "at": 1183.72,
+    "similarity": 0.953,
+    "videoId": "bJCnmlW4LKUY3OV3HAx1Dp"
+   }
+  },
+  {
+   "id": "earth-grudge-fear",
+   "inJutsusJson": true,
+   "clipPreview": "clips/earth-grudge-fear.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "88|308",
+    "at": 952.95,
+    "similarity": 0.988,
+    "videoId": "8pnLzJsxJD8yNpGNi6tVHyp"
+   }
+  },
+  {
+   "id": "poison-mist",
+   "inJutsusJson": true,
+   "clipPreview": "clips/poison-mist.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "94",
+    "at": 524.19,
+    "similarity": 0.908,
+    "videoId": "sUzjJK0SRu178iG8gCNYt5I"
+   }
+  },
+  {
+   "id": "eight-gates",
+   "inJutsusJson": true,
+   "clipPreview": "clips/eight-gates.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "419|639",
+    "at": 1205.25,
+    "similarity": 0.996,
+    "videoId": "J06uKjaNu9zv8n98iv0sgl"
+   }
+  },
+  {
+   "id": "decapitating-airwaves",
+   "inJutsusJson": true,
+   "clipPreview": "clips/decapitating-airwaves.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "33",
+    "at": 334.04,
+    "similarity": 0.885,
+    "videoId": "qo2HjOTMwsB35bw5orxcQlu"
+   }
+  },
+  {
+   "id": "twin-lion-fists",
+   "inJutsusJson": true,
+   "clipPreview": "clips/twin-lion-fists.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "373|593",
+    "at": 1052.8,
+    "similarity": 0.937,
+    "videoId": "AvMFtxmteVJkOAXOxDDRjk7"
+   }
+  },
+  {
+   "id": "lightning-cutter",
+   "inJutsusJson": true,
+   "clipPreview": "clips/lightning-cutter.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "84|304",
+    "at": 697.91,
+    "similarity": 0.973,
+    "videoId": "Lsvn1qSTS67q81G8KZ3yq6m"
+   }
+  },
+  {
+   "id": "rasengan",
+   "inJutsusJson": true,
+   "clipPreview": "clips/rasengan.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "107",
+    "at": 1237.24,
+    "similarity": 0.91,
+    "videoId": "O9i2L3kHDSf93Cg3J5l1l15"
+   }
+  },
+  {
+   "id": "vanishing-rasengan",
+   "inJutsusJson": true,
+   "clipPreview": "clips/vanishing-rasengan.mp4",
+   "trace": {
+    "anilistId": 97938,
+    "episode": "181",
+    "at": 817.69,
+    "similarity": 0.984,
+    "videoId": "OBEgLpoEuSf93Cg3J5b5wAl"
+   }
+  },
+  {
+   "id": "impure-world-reincarnation",
+   "inJutsusJson": true,
+   "clipPreview": "clips/impure-world-reincarnation.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "365|585",
+    "at": 1273.19,
+    "similarity": 1.0,
+    "videoId": "FNYDSHO4ilOJicBiXUhWqs6"
+   }
+  },
+  {
+   "id": "dead-demon-consuming-seal",
+   "inJutsusJson": true,
+   "clipPreview": "clips/dead-demon-consuming-seal.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "72",
+    "at": 1073.32,
+    "similarity": 0.985,
+    "videoId": "euTD3KBjUaQarB5r7SyZaJy"
+   }
+  },
+  {
+   "id": "sixty-four-palms",
+   "inJutsusJson": true,
+   "clipPreview": "clips/sixty-four-palms.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "14|234",
+    "at": 1122.12,
+    "similarity": 0.996,
+    "videoId": "i8yRNMuQiqydXzIXHZUw0S"
+   }
+  },
+  {
+   "id": "shinra-tensei",
+   "inJutsusJson": true,
+   "clipPreview": "clips/shinra-tensei.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "348|568",
+    "at": 1011.05,
+    "similarity": 1.0,
+    "videoId": "1JBQ6ge78v0xWqVWZi3Dp2c"
+   }
+  },
+  {
+   "id": "paper-shuriken",
+   "inJutsusJson": true,
+   "clipPreview": "clips/paper-shuriken.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "127,128|347,348",
+    "at": 2117.7,
+    "similarity": 0.988,
+    "videoId": "n3aA0WKFYOrUsIv7IEQq41U7"
+   }
+  },
+  {
+   "id": "tengai-shinsei",
+   "inJutsusJson": true,
+   "clipPreview": "clips/tengai-shinsei.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "322|542",
+    "at": 771.9,
+    "similarity": 0.996,
+    "videoId": "vlomxo7z2Iq6BUOBzoXv707"
+   }
+  },
+  {
+   "id": "tsukuyomi",
+   "inJutsusJson": true,
+   "clipPreview": "clips/tsukuyomi.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "82",
+    "at": 742.91,
+    "similarity": 0.917,
+    "videoId": "1y7W6GgGTv0xWqVWZimNnNn"
+   }
+  },
+  {
+   "id": "chikamatsu-ten-puppets",
+   "inJutsusJson": true,
+   "clipPreview": "clips/chikamatsu-ten-puppets.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "263|483",
+    "at": 974.22,
+    "similarity": 0.996,
+    "videoId": "vl36xaywXIq6BUOBzw2rZuV"
+   }
+  },
+  {
+   "id": "nativity-world-of-trees",
+   "inJutsusJson": true,
+   "clipPreview": "clips/nativity-world-of-trees.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "71",
+    "at": 582.75,
+    "similarity": 0.965,
+    "videoId": "CznZl3j8sI6Sj5VjwmKEKB6"
+   }
+  },
+  {
+   "id": "parasite-demon-demolition",
+   "inJutsusJson": true,
+   "clipPreview": "clips/parasite-demon-demolition.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "121",
+    "at": 102.69,
+    "similarity": 0.96,
+    "videoId": "QWMjTRbj6E430ou0RJGLBZA"
+   }
+  },
+  {
+   "id": "hydrification",
+   "inJutsusJson": true,
+   "clipPreview": "clips/hydrification.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "266|486",
+    "at": 29.36,
+    "similarity": 0.992,
+    "videoId": "pTAGRLtSDIQUDhuDbgLvcUQ"
+   }
+  },
+  {
+   "id": "death-controlling-possessed-blood",
+   "inJutsusJson": true,
+   "clipPreview": "clips/death-controlling-possessed-blood.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "78,79|298,299",
+    "at": 322.49,
+    "similarity": 0.827,
+    "videoId": "RZGHE2ZHQ0mOXhPXuEKsyz"
+   }
+  },
+  {
+   "id": "puppet-technique",
+   "inJutsusJson": true,
+   "clipPreview": "clips/puppet-technique.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "11|231",
+    "at": 1372.29,
+    "similarity": 0.946,
+    "videoId": "7wJpCYyKRf16lRjlc5FTx1"
+   }
+  },
+  {
+   "id": "hiding-in-mist",
+   "inJutsusJson": true,
+   "clipPreview": "clips/hiding-in-mist.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "7",
+    "at": 959.83,
+    "similarity": 0.992,
+    "videoId": "O9j1LXFkKSf93Cg3JZpuccE"
+   }
+  }
+ ],
+ "new": [
+  {
+   "id": "clone-great-explosion",
+   "name": "Gran Explosión del Clon",
+   "nameOfficial": true,
+   "wiki": "Clone Great Explosion",
+   "answer": "itachi-uchiha",
+   "accepts": [],
+   "review": true,
+   "reviewNote": "El cuadro no deja claro si es la explosión del clon de Itachi",
+   "clipPreview": "clips/clone-great-explosion.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "82",
+    "at": 445.0,
+    "similarity": 0.735,
+    "videoId": "xCKqcj5RZelduUvKquUfNIz"
+   },
+   "verified": false
+  },
+  {
+   "id": "demonic-illusion-mirror-heaven-and-earth-change",
+   "name": "Ilusión Demoníaca: Espejo Cielo-Tierra",
+   "nameOfficial": false,
+   "wiki": "Demonic Illusion: Mirror Heaven and Earth Change",
+   "answer": "itachi-uchiha",
+   "accepts": [],
+   "review": true,
+   "reviewNote": "Parece la misma escena que la Atadura del Árbol que ya está en el juego (ep 81)",
+   "clipPreview": "clips/demonic-illusion-mirror-heaven-and-earth-change.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "81",
+    "at": 1102.8,
+    "similarity": 0.652,
+    "videoId": "pPujRrmQcIQUD3jlb4bNCWk"
+   },
+   "verified": false
+  },
+  {
+   "id": "morning-peacock",
+   "name": "Amanecer del Pavo Real",
+   "nameOfficial": true,
+   "wiki": "Morning Peacock",
+   "answer": "might-guy",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/morning-peacock.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "15|235",
+    "at": 879.3,
+    "similarity": 0.847,
+    "videoId": "GS2loKsKy2ZTQHz6pUaqkXj"
+   },
+   "verified": false
+  },
+  {
+   "id": "amenominaka",
+   "name": "Amenominaka",
+   "nameOfficial": false,
+   "wiki": "Amenominaka",
+   "answer": "kaguya-otsutsuki",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/amenominaka.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "459",
+    "at": 479.7,
+    "similarity": 0.965,
+    "videoId": "W2g8aeyBsTNOFwSIAOuJvra"
+   },
+   "verified": false
+  },
+  {
+   "id": "iron-sand-drizzle",
+   "name": "Arena de Hierro: Lluvia Dispersa",
+   "nameOfficial": true,
+   "wiki": "Iron Sand Drizzle",
+   "answer": "sasori",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/iron-sand-drizzle.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "457",
+    "at": 474.4,
+    "similarity": 0.976,
+    "videoId": "VC14vrddIK5vQCg2lZiEpSu"
+   },
+   "verified": false
+  },
+  {
+   "id": "armour-of-sand",
+   "name": "Armadura de Arena",
+   "nameOfficial": true,
+   "wiki": "Armour of Sand",
+   "answer": "gaara",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/armour-of-sand.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "48",
+    "at": 978.4,
+    "similarity": 0.968,
+    "videoId": "kht6yFyDj6bi6y7JYxHwIOq"
+   },
+   "verified": false
+  },
+  {
+   "id": "lightning-release-chakra-mode",
+   "name": "Armadura de Elemento Rayo",
+   "nameOfficial": true,
+   "wiki": "Lightning Release Chakra Mode",
+   "answer": "killer-bee",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/lightning-release-chakra-mode.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "202|422",
+    "at": 554.0,
+    "similarity": 0.972,
+    "videoId": "9XCikyyQ0Z01Dty7LWYIQzJ"
+   },
+   "verified": false
+  },
+  {
+   "id": "creation-rebirth",
+   "name": "Arte Ninja: Creación de Renacimiento",
+   "nameOfficial": true,
+   "wiki": "Creation Rebirth",
+   "answer": "tsunade",
+   "accepts": [
+    "sakura-haruno"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/creation-rebirth.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "22,23|242,243",
+    "at": 2540.9,
+    "similarity": 0.891,
+    "videoId": "EOGSBjOgRKqwHf0Is4R4OkCW"
+   },
+   "verified": false
+  },
+  {
+   "id": "sage-art-goemon",
+   "name": "Arte Sabio: Goemon",
+   "nameOfficial": false,
+   "wiki": "Sage Art: Goemon",
+   "answer": "jiraiya",
+   "accepts": [
+    "shima",
+    "fukasaku"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/sage-art-goemon.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "132|352",
+    "at": 126.3,
+    "similarity": 0.996,
+    "videoId": "XmwAU8SsflzcOPDbatGK49"
+   },
+   "verified": false
+  },
+  {
+   "id": "sage-art-white-rage-technique",
+   "name": "Arte Sabio: Jutsu Blanco Violento",
+   "nameOfficial": true,
+   "wiki": "Sage Art: White Rage Technique",
+   "answer": "kabuto-yakushi",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/sage-art-white-rage-technique.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "334|554",
+    "at": 738.4,
+    "similarity": 0.984,
+    "videoId": "FNYTSsszclOJiqAaXOMdr7"
+   },
+   "verified": false
+  },
+  {
+   "id": "sage-art-super-tailed-beast-rasenshuriken",
+   "name": "Arte Sabio: Súper Rasenshuriken de Bestia con Cola",
+   "nameOfficial": false,
+   "wiki": "Sage Art: Super Tailed Beast Rasenshuriken",
+   "answer": "naruto-uzumaki",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/sage-art-super-tailed-beast-rasenshuriken.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "473",
+    "at": 569.3,
+    "similarity": 0.949,
+    "videoId": "uqTE5jdS3tZvpHQGFMfasRZ"
+   },
+   "verified": false
+  },
+  {
+   "id": "attack-of-the-twin-demons",
+   "name": "Ataque de los Demonios Gemelos",
+   "nameOfficial": false,
+   "wiki": "Attack of the Twin Demons",
+   "answer": "sakon-y-ukon",
+   "accepts": [
+    "kabuto-yakushi"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/attack-of-the-twin-demons.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "120",
+    "at": 420.5,
+    "similarity": 0.953,
+    "videoId": "ImpRnKwMAXPfNDn0Eylf9WA"
+   },
+   "verified": false
+  },
+  {
+   "id": "majestic-attire-susanoo",
+   "name": "Atuendo Majestuoso: Susanoo",
+   "nameOfficial": false,
+   "wiki": "Majestic Attire: Susanoo",
+   "answer": "madara-uchiha",
+   "accepts": [
+    "sasuke-uchiha"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/majestic-attire-susanoo.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "384|604",
+    "at": 493.3,
+    "similarity": 0.965,
+    "videoId": "3FnRGC6JgeQXKtEJkojLRtx"
+   },
+   "verified": false
+  },
+  {
+   "id": "bansho-ten-in",
+   "name": "Banshō Ten'in",
+   "nameOfficial": true,
+   "wiki": "Banshō Ten'in",
+   "answer": "nagato",
+   "accepts": [
+    "sasuke-uchiha",
+    "madara-uchiha"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/bansho-ten-in.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "159|379",
+    "at": 342.0,
+    "similarity": 0.988,
+    "videoId": "Dcnb80B7QM62TmnyI68TpH1"
+   },
+   "verified": false
+  },
+  {
+   "id": "human-bullet-tank",
+   "name": "Bola de Tanque Humano",
+   "nameOfficial": true,
+   "wiki": "Human Bullet Tank",
+   "answer": "choji-akimichi",
+   "accepts": [
+    "chocho-akimichi",
+    "choza-akimichi"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/human-bullet-tank.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "303|523",
+    "at": 466.1,
+    "similarity": 0.972,
+    "videoId": "i8uZNiElpqydXcS7HEOFqFy"
+   },
+   "verified": false
+  },
+  {
+   "id": "spiked-human-bullet-tank",
+   "name": "Bola de Tanque Humano Pinchante",
+   "nameOfficial": true,
+   "wiki": "Spiked Human Bullet Tank",
+   "answer": "choji-akimichi",
+   "accepts": [
+    "choza-akimichi"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/spiked-human-bullet-tank.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "113",
+    "at": 830.8,
+    "similarity": 0.937,
+    "videoId": "GdOCovvTO2ZTQHz6pUI59yG"
+   },
+   "verified": false
+  },
+  {
+   "id": "c0",
+   "name": "C0",
+   "nameOfficial": true,
+   "wiki": "C0",
+   "answer": "deidara",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/c0.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "124|344",
+    "at": 1196.7,
+    "similarity": 0.984,
+    "videoId": "oVXVAuDXGLFsKNWm6QUod6O"
+   },
+   "verified": false
+  },
+  {
+   "id": "c2",
+   "name": "C2",
+   "nameOfficial": true,
+   "wiki": "C2",
+   "answer": "deidara",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/c2.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "123|343",
+    "at": 490.9,
+    "similarity": 0.984,
+    "videoId": "Dcnx8vhgSM62TmnyIwlN7eh"
+   },
+   "verified": false
+  },
+  {
+   "id": "c4",
+   "name": "C4",
+   "nameOfficial": true,
+   "wiki": "C4",
+   "answer": "deidara",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/c4.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "124|344",
+    "at": 95.3,
+    "similarity": 0.984,
+    "videoId": "qtytjg6IfsB354JcoqFsrmH"
+   },
+   "verified": false
+  },
+  {
+   "id": "chibaku-tensei",
+   "name": "Chibaku Tensei (Jutsu)",
+   "nameOfficial": true,
+   "wiki": "Chibaku Tensei",
+   "answer": "nagato",
+   "accepts": [
+    "hagoromo-otsutsuki",
+    "madara-uchiha",
+    "sasuke-uchiha"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/chibaku-tensei.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "299|519",
+    "at": 422.2,
+    "similarity": 0.984,
+    "videoId": "QrvLTd36tE430idGRITuG0"
+   },
+   "verified": false
+  },
+  {
+   "id": "chidori-sharp-spear",
+   "name": "Chidori Eisō",
+   "nameOfficial": true,
+   "wiki": "Chidori Sharp Spear",
+   "answer": "sasuke-uchiha",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/chidori-sharp-spear.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "211|431",
+    "at": 614.2,
+    "similarity": 0.993,
+    "videoId": "GSXMoNzKM2ZTQHz6pUl1igg"
+   },
+   "verified": false
+  },
+  {
+   "id": "chidori-current",
+   "name": "Chidori Nagashi",
+   "nameOfficial": true,
+   "wiki": "Chidori Current",
+   "answer": "sasuke-uchiha",
+   "accepts": [
+    "sarada-uchiha"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/chidori-current.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "327,328|547,548",
+    "at": 800.0,
+    "similarity": 0.984,
+    "videoId": "OyRRLWDilSf93v7lJZE68Fm"
+   },
+   "verified": false
+  },
+  {
+   "id": "multiple-shadow-clone-technique",
+   "name": "Clones de Sombra Múltiples",
+   "nameOfficial": false,
+   "wiki": "Multiple Shadow Clone Technique",
+   "answer": "naruto-uzumaki",
+   "accepts": [
+    "kakashi-hatake",
+    "boruto-uzumaki",
+    "konohamaru-sarutobi",
+    "shizune"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/multiple-shadow-clone-technique.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "327,328|547,548",
+    "at": 2014.4,
+    "similarity": 0.992,
+    "videoId": "rhPP9lTAZ2Yv65kzoqPNCmCM"
+   },
+   "verified": false
+  },
+  {
+   "id": "naruto-uzumaki-two-thousand-combo",
+   "name": "Combo Dos Mil de Naruto Uzumaki",
+   "nameOfficial": false,
+   "wiki": "Naruto Uzumaki Two Thousand Combo",
+   "answer": "naruto-uzumaki",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/naruto-uzumaki-two-thousand-combo.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "259|479",
+    "at": 129.8,
+    "similarity": 0.966,
+    "videoId": "21zYf0JPh3OACl1PTqRkh1J"
+   },
+   "verified": false
+  },
+  {
+   "id": "dance-of-the-camellia",
+   "name": "Danza de la Camelia",
+   "nameOfficial": true,
+   "wiki": "Dance of the Camellia",
+   "answer": "kimimaro",
+   "accepts": [
+    "kabuto-yakushi"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/dance-of-the-camellia.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "121",
+    "at": 935.7,
+    "similarity": 0.874,
+    "videoId": "X6xpUNZJelzcOPDbaGhO2sV"
+   },
+   "verified": false
+  },
+  {
+   "id": "dance-of-the-shikigami",
+   "name": "Danza del Shikigami",
+   "nameOfficial": false,
+   "wiki": "Dance of the Shikigami",
+   "answer": "konan",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/dance-of-the-shikigami.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "129,130|349,350",
+    "at": 915.4,
+    "similarity": 0.976,
+    "videoId": "b4RFmFXtpKUY39MzH11jRp"
+   },
+   "verified": false
+  },
+  {
+   "id": "water-prison-shark-dance-technique",
+   "name": "Danza del Tiburón en la Prisión de Agua",
+   "nameOfficial": false,
+   "wiki": "Water Prison Shark Dance Technique",
+   "answer": "kisame-hoshigaki",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/water-prison-shark-dance-technique.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "207|427",
+    "at": 862.7,
+    "similarity": 0.934,
+    "videoId": "RZADEFhOF0mOX9I8uhSpNP"
+   },
+   "verified": false
+  },
+  {
+   "id": "flying-thunder-god-slash",
+   "name": "Decapitación del Dios Trueno",
+   "nameOfficial": true,
+   "wiki": "Flying Thunder God Slash",
+   "answer": "tobirama-senju",
+   "accepts": [
+    "minato-namikaze"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/flying-thunder-god-slash.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "369|589",
+    "at": 450.4,
+    "similarity": 0.944,
+    "videoId": "AvM4tFDA4VJkOyRrxDhnBC1"
+   },
+   "verified": false
+  },
+  {
+   "id": "ultimately-hard-absolute-defence-shield-of-shukaku",
+   "name": "Defensa Absoluta: Escudo de Shukaku",
+   "nameOfficial": false,
+   "wiki": "Ultimately Hard Absolute Defence: Shield of Shukaku",
+   "answer": "gaara",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/ultimately-hard-absolute-defence-shield-of-shukaku.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "127",
+    "at": 290.2,
+    "similarity": 0.854,
+    "videoId": "ImpUnmc3QXPfNDn0EJlhzhW"
+   },
+   "verified": false
+  },
+  {
+   "id": "fang-wolf-fang",
+   "name": "Doble Colmillo de Lobo",
+   "nameOfficial": true,
+   "wiki": "Fang Wolf Fang",
+   "answer": "kiba-inuzuka",
+   "accepts": [
+    "akamaru"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/fang-wolf-fang.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "120",
+    "at": 700.9,
+    "similarity": 0.925,
+    "videoId": "euTZ3j8UraQarPYh7wo1vj"
+   },
+   "verified": false
+  },
+  {
+   "id": "water-release-five-feeding-sharks",
+   "name": "Elemento Agua: Cinco Tiburones Hambrientos",
+   "nameOfficial": false,
+   "wiki": "Water Release: Five Feeding Sharks",
+   "answer": "kisame-hoshigaki",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/water-release-five-feeding-sharks.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "14|234",
+    "at": 907.6,
+    "similarity": 1.0,
+    "videoId": "FNLwSg143lOJiqAaXbhiwAl"
+   },
+   "verified": false
+  },
+  {
+   "id": "fire-release-toad-oil-flame-bullet",
+   "name": "Elemento Fuego: Bola de Fuego de Aceite de Sapo",
+   "nameOfficial": true,
+   "wiki": "Fire Release: Toad Oil Flame Bullet",
+   "answer": "jiraiya",
+   "accepts": [
+    "gamabunta",
+    "naruto-uzumaki"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/fire-release-toad-oil-flame-bullet.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "96",
+    "at": 417.6,
+    "similarity": 0.95,
+    "videoId": "35ZRGUQCIeQXKtEJkAytPo"
+   },
+   "verified": false
+  },
+  {
+   "id": "fire-release-phoenix-sage-fire-technique",
+   "name": "Elemento Fuego: Fuego del Fénix",
+   "nameOfficial": false,
+   "wiki": "Fire Release: Phoenix Sage Fire Technique",
+   "answer": "sasuke-uchiha",
+   "accepts": [
+    "itachi-uchiha",
+    "sarada-uchiha",
+    "hiruzen-sarutobi",
+    "obito-uchiha",
+    "shisui-uchiha"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/fire-release-phoenix-sage-fire-technique.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "15|235",
+    "at": 500.5,
+    "similarity": 0.859,
+    "videoId": "UYzFIli88bZjOsLifoNgxPA"
+   },
+   "verified": false
+  },
+  {
+   "id": "fire-release-great-fire-annihilation",
+   "name": "Elemento Fuego: Gran Aniquilación de Fuego",
+   "nameOfficial": true,
+   "wiki": "Fire Release: Great Fire Annihilation",
+   "answer": "madara-uchiha",
+   "accepts": [
+    "indra-otsutsuki"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/fire-release-great-fire-annihilation.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "322|542",
+    "at": 410.1,
+    "similarity": 0.989,
+    "videoId": "cQANpTL4IZvpI1xT0iMNlRo"
+   },
+   "verified": false
+  },
+  {
+   "id": "fire-release-great-fireball-technique",
+   "name": "Elemento Fuego: Jutsu Gran Bola de Fuego",
+   "nameOfficial": true,
+   "wiki": "Fire Release: Great Fireball Technique",
+   "answer": "sasuke-uchiha",
+   "accepts": [
+    "fugaku-uchiha",
+    "itachi-uchiha",
+    "madara-uchiha",
+    "obito-uchiha",
+    "sarada-uchiha",
+    "boro",
+    "kakashi-hatake",
+    "shisui-uchiha",
+    "hiruzen-sarutobi",
+    "roshi"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/fire-release-great-fireball-technique.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "18|238",
+    "at": 1360.0,
+    "similarity": 0.922,
+    "videoId": "PaunQha8i1bHuEay87egnCw"
+   },
+   "verified": false
+  },
+  {
+   "id": "fire-release-phoenix-sage-flower-nail-crimson",
+   "name": "Elemento Fuego: Uñas de Carmesí Flor de Llamas de Fénix",
+   "nameOfficial": true,
+   "wiki": "Fire Release: Phoenix Sage Flower Nail Crimson",
+   "answer": "itachi-uchiha",
+   "accepts": [
+    "shisui-uchiha"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/fire-release-phoenix-sage-flower-nail-crimson.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "298|518",
+    "at": 494.7,
+    "similarity": 0.98,
+    "videoId": "T9xLZ8yN4c39ZarHIY5UsiS"
+   },
+   "verified": false
+  },
+  {
+   "id": "magnet-release-gold-dust-imperial-funeral",
+   "name": "Elemento Imán: Funeral de la Cascada Imperial de Polvo de Oro",
+   "nameOfficial": true,
+   "wiki": "Magnet Release: Gold Dust Imperial Funeral",
+   "answer": "rasa",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/magnet-release-gold-dust-imperial-funeral.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "296|516",
+    "at": 1160.1,
+    "similarity": 0.98,
+    "videoId": "21z2f9LfV3OACl1PTBUipAv"
+   },
+   "verified": false
+  },
+  {
+   "id": "blaze-release-kagutsuchi",
+   "name": "Elemento Infierno: Kagutsuchi",
+   "nameOfficial": true,
+   "wiki": "Blaze Release: Kagutsuchi",
+   "answer": "sasuke-uchiha",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/blaze-release-kagutsuchi.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "203|423",
+    "at": 733.0,
+    "similarity": 0.933,
+    "videoId": "oVUhAU0H6LFsKNWm6XQYFwf"
+   },
+   "verified": false
+  },
+  {
+   "id": "wood-release-great-spear-tree",
+   "name": "Elemento Madera: Gran Árbol Lanza",
+   "nameOfficial": false,
+   "wiki": "Wood Release: Great Spear Tree",
+   "answer": "obito-uchiha",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/wood-release-great-spear-tree.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "345|565",
+    "at": 1242.7,
+    "similarity": 0.988,
+    "videoId": "cQt5pbzfsZvpI1xT0daAEms"
+   },
+   "verified": false
+  },
+  {
+   "id": "wood-release-wood-human-technique",
+   "name": "Elemento Madera: Humano de Madera",
+   "nameOfficial": false,
+   "wiki": "Wood Release: Wood Human Technique",
+   "answer": "hashirama-senju",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/wood-release-wood-human-technique.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "368|588",
+    "at": 847.8,
+    "similarity": 0.934,
+    "videoId": "yIORspdY6ivGRdVbp0qdeo1"
+   },
+   "verified": false
+  },
+  {
+   "id": "wood-release-four-pillar-prison-technique",
+   "name": "Elemento Madera: Prisión de Cuatro Pilares",
+   "nameOfficial": false,
+   "wiki": "Wood Release: Four-Pillar Prison Technique",
+   "answer": "yamato",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/wood-release-four-pillar-prison-technique.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "217|437",
+    "at": 56.2,
+    "similarity": 0.945,
+    "videoId": "cQG9pQhKPZvpI1xT0do9mhj"
+   },
+   "verified": false
+  },
+  {
+   "id": "lightning-release-false-darkness",
+   "name": "Elemento Rayo: Fuerza Negativa",
+   "nameOfficial": true,
+   "wiki": "Lightning Release: False Darkness",
+   "answer": "kakuzu",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/lightning-release-false-darkness.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "273,274|493,494",
+    "at": 763.1,
+    "similarity": 0.976,
+    "videoId": "rhCZ9IHH2Yv65kzoqbyP3K"
+   },
+   "verified": false
+  },
+  {
+   "id": "earth-release-earth-spear",
+   "name": "Elemento Tierra: Lanza de Tierra",
+   "nameOfficial": true,
+   "wiki": "Earth Release: Earth Spear",
+   "answer": "kakuzu",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/earth-release-earth-spear.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "73|293",
+    "at": 721.3,
+    "similarity": 0.96,
+    "videoId": "txUgDI6JTABHfu5CbplvzQV"
+   },
+   "verified": false
+  },
+  {
+   "id": "storm-release-laser-circus",
+   "name": "Elemento Tormenta: Circo Láser",
+   "nameOfficial": false,
+   "wiki": "Storm Release: Laser Circus",
+   "answer": "darui",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/storm-release-laser-circus.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "269|489",
+    "at": 741.3,
+    "similarity": 0.984,
+    "videoId": "goysMinYXrnd6fqV20Rnkf1"
+   },
+   "verified": false
+  },
+  {
+   "id": "boil-release-skilled-mist-technique",
+   "name": "Elemento Vapor: Jutsu de Niebla Corrosiva",
+   "nameOfficial": true,
+   "wiki": "Boil Release: Skilled Mist Technique",
+   "answer": "mei-terumi",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/boil-release-skilled-mist-technique.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "204|424",
+    "at": 936.8,
+    "similarity": 0.968,
+    "videoId": "pToGR2lMgIQUD3jlb4xgQcf"
+   },
+   "verified": false
+  },
+  {
+   "id": "wind-release-vacuum-sphere",
+   "name": "Elemento Viento: Esfera de Vacío",
+   "nameOfficial": false,
+   "wiki": "Wind Release: Vacuum Sphere",
+   "answer": "danzo-shimura",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/wind-release-vacuum-sphere.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "209|429",
+    "at": 966.3,
+    "similarity": 0.989,
+    "videoId": "218Wf57Mx3OACl1PTJG63lK"
+   },
+   "verified": false
+  },
+  {
+   "id": "wind-release-rasenshuriken",
+   "name": "Elemento Viento: Rasen Shuriken",
+   "nameOfficial": true,
+   "wiki": "Wind Release: Rasenshuriken",
+   "answer": "naruto-uzumaki",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/wind-release-rasenshuriken.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "88|308",
+    "at": 54.2,
+    "similarity": 0.968,
+    "videoId": "muRNYDUbXQBtpX6l0dYdaVF"
+   },
+   "verified": false
+  },
+  {
+   "id": "shield-of-sand",
+   "name": "Escudo de Arena",
+   "nameOfficial": false,
+   "wiki": "Shield of Sand",
+   "answer": "gaara",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/shield-of-sand.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "34",
+    "at": 682.4,
+    "similarity": 0.948,
+    "videoId": "1yNF6Q6odv0xWOYgZiLIf06"
+   },
+   "verified": false
+  },
+  {
+   "id": "expansive-truth-seeking-ball",
+   "name": "Esfera Buscadora de la Verdad Expansiva",
+   "nameOfficial": false,
+   "wiki": "Expansive Truth-Seeking Ball",
+   "answer": "kaguya-otsutsuki",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/expansive-truth-seeking-ball.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "473",
+    "at": 815.7,
+    "similarity": 0.977,
+    "videoId": "oVf9AKtyjLFsKNWm6lEZZr"
+   },
+   "verified": false
+  },
+  {
+   "id": "sword-of-kusanagi-chidori-katana",
+   "name": "Espada Kusanagi: Chidori Katana",
+   "nameOfficial": false,
+   "wiki": "Sword of Kusanagi: Chidori Katana",
+   "answer": "sasuke-uchiha",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/sword-of-kusanagi-chidori-katana.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "51,52|271,272",
+    "at": 1993.0,
+    "similarity": 0.961,
+    "videoId": "GSfuo3eyLO2ZTQHz6phVl5dq"
+   },
+   "verified": false
+  },
+  {
+   "id": "sword-of-kusanagi-longsword-of-the-sky",
+   "name": "Espada Kusanagi: Espada Larga del Cielo",
+   "nameOfficial": false,
+   "wiki": "Sword of Kusanagi: Longsword of the Sky",
+   "answer": "orochimaru",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/sword-of-kusanagi-longsword-of-the-sky.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "73",
+    "at": 514.3,
+    "similarity": 0.989,
+    "videoId": "Y4QDehOUAwadPe3n4ZW599"
+   },
+   "verified": false
+  },
+  {
+   "id": "demonic-flute-illusionary-warriors-manipulating-melody",
+   "name": "Flauta Demoníaca: Melodía Manipuladora Ilusoria de Guerreros",
+   "nameOfficial": true,
+   "wiki": "Demonic Flute: Illusionary Warriors Manipulating Melody",
+   "answer": "tayuya",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/demonic-flute-illusionary-warriors-manipulating-melody.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "122",
+    "at": 308.0,
+    "similarity": 0.976,
+    "videoId": "AS1mtTAEhVJkOyRrxwEgsvX"
+   },
+   "verified": false
+  },
+  {
+   "id": "indra-s-arrow",
+   "name": "Flecha de Indra",
+   "nameOfficial": false,
+   "wiki": "Indra's Arrow",
+   "answer": "sasuke-uchiha",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/indra-s-arrow.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "476,477",
+    "at": 1484.4,
+    "similarity": 0.992,
+    "videoId": "pTeqRLP8A0IQUD3jlb4sIYVN"
+   },
+   "verified": false
+  },
+  {
+   "id": "sand-waterfall-imperial-funeral",
+   "name": "Funeral de la Cascada Imperial de Arena",
+   "nameOfficial": true,
+   "wiki": "Sand Waterfall Imperial Funeral",
+   "answer": "gaara",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/sand-waterfall-imperial-funeral.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "31|251",
+    "at": 1385.1,
+    "similarity": 0.896,
+    "videoId": "UYzUIACA5nbZjOsLifGuZNp4"
+   },
+   "verified": false
+  },
+  {
+   "id": "sand-waterfall-funeral",
+   "name": "Funeral de la Cascada de Arena",
+   "nameOfficial": true,
+   "wiki": "Sand Waterfall Funeral",
+   "answer": "gaara",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/sand-waterfall-funeral.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "50",
+    "at": 428.6,
+    "similarity": 0.972,
+    "videoId": "QWgfTdQywE430idGRQm5iZ"
+   },
+   "verified": false
+  },
+  {
+   "id": "outer-path-samsara-of-heavenly-life-technique",
+   "name": "Gedo: Arte Rinne de la Reencarnación",
+   "nameOfficial": true,
+   "wiki": "Outer Path — Samsara of Heavenly Life Technique",
+   "answer": "nagato",
+   "accepts": [
+    "obito-uchiha"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/outer-path-samsara-of-heavenly-life-technique.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "252|472",
+    "at": 419.8,
+    "similarity": 0.969,
+    "videoId": "HBipWXuNNifD04L72pYOY0x"
+   },
+   "verified": false
+  },
+  {
+   "id": "top-transformed-buddha",
+   "name": "Golpeo de la Cumbre",
+   "nameOfficial": true,
+   "wiki": "Top Transformed Buddha",
+   "answer": "hashirama-senju",
+   "accepts": [
+    "asura-otsutsuki"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/top-transformed-buddha.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "369|589",
+    "at": 1167.0,
+    "similarity": 0.965,
+    "videoId": "cQDjpCIoIZvpI1xT0jnDKYG"
+   },
+   "verified": false
+  },
+  {
+   "id": "big-ball-rasengan",
+   "name": "Gran Bola Rasengan",
+   "nameOfficial": true,
+   "wiki": "Big Ball Rasengan",
+   "answer": "naruto-uzumaki",
+   "accepts": [
+    "boruto-uzumaki",
+    "jiraiya",
+    "koji-kashin",
+    "momoshiki-otsutsuki",
+    "konohamaru-sarutobi"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/big-ball-rasengan.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "15|235",
+    "at": 1089.6,
+    "similarity": 0.934,
+    "videoId": "8pIOzZsSPD8yNtr9ibbp55"
+   },
+   "verified": false
+  },
+  {
+   "id": "night-guy",
+   "name": "Guy Nocturno",
+   "nameOfficial": true,
+   "wiki": "Night Guy",
+   "answer": "might-guy",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/night-guy.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "421|641",
+    "at": 1096.1,
+    "similarity": 0.937,
+    "videoId": "uqYV5qH7qtZvpHQGFMU5kkJ"
+   },
+   "verified": false
+  },
+  {
+   "id": "summoning-toad-mouth-bind",
+   "name": "Invocación: Atadura de la Boca del Sapo",
+   "nameOfficial": false,
+   "wiki": "Summoning: Toad Mouth Bind",
+   "answer": "jiraiya",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/summoning-toad-mouth-bind.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "259|479",
+    "at": 566.4,
+    "similarity": 0.909,
+    "videoId": "mu2SYzr7OQBtpX6l0JrCiCC"
+   },
+   "verified": false
+  },
+  {
+   "id": "summoning-quick-beheading-dance",
+   "name": "Invocación: Danza Decapitadora Veloz",
+   "nameOfficial": false,
+   "wiki": "Summoning: Quick Beheading Dance",
+   "answer": "temari",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/summoning-quick-beheading-dance.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "125",
+    "at": 1142.6,
+    "similarity": 0.98,
+    "videoId": "Siy5V6uBivRVACfYHPuwMIg"
+   },
+   "verified": false
+  },
+  {
+   "id": "summoning-earth-release-tracking-fang-technique",
+   "name": "Invocación: Elemento Tierra: Jutsu de Persecución de Colmillos",
+   "nameOfficial": true,
+   "wiki": "Summoning: Earth Release: Tracking Fang Technique",
+   "answer": "kakashi-hatake",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/summoning-earth-release-tracking-fang-technique.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "17",
+    "at": 1004.9,
+    "similarity": 0.96,
+    "videoId": "zcm4w3xnOtDBpLaSjSNiZvv"
+   },
+   "verified": false
+  },
+  {
+   "id": "summoning-triple-rashomon",
+   "name": "Invocación: Triple Rashōmon",
+   "nameOfficial": true,
+   "wiki": "Summoning: Triple Rashōmon",
+   "answer": "orochimaru",
+   "accepts": [
+    "sakon-y-ukon"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/summoning-triple-rashomon.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "42|262",
+    "at": 987.6,
+    "similarity": 0.869,
+    "videoId": "zR0JwEURHtDBpLaSjSyQpzm"
+   },
+   "verified": false
+  },
+  {
+   "id": "izanami",
+   "name": "Izanami",
+   "nameOfficial": true,
+   "wiki": "Izanami",
+   "answer": "itachi-uchiha",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/izanami.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "337|557",
+    "at": 876.8,
+    "similarity": 0.992,
+    "videoId": "QrxXTIIftE430idGRp52Sq"
+   },
+   "verified": false
+  },
+  {
+   "id": "black-secret-technique-machine-one-shot",
+   "name": "Jutsu Secreto Oscuro: Doncella de Hierro",
+   "nameOfficial": true,
+   "wiki": "Black Secret Technique Machine One Shot",
+   "answer": "kankuro",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/black-secret-technique-machine-one-shot.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "125",
+    "at": 918.6,
+    "similarity": 0.996,
+    "videoId": "yX8rs0F1FivGRdVbpI8DY0s"
+   },
+   "verified": false
+  },
+  {
+   "id": "secret-technique-insect-cocoon",
+   "name": "Jutsu Secreto: Capullo de Insectos",
+   "nameOfficial": true,
+   "wiki": "Secret Technique: Insect Cocoon",
+   "answer": "shino-aburame",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/secret-technique-insect-cocoon.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "103|323",
+    "at": 683.8,
+    "similarity": 0.935,
+    "videoId": "Dcnw8FcCwM62TmnyIwKgK3O"
+   },
+   "verified": false
+  },
+  {
+   "id": "butterfly-mode",
+   "name": "Jutsu: Control de Calorías",
+   "nameOfficial": true,
+   "wiki": "Butterfly Mode",
+   "answer": "choji-akimichi",
+   "accepts": [
+    "chocho-akimichi",
+    "choza-akimichi"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/butterfly-mode.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "484",
+    "at": 426.8,
+    "similarity": 0.969,
+    "videoId": "9XifklaerZ01Dty7LCcim02"
+   },
+   "verified": false
+  },
+  {
+   "id": "shadow-sewing-technique",
+   "name": "Jutsu: Costura de Sombra",
+   "nameOfficial": true,
+   "wiki": "Shadow Sewing Technique",
+   "answer": "shikamaru-nara",
+   "accepts": [
+    "shikaku-nara"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/shadow-sewing-technique.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "78,79|298,299",
+    "at": 1247.3,
+    "similarity": 0.973,
+    "videoId": "oVhqAYtnULFsKNWm6QKEnSW"
+   },
+   "verified": false
+  },
+  {
+   "id": "tailed-beast-lariat",
+   "name": "Lariat de la Bestia con Cola",
+   "nameOfficial": false,
+   "wiki": "Tailed Beast Lariat",
+   "answer": "killer-bee",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/tailed-beast-lariat.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "298|518",
+    "at": 1217.9,
+    "similarity": 0.985,
+    "videoId": "f6WqhW2YBKQy2kG1K0PcHbV"
+   },
+   "verified": false
+  },
+  {
+   "id": "limbo-border-jail",
+   "name": "Limbo: Prisión Fronteriza",
+   "nameOfficial": false,
+   "wiki": "Limbo: Border Jail",
+   "answer": "madara-uchiha",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/limbo-border-jail.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "425|645",
+    "at": 1163.6,
+    "similarity": 0.973,
+    "videoId": "AvqatDQeWVJkOyRrxDzjWAq"
+   },
+   "verified": false
+  },
+  {
+   "id": "reverse-lotus",
+   "name": "Loto Escondido",
+   "nameOfficial": true,
+   "wiki": "Reverse Lotus",
+   "answer": "rock-lee",
+   "accepts": [
+    "might-guy"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/reverse-lotus.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "50",
+    "at": 324.9,
+    "similarity": 0.83,
+    "videoId": "ASLCt8FnmVJkOyRrxBEGIW"
+   },
+   "verified": false
+  },
+  {
+   "id": "wild-lion-s-mane-technique",
+   "name": "Melena del León Salvaje",
+   "nameOfficial": false,
+   "wiki": "Wild Lion's Mane Technique",
+   "answer": "jiraiya",
+   "accepts": [
+    "koji-kashin"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/wild-lion-s-mane-technique.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "129,130|349,350",
+    "at": 2334.8,
+    "similarity": 0.98,
+    "videoId": "EOAbBjV1mpqwHf0Is4OggiYW"
+   },
+   "verified": false
+  },
+  {
+   "id": "thousand-flying-water-needles-of-death",
+   "name": "Mil Agujas de Agua Voladoras de la Muerte",
+   "nameOfficial": false,
+   "wiki": "Thousand Flying Water Needles of Death",
+   "answer": "haku",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/thousand-flying-water-needles-of-death.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "13",
+    "at": 679.7,
+    "similarity": 0.985,
+    "videoId": "78ULCqD2tf16lJGKcUl20sy"
+   },
+   "verified": false
+  },
+  {
+   "id": "one-thousand-years-of-death",
+   "name": "Mil Años de Muerte",
+   "nameOfficial": true,
+   "wiki": "One Thousand Years of Death",
+   "answer": "kakashi-hatake",
+   "accepts": [
+    "naruto-uzumaki",
+    "obito-uchiha",
+    "sasuke-uchiha"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/one-thousand-years-of-death.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "4",
+    "at": 851.3,
+    "similarity": 0.996,
+    "videoId": "ASOGtkIrRVJkOyRrxLwmQVU"
+   },
+   "verified": false
+  },
+  {
+   "id": "baryon-mode",
+   "name": "Modo Barión",
+   "nameOfficial": true,
+   "wiki": "Baryon Mode",
+   "answer": "naruto-uzumaki",
+   "accepts": [
+    "kurama"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/baryon-mode.mp4",
+   "trace": {
+    "anilistId": 97938,
+    "episode": "217",
+    "at": 140.3,
+    "similarity": 0.996,
+    "videoId": "0KKDgShjH8rZjYgoCF7YTcu"
+   },
+   "verified": false
+  },
+  {
+   "id": "eight-trigrams-vacuum-palm",
+   "name": "Ocho Trigramas Palma del Vacío",
+   "nameOfficial": true,
+   "wiki": "Eight Trigrams Vacuum Palm",
+   "answer": "neji-hyuga",
+   "accepts": [
+    "hiashi-hyuga",
+    "hinata-hyuga",
+    "hanabi-hyuga"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/eight-trigrams-vacuum-palm.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "266|486",
+    "at": 1147.6,
+    "similarity": 0.973,
+    "videoId": "KgOT4xsTOdmgE3KixsCiHOL"
+   },
+   "verified": false
+  },
+  {
+   "id": "eight-trigrams-palms-revolving-heaven",
+   "name": "Ocho Trigramas: Rotación Celestial",
+   "nameOfficial": false,
+   "wiki": "Eight Trigrams Palms Revolving Heaven",
+   "answer": "neji-hyuga",
+   "accepts": [
+    "hiashi-hyuga",
+    "hanabi-hyuga",
+    "hinata-hyuga"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/eight-trigrams-palms-revolving-heaven.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "376,377|596,597",
+    "at": 1444.3,
+    "similarity": 0.984,
+    "videoId": "kUZUyanNqG6bi6y7JYPmOcJo"
+   },
+   "verified": false
+  },
+  {
+   "id": "heavenly-foot-of-pain",
+   "name": "Patada Voladora del Cielo",
+   "nameOfficial": true,
+   "wiki": "Heavenly Foot of Pain",
+   "answer": "tsunade",
+   "accepts": [
+    "sakura-haruno"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/heavenly-foot-of-pain.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "169|389",
+    "at": 1390.6,
+    "similarity": 0.976,
+    "videoId": "rh7k9lpwUKYv65kzoq1b8gK"
+   },
+   "verified": false
+  },
+  {
+   "id": "water-prison-technique",
+   "name": "Prisión de Agua",
+   "nameOfficial": false,
+   "wiki": "Water Prison Technique",
+   "answer": "zabuza-momochi",
+   "accepts": [
+    "kisame-hoshigaki",
+    "suigetsu-hozuki",
+    "tobirama-senju"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/water-prison-technique.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "14|234",
+    "at": 108.9,
+    "similarity": 0.887,
+    "videoId": "1Jvg6hEeNv0xWOYgZvLQSy"
+   },
+   "verified": false
+  },
+  {
+   "id": "protecting-eight-trigrams-sixty-four-palms",
+   "name": "Protección: Ocho Trigramas Sesenta y Cuatro Palmas",
+   "nameOfficial": true,
+   "wiki": "Protecting Eight Trigrams Sixty-Four Palms",
+   "answer": "hinata-hyuga",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/protecting-eight-trigrams-sixty-four-palms.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "402|622",
+    "at": 517.7,
+    "similarity": 0.992,
+    "videoId": "i8dRNaM8WqydXcS7HTMU8WP"
+   },
+   "verified": false
+  },
+  {
+   "id": "drunken-fist",
+   "name": "Puño Borracho",
+   "nameOfficial": true,
+   "wiki": "Drunken Fist",
+   "answer": "rock-lee",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/drunken-fist.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "124",
+    "at": 229.6,
+    "similarity": 0.9,
+    "videoId": "DvbG89cPdM62TmnyIMm9ZJn"
+   },
+   "verified": false
+  },
+  {
+   "id": "leaf-whirlwind",
+   "name": "Remolino de la Hoja",
+   "nameOfficial": true,
+   "wiki": "Leaf Whirlwind",
+   "answer": "rock-lee",
+   "accepts": [
+    "metal-lee",
+    "might-guy",
+    "naruto-uzumaki"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/leaf-whirlwind.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "123",
+    "at": 521.5,
+    "similarity": 0.854,
+    "videoId": "HR3tWHdEyifD04L72puSLuu"
+   },
+   "verified": false
+  },
+  {
+   "id": "lion-combo",
+   "name": "Ráfaga de Leones",
+   "nameOfficial": true,
+   "wiki": "Lion Combo",
+   "answer": "sasuke-uchiha",
+   "accepts": [
+    "kakashi-hatake"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/lion-combo.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "39",
+    "at": 565.3,
+    "similarity": 0.949,
+    "videoId": "CzIulJT2XI6Sjb2uwmswrES"
+   },
+   "verified": false
+  },
+  {
+   "id": "six-paths-kunitsukami",
+   "name": "Seis Caminos: Kunitsukami",
+   "nameOfficial": false,
+   "wiki": "Six Paths: Kunitsukami",
+   "answer": "asura-otsutsuki",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/six-paths-kunitsukami.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "420|640",
+    "at": 1217.4,
+    "similarity": 0.962,
+    "videoId": "8pNWzE6mZD8yNtr9i61ijYb"
+   },
+   "verified": false
+  },
+  {
+   "id": "six-paths-ultra-big-ball-rasenshuriken",
+   "name": "Seis Caminos: Rasenshuriken Ultra Gran Bola",
+   "nameOfficial": false,
+   "wiki": "Six Paths: Ultra-Big Ball Rasenshuriken",
+   "answer": "naruto-uzumaki",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/six-paths-ultra-big-ball-rasenshuriken.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "476,477",
+    "at": 1527.9,
+    "similarity": 0.973,
+    "videoId": "S71IVWOnzZvRVACfYHtqTVUj"
+   },
+   "verified": false
+  },
+  {
+   "id": "five-elements-seal",
+   "name": "Sello de los Cinco Elementos",
+   "nameOfficial": false,
+   "wiki": "Five Elements Seal",
+   "answer": "orochimaru",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/five-elements-seal.mp4",
+   "trace": {
+    "anilistId": 20,
+    "episode": "29",
+    "at": 1082.1,
+    "similarity": 0.955,
+    "videoId": "ASLxtGSffVJkOyRrxzkXJ5H"
+   },
+   "verified": false
+  },
+  {
+   "id": "desert-layered-imperial-funeral-seal",
+   "name": "Sello del Funeral Imperial del Desierto",
+   "nameOfficial": false,
+   "wiki": "Desert Layered Imperial Funeral Seal",
+   "answer": "gaara",
+   "accepts": [
+    "shukaku"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/desert-layered-imperial-funeral-seal.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "333|553",
+    "at": 434.1,
+    "similarity": 0.996,
+    "videoId": "Kg1e4ERu7dmgE3KixT0OBha"
+   },
+   "verified": false
+  },
+  {
+   "id": "susanoo",
+   "name": "Susanoo",
+   "nameOfficial": true,
+   "wiki": "Susanoo",
+   "answer": "sasuke-uchiha",
+   "accepts": [
+    "indra-otsutsuki",
+    "itachi-uchiha",
+    "kakashi-hatake",
+    "madara-uchiha",
+    "hagoromo-otsutsuki",
+    "shisui-uchiha"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/susanoo.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "138|358",
+    "at": 914.9,
+    "similarity": 0.98,
+    "videoId": "6KppbF7LsyzD48QCqKgWh6f"
+   },
+   "verified": false
+  },
+  {
+   "id": "super-god-imitating-drawing",
+   "name": "Súper Dibujo Imitador de Dioses",
+   "nameOfficial": false,
+   "wiki": "Super God Imitating Drawing",
+   "answer": "sai",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/super-god-imitating-drawing.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "263|483",
+    "at": 349.8,
+    "similarity": 0.984,
+    "videoId": "FNmOSNDI1lOJiqAaXrPi3Q"
+   },
+   "verified": false
+  },
+  {
+   "id": "resonating-echo-drill",
+   "name": "Taladro de Eco Resonante",
+   "nameOfficial": true,
+   "wiki": "Resonating Echo Drill",
+   "answer": "dosu-kinuta",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/resonating-echo-drill.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "401|621",
+    "at": 475.8,
+    "similarity": 0.98,
+    "videoId": "T9pXZfISfc39ZarHIGMejR"
+   },
+   "verified": false
+  },
+  {
+   "id": "daytime-tiger",
+   "name": "Tigre Matutino",
+   "nameOfficial": true,
+   "wiki": "Daytime Tiger",
+   "answer": "might-guy",
+   "accepts": [],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/daytime-tiger.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "362|582",
+    "at": 782.8,
+    "similarity": 0.956,
+    "videoId": "muX8YcZIyQBtpX6l0dbYlDR"
+   },
+   "verified": false
+  },
+  {
+   "id": "human-beast-combination-transformation-double-headed-wolf",
+   "name": "Transformación Combinada de Hombre-Bestia: Lobo de Dos Cabezas",
+   "nameOfficial": true,
+   "wiki": "Human Beast Combination Transformation: Double-Headed Wolf",
+   "answer": "kiba-inuzuka",
+   "accepts": [
+    "akamaru"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/human-beast-combination-transformation-double-headed-wolf.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "394|614",
+    "at": 165.9,
+    "similarity": 0.973,
+    "videoId": "8piizYnMXD8yNtr9i696Usn"
+   },
+   "verified": false
+  },
+  {
+   "id": "infinite-tsukuyomi",
+   "name": "Tsukuyomi Infinito",
+   "nameOfficial": false,
+   "wiki": "Infinite Tsukuyomi",
+   "answer": "obito-uchiha",
+   "accepts": [
+    "madara-uchiha",
+    "kaguya-otsutsuki"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/infinite-tsukuyomi.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "431|651",
+    "at": 21.3,
+    "similarity": 0.992,
+    "videoId": "EOHjBgcQqwHf0Is4xdYK5"
+   },
+   "verified": false
+  },
+  {
+   "id": "yomotsu-hirasaka",
+   "name": "Yomotsu Hirasaka",
+   "nameOfficial": false,
+   "wiki": "Yomotsu Hirasaka",
+   "answer": "kaguya-otsutsuki",
+   "accepts": [
+    "momoshiki-otsutsuki"
+   ],
+   "review": false,
+   "reviewNote": null,
+   "clipPreview": "clips/yomotsu-hirasaka.mp4",
+   "trace": {
+    "anilistId": 1735,
+    "episode": "463",
+    "at": 500.4,
+    "similarity": 0.977,
+    "videoId": "ZkdZOXgixbzCBqFTLPDmvT3"
+   },
+   "verified": false
+  }
+ ],
+ "noMatch": [
+  {
+   "name": "Kirin",
+   "answer": "Sasuke Uchiha",
+   "existing": false,
+   "why": "trace.moe no la encontró (devolvió otro anime)"
+  },
+  {
+   "name": "Elemento Agua: Dragón de Agua",
+   "answer": "Zabuza Momochi",
+   "existing": false,
+   "why": "trace.moe no la encontró (devolvió otro anime)"
+  },
+  {
+   "name": "Jutsu de Sombra Estrangulante",
+   "answer": "Shikamaru Nara",
+   "existing": false,
+   "why": "trace.moe no la encontró (devolvió otro anime)"
+  },
+  {
+   "name": "Jutsu de las Ocho Ramas",
+   "answer": "Orochimaru",
+   "existing": false,
+   "why": "trace.moe no la encontró (devolvió otro anime)"
+  },
+  {
+   "name": "Elemento Madera: Dragón de Madera",
+   "answer": "Madara Uchiha",
+   "existing": false,
+   "why": "trace.moe no la encontró (devolvió otro anime)"
+  },
+  {
+   "name": "Danza de la Luna Creciente",
+   "answer": "Hayate Gekkō",
+   "existing": false,
+   "why": "trace.moe no la encontró (devolvió otro anime)"
+  },
+  {
+   "name": "Huesos de Ceniza Exterminadores",
+   "answer": "Kaguya Otsutsuki",
+   "existing": true,
+   "why": "Captura del anime, pero trace.moe no la encuentra"
+  },
+  {
+   "name": "Manos Ocultas de Serpientes de Sombra",
+   "answer": "Anko Mitarashi",
+   "existing": true,
+   "why": "Captura del anime, pero trace.moe no la encuentra"
+  },
+  {
+   "name": "Sello de la Fuerza de los Cien",
+   "answer": "Tsunade",
+   "existing": true,
+   "why": "La imagen actual es un ícono (rombo), no una captura del anime"
+  },
+  {
+   "name": "Técnica Secreta Roja: Actuación de las Cien Marionetas",
+   "answer": "Sasori",
+   "existing": true,
+   "why": "La imagen actual es una viñeta del manga coloreada"
+  }
+ ],
+ "pending": [
+  "Dance of the Clematis: Flower",
+  "Wind Release: Toad Gun",
+  "Super Mini-Tailed Beast Ball",
+  "Sage Art: Magnet Release Rasengan",
+  "Manipulating Windmill Triple Blades",
+  "Chidori Senbon",
+  "Fire Release: Dragon Fire Technique",
+  "Lightning Transmission",
+  "Crow Clone Technique",
+  "Demonic Illusion: Shackling Stakes Technique",
+  "Quicksand Waterfall Flow",
+  "Sand Shuriken",
+  "Third Eye",
+  "Leaf Great Whirlwind",
+  "Leaf Strong Whirlwind",
+  "Super Open Hand Slap",
+  "Tail Chasing Fang Fang Rotating Fang",
+  "Secret Technique: Insect Tornado",
+  "Slug Great Division",
+  "Barrier: Toad Gourd Prison",
+  "Hiding in a Toad Technique",
+  "Formation of Ten Thousand Snakes",
+  "Living Corpse Reincarnation",
+  "Dead Soul Technique",
+  "Temple of Nirvana Technique",
+  "C3",
+  "Iron Sand World Method",
+  "Water Release: Water Shark Bullet Technique",
+  "Summoning Rinnegan",
+  "Fire Release: Blast Wave Wild Dance",
+  "Fire Release: Great Fire Destruction",
+  "Demonic Statue Chains",
+  "Summoning: Quintuple Rashōmon",
+  "Mutually Multiplying Explosive Tags",
+  "Sealing Technique: Octopus Hold",
+  "Lightning Release: Double Lariat",
+  "Black Lightning",
+  "Fission Technique",
+  "Sealing Technique: Lion Closing Roar",
+  "Sealing Technique: Tiger Vision Staring Bullet",
+  "Wood Release: Wood Locking Wall",
+  "Wood Release: Tree Bind Flourishing Burial",
+  "Fire Release: Ash Pile Burning",
+  "Fire Release: Fire Dragon Flame Bullet",
+  "Spider Web Unrolling",
+  "Coral Palm",
+  "Summoning: Torture Chamber",
+  "Lightning Release: Thunderclap Arrow",
+  "Lightning Ball",
+  "Lightning Release: Snake Lightning"
+ ]
+}
