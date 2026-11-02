@@ -1,8 +1,12 @@
 'use client';
 
-import { useEffect, useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { autocompleteItemOf, type AutocompleteItem } from '@/components/Autocomplete';
 import { GuessField } from '@/components/GuessField';
+import { AttemptsStatus } from '@/components/game-shell/AttemptsStatus';
+import { SheetSection } from '@/components/game-shell/SheetSlot';
+import { useDockTarget } from '@/components/game-shell/GameDock';
+import { scrollIntoViewNearest } from '@/components/game-shell/scrollIntoView';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
 import { restoreLimited } from '@/components/game-shell/attempts';
@@ -157,10 +161,19 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
     writePrefs(getLocalStorage(), franchise, mode, next);
   }
 
+  // Con la barra inferior (teléfono), el intento fallado nuevo (el primer chip) queda a la vista.
+  const phoneLayout = useDockTarget() !== null;
+  const rootRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (lastAttempt && phoneLayout) scrollIntoViewNearest(rootRef.current?.querySelector('ul[class*="chips"] > li'));
+    // Solo cuando hay un intento nuevo.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastAttempt]);
+
   const lastName = lastAttempt && !isCorrect(lastAttempt.id, answer.id, accepted) ? byId.get(lastAttempt.id)?.name.es : undefined;
 
   return (
-    <div className={styles.root} data-game-ready="true" data-step={step} data-won={won} data-over={over}>
+    <div ref={rootRef} className={styles.root} data-game-ready="true" data-step={step} data-won={won} data-over={over}>
       {/* Al terminar, ganado o perdido, el marco muestra la respuesta y el resumen (ver `FinishReport`). */}
       {!over && (
         <div className={styles.field}>
@@ -191,14 +204,14 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
       )}
 
       <div className={styles.counter}>
-        <p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p>
+        <AttemptsStatus><p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
         {!over && (
           <SurrenderButton
             onConfirm={() => surrender(attemptIds, reportOf(attemptIds, answer, accepted, false, true))}
           />
         )}
       </div>
-      <SkinAttemptsMeter skin={skin} engine="image-reveal" failed={failed} won={won} total={maxAttempts} />
+      <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="image-reveal" failed={failed} won={won} total={maxAttempts} /></AttemptsStatus>
       {/* Antes del último intento se avisa: si falla, se pierde. */}
       {!over && failed === maxAttempts - 1 && (
         <p className={styles.lastChance} role="status">
@@ -225,41 +238,43 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
       {failedNames.length === 0 && !over && <p className={styles.empty}>{es.imageReveal.empty}</p>}
 
       {!over && (
-        <fieldset className={styles.difficulty} aria-labelledby={difficultyId}>
-          <legend className={styles.difficultyTitle} id={difficultyId}>
-            {es.imageReveal.difficultyTitle}
-            <InfoTip compact text={es.help.difficulty} label={es.help.button(es.imageReveal.difficultyTitle)} className={styles.titleHelp} />
-          </legend>
-          {/* Cada opción es un chip que se prende y se apaga, con su explicación debajo. */}
-          <div className={styles.option}>
-            <Chip
-              pressed={prefs.reveal}
-              aria-describedby={revealHintId}
-              mark={<ChipMark on={prefs.reveal} />}
-              onClick={() => updatePrefs({ ...prefs, reveal: !prefs.reveal })}
-            >
-              {es.imageReveal.revealSwitch}
-            </Chip>
-            <p className={styles.optionHint} id={revealHintId}>
-              {es.imageReveal.revealHint}
-            </p>
-          </div>
-          {hasColors && (
+        <SheetSection>
+          <fieldset className={styles.difficulty} aria-labelledby={difficultyId}>
+            <legend className={styles.difficultyTitle} id={difficultyId}>
+              {es.imageReveal.difficultyTitle}
+              <InfoTip compact text={es.help.difficulty} label={es.help.button(es.imageReveal.difficultyTitle)} className={styles.titleHelp} />
+            </legend>
+            {/* Cada opción es un chip que se prende y se apaga, con su explicación debajo. */}
             <div className={styles.option}>
               <Chip
-                pressed={prefs.colors}
-                aria-describedby={colorsHintId}
-                mark={<ChipMark on={prefs.colors} />}
-                onClick={() => updatePrefs({ ...prefs, colors: !prefs.colors })}
+                pressed={prefs.reveal}
+                aria-describedby={revealHintId}
+                mark={<ChipMark on={prefs.reveal} />}
+                onClick={() => updatePrefs({ ...prefs, reveal: !prefs.reveal })}
               >
-                {es.imageReveal.colorsSwitch}
+                {es.imageReveal.revealSwitch}
               </Chip>
-              <p className={styles.optionHint} id={colorsHintId}>
-                {es.imageReveal.colorsHint}
+              <p className={styles.optionHint} id={revealHintId}>
+                {es.imageReveal.revealHint}
               </p>
             </div>
-          )}
-        </fieldset>
+            {hasColors && (
+              <div className={styles.option}>
+                <Chip
+                  pressed={prefs.colors}
+                  aria-describedby={colorsHintId}
+                  mark={<ChipMark on={prefs.colors} />}
+                  onClick={() => updatePrefs({ ...prefs, colors: !prefs.colors })}
+                >
+                  {es.imageReveal.colorsSwitch}
+                </Chip>
+                <p className={styles.optionHint} id={colorsHintId}>
+                  {es.imageReveal.colorsHint}
+                </p>
+              </div>
+            )}
+          </fieldset>
+        </SheetSection>
       )}
 
       <VisuallyHidden role="status">

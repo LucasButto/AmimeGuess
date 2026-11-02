@@ -4,6 +4,8 @@ import { useCallback, useEffect, useId, useMemo, useState, type CSSProperties } 
 import { GameShell } from '@/components/game-shell/GameShell';
 import type { GameSession, GameShellProps, FinishReport } from '@/components/game-shell/types';
 import { useSurrender } from '@/components/game-shell/useSurrender';
+import { AttemptsStatus } from '@/components/game-shell/AttemptsStatus';
+import { DockAction, useDockTarget } from '@/components/game-shell/GameDock';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { ContentImage } from '@/components/ContentImage';
 import { Button } from '@/components/ui/Button';
@@ -111,6 +113,21 @@ export function StatBuilderBoard({ session, config, pool, target, limit, maximum
     return () => cancelAnimationFrame(frame);
   }, [resultPhase, resultValues, attempts, pool, target, limit, session, build, onFinish, report]);
 
+  // En el teléfono (diseño de app) la acción de la ruleta va en la barra inferior y la tarjeta solo muestra al Pokémon.
+  const phone = useDockTarget() !== null;
+  const spinDisabled = complete ? resultPhase !== 'idle' || lost : (stopped && !awaitingAdvance) || over;
+  const spinPrompt = complete ? resultPhase === 'idle' ? es.statBuilder.viewResult : resultPhase === 'running' ? es.statBuilder.countingResult : es.statBuilder.finished : over ? es.statBuilder.finished : awaitingAdvance ? es.statBuilder.nextPokemon : stopped ? es.statBuilder.choose : es.statBuilder.stop;
+  const dockPrompt = complete ? spinPrompt : awaitingAdvance ? es.statBuilder.dockNextPokemon : stopped ? es.statBuilder.choose : es.statBuilder.dockStop;
+  function spin() {
+    if (complete) { setAwaitingAdvance(false); setResultElapsed(0); setResultPhase('running'); }
+    else if (awaitingAdvance) { setAwaitingAdvance(false); setStopped(false); }
+    else setStopped(true);
+  }
+  function retry() {
+    setBuild([]); setStopped(false); setAwaitingAdvance(false); setResultPhase('idle'); setResultElapsed(0);
+    writeState(getLocalStorage(), session, { attempts, draft: [], result: 'playing' });
+  }
+
   function assign(key: string) {
     if (!stopped || over || awaitingAdvance || complete || build.some((value) => value.key === key)) return;
     const next = [...build, { key, entityId: current.id }];
@@ -121,19 +138,25 @@ export function StatBuilderBoard({ session, config, pool, target, limit, maximum
   }
 
   return <div className={styles.root} data-game-ready="true" data-over={over}>
-    <div className={styles.summary}><p>{es.statBuilder.progress(attempts.length + (complete ? 0 : 1), limit)}</p>{!over && !complete && <SurrenderButton onConfirm={() => surrender(attempts, report(attempts, false, true), build)} />}</div>
+    <div className={styles.summary}><AttemptsStatus><p>{es.statBuilder.progress(attempts.length + (complete ? 0 : 1), limit)}</p></AttemptsStatus>{!over && !complete && <SurrenderButton onConfirm={() => surrender(attempts, report(attempts, false, true), build)} />}</div>
     <div className={styles.board}>
       {complete && resultPhase === 'done' ? <div className={styles.spinner}>
         <span className={styles.resultTotal}>{es.statBuilder.fraction(result.total, target)}</span>
         <p className={styles.resultMessage} role="status">{won ? es.statBuilder.won : <><span>{es.statBuilder.retry}</span><span>{es.statBuilder.remaining(Math.max(0, limit - attempts.length))}</span></>}</p>
-        {!over && <Button onClick={() => { setBuild([]); setStopped(false); setAwaitingAdvance(false); setResultPhase('idle'); setResultElapsed(0); writeState(getLocalStorage(), session, { attempts, draft: [], result: 'playing' }); }}>{es.statBuilder.next}</Button>}
+        {!over && !phone && <Button onClick={retry}>{es.statBuilder.next}</Button>}
       </div> :
-      <button type="button" className={styles.spinner} onClick={() => { if (complete) { setAwaitingAdvance(false); setResultElapsed(0); setResultPhase('running'); } else if (awaitingAdvance) { setAwaitingAdvance(false); setStopped(false); } else setStopped(true); }} disabled={complete ? resultPhase !== 'idle' || lost : (stopped && !awaitingAdvance) || over} aria-label={complete ? es.statBuilder.viewResult : awaitingAdvance ? es.statBuilder.nextPokemon : es.statBuilder.stop}>
-        {!showResult && (shown?.image ? <ContentImage key={shown.id} className={styles.image} stem={shown.image} alt="" sizes={ROULETTE_IMAGE_SIZE} priority /> : <span className={styles.image} aria-hidden="true" />)}
-        {!showResult && <strong className={styles.name}>{stopped || complete ? shown?.name.es : "\u00a0"}</strong>}
-        {showResult && <span className={styles.resultTotal}>{es.statBuilder.fraction(result.total, target)}</span>}
-        <span className={complete || awaitingAdvance ? styles.continuePrompt : undefined}>{complete ? resultPhase === 'idle' ? es.statBuilder.viewResult : resultPhase === 'running' ? es.statBuilder.countingResult : es.statBuilder.finished : over ? es.statBuilder.finished : awaitingAdvance ? es.statBuilder.nextPokemon : stopped ? es.statBuilder.choose : es.statBuilder.stop}</span>
-      </button>}
+      (() => {
+        const content = <>
+          {!showResult && (shown?.image ? <ContentImage key={shown.id} className={styles.image} stem={shown.image} alt="" sizes={ROULETTE_IMAGE_SIZE} priority /> : <span className={styles.image} aria-hidden="true" />)}
+          {!showResult && <strong className={styles.name}>{stopped || complete ? shown?.name.es : " "}</strong>}
+          {showResult && <span className={styles.resultTotal}>{es.statBuilder.fraction(result.total, target)}</span>}
+          {!phone && <span className={complete || awaitingAdvance ? styles.continuePrompt : undefined}>{spinPrompt}</span>}
+        </>;
+        // En el teléfono la tarjeta no es un botón: el que detiene la ruleta es el de la barra inferior.
+        return phone
+          ? <div className={styles.spinner}>{content}</div>
+          : <button type="button" className={styles.spinner} onClick={spin} disabled={spinDisabled} aria-label={complete ? es.statBuilder.viewResult : awaitingAdvance ? es.statBuilder.nextPokemon : es.statBuilder.stop}>{content}</button>;
+      })()}
       <div className={styles.slots} role="group" aria-label={es.statBuilder.stats}>
         {config.stats.map((stat, index) => {
           const assignment = build.find((value) => value.key === stat.key);
@@ -145,6 +168,9 @@ export function StatBuilderBoard({ session, config, pool, target, limit, maximum
         })}
       </div>
     </div>
+    {!over && (complete && resultPhase === 'done'
+      ? <DockAction label={es.statBuilder.next} onClick={retry} />
+      : <DockAction label={dockPrompt} onClick={spin} disabled={spinDisabled} />)}
     {complete && resultPhase === 'done' && <section className={styles.optimal} aria-label={es.statBuilder.bestTitle}>
       <h2>{es.statBuilder.bestTitle}</h2>
       <p>{es.statBuilder.bestSummary(totalOf(optimal, pool), totalOf(build, pool))}</p>

@@ -66,6 +66,12 @@ $max-height: min(28rem, 60dvh);
   transform-origin: 0 0;
   transform: scale(var(--reveal-scale)) translate(var(--reveal-x), var(--reveal-y));
   filter: grayscale(var(--reveal-gray)) brightness(var(--reveal-brightness)) blur(var(--reveal-blur));
+  // La imagen original es la respuesta: nada de mantenerla presionada para abrirla o guardarla sin el filtro (el menú del
+  // teléfono), ni de seleccionarla o arrastrarla. Que el toque la atraviese no le quita nada al juego: no tiene eventos.
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
 
   // Solo se anima el encuadre (transform); el desenfoque y los colores cambian de una vez (SPEC 9.2: solo
   // transform y opacity se animan).

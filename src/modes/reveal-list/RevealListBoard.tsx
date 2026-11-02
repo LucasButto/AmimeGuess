@@ -191,7 +191,7 @@ export function RevealListBoard({ session, config, candidates, options }: Reveal
             <h2 className={styles.hintsTitle} id={hintsTitleId}>
               {es.revealList.hintsTitle}
             </h2>
-            <InfoTip compact text={es.help.hints} label={es.help.button(es.revealList.hintsTitle)} />
+            <InfoTip compact hideInApp text={es.help.hints} label={es.help.button(es.revealList.hintsTitle)} />
           </div>
           <ul className={styles.hintList}>
             {hintLines.map(({ line, unlocked, remaining, text }) => (
