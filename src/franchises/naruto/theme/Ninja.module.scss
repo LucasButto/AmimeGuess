@@ -275,7 +275,7 @@
     inline-size: 90vmax;
     block-size: 90vmax;
     border-radius: 50%;
-    background: var(--palette-smoke);
+    background: radial-gradient(circle at 36% 32%, var(--palette-paper) 0, var(--palette-smoke) 48%, color-mix(in srgb, var(--palette-smoke) 80%, var(--palette-ink)) 100%);
     animation: clear 0.85s ease-out both;
   }
 
@@ -312,6 +312,28 @@
     inset-inline-start: calc(50% - 45vmax);
     --dx: 0;
     --dy: 0;
+  }
+}
+
+// La salida: el mismo humo, pero llega desde afuera y tapa la pantalla (280 ms) y se queda tapándola hasta que se navega.
+// Recibe los toques mientras dura, así un segundo clic no navega dos veces.
+.exit {
+  pointer-events: auto;
+
+  i {
+    animation: cover 0.28s ease-in both;
+  }
+}
+
+@keyframes cover {
+  from {
+    opacity: 0;
+    transform: translate(var(--dx), var(--dy)) scale(1.3);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
   }
 }
 

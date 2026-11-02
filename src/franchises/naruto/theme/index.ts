@@ -7,7 +7,7 @@ import { BingoBookInput } from './BingoBook';
 import { NarutoBackdrop } from './Backdrop';
 import { ChakraMeter, RamenStreak } from './Extras';
 import { MetalPlate, ScrollFooter } from './Footer';
-import { NinjaBackNav, ShurikenLoader, SmokeIn } from './Ninja';
+import { NinjaBackNav, ShurikenLoader, SmokeIn, SmokeOut } from './Ninja';
 import { NatureMarks } from './Natures';
 import { MissionStamp, SmokeBack } from './Substitution';
 import games from './Games.module.scss';
@@ -18,6 +18,8 @@ export const narutoSkin: FranchiseSkin = {
   className: `${styles.root} ${games.root}`,
   // El kunai sale disparado (o el humo tapa el de teletransporte) en 250 ms antes de navegar (como mucho 300, SPEC 9.2).
   backNavExitMs: 250,
+  // Al cambiar de modo, el humo tapa la pantalla en 280 ms antes de navegar (ver `SmokeOut`).
+  pageExitMs: 280,
   // Sin tildes, cruces ni el símbolo del parcial: el verde, el naranja y el rojo lo dicen solos; solo quedan las flechas.
   cellMarks: 'arrows',
   // El Clásico se revela con la técnica de sustitución: cada celda es una nube de humo con un tronco que sale volando.
@@ -43,6 +45,7 @@ export const narutoSkin: FranchiseSkin = {
     GuessInput: BingoBookInput,
     BackNav: NinjaBackNav,
     PageTransition: SmokeIn,
+    PageExit: SmokeOut,
     Loader: ShurikenLoader,
     ModeCard: NarutoModeCard,
     ModeIcon: NarutoModeIcon,

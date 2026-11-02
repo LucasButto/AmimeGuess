@@ -136,7 +136,9 @@
 
 // --- Salida de un modo -------------------------------------------------------------
 // Lo mismo al revés: las seis barras entran desde los costados y tapan la pantalla (0,4 s, igual que lo que tarda la salida
-// del tema). Con movimiento reducido no se monta.
+// del tema) y se quedan cerradas hasta que se navega: la pantalla nueva empieza con las suyas cerradas y las abre. Antes la
+// barrida seguía de largo y volvía a abrirse a los 0,4 s, así que si la página tardaba se veía abrirse la vieja y después
+// abrirse la nueva. Con movimiento reducido no se monta.
 
 .outro {
   position: fixed;
@@ -155,7 +157,7 @@
   flex: 1;
   background: var(--palette-frame);
   transform: translateX(-101%);
-  animation: bar-in 0.8s cubic-bezier(0.65, 0, 0.35, 1) backwards;
+  animation: bar-in 0.4s cubic-bezier(0.65, 0, 0.35, 1) both;
 
   &[data-side='right'] {
     transform: translateX(101%);
@@ -164,20 +166,20 @@
 }
 
 @keyframes bar-in {
-  50% {
-    transform: translateX(0);
+  from {
+    transform: translateX(-101%);
   }
   to {
-    transform: translateX(101%);
+    transform: translateX(0);
   }
 }
 
 @keyframes bar-in-right {
-  50% {
-    transform: translateX(0);
+  from {
+    transform: translateX(101%);
   }
   to {
-    transform: translateX(-101%);
+    transform: translateX(0);
   }
 }
 
