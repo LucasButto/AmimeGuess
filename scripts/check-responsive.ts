@@ -205,7 +205,7 @@ async function imageFitsWithField(page: Page): Promise<string[]> {
     const field = Array.from(document.querySelectorAll('input[role="combobox"], [data-picker-open]'))
       .map((element) => element.getBoundingClientRect())
       .find((rect) => rect.width > 0 && rect.height > 0);
-    const frame = document.querySelector('[data-game-ready] img')?.parentElement?.getBoundingClientRect();
+    const frame = document.querySelector('[data-game-ready] img, [data-game-ready] video')?.parentElement?.getBoundingClientRect();
     if (!field || !frame) return null;
     return {
       top: Math.min(field.top, frame.top),
@@ -978,6 +978,10 @@ const IMAGE_MODES = [{ slug: 'silueta' }, { slug: 'carta' }] as const;
 
 const ROUTES: RouteCheck[] = [
   { name: 'inicio', path: '/' },
+  // Las pestañas del teléfono (sesión 26): Retos, Estadísticas y Más.
+  { name: 'retos', path: '/retos' },
+  { name: 'estadisticas', path: '/estadisticas' },
+  { name: 'mas', path: '/mas' },
   { name: 'creditos', path: '/creditos' },
   {
     // Con las listas de páginas de origen abiertas: los enlaces de adentro también miden 44 px en teléfono.
@@ -1534,7 +1538,27 @@ async function sitemapCoverage(baseUrl: string): Promise<string[]> {
  * el sitemap ni se vacían las capturas de las demás): para repetir rápido unas pocas rutas. Sin ONLY, todas.
  */
 const ONLY = process.env.ONLY?.split(',').filter((word) => word !== '') ?? [];
-const SELECTED = ONLY.length === 0 ? ROUTES : ROUTES.filter((route) => ONLY.some((word) => route.name.includes(word)));
+// Una franquicia "Próximamente" (`comingSoon` en data/mode.json) está bloqueada: sus rutas dan 404, así que no se revisan como juego;
+// en su lugar se comprueba que respondan 404.
+const COMING_SOON = (JSON.parse(readFileSync(path.join(ROOT, 'data', 'mode.json'), 'utf8')) as Array<{ slug: string; comingSoon?: boolean }>)
+  .filter((section) => section.comingSoon === true)
+  .map((section) => section.slug);
+// Un modo o una franquicia apagados (`status: false`) tampoco existen: sus rutas dan 404 y no se revisan como juego.
+const SECTIONS = JSON.parse(readFileSync(path.join(ROOT, 'data', 'mode.json'), 'utf8')) as Array<{ slug: string; status: boolean; modes: Array<{ slug: string; status: boolean }> }>;
+const OFF_PREFIXES = [
+  ...COMING_SOON.map((slug) => `/${slug}`),
+  ...SECTIONS.filter((section) => !section.status).map((section) => `/${section.slug}`),
+  ...SECTIONS.flatMap((section) => section.modes.filter((mode) => !mode.status).map((mode) => `/${section.slug}/${mode.slug}`)),
+];
+const isOff = (route: RouteCheck) => OFF_PREFIXES.some((prefix) => route.path === prefix || route.path.startsWith(`${prefix}/`) || route.path.startsWith(`${prefix}?`));
+const ACTIVE_ROUTES = [
+  ...ROUTES.filter((route) => route.expectNotFound === true || !isOff(route)),
+  ...COMING_SOON.flatMap((slug): RouteCheck[] => [
+    { name: `${slug}-bloqueado`, path: `/${slug}`, expectNotFound: true },
+    { name: `${slug}-bloqueado-modo`, path: `/${slug}/duelista`, expectNotFound: true },
+  ]),
+];
+const SELECTED = ONLY.length === 0 ? ACTIVE_ROUTES : ACTIVE_ROUTES.filter((route) => ONLY.some((word) => route.name.includes(word)));
 
 async function main(): Promise<void> {
   if (ONLY.length === 0) await rm(OUT_DIR, { recursive: true, force: true });
