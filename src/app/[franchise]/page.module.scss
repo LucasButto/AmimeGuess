@@ -48,7 +48,7 @@
 
 // --- Diseño de app (teléfono): la barra de arriba, como la de la pantalla de juego -------------------------------------
 .page[data-shell='app'] {
-  --app-bar-h: calc(3.5rem + env(safe-area-inset-top));
+  --app-bar-h: calc(4rem + env(safe-area-inset-top));
   padding-block-start: calc(var(--app-bar-h) + #{t.$space-4});
   // Un adorno animado que cruza la pantalla (el dragón de Dragon Ball) no ensancha la página en el teléfono.
   overflow-x: clip;

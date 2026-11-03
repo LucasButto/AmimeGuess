@@ -25,7 +25,7 @@
 // Teléfono: la barra de arriba es fija, con ← a la pestaña Más y el título, y la página le deja su lugar. Desde `lg` vuelve el
 // encabezado de siempre.
 .page[data-shell='app'] {
-  --app-bar-h: calc(3.5rem + env(safe-area-inset-top));
+  --app-bar-h: calc(4rem + env(safe-area-inset-top));
   padding-block-start: calc(var(--app-bar-h) + #{t.$space-4});
 
   @include bp.min-width('lg') {

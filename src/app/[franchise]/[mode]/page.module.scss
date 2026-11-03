@@ -65,7 +65,7 @@
   // La barra de arriba mide lo que el marco y sus botones de 44 px (3,5 rem) y no se achica. La de abajo mide 5 rem, pero
   // nunca más que el 17 % de la altura (con un piso de 4,25 rem: el botón, su aire y el borde): en un teléfono apaisado
   // (390 de alto) o con letra muy grande no se come la pantalla.
-  --app-bar-h: calc(3.5rem + env(safe-area-inset-top));
+  --app-bar-h: calc(4rem + env(safe-area-inset-top));
   --app-dock-h: calc(max(4.25rem, min(5rem, 17dvh)) + env(safe-area-inset-bottom));
   padding-block-start: calc(var(--app-bar-h) + #{t.$space-4});
   padding-block-end: calc(var(--app-dock-h) + #{t.$space-4});
@@ -138,6 +138,8 @@
     // El tamaño display evita aplicar la escala que el tema reserva al texto corrido.
     font-size: t.$font-display-sm;
     line-height: t.$line-height-base;
+    // Un poco de aire arriba: con la fuente pixel el título quedaba pegado al borde de la barra.
+    padding-block-start: 0.25rem;
     color: t.token('app-bar-ink');
     text-shadow: none;
     white-space: nowrap;
