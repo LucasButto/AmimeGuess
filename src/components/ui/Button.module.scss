@@ -100,9 +100,15 @@
   }
 }
 
-// Punto antes del texto del botón principal: se enciende con el foco.
+// Punto antes del texto del botón principal: se enciende con el foco. En el teléfono no hay foco ni hover que lo enciendan, y el
+// hueco descentraba el texto: solo desde `lg`.
 .lead {
-  display: t.token('button-lead-display');
+  display: none;
+
+  @include bp.min-width('lg') {
+    display: t.token('button-lead-display');
+  }
+
   flex: none;
   inline-size: t.px(3);
   block-size: t.px(3);
@@ -121,18 +127,25 @@
 }
 
 // Cursor ▶ del botón fantasma: ocupa su lugar siempre (para que el texto no se mueva) y aparece con el
-// foco o el hover.
-.cursor {
-  display: t.token('button-cursor-display');
+// foco o el hover. En el teléfono no existe (sin hover el hueco solo descentraba el texto): solo desde `lg`.
+// `.button .cursor` y no solo `.cursor`: el dibujo trae su propia clase con `display: block` y le ganaba.
+.button .cursor {
+  display: none;
   opacity: 0;
+}
 
-  .button:focus-visible & {
-    opacity: 1;
+@include bp.min-width('lg') {
+  .button .cursor {
+    display: t.token('button-cursor-display');
   }
+}
 
-  @include bp.hover-capable {
-    .button:hover & {
-      opacity: 1;
-    }
+.button:focus-visible .cursor {
+  opacity: 1;
+}
+
+@include bp.hover-capable {
+  .button:hover .cursor {
+    opacity: 1;
   }
 }
