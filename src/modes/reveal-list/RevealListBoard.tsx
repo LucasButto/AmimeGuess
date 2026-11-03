@@ -212,7 +212,7 @@ export function RevealListBoard({ session, config, candidates, options }: Reveal
       )}
 
       <div className={styles.counter}>
-        <p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p>
+        <p data-attempts-counter="">{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p>
         {!over && (
           <SurrenderButton
             onConfirm={() => surrender(attemptIds, reportOf(attemptIds, answer.entity, true))}

@@ -5,15 +5,18 @@ import { es } from '@/i18n/es';
 import type { AttemptsMeterProps } from '../../types';
 import styles from './Extras.module.scss';
 
+/** La semilla del ermitaño de la hoja de íconos de Dragon Ball. */
+const SEED = '/icons/dragon-ball/semilla-del-ermitano.webp';
+
 /** Cuántos intentos cargan del todo la barra de ki. */
 const KI_STEPS = 10;
 
 /**
- * Las semillas del ermitaño de los intentos de la línea de tiempo: tantas como intentos hay, todas enteras al empezar. Cada
+ * Las semillas del ermitaño de los intentos: tantas como intentos hay, todas enteras al empezar. Cada
  * intento fallido consume una (de derecha a izquierda): la semilla se agita y se achica hasta desaparecer, y deja su
  * silueta gris, el lugar de la vida que se perdió. Las que ya estaban consumidas al llegar (una partida a medias) no se
- * animan: están directamente como silueta. Solo presentación: el texto "Intento N de M" sigue ahí para los lectores de
- * pantalla.
+ * animan: están directamente como silueta. Solo presentación: el contador escrito ("Intentos: N/M") se esconde en esta
+ * piel (ver `[data-attempts-counter]` en theme.module.scss) pero sigue ahí para los lectores de pantalla.
  */
 function SenzuBeans({ failed, total }: { failed: number; total: number }) {
   // Los fallos que ya había al montarse (o al volver a empezar, si bajan): esas semillas no se animan.
@@ -27,15 +30,16 @@ function SenzuBeans({ failed, total }: { failed: number; total: number }) {
         return (
           <span key={index} className={styles.bean} data-spent={spent}>
             {/* La silueta de abajo: la que queda cuando la semilla se consume. */}
-            <img className={styles.ghost} src="/theme/dragon-ball/semilla.webp" alt="" width={160} height={157} />
+            <img className={styles.ghost} src={SEED} alt="" width={145} height={145} draggable={false} />
             <img
               className={styles.seed}
               data-spent={spent}
               data-fresh={spent && index < total - before}
-              src="/theme/dragon-ball/semilla.webp"
+              src={SEED}
               alt=""
-              width={160}
-              height={157}
+              width={145}
+              height={145}
+              draggable={false}
             />
           </span>
         );

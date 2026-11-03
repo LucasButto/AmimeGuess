@@ -26,6 +26,7 @@
 }
 
 .franchise {
+  display: t.token('kicker-display');
   font-size: t.$font-size-sm;
   font-weight: t.$font-weight-medium;
   color: t.token('kicker-ink');
@@ -129,8 +130,8 @@
   @include m.app-shell-desktop { gap: t.$space-1; }
 }
 .franchise {
-  @include m.app-shell { order: 1; color: t.token('app-bar-ink'); text-shadow: none; font-size: t.$font-size-sm; line-height: t.$line-height-tight; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  @include m.app-shell-desktop { order: 0; color: t.token('kicker-ink'); text-shadow: t.token('kicker-shadow'); font-size: t.$font-size-sm; line-height: t.$line-height-base; white-space: normal; overflow: visible; }
+  @include m.app-shell { display: block; order: 1; color: t.token('app-bar-ink'); text-shadow: none; font-size: t.$font-size-sm; line-height: t.$line-height-tight; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  @include m.app-shell-desktop { display: t.token('kicker-display'); order: 0; color: t.token('kicker-ink'); text-shadow: t.token('kicker-shadow'); font-size: t.$font-size-sm; line-height: t.$line-height-base; white-space: normal; overflow: visible; }
 }
 .title {
   @include m.app-shell {

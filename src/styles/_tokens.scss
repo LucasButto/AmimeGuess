@@ -249,6 +249,8 @@ $semantic: (
   'header-site-display': none,
   'kicker-ink': var(--color-text-muted),
   'kicker-shadow': none,
+  // `none` esconde esa línea (en escritorio; en el teléfono es el subtítulo de la barra de arriba).
+  'kicker-display': block,
   // Placa de página: el fondo que una piel pone debajo del texto suelto de una página (la introducción,
   // el área de juego), para que nunca quede directo sobre su ilustración. Invisible por defecto.
   'plate-fill': transparent,

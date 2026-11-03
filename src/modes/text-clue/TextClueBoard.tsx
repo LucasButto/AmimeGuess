@@ -204,7 +204,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
       )}
 
       <div className={styles.counter}>
-        <AttemptsStatus><p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
+        <AttemptsStatus><p data-attempts-counter="">{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
         {!over && (
           <SurrenderButton
             onConfirm={() => surrender(attemptIds, reportOf(attemptIds, answer.entity, true))}

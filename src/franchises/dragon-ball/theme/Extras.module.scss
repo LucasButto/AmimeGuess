@@ -64,8 +64,8 @@
   font-size: t.$font-size-xl;
   line-height: 1;
   color: var(--palette-ink);
-  // En el teléfono la línea de estado ya dice "Intentos: 0/8": la palabra de las semillas sobra.
-  @include m.app-shell { display: none; }
+  // En el teléfono, más chica (la línea de estado ya no repite "Intentos: 0/8": quedan la palabra y las semillas).
+  @include m.app-shell { display: inline; margin-inline-end: 0.125rem; font-size: t.$font-display-sm; }
   @include m.app-shell-desktop { display: inline; font-size: t.$font-size-xl; }
 }
 

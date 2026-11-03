@@ -237,6 +237,8 @@
   --header-site-display: block;
   --kicker-ink: var(--palette-cream);
   --kicker-shadow: #{ink-outline(0.0625em, var(--palette-ink))};
+  // Sin el "Dragon Ball" chico sobre el título de un modo (escritorio): ya está en el botón de volver.
+  --kicker-display: none;
 
   // Placa de papel con marco de tinta debajo del texto suelto de las páginas: con margen mínimo en el teléfono,
   // para no quitarle ancho a la tabla del Clásico.
@@ -275,6 +277,18 @@
   // El título de la página, con las letras del logo (ver `_logo-words.scss`). `[class]` sube la especificidad: el título de la página de la franquicia (`.title` bajo `[data-shell]`) fija su propia sombra de texto.
   main header > h1[class] {
     @include l.logo-words;
+  }
+
+  // El contador escrito de los intentos ("Intentos: 0/8") se esconde: lo dicen las semillas del ermitaño (ver Extras.tsx). Sigue
+  // en el árbol para los lectores de pantalla.
+  [data-attempts-counter] {
+    position: absolute;
+    inline-size: 0.0625rem;
+    block-size: 0.0625rem;
+    margin: -0.0625rem;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
   }
 
   // El aro de tinta del botón ⓘ (el círculo es de 1,25 rem y el aro suma 0,125 rem alrededor). Todos los botones de ayuda

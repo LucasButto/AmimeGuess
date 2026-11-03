@@ -294,7 +294,7 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
 
       <div className={styles.counter}>
         <div className={styles.counterInfo}>
-          <AttemptsStatus><p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
+          <AttemptsStatus><p data-attempts-counter="">{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
           <AttemptsStatus><AttemptsMeter failed={failed} won={won} total={maxAttempts} /></AttemptsStatus>
         </div>
         {!over && (

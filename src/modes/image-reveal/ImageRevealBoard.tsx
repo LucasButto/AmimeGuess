@@ -211,7 +211,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
       )}
 
       <div className={styles.counter}>
-        <AttemptsStatus><p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
+        <AttemptsStatus><p data-attempts-counter="">{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
         {!over && (
           <SurrenderButton
             onConfirm={() => surrender(attemptIds, reportOf(attemptIds, answer, accepted, false, true, detail))}
