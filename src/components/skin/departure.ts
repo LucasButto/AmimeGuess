@@ -5,7 +5,7 @@ export interface Departure {
 
 /**
  * Cuánto se espera la pantalla nueva después de navegar. Mientras tanto la salida sigue tapando (barras cerradas, humo, el
- * resplandor de Shenlong): retirarla antes mostraba de nuevo la pantalla vieja si la ruta demoraba (el teléfono con mala señal, o
+ * resplandor y la nave): retirarla antes mostraba de nuevo la pantalla vieja si la ruta demoraba (el teléfono con mala señal, o
  * el servidor de desarrollo compilando). Si la ruta nunca llega, a los 4 s se retira igual: no queda una cortina para siempre.
  */
 export const SLOW_ROUTE_MS = 4000;

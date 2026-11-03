@@ -1,26 +1,26 @@
 @use 'breakpoints' as bp;
 @use 'tokens' as t;
 
-// Shenlong cruzando la pantalla de izquierda a derecha, con un resplandor dorado que la tapa en el medio. La transición dura
-// 1,8 s: la salida (900 ms, hasta el medio, donde se navega) y la entrada (900 ms, del medio hasta que se va la cola). El
-// estado del medio es el mismo al final de la salida y al principio de la entrada: el resplandor tapa todo y el dragón está
-// en el mismo lugar, con la misma fase de la onda.
-//
-// El dragón es la imagen `public/theme/dragon-ball/shenlong.webp` (espejada: la cabeza a la derecha, adelante) cortada en
-// tajadas verticales. Cada tajada sube y baja (`translate`) y se inclina (`skewY`) con un retraso creciente hacia la cola:
-// la onda viaja por el cuerpo y no se ve ningún corte. Solo se animan `transform`, `translate` y `opacity`.
-//
-// Su largo (`--w`) sale de la ventana: al menos 2,8 anchos (en un teléfono vertical, 3 alturas), así tapa bien tanto un
-// monitor apaisado como un teléfono vertical. Más largo es más alto (la imagen mantiene su proporción).
-$slices: 48;
-$wave: 1.5s;        // lo que dura una vuelta de la onda
-$waves: 6;          // cuántas vueltas dura la onda (9 s): cubre una navegación lenta sin que el dragón se "aplane" a mitad de camino
-$step: 0.0625s;     // cuánto se atrasa la onda de una tajada a la siguiente (la imagen entera lleva dos ondas)
-$half: 0.9s;        // lo que dura la salida, y también la entrada
-$skew: 11.8deg;     // la inclinación máxima de una tajada: la pendiente de la onda (amplitud × velocidad / ancho de tajada)
+// La nave Saiyajin cruzando la pantalla de izquierda a derecha, fija (sin girar), con el cristal y la estela de energía de la imagen
+// (`nave-saiyajin-vuelo.webp`, ya trae su estela) y un resplandor dorado que tapa la pantalla en el medio. La transición dura 1,8 s: la salida (900 ms,
+// hasta el medio, donde se navega) y la entrada (900 ms, del medio hasta que se va por la derecha). El estado del medio es el
+// mismo al final de la salida y al principio de la entrada: el resplandor tapa todo y la nave está en el mismo lugar. Solo se
+// animan `transform` y `opacity`.
+$half: 0.9s;
 
 .root {
-  --w: max(calc(100vw * 2.8), calc(100dvh * 3));
+  // El diámetro de la nave: grande, para que se note en un monitor y en un teléfono vertical. La imagen entera (con la estela)
+  // mide lo que sale de la proporción de la imagen: la nave es `--dr` de su ancho y su centro está a `--cx` (de izquierda a derecha)
+  // y a `--cy` (de arriba abajo) de la imagen.
+  --s: clamp(8rem, 32vmin, 26rem);
+  --dr: 0.283;
+  --cx: 0.8146;
+  --cy: 0.5298;
+  --ar: 2.0168;
+  --w: calc(var(--s) / var(--dr));
+  // Cuánto se aleja el centro de la nave del medio para que la imagen quede fuera de la ventana (la estela va a la izquierda).
+  // La misma distancia de cada lado: la nave va a la misma velocidad antes y después del medio.
+  --reach: calc(50vw + var(--w) * var(--cx));
 
   position: fixed;
   inset: 0;
@@ -50,9 +50,8 @@ $skew: 11.8deg;     // la inclinación máxima de una tajada: la pendiente de la
   );
 }
 
-// El eje del vuelo: un punto en el medio de la ventana. El dragón se mueve hacia la derecha (`translateX`); sale con el
-// hocico fuera de la pantalla por la izquierda y termina con la cola fuera por la derecha. Es un efecto de pantalla, no de
-// texto: usa `left` y `top` a propósito (no se espeja).
+// El eje del vuelo: un punto en el medio de la ventana. La nave se mueve hacia la derecha (`translateX`). Es un
+// efecto de pantalla, no de texto: usa `left` y `top` a propósito (no se espeja).
 .axis {
   position: absolute;
   left: 50%;
@@ -69,40 +68,32 @@ $skew: 11.8deg;     // la inclinación máxima de una tajada: la pendiente de la
   block-size: 0;
 }
 
-// La imagen mide `--w` de largo y su alto sale de su proporción. El borde derecho (el hocico) queda en el punto del vuelo:
-// la cola va detrás. Sin filtros (un `drop-shadow` sobre una capa así de grande se rehace en cada cuadro).
-.dragon {
-  --n: #{$slices};
-  --amp: calc(var(--w) * 0.0167);
-
+// La caja de la imagen, con el centro de la nave en el punto del vuelo. La imagen ya mira a la derecha (el cristal adelante, la
+// estela atrás).
+.ship {
   position: absolute;
-  left: calc(var(--w) * -1);
-  top: calc(var(--w) * -0.124);
+  left: calc(var(--w) * var(--cx) * -1);
+  top: calc(var(--w) / var(--ar) * var(--cy) * -1);
   inline-size: var(--w);
-  aspect-ratio: 1600 / 397;
+  aspect-ratio: var(--ar);
 }
 
-// Cada tajada muestra su parte de la imagen (el fondo se corre lo que vale su lugar) y se solapa un poco con la siguiente
-// para que no queden rendijas.
-.slice {
-  position: absolute;
-  top: 0;
+.pod {
+  display: block;
+  inline-size: 100%;
   block-size: 100%;
-  left: calc(var(--i) * var(--w) / var(--n));
-  inline-size: calc(var(--w) / var(--n) + 0.1875rem);
-  background: url('/theme/dragon-ball/shenlong.webp') no-repeat;
-  background-size: var(--w) 100%;
-  background-position: calc(var(--i) * var(--w) / var(--n) * -1) 0;
+  object-fit: contain;
+  user-select: none;
 }
 
-// --- Salida: de afuera por la izquierda hasta el medio (la cabeza ya pasó el borde derecho) -----------------------------------
+// --- Salida: de afuera por la izquierda hasta el medio --------------------------------------------------------------------------
 .root[data-phase='out'] {
   .glow {
     opacity: 0;
   }
 
   .run {
-    transform: translateX(calc(100vw * -0.55));
+    transform: translateX(calc(var(--reach) * -1));
   }
 
   @include bp.motion-ok {
@@ -113,25 +104,11 @@ $skew: 11.8deg;     // la inclinación máxima de una tajada: la pendiente de la
     .run {
       animation: fly-out $half linear forwards;
     }
-
-    .slice {
-      animation:
-        wave-lift $wave ease-in-out $waves,
-        wave-bend $wave ease-in-out $waves;
-      animation-delay:
-        calc(var(--k) * -#{$step}),
-        calc(var(--k) * -#{$step});
-    }
   }
 }
 
-// --- Entrada: del medio hasta que se va la cola por la derecha ---------------------------------------------------------------
-// La onda sigue donde la dejó la salida: el retraso suma lo que ya duró.
+// --- Entrada: del medio hasta que se va por la derecha --------------------------------------------------------------------------
 .root[data-phase='in'] {
-  .run {
-    transform: translateX(calc(var(--w) * 0.5));
-  }
-
   @include bp.motion-ok {
     .glow {
       animation: glow-out $half linear forwards;
@@ -139,15 +116,6 @@ $skew: 11.8deg;     // la inclinación máxima de una tajada: la pendiente de la
 
     .run {
       animation: fly-in $half linear forwards;
-    }
-
-    .slice {
-      animation:
-        wave-lift $wave ease-in-out $waves,
-        wave-bend $wave ease-in-out $waves;
-      animation-delay:
-        calc(var(--k) * -#{$step} - #{$half}),
-        calc(var(--k) * -#{$step} - #{$half});
     }
   }
 }
@@ -176,42 +144,14 @@ $skew: 11.8deg;     // la inclinación máxima de una tajada: la pendiente de la
   }
 }
 
-// El medio del vuelo: el centro de la imagen (la mitad de su largo) en el centro de la ventana.
 @keyframes fly-out {
   to {
-    transform: translateX(calc(var(--w) * 0.5));
+    transform: translateX(0);
   }
 }
 
 @keyframes fly-in {
   to {
-    transform: translateX(calc(100vw * 0.55 + var(--w)));
-  }
-}
-
-@keyframes wave-lift {
-  0%,
-  100% {
-    translate: 0 calc(var(--amp) * -1);
-  }
-
-  50% {
-    translate: 0 var(--amp);
-  }
-}
-
-@keyframes wave-bend {
-  0%,
-  50%,
-  100% {
-    transform: skewY(0deg);
-  }
-
-  25% {
-    transform: skewY(-#{$skew});
-  }
-
-  75% {
-    transform: skewY(#{$skew});
+    transform: translateX(var(--reach));
   }
 }

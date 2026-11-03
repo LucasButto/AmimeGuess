@@ -13,7 +13,7 @@ import { DragonModeCard, DragonModeIcon, DragonTitleMark } from './ModeCard';
 import { DragonReward } from './Reward';
 import { Onomatopoeia, ScouterBack } from './Scan';
 import { ScouterInput } from './ScouterInput';
-import { ShenlongIn, ShenlongOut } from './Shenlong';
+import { NaveIn, NaveOut } from './Nave';
 import { GoldenAura, ScouterIcon } from './Win';
 import games from './Games.module.scss';
 import styles from './theme.module.scss';
@@ -22,9 +22,13 @@ export const dragonBallSkin: FranchiseSkin = {
   className: `${styles.root} ${games.root}`,
   // La nube se disipa en 250 ms antes de navegar (como máximo 300, SPEC 9.2).
   backNavExitMs: 250,
-  // Al cambiar de modo, el resplandor dorado tapa la pantalla mientras Shenlong cruza de izquierda a derecha hasta el medio
+  // Al cambiar de modo, el resplandor dorado tapa la pantalla mientras la nave Saiyajin cruza de izquierda a derecha hasta el medio
   // (900 ms) y recién ahí se navega; la pantalla nueva sigue el vuelo otros 900 ms (1,8 s en total).
   pageExitMs: 900,
+  // Las semillas del ermitaño (los intentos) también en el modo de frase y en los de lista, no solo en el Clásico y la línea de
+  // tiempo. No en Nivel de poder (se juega hasta el primer fallo: solo cuentan los aciertos) ni en los de imagen (Silueta, Borroso,
+  // Técnica, Transformación), donde "Pista N de M" ya dice cuánto se reveló.
+  additionalAttemptsMeters: ['text-clue', 'reveal-list'],
   // Sin tildes, cruces ni el símbolo del parcial: el verde, el amarillo y el rojo lo dicen solos; solo quedan las flechas de
   // mayor y menor.
   cellMarks: 'arrows',
@@ -53,8 +57,8 @@ export const dragonBallSkin: FranchiseSkin = {
     Backdrop: DragonBallBackdrop,
     GuessInput: ScouterInput,
     BackNav: DragonBackNav,
-    PageTransition: ShenlongIn,
-    PageExit: ShenlongOut,
+    PageTransition: NaveIn,
+    PageExit: NaveOut,
     Loader: DragonLoader,
     ModeCard: DragonModeCard,
     ModeIcon: DragonModeIcon,
