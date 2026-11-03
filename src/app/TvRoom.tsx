@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type MouseEvent, type PointerEvent } from 'react';
 import { TitleWords } from '@/components/TitleWords';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
-import { useIsPhone } from '@/components/useIsPhone';
 import { setPrefs, usePrefs } from '@/components/usePrefs';
 import { useSiteProgress, useSiteStats } from '@/components/useSiteProgress';
 import { playRecipe } from '@/components/ui/sound';
@@ -75,15 +74,39 @@ type SwipeHandlers = ReturnType<typeof useSwipe>;
 interface ScreenProps {
   channel: Channel;
   number: number;
-  /** Un aviso breve en la pantalla (por ejemplo, "SONIDO SÍ"), como los de un televisor. */
-  note: string;
+  /** Los sonidos están apagados: el ícono de parlante, junto al número de canal, va tachado; si no, con ondas. */
+  muted: boolean;
   progress: Progress;
   swipe: SwipeHandlers;
   onNavigate: (event: { preventDefault: () => void }, slug: string) => void;
 }
 
 /** La pantalla: la apertura del canal. Es un enlace a la franquicia; un canal "Próximamente" es solo estática. */
-function TvScreen({ channel, number, note, progress, swipe, onNavigate }: ScreenProps) {
+/** El parlante de los televisores: tachado con los sonidos apagados y con ondas con los sonidos prendidos. */
+function SpeakerIcon({ muted }: { muted: boolean }) {
+  return (
+    <svg className={styles.speakerIcon} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M3 9h4l5-4v14l-5-4H3z" fill="currentColor" />
+      {muted ? (
+        <path d="M15 9l6 6M21 9l-6 6" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" />
+      ) : (
+        <path d="M15.5 9.5a3.5 3.5 0 010 5M18.5 6.5a7.5 7.5 0 010 11" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="square" />
+      )}
+    </svg>
+  );
+}
+
+/** El número de canal en la esquina, con el parlante a su izquierda. */
+function Osd({ number, muted }: { number: number; muted: boolean }) {
+  return (
+    <span className={styles.osdRow}>
+      <SpeakerIcon muted={muted} />
+      <span className={styles.osd}>{es.home.channelNumber(number)}</span>
+    </span>
+  );
+}
+
+function TvScreen({ channel, number, muted, progress, swipe, onNavigate }: ScreenProps) {
   const { solved, count, done, label } = channelProgress(channel, progress);
   if (channel.comingSoon) {
     return (
@@ -92,8 +115,7 @@ function TvScreen({ channel, number, note, progress, swipe, onNavigate }: Screen
           <span className={styles.soonStatic} />
           <span className={styles.soonName}>{channel.name}</span>
           <span className={styles.soonLabel}>{es.home.comingSoon}</span>
-          {note !== '' && <span className={styles.osdNote}>{note}</span>}
-          <span className={styles.osd}>{es.home.channelNumber(number)}</span>
+          <Osd number={number} muted={muted} />
         </span>
       </div>
     );
@@ -110,8 +132,7 @@ function TvScreen({ channel, number, note, progress, swipe, onNavigate }: Screen
           {solved === null ? es.home.loading : es.home.progress(count, channel.modes.length)}
         </span>
         {done && <span className={styles.seal}>{es.home.complete}</span>}
-        {note !== '' && <span className={styles.osdNote}>{note}</span>}
-        <span className={styles.osd}>{es.home.channelNumber(number)}</span>
+        <Osd number={number} muted={muted} />
       </span>
     </Link>
   );
@@ -146,10 +167,14 @@ function RemoteButton({ channel, active, progress, onTune, onNavigate }: RemoteB
   );
 }
 
-/** La pieza que gira al tocar la perilla grande: un sexto de vuelta por canal. */
+/** La perilla grande gira un sexto de vuelta por canal que se cambia (con ella, las flechas, el dedo o el teclado). */
 const KNOB_TURN_DEG = 60;
 
 /** Un pitido corto al prender los sonidos, para que se note que quedaron prendidos. */
+/** La perilla chica: arriba con los sonidos apagados y a la derecha con los sonidos prendidos. */
+const VOLUME_OFF_DEG = 0;
+const VOLUME_ON_DEG = 90;
+
 const BLIP: SoundRecipe = { wave: 'square', gain: 0.05, notes: [{ frequency: 660, duration: 60 }, { frequency: 880, duration: 90 }] };
 
 /**
@@ -160,7 +185,6 @@ const BLIP: SoundRecipe = { wave: 'square', gain: 0.05, notes: [{ frequency: 660
  */
 export function TvRoom({ channels }: { channels: readonly Channel[] }) {
   const router = useRouter();
-  const phone = useIsPhone();
   const prefs = usePrefs();
   const playable = channels.filter((channel) => !channel.comingSoon);
   const progress = useSiteProgress(playable.map(({ slug, modes }) => ({ slug, modes })));
@@ -170,7 +194,6 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
   const [announcement, setAnnouncement] = useState('');
   const [noisy, setNoisy] = useState(false);
   const [noiseKey, setNoiseKey] = useState(0);
-  const [note, setNote] = useState('');
   const [turns, setTurns] = useState(0);
   // El canal que se ve y el que se pidió por último; la estática corre de a un corte por vez (640 ms, a lo sumo 1,6 por segundo).
   const shown = useRef(0);
@@ -178,13 +201,11 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
   const busy = useRef(false);
   const swapTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const noiseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const noteTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => {
     if (timer.current !== null) clearTimeout(timer.current);
     if (noiseTimer.current !== null) clearTimeout(noiseTimer.current);
     if (swapTimer.current !== null) clearTimeout(swapTimer.current);
-    if (noteTimer.current !== null) clearTimeout(noteTimer.current);
     delete document.body.dataset.tvLeaving;
   }, []);
   const current = channels[index];
@@ -214,6 +235,10 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
   function tune(next: number) {
     const target = (next + channels.length) % channels.length;
     if (target === wanted.current) return;
+    // La perilla acompaña: hacia adelante si el canal pedido es el siguiente, hacia atrás si es el anterior.
+    const forward = target === (wanted.current + 1) % channels.length;
+    const backward = target === (wanted.current - 1 + channels.length) % channels.length;
+    setTurns((count) => count + (forward ? 1 : backward ? -1 : Math.sign(target - wanted.current)));
     wanted.current = target;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       show(target);
@@ -245,7 +270,6 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
   }
 
   function turnKnob() {
-    setTurns((count) => count + 1);
     tune(wanted.current + 1);
   }
 
@@ -254,15 +278,14 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
     setPrefs({ ...prefs, sounds: on });
     if (on) playRecipe(BLIP);
     setAnnouncement(es.home.soundAnnounce(on));
-    setNote(on ? es.home.soundOn : es.home.soundOff);
-    if (noteTimer.current !== null) clearTimeout(noteTimer.current);
-    noteTimer.current = setTimeout(() => setNote(''), 1600);
   }
 
   if (!current) return <p role="status">{es.home.noChannels}</p>;
 
   const next = nextPending(channels, progress, index);
   const solvedTotal = progress === null ? 0 : [...progress.values()].reduce((sum, today) => sum + today.solved.size, 0);
+  const channelKnobStyle = { '--turn': `${turns * KNOB_TURN_DEG}deg` } as CSSProperties;
+  const volumeKnobStyle = { '--turn': `${prefs.sounds ? VOLUME_ON_DEG : VOLUME_OFF_DEG}deg` } as CSSProperties;
   const modeTotal = playable.reduce((sum, channel) => sum + channel.modes.length, 0);
 
   return (
@@ -276,27 +299,18 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
         <span className={styles.antenna} data-side="end" aria-hidden="true" />
         <div className={styles.cabinet}>
           <div className={styles.bezel} data-noisy={noisy}>
-            <TvScreen channel={current} number={index + 1} note={note} progress={progress} swipe={swipe} onNavigate={enter} key={current.slug} />
+            <TvScreen channel={current} number={index + 1} muted={!prefs.sounds} progress={progress} swipe={swipe} onNavigate={enter} key={current.slug} />
             <span className={styles.noise} key={noiseKey} aria-hidden="true" data-tv-noise><span className={styles.noiseLayer} /></span>
           </div>
           <h1 className={styles.badge}><span>{es.home.title}</span></h1>
           <div className={styles.panel}>
             <span className={styles.speaker} aria-hidden="true" />
-            {phone ? (
-              <>
-                <button type="button" className={styles.knobButton} data-knob="channel" aria-label={es.home.knobChannel} onClick={turnKnob}>
-                  <span className={styles.knob} aria-hidden="true" style={{ '--turn': `${turns * KNOB_TURN_DEG}deg` } as CSSProperties} />
-                </button>
-                <button type="button" className={styles.knobButton} data-knob="sound" aria-label={es.home.knobSound} aria-pressed={prefs.sounds} onClick={toggleSound}>
-                  <span className={styles.knob} data-small aria-hidden="true" />
-                </button>
-              </>
-            ) : (
-              <>
-                <span className={styles.knob} aria-hidden="true" />
-                <span className={styles.knob} aria-hidden="true" data-small />
-              </>
-            )}
+            <button type="button" className={styles.knobButton} data-knob="channel" aria-label={es.home.knobChannel} onClick={turnKnob}>
+              <span className={styles.knob} aria-hidden="true" style={channelKnobStyle} />
+            </button>
+            <button type="button" className={styles.knobButton} data-knob="sound" aria-label={es.home.knobSound} aria-pressed={prefs.sounds} onClick={toggleSound}>
+              <span className={styles.knob} data-small aria-hidden="true" style={volumeKnobStyle} />
+            </button>
             <div className={styles.tuner}>
               <button type="button" className={styles.tune} aria-label={es.home.channelDown} onClick={() => tune(wanted.current - 1)}>◀</button>
               <button type="button" className={styles.tune} aria-label={es.home.channelUp} onClick={() => tune(wanted.current + 1)}>▶</button>

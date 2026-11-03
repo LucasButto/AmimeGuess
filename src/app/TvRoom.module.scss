@@ -92,11 +92,14 @@
 .channelName { @include m.heading; position: relative; z-index: 1; color: var(--color-text); font-size: clamp(1.5rem, 7vw, 3.25rem); line-height: 1.1; }
 // Dragon Ball: las letras del logo como en su página (primera palabra amarilla, la otra roja, con contorno negro y sombra).
 .screen[data-franchise='dragon-ball'] .channelName { -webkit-text-stroke: 0; paint-order: normal; font-size: clamp(1.75rem, 8vw, 3.75rem); @include l.logo-words(1.4, 0.9); }
+.speakerIcon { box-sizing: content-box; inline-size: clamp(1.125rem, 4vw, 1.75rem); block-size: clamp(1.125rem, 4vw, 1.75rem); padding: 0.25rem; border-radius: 0.25rem; background: color-mix(in srgb, var(--tv-bezel) 82%, transparent); color: var(--tv-osd); filter: drop-shadow(0 0 0.25rem var(--tv-osd)); }
 .channelCount { position: relative; z-index: 1; padding: t.$space-1 t.$space-3; border: 0.125rem solid var(--color-text); border-radius: 1rem; background: var(--color-surface); color: var(--color-text); font: 700 clamp(0.8125rem, 2.4vw, 1.0625rem) / 1.3 var(--hub-body-font); }
 .onomatopoeia { @include m.heading; position: absolute; inset: 8% auto auto 6%; transform: rotate(-8deg); color: var(--color-accent); font-size: clamp(1rem, 4vw, 1.75rem); text-shadow: 0.125rem 0.125rem 0 var(--color-surface), -0.0625rem -0.0625rem 0 var(--color-text); }
 .seal { position: absolute; z-index: 2; inset: auto 6% 8% auto; padding: t.$space-1 t.$space-3; border: 0.1875rem solid var(--hub-focus); border-radius: 0.25rem; background: var(--hub-night); color: var(--hub-focus); font: 700 0.875rem / 1.2 var(--hub-body-font); transform: rotate(-8deg); }
 // El número de canal en la esquina, como en los televisores viejos.
-.osd { position: absolute; z-index: 2; inset: 6% 7% auto auto; padding: 0.25rem 0.5rem; border-radius: 0.25rem; background: color-mix(in srgb, var(--tv-bezel) 82%, transparent); color: var(--tv-osd); font: 700 clamp(0.875rem, 3vw, 1.5rem) / 1 ui-monospace, 'Courier New', monospace; letter-spacing: 0.08em; text-shadow: 0 0 0.375rem var(--tv-osd); }
+// El número de canal con el parlante a su izquierda: el ícono dice si los sonidos están prendidos (ondas) o apagados (tachado).
+.osdRow { position: absolute; z-index: 2; inset: 6% 7% auto auto; display: flex; align-items: center; gap: 0.375rem; }
+.osd { padding: 0.25rem 0.5rem; border-radius: 0.25rem; background: color-mix(in srgb, var(--tv-bezel) 82%, transparent); color: var(--tv-osd); font: 700 clamp(0.875rem, 3vw, 1.5rem) / 1 ui-monospace, 'Courier New', monospace; letter-spacing: 0.08em; text-shadow: 0 0 0.375rem var(--tv-osd); }
 
 // El fondo de cada pantalla es el de la página de su franquicia (el efecto de tubo lo pone .screen).
 .screen[data-franchise='pokemon'] .picture {
@@ -124,14 +127,12 @@
 }
 .soonName { @include m.heading; position: relative; z-index: 1; padding: 0.125rem 0.75rem; border-radius: 0.375rem; background: color-mix(in srgb, var(--tv-bezel) 88%, transparent); color: var(--hub-ink); font-size: clamp(1.5rem, 7vw, 3.25rem); line-height: 1.1; }
 .soonLabel { position: relative; z-index: 1; padding: 0.25rem 0.75rem; border-radius: 0.25rem; background: color-mix(in srgb, var(--tv-bezel) 88%, transparent); color: var(--hub-focus); font: 700 clamp(0.875rem, 3vw, 1.25rem) / 1.2 var(--hub-body-font); letter-spacing: 0.08em; text-transform: uppercase; }
-// Un aviso breve en la pantalla ("SONIDO SÍ"), como el que muestra un televisor al tocar sus botones.
-.osdNote { position: absolute; z-index: 2; inset: auto auto 7% 7%; padding: 0.25rem 0.5rem; border-radius: 0.25rem; background: color-mix(in srgb, var(--tv-bezel) 82%, transparent); color: var(--tv-osd); font: 700 clamp(0.875rem, 3vw, 1.25rem) / 1 ui-monospace, 'Courier New', monospace; letter-spacing: 0.08em; text-shadow: 0 0 0.375rem var(--tv-osd); }
 .channelName { -webkit-text-stroke: 0.3125rem var(--color-surface); paint-order: stroke fill; text-shadow: 0 0 0.5rem var(--color-surface); }
 
 // Perillas, parlante y botones ▲/▼ del lateral del televisor (debajo de la pantalla en el teléfono).
 .panel { grid-row: 2; grid-column: 1; display: flex; flex-direction: row; align-items: center; justify-content: space-between; gap: t.$space-3; @include bp.min-width('md') { flex-direction: column; justify-content: flex-start; } }
 .speaker { flex: 1; align-self: stretch; min-block-size: 2rem; border-radius: 0.5rem; background: repeating-linear-gradient(0deg, var(--tv-bezel) 0 0.25rem, var(--tv-body) 0.25rem 0.5rem); box-shadow: inset 0 0 0.5rem var(--hub-night); @include bp.min-width('md') { flex: 1 1 auto; inline-size: 100%; } }
-.knob { flex: none; inline-size: 2.5rem; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(var(--tv-body-light), var(--tv-body), var(--tv-body-light), var(--tv-body), var(--tv-body-light)); box-shadow: 0 0.125rem 0.25rem var(--hub-night), inset 0 0 0 0.125rem var(--tv-bezel); &::after { content: ''; display: block; inline-size: 0.125rem; block-size: 0.75rem; margin: 0.25rem auto 0; background: var(--hub-ink); } &[data-small] { inline-size: 1.75rem; } }
+.knob { flex: none; inline-size: 2.5rem; aspect-ratio: 1; border-radius: 50%; background: conic-gradient(var(--tv-body-light), var(--tv-body), var(--tv-body-light), var(--tv-body), var(--tv-body-light)); box-shadow: 0 0.125rem 0.25rem var(--hub-night), inset 0 0 0 0.125rem var(--tv-bezel); &::after { content: ''; display: block; inline-size: 0.125rem; block-size: 0.75rem; margin: 0.25rem auto 0; background: var(--hub-ink); } &[data-small] { inline-size: 1.75rem; } transform: rotate(var(--turn, 0deg)); }
 // En el teléfono las perillas son botones de 44 px (el área táctil) con la perilla dibujada adentro: la grande gira un sexto de
 // vuelta por canal y la chica marca con un aro dorado que los sonidos están prendidos.
 .knobButton {
@@ -147,11 +148,10 @@
   background: none;
   cursor: pointer;
   &:focus-visible { outline: 0.1875rem solid var(--hub-focus); outline-offset: 0; }
-  .knob { transform: rotate(var(--turn, 0deg)); }
   &[aria-pressed='true'] .knob { box-shadow: 0 0.125rem 0.25rem var(--hub-night), inset 0 0 0 0.125rem var(--tv-bezel), 0 0 0 0.1875rem var(--hub-focus); }
 }
 @include bp.motion-ok {
-  .knobButton .knob { transition: transform 240ms var(--hub-ease); }
+  .knob { transition: transform 240ms var(--hub-ease); }
 }
 .tuner { display: flex; flex-direction: row; gap: t.$space-2; }
 .tune {
