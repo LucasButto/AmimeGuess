@@ -1,0 +1,10 @@
+// La bola: una imagen cuadrada que ocupa su caja.
+.ball {
+  display: block;
+  flex: none;
+  inline-size: 100%;
+  aspect-ratio: 1;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
