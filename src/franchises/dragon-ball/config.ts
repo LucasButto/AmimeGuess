@@ -95,10 +95,7 @@ export const dragonBallConfig = {
           { key: 'serieDebut', label: 'Serie de debut', compare: 'ordered', valueLabels: serieDebutLabels, help: help.serieDebut },
           { key: 'sagaDebut', label: 'Saga de debut', compare: 'ordered', valueLabels: sagaDebutLabels, help: help.sagaDebut },
         ],
-        hints: [
-          { kind: 'attr', label: 'Estado vital', after: 4, key: 'estadoVital' },
-          { kind: 'attr', label: 'Técnica característica', after: 7, key: 'tecnica' },
-        ],
+        hints: [],
       },
     },
     {

@@ -82,12 +82,7 @@ export const narutoConfig = {
           // Si la serie del arco está apagada, el valor se oculta: lo excluido no aparece nunca.
           { key: 'arcoDebut', label: 'Arco de debut', compare: 'ordered', valueLabels: arcDebutLabels, valueHelp: arcHelp, help: es.help.narutoClassic.arcoDebut },
         ],
-        hints: [
-          // La inicial no es pista acá (con unos 160 personajes, no ayuda tanto como en Pokémon, que tiene más de mil).
-          // La ocupación revela mucho: va última.
-          { kind: 'attr', label: 'Estado vital', after: 4, key: 'estadoVital' },
-          { kind: 'attr', label: 'Ocupación', after: 9, key: 'ocupacion' },
-        ],
+        hints: [],
       },
     },
     {

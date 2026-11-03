@@ -53,11 +53,7 @@ export const yugiohConfig = {
           { key: 'arquetipos', label: 'Arquetipo', compare: 'set', help: es.help.yugioh.arquetipos },
           { key: 'metodosInvocacion', label: 'Método de invocación', compare: 'set', help: es.help.yugioh.metodosInvocacion },
         ],
-        hints: [
-          { kind: 'attr', label: 'Primera aparición', after: 4, key: 'primeraAparicion' },
-          // La pista de la carta insignia borrosa necesita una pista de imagen en el Clásico, que todavía no
-          // existe (igual que la carta de Pokémon): la imagen de la carta as ya está en los datos (kind "ace-card").
-        ],
+        hints: [],
       },
     },
     {
@@ -78,7 +74,7 @@ export const yugiohConfig = {
           { key: 'serie', label: 'Serie', compare: 'set', help: es.help.yugioh.serie },
         ],
         // La SPEC pide también el arquetipo, pero los datos no lo tienen (las cartas se eligieron por su duelista).
-        hints: [{ kind: 'content', label: 'Texto de la carta', after: 6, contentKind: 'card-text', field: 'text' }],
+        hints: [],
       },
     },
     {

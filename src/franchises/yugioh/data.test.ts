@@ -10,7 +10,7 @@ import { buildSearchIndex, search } from '@/components/search';
 import type { DailyContext } from '@/engine/daily';
 import { defaultMinPool, eligibleEntities, hasMinimumPool } from '@/engine/filters';
 import type { Content, Entity } from '@/engine/types';
-import { buildRow, cellText, hintText, visibleColumns } from '@/modes/classic/logic';
+import { buildRow, cellText, visibleColumns } from '@/modes/classic/logic';
 import { MAX_ROUNDS, buildRounds, metricOfDay, poolOf as higherLowerPool } from '@/modes/higher-lower/logic';
 import { candidatesOf as imageCandidates } from '@/modes/image-reveal/logic';
 import { candidatesOf as listCandidates, itemsOf } from '@/modes/reveal-list/logic';
@@ -332,12 +332,8 @@ describe('con una serie apagada no aparece nada de ella', () => {
 });
 
 describe('Duelista', () => {
-  it('las pistas dan la primera aparición del duelista del día cuando se piden', () => {
-    const hint = mode('duelista').classic!.hints[0];
-    for (const duelist of duelists) {
-      const text = hintText(hint, duelist, rawContents);
-      expect(text, duelist.id).toMatch(/episodio/);
-    }
+  it('el Clásico no tiene pistas: lo que se descubre sale de los propios intentos', () => {
+    expect(mode('duelista').classic!.hints).toEqual([]);
   });
 
   it('con cualquier combinación de series, hasta con una sola (14 a 16 duelistas), el Clásico Duelista se puede jugar', () => {
@@ -350,12 +346,8 @@ describe('Duelista', () => {
 });
 
 describe('Carta', () => {
-  it('la pista es el texto oficial de la carta, y existe para casi todas', () => {
-    const hint = mode('carta').classic!.hints[0];
-    const withText = cards.filter((card) => hintText(hint, card, rawContents) !== null);
-    expect(withText.length).toBeGreaterThan(cards.length - 20);
-    // Las que no la tienen son las 9 sin texto en español de YGOResources.
-    expect(cards.length - withText.length).toBe(cards.filter((card) => !rawContents.some((content) => content.kind === 'card-text' && content.entityId === card.id)).length);
+  it('el Clásico no tiene pistas', () => {
+    expect(mode('carta').classic!.hints).toEqual([]);
   });
 });
 
