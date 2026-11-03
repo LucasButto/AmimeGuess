@@ -1,9 +1,10 @@
 @use 'tokens' as t;
 
-// 12 × 12 píxeles del dibujo; cada uno mide `--u` (un píxel de arte o medio), siempre un número entero de
-// píxeles reales.
+// La caja mide 12 × 12 unidades `--u` (un píxel de arte o medio), siempre un número entero de píxeles reales. La imagen se parte
+// por el cinturón de la bola (a un 56 % del alto): arriba, la mitad que se levanta; abajo, el resto.
 .ball {
   --u: var(--px);
+  --split: 56%;
   position: relative;
   display: inline-block;
   flex: none;
@@ -21,16 +22,12 @@
   inset-inline-start: 0;
   display: block;
   inline-size: 100%;
-  block-size: 50%;
-}
-
-.art {
-  inline-size: 100%;
-  block-size: 100%;
+  overflow: hidden;
 }
 
 .top {
   inset-block-start: 0;
+  block-size: var(--split);
 
   .ball[data-open='true'] & {
     transform: translateY(calc(var(--u) * -2));
@@ -38,5 +35,26 @@
 }
 
 .bottom {
+  inset-block-end: 0;
+  block-size: calc(100% - var(--split));
+}
+
+// La imagen entera, cuadrada; cada mitad muestra su parte.
+.art {
+  position: absolute;
+  inset-inline-start: 0;
+  display: block;
+  inline-size: 100%;
+  block-size: calc(var(--u) * 12);
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}
+
+.top .art {
+  inset-block-start: 0;
+}
+
+.bottom .art {
   inset-block-end: 0;
 }

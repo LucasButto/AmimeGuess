@@ -1,6 +1,4 @@
-import { PixelArt } from '@/components/ui/PixelArt';
 import type { ModeCardProps, ModeIconProps } from '../../types';
-import { inlineArt, MINI_POKEDEX } from './art';
 import { BallCard } from './BallCard';
 import { BallImage } from './BallImage';
 import styles from './ModeCard.module.scss';
@@ -17,7 +15,7 @@ export function PokemonModeIcon({ slug, current }: ModeIconProps) {
   return (
     <span className={styles.mini} aria-hidden="true" data-current={current}>
       {slug === 'clasico' ? (
-        <PixelArt art={inlineArt(MINI_POKEDEX)} size="fill" className={styles.dex} />
+        <img className={styles.dex} src="/icons/pokemon/pokedex.webp" alt="" width={200} height={200} draggable={false} />
       ) : (
         <BallImage ball={modeLook(slug).ball} className={styles.ball} />
       )}
