@@ -14,5 +14,9 @@ export const THEME_COLORS: Readonly<Record<string, string>> = {
   yugioh: YUGIOH_PALETTE.tomb,
 };
 
-/** El naranja del ícono de la app: el color del inicio y de lo que no es de una franquicia. */
-export const SITE_THEME_COLOR = '#fd6408';
+/**
+ * El color del inicio y de lo que no es de una franquicia: el azul noche de la sala del televisor (`--hub-night` en
+ * `src/app/page.module.scss`). El naranja del ícono de la app no combinaba con la sala. Si se cambia, cambiar también `--system-bar`
+ * en `src/styles/globals.scss` y el manifest.
+ */
+export const SITE_THEME_COLOR = '#0d1220';

@@ -85,6 +85,34 @@ textarea {
   color: inherit;
 }
 
+// El color de las barras del sistema (la de estado y la de gestos de abajo) en la app instalada: el de la página en que se está. Cada
+// franquicia lo redefine con el suyo (ver `[franchise]/layout.tsx`, el mismo de su `theme-color`). Este es el del inicio.
+:root {
+  --system-bar: #0d1220;
+}
+
+// Teléfono: la barra de desplazamiento siempre está (aunque la página no desplace). Si aparece y desaparece según el largo de la página,
+// el contenido se angosta de golpe y el texto salta de renglón. Desde `lg` vuelve a ser automática.
+html {
+  overflow-y: scroll;
+
+  @include bp.min-width('lg') {
+    overflow-y: auto;
+  }
+}
+
+// La zona de la barra de gestos de abajo (el área segura) se pinta con el color del tema, igual que la barra de estado de arriba. Sin
+// área segura (navegador común, escritorio) mide 0 y no se ve.
+body::after {
+  content: '';
+  position: fixed;
+  inset: auto 0 0;
+  block-size: env(safe-area-inset-bottom);
+  background: var(--system-bar);
+  pointer-events: none;
+  z-index: 29; // debajo de las barras fijas (capa 30): la barra de pestañas y la de abajo del juego cubren esta zona con lo suyo
+}
+
 body {
   // Contexto propio: la ilustración de fondo (`::before`) queda detrás del contenido pero delante del color de fondo.
   position: relative;
@@ -121,6 +149,11 @@ h1, h2, h3, h4, h5, h6 { --reading-scale: 1; }
 :root[data-text-scale='2'], :root[data-text-scale='3'] {
   button, label, p, li { overflow-wrap: anywhere; }
   button { white-space: normal; }
+}
+
+// Con la barra de pestañas, la zona de gestos ya la cubren las propias pestañas: la franja no se asoma por las esquinas recortadas del tema.
+body:has([data-tab-bar])::after {
+  display: none;
 }
 
 // Teléfono: con la barra de pestañas fija abajo (ver TabBar), la página deja su lugar al final para que nada quede tapado.

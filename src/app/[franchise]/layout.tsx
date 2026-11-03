@@ -39,6 +39,10 @@ export default async function FranchiseLayout({
   return (
     <>
       <style>{themeCss(franchise.theme)}</style>
+      {/* Las barras del sistema de la app instalada (la de gestos de abajo, ver globals.scss) llevan el mismo color que la de arriba. */}
+      <style>{`:root { --system-bar: ${THEME_COLORS[franchise.slug] ?? SITE_THEME_COLOR}; }`}</style>
+      {/* Las barras del sistema de la app instalada (la de gestos de abajo, ver globals.scss) llevan el mismo color que la de arriba. */}
+      <style>{}</style>
       <SkinRoot slug={franchise.slug}>
         <Backdrop />
         {children}

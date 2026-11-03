@@ -1,8 +1,9 @@
 import type { MetadataRoute } from 'next';
+import { SITE_THEME_COLOR } from '@/franchises/themeColor';
 import { es } from '@/i18n/es';
 
-/** El naranja del ícono (scripts/design/app-icon-source.webp): también el fondo al abrir la app instalada. */
-const INK = '#fd6408';
+/** El azul noche de la sala del inicio (ver `SITE_THEME_COLOR`): el color de la barra de estado y el fondo al abrir la app instalada. */
+const INK = SITE_THEME_COLOR;
 
 /**
  * Manifest para instalar el sitio como app (Android y, con `appleWebApp` en el layout, iOS). Se abre sin la barra del
