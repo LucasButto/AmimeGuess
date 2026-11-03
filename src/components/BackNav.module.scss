@@ -71,6 +71,8 @@
     @include m.app-shell { inline-size: 2.75rem; block-size: 2.75rem; padding: 0; justify-content: center; color: t.token('app-bar-ink'); &::before, &::after { display: none; } }
     @include m.app-shell-desktop { inline-size: auto; block-size: auto; padding: t.$space-1 calc(#{t.$space-3} + #{t.token('frame-width')}) t.$space-1 calc(#{t.$space-2} + #{t.token('frame-width')}); justify-content: normal; color: t.token('ink'); &::before, &::after { display: block; } @include m.hover { color: t.color('accent'); } }
   }
+  // En la página de la franquicia, el "Inicio" mantiene su ancho fijo de siempre (el texto centrado sobre el dibujo del tema).
+  .link[data-kind='home'] { @include m.app-shell-desktop { inline-size: 6.75rem; justify-content: var(--back-home-justify, normal); padding-inline: var(--back-home-pad, calc(#{t.$space-2} + #{t.token('frame-width')}) calc(#{t.$space-3} + #{t.token('frame-width')})); } }
   .icon, .label {
     @include m.app-shell { display: none; }
   }

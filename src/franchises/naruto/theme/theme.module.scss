@@ -143,9 +143,11 @@
   // y el foco el tronco se tambalea y las letras se ponen naranjas.
   a[data-kind='home'] {
     justify-content: center;
+    // La página de la franquicia también centra "Inicio" en el tronco (ver `BackNav.module.scss`).
+    --back-home-justify: center;
 
     // El lugar del ícono ocupa el tronco entero, para que "Inicio" quede centrado entre el kunai y el shuriken.
-    > span:first-child {
+    > span:not(:last-child) {
       position: absolute;
       inset: 0;
       inline-size: auto;

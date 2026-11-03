@@ -171,8 +171,10 @@
   a[data-kind='home'] {
     gap: 0;
     padding-inline: 0.25rem 2.7rem;
+    // La página de la franquicia usa este mismo relleno (ver `BackNav.module.scss`).
+    --back-home-pad: 0.25rem 2.7rem;
 
-    > span:first-child {
+    > span:not(:last-child) {
       inline-size: 0;
     }
 
@@ -226,7 +228,7 @@
   --shadow-card: 0.25rem 0.25rem 0 var(--palette-ink);
   --shadow-pop: 0.25rem 0.25rem 0 0 var(--palette-ink);
 
-  // Cabecera: el título (ver el bloque `main > header > h1` más abajo) y, sobre él, el nombre del sitio en amarillo con
+  // Cabecera: el título (ver el bloque `main header > h1` más abajo) y, sobre él, el nombre del sitio en amarillo con
   // contorno negro y sombra dura, y el de la franquicia en papel con contorno de tinta. Más grande que el título base:
   // Bangers es condensada y a 1× se veía chica al lado de la de Pokémon.
   --title-scale: 1.7;
@@ -270,8 +272,8 @@
     }
   }
 
-  // El título de la página, con las letras del logo (ver `_logo-words.scss`).
-  main > header > h1 {
+  // El título de la página, con las letras del logo (ver `_logo-words.scss`). `[class]` sube la especificidad: el título de la página de la franquicia (`.title` bajo `[data-shell]`) fija su propia sombra de texto.
+  main header > h1[class] {
     @include l.logo-words;
   }
 
