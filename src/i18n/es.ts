@@ -356,6 +356,10 @@ export const es = {
           text: 'Referencias aportadas por el usuario; autor y licencia a confirmar. Nueve íconos de atributos recortados y diseño de cartas reproducido a partir de las referencias.',
         },
         {
+          name: 'Íconos de objetos de Pokémon, Naruto, Dragon Ball y Yu-Gi-Oh',
+          text: 'Cinco hojas de íconos aportadas por el usuario (objetos de cada serie y jeroglíficos egipcios); autor y licencia a confirmar. Se recortaron en una carpeta por serie y se usan en los botones de volver, los modos, las esferas, los artilugios del milenio y las columnas de Yu-Gi-Oh.',
+        },
+        {
           name: 'Poké Balls de los modos de Pokémon',
           text: 'Hoja de pixel art aportada por el usuario; autor y licencia a confirmar. Ocho bolas recortadas de la hoja (Poké, Super, Ultra, Master, Lujo, Veloz, Ocaso y Premier).',
         },
