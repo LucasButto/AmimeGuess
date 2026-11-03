@@ -137,16 +137,21 @@
     line-height: 1;
   }
 
-  // Inicio es un tronco (el de la técnica de sustitución), con la misma caja que en todo el sitio: la corteza con vetas y
-  // sombra de cilindro ocupa el botón, y a la derecha se ve el corte con sus anillos. "Inicio" va escrito en el medio de
-  // la corteza, en letras de papel con contorno de tinta, entre el kunai y el shuriken clavados (Ninja.tsx). Con el hover
-  // y el foco el tronco se tambalea y las letras se ponen naranjas.
+  // Inicio es un tronco (el de la técnica de sustitución), con la misma caja que en todo el sitio: la imagen del tronco
+  // (public/theme/naruto/tronco-boton.webp, ver Ninja.tsx) ocupa el botón y "Inicio" va escrito encima, en letras de papel
+  // con contorno de tinta. Con el hover y el foco el tronco se tambalea y las letras se ponen naranjas.
   a[data-kind='home'] {
     justify-content: center;
     // La página de la franquicia también centra "Inicio" en el tronco (ver `BackNav.module.scss`).
     --back-home-justify: center;
 
-    // El lugar del ícono ocupa el tronco entero, para que "Inicio" quede centrado entre el kunai y el shuriken.
+    // Sin las dos capas del marco: lo que se ve es la imagen.
+    &::before,
+    &::after {
+      display: none;
+    }
+
+    // El lugar del ícono ocupa el botón entero, para que el tronco quede detrás del texto.
     > span:not(:last-child) {
       position: absolute;
       inset: 0;
@@ -174,53 +179,14 @@
       }
     }
 
-    &::before {
-      clip-path: none;
-      border-radius: 0.875rem 0.5rem 0.5rem 0.875rem / 50%;
-      background: var(--palette-ink);
-    }
-
-    &::after {
-      clip-path: none;
-      border-radius: 0.75rem 0.375rem 0.375rem 0.75rem / 50%;
-      background:
-        linear-gradient(
-          to bottom,
-          color-mix(in srgb, var(--palette-ink) 35%, transparent),
-          transparent 30%,
-          color-mix(in srgb, var(--palette-white) 18%, transparent) 45%,
-          transparent 60%,
-          color-mix(in srgb, var(--palette-ink) 45%, transparent)
-        ),
-        repeating-linear-gradient(
-          to bottom,
-          transparent 0 0.3125rem,
-          color-mix(in srgb, var(--palette-wood-dark) 70%, transparent) 0.3125rem 0.4375rem
-        ),
-        var(--palette-wood);
-      box-shadow: none;
-    }
-
+    // El texto va por encima de la imagen (que es absoluta) y un poco a la izquierda del centro: a la derecha está el corte
+    // del tronco, con sus anillos.
     > span:last-child {
+      position: relative;
+      z-index: 1;
       color: var(--palette-paper);
       font-size: 0.875rem;
       text-shadow: #{ink-outline(0.0625rem, var(--palette-ink))};
-
-      // El corte del tronco, en el borde derecho del botón (el <a> es el que lo ubica): madera clara con anillos.
-      &::after {
-        content: '';
-        position: absolute;
-        inset-block: 0;
-        inset-inline-end: -0.125rem;
-        inline-size: 0.875rem;
-        border: 0.125rem solid var(--palette-ink);
-        border-radius: 50%;
-        background: repeating-radial-gradient(
-          ellipse at center,
-          color-mix(in srgb, var(--palette-wood) 35%, var(--palette-paper)) 0 0.125rem,
-          color-mix(in srgb, var(--palette-wood) 70%, var(--palette-paper)) 0.125rem 0.1875rem
-        );
-      }
     }
 
     @include m.hover {

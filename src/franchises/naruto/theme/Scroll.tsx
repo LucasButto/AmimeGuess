@@ -7,14 +7,9 @@ import type { ModeCardProps, ModeIconProps, TitleMarkProps } from '../../types';
 import { modeIcon } from './modes';
 import styles from './Scroll.module.scss';
 
-/** El ícono de un modo, en tinta (hereda el color del texto). */
+/** El ícono de un modo: el objeto de la hoja de íconos de Naruto, a color. */
 function ModeGlyph({ slug, className }: { slug: string; className: string }) {
-  const { d, filled } = modeIcon(slug);
-  return (
-    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path className={filled ? styles.glyphFill : styles.glyphLine} d={d} />
-    </svg>
-  );
+  return <img className={`${styles.glyphImage} ${className}`} src={modeIcon(slug)} alt="" width={200} height={200} draggable={false} aria-hidden="true" />;
 }
 
 /** El sello rojo (hanko) que se estampa sobre un modo resuelto hoy, con una tilde blanca. */

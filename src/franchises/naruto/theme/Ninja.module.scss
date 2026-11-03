@@ -40,53 +40,19 @@
     }
   }
 
-  // El kunai y el shuriken del tronco no se van: los tapa el humo y desaparecen adentro.
-  &[data-kind='log'][data-leaving='true'] .stuckKunai,
-  &[data-kind='log'][data-leaving='true'] .stuckShuriken {
-    @include bp.motion-ok {
-      opacity: 0;
-      transition: opacity 0.2s 0.05s;
-    }
-  }
 }
 
+// El kunai: el ícono de public/icons/naruto/kunai.webp (la punta abajo a la izquierda), girado 45° para que apunte a la izquierda.
 .kunai {
-  inline-size: 2.5rem;
-  block-size: auto;
-  overflow: visible;
+  flex: none;
+  inline-size: 2.25rem;
+  block-size: 2.25rem;
+  object-fit: contain;
+  transform: rotate(45deg);
+  user-select: none;
 }
 
-.blade {
-  fill: var(--palette-metal);
-  stroke: var(--palette-ink);
-  stroke-width: 2;
-  stroke-linejoin: round;
-}
-
-.edge {
-  stroke: var(--palette-metal-dark);
-  stroke-width: 1.5;
-}
-
-.grip {
-  fill: var(--palette-night);
-  stroke: var(--palette-ink);
-  stroke-width: 2;
-}
-
-.wrap {
-  stroke: var(--palette-washi-shade);
-  stroke-width: 1.5;
-}
-
-.ring {
-  fill: none;
-  stroke: var(--palette-ink);
-  stroke-width: 2.5;
-}
-
-// El kunai y el shuriken clavados en el tronco. El lugar del ícono del tronco ocupa el botón entero (ver theme.module.scss):
-// el kunai va a la izquierda y el shuriken a la derecha, antes del corte con anillos.
+// El tronco de Inicio: la imagen ocupa el botón entero (el lugar del ícono es absoluto, ver abajo) y el texto va encima.
 .kunaiBox[data-kind='log'] {
   position: absolute;
   inset: 0;
@@ -95,64 +61,20 @@
   pointer-events: none;
 }
 
-.stuckKunai {
-  position: absolute;
-  inset-block-start: -0.1875rem;
-  inset-inline-start: 0.1875rem;
-  inline-size: 1.625rem;
-  block-size: 1.625rem;
-  overflow: visible;
-}
+.log {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+  user-select: none;
 
-.stuckShuriken {
-  position: absolute;
-  inset-block-start: calc(50% - 0.5rem);
-  inset-inline-end: 1rem;
-  inline-size: 1rem;
-  block-size: 1rem;
-  transform: rotate(18deg);
-}
-
-.crack {
-  fill: none;
-  stroke: var(--palette-wood-dark);
-  stroke-width: 1.5;
-  stroke-linecap: round;
-}
-
-.handle {
-  stroke: var(--palette-ink);
-  stroke-width: 3.5;
-  stroke-linecap: round;
-}
-
-.wraps {
-  stroke: var(--palette-metal);
-  stroke-width: 1.25;
-}
-
-.shine {
-  stroke: var(--palette-white);
-  stroke-width: 1.25;
-  stroke-linecap: round;
-  opacity: 0.8;
-}
-
-.starShadow {
-  fill: color-mix(in srgb, var(--palette-ink) 45%, transparent);
-}
-
-.starDark {
-  fill: var(--palette-metal-dark);
-  stroke: var(--palette-ink);
-  stroke-width: 1.25;
-  stroke-linejoin: round;
-}
-
-.starHole {
-  fill: var(--palette-wood-dark);
-  stroke: var(--palette-ink);
-  stroke-width: 1;
+  // Al hacer clic, el tronco desaparece dentro del humo.
+  [data-leaving='true'] > & {
+    @include bp.motion-ok {
+      opacity: 0;
+      transition: opacity 0.2s 0.05s;
+    }
+  }
 }
 
 // "¡Puf!": tres bocanadas de humo que crecen y se desvanecen al hacer clic (solo `transform` y `opacity`).
@@ -231,21 +153,10 @@
 }
 
 .shuriken {
+  display: block;
   inline-size: 2rem;
   block-size: 2rem;
-}
-
-.star {
-  fill: var(--palette-metal);
-  stroke: var(--palette-ink);
-  stroke-width: 1.5;
-  stroke-linejoin: round;
-}
-
-.hole {
-  fill: var(--palette-paper);
-  stroke: var(--palette-ink);
-  stroke-width: 1.5;
+  object-fit: contain;
 }
 
 @keyframes spin {

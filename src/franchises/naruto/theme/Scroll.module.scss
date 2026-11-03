@@ -9,18 +9,13 @@
 $paper: var(--palette-paper);
 $ink: var(--palette-ink);
 
-// --- Ícono de tinta -----------------------------------------------------------------------------------------------------
+// --- Ícono del modo -----------------------------------------------------------------------------------------------------
 
-.glyphLine {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.glyphFill {
-  fill: currentColor;
+// Una imagen cuadrada que se acomoda a la caja de cada lugar (`.openGlyph`, `.glyph`, `.miniGlyph`...).
+.glyphImage {
+  display: block;
+  object-fit: contain;
+  user-select: none;
 }
 
 // --- Sello rojo ---------------------------------------------------------------------------------------------------------
@@ -137,7 +132,6 @@ $ink: var(--palette-ink);
   flex: none;
   inline-size: clamp(2.5rem, 7vw, 3.5rem);
   block-size: clamp(2.5rem, 7vw, 3.5rem);
-  color: var(--palette-seal);
 }
 
 .openText {
@@ -296,7 +290,6 @@ $ink: var(--palette-ink);
   position: relative;
   inline-size: 1.5rem;
   block-size: 1.5rem;
-  color: var(--palette-seal);
 }
 
 // Sin hover (teléfonos), el papel queda desplegado: el ícono se ve siempre.
@@ -406,7 +399,6 @@ $ink: var(--palette-ink);
   block-size: 0.9em;
   margin-inline-end: 0.3em;
   vertical-align: -0.1em;
-  color: var(--palette-seal);
 }
 
 // --- El ícono de la fila del hub del teléfono ------------------------------------------------------------------------------
