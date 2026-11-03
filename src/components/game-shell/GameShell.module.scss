@@ -184,7 +184,12 @@
   display: none;
   border: 0; padding: 0; background: none; color: t.token('app-bar-ink'); cursor: pointer;
   svg { inline-size: 1.5rem; block-size: 1.5rem; }
-  @include m.app-shell { display: grid; place-items: center; }
+  // El ícono con su nombre escrito debajo ("Filtros"): solo el ícono se perdía contra la barra, y una placa parecía un hover pegado.
+  @include m.app-shell {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.0625rem;
+    min-inline-size: 3rem; block-size: 3rem; padding-inline: 0.25rem;
+    svg { inline-size: 1.5rem; block-size: 1.5rem; }
+  }
   @include m.app-shell-desktop { display: none; }
 }
 .menuTrigger {
@@ -237,6 +242,13 @@
 
 // El punto del botón de filtros: dice que no son los de siempre (y el nombre accesible también).
 .filterTrigger { position: relative; }
+.filterLabel {
+  font-size: 0.6875rem;
+  font-weight: t.$font-weight-bold;
+  line-height: 1;
+  letter-spacing: 0;
+  text-transform: none;
+}
 .filterDot {
   position: absolute;
   inset-block-start: 0.5rem;

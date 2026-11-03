@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState, type Ref } from 'react';
+import { createContext, useContext, useEffect, useState, type ReactNode, type Ref } from 'react';
 import { createPortal } from 'react-dom';
 import { useAppShell } from './AppShellContext';
 import { GAME_DOCK_ID } from './dockId';
@@ -87,7 +87,10 @@ export function DockAction({ label, detail, onClick, disabled, buttonRef }: Dock
 }
 
 export interface DockButton {
+  /** El nombre de la acción: se lee y se muestra como texto, salvo que lleve `icon` (entonces solo se lee). */
   label: string;
+  /** Un ícono en lugar del texto, para las acciones secundarias cortas (el botón mide lo justo y el principal se queda con el resto). */
+  icon?: ReactNode;
   onClick: () => void;
   disabled?: boolean;
   /** La acción principal (más ancha y con el color de la barra); las demás son secundarias. */
@@ -106,10 +109,12 @@ export function DockActions({ buttons }: { buttons: readonly DockButton[] }) {
           type="button"
           className={button.primary ? styles.action : styles.secondary}
           data-primary={button.primary || undefined}
+          data-icon={button.icon ? '' : undefined}
+          aria-label={button.icon ? button.label : undefined}
           disabled={button.disabled}
           onClick={button.onClick}
         >
-          <span className={styles.label}>{button.label}</span>
+          {button.icon ? <span className={styles.icon} aria-hidden="true">{button.icon}</span> : <span className={styles.label}>{button.label}</span>}
         </button>
       ))}
     </div>,

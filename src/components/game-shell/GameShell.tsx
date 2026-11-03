@@ -270,6 +270,7 @@ export function GameShell({
         <div className={styles.floatingActions}>
           {appShell && <button type="button" className={styles.filterTrigger} aria-label={filtersChanged ? es.shell.filtersChanged : es.shell.filters} aria-haspopup="dialog" aria-expanded={phone && filtersOpen} onClick={() => setFiltersOpen(true)}>
             <svg viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges"><path d="M4 4h16v3H4zm3 5h10v3H7zm3 5h4v7h-4z" fill="currentColor" /></svg>
+            <span className={styles.filterLabel} aria-hidden="true">{es.shell.filtersShort}</span>
             {filtersChanged && <span className={styles.filterDot} aria-hidden="true" />}
           </button>}
           <button type="button" popoverTarget={actionsId} aria-label={es.shell.actions} className={styles.menuTrigger}>

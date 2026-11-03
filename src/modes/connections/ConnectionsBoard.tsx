@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useMemo, useState } from 'react';
 import { DockActions, useDockTarget } from '@/components/game-shell/GameDock';
+import { DeselectIcon, ShuffleIcon } from './icons';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
@@ -219,8 +220,9 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
       {!over && (
         <DockActions
           buttons={[
-            { label: es.connections.shuffle, onClick: shuffle, disabled: remaining.length < 2 },
-            { label: es.connections.clearShort, onClick: () => setSelected([]), disabled: selected.length === 0 },
+            // Dos íconos en lugar de "Mezclar" y "Deseleccionar": con texto, el segundo no entraba y empujaba a "Enviar".
+            { label: es.connections.shuffle, icon: <ShuffleIcon />, onClick: shuffle, disabled: remaining.length < 2 },
+            { label: es.connections.clear, icon: <DeselectIcon />, onClick: () => setSelected([]), disabled: selected.length === 0 },
             { label: es.connections.submit, onClick: submit, disabled: selected.length !== GROUP_SIZE, primary: true },
           ]}
         />
