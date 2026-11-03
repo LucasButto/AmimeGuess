@@ -174,14 +174,14 @@
   color: var(--palette-white);
   text-shadow: var(--px-half) var(--px-half) 0 var(--palette-frame);
 }
-[data-dock] .bigBallText { gap: 0; flex: 1; }
+[data-dock] .bigBallText { gap: 0; flex: 1; padding-block-start: 0.25rem; }
 [data-dock] .bigBallTitle { font-size: t.$font-size-base; }
-[data-dock] .bigBallCount { font-size: t.$font-size-sm; color: var(--palette-white); }
+[data-dock] .bigBallCount { position: relative; inset-block-start: -0.25rem; font-size: t.$font-size-sm; color: var(--palette-white); }
 
 .dockLens {
   flex: none;
-  inline-size: calc(#{t.token('px-half')} * 14 * 2);
-  block-size: calc(#{t.token('px-half')} * 14 * 2);
+  inline-size: calc(#{t.token('px-half')} * 14 * 1.5);
+  block-size: calc(#{t.token('px-half')} * 14 * 1.5);
 }
 
 .chevron {
@@ -383,11 +383,19 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  flex-wrap: wrap;
+  // Una sola fila: "Limpiar", "Ninguno" y "Listo" a la misma altura (antes, con tres botones, uno saltaba a otra línea).
+  flex-wrap: nowrap;
   gap: t.$space-1;
   font-size: 0.875rem;
-  > p { margin-inline-end: auto; }
-  > button { font-size: 0.875rem; --_pad-inline: #{t.$space-2}; }
+  > p { margin-inline-end: auto; min-inline-size: 0; }
+  > button { flex: none; font-size: 0.875rem; --_pad-inline: #{t.$space-2}; }
+}
+
+// El interruptor de "Solo la combinación exacta" y su ayuda ⓘ, en una fila.
+.exactRow {
+  display: flex;
+  align-items: center;
+  gap: t.$space-1;
 }
 
 // Todas las celdas miden lo mismo (el nombre largo se corta en dos líneas).
@@ -512,6 +520,11 @@
   &::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(to right, var(--palette-cyan) 0 70%, color-mix(in srgb, var(--palette-cyan) 65%, var(--palette-frame)) 70%);
   }
+}
+
+// Teléfono: la barra de desplazamiento siempre está (aunque el contenido no desplace), así no aparece y desaparece al filtrar.
+.dialog [data-part='modal-body'] {
+  overflow-y: scroll;
 }
 
 // ---- La Pokédex a pantalla completa con el diseño de app (un teléfono) --------------------------------------------------
