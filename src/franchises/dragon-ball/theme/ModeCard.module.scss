@@ -237,12 +237,13 @@ $body-shade: linear-gradient(
 }
 
 .ball {
+  display: block;
   inline-size: 100%;
   block-size: 100%;
   filter: drop-shadow(0.125rem 0.1875rem 0 var(--palette-ink));
 }
 
-// Pendiente: la esfera se ve un poco apagada (sin el punto de brillo, ver DragonBall). Resuelta hoy: brilla, con un
+// Pendiente: la esfera se ve un poco apagada. Resuelta hoy: brilla, con un
 // resplandor dorado detrás.
 .card[data-state='pending'] .ball,
 .card[data-state='unknown'] .ball {
@@ -354,14 +355,16 @@ $body-shade: linear-gradient(
 }
 
 .miniBall {
+  display: block;
   inline-size: 100%;
   block-size: 100%;
+  object-fit: contain;
 }
 
 // --- La marca del título de la página de un modo ----------------------------------------------------------------------------
 // Va dentro del título (en línea), a la izquierda del nombre, y mide lo que las letras: todo en `em`. Baja un poco para quedar
 // centrada con las mayúsculas, y lleva la misma sombra dura de tinta que las esferas de las tarjetas (sin el contorno grueso
-// de las letras, que se veía enorme alrededor de la nave).
+// de las letras, que se veía enorme alrededor del dibujo).
 .titleMark {
   display: inline-block;
   vertical-align: -0.14em;
@@ -373,4 +376,5 @@ $body-shade: linear-gradient(
 .titleBall {
   inline-size: 1.05em;
   block-size: 1.05em;
+  object-fit: contain;
 }

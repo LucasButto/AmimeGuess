@@ -7,7 +7,14 @@ import { es } from '@/i18n/es';
 import type { ModeCardProps, ModeIconProps, TitleMarkProps } from '../../types';
 import { DragonBall } from './DragonBall';
 import styles from './ModeCard.module.scss';
-import { starsOf } from './modes';
+/**
+ * Las estrellas de la esfera de un modo que no es el principal: su lugar en la lista (el 0 es el Clásico, que no lleva
+ * esfera). Así los modos van de 1 a 7 estrellas en orden, sean cuales sean los que estén prendidos: si Silueta se apaga,
+ * Frase pasa a ser la de una estrella.
+ */
+function starsAt(index: number): number {
+  return Math.min(7, Math.max(1, index));
+}
 
 // El contorno del hombro y el cuello (en una grilla de 140 × 150 unidades): el cuerpo termina en x = 0.
 const TIP_FILL = 'M0 0 H20 C42 0 52 36 62 48 H92 V102 H62 C52 114 42 150 20 150 H0 Z';
@@ -88,14 +95,14 @@ function CapsuleCard({ name, href, state, attempts, label, index }: ModeCardProp
  * ve apagada; resuelta hoy, brillante, con un resplandor dorado y un destello (sin tilde). Es un único enlace con nombre
  * accesible "Modo: estado".
  */
-function SphereCard({ slug, name, href, state, label }: ModeCardProps) {
+function SphereCard({ name, href, state, label, index }: ModeCardProps) {
   const { leaveTo } = useSkin();
   const solved = state === 'solved';
 
   return (
     <Link className={styles.card} href={href} aria-label={label} data-state={state} data-card="sphere" onClick={(event) => leaveTo(event, href)}>
       <span className={styles.sphere} aria-hidden="true">
-        <DragonBall stars={starsOf(slug)} dull={!solved} className={styles.ball} />
+        <DragonBall stars={starsAt(index)} dull={!solved} className={styles.ball} />
         {solved && <span className={styles.glint} />}
       </span>
       <span className={styles.name} data-tight={name.split(/\s+/).some((word) => word.length > 10) || undefined}>
@@ -106,11 +113,11 @@ function SphereCard({ slug, name, href, state, label }: ModeCardProps) {
 }
 
 /**
- * La nave Saiyajin (public/theme/dragon-ball/nave-saiyajin.webp), el ícono del Clásico dentro de un juego: ahí cada modo se
- * ve como una esfera y el principal, como esta nave. En la pantalla de inicio el Clásico sigue siendo la cápsula.
+ * La cápsula azul (public/icons/dragon-ball/botella-azul.webp), el ícono del Clásico dentro de un juego: ahí cada modo se
+ * ve como una esfera y el principal, como esta cápsula. En la pantalla de inicio el Clásico es la cápsula grande.
  */
-function Pod({ className }: { className: string }) {
-  return <img className={className} src="/theme/dragon-ball/nave-saiyajin.webp" alt="" width={256} height={256} />;
+function Capsule({ className }: { className: string }) {
+  return <img className={className} src="/icons/dragon-ball/botella-azul.webp" alt="" width={200} height={200} draggable={false} />;
 }
 
 /** Slot `ModeCard` de Dragon Ball: el modo principal es una cápsula; los otros siete, las esferas del dragón. */
@@ -118,30 +125,30 @@ export function DragonModeCard(props: ModeCardProps) {
   return props.slug === 'clasico' ? <CapsuleCard {...props} /> : <SphereCard {...props} />;
 }
 
-/** Slot `ModeIcon`: miniaturas de 1,5 rem en la navegación entre modos (la nave Saiyajin del Clásico o la esfera del modo). */
-export function DragonModeIcon({ slug, solved }: ModeIconProps) {
+/** Slot `ModeIcon`: miniaturas de 1,5 rem en la navegación entre modos (la cápsula del Clásico o la esfera del modo). */
+export function DragonModeIcon({ slug, index, solved }: ModeIconProps) {
   if (slug === 'clasico') {
     return (
       <span className={styles.mini} aria-hidden="true">
-        <Pod className={styles.miniBall} />
+        <Capsule className={styles.miniBall} />
       </span>
     );
   }
   return (
     <span className={styles.mini} aria-hidden="true" data-solved={solved}>
-      <DragonBall stars={starsOf(slug)} className={styles.miniBall} />
+      <DragonBall stars={starsAt(index)} className={styles.miniBall} />
     </span>
   );
 }
 
 /**
  * Slot `TitleMark`: antes del título de la página de un modo, su esfera del dragón (con sus estrellas) o, en el Clásico, la
- * nave Saiyajin. Mide lo que las letras (en `em`), así sigue al título en cualquier tamaño. Decorativa.
+ * cápsula azul. Mide lo que las letras (en `em`), así sigue al título en cualquier tamaño. Decorativa.
  */
-export function DragonTitleMark({ slug }: TitleMarkProps) {
+export function DragonTitleMark({ slug, index }: TitleMarkProps) {
   return slug === 'clasico' ? (
-    <Pod className={`${styles.titleMark} ${styles.titleBall}`} />
+    <Capsule className={`${styles.titleMark} ${styles.titleBall}`} />
   ) : (
-    <DragonBall stars={starsOf(slug)} className={`${styles.titleMark} ${styles.titleBall}`} />
+    <DragonBall stars={starsAt(index)} className={`${styles.titleMark} ${styles.titleBall}`} />
   );
 }

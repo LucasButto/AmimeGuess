@@ -68,12 +68,16 @@ export default async function ModePage({
   // título (slot `TitleMark`): por defecto, ninguna.
   const { PageTransition, TitleMark } = getSkin(franchise.slug).slots;
 
+  // El lugar del modo entre los que se muestran (los ocultos no cuentan): así coincide con el de la navegación.
+  const shownIndex = modes.findIndex((candidate) => candidate.slug === mode.slug);
+  const markIndex = shownIndex >= 0 ? shownIndex : franchise.modes.indexOf(mode);
+
   const appShell = appShellEnabled(franchise.slug);
   const heading = (
     <header className={styles.header}>
       <p className={styles.franchise}>{franchise.name}{appShell && <span className={styles.appSubtitle}>{es.shell.appSubtitle}</span>}</p>
       <h1 className={styles.title}>
-        <TitleMark slug={mode.slug} index={franchise.modes.indexOf(mode)} />
+        <TitleMark slug={mode.slug} index={markIndex} />
         <TitleWords text={mode.name} />
       </h1>
     </header>
