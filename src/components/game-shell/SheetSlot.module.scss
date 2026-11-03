@@ -1,0 +1,7 @@
+@use 'mixins' as m;
+
+// Hasta saber si es un teléfono, lo que va a la hoja no se ve (sin parpadeo); desde `lg` no deja caja propia.
+.source {
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: contents; }
+}

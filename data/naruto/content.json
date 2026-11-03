@@ -16987,8 +16987,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.38,
-        "y": 0.47
+        "x": 0.4,
+        "y": 0.49
       }
     },
     "verified": false
@@ -17019,9 +17019,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.41,
-        "y": 0.34
-      }
+        "x": 0.421,
+        "y": 0.37
+      },
+      "zoom": 1.3
     },
     "verified": false
   },
@@ -17035,8 +17036,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.43,
-        "y": 0.54
+        "x": 0.392,
+        "y": 0.573
       }
     },
     "verified": false
@@ -17053,7 +17054,8 @@
       "focus": {
         "x": 0.4,
         "y": 0.42
-      }
+      },
+      "zoom": 1.3
     },
     "verified": false
   },
@@ -17068,7 +17070,7 @@
       "height": 512,
       "focus": {
         "x": 0.4,
-        "y": 0.34
+        "y": 0.405
       }
     },
     "verified": false
@@ -17083,8 +17085,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.37,
-        "y": 0.46
+        "x": 0.395,
+        "y": 0.47
       }
     },
     "verified": false
@@ -17115,9 +17117,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.42,
-        "y": 0.35
-      }
+        "x": 0.437,
+        "y": 0.452
+      },
+      "zoom": 1.25
     },
     "verified": false
   },
@@ -17131,7 +17134,7 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.44,
+        "x": 0.413,
         "y": 0.46
       }
     },
@@ -17147,8 +17150,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.42,
-        "y": 0.43
+        "x": 0.415,
+        "y": 0.41
       }
     },
     "verified": false
@@ -17211,8 +17214,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.43,
-        "y": 0.52
+        "x": 0.415,
+        "y": 0.537
       }
     },
     "verified": false
@@ -17227,7 +17230,7 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.37,
+        "x": 0.38,
         "y": 0.4
       }
     },
@@ -17243,8 +17246,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.44,
-        "y": 0.45
+        "x": 0.477,
+        "y": 0.361
       }
     },
     "verified": false
@@ -17259,9 +17262,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.41,
-        "y": 0.36
-      }
+        "x": 0.46,
+        "y": 0.384
+      },
+      "zoom": 1.25
     },
     "verified": false
   },
@@ -17275,8 +17279,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.37,
-        "y": 0.45
+        "x": 0.39,
+        "y": 0.47
       }
     },
     "verified": false
@@ -17291,8 +17295,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.37,
-        "y": 0.45
+        "x": 0.31,
+        "y": 0.457
       }
     },
     "verified": false
@@ -17307,8 +17311,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.46,
-        "y": 0.36
+        "x": 0.448,
+        "y": 0.351
       }
     },
     "verified": false
@@ -17339,8 +17343,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.44,
-        "y": 0.4
+        "x": 0.465,
+        "y": 0.388
       }
     },
     "verified": false
@@ -17355,7 +17359,7 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.4,
+        "x": 0.413,
         "y": 0.39
       }
     },
@@ -17371,9 +17375,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.42,
-        "y": 0.4
-      }
+        "x": 0.413,
+        "y": 0.437
+      },
+      "zoom": 1.3
     },
     "verified": false
   },
@@ -17403,8 +17408,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.45,
-        "y": 0.43
+        "x": 0.38,
+        "y": 0.44
       }
     },
     "verified": false
@@ -17419,7 +17424,7 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.44,
+        "x": 0.462,
         "y": 0.4
       }
     },
@@ -17451,8 +17456,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.43,
-        "y": 0.45
+        "x": 0.455,
+        "y": 0.445
       }
     },
     "verified": false
@@ -17467,8 +17472,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.22,
-        "y": 0.51
+        "x": 0.205,
+        "y": 0.495
       }
     },
     "verified": false
@@ -17499,8 +17504,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.4,
-        "y": 0.29
+        "x": 0.392,
+        "y": 0.293
       }
     },
     "verified": false
@@ -17531,8 +17536,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.6,
-        "y": 0.5
+        "x": 0.562,
+        "y": 0.473
       }
     },
     "verified": false
@@ -17547,8 +17552,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.42,
-        "y": 0.49
+        "x": 0.298,
+        "y": 0.5
       }
     },
     "verified": false
@@ -17563,9 +17568,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.47,
-        "y": 0.32
-      }
+        "x": 0.51,
+        "y": 0.335
+      },
+      "zoom": 1.35
     },
     "verified": false
   },
@@ -17579,8 +17585,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.4,
-        "y": 0.43
+        "x": 0.49,
+        "y": 0.345
       }
     },
     "verified": false
@@ -17595,8 +17601,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.42,
-        "y": 0.43
+        "x": 0.408,
+        "y": 0.455
       }
     },
     "verified": false
@@ -17643,8 +17649,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.44,
-        "y": 0.45
+        "x": 0.452,
+        "y": 0.4
       }
     },
     "verified": false
@@ -17659,8 +17665,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.43,
-        "y": 0.49
+        "x": 0.423,
+        "y": 0.472
       }
     },
     "verified": false
@@ -17691,8 +17697,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.36,
-        "y": 0.42
+        "x": 0.387,
+        "y": 0.413
       }
     },
     "verified": false
@@ -17708,7 +17714,7 @@
       "height": 512,
       "focus": {
         "x": 0.43,
-        "y": 0.5
+        "y": 0.482
       }
     },
     "verified": false
@@ -17723,8 +17729,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.49,
-        "y": 0.25
+        "x": 0.502,
+        "y": 0.268
       }
     },
     "verified": false
@@ -17739,8 +17745,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.4,
-        "y": 0.32
+        "x": 0.422,
+        "y": 0.347
       }
     },
     "verified": false
@@ -17755,8 +17761,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.35,
-        "y": 0.52
+        "x": 0.357,
+        "y": 0.497
       }
     },
     "verified": false
@@ -17771,9 +17777,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.43,
-        "y": 0.44
-      }
+        "x": 0.457,
+        "y": 0.466
+      },
+      "zoom": 1.3
     },
     "verified": false
   },
@@ -17787,9 +17794,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.47,
-        "y": 0.32
-      }
+        "x": 0.48,
+        "y": 0.326
+      },
+      "zoom": 1.3
     },
     "verified": false
   },
@@ -17803,8 +17811,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.37,
-        "y": 0.29
+        "x": 0.382,
+        "y": 0.328
       }
     },
     "verified": false
@@ -17819,8 +17827,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.28,
-        "y": 0.42
+        "x": 0.367,
+        "y": 0.44
       }
     },
     "verified": false
@@ -17835,9 +17843,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.66,
-        "y": 0.4
-      }
+        "x": 0.675,
+        "y": 0.46
+      },
+      "zoom": 1.3
     },
     "verified": false
   },
@@ -17851,8 +17860,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.53,
-        "y": 0.45
+        "x": 0.517,
+        "y": 0.465
       }
     },
     "verified": false
@@ -17915,8 +17924,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.43,
-        "y": 0.43
+        "x": 0.432,
+        "y": 0.382
       }
     },
     "verified": false
@@ -17931,8 +17940,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.56,
-        "y": 0.42
+        "x": 0.542,
+        "y": 0.448
       }
     },
     "verified": false
@@ -17964,7 +17973,7 @@
       "height": 512,
       "focus": {
         "x": 0.56,
-        "y": 0.44
+        "y": 0.38
       }
     },
     "verified": false
@@ -17979,8 +17988,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.26,
-        "y": 0.52
+        "x": 0.34,
+        "y": 0.528
       }
     },
     "verified": false
@@ -17995,8 +18004,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.38,
-        "y": 0.46
+        "x": 0.402,
+        "y": 0.453
       }
     },
     "verified": false
@@ -18027,8 +18036,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.55,
-        "y": 0.35
+        "x": 0.525,
+        "y": 0.397
       }
     },
     "verified": false
@@ -18043,9 +18052,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.4,
+        "x": 0.402,
         "y": 0.47
-      }
+      },
+      "zoom": 1.3
     },
     "verified": false
   },
@@ -18059,8 +18069,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.38,
-        "y": 0.45
+        "x": 0.375,
+        "y": 0.565
       }
     },
     "verified": false
@@ -18091,8 +18101,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.55,
-        "y": 0.36
+        "x": 0.572,
+        "y": 0.472
       }
     },
     "verified": false
@@ -18107,9 +18117,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.59,
-        "y": 0.3
-      }
+        "x": 0.61,
+        "y": 0.327
+      },
+      "zoom": 1.35
     },
     "verified": false
   },
@@ -18139,9 +18150,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.4,
-        "y": 0.39
-      }
+        "x": 0.407,
+        "y": 0.393
+      },
+      "zoom": 1.12
     },
     "verified": false
   },
@@ -18171,8 +18183,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.43,
-        "y": 0.37
+        "x": 0.437,
+        "y": 0.392
       }
     },
     "verified": false
@@ -18219,8 +18231,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.42,
-        "y": 0.38
+        "x": 0.442,
+        "y": 0.387
       }
     },
     "verified": false
@@ -18235,8 +18247,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.43,
-        "y": 0.51
+        "x": 0.442,
+        "y": 0.502
       }
     },
     "verified": false
@@ -18251,8 +18263,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.38,
-        "y": 0.41
+        "x": 0.398,
+        "y": 0.415
       }
     },
     "verified": false
@@ -18315,8 +18327,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.4,
-        "y": 0.47
+        "x": 0.405,
+        "y": 0.463
       }
     },
     "verified": false
@@ -18331,9 +18343,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.37,
-        "y": 0.43
-      }
+        "x": 0.355,
+        "y": 0.429
+      },
+      "zoom": 1.12
     },
     "verified": false
   },
@@ -18347,8 +18360,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.22,
-        "y": 0.39
+        "x": 0.192,
+        "y": 0.415
       }
     },
     "verified": false
@@ -18411,8 +18424,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.43,
-        "y": 0.33
+        "x": 0.361,
+        "y": 0.34
       }
     },
     "verified": false
@@ -18475,8 +18488,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.46,
-        "y": 0.38
+        "x": 0.44,
+        "y": 0.381
       }
     },
     "verified": false
@@ -18523,9 +18536,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.59,
-        "y": 0.4
-      }
+        "x": 0.595,
+        "y": 0.375
+      },
+      "zoom": 1.35
     },
     "verified": false
   },
@@ -18540,7 +18554,7 @@
       "height": 512,
       "focus": {
         "x": 0.32,
-        "y": 0.41
+        "y": 0.44
       }
     },
     "verified": false
@@ -18555,8 +18569,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.3,
-        "y": 0.45
+        "x": 0.413,
+        "y": 0.448
       }
     },
     "verified": false
@@ -18587,8 +18601,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.38,
-        "y": 0.43
+        "x": 0.365,
+        "y": 0.36
       }
     },
     "verified": false
@@ -18603,8 +18617,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.37,
-        "y": 0.45
+        "x": 0.4,
+        "y": 0.39
       }
     },
     "verified": false
@@ -18619,7 +18633,7 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.33,
+        "x": 0.312,
         "y": 0.37
       }
     },
@@ -18699,8 +18713,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.45,
-        "y": 0.4
+        "x": 0.4,
+        "y": 0.393
       }
     },
     "verified": false
@@ -18748,7 +18762,7 @@
       "height": 512,
       "focus": {
         "x": 0.45,
-        "y": 0.28
+        "y": 0.305
       }
     },
     "verified": false
@@ -18829,7 +18843,8 @@
       "focus": {
         "x": 0.44,
         "y": 0.45
-      }
+      },
+      "zoom": 1.25
     },
     "verified": false
   },
@@ -18907,8 +18922,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.47,
-        "y": 0.43
+        "x": 0.427,
+        "y": 0.42
       }
     },
     "verified": false
@@ -18955,9 +18970,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.4,
-        "y": 0.43
-      }
+        "x": 0.495,
+        "y": 0.416
+      },
+      "zoom": 1.3
     },
     "verified": false
   },
@@ -19019,8 +19035,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.42,
-        "y": 0.44
+        "x": 0.437,
+        "y": 0.457
       }
     },
     "verified": false
@@ -19035,8 +19051,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.37,
-        "y": 0.43
+        "x": 0.403,
+        "y": 0.443
       }
     },
     "verified": false
@@ -19051,8 +19067,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.45,
-        "y": 0.42
+        "x": 0.44,
+        "y": 0.34
       }
     },
     "verified": false
@@ -19115,9 +19131,10 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.48,
-        "y": 0.4
-      }
+        "x": 0.459,
+        "y": 0.398
+      },
+      "zoom": 1.4
     },
     "verified": false
   },
@@ -19147,8 +19164,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.52,
-        "y": 0.33
+        "x": 0.497,
+        "y": 0.407
       }
     },
     "verified": false
@@ -19179,8 +19196,8 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.4,
-        "y": 0.44
+        "x": 0.412,
+        "y": 0.405
       }
     },
     "verified": false
@@ -19196,7 +19213,7 @@
       "height": 512,
       "focus": {
         "x": 0.52,
-        "y": 0.52
+        "y": 0.54
       }
     },
     "verified": false
@@ -19211,7 +19228,7 @@
       "width": 512,
       "height": 512,
       "focus": {
-        "x": 0.6,
+        "x": 0.612,
         "y": 0.43
       }
     },
@@ -19224,9 +19241,10 @@
     "series": "naruto",
     "payload": {
       "name": "Rasengan",
-      "image": "naruto/jutsus/rasengan",
+      "image": "naruto/c/989fc5b965de3f85",
+      "video": "naruto/989fc5b965de3f85",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "boruto-uzumaki",
         "jiraiya",
@@ -19246,9 +19264,10 @@
     "series": "naruto",
     "payload": {
       "name": "Chidori",
-      "image": "naruto/jutsus/chidori",
+      "image": "naruto/c/1ed145eb0bf0ed0c",
+      "video": "naruto/1ed145eb0bf0ed0c",
       "width": 512,
-      "height": 287,
+      "height": 246,
       "accepts": [
         "kakashi-hatake",
         "sarada-uchiha"
@@ -19263,9 +19282,10 @@
     "series": "naruto",
     "payload": {
       "name": "Amaterasu",
-      "image": "naruto/jutsus/amaterasu",
+      "image": "naruto/c/5d813e4a35c6dd66",
+      "video": "naruto/5d813e4a35c6dd66",
       "width": 512,
-      "height": 289,
+      "height": 246,
       "accepts": [
         "sasuke-uchiha"
       ]
@@ -19279,9 +19299,10 @@
     "series": "naruto",
     "payload": {
       "name": "Tsukuyomi",
-      "image": "naruto/jutsus/tsukuyomi",
+      "image": "naruto/c/7c11bcd3ad10b3f8",
+      "video": "naruto/7c11bcd3ad10b3f8",
       "width": 512,
-      "height": 266,
+      "height": 330,
       "accepts": []
     },
     "verified": false
@@ -19293,9 +19314,10 @@
     "series": "naruto",
     "payload": {
       "name": "Raikiri (Corte de Rayo)",
-      "image": "naruto/jutsus/lightning-cutter",
+      "image": "naruto/c/7eaaa2399a18cc41",
+      "video": "naruto/7eaaa2399a18cc41",
       "width": 512,
-      "height": 285,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19307,9 +19329,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Ocho Puertas Internas",
-      "image": "naruto/jutsus/eight-gates",
+      "image": "naruto/c/f5b8e61219860c56",
+      "video": "naruto/f5b8e61219860c56",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19321,9 +19344,10 @@
     "series": "naruto",
     "payload": {
       "name": "Sesenta y Cuatro Palmas de los Ocho Trigramas",
-      "image": "naruto/jutsus/sixty-four-palms",
+      "image": "naruto/c/955a26f34915e35b",
+      "video": "naruto/955a26f34915e35b",
       "width": 512,
-      "height": 383,
+      "height": 330,
       "accepts": [
         "hiashi-hyuga",
         "hinata-hyuga"
@@ -19338,9 +19362,10 @@
     "series": "naruto",
     "payload": {
       "name": "Jutsu de Posesión de la Sombra",
-      "image": "naruto/jutsus/shadow-imitation",
+      "image": "naruto/c/ffd2c131b77811ef",
+      "video": "naruto/ffd2c131b77811ef",
       "width": 512,
-      "height": 289,
+      "height": 246,
       "accepts": [
         "momoshiki-otsutsuki",
         "shikadai-nara",
@@ -19356,9 +19381,10 @@
     "series": "naruto",
     "payload": {
       "name": "Jutsu de Intercambio de Mentes",
-      "image": "naruto/jutsus/mind-body-switch",
+      "image": "naruto/c/557e52ca73fbfccb",
+      "video": "naruto/557e52ca73fbfccb",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "inoichi-yamanaka",
         "inojin-yamanaka"
@@ -19373,9 +19399,10 @@
     "series": "naruto",
     "payload": {
       "name": "Jutsu de Expansión Parcial",
-      "image": "naruto/jutsus/partial-multi-size",
+      "image": "naruto/c/71ae82911640211e",
+      "video": "naruto/71ae82911640211e",
       "width": 512,
-      "height": 287,
+      "height": 246,
       "accepts": [
         "chocho-akimichi",
         "choza-akimichi"
@@ -19390,9 +19417,10 @@
     "series": "naruto",
     "payload": {
       "name": "Ataúd de Arena",
-      "image": "naruto/jutsus/sand-binding-coffin",
+      "image": "naruto/c/c371c45f07013680",
+      "video": "naruto/c371c45f07013680",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": []
     },
     "verified": false
@@ -19404,9 +19432,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Kamui",
-      "image": "naruto/jutsus/kamui",
+      "image": "naruto/c/f0dfeb7b43635de6",
+      "video": "naruto/f0dfeb7b43635de6",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": [
         "kakashi-hatake",
         "madara-uchiha"
@@ -19421,9 +19450,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Shinra Tensei",
-      "image": "naruto/jutsus/shinra-tensei",
+      "image": "naruto/c/7142514d04371463",
+      "video": "naruto/7142514d04371463",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19435,9 +19465,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Jutsu del Dios del Trueno Volador",
-      "image": "naruto/jutsus/flying-thunder-god",
+      "image": "naruto/c/dd6b3846a5a2a254",
+      "video": "naruto/dd6b3846a5a2a254",
       "width": 512,
-      "height": 289,
+      "height": 246,
       "accepts": [
         "tobirama-senju"
       ]
@@ -19451,9 +19482,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Estilo Polvo: Separación del Mundo Primitivo",
-      "image": "naruto/jutsus/detachment-primitive-world",
+      "image": "naruto/c/0f8c417365cef67f",
+      "video": "naruto/0f8c417365cef67f",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": [
         "mu"
       ]
@@ -19467,27 +19499,12 @@
     "series": "shippuden",
     "payload": {
       "name": "Impacto de Flor de Cerezo",
-      "image": "naruto/jutsus/cherry-blossom-impact",
+      "image": "naruto/c/89251363a6d75d3e",
+      "video": "naruto/89251363a6d75d3e",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "sarada-uchiha"
-      ]
-    },
-    "verified": false
-  },
-  {
-    "id": "jutsu-strength-of-a-hundred-seal",
-    "kind": "jutsu",
-    "entityId": "tsunade",
-    "series": "naruto",
-    "payload": {
-      "name": "Sello de la Fuerza de los Cien",
-      "image": "naruto/jutsus/strength-of-a-hundred-seal",
-      "width": 320,
-      "height": 512,
-      "accepts": [
-        "sakura-haruno"
       ]
     },
     "verified": false
@@ -19499,9 +19516,10 @@
     "series": "naruto",
     "payload": {
       "name": "Loto Primario",
-      "image": "naruto/jutsus/front-lotus",
+      "image": "naruto/c/6c1e2297f1778d8e",
+      "video": "naruto/6c1e2297f1778d8e",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "might-guy"
       ]
@@ -19515,9 +19533,10 @@
     "series": "naruto",
     "payload": {
       "name": "Colmillo que Atraviesa el Colmillo",
-      "image": "naruto/jutsus/fang-passing-fang",
+      "image": "naruto/c/a863580f992a5d85",
+      "video": "naruto/a863580f992a5d85",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "akamaru",
         "tsume-inuzuka"
@@ -19532,9 +19551,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Dibujo de Bestias Súper Imitadas",
-      "image": "naruto/jutsus/super-beast-imitating-drawing",
+      "image": "naruto/c/f3ab9eeae0345a6f",
+      "video": "naruto/f3ab9eeae0345a6f",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "inojin-yamanaka"
       ]
@@ -19548,9 +19568,10 @@
     "series": "naruto",
     "payload": {
       "name": "Reencarnación del Mundo Impuro",
-      "image": "naruto/jutsus/impure-world-reincarnation",
+      "image": "naruto/c/9fd5cb54d380e97d",
+      "video": "naruto/9fd5cb54d380e97d",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": [
         "kabuto-yakushi",
         "tobirama-senju"
@@ -19565,9 +19586,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Shuriken de Papel",
-      "image": "naruto/jutsus/paper-shuriken",
+      "image": "naruto/c/e042348a5f4906e5",
+      "video": "naruto/e042348a5f4906e5",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19579,9 +19601,10 @@
     "series": "naruto",
     "payload": {
       "name": "Técnica Secreta de Madera: Nacimiento de un Mundo de Árboles",
-      "image": "naruto/jutsus/nativity-world-of-trees",
+      "image": "naruto/c/4da2a49859699855",
+      "video": "naruto/4da2a49859699855",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "madara-uchiha"
       ]
@@ -19595,9 +19618,10 @@
     "series": "naruto",
     "payload": {
       "name": "Jizō de Agujas",
-      "image": "naruto/jutsus/needle-jizo",
+      "image": "naruto/c/acf45402036f7743",
+      "video": "naruto/acf45402036f7743",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "koji-kashin"
       ]
@@ -19611,9 +19635,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Arcilla Explosiva",
-      "image": "naruto/jutsus/explosive-clay",
+      "image": "naruto/c/7f28263f37590ef3",
+      "video": "naruto/7f28263f37590ef3",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": []
     },
     "verified": false
@@ -19625,9 +19650,10 @@
     "series": "naruto",
     "payload": {
       "name": "Técnica de Marionetas",
-      "image": "naruto/jutsus/puppet-technique",
+      "image": "naruto/c/8249157d4cfff3ac",
+      "video": "naruto/8249157d4cfff3ac",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "chiyo",
         "sasori"
@@ -19642,9 +19668,10 @@
     "series": "naruto",
     "payload": {
       "name": "Sello de Devoración del Demonio de la Muerte",
-      "image": "naruto/jutsus/dead-demon-consuming-seal",
+      "image": "naruto/c/c795b36149c37d98",
+      "video": "naruto/c795b36149c37d98",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "minato-namikaze"
       ]
@@ -19658,9 +19685,10 @@
     "series": "naruto",
     "payload": {
       "name": "Cristales de Hielo Espejo Demoníacos",
-      "image": "naruto/jutsus/demonic-mirroring-ice-crystals",
+      "image": "naruto/c/9c6f98e0dbe4bfdd",
+      "video": "naruto/9c6f98e0dbe4bfdd",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19672,9 +19700,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Estilo Agua: Ola Colisionante Explosiva",
-      "image": "naruto/jutsus/exploding-water-colliding-wave",
+      "image": "naruto/c/758c6cf0c0d1c3c4",
+      "video": "naruto/758c6cf0c0d1c3c4",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19686,9 +19715,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Estilo Madera: Técnica de la Casa de Cuatro Pilares",
-      "image": "naruto/jutsus/four-pillar-house",
+      "image": "naruto/c/33d0747ae77b70d6",
+      "video": "naruto/33d0747ae77b70d6",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19700,9 +19730,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Estilo Viento: Gran Hoz de la Comadreja",
-      "image": "naruto/jutsus/great-sickle-weasel",
+      "image": "naruto/c/da368f19162a3ece",
+      "video": "naruto/da368f19162a3ece",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19714,9 +19745,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Estilo Lava: Aparición Fundente",
-      "image": "naruto/jutsus/melting-apparition",
+      "image": "naruto/c/f8dab419729db442",
+      "video": "naruto/f8dab419729db442",
       "width": 512,
-      "height": 289,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19728,9 +19760,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Miedo del Rencor de la Tierra",
-      "image": "naruto/jutsus/earth-grudge-fear",
+      "image": "naruto/c/a151b49085377583",
+      "video": "naruto/a151b49085377583",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19742,9 +19775,10 @@
     "series": "naruto",
     "payload": {
       "name": "Clon de Insectos",
-      "image": "naruto/jutsus/insect-clone",
+      "image": "naruto/c/8dc57117b005b0e4",
+      "video": "naruto/8dc57117b005b0e4",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": []
     },
     "verified": false
@@ -19756,9 +19790,10 @@
     "series": "naruto",
     "payload": {
       "name": "Bisturí de Chakra",
-      "image": "naruto/jutsus/chakra-scalpel",
+      "image": "naruto/c/d28e4088214e783a",
+      "video": "naruto/d28e4088214e783a",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "sakura-haruno",
         "tsunade"
@@ -19773,9 +19808,10 @@
     "series": "naruto",
     "payload": {
       "name": "Técnica de Ocultamiento en la Niebla",
-      "image": "naruto/jutsus/hiding-in-mist",
+      "image": "naruto/c/65baec32963729b3",
+      "video": "naruto/65baec32963729b3",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "mei-terumi"
       ]
@@ -19789,23 +19825,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Técnica de Maldición: Sangre Poseída que Controla la Muerte",
-      "image": "naruto/jutsus/death-controlling-possessed-blood",
+      "image": "naruto/c/19add29726632124",
+      "video": "naruto/19add29726632124",
       "width": 512,
-      "height": 340,
-      "accepts": []
-    },
-    "verified": false
-  },
-  {
-    "id": "jutsu-hundred-puppets",
-    "kind": "jutsu",
-    "entityId": "sasori",
-    "series": "shippuden",
-    "payload": {
-      "name": "Técnica Secreta Roja: Actuación de las Cien Marionetas",
-      "image": "naruto/jutsus/hundred-puppets",
-      "width": 512,
-      "height": 404,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19817,9 +19840,10 @@
     "series": "naruto",
     "payload": {
       "name": "Dragones Gemelos Ascendentes",
-      "image": "naruto/jutsus/twin-rising-dragons",
+      "image": "naruto/c/9db1d15337a9cb91",
+      "video": "naruto/9db1d15337a9cb91",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": []
     },
     "verified": false
@@ -19831,9 +19855,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Puños de León Gemelos",
-      "image": "naruto/jutsus/twin-lion-fists",
+      "image": "naruto/c/49790ef5b5da4553",
+      "video": "naruto/49790ef5b5da4553",
       "width": 512,
-      "height": 289,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19845,9 +19870,10 @@
     "series": "naruto",
     "payload": {
       "name": "Golondrina Voladora",
-      "image": "naruto/jutsus/flying-swallow",
+      "image": "naruto/c/23b6f982f7afca76",
+      "video": "naruto/23b6f982f7afca76",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": [
         "mirai-sarutobi"
       ]
@@ -19861,9 +19887,10 @@
     "series": "naruto",
     "payload": {
       "name": "Ilusión Demoníaca: Muerte Atada al Árbol",
-      "image": "naruto/jutsus/tree-binding-death",
+      "image": "naruto/c/edab95f4d941f6c1",
+      "video": "naruto/edab95f4d941f6c1",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "mirai-sarutobi"
       ]
@@ -19877,9 +19904,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Estilo Rayo: Lariat",
-      "image": "naruto/jutsus/lightning-lariat",
+      "image": "naruto/c/8dccef621f819321",
+      "video": "naruto/8dccef621f819321",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": [
         "a-cuarto-raikage"
       ]
@@ -19893,9 +19921,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Bomba Liger",
-      "image": "naruto/jutsus/liger-bomb",
+      "image": "naruto/c/1900f2c68928b195",
+      "video": "naruto/1900f2c68928b195",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19907,9 +19936,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Estilo Rayo: Pantera Negra",
-      "image": "naruto/jutsus/black-panther",
+      "image": "naruto/c/50b022c91aa78274",
+      "video": "naruto/50b022c91aa78274",
       "width": 512,
-      "height": 289,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19921,9 +19951,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Tengai Shinsei (Estrella Caída del Cielo)",
-      "image": "naruto/jutsus/tengai-shinsei",
+      "image": "naruto/c/bc79ed7913ef4baf",
+      "video": "naruto/bc79ed7913ef4baf",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19935,9 +19966,10 @@
     "series": "naruto",
     "payload": {
       "name": "Estilo Agua: Onda Cortante de Agua",
-      "image": "naruto/jutsus/water-severing-wave",
+      "image": "naruto/c/d66d4ef6eeba0507",
+      "video": "naruto/d66d4ef6eeba0507",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19949,9 +19981,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Estilo Viento: Ondas de Vacío en Serie",
-      "image": "naruto/jutsus/vacuum-serial-waves",
+      "image": "naruto/c/f0eac58d1b7e78c6",
+      "video": "naruto/f0eac58d1b7e78c6",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19963,9 +19996,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Kotoamatsukami",
-      "image": "naruto/jutsus/kotoamatsukami",
+      "image": "naruto/c/ddfd896e4f7c735a",
+      "video": "naruto/ddfd896e4f7c735a",
       "width": 512,
-      "height": 289,
+      "height": 246,
       "accepts": [
         "danzo-shimura"
       ]
@@ -19979,9 +20013,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Cadenas Selladoras de Diamante",
-      "image": "naruto/jutsus/adamantine-sealing-chains",
+      "image": "naruto/c/4c625291bf64808d",
+      "video": "naruto/4c625291bf64808d",
       "width": 512,
-      "height": 290,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -19993,9 +20028,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Técnica de Hidrificación",
-      "image": "naruto/jutsus/hydrification",
+      "image": "naruto/c/c0d8b5f9e74cf90b",
+      "video": "naruto/c0d8b5f9e74cf90b",
       "width": 512,
-      "height": 289,
+      "height": 246,
       "accepts": [
         "gengetsu-hozuki",
         "mangetsu-hozuki"
@@ -20010,9 +20046,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Técnica Secreta Blanca: La Colección de Diez Marionetas de Chikamatsu",
-      "image": "naruto/jutsus/chikamatsu-ten-puppets",
+      "image": "naruto/c/7be959ac8261afe8",
+      "video": "naruto/7be959ac8261afe8",
       "width": 512,
-      "height": 289,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -20024,9 +20061,10 @@
     "series": "naruto",
     "payload": {
       "name": "Danza del Helecho Brotado",
-      "image": "naruto/jutsus/seedling-fern",
+      "image": "naruto/c/38fa15c97fdb052d",
+      "video": "naruto/38fa15c97fdb052d",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "kabuto-yakushi"
       ]
@@ -20040,9 +20078,10 @@
     "series": "naruto",
     "payload": {
       "name": "Flauta Demoníaca: Cadenas de Sonido Fantasma",
-      "image": "naruto/jutsus/phantom-sound-chains",
+      "image": "naruto/c/02bbb82c04a44ce4",
+      "video": "naruto/02bbb82c04a44ce4",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "kabuto-yakushi"
       ]
@@ -20056,9 +20095,10 @@
     "series": "naruto",
     "payload": {
       "name": "Atadura de Araña",
-      "image": "naruto/jutsus/spider-bind",
+      "image": "naruto/c/b81ca841882adeca",
+      "video": "naruto/b81ca841882adeca",
       "width": 512,
-      "height": 387,
+      "height": 330,
       "accepts": []
     },
     "verified": false
@@ -20070,9 +20110,10 @@
     "series": "naruto",
     "payload": {
       "name": "Barrera de Tierra: Domo Prisión de la Magnífica Nada",
-      "image": "naruto/jutsus/earth-prison-dome",
+      "image": "naruto/c/c3e410193dc8a74a",
+      "video": "naruto/c3e410193dc8a74a",
       "width": 512,
-      "height": 387,
+      "height": 330,
       "accepts": []
     },
     "verified": false
@@ -20084,9 +20125,10 @@
     "series": "naruto",
     "payload": {
       "name": "Técnica de Demolición del Demonio Parásito",
-      "image": "naruto/jutsus/parasite-demon-demolition",
+      "image": "naruto/c/6efd2f465549ba85",
+      "video": "naruto/6efd2f465549ba85",
       "width": 512,
-      "height": 387,
+      "height": 330,
       "accepts": []
     },
     "verified": false
@@ -20098,23 +20140,10 @@
     "series": "naruto",
     "payload": {
       "name": "Ondas de Aire Decapitadoras",
-      "image": "naruto/jutsus/decapitating-airwaves",
+      "image": "naruto/c/a59e0ffce2e2e59c",
+      "video": "naruto/a59e0ffce2e2e59c",
       "width": 512,
-      "height": 387,
-      "accepts": []
-    },
-    "verified": false
-  },
-  {
-    "id": "jutsu-all-killing-ash-bones",
-    "kind": "jutsu",
-    "entityId": "kaguya-otsutsuki",
-    "series": "shippuden",
-    "payload": {
-      "name": "Huesos de Ceniza Exterminadores",
-      "image": "naruto/jutsus/all-killing-ash-bones",
-      "width": 512,
-      "height": 288,
+      "height": 330,
       "accepts": []
     },
     "verified": false
@@ -20126,9 +20155,10 @@
     "series": "boruto",
     "payload": {
       "name": "Rasengan Desvaneciente",
-      "image": "naruto/jutsus/vanishing-rasengan",
+      "image": "naruto/c/98915adf896b1027",
+      "video": "naruto/98915adf896b1027",
       "width": 512,
-      "height": 287,
+      "height": 246,
       "accepts": [
         "momoshiki-otsutsuki"
       ]
@@ -20142,9 +20172,10 @@
     "series": "shippuden",
     "payload": {
       "name": "Estilo Quemadura: Asesinato de Vapor Extremo",
-      "image": "naruto/jutsus/extremely-steaming-murder",
+      "image": "naruto/c/aee88a1a8774b4d8",
+      "video": "naruto/aee88a1a8774b4d8",
       "width": 512,
-      "height": 288,
+      "height": 246,
       "accepts": []
     },
     "verified": false
@@ -20156,29 +20187,1495 @@
     "series": "naruto",
     "payload": {
       "name": "Niebla Venenosa",
-      "image": "naruto/jutsus/poison-mist",
+      "image": "naruto/c/556682537b5162a3",
+      "video": "naruto/556682537b5162a3",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": []
     },
     "verified": false
   },
   {
-    "id": "jutsu-striking-shadow-snakes",
+    "id": "jutsu-clone-great-explosion",
     "kind": "jutsu",
-    "entityId": "anko-mitarashi",
+    "entityId": "itachi-uchiha",
     "series": "naruto",
     "payload": {
-      "name": "Manos Ocultas de Serpientes de Sombra",
-      "image": "naruto/jutsus/striking-shadow-snakes",
+      "name": "Gran Explosión del Clon",
+      "image": "naruto/c/3f51450303ccefc8",
+      "video": "naruto/3f51450303ccefc8",
       "width": 512,
-      "height": 302,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-demonic-illusion-mirror-heaven-and-earth-change",
+    "kind": "jutsu",
+    "entityId": "itachi-uchiha",
+    "series": "naruto",
+    "payload": {
+      "name": "Ilusión Demoníaca: Espejo Cielo-Tierra",
+      "image": "naruto/c/f30f767058ae2326",
+      "video": "naruto/f30f767058ae2326",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-morning-peacock",
+    "kind": "jutsu",
+    "entityId": "might-guy",
+    "series": "shippuden",
+    "payload": {
+      "name": "Amanecer del Pavo Real",
+      "image": "naruto/c/5528adc2d5f5a6f4",
+      "video": "naruto/5528adc2d5f5a6f4",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-amenominaka",
+    "kind": "jutsu",
+    "entityId": "kaguya-otsutsuki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Amenominaka",
+      "image": "naruto/c/276872fa5495b439",
+      "video": "naruto/276872fa5495b439",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-iron-sand-drizzle",
+    "kind": "jutsu",
+    "entityId": "sasori",
+    "series": "shippuden",
+    "payload": {
+      "name": "Arena de Hierro: Lluvia Dispersa",
+      "image": "naruto/c/12d21adb777d5e11",
+      "video": "naruto/12d21adb777d5e11",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-armour-of-sand",
+    "kind": "jutsu",
+    "entityId": "gaara",
+    "series": "naruto",
+    "payload": {
+      "name": "Armadura de Arena",
+      "image": "naruto/c/307b7f6534dd6f39",
+      "video": "naruto/307b7f6534dd6f39",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-lightning-release-chakra-mode",
+    "kind": "jutsu",
+    "entityId": "killer-bee",
+    "series": "shippuden",
+    "payload": {
+      "name": "Armadura de Elemento Rayo",
+      "image": "naruto/c/67f8cb0ae6a1b78b",
+      "video": "naruto/67f8cb0ae6a1b78b",
+      "width": 512,
+      "height": 246,
       "accepts": [
-        "kabuto-yakushi",
-        "mitsuki",
-        "orochimaru",
+        "a-cuarto-raikage"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-creation-rebirth",
+    "kind": "jutsu",
+    "entityId": "tsunade",
+    "series": "naruto",
+    "payload": {
+      "name": "Arte Ninja: Creación de Renacimiento",
+      "image": "naruto/c/bf8b1fd0d076f051",
+      "video": "naruto/bf8b1fd0d076f051",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "sakura-haruno"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-sage-art-goemon",
+    "kind": "jutsu",
+    "entityId": "jiraiya",
+    "series": "shippuden",
+    "payload": {
+      "name": "Arte Sabio: Goemon",
+      "image": "naruto/c/2bd46283517e8754",
+      "video": "naruto/2bd46283517e8754",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "fukasaku",
+        "shima"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-sage-art-white-rage-technique",
+    "kind": "jutsu",
+    "entityId": "kabuto-yakushi",
+    "series": "shippuden",
+    "payload": {
+      "name": "Arte Sabio: Jutsu Blanco Violento",
+      "image": "naruto/c/a78a7301e5d025aa",
+      "video": "naruto/a78a7301e5d025aa",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-sage-art-super-tailed-beast-rasenshuriken",
+    "kind": "jutsu",
+    "entityId": "naruto-uzumaki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Arte Sabio: Súper Rasenshuriken de Bestia con Cola",
+      "image": "naruto/c/480fc16cc11519f8",
+      "video": "naruto/480fc16cc11519f8",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-attack-of-the-twin-demons",
+    "kind": "jutsu",
+    "entityId": "sakon-y-ukon",
+    "series": "naruto",
+    "payload": {
+      "name": "Ataque de los Demonios Gemelos",
+      "image": "naruto/c/8331b3aae42aed05",
+      "video": "naruto/8331b3aae42aed05",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "kabuto-yakushi"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-majestic-attire-susanoo",
+    "kind": "jutsu",
+    "entityId": "madara-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Atuendo Majestuoso: Susanoo",
+      "image": "naruto/c/33e261d253cb6f75",
+      "video": "naruto/33e261d253cb6f75",
+      "width": 512,
+      "height": 246,
+      "accepts": [
         "sasuke-uchiha"
       ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-bansho-ten-in",
+    "kind": "jutsu",
+    "entityId": "nagato",
+    "series": "shippuden",
+    "payload": {
+      "name": "Banshō Ten'in",
+      "image": "naruto/c/d22838d0c310d7c9",
+      "video": "naruto/d22838d0c310d7c9",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-human-bullet-tank",
+    "kind": "jutsu",
+    "entityId": "choji-akimichi",
+    "series": "naruto",
+    "payload": {
+      "name": "Bola de Tanque Humano",
+      "image": "naruto/c/d9c4cad8c375fc45",
+      "video": "naruto/d9c4cad8c375fc45",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "chocho-akimichi",
+        "choza-akimichi"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-spiked-human-bullet-tank",
+    "kind": "jutsu",
+    "entityId": "choji-akimichi",
+    "series": "naruto",
+    "payload": {
+      "name": "Bola de Tanque Humano Pinchante",
+      "image": "naruto/c/847bbca80e1c590c",
+      "video": "naruto/847bbca80e1c590c",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-c0",
+    "kind": "jutsu",
+    "entityId": "deidara",
+    "series": "shippuden",
+    "payload": {
+      "name": "C0",
+      "image": "naruto/c/faf2ad90378653e4",
+      "video": "naruto/faf2ad90378653e4",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-c2",
+    "kind": "jutsu",
+    "entityId": "deidara",
+    "series": "shippuden",
+    "payload": {
+      "name": "C2",
+      "image": "naruto/c/a7cd87b390fac32b",
+      "video": "naruto/a7cd87b390fac32b",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-c4",
+    "kind": "jutsu",
+    "entityId": "deidara",
+    "series": "shippuden",
+    "payload": {
+      "name": "C4",
+      "image": "naruto/c/a246410cd847db3c",
+      "video": "naruto/a246410cd847db3c",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-chibaku-tensei",
+    "kind": "jutsu",
+    "entityId": "nagato",
+    "series": "shippuden",
+    "payload": {
+      "name": "Chibaku Tensei (Jutsu)",
+      "image": "naruto/c/28a5c612c4fd0fac",
+      "video": "naruto/28a5c612c4fd0fac",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "hagoromo-otsutsuki",
+        "madara-uchiha",
+        "sasuke-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-chidori-sharp-spear",
+    "kind": "jutsu",
+    "entityId": "sasuke-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Chidori Eisō",
+      "image": "naruto/c/4985ffa85502cd21",
+      "video": "naruto/4985ffa85502cd21",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-chidori-current",
+    "kind": "jutsu",
+    "entityId": "sasuke-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Chidori Nagashi",
+      "image": "naruto/c/7827e367948c5a4e",
+      "video": "naruto/7827e367948c5a4e",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-multiple-shadow-clone-technique",
+    "kind": "jutsu",
+    "entityId": "naruto-uzumaki",
+    "series": "naruto",
+    "payload": {
+      "name": "Clones de Sombra Múltiples",
+      "image": "naruto/c/29354e84e5cc8337",
+      "video": "naruto/29354e84e5cc8337",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "kakashi-hatake"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-naruto-uzumaki-two-thousand-combo",
+    "kind": "jutsu",
+    "entityId": "naruto-uzumaki",
+    "series": "naruto",
+    "payload": {
+      "name": "Combo Dos Mil de Naruto Uzumaki",
+      "image": "naruto/c/e7cd8328dfcadc5b",
+      "video": "naruto/e7cd8328dfcadc5b",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-dance-of-the-camellia",
+    "kind": "jutsu",
+    "entityId": "kimimaro",
+    "series": "naruto",
+    "payload": {
+      "name": "Danza de la Camelia",
+      "image": "naruto/c/e6c3690c69b35e91",
+      "video": "naruto/e6c3690c69b35e91",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-dance-of-the-shikigami",
+    "kind": "jutsu",
+    "entityId": "konan",
+    "series": "shippuden",
+    "payload": {
+      "name": "Danza del Shikigami",
+      "image": "naruto/c/c8cb9c7971f47343",
+      "video": "naruto/c8cb9c7971f47343",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-water-prison-shark-dance-technique",
+    "kind": "jutsu",
+    "entityId": "kisame-hoshigaki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Danza del Tiburón en la Prisión de Agua",
+      "image": "naruto/c/d9c5f9ef79a53c70",
+      "video": "naruto/d9c5f9ef79a53c70",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-flying-thunder-god-slash",
+    "kind": "jutsu",
+    "entityId": "tobirama-senju",
+    "series": "shippuden",
+    "payload": {
+      "name": "Decapitación del Dios Trueno",
+      "image": "naruto/c/82d41f85efbdc84d",
+      "video": "naruto/82d41f85efbdc84d",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "minato-namikaze"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-ultimately-hard-absolute-defence-shield-of-shukaku",
+    "kind": "jutsu",
+    "entityId": "gaara",
+    "series": "naruto",
+    "payload": {
+      "name": "Defensa Absoluta: Escudo de Shukaku",
+      "image": "naruto/c/7e8a6dd9bcf9e3c9",
+      "video": "naruto/7e8a6dd9bcf9e3c9",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-fang-wolf-fang",
+    "kind": "jutsu",
+    "entityId": "kiba-inuzuka",
+    "series": "naruto",
+    "payload": {
+      "name": "Doble Colmillo de Lobo",
+      "image": "naruto/c/243a88ce01ad0268",
+      "video": "naruto/243a88ce01ad0268",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "akamaru"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-water-release-five-feeding-sharks",
+    "kind": "jutsu",
+    "entityId": "kisame-hoshigaki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Agua: Cinco Tiburones Hambrientos",
+      "image": "naruto/c/e52e5a3b30d6a0ba",
+      "video": "naruto/e52e5a3b30d6a0ba",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-fire-release-toad-oil-flame-bullet",
+    "kind": "jutsu",
+    "entityId": "jiraiya",
+    "series": "naruto",
+    "payload": {
+      "name": "Elemento Fuego: Bola de Fuego de Aceite de Sapo",
+      "image": "naruto/c/77d8ef11a255e757",
+      "video": "naruto/77d8ef11a255e757",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "gamabunta"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-fire-release-phoenix-sage-fire-technique",
+    "kind": "jutsu",
+    "entityId": "sasuke-uchiha",
+    "series": "naruto",
+    "payload": {
+      "name": "Elemento Fuego: Fuego del Fénix",
+      "image": "naruto/c/707585dbeed8807b",
+      "video": "naruto/707585dbeed8807b",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "itachi-uchiha",
+        "sarada-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-fire-release-great-fire-annihilation",
+    "kind": "jutsu",
+    "entityId": "madara-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Fuego: Gran Aniquilación de Fuego",
+      "image": "naruto/c/878603bed290481c",
+      "video": "naruto/878603bed290481c",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-fire-release-great-fireball-technique",
+    "kind": "jutsu",
+    "entityId": "sasuke-uchiha",
+    "series": "naruto",
+    "payload": {
+      "name": "Elemento Fuego: Jutsu Gran Bola de Fuego",
+      "image": "naruto/c/c27e33cc08311538",
+      "video": "naruto/c27e33cc08311538",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "fugaku-uchiha",
+        "itachi-uchiha",
+        "madara-uchiha",
+        "obito-uchiha",
+        "sarada-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-fire-release-phoenix-sage-flower-nail-crimson",
+    "kind": "jutsu",
+    "entityId": "itachi-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Fuego: Uñas de Carmesí Flor de Llamas de Fénix",
+      "image": "naruto/c/935100fa3b52f9a5",
+      "video": "naruto/935100fa3b52f9a5",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-magnet-release-gold-dust-imperial-funeral",
+    "kind": "jutsu",
+    "entityId": "rasa",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Imán: Funeral de la Cascada Imperial de Polvo de Oro",
+      "image": "naruto/c/3ab7d3753759f1c7",
+      "video": "naruto/3ab7d3753759f1c7",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-blaze-release-kagutsuchi",
+    "kind": "jutsu",
+    "entityId": "sasuke-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Infierno: Kagutsuchi",
+      "image": "naruto/c/0cdd81eaf0f4800d",
+      "video": "naruto/0cdd81eaf0f4800d",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-wood-release-great-spear-tree",
+    "kind": "jutsu",
+    "entityId": "obito-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Madera: Gran Árbol Lanza",
+      "image": "naruto/c/7f74bab18ecdaa58",
+      "video": "naruto/7f74bab18ecdaa58",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-wood-release-wood-human-technique",
+    "kind": "jutsu",
+    "entityId": "hashirama-senju",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Madera: Humano de Madera",
+      "image": "naruto/c/3786f21010c33ab2",
+      "video": "naruto/3786f21010c33ab2",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-wood-release-four-pillar-prison-technique",
+    "kind": "jutsu",
+    "entityId": "yamato",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Madera: Prisión de Cuatro Pilares",
+      "image": "naruto/c/53f0bcf228ac7ca6",
+      "video": "naruto/53f0bcf228ac7ca6",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-lightning-release-false-darkness",
+    "kind": "jutsu",
+    "entityId": "kakuzu",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Rayo: Fuerza Negativa",
+      "image": "naruto/c/3941043880368eb3",
+      "video": "naruto/3941043880368eb3",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-earth-release-earth-spear",
+    "kind": "jutsu",
+    "entityId": "kakuzu",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Tierra: Lanza de Tierra",
+      "image": "naruto/c/968e3fc31de4cf29",
+      "video": "naruto/968e3fc31de4cf29",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-storm-release-laser-circus",
+    "kind": "jutsu",
+    "entityId": "darui",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Tormenta: Circo Láser",
+      "image": "naruto/c/5c14e196fb1a866e",
+      "video": "naruto/5c14e196fb1a866e",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-boil-release-skilled-mist-technique",
+    "kind": "jutsu",
+    "entityId": "mei-terumi",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Vapor: Jutsu de Niebla Corrosiva",
+      "image": "naruto/c/ba1672067ee67a27",
+      "video": "naruto/ba1672067ee67a27",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-wind-release-vacuum-sphere",
+    "kind": "jutsu",
+    "entityId": "danzo-shimura",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Viento: Esfera de Vacío",
+      "image": "naruto/c/a9fcc126681dccbb",
+      "video": "naruto/a9fcc126681dccbb",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-wind-release-rasenshuriken",
+    "kind": "jutsu",
+    "entityId": "naruto-uzumaki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Viento: Rasen Shuriken",
+      "image": "naruto/c/2fb18bfc33897914",
+      "video": "naruto/2fb18bfc33897914",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-shield-of-sand",
+    "kind": "jutsu",
+    "entityId": "gaara",
+    "series": "naruto",
+    "payload": {
+      "name": "Escudo de Arena",
+      "image": "naruto/c/1919ec7985f195f7",
+      "video": "naruto/1919ec7985f195f7",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-expansive-truth-seeking-ball",
+    "kind": "jutsu",
+    "entityId": "kaguya-otsutsuki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Esfera Buscadora de la Verdad Expansiva",
+      "image": "naruto/c/d97c33eb2c228454",
+      "video": "naruto/d97c33eb2c228454",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-sword-of-kusanagi-chidori-katana",
+    "kind": "jutsu",
+    "entityId": "sasuke-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Espada Kusanagi: Chidori Katana",
+      "image": "naruto/c/903cb179d3648dcb",
+      "video": "naruto/903cb179d3648dcb",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-sword-of-kusanagi-longsword-of-the-sky",
+    "kind": "jutsu",
+    "entityId": "orochimaru",
+    "series": "naruto",
+    "payload": {
+      "name": "Espada Kusanagi: Espada Larga del Cielo",
+      "image": "naruto/c/6a6e9e6db0f3c05a",
+      "video": "naruto/6a6e9e6db0f3c05a",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-demonic-flute-illusionary-warriors-manipulating-melody",
+    "kind": "jutsu",
+    "entityId": "tayuya",
+    "series": "naruto",
+    "payload": {
+      "name": "Flauta Demoníaca: Melodía Manipuladora Ilusoria de Guerreros",
+      "image": "naruto/c/dd207110852550e3",
+      "video": "naruto/dd207110852550e3",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-indra-s-arrow",
+    "kind": "jutsu",
+    "entityId": "sasuke-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Flecha de Indra",
+      "image": "naruto/c/6dd786109110d3f1",
+      "video": "naruto/6dd786109110d3f1",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-sand-waterfall-imperial-funeral",
+    "kind": "jutsu",
+    "entityId": "gaara",
+    "series": "naruto",
+    "payload": {
+      "name": "Funeral de la Cascada Imperial de Arena",
+      "image": "naruto/c/b5e2fd040c920bfe",
+      "video": "naruto/b5e2fd040c920bfe",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-sand-waterfall-funeral",
+    "kind": "jutsu",
+    "entityId": "gaara",
+    "series": "naruto",
+    "payload": {
+      "name": "Funeral de la Cascada de Arena",
+      "image": "naruto/c/c357ba9086576663",
+      "video": "naruto/c357ba9086576663",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-outer-path-samsara-of-heavenly-life-technique",
+    "kind": "jutsu",
+    "entityId": "nagato",
+    "series": "shippuden",
+    "payload": {
+      "name": "Gedo: Arte Rinne de la Reencarnación",
+      "image": "naruto/c/a05b1b19c25822d1",
+      "video": "naruto/a05b1b19c25822d1",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "obito-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-top-transformed-buddha",
+    "kind": "jutsu",
+    "entityId": "hashirama-senju",
+    "series": "shippuden",
+    "payload": {
+      "name": "Golpeo de la Cumbre",
+      "image": "naruto/c/b353c7e749237b44",
+      "video": "naruto/b353c7e749237b44",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-big-ball-rasengan",
+    "kind": "jutsu",
+    "entityId": "naruto-uzumaki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Gran Bola Rasengan",
+      "image": "naruto/c/dbf37abc675469d0",
+      "video": "naruto/dbf37abc675469d0",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "jiraiya",
+        "koji-kashin",
+        "konohamaru-sarutobi",
+        "momoshiki-otsutsuki"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-night-guy",
+    "kind": "jutsu",
+    "entityId": "might-guy",
+    "series": "shippuden",
+    "payload": {
+      "name": "Guy Nocturno",
+      "image": "naruto/c/e7153455ea7feaa9",
+      "video": "naruto/e7153455ea7feaa9",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-summoning-toad-mouth-bind",
+    "kind": "jutsu",
+    "entityId": "jiraiya",
+    "series": "naruto",
+    "payload": {
+      "name": "Invocación: Atadura de la Boca del Sapo",
+      "image": "naruto/c/5e424e2e19faf298",
+      "video": "naruto/5e424e2e19faf298",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-summoning-quick-beheading-dance",
+    "kind": "jutsu",
+    "entityId": "temari",
+    "series": "naruto",
+    "payload": {
+      "name": "Invocación: Danza Decapitadora Veloz",
+      "image": "naruto/c/b9f9e60736cc9de9",
+      "video": "naruto/b9f9e60736cc9de9",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-summoning-earth-release-tracking-fang-technique",
+    "kind": "jutsu",
+    "entityId": "kakashi-hatake",
+    "series": "naruto",
+    "payload": {
+      "name": "Invocación: Elemento Tierra: Jutsu de Persecución de Colmillos",
+      "image": "naruto/c/fe3636b4b7272055",
+      "video": "naruto/fe3636b4b7272055",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-summoning-triple-rashomon",
+    "kind": "jutsu",
+    "entityId": "orochimaru",
+    "series": "shippuden",
+    "payload": {
+      "name": "Invocación: Triple Rashōmon",
+      "image": "naruto/c/59e80d229b87e626",
+      "video": "naruto/59e80d229b87e626",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-izanami",
+    "kind": "jutsu",
+    "entityId": "itachi-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Izanami",
+      "image": "naruto/c/3bcdc776e1c9918b",
+      "video": "naruto/3bcdc776e1c9918b",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-black-secret-technique-machine-one-shot",
+    "kind": "jutsu",
+    "entityId": "kankuro",
+    "series": "naruto",
+    "payload": {
+      "name": "Jutsu Secreto Oscuro: Doncella de Hierro",
+      "image": "naruto/c/cfe6ea389694f752",
+      "video": "naruto/cfe6ea389694f752",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-secret-technique-insect-cocoon",
+    "kind": "jutsu",
+    "entityId": "shino-aburame",
+    "series": "shippuden",
+    "payload": {
+      "name": "Jutsu Secreto: Capullo de Insectos",
+      "image": "naruto/c/8cd22cb7e041e7ac",
+      "video": "naruto/8cd22cb7e041e7ac",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-butterfly-mode",
+    "kind": "jutsu",
+    "entityId": "choji-akimichi",
+    "series": "naruto",
+    "payload": {
+      "name": "Jutsu: Control de Calorías",
+      "image": "naruto/c/bed7f7dde41e801d",
+      "video": "naruto/bed7f7dde41e801d",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "chocho-akimichi"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-shadow-sewing-technique",
+    "kind": "jutsu",
+    "entityId": "shikamaru-nara",
+    "series": "shippuden",
+    "payload": {
+      "name": "Jutsu: Costura de Sombra",
+      "image": "naruto/c/9b8c82264b73a541",
+      "video": "naruto/9b8c82264b73a541",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-tailed-beast-lariat",
+    "kind": "jutsu",
+    "entityId": "killer-bee",
+    "series": "shippuden",
+    "payload": {
+      "name": "Lariat de la Bestia con Cola",
+      "image": "naruto/c/9ff8317e35346a40",
+      "video": "naruto/9ff8317e35346a40",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-limbo-border-jail",
+    "kind": "jutsu",
+    "entityId": "madara-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Limbo: Prisión Fronteriza",
+      "image": "naruto/c/39ffbe0384ba3aa2",
+      "video": "naruto/39ffbe0384ba3aa2",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-reverse-lotus",
+    "kind": "jutsu",
+    "entityId": "rock-lee",
+    "series": "naruto",
+    "payload": {
+      "name": "Loto Escondido",
+      "image": "naruto/c/886e9b3dda1c40d3",
+      "video": "naruto/886e9b3dda1c40d3",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "might-guy"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-wild-lion-s-mane-technique",
+    "kind": "jutsu",
+    "entityId": "jiraiya",
+    "series": "shippuden",
+    "payload": {
+      "name": "Melena del León Salvaje",
+      "image": "naruto/c/0a575b4800bcc060",
+      "video": "naruto/0a575b4800bcc060",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "koji-kashin"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-thousand-flying-water-needles-of-death",
+    "kind": "jutsu",
+    "entityId": "haku",
+    "series": "naruto",
+    "payload": {
+      "name": "Mil Agujas de Agua Voladoras de la Muerte",
+      "image": "naruto/c/4e31f089bcbbebee",
+      "video": "naruto/4e31f089bcbbebee",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-one-thousand-years-of-death",
+    "kind": "jutsu",
+    "entityId": "kakashi-hatake",
+    "series": "naruto",
+    "payload": {
+      "name": "Mil Años de Muerte",
+      "image": "naruto/c/9129921280f26c08",
+      "video": "naruto/9129921280f26c08",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "naruto-uzumaki"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-baryon-mode",
+    "kind": "jutsu",
+    "entityId": "naruto-uzumaki",
+    "series": "boruto",
+    "payload": {
+      "name": "Modo Barión",
+      "image": "naruto/c/aae6794cfec5787c",
+      "video": "naruto/aae6794cfec5787c",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "kurama"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-eight-trigrams-vacuum-palm",
+    "kind": "jutsu",
+    "entityId": "neji-hyuga",
+    "series": "shippuden",
+    "payload": {
+      "name": "Ocho Trigramas Palma del Vacío",
+      "image": "naruto/c/99743fda698b5387",
+      "video": "naruto/99743fda698b5387",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "hiashi-hyuga",
+        "hinata-hyuga"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-eight-trigrams-palms-revolving-heaven",
+    "kind": "jutsu",
+    "entityId": "neji-hyuga",
+    "series": "naruto",
+    "payload": {
+      "name": "Ocho Trigramas: Rotación Celestial",
+      "image": "naruto/c/f47188bb961c5b25",
+      "video": "naruto/f47188bb961c5b25",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "hiashi-hyuga"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-heavenly-foot-of-pain",
+    "kind": "jutsu",
+    "entityId": "tsunade",
+    "series": "naruto",
+    "payload": {
+      "name": "Patada Voladora del Cielo",
+      "image": "naruto/c/98ee780572572b90",
+      "video": "naruto/98ee780572572b90",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-water-prison-technique",
+    "kind": "jutsu",
+    "entityId": "zabuza-momochi",
+    "series": "naruto",
+    "payload": {
+      "name": "Prisión de Agua",
+      "image": "naruto/c/43f12448d676517d",
+      "video": "naruto/43f12448d676517d",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "kisame-hoshigaki"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-protecting-eight-trigrams-sixty-four-palms",
+    "kind": "jutsu",
+    "entityId": "hinata-hyuga",
+    "series": "naruto",
+    "payload": {
+      "name": "Protección: Ocho Trigramas Sesenta y Cuatro Palmas",
+      "image": "naruto/c/c1c612f158727414",
+      "video": "naruto/c1c612f158727414",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-drunken-fist",
+    "kind": "jutsu",
+    "entityId": "rock-lee",
+    "series": "naruto",
+    "payload": {
+      "name": "Puño Borracho",
+      "image": "naruto/c/b4ff668860dd6520",
+      "video": "naruto/b4ff668860dd6520",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-leaf-whirlwind",
+    "kind": "jutsu",
+    "entityId": "rock-lee",
+    "series": "naruto",
+    "payload": {
+      "name": "Remolino de la Hoja",
+      "image": "naruto/c/eca3d0725c8e6900",
+      "video": "naruto/eca3d0725c8e6900",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "metal-lee",
+        "might-guy"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-lion-combo",
+    "kind": "jutsu",
+    "entityId": "sasuke-uchiha",
+    "series": "naruto",
+    "payload": {
+      "name": "Ráfaga de Leones",
+      "image": "naruto/c/25c2b4d53bed3c99",
+      "video": "naruto/25c2b4d53bed3c99",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-six-paths-kunitsukami",
+    "kind": "jutsu",
+    "entityId": "asura-otsutsuki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Seis Caminos: Kunitsukami",
+      "image": "naruto/c/e0c37e7516f94f8a",
+      "video": "naruto/e0c37e7516f94f8a",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-six-paths-ultra-big-ball-rasenshuriken",
+    "kind": "jutsu",
+    "entityId": "naruto-uzumaki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Seis Caminos: Rasenshuriken Ultra Gran Bola",
+      "image": "naruto/c/a8190bd5e9f11371",
+      "video": "naruto/a8190bd5e9f11371",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-five-elements-seal",
+    "kind": "jutsu",
+    "entityId": "orochimaru",
+    "series": "naruto",
+    "payload": {
+      "name": "Sello de los Cinco Elementos",
+      "image": "naruto/c/e9fb389282ce28f6",
+      "video": "naruto/e9fb389282ce28f6",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-desert-layered-imperial-funeral-seal",
+    "kind": "jutsu",
+    "entityId": "gaara",
+    "series": "shippuden",
+    "payload": {
+      "name": "Sello del Funeral Imperial del Desierto",
+      "image": "naruto/c/51b84d0f51eb9774",
+      "video": "naruto/51b84d0f51eb9774",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "shukaku"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-susanoo",
+    "kind": "jutsu",
+    "entityId": "sasuke-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Susanoo",
+      "image": "naruto/c/47dcfe3846aa4fc7",
+      "video": "naruto/47dcfe3846aa4fc7",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "indra-otsutsuki",
+        "itachi-uchiha",
+        "kakashi-hatake",
+        "madara-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-super-god-imitating-drawing",
+    "kind": "jutsu",
+    "entityId": "sai",
+    "series": "shippuden",
+    "payload": {
+      "name": "Súper Dibujo Imitador de Dioses",
+      "image": "naruto/c/0981ee9da71a4bbe",
+      "video": "naruto/0981ee9da71a4bbe",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-resonating-echo-drill",
+    "kind": "jutsu",
+    "entityId": "dosu-kinuta",
+    "series": "naruto",
+    "payload": {
+      "name": "Taladro de Eco Resonante",
+      "image": "naruto/c/57e1b21b93622197",
+      "video": "naruto/57e1b21b93622197",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-daytime-tiger",
+    "kind": "jutsu",
+    "entityId": "might-guy",
+    "series": "shippuden",
+    "payload": {
+      "name": "Tigre Matutino",
+      "image": "naruto/c/da31cbb3ce7d92fc",
+      "video": "naruto/da31cbb3ce7d92fc",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-human-beast-combination-transformation-double-headed-wolf",
+    "kind": "jutsu",
+    "entityId": "kiba-inuzuka",
+    "series": "naruto",
+    "payload": {
+      "name": "Transformación Combinada de Hombre-Bestia: Lobo de Dos Cabezas",
+      "image": "naruto/c/5fb7ebfbfc0507a9",
+      "video": "naruto/5fb7ebfbfc0507a9",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "akamaru"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-infinite-tsukuyomi",
+    "kind": "jutsu",
+    "entityId": "obito-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Tsukuyomi Infinito",
+      "image": "naruto/c/c02192218524e772",
+      "video": "naruto/c02192218524e772",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "kaguya-otsutsuki",
+        "madara-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-yomotsu-hirasaka",
+    "kind": "jutsu",
+    "entityId": "kaguya-otsutsuki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Yomotsu Hirasaka",
+      "image": "naruto/c/a291bd901e851f59",
+      "video": "naruto/a291bd901e851f59",
+      "width": 512,
+      "height": 246,
+      "accepts": []
     },
     "verified": false
   }

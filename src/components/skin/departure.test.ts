@@ -1,11 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { createDeparture } from './departure';
+import { createDeparture, SLOW_ROUTE_MS } from './departure';
 
 beforeEach(() => vi.useFakeTimers());
 afterEach(() => vi.useRealTimers());
 
 describe('salidas de página sin cortinas persistentes', () => {
-  it('navega al quedar cubierta y se retira a los 800 ms aunque la ruta no responda', () => {
+  it('navega al quedar cubierta y sigue tapando mientras la ruta demora; a los 4 s se retira aunque no responda', () => {
     const departure = createDeparture();
     const navigate = vi.fn();
     departure.start('/pokemon', '/pokemon/clasico', 400, navigate);
@@ -14,7 +14,10 @@ describe('salidas de página sin cortinas persistentes', () => {
     vi.advanceTimersByTime(1);
     expect(navigate).toHaveBeenCalledExactlyOnceWith('/pokemon/clasico');
     expect(departure.snapshot()?.from).toBe('/pokemon');
-    vi.advanceTimersByTime(400);
+    // Una ruta lenta (más que la salida): la cortina sigue ahí, no se ve la pantalla vieja de nuevo.
+    vi.advanceTimersByTime(1500);
+    expect(departure.snapshot()?.from).toBe('/pokemon');
+    vi.advanceTimersByTime(SLOW_ROUTE_MS - 1500);
     expect(departure.snapshot()).toBeNull();
     expect(vi.getTimerCount()).toBe(0);
   });
@@ -40,7 +43,8 @@ describe('salidas de página sin cortinas persistentes', () => {
     vi.advanceTimersByTime(400);
     expect(navigate.mock.calls).toEqual([['/pokemon/clasico'], ['/pokemon']]);
     expect(departure.snapshot()?.from).toBe('/pokemon/clasico');
-    vi.advanceTimersByTime(100);
+    // La de ahora se retira a su propio tope (4 s después de navegar), no a un temporizador de la salida anterior.
+    vi.advanceTimersByTime(SLOW_ROUTE_MS - 150);
     expect(departure.snapshot()).toBeNull();
   });
 

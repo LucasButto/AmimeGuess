@@ -2,10 +2,13 @@
 
 import { useEffect, useId, useMemo, useRef, useState, type CSSProperties, type Ref } from 'react';
 import { ContentImage } from '@/components/ContentImage';
+import { AttemptsStatus } from '@/components/game-shell/AttemptsStatus';
+import { DockAction, useDockTarget } from '@/components/game-shell/GameDock';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { useMissBuzz } from '@/components/useHaptics';
 import { SkinAttemptsMeter, SkinComparisonMedia } from '@/components/skin/gameSlots';
 import { TitleWords } from '@/components/TitleWords';
 import { InfoTip } from '@/components/ui/InfoTip';
@@ -36,6 +39,9 @@ const breakable = (text: string): string => text.replaceAll('.', '.​');
 /** Lo que dura el fundido de salida al pasar de ronda (el mismo que `option-out` en el `.module.scss`). */
 const LEAVE_MS = 200;
 
+/** Diseño de app: tras el último error el marco espera esto antes de bajar al resumen, para leer los dos valores. */
+const COMPARE_READ_MS = 1600;
+
 /** El aviso al marco de que terminó la partida: el puntaje, la última ronda y la grilla para compartir. */
 function reportOf(picks: readonly string[], progress: Progress, rounds: readonly Round[], metric: HigherLowerMetric, fresh: boolean): FinishReport {
   const failed = progress.failedAt !== null;
@@ -63,6 +69,7 @@ function reportOf(picks: readonly string[], progress: Progress, rounds: readonly
     },
     grid: sharePicks(picks, rounds),
     fresh,
+    settleMs: COMPARE_READ_MS,
   };
 }
 
@@ -104,9 +111,12 @@ export function HigherLowerBoard({ session, metric, rounds: initialRounds, exten
   useEffect(() => () => window.clearTimeout(leaveTimer.current), []);
   const progress = progressOf(picks, rounds, maxMistakes, session.practice ? undefined : MAX_ROUNDS);
   const mistakes = picks.filter((id, index) => id !== winnerOf(rounds[index]).id).length;
+  useMissBuzz(mistakes);
   const ended = progress.ended || surrendered;
   const revealed = ended || awaitingNext;
   const nextRef = useRef<HTMLButtonElement>(null);
+  // En el teléfono (diseño de app) "Siguiente" va en la barra inferior y no en el medio de las dos tarjetas.
+  const phone = useDockTarget() !== null;
   const firstOptionRef = useRef<HTMLButtonElement>(null);
 
   // Si la partida ya había terminado al montarse (se recargó la página), el marco tiene que
@@ -179,13 +189,13 @@ export function HigherLowerBoard({ session, metric, rounds: initialRounds, exten
           <h2 className={styles.question} id={questionId}>
             {metric.question}
           </h2>
-          <InfoTip compact text={es.help.metric} label={es.help.button(metric.label)} />
+          <InfoTip compact hideInApp text={es.help.metric} label={es.help.button(metric.label)} />
         </div>
         <div className={styles.meta}>
           <div className={styles.scoreInfo}>
             <span>{es.higherLower.roundLabel(roundNumber)}</span>
             <span className={styles.score}>{session.practice ? maxMistakes === 1 ? es.higherLower.score(progress.score) : es.higherLower.totalScore(progress.score) : es.higherLower.dailyScore(progress.score, MAX_ROUNDS)}</span>
-            {maxMistakes > 1 && <span>{es.shell.limits.mistakes(mistakes, maxMistakes)}</span>}
+            <AttemptsStatus>{maxMistakes > 1 && <span>{es.shell.limits.mistakes(mistakes, maxMistakes)}</span>}</AttemptsStatus>
             {session.practice && <span>{es.higherLower.record(record)}</span>}
             {session.practice && <span className={styles.score}>{progress.score > target ? es.higherLower.newRecord : es.higherLower.target(target + 1)}</span>}
           </div>
@@ -203,7 +213,7 @@ export function HigherLowerBoard({ session, metric, rounds: initialRounds, exten
         </div>
       </header>
       {/* Se juega hasta el primer fallo: un solo intento fallido agota el medidor. */}
-      <SkinAttemptsMeter skin={skin} engine="higher-lower" failed={mistakes} won={ended && !surrendered && progress.failedAt === null} total={maxMistakes} />
+      <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="higher-lower" failed={mistakes} won={ended && !surrendered && progress.failedAt === null} total={maxMistakes} /></AttemptsStatus>
 
       <div className={styles.options} role="group" aria-labelledby={questionId} data-part="duel" data-leaving={leaving}>
         {([round.a, round.b] as const).map((entity, position) => (
@@ -222,12 +232,14 @@ export function HigherLowerBoard({ session, metric, rounds: initialRounds, exten
           />
         ))}
         {/* En el medio del duelo, donde se cruzan los dos: pasa a la ronda siguiente. */}
-        {awaitingNext && !ended && (
+        {awaitingNext && !ended && !phone && (
           <button type="button" className={styles.next} data-part="next" ref={nextRef} onClick={advance}>
             <TitleWords text={es.higherLower.next} />
           </button>
         )}
       </div>
+
+      {awaitingNext && !ended && <DockAction label={es.higherLower.next} buttonRef={nextRef} onClick={advance} />}
 
       {/* Antes de elegir ya ocupa su lugar (invisible, con el texto de un acierto): mostrar el resultado no mueve la página. */}
       <div className={styles.outcome} data-correct={picked === winner.id} data-pending={!revealed}>

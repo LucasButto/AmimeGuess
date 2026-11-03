@@ -1,0 +1,72 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.groups {
+  display: grid;
+  gap: t.$space-4;
+}
+
+// Cada franquicia lleva sus colores y su fuente de títulos (el tema se aplica por `data-franchise`).
+.group {
+  display: grid;
+  gap: t.$space-2;
+  padding: t.$space-3;
+  border: 0.125rem solid t.color('accent');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+  color: t.color('text');
+}
+
+.groupTitle {
+  @include m.heading;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: t.$space-3;
+  font-size: t.$font-size-lg;
+  line-height: t.$line-height-tight;
+}
+
+.groupCount {
+  font-family: t.font('body');
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  font-variant-numeric: tabular-nums;
+  color: t.color('text-muted');
+}
+
+.rows {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  @include m.focus-ring;
+  @include m.press(0.98);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-3;
+  min-block-size: t.$touch-target;
+  padding: t.$space-2 t.$space-1;
+  border-block-start: 0.0625rem solid color-mix(in srgb, t.color('text') 14%, transparent);
+  color: inherit;
+  font-family: t.font('body');
+  text-decoration: none;
+
+  li:first-child & {
+    border-block-start: 0;
+  }
+}
+
+.rowName {
+  font-weight: t.$font-weight-bold;
+}
+
+.empty {
+  padding: t.$space-4;
+  text-align: center;
+  color: t.color('text-muted');
+}

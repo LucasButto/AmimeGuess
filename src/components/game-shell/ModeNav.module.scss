@@ -201,3 +201,75 @@
   --_ink: #{t.color('on-result')};
   --_edge: var(--button-edge, #{t.color('match')});
 }
+
+// App strip: 3.25rem including the focus-ring gutter, also between md and lg.
+.root {
+  @include m.app-shell { display: block; min-inline-size: 0; }
+  @include m.app-shell-desktop { display: block; min-inline-size: auto; }
+}
+.label, .previous, .next, .announcement {
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: none; }
+}
+.list {
+  @include m.app-shell {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: t.$space-2;
+    min-block-size: 0;
+    padding: t.$space-1;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+    > li, > li[data-visible='true'] { display: block; flex: none; scroll-snap-align: center; }
+    .pill {
+      inline-size: auto;
+      block-size: 2.75rem;
+      white-space: nowrap;
+      overflow-wrap: normal;
+    }
+  }
+  @include m.app-shell-desktop {
+    display: flex;
+    flex-wrap: wrap;
+    gap: t.$space-2;
+    min-block-size: 0;
+    padding: t.$space-1;
+    overflow-x: visible;
+    scroll-snap-type: none;
+    scrollbar-width: auto;
+    &::-webkit-scrollbar { display: revert; }
+    > li, > li[data-visible='true'] { display: block; flex: 0 1 auto; scroll-snap-align: none; }
+    .pill { inline-size: auto; block-size: auto; white-space: nowrap; overflow-wrap: anywhere; }
+  }
+}
+.solvedDot {
+  display: none;
+  @include m.app-shell {
+    display: inline-block;
+    flex: none;
+    inline-size: t.$space-1;
+    block-size: t.$space-1;
+    border-radius: 50%;
+    background: currentColor;
+  }
+  @include m.app-shell-desktop { display: none; }
+}
+.root .list .pill[aria-current='page'] {
+  @include m.app-shell {
+    --_fill: #{t.token('chip-on-fill')};
+    --_ink: #{t.token('chip-on-ink')};
+    --_edge: #{t.token('chip-on-edge')};
+  }
+  @include m.app-shell-desktop {
+    --_fill: var(--pill-current-fill, #{t.token('accent-primary')});
+    --_ink: var(--pill-current-ink, #{t.token('accent-primary-ink')});
+    --_edge: var(--button-edge, #{t.token('accent-primary')});
+    &[data-solved='true'] {
+      --_fill: #{t.color('match')};
+      --_ink: #{t.color('on-result')};
+      --_edge: var(--button-edge, #{t.color('match')});
+    }
+  }
+}

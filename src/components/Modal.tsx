@@ -2,10 +2,12 @@
 
 import { useEffect, useId, useRef, useState, type CSSProperties, type KeyboardEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from 'react';
 import { es } from '@/i18n/es';
+import { useAppShell } from './game-shell/AppShellContext';
 import styles from './Modal.module.scss';
 import { Button } from './ui/Button';
 import { CloseCross } from './ui/CloseCross';
 import { Panel } from './ui/Panel';
+import { useSwipeToClose } from './useSwipeToClose';
 
 /** Cuánto está corrido un modal movible desde el centro, en píxeles. */
 export interface ModalOffset {
@@ -50,6 +52,8 @@ interface ModalProps {
   onResize?: (size: ModalSize, offset: ModalOffset) => void;
   /** Alto mínimo al achicarlo, en `rem` (por defecto 28,5). */
   minHeightRem?: number;
+  /** Se llama justo después de abrirse el diálogo (ya con su tamaño final): sirve para medirlo. */
+  onOpen?: () => void;
   /** Un adorno a la izquierda del título, en la barra (por ejemplo, la lente y las luces de la Pokédex). Decorativo. */
   decoration?: ReactNode;
   children: ReactNode;
@@ -118,7 +122,7 @@ function baseRect(dialog: HTMLElement, offset: ModalOffset): DOMRect {
  *
  * Se monta solo mientras está abierto: `{abierto && <Modal …>}`.
  */
-export function Modal({ title, onClose, wide = false, className, offset, onMove, size, onResize, minHeightRem = MIN_HEIGHT_REM, decoration, children }: ModalProps) {
+export function Modal({ title, onClose, wide = false, className, offset, onMove, size, onResize, minHeightRem = MIN_HEIGHT_REM, onOpen, decoration, children }: ModalProps) {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const unmounting = useRef(false);
@@ -130,6 +134,10 @@ export function Modal({ title, onClose, wide = false, className, offset, onMove,
   const resizable = onResize !== undefined;
   const [dims, setDims] = useState<ModalSize | null>(size ?? null);
   const resizeRef = useRef<Resize | null>(null);
+  // Diseño de app: a pantalla completa en el teléfono se cierra deslizando hacia abajo desde el encabezado.
+  const appShell = useAppShell();
+  const swipe = useSwipeToClose(dialogRef, onClose);
+  const fullScreen = () => (dialogRef.current?.getBoundingClientRect().width ?? 0) >= window.innerWidth - 1;
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -138,6 +146,8 @@ export function Modal({ title, onClose, wide = false, className, offset, onMove,
 
     unmounting.current = false;
     dialog.showModal();
+    // Solo al abrirse: `onOpen` no cambia lo que hace el diálogo.
+    onOpen?.();
 
     return () => {
       // Cerrarlo dispara el evento `close`: acá lo provoca el desmontaje, no la persona.
@@ -145,6 +155,7 @@ export function Modal({ title, onClose, wide = false, className, offset, onMove,
       if (dialog.open) dialog.close();
       opener?.focus();
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Al abrirse donde se lo dejó: si la ventana cambió de tamaño desde entonces, se lo trae para que se pueda agarrar.
@@ -176,6 +187,7 @@ export function Modal({ title, onClose, wide = false, className, offset, onMove,
 
   // --- Arrastrar desde la barra del título --------------------------------------------
   function startDrag(event: ReactPointerEvent<HTMLElement>) {
+    if (appShell && fullScreen() && swipe.start(event)) return;
     const dialog = dialogRef.current;
     if (!movable || !dialog || (event.pointerType === 'mouse' && event.button !== 0)) return;
     // El botón de cerrar sigue siendo un botón.
@@ -201,6 +213,7 @@ export function Modal({ title, onClose, wide = false, className, offset, onMove,
   }
 
   function moveDrag(event: ReactPointerEvent<HTMLElement>) {
+    if (swipe.move(event)) return;
     const drag = dragRef.current;
     if (!drag || drag.pointerId !== event.pointerId) return;
     const next = { x: drag.from.x + event.clientX - drag.startX, y: drag.from.y + event.clientY - drag.startY };
@@ -209,6 +222,7 @@ export function Modal({ title, onClose, wide = false, className, offset, onMove,
   }
 
   function endDrag(event: ReactPointerEvent<HTMLElement>) {
+    if (swipe.end(event)) return;
     const drag = dragRef.current;
     if (!drag || drag.pointerId !== event.pointerId) return;
     dragRef.current = null;

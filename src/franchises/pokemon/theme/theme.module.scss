@@ -23,6 +23,10 @@
 // src/styles/_tokens.scss sobre la raíz del tema; los colores salen de la paleta de config.ts
 // (variables --palette-*), que cubre el test de contraste.
 .root {
+  --app-bar-fill: var(--palette-red);
+  --app-bar-ink: var(--palette-white);
+  --app-bar-edge: var(--palette-frame);
+  --app-bar-inner: var(--palette-ink-shadow);
   // Superficies y tintas: panel crema con tinta oscura y sombra gris; la pantalla, azul noche.
   --game-menu-selection: var(--palette-orange);
   --game-menu-icon-edge: var(--palette-frame);
@@ -264,5 +268,19 @@
 @supports (inline-size: round(up, 1em, 1px)) {
   .root {
     --title-step: round(up, 0.0625em, 1px);
+  }
+}
+
+// Keep the fixed bar outside the recall transform on phones.
+.root main[data-recall][data-shell='app'] {
+  animation: none;
+  overflow: visible;
+  > [data-app-content] {
+    @include bp.motion-ok { animation: recall 250ms steps(5, end) forwards; }
+  }
+  @include bp.min-width('lg') {
+    overflow: clip;
+    @include bp.motion-ok { animation: recall 250ms steps(5, end) forwards; }
+    > [data-app-content] { animation: none; }
   }
 }

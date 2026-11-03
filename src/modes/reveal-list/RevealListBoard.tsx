@@ -8,6 +8,7 @@ import { useSurrender } from '@/components/game-shell/useSurrender';
 import { fitHints, restoreLimited } from '@/components/game-shell/attempts';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { useMissBuzz } from '@/components/useHaptics';
 import { SkinAttemptsMeter, SkinGameFrame, SkinRevealListItem, revealListPosition } from '@/components/skin/gameSlots';
 import { PixelIcon } from '@/components/ui/icons';
 import { InfoTip } from '@/components/ui/InfoTip';
@@ -94,6 +95,7 @@ export function RevealListBoard({ session, config, candidates, options }: Reveal
 
   const attempted = useMemo(() => new Set(attemptIds), [attemptIds]);
   const failed = failedCount(attemptIds, answer.id, content);
+  useMissBuzz(failed);
 
   const autocompleteItems = useMemo<AutocompleteItem[]>(
     () => options.map(autocompleteItemOf),
@@ -191,7 +193,7 @@ export function RevealListBoard({ session, config, candidates, options }: Reveal
             <h2 className={styles.hintsTitle} id={hintsTitleId}>
               {es.revealList.hintsTitle}
             </h2>
-            <InfoTip compact text={es.help.hints} label={es.help.button(es.revealList.hintsTitle)} />
+            <InfoTip compact hideInApp text={es.help.hints} label={es.help.button(es.revealList.hintsTitle)} />
           </div>
           <ul className={styles.hintList}>
             {hintLines.map(({ line, unlocked, remaining, text }) => (

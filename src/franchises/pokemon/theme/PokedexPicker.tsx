@@ -1,9 +1,13 @@
 'use client';
 
-import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from 'react';
+import { useCallback, useContext, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import { type AutocompleteItem } from '@/components/Autocomplete';
 import { Modal, type ModalOffset, type ModalSize } from '@/components/Modal';
+import { useAppShell } from '@/components/game-shell/AppShellContext';
+import { ActiveAttemptLimit } from '@/components/game-shell/AttemptRules';
+import { useInDock } from '@/components/game-shell/GameDock';
 import { buildSearchIndex } from '@/components/search';
+import { InfoTip } from '@/components/ui/InfoTip';
 import { Switch } from '@/components/ui/Switch';
 import { Button } from '@/components/ui/Button';
 import { Chip } from '@/components/ui/Chip';
@@ -45,13 +49,23 @@ const POKEDEX_MIN_HEIGHT_REM = 33.5;
 function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove, onResize, filters, onFiltersChange }: DialogProps) {
   const searchId = useId();
   const filtersId = useId();
-  const [filtersOpen, setFiltersOpen] = useState(false);
+  // Qué parte de los filtros está abierta: los tipos, las generaciones o las dos (el botón único de escritorio).
+  const [panel, setPanel] = useState<'types' | 'generations' | 'all' | null>(null);
+  const filtersOpen = panel !== null;
+  const showsTypes = panel === 'types' || panel === 'all';
+  const showsGenerations = panel === 'generations' || panel === 'all';
   const [coverBar, setCoverBar] = useState(false);
+  // Con el diseño de app, la Pokédex a pantalla completa (un teléfono) cambia de forma: chips, 3 columnas y marcar + confirmar.
+  const appShell = useAppShell();
+  const [phone, setPhone] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [selected, setSelected] = useState<string | null>(null);
+  const pickerRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
   const filtersRef = useRef<HTMLDivElement>(null);
   const filterTriggerRef = useRef<HTMLSpanElement>(null);
   const closeFilters = useCallback(() => {
-    setFiltersOpen(false);
+    setPanel(null);
     filterTriggerRef.current?.querySelector('button')?.focus({ preventScroll: true });
   }, []);
   const gridRef = useRef<HTMLUListElement>(null);
@@ -77,11 +91,33 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
     generations: activeFilters.generations.length === generations.length ? [] : activeFilters.generations.length ? activeFilters.generations : [-1],
     types: [...(!activeFilters.exactTypes && chosenTypes.length === plainTypes.length ? [] : chosenTypes.length ? chosenTypes : ['']), ...(monotype ? [MONOTYPE_FILTER] : [])],
   }), [activeFilters, chosenTypes, generations, monotype, plainTypes]);
-  const shown = useMemo(() => filterByFacets(items, facetQuery, query, index), [items, facetQuery, index, query]);
+  const matched = useMemo(() => filterByFacets(items, facetQuery, query, index), [items, facetQuery, index, query]);
+  const shown = matched;
+  const marked = phone && selected !== null ? shown.find((item) => item.id === selected && !excludeIds.has(item.id)) : undefined;
   const clearFilters = () => onFiltersChange(null);
+  const deselectAll = () => onFiltersChange({ ...activeFilters, ...(showsTypes ? { types: [], exactTypes: false } : {}), ...(showsGenerations ? { generations: [] } : {}) });
   const firstFree = shown.find((item) => !excludeIds.has(item.id));
   // Un solo Pokémon es parada de Tab (los demás se alcanzan con las flechas): 1025 paradas serían inusables.
   const tabStop = (stop !== null && shown.some((item) => item.id === stop) ? stop : firstFree?.id) ?? null;
+
+  // Es "teléfono" cuando el diálogo ocupa todo el ancho (el mismo criterio con el que el Modal decide si se puede mover).
+  const measurePhone = useCallback(() => {
+    const dialog = appShell ? pickerRef.current?.closest('dialog') : null;
+    if (dialog) setPhone(dialog.getBoundingClientRect().width >= window.innerWidth - 1);
+  }, [appShell]);
+
+  useLayoutEffect(() => {
+    const dialog = appShell ? pickerRef.current?.closest('dialog') : null;
+    if (!dialog) return;
+    measurePhone();
+    const observer = new ResizeObserver(measurePhone);
+    observer.observe(dialog);
+    return () => observer.disconnect();
+  }, [appShell, measurePhone]);
+
+  useEffect(() => {
+    if (searchOpen) searchRef.current?.focus();
+  }, [searchOpen]);
 
   // One observer for the whole grid; 1025 cells do not need state or resize subscriptions each.
   useEffect(() => {
@@ -147,6 +183,11 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
 
   function pick(id: string) {
     if (excludeIds.has(id)) return;
+    // En el teléfono, tocar marca y el botón de abajo (o un segundo toque en la misma tarjeta) confirma.
+    if (phone && marked?.id !== id) {
+      setSelected(id);
+      return;
+    }
     onPick(id);
   }
 
@@ -170,58 +211,107 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
       onClose={onClose}
       wide
       minHeightRem={POKEDEX_MIN_HEIGHT_REM}
-      className={styles.dialog}
+      className={phone ? `${styles.dialog} ${styles.phone}` : styles.dialog}
       offset={offset}
       onMove={onMove}
       size={size}
       onResize={onResize}
+      onOpen={measurePhone}
       decoration={<HeaderLights />}
     >
-      <div className={styles.picker}>
+      <div className={styles.picker} ref={pickerRef} data-phone={phone || undefined}>
         <div className={styles.bar} ref={barRef}>
-          <label className={styles.searchLabel} htmlFor={searchId}>
-            {es.pokemonSkin.picker.search}
-          </label>
-          <input
-            ref={searchRef}
-            id={searchId}
-            className={styles.search}
-            type="text"
-            inputMode="search"
-            enterKeyHint="go"
-            autoComplete="off"
-            autoCapitalize="off"
-            autoCorrect="off"
-            spellCheck={false}
-            placeholder={es.pokemonSkin.picker.placeholder}
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            onKeyDown={(event) => {
-              // Enter elige el primero de la lista, como en el campo de texto de siempre.
-              if (event.key === 'Enter' && firstFree) {
-                event.preventDefault();
-                pick(firstFree.id);
-              }
-            }}
-          />
-          <p className={styles.count} role="status">
-            {es.pokemonSkin.picker.count(shown.length)}
-          </p>
-          <div className={styles.filterActions}>
-            <span ref={filterTriggerRef}>
-            <Button variant="ghost" aria-expanded={filtersOpen} aria-controls={filtersId}
-              aria-label={es.pokemonSkin.picker.filtersAccessible(activeCount)}
-              onClick={() => filtersOpen ? closeFilters() : setFiltersOpen(true)}>
-              {es.pokemonSkin.picker.filters(activeCount)}
-            </Button>
-            </span>
-            {activeCount > 0 && <Button variant="ghost" onClick={clearFilters}>{es.pokemonSkin.picker.clearFilters}</Button>}
-          </div>
+          {phone ? (
+            <>
+              <div className={styles.chipRow}>
+                <Chip pressed={searchOpen} aria-label={es.pokemonSkin.picker.searchOpen} aria-expanded={searchOpen}
+                  mark={<SearchGlyph />} onClick={() => setSearchOpen((open) => !open)}>
+                  <VisuallyHidden>{es.pokemonSkin.picker.searchOpen}</VisuallyHidden>
+                </Chip>
+                <span ref={filterTriggerRef} className={styles.chipGroup}>
+                  <Chip pressed={false} aria-expanded={panel === 'types'} aria-controls={filtersId}
+                    onClick={() => (panel === 'types' ? closeFilters() : setPanel('types'))}>{es.pokemonSkin.picker.typeChip}</Chip>
+                  <Chip pressed={false} aria-expanded={panel === 'generations'} aria-controls={filtersId}
+                    onClick={() => (panel === 'generations' ? closeFilters() : setPanel('generations'))}>{es.pokemonSkin.picker.generationChip}</Chip>
+                </span>
+              </div>
+              {searchOpen && (
+                <div className={styles.phoneSearch}>
+                  <label className={styles.searchLabel} htmlFor={searchId}>{es.pokemonSkin.picker.search}</label>
+                  <input
+                    ref={searchRef}
+                    id={searchId}
+                    className={styles.search}
+                    type="text"
+                    inputMode="search"
+                    enterKeyHint="go"
+                    autoComplete="off"
+                    autoCapitalize="off"
+                    autoCorrect="off"
+                    spellCheck={false}
+                    placeholder={es.pokemonSkin.picker.placeholder}
+                    value={query}
+                    onChange={(event) => setQuery(event.target.value)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' && firstFree) {
+                        event.preventDefault();
+                        setSelected(firstFree.id);
+                      }
+                    }}
+                  />
+                  <p className={styles.count} role="status">{es.pokemonSkin.picker.count(shown.length)}</p>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+            <label className={styles.searchLabel} htmlFor={searchId}>
+              {es.pokemonSkin.picker.search}
+            </label>
+            <input
+              ref={searchRef}
+              id={searchId}
+              className={styles.search}
+              type="text"
+              inputMode="search"
+              enterKeyHint="go"
+              autoComplete="off"
+              autoCapitalize="off"
+              autoCorrect="off"
+              spellCheck={false}
+              placeholder={es.pokemonSkin.picker.placeholder}
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              onKeyDown={(event) => {
+                // Enter elige el primero de la lista, como en el campo de texto de siempre.
+                if (event.key === 'Enter' && firstFree) {
+                  event.preventDefault();
+                  pick(firstFree.id);
+                }
+              }}
+            />
+            <p className={styles.count} role="status">
+              {es.pokemonSkin.picker.count(shown.length)}
+            </p>
+            <div className={styles.filterActions}>
+              <span ref={filterTriggerRef}>
+              <Button variant="ghost" aria-expanded={filtersOpen} aria-controls={filtersId}
+                aria-label={es.pokemonSkin.picker.filtersAccessible(activeCount)}
+                onClick={() => (filtersOpen ? closeFilters() : setPanel('all'))}>
+                {es.pokemonSkin.picker.filters(activeCount)}
+              </Button>
+              </span>
+              {activeCount > 0 && <Button variant="ghost" onClick={clearFilters}>{es.pokemonSkin.picker.clearFilters}</Button>}
+            </div>
+
+            </>
+          )}
 
         <div id={filtersId} ref={filtersRef} hidden={!filtersOpen} className={styles.filters} data-cover-bar={coverBar}
           role="region" aria-label={es.pokemonSkin.picker.filtersPanel}>
-          <div role="group" aria-label={es.pokemonSkin.picker.type}>
-            <p className={styles.filterHeading}>{es.pokemonSkin.picker.type}</p>
+          {showsTypes && (<>
+          <div role="group" aria-label={es.pokemonSkin.picker.types}>
+            <p className={styles.filterHeading}>{es.pokemonSkin.picker.types}</p>
             <div className={`${styles.chips} ${styles.typeChips}`}>
               {types.map((type) => {
                 const pressed = activeFilters.types.includes(type);
@@ -233,9 +323,15 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
               })}
             </div>
           </div>
-          <Switch label={es.pokemonSkin.picker.exactTypes} hint={es.pokemonSkin.picker.exactTypesHint} checked={activeFilters.exactTypes} onChange={(exactTypes) => onFiltersChange({ ...activeFilters, exactTypes })} />
-          <div role="group" aria-label={es.pokemonSkin.picker.generation}>
-            <p className={styles.filterHeading}>{es.pokemonSkin.picker.generation}</p>
+          {/* El texto largo va en la ayuda ⓘ: en el panel solo el nombre del interruptor, así no empuja a los botones de abajo. */}
+          <div className={styles.exactRow}>
+            <Switch label={es.pokemonSkin.picker.exactTypes} checked={activeFilters.exactTypes} onChange={(exactTypes) => onFiltersChange({ ...activeFilters, exactTypes })} />
+            <InfoTip compact text={es.pokemonSkin.picker.exactTypesTip} label={es.help.button(es.pokemonSkin.picker.exactTypes)} />
+          </div>
+          </>)}
+          {showsGenerations && (
+          <div role="group" aria-label={es.pokemonSkin.picker.generations}>
+            <p className={styles.filterHeading}>{es.pokemonSkin.picker.generations}</p>
             <div className={styles.chips}>
               {generations.map((generation) => {
                 const id = `g${generation}` as keyof typeof pokemonConfig.seriesLabels;
@@ -249,9 +345,12 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
               })}
             </div>
           </div>
+          )}
           <div className={styles.filterFooter}>
             <p>{es.pokemonSkin.picker.count(shown.length)}</p>
-            {activeCount > 0 && <Button variant="ghost" onClick={clearFilters}>{es.pokemonSkin.picker.clearFilters}</Button>}
+            {activeCount > 0 && <Button variant="ghost" aria-label={es.pokemonSkin.picker.clearFilters} onClick={clearFilters}>{es.pokemonSkin.picker.clearFiltersShort}</Button>}
+            {/* Deselecciona todo lo que muestra el panel (los tipos, las generaciones o las dos): para elegir uno solo sin ir apagando de a uno. */}
+            <Button variant="ghost" onClick={deselectAll}>{es.pokemonSkin.picker.deselectAll}</Button>
             <Button variant="secondary" onClick={closeFilters}>{es.pokemonSkin.picker.done}</Button>
           </div>
         </div>
@@ -272,6 +371,8 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
                     data-tried={tried}
                     data-pokemon={item.id}
                     aria-disabled={tried || undefined}
+                    aria-pressed={phone ? marked?.id === item.id : undefined}
+                    data-selected={marked?.id === item.id || undefined}
                     tabIndex={item.id === tabStop ? 0 : -1}
                     onFocus={() => setStop(item.id)}
                     onClick={() => pick(item.id)}
@@ -298,6 +399,11 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
               );
             })}
           </ul>
+        )}
+        {marked && !filtersOpen && (
+          <div className={styles.confirm}>
+            <Button variant="primary" onClick={() => onPick(marked.id)}>{es.pokemonSkin.picker.choose(marked.label)}</Button>
+          </div>
         )}
       </div>
     </Modal>
@@ -329,27 +435,51 @@ function HeaderLights() {
   );
 }
 
+/** La lupa de la fila de chips: pixel art de 12 × 12, del color del texto. */
+function SearchGlyph() {
+  return (
+    <svg viewBox="0 0 12 12" width="16" height="16" aria-hidden="true" shapeRendering="crispEdges" className={styles.searchGlyph}>
+      <path fillRule="evenodd" fill="currentColor" d="M3 1h4v1h1v1h1v4H8v1H7v1H3V8H2V7H1V3h1V2h1zm0 2v4h4V3zM8 8h1v1h1v1h1v1h-1v-1H9V9H8z" />
+    </svg>
+  );
+}
+
 /**
  * El botón grande: la Pokédex de la navegación entre modos, más alta, y el texto al lado, dentro del marco del recuadro
  * de pistas. Con el cursor o el foco la pantalla se enciende con un parpadeo, como la de la tarjeta del Clásico en el
- * inicio.
+ * inicio. En la barra inferior del teléfono es un botón rojo con la lente: "Abrir la Pokédex" y, debajo, cuántos Pokémon
+ * quedan o en qué intento va.
  */
-function DexButton({ count, disabled, onOpen }: { count: number; disabled: boolean; onOpen: () => void }) {
+function DexButton({ count, tried, disabled, onOpen }: { count: number; tried: number; disabled: boolean; onOpen: () => void }) {
+  const inDock = useInDock();
+  const limit = useContext(ActiveAttemptLimit);
+  const detail = inDock && tried > 0 && limit !== undefined ? es.pokemonSkin.picker.attemptOf(tried + 1, limit) : es.pokemonSkin.picker.available(count);
   return (
     <button type="button" className={styles.bigBall} disabled={disabled} aria-haspopup="dialog" data-picker-open="" onClick={onOpen}>
-      <span className={styles.dex} aria-hidden="true">
-        <PixelArt art={inlineArt(PICKER_POKEDEX)} size="fill" className={styles.dexArt} />
-        <span className={styles.dexGlow} />
-      </span>
+      {inDock ? (
+        <PixelArt art={inlineArt(POKEDEX_LENS)} size="fill" className={styles.dockLens} />
+      ) : (
+        <span className={styles.dex} aria-hidden="true">
+          <PixelArt art={inlineArt(PICKER_POKEDEX)} size="fill" className={styles.dexArt} />
+          <span className={styles.dexGlow} />
+        </span>
+      )}
       <span className={styles.bigBallText}>
         <span className={styles.bigBallTitle}>
-          <span className={styles.go} aria-hidden="true">
-            <PixelIcon name="cursor" />
-          </span>
-          {es.pokemonSkin.picker.open}
+          {!inDock && (
+            <span className={styles.go} aria-hidden="true">
+              <PixelIcon name="cursor" />
+            </span>
+          )}
+          {inDock ? es.pokemonSkin.picker.openDock : es.pokemonSkin.picker.open}
         </span>
-        <span className={styles.bigBallCount}>{es.pokemonSkin.picker.available(count)}</span>
+        <span className={styles.bigBallCount}>{detail}</span>
       </span>
+      {inDock && (
+        <span className={styles.chevron} aria-hidden="true">
+          <PixelIcon name="cursor" />
+        </span>
+      )}
     </button>
   );
 }
@@ -370,7 +500,7 @@ export function PokedexPicker({ label, items, excludeIds, onSelect, disabled = f
 
   return (
     <div className={styles.root} role="group" aria-label={label}>
-      <DexButton count={items.length} disabled={disabled} onOpen={() => setOpen(true)} />
+      <DexButton count={items.length} tried={excludeIds.size} disabled={disabled} onOpen={() => setOpen(true)} />
       {open && (
         <PickerDialog
           filters={filters}

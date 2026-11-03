@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { ContentImage } from '@/components/ContentImage';
+import { ContentVideo } from '@/components/ContentVideo';
 import { useSkin } from '@/components/skin/context';
 import type { RevealVisual } from './logic';
 import styles from './RevealImage.module.scss';
@@ -16,6 +17,8 @@ interface RevealImageProps {
   visual: RevealVisual;
   /** De qué es la imagen (el `imageContentKind` del modo): si el tema le pone dorso, aparece de espaldas y se da vuelta. */
   kind?: string;
+  /** Si el contenido trae un clip (ruta dentro de /public/video, sin extensión), se muestra en lugar de la imagen: `stem` pasa a ser su póster. */
+  video?: string;
 }
 
 /** ¿Hay que pedir "reducir movimiento"? Entonces no se da vuelta: aparece directamente. */
@@ -32,7 +35,7 @@ function prefersReducedMotion(): boolean {
  * Si el tema le pone dorso a este tipo de imagen (`SkinData.imageBack`, por ejemplo las cartas), el marco empieza de
  * espaldas y se da vuelta una sola vez, cuando queda a la vista (al cargar o al bajar hasta él). Solo `transform`.
  */
-export function RevealImage({ stem, width, height, alt, visual, kind }: RevealImageProps) {
+export function RevealImage({ stem, width, height, alt, visual, kind, video }: RevealImageProps) {
   const { skin } = useSkin();
   const { ImageBack } = skin.slots;
   const hasBack = kind !== undefined && skin.imageBack.includes(kind);
@@ -74,15 +77,20 @@ export function RevealImage({ stem, width, height, alt, visual, kind }: RevealIm
     <div ref={frameRef} className={styles.frame} style={style} data-part="visor" data-back={hasBack} data-face-up={faceUp}>
       <div className={styles.flipper}>
         <div className={styles.front}>
-          <ContentImage
-            className={styles.image}
-            stem={stem}
-            alt={alt}
-            sizes="(min-width: 30rem) 24rem, 100vw"
-            width={width}
-            height={height}
-            priority
-          />
+          {video === undefined ? (
+            <ContentImage
+              className={styles.image}
+              stem={stem}
+              alt={alt}
+              sizes="(min-width: 30rem) 24rem, 100vw"
+              width={width}
+              height={height}
+              priority
+            />
+          ) : (
+            // El clip lleva los mismos filtros y el mismo recorte que la imagen (la clase `image`).
+            <ContentVideo className={styles.image} stem={video} poster={stem} alt={alt} sizes="(min-width: 30rem) 24rem, 100vw" width={width} height={height} />
+          )}
         </div>
         {hasBack && kind !== undefined && (
           <div className={styles.back} aria-hidden="true">

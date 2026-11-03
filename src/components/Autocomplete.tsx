@@ -15,6 +15,8 @@ export interface AutocompleteItem extends SearchItem {
   number?: number;
   /** Atributos opcionales para que los selectores puedan ofrecer facetas locales. */
   attrs?: Readonly<Record<string, AttrValue>>;
+  /** Series en las que aparece la entidad, la de debut primero (el teléfono muestra la de debut debajo del nombre). */
+  series?: readonly string[];
 }
 
 /** Una entidad como opción de un campo de intento. El número sale del atributo `numero`, si la entidad lo tiene. */
@@ -26,6 +28,7 @@ export function autocompleteItemOf(entity: Entity): AutocompleteItem {
     aliases: entity.aliases,
     imageStem: entity.image,
     attrs: entity.attrs,
+    series: entity.series,
     ...(typeof number === 'number' ? { number } : {}),
   };
 }
@@ -34,7 +37,7 @@ export function autocompleteItemOf(entity: Entity): AutocompleteItem {
  * Opciones de la franquicia para todos los autocompletados de la página (las da `ModeGame` desde su
  * config): así ningún motor tiene que pasarlas.
  */
-export const AutocompleteOptions = createContext<{ thumbnails: boolean }>({ thumbnails: true });
+export const AutocompleteOptions = createContext<{ thumbnails: boolean; seriesLabels: Readonly<Record<string, string>> }>({ thumbnails: true, seriesLabels: {} });
 
 interface AutocompleteProps {
   label: string;

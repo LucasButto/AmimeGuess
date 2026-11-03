@@ -1,0 +1,50 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.page {
+  @include m.container(t.$container-game);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-4;
+  padding-block: calc(#{t.$space-4} + env(safe-area-inset-top)) t.$space-6;
+}
+
+.header {
+  display: grid;
+  gap: t.$space-1;
+}
+
+// Desde `lg` no hay barra de pestañas: la pestaña es una página más y se vuelve al inicio con este enlace.
+.home {
+  @include m.focus-ring;
+  display: none;
+  justify-self: start;
+  color: t.color('accent');
+
+  @include bp.min-width('lg') {
+    display: inline-flex;
+    align-items: center;
+    min-block-size: t.$touch-target;
+  }
+}
+
+.title {
+  @include m.heading;
+  font-size: t.$font-size-2xl;
+  line-height: t.$line-height-tight;
+}
+
+.lead {
+  color: t.color('text-muted');
+}
+
+// El aviso legal del pie queda en Más para el teléfono; el pie común es de escritorio.
+.footer {
+  display: none;
+
+  @include bp.min-width('lg') {
+    display: contents;
+  }
+}

@@ -81,3 +81,10 @@ $heights: (
     @content;
   }
 }
+
+// La app instalada (agregada a la pantalla de inicio): se abre sin la barra del navegador. Es la única forma de escribir esa media query.
+@mixin standalone {
+  @media (display-mode: standalone) {
+    @content;
+  }
+}

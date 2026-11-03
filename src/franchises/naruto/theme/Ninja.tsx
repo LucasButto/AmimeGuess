@@ -109,3 +109,21 @@ export function SmokeIn() {
     </span>
   );
 }
+
+/**
+ * Slot `PageExit`: la primera mitad de la bomba de humo. Al salir de una pantalla, las cinco bocanadas llegan desde afuera y
+ * la tapan en 280 ms; recién ahí se navega y la pantalla nueva (`SmokeIn`) arranca con el humo ya tapándola y lo abre. Sin esto
+ * la página vieja desaparecía de golpe, con un pantallazo vacío en el medio. Tapa los toques mientras dura, para que un segundo
+ * clic no navegue dos veces. Con movimiento reducido no aparece.
+ */
+export function SmokeOut() {
+  return (
+    <span className={`${styles.transition} ${styles.exit}`} aria-hidden="true">
+      <i />
+      <i />
+      <i />
+      <i />
+      <i />
+    </span>
+  );
+}

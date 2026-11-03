@@ -17,6 +17,10 @@
 
   [data-word] {
     display: inline-block;
+    // El relleno con `background-clip: text` solo pinta dentro de la caja de la palabra: la punta de la última letra (la N de
+    // Dragon) se sale de ella y quedaba sin color. Se ensancha la caja y se devuelve el espacio con un margen negativo.
+    padding-inline: 0.08em;
+    margin-inline: -0.08em;
     color: transparent;
     filter: drop-shadow($cross 0 0 var(--palette-ink)) drop-shadow((-$cross) 0 0 var(--palette-ink))
       drop-shadow(0 $cross 0 var(--palette-ink)) drop-shadow(0 (-$cross) 0 var(--palette-ink))

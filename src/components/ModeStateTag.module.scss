@@ -1,0 +1,45 @@
+@use 'tokens' as t;
+
+// Solo el texto, sin recuadro ni borde, y el color lo dice todo: pendiente en negro (la tinta del tema), completado en verde y
+// fallado en rojo (los de los resultados del Clásico de cada franquicia). El relleno queda, invisible, para que el texto esté
+// donde estaba cuando tenía recuadro.
+.tag {
+  display: inline-block;
+  flex: none;
+  // Tan ancho como su texto aunque esté en una columna (debajo del nombre del Clásico).
+  align-self: flex-start;
+  inline-size: fit-content;
+  padding: 0.125rem t.$space-2;
+  color: t.token('ink');
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  // Una tipografía pixel no tiene negrita: sin esto el navegador la engrosa a la fuerza y el texto chico se empasta.
+  font-synthesis: none;
+  line-height: t.$line-height-tight;
+  white-space: nowrap;
+
+  &[data-state='won'] {
+    color: t.token('cell-correct');
+  }
+
+  &[data-state='lost'] {
+    color: t.token('cell-incorrect');
+  }
+
+  // En la barra del Clásico va alineado con el nombre, sin el relleno de las filas de abajo.
+  &[data-on-bar='true'] {
+    padding-inline: 0;
+  }
+
+  // Sobre la barra de color del Clásico el verde y el rojo se pierden: un contorno claro fino los separa del fondo.
+  &[data-on-bar='true'][data-state='won'],
+  &[data-on-bar='true'][data-state='lost'] {
+    -webkit-text-stroke: 0.1875rem t.token('surface-panel');
+    paint-order: stroke fill;
+  }
+
+  // Sin leer todavía las partidas guardadas: ocupa su lugar (con el texto de "Pendiente") pero no se ve, para que la lista no salte.
+  &[data-state='unknown'] {
+    visibility: hidden;
+  }
+}

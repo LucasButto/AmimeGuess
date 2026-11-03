@@ -1,0 +1,32 @@
+@use 'tokens' as t;
+
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+}
+
+.textSizes {
+  border: 0;
+  min-inline-size: 0;
+  display: grid;
+  gap: t.$space-2;
+}
+
+.sizes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: t.$space-2;
+
+  > button {
+    flex: 1 1 auto;
+    padding-inline: t.$space-3;
+  }
+}
+
+.sizeChoice[aria-pressed='true'] {
+  --_fill: #{t.token('chip-on-fill')};
+  --_ink: #{t.token('chip-on-ink')};
+  --_edge: #{t.token('frame-color')};
+}

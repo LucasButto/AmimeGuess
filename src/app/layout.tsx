@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
 import { PREFS_BOOT_SCRIPT } from '@/components/prefs';
+import { SITE_THEME_COLOR } from '@/franchises/themeColor';
 import { es } from '@/i18n/es';
 import '@/styles/globals.scss';
 import { fontVariables } from './fonts';
 import { RouteStatic } from './RouteStatic';
+import { ServiceWorker } from './ServiceWorker';
 import { OG_SIZE, SITE_URL, ogImage } from './site';
 
 export const metadata: Metadata = {
@@ -12,6 +14,8 @@ export const metadata: Metadata = {
   title: { default: es.site.name, template: `%s · ${es.site.name}` },
   description: es.site.description,
   applicationName: es.site.name,
+  // iOS: "Agregar a pantalla de inicio" abre sin la barra del navegador, con el nombre y el ícono de `apple-icon.png`.
+  appleWebApp: { capable: true, title: es.site.name, statusBarStyle: 'black-translucent' },
   openGraph: {
     type: 'website',
     siteName: es.site.name,
@@ -28,6 +32,10 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
+  // Android: con el teclado abierto la página se achica (y la barra de abajo queda pegada al teclado). iOS lo resuelve la barra con `visualViewport`.
+  interactiveWidget: 'resizes-content',
+  // El color de la barra del navegador: el naranja del ícono; cada franquicia pone el suyo (ver `[franchise]/layout.tsx`).
+  themeColor: SITE_THEME_COLOR,
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
@@ -40,6 +48,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: PREFS_BOOT_SCRIPT }} />
         {children}
         <RouteStatic />
+        {/* Lo ya visitado se puede jugar sin conexión (ver public/sw.js). */}
+        <ServiceWorker />
       </body>
     </html>
   );

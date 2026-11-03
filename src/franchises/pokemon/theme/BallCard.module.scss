@@ -16,7 +16,7 @@
   @include m.focus-ring;
 }
 
-// La bola: 30 × 30 píxeles de arte, con sus cuatro capas en su lugar (ver art.ts).
+// La bola: una imagen cuadrada de 30 píxeles de arte de lado, partida en dos mitades (ver BallImage).
 .ball {
   position: relative;
   display: block;
@@ -26,44 +26,27 @@
   transform-origin: 50% 100%;
 }
 
-.top,
-.bottom,
-.button,
-.icon {
-  position: absolute;
-}
-
-.top {
-  inset: 0 auto auto 0;
-}
-
-.bottom {
-  inset: t.px(15) auto auto 0;
-}
-
-.button {
-  inset: t.px(6) auto auto t.px(6);
-}
-
-// El ícono (10 × 10) queda centrado en el botón (18 × 18): 3 píxeles de blanco hasta su borde por todos lados.
-.icon {
-  inset: t.px(10) auto auto t.px(10);
-}
-
-// Resuelto hoy: la mitad de arriba se levanta un poco.
-.card[data-state='solved'] .top {
-  transform: translateY(#{t.px(-2)});
-}
-
-// Tilde de "resuelto", sobre la bola: el estado no depende del color (y el nombre accesible lo dice).
+// Tilde de "resuelto": un sello pixel sobre la esquina de arriba a la izquierda del nombre, sin girar (girado, los píxeles se deforman). Dos capas con
+// esquinas escalonadas: el borde de tinta afuera y el verde adentro. El estado no depende
+// del color (y el nombre accesible lo dice).
 .check {
   position: absolute;
-  inset: t.px(-1) t.px(-2) auto auto;
+  z-index: 1;
+  // Centrado casi en la esquina: tapa el borde de la píldora, no la primera letra.
+  inset: 0 auto auto 0;
   display: inline-flex;
-  padding: var(--px);
+  padding: var(--px-half);
+  background: var(--palette-frame);
+  clip-path: m.pixel-corners((1));
+  transform: translate(-60%, -50%);
+}
+
+.checkFill {
+  display: inline-flex;
+  padding: var(--px-half);
   background: t.token('cell-correct');
   color: t.token('cell-ink');
-  font-size: 1rem;
+  font-size: 0.75rem;
   clip-path: m.pixel-corners((1));
 }
 

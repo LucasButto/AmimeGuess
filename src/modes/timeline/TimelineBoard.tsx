@@ -2,11 +2,13 @@
 
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import { flushSync } from 'react-dom';
+import { DockAction, useDockTarget } from '@/components/game-shell/GameDock';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
 import { InfoTip } from '@/components/ui/InfoTip';
+import { useMissBuzz } from '@/components/useHaptics';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import type { DailyContext } from '@/engine/daily';
 import { getLocalStorage, readState, writeState } from '@/engine/storage';
@@ -77,6 +79,8 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
   const { franchise, mode, filterKey, day, onFinish } = session;
   const { lost: surrendered, surrender } = useSurrender(session);
   const { skin } = useSkin();
+  // En el teléfono "Confirmar orden" va en la barra inferior y el aviso del orden incorrecto, pegado a la lista.
+  const phone = useDockTarget() !== null;
   const { AttemptsMeter } = skin.slots;
   const solutionTitleId = useId();
   const maxAttempts = attemptsOf(config);
@@ -274,6 +278,8 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
   const unchanged = sameSequence(lastSubmitted, arrangement);
   // El veredicto, para el aspecto de la lista entera (no de cada suceso): rojo mientras el orden confirmado esté sin tocar
   // y no sea el correcto; verde al resolverlo. En cuanto se mueve un suceso, vuelve a lo neutro.
+  // Cada intento que no fue el orden correcto es un fallo (el último, si acertó, no).
+  useMissBuzz(attempts.length - (solved ? 1 : 0));
   const verdict = solved ? 'right' : attempts.length > 0 && unchanged ? 'wrong' : undefined;
   // El color del último veredicto, que queda aunque el veredicto se vaya: así un tema puede animar también su salida.
   const tint = solved ? 'right' : attempts.length > 0 ? 'wrong' : undefined;
@@ -283,7 +289,7 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
       <header className={styles.header}>
         <p className={styles.instructions}>
           {es.timeline.instructions}
-          {config.orderHelp && <InfoTip compact text={config.orderHelp} label={es.help.button(es.timeline.orderHelpTopic)} />}
+          {config.orderHelp && <InfoTip compact hideInApp text={config.orderHelp} label={es.help.button(es.timeline.orderHelpTopic)} />}
         </p>
       </header>
 
@@ -357,6 +363,11 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
           );
         })}
       </ol>
+      {phone && !over && unchanged && (
+        <p className={styles.wrong} data-part="wrong">
+          {es.timeline.wrongOrder}
+        </p>
+      )}
       <p className={styles.end}>
         <span aria-hidden="true">↓</span> {es.timeline.newest}
       </p>
@@ -364,7 +375,7 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
       <div className={styles.actions}>
         {/* Los intentos van a la derecha del botón de confirmar, bien a la vista (y siguen cuando el reto terminó). */}
         <div className={styles.confirmRow}>
-          {!over && (
+          {!over && !phone && (
             <button type="button" className={styles.confirm} onClick={confirm} disabled={unchanged}>
               {es.timeline.confirm}
             </button>
@@ -384,12 +395,14 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
           </div>
         </div>
         {/* El orden confirmado estaba mal: se dice, sin más. Al mover cualquier suceso, el aviso se va. */}
-        {!over && unchanged && (
+        {!over && !phone && unchanged && (
           <p className={styles.wrong} data-part="wrong">
             {es.timeline.wrongOrder}
           </p>
         )}
       </div>
+
+      {!over && <DockAction label={es.timeline.confirm} onClick={confirm} disabled={unchanged} />}
 
       {over && !solved && (
         <section className={styles.solution} aria-labelledby={solutionTitleId}>

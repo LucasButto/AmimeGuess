@@ -344,6 +344,13 @@ describe('quotes, emojis y ojos', () => {
       { id: 'eye-a', kind: 'eye', entityId: 'a', series: 'shippuden', payload: { image: 'naruto/a', width: 512, height: 512, focus: { x: 0.4, y: 0.3 } }, verified: false },
     ]);
   });
+
+  it('el zoom propio del ojo viaja al contenido solo si el dato lo trae', () => {
+    const focus = [{ character: 'a', x: 0.4, y: 0.3, zoom: 1.3, verified: false }, { character: 'b', x: 0.5, y: 0.5, verified: false }];
+    const [a, b] = buildEyeContents(focus, () => 'shippuden', () => true);
+    expect(a.payload).toMatchObject({ zoom: 1.3 });
+    expect(b.payload).not.toHaveProperty('zoom');
+  });
 });
 
 const group = (id: string, difficulty: number, members: string[]): GroupSrc => ({ id, name: id, category: 'x', difficulty, series: 'naruto', members, verified: false });

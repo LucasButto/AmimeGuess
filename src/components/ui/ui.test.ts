@@ -47,7 +47,7 @@ describe('themeGrid', () => {
 
 describe('preferencias', () => {
   it('sin nada guardado, o con algo roto, valen las de por defecto (todo apagado)', () => {
-    expect(DEFAULT_PREFS).toEqual({ legibleFont: false, sounds: false });
+    expect(DEFAULT_PREFS).toEqual({ legibleFont: false, sounds: false, vibration: false });
     expect(parsePrefs(null)).toEqual(DEFAULT_PREFS);
     expect(parsePrefs('{roto')).toEqual(DEFAULT_PREFS);
     expect(parsePrefs('"texto"')).toEqual(DEFAULT_PREFS);
@@ -58,8 +58,8 @@ describe('preferencias', () => {
     expect(PREFS_KEY).toBe('md:v1:prefs');
     const data = new Map<string, string>();
     const storage = { getItem: (key: string) => data.get(key) ?? null, setItem: (key: string, value: string) => void data.set(key, value) };
-    writePrefs(storage, { legibleFont: true, sounds: false });
-    expect(readPrefs(storage)).toEqual({ legibleFont: true, sounds: false });
+    writePrefs(storage, { legibleFont: true, sounds: false, vibration: true });
+    expect(readPrefs(storage)).toEqual({ legibleFont: true, sounds: false, vibration: true });
   });
 
   it('un almacenamiento que falla no rompe nada', () => {
@@ -77,7 +77,7 @@ describe('preferencias', () => {
 });
 
 it('restores only supported reading sizes and preserves old preferences', () => {
-  expect(parsePrefs('{"textScale":2,"sounds":true}')).toEqual({legibleFont:false,sounds:true,textScale:2});
+  expect(parsePrefs('{"textScale":2,"sounds":true}')).toEqual({legibleFont:false,sounds:true,vibration:false,textScale:2});
   expect(parsePrefs('{"textScale":3}').textScale).toBe(3);
   expect(parsePrefs('{"textScale":99}')).toEqual(DEFAULT_PREFS);
 });

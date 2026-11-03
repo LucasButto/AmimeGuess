@@ -7,7 +7,7 @@ import styles from './Countdown.module.scss';
 import { formatCountdown, toIsoDuration } from './format';
 
 /** Cuenta regresiva hasta el próximo reto, que se reinicia a las 00:00 de Argentina (SPEC 5). */
-export function Countdown() {
+export function Countdown({ compact = false }: { compact?: boolean }) {
   const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
@@ -18,8 +18,8 @@ export function Countdown() {
   const remaining = msUntilNextDay(now);
 
   return (
-    <p className={styles.root}>
-      <span className={styles.label}>{es.shell.nextChallenge}</span>{' '}
+    <p className={compact ? `${styles.root} ${styles.compact}` : styles.root}>
+      <span className={styles.label}>{es.shell.nextChallenge}</span>{compact && <span className={styles.shortLabel}>{es.shell.nextChallengeShort}</span>}{' '}
       {/* role="timer" no anuncia cada segundo: se lee solo cuando la persona se detiene en él. */}
       <time className={styles.time} role="timer" dateTime={toIsoDuration(remaining)}>
         {formatCountdown(remaining)}

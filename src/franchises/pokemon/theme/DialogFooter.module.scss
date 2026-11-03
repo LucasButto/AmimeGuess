@@ -35,7 +35,9 @@
 .notice {
   @include m.pixel-text;
   // No pasa por debajo de la cruz: el mismo aire a los dos lados, para que siga centrado.
-  padding-inline: 3rem;
+  // Con letra muy grande el aire se reduce (un 15 % del ancho como máximo) y las palabras largas se parten.
+  padding-inline: min(3rem, 15%);
+  overflow-wrap: anywhere;
   font-size: t.$font-size-sm;
   line-height: t.$line-height-base;
 }

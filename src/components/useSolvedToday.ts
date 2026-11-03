@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { getDay } from '@/engine/day';
-import { getKeyedStorage, solvedToday, wonToday } from './progress';
+import { getKeyedStorage, lostToday, solvedToday, wonToday } from './progress';
 
 /**
  * Los modos de la franquicia que ya se resolvieron hoy, o `null` mientras no se leyó el almacenamiento.
@@ -18,6 +18,8 @@ export interface TodayProgress {
   readonly solved: ReadonlySet<string>;
   /** Intentos de los modos ganados hoy. */
   readonly attempts: ReadonlyMap<string, number>;
+  /** Los terminados hoy sin ganar (el hub del teléfono los distingue de los ganados). */
+  readonly lost: ReadonlySet<string>;
 }
 
 /** Como `useSolvedToday`, con los intentos de cada modo ganado hoy (para mostrar "Resuelto en N intentos"). */
@@ -31,7 +33,7 @@ export function useTodayProgress(franchise: string, modes: readonly string[]): T
       const storage = getKeyedStorage();
       const list = modesKey.split('|');
       const day = getDay(new Date());
-      setProgress({ solved: solvedToday(storage, franchise, list, day), attempts: wonToday(storage, franchise, list, day) });
+      setProgress({ solved: solvedToday(storage, franchise, list, day), attempts: wonToday(storage, franchise, list, day), lost: lostToday(storage, franchise, list, day) });
     };
     read();
     document.addEventListener('visibilitychange', read);

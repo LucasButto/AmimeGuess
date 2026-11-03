@@ -1,0 +1,32 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.target {
+  display: none;
+  @include m.app-shell {
+    display: flex;
+    flex: 1 1 8rem;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0 t.$space-1;
+    // Si con letra muy grande el renglón se parte, los renglones no se pisan.
+    line-height: t.$line-height-base;
+    min-inline-size: 0;
+    min-block-size: 2rem;
+    font-size: t.$font-display-sm;
+    white-space: nowrap;
+    color: t.token('ink-muted');
+    // Meter slots are decorative inline spans. Let the track share the remaining width.
+    // Los medidores con barra (PS, chakra) se estiran; los que son una fila de piezas con su tamaño (`data-meter`, las semillas) no.
+    > [aria-hidden='true']:not([data-meter]) {
+      flex: 1;
+      // Un piso: con letra normal cabe en el renglón; con letra muy grande se baja a otro en vez de quedar en cero.
+      min-inline-size: 3rem;
+      > span:last-child { flex: 1; min-inline-size: 0; inline-size: auto; }
+    }
+    // Una fila de piezas con su tamaño (las semillas) no se estira: ocupa su renglón y la cuenta regresiva baja al siguiente.
+    &:has(> [data-meter]) { flex-basis: 100%; flex-wrap: nowrap; gap: t.$space-2; }
+    &:empty { flex: 0; }
+  }
+  @include m.app-shell-desktop { display: none; }
+}

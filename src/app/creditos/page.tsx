@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import { PhoneFold } from '@/components/PhoneFold';
 import { SiteFooter } from '@/components/SiteFooter';
 import { allFranchises as franchises } from '@/franchises';
 import { loadFranchiseData } from '@/franchises/data';
@@ -22,9 +24,17 @@ export default async function CreditsPage() {
 
   return (
     <>
-      <main className={styles.page}>
+      <main className={styles.page} data-shell="app">
         <header className={styles.header}>
-          <h1 className={styles.title}>{es.credits.title}</h1>
+          {/* Teléfono: barra superior con ← a la pestaña Más (instalada como app no hay barra del navegador para volver). */}
+          <div className={styles.appBar}>
+            <Link className={styles.back} href="/mas" aria-label={es.credits.back}>
+              <svg className={styles.backArrow} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges">
+                <path d="M10 4h3v3h-3v3h11v4H10v3h3v3h-3v-3H7v-3H4v-4h3V7h3z" fill="currentColor" />
+              </svg>
+            </Link>
+            <h1 className={styles.title}>{es.credits.title}</h1>
+          </div>
           <p className={styles.lead}>{es.credits.intro}</p>
         </header>
 
@@ -36,17 +46,19 @@ export default async function CreditsPage() {
           <div className={styles.groups}>
             {sources.groups.map((group) => (
               <section key={group.franchise} className={styles.group} aria-label={group.franchise}>
-                <h3 className={styles.groupTitle}>{group.franchise}</h3>
-                <ul className={styles.sources}>
-                  {group.items.map((item) => (
-                    <li key={item.url}>
-                      <a className={styles.link} href={item.url} rel="noopener noreferrer">
-                        {item.name}
-                      </a>
-                      <p className={styles.muted}>{item.text}</p>
-                    </li>
-                  ))}
-                </ul>
+                {/* Teléfono: cada franquicia se pliega; desde `lg` está siempre abierta. */}
+                <PhoneFold title={<h3 className={styles.groupTitle}>{group.franchise}</h3>}>
+                  <ul className={styles.sources}>
+                    {group.items.map((item) => (
+                      <li key={item.url}>
+                        <a className={styles.link} href={item.url} rel="noopener noreferrer">
+                          {item.name}
+                        </a>
+                        <p className={styles.muted}>{item.text}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </PhoneFold>
               </section>
             ))}
           </div>

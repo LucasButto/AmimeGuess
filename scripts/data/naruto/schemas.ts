@@ -274,6 +274,8 @@ export const focusSrcSchema = z
         character: kebab,
         x: z.number().min(0).max(1),
         y: z.number().min(0).max(1),
+        /** Cuánto más cerca que el resto arranca el recorte de este personaje (1 si no se dice): un ojo chico pide más. */
+        zoom: z.number().min(1).max(2).optional(),
         verified: z.boolean(),
       })
       .strict(),
@@ -337,7 +339,10 @@ const jutsuContentSchema = z
     payload: z
       .object({
         name: z.string().min(1),
-        image: z.string().regex(/^naruto\/jutsus\/[a-z0-9]+(-[a-z0-9]+)*$/),
+        /** El póster del clip: un cuadro del medio, con nombre opaco (no dice qué jutsu es). */
+        image: z.string().regex(/^naruto\/c\/[0-9a-f]{16}$/),
+        /** El clip, sin extensión, dentro de /public/video: un MP4 sin audio, también con nombre opaco. */
+        video: z.string().regex(/^naruto\/[0-9a-f]{16}$/),
         width: z.number().int().positive(),
         height: z.number().int().positive(),
         accepts: z.array(kebab),
@@ -401,6 +406,7 @@ const eyeContentSchema = z
         width: z.literal(512),
         height: z.literal(512),
         focus: z.object({ x: z.number().min(0).max(1), y: z.number().min(0).max(1) }).strict(),
+        zoom: z.number().min(1).max(2).optional(),
       })
       .strict(),
   })

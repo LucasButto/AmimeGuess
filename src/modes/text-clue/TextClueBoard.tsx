@@ -1,13 +1,17 @@
 'use client';
 
-import { useEffect, useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { autocompleteItemOf, type AutocompleteItem } from '@/components/Autocomplete';
 import { GuessField } from '@/components/GuessField';
+import { AttemptsStatus } from '@/components/game-shell/AttemptsStatus';
+import { useDockTarget } from '@/components/game-shell/GameDock';
+import { scrollIntoViewNearest } from '@/components/game-shell/scrollIntoView';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
 import { fitHints, restoreLimited } from '@/components/game-shell/attempts';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { useMissBuzz } from '@/components/useHaptics';
 import { SkinAttemptsMeter, SkinGameFrame } from '@/components/skin/gameSlots';
 import { PixelIcon } from '@/components/ui/icons';
 import { InfoTip } from '@/components/ui/InfoTip';
@@ -92,6 +96,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
 
   const attempted = useMemo(() => new Set(attemptIds), [attemptIds]);
   const failed = failedCount(attemptIds, answer.id, content);
+  useMissBuzz(failed);
 
   const items = useMemo<AutocompleteItem[]>(
     () => options.map(autocompleteItemOf),
@@ -136,10 +141,19 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
     if (solved || spent) onFinish({ ...reportOf(next, solved ? guess : answer.entity, true), won: solved });
   }
 
+  // Con la barra inferior (teléfono), el intento fallado nuevo (el primer chip) queda a la vista.
+  const phoneLayout = useDockTarget() !== null;
+  const rootRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (lastAttempt && phoneLayout) scrollIntoViewNearest(rootRef.current?.querySelector('ul[class*="chips"] > li'));
+    // Solo cuando hay un intento nuevo.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastAttempt]);
+
   const lastName = lastAttempt && !isCorrect(lastAttempt, answer.id, content) ? byId.get(lastAttempt)?.name.es : undefined;
 
   return (
-    <div className={styles.root} data-game-ready="true" data-won={won} data-over={over} data-hints={hintLines.length > 0}>
+    <div ref={rootRef} className={styles.root} data-game-ready="true" data-won={won} data-over={over} data-hints={hintLines.length > 0}>
       {/* Al ganar, el marco muestra la respuesta y el resumen (ver `FinishReport`). */}
       {!over && (
         <div className={styles.field}>
@@ -171,7 +185,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
             <h2 className={styles.hintsTitle} id={hintsTitleId}>
               {es.textClue.hintsTitle}
             </h2>
-            <InfoTip compact text={es.help.hints} label={es.help.button(es.textClue.hintsTitle)} />
+            <InfoTip compact hideInApp text={es.help.hints} label={es.help.button(es.textClue.hintsTitle)} />
           </div>
           <ul className={styles.hintList}>
             {hintLines.map(({ line, unlocked, remaining, text }) => (
@@ -190,14 +204,14 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
       )}
 
       <div className={styles.counter}>
-        <p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p>
+        <AttemptsStatus><p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
         {!over && (
           <SurrenderButton
             onConfirm={() => surrender(attemptIds, reportOf(attemptIds, answer.entity, true))}
           />
         )}
       </div>
-      <SkinAttemptsMeter skin={skin} engine="text-clue" failed={failed} won={won} total={maxAttempts} />
+      <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="text-clue" failed={failed} won={won} total={maxAttempts} /></AttemptsStatus>
 
       {failedNames.length > 0 && (
         <section className={styles.failed} aria-labelledby={failedTitleId}>

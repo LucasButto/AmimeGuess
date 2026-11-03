@@ -36,6 +36,7 @@ export function RamenStreak({ streak }: StreakDisplayProps) {
         </span>
       )}
       {streak > BOWLS && <span className={styles.more}>{es.narutoSkin.bowlsMore(streak - BOWLS)}</span>}
+      <span className={styles.streakLabel}>{es.shell.result.streakLabel}</span>
       <span className={styles.streakNumber}>{streak}</span>
     </span>
   );

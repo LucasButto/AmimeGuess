@@ -470,7 +470,7 @@ export function buildEyeContents(focus: readonly FocusSrc[number][], seriesOf: (
       kind: 'eye',
       entityId: item.character,
       series: seriesOf(item.character),
-      payload: { image: `naruto/${item.character}`, width: 512, height: 512, focus: { x: item.x, y: item.y } },
+      payload: { image: `naruto/${item.character}`, width: 512, height: 512, focus: { x: item.x, y: item.y }, ...(item.zoom === undefined ? {} : { zoom: item.zoom }) },
       verified: item.verified,
     }));
 }

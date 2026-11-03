@@ -10,7 +10,7 @@ import {
   sleepRecipe, creditsForForm,
   type Artist, type Credit, type Direction, type PortraitEmotion, type SpriteCredit,
 } from './pmd-core.ts';
-import { PMD_REQUESTED, PMD_EXCLUDED, PMD_GALAR, PMD_SERPENTINES, PMD_FORM_HEIGHTS, presentationFor } from './pmd-roster.ts';
+import { PMD_REQUESTED, PMD_EXCLUDED, PMD_GALAR, PMD_PORTRAIT_FORMS, PMD_SERPENTINES, PMD_FORM_HEIGHTS, presentationFor } from './pmd-roster.ts';
 import { generateSizeFactors, SIZE_VIEWPORT } from './pmd-sizing.ts';
 import type { WalkerPokemon } from '../../../src/franchises/pokemon/theme/walkerMotion.ts';
 import { processDirection, processPortrait, processShadow, sha256 } from './pmd-images.ts';
@@ -262,18 +262,21 @@ async function main() {
   const portraitResults = await mapPool(entities, CONCURRENCY, async (entity) => {
     try {
       const number = entity.attrs.numero as number, dex = String(number).padStart(4, '0');
-      if (!Object.hasOwn(tracker[dex].portrait_files, 'Normal')) throw new Error('Falta retrato Normal aprobado');
-      const creditPath = `portrait/${dex}/credits.txt`;
+      const portraitForm = PMD_PORTRAIT_FORMS[number];
+      const portraitNode = portraitForm ? tracker[dex].subgroups[portraitForm] : tracker[dex];
+      const portraitDir = portraitForm ? `${dex}/${portraitForm}` : dex;
+      if (!portraitNode || !Object.hasOwn(portraitNode.portrait_files, 'Normal')) throw new Error('Falta retrato Normal aprobado');
+      const creditPath = `portrait/${portraitDir}/credits.txt`;
       const records = parseCredits((await sourceFile(creditPath)).toString('utf8'));
       const emotions: Record<PortraitEmotion, string | null> = { normal: null, happy: null, sad: null };
       let normal = null;
       for (const emotion of Object.keys(PMD_PORTRAIT_EMOTIONS) as PortraitEmotion[]) {
         const upstreamName = PMD_PORTRAIT_EMOTIONS[emotion];
         // The pinned tracker records actual emotions by key; false means unlocked, not absent.
-        if (!Object.hasOwn(tracker[dex].portrait_files, upstreamName)) continue;
-        const sourcePath = `portrait/${dex}/${upstreamName}.png`;
+        if (!Object.hasOwn(portraitNode.portrait_files, upstreamName)) continue;
+        const sourcePath = `portrait/${portraitDir}/${upstreamName}.png`;
         const image = await processPortrait(await sourceFile(sourcePath));
-        const url = portraitUrl(number, emotion), creditId = `portrait/${dex}/${upstreamName}`;
+        const url = portraitUrl(number, emotion), creditId = `portrait/${portraitDir}/${upstreamName}`;
         await writeChanged(path.join(PUBLIC, url), image);
         resourceCredit(creditId, 'portrait', sourcePath, creditPath, records, [upstreamName], [url]);
         emotions[emotion] = url;

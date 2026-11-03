@@ -53,3 +53,26 @@
 .change { color: t.token('ink-muted'); }
 
 .optimalDetails { min-inline-size: 0; }
+
+// Diseño de app (teléfono): el Pokémon y las seis estadísticas entran juntos sin scroll (2 × 3), y "Detener" vive en la
+// barra inferior. Desde `lg` vuelve el tablero de siempre.
+.board {
+  @include m.app-shell { gap: t.$space-3; }
+  @include m.app-shell-desktop { gap: t.$space-4; }
+}
+.spinner {
+  @include m.app-shell { min-block-size: 0; padding: t.$space-3; gap: t.$space-1; }
+  @include m.app-shell-desktop { min-block-size: 17rem; padding: t.$space-4; gap: t.$space-3; }
+}
+.image {
+  @include m.app-shell { block-size: clamp(6rem, 21dvh, 13rem); }
+  @include m.app-shell-desktop { block-size: 13rem; }
+}
+.slots {
+  @include m.app-shell { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: t.$space-2; }
+  @include m.app-shell-desktop { grid-template-columns: none; }
+}
+.slot {
+  @include m.app-shell { flex-direction: column; align-items: flex-start; justify-content: center; gap: 0.125rem; min-block-size: 4rem; padding: t.$space-2 t.$space-3; }
+  @include m.app-shell-desktop { flex-direction: row; align-items: center; justify-content: space-between; gap: t.$space-2; min-block-size: 3.5rem; padding: t.$space-3 t.$space-4; }
+}

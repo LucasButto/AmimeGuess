@@ -1,4 +1,5 @@
 @use 'tokens' as t;
+@use 'mixins' as m;
 
 .root {
   display: flex;
@@ -27,4 +28,16 @@
 .cancel[data-variant='ghost'] {
   --_fill: #{t.token('chip-fill')};
   --_ink: #{t.token('ink')};
+}
+
+.boardAction {
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: inline-flex; }
+}
+
+// Diseño de app: el botón sale del tablero (está en el menú ⋮) y su contenedor no deja hueco; el diálogo de confirmación
+// va en la capa superior, así que no necesita caja.
+.root {
+  @include m.app-shell { display: contents; }
+  @include m.app-shell-desktop { display: flex; }
 }

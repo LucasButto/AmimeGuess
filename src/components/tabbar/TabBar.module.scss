@@ -1,0 +1,84 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// Barra de pestañas del teléfono: con los colores de la barra superior (los mismos tokens), así cada franquicia la pinta a su manera.
+.bar {
+  @include m.pixel-frame($fill: t.token('app-bar-fill'), $outer: t.token('app-bar-edge'), $inner: t.token('app-bar-inner'), $clip: t.token('clip-panel'), $radius: 0);
+  position: fixed;
+  inset-inline: 0;
+  inset-block-end: 0;
+  z-index: t.$layer-nav;
+  box-sizing: border-box;
+  padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  color: t.token('app-bar-ink');
+
+  @include bp.min-width('lg') {
+    display: none;
+  }
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: grid;
+}
+
+.tab {
+  @include m.focus-ring;
+  @include m.press(0.94);
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 0.125rem;
+  min-block-size: 3.5rem;
+  position: relative;
+  padding: t.$space-1 t.$space-1 0.875rem;
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.62;
+
+  // La pestaña actual: letra e ícono plenos (las otras, apagadas) y una franja corta debajo del texto, del color de la tinta de la barra. No es solo un
+  // color (la acompañan la franja y `aria-current`) y no pinta la celda entera, que con el marco del tema se veía recargado.
+  &[aria-current='page'] {
+    opacity: 1;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-block-end: 0.4375rem;
+      inset-inline: calc(50% - 1rem);
+      block-size: 0.25rem;
+      background: currentColor;
+    }
+  }
+}
+
+.iconWrap {
+  display: grid;
+  place-items: center;
+  inline-size: 3.25rem;
+  block-size: 1.75rem;
+}
+
+.icon {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+}
+
+.label {
+  max-inline-size: 100%;
+  overflow: hidden;
+  // Tamaño fijo (12 px): con el tamaño de lectura del tema, "Estadísticas" no entra en un cuarto de 360 px.
+  font-size: 0.75rem;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

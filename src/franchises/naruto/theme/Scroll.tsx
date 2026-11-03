@@ -112,7 +112,20 @@ export function NarutoModeCard(props: ModeCardProps) {
 }
 
 /** Slot `ModeIcon`: el ícono de tinta del modo en la navegación entre modos; resuelto, con un puntito rojo de sello. */
-export function NarutoModeIcon({ slug, solved }: ModeIconProps) {
+export function NarutoModeIcon({ slug, solved, variant = 'chip' }: ModeIconProps) {
+  // En la fila del hub del teléfono es un pergamino enrollado chico: papel con el ícono del modo y un rodillo en cada punta.
+  if (variant === 'row') {
+    return (
+      <span className={styles.rowScroll} aria-hidden="true" data-solved={solved}>
+        {/* El pergamino es un archivo estático (public/theme/naruto/pergamino.png, ver `npm run design:scroll`). */}
+        <img className={styles.rowImage} src="/theme/naruto/pergamino.png" alt="" width={224} height={170} />
+        <span className={styles.rowPaper}>
+          <ModeGlyph slug={slug} className={styles.rowGlyph} />
+        </span>
+        {solved && <Hanko className={styles.rowHanko} />}
+      </span>
+    );
+  }
   return (
     <span className={styles.mini} aria-hidden="true" data-solved={solved}>
       <ModeGlyph slug={slug} className={styles.miniGlyph} />

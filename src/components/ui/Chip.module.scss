@@ -7,6 +7,7 @@
   --_ink: #{t.token('chip-ink')};
   --_edge: #{t.token('chip-edge')};
   @include m.touch-target;
+  @include m.press;
   @include m.pixel-frame($fill: var(--_fill), $outer: var(--_edge), $inner: transparent, $width: t.token('button-frame-width'), $inner-width: 0px, $clip: t.token('clip-chip'), $radius: t.token('chip-radius'));
   display: inline-flex;
   align-items: center;

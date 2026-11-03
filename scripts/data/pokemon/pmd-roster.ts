@@ -290,7 +290,7 @@ export const PMD_REQUESTED = [
   {"name":"Cyclizar","zone":"ground"},
   {"name":"Charizard","zone":"sky"},
   {"name":"Rowlet","zone":"sky"},
-  {"name":"Dragonair","zone":"sky"},
+  {"name":"Dragonair","zone":"ground"},
   {"name":"Dragonite","zone":"sky"},
   {"name":"Salamence","zone":"sky"},
   {"name":"Hydreigon","zone":"sky"},
@@ -395,10 +395,13 @@ export const PMD_SERPENTINES: Readonly<Record<string, string>> = {
   arbok: 'Upright cobra with a coiled lower body; length includes the full tail.',
   seviper: 'Curved snake body and long blade tail, not a tall upright torso.',
   onix: 'Long articulated chain of rocks, curled into a much shorter visible height.',
-  dragonair: 'Undulating limbless dragon body in flight.',
+  dragonair: 'Undulating limbless dragon body that slithers along the ground in Walk.',
   rayquaza: 'Long winding dragon body; the Pokedex measures its full length.',
   snom: 'Horizontal worm-like larva in Walk; the readability floor still applies.',
 };
+
+/** Retratos de una forma aprobada en lugar de la base (número de la Pokédex → forma): Golem usa el Altcolor, el de colores más fieles (pedido del usuario). */
+export const PMD_PORTRAIT_FORMS: Readonly<Record<number, string>> = { 76: '0002' };
 
 export type Movement = 'walk' | 'run' | 'burrow' | 'roll' | 'stagger' | 'zigzag' | 'drift' | 'hop' | 'hover';
 export interface PresentationDecision {
@@ -433,7 +436,8 @@ export const PMD_DECISIONS: Readonly<Partial<Record<string, PresentationDecision
   Rayquaza: { zone: 'sky', locomotion: 'Attack', locomotionFrames: [5], locomotionFrameMs: 240, locomotionBob: { ms: 240, px: 3 } },
   // Shoot de costado: cuadro con las alas arriba y cuadro con el cuerpo horizontal.
   Swellow: { zone: 'sky', locomotion: 'Shoot', locomotionFrames: [1, 11], locomotionFrameMs: 180 },
-  Taillow: { zone: 'sky', locomotion: 'Attack', locomotionFrames: [4, 5, 6, 7, 8], locomotionFrameMs: 120 },
+  // Como Swellow: el Shoot de costado, con las alas arriba (cuadro 1) y el cuerpo horizontal (cuadro 0).
+  Taillow: { zone: 'sky', locomotion: 'Shoot', locomotionFrames: [1, 0], locomotionFrameMs: 180 },
   Togetic: { zone: 'sky', locomotion: 'Special0' },
   Lugia: { zone: 'sky', locomotion: 'Hover', locomotionDurationFactor: HOVER_SLOWDOWN },
   Gligar: { zone: 'sky', locomotion: 'Special0', sourceForm: '0002', form: 'cutscene' },
@@ -476,7 +480,6 @@ export const PMD_WALK_FLYERS = [
   'porygon',
   'porygon2',
   'porygon-z',
-  "dragonair",
   "hydreigon",
   "drakloak",
   "articuno",

@@ -46,6 +46,7 @@ export function modePoolSize(mode: ModeConfig, data: FranchiseData, active: read
 export function modePoolNoun(franchise: FranchiseConfig, mode: ModeConfig): PoolNoun | undefined {
   if (mode.engine === 'timeline') return es.filters.nouns.events;
   if (mode.engine === 'connections') return es.filters.nouns.groups;
+  if (mode.engine === 'image-reveal' && mode.imageReveal?.countNoun !== undefined) return mode.imageReveal.countNoun;
   return mode.entitySet === undefined ? franchise.entityNoun : franchise.entitySetNouns?.[mode.entitySet];
 }
 

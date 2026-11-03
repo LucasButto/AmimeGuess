@@ -1,6 +1,6 @@
 import { STORAGE_PREFIX, type StorageLike } from '@/engine/storage';
 
-// Preferencias de interfaz (SPEC 6 y 9.2), en `md:v1:prefs`: "Fuente legible" y "Sonidos", las dos
+// Preferencias de interfaz (SPEC 6 y 9.2), en `md:v1:prefs`: "Fuente legible", "Sonidos" y "Vibración", las tres
 // apagadas por defecto. Lectura y escritura protegidas: sin almacenamiento, valen los valores por defecto.
 // Sin React: el layout raíz (servidor) importa de acá el script de arranque. El estado compartido entre
 // componentes está en usePrefs.ts.
@@ -11,10 +11,12 @@ export interface Prefs {
   readonly legibleFont: boolean;
   /** Efectos de sonido cortos (Web Audio). */
   readonly sounds: boolean;
+  /** Vibración corta al acertar y al fallar (solo donde el navegador la ofrece; en iPhone no existe). */
+  readonly vibration: boolean;
 }
 
 export const PREFS_KEY = `${STORAGE_PREFIX}:prefs`;
-export const DEFAULT_PREFS: Prefs = { legibleFont: false, sounds: false };
+export const DEFAULT_PREFS: Prefs = { legibleFont: false, sounds: false, vibration: false };
 
 /** Atributo de `<html>` que activa la fuente legible (ver globals.scss). */
 export const LEGIBLE_FONT_ATTRIBUTE = 'data-legible-font';
@@ -25,8 +27,8 @@ export function parsePrefs(raw: string | null): Prefs {
   try {
     const value: unknown = JSON.parse(raw);
     if (typeof value !== 'object' || value === null) return DEFAULT_PREFS;
-    const { legibleFont, sounds, textScale } = value as Record<string, unknown>;
-    return { legibleFont: legibleFont === true, sounds: sounds === true, ...(textScale === 2 || textScale === 3 ? { textScale } : {}) };
+    const { legibleFont, sounds, vibration, textScale } = value as Record<string, unknown>;
+    return { legibleFont: legibleFont === true, sounds: sounds === true, vibration: vibration === true, ...(textScale === 2 || textScale === 3 ? { textScale } : {}) };
   } catch {
     return DEFAULT_PREFS;
   }

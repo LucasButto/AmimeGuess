@@ -161,10 +161,21 @@ describe('frases', () => {
 });
 
 describe('jutsus', () => {
-  it('cada uno que está en el dataset tiene sus dos imágenes y el tamaño que dice', () => {
+  it('cada uno que está en el dataset tiene su clip, su póster en los dos tamaños y el tamaño que dice', () => {
     for (const jutsu of of('jutsu')) {
       for (const size of [256, 512]) expect(existsSync(path.join(ROOT, 'public', 'img', `${jutsu.payload.image as string}-${size}.webp`)), `${jutsu.id} ${size}`).toBe(true);
+      expect(existsSync(path.join(ROOT, 'public', 'video', `${jutsu.payload.video as string}.mp4`)), `${jutsu.id} clip`).toBe(true);
       expect(jutsu.payload.width, jutsu.id).toBeGreaterThan(0);
+    }
+  });
+
+  it('ni el póster ni el clip tienen en su nombre el id del jutsu ni el de la respuesta', () => {
+    for (const jutsu of of('jutsu')) {
+      const id = jutsu.id.replace(/^jutsu-/, '');
+      for (const path of [jutsu.payload.image as string, jutsu.payload.video as string]) {
+        expect(path, jutsu.id).not.toContain(id);
+        expect(path, jutsu.id).not.toContain(jutsu.entityId as string);
+      }
     }
   });
 });

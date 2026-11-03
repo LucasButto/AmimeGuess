@@ -56,12 +56,7 @@ export const pokemonConfig = {
           // únicamente cuando todas las series activas son de ese rango (SPEC 3.4).
           { key: 'habitat', label: 'Hábitat', compare: 'exact', onlyForSeries: ['g1', 'g2', 'g3'], help: help.habitat },
         ],
-        hints: [
-          { kind: 'attr', label: 'Habilidad', after: 4, key: 'habilidad' },
-          // La pista de la carta borrosa (tras 7 fallos) necesita una pista de imagen en el Clásico, que
-          // todavía no existe: las cartas ya están en los datos (kind "tcg-card") para cuando se agregue.
-          { kind: 'content', label: 'Descripción', after: 10, contentKind: 'dex', field: 'text' },
-        ],
+        hints: [],
       },
     },
     // Un zoom sobre la sombra negra del Pokémon: parte de un costado y se abre hacia el centro (la silueta no se ilumina).

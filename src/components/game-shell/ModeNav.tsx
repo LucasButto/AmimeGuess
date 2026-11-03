@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useId, useState } from 'react';
+import { useEffect, useId, useRef, useState } from 'react';
+import { useAppShell } from './AppShellContext';
 import { Button } from '../ui/Button';
 import { es } from '@/i18n/es';
 import { useSkin } from '../skin/context';
@@ -25,7 +26,26 @@ interface ModeNavProps {
 
 /** En móvil se exploran los modos con flechas y se entra tocando el nombre; desde tablet se ven todos. */
 export function ModeNav({ franchise, modes, current, solved, filterKey, label = es.shell.modesLabel }: ModeNavProps) {
+  const appShell = useAppShell();
+  const listRef = useRef<HTMLUListElement>(null);
   const listId = useId();
+  useEffect(() => {
+    const list = listRef.current;
+    if (!appShell || !list) return;
+    const center = () => {
+      // CSS decides whether this is the scrolling strip (including md tablets).
+      if (getComputedStyle(list).overflowX !== 'auto') return;
+      const current = list.querySelector<HTMLElement>('[aria-current="page"]');
+      if (!current) return;
+      const item = current.getBoundingClientRect();
+      const box = list.getBoundingClientRect();
+      list.scrollLeft += item.left - box.left + (item.width - list.clientWidth) / 2;
+    };
+    center();
+    const observer = new ResizeObserver(center);
+    observer.observe(list);
+    return () => observer.disconnect();
+  }, [appShell, current, modes]);
   const [preview, setPreview] = useState<{ page: string; slug: string } | null>(null);
   const page = `${franchise}/${current}`;
   const selectedSlug = preview?.page === page ? preview.slug : current;
@@ -45,7 +65,7 @@ export function ModeNav({ franchise, modes, current, solved, filterKey, label = 
       <Button variant="icon" tone="b" className={styles.previous} aria-label={es.shell.previousMode} aria-controls={listId} disabled={modes.length < 2} onClick={() => browse(-1)}>
         <PixelIcon name="cursor" className={styles.leftArrow} />
       </Button>
-      <ul id={listId} className={styles.list}>
+      <ul id={listId} className={styles.list} ref={listRef}>
         {modes.map((mode, index) => {
           const isCurrent = mode.slug === current;
           const isSolved = solved?.has(mode.slug) ?? false;
@@ -79,6 +99,7 @@ export function ModeNav({ franchise, modes, current, solved, filterKey, label = 
                 )}
                 <ModeIcon slug={mode.slug} index={index} current={isCurrent} solved={false} />
                 {mode.name}
+                {appShell && isSolved && <span className={styles.solvedDot} aria-hidden="true" />}
                 {isSolved && <VisuallyHidden> ({es.shell.modeSolved})</VisuallyHidden>}
               </Link>
             </li>

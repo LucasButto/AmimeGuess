@@ -3,7 +3,9 @@
     "slug": "pokemon",
     "name": "Pokémon",
     "status": true,
+    "comingSoon": false,
     "speedTest": false,
+    "appShell": true,
     "modes": [
       {
         "slug": "clasico",
@@ -59,6 +61,8 @@
     "slug": "dragon-ball",
     "name": "Dragon Ball",
     "status": true,
+    "comingSoon": false,
+    "appShell": true,
     "modes": [
       {
         "slug": "clasico",
@@ -114,6 +118,8 @@
     "slug": "naruto",
     "name": "Naruto",
     "status": true,
+    "comingSoon": false,
+    "appShell": true,
     "modes": [
       {
         "slug": "clasico",
@@ -181,6 +187,7 @@
     "slug": "yugioh",
     "name": "Yu-Gi-Oh",
     "status": false,
+    "comingSoon": true,
     "modes": [
       {
         "slug": "duelista",

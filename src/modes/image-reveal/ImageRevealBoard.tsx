@@ -1,13 +1,18 @@
 'use client';
 
-import { useEffect, useId, useMemo, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { autocompleteItemOf, type AutocompleteItem } from '@/components/Autocomplete';
 import { GuessField } from '@/components/GuessField';
+import { AttemptsStatus } from '@/components/game-shell/AttemptsStatus';
+import { SheetSection } from '@/components/game-shell/SheetSlot';
+import { useDockTarget } from '@/components/game-shell/GameDock';
+import { scrollIntoViewNearest } from '@/components/game-shell/scrollIntoView';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
 import { restoreLimited } from '@/components/game-shell/attempts';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { useMissBuzz } from '@/components/useHaptics';
 import { SkinAttemptsMeter, SkinGameFrame } from '@/components/skin/gameSlots';
 import { Chip } from '@/components/ui/Chip';
 import { InfoTip } from '@/components/ui/InfoTip';
@@ -51,11 +56,11 @@ interface ImageRevealBoardProps {
  * El aviso al marco de que terminó el reto, ganado o perdido (se gastaron los intentos): la respuesta, los intentos y la
  * grilla para compartir.
  */
-function reportOf(attemptIds: readonly string[], answer: Candidate, accepted: readonly string[], won: boolean, fresh: boolean): FinishReport {
+function reportOf(attemptIds: readonly string[], answer: Candidate, accepted: readonly string[], won: boolean, fresh: boolean, detail?: string): FinishReport {
   return {
     won,
     attempts: attemptIds.length,
-    answer: { label: answer.entity.name.es, imageStem: answer.entity.image },
+    answer: { label: answer.entity.name.es, imageStem: answer.entity.image, ...(detail === undefined ? {} : { detail }) },
     grid: shareGrid(attemptIds, answer.id, accepted),
     fresh,
   };
@@ -82,6 +87,8 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
   const answer = useMemo(() => pickDaily(candidates, ctx), [candidates, ctx]);
   const image = useMemo(() => pickImage(answer, ctx), [answer, ctx]);
+  // El modo Jutsu dice también cuál era el jutsu: "Era Naruto Uzumaki – Rasengan".
+  const detail = config.showsContentName ? image.name : undefined;
   // Una imagen puede ser igual de cierta para más de una entidad (una técnica que usan varios personajes).
   const accepted = useMemo(() => image.accepts ?? [], [image]);
   // El punto del zoom: el del dato si lo trae y, si no, el del PRNG del día. El zoom de la silueta parte siempre de un
@@ -102,8 +109,8 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   // Si la partida ya había terminado al montarse (se recargó la página), el marco tiene que
   // mostrar su resumen, pero sin volver a sumarla a las estadísticas.
   const [restored] = useState<FinishReport | null>(() => {
-    if (attemptIds.some((id) => isCorrect(id, answer.id, accepted))) return reportOf(attemptIds, answer, accepted, true, false);
-    return surrendered || isLost(failedCount(attemptIds, answer.id, accepted), maxAttempts) ? reportOf(attemptIds, answer, accepted, false, false) : null;
+    if (attemptIds.some((id) => isCorrect(id, answer.id, accepted))) return reportOf(attemptIds, answer, accepted, true, false, detail);
+    return surrendered || isLost(failedCount(attemptIds, answer.id, accepted), maxAttempts) ? reportOf(attemptIds, answer, accepted, false, false, detail) : null;
   });
   useEffect(() => {
     if (restored) onFinish(restored);
@@ -112,13 +119,16 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   const attempted = useMemo(() => new Set(attemptIds), [attemptIds]);
   const won = attemptIds.some((id) => isCorrect(id, answer.id, accepted));
   const failed = failedCount(attemptIds, answer.id, accepted);
+  useMissBuzz(failed);
   const lost = !won && (surrendered || isLost(failed, maxAttempts));
   // Ganado o perdido: ya no se puede seguir y se muestra la imagen entera.
   const over = won || lost;
   const visualStep = revealStep(failed, prefs.reveal, maxAttempts);
   const step = Math.floor(visualStep);
   // Al terminar, la imagen se muestra entera, a color y nítida.
-  const visual = over ? REVEALED : revealVisual(config.variant, visualStep, prefs.colors, focus, config.zoomScales, config.blurLevels);
+  // Un contenido puede pedir más cerca que el resto (`zoom`): sube todos los aumentos del modo.
+  const zoomScales = image.zoom === undefined || image.zoom === 1 ? config.zoomScales : config.zoomScales?.map((scale) => scale * image.zoom!);
+  const visual = over ? REVEALED : revealVisual(config.variant, visualStep, prefs.colors, focus, zoomScales, config.blurLevels);
 
   const items = useMemo<AutocompleteItem[]>(
     () => options.map(autocompleteItemOf),
@@ -149,7 +159,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
     setLastAttempt({ id, revealed: prefs.reveal });
     writeState(getLocalStorage(), ctx, { attempts: next, result: solved ? 'won' : spent ? 'lost' : 'playing' });
 
-    if (solved || spent) onFinish(reportOf(next, answer, accepted, solved, true));
+    if (solved || spent) onFinish(reportOf(next, answer, accepted, solved, true, detail));
   }
 
   function updatePrefs(next: RevealPrefs) {
@@ -157,10 +167,19 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
     writePrefs(getLocalStorage(), franchise, mode, next);
   }
 
+  // Con la barra inferior (teléfono), el intento fallado nuevo (el primer chip) queda a la vista.
+  const phoneLayout = useDockTarget() !== null;
+  const rootRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (lastAttempt && phoneLayout) scrollIntoViewNearest(rootRef.current?.querySelector('ul[class*="chips"] > li'));
+    // Solo cuando hay un intento nuevo.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lastAttempt]);
+
   const lastName = lastAttempt && !isCorrect(lastAttempt.id, answer.id, accepted) ? byId.get(lastAttempt.id)?.name.es : undefined;
 
   return (
-    <div className={styles.root} data-game-ready="true" data-step={step} data-won={won} data-over={over}>
+    <div ref={rootRef} className={styles.root} data-game-ready="true" data-step={step} data-won={won} data-over={over}>
       {/* Al terminar, ganado o perdido, el marco muestra la respuesta y el resumen (ver `FinishReport`). */}
       {!over && (
         <div className={styles.field}>
@@ -175,6 +194,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
           height={image.height}
           alt={over ? es.imageReveal.imageSolvedAlt(answer.entity.name.es) : es.imageReveal.imageAlt}
           visual={visual}
+          video={image.video}
           kind={config.imageContentKind}
         />
       </SkinGameFrame>
@@ -191,14 +211,14 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
       )}
 
       <div className={styles.counter}>
-        <p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p>
+        <AttemptsStatus><p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
         {!over && (
           <SurrenderButton
-            onConfirm={() => surrender(attemptIds, reportOf(attemptIds, answer, accepted, false, true))}
+            onConfirm={() => surrender(attemptIds, reportOf(attemptIds, answer, accepted, false, true, detail))}
           />
         )}
       </div>
-      <SkinAttemptsMeter skin={skin} engine="image-reveal" failed={failed} won={won} total={maxAttempts} />
+      <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="image-reveal" failed={failed} won={won} total={maxAttempts} /></AttemptsStatus>
       {/* Antes del último intento se avisa: si falla, se pierde. */}
       {!over && failed === maxAttempts - 1 && (
         <p className={styles.lastChance} role="status">
@@ -225,41 +245,43 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
       {failedNames.length === 0 && !over && <p className={styles.empty}>{es.imageReveal.empty}</p>}
 
       {!over && (
-        <fieldset className={styles.difficulty} aria-labelledby={difficultyId}>
-          <legend className={styles.difficultyTitle} id={difficultyId}>
-            {es.imageReveal.difficultyTitle}
-            <InfoTip compact text={es.help.difficulty} label={es.help.button(es.imageReveal.difficultyTitle)} className={styles.titleHelp} />
-          </legend>
-          {/* Cada opción es un chip que se prende y se apaga, con su explicación debajo. */}
-          <div className={styles.option}>
-            <Chip
-              pressed={prefs.reveal}
-              aria-describedby={revealHintId}
-              mark={<ChipMark on={prefs.reveal} />}
-              onClick={() => updatePrefs({ ...prefs, reveal: !prefs.reveal })}
-            >
-              {es.imageReveal.revealSwitch}
-            </Chip>
-            <p className={styles.optionHint} id={revealHintId}>
-              {es.imageReveal.revealHint}
-            </p>
-          </div>
-          {hasColors && (
+        <SheetSection>
+          <fieldset className={styles.difficulty} aria-labelledby={difficultyId}>
+            <legend className={styles.difficultyTitle} id={difficultyId}>
+              {es.imageReveal.difficultyTitle}
+              <InfoTip compact text={es.help.difficulty} label={es.help.button(es.imageReveal.difficultyTitle)} className={styles.titleHelp} />
+            </legend>
+            {/* Cada opción es un chip que se prende y se apaga, con su explicación debajo. */}
             <div className={styles.option}>
               <Chip
-                pressed={prefs.colors}
-                aria-describedby={colorsHintId}
-                mark={<ChipMark on={prefs.colors} />}
-                onClick={() => updatePrefs({ ...prefs, colors: !prefs.colors })}
+                pressed={prefs.reveal}
+                aria-describedby={revealHintId}
+                mark={<ChipMark on={prefs.reveal} />}
+                onClick={() => updatePrefs({ ...prefs, reveal: !prefs.reveal })}
               >
-                {es.imageReveal.colorsSwitch}
+                {es.imageReveal.revealSwitch}
               </Chip>
-              <p className={styles.optionHint} id={colorsHintId}>
-                {es.imageReveal.colorsHint}
+              <p className={styles.optionHint} id={revealHintId}>
+                {es.imageReveal.revealHint}
               </p>
             </div>
-          )}
-        </fieldset>
+            {hasColors && (
+              <div className={styles.option}>
+                <Chip
+                  pressed={prefs.colors}
+                  aria-describedby={colorsHintId}
+                  mark={<ChipMark on={prefs.colors} />}
+                  onClick={() => updatePrefs({ ...prefs, colors: !prefs.colors })}
+                >
+                  {es.imageReveal.colorsSwitch}
+                </Chip>
+                <p className={styles.optionHint} id={colorsHintId}>
+                  {es.imageReveal.colorsHint}
+                </p>
+              </div>
+            )}
+          </fieldset>
+        </SheetSection>
       )}
 
       <VisuallyHidden role="status">

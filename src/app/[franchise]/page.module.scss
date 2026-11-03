@@ -45,3 +45,78 @@
   font-size: t.$font-size-lg;
   color: t.token('ink-muted');
 }
+
+// --- Diseño de app (teléfono): la barra de arriba, como la de la pantalla de juego -------------------------------------
+.page[data-shell='app'] {
+  --app-bar-h: calc(4rem + env(safe-area-inset-top));
+  padding-block-start: calc(var(--app-bar-h) + #{t.$space-4});
+  // Un adorno animado que cruza la pantalla (el dragón de Dragon Ball) no ensancha la página en el teléfono.
+  overflow-x: clip;
+  @include bp.min-width('lg') { padding-block-start: t.$space-7; overflow-x: visible; }
+}
+
+.appBar {
+  @include m.app-shell {
+    @include m.pixel-frame($fill: t.token('app-bar-fill'), $outer: t.token('app-bar-edge'), $inner: t.token('app-bar-inner'), $clip: t.token('clip-panel'), $radius: 0);
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: t.$layer-nav;
+    block-size: var(--app-bar-h);
+    padding-block-start: env(safe-area-inset-top);
+    padding-inline: max(#{t.$space-2}, env(safe-area-inset-left)) max(#{t.$space-2}, env(safe-area-inset-right));
+    display: grid;
+    grid-template-areas: 'back title';
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    gap: t.$space-2;
+    color: t.token('app-bar-ink');
+  }
+  @include m.app-shell-desktop {
+    display: contents;
+    &::before, &::after { display: none; }
+  }
+}
+
+.header {
+  @include m.app-shell { grid-area: title; min-inline-size: 0; gap: 0; }
+  @include m.app-shell-desktop { gap: t.$space-2; }
+}
+
+.site {
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: t.token('header-site-display'); }
+}
+
+.title {
+  @include m.app-shell {
+    font-size: t.$font-display-sm;
+    line-height: t.$line-height-base;
+    color: t.token('app-bar-ink');
+    text-shadow: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    &::before { display: none; }
+  }
+  // Desde `lg` vuelve el título grande de siempre (lo mismo que el `.title` de arriba).
+  @include m.app-shell-desktop {
+    @include m.display-size(calc(#{t.fluid(2rem, 3rem)} * #{t.token('title-scale')}));
+    line-height: t.$line-height-tight;
+    color: t.token('title-ink');
+    text-shadow: t.token('title-shadow');
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    &::before { display: inline-block; }
+  }
+}
+
+.appSubtitle {
+  font-size: t.$font-size-sm;
+  line-height: t.$line-height-tight;
+  color: t.token('app-bar-ink');
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @include m.app-shell-desktop { display: none; }
+}

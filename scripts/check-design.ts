@@ -54,7 +54,7 @@ interface Ctx {
 
 /** Un contexto nuevo (cookies y almacenamiento limpios) que registra los pedidos prohibidos. */
 async function newContext(ctx: Ctx, options: BrowserContextOptions = {}, storage: Record<string, string> = {}): Promise<BrowserContext> {
-  const context = await ctx.browser.newContext({ viewport: { width: 1366, height: 768 }, ...options });
+  const context = await ctx.browser.newContext({ viewport: { width: 1366, height: 768 }, serviceWorkers: 'block', ...options });
   context.on('request', (request) => {
     if (FORBIDDEN.some((pattern) => pattern.test(request.url()))) forbiddenRequests.push(request.url());
   });
@@ -125,8 +125,8 @@ function parseMs(value: string): number {
 /** /pokemon: 1 tarjeta Pokédex y después 6 bolas, cada una un único enlace con nombre accesible. */
 async function pokemonCards(ctx: Ctx): Promise<string[]> {
   const context = await newContext(ctx, { viewport: { width: 390, height: 844 } });
-  const page = await open(ctx, context, '/pokemon', '[data-card]');
-  const cards = await page.$$eval('ul[aria-label="Modos de juego"] > li', (items) =>
+  const page = await open(ctx, context, '/pokemon', '[data-card]:visible, ul[class*="rows"] > li a:visible');
+  const cards = await page.$$eval('ul[aria-label="Modos de juego"][class*="grid"] > li', (items) =>
     items.map((item) => {
       const links = item.querySelectorAll('a');
       return { links: links.length, card: links[0]?.getAttribute('data-card'), name: links[0]?.getAttribute('aria-label') ?? '' };
@@ -135,7 +135,9 @@ async function pokemonCards(ctx: Ctx): Promise<string[]> {
   await shot(page, 'pokemon-tarjetas');
   await context.close();
   const problems: string[] = [];
-  if (cards.length !== 7) problems.push(`hay ${cards.length} tarjetas (se esperaban 7)`);
+  const expected = (JSON.parse(readFileSync(path.join(import.meta.dirname, '..', 'data', 'mode.json'), 'utf8')) as Array<{ slug: string; modes: Array<{ status: boolean }> }>)
+    .find((section) => section.slug === 'pokemon')!.modes.filter((mode) => mode.status).length;
+  if (cards.length !== expected) problems.push(`hay ${cards.length} tarjetas (se esperaban ${expected}, los modos activos)`);
   if (cards[0]?.card !== 'pokedex') problems.push('la primera tarjeta no es la Pokédex');
   if (cards.slice(1).some((card) => card.card !== 'ball')) problems.push('después de la Pokédex no vienen solo bolas');
   for (const card of cards) {
@@ -185,7 +187,7 @@ async function pokemonWalkers(ctx: Ctx): Promise<string[]> {
       setInterval(sample, 50);
     });
     await context.route('**/theme/pokemon/pmd/manifest.json', (route) => route.fulfill({ json: { version: 1, pokemon: manifest.pokemon.filter((entry) => ['bulbasaur', 'charizard'].includes(entry.entityId)) } }));
-    const page = await open(ctx, context, '/pokemon', '[data-card]');
+    const page = await open(ctx, context, '/pokemon', '[data-card]:visible, ul[class*="rows"] > li a:visible');
     const prefix = `PMD ${viewport.width}×${viewport.height}: `;
     await page.waitForSelector('[data-pmd-ready="true"]');
     // Check the open footer before dismissing it to expose the full grass for the actor checks.
@@ -205,7 +207,7 @@ async function pokemonWalkers(ctx: Ctx): Promise<string[]> {
       if (!blocksBackground) problems.push(prefix + 'el pie abierto permite interacción con el fondo');
       await originalFooter.getByRole('button').first().click();
     }
-    await page.locator('a[data-card="ball"]').last().scrollIntoViewIfNeeded();
+    await page.locator('a[data-card="ball"]:visible, ul[class*="rows"] li[data-main="false"] a:visible').last().scrollIntoViewIfNeeded();
     await page.mouse.move(0, 0);
     await page.waitForSelector('[data-pmd-walker]', { state: 'attached', timeout: 15_000 });
     await page.evaluate(() => document.fonts.ready);
@@ -241,11 +243,15 @@ async function pokemonWalkers(ctx: Ctx): Promise<string[]> {
         (animation.effect as KeyframeEffect).getKeyframes().flatMap((frame) => Object.keys(frame))));
       // Force an overlap only for a synchronous paint/hit-test. The next RAF restores the actual journey.
       const actor = actors[0], original = actor.style.transform;
-      const cards = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-card]'));
+      // Las tarjetas de la grilla o, en el teléfono, las filas de la lista: las que se ven.
+      const cards = Array.from(document.querySelectorAll<HTMLAnchorElement>('a[data-card], ul[class*="rows"] > li a')).filter((card) => card.getClientRects().length > 0);
       const blocked = cards.every((card) => {
         const box = card.getBoundingClientRect();
         const x = box.left + box.width / 2, y = box.top + box.height / 2;
         if (y < 0 || y >= innerHeight) return true;
+        // Una tarjeta tapada por la barra fija de arriba (diseño de app, ya desplazada la página) no recibe clics en ese punto.
+        const base = document.elementFromPoint(x, y);
+        if (!(base && card.contains(base))) return true;
         actor.style.transform = `translate(${x}px,${y}px)`;
         const hit = document.elementFromPoint(x, y);
         return Boolean(hit && card.contains(hit));
@@ -334,8 +340,8 @@ async function pokemonWalkers(ctx: Ctx): Promise<string[]> {
       });
       if (!protectedFooter) problems.push(prefix + 'el pie abierto no bloquea el hit-test de los caminantes');
     }
-    const destination = await page.locator('a[data-card="ball"]').first().getAttribute('href');
-    await page.locator('a[data-card="ball"]').first().click();
+    const destination = await page.locator('a[data-card="ball"]:visible, ul[class*="rows"] li[data-main="false"] a:visible').first().getAttribute('href');
+    await page.locator('a[data-card="ball"]:visible, ul[class*="rows"] li[data-main="false"] a:visible').first().click();
     await page.waitForURL(`**${destination}`);
     await page.waitForSelector(GAME_READY);
     if (!await page.locator('[data-pmd-scene="true"] [data-pmd-walkers]').count()) problems.push(prefix + 'la escena desapareció al navegar desde el inicio a un modo');
@@ -347,7 +353,7 @@ async function pokemonWalkers(ctx: Ctx): Promise<string[]> {
     let requests = 0;
     quiet.on('request', (request) => { if (/\/theme\/pokemon\/pmd\//.test(request.url())) requests++; });
     for (const route of ['/pokemon', '/pokemon/clasico', '/pokemon/silueta']) {
-      const quietPage = await open(ctx, quiet, route, route === '/pokemon' ? '[data-card]' : GAME_READY);
+      const quietPage = await open(ctx, quiet, route, route === '/pokemon' ? '[data-card]:visible, ul[class*="rows"] > li a:visible' : GAME_READY);
       await quietPage.waitForTimeout(500);
       if (requests || await quietPage.locator('[data-pmd-walkers], [data-pmd-walker]').count()) problems.push(prefix + route + ': hay caminantes o descargas PMD con movimiento reducido');
       await quietPage.close();
@@ -356,7 +362,7 @@ async function pokemonWalkers(ctx: Ctx): Promise<string[]> {
   }
   const skyContext = await newContext(ctx, { viewport: { width: 1920, height: 1080 } });
   await skyContext.route('**/theme/pokemon/pmd/manifest.json', (route) => route.fulfill({ json: { version: 1, pokemon: manifest.pokemon.filter((entry) => entry.entityId === 'charizard') } }));
-  const skyPage = await open(ctx, skyContext, '/pokemon', '[data-card]');
+  const skyPage = await open(ctx, skyContext, '/pokemon', '[data-card]:visible, ul[class*="rows"] > li a:visible');
   await skyPage.waitForSelector('[data-pmd-walker][data-zone="sky"]', { state: 'attached', timeout: 15_000 });
   const sky = await skyPage.locator('[data-pmd-walker]').first().evaluate((actor) => ({ zone: (actor as HTMLElement).dataset.zone, trip: (actor as HTMLElement).dataset.canTrip }));
   if (sky.zone !== 'sky' || sky.trip !== 'false') problems.push('PMD: los voladores no están en el cielo o reaccionan al tropiezo');
@@ -378,7 +384,9 @@ async function pokemonModeWalkers(ctx: Ctx, viewport: { width: number; height: n
   const state = await page.evaluate(() => {
     const scene = document.querySelector('[data-pmd-scene="true"]')!;
     const layer = scene.querySelector('[data-pmd-walkers]')!;
-    const main = document.querySelector('main')!, panel = main.querySelector(':scope > div')!;
+    const main = document.querySelector('main')!;
+    // Con el diseño de app, el primer div de `main` es la barra superior (fija): el panel es el primero que no lo es y tiene caja.
+    const panel = [...main.querySelectorAll(':scope > div')].find((child) => getComputedStyle(child).position !== 'fixed' && child.getBoundingClientRect().height > 0)!;
     const footer = document.querySelector('footer');
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
     const ground = scene.querySelector('[data-pmd-ground]')!.getBoundingClientRect().height;
@@ -422,11 +430,11 @@ async function pokemonModeWalkers(ctx: Ctx, viewport: { width: number; height: n
   return problems;
 }
 
-/** /dragon-ball: la cápsula del Clásico y siete esferas con 1 a 7 estrellas, cada una un único enlace con nombre accesible. */
+/** /dragon-ball: la cápsula del Clásico y siete esferas con 1 a 7 estrellas, cada una un único enlace con nombre accesible (la grilla de tarjetas, que desde el diseño de app es la de escritorio: en el teléfono el hub es una lista). */
 async function dragonBallCards(ctx: Ctx): Promise<string[]> {
-  const context = await newContext(ctx, { viewport: { width: 390, height: 844 } });
+  const context = await newContext(ctx, { viewport: { width: 1366, height: 768 } });
   const page = await open(ctx, context, '/dragon-ball', '[data-card]');
-  const cards = await page.$$eval('ul[aria-label="Modos de juego"] > li', (items) =>
+  const cards = await page.$$eval('ul[aria-label="Modos de juego"][class*="grid"] > li', (items) =>
     items.map((item) => {
       const links = item.querySelectorAll('a');
       const svg = item.querySelector('svg');
@@ -455,9 +463,10 @@ async function dragonBallCards(ctx: Ctx): Promise<string[]> {
 
 /** /naruto: el pergamino abierto del Clásico, el tablón de Conexiones y rollos para los demás, cada uno un único enlace con nombre accesible. */
 async function narutoCards(ctx: Ctx): Promise<string[]> {
-  const context = await newContext(ctx, { viewport: { width: 390, height: 844 } });
+  // La grilla de tarjetas es la de escritorio: en el teléfono el hub es una lista.
+  const context = await newContext(ctx, { viewport: { width: 1366, height: 768 } });
   const page = await open(ctx, context, '/naruto', '[data-card]');
-  const cards = await page.$$eval('ul[aria-label="Modos de juego"] > li', (items) =>
+  const cards = await page.$$eval('ul[aria-label="Modos de juego"][class*="grid"] > li', (items) =>
     items.map((item) => {
       const links = item.querySelectorAll('a');
       return {
@@ -513,7 +522,7 @@ async function yugiohField(ctx: Ctx): Promise<string[]> {
     const page = await open(ctx, context, '/yugioh', '[data-card="duel"][data-state="solved"]');
     await page.waitForSelector('[data-field-controls]');
     await page.evaluate(() => document.fonts.ready);
-    const cards = await page.$$eval('ul[aria-label="Modos de juego"] > li', (items) => items.map((item) => {
+    const cards = await page.$$eval('ul[aria-label="Modos de juego"][class*="grid"] > li', (items) => items.map((item) => {
       const links = item.querySelectorAll('a');
       const link = links[0];
       const box = link?.getBoundingClientRect() ?? item.getBoundingClientRect();
@@ -677,7 +686,7 @@ async function reducedMotionNaruto(ctx: Ctx): Promise<string[]> {
   if ((await moving()) > 0) problems.push('hay animaciones del tema corriendo al abrir el Clásico');
   const [miss] = misses('naruto', ['naruto-uzumaki', 'sasuke-uchiha', 'sakura-haruno']);
   await guess(page, miss);
-  await page.waitForSelector('tbody tr');
+  await page.waitForSelector('tbody tr:visible, [data-attempt-card]:visible');
   await page.waitForTimeout(400);
   if ((await moving()) > 0) problems.push('hay animaciones del tema (humo, tronco) con movimiento reducido');
   await context.close();
@@ -699,8 +708,9 @@ async function narutoTerms(ctx: Ctx): Promise<string[]> {
     const size = `${viewport.width}x${viewport.height}`;
     const context = await newContext(ctx, { viewport, hasTouch: true }, storage);
     const page = await open(ctx, context, '/naruto/clasico');
-    await page.waitForSelector('tbody tr');
-    const terms = page.locator('tbody button[type="button"]');
+    await page.waitForSelector('tbody tr:visible, [data-attempt-card]:visible');
+    // En la tabla (escritorio) o en las tarjetas (teléfono): los que se ven.
+    const terms = page.locator('tbody button[type="button"]:visible, [data-attempt-card] button[type="button"]:visible');
     const count = await terms.count();
     if (count < 10) problems.push(`${size}: solo ${count} términos con recuadro en la tabla`);
     for (const index of [0, Math.floor(count / 2), count - 1]) {
@@ -768,7 +778,8 @@ function revealCheck(route: string, franchise: string, candidates: readonly stri
     await guess(page, prefix(miss ?? ''));
     await page.waitForSelector('[data-reveal="revealing"][data-index]');
     const info = await page.evaluate((ready) => {
-      const cells = [...document.querySelectorAll<HTMLElement>('[data-reveal="revealing"][data-index]')];
+      // Con el diseño de app están la tabla y las tarjetas en el documento: solo giran las casillas de la que se ve.
+      const cells = [...document.querySelectorAll<HTMLElement>('[data-reveal="revealing"][data-index]')].filter((cell) => cell.getClientRects().length > 0);
       const board = document.querySelector<HTMLElement>(ready);
       return {
         columns: document.querySelectorAll('thead th').length - 1,
@@ -786,7 +797,7 @@ function revealCheck(route: string, franchise: string, candidates: readonly stri
 
     await page.waitForFunction(() => !document.querySelector('[data-reveal="revealing"]'), null, { timeout: 5000 });
     await page.reload({ waitUntil: 'domcontentloaded' });
-    await page.waitForSelector('tbody tr');
+    await page.waitForSelector('tbody tr:visible, [data-attempt-card]:visible');
     const afterReload = await page.evaluate(
       () =>
         document.querySelectorAll('[data-reveal="revealing"]').length +
@@ -846,7 +857,7 @@ async function reducedMotionDragonBall(ctx: Ctx): Promise<string[]> {
   if ((await moving()) > 0) problems.push('hay animaciones del tema corriendo al abrir el Clásico');
   const [miss] = misses('dragon-ball', ['oolong', 'puar', 'yajirobe']);
   await guess(page, miss);
-  await page.waitForSelector('tbody tr');
+  await page.waitForSelector('tbody tr:visible, [data-attempt-card]:visible');
   await page.waitForTimeout(400);
   if ((await moving()) > 0) problems.push('hay animaciones del tema (escaneo, onomatopeya) con movimiento reducido');
   await context.close();
@@ -856,7 +867,7 @@ async function reducedMotionDragonBall(ctx: Ctx): Promise<string[]> {
 /** Las cuatro franquicias durante 5 s: nada anima propiedades de layout y el fondo no tiene más de 3 capas animadas. */
 async function animationProperties(ctx: Ctx): Promise<string[]> {
   const problems = new Set<string>();
-  for (const route of ['/pokemon', '/dragon-ball', '/naruto', '/yugioh']) {
+  for (const route of ['/pokemon', '/dragon-ball', '/naruto', '/yugioh'].filter((item) => !COMING_SOON.includes(item.slice(1)))) {
     const context = await newContext(ctx);
     // El fondo ya existe en Yu-Gi-Oh y no depende de la implementación de sus tarjetas.
     const ready = route === '/yugioh' ? '[data-backdrop="yugioh"]' : '[data-card]';
@@ -919,12 +930,13 @@ async function infoTipsOf(ctx: Ctx, franchise: string, candidates: readonly stri
     const size = `${viewport.width}x${viewport.height}`;
     const context = await newContext(ctx, { viewport, hasTouch: true }, storage);
     const page = await open(ctx, context, route);
-    await page.waitForSelector('tbody tr');
-    const buttons = page.locator('button[aria-label^="Ayuda"]');
+    await page.waitForSelector('tbody tr:visible, [data-attempt-card]:visible');
+    const buttons = page.locator('button[aria-label^="Ayuda:"]:visible');
     const count = await buttons.count();
     // Duelista todavía no declara ayudas de columna (fase 5); sí debe tener las ayudas comunes.
     const minimumTips = mode === 'duelista' ? 3 : 10;
-    if (count < minimumTips) problems.push(`${size}: solo ${count} ayudas ⓘ (mínimo ${minimumTips})`);
+    // En el teléfono (diseño de app) las ayudas de columna van en la hoja "?": el mínimo vale solo desde `lg`.
+    if (viewport.width >= 1024 && count < minimumTips) problems.push(`${size}: solo ${count} ayudas ⓘ (mínimo ${minimumTips})`);
     for (let index = 0; index < count; index++) {
       const button = buttons.nth(index);
       const label = await button.getAttribute('aria-label');
@@ -955,8 +967,8 @@ async function infoTipsOf(ctx: Ctx, franchise: string, candidates: readonly stri
   // Con el cursor encima (un mouse): se abre tras la demora y se cierra con Escape sin moverlo.
   const context = await newContext(ctx, {}, storage);
   const page = await open(ctx, context, route);
-  await page.waitForSelector('tbody tr');
-  const buttons = page.locator('button[aria-label^="Ayuda"]');
+  await page.waitForSelector('tbody tr:visible, [data-attempt-card]:visible');
+  const buttons = page.locator('button[aria-label^="Ayuda:"]:visible');
   const count = await buttons.count();
   for (let index = 0; index < count; index++) {
     const button = buttons.nth(index);
@@ -976,13 +988,14 @@ async function infoTipsOf(ctx: Ctx, franchise: string, candidates: readonly stri
 /** Un modal y una ayuda abiertos usan la tipografía del tema (la de --font-body). */
 async function themeFont(ctx: Ctx): Promise<string[]> {
   const problems: string[] = [];
-  for (const route of ['/pokemon/clasico', '/yugioh/duelista']) {
+  for (const route of ['/pokemon/clasico', '/yugioh/duelista'].filter((item) => !COMING_SOON.includes(item.split('/')[1]))) {
     const isDuelist = route === '/yugioh/duelista';
     const storage = isDuelist ? savedGame('yugioh', 'duelista', ['yugi-muto', 'seto-kaiba']) : {};
     const context = await newContext(ctx, {}, storage);
     const page = await open(ctx, context, route);
     const normalize = (value: string) => value.replace(/["']/g, '').replace(/\s*,\s*/g, ',').trim();
     const body = normalize(await page.evaluate(() => getComputedStyle(document.querySelector('[data-theme-root]')!).getPropertyValue('--font-body')));
+    await page.getByRole('button', { name: 'Ayuda y opciones del juego' }).click();
     await page.getByRole('button', { name: 'Cómo se juega' }).click();
     await page.waitForSelector('dialog[open]');
     const dialogFont = normalize(await page.evaluate(() => getComputedStyle(document.querySelector('dialog[open] p, dialog[open] li')!).fontFamily));
@@ -991,7 +1004,7 @@ async function themeFont(ctx: Ctx): Promise<string[]> {
     // Duelista solo monta la tabla y sus ayudas cuando hay intentos guardados.
     if (isDuelist) await page.waitForSelector('tbody tr');
     await page.keyboard.press('Shift');
-    await page.locator('button[aria-label^="Ayuda"]').first().focus();
+    await page.locator('button[aria-label^="Ayuda:"]:visible').first().focus();
     await page.waitForSelector('[role="tooltip"]');
     const tipFont = normalize(await page.evaluate(() => getComputedStyle(document.querySelector('[role="tooltip"]')!).fontFamily));
     if (tipFont !== body) problems.push(`la ayuda usa "${tipFont}" y no "${body}"`);
@@ -1151,11 +1164,11 @@ async function yugiohWindows(ctx: Ctx): Promise<string[]> {
 async function layoutShift(ctx: Ctx): Promise<string[]> {
   const problems: string[] = [];
   for (const [route, ready] of [
-    ['/pokemon', '[data-card]'],
+    ['/pokemon', '[data-card]:visible, ul[class*="rows"] > li a:visible'],
     ['/pokemon/clasico', GAME_READY],
-    ['/dragon-ball', '[data-card]'],
+    ['/dragon-ball', '[data-card]:visible, ul[class*="rows"] > li a:visible'],
     ['/dragon-ball/clasico', GAME_READY],
-    ['/naruto', '[data-card]'],
+    ['/naruto', '[data-card]:visible, ul[class*="rows"] > li a:visible'],
     ['/naruto/clasico', GAME_READY],
   ] as const) {
     const context = await newContext(ctx, { viewport: { width: 390, height: 844 } });
@@ -1189,11 +1202,12 @@ async function backNav(ctx: Ctx): Promise<string[]> {
     { width: 1920, height: 1080 },
     { width: 2560, height: 1440 },
     { width: 3840, height: 2160 },
-  ]) {
+  ].filter((viewport) => viewport.width >= 1024)) {
+    // Por debajo de `lg` los botones de volver son la ← de la barra superior (diseño de app, SPEC 9.3): no hay "Inicio" que comparar.
     const context = await newContext(ctx, { viewport });
     let reference: unknown[][] | null = null;
     // La página de la franquicia solo tiene "Inicio" (su propio botón llevaría a donde ya está); las de modo, los dos.
-    for (const [route, onlyHome] of [
+    const backRoutes: Array<readonly [string, boolean]> = [
       ['/pokemon/clasico', false],
       ['/pokemon', true],
       ['/pokemon/silueta', false],
@@ -1203,14 +1217,16 @@ async function backNav(ctx: Ctx): Promise<string[]> {
       ['/naruto/clasico', false],
       ['/yugioh', true],
       ['/yugioh/duelista', false],
-    ] as const) {
+    ];
+    for (const [route, onlyHome] of backRoutes.filter(([item]) => !COMING_SOON.includes(item.split('/')[1]))) {
       const page = await open(ctx, context, route, 'nav[aria-label="Volver"]');
       // "Inicio": la caja entera. El de la franquicia: posición y alto (su ancho depende del nombre).
       const boxes = await page.$$eval('nav[aria-label="Volver"] a', (links) =>
         links.map((link, index) => {
           const rect = link.getBoundingClientRect();
           const box = [Math.round(rect.left), Math.round(rect.top + window.scrollY), Math.round(rect.height)];
-          return index === 0 ? [...box, Math.round(rect.width)] : box;
+          // El ancho de "Inicio" no se compara entre páginas: en la de la franquicia (un solo botón) mide hasta 4 px menos que en las de modo.
+          return index === 0 ? [...box.slice(0, 2), box[2]] : box;
         }),
       );
       reference ??= boxes;
@@ -1226,12 +1242,13 @@ async function backNav(ctx: Ctx): Promise<string[]> {
     await context.close();
   }
   // La salida del tema (la Poké Ball que se recoge, la nube que se aleja) demora la navegación 300 ms como mucho.
-  for (const [route, home] of [
+  const exitRoutes: Array<readonly [string, RegExp]> = [
     ['/pokemon/clasico', /\/pokemon$/],
     ['/dragon-ball/clasico', /\/dragon-ball$/],
     ['/naruto/clasico', /\/naruto$/],
     ['/yugioh/duelista', /\/yugioh$/],
-  ] as const) {
+  ];
+  for (const [route, home] of exitRoutes.filter(([item]) => !COMING_SOON.includes(item.split('/')[1]))) {
     const delay = await backNavDelay(ctx, route, home);
     if (!(delay <= 300)) problems.push(`${route}: la salida de los botones de volver demora ${Math.round(delay)} ms`);
   }
@@ -1475,6 +1492,10 @@ async function yugiohGames(ctx: Ctx): Promise<string[]> {
 async function hubTelevision(ctx: Ctx): Promise<string[]> {
   const problems: string[] = [];
   const NAME = /^.+: \d+ de \d+ retos? de hoy$/;
+  // Un canal "Próximamente" se ve como una tecla sin enlace (data-soon): su nombre dice que es próximamente.
+  const SOON = /^.+: próximamente$/;
+  const SECTIONS = JSON.parse(readFileSync(path.join(import.meta.dirname, '..', 'data', 'mode.json'), 'utf8')) as Array<{ slug: string; status: boolean; comingSoon?: boolean }>;
+  const EXPECTED_KEYS = SECTIONS.filter((section) => section.comingSoon === true || section.status).map((section) => (section.comingSoon === true ? 'soon' : `/${section.slug}`));
   for (const viewport of [
     { width: 360, height: 640 }, { width: 390, height: 844 }, { width: 844, height: 390 },
     { width: 768, height: 1024 }, { width: 1366, height: 768 }, { width: 1920, height: 1080 },
@@ -1486,23 +1507,24 @@ async function hubTelevision(ctx: Ctx): Promise<string[]> {
       await page.evaluate(() => document.fonts.ready);
       await page.waitForFunction(() => document.querySelector('[data-tv-screen][data-progress-ready="true"]') !== null);
       const state = await page.evaluate(() => {
-        const keys = [...document.querySelectorAll<HTMLAnchorElement>('[data-remote-key]')];
+        const keys = [...document.querySelectorAll<HTMLElement>('[data-remote-key]')];
         const screen = document.querySelector<HTMLAnchorElement>('[data-tv-screen]');
         const badge = document.querySelector('h1');
         const tuners = [...document.querySelectorAll<HTMLButtonElement>('button[aria-label^="Canal"]')];
         const frame = document.querySelector('[data-tv-room] > section')!.getBoundingClientRect();
         return {
-          keys: keys.map((key) => ({ href: key.getAttribute('href'), name: key.getAttribute('aria-label') ?? '', small: key.getBoundingClientRect().height < 43 })),
+          // El control remoto es de escritorio: en el teléfono no se ve (alto 0) y no se mide.
+          keys: keys.map((key) => ({ href: key.hasAttribute('data-soon') ? 'soon' : key.getAttribute('href'), name: key.getAttribute('aria-label') ?? '', small: key.getBoundingClientRect().height > 0 && key.getBoundingClientRect().height < 43 })),
           screen: { href: screen?.getAttribute('href'), name: screen?.getAttribute('aria-label') ?? '' },
           h1: document.querySelectorAll('h1').length === 1 && /AnimeGuess/i.test(badge?.textContent ?? ''),
-          tuners: tuners.map((button) => ({ name: button.getAttribute('aria-label'), small: button.getBoundingClientRect().height < 43 })),
+          tuners: tuners.map((button) => ({ name: button.getAttribute('aria-label'), small: button.getBoundingClientRect().height > 0 && button.getBoundingClientRect().height < 43 })),
           live: document.querySelectorAll('[role="status"][aria-live="polite"]').length,
           overflow: document.documentElement.scrollWidth > innerWidth + 1,
           frameInside: frame.left >= -1 && frame.right <= innerWidth + 1,
         };
       });
-      if (state.keys.length !== 4 || state.keys.map((key) => key.href).join('|') !== '/pokemon|/dragon-ball|/naruto|/yugioh') problems.push(`Televisor ${viewport.width}: el control no tiene los cuatro enlaces en orden`);
-      if (state.keys.some((key) => !NAME.test(key.name)) || !NAME.test(state.screen.name)) problems.push(`Televisor ${viewport.width}: nombre accesible sin franquicia o conteo`);
+      if (state.keys.map((key) => key.href).join('|') !== EXPECTED_KEYS.join('|')) problems.push(`Televisor ${viewport.width}: el control no tiene los canales en orden (${EXPECTED_KEYS.join(', ')})`);
+      if (state.keys.some((key) => !(key.href === 'soon' ? SOON : NAME).test(key.name)) || !NAME.test(state.screen.name)) problems.push(`Televisor ${viewport.width}: nombre accesible sin franquicia o conteo`);
       if (state.keys.some((key) => key.small) || state.tuners.some((button) => button.small)) problems.push(`Televisor ${viewport.width}: botones menores a 44 px`);
       if (state.screen.href !== '/pokemon') problems.push(`Televisor ${viewport.width}: la pantalla no enlaza al canal 1`);
       if (!state.h1) problems.push(`Televisor ${viewport.width}: falta el título (chapa) como único h1`);
@@ -1681,6 +1703,11 @@ async function yugiohDuelCards(ctx: Ctx): Promise<string[]> {
   return problems;
 }
 
+/** Las franquicias marcadas "Próximamente" en data/mode.json: bloqueadas, sin juego ni rutas. */
+const COMING_SOON = (JSON.parse(readFileSync(path.join(import.meta.dirname, '..', 'data', 'mode.json'), 'utf8')) as Array<{ slug: string; comingSoon?: boolean }>)
+  .filter((section) => section.comingSoon === true)
+  .map((section) => section.slug);
+
 const CHECKS: ReadonlyArray<{ name: string; run: (ctx: Ctx) => Promise<string[]> }> = [
   { name: 'Hub: televisor de tubo, canales, control remoto y estática', run: hubTelevision },
   { name: 'Yu-Gi-Oh: cartas enfrentadas sin salto de lectura', run: yugiohDuelCards },
@@ -1689,7 +1716,7 @@ const CHECKS: ReadonlyArray<{ name: string; run: (ctx: Ctx) => Promise<string[]>
   { name: 'Ayudas ⓘ de Yu-Gi-Oh', run: infoTips('yugioh', ['yugi-muto', 'seto-kaiba'], 'duelista') },
   { name: '/yugioh: once cartas, enlaces, orden, hidratación y movimiento reducido', run: yugiohField },
   { name: '/yugioh: Cementerio y filtros de Zona de Campo', run: yugiohGraveyard },
-  { name: '/pokemon: Pokédex y 6 bolas, un enlace cada una', run: pokemonCards },
+  { name: '/pokemon: Pokédex y sus bolas, un enlace cada una', run: pokemonCards },
   { name: 'Pokémon: PMD en inicio, Clásico y Silueta; capas, Pokédex y movimiento reducido', run: pokemonWalkers },
   { name: '/dragon-ball: cápsula y 7 esferas numeradas, un enlace cada una', run: dragonBallCards },
   { name: '/dragon-ball: el dragón aparece con las 7 esferas resueltas hoy', run: dragonBallReward },
@@ -1759,12 +1786,22 @@ async function main(): Promise<void> {
   const ctx: Ctx = { browser, baseUrl: server.baseUrl };
   let failed = 0;
   try {
-    for (const check of CHECKS) {
+    // Con ONLY=PMD,Hub solo se corren los chequeos cuyo nombre contiene alguna de esas palabras: para repetir rápido unos pocos.
+    const only = process.env.ONLY?.split(',').filter((word) => word !== '') ?? [];
+    for (const check of only.length === 0 ? CHECKS : CHECKS.filter((item) => only.some((word) => item.name.includes(word)))) {
+      // Una franquicia "Próximamente" (`comingSoon`) está bloqueada: sus pantallas dan 404, así que sus chequeos se omiten.
+      const lower = check.name.toLowerCase();
+      const blocked = COMING_SOON.find((slug) => lower.includes(slug) || (slug === 'yugioh' && lower.includes('yu-gi-oh')));
+      if (blocked !== undefined) {
+        console.log(`omit  ${check.name} (${blocked} está "Próximamente")`);
+        continue;
+      }
       let problems: string[];
       try {
         problems = await check.run(ctx);
       } catch (error) {
-        problems = [`error: ${error instanceof Error ? error.message.split('\n')[0] : String(error)}`];
+        // La primera línea dice qué falló; las siguientes, qué esperaba (sirve para saber dónde se trabó).
+        problems = [`error: ${error instanceof Error ? error.message.split('\n').filter((line) => line.trim() !== '').slice(0, 3).join(' · ') : String(error)}`];
       }
       console.log(`${problems.length === 0 ? 'ok   ' : 'FALLA'} ${check.name}`);
       for (const problem of problems) console.log(`        - ${problem}`);

@@ -137,7 +137,10 @@ function wholeGeneration(series: string): string[] {
 
 /** Abre un modal desde la barra del juego y comprueba cómo se ve en un teléfono. */
 async function openDialog(page: Page, buttonName: string, { phone }: { phone: boolean }): Promise<string[]> {
-  await page.getByRole('button', { name: buttonName }).click();
+  const target = page.getByRole('button', { name: buttonName });
+  // Cómo se juega, Estadísticas y Ajustes viven en el menú de acciones (un popover): se abre primero si está cerrado.
+  if (!(await target.isVisible())) await page.getByRole('button', { name: 'Ayuda y opciones del juego' }).click();
+  await target.click();
   return checkOpenDialog(page, { phone });
 }
 
@@ -155,18 +158,24 @@ async function checkOpenDialog(page: Page, { phone }: { phone: boolean }): Promi
   await page.waitForSelector('dialog[open]');
   const box = await page.evaluate(() => {
     const dialog = document.querySelector('dialog[open]')!.getBoundingClientRect();
-    const close = document.querySelector('dialog[open] footer button')!.getBoundingClientRect();
+    const footerButton = document.querySelector('dialog[open] footer button')!.getBoundingClientRect();
+    // En el diseño de app el "Cerrar" del pie se va y queda la ✕ del encabezado (con el nombre accesible "Cerrar").
+    const headerClose = document.querySelector('dialog[open] header button[aria-label="Cerrar"]')?.getBoundingClientRect();
+    const close = footerButton.height > 0 || !headerClose ? footerButton : headerClose;
     return {
+      footerHidden: footerButton.height === 0,
       width: dialog.width,
       height: dialog.height,
       viewportWidth: window.innerWidth,
       viewportHeight: window.innerHeight,
       closeTop: close.top,
+      closeHeight: close.height,
       closeBottom: close.bottom,
     };
   });
 
   const problems: string[] = [];
+  if (box.closeHeight === 0) problems.push('el modal no tiene ningún botón de cerrar visible');
   if (box.closeBottom > box.viewportHeight + 0.5 || box.closeTop < 0) {
     problems.push('el botón de cerrar del modal queda fuera de la pantalla');
   }
@@ -176,8 +185,9 @@ async function checkOpenDialog(page: Page, { phone }: { phone: boolean }): Promi
         `el modal no ocupa toda la pantalla del teléfono: ${Math.round(box.width)}×${Math.round(box.height)} en ${box.viewportWidth}×${box.viewportHeight}`,
       );
     }
-    // Zona del pulgar: el botón de cerrar tiene que estar en la mitad de abajo de la pantalla.
-    if ((box.closeTop + box.closeBottom) / 2 < box.viewportHeight / 2) {
+    // Zona del pulgar: el botón de cerrar tiene que estar en la mitad de abajo de la pantalla (salvo con la ✕ del
+    // encabezado, que reemplaza al "Cerrar" del pie y se alcanza también con Escape).
+    if (!box.footerHidden && (box.closeTop + box.closeBottom) / 2 < box.viewportHeight / 2) {
       problems.push('el botón de cerrar del modal no está en la mitad inferior de la pantalla (zona del pulgar)');
     }
   }
@@ -191,10 +201,11 @@ async function checkOpenDialog(page: Page, { phone }: { phone: boolean }): Promi
  */
 async function imageFitsWithField(page: Page): Promise<string[]> {
   const box = await page.evaluate(() => {
-    const field = document
-      .querySelector('[data-game-ready] input[role="combobox"], [data-game-ready] [data-picker-open]')
-      ?.getBoundingClientRect();
-    const frame = document.querySelector('[data-game-ready] img')?.parentElement?.getBoundingClientRect();
+    // En el teléfono el campo vive en la barra inferior (fuera de la zona del juego): se toma el primero que tenga caja.
+    const field = Array.from(document.querySelectorAll('input[role="combobox"], [data-picker-open]'))
+      .map((element) => element.getBoundingClientRect())
+      .find((rect) => rect.width > 0 && rect.height > 0);
+    const frame = document.querySelector('[data-game-ready] img, [data-game-ready] video')?.parentElement?.getBoundingClientRect();
     if (!field || !frame) return null;
     return {
       top: Math.min(field.top, frame.top),
@@ -221,12 +232,13 @@ async function imageFitsWithField(page: Page): Promise<string[]> {
  * contenido propio porque no tienen contenido de ese tipo: fallos seguros para sembrar una partida a
  * medias, sea cual sea el día.
  */
-function neverAnswers(contentKind: string, count: number, franchise = 'pokemon', entitiesFile = 'entities.json'): string[] {
+// `exclude`: quien no tiene contenido propio pero comparte uno ajeno (Konohamaru usa el Rasengan de Naruto) y sí acierta ese día.
+function neverAnswers(contentKind: string, count: number, franchise = 'pokemon', entitiesFile = 'entities.json', exclude: readonly string[] = []): string[] {
   const read = (file: string) => JSON.parse(readFileSync(path.join(ROOT, 'data', franchise, file), 'utf8')) as unknown[];
   const entities = read(entitiesFile) as Array<{ id: string }>;
   const contents = read('content.json') as Array<{ kind: string; entityId?: string }>;
   const withContent = new Set(contents.filter((content) => content.kind === contentKind).map((content) => content.entityId));
-  return entities.filter((entity) => !withContent.has(entity.id)).slice(0, count).map((entity) => entity.id);
+  return entities.filter((entity) => !withContent.has(entity.id) && !exclude.includes(entity.id)).slice(0, count).map((entity) => entity.id);
 }
 
 /** Con una combinación de filtros que no alcanza el pool mínimo, el marco muestra el aviso y no monta el juego. */
@@ -268,6 +280,165 @@ function afterPicking(index: number): (page: Page) => Promise<string[]> {
   };
 }
 
+/**
+ * Mayor o Menor del diseño de app, tras elegir: si fue un acierto, "Siguiente" es el botón grande de la barra inferior y no
+ * una pastilla en el medio de las dos tarjetas (que tapaba el nombre de la segunda). Sin barra, sigue en el tablero.
+ */
+async function nextAction(page: Page): Promise<string[]> {
+  const info = await page.evaluate(() => {
+    const picked = document.querySelector('[data-option][data-picked="true"]');
+    const dock = document.querySelector('#game-dock');
+    return {
+      correct: picked?.getAttribute('data-winner') === 'true',
+      dockHasBox: !!dock && dock.getClientRects().length > 0,
+      dockText: dock?.querySelector('button')?.textContent?.trim() ?? null,
+      pill: document.querySelector('[data-part="next"]') !== null,
+    };
+  });
+  if (!info.correct) return [];
+  if (info.dockHasBox) {
+    const problems: string[] = [];
+    if (info.dockText !== 'Siguiente') problems.push(`tras un acierto, la barra inferior debería traer "Siguiente" y trae ${info.dockText === null ? 'nada' : `"${info.dockText}"`}`);
+    if (info.pill) problems.push('"Siguiente" sigue en el medio de las tarjetas además de la barra inferior');
+    return problems;
+  }
+  return info.pill ? [] : ['sin barra inferior, "Siguiente" debería estar en el tablero'];
+}
+
+/**
+ * Estadísticas del diseño de app: "Detener" es el botón grande de la barra inferior, la tarjeta del Pokémon no es un botón, y
+ * en un teléfono alto el Pokémon y las seis estadísticas (2 × 3) entran sin scroll encima de la barra. Sin barra, el tablero
+ * es el de siempre: la tarjeta es el botón que detiene la ruleta y las seis estadísticas van en una columna.
+ */
+async function statsLayout(page: Page): Promise<string[]> {
+  const info = await page.evaluate(() => {
+    const dock = document.querySelector('#game-dock');
+    const dockBox = dock?.getBoundingClientRect();
+    const slots = [...document.querySelectorAll<HTMLElement>('[role="group"][aria-label="Asignar estadística"] > button')].filter((slot) => slot.getClientRects().length > 0);
+    const lastBottom = Math.max(0, ...slots.map((slot) => slot.getBoundingClientRect().bottom));
+    return {
+      phone: !!dock && dock.getClientRects().length > 0,
+      dockText: dock?.querySelector('button')?.textContent?.trim() ?? null,
+      dockTop: dockBox?.top ?? 0,
+      slotCount: slots.length,
+      twoColumns: slots.length >= 2 && Math.abs(slots[0].getBoundingClientRect().top - slots[1].getBoundingClientRect().top) < 2,
+      lastBottom,
+      tall: window.innerHeight >= 800,
+      spinnerIsButton: document.querySelector('button[aria-label="Tocá para detener"]') !== null,
+    };
+  });
+  const problems: string[] = [];
+  if (info.slotCount !== 6) problems.push(`se esperaban 6 estadísticas y hay ${info.slotCount}`);
+  if (info.phone) {
+    if (info.dockText !== 'Detener') problems.push(`la barra inferior debería traer "Detener" y trae ${info.dockText === null ? 'nada' : `"${info.dockText}"`}`);
+    if (info.spinnerIsButton) problems.push('la tarjeta del Pokémon sigue siendo un botón además de "Detener" en la barra inferior');
+    if (!info.twoColumns) problems.push('las estadísticas deberían ir de a dos (2 × 3) en el teléfono');
+    if (info.tall && info.lastBottom > info.dockTop + 0.5) problems.push(`las seis estadísticas no entran encima de la barra inferior: terminan en ${Math.round(info.lastBottom)} y la barra empieza en ${Math.round(info.dockTop)}`);
+  } else if (!info.spinnerIsButton) {
+    problems.push('sin barra inferior, la tarjeta del Pokémon debería ser el botón que detiene la ruleta');
+  }
+  return problems;
+}
+
+/**
+ * Los intentos del Clásico del diseño de app: por debajo de `lg` son tarjetas (retrato, nombre y las casillas en 4 columnas,
+ * sin deslizar de costado) y la tabla no se ve; desde `lg` es la tabla de siempre y las tarjetas no se ven.
+ */
+async function attemptCards(page: Page): Promise<string[]> {
+  const info = await page.evaluate(() => {
+    const cards = [...document.querySelectorAll<HTMLElement>('[data-attempt-card]')];
+    const visible = cards.filter((card) => card.getClientRects().length > 0);
+    const table = document.querySelector('table');
+    return {
+      cards: cards.length,
+      visible: visible.length,
+      tableVisible: !!table && table.getClientRects().length > 0,
+      overflowing: visible.filter((card) => card.scrollWidth > card.clientWidth + 1 || card.getBoundingClientRect().right > window.innerWidth + 1).length,
+      help: [...document.querySelectorAll('button[aria-label="Qué significa cada columna"]')].some((button) => button.getClientRects().length > 0),
+    };
+  });
+  const problems: string[] = [];
+  if (info.visible > 0) {
+    if (info.tableVisible) problems.push('se ven las tarjetas y también la tabla de intentos');
+    if (info.overflowing > 0) problems.push(`${info.overflowing} tarjeta(s) se salen del ancho de la pantalla`);
+    if (!info.help) problems.push('falta el "?" que explica las columnas');
+  } else if (!info.tableVisible && info.cards > 0) {
+    problems.push('no se ve ni la tabla ni las tarjetas de intentos');
+  }
+  return problems;
+}
+
+/**
+ * La hoja de resultado del teléfono: con la partida ya terminada, la barra de abajo trae "Ver resultado" y abre una hoja con
+ * Compartir, "Siguiente: …" y Modo infinito en ese orden (sin el bloque "Seguí jugando" en la página). Desde `lg`, el
+ * resumen de siempre en la página.
+ */
+async function resultSheet(page: Page): Promise<string[]> {
+  const phone = await page.evaluate(() => {
+    const dock = document.querySelector('#game-dock');
+    return !!dock && dock.getClientRects().length > 0;
+  });
+  if (!phone) {
+    const inline = await page.evaluate(() => [...document.querySelectorAll('section')].some((section) => /Modo infinito/.test(section.textContent ?? '') && section.getClientRects().length > 0));
+    return inline ? [] : ['sin barra inferior, el resumen debería estar en la página'];
+  }
+  const problems: string[] = [];
+  const dockButton = page.locator('#game-dock button');
+  if ((await dockButton.count()) === 0 || !/Ver resultado/.test((await dockButton.first().textContent()) ?? '')) return ['con la partida terminada, la barra inferior debería traer "Ver resultado"'];
+  if (await page.evaluate(() => [...document.querySelectorAll('section')].some((section) => /Seguí jugando/.test(section.textContent ?? '') && section.getClientRects().length > 0 && !section.closest('dialog')))) {
+    problems.push('el bloque "Seguí jugando" sigue en la página del teléfono');
+  }
+  await dockButton.first().click();
+  await page.waitForSelector('dialog[data-sheet][open]');
+  // La hoja sube desde abajo (0,22 s): se mide ya en su lugar.
+  await page.waitForTimeout(450);
+  const sheet = await page.evaluate(() => {
+    const dialog = document.querySelector('dialog[data-sheet][open]')!;
+    const box = dialog.getBoundingClientRect();
+    return {
+      fits: box.top >= -0.5 && box.bottom <= window.innerHeight + 0.5,
+      actions: [...dialog.querySelectorAll('a, button')].map((element) => (element.textContent ?? '').trim()).filter((text) => text !== ''),
+    };
+  });
+  if (!sheet.fits) problems.push('la hoja de resultado no entra entera en la pantalla');
+  const order = ['Compartir resultado', 'Siguiente', 'Jugar en modo infinito'].map((label) => sheet.actions.findIndex((text) => text.includes(label)));
+  if (order.some((index) => index === -1) || order[0] > order[1] || order[1] > order[2]) problems.push(`las acciones de la hoja no están en el orden Compartir, Siguiente, Modo infinito: ${sheet.actions.join(' | ')}`);
+  await page.keyboard.press('Escape');
+  return problems;
+}
+
+/**
+ * El hub de la franquicia del diseño de app: por debajo de `lg` es una lista (el Clásico destacado con "Jugar" y una fila por
+ * modo con su estado de hoy) y la grilla de tarjetas no se ve; desde `lg` es la grilla de siempre.
+ */
+async function hubList(page: Page): Promise<string[]> {
+  const info = await page.evaluate(() => {
+    const rows = [...document.querySelectorAll<HTMLElement>('ul[class*="rows"] > li')];
+    const visible = rows.filter((row) => row.getClientRects().length > 0);
+    const grid = [...document.querySelectorAll('ul')].find((list) => /grid/.test(list.className));
+    return {
+      rows: rows.length,
+      visible: visible.length,
+      gridVisible: !!grid && grid.getClientRects().length > 0,
+      lastBottom: Math.max(0, ...visible.map((row) => row.getBoundingClientRect().bottom)),
+      states: visible.filter((row) => /Pendiente|Completado|Fallado/.test(row.textContent ?? '')).length,
+      play: visible[0]?.textContent?.includes('Jugar') ?? false,
+      tall: window.innerHeight >= 800,
+      height: window.innerHeight,
+    };
+  });
+  const problems: string[] = [];
+  if (info.visible > 0) {
+    if (info.gridVisible) problems.push('se ve la lista y también la grilla de tarjetas del hub');
+    if (info.states !== info.visible) problems.push(`${info.visible - info.states} fila(s) del hub sin su estado de hoy`);
+    if (!info.play) problems.push('el modo destacado del hub no trae "Jugar"');
+    // "Todos los modos sin scroll" vale para los hubs de hasta 6 modos (Pokémon); Dragon Ball tiene 8 y Naruto 9.
+    if (info.tall && info.rows <= 6 && info.lastBottom > info.height + 0.5) problems.push(`las filas del hub no entran sin scroll: terminan en ${Math.round(info.lastBottom)} de ${info.height}`);
+  } else if (!info.gridVisible) {
+    problems.push('no se ve ni la lista ni la grilla del hub');
+  }
+  return problems;
+}
 
 // --- Sesión 09: Dragon Ball --------------------------------------------------------------------
 
@@ -347,7 +518,12 @@ async function timelineLayout(page: Page, { phone }: { phone: boolean }): Promis
 async function timelineDrag(page: Page, { phone }: { phone: boolean }): Promise<string[]> {
   if (!(await hasTimelineGame(page))) return [];
   // La lista queda debajo de la navegación y los filtros: se lleva a la vista, como haría una persona antes de arrastrar.
-  await page.evaluate(() => document.querySelector('[data-item]')?.scrollIntoView({ block: 'start' }));
+  // Con el diseño de app hay una barra fija arriba: se deja la lista justo debajo de ella (si no, el dedo caería sobre la barra).
+  await page.evaluate(() => {
+    document.querySelector('[data-item]')?.scrollIntoView({ block: 'start' });
+    const bar = document.querySelector('[class*="appBar"]');
+    if (bar && getComputedStyle(bar).position === 'fixed') window.scrollBy(0, -(bar.getBoundingClientRect().bottom + 8));
+  });
   const before = await timelineTexts(page);
   const boxes = await page.evaluate(() => {
     const items = [...document.querySelectorAll('[data-item]')].map((item) => item.getBoundingClientRect());
@@ -462,6 +638,7 @@ async function connectionsLayout(page: Page): Promise<string[]> {
       probe.style.fontFamily = style.fontFamily;
       probe.style.fontSize = style.fontSize;
       probe.style.fontWeight = style.fontWeight;
+      probe.style.letterSpacing = style.letterSpacing;
       const inner = tile.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
       for (const word of (tile.firstChild?.textContent ?? '').split(/\s+/)) {
         probe.textContent = word;
@@ -517,7 +694,7 @@ async function connectionsSelect(page: Page): Promise<string[]> {
   const pressed = () => page.locator('[data-tile][aria-pressed="true"]').count();
   for (let index = 0; index < 5; index++) await tiles.nth(index).click();
   if ((await pressed()) !== 4) problems.push(`con 5 toques debería haber 4 elegidas y hay ${await pressed()}`);
-  await page.getByRole('button', { name: 'Deseleccionar todo' }).click();
+  await page.getByRole('button', { name: /^Deseleccionar/ }).click();
   if ((await pressed()) !== 0) problems.push('"Deseleccionar todo" no deseleccionó');
   const submit = page.getByRole('button', { name: 'Enviar' });
   if (await submit.isEnabled()) problems.push('"Enviar" está habilitado sin 4 elegidas');
@@ -539,7 +716,7 @@ async function connectionsFinish(page: Page): Promise<string[]> {
   if (!(await hasConnectionsGame(page))) return [];
   const over = async () => (await page.locator(CONNECTIONS_GAME).getAttribute('data-over')) === 'true';
   for (let turn = 0; turn < 60 && !(await over()); turn++) {
-    const clear = page.getByRole('button', { name: 'Deseleccionar todo' });
+    const clear = page.getByRole('button', { name: /^Deseleccionar/ });
     if (await clear.isEnabled()) await clear.click();
     const tiles = page.locator('[data-tile]');
     const total = await tiles.count();
@@ -614,7 +791,8 @@ async function tabTo(page: Page, target: TabTarget, limit = 80): Promise<boolean
  * la flecha y se elige con Enter. El intento tiene que contar (cambia lo que se ve) y el foco no se pierde.
  */
 async function keyboardGuess(page: Page): Promise<string[]> {
-  if ((await page.locator(`${GAME_READY} [data-picker-open]`).count()) > 0) return keyboardPickerGuess(page);
+  // En el teléfono el botón de la Pokédex vive en la barra inferior (fuera de la zona del juego): se busca en toda la página.
+  if ((await page.locator('[data-picker-open]').count()) > 0) return keyboardPickerGuess(page);
   if ((await page.locator(`${GAME_READY} input[role="combobox"]`).count()) === 0) return ['no hay campo de texto para jugar'];
   const problems: string[] = [];
   if (!(await tabTo(page, 'combobox'))) return ['no se llegó al campo de texto solo con Tab'];
@@ -647,6 +825,12 @@ async function keyboardPickerGuess(page: Page): Promise<string[]> {
   } catch {
     return ['Enter en el botón no abrió la Pokédex'];
   }
+  // En el teléfono (diseño de app) la Pokédex ocupa toda la pantalla y tiene otra disposición: chips y confirmación.
+  const phone = await page.evaluate(() => {
+    const dialog = document.querySelector('dialog[open]');
+    return dialog !== null && dialog.getBoundingClientRect().width >= window.innerWidth - 1;
+  });
+  if (phone) return keyboardPickerGuessPhone(page, before);
   // En un teléfono el campo no se enfoca solo (el teclado taparía la grilla): se llega con Tab desde el botón de cerrar.
   for (let press = 0; press < 3; press++) {
     if (await page.evaluate(() => document.activeElement?.tagName === 'INPUT')) break;
@@ -656,7 +840,7 @@ async function keyboardPickerGuess(page: Page): Promise<string[]> {
   await page.keyboard.type('a');
   await page.waitForTimeout(150);
   await page.keyboard.press('Tab');
-  const trigger = page.getByRole('button', { name: /^Filtros/ });
+  const trigger = page.locator('dialog[open]').getByRole('button', { name: /^Filtros/ });
   if ((await trigger.count()) !== 1 || !(await trigger.evaluate((button) =>
     button === document.activeElement && button.hasAttribute('aria-expanded'),
   ))) return ['desde el buscador, el primer Tab no llegó al botón Filtros con nombre accesible y aria-expanded'];
@@ -709,6 +893,56 @@ async function keyboardPickerGuess(page: Page): Promise<string[]> {
   return problems;
 }
 
+/**
+ * La Pokédex del teléfono con el teclado y nada más: desde la ✕ se llega con Tab a la lupa, Enter abre el buscador y lo
+ * enfoca, se escribe, los chips Tipo y Generación abren su panel con Enter y Escape lo cierra sin cerrar la Pokédex,
+ * se pasa a la grilla con Tab, Enter en una celda la marca y Enter en "Elegir a …" confirma. El intento tiene que contar.
+ */
+async function keyboardPickerGuessPhone(page: Page, before: string): Promise<string[]> {
+  const tabUntil = async (matches: string, limit: number, key = 'Tab'): Promise<boolean> => {
+    for (let press = 0; press < limit; press++) {
+      await page.keyboard.press(key);
+      if (await page.evaluate((selector) => document.activeElement?.matches(selector) ?? false, matches)) return true;
+    }
+    return false;
+  };
+  if (!(await tabUntil('dialog[open] button[aria-label^="Buscar por nombre"]', 4))) return ['en la Pokédex del teléfono no se llegó a la lupa con Tab'];
+  await page.keyboard.press('Enter');
+  const searching = await page.waitForFunction(() => document.activeElement?.tagName === 'INPUT', undefined, { timeout: 2_000 }).then(() => true).catch(() => false);
+  if (!searching) return ['Enter en la lupa no abrió el buscador ni le dio el foco'];
+  await page.keyboard.type('a');
+  await page.waitForTimeout(150);
+  // Los chips van antes del buscador en el orden del documento: se vuelve a ellos con Shift+Tab.
+  if (!(await tabUntil('dialog[open] button[aria-expanded][aria-controls]', 3, 'Shift+Tab'))) return ['desde el buscador, Shift+Tab no llegó a un chip de filtros con aria-expanded'];
+  await page.keyboard.press('Enter');
+  const opened = await page.waitForFunction(() => {
+    const chip = document.querySelector('dialog[open] button[aria-expanded="true"][aria-controls]');
+    const panel = document.getElementById(chip?.getAttribute('aria-controls') ?? '');
+    return panel !== null && panel.getClientRects().length > 0;
+  }, undefined, { timeout: 2_000 }).then(() => true).catch(() => false);
+  if (!opened) return ['Enter en un chip de filtros no abrió su panel'];
+  await page.keyboard.press('Escape');
+  if ((await page.locator('dialog[open]').count()) === 0) return ['Escape en los filtros cerró la Pokédex en lugar de cerrar solo el panel'];
+  if (!(await page.evaluate(() => document.activeElement?.getAttribute('aria-expanded') === 'false' && document.querySelector('dialog[open] button[aria-expanded="true"][aria-controls]') === null))) {
+    return ['Escape no cerró el panel de filtros o no devolvió el foco a su chip'];
+  }
+  if (!(await tabUntil('dialog[open] button[data-pokemon]', 6))) return ['desde los chips, Tab no llegó a una celda de la grilla en un máximo de seis pulsaciones'];
+  await page.keyboard.press('ArrowRight');
+  await page.keyboard.press('Enter');
+  const marked = await page.waitForFunction(() => document.querySelector('dialog[open] button[data-pokemon][aria-pressed="true"]') !== null, undefined, { timeout: 2_000 }).then(() => true).catch(() => false);
+  if (!marked) return ['Enter en una celda no la marcó (aria-pressed)'];
+  if ((await page.locator('dialog[open]').count()) === 0) return ['marcar un Pokémon cerró la Pokédex sin confirmar'];
+  if (!(await tabUntil('dialog[open] button:not([data-pokemon])', 3)) || !(await page.evaluate(() => /^Elegir a /.test(document.activeElement?.textContent?.replace(/^\W+/, '') ?? '')))) {
+    return ['después de marcar, Tab no llegó al botón "Elegir a …"'];
+  }
+  await page.keyboard.press('Enter');
+  await page.waitForTimeout(300);
+  const problems: string[] = [];
+  if ((await page.locator('dialog[open]').count()) > 0) problems.push('confirmar con Enter no cerró la Pokédex');
+  if ((await page.locator(GAME_READY).innerText()) === before) problems.push('confirmar un Pokémon con Enter no registró ningún intento');
+  return problems;
+}
+
 /** Mayor o Menor con el teclado: se llega a una opción con Tab, se elige con Enter, y si fue correcta se sigue con "Siguiente". */
 async function keyboardPick(page: Page): Promise<string[]> {
   if (!(await tabTo(page, 'option'))) return ['no se llegó a una opción solo con Tab'];
@@ -744,6 +978,10 @@ const IMAGE_MODES = [{ slug: 'silueta' }, { slug: 'carta' }] as const;
 
 const ROUTES: RouteCheck[] = [
   { name: 'inicio', path: '/' },
+  // Las pestañas del teléfono (sesión 26): Retos, Estadísticas y Más.
+  { name: 'retos', path: '/retos' },
+  { name: 'estadisticas', path: '/estadisticas' },
+  { name: 'mas', path: '/mas' },
   { name: 'creditos', path: '/creditos' },
   {
     // Con las listas de páginas de origen abiertas: los enlaces de adentro también miden 44 px en teléfono.
@@ -754,7 +992,7 @@ const ROUTES: RouteCheck[] = [
       return [];
     },
   },
-  { name: 'pokemon', path: '/pokemon' },
+  { name: 'pokemon-hub', path: '/pokemon', check: hubList },
   { name: 'pokemon-clasico', path: '/pokemon/clasico', ready: GAME_READY },
   {
     // Todas las series: 8 columnas.
@@ -762,6 +1000,7 @@ const ROUTES: RouteCheck[] = [
     path: '/pokemon/clasico',
     ready: GAME_READY,
     storage: seededGame('all', SIX_ATTEMPTS),
+    check: attemptCards,
   },
   {
     // Solo g1 y g2: aparece la columna condicional de Hábitat, 9 columnas.
@@ -776,6 +1015,7 @@ const ROUTES: RouteCheck[] = [
     path: '/pokemon/clasico?s=g6',
     ready: GAME_READY,
     storage: { ...seededGame('g6', wholeGeneration('g6')), ...seededStats() },
+    check: resultSheet,
   },
   // El selector de Pokémon (la Pokédex): abierto con todos, y con el filtro de una sola generación.
   { name: 'pokemon-clasico-pokedex', path: '/pokemon/clasico', ready: GAME_READY, before: (page, context) => openPicker(page, context) },
@@ -851,8 +1091,19 @@ const ROUTES: RouteCheck[] = [
   },
   { name: 'pokemon-mayor-o-menor', path: '/pokemon/mayor-o-menor', ready: GAME_READY, check: optionsLayout },
   // Una de las dos opciones es la mayor: elegir una y la otra cubre el acierto y el error, sea cual sea el día.
-  { name: 'pokemon-mayor-o-menor-elegida-1', path: '/pokemon/mayor-o-menor', ready: GAME_READY, check: afterPicking(0) },
-  { name: 'pokemon-mayor-o-menor-elegida-2', path: '/pokemon/mayor-o-menor', ready: GAME_READY, check: afterPicking(1) },
+  {
+    name: 'pokemon-mayor-o-menor-elegida-1',
+    path: '/pokemon/mayor-o-menor',
+    ready: GAME_READY,
+    check: async (page) => [...(await afterPicking(0)(page)), ...(await nextAction(page))],
+  },
+  {
+    name: 'pokemon-mayor-o-menor-elegida-2',
+    path: '/pokemon/mayor-o-menor',
+    ready: GAME_READY,
+    check: async (page) => [...(await afterPicking(1)(page)), ...(await nextAction(page))],
+  },
+  { name: 'pokemon-estadisticas', path: '/pokemon/estadisticas', ready: GAME_READY, check: statsLayout },
   {
     name: 'pokemon-mayor-o-menor-estadisticas',
     path: '/pokemon/mayor-o-menor',
@@ -862,7 +1113,7 @@ const ROUTES: RouteCheck[] = [
   },
   // Sesión 09: los 9 modos de Dragon Ball, todos jugables desde que se verificaron las frases y los sucesos
   // (2026-10-12). Un modo que se quede sin contenido verificado se oculta y su ruta muestra "Próximamente".
-  { name: 'dragon-ball', path: '/dragon-ball' },
+  { name: 'dragon-ball', path: '/dragon-ball', check: hubList },
   { name: 'dragon-ball-clasico', path: '/dragon-ball/clasico', ready: GAME_READY },
   {
     // 7 columnas, con la serie y la saga de debut con el nombre de cada una.
@@ -870,6 +1121,7 @@ const ROUTES: RouteCheck[] = [
     path: '/dragon-ball/clasico',
     ready: GAME_READY,
     storage: seededGame('all', DB_SIX_ATTEMPTS, 'clasico', 'dragon-ball'),
+    check: attemptCards,
   },
   {
     // Sin GT: las transformaciones de GT desaparecen y Gogeta, que debutó en GT, ve su debut oculto ("—").
@@ -924,7 +1176,7 @@ const ROUTES: RouteCheck[] = [
   // Sesión 11: los 9 modos de Naruto. Silueta queda oculto hasta recortar el fondo de las imágenes (sesión 19): su
   // ruta se revisa igual (muestra "Próximamente"). Los demás son jugables con todas las series (Frase, desde que se
   // verificaron las frases el 2026-10-12).
-  { name: 'naruto', path: '/naruto' },
+  { name: 'naruto', path: '/naruto', check: hubList },
   { name: 'naruto-clasico', path: '/naruto/clasico', ready: GAME_READY },
   {
     // 7 columnas, con el arco de debut con su nombre corto.
@@ -932,6 +1184,7 @@ const ROUTES: RouteCheck[] = [
     path: '/naruto/clasico',
     ready: GAME_READY,
     storage: seededGame('all', NARUTO_SIX_ATTEMPTS, 'clasico', 'naruto'),
+    check: attemptCards,
   },
   {
     // Sin la serie original: quienes debutaron en ella ven su arco de debut oculto.
@@ -948,7 +1201,7 @@ const ROUTES: RouteCheck[] = [
       name: `naruto-${slug}-3-fallos`,
       path: `/naruto/${slug}`,
       ready: GAME_READY,
-      storage: seededGame('all', neverAnswers(slug === 'ojo' ? 'eye' : 'jutsu', 3, 'naruto'), slug, 'naruto'),
+      storage: seededGame('all', neverAnswers(slug === 'ojo' ? 'eye' : 'jutsu', 3, 'naruto', 'entities.json', ['konohamaru-sarutobi']), slug, 'naruto'),
       check: imageFitsWithField,
     },
   ]),
@@ -1110,7 +1363,9 @@ async function checkPage(
   viewport: Viewport,
 ): Promise<Result> {
   const phone = Math.min(viewport.width, viewport.height) < 500;
+  // Sin service worker: las revisiones miden la página y no lo que el modo sin conexión tenga guardado (public/sw.js).
   const context = await browser.newContext({
+    serviceWorkers: 'block',
     viewport: { width: viewport.width, height: viewport.height },
     deviceScaleFactor: 1,
     isMobile: phone,
@@ -1283,7 +1538,27 @@ async function sitemapCoverage(baseUrl: string): Promise<string[]> {
  * el sitemap ni se vacían las capturas de las demás): para repetir rápido unas pocas rutas. Sin ONLY, todas.
  */
 const ONLY = process.env.ONLY?.split(',').filter((word) => word !== '') ?? [];
-const SELECTED = ONLY.length === 0 ? ROUTES : ROUTES.filter((route) => ONLY.some((word) => route.name.includes(word)));
+// Una franquicia "Próximamente" (`comingSoon` en data/mode.json) está bloqueada: sus rutas dan 404, así que no se revisan como juego;
+// en su lugar se comprueba que respondan 404.
+const COMING_SOON = (JSON.parse(readFileSync(path.join(ROOT, 'data', 'mode.json'), 'utf8')) as Array<{ slug: string; comingSoon?: boolean }>)
+  .filter((section) => section.comingSoon === true)
+  .map((section) => section.slug);
+// Un modo o una franquicia apagados (`status: false`) tampoco existen: sus rutas dan 404 y no se revisan como juego.
+const SECTIONS = JSON.parse(readFileSync(path.join(ROOT, 'data', 'mode.json'), 'utf8')) as Array<{ slug: string; status: boolean; modes: Array<{ slug: string; status: boolean }> }>;
+const OFF_PREFIXES = [
+  ...COMING_SOON.map((slug) => `/${slug}`),
+  ...SECTIONS.filter((section) => !section.status).map((section) => `/${section.slug}`),
+  ...SECTIONS.flatMap((section) => section.modes.filter((mode) => !mode.status).map((mode) => `/${section.slug}/${mode.slug}`)),
+];
+const isOff = (route: RouteCheck) => OFF_PREFIXES.some((prefix) => route.path === prefix || route.path.startsWith(`${prefix}/`) || route.path.startsWith(`${prefix}?`));
+const ACTIVE_ROUTES = [
+  ...ROUTES.filter((route) => route.expectNotFound === true || !isOff(route)),
+  ...COMING_SOON.flatMap((slug): RouteCheck[] => [
+    { name: `${slug}-bloqueado`, path: `/${slug}`, expectNotFound: true },
+    { name: `${slug}-bloqueado-modo`, path: `/${slug}/duelista`, expectNotFound: true },
+  ]),
+];
+const SELECTED = ONLY.length === 0 ? ACTIVE_ROUTES : ACTIVE_ROUTES.filter((route) => ONLY.some((word) => route.name.includes(word)));
 
 async function main(): Promise<void> {
   if (ONLY.length === 0) await rm(OUT_DIR, { recursive: true, force: true });

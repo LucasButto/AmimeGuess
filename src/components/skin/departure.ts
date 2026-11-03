@@ -3,6 +3,13 @@ export interface Departure {
   readonly href: string;
 }
 
+/**
+ * Cuánto se espera la pantalla nueva después de navegar. Mientras tanto la salida sigue tapando (barras cerradas, humo, el
+ * resplandor de Shenlong): retirarla antes mostraba de nuevo la pantalla vieja si la ruta demoraba (el teléfono con mala señal, o
+ * el servidor de desarrollo compilando). Si la ruta nunca llega, a los 4 s se retira igual: no queda una cortina para siempre.
+ */
+export const SLOW_ROUTE_MS = 4000;
+
 /** Una salida por vez, con vida acotada y cancelación de todos sus temporizadores. */
 export function createDeparture() {
   let current: Departure | null = null;
@@ -36,8 +43,8 @@ export function createDeparture() {
         try {
           navigate(href);
         } finally {
-          // Si la ruta demora, la salida igual se retira al completar su recorrido.
-          if (current === trip) releaseTimer = setTimeout(cancel, coverMs);
+          // Si la ruta demora, la salida sigue tapando hasta que llegue la pantalla nueva (o hasta el tope).
+          if (current === trip) releaseTimer = setTimeout(cancel, SLOW_ROUTE_MS);
         }
       }, coverMs);
       return true;

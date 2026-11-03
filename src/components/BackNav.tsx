@@ -13,6 +13,7 @@ interface BackNavProps {
   franchise: { slug: string; name: string };
   /** `true` en la página de la franquicia: ahí no se muestra su botón, porque llevaría a esa misma página. */
   atFranchise?: boolean;
+  appShell?: boolean;
 }
 
 /**
@@ -22,7 +23,7 @@ interface BackNavProps {
  * tema solo cambia el dibujo (slot `BackNav`) y, si quiere, una animación de salida de 300 ms o menos
  * antes de navegar; con movimiento reducido o un clic con modificadores navega enseguida.
  */
-export function BackNav({ franchise, atFranchise = false }: BackNavProps) {
+export function BackNav({ franchise, atFranchise = false, appShell = false }: BackNavProps) {
   const { skin } = useSkin();
   const Icon = skin.slots.BackNav;
   const router = useRouter();
@@ -48,13 +49,15 @@ export function BackNav({ franchise, atFranchise = false }: BackNavProps) {
     <nav className={styles.nav} aria-label={es.nav.label} data-leaving={leaving ?? undefined}>
       <ul className={styles.list}>
         {links.map(({ kind, href, label }) => (
-          <li key={kind}>
+          <li key={kind} className={styles.item} data-app-back={appShell ? (atFranchise ? 'franchise' : kind) : undefined}>
             <Link
               className={styles.link}
               href={href}
               data-kind={kind}
+              aria-label={appShell && kind === 'franchise' ? es.nav.backTo(franchise.name) : appShell && atFranchise ? es.nav.backTo(es.nav.home) : undefined}
               onClick={(event) => handleClick(event, href)}
             >
+              {appShell && (kind === 'franchise' || atFranchise) && <svg className={styles.appArrow} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges"><path d="M10 4h3v3h-3v3h11v4H10v3h3v3h-3v-3H7v-3H4v-4h3V7h3z" fill="currentColor" /></svg>}
               <span className={styles.icon}>
                 <Icon kind={kind} leaving={leaving === kind} />
               </span>

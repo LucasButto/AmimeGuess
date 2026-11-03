@@ -67,7 +67,7 @@ export const es = {
     won: '¡Meta superada!',
     difficulty: 'Dificultad', forms: 'Formas opcionales', regional: 'Formas regionales', mega: 'Megaevoluciones',
     level: (level: number, target: number) => `${['Fácil', 'Normal', 'Difícil'][level]} · superar ${target}`,
-    stop: 'Tocá para detener', choose: 'Elegí una estadística', finished: 'Combinación terminada', stats: 'Asignar estadística',
+    stop: 'Tocá para detener', dockStop: 'Detener', dockNextPokemon: 'Siguiente Pokémon', choose: 'Elegí una estadística', finished: 'Combinación terminada', stats: 'Asignar estadística',
     progress: (attempt: number, limit: number) => `Partida ${Math.min(attempt, limit)}/${limit}`,
     total: (score: number, target: number) => `Total: ${score} · Meta: superar ${target}`,
     assigned: (count: number, total: number) => `${count}/${total} estadísticas asignadas`,
@@ -104,6 +104,21 @@ export const es = {
     complete: '¡Completo!',
     /** Onomatopeya decorativa de cada apertura. */
     onomatopoeia: { pokemon: '¡PIKA!', 'dragon-ball': '¡ZAS!', naruto: '¡DATTEBAYO!', yugioh: '¡DUELO!' } as Readonly<Record<string, string>>,
+    // Teléfono: lo de arriba del televisor y lo que va debajo (Seguí jugando y las tarjetas de franquicia).
+    streak: (days: number) => `Racha ${days} ${plural(days, 'día', 'días')}`,
+    streakLabel: (days: number) => `Racha de ${days} ${plural(days, 'día', 'días')}: ver estadísticas`,
+    todaySummary: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} hoy`,
+    continueTitle: 'Seguí jugando',
+    continueAllDone: '¡Ya resolviste todos los retos de hoy! Volvé mañana por los nuevos.',
+    continuePlay: 'Jugar',
+    continueLabel: (franchise: string, mode: string) => `Seguí jugando: ${franchise}, ${mode}`,
+    cardsLabel: 'Franquicias',
+    cardCount: (solved: number, total: number) => `${solved} de ${total}`,
+    comingSoon: 'Próximamente',
+    comingSoonLabel: (name: string) => `${name}: próximamente`,
+    knobChannel: 'Cambiar de canal',
+    knobSound: 'Sonidos',
+    soundAnnounce: (on: boolean) => (on ? 'Sonidos prendidos' : 'Sonidos apagados'),
     cardLoading: (name: string) => `${name}: leyendo los retos de hoy`,
     cardLabel: (name: string, solved: number, total: number) => `${name}: ${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy`,
   },
@@ -113,6 +128,16 @@ export const es = {
     intro: (name: string) => `Los retos diarios de ${name}.`,
     progress: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy resueltos`,
     mainMode: 'Modo principal',
+    // Teléfono: el hub es una lista con el estado de hoy de cada modo.
+    barProgress: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy`,
+    play: 'Jugar',
+    continue: 'Seguir',
+    // El estado de hoy de un modo, solo la palabra (hub del teléfono y Retos): pendiente, completado o fallado.
+    rowState: {
+      won: 'Completado',
+      lost: 'Fallado',
+      pending: 'Pendiente',
+    },
     solved: 'Resuelto hoy',
     pending: 'Pendiente',
     /** Nombre accesible de una tarjeta de modo: "Modo: estado". */
@@ -120,8 +145,70 @@ export const es = {
       state === 'unknown' ? mode : `${mode}: ${state === 'solved' ? 'resuelto hoy' : 'pendiente'}`,
   },
   nav: {
+    backTo: (franchise: string) => `Volver a ${franchise}`,
     label: 'Volver',
     home: 'Inicio',
+  },
+  // Teléfono (SPEC 9.3): la barra de pestañas de abajo y las páginas a las que lleva.
+  tabs: {
+    label: 'Secciones del sitio',
+    home: 'Inicio',
+    challenges: 'Retos',
+    stats: 'Estadísticas',
+    more: 'Más',
+  },
+  challenges: {
+    title: 'Retos de hoy',
+    summary: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto resuelto', 'retos resueltos')} hoy`,
+    loading: 'Leyendo tu progreso…',
+    group: (solved: number, total: number) => `${solved}/${total}`,
+    groupLabel: (name: string, solved: number, total: number) => `${name}: ${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy`,
+    empty: 'No hay retos disponibles por el momento.',
+  },
+  globalStats: {
+    title: 'Tus estadísticas',
+    streak: 'Racha',
+    streakHint: 'Días seguidos con al menos un reto ganado, en cualquier franquicia.',
+    days: (count: number) => `${count} ${plural(count, 'día', 'días')}`,
+    bestStreak: 'Mejor racha',
+    played: 'Partidas',
+    won: 'Ganadas',
+    winRate: 'Aciertos',
+    rate: (won: number, played: number) => (played === 0 ? '—' : `${Math.round((100 * won) / played)} %`),
+    byFranchise: 'Por franquicia',
+    franchiseLine: (won: number, played: number) => `${won} de ${played} ${plural(played, 'ganada', 'ganadas')}`,
+    empty: 'Todavía no jugaste ningún reto. Tus números aparecen acá apenas termines el primero.',
+    note: 'Se guardan solo en este dispositivo.',
+    loading: 'Leyendo tus estadísticas…',
+  },
+  more: {
+    title: 'Más',
+    settings: 'Ajustes',
+    howTo: 'Cómo se juega',
+    credits: 'Créditos',
+    creditsHint: 'Fuentes, licencias y agradecimientos',
+    legal: 'Aviso legal',
+    install: 'Instalar la app',
+    installed: 'La app ya está instalada',
+    installHint: 'Jugá desde la pantalla de inicio, sin la barra del navegador.',
+    installAction: 'Instalar',
+    installTitle: 'Instalar AnimeGuess',
+    installDone: 'Listo',
+    installSteps: {
+      ios: ['Tocá el botón Compartir de Safari (el cuadrado con la flecha hacia arriba).', 'Elegí «Agregar a pantalla de inicio».', 'Confirmá con «Agregar».'],
+      other: ['Abrí el menú del navegador (⋮ o ⋯).', 'Elegí «Instalar app» o «Agregar a pantalla de inicio».', 'Confirmá la instalación.'],
+    },
+    howToTitle: 'Cómo se juega',
+    howToIntro: 'AnimeGuess tiene un reto nuevo por modo cada día. Es el mismo para todos los que juegan ese día, con los mismos filtros.',
+    howToSteps: [
+      'Elegí una franquicia y un modo de juego.',
+      'Probá con tus respuestas: cada intento te da pistas para acercarte a la solución.',
+      'Si no entra a la primera, no pasa nada: tenés varios intentos, y cada modo explica sus reglas en el menú ⋮ (Cómo se juega).',
+      'Al terminar, compartí tu resultado o seguí con otro reto.',
+      'Los retos se renuevan a la medianoche de Argentina.',
+    ],
+    legalTitle: 'Aviso legal',
+    close: 'Cerrar',
   },
   footer: {
     label: 'Aviso legal',
@@ -133,6 +220,8 @@ export const es = {
   // Página /creditos (SPEC 10). Los nombres de las fuentes y sus direcciones viven acá con su descripción; la lista de
   // textos CC BY-SA sale de los datos (cada contenido guarda su página de origen en `payload.source`).
   credits: {
+    /** Teléfono: la ← de la barra superior vuelve a la pestaña Más. */
+    back: 'Volver a Más',
     pmd: {
       title: 'PMD SpriteCollab',
       text: 'Usamos sprites de Pokémon Mystery Dungeon para los Pokémon que recorren el fondo y retratos Normal para las miniaturas de la Pokédex. Las imágenes de los retos y de las respuestas conservan su arte original.',
@@ -186,7 +275,12 @@ export const es = {
             {
               name: 'Narutopedia (Fandom)',
               url: 'https://naruto.fandom.com',
-              text: 'Datos de los jutsus, frases traducidas al español (CC BY-SA, más abajo) e imágenes de personajes y jutsus.',
+              text: 'Datos de los jutsus, frases traducidas al español (CC BY-SA, más abajo), imágenes de personajes y las capturas con que se buscó la escena de cada jutsu. Licencia de las imágenes: a confirmar.',
+            },
+            {
+              name: 'trace.moe',
+              url: 'https://trace.moe',
+              text: 'Búsqueda de escenas por imagen: de ahí salen el episodio y el momento de cada clip del modo Jutsu. Los clips son fragmentos del anime; pertenecen a sus titulares. Licencia: a confirmar.',
             },
           ],
         },
@@ -262,6 +356,10 @@ export const es = {
           text: 'Referencias aportadas por el usuario; autor y licencia a confirmar. Nueve íconos de atributos recortados y diseño de cartas reproducido a partir de las referencias.',
         },
         {
+          name: 'Poké Balls de los modos de Pokémon',
+          text: 'Hoja de pixel art aportada por el usuario; autor y licencia a confirmar. Ocho bolas recortadas de la hoja (Poké, Super, Ultra, Master, Lujo, Veloz, Ocaso y Premier).',
+        },
+        {
           name: 'Íconos de tipo de Pokémon',
           text: '«Alan900900900» (nombre tal como figura en la imagen); recortados de la imagen aportada por el usuario; licencia a confirmar. El autor pide no copiar su trabajo sin crédito.',
         },
@@ -281,6 +379,14 @@ export const es = {
     title: 'Página no encontrada',
     text: 'La página que buscás no existe o cambió de lugar.',
     home: 'Volver al inicio',
+  },
+  // Página "Sin conexión": la muestra el service worker cuando no hay red y la página pedida no se había visitado.
+  offline: {
+    heading: 'Sin conexión',
+    title: 'No hay conexión',
+    text: 'Esta página todavía no está guardada en el teléfono. Las que ya abriste con conexión siguen funcionando.',
+    retry: 'Reintentar',
+    home: 'Ir al inicio',
   },
   errorPage: {
     title: 'Algo salió mal',
@@ -335,6 +441,8 @@ export const es = {
     inputLabel: 'Tu intento',
     tableCaption: 'Intentos, del más reciente al más antiguo',
     nameHeader: 'Nombre',
+    // Teléfono: un solo "?" arriba de las tarjetas explica las columnas (en la tabla de escritorio cada encabezado tiene su ⓘ).
+    columnsHelp: { button: 'Qué significa cada columna', title: 'Las columnas' },
     empty: 'Todavía no hiciste ningún intento.',
     attempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
     lastAttempt: (name: string) => `Intento agregado: ${name}`,
@@ -351,6 +459,9 @@ export const es = {
     hintsTitle: 'Pistas',
     hintLocked: (remaining: number) =>
       `Se desbloquea con ${remaining} ${plural(remaining, 'intento fallido más', 'intentos fallidos más')}`,
+    // En la tarjeta compacta del teléfono (diseño de app).
+    hintLockedShort: (remaining: number) => `en ${remaining} ${plural(remaining, 'intento', 'intentos')}`,
+    hintUnlocked: (labels: string) => `Pista desbloqueada: ${labels}`,
     help: {
       goal: 'Elegí un nombre y compará sus datos con los de la respuesta. Usá los colores y las flechas para decidir tu próximo intento.',
       colorsTitle: 'Qué significa cada color',
@@ -365,6 +476,11 @@ export const es = {
       columnsNote: 'Algunas columnas solo aparecen con ciertas series activas.',
       hiddenNote: 'Si el valor de una columna pertenece a una serie que apagaste, se ve como — y no se compara.',
     },
+  },
+  // Clips de contenido (ContentVideo): el botón para quien pidió menos movimiento o cuyo navegador no los arranca solo.
+  video: {
+    play: 'Reproducir clip',
+    pause: 'Pausar clip',
   },
   imageReveal: {
     inputLabel: 'Tu intento',
@@ -514,6 +630,7 @@ export const es = {
     mistakes: (left: number, total: number) => `Errores que podés cometer: ${left} de ${total}`,
     selectedCount: (count: number, total: number) => `${count} de ${total} elegidos`,
     submit: 'Enviar',
+    shuffle: 'Mezclar',
     clear: 'Deseleccionar todo',
     difficulties: ['Fácil', 'Media', 'Difícil', 'Muy difícil'],
     difficultyLabel: (name: string) => `Dificultad: ${name}`,
@@ -537,6 +654,12 @@ export const es = {
     },
   },
   shell: {
+    filters: 'Filtros del juego',
+    filtersShort: 'Filtros',
+    filtersSheet: 'Filtros del juego',
+    filtersChanged: 'Filtros del juego (cambiados)',
+    sheetDone: 'Listo',
+    appSubtitle: ' \u00b7 reto de hoy',
     actions: 'Ayuda y opciones del juego',
     limits: {
       counter: (used: number, total: number) => `Intentos: ${used}/${total}`,
@@ -582,6 +705,7 @@ export const es = {
     dragHint: 'Arrastrá la barra del título para mover la ventana',
     // Al pasar el cursor por el agarre de la esquina de una ventana que se puede agrandar y achicar.
     resizeHint: 'Arrastrá la esquina para cambiar el tamaño',
+    nextChallengeShort: 'Nuevo en',
     nextChallenge: 'Próximo reto en',
     yesterday: 'Ayer fue',
     helpTitle: (mode: string) => `Cómo se juega — ${mode}`,
@@ -596,7 +720,7 @@ export const es = {
       // Título del resumen en los temas que nombran la respuesta al ganar.
       answerTitle: (label: string) => `¡Es ${label}!`,
       lostTitle: 'Fallaste',
-      answerWas: (label: string) => `Era ${label}.`,
+      answerWas: (label: string, detail?: string) => (detail === undefined ? `Era ${label}.` : `Era ${label} – ${detail}.`),
       wonSummary: (attempts: number, streak: number) =>
         `Lo resolviste en ${attempts} ${plural(attempts, 'intento', 'intentos')}. Racha: ${streak} ${plural(streak, 'día', 'días')}.`,
       lostSummary: 'Mañana hay un reto nuevo.',
@@ -604,6 +728,15 @@ export const es = {
       scoreTitle: 'Fin de la racha',
       scoreSummary: (score: number, streak: number) =>
         `${score === 0 ? 'No acertaste ninguna.' : `Acertaste ${score} ${plural(score, 'seguida', 'seguidas')}.`} Racha: ${streak} ${plural(streak, 'día', 'días')}.`,
+      // Teléfono: el resultado es una hoja (ver `ResultPanel` con `inSheet`).
+      sheetTitle: 'Resultado',
+      viewResult: 'Ver resultado',
+      nextMode: (name: string) => `Siguiente: ${name} →`,
+      backTo: (name: string) => `Volver a ${name}`,
+      streakLabel: 'Racha',
+      // En los modos de puntaje de la hoja, la racha de la partida y la de los días llevan cada una su nombre.
+      scoreSummarySheet: (score: number, streak: number) =>
+        `Aciertos seguidos: ${score}. Racha diaria: ${streak} ${plural(streak, 'día', 'días')}.`,
       share: 'Compartir resultado',
       shareCopied: 'Resultado copiado',
       shareFailed: 'No se pudo copiar',
@@ -730,6 +863,12 @@ export const es = {
     // Selector de Pokémon (reemplaza al campo de texto en los modos de adivinar).
     picker: {
       open: 'Elegir en la Pokédex',
+      openDock: 'Abrir la Pokédex',
+      attemptOf: (current: number, total: number) => `Intento ${current} de ${total}`,
+      searchOpen: 'Buscar por nombre o número',
+      typeChip: 'Tipos',
+      generationChip: 'Generaciones',
+      choose: (name: string) => `Elegir a ${name}`,
       title: 'Pokédex',
       search: 'Buscar por nombre o número',
       placeholder: 'Pikachu, 25…',
@@ -741,13 +880,18 @@ export const es = {
       filtersPanel: 'Filtros de la Pokédex',
       done: 'Listo',
       generation: 'Generación',
+      generations: 'Generaciones',
       generationNumber: (value: number) => `Gen. ${value}`,
       type: 'Tipo',
+      types: 'Tipos',
+      deselectAll: 'Ninguno',
       exactTypes: 'Solo la combinación exacta',
       exactTypesHint: 'Elegí dos tipos para ver solo Pokémon que tengan ambos. Con un tipo, se muestran solo los de tipo único. Apagado, alcanza con tener cualquiera de los tipos elegidos.',
       monotype: 'Sin tipo secundario',
       monotypeHint: 'Solo Pokémon de un único tipo (sin segundo tipo)',
       clearFilters: 'Limpiar filtros',
+      clearFiltersShort: 'Limpiar',
+      exactTypesTip: 'Con dos tipos, solo Pokémon que tengan ambos. Con uno, solo los de tipo único. Apagado, alcanza con tener alguno.',
       emptyFilters: 'Ningún Pokémon coincide con los filtros y la búsqueda. Usá «Limpiar filtros» o cambiá lo escrito para volver a ver Pokémon.',
       tried: 'ya probado',
       number: (value: number) => `N.º ${String(value).padStart(3, '0')}`,
@@ -920,6 +1064,8 @@ export const es = {
     legibleFontHint: 'Cambia las letras del tema por una fuente de sistema, más fácil de leer.',
     sounds: 'Sonidos',
     soundsHint: 'Efectos cortos al jugar. Están apagados hasta que los prendas.',
+    vibration: 'Vibración',
+    vibrationHint: 'Una vibración corta al acertar y otra al fallar. Está apagada hasta que la prendas.',
   },
   share: {
     header: (franchise: string, mode: string) => `AnimeGuess · ${franchise} · ${mode}`,

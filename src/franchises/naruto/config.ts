@@ -82,12 +82,7 @@ export const narutoConfig = {
           // Si la serie del arco está apagada, el valor se oculta: lo excluido no aparece nunca.
           { key: 'arcoDebut', label: 'Arco de debut', compare: 'ordered', valueLabels: arcDebutLabels, valueHelp: arcHelp, help: es.help.narutoClassic.arcoDebut },
         ],
-        hints: [
-          // La ocupación revela mucho: va última, después de la inicial.
-          { kind: 'attr', label: 'Estado vital', after: 4, key: 'estadoVital' },
-          { kind: 'attr', label: 'Inicial', after: 7, key: 'inicial' },
-          { kind: 'attr', label: 'Ocupación', after: 9, key: 'ocupacion' },
-        ],
+        hints: [],
       },
     },
     {
@@ -116,18 +111,20 @@ export const narutoConfig = {
       slug: 'jutsu',
       name: 'Jutsu',
       engine: 'image-reveal',
-      // La imagen es un jutsu (cada uno con su captura) y la respuesta, quien lo usa. Cuenta como acierto
-      // cualquiera de los personajes que lo usan (ver `accepts` en los datos).
-      imageReveal: { variant: 'blur', imageContentKind: 'jutsu' },
+      // La pista es un clip en bucle de la escena de un jutsu (cada uno con su video y su póster) y la respuesta, quien lo usa.
+      // Cuenta como acierto cualquiera de los personajes que lo usan (ver `accepts` en los datos). El desenfoque baja más
+      // que el de las imágenes de personajes (de 1,7 a 0,45 rem): en una escena en movimiento con esos valores no se
+      // reconocía nada ni en el último paso; ahora arranca como manchas de color y termina casi nítido.
+      imageReveal: { variant: 'blur', imageContentKind: 'jutsu', showsContentName: true, countNoun: { one: 'jutsu', many: 'jutsus' }, blurLevels: [1, 0.8, 0.6, 0.42, 0.26, 0.12] },
     },
     {
       slug: 'ojo',
       name: 'Ojo',
       engine: 'image-reveal',
-      // El recorte arranca en el ojo: el punto focal viene en los datos de cada personaje (`focus`). Parte mucho más cerca que
-      // el Zoom de las otras franquicias (5,2 en vez de 3,2) y se abre de a poco (de 2,6 como mucho: nunca llega a mostrar la
-      // cara entera), para que no se sepa quién es al primer vistazo.
-      imageReveal: { variant: 'zoom', imageContentKind: 'eye', zoomScales: [5.2, 4.5, 3.9, 3.4, 3, 2.6] },
+      // El recorte arranca en el ojo: el punto focal viene en los datos de cada personaje (`focus`). Parte con el ojo llenando el
+      // cuadro (8 veces: solo el ojo y un poco de piel, el nivel que pidió el usuario el 2026-11-02) y se abre de a poco hasta 4
+      // como mucho: nunca llega a mostrar la cara, para que no se sepa quién es al primer vistazo.
+      imageReveal: { variant: 'zoom', imageContentKind: 'eye', zoomScales: [8, 7, 6.1, 5.3, 4.6, 4] },
     },
     {
       slug: 'equipo',

@@ -2,7 +2,10 @@
 
 import { useEffect, useRef, useState, type AnimationEvent, type CSSProperties } from 'react';
 import { ContentImage } from '@/components/ContentImage';
+import { useAppShell } from '@/components/game-shell/AppShellContext';
+import { Sheet } from '@/components/Sheet';
 import { useSkin } from '@/components/skin/context';
+import { Button } from '@/components/ui/Button';
 import { PixelIcon, type IconName } from '@/components/ui/icons';
 import { InfoTip } from '@/components/ui/InfoTip';
 import { TermText } from '@/components/ui/TermText';
@@ -74,6 +77,8 @@ export function AttemptsTable({ rows, columns, revealing = null, onRevealEnd }: 
   const [overflow, setOverflow] = useState({ scrollable: false, moreToRight: false });
   const { skin } = useSkin();
   const { CellBack, ValueMark } = skin.slots;
+  const appShell = useAppShell();
+  const [helpOpen, setHelpOpen] = useState(false);
 
   useEffect(() => {
     const scroller = scrollerRef.current;
@@ -97,8 +102,54 @@ export function AttemptsTable({ rows, columns, revealing = null, onRevealEnd }: 
     };
   }, []);
 
+  /**
+   * Una casilla: la cara (con el color, el valor y el ícono) dentro del contenedor del giro, y el dorso encima mientras gira.
+   * La usan la tabla y las tarjetas del teléfono; en cada una solo se anima la que se ve.
+   */
+  function renderFlip(cell: Cell, index: number, animate: boolean, isLast: boolean, rowId: string, revealingNow: AttemptsTableProps['revealing']) {
+    const text = cellText(cell.column, cell.value);
+    // El retraso de cada columna es un valor calculado al enviar el intento: el único estilo en línea.
+    const delay = animate && revealingNow ? ({ '--reveal-delay': `${revealingNow.timing.delays[index] ?? 0}ms` } as CSSProperties) : undefined;
+    const handleEnd =
+      animate && isLast
+        ? (event: AnimationEvent<HTMLDivElement>) => {
+            if (event.target === event.currentTarget) onRevealEnd?.(rowId);
+          }
+        : undefined;
+    return (
+      <div className={styles.flip} data-reveal={animate ? 'revealing' : 'face'} data-index={index} data-mode={skin.revealMode} style={delay}>
+        <div className={styles.box} data-match={cell.match} onAnimationEnd={handleEnd}>
+          <ValueMark column={cell.column.key} value={text ?? ''} />
+          <span className={styles.value} data-part="value" data-large={cell.column.large || undefined}>
+            {text === null ? (
+              <>
+                <span aria-hidden="true">—</span>
+                <VisuallyHidden>{cell.hidden ? es.classic.hiddenValue : es.classic.noValue}</VisuallyHidden>
+              </>
+            ) : (
+              <TermText text={text} help={cell.column.valueHelp} />
+            )}
+          </span>
+          {hasMark(cell, skin.cellMarks) && (
+            <span className={styles.icon} aria-hidden="true">
+              {skin.cellIcons === 'pixel' ? <PixelIcon name={pixelIconOf(cell)} /> : iconOf(cell)}
+            </span>
+          )}
+          <VisuallyHidden>{`. ${descriptionOf(cell)}`}</VisuallyHidden>
+        </div>
+        {/* El dorso: decorativo, encima de la cara mientras gira. */}
+        {animate && (
+          <div className={styles.back} aria-hidden="true">
+            <CellBack index={index} />
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
-    <div className={styles.frame} data-more={overflow.moreToRight}>
+    <>
+      <div className={styles.frame} data-more={overflow.moreToRight}>
       <div
         ref={scrollerRef}
         className={styles.scroller}
@@ -131,7 +182,7 @@ export function AttemptsTable({ rows, columns, revealing = null, onRevealEnd }: 
               const animate = revealing !== null && revealing.id === row.entity.id;
               const last = row.cells.length - 1;
               return (
-                <tr key={row.entity.id} data-reveal={animate ? 'revealing' : 'face'}>
+                <tr key={row.entity.id} className={styles.row} data-reveal={animate ? 'revealing' : 'face'}>
                   <th scope="row" className={styles.name}>
                     <div className={styles.nameInner} data-reveal={animate ? 'revealing' : 'face'}>
                       {row.entity.image && (
@@ -141,50 +192,10 @@ export function AttemptsTable({ rows, columns, revealing = null, onRevealEnd }: 
                     </div>
                   </th>
                   {row.cells.map((cell, index) => {
-                    const text = cellText(cell.column, cell.value);
-                    // El retraso de cada columna es un valor calculado al enviar el intento: el único estilo en línea.
-                    const delay = animate ? ({ '--reveal-delay': `${revealing.timing.delays[index] ?? 0}ms` } as CSSProperties) : undefined;
-                    const handleEnd =
-                      animate && index === last
-                        ? (event: AnimationEvent<HTMLDivElement>) => {
-                            if (event.target === event.currentTarget) onRevealEnd?.(row.entity.id);
-                          }
-                        : undefined;
+                    const flip = renderFlip(cell, index, animate, last === index, row.entity.id, revealing);
                     return (
                       <td key={cell.column.key} className={styles.cell}>
-                        <div
-                          className={styles.flip}
-                          data-reveal={animate ? 'revealing' : 'face'}
-                          data-index={index}
-                          data-mode={skin.revealMode}
-                          style={delay}
-                        >
-                          <div className={styles.box} data-match={cell.match} onAnimationEnd={handleEnd}>
-                            <ValueMark column={cell.column.key} value={text ?? ''} />
-                            <span className={styles.value} data-part="value" data-large={cell.column.large || undefined}>
-                              {text === null ? (
-                                <>
-                                  <span aria-hidden="true">—</span>
-                                  <VisuallyHidden>{cell.hidden ? es.classic.hiddenValue : es.classic.noValue}</VisuallyHidden>
-                                </>
-                              ) : (
-                                <TermText text={text} help={cell.column.valueHelp} />
-                              )}
-                            </span>
-                            {hasMark(cell, skin.cellMarks) && (
-                              <span className={styles.icon} aria-hidden="true">
-                                {skin.cellIcons === 'pixel' ? <PixelIcon name={pixelIconOf(cell)} /> : iconOf(cell)}
-                              </span>
-                            )}
-                            <VisuallyHidden>{`. ${descriptionOf(cell)}`}</VisuallyHidden>
-                          </div>
-                          {/* El dorso: decorativo, encima de la cara mientras gira. */}
-                          {animate && (
-                            <div className={styles.back} aria-hidden="true">
-                              <CellBack index={index} />
-                            </div>
-                          )}
-                        </div>
+                        {flip}
                       </td>
                     );
                   })}
@@ -197,6 +208,57 @@ export function AttemptsTable({ rows, columns, revealing = null, onRevealEnd }: 
       <span className={styles.moreHint} aria-hidden="true">
         <PixelIcon name="cursor" />
       </span>
-    </div>
+      </div>
+      {/* Diseño de app: por debajo de `lg` los intentos son tarjetas (la tabla queda para escritorio). Las dos están en el
+          documento y el CSS muestra una; solo la que se ve anima y avisa que terminó la revelación. */}
+      {appShell && (
+        <section className={styles.cards} aria-label={es.classic.tableCaption}>
+          <div className={styles.cardsHead}>
+            <span className={styles.cardsCount}>{es.classic.attempts(rows.length)}</span>
+            <button type="button" className={styles.cardsHelp} aria-haspopup="dialog" aria-label={es.classic.columnsHelp.button} onClick={() => setHelpOpen(true)}>
+              <span aria-hidden="true">?</span>
+            </button>
+          </div>
+          <ul className={styles.cardList}>
+            {rows.map((row) => {
+              const animate = revealing !== null && revealing.id === row.entity.id;
+              const last = row.cells.length - 1;
+              return (
+                <li key={row.entity.id} className={styles.card} data-attempt-card="" data-reveal={animate ? 'revealing' : 'face'}>
+                  <div className={styles.cardHead}>
+                    {row.entity.image && <ContentImage className={styles.cardThumb} stem={row.entity.image} alt="" sizes="2.5rem" />}
+                    <strong className={styles.cardName}>{row.entity.name.es}</strong>
+                  </div>
+                  <ul className={styles.cardCells}>
+                    {row.cells.map((cell, index) => (
+                      <li key={cell.column.key} className={styles.cardCell}>
+                        <span className={styles.cellLabel}>{cell.column.label}</span>
+                        {renderFlip(cell, index, animate, index === last, row.entity.id, revealing)}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              );
+            })}
+          </ul>
+          {helpOpen && (
+            <Sheet
+              title={es.classic.columnsHelp.title}
+              onClose={() => setHelpOpen(false)}
+              footer={<Button variant="primary" onClick={() => setHelpOpen(false)}>{es.shell.sheetDone}</Button>}
+            >
+              <dl className={styles.columnsHelp}>
+                {columns.filter((column) => column.help).map((column) => (
+                  <div key={column.key} className={styles.columnsHelpItem}>
+                    <dt>{column.label}</dt>
+                    <dd>{column.help}</dd>
+                  </div>
+                ))}
+              </dl>
+            </Sheet>
+          )}
+        </section>
+      )}
+    </>
   );
 }

@@ -1,0 +1,21 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// El botón de reproducir y pausar va sobre el clip, abajo a la derecha, con una placa clara del tema (nunca texto directo sobre la imagen).
+.control {
+  @include m.touch-target;
+  @include m.focus-ring;
+  @include m.press;
+  position: absolute;
+  inset-block-end: t.$space-2;
+  inset-inline-end: t.$space-2;
+  padding: t.$space-1 t.$space-3;
+  border: t.$border-width solid t.token('frame-color');
+  border-radius: 0;
+  background: t.token('surface-panel');
+  color: t.token('ink');
+  font: inherit;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  cursor: pointer;
+}

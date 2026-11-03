@@ -6,7 +6,7 @@ import entities from '../../../data/pokemon/entities.json';
 import { PMD_SNAPSHOT, PMD_DIRECTIONS, PMD_PORTRAIT_EMOTIONS, type PortraitEmotion } from './pmd-core.ts';
 import { sha256, sameVisiblePixels } from './pmd-images.ts';
 import sharp from 'sharp';
-import { PMD_DECISIONS, PMD_WALK_FLYERS, PMD_SERPENTINES, PMD_FORM_HEIGHTS } from './pmd-roster.ts';
+import { PMD_DECISIONS, PMD_WALK_FLYERS, PMD_SERPENTINES, PMD_FORM_HEIGHTS, PMD_PORTRAIT_FORMS } from './pmd-roster.ts';
 
 const root = path.resolve(import.meta.dirname, '../../..');
 interface Sheet {
@@ -54,7 +54,7 @@ describe('PMD archivos generados', () => {
       }
     }
     expect(sleepers).toBe(730);
-    expect(ground).toBe(592);
+    expect(ground).toBe(594);
     expect(manifest.pokemon.find(pokemon=>pokemon.entityId==='emolga')?.zone).toBe('ground');
     expect(manifest.pokemon.find(pokemon=>pokemon.entityId==='pidgeotto')?.zone).toBe('sky');
     expect(manifest.pokemon.find(pokemon=>pokemon.entityId==='charizard')?.zone).toBe('sky');
@@ -91,8 +91,8 @@ describe('PMD archivos generados', () => {
         }
       }
     }
-    expect(manifest.pokemon.filter(p=>p.zone==='sky')).toHaveLength(73);
-    expect(manifest.pokemon.filter(p=>p.zone==='ground')).toHaveLength(299);
+    expect(manifest.pokemon.filter(p=>p.zone==='sky')).toHaveLength(72);
+    expect(manifest.pokemon.filter(p=>p.zone==='ground')).toHaveLength(300);
     expect(manifest.pokemon.filter(p=>p.zone==='sky'&&p.locomotion==='Walk').map(p=>p.entityId).sort()).toEqual([...PMD_WALK_FLYERS,'articuno-galar','moltres-galar'].sort());
     for(const p of manifest.pokemon.filter(p=>p.zone==='sky'))for(const variant of Object.values(p.variants))if(variant){
       const animation=variant.animations[p.locomotion];
@@ -183,7 +183,7 @@ describe('PMD archivos generados', () => {
     expect(portraitIndex.snapshot).toBe(PMD_SNAPSHOT);
     expect(Object.keys(portraitIndex.portraits)).toHaveLength(1025);
     const trackerPath = path.join(root, 'data-src/pokemon/pmd', PMD_SNAPSHOT, 'tracker.json');
-    const tracker: Record<string, { portrait_files: Record<string, boolean> }> | null = existsSync(trackerPath) ? JSON.parse(readFileSync(trackerPath, 'utf8')) : null;
+    const tracker: Record<string, { portrait_files: Record<string, boolean>; subgroups: Record<string, { portrait_files: Record<string, boolean> }> }> | null = existsSync(trackerPath) ? JSON.parse(readFileSync(trackerPath, 'utf8')) : null;
     const resources = new Set(credits.resources.map((resource) => resource.id));
     for (const emotion of Object.keys(PMD_PORTRAIT_EMOTIONS) as PortraitEmotion[]) {
       const available: number[] = [], missing: number[] = [];
@@ -191,9 +191,11 @@ describe('PMD archivos generados', () => {
         const number = entity.attrs.numero, dex = String(number).padStart(4, '0');
         const entry = portraitIndex.portraits[dex];
         expect(entry.entityId).toBe(entity.id);
-        const hasPortrait = resources.has(`portrait/${dex}/${PMD_PORTRAIT_EMOTIONS[emotion]}`);
+        // Golem usa los retratos de su forma Altcolor (`PMD_PORTRAIT_FORMS`): su carpeta de origen lleva la forma.
+        const form = PMD_PORTRAIT_FORMS[number];
+        const hasPortrait = resources.has(`portrait/${form ? `${dex}/${form}` : dex}/${PMD_PORTRAIT_EMOTIONS[emotion]}`);
         // Optional source audit: clean checkouts validate committed outputs without downloading the cache.
-        if (tracker) expect(hasPortrait).toBe(Object.hasOwn(tracker[dex].portrait_files, PMD_PORTRAIT_EMOTIONS[emotion]));
+        if (tracker) expect(hasPortrait).toBe(Object.hasOwn((form ? tracker[dex].subgroups[form] : tracker[dex]).portrait_files, PMD_PORTRAIT_EMOTIONS[emotion]));
         if (hasPortrait) {
           expect(entry[emotion]).toBe(`/img/pokemon/pmd/${dex}/${emotion}.png`);
           available.push(number);
@@ -256,7 +258,7 @@ it('solo ocho vuelos usan f1/f0 a 180 ms; el resto conserva sus hashes de locomo
     }
   }
   const untouched=manifest.pokemon.filter(p=>p.zone==='sky'&&!ids.includes(p.entityId)&&p.entityId!=='taillow'&&p.entityId!=='rayquaza'&&p.entityId!=='swellow'&&p.entityId!=='togetic'&&p.entityId!=='dragapult'&&p.entityId!=='salamence'&&p.entityId!=='charizard'&&!['starly','staravia','staraptor','braviary','pikipek','fletchinder','aerodactyl','noivern'].includes(p.entityId)).flatMap(p=>Object.entries(p.variants).filter(([,v])=>v).flatMap(([name,v])=>Object.entries(v!.animations[p.locomotion].directions).map(([d,s])=>[p.entityId,name,d,s.sha256])));
-  expect(sha256(Buffer.from(JSON.stringify(untouched)))).toBe('6678e24bdbda2a9e3a8017b9d21726529ac5679d1f802e4454494c24860d2208');
+  expect(sha256(Buffer.from(JSON.stringify(untouched)))).toBe('26e6e644632656dd43f8361c6a90a13099eee9c9dbee6d19b0db697ad743345d');
   expect(manifest.pokemon.filter(p=>p.elongated).map(p=>p.entityId).sort()).toEqual(Object.keys(PMD_SERPENTINES).sort());
 });
 

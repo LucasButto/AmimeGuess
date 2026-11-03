@@ -96,6 +96,8 @@ export interface ShellFranchise {
 /** Una respuesta del reto, lista para mostrar: la de hoy al terminar, o la de ayer. */
 export interface AnswerInfo {
   readonly label: string;
+  /** Algo más que acompaña a la respuesta en el resultado, después de un guión (el nombre del jutsu, por ejemplo). */
+  readonly detail?: string;
   /** Imagen de la respuesta, ver `ContentImage`. */
   readonly imageStem?: string;
 }
@@ -118,6 +120,11 @@ export interface FinishReport {
    * `false`: ya estaba terminada y se restauró al abrir la página.
    */
   readonly fresh: boolean;
+  /**
+   * Solo diseño de app: cuánto espera el marco antes de bajar solo hasta el resumen, para que se lea lo último que mostró
+   * el juego (por ejemplo, los dos valores de una comparación). Sin esto, `RESULT_SETTLE_MS`.
+   */
+  readonly settleMs?: number;
 }
 
 /** Lo que el marco le da al juego. */
@@ -158,6 +165,8 @@ export interface GameShellProps {
   readonly minimumPool: number;
   /** Cuántas opciones quedan elegibles con estas series activas. */
   readonly poolSize: (active: readonly string[]) => number;
+  /** Si el contador de posibles cuenta otra cosa que `poolSize` (los jutsus y no los personajes), cuántos hay con los filtros actuales. */
+  readonly displayCount?: (active: readonly string[]) => number;
   /**
    * La respuesta de ayer para la misma combinación de filtros. Recibe el
    * contexto de HOY (`ctx.day` es el día actual); el motor resta uno.

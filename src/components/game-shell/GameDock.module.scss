@@ -1,0 +1,96 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// La acción principal de un modo sin campo de texto, en la barra inferior: con los colores de la barra superior de la
+// franquicia (los mismos tokens), así hace juego con el botón de la Pokédex y cada tema la pinta a su manera.
+.action {
+  @include m.pixel-frame($fill: t.token('app-bar-fill'), $outer: t.token('app-bar-edge'), $inner: t.token('app-bar-inner'), $clip: t.token('clip-panel'), $radius: 0);
+  @include m.focus-ring;
+  @include m.press(0.98);
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.125rem;
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-block-size: 2.75rem;
+  padding: 0 t.$space-4;
+  border: 0;
+  background: none;
+  color: t.token('app-bar-ink');
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.7;
+  }
+}
+
+.label {
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+}
+
+.detail {
+  font-size: t.$font-size-sm;
+  line-height: t.$line-height-tight;
+}
+
+// Varias acciones juntas: la principal ocupa el doble que cada secundaria.
+.group {
+  display: flex;
+  gap: t.$space-2;
+  min-inline-size: 0;
+
+  > * {
+    flex: 1;
+    min-inline-size: 0;
+  }
+
+  > [data-primary] {
+    flex: 2;
+  }
+
+  // Un botón con ícono mide lo justo (un área táctil de 3,5 rem) y deja el resto a las demás.
+  > [data-icon] {
+    flex: 0 0 3.5rem;
+  }
+}
+
+.icon {
+  display: grid;
+  place-items: center;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+
+  svg {
+    inline-size: 100%;
+    block-size: 100%;
+  }
+}
+
+// Las secundarias: el panel del tema con su tinta, sin el color de la barra.
+.secondary {
+  @include m.pixel-frame($fill: t.token('surface-panel'), $outer: t.token('app-bar-edge'), $inner: t.token('frame-inner'), $clip: t.token('clip-panel'), $radius: 0);
+  @include m.focus-ring;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  box-sizing: border-box;
+  min-block-size: 2.75rem;
+  padding: 0 t.$space-2;
+  border: 0;
+  background: none;
+  color: t.token('ink');
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.55;
+  }
+}

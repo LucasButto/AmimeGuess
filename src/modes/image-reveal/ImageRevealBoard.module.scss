@@ -23,7 +23,7 @@
         grid-row: 1;
       }
 
-      > .difficulty {
+      .difficulty {
         grid-column: 2;
         grid-row: 1;
       }
@@ -146,4 +146,30 @@
 
 .difficultyTitle .titleHelp[data-compact='true'] {
   margin-inline-start: 0;
+}
+
+// Diseño de app (teléfono): el campo vive en la barra inferior y el contador en la línea de estado; lo que queda acá no
+// deja huecos entre la pista y los intentos.
+.field:empty { display: none; }
+
+.counter {
+  @include m.app-shell { display: contents; }
+  @include m.app-shell-desktop { display: flex; }
+}
+
+// Diseño de app (teléfono): el intento fallado nuevo entra con un pequeño salto y no queda detrás de las barras fijas.
+.chips > li:first-child {
+  @include m.app-shell {
+    scroll-margin-block: calc(var(--app-bar-h) + #{t.$space-2}) calc(var(--app-dock-h) + #{t.$space-2});
+    @include bp.motion-ok { animation: new-chip 0.35s ease-out both; }
+  }
+  @include m.app-shell-desktop {
+    scroll-margin-block: 0;
+    animation: none;
+  }
+}
+
+@keyframes new-chip {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: none; }
 }

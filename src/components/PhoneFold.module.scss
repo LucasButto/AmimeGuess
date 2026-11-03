@@ -1,0 +1,56 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.fold {
+  display: grid;
+  border-block-start: t.$border-width solid t.color('border');
+
+  @include bp.min-width('lg') {
+    border-block-start: 0;
+  }
+}
+
+.summary {
+  @include m.focus-ring;
+  @include m.touch-target;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-3;
+  list-style: none;
+  cursor: pointer;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+
+  // La flecha dice que se abre; desde `lg` la sección está siempre a la vista y no hace falta.
+  &::after {
+    content: '';
+    flex: none;
+    inline-size: 0.625rem;
+    block-size: 0.625rem;
+    border-inline-end: 0.125rem solid currentColor;
+    border-block-end: 0.125rem solid currentColor;
+    transform: rotate(45deg);
+  }
+
+  .fold[open] > &::after {
+    transform: rotate(-135deg);
+  }
+
+  @include bp.min-width('lg') {
+    cursor: default;
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
+.body {
+  display: grid;
+  gap: t.$space-2;
+  padding-block-end: t.$space-2;
+}

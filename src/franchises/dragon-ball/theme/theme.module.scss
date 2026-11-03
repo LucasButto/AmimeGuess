@@ -33,6 +33,15 @@
 // la raíz del tema; los colores salen de la paleta de config.ts (variables --palette-*), que cubre el test de
 // contraste. Tinta negra gruesa, papel crema, esquinas cortadas en diagonal y sombras duras: nada redondeado.
 .root {
+  // Barra del juego del teléfono (diseño de app): el naranja de la marca, tinta gruesa y un filete amarillo, como un cuadro de manga.
+  // Tarjetas de intento del teléfono: los valores son largos ("Supersaiyano 2", "Clan de Freezer"): casillas de a dos.
+  --attempt-card-cols: 2;
+  --attempt-card-cols-md: 4;
+  --attempt-card-label-h: 1.2em;
+  --app-bar-fill: var(--palette-orange);
+  --app-bar-ink: var(--palette-ink);
+  --app-bar-edge: var(--palette-ink);
+  --app-bar-inner: var(--palette-yellow);
   // Superficies y tintas: papel crema con tinta negra; la pantalla es el visor verde del scouter.
   --surface-panel: var(--palette-cream);
   --surface-dialog: var(--palette-cream);
@@ -162,8 +171,10 @@
   a[data-kind='home'] {
     gap: 0;
     padding-inline: 0.25rem 2.7rem;
+    // La página de la franquicia usa este mismo relleno (ver `BackNav.module.scss`).
+    --back-home-pad: 0.25rem 2.7rem;
 
-    > span:first-child {
+    > span:not(:last-child) {
       inline-size: 0;
     }
 
@@ -217,7 +228,7 @@
   --shadow-card: 0.25rem 0.25rem 0 var(--palette-ink);
   --shadow-pop: 0.25rem 0.25rem 0 0 var(--palette-ink);
 
-  // Cabecera: el título (ver el bloque `main > header > h1` más abajo) y, sobre él, el nombre del sitio en amarillo con
+  // Cabecera: el título (ver el bloque `main header > h1` más abajo) y, sobre él, el nombre del sitio en amarillo con
   // contorno negro y sombra dura, y el de la franquicia en papel con contorno de tinta. Más grande que el título base:
   // Bangers es condensada y a 1× se veía chica al lado de la de Pokémon.
   --title-scale: 1.7;
@@ -261,8 +272,8 @@
     }
   }
 
-  // El título de la página, con las letras del logo (ver `_logo-words.scss`).
-  main > header > h1 {
+  // El título de la página, con las letras del logo (ver `_logo-words.scss`). `[class]` sube la especificidad: el título de la página de la franquicia (`.title` bajo `[data-shell]`) fija su propia sombra de texto.
+  main header > h1[class] {
     @include l.logo-words;
   }
 

@@ -66,6 +66,7 @@ import {
   type TeamSrc,
   type Translations,
 } from './schemas.ts';
+import { CLIP_BUDGET, POSTER_DIR, VIDEO_DIR, opaqueName, readClipSources, renderClip, type RenderedClip } from './clips.ts';
 import { renderTodoSection, writeTodoSection, type MissingImage } from './todo.ts';
 import {
   arcOfEpisode,
@@ -97,7 +98,6 @@ const MANUAL_DIR = path.join(SRC_DIR, 'images');
 const DATA_DIR = path.join(ROOT, 'data', 'naruto');
 const IMG_ROOT = path.join(ROOT, 'public', 'img');
 const IMAGE_DIR = path.join(IMG_ROOT, 'naruto');
-const JUTSU_IMAGE_DIR = path.join(IMAGE_DIR, 'jutsus');
 const TODO_FILE = path.join(ROOT, 'docs', 'CONTENT_TODO.md');
 
 const IMAGE_TASKS = 4;
@@ -366,10 +366,18 @@ async function validate(characters: Entity[], contents: Content[], groups: reado
     async (content) => {
       const found: string[] = [];
       const id = content.id.replace(/^jutsu-/, '');
+      const name = opaqueName(id);
+      if (content.payload.image !== `naruto/c/${name}` || content.payload.video !== `naruto/${name}`) found.push(`${content.id}: el nombre opaco del clip no es el esperado`);
       for (const size of SIZES) {
-        found.push(...(await checkImageFile(path.join(JUTSU_IMAGE_DIR, imageFileName(id, size)), size, BUDGET[size], `${content.id} (${size} px)`)));
+        found.push(...(await checkImageFile(path.join(POSTER_DIR, imageFileName(name, size)), size, BUDGET[size], `${content.id} (póster ${size} px)`)));
       }
-      const dimensions = await imageDimensions(path.join(JUTSU_IMAGE_DIR, imageFileName(id, 512)));
+      try {
+        const clipBytes = (await stat(path.join(VIDEO_DIR, `${name}.mp4`))).size;
+        if (clipBytes > CLIP_BUDGET) found.push(`${content.id}: el clip pesa ${clipBytes} bytes y el máximo son ${CLIP_BUDGET}`);
+      } catch {
+        found.push(`${content.id}: falta el clip public/video/naruto/${name}.mp4`);
+      }
+      const dimensions = await imageDimensions(path.join(POSTER_DIR, imageFileName(name, 512)));
       if (dimensions.width !== content.payload.width || dimensions.height !== content.payload.height) {
         found.push(`${content.id}: el contenido dice ${String(content.payload.width)}×${String(content.payload.height)} y el archivo mide ${dimensions.width}×${dimensions.height}`);
       }
@@ -611,20 +619,24 @@ async function main(): Promise<void> {
   const shared = sharedMembers(src.groups);
   const groups = src.groups.map((group) => buildGroupContent(group, shared.get(group.id) ?? new Map()));
 
-  // Jutsus: la infobox dice quién más los usa, y de qué serie son; la imagen sale de la carga manual
-  step(`Imágenes de ${src.jutsus.length} jutsus (solo las cargadas a mano)…`);
+  // Jutsus: la infobox dice quién más los usa, y de qué serie son; el clip y su póster salen de clips.json (ver clips.ts)
+  step(`Clips de ${src.jutsus.length} jutsus (se reutilizan los ya procesados)…`);
   const jutsuProblems: string[] = [];
-  const jutsuImages = await mapPool(src.jutsus, IMAGE_TASKS, async (jutsu) => {
-    const manual = await readManualImage(path.join(MANUAL_DIR, 'jutsus'), jutsu.id);
-    if (manual === null) return null;
-    const rendered = await renderPlainImage(jutsu.id, manual.buffer, JUTSU_IMAGE_DIR);
-    const size = await imageDimensions(path.join(JUTSU_IMAGE_DIR, imageFileName(jutsu.id, 512)));
-    return { rendered, width: size.width, height: size.height };
-  });
+  const clipSources = await readClipSources();
+  const jutsuClips: RenderedClip[] = [];
+  for (const jutsu of src.jutsus) {
+    const videoId = clipSources.get(jutsu.id);
+    if (videoId === undefined) {
+      jutsuProblems.push(`${jutsu.id}: no tiene datos en data-src/naruto/clips.json`);
+      continue;
+    }
+    jutsuClips.push(await renderClip(jutsu.id, videoId));
+  }
+  const clipOf = new Map(jutsuClips.map((clip) => [clip.id, clip]));
   const jutsuContents: Content[] = [];
   const jutsuInfoOf = new Map<string, WikiJutsu>();
   let acceptedExtras = 0;
-  src.jutsus.forEach((jutsu, index) => {
+  src.jutsus.forEach((jutsu) => {
     const info = infos.get(jutsu.wiki);
     if (info === undefined || info === null) {
       jutsuProblems.push(`${jutsu.id}: no existe la página "${jutsu.wiki}" en Narutopedia`);
@@ -632,7 +644,10 @@ async function main(): Promise<void> {
     }
     jutsuInfoOf.set(jutsu.id, info);
     const users = info.users.filter((user) => !user.tagged).flatMap((user) => idByName.get(normalize(user.name)) ?? []);
-    if (!users.includes(jutsu.answer)) {
+    // La respuesta puede figurar en la infobox con una marca (por ejemplo, Sasori como titiritero de la Lluvia de Arena de Hierro): sigue
+    // siendo un usuario de la página. Los que cuentan como acierto extra son solo los usuarios sin marca.
+    const answerListed = info.users.some((user) => idByName.get(normalize(user.name)) === jutsu.answer);
+    if (!answerListed) {
       jutsuProblems.push(`${jutsu.id}: ${nameById(jutsu.answer)} no figura entre los usuarios de la infobox de "${info.title}"`);
     }
     const accepts = [...new Set(users)].filter((id) => id !== jutsu.answer).sort();
@@ -646,14 +661,14 @@ async function main(): Promise<void> {
       jutsuProblems.push(`${jutsu.id}: es de ${series}, que ${jutsu.answer} no tiene`);
       return;
     }
-    const image = jutsuImages[index];
-    if (image === null) return;
+    const clip = clipOf.get(jutsu.id);
+    if (clip === undefined) return;
     jutsuContents.push({
       id: `jutsu-${jutsu.id}`,
       kind: 'jutsu',
       entityId: jutsu.answer,
       series,
-      payload: { name: jutsu.name, image: `naruto/jutsus/${jutsu.id}`, width: image.width, height: image.height, accepts },
+      payload: { name: jutsu.name, image: clip.image, video: clip.video, width: clip.width, height: clip.height, accepts },
       verified: jutsu.verified,
     });
   });
@@ -693,19 +708,8 @@ async function main(): Promise<void> {
         wikiFile: first === undefined ? undefined : decodeURIComponent(path.basename(new URL(first).pathname)),
       };
     });
-  const missingJutsus: MissingImage[] = src.jutsus
-    .filter((_, index) => jutsuImages[index] === null)
-    .map((jutsu) => {
-      const info = jutsuInfoOf.get(jutsu.id) as WikiJutsu;
-      return {
-        id: jutsu.id,
-        name: jutsu.name,
-        file: `data-src/naruto/images/jutsus/${jutsu.id}`,
-        wikiPage: info.title,
-        wikiFile: info.image ?? undefined,
-        note: nameById(jutsu.answer),
-      };
-    });
+    // Los jutsus ya no piden imagen a mano: su póster sale del clip.
+  const missingJutsus: MissingImage[] = [];
   const jutsuAnswers = new Set(jutsuContents.map((content) => content.entityId)).size;
   const opaque = characters.filter((entity) => entity.attrs.imagenTransparente === 0).map((entity) => ({ id: entity.id, name: entity.name.es }));
   const verifiedQuotes = quotes.filter((content) => content.verified);
@@ -748,8 +752,9 @@ async function main(): Promise<void> {
     arcCount: src.arcs.length,
     rendered: {
       characters: characterImages.flatMap((result) => result.rendered),
-      jutsus: jutsuImages.flatMap((result) => result?.rendered ?? []),
+      jutsus: [],
     },
+    clips: jutsuClips,
     unverified: [
       { label: 'personajes', unverified: src.characters.filter((item) => !item.verified).length, total: src.characters.length },
       { label: 'frases', unverified: src.quotes.filter((item) => !item.verified).length, total: src.quotes.length },
