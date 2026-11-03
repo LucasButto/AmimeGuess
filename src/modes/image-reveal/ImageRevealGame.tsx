@@ -8,7 +8,7 @@ import { defaultMinPool, eligibleEntities, hasMinimumPool } from '@/engine/filte
 import type { Content, Entity } from '@/engine/types';
 import { ImageRevealBoard } from './ImageRevealBoard';
 import { ImageRevealHelp } from './ImageRevealHelp';
-import { candidatesOf } from './logic';
+import { candidatesOf, pickImage } from './logic';
 import type { ImageRevealConfig } from './types';
 
 interface ImageRevealGameProps {
@@ -36,12 +36,19 @@ export function ImageRevealGame({ franchise, mode, modes, config, entities, cont
     [entities, contents, config],
   );
 
+  // El contador de posibles del modo Jutsu cuenta los jutsus (cada imagen) y no los personajes que los usan.
+  const displayCount = useMemo(
+    () => (config.countNoun === undefined ? undefined : (active: readonly string[]) => candidatesOf(entities, contents, active, config).reduce((sum, candidate) => sum + candidate.images.length, 0)),
+    [entities, contents, config],
+  );
+
   const yesterday = useCallback(
     (ctx: DailyContext, active: readonly string[]): AnswerInfo | null => {
       const pool = candidatesOf(entities, contents, active, config);
       if (!hasMinimumPool(pool.length, MINIMUM_POOL)) return null;
       const answer = yesterdayOf(pool, ctx);
-      return { label: answer.entity.name.es, imageStem: answer.entity.image };
+      const name = config.showsContentName ? pickImage(answer, { ...ctx, day: ctx.day - 1 }).name : undefined;
+      return { label: answer.entity.name.es, imageStem: answer.entity.image, ...(name === undefined ? {} : { detail: name }) };
     },
     [entities, contents, config],
   );
@@ -53,6 +60,7 @@ export function ImageRevealGame({ franchise, mode, modes, config, entities, cont
       modes={modes}
       minimumPool={MINIMUM_POOL}
       poolSize={poolSize}
+      displayCount={displayCount}
       yesterday={yesterday}
       help={<ImageRevealHelp variant={config.variant} />}
     >

@@ -34,6 +34,8 @@ interface FilterPanelProps {
   onChange: (next: string[]) => void;
   /** Cuántas entidades quedan elegibles con los filtros actuales. */
   remaining: number;
+  /** Lo que muestra el contador si no es `remaining` (el modo Jutsu cuenta jutsus y no personajes); el mínimo sigue midiéndose con `remaining`. */
+  shown?: number;
   /** Mínimo para poder jugar el modo (regla 6 de la SPEC). */
   minimum: number;
   /** Interruptores de la partida (relleno, arcos del manga), debajo de las series; cada uno con su ⓘ. */
@@ -48,7 +50,7 @@ interface FilterPanelProps {
  * Chips por serie: se apagan para excluir (SPEC 9). Muestra cuántas entidades
  * quedan, avisa si no alcanzan el mínimo e impide apagar la última serie.
  */
-export function FilterPanel({ series, labels, details, active, onChange, remaining, minimum, toggles, children, sheet = false }: FilterPanelProps) {
+export function FilterPanel({ series, labels, details, active, onChange, remaining, shown, minimum, toggles, children, sheet = false }: FilterPanelProps) {
   const { skin } = useSkin();
   const noun = useContext(PoolNounContext);
   const { ChipMark } = skin.slots;
@@ -75,7 +77,7 @@ export function FilterPanel({ series, labels, details, active, onChange, remaini
           <InfoTip compact text={es.help.filters} label={es.help.button(es.filters.title)} />
         </div>
         <p className={styles.count} role="status">
-          {es.filters.remaining(remaining, noun)}
+          {es.filters.remaining(shown ?? remaining, noun)}
         </p>
       </div>
       <div id={bodyId} hidden={!sheet && !open} className={styles.body}>

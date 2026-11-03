@@ -56,11 +56,11 @@ interface ImageRevealBoardProps {
  * El aviso al marco de que terminó el reto, ganado o perdido (se gastaron los intentos): la respuesta, los intentos y la
  * grilla para compartir.
  */
-function reportOf(attemptIds: readonly string[], answer: Candidate, accepted: readonly string[], won: boolean, fresh: boolean): FinishReport {
+function reportOf(attemptIds: readonly string[], answer: Candidate, accepted: readonly string[], won: boolean, fresh: boolean, detail?: string): FinishReport {
   return {
     won,
     attempts: attemptIds.length,
-    answer: { label: answer.entity.name.es, imageStem: answer.entity.image },
+    answer: { label: answer.entity.name.es, imageStem: answer.entity.image, ...(detail === undefined ? {} : { detail }) },
     grid: shareGrid(attemptIds, answer.id, accepted),
     fresh,
   };
@@ -87,6 +87,8 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
   const answer = useMemo(() => pickDaily(candidates, ctx), [candidates, ctx]);
   const image = useMemo(() => pickImage(answer, ctx), [answer, ctx]);
+  // El modo Jutsu dice también cuál era el jutsu: "Era Naruto Uzumaki – Rasengan".
+  const detail = config.showsContentName ? image.name : undefined;
   // Una imagen puede ser igual de cierta para más de una entidad (una técnica que usan varios personajes).
   const accepted = useMemo(() => image.accepts ?? [], [image]);
   // El punto del zoom: el del dato si lo trae y, si no, el del PRNG del día. El zoom de la silueta parte siempre de un
@@ -107,8 +109,8 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   // Si la partida ya había terminado al montarse (se recargó la página), el marco tiene que
   // mostrar su resumen, pero sin volver a sumarla a las estadísticas.
   const [restored] = useState<FinishReport | null>(() => {
-    if (attemptIds.some((id) => isCorrect(id, answer.id, accepted))) return reportOf(attemptIds, answer, accepted, true, false);
-    return surrendered || isLost(failedCount(attemptIds, answer.id, accepted), maxAttempts) ? reportOf(attemptIds, answer, accepted, false, false) : null;
+    if (attemptIds.some((id) => isCorrect(id, answer.id, accepted))) return reportOf(attemptIds, answer, accepted, true, false, detail);
+    return surrendered || isLost(failedCount(attemptIds, answer.id, accepted), maxAttempts) ? reportOf(attemptIds, answer, accepted, false, false, detail) : null;
   });
   useEffect(() => {
     if (restored) onFinish(restored);
@@ -157,7 +159,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
     setLastAttempt({ id, revealed: prefs.reveal });
     writeState(getLocalStorage(), ctx, { attempts: next, result: solved ? 'won' : spent ? 'lost' : 'playing' });
 
-    if (solved || spent) onFinish(reportOf(next, answer, accepted, solved, true));
+    if (solved || spent) onFinish(reportOf(next, answer, accepted, solved, true, detail));
   }
 
   function updatePrefs(next: RevealPrefs) {
@@ -192,6 +194,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
           height={image.height}
           alt={over ? es.imageReveal.imageSolvedAlt(answer.entity.name.es) : es.imageReveal.imageAlt}
           visual={visual}
+          video={image.video}
           kind={config.imageContentKind}
         />
       </SkinGameFrame>
@@ -211,7 +214,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
         <AttemptsStatus><p>{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
         {!over && (
           <SurrenderButton
-            onConfirm={() => surrender(attemptIds, reportOf(attemptIds, answer, accepted, false, true))}
+            onConfirm={() => surrender(attemptIds, reportOf(attemptIds, answer, accepted, false, true, detail))}
           />
         )}
       </div>

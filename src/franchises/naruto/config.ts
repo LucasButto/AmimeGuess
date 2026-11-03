@@ -116,9 +116,11 @@ export const narutoConfig = {
       slug: 'jutsu',
       name: 'Jutsu',
       engine: 'image-reveal',
-      // La imagen es un jutsu (cada uno con su captura) y la respuesta, quien lo usa. Cuenta como acierto
-      // cualquiera de los personajes que lo usan (ver `accepts` en los datos).
-      imageReveal: { variant: 'blur', imageContentKind: 'jutsu' },
+      // La pista es un clip en bucle de la escena de un jutsu (cada uno con su video y su póster) y la respuesta, quien lo usa.
+      // Cuenta como acierto cualquiera de los personajes que lo usan (ver `accepts` en los datos). El desenfoque baja más
+      // que el de las imágenes de personajes (de 1,7 a 0,45 rem): en una escena en movimiento con esos valores no se
+      // reconocía nada ni en el último paso; ahora arranca como manchas de color y termina casi nítido.
+      imageReveal: { variant: 'blur', imageContentKind: 'jutsu', showsContentName: true, countNoun: { one: 'jutsu', many: 'jutsus' }, blurLevels: [1, 0.8, 0.6, 0.42, 0.26, 0.12] },
     },
     {
       slug: 'ojo',

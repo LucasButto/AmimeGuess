@@ -79,3 +79,9 @@ $max-height: min(28rem, 60dvh);
     transition: transform 0.6s ease;
   }
 }
+
+// El clip llena el marco aunque su proporción difiera un poco: el marco lleva un borde, así que la caja interior no tiene exactamente
+// la proporción del clip y con `contain` quedaban franjas a los costados al verlo sin desenfoque. Con `cover` se recorta apenas.
+video.image {
+  object-fit: cover;
+}

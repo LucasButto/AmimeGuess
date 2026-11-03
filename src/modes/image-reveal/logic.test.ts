@@ -498,3 +498,54 @@ describe('accepts · una imagen que es cierta para más de una entidad', () => {
     expect(shareGrid(attempts, 'goku')).toEqual(['🟥', '🟥', '🟩']);
   });
 });
+
+describe('candidatesOf · clips y zoom propio del contenido', () => {
+  const JUTSU_CONFIG: ImageRevealConfig = { variant: 'blur', imageContentKind: 'jutsu' };
+
+  it('si el contenido trae un clip, la imagen lo lleva (y el póster sigue siendo `stem`)', () => {
+    const [candidate] = candidatesOf([entity('a', ['g1'])], [card('j1', 'a', 'g1', { image: 'naruto/c/aa', video: 'naruto/aa', width: 512, height: 330 }, 'jutsu')], ['g1'], JUTSU_CONFIG);
+    expect(candidate.images[0]).toMatchObject({ stem: 'naruto/c/aa', video: 'naruto/aa', width: 512, height: 330 });
+  });
+
+  it('sin clip (o con uno vacío o que no es texto), la imagen no tiene `video` y todo sigue como siempre', () => {
+    const contents = [
+      card('j1', 'a', 'g1', { image: 'naruto/c/aa' }, 'jutsu'),
+      card('j2', 'b', 'g1', { image: 'naruto/c/bb', video: '' }, 'jutsu'),
+      card('j3', 'c', 'g1', { image: 'naruto/c/cc', video: 3 }, 'jutsu'),
+    ];
+    const candidates = candidatesOf([entity('a', ['g1']), entity('b', ['g1']), entity('c', ['g1'])], contents, ['g1'], JUTSU_CONFIG);
+    expect(candidates).toHaveLength(3);
+    for (const candidate of candidates) expect(candidate.images[0]).not.toHaveProperty('video');
+  });
+
+  it('el zoom propio solo vale entre 1 y 2', () => {
+    const contents = [
+      card('z1', 'a', 'g1', { image: 'x/a', zoom: 1.3 }, 'eye'),
+      card('z2', 'b', 'g1', { image: 'x/b', zoom: 0.5 }, 'eye'),
+      card('z3', 'c', 'g1', { image: 'x/c', zoom: 5 }, 'eye'),
+    ];
+    const candidates = candidatesOf([entity('a', ['g1']), entity('b', ['g1']), entity('c', ['g1'])], contents, ['g1'], { variant: 'zoom', imageContentKind: 'eye' });
+    expect(candidates.map((candidate) => candidate.images[0].zoom)).toEqual([1.3, undefined, undefined]);
+  });
+});
+
+describe('candidatesOf · nombre del contenido', () => {
+  it('la imagen lleva el nombre del contenido si el dato lo trae (el jutsu), y no si falta o está vacío', () => {
+    const contents = [
+      card('j1', 'a', 'g1', { image: 'x/a', name: 'Rasengan' }, 'jutsu'),
+      card('j2', 'b', 'g1', { image: 'x/b', name: '' }, 'jutsu'),
+      card('j3', 'c', 'g1', { image: 'x/c' }, 'jutsu'),
+    ];
+    const candidates = candidatesOf([entity('a', ['g1']), entity('b', ['g1']), entity('c', ['g1'])], contents, ['g1'], { variant: 'blur', imageContentKind: 'jutsu' });
+    expect(candidates[0].images[0].name).toBe('Rasengan');
+    expect(candidates[1].images[0]).not.toHaveProperty('name');
+    expect(candidates[2].images[0]).not.toHaveProperty('name');
+  });
+
+  it('con varios jutsus de la misma respuesta, el nombre es el del que se eligió ese día', () => {
+    const contents = [card('j1', 'a', 'g1', { image: 'x/1', name: 'Rasengan' }, 'jutsu'), card('j2', 'a', 'g1', { image: 'x/2', name: 'Chidori' }, 'jutsu')];
+    const [candidate] = candidatesOf([entity('a', ['g1'])], contents, ['g1'], { variant: 'blur', imageContentKind: 'jutsu' });
+    const names = new Set([100, 101, 102, 103, 104, 105, 106, 107].map((day) => pickImage(candidate, { ...ctx, day }).name));
+    expect(names).toEqual(new Set(['Rasengan', 'Chidori']));
+  });
+});

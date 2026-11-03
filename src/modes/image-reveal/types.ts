@@ -42,6 +42,16 @@ export interface ImageRevealConfig {
    */
   readonly imageContentKind?: string;
   /**
+   * En el resultado, después de la respuesta va el nombre del contenido (`payload.name`): el modo Jutsu dice "Era Naruto Uzumaki
+   * – Rasengan". Solo para los modos cuyo contenido tiene nombre propio y no es la respuesta (un jutsu, no una carta).
+   */
+  readonly showsContentName?: boolean;
+  /**
+   * Cómo se llama lo que cuenta el contador de posibles del modo, si no son las respuestas sino los contenidos (en el modo Jutsu,
+   * "153 jutsus posibles" y no "64 personajes posibles"). El mínimo para jugar y los intentos siguen contando las respuestas.
+   */
+  readonly countNoun?: { readonly one: string; readonly many: string };
+  /**
    * Solo pueden ser la respuesta las entidades que cumplen esto (por ejemplo, las que
    * tienen una imagen de fondo transparente, para la silueta). Las demás siguen siendo
    * una opción del autocompletado: se pueden intentar, pero no son la respuesta.

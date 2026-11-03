@@ -59,6 +59,7 @@ export function GameShell({
   gridKind = 'marks',
   minimumPool,
   poolSize,
+  displayCount,
   yesterday,
   help,
   variant: engineVariant,
@@ -147,6 +148,7 @@ export function GameShell({
   }, []);
 
   const remaining = useMemo(() => poolSize(active), [poolSize, active]);
+  const shownCount = useMemo(() => displayCount?.(active), [displayCount, active]);
   const fullPool = useMemo(() => poolSize(franchise.series), [poolSize, franchise.series]);
   const limit = attemptRules ? attemptLimit(attemptRules.base, remaining, fullPool, attemptRules.adaptive) : undefined;
   const playable = hasMinimumPool(remaining, minimumPool);
@@ -185,6 +187,7 @@ export function GameShell({
       <span>
         <span className={styles.yesterdayLabel}>{es.shell.yesterday}</span>{' '}
         <strong>{yesterdayAnswer.label}</strong>
+        {yesterdayAnswer.detail && <> – {yesterdayAnswer.detail}</>}
       </span>
     </p>
   );
@@ -249,6 +252,7 @@ export function GameShell({
         active={active}
         onChange={setActive}
         remaining={remaining}
+        shown={shownCount}
         minimum={minimumPool}
         toggles={flags.toggles}
         sheet={inSheet}

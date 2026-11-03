@@ -277,7 +277,12 @@ export const es = {
             {
               name: 'Narutopedia (Fandom)',
               url: 'https://naruto.fandom.com',
-              text: 'Datos de los jutsus, frases traducidas al español (CC BY-SA, más abajo) e imágenes de personajes y jutsus.',
+              text: 'Datos de los jutsus, frases traducidas al español (CC BY-SA, más abajo), imágenes de personajes y las capturas con que se buscó la escena de cada jutsu. Licencia de las imágenes: a confirmar.',
+            },
+            {
+              name: 'trace.moe',
+              url: 'https://trace.moe',
+              text: 'Búsqueda de escenas por imagen: de ahí salen el episodio y el momento de cada clip del modo Jutsu. Los clips son fragmentos del anime; pertenecen a sus titulares. Licencia: a confirmar.',
             },
           ],
         },
@@ -469,6 +474,11 @@ export const es = {
       columnsNote: 'Algunas columnas solo aparecen con ciertas series activas.',
       hiddenNote: 'Si el valor de una columna pertenece a una serie que apagaste, se ve como — y no se compara.',
     },
+  },
+  // Clips de contenido (ContentVideo): el botón para quien pidió menos movimiento o cuyo navegador no los arranca solo.
+  video: {
+    play: 'Reproducir clip',
+    pause: 'Pausar clip',
   },
   imageReveal: {
     inputLabel: 'Tu intento',
@@ -708,7 +718,7 @@ export const es = {
       // Título del resumen en los temas que nombran la respuesta al ganar.
       answerTitle: (label: string) => `¡Es ${label}!`,
       lostTitle: 'Fallaste',
-      answerWas: (label: string) => `Era ${label}.`,
+      answerWas: (label: string, detail?: string) => (detail === undefined ? `Era ${label}.` : `Era ${label} – ${detail}.`),
       wonSummary: (attempts: number, streak: number) =>
         `Lo resolviste en ${attempts} ${plural(attempts, 'intento', 'intentos')}. Racha: ${streak} ${plural(streak, 'día', 'días')}.`,
       lostSummary: 'Mañana hay un reto nuevo.',

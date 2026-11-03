@@ -69,7 +69,7 @@ export function ResultPanel({ won, attempts, score, answer, streak, getShareText
         <div className={styles.content}>
           <h2 className={styles.title}>{title}</h2>
           {/* En un modo de puntaje la respuesta es una frase libre y puede no haber ninguna. */}
-          {scored || answerIsSentence ? answer.label && <p>{answer.label}</p> : !namesAnswer && <p>{es.shell.result.answerWas(answer.label)}</p>}
+          {scored || answerIsSentence ? answer.label && <p>{answer.label}</p> : !namesAnswer && <p>{es.shell.result.answerWas(answer.label, answer.detail)}</p>}
           <p className={styles.summary}>
             {practice
               ? scored
