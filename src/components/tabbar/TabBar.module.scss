@@ -38,27 +38,33 @@
   align-content: center;
   gap: 0.125rem;
   min-block-size: 3.5rem;
-  padding: t.$space-1 t.$space-1;
+  position: relative;
+  padding: t.$space-1 t.$space-1 0.875rem;
   color: inherit;
   text-decoration: none;
-  opacity: 0.72;
+  opacity: 0.62;
 
+  // La pestaña actual: letra e ícono plenos (las otras, apagadas) y una franja corta debajo del texto, del color de la tinta de la barra. No es solo un
+  // color (la acompañan la franja y `aria-current`) y no pinta la celda entera, que con el marco del tema se veía recargado.
   &[aria-current='page'] {
     opacity: 1;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset-block-end: 0.4375rem;
+      inset-inline: calc(50% - 1rem);
+      block-size: 0.25rem;
+      background: currentColor;
+    }
   }
 }
 
-// La pastilla detrás del ícono marca la pestaña actual (el color solo no informa: la acompaña la forma y `aria-current`).
 .iconWrap {
   display: grid;
   place-items: center;
   inline-size: 3.25rem;
   block-size: 1.75rem;
-  border-radius: t.$radius-full;
-
-  .tab[aria-current='page'] & {
-    background: color-mix(in srgb, currentColor 22%, transparent);
-  }
 }
 
 .icon {
