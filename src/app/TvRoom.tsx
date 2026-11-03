@@ -87,7 +87,7 @@ function TvScreen({ channel, number, note, progress, swipe, onNavigate }: Screen
   const { solved, count, done, label } = channelProgress(channel, progress);
   if (channel.comingSoon) {
     return (
-      <div className={styles.screen} data-soon role="img" aria-label={es.home.comingSoonLabel(channel.name)} data-tv-screen {...swipe}>
+      <div className={styles.screen} data-soon data-franchise={channel.slug} role="img" aria-label={es.home.comingSoonLabel(channel.name)} data-tv-screen {...swipe}>
         <span className={styles.picture} aria-hidden="true">
           <span className={styles.soonStatic} />
           <span className={styles.soonName}>{channel.name}</span>
@@ -130,7 +130,7 @@ function RemoteButton({ channel, active, progress, onTune, onNavigate }: RemoteB
   const { solved, count, done, label } = channelProgress(channel, progress);
   if (channel.comingSoon) {
     return (
-      <span className={styles.key} data-soon data-active={active} data-remote-key role="img" aria-label={es.home.comingSoonLabel(channel.name)}
+      <span className={styles.key} data-soon data-franchise={channel.slug} data-active={active} data-remote-key role="img" aria-label={es.home.comingSoonLabel(channel.name)}
         onMouseEnter={onTune}>
         <span className={styles.keyName} aria-hidden="true">{channel.name}</span>
         <span className={styles.keyCount} aria-hidden="true">{es.home.comingSoon}</span>

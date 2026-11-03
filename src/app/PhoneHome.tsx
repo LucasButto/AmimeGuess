@@ -31,7 +31,7 @@ function FranchiseCard({ channel, progress }: { channel: Channel; progress: Prog
   if (channel.comingSoon) {
     return (
       <li className={styles.cardItem}>
-        <span className={styles.card} data-soon data-franchise-card role="img" aria-label={es.home.comingSoonLabel(channel.name)}>
+        <span className={styles.card} data-soon data-franchise={channel.slug} data-franchise-card role="img" aria-label={es.home.comingSoonLabel(channel.name)}>
           <span className={styles.cardName} aria-hidden="true">{channel.name}</span>
           <span className={styles.cardCount} aria-hidden="true">{es.home.comingSoon}</span>
         </span>

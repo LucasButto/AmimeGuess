@@ -1,4 +1,4 @@
-import { franchises } from '@/franchises';
+import { allFranchises } from '@/franchises';
 import { themeCss, themeScope } from '@/franchises/theme';
 import { DismissibleFooter } from '@/components/DismissibleFooter';
 import { SiteFooter } from '@/components/SiteFooter';
@@ -15,8 +15,8 @@ export default async function HomePage() {
   return (
     <div className={styles.room} data-hub="tv">
       <main className={styles.page}>
-        {/* El tema de cada franquicia, con alcance de tarjeta: el Home muestra las cuatro identidades a la vez. */}
-        <style>{franchises.map((franchise) => themeCss(franchise.theme, themeScope(franchise.slug))).join('\n')}</style>
+        {/* El tema de cada canal (también el de uno "Próximamente"), con alcance de tarjeta: el Home muestra las cuatro identidades a la vez y cada una conserva su tipografía. */}
+        <style>{allFranchises.filter((franchise) => channels.some((channel) => channel.slug === franchise.slug)).map((franchise) => themeCss(franchise.theme, themeScope(franchise.slug))).join('\n')}</style>
         <TvRoom
           channels={channels.map(({ slug, name, modes, comingSoon }) => ({
             slug,
