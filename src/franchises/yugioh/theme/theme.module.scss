@@ -156,7 +156,7 @@
   main header > h1::before {
     // Pseudo-elemento vacío y decorativo: conserva la caja de la viñeta anterior.
     background-color: currentColor;
-    mask: url('/theme/yugioh/glifos/glifo-14.svg') center / contain no-repeat;
+    mask: url('/icons/yugioh/jeroglificos/escarabajo-alado.webp') center / contain no-repeat;
   }
   main header > h1:has([data-duel-title-card])::before { display: none; }
   [data-part='mode-nav'] { --chip-fill: var(--palette-sandstoneDark); --chip-on-fill: var(--palette-gold); }

@@ -11,7 +11,7 @@
   mask-size: contain;
   mask-position: center;
   mask-repeat: no-repeat;
-  @each $id in ('01', '14', '08') {
-    &[data-chip-glyph='#{$id}'] { mask-image: url('/theme/yugioh/glifos/glifo-#{$id}.svg'); }
+  @each $id in ('ojo-de-horus', 'escarabajo-alado', 'ankh') {
+    &[data-chip-glyph='#{$id}'] { mask-image: url('/icons/yugioh/jeroglificos/#{$id}.webp'); }
   }
 }

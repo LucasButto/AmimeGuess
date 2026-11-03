@@ -1,9 +1,9 @@
 import styles from './Backdrop.module.scss';
 
-const LEFT_GLYPHS = ['01', '08', '14', '09', '22', '23', '01', '14'];
-const RIGHT_GLYPHS = ['23', '09', '01', '22', '14', '08', '23', '08'];
+const LEFT_GLYPHS = ['ankh', 'ojo-de-horus', 'escarabajo-alado', 'sol', 'loto', 'halcon', 'cobra', 'ankh'];
+const RIGHT_GLYPHS = ['pluma-de-maat', 'ibis', 'ojo-de-horus', 'djed', 'anubis', 'sol', 'escarabajo', 'ankh'];
 
-/** Geometría de los vectores aportados; ninguna inscripción se dibuja a mano. */
+/** Los jeroglíficos de la hoja aportada (`public/icons/yugioh/jeroglificos/`); ninguna inscripción se dibuja a mano. */
 export function DuelBackdrop() {
   return <div className={styles.backdrop} data-backdrop="yugioh" aria-hidden="true">
     {([{ side: 'left', glyphs: LEFT_GLYPHS }, { side: 'right', glyphs: RIGHT_GLYPHS }]).map(({ side, glyphs }) =>

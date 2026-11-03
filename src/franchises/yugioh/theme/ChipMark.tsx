@@ -4,7 +4,7 @@ import type { CardFrameType } from './modeCards';
 import styles from './ChipMark.module.scss';
 
 const FRAMES: Readonly<Record<string, CardFrameType>> = { dm: 'effect', gx: 'fusion', '5ds': 'synchro' };
-const GLYPHS: Readonly<Record<string, string>> = { dm: '01', gx: '14', '5ds': '08' };
+const GLYPHS: Readonly<Record<string, string>> = { dm: 'ojo-de-horus', gx: 'escarabajo-alado', '5ds': 'ankh' };
 export function CardChipMark({ on, id }: ChipMarkProps) {
   const frame = id && Object.hasOwn(FRAMES, id) ? FRAMES[id] : 'neutral';
   const glyph = id && Object.hasOwn(GLYPHS, id) ? GLYPHS[id] : null;

@@ -1,1 +1,15 @@
-.glyph { display: block; inline-size: 100%; block-size: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.glyph {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  background-color: currentColor;
+  mask-mode: alpha;
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  &[data-glyph-kind='ankh'] { mask-image: url('/icons/yugioh/jeroglificos/ankh.webp'); }
+  &[data-glyph-kind='eye'] { mask-image: url('/icons/yugioh/jeroglificos/ojo-de-horus.webp'); }
+  &[data-glyph-kind='scarab'] { mask-image: url('/icons/yugioh/jeroglificos/escarabajo.webp'); }
+  &[data-glyph-kind='sun'] { mask-image: url('/icons/yugioh/jeroglificos/sol.webp'); }
+  &[data-glyph-kind='lotus'] { mask-image: url('/icons/yugioh/jeroglificos/loto.webp'); }
+}

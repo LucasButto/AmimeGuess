@@ -52,8 +52,8 @@
   mask-size: contain;
   mask-position: center;
   mask-repeat: no-repeat;
-  @each $id in ('01', '08', '14', '09', '22', '23') {
-    &[data-glyph='#{$id}'] { mask-image: url('/theme/yugioh/glifos/glifo-#{$id}.svg'); }
+  @each $id in ('ankh', 'anubis', 'cobra', 'djed', 'escarabajo', 'escarabajo-alado', 'halcon', 'ibis', 'loto', 'ojo-de-horus', 'pluma-de-maat', 'sol') {
+    &[data-glyph='#{$id}'] { mask-image: url('/icons/yugioh/jeroglificos/#{$id}.webp'); }
   }
 }
 @include bp.min-width('xl') {
