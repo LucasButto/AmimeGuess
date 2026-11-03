@@ -19,6 +19,8 @@ export interface ReportInput {
   readonly contents: Content[];
   readonly arcCount: number;
   readonly rendered: { characters: Rendered[]; jutsus: Rendered[] };
+  /** Los clips del modo Jutsu: peso del video y del póster, y de dónde salió el original. */
+  readonly clips: ReadonlyArray<{ id: string; clipBytes: number; posterBytes: number; source: string }>;
   readonly unverified: UnverifiedCount[];
   /** Personajes y jutsus sin imagen (a cargar a mano). */
   readonly missing: { characters: number; jutsus: number };
@@ -130,6 +132,7 @@ export function printReport(input: ReportInput): void {
   line('Imágenes (WebP):');
   const total = printImages(line, 'personajes  ', input.rendered.characters) + printImages(line, 'jutsus      ', input.rendered.jutsus);
   line(`  Peso generado en esta corrida: ${mb(total)}`);
+  printClips(line, input.clips);
   line(`  Peso de public/img/naruto: ${mb(input.imageBytesNaruto)}`);
   const limit = 250 * 1024 * 1024;
   line(
@@ -140,4 +143,15 @@ export function printReport(input: ReportInput): void {
     `  Imágenes con fondo (no sirven para Silueta): ${input.opaqueImages.length}${input.opaqueImages.length > 0 ? ` (${input.opaqueImages.join(', ')})` : '  (todavía no hay imágenes cargadas, así que no se puede contar cuántas necesitarían quitarles el fondo)'}`,
   );
   line();
+}
+
+/** Los clips del modo Jutsu (public/video/naruto/): cuántos son, cuánto pesan y el más pesado. */
+function printClips(line: (text?: string) => void, clips: ReportInput['clips']): void {
+  if (clips.length === 0) return;
+  const bytes = clips.reduce((sum, clip) => sum + clip.clipBytes, 0);
+  const heaviest = clips.reduce((max, clip) => (clip.clipBytes > max.clipBytes ? clip : max));
+  const posters = clips.reduce((sum, clip) => sum + clip.posterBytes, 0);
+  const previews = clips.filter((clip) => clip.source === 'vista previa').length;
+  line(`  Clips (MP4 sin audio, public/video/naruto): ${clips.length}, ${mb(bytes)} en total, promedio ${(bytes / clips.length / 1024).toFixed(0)} KB, máximo ${(heaviest.clipBytes / 1024).toFixed(0)} KB (${heaviest.id}); pósters: ${mb(posters)}`);
+  line(`  Originales: ${clips.length - previews} de trace.moe (640 px) y ${previews} desde la vista previa de 320 px`);
 }

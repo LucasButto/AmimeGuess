@@ -339,7 +339,10 @@ const jutsuContentSchema = z
     payload: z
       .object({
         name: z.string().min(1),
-        image: z.string().regex(/^naruto\/jutsus\/[a-z0-9]+(-[a-z0-9]+)*$/),
+        /** El póster del clip: un cuadro del medio, con nombre opaco (no dice qué jutsu es). */
+        image: z.string().regex(/^naruto\/c\/[0-9a-f]{16}$/),
+        /** El clip, sin extensión, dentro de /public/video: un MP4 sin audio, también con nombre opaco. */
+        video: z.string().regex(/^naruto\/[0-9a-f]{16}$/),
         width: z.number().int().positive(),
         height: z.number().int().positive(),
         accepts: z.array(kebab),
