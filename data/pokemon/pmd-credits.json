@@ -2419,9 +2419,9 @@
         "sprite/0257/0000/0001/Idle",
         "sprite/0257/0000/0001/Sleep",
         "sprite/0257/0000/0001/Walk",
-        "sprite/0276/0000/0001/Attack",
-        "sprite/0276/0000/0001/Attack/shadow",
         "sprite/0276/0000/0001/Idle",
+        "sprite/0276/0000/0001/Shoot",
+        "sprite/0276/0000/0001/Shoot/shadow",
         "sprite/0276/0000/0001/Sleep",
         "sprite/0276/0000/0001/Walk",
         "sprite/0277/0000/0001/Idle",
@@ -2793,6 +2793,7 @@
         "portrait/0014/Happy",
         "portrait/0014/Normal",
         "portrait/0014/Sad",
+        "portrait/0076/0002/Normal",
         "portrait/0080/Happy",
         "portrait/0080/Normal",
         "portrait/0080/Sad",
@@ -6245,9 +6246,9 @@
         "sprite/0261/0000/0001/Laying",
         "sprite/0261/0000/0001/Wake",
         "sprite/0261/0000/0001/Walk",
-        "sprite/0276/0000/0001/Attack",
-        "sprite/0276/0000/0001/Attack/shadow",
         "sprite/0276/0000/0001/Idle",
+        "sprite/0276/0000/0001/Shoot",
+        "sprite/0276/0000/0001/Shoot/shadow",
         "sprite/0276/0000/0001/Sleep",
         "sprite/0276/0000/0001/Walk",
         "sprite/0277/0000/0001/Idle",
@@ -7322,7 +7323,6 @@
         "sprite/0148/0000/0001/Idle",
         "sprite/0148/0000/0001/Sleep",
         "sprite/0148/0000/0001/Walk",
-        "sprite/0148/0000/0001/Walk/shadow",
         "sprite/0163/0000/0001/Idle",
         "sprite/0163/0000/0001/Sleep",
         "sprite/0163/0000/0001/Walk",
@@ -7532,7 +7532,6 @@
         "portrait/0073/Normal",
         "portrait/0074/Normal",
         "portrait/0075/Normal",
-        "portrait/0076/Normal",
         "portrait/0077/Normal",
         "portrait/0078/Normal",
         "portrait/0079/Normal",
@@ -8279,7 +8278,6 @@
         "sprite/0148/Idle",
         "sprite/0148/Sleep",
         "sprite/0148/Walk",
-        "sprite/0148/Walk/shadow",
         "sprite/0149/Idle",
         "sprite/0149/Sleep",
         "sprite/0149/Walk",
@@ -8510,9 +8508,9 @@
         "sprite/0262/Walk",
         "sprite/0263/Sleep",
         "sprite/0263/Walk",
-        "sprite/0276/Attack",
-        "sprite/0276/Attack/shadow",
         "sprite/0276/Idle",
+        "sprite/0276/Shoot",
+        "sprite/0276/Shoot/shadow",
         "sprite/0276/Sleep",
         "sprite/0276/Walk",
         "sprite/0277/Idle",
@@ -19605,27 +19603,27 @@
       ]
     },
     {
-      "id": "portrait/0076/Normal",
+      "id": "portrait/0076/0002/Normal",
       "kind": "portrait",
       "source": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0076/Normal.png",
-        "sha256": "b01989c5b3533bd0cef4b7dfd2fa3ed2e6fd99d77d718f5590765cc6f5d0fc35",
-        "bytes": 1420
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0076/0002/Normal.png",
+        "sha256": "eaf86d8772500200eb0b24e1528662530789d7772f07a98afa0e984a35fe5090",
+        "bytes": 1656
       },
       "creditSource": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0076/credits.txt",
-        "sha256": "1b3a6deb120aa56b0c382ef50436b3a2f0bbf1e5e77692b236c43ac80b7050dd",
-        "bytes": 135
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0076/0002/credits.txt",
+        "sha256": "6ad3c7f545b529f17ac76d91fd928873a35837d3ad673dff6cd36b5900f66b0a",
+        "bytes": 149
       },
       "outputs": [
         "/img/pokemon/pmd/0076/normal.png"
       ],
       "contributions": [
         {
-          "artistId": "CHUNSOFT",
-          "date": "2020-10-07 17:58:43.553823",
+          "artistId": "330751862590406656",
+          "date": "2022-03-28 03:27:06.789911",
           "status": "CUR",
-          "sourceLicense": "Unspecified",
+          "sourceLicense": "PMDCollab_1",
           "contributions": [
             "Normal"
           ]
@@ -185562,47 +185560,6 @@
       ]
     },
     {
-      "id": "sprite/0148/0000/0001/Walk/shadow",
-      "kind": "sprite",
-      "source": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0148/0000/0001/Walk-Shadow.png",
-        "sha256": "f5df976bac70bb565513cabc3c13af1be8040de8013d7d91a8fa629f15a2eba9",
-        "bytes": 2581
-      },
-      "creditSource": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0148/0000/0001/credits.txt",
-        "sha256": "81817efedc4add691db796d40830e4b0a7a653f27161889137e2719c5dcfb8aa",
-        "bytes": 151
-      },
-      "outputs": [
-        "/theme/pokemon/pmd/sprites/0148/base/shiny/walk-shadow-east.webp",
-        "/theme/pokemon/pmd/sprites/0148/base/shiny/walk-shadow-west.webp"
-      ],
-      "contributions": [
-        {
-          "artistId": "95650095034273792",
-          "date": "2020-10-07 17:58:43.751295",
-          "status": "CUR",
-          "sourceLicense": "PMDCollab_1",
-          "contributions": [
-            "Walk",
-            "Attack",
-            "MultiStrike",
-            "Shoot",
-            "Ricochet",
-            "Sleep",
-            "Hurt",
-            "Idle",
-            "Swing",
-            "Double",
-            "Hop",
-            "Charge",
-            "Rotate"
-          ]
-        }
-      ]
-    },
-    {
       "id": "sprite/0148/Idle",
       "kind": "sprite",
       "source": {
@@ -185700,47 +185657,6 @@
       "outputs": [
         "/theme/pokemon/pmd/sprites/0148/base/normal/walk-east.webp",
         "/theme/pokemon/pmd/sprites/0148/base/normal/walk-west.webp"
-      ],
-      "contributions": [
-        {
-          "artistId": "CHUNSOFT",
-          "date": "2020-10-07 17:58:43.750299",
-          "status": "CUR",
-          "sourceLicense": "Unspecified",
-          "contributions": [
-            "Walk",
-            "Attack",
-            "MultiStrike",
-            "Shoot",
-            "Ricochet",
-            "Sleep",
-            "Hurt",
-            "Idle",
-            "Swing",
-            "Double",
-            "Hop",
-            "Charge",
-            "Rotate"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "sprite/0148/Walk/shadow",
-      "kind": "sprite",
-      "source": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0148/Walk-Shadow.png",
-        "sha256": "f5df976bac70bb565513cabc3c13af1be8040de8013d7d91a8fa629f15a2eba9",
-        "bytes": 2581
-      },
-      "creditSource": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0148/credits.txt",
-        "sha256": "32e76183cfaa614b3047c0f9cc66407bc2c1ab8181cd2983cf152b2d11bc4588",
-        "bytes": 138
-      },
-      "outputs": [
-        "/theme/pokemon/pmd/sprites/0148/base/normal/walk-shadow-east.webp",
-        "/theme/pokemon/pmd/sprites/0148/base/normal/walk-shadow-west.webp"
       ],
       "contributions": [
         {
@@ -220094,130 +220010,6 @@
       ]
     },
     {
-      "id": "sprite/0276/0000/0001/Attack",
-      "kind": "sprite",
-      "source": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/0000/0001/Attack-Anim.png",
-        "sha256": "270670b492169e0a8c6a4309423285d73ff44ed776211b6feabaa0d848b10646",
-        "bytes": 20315
-      },
-      "creditSource": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/0000/0001/credits.txt",
-        "sha256": "fb3dd40f62e396e6c99655735bab618f9935e4d3c70685d0b776858fb9675fa6",
-        "bytes": 308
-      },
-      "outputs": [
-        "/theme/pokemon/pmd/sprites/0276/base/shiny/attack-east.webp",
-        "/theme/pokemon/pmd/sprites/0276/base/shiny/attack-west.webp"
-      ],
-      "contributions": [
-        {
-          "artistId": "276949114212712449",
-          "date": "2020-10-07 17:58:44.246577",
-          "status": "OLD",
-          "sourceLicense": "PMDCollab_1",
-          "contributions": [
-            "Walk",
-            "Attack",
-            "QuickStrike",
-            "Shoot",
-            "FlapAround",
-            "Sleep",
-            "Hurt",
-            "Idle",
-            "Swing",
-            "Double",
-            "Hop",
-            "Charge",
-            "Rotate"
-          ]
-        },
-        {
-          "artistId": "593113130213572610",
-          "date": "2023-07-20 18:09:25.028235",
-          "status": "CUR",
-          "sourceLicense": "PMDCollab_2",
-          "contributions": [
-            "Idle",
-            "Walk",
-            "Sleep",
-            "Hurt",
-            "Attack",
-            "Charge",
-            "Shoot",
-            "FlapAround",
-            "Swing",
-            "Double",
-            "Rotate",
-            "Hop",
-            "QuickStrike"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "sprite/0276/0000/0001/Attack/shadow",
-      "kind": "sprite",
-      "source": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/0000/0001/Attack-Shadow.png",
-        "sha256": "84d6e0f2a9ce3995cb81a960db14e05fd01fb3f15dd193c7ddf9a56511d45662",
-        "bytes": 5563
-      },
-      "creditSource": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/0000/0001/credits.txt",
-        "sha256": "fb3dd40f62e396e6c99655735bab618f9935e4d3c70685d0b776858fb9675fa6",
-        "bytes": 308
-      },
-      "outputs": [
-        "/theme/pokemon/pmd/sprites/0276/base/shiny/attack-shadow-east.webp",
-        "/theme/pokemon/pmd/sprites/0276/base/shiny/attack-shadow-west.webp"
-      ],
-      "contributions": [
-        {
-          "artistId": "276949114212712449",
-          "date": "2020-10-07 17:58:44.246577",
-          "status": "OLD",
-          "sourceLicense": "PMDCollab_1",
-          "contributions": [
-            "Walk",
-            "Attack",
-            "QuickStrike",
-            "Shoot",
-            "FlapAround",
-            "Sleep",
-            "Hurt",
-            "Idle",
-            "Swing",
-            "Double",
-            "Hop",
-            "Charge",
-            "Rotate"
-          ]
-        },
-        {
-          "artistId": "593113130213572610",
-          "date": "2023-07-20 18:09:25.028235",
-          "status": "CUR",
-          "sourceLicense": "PMDCollab_2",
-          "contributions": [
-            "Idle",
-            "Walk",
-            "Sleep",
-            "Hurt",
-            "Attack",
-            "Charge",
-            "Shoot",
-            "FlapAround",
-            "Swing",
-            "Double",
-            "Rotate",
-            "Hop",
-            "QuickStrike"
-          ]
-        }
-      ]
-    },
-    {
       "id": "sprite/0276/0000/0001/Idle",
       "kind": "sprite",
       "source": {
@@ -220233,6 +220025,130 @@
       "outputs": [
         "/theme/pokemon/pmd/sprites/0276/base/shiny/idle-east.webp",
         "/theme/pokemon/pmd/sprites/0276/base/shiny/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "276949114212712449",
+          "date": "2020-10-07 17:58:44.246577",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "QuickStrike",
+            "Shoot",
+            "FlapAround",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        },
+        {
+          "artistId": "593113130213572610",
+          "date": "2023-07-20 18:09:25.028235",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "FlapAround",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "QuickStrike"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0276/0000/0001/Shoot",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/0000/0001/Shoot-Anim.png",
+        "sha256": "ff767b9a9c2ddef1a68166816ac0f49ed423b3d3654db7d106033494787b25f9",
+        "bytes": 13907
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/0000/0001/credits.txt",
+        "sha256": "fb3dd40f62e396e6c99655735bab618f9935e4d3c70685d0b776858fb9675fa6",
+        "bytes": 308
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0276/base/shiny/shoot-east.webp",
+        "/theme/pokemon/pmd/sprites/0276/base/shiny/shoot-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "276949114212712449",
+          "date": "2020-10-07 17:58:44.246577",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "QuickStrike",
+            "Shoot",
+            "FlapAround",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        },
+        {
+          "artistId": "593113130213572610",
+          "date": "2023-07-20 18:09:25.028235",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "FlapAround",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "QuickStrike"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0276/0000/0001/Shoot/shadow",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/0000/0001/Shoot-Shadow.png",
+        "sha256": "87432c974595baaac42124c93028b75d0906cedb8c47cabc39384f07ca1c6d7d",
+        "bytes": 1525
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/0000/0001/credits.txt",
+        "sha256": "fb3dd40f62e396e6c99655735bab618f9935e4d3c70685d0b776858fb9675fa6",
+        "bytes": 308
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0276/base/shiny/shoot-shadow-east.webp",
+        "/theme/pokemon/pmd/sprites/0276/base/shiny/shoot-shadow-west.webp"
       ],
       "contributions": [
         {
@@ -220404,88 +220320,6 @@
       ]
     },
     {
-      "id": "sprite/0276/Attack",
-      "kind": "sprite",
-      "source": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/Attack-Anim.png",
-        "sha256": "09ff29e2192247c96884ad303fe0944bf99599abb1814cbec15f0baef2c99f23",
-        "bytes": 19520
-      },
-      "creditSource": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/credits.txt",
-        "sha256": "57f3ba31ca9c2bc81cd381dd968f4e3fa15cf3359be2459a6fab683f0abf4aff",
-        "bytes": 140
-      },
-      "outputs": [
-        "/theme/pokemon/pmd/sprites/0276/base/normal/attack-east.webp",
-        "/theme/pokemon/pmd/sprites/0276/base/normal/attack-west.webp"
-      ],
-      "contributions": [
-        {
-          "artistId": "CHUNSOFT",
-          "date": "2020-10-07 17:58:44.245580",
-          "status": "CUR",
-          "sourceLicense": "Unspecified",
-          "contributions": [
-            "Walk",
-            "Attack",
-            "QuickStrike",
-            "Shoot",
-            "FlapAround",
-            "Sleep",
-            "Hurt",
-            "Idle",
-            "Swing",
-            "Double",
-            "Hop",
-            "Charge",
-            "Rotate"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "sprite/0276/Attack/shadow",
-      "kind": "sprite",
-      "source": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/Attack-Shadow.png",
-        "sha256": "84d6e0f2a9ce3995cb81a960db14e05fd01fb3f15dd193c7ddf9a56511d45662",
-        "bytes": 5563
-      },
-      "creditSource": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/credits.txt",
-        "sha256": "57f3ba31ca9c2bc81cd381dd968f4e3fa15cf3359be2459a6fab683f0abf4aff",
-        "bytes": 140
-      },
-      "outputs": [
-        "/theme/pokemon/pmd/sprites/0276/base/normal/attack-shadow-east.webp",
-        "/theme/pokemon/pmd/sprites/0276/base/normal/attack-shadow-west.webp"
-      ],
-      "contributions": [
-        {
-          "artistId": "CHUNSOFT",
-          "date": "2020-10-07 17:58:44.245580",
-          "status": "CUR",
-          "sourceLicense": "Unspecified",
-          "contributions": [
-            "Walk",
-            "Attack",
-            "QuickStrike",
-            "Shoot",
-            "FlapAround",
-            "Sleep",
-            "Hurt",
-            "Idle",
-            "Swing",
-            "Double",
-            "Hop",
-            "Charge",
-            "Rotate"
-          ]
-        }
-      ]
-    },
-    {
       "id": "sprite/0276/Idle",
       "kind": "sprite",
       "source": {
@@ -220501,6 +220335,88 @@
       "outputs": [
         "/theme/pokemon/pmd/sprites/0276/base/normal/idle-east.webp",
         "/theme/pokemon/pmd/sprites/0276/base/normal/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:44.245580",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "QuickStrike",
+            "Shoot",
+            "FlapAround",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0276/Shoot",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/Shoot-Anim.png",
+        "sha256": "0c3cd4501a6e2b51492c649b8e41370572ed6af4be62052ce59fb77bce89b163",
+        "bytes": 13082
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/credits.txt",
+        "sha256": "57f3ba31ca9c2bc81cd381dd968f4e3fa15cf3359be2459a6fab683f0abf4aff",
+        "bytes": 140
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0276/base/normal/shoot-east.webp",
+        "/theme/pokemon/pmd/sprites/0276/base/normal/shoot-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:44.245580",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "QuickStrike",
+            "Shoot",
+            "FlapAround",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0276/Shoot/shadow",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/Shoot-Shadow.png",
+        "sha256": "87432c974595baaac42124c93028b75d0906cedb8c47cabc39384f07ca1c6d7d",
+        "bytes": 1525
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0276/credits.txt",
+        "sha256": "57f3ba31ca9c2bc81cd381dd968f4e3fa15cf3359be2459a6fab683f0abf4aff",
+        "bytes": 140
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0276/base/normal/shoot-shadow-east.webp",
+        "/theme/pokemon/pmd/sprites/0276/base/normal/shoot-shadow-west.webp"
       ],
       "contributions": [
         {
