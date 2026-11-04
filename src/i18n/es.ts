@@ -372,6 +372,10 @@ export const es = {
           text: 'Material oficial aportado por el usuario. Licencia a confirmar.',
         },
         {
+          name: 'Reverso de carta de Pokémon',
+          text: 'Reverso oficial de las cartas del TCG de Pokémon, aportado por el usuario. Autor y licencia a confirmar. Se muestra del lado de atrás de las cartas del modo Carta.',
+        },
+        {
           name: 'Iconos mágicos de diseño plano',
           url: 'https://www.magnific.com/es/vector-gratis/iconos-magicos-diseno-plano_44999599.htm',
           text: 'Magnific (antes Freepik), autor indicado: magnific. Jeroglíficos de pilares, chips y sellos, recortados y recoloreados. Licencia a confirmar; atribución pendiente de confirmar.',

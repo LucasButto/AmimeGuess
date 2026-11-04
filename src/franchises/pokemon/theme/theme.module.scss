@@ -230,17 +230,20 @@
 
 // Botones de volver ("Poké Ball que se recoge", ver BackNavBall): mientras sale, la página se encoge a
 // pasos hacia la bola. `BackNav` navega a los 250 ms.
-// Las cartas: marco negro con las esquinas redondeadas en pixel art (una escalera de cuatro pasos, más suave que la de los
-// demás marcos), y detrás el mismo negro, así las esquinas redondeadas de la imagen de la carta no dejan un hueco blanco.
+// Las cartas: sin marco. La carta y su reverso son imágenes oficiales con sus propias esquinas redondeadas (transparentes),
+// así que van solas sobre la página: sin borde, sin recorte de pixel art y sin fondo detrás.
 .root [data-game-mode='carta'] [data-part='visor'] {
-  --clip-panel: #{m.pixel-corners((5, 3, 2, 1, 1))};
+  --clip-panel: none;
+  border: 0;
   border-radius: 0;
-  background: var(--palette-frame);
+  background: transparent;
 
-  // El borde negro va por encima de la carta: la carta misma se recorta con esquinas de pixel art, más grandes que las suyas
-  // (las redondeadas de la imagen se ven como un arco con un hueco negro), y lo que sobra queda negro.
+  // La carta de frente se recorta con el radio de las esquinas del reverso (un 5,2 % del ancho de la carta; las de la imagen
+  // son más cerradas, de un 3,5 a un 4 %): así las dos caras tienen las mismas esquinas. El radio va en porcentajes de cada lado
+  // (el alto es el ancho entre 0,7266) para que el arco sea redondo.
   > div > div:first-child {
-    clip-path: #{m.pixel-corners((6, 4, 3, 2, 2, 1, 1))};
+    border-radius: 5.2% / 3.8%;
+    overflow: hidden;
   }
 }
 
