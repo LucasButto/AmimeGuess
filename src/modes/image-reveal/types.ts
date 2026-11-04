@@ -21,6 +21,14 @@ export interface AttrRequirement {
   readonly equals: string | number;
 }
 
+/** Un rectángulo de la imagen, en fracciones de su ancho y su alto (0 a 1) desde la esquina superior izquierda. */
+export interface ImageRegion {
+  readonly x: number;
+  readonly y: number;
+  readonly width: number;
+  readonly height: number;
+}
+
 export interface ImageRevealConfig {
   readonly variant: RevealVariant;
   /**
@@ -65,4 +73,10 @@ export interface ImageRevealConfig {
   readonly zoomScales?: readonly number[];
   /** Radio de desenfoque en rem por paso, de mayor a menor. */
   readonly blurLevels?: readonly number[];
+  /**
+   * Zonas de la imagen que se quedan siempre al máximo desenfoque, aunque el resto se aclare con cada pista: sirve cuando la
+   * propia imagen trae escrita la respuesta (el nombre en la parte de arriba de una carta). Solo con `blur` y sin clip de
+   * video. Al terminar el reto, ganado o perdido, desaparecen y la imagen se ve entera.
+   */
+  readonly alwaysBlurred?: readonly ImageRegion[];
 }

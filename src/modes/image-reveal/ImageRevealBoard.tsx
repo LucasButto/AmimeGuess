@@ -196,6 +196,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
           visual={visual}
           video={image.video}
           kind={config.imageContentKind}
+          veils={over ? undefined : config.alwaysBlurred}
         />
       </SkinGameFrame>
 

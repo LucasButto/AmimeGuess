@@ -6,6 +6,7 @@ import { ContentVideo } from '@/components/ContentVideo';
 import { useSkin } from '@/components/skin/context';
 import type { RevealVisual } from './logic';
 import styles from './RevealImage.module.scss';
+import type { ImageRegion } from './types';
 
 interface RevealImageProps {
   /** Ruta dentro de /public/img sin tamaño ni extensión, ver `ContentImage`. */
@@ -19,6 +20,14 @@ interface RevealImageProps {
   kind?: string;
   /** Si el contenido trae un clip (ruta dentro de /public/video, sin extensión), se muestra en lugar de la imagen: `stem` pasa a ser su póster. */
   video?: string;
+  /** Zonas que quedan siempre al máximo desenfoque (ver `ImageRevealConfig.alwaysBlurred`); sin esto, ninguna. */
+  veils?: readonly ImageRegion[];
+}
+
+/** El recorte de una zona, en porcentajes de cada lado: lo que `clip-path: inset()` deja afuera. */
+function insetOf(region: ImageRegion): string {
+  const pct = (value: number) => `${Math.round(value * 10_000) / 100}%`;
+  return `inset(${pct(region.y)} ${pct(1 - region.x - region.width)} ${pct(1 - region.y - region.height)} ${pct(region.x)})`;
 }
 
 /** ¿Hay que pedir "reducir movimiento"? Entonces no se da vuelta: aparece directamente. */
@@ -35,7 +44,7 @@ function prefersReducedMotion(): boolean {
  * Si el tema le pone dorso a este tipo de imagen (`SkinData.imageBack`, por ejemplo las cartas), el marco empieza de
  * espaldas y se da vuelta una sola vez, cuando queda a la vista (al cargar o al bajar hasta él). Solo `transform`.
  */
-export function RevealImage({ stem, width, height, alt, visual, kind, video }: RevealImageProps) {
+export function RevealImage({ stem, width, height, alt, visual, kind, video, veils }: RevealImageProps) {
   const { skin } = useSkin();
   const { ImageBack } = skin.slots;
   const hasBack = kind !== undefined && skin.imageBack.includes(kind);
@@ -91,6 +100,13 @@ export function RevealImage({ stem, width, height, alt, visual, kind, video }: R
             // El clip lleva los mismos filtros y el mismo recorte que la imagen (la clase `image`).
             <ContentVideo className={styles.image} stem={video} poster={stem} alt={alt} sizes="(min-width: 30rem) 24rem, 100vw" width={width} height={height} />
           )}
+          {/* Una copia de la imagen, al máximo desenfoque y recortada a cada zona: lo que está escrito ahí no se lee nunca. */}
+          {video === undefined &&
+            veils?.map((region, index) => (
+              <div key={index} className={styles.veil} style={{ clipPath: insetOf(region) }} aria-hidden="true">
+                <ContentImage className={styles.veilImage} stem={stem} alt="" sizes="(min-width: 30rem) 24rem, 100vw" width={width} height={height} priority />
+              </div>
+            ))}
         </div>
         {hasBack && kind !== undefined && (
           <div className={styles.back} aria-hidden="true">

@@ -204,6 +204,36 @@ describe('Silueta', () => {
     expect(variants.silueta).toBe('zoom-silhouette');
     expect(modes.some((mode) => mode.slug === 'zoom')).toBe(false);
   });
+
+  it('el zoom parte cerca y se abre por pasos, sin llegar a mostrar todo el Pokémon', () => {
+    const scales = modes.find((mode) => mode.slug === 'silueta')?.imageReveal?.zoomScales ?? [];
+    expect(scales).toHaveLength(6);
+    expect(scales.every((scale, index) => index === 0 || scale < scales[index - 1])).toBe(true);
+    // El de siempre terminaba en 1,15 (casi todo) y parte de 3,2.
+    expect(scales[0]).toBeGreaterThan(3.2);
+    expect(scales.at(-1)).toBeGreaterThanOrEqual(1.5);
+  });
+});
+
+describe('Carta', () => {
+  const config = () => {
+    const imageReveal = modes.find((mode) => mode.slug === 'carta')?.imageReveal;
+    if (!imageReveal) throw new Error('carta no tiene config de image-reveal');
+    return imageReveal;
+  };
+
+  it('el desenfoque baja por pasos y nunca deja la carta nítida', () => {
+    const levels = config().blurLevels ?? [];
+    expect(levels).toHaveLength(6);
+    expect(levels.every((level, index) => index === 0 || level < levels[index - 1])).toBe(true);
+    // Con 0,23 rem en la cuarta pista ya se leía el nombre; el último paso queda por encima de lo que se leía.
+    expect(levels[3]).toBeGreaterThanOrEqual(0.6);
+    expect(levels.at(-1)).toBeGreaterThanOrEqual(0.25);
+  });
+
+  it('toda la carta, también el nombre de arriba, usa el mismo desenfoque (sin franja aparte)', () => {
+    expect(config().alwaysBlurred ?? []).toHaveLength(0);
+  });
 });
 
 describe('Mayor o Menor', () => {

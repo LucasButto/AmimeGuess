@@ -80,6 +80,26 @@ $max-height: min(28rem, 60dvh);
   }
 }
 
+// Zona siempre desenfocada al máximo (ver `alwaysBlurred`): una copia de la imagen entera, con el desenfoque más fuerte, de la
+// que solo se ve el rectángulo que recorta el `clip-path` (el desenfoque se aplica antes del recorte).
+.veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.veilImage {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+  filter: blur(var(--veil-blur, 2rem));
+  pointer-events: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 // El clip llena el marco aunque su proporción difiera un poco: el marco lleva un borde, así que la caja interior no tiene exactamente
 // la proporción del clip y con `contain` quedaban franjas a los costados al verlo sin desenfoque. Con `cover` se recorta apenas.
 video.image {
