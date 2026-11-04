@@ -17,7 +17,23 @@
 
 .dex {
   display: block;
+  flex: none;
   object-fit: contain;
   inline-size: calc(#{t.token('px-half')} * 12);
   block-size: calc(#{t.token('px-half')} * 12);
+}
+
+// Inicio en el teléfono (fila de cada modo): las imágenes crecen sin mover nada. El lugar de 2 rem queda igual y la imagen
+// lo desborda centrada, dentro de la caja de 2,75 rem del ícono.
+.mini[data-variant='row'] {
+  .ball {
+    flex: none;
+    inline-size: 2.5rem;
+    block-size: 2.5rem;
+  }
+
+  .dex {
+    inline-size: calc(#{t.token('px-half')} * 17);
+    block-size: calc(#{t.token('px-half')} * 17);
+  }
 }

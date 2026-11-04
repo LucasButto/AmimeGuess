@@ -11,9 +11,9 @@ export function PokemonModeCard(props: ModeCardProps) {
 }
 
 /** Slot `ModeIcon`: miniaturas de 2 rem en la navegación entre modos (Pokédex chica o la bola de su modo). */
-export function PokemonModeIcon({ slug, current }: ModeIconProps) {
+export function PokemonModeIcon({ slug, current, variant }: ModeIconProps) {
   return (
-    <span className={styles.mini} aria-hidden="true" data-current={current}>
+    <span className={styles.mini} aria-hidden="true" data-current={current} data-variant={variant}>
       {slug === 'clasico' ? (
         <img className={styles.dex} src="/icons/pokemon/pokedex.webp" alt="" width={200} height={200} draggable={false} />
       ) : (
