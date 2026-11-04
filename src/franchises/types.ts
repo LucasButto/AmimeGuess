@@ -134,6 +134,8 @@ export interface FranchiseConfig {
   readonly entityNoun?: PoolNoun;
   /** Lo mismo para cada conjunto de entidades con nombre (`ModeConfig.entitySet`): "forma"/"formas", "carta"/"cartas". */
   readonly entitySetNouns?: Readonly<Record<string, PoolNoun>>;
+  /** Si el interruptor "Arcos del manga" no se ofrece: lo marcado `mangaOnly` queda siempre afuera del juego (pero se conserva en los datos). Por defecto, se ofrece. */
+  readonly hideMangaToggle?: boolean;
 }
 
 // --- Piel (SPEC 9.2, sesiones 15 a 18) --------------------------------------

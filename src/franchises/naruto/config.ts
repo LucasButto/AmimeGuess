@@ -56,6 +56,8 @@ export const narutoConfig = {
   slug: 'naruto',
   name: 'Naruto',
   entityNoun: { one: 'personaje', many: 'personajes' },
+  // Naruto no tiene arcos del manga sin adaptar como Dragon Ball: solo queda el interruptor de relleno.
+  hideMangaToggle: true,
   series: ['naruto', 'shippuden', 'boruto'],
   seriesLabels: {
     naruto: 'Naruto',

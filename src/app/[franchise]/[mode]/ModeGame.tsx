@@ -160,7 +160,10 @@ function ModeEngine({ franchise, mode, modes, playable }: ModeGameProps) {
       onChange: setFillerOn,
     });
   }
-  if (changes({ skipFiller: false, skipMangaOnly: true })) {
+  if (
+    !franchise.hideMangaToggle &&
+    changes({ skipFiller: false, skipMangaOnly: true })
+  ) {
     toggles.push({
       id: "manga",
       label: es.filters.manga,
@@ -171,14 +174,17 @@ function ModeEngine({ franchise, mode, modes, playable }: ModeGameProps) {
   }
   const skipFiller =
     !fillerOn && toggles.some((toggle) => toggle.id === "filler");
+  // Sin el interruptor, lo marcado `mangaOnly` queda siempre afuera (se conserva en los datos para cuando el manga avance).
+  const hiddenMangaOnly = franchise.hideMangaToggle === true;
   const skipMangaOnly =
-    !mangaOn && toggles.some((toggle) => toggle.id === "manga");
+    hiddenMangaOnly ||
+    (!mangaOn && toggles.some((toggle) => toggle.id === "manga"));
   // Los datos sin lo que dejan afuera los interruptores; cada combinación es otra partida (`x`: sin relleno, `a`: sin los
   // arcos del manga, o sea, solo anime).
   const data = withoutFlagged(loaded, { skipFiller, skipMangaOnly });
   const flags = {
     toggles,
-    variant: `${skipFiller ? "x" : ""}${skipMangaOnly ? "a" : ""}`,
+    variant: `${skipFiller ? "x" : ""}${skipMangaOnly && !hiddenMangaOnly ? "a" : ""}`,
   };
   const game = renderGame(data);
   const rouletteMode = franchise.modes.find((item) => item.engine === "stat-builder");

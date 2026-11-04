@@ -949,7 +949,7 @@ export const es = {
     // Qué es cada valor de las columnas de lista de Naruto (se ve al pasar el cursor, enfocar o tocar el valor). Sin pistas
     // sobre ningún personaje. Redactado, no verificado contra el canon (ver docs/CONTENT_TODO.md).
     naruto: {
-      timelineOrder: 'Los sucesos siguen la historia: Naruto, Naruto Shippūden y Boruto, en ese orden. El relleno y los arcos del manga se pueden apagar.',
+      timelineOrder: 'Los sucesos siguen la historia: Naruto, Naruto Shippūden y Boruto, en ese orden. El relleno se puede apagar.',
       afiliaciones: {
         Akatsuki: 'Organización de ninjas renegados que reúne a criminales muy poderosos y busca capturar a las bestias con cola.',
         Ame: 'Amegakure, la Aldea Oculta de la Lluvia: una aldea shinobi en un país donde llueve casi siempre.',
