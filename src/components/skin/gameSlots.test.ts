@@ -56,6 +56,17 @@ describe('slots adicionales: opt-in sin DOM por defecto', () => {
     }
   });
 
+  it('monta el medidor solo en los modos pedidos, aunque compartan motor con otros', () => {
+    const Meter = vi.fn(({ failed, won }: AttemptsMeterProps) => h('aside', { 'data-failed': failed, 'data-won': won }));
+    const skin = { additionalAttemptsMeterModes: ['silueta'], slots: { AttemptsMeter: Meter } };
+    expect(renderToStaticMarkup(h(SkinAttemptsMeter, { skin, engine: 'image-reveal', mode: 'silueta', failed: 1, won: false }))).toBe('<aside data-failed="1" data-won="false"></aside>');
+    // El otro modo del mismo motor, y quien no dice su modo, no lo llevan.
+    expect(renderToStaticMarkup(h(SkinAttemptsMeter, { skin, engine: 'image-reveal', mode: 'carta', failed: 1, won: false }))).toBe('');
+    expect(renderToStaticMarkup(h(SkinAttemptsMeter, { skin, engine: 'image-reveal', failed: 1, won: false }))).toBe('');
+    // El modo no se reenvía al medidor de la piel.
+    expect(Meter.mock.calls[0][0]).toEqual({ failed: 1, won: false });
+  });
+
   it('no activa otro motor por estar en una lista distinta', () => {
     const Frame = vi.fn(() => h('section'));
     const Meter = vi.fn(() => h('aside'));

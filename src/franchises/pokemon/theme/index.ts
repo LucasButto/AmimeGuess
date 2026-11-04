@@ -21,6 +21,9 @@ export const pokemonSkin: FranchiseSkin = {
   backNavExitMs: 250,
   // Al cambiar de modo, las barras se cierran en 400 ms y recién ahí se navega (la pantalla nueva las abre).
   pageExitMs: 400,
+  // La barra de PS del Clásico, también en Descripción y Estadísticas. Silueta y Carta (que comparten motor) no la llevan:
+  // ya muestran abajo en qué pista van.
+  additionalAttemptsMeterModes: ['descripcion', 'estadisticas'],
   // Celdas del Clásico con íconos pixel (✓, ~, ✗ y flechas).
   cellIcons: 'pixel',
   // El verde y el rojo ya lo dicen con el color: solo llevan ícono el parcial y las flechas.

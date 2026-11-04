@@ -211,7 +211,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
           />
         )}
       </div>
-      <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="text-clue" failed={failed} won={won} total={maxAttempts} /></AttemptsStatus>
+      <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="text-clue" mode={mode} failed={failed} won={won} total={maxAttempts} /></AttemptsStatus>
 
       {failedNames.length > 0 && (
         <section className={styles.failed} aria-labelledby={failedTitleId}>

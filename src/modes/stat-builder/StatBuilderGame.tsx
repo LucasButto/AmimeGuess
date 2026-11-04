@@ -12,6 +12,7 @@ import { Button } from '@/components/ui/Button';
 import { Chip } from '@/components/ui/Chip';
 import { InfoTip } from '@/components/ui/InfoTip';
 import { useSkin } from '@/components/skin/context';
+import { SkinAttemptsMeter } from '@/components/skin/gameSlots';
 import { eligibleEntities } from '@/engine/filters';
 import { getLocalStorage, readState, writeState } from '@/engine/storage';
 import type { Entity } from '@/engine/types';
@@ -57,6 +58,7 @@ export function StatBuilderGame({ franchise, mode, modes, config, entities }: Pr
 }
 
 export function StatBuilderBoard({ session, config, pool, target, limit, maximum }: { session: GameSession; config: StatBuilderConfig; pool: readonly Entity[]; target: number; limit: number; maximum: number }) {
+  const { skin } = useSkin();
   const [saved] = useState(() => readState(getLocalStorage(), session));
   const [attempts, setAttempts] = useState<Assignment[][]>(() => (saved?.attempts ?? []).map((value) => restoreBuild(value, pool, config)).filter((build) => build.length === config.stats.length));
   const [build, setBuild] = useState(() => restoreBuild(saved?.draft, pool, config));
@@ -83,6 +85,10 @@ export function StatBuilderBoard({ session, config, pool, target, limit, maximum
   const optimal = useMemo(() => complete ? bestBuild(build, pool) : [], [complete, build, pool]);
   const result = resultFrame(resultPhase === 'done' ? Infinity : resultElapsed, resultValues);
   const shown = awaitingAdvance || complete ? revealedEntity : stopped ? current : reel[preview % reel.length];
+  // La barra de la piel solo cuenta lo que ya se mostró: el intento recién armado queda oculto hasta que termina la cuenta
+  // del resultado (si no, la barra adelantaría si se ganó o se perdió).
+  const meterWon = won && resultPhase === 'done';
+  const meterFailed = Math.max(0, attempts.length - (complete && resultPhase !== 'done' ? 1 : 0) - (meterWon ? 1 : 0));
 
   useEffect(() => {
     if (over || stopped || complete || awaitingAdvance || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -139,6 +145,7 @@ export function StatBuilderBoard({ session, config, pool, target, limit, maximum
 
   return <div className={styles.root} data-game-ready="true" data-over={over}>
     <div className={styles.summary}><AttemptsStatus><p>{es.statBuilder.progress(attempts.length + (complete ? 0 : 1), limit)}</p></AttemptsStatus>{!over && !complete && <SurrenderButton onConfirm={() => surrender(attempts, report(attempts, false, true), build)} />}</div>
+    <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="stat-builder" mode={session.mode} failed={meterFailed} won={meterWon} total={limit} /></AttemptsStatus>
     <div className={styles.board}>
       {complete && resultPhase === 'done' ? <div className={styles.spinner}>
         <span className={styles.resultTotal}>{es.statBuilder.fraction(result.total, target)}</span>

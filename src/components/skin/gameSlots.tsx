@@ -18,7 +18,7 @@ export function SkinRevealListItem({ skin, children, ...props }: RevealListItemP
 }
 
 type FrameSkin = Pick<SkinData, 'additionalModeFrames'> & { readonly slots: Pick<SkinSlots, 'ModeFrame'> };
-type MeterSkin = Pick<SkinData, 'additionalAttemptsMeters'> & { readonly slots: Pick<SkinSlots, 'AttemptsMeter'> };
+type MeterSkin = Pick<SkinData, 'additionalAttemptsMeters' | 'additionalAttemptsMeterModes'> & { readonly slots: Pick<SkinSlots, 'AttemptsMeter'> };
 
 /** Sin opt-in devuelve exactamente los hijos, sin elemento ni atributo adicional. */
 export function SkinGameFrame({ skin, ...props }: ModeFrameProps & { readonly skin: FrameSkin }) {
@@ -26,13 +26,18 @@ export function SkinGameFrame({ skin, ...props }: ModeFrameProps & { readonly sk
   return skin.additionalModeFrames?.includes(props.engine) ? <Frame {...props} /> : <>{props.children}</>;
 }
 
-/** Los montajes nativos de los motores siguen siendo independientes de esta extensión. */
-export function SkinAttemptsMeter({ skin, engine, ...props }: AttemptsMeterProps & {
+/**
+ * Los montajes nativos de los motores siguen siendo independientes de esta extensión. Se muestra si la piel pidió el motor
+ * entero o este modo en particular (`mode`, su `slug`).
+ */
+export function SkinAttemptsMeter({ skin, engine, mode, ...props }: AttemptsMeterProps & {
   readonly skin: MeterSkin;
   readonly engine: ModeFrameProps['engine'];
+  readonly mode?: string;
 }) {
   const Meter = skin.slots.AttemptsMeter;
-  return skin.additionalAttemptsMeters?.includes(engine) ? <Meter {...props} /> : null;
+  const wanted = skin.additionalAttemptsMeters?.includes(engine) || (mode !== undefined && skin.additionalAttemptsMeterModes?.includes(mode));
+  return wanted ? <Meter {...props} /> : null;
 }
 
 export function celebratesResult(won: boolean, scored: boolean, skin: Pick<SkinData, 'celebrateScoredResults'>): boolean {

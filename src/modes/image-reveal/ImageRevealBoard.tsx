@@ -218,7 +218,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
           />
         )}
       </div>
-      <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="image-reveal" failed={failed} won={won} total={maxAttempts} /></AttemptsStatus>
+      <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="image-reveal" mode={mode} failed={failed} won={won} total={maxAttempts} /></AttemptsStatus>
       {/* Antes del último intento se avisa: si falla, se pierde. */}
       {!over && failed === maxAttempts - 1 && (
         <p className={styles.lastChance} role="status">

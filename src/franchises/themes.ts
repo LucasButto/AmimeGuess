@@ -28,6 +28,7 @@ export function getSkin(slug: string | null): ResolvedSkin {
         customComparisonMedia: skin.customComparisonMedia ?? DEFAULT_SKIN_DATA.customComparisonMedia,
         customRevealListItems: skin.customRevealListItems ?? DEFAULT_SKIN_DATA.customRevealListItems,
         additionalAttemptsMeters: skin.additionalAttemptsMeters ?? DEFAULT_SKIN_DATA.additionalAttemptsMeters,
+        additionalAttemptsMeterModes: skin.additionalAttemptsMeterModes ?? DEFAULT_SKIN_DATA.additionalAttemptsMeterModes,
         additionalModeFrames: skin.additionalModeFrames ?? DEFAULT_SKIN_DATA.additionalModeFrames,
         revealListPositionPrefix: skin.revealListPositionPrefix ?? DEFAULT_SKIN_DATA.revealListPositionPrefix,
         celebrateScoredResults: skin.celebrateScoredResults ?? DEFAULT_SKIN_DATA.celebrateScoredResults,

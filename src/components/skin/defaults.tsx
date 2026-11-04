@@ -75,6 +75,7 @@ export const DEFAULT_SKIN_DATA: SkinData = {
   customComparisonMedia: false,
   customRevealListItems: false,
   additionalAttemptsMeters: [],
+  additionalAttemptsMeterModes: [],
   additionalModeFrames: [],
   revealListPositionPrefix: '',
   celebrateScoredResults: false,

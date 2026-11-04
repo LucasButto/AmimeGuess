@@ -330,6 +330,11 @@ export interface SkinData {
   readonly customRevealListItems?: boolean;
   /** Motores adicionales que montan AttemptsMeter; no altera los montajes nativos. Vacío por defecto. */
   readonly additionalAttemptsMeters?: readonly EngineId[];
+  /**
+   * Modos concretos (por `slug`) que montan AttemptsMeter aunque su motor no esté en `additionalAttemptsMeters`: para cuando
+   * dos modos comparten motor y solo uno la lleva. Vacío por defecto.
+   */
+  readonly additionalAttemptsMeterModes?: readonly string[];
   /** Motores adicionales cuyo contenido se envuelve con ModeFrame. Vacío por defecto. */
   readonly additionalModeFrames?: readonly EngineId[];
   /** Prefijo visible de la posición de reveal-list; sin él se conserva solo el número. */
