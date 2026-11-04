@@ -340,8 +340,10 @@ $column-min: 4.75rem;
   @include m.app-shell-desktop { display: none; }
 }
 
+// Una piel puede sacar el recuento (`--cards-count-display: none`) y poner el "?" donde quiera: `--cards-head-display: contents`
+// y `--cards-help-position: absolute` con `--cards-help-top` y `--cards-help-end` (respecto del ancestro con `position`).
 .cardsHead {
-  display: flex;
+  display: var(--cards-head-display, flex);
   align-items: center;
   justify-content: space-between;
   gap: t.$space-2;
@@ -350,8 +352,15 @@ $column-min: 4.75rem;
   color: t.token('app-bar-ink');
 }
 
+.cardsCount {
+  display: var(--cards-count-display, inline);
+}
+
 // El "?" que explica las columnas (en la tabla cada encabezado tiene su ⓘ).
 .cardsHelp {
+  position: var(--cards-help-position, static);
+  inset-block-start: var(--cards-help-top, auto);
+  inset-inline-end: var(--cards-help-end, auto);
   @include m.touch-target;
   @include m.focus-ring;
   display: inline-grid;
@@ -390,16 +399,17 @@ $column-min: 4.75rem;
   min-inline-size: 0;
   padding: calc(#{t.$space-2} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
   scroll-margin-block: calc(var(--app-bar-h) + #{t.$space-2}) calc(var(--app-dock-h) + #{t.$space-2});
-  // El intento recién enviado se resalta un momento (solo `opacity`).
-  &[data-reveal='revealing']::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border: 0.1875rem solid t.token('accent-primary');
-    pointer-events: none;
-    opacity: 0;
-    @include bp.motion-ok { animation: new-row 2.2s ease-out both; }
-  }
+}
+
+// El intento recién enviado se resalta un momento (solo `opacity`). Es un elemento propio y no el `::after` de la tarjeta:
+// ese es el fondo del marco, y animarle la opacidad oscurecía toda la tarjeta mientras se revelaba.
+.cardNew {
+  position: absolute;
+  inset: 0;
+  border: 0.1875rem solid t.token('accent-primary');
+  pointer-events: none;
+  opacity: 0;
+  @include bp.motion-ok { animation: new-row 2.2s ease-out both; }
 }
 
 .cardHead {

@@ -225,6 +225,8 @@ export function AttemptsTable({ rows, columns, revealing = null, onRevealEnd }: 
               const last = row.cells.length - 1;
               return (
                 <li key={row.entity.id} className={styles.card} data-attempt-card="" data-reveal={animate ? 'revealing' : 'face'}>
+                  {/* El resaltado del intento nuevo es un elemento propio: el `::after` de la tarjeta es su fondo. */}
+                  {animate && <span className={styles.cardNew} aria-hidden="true" />}
                   <div className={styles.cardHead}>
                     {row.entity.image && <ContentImage className={styles.cardThumb} stem={row.entity.image} alt="" sizes="2.5rem" />}
                     <strong className={styles.cardName}>{row.entity.name.es}</strong>

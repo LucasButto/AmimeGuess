@@ -19,8 +19,18 @@
   min-inline-size: 0;
   padding: 0 var(--px) var(--px);
 
+  // Tarjetas de intento del teléfono (ver `cardsHead` del Clásico): sin el recuento ("3 intentos", ya está arriba en la
+  // barra de intentos) y con el "?" en la franja roja, a la derecha de las luces, centrado en el alto de la franja
+  // (dos relleno + lente, menos los 2,75 rem del botón, a la mitad).
+  --cards-head-display: contents;
+  --cards-count-display: none;
+  --cards-help-position: absolute;
+  --cards-help-top: calc((#{t.$space-2} * 2 + #{t.token('px-half')} * 14 - 2.75rem) / 2);
+  --cards-help-end: calc(#{t.token('frame-width')} + #{t.$space-2} - 0.5rem);
+
   @include bp.min-width('md') {
     padding: 0 t.px(4) t.px(4);
+    --cards-help-top: calc((#{t.$space-2} * 2 + #{t.px(14)} - 2.75rem) / 2);
   }
 }
 
