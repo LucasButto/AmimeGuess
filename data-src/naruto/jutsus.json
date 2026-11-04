@@ -420,13 +420,6 @@
     "verified": false
   },
   {
-    "id": "demonic-illusion-mirror-heaven-and-earth-change",
-    "name": "Ilusión Demoníaca: Espejo Cielo-Tierra",
-    "wiki": "Demonic Illusion: Mirror Heaven and Earth Change",
-    "answer": "itachi-uchiha",
-    "verified": false
-  },
-  {
     "id": "morning-peacock",
     "name": "Amanecer del Pavo Real",
     "wiki": "Morning Peacock",
@@ -1068,6 +1061,350 @@
     "name": "Yomotsu Hirasaka",
     "wiki": "Yomotsu Hirasaka",
     "answer": "kaguya-otsutsuki",
+    "verified": false
+  },
+  {
+    "id": "c3",
+    "name": "C3",
+    "wiki": "C3",
+    "answer": "deidara",
+    "verified": false
+  },
+  {
+    "id": "dance-of-the-clematis-flower",
+    "name": "Danza de la Clematis: Flor",
+    "wiki": "Dance of the Clematis: Flower",
+    "answer": "kimimaro",
+    "verified": false
+  },
+  {
+    "id": "wind-release-toad-gun",
+    "name": "Elemento Viento: Pistola de Sapo",
+    "wiki": "Wind Release: Toad Gun",
+    "answer": "naruto-uzumaki",
+    "verified": false
+  },
+  {
+    "id": "super-mini-tailed-beast-ball",
+    "name": "Super Mini Bomba Bestia con Cola",
+    "wiki": "Super Mini-Tailed Beast Ball",
+    "answer": "naruto-uzumaki",
+    "verified": false
+  },
+  {
+    "id": "sage-art-magnet-release-rasengan",
+    "name": "Arte Sabio: Rasengan de Elemento Magnetismo",
+    "wiki": "Sage Art: Magnet Release Rasengan",
+    "answer": "naruto-uzumaki",
+    "verified": false
+  },
+  {
+    "id": "manipulating-windmill-triple-blades",
+    "name": "Manipulación del Molino de Triple Cuchilla",
+    "wiki": "Manipulating Windmill Triple Blades",
+    "answer": "sasuke-uchiha",
+    "verified": false
+  },
+  {
+    "id": "chidori-senbon",
+    "name": "Chidori Senbon",
+    "wiki": "Chidori Senbon",
+    "answer": "sasuke-uchiha",
+    "verified": false
+  },
+  {
+    "id": "fire-release-dragon-fire-technique",
+    "name": "Elemento Fuego: Fuego del Dragón",
+    "wiki": "Fire Release: Dragon Fire Technique",
+    "answer": "sasuke-uchiha",
+    "verified": false
+  },
+  {
+    "id": "lightning-transmission",
+    "name": "Conexión de Rayos",
+    "wiki": "Lightning Transmission",
+    "answer": "kakashi-hatake",
+    "verified": false
+  },
+  {
+    "id": "crow-clone-technique",
+    "name": "Jutsu: Clon de Cuervos",
+    "wiki": "Crow Clone Technique",
+    "answer": "itachi-uchiha",
+    "verified": false
+  },
+  {
+    "id": "demonic-illusion-shackling-stakes-technique",
+    "name": "Ilusión Demoníaca: Estacas Encadenadoras",
+    "wiki": "Demonic Illusion: Shackling Stakes Technique",
+    "answer": "itachi-uchiha",
+    "verified": false
+  },
+  {
+    "id": "quicksand-waterfall-flow",
+    "name": "Tsunami de Arena",
+    "wiki": "Quicksand Waterfall Flow",
+    "answer": "gaara",
+    "verified": false
+  },
+  {
+    "id": "sand-shuriken",
+    "name": "Shuriken de Arena",
+    "wiki": "Sand Shuriken",
+    "answer": "gaara",
+    "verified": false
+  },
+  {
+    "id": "third-eye",
+    "name": "Tercer Ojo",
+    "wiki": "Third Eye",
+    "answer": "gaara",
+    "verified": false
+  },
+  {
+    "id": "leaf-great-whirlwind",
+    "name": "Gran Remolino de la Hoja",
+    "wiki": "Leaf Great Whirlwind",
+    "answer": "rock-lee",
+    "verified": false
+  },
+  {
+    "id": "leaf-strong-whirlwind",
+    "name": "Fuerte Remolino de la Hoja",
+    "wiki": "Leaf Strong Whirlwind",
+    "answer": "might-guy",
+    "verified": false
+  },
+  {
+    "id": "super-open-hand-slap",
+    "name": "Súper Palmada de Mano Abierta",
+    "wiki": "Super Open Hand Slap",
+    "answer": "choji-akimichi",
+    "verified": false
+  },
+  {
+    "id": "tail-chasing-fang-fang-rotating-fang",
+    "name": "Colmillo Giratorio Persigue Colas",
+    "wiki": "Tail Chasing Fang Fang Rotating Fang",
+    "answer": "kiba-inuzuka",
+    "verified": false
+  },
+  {
+    "id": "secret-technique-insect-tornado",
+    "name": "Técnica Secreta: Tornado de Insectos",
+    "wiki": "Secret Technique: Insect Tornado",
+    "answer": "shino-aburame",
+    "verified": false
+  },
+  {
+    "id": "slug-great-division",
+    "name": "Gran División de la Babosa",
+    "wiki": "Slug Great Division",
+    "answer": "katsuyu",
+    "verified": false
+  },
+  {
+    "id": "barrier-toad-gourd-prison",
+    "name": "Barrera: Prisión de Sapo Calabaza",
+    "wiki": "Barrier: Toad Gourd Prison",
+    "answer": "jiraiya",
+    "verified": false
+  },
+  {
+    "id": "hiding-in-a-toad-technique",
+    "name": "Jutsu: Ocultación en un Sapo",
+    "wiki": "Hiding in a Toad Technique",
+    "answer": "jiraiya",
+    "verified": false
+  },
+  {
+    "id": "formation-of-ten-thousand-snakes",
+    "name": "Ola de Diez Mil Serpientes",
+    "wiki": "Formation of Ten Thousand Snakes",
+    "answer": "orochimaru",
+    "verified": false
+  },
+  {
+    "id": "living-corpse-reincarnation",
+    "name": "Jutsu de Inmortalidad",
+    "wiki": "Living Corpse Reincarnation",
+    "answer": "orochimaru",
+    "verified": false
+  },
+  {
+    "id": "dead-soul-technique",
+    "name": "Jutsu: Control de Muertos",
+    "wiki": "Dead Soul Technique",
+    "answer": "kabuto-yakushi",
+    "verified": false
+  },
+  {
+    "id": "temple-of-nirvana-technique",
+    "name": "Templo del Nirvana",
+    "wiki": "Temple of Nirvana Technique",
+    "answer": "kabuto-yakushi",
+    "verified": false
+  },
+  {
+    "id": "iron-sand-world-method",
+    "name": "Arena de Hierro: Orden Mundial",
+    "wiki": "Iron Sand World Method",
+    "answer": "sasori",
+    "verified": false
+  },
+  {
+    "id": "water-release-water-shark-bullet-technique",
+    "name": "Elemento Agua: Proyectil Tiburón de Agua",
+    "wiki": "Water Release: Water Shark Bullet Technique",
+    "answer": "kisame-hoshigaki",
+    "verified": false
+  },
+  {
+    "id": "summoning-rinnegan",
+    "name": "Invocación del Rinnegan",
+    "wiki": "Summoning Rinnegan",
+    "answer": "nagato",
+    "verified": false
+  },
+  {
+    "id": "fire-release-blast-wave-wild-dance",
+    "name": "Elemento Fuego: Danza Salvaje",
+    "wiki": "Fire Release: Blast Wave Wild Dance",
+    "answer": "obito-uchiha",
+    "verified": false
+  },
+  {
+    "id": "fire-release-great-fire-destruction",
+    "name": "Elemento Fuego: Destrucción Magnífica de Fuego",
+    "wiki": "Fire Release: Great Fire Destruction",
+    "answer": "madara-uchiha",
+    "verified": false
+  },
+  {
+    "id": "demonic-statue-chains",
+    "name": "Cadenas de Chakra (Camino Externo)",
+    "wiki": "Demonic Statue Chains",
+    "answer": "madara-uchiha",
+    "verified": false
+  },
+  {
+    "id": "summoning-quintuple-rashomon",
+    "name": "Invocación: Quíntuple Rashōmon",
+    "wiki": "Summoning: Quintuple Rashōmon",
+    "answer": "hashirama-senju",
+    "verified": false
+  },
+  {
+    "id": "mutually-multiplying-explosive-tags",
+    "name": "Sellos Explosivos Multiplicadores",
+    "wiki": "Mutually Multiplying Explosive Tags",
+    "answer": "tobirama-senju",
+    "verified": false
+  },
+  {
+    "id": "sealing-technique-octopus-hold",
+    "name": "Técnica de Sellado: Agarre de Pulpo",
+    "wiki": "Sealing Technique: Octopus Hold",
+    "answer": "killer-bee",
+    "verified": false
+  },
+  {
+    "id": "lightning-release-double-lariat",
+    "name": "Doble Lariat",
+    "wiki": "Lightning Release: Double Lariat",
+    "answer": "killer-bee",
+    "verified": false
+  },
+  {
+    "id": "black-lightning",
+    "name": "Rayo Negro",
+    "wiki": "Black Lightning",
+    "answer": "darui",
+    "verified": false
+  },
+  {
+    "id": "fission-technique",
+    "name": "Jutsu de Fisión",
+    "wiki": "Fission Technique",
+    "answer": "mu",
+    "verified": false
+  },
+  {
+    "id": "sealing-technique-lion-closing-roar",
+    "name": "Jutsu de Sellado: Clausura Rugido del León",
+    "wiki": "Sealing Technique: Lion Closing Roar",
+    "answer": "chiyo",
+    "verified": false
+  },
+  {
+    "id": "sealing-technique-tiger-vision-staring-bullet",
+    "name": "Técnica de Sellado: Proyectil de la Mirada del Tigre",
+    "wiki": "Sealing Technique: Tiger Vision Staring Bullet",
+    "answer": "sai",
+    "verified": false
+  },
+  {
+    "id": "wood-release-wood-locking-wall",
+    "name": "Elemento Madera: Muro de Madera",
+    "wiki": "Wood Release: Wood Locking Wall",
+    "answer": "yamato",
+    "verified": false
+  },
+  {
+    "id": "wood-release-tree-bind-flourishing-burial",
+    "name": "Elemento Madera: Entierro del Árbol Atador",
+    "wiki": "Wood Release: Tree Bind Flourishing Burial",
+    "answer": "yamato",
+    "verified": false
+  },
+  {
+    "id": "fire-release-ash-pile-burning",
+    "name": "Elemento Fuego: Cenizas Ardientes",
+    "wiki": "Fire Release: Ash Pile Burning",
+    "answer": "asuma-sarutobi",
+    "verified": false
+  },
+  {
+    "id": "fire-release-fire-dragon-flame-bullet",
+    "name": "Elemento Fuego: Bala de Fuego Flama de Dragón",
+    "wiki": "Fire Release: Fire Dragon Flame Bullet",
+    "answer": "hiruzen-sarutobi",
+    "verified": false
+  },
+  {
+    "id": "spider-web-unrolling",
+    "name": "Telaraña Desenrollar",
+    "wiki": "Spider Web Unrolling",
+    "answer": "kidomaru",
+    "verified": false
+  },
+  {
+    "id": "summoning-torture-chamber",
+    "name": "Invocación: Cámara de Tortura",
+    "wiki": "Summoning: Torture Chamber",
+    "answer": "ibiki-morino",
+    "verified": false
+  },
+  {
+    "id": "lightning-release-thunderclap-arrow",
+    "name": "Elemento Rayo: Flecha de Trueno",
+    "wiki": "Lightning Release: Thunderclap Arrow",
+    "answer": "boruto-uzumaki",
+    "verified": false
+  },
+  {
+    "id": "lightning-ball",
+    "name": "Esfera Relámpago",
+    "wiki": "Lightning Ball",
+    "answer": "sarada-uchiha",
+    "series": "boruto",
+    "verified": false
+  },
+  {
+    "id": "lightning-release-snake-lightning",
+    "name": "Elemento Rayo: Rayo Serpiente",
+    "wiki": "Lightning Release: Snake Lightning",
+    "answer": "mitsuki",
     "verified": false
   }
 ]

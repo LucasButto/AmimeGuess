@@ -20211,21 +20211,6 @@
     "verified": false
   },
   {
-    "id": "jutsu-demonic-illusion-mirror-heaven-and-earth-change",
-    "kind": "jutsu",
-    "entityId": "itachi-uchiha",
-    "series": "naruto",
-    "payload": {
-      "name": "Ilusión Demoníaca: Espejo Cielo-Tierra",
-      "image": "naruto/c/f30f767058ae2326",
-      "video": "naruto/f30f767058ae2326",
-      "width": 512,
-      "height": 330,
-      "accepts": []
-    },
-    "verified": false
-  },
-  {
     "id": "jutsu-morning-peacock",
     "kind": "jutsu",
     "entityId": "might-guy",
@@ -21673,6 +21658,761 @@
       "name": "Yomotsu Hirasaka",
       "image": "naruto/c/a291bd901e851f59",
       "video": "naruto/a291bd901e851f59",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-c3",
+    "kind": "jutsu",
+    "entityId": "deidara",
+    "series": "shippuden",
+    "payload": {
+      "name": "C3",
+      "image": "naruto/c/d36a51c9ecc4d4f3",
+      "video": "naruto/d36a51c9ecc4d4f3",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-dance-of-the-clematis-flower",
+    "kind": "jutsu",
+    "entityId": "kimimaro",
+    "series": "naruto",
+    "payload": {
+      "name": "Danza de la Clematis: Flor",
+      "image": "naruto/c/2b6d42cd23563f29",
+      "video": "naruto/2b6d42cd23563f29",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-wind-release-toad-gun",
+    "kind": "jutsu",
+    "entityId": "naruto-uzumaki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Viento: Pistola de Sapo",
+      "image": "naruto/c/a57b3f93e7f62bac",
+      "video": "naruto/a57b3f93e7f62bac",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-super-mini-tailed-beast-ball",
+    "kind": "jutsu",
+    "entityId": "naruto-uzumaki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Super Mini Bomba Bestia con Cola",
+      "image": "naruto/c/6f6f69d54dc9b051",
+      "video": "naruto/6f6f69d54dc9b051",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-sage-art-magnet-release-rasengan",
+    "kind": "jutsu",
+    "entityId": "naruto-uzumaki",
+    "series": "shippuden",
+    "payload": {
+      "name": "Arte Sabio: Rasengan de Elemento Magnetismo",
+      "image": "naruto/c/8046fdbb416ba917",
+      "video": "naruto/8046fdbb416ba917",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-manipulating-windmill-triple-blades",
+    "kind": "jutsu",
+    "entityId": "sasuke-uchiha",
+    "series": "naruto",
+    "payload": {
+      "name": "Manipulación del Molino de Triple Cuchilla",
+      "image": "naruto/c/875b8ab1daf97259",
+      "video": "naruto/875b8ab1daf97259",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-chidori-senbon",
+    "kind": "jutsu",
+    "entityId": "sasuke-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Chidori Senbon",
+      "image": "naruto/c/16a29cc4dd0d418d",
+      "video": "naruto/16a29cc4dd0d418d",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-fire-release-dragon-fire-technique",
+    "kind": "jutsu",
+    "entityId": "sasuke-uchiha",
+    "series": "naruto",
+    "payload": {
+      "name": "Elemento Fuego: Fuego del Dragón",
+      "image": "naruto/c/291660cb46fc29f6",
+      "video": "naruto/291660cb46fc29f6",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "jiraiya"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-lightning-transmission",
+    "kind": "jutsu",
+    "entityId": "kakashi-hatake",
+    "series": "shippuden",
+    "payload": {
+      "name": "Conexión de Rayos",
+      "image": "naruto/c/a0af96f42d9f97e0",
+      "video": "naruto/a0af96f42d9f97e0",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-crow-clone-technique",
+    "kind": "jutsu",
+    "entityId": "itachi-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Jutsu: Clon de Cuervos",
+      "image": "naruto/c/e8484f0dc0636130",
+      "video": "naruto/e8484f0dc0636130",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-demonic-illusion-shackling-stakes-technique",
+    "kind": "jutsu",
+    "entityId": "itachi-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Ilusión Demoníaca: Estacas Encadenadoras",
+      "image": "naruto/c/18ae353c047a176a",
+      "video": "naruto/18ae353c047a176a",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "sasuke-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-quicksand-waterfall-flow",
+    "kind": "jutsu",
+    "entityId": "gaara",
+    "series": "naruto",
+    "payload": {
+      "name": "Tsunami de Arena",
+      "image": "naruto/c/67ecea3d7f874f02",
+      "video": "naruto/67ecea3d7f874f02",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-sand-shuriken",
+    "kind": "jutsu",
+    "entityId": "gaara",
+    "series": "naruto",
+    "payload": {
+      "name": "Shuriken de Arena",
+      "image": "naruto/c/7813c7acf25389b9",
+      "video": "naruto/7813c7acf25389b9",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-third-eye",
+    "kind": "jutsu",
+    "entityId": "gaara",
+    "series": "naruto",
+    "payload": {
+      "name": "Tercer Ojo",
+      "image": "naruto/c/52ad19906cb8a156",
+      "video": "naruto/52ad19906cb8a156",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "rasa"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-leaf-great-whirlwind",
+    "kind": "jutsu",
+    "entityId": "rock-lee",
+    "series": "naruto",
+    "payload": {
+      "name": "Gran Remolino de la Hoja",
+      "image": "naruto/c/3cf64e79c4497d32",
+      "video": "naruto/3cf64e79c4497d32",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-leaf-strong-whirlwind",
+    "kind": "jutsu",
+    "entityId": "might-guy",
+    "series": "naruto",
+    "payload": {
+      "name": "Fuerte Remolino de la Hoja",
+      "image": "naruto/c/0ae4ebec252384d4",
+      "video": "naruto/0ae4ebec252384d4",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-super-open-hand-slap",
+    "kind": "jutsu",
+    "entityId": "choji-akimichi",
+    "series": "shippuden",
+    "payload": {
+      "name": "Súper Palmada de Mano Abierta",
+      "image": "naruto/c/73da4978e25a7140",
+      "video": "naruto/73da4978e25a7140",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-tail-chasing-fang-fang-rotating-fang",
+    "kind": "jutsu",
+    "entityId": "kiba-inuzuka",
+    "series": "shippuden",
+    "payload": {
+      "name": "Colmillo Giratorio Persigue Colas",
+      "image": "naruto/c/e335bd896a5f79a5",
+      "video": "naruto/e335bd896a5f79a5",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "akamaru"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-secret-technique-insect-tornado",
+    "kind": "jutsu",
+    "entityId": "shino-aburame",
+    "series": "shippuden",
+    "payload": {
+      "name": "Técnica Secreta: Tornado de Insectos",
+      "image": "naruto/c/459ecf27e5b7fc7e",
+      "video": "naruto/459ecf27e5b7fc7e",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-slug-great-division",
+    "kind": "jutsu",
+    "entityId": "katsuyu",
+    "series": "naruto",
+    "payload": {
+      "name": "Gran División de la Babosa",
+      "image": "naruto/c/caa51127e6bb277f",
+      "video": "naruto/caa51127e6bb277f",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-barrier-toad-gourd-prison",
+    "kind": "jutsu",
+    "entityId": "jiraiya",
+    "series": "shippuden",
+    "payload": {
+      "name": "Barrera: Prisión de Sapo Calabaza",
+      "image": "naruto/c/e672b4a5186bc9d6",
+      "video": "naruto/e672b4a5186bc9d6",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-hiding-in-a-toad-technique",
+    "kind": "jutsu",
+    "entityId": "jiraiya",
+    "series": "shippuden",
+    "payload": {
+      "name": "Jutsu: Ocultación en un Sapo",
+      "image": "naruto/c/be05a8b258e096ef",
+      "video": "naruto/be05a8b258e096ef",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-formation-of-ten-thousand-snakes",
+    "kind": "jutsu",
+    "entityId": "orochimaru",
+    "series": "shippuden",
+    "payload": {
+      "name": "Ola de Diez Mil Serpientes",
+      "image": "naruto/c/5390f7a57ab5b768",
+      "video": "naruto/5390f7a57ab5b768",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-living-corpse-reincarnation",
+    "kind": "jutsu",
+    "entityId": "orochimaru",
+    "series": "naruto",
+    "payload": {
+      "name": "Jutsu de Inmortalidad",
+      "image": "naruto/c/bc3b41557ccfe888",
+      "video": "naruto/bc3b41557ccfe888",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-dead-soul-technique",
+    "kind": "jutsu",
+    "entityId": "kabuto-yakushi",
+    "series": "naruto",
+    "payload": {
+      "name": "Jutsu: Control de Muertos",
+      "image": "naruto/c/9d76e041b1bbd686",
+      "video": "naruto/9d76e041b1bbd686",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-temple-of-nirvana-technique",
+    "kind": "jutsu",
+    "entityId": "kabuto-yakushi",
+    "series": "naruto",
+    "payload": {
+      "name": "Templo del Nirvana",
+      "image": "naruto/c/a909e6df2b248e71",
+      "video": "naruto/a909e6df2b248e71",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-iron-sand-world-method",
+    "kind": "jutsu",
+    "entityId": "sasori",
+    "series": "shippuden",
+    "payload": {
+      "name": "Arena de Hierro: Orden Mundial",
+      "image": "naruto/c/515f099f18813263",
+      "video": "naruto/515f099f18813263",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-water-release-water-shark-bullet-technique",
+    "kind": "jutsu",
+    "entityId": "kisame-hoshigaki",
+    "series": "naruto",
+    "payload": {
+      "name": "Elemento Agua: Proyectil Tiburón de Agua",
+      "image": "naruto/c/942d898a603a2868",
+      "video": "naruto/942d898a603a2868",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "kakashi-hatake"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-summoning-rinnegan",
+    "kind": "jutsu",
+    "entityId": "nagato",
+    "series": "shippuden",
+    "payload": {
+      "name": "Invocación del Rinnegan",
+      "image": "naruto/c/ceb1e87f2b47199d",
+      "video": "naruto/ceb1e87f2b47199d",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "obito-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-fire-release-blast-wave-wild-dance",
+    "kind": "jutsu",
+    "entityId": "obito-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Fuego: Danza Salvaje",
+      "image": "naruto/c/c196496eb1b2d968",
+      "video": "naruto/c196496eb1b2d968",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-fire-release-great-fire-destruction",
+    "kind": "jutsu",
+    "entityId": "madara-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Fuego: Destrucción Magnífica de Fuego",
+      "image": "naruto/c/bc31fa362e84e97f",
+      "video": "naruto/bc31fa362e84e97f",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-demonic-statue-chains",
+    "kind": "jutsu",
+    "entityId": "madara-uchiha",
+    "series": "shippuden",
+    "payload": {
+      "name": "Cadenas de Chakra (Camino Externo)",
+      "image": "naruto/c/e8861550782f5a98",
+      "video": "naruto/e8861550782f5a98",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "obito-uchiha"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-summoning-quintuple-rashomon",
+    "kind": "jutsu",
+    "entityId": "hashirama-senju",
+    "series": "shippuden",
+    "payload": {
+      "name": "Invocación: Quíntuple Rashōmon",
+      "image": "naruto/c/99d3aa32751b1d83",
+      "video": "naruto/99d3aa32751b1d83",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-mutually-multiplying-explosive-tags",
+    "kind": "jutsu",
+    "entityId": "tobirama-senju",
+    "series": "shippuden",
+    "payload": {
+      "name": "Sellos Explosivos Multiplicadores",
+      "image": "naruto/c/e9c1fafec5fed72b",
+      "video": "naruto/e9c1fafec5fed72b",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-sealing-technique-octopus-hold",
+    "kind": "jutsu",
+    "entityId": "killer-bee",
+    "series": "shippuden",
+    "payload": {
+      "name": "Técnica de Sellado: Agarre de Pulpo",
+      "image": "naruto/c/8a9fcb4f95c4330a",
+      "video": "naruto/8a9fcb4f95c4330a",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-lightning-release-double-lariat",
+    "kind": "jutsu",
+    "entityId": "killer-bee",
+    "series": "shippuden",
+    "payload": {
+      "name": "Doble Lariat",
+      "image": "naruto/c/2e5e013eb24d9299",
+      "video": "naruto/2e5e013eb24d9299",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "a-cuarto-raikage"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-black-lightning",
+    "kind": "jutsu",
+    "entityId": "darui",
+    "series": "shippuden",
+    "payload": {
+      "name": "Rayo Negro",
+      "image": "naruto/c/764f08773266af6b",
+      "video": "naruto/764f08773266af6b",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-fission-technique",
+    "kind": "jutsu",
+    "entityId": "mu",
+    "series": "shippuden",
+    "payload": {
+      "name": "Jutsu de Fisión",
+      "image": "naruto/c/9fdbca8e5fac8371",
+      "video": "naruto/9fdbca8e5fac8371",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-sealing-technique-lion-closing-roar",
+    "kind": "jutsu",
+    "entityId": "chiyo",
+    "series": "shippuden",
+    "payload": {
+      "name": "Jutsu de Sellado: Clausura Rugido del León",
+      "image": "naruto/c/026d0698c6903b64",
+      "video": "naruto/026d0698c6903b64",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-sealing-technique-tiger-vision-staring-bullet",
+    "kind": "jutsu",
+    "entityId": "sai",
+    "series": "shippuden",
+    "payload": {
+      "name": "Técnica de Sellado: Proyectil de la Mirada del Tigre",
+      "image": "naruto/c/49c57904a838ddb1",
+      "video": "naruto/49c57904a838ddb1",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-wood-release-wood-locking-wall",
+    "kind": "jutsu",
+    "entityId": "yamato",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Madera: Muro de Madera",
+      "image": "naruto/c/57e6a4950df96006",
+      "video": "naruto/57e6a4950df96006",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-wood-release-tree-bind-flourishing-burial",
+    "kind": "jutsu",
+    "entityId": "yamato",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Madera: Entierro del Árbol Atador",
+      "image": "naruto/c/201a5979c00c3bac",
+      "video": "naruto/201a5979c00c3bac",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-fire-release-ash-pile-burning",
+    "kind": "jutsu",
+    "entityId": "asuma-sarutobi",
+    "series": "shippuden",
+    "payload": {
+      "name": "Elemento Fuego: Cenizas Ardientes",
+      "image": "naruto/c/85db3cea420903ab",
+      "video": "naruto/85db3cea420903ab",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-fire-release-fire-dragon-flame-bullet",
+    "kind": "jutsu",
+    "entityId": "hiruzen-sarutobi",
+    "series": "naruto",
+    "payload": {
+      "name": "Elemento Fuego: Bala de Fuego Flama de Dragón",
+      "image": "naruto/c/23793b7076e06242",
+      "video": "naruto/23793b7076e06242",
+      "width": 512,
+      "height": 246,
+      "accepts": [
+        "konohamaru-sarutobi"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-spider-web-unrolling",
+    "kind": "jutsu",
+    "entityId": "kidomaru",
+    "series": "naruto",
+    "payload": {
+      "name": "Telaraña Desenrollar",
+      "image": "naruto/c/268697b4d10ad568",
+      "video": "naruto/268697b4d10ad568",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "kabuto-yakushi"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-summoning-torture-chamber",
+    "kind": "jutsu",
+    "entityId": "ibiki-morino",
+    "series": "shippuden",
+    "payload": {
+      "name": "Invocación: Cámara de Tortura",
+      "image": "naruto/c/3dfdf9666c6c184f",
+      "video": "naruto/3dfdf9666c6c184f",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-lightning-release-thunderclap-arrow",
+    "kind": "jutsu",
+    "entityId": "boruto-uzumaki",
+    "series": "boruto",
+    "payload": {
+      "name": "Elemento Rayo: Flecha de Trueno",
+      "image": "naruto/c/759c6ca016a06fe3",
+      "video": "naruto/759c6ca016a06fe3",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-lightning-ball",
+    "kind": "jutsu",
+    "entityId": "sarada-uchiha",
+    "series": "boruto",
+    "payload": {
+      "name": "Esfera Relámpago",
+      "image": "naruto/c/47aabbc45ecebc04",
+      "video": "naruto/47aabbc45ecebc04",
+      "width": 512,
+      "height": 246,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "jutsu-lightning-release-snake-lightning",
+    "kind": "jutsu",
+    "entityId": "mitsuki",
+    "series": "boruto",
+    "payload": {
+      "name": "Elemento Rayo: Rayo Serpiente",
+      "image": "naruto/c/162f3008d534e1fc",
+      "video": "naruto/162f3008d534e1fc",
       "width": 512,
       "height": 246,
       "accepts": []
