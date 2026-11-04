@@ -57,33 +57,27 @@ export function MoreMenu() {
         </li>
       </ul>
 
-      {open === 'howTo' && (
-        <Sheet title={more.howToTitle} onClose={close} footer={closeButton}>
-          <div className={styles.text}>
-            <p>{more.howToIntro}</p>
-            <ol>
-              {more.howToSteps.map((step) => <li key={step}>{step}</li>)}
-            </ol>
-          </div>
-        </Sheet>
-      )}
-      {open === 'install' && (
-        <Sheet title={more.installTitle} onClose={close} footer={closeButton}>
-          <div className={styles.text}>
-            <p>{more.installHint}</p>
-            <ol>
-              {more.installSteps[install === 'ios' ? 'ios' : 'other'].map((step) => <li key={step}>{step}</li>)}
-            </ol>
-          </div>
-        </Sheet>
-      )}
-      {open === 'legal' && (
-        <Sheet title={more.legalTitle} onClose={close} footer={closeButton}>
-          <div className={styles.text}>
-            <p>{es.footer.notice}</p>
-          </div>
-        </Sheet>
-      )}
+      <Sheet open={open === 'howTo'} title={more.howToTitle} onClose={close} footer={closeButton}>
+        <div className={styles.text}>
+          <p>{more.howToIntro}</p>
+          <ol>
+            {more.howToSteps.map((step) => <li key={step}>{step}</li>)}
+          </ol>
+        </div>
+      </Sheet>
+      <Sheet open={open === 'install'} title={more.installTitle} onClose={close} footer={closeButton}>
+        <div className={styles.text}>
+          <p>{more.installHint}</p>
+          <ol>
+            {more.installSteps[install === 'ios' ? 'ios' : 'other'].map((step) => <li key={step}>{step}</li>)}
+          </ol>
+        </div>
+      </Sheet>
+      <Sheet open={open === 'legal'} title={more.legalTitle} onClose={close} footer={closeButton}>
+        <div className={styles.text}>
+          <p>{es.footer.notice}</p>
+        </div>
+      </Sheet>
     </TabPage>
   );
 }

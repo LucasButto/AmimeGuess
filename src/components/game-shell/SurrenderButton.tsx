@@ -44,8 +44,9 @@ export function SurrenderButton({ onConfirm, scored = false, disabled = false }:
           </div>
         </Modal>
       )}
-      {confirming && phone && (
+      {phone && (
         <Sheet
+          open={confirming}
           title={es.shell.surrender.title}
           onClose={() => setConfirming(false)}
           footer={

@@ -17,37 +17,51 @@
   border: 0;
   background: transparent;
   color: t.token('ink');
+  // Lo que se mueve es el panel de adentro: que nada lo recorte mientras sube o baja.
+  overflow: visible;
+  // De dónde entra el panel (ver `.panel`).
+  --sheet-from: 100%;
 
   &[open] {
     display: flex;
     flex-direction: column;
+  }
 
-    @include bp.motion-ok {
-      animation: sheet-in 0.22s ease-out both;
+  // El fondo aparece y se va con la hoja; mientras se la arrastra, se aclara a medida que baja (`--swipe-progress`).
+  &::backdrop {
+    background: color-mix(in srgb, #{t.color('text')} 60%, transparent);
+    opacity: 0;
+    transition: opacity 0.32s ease-in;
+  }
+
+  &[data-shown]::backdrop {
+    opacity: calc(1 - var(--swipe-progress, 0));
+    transition: opacity 0.36s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  &[data-dragging]::backdrop {
+    transition: none;
+  }
+
+  @include bp.reduced-motion {
+    &::backdrop,
+    &[data-shown]::backdrop {
+      transition: none;
     }
   }
 
-  &::backdrop {
-    background: color-mix(in srgb, #{t.color('text')} 60%, transparent);
-  }
-
-  // Desde `lg` no hay de dónde subir: un cuadro centrado.
+  // Desde `lg` no hay de dónde subir: un cuadro centrado, que entra desde más abajo.
   @include bp.min-width('lg') {
+    --sheet-from: 70dvh;
     inline-size: min(calc(100% - #{t.$space-6}), 36rem);
     margin: auto;
   }
 }
 
-@keyframes sheet-in {
-  from {
-    transform: translateY(100%);
-  }
-
-  to {
-    transform: none;
-  }
-}
-
+// El panel es lo que sube, baja y sigue al dedo (y no el <dialog>: un `transform` ahí lo volvería el contenedor de las
+// ayudas ⓘ, que van fijas y montadas en el diálogo). Entra y sale con transiciones, no con animaciones: una animación con
+// relleno pisaría el `transform` que pone el dedo. Cerrada (o recién abierta, antes de `data-shown`) está abajo, fuera de
+// la pantalla; sale acelerando.
 .panel {
   --panel-pad: 0rem;
   --panel-radius: #{t.$radius-lg};
@@ -55,6 +69,24 @@
   flex: 1 1 auto;
   flex-direction: column;
   min-block-size: 0;
+  transform: translateY(var(--sheet-from));
+  transition: transform 0.32s cubic-bezier(0.55, 0, 0.8, 0.25);
+  // Siempre en su propia capa: si no, al terminar de entrar (`transform: none`) el navegador la devuelve a la página y la
+  // vuelve a pintar, y eso se ve como un parpadeo.
+  will-change: transform;
+
+  // Abierta: sube y frena suave, sin rebote.
+  .dialog[data-shown] & {
+    transform: none;
+    transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+  }
+
+  @include bp.reduced-motion {
+    &,
+    .dialog[data-shown] & {
+      transition: none;
+    }
+  }
 }
 
 // El asa: dice que la hoja se cierra tocando afuera o con el botón de abajo.

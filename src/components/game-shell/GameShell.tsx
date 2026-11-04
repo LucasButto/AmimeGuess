@@ -444,8 +444,8 @@ export function GameShell({
         </div>
       )}
 
-      {resultInSheet && resultOpen && report && (
-        <Sheet title={es.shell.result.sheetTitle} onClose={() => setResultOpen(false)}>
+      {resultInSheet && report && (
+        <Sheet open={resultOpen} title={es.shell.result.sheetTitle} onClose={() => setResultOpen(false)}>
           <ResultPanel
             inSheet
             titleOverride={report.title}
@@ -519,8 +519,9 @@ export function GameShell({
           {phone && yesterdayNote}
         </Modal>
       )}
-      {phone && filtersOpen && (
+      {phone && (
         <Sheet
+          open={filtersOpen}
           title={es.shell.filtersSheet}
           onClose={() => setFiltersOpen(false)}
           footer={

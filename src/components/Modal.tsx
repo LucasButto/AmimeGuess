@@ -134,10 +134,10 @@ export function Modal({ title, onClose, wide = false, className, offset, onMove,
   const resizable = onResize !== undefined;
   const [dims, setDims] = useState<ModalSize | null>(size ?? null);
   const resizeRef = useRef<Resize | null>(null);
-  // Diseño de app: a pantalla completa en el teléfono se cierra deslizando hacia abajo desde el encabezado.
+  // Diseño de app: a pantalla completa en el teléfono se cierra arrastrándolo hacia abajo con el dedo (lo sigue mientras no
+  // se suelta). Se desmonta apenas se llama `onClose`, así que el gesto espera a que termine de salir.
   const appShell = useAppShell();
-  const swipe = useSwipeToClose(dialogRef, onClose);
-  const fullScreen = () => (dialogRef.current?.getBoundingClientRect().width ?? 0) >= window.innerWidth - 1;
+  useSwipeToClose(dialogRef, onClose, { enabled: () => appShell, waitExit: true });
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -187,7 +187,6 @@ export function Modal({ title, onClose, wide = false, className, offset, onMove,
 
   // --- Arrastrar desde la barra del título --------------------------------------------
   function startDrag(event: ReactPointerEvent<HTMLElement>) {
-    if (appShell && fullScreen() && swipe.start(event)) return;
     const dialog = dialogRef.current;
     if (!movable || !dialog || (event.pointerType === 'mouse' && event.button !== 0)) return;
     // El botón de cerrar sigue siendo un botón.
@@ -213,7 +212,6 @@ export function Modal({ title, onClose, wide = false, className, offset, onMove,
   }
 
   function moveDrag(event: ReactPointerEvent<HTMLElement>) {
-    if (swipe.move(event)) return;
     const drag = dragRef.current;
     if (!drag || drag.pointerId !== event.pointerId) return;
     const next = { x: drag.from.x + event.clientX - drag.startX, y: drag.from.y + event.clientY - drag.startY };
@@ -222,7 +220,6 @@ export function Modal({ title, onClose, wide = false, className, offset, onMove,
   }
 
   function endDrag(event: ReactPointerEvent<HTMLElement>) {
-    if (swipe.end(event)) return;
     const drag = dragRef.current;
     if (!drag || drag.pointerId !== event.pointerId) return;
     dragRef.current = null;

@@ -1,4 +1,4 @@
-import type { HTMLAttributes, ReactNode } from 'react';
+import type { HTMLAttributes, ReactNode, Ref } from 'react';
 import styles from './Panel.module.scss';
 
 type PanelElement = 'div' | 'section' | 'aside' | 'footer' | 'header';
@@ -10,6 +10,7 @@ interface PanelProps extends HTMLAttributes<HTMLElement> {
    */
   variant?: 'plain' | 'dialog' | 'screen';
   as?: PanelElement;
+  ref?: Ref<HTMLElement>;
   children: ReactNode;
 }
 
@@ -18,9 +19,10 @@ interface PanelProps extends HTMLAttributes<HTMLElement> {
  * relleno interior suma el grosor del marco; quien lo usa lo ajusta con `--panel-pad` en su clase, y el
  * redondeo de las esquinas (cuando el tema no las recorta) con `--panel-radius`.
  */
-export function Panel({ variant = 'plain', as: Element = 'div', className, children, ...rest }: PanelProps) {
+export function Panel({ variant = 'plain', as: Element = 'div', className, children, ref, ...rest }: PanelProps) {
   return (
-    <Element className={className ? `${styles.panel} ${className}` : styles.panel} data-variant={variant} {...rest}>
+    // Cualquiera de los elementos posibles es un HTMLElement: la ref vale para todos.
+    <Element ref={ref as Ref<HTMLDivElement>} className={className ? `${styles.panel} ${className}` : styles.panel} data-variant={variant} {...rest}>
       {children}
     </Element>
   );

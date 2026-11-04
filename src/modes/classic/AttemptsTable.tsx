@@ -241,22 +241,21 @@ export function AttemptsTable({ rows, columns, revealing = null, onRevealEnd }: 
               );
             })}
           </ul>
-          {helpOpen && (
-            <Sheet
-              title={es.classic.columnsHelp.title}
-              onClose={() => setHelpOpen(false)}
-              footer={<Button variant="primary" onClick={() => setHelpOpen(false)}>{es.shell.sheetDone}</Button>}
-            >
-              <dl className={styles.columnsHelp}>
-                {columns.filter((column) => column.help).map((column) => (
-                  <div key={column.key} className={styles.columnsHelpItem}>
-                    <dt>{column.label}</dt>
-                    <dd>{column.help}</dd>
-                  </div>
-                ))}
-              </dl>
-            </Sheet>
-          )}
+          <Sheet
+            open={helpOpen}
+            title={es.classic.columnsHelp.title}
+            onClose={() => setHelpOpen(false)}
+            footer={<Button variant="primary" onClick={() => setHelpOpen(false)}>{es.shell.sheetDone}</Button>}
+          >
+            <dl className={styles.columnsHelp}>
+              {columns.filter((column) => column.help).map((column) => (
+                <div key={column.key} className={styles.columnsHelpItem}>
+                  <dt>{column.label}</dt>
+                  <dd>{column.help}</dd>
+                </div>
+              ))}
+            </dl>
+          </Sheet>
         </section>
       )}
     </>
