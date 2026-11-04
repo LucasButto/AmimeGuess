@@ -902,18 +902,9 @@ export const es = {
       gridLabel: 'Pokémon',
       itemTypes: (types: readonly string[]) => `tipos: ${types.join(', ')}`,
     },
-    statsTitle: 'Estadísticas base',
     // Medallero de la racha: desde la octava medalla, cuántos días más.
     medalsMore: (extra: number) => `+${extra}`,
     hp: 'PS',
-    stats: {
-      ps: 'PS',
-      ataque: 'Ataque',
-      defensa: 'Defensa',
-      ataqueEspecial: 'At. Esp.',
-      defensaEspecial: 'Def. Esp.',
-      velocidad: 'Velocidad',
-    },
   },
   // Ayudas de los botones ⓘ (SPEC 9.2): 140 caracteres como mucho y sin pistas sobre la respuesta.
   help: {
