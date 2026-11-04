@@ -1,8 +1,8 @@
 @use 'breakpoints' as bp;
 @use 'tokens' as t;
 
-// --- Kunai (botones de volver) ----------------------------------------------------------------------------------------
-// El lugar del ícono mide 2 rem; el kunai, un poco más ancho, asoma a la izquierda sin cambiar la caja.
+// --- Botones de volver ------------------------------------------------------------------------------------------------
+// El lugar del ícono mide 2 rem; el pergamino de la franquicia, un poco más ancho, asoma sin cambiar la caja.
 
 .kunaiBox {
   position: relative;
@@ -42,13 +42,12 @@
 
 }
 
-// El kunai: el ícono de public/icons/naruto/kunai.webp (la punta abajo a la izquierda), girado 45° para que apunte a la izquierda.
-.kunai {
+// El pergamino abierto de public/icons/naruto/pergamino-abierto.webp, derecho.
+.scroll {
   flex: none;
   inline-size: 2.25rem;
   block-size: 2.25rem;
   object-fit: contain;
-  transform: rotate(45deg);
   user-select: none;
 }
 
@@ -68,13 +67,47 @@
   object-fit: contain;
   user-select: none;
 
-  // Al hacer clic, el tronco desaparece dentro del humo.
+  // Al hacer clic, el tronco (con las armas clavadas) desaparece dentro del humo.
   [data-leaving='true'] > & {
     @include bp.motion-ok {
       opacity: 0;
       transition: opacity 0.2s 0.05s;
     }
   }
+}
+
+// Las armas clavadas en el tronco: el shuriken en la punta izquierda y el kunai arriba a la derecha, con la punta hacia
+// adentro (el ícono del kunai tiene la punta abajo a la izquierda y el anillo arriba a la derecha).
+.stuckShuriken,
+.stuckKunai {
+  position: absolute;
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  filter: drop-shadow(0 0.0625rem 0.0625rem color-mix(in srgb, var(--palette-ink) 55%, transparent));
+
+  [data-leaving='true'] > & {
+    @include bp.motion-ok {
+      opacity: 0;
+      transition: opacity 0.2s 0.05s;
+    }
+  }
+}
+
+.stuckShuriken {
+  inset-block-start: 38%;
+  inset-inline-start: 2%;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  transform: rotate(14deg);
+}
+
+.stuckKunai {
+  inset-block-start: -0.625rem;
+  inset-inline-start: 64%;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  transform: rotate(12deg);
 }
 
 // "¡Puf!": tres bocanadas de humo que crecen y se desvanecen al hacer clic (solo `transform` y `opacity`).

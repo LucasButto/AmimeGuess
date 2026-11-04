@@ -2,16 +2,16 @@
 // uno que no esté en la lista usa el shuriken.
 
 const ICONS: Record<string, string> = {
-  clasico: 'pergamino-abierto',
+  clasico: 'ramen',
   silueta: 'mascara-anbu',
   frase: 'pergamino-cerrado',
   borroso: 'bomba-humo',
   jutsu: 'rasengan',
   ojo: 'sharingan',
   equipo: 'banda-konoha',
-  emoji: 'ramen',
+  emoji: 'kunai',
   conexiones: 'nota-explosiva',
-  'linea-de-tiempo': 'banda-suna',
+  'linea-de-tiempo': 'libro-icha-icha',
 };
 
 /** El archivo del ícono de un modo (un objeto de la hoja, con fondo transparente). */

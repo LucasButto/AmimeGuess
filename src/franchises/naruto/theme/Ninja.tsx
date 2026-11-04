@@ -3,11 +3,11 @@ import styles from './Ninja.module.scss';
 
 /**
  * Dibujo de los botones de volver de Naruto (slot `BackNav`; la caja es común a todos los temas, ver `BackNav`):
- * - La franquicia: un kunai (`public/icons/naruto/kunai.webp`, girado para que apunte a la izquierda). Con el hover y el
+ * - La franquicia: un pergamino abierto (`public/icons/naruto/pergamino-abierto.webp`). Con el hover y el
  *   foco gira un poco; al hacer clic sale disparado hacia la izquierda y recién ahí `BackNav` navega (250 ms, ver
  *   `backNavExitMs`).
  * - Inicio: el tronco de la técnica de sustitución (`public/theme/naruto/tronco-boton.webp`, el ícono del tronco acostado y
- *   alargado) con "Inicio" escrito encima (el tronco es el botón entero, ver `a[data-kind='home']` en theme.module.scss). Con
+ *   alargado) con un shuriken y un kunai clavados (`public/icons/naruto/`) y "Inicio" escrito encima (el tronco es el botón entero, ver `a[data-kind='home']` en theme.module.scss). Con
  *   el hover y el foco el tronco se tambalea y las letras se ponen naranjas. Al hacer clic, una nube de humo ("¡puf!") lo
  *   tapa antes de navegar.
  * Con movimiento reducido no hay animación.
@@ -16,13 +16,15 @@ export function NinjaBackNav({ kind, leaving }: BackNavIconProps) {
   if (kind === 'franchise') {
     return (
       <span className={styles.kunaiBox} data-leaving={leaving}>
-        <img className={styles.kunai} src="/icons/naruto/kunai.webp" alt="" width={210} height={210} draggable={false} />
+        <img className={styles.scroll} src="/icons/naruto/pergamino-abierto.webp" alt="" width={210} height={210} draggable={false} />
       </span>
     );
   }
   return (
     <span className={styles.kunaiBox} data-kind="log" data-leaving={leaving}>
       <img className={styles.log} src="/theme/naruto/tronco-boton.webp" alt="" width={328} height={126} draggable={false} />
+      <img className={styles.stuckShuriken} src="/icons/naruto/shuriken.webp" alt="" width={198} height={198} draggable={false} />
+      <img className={styles.stuckKunai} src="/icons/naruto/kunai.webp" alt="" width={210} height={210} draggable={false} />
       <span className={styles.smoke}>
         <i />
         <i />
