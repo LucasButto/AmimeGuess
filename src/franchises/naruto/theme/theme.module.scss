@@ -145,9 +145,11 @@
     // La página de la franquicia también centra "Inicio" en el tronco (ver `BackNav.module.scss`).
     --back-home-justify: center;
 
-    // Sin las dos capas del marco: lo que se ve es la imagen.
-    &::before,
-    &::after {
+    // Sin las dos capas del marco: lo que se ve es la imagen. En la página de la franquicia, `BackNav.module.scss` las
+    // vuelve a mostrar desde `lg` con más especificidad (un recuadro de papel detrás del tronco); por eso el selector repite
+    // atributos hasta ganarle.
+    &[data-kind][href]::before,
+    &[data-kind][href]::after {
       display: none;
     }
 
