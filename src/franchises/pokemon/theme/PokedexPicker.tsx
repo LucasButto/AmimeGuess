@@ -24,7 +24,7 @@ import { pokedexTypes } from './pokedexTypes';
 import { PokedexPortrait } from './PokedexPortrait';
 import { pokedexPortraitSize, pokedexPortraitUrl } from './pokedexPortraitData';
 import { MONOTYPE_FILTER, availableGenerations, availableTypes, filterByFacets, type PokedexFilters } from './pokedexFilters';
-import { PICKER_POKEDEX, POKEDEX_LENS, POKEDEX_LIGHT_ROWS, inlineArt } from './art';
+import { POKEDEX_LENS, POKEDEX_LIGHT_ROWS, inlineArt } from './art';
 import styles from './PokedexPicker.module.scss';
 
 interface DialogProps {
@@ -459,10 +459,7 @@ function DexButton({ count, tried, disabled, onOpen }: { count: number; tried: n
       {inDock ? (
         <PixelArt art={inlineArt(POKEDEX_LENS)} size="fill" className={styles.dockLens} />
       ) : (
-        <span className={styles.dex} aria-hidden="true">
-          <PixelArt art={inlineArt(PICKER_POKEDEX)} size="fill" className={styles.dexArt} />
-          <span className={styles.dexGlow} />
-        </span>
+        <img className={styles.dex} src="/icons/pokemon/pokedex.webp" alt="" width={200} height={200} draggable={false} aria-hidden="true" />
       )}
       <span className={styles.bigBallText}>
         <span className={styles.bigBallTitle}>

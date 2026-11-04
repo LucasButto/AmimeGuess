@@ -35,27 +35,6 @@
     padding-block: calc(#{t.$space-3} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
   }
 
-  // Con el cursor o el teclado, la pantalla de la Pokédex se enciende (con un parpadeo, como un tubo viejo).
-  &:focus-visible .dexGlow {
-    opacity: 1;
-
-    @include bp.motion-ok {
-      animation: screen-on 0.5s steps(1, end);
-    }
-  }
-
-  &:not(:disabled) {
-    @include m.hover {
-      .dexGlow {
-        opacity: 1;
-
-        @include bp.motion-ok {
-          animation: screen-on 0.5s steps(1, end);
-        }
-      }
-    }
-  }
-
   &:active:not(:disabled) {
     transform: translateY(#{t.token('button-press')});
   }
@@ -66,68 +45,20 @@
   }
 }
 
-// La Pokédex del botón: el dibujo de la navegación entre modos, un píxel más ancho que alto (14 × 13), con cada píxel de
-// arte de 4 medios píxeles (entero a cualquier escala). En una pantalla baja (un teléfono en horizontal), de 3: más chica,
-// así la imagen del reto y el botón siguen entrando juntos en la pantalla.
+// La Pokédex del botón: la imagen `pokedex.webp` en la misma caja de antes (14 × 13 píxeles de arte de 4 medios píxeles).
+// En una pantalla baja (un teléfono en horizontal), de 3: más chica, así la imagen del reto y el botón siguen entrando
+// juntos en la pantalla.
 .dex {
-  position: relative;
+  display: block;
   flex: none;
+  object-fit: contain;
+  user-select: none;
   inline-size: calc(#{t.token('px-half')} * 14 * 3);
   block-size: calc(#{t.token('px-half')} * 13 * 3);
 
   @include bp.min-height('tall') {
     inline-size: calc(#{t.token('px-half')} * 14 * 4);
     block-size: calc(#{t.token('px-half')} * 13 * 4);
-  }
-}
-
-.dexArt {
-  inline-size: 100%;
-  block-size: 100%;
-}
-
-// La pantalla encendida: cian con líneas de barrido, justo sobre la pantalla del dibujo (filas 7 a 9, columnas 3 a 10 de
-// 13 × 14). Apagada es invisible; se enciende solo con `opacity`, a pasos.
-.dexGlow {
-  position: absolute;
-  inset-block-start: calc(100% * 7 / 13);
-  inset-inline-start: calc(100% * 3 / 14);
-  inline-size: calc(100% * 8 / 14);
-  block-size: calc(100% * 3 / 13);
-  background:
-    repeating-linear-gradient(to bottom, transparent 0 var(--px-half), color-mix(in srgb, var(--palette-blue) 14%, transparent) var(--px-half) var(--px)),
-    var(--palette-cyan);
-  opacity: 0;
-
-  @include bp.motion-ok {
-    transition: opacity 0.2s steps(3, end);
-  }
-}
-
-// Como un tubo viejo al prenderse: titila antes de quedarse fijo.
-@keyframes screen-on {
-  0% {
-    opacity: 0;
-  }
-
-  15% {
-    opacity: 1;
-  }
-
-  30% {
-    opacity: 0.25;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  65% {
-    opacity: 0.6;
-  }
-
-  100% {
-    opacity: 1;
   }
 }
 
