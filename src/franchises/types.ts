@@ -10,6 +10,7 @@ import type { RevealListConfig } from '../modes/reveal-list/types';
 import type { TextClueConfig } from '../modes/text-clue/types';
 import type { TimelineConfig } from '../modes/timeline/types';
 import type { StatBuilderConfig } from '../modes/stat-builder/types';
+import type { CategoryBoardConfig } from '../modes/category-board/types';
 
 /** Los motores de juego (SPEC 3.2). Ninguno contiene lógica de una franquicia. */
 export type EngineId =
@@ -20,9 +21,11 @@ export type EngineId =
   | 'higher-lower'
   | 'timeline'
   | 'connections'
-  | 'stat-builder';
+  | 'stat-builder'
+  | 'category-board';
 
 export interface ModeConfig {
+  readonly categoryBoard?: CategoryBoardConfig;
   readonly statBuilder?: StatBuilderConfig;
   /** Límite base editable en data/mode.json; los filtros ajustan los modos de adivinar. */
   readonly try?: number;

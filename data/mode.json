@@ -97,7 +97,7 @@
       {
         "slug": "poder",
         "name": "Nivel de poder",
-        "status": true,
+        "status": false,
         "try": 1
       },
       {
@@ -109,6 +109,12 @@
       {
         "slug": "linea-de-tiempo",
         "name": "Línea de tiempo",
+        "status": true,
+        "try": 4
+      },
+      {
+        "slug": "casillas",
+        "name": "Casillas",
         "status": true,
         "try": 4
       }
@@ -166,8 +172,14 @@
       {
         "slug": "emoji",
         "name": "Emoji",
-        "status": true,
+        "status": false,
         "try": 8
+      },
+      {
+        "slug": "casillas",
+        "name": "Casillas",
+        "status": true,
+        "try": 4
       },
       {
         "slug": "linea-de-tiempo",

@@ -24,6 +24,7 @@ import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { z } from 'zod';
 import type { Content, Entity } from '../../../src/engine/types.ts';
+import { buildCategoryBoard } from '../category-board.ts';
 import {
   DRAGONBALL_API,
   DRAGONBALL_API_BASE,
@@ -586,6 +587,7 @@ async function main(): Promise<void> {
   await validate(src, characters, forms, power, contents, debutOf, sagaSeries);
 
   step('Escribiendo data/dragon-ball/…');
+  await buildCategoryBoard(ROOT, 'dragon-ball', characters);
   await writeJson(path.join(DATA_DIR, 'entities.json'), characters);
   await writeJson(path.join(DATA_DIR, 'transformations.json'), forms);
   await writeJson(path.join(DATA_DIR, 'power.json'), power);

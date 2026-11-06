@@ -7,6 +7,26 @@
 @use 'mixins' as m;
 @use 'logo-words' as l;
 
+// Casillas: el personaje en una viñeta y el tablero con la tinta del manga.
+.root [data-part='category-spotlight'] { --surface-panel: var(--palette-white); }
+.root [data-part='category-cell'] { --frame-inner-width: 0rem; }
+
+.root [data-part='category-grid'][data-outcome]::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: min(98%, 36rem);
+  aspect-ratio: 3;
+  background: center / contain no-repeat;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  filter: drop-shadow(0 0.125rem 0.1875rem color-mix(in srgb, var(--palette-ink) 35%, transparent));
+  pointer-events: none;
+}
+.root [data-part='category-grid'][data-outcome='won']::after { background-image: url('/icons/dragon-ball/logrado.webp'); }
+.root [data-part='category-grid'][data-outcome='failed']::after { background-image: url('/icons/dragon-ball/fallaste.webp'); }
+
 // Una esfera del dragón dibujada con CSS (para los números de la línea de tiempo): el mismo degradé que la de SVG.
 @mixin sphere-fill {
   border: 0.125rem solid var(--palette-ink);

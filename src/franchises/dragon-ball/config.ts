@@ -1,4 +1,5 @@
 import sagasJson from '../../../data/dragon-ball/sagas.json';
+import boardJson from '../../../data/dragon-ball/casillas.json';
 import { es } from '../../i18n/es';
 import type { ClassicValueLabel } from '../../modes/classic/types';
 import type { FranchiseConfig } from '../types';
@@ -94,7 +95,7 @@ export const dragonBallConfig = {
           // Si la serie del debut está apagada, el valor se oculta: lo excluido no aparece nunca.
           { key: 'serieDebut', label: 'Serie de debut', compare: 'ordered', valueLabels: serieDebutLabels, help: help.serieDebut },
           { key: 'sagaDebut', label: 'Saga de debut', compare: 'ordered', valueLabels: sagaDebutLabels, help: help.sagaDebut },
-        ],
+  ],
         hints: [],
       },
     },
@@ -173,6 +174,7 @@ export const dragonBallConfig = {
         levels: [{ count: 5, attempts: 3 }, { count: 10, attempts: 4 }, { count: 15, attempts: 5 }],
       },
     },
+          { slug: 'casillas', name: es.categoryBoard.name, engine: 'category-board', categoryBoard: { roster: boardJson.roster, exclusions: boardJson.exclusions, categories: boardJson.categories.map((category) => ({ ...category, ...es.categoryBoard.categories[category.id] })) } },
   ],
   // Manga de acción (sesión 16): paneles de papel crema con tinta negra gruesa sobre el cielo celeste de la serie. Bangers
   // para los títulos (letra de cómic, solo títulos y etiquetas cortas) y Rubik para el texto.

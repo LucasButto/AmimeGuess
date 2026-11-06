@@ -48,7 +48,7 @@ const combinations: string[][] = Array.from({ length: 2 ** allSeries.length - 1 
 );
 
 describe('config', () => {
-  it('tiene los 10 modos, en orden y con su motor', () => {
+  it('tiene los 11 modos, en orden y con su motor', () => {
     expect(modes.map((m) => [m.slug, m.engine])).toEqual([
       ['clasico', 'classic'],
       ['silueta', 'image-reveal'],
@@ -60,12 +60,13 @@ describe('config', () => {
       ['emoji', 'text-clue'],
       ['linea-de-tiempo', 'timeline'],
       ['conexiones', 'connections'],
+      ['casillas', 'category-board'],
     ]);
   });
 
   it('cada modo trae la configuración de su motor', () => {
     for (const m of modes) {
-      const config = { classic: m.classic, 'image-reveal': m.imageReveal, 'text-clue': m.textClue, 'reveal-list': m.revealList, connections: m.connections, timeline: m.timeline }[m.engine as string];
+      const config = { classic: m.classic, 'image-reveal': m.imageReveal, 'text-clue': m.textClue, 'reveal-list': m.revealList, connections: m.connections, timeline: m.timeline, 'category-board': m.categoryBoard }[m.engine as string];
       expect(config, m.slug).toBeDefined();
     }
   });

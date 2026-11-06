@@ -26,6 +26,7 @@ import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { z } from 'zod';
 import type { Content, Entity } from '../../../src/engine/types.ts';
+import { buildCategoryBoard } from '../category-board.ts';
 import { plainDisplayText } from './display-text.ts';
 import {
   SIZES,
@@ -692,6 +693,7 @@ async function main(): Promise<void> {
 
   step('Escribiendo data/naruto/…');
   await writeJson(path.join(DATA_DIR, 'entities.json'), characters);
+  await buildCategoryBoard(ROOT, 'naruto', characters);
   await writeJson(path.join(DATA_DIR, 'content.json'), contents);
   await writeJson(path.join(DATA_DIR, 'arcs.json'), arcsOutput);
 

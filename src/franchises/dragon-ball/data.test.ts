@@ -43,7 +43,7 @@ const without = (series: string) => allSeries.filter((id) => id !== series);
 const ctx: DailyContext = { franchise: 'dragon-ball', mode: 'x', filterKey: 'all', day: 200 };
 
 describe('config', () => {
-  it('tiene los 8 modos de la SPEC, en orden y con su motor', () => {
+  it('tiene los 9 modos de la SPEC, en orden y con su motor', () => {
     expect(modes.map((m) => [m.slug, m.engine])).toEqual([
       ['clasico', 'classic'],
       ['silueta', 'image-reveal'],
@@ -53,6 +53,7 @@ describe('config', () => {
       ['poder', 'higher-lower'],
       ['transformacion', 'image-reveal'],
       ['linea-de-tiempo', 'timeline'],
+      ['casillas', 'category-board'],
     ]);
   });
 

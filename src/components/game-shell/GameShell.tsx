@@ -111,7 +111,13 @@ export function GameShell({
   const resultInSheet = appShell && phone && report !== null;
   // Lo que la persona hizo con la hoja de ESTE resultado; sin haber hecho nada, se abre sola solo si la partida terminó ahora.
   const [sheetView, setSheetView] = useState<{ report: FinishReport; open: boolean } | null>(null);
-  const resultOpen = report !== null && (sheetView?.report === report ? sheetView.open : report.fresh);
+  const waitingForSheet = resultInSheet && report.fresh && (report.sheetDelayMs ?? 0) > 0 && sheetView?.report !== report;
+  useEffect(() => {
+    if (!waitingForSheet || !report) return;
+    const timer = window.setTimeout(() => setSheetView({ report, open: true }), report.sheetDelayMs);
+    return () => window.clearTimeout(timer);
+  }, [waitingForSheet, report]);
+  const resultOpen = report !== null && (sheetView?.report === report ? sheetView.open : report.fresh && !waitingForSheet);
   const setResultOpen = (open: boolean) => { if (report) setSheetView({ report, open }); };
 
   // Al terminar una partida (no al recargar una ya terminada), la página baja sola hasta el resumen.
@@ -475,7 +481,7 @@ export function GameShell({
           {yesterdayNote}
         </Sheet>
       )}
-      {resultInSheet && !resultOpen && <DockAction label={es.shell.result.viewResult} onClick={() => setResultOpen(true)} />}
+      {resultInSheet && !resultOpen && !waitingForSheet && <DockAction label={es.shell.result.viewResult} onClick={() => setResultOpen(true)} />}
 
       {dialog === 'help' && (
         <Modal title={es.shell.helpTitle(mode.name)} onClose={closeDialog}>

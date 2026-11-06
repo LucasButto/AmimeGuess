@@ -9,6 +9,7 @@ import { candidatesOf as textCandidates } from '@/modes/text-clue/logic';
 import { poolOf as timelinePool } from '@/modes/timeline/logic';
 import { entitiesOfMode, type FranchiseData } from './data';
 import type { FranchiseConfig, ModeConfig } from './types';
+import { categoriesOf as boardCategories, poolOf as boardPool, BOARD_SIZE } from '@/modes/category-board/logic';
 
 /**
  * Cuántas opciones tiene un modo con las series activas: lo que cada motor llama su pool
@@ -19,6 +20,11 @@ import type { FranchiseConfig, ModeConfig } from './types';
 export function modePoolSize(mode: ModeConfig, data: FranchiseData, active: readonly string[]): number | null {
   const entities = entitiesOfMode(data, mode.entitySet);
   switch (mode.engine) {
+    case 'category-board': {
+      if (!mode.categoryBoard) return null;
+      const pool = boardPool(entities, active, mode.categoryBoard);
+      return boardCategories(pool, mode.categoryBoard, { ...es.categoryBoard.wildcard, members: [], wildcard: true }, active).length === BOARD_SIZE ? pool.length : 0;
+    }
     case 'stat-builder':
       return mode.statBuilder === undefined ? null : eligibleEntities(entities, active).filter((entity) => mode.statBuilder!.stats.every((stat) => typeof entity.attrs[stat.key] === 'number')).length;
     case 'classic':

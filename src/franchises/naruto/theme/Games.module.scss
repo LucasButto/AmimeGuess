@@ -9,6 +9,28 @@
 
 $ink: var(--palette-ink);
 
+// Casillas: fichas de papel con filete granate, sobre el pergamino de la franquicia.
+.root [data-part='category-spotlight'], .root [data-part='category-cell'] { --surface-panel: var(--palette-paper); --clip-panel: none; --frame-inner: var(--palette-crimson); }
+.root [data-part='category-cell'][data-filled='true'] { --surface-panel: var(--palette-washi-shade); }
+.root [data-part='category-cell'][data-wildcard='true'] { --frame-color: var(--palette-crimson); }
+
+// Sellos aportados por el usuario: sobre la grilla, sin tapar los controles con una capa interactiva.
+.root [data-part='category-grid'][data-outcome]::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: min(98%, 36rem);
+  aspect-ratio: 3;
+  background: center / contain no-repeat;
+  transform: translate(-50%, -50%) rotate(-12deg);
+  filter: drop-shadow(0 0.125rem 0.1875rem color-mix(in srgb, var(--palette-ink) 35%, transparent));
+  pointer-events: none;
+}
+.root [data-part='category-grid'][data-outcome='won']::after { background-image: url('/icons/naruto/logrado.webp'); }
+.root [data-part='category-grid'][data-outcome='failed']::after { background-image: url('/icons/naruto/fallaste.webp'); }
+
 // --- Visor (silueta, borroso, jutsu y ojo): la imagen en un marco de pergamino ---------------------------------------------
 // Un marco granate con un margen de papel y el filete de tinta por fuera, como el papel de un pergamino.
 

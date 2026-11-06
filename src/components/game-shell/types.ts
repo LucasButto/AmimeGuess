@@ -125,6 +125,8 @@ export interface FinishReport {
    * el juego (por ejemplo, los dos valores de una comparación). Sin esto, `RESULT_SETTLE_MS`.
    */
   readonly settleMs?: number;
+  /** Espera antes de abrir automáticamente la hoja móvil de un resultado recién terminado. */
+  readonly sheetDelayMs?: number;
 }
 
 /** Lo que el marco le da al juego. */

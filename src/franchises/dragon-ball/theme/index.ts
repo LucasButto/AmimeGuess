@@ -28,7 +28,7 @@ export const dragonBallSkin: FranchiseSkin = {
   // Las semillas del ermitaño (los intentos) también en el modo de frase y en los de lista, no solo en el Clásico y la línea de
   // tiempo. No en Nivel de poder (se juega hasta el primer fallo: solo cuentan los aciertos) ni en los de imagen (Silueta, Borroso,
   // Técnica, Transformación), donde "Pista N de M" ya dice cuánto se reveló.
-  additionalAttemptsMeters: ['text-clue', 'reveal-list'],
+  additionalAttemptsMeters: ['text-clue', 'reveal-list', 'category-board'],
   // Sin tildes, cruces ni el símbolo del parcial: el verde, el amarillo y el rojo lo dicen solos; solo quedan las flechas de
   // mayor y menor.
   cellMarks: 'arrows',

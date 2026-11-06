@@ -976,7 +976,30 @@ const TEXT_MODES = [
 /** Los modos de Pokémon que usan el motor de imagen (sesión 05). */
 const IMAGE_MODES = [{ slug: 'silueta' }, { slug: 'carta' }] as const;
 
+/** Fixture visual del sello. La validez del resultado del juego se verifica en CategoryBoardGame.test.ts. */
+async function previewCategoryStamp(page: Page, outcome: 'won' | 'failed'): Promise<string[]> {
+  const result = await page.locator('[data-part="category-grid"]').evaluate((grid, outcome) => {
+    grid.setAttribute('data-outcome', outcome);
+    const stamp = getComputedStyle(grid, '::after');
+    const cell = grid.querySelector('[data-part="category-cell"]')!;
+    return { image: stamp.backgroundImage, faded: Number(getComputedStyle(cell).opacity) < 0.5, passThrough: stamp.pointerEvents === 'none' };
+  }, outcome);
+  const problems: string[] = [];
+  if (!result.image.includes(outcome === 'won' ? 'logrado.webp' : 'fallaste.webp')) problems.push('falta el sello WebP del resultado');
+  if (!result.faded) problems.push('la grilla no se atenúa detrás del sello');
+  if (!result.passThrough) problems.push('el sello puede interceptar clics');
+  return problems;
+}
+
 const ROUTES: RouteCheck[] = [
+  { name: 'dragon-ball-casillas', path: '/dragon-ball/casillas', ready: GAME_READY },
+  { name: 'naruto-casillas', path: '/naruto/casillas', ready: GAME_READY },
+  ...(['naruto', 'dragon-ball'] as const).flatMap((franchise): RouteCheck[] => (['won', 'failed'] as const).map((outcome) => ({
+    name: `${franchise}-casillas-sello-${outcome}`,
+    path: `/${franchise}/casillas`,
+    ready: GAME_READY,
+    check: (page) => previewCategoryStamp(page, outcome),
+  }))),
   { name: 'inicio', path: '/' },
   // Las pestañas del teléfono (sesión 26): Retos, Estadísticas y Más.
   { name: 'retos', path: '/retos' },

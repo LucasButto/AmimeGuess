@@ -5,6 +5,72 @@ import type { ModeCardState, ThemeFont } from '@/franchises/types';
 const plural = (count: number, one: string, many: string) => (count === 1 ? one : many);
 
 export const es = {
+  categoryBoard: {
+    name: 'Casillas',
+    description: 'Ubicá cada personaje en una categoría y completá el tablero.',
+    difficulty: 'Dificultad',
+    levels: ['Fácil', 'Normal', 'Difícil'],
+    levelAttempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
+    progress: (attempt: number, total: number) => `Intento ${attempt} de ${total}`,
+    filled: (count: number) => `${count} de 8 categorías`,
+    board: 'Tablero de categorías',
+    rolling: '¿Quién te toca?',
+    stop: 'Detener ruleta',
+    reveal: 'Revelar personaje',
+    choose: 'Elegí una casilla libre',
+    next: 'Siguiente personaje',
+    retry: 'Nuevo intento',
+    finished: 'Tablero terminado',
+    occupied: 'Ocupada',
+    empty: 'Libre',
+    place: (name: string, category: string) => `Ubicar a ${name} en ${category}`,
+    placed: (name: string, category: string) => `${name} quedó en ${category}.`,
+    blocked: (name: string) => `${name} no entra en ninguna casilla libre. Terminó este intento.`,
+    wrong: (name: string, category: string, wildcardFree: boolean) => `${name} no corresponde a ${category}. ${wildcardFree ? 'Podés ubicarlo en otra casilla o en el comodín.' : 'Podés ubicarlo en otra casilla libre que le corresponda.'}`,
+    remaining: (count: number) => count === 1 ? 'Te queda un intento.' : `Te quedan ${count} intentos.`,
+    won: '¡Tablero completo!',
+    result: (count: number) => `Completaste ${count} de las 8 categorías.`,
+    noBoard: 'Con estos filtros no se puede armar un tablero completo. Probá activar más series.',
+    balanced: 'El sorteo es libre: puede tocarte una secuencia sin solución. Elegí bien qué casillas reservar.',
+    wildcard: { id: 'comodin', label: 'Comodín', help: 'Acepta cualquier personaje. Se puede ocupar una sola vez en cada tablero.' },
+    help: [
+      'Completá las ocho categorías con los personajes que te toquen. El comodín es opcional: ganás aunque quede libre. Un personaje puede corresponder a varias categorías, pero solo puede ocupar una casilla.',
+      'Detené la ruleta, elegí una casilla libre y pasá al siguiente personaje. Las colocaciones son definitivas y no se repiten personajes dentro del tablero.',
+      'El comodín acepta cualquier personaje una sola vez. Si elegís una categoría incorrecta, podés volver a elegir. Solo perdés el intento cuando no queda ninguna casilla que acepte al personaje.',
+      'Tenés tres intentos en Fácil, dos en Normal y uno en Difícil. Cada intento empieza un tablero nuevo. Ganás al completar las ocho categorías, hayas usado el comodín o no.',
+      'Los filtros se respetan. Si dejan una categoría sin candidatos, se usa una categoría alternativa. Los personajes se sortean libremente: puede tocar una secuencia sin solución.',
+    ],
+    categories: {
+      hokage: { label: 'Hokage', help: 'Fue Hokage de la Aldea de la Hoja.' },
+      konoha: { label: 'Konoha', help: 'Nació en Konoha o se lo identifica especialmente con la aldea. Mitsuki cuenta; Temari y las criaturas invocadas no.' },
+      'otras-aldeas': { label: 'Otras aldeas', help: 'Se identifica con otra aldea o tiene un origen externo a Konoha. Incluye a Kaguya y las criaturas invocadas del catálogo.' },
+      'poder-ocular': { label: 'Poder ocular', help: 'Usó un poder ocular en algún momento, incluidos ojos trasplantados.' },
+      invocacion: { label: 'Invocación', help: 'Invocadores y criaturas invocadas. Incluye Edo Tensei; de las barreras, solo cuentan las Rashomon de Orochimaru y Hashirama.' },
+      akatsuki: { label: 'Akatsuki', help: 'Integrante o miembro asociado de Akatsuki, incluido Taka. Kabuto y Madara no cuentan como miembros.' },
+      jinchuriki: { label: 'Jinchuriki', help: 'Fue portador de una bestia con cola en algún momento.' },
+      antagonista: { label: 'Antagonista', help: 'Actuó como antagonista en algún arco, aunque después haya cambiado de bando.' },
+      sannin: { label: 'Sannin', help: 'Jiraiya, Tsunade u Orochimaru.' },
+      sensor: { label: 'Sensor', help: 'Tiene habilidades sensoriales registradas.' },
+      taijutsu: { label: 'Taijutsu', help: 'Usa técnicas de taijutsu.' },
+      'ninja-medico': { label: 'Ninja médico', help: 'Tiene habilidades de ninjutsu médico.' },
+      saiyajin: { label: 'Saiyajin', help: 'Incluye híbridos y personajes fusionados con origen saiyajin.' },
+      terricola: { label: 'Terrícola', help: 'Tiene origen terrestre, incluidos híbridos y humanos modificados.' },
+      namekuseijin: { label: 'Namekuseijin', help: 'Piccoro, Dende, Nail, Kami-sama, Slug o el Gran Rey Demonio Piccoro.' },
+      androide: { label: 'Androide', help: 'Incluye androides, humanos modificados y bioandroides como Cell.' },
+      fusion: { label: 'Fusión', help: 'Incluye fusiones y absorciones: Cell, Piccoro común al asimilar a Nail y Kami-sama, y Majin Buu al absorber al Gran Kaioshin.' },
+      'ejercito-freezer': { label: 'Ejército de Freezer', help: 'Perteneció al ejército de Freezer, incluidos antiguos integrantes.' },
+      'torneo-del-poder': { label: 'Torneo del Poder', help: 'Participó en el Torneo del Poder del anime de Dragon Ball Super. Solo aparece con Super seleccionado.' },
+      deidad: { label: 'Deidad o ángel', help: 'Incluye ángeles, Kaios, Kaioshin y los dioses de la Tierra, Kami-sama y Dende.' },
+      'guerreros-z': { label: 'Guerreros Z', help: 'Forma parte de los Guerreros Z.' },
+      transformacion: { label: 'Transformación', help: 'Tiene al menos una transformación registrada.' },
+      rival: { label: 'Rival', help: 'Rival destacado: Vegeta, Piccoro, Tenshinhan, Yamcha, Broly, Jiren, Toppo o Hit.' },
+      tecnica: { label: 'Técnica característica', help: 'Tiene una técnica característica registrada.' },
+      masculino: { label: 'Masculino', help: 'Su género está registrado como masculino.' },
+      femenino: { label: 'Femenino', help: 'Su género está registrado como femenino.' },
+      vivo: { label: 'Vivo', help: 'Su estado vital registrado es vivo.' },
+      muerto: { label: 'Muerto', help: 'Su estado vital registrado es muerto.' },
+    } as Readonly<Record<string, { label: string; help: string }>>,
+  },
   modeHelp: {
     "pokemon": {
         "clasico": "Adiviná el Pokémon comparando sus tipos, generación y otros datos.",
@@ -17,6 +83,7 @@ export const es = {
         "estadisticas": "Elegí seis estadísticas para superar la meta de puntos."
     },
     "dragon-ball": {
+        "casillas": "Ubicá cada personaje en una categoría y completá el tablero con un comodín.",
         "clasico": "Adiviná el personaje comparando sus datos.",
         "silueta": "Adiviná el personaje por su sombra ampliada.",
         "frase": "Adiviná qué personaje dijo la frase.",
@@ -27,6 +94,7 @@ export const es = {
         "linea-de-tiempo": "Ordená los sucesos de Dragon Ball según cuándo ocurren en la historia."
     },
     "naruto": {
+        "casillas": "Ubicá cada personaje en una categoría y completá el tablero con un comodín.",
         "clasico": "Adiviná el personaje comparando sus datos.",
         "silueta": "Adiviná el personaje por su sombra.",
         "frase": "Adiviná qué personaje dijo la frase.",
@@ -351,6 +419,14 @@ export const es = {
         'Las siluetas de las cartas de Yu-Gi-Oh se recortan del fondo con el modelo BiRefNet (licencia MIT), ejecutado en local.',
       ],
       externalItems: [
+        {
+          name: 'Signos de pregunta de Naruto y Dragon Ball para la selección móvil',
+          text: 'Imágenes aportadas por el usuario; autor y licencia a confirmar. Se utilizan en la selección inicial del modo Casillas en móvil.',
+        },
+        {
+          name: 'Sellos Logrado y Fallaste de Naruto y Dragon Ball',
+          text: 'Imágenes aportadas por el usuario; autor y licencia a confirmar. Convertidas a WebP para el resultado de cada tablero del modo Casillas.',
+        },
         {
           name: 'Íconos de atributos y estilo de cartas del anime de Yu-Gi-Oh',
           text: 'Referencias aportadas por el usuario; autor y licencia a confirmar. Nueve íconos de atributos recortados y diseño de cartas reproducido a partir de las referencias.',

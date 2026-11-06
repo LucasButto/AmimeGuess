@@ -22,6 +22,7 @@ export const narutoSkin: FranchiseSkin = {
   pageExitMs: 280,
   // Sin tildes, cruces ni el símbolo del parcial: el verde, el naranja y el rojo lo dicen solos; solo quedan las flechas.
   cellMarks: 'arrows',
+  additionalAttemptsMeters: ['category-board'],
   // El Clásico se revela con la técnica de sustitución: cada celda es una nube de humo con un tronco que sale volando.
   revealMode: 'swap',
   // Al compartir: 🍥 el acierto, 🍃 el parcial y 🌫️ el error (se distinguen por forma y por color).
