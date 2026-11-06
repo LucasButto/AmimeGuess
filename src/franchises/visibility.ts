@@ -33,9 +33,9 @@ export function visibleFranchises(configs: readonly FranchiseConfig[], rules: Vi
   return configs.flatMap((config) => {
     const section = rules.find((candidate) => candidate.slug === config.slug);
     if (!section?.status || section.comingSoon === true) return [];
-    return [{ ...config, modes: config.modes.flatMap((mode) => {
-      const rule = section.modes.find((rule) => rule.slug === mode.slug && rule.status);
-      return rule ? [{ ...mode, try: rule.try }] : [];
+    return [{ ...config, modes: section.modes.flatMap((rule) => {
+      const mode = config.modes.find((mode) => mode.slug === rule.slug);
+      return rule.status && mode ? [{ ...mode, try: rule.try }] : [];
     }) }];
   });
 }

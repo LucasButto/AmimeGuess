@@ -65,6 +65,17 @@ describe('data/mode.json', () => {
     expect(visibleFranchises(allFranchises, modeSettings.map((entry) => ({ ...entry, status: false })))).toEqual([]);
   });
 
+  it('respeta el orden de mode.json aunque difiera de la configuración y haya modos apagados', () => {
+    const rules = enabledRules();
+    const section = rules.find((entry) => entry.slug === 'naruto')!;
+    section.modes = [...section.modes].reverse();
+    section.modes.find((mode) => mode.slug === 'emoji')!.status = false;
+    const original = allFranchises.find((entry) => entry.slug === 'naruto')!.modes.map((mode) => mode.slug);
+    const visible = visibleFranchises(allFranchises, rules).find((entry) => entry.slug === 'naruto')!;
+    expect(visible.modes.map((mode) => mode.slug)).toEqual(section.modes.filter((mode) => mode.status).map((mode) => mode.slug));
+    expect(allFranchises.find((entry) => entry.slug === 'naruto')!.modes.map((mode) => mode.slug)).toEqual(original);
+  });
+
   it('acepta comingSoon booleano u omitido y rechaza otros tipos', () => {
     const section = { slug: 'test', name: 'Test', status: true, modes: [] };
     for (const comingSoon of [true, false]) expect(sectionSchema.parse({ ...section, comingSoon }).comingSoon).toBe(comingSoon);

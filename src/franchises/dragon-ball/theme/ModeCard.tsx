@@ -16,6 +16,11 @@ function starsAt(index: number): number {
   return Math.min(7, Math.max(1, index));
 }
 
+/** Las siete posiciones visibles posteriores al Clásico usan esferas; las siguientes conservan el ícono adicional. */
+function usesSphere(index: number): boolean {
+  return index <= 7;
+}
+
 // El contorno del hombro y el cuello (en una grilla de 140 × 150 unidades): el cuerpo termina en x = 0.
 const TIP_FILL = 'M0 0 H20 C42 0 52 36 62 48 H92 V102 H62 C52 114 42 150 20 150 H0 Z';
 const TIP_LINE = 'M0 0 H20 C42 0 52 36 62 48 H92 M0 150 H20 C42 150 52 114 62 102 H92';
@@ -102,7 +107,7 @@ function SphereCard({ name, href, state, label, index }: ModeCardProps) {
   return (
     <Link className={styles.card} href={href} aria-label={label} data-state={state} data-card="sphere" onClick={(event) => leaveTo(event, href)}>
       <span className={styles.sphere} aria-hidden="true">
-        <DragonBall stars={starsAt(index)} dull={!solved} className={styles.ball} />
+        {usesSphere(index) ? <DragonBall stars={starsAt(index)} dull={!solved} className={styles.ball} /> : <img src="/icons/dragon-ball/scouter.webp" alt="" width={200} height={200} className={styles.ball} />}
         {solved && <span className={styles.glint} />}
       </span>
       <span className={styles.name} data-tight={name.split(/\s+/).some((word) => word.length > 10) || undefined}>
@@ -136,7 +141,7 @@ export function DragonModeIcon({ slug, index, solved }: ModeIconProps) {
   }
   return (
     <span className={styles.mini} aria-hidden="true" data-solved={solved}>
-      <DragonBall stars={starsAt(index)} className={styles.miniBall} />
+      {usesSphere(index) ? <DragonBall stars={starsAt(index)} className={styles.miniBall} /> : <img src="/icons/dragon-ball/scouter.webp" alt="" width={200} height={200} className={styles.miniBall} />}
     </span>
   );
 }
@@ -149,6 +154,6 @@ export function DragonTitleMark({ slug, index }: TitleMarkProps) {
   return slug === 'clasico' ? (
     <Capsule className={`${styles.titleMark} ${styles.titleBall}`} />
   ) : (
-    <DragonBall stars={starsAt(index)} className={`${styles.titleMark} ${styles.titleBall}`} />
+    usesSphere(index) ? <DragonBall stars={starsAt(index)} className={`${styles.titleMark} ${styles.titleBall}`} /> : <img src="/icons/dragon-ball/scouter.webp" alt="" width={200} height={200} className={`${styles.titleMark} ${styles.titleBall}`} />
   );
 }
