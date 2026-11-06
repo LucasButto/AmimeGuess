@@ -53,17 +53,17 @@ describe('PMD archivos generados', () => {
         for (const sheet of Object.values(variant.animations[name].directions)) expect(existsSync(path.join(root, 'public', sheet.url))).toBe(true);
       }
     }
-    expect(sleepers).toBe(730);
-    expect(ground).toBe(594);
+    expect(sleepers).toBe(734);
+    expect(ground).toBe(598);
     expect(manifest.pokemon.find(pokemon=>pokemon.entityId==='emolga')?.zone).toBe('ground');
     expect(manifest.pokemon.find(pokemon=>pokemon.entityId==='pidgeotto')?.zone).toBe('sky');
     expect(manifest.pokemon.find(pokemon=>pokemon.entityId==='charizard')?.zone).toBe('sky');
   });
-  it('usa el snapshot aprobado, 372 entradas con Galar y 1025 retratos, sin los seis excluidos', () => {
+  it('usa el snapshot aprobado, 374 entradas con Galar y 1025 retratos, sin los seis excluidos', () => {
     expect(manifest.snapshot).toBe(PMD_SNAPSHOT);
     expect(credits.snapshot).toBe(PMD_SNAPSHOT);
-    expect(manifest.pokemon).toHaveLength(372);
-    expect(new Set(manifest.pokemon.map(p=>p.entityId)).size).toBe(372);
+    expect(manifest.pokemon).toHaveLength(374);
+    expect(new Set(manifest.pokemon.map(p=>p.entityId)).size).toBe(374);
     expect(manifest.portraits).toHaveLength(1025);
     expect(manifest.excluded).toHaveLength(6);
     expect(manifest.pokemon.some((pokemon) => manifest.excluded.includes(pokemon.name))).toBe(false);
@@ -92,7 +92,7 @@ describe('PMD archivos generados', () => {
       }
     }
     expect(manifest.pokemon.filter(p=>p.zone==='sky')).toHaveLength(72);
-    expect(manifest.pokemon.filter(p=>p.zone==='ground')).toHaveLength(300);
+    expect(manifest.pokemon.filter(p=>p.zone==='ground')).toHaveLength(302);
     expect(manifest.pokemon.filter(p=>p.zone==='sky'&&p.locomotion==='Walk').map(p=>p.entityId).sort()).toEqual([...PMD_WALK_FLYERS,'articuno-galar','moltres-galar'].sort());
     for(const p of manifest.pokemon.filter(p=>p.zone==='sky'))for(const variant of Object.values(p.variants))if(variant){
       const animation=variant.animations[p.locomotion];
@@ -218,13 +218,15 @@ describe('PMD archivos generados', () => {
         const url = entry[emotion];
         if (!url) continue;
         const name = PMD_PORTRAIT_EMOTIONS[emotion];
-        const resource = resources.get(`portrait/${dex}/${name}`);
+        const form = PMD_PORTRAIT_FORMS[Number(dex)];
+        const directory = form ? `${dex}/${form}` : dex;
+        const resource = resources.get(`portrait/${directory}/${name}`);
         expect(resource?.outputs).toEqual([url]);
         const image = readFileSync(path.join(root, 'public', url));
         expect(image.subarray(1, 4).toString()).toBe('PNG');
         expect(image.readUInt32BE(16)).toBe(40);
         expect(image.readUInt32BE(20)).toBe(40);
-        const originalPath = path.join(root, 'data-src/pokemon/pmd', PMD_SNAPSHOT, `portrait/${dex}/${name}.png`);
+        const originalPath = path.join(root, 'data-src/pokemon/pmd', PMD_SNAPSHOT, `portrait/${directory}/${name}.png`);
         if (existsSync(originalPath)) {
           const original = readFileSync(originalPath);
           expect(sameVisiblePixels(await sharp(original).ensureAlpha().raw().toBuffer(), await sharp(image).ensureAlpha().raw().toBuffer())).toBe(true);
@@ -280,7 +282,7 @@ it('Salamence vuela con Walk normal y shiny, en este/oeste y con sombra, sin Flo
 });
 
 it('genera factores de tama?o y alturas regionales para todo el roster', () => {
-  expect(manifest.pokemon).toHaveLength(372);
+  expect(manifest.pokemon).toHaveLength(374);
   for(const p of manifest.pokemon) {
     expect(p.sizeFactor,p.entityId).toBeGreaterThanOrEqual(0.5);
     expect(p.sizeFactor,p.entityId).toBeLessThanOrEqual(2);

@@ -229,7 +229,7 @@
       "name": "JustAGunk",
       "contact": "<@1377429093997477928>",
       "resourceIds": [
-        "portrait/0033/Happy",
+        "portrait/0033/0001/Happy",
         "portrait/0074/Happy",
         "portrait/0120/Happy",
         "portrait/0466/Happy",
@@ -739,6 +739,9 @@
       "name": "Anonymous",
       "contact": "<@200318546750865418>",
       "resourceIds": [
+        "sprite/0033/0000/0001/Idle",
+        "sprite/0033/0000/0001/Sleep",
+        "sprite/0033/0000/0001/Walk",
         "sprite/0151/0000/0001/Idle",
         "sprite/0151/0000/0001/Sleep",
         "sprite/0151/0000/0001/Walk",
@@ -1119,6 +1122,12 @@
       "name": "Prismatic",
       "contact": "prismaticphenomenal@gmail.com",
       "resourceIds": [
+        "sprite/0032/0001/Idle",
+        "sprite/0032/0001/Sleep",
+        "sprite/0032/0001/Walk",
+        "sprite/0033/0001/Idle",
+        "sprite/0033/0001/Sleep",
+        "sprite/0033/0001/Walk",
         "sprite/0185/0000/0001/Idle",
         "sprite/0185/0000/0001/Sleep",
         "sprite/0185/0000/0001/Walk",
@@ -1729,6 +1738,9 @@
       "name": "Tacocoa",
       "contact": "<@234720295292895232>",
       "resourceIds": [
+        "sprite/0032/0000/0001/Idle",
+        "sprite/0032/0000/0001/Sleep",
+        "sprite/0032/0000/0001/Walk",
         "sprite/0034/0000/0001/Idle",
         "sprite/0034/0000/0001/Sleep",
         "sprite/0034/0000/0001/Walk",
@@ -3409,6 +3421,10 @@
         "portrait/0012/Sad",
         "portrait/0024/Happy",
         "portrait/0024/Sad",
+        "portrait/0032/0001/Happy",
+        "portrait/0032/0001/Normal",
+        "portrait/0032/0001/Sad",
+        "portrait/0033/0001/Normal",
         "portrait/0053/Happy",
         "portrait/0090/Happy",
         "portrait/0090/Sad",
@@ -6208,6 +6224,12 @@
         "sprite/0024/0000/0001/Idle",
         "sprite/0024/0000/0001/Sleep",
         "sprite/0024/0000/0001/Walk",
+        "sprite/0032/0001/Idle",
+        "sprite/0032/0001/Sleep",
+        "sprite/0032/0001/Walk",
+        "sprite/0033/0001/Idle",
+        "sprite/0033/0001/Sleep",
+        "sprite/0033/0001/Walk",
         "sprite/0065/0000/0001/Idle",
         "sprite/0065/0000/0001/Sleep",
         "sprite/0065/0000/0001/Walk",
@@ -6458,9 +6480,6 @@
         "portrait/0029/Happy",
         "portrait/0029/Normal",
         "portrait/0029/Sad",
-        "portrait/0032/Happy",
-        "portrait/0032/Normal",
-        "portrait/0032/Sad",
         "portrait/0034/Happy",
         "portrait/0034/Normal",
         "portrait/0034/Sad",
@@ -7476,8 +7495,6 @@
         "portrait/0029/Normal",
         "portrait/0030/Normal",
         "portrait/0031/Normal",
-        "portrait/0032/Normal",
-        "portrait/0033/Normal",
         "portrait/0034/Normal",
         "portrait/0035/Normal",
         "portrait/0036/Normal",
@@ -14078,155 +14095,146 @@
       ]
     },
     {
-      "id": "portrait/0032/Happy",
+      "id": "portrait/0032/0001/Happy",
       "kind": "portrait",
       "source": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0032/Happy.png",
-        "sha256": "5222d2a51cb33aae8b18fd30dd9ad8b8737982734ebff4021cccea633d2096ed",
-        "bytes": 1261
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0032/0001/Happy.png",
+        "sha256": "9dcb4d07f543ee1d8fa647c6b64349ddb0d734b1a7ecd6a54dca81a35dccaca3",
+        "bytes": 1490
       },
       "creditSource": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0032/credits.txt",
-        "sha256": "996b8f6ce18a510227e9c3236c4874da226ae8764a7090ae3ad16c6835d128ba",
-        "bytes": 244
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0032/0001/credits.txt",
+        "sha256": "6682d2ef3d187be10ff53edcd14b91daa5ab817022af8f44d6cca1574bd6a012",
+        "bytes": 185
       },
       "outputs": [
         "/img/pokemon/pmd/0032/happy.png"
       ],
       "contributions": [
         {
-          "artistId": "702275233125630042",
-          "date": "2020-12-31 11:08:24.720788",
+          "artistId": "356635814668664832",
+          "date": "2021-07-02 20:27:51.290447",
           "status": "CUR",
           "sourceLicense": "PMDCollab_1",
           "contributions": [
-            "Angry",
-            "Crying",
-            "Determined",
-            "Dizzy",
-            "Happy",
-            "Inspired",
-            "Joyous",
             "Normal",
+            "Happy",
             "Pain",
+            "Angry",
+            "Worried",
             "Sad",
+            "Crying",
             "Shouting",
-            "Sigh",
-            "Stunned",
-            "Surprised",
             "Teary-Eyed",
-            "Worried"
+            "Determined",
+            "Joyous",
+            "Inspired",
+            "Surprised",
+            "Dizzy",
+            "Sigh",
+            "Stunned"
           ]
         }
       ]
     },
     {
-      "id": "portrait/0032/Normal",
+      "id": "portrait/0032/0001/Normal",
       "kind": "portrait",
       "source": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0032/Normal.png",
-        "sha256": "a3409a399ccf69008f46fbed196aada6c293d0a694c0a376989c94e465e09e65",
-        "bytes": 674
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0032/0001/Normal.png",
+        "sha256": "b5dab8f206afee7a37df3a9b699c53f639add9c6ed98008ef516c27a1e8338e4",
+        "bytes": 1686
       },
       "creditSource": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0032/credits.txt",
-        "sha256": "996b8f6ce18a510227e9c3236c4874da226ae8764a7090ae3ad16c6835d128ba",
-        "bytes": 244
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0032/0001/credits.txt",
+        "sha256": "6682d2ef3d187be10ff53edcd14b91daa5ab817022af8f44d6cca1574bd6a012",
+        "bytes": 185
       },
       "outputs": [
         "/img/pokemon/pmd/0032/normal.png"
       ],
       "contributions": [
         {
-          "artistId": "CHUNSOFT",
-          "date": "2020-10-07 17:58:43.440127",
-          "status": "CUR",
-          "sourceLicense": "Unspecified",
-          "contributions": [
-            "Normal"
-          ]
-        },
-        {
-          "artistId": "702275233125630042",
-          "date": "2020-12-31 11:08:24.720788",
+          "artistId": "356635814668664832",
+          "date": "2021-07-02 20:27:51.290447",
           "status": "CUR",
           "sourceLicense": "PMDCollab_1",
           "contributions": [
-            "Angry",
-            "Crying",
-            "Determined",
-            "Dizzy",
-            "Happy",
-            "Inspired",
-            "Joyous",
             "Normal",
+            "Happy",
             "Pain",
+            "Angry",
+            "Worried",
             "Sad",
+            "Crying",
             "Shouting",
-            "Sigh",
-            "Stunned",
-            "Surprised",
             "Teary-Eyed",
-            "Worried"
+            "Determined",
+            "Joyous",
+            "Inspired",
+            "Surprised",
+            "Dizzy",
+            "Sigh",
+            "Stunned"
           ]
         }
       ]
     },
     {
-      "id": "portrait/0032/Sad",
+      "id": "portrait/0032/0001/Sad",
       "kind": "portrait",
       "source": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0032/Sad.png",
-        "sha256": "a9cdf359e16d1301c35fb57febf245460bfd8dadb068d8bb8bb8bef1bf5f8b2f",
-        "bytes": 1152
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0032/0001/Sad.png",
+        "sha256": "1d2256f4457ead81de759c278217a85ace888c6ba6d634fb640bfef54c197574",
+        "bytes": 1356
       },
       "creditSource": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0032/credits.txt",
-        "sha256": "996b8f6ce18a510227e9c3236c4874da226ae8764a7090ae3ad16c6835d128ba",
-        "bytes": 244
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0032/0001/credits.txt",
+        "sha256": "6682d2ef3d187be10ff53edcd14b91daa5ab817022af8f44d6cca1574bd6a012",
+        "bytes": 185
       },
       "outputs": [
         "/img/pokemon/pmd/0032/sad.png"
       ],
       "contributions": [
         {
-          "artistId": "702275233125630042",
-          "date": "2020-12-31 11:08:24.720788",
+          "artistId": "356635814668664832",
+          "date": "2021-07-02 20:27:51.290447",
           "status": "CUR",
           "sourceLicense": "PMDCollab_1",
           "contributions": [
-            "Angry",
-            "Crying",
-            "Determined",
-            "Dizzy",
-            "Happy",
-            "Inspired",
-            "Joyous",
             "Normal",
+            "Happy",
             "Pain",
+            "Angry",
+            "Worried",
             "Sad",
+            "Crying",
             "Shouting",
-            "Sigh",
-            "Stunned",
-            "Surprised",
             "Teary-Eyed",
-            "Worried"
+            "Determined",
+            "Joyous",
+            "Inspired",
+            "Surprised",
+            "Dizzy",
+            "Sigh",
+            "Stunned"
           ]
         }
       ]
     },
     {
-      "id": "portrait/0033/Happy",
+      "id": "portrait/0033/0001/Happy",
       "kind": "portrait",
       "source": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0033/Happy.png",
-        "sha256": "c8ffca26078ae59684111dda40b626e82b1e1023a5b59b4b091f17ecf78f9fa9",
-        "bytes": 1828
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0033/0001/Happy.png",
+        "sha256": "aa27019e36950acaecf290e0f8ea5ff475b365c42393bae3ed587bc200f7062a",
+        "bytes": 2020
       },
       "creditSource": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0033/credits.txt",
-        "sha256": "3dad68a3b5e6926d69e427de7b039ea8a477a604804e682424ac180e76dfeb54",
-        "bytes": 211
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0033/0001/credits.txt",
+        "sha256": "16e1f5332249dc1da32f85ae322651a74491d200b75012542013d6202462ed15",
+        "bytes": 225
       },
       "outputs": [
         "/img/pokemon/pmd/0033/happy.png"
@@ -14234,7 +14242,7 @@
       "contributions": [
         {
           "artistId": "1377429093997477928",
-          "date": "2025-07-23 23:25:47.997855",
+          "date": "2025-07-24 02:32:55.120802",
           "status": "CUR",
           "sourceLicense": "CC_BY-NC_4",
           "contributions": [
@@ -14245,27 +14253,27 @@
       ]
     },
     {
-      "id": "portrait/0033/Normal",
+      "id": "portrait/0033/0001/Normal",
       "kind": "portrait",
       "source": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0033/Normal.png",
-        "sha256": "06f9f2978f73f6755f646a9c39b044799c0c6eb5ed20816cd1e4fa945212d753",
-        "bytes": 1775
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0033/0001/Normal.png",
+        "sha256": "c0c81f0425483f43664f7ae95586f02bc0c40ac0db3114c2c35947f0bfba9837",
+        "bytes": 2036
       },
       "creditSource": {
-        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0033/credits.txt",
-        "sha256": "3dad68a3b5e6926d69e427de7b039ea8a477a604804e682424ac180e76dfeb54",
-        "bytes": 211
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/portrait/0033/0001/credits.txt",
+        "sha256": "16e1f5332249dc1da32f85ae322651a74491d200b75012542013d6202462ed15",
+        "bytes": 225
       },
       "outputs": [
         "/img/pokemon/pmd/0033/normal.png"
       ],
       "contributions": [
         {
-          "artistId": "CHUNSOFT",
-          "date": "2020-10-07 17:58:43.443123",
+          "artistId": "356635814668664832",
+          "date": "2021-06-30 16:54:25.027598",
           "status": "CUR",
-          "sourceLicense": "Unspecified",
+          "sourceLicense": "PMDCollab_1",
           "contributions": [
             "Normal"
           ]
@@ -161353,6 +161361,684 @@
           ]
         }
       ]
+    },
+    {
+      "id": "sprite/0032/0000/0001/Idle",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0032/0000/0001/Idle-Anim.png",
+        "sha256": "ca466ce312dfa3564379f952dba55833c4c14b767e65be7d47a21946814db914",
+        "bytes": 10712
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0032/0000/0001/credits.txt",
+        "sha256": "8797c4d9c8e0df2b875f376204f4e8b7b9e90e6040c4a696199d44b09586d817",
+        "bytes": 159
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0032/altcolor/shiny/idle-east.webp",
+        "/theme/pokemon/pmd/sprites/0032/altcolor/shiny/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "234720295292895232",
+          "date": "2020-10-07 17:58:43.440127",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Appeal",
+            "SpAttack",
+            "Emit",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ],
+      "trackerCredit": {
+        "primary": "<@!234720295292895232>",
+        "secondary": [],
+        "total": 1
+      }
+    },
+    {
+      "id": "sprite/0032/0000/0001/Sleep",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0032/0000/0001/Sleep-Anim.png",
+        "sha256": "95400d2ee5c61e108e2263bc1ea0eda45c902f41430966d05180e06b51c1aec7",
+        "bytes": 719
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0032/0000/0001/credits.txt",
+        "sha256": "8797c4d9c8e0df2b875f376204f4e8b7b9e90e6040c4a696199d44b09586d817",
+        "bytes": 159
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0032/altcolor/shiny/sleep-east.webp",
+        "/theme/pokemon/pmd/sprites/0032/altcolor/shiny/sleep-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "234720295292895232",
+          "date": "2020-10-07 17:58:43.440127",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Appeal",
+            "SpAttack",
+            "Emit",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ],
+      "trackerCredit": {
+        "primary": "<@!234720295292895232>",
+        "secondary": [],
+        "total": 1
+      }
+    },
+    {
+      "id": "sprite/0032/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0032/0000/0001/Walk-Anim.png",
+        "sha256": "6d7272fc87c044ce4d24acfb8bc70535d000e043aedcae23929baa456b33e813",
+        "bytes": 13085
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0032/0000/0001/credits.txt",
+        "sha256": "8797c4d9c8e0df2b875f376204f4e8b7b9e90e6040c4a696199d44b09586d817",
+        "bytes": 159
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0032/altcolor/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0032/altcolor/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "234720295292895232",
+          "date": "2020-10-07 17:58:43.440127",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Appeal",
+            "SpAttack",
+            "Emit",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ],
+      "trackerCredit": {
+        "primary": "<@!234720295292895232>",
+        "secondary": [],
+        "total": 1
+      }
+    },
+    {
+      "id": "sprite/0032/0001/Idle",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0032/0001/Idle-Anim.png",
+        "sha256": "e46a56032d52ed9f09f31c6a0790e1c7337ba3a6da6fbedb0db182f8fdd96cf8",
+        "bytes": 10843
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0032/0001/credits.txt",
+        "sha256": "bc065d0d43eb0c3da72a976c1d31055737939a9e2d29e2b4d0ddd28379159d44",
+        "bytes": 272
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0032/altcolor/normal/idle-east.webp",
+        "/theme/pokemon/pmd/sprites/0032/altcolor/normal/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "593113130213572610",
+          "date": "2021-07-05 10:07:39.544387",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Double",
+            "Emit",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Rotate",
+            "Shoot",
+            "Sleep",
+            "Swing",
+            "Walk"
+          ]
+        },
+        {
+          "artistId": "215699178553212929",
+          "date": "2022-05-21 03:11:25.207500",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Emit",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ],
+      "trackerCredit": {
+        "primary": "<@!215699178553212929>",
+        "secondary": [],
+        "total": 1
+      }
+    },
+    {
+      "id": "sprite/0032/0001/Sleep",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0032/0001/Sleep-Anim.png",
+        "sha256": "fe3fa40db9e784b5a3edd4c79fe79576aebb6f56b3628b654a9c5ea1bcb438b7",
+        "bytes": 749
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0032/0001/credits.txt",
+        "sha256": "bc065d0d43eb0c3da72a976c1d31055737939a9e2d29e2b4d0ddd28379159d44",
+        "bytes": 272
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0032/altcolor/normal/sleep-east.webp",
+        "/theme/pokemon/pmd/sprites/0032/altcolor/normal/sleep-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "593113130213572610",
+          "date": "2021-07-05 10:07:39.544387",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Double",
+            "Emit",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Rotate",
+            "Shoot",
+            "Sleep",
+            "Swing",
+            "Walk"
+          ]
+        },
+        {
+          "artistId": "215699178553212929",
+          "date": "2022-05-21 03:11:25.207500",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Emit",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ],
+      "trackerCredit": {
+        "primary": "<@!215699178553212929>",
+        "secondary": [],
+        "total": 1
+      }
+    },
+    {
+      "id": "sprite/0032/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0032/0001/Walk-Anim.png",
+        "sha256": "8b2d26cbb6eaa84bda40689c767ea70bd433825d1564e34f65fe8c31d80626e9",
+        "bytes": 13441
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0032/0001/credits.txt",
+        "sha256": "bc065d0d43eb0c3da72a976c1d31055737939a9e2d29e2b4d0ddd28379159d44",
+        "bytes": 272
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0032/altcolor/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0032/altcolor/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "593113130213572610",
+          "date": "2021-07-05 10:07:39.544387",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Double",
+            "Emit",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Rotate",
+            "Shoot",
+            "Sleep",
+            "Swing",
+            "Walk"
+          ]
+        },
+        {
+          "artistId": "215699178553212929",
+          "date": "2022-05-21 03:11:25.207500",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Emit",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ],
+      "trackerCredit": {
+        "primary": "<@!215699178553212929>",
+        "secondary": [],
+        "total": 1
+      }
+    },
+    {
+      "id": "sprite/0033/0000/0001/Idle",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0033/0000/0001/Idle-Anim.png",
+        "sha256": "9689ec33e23b74cff6b12cc7dbc52557abce80383616c158dc9faecd1e5f707a",
+        "bytes": 13169
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0033/0000/0001/credits.txt",
+        "sha256": "babb944627569f5b7adaacf83d8cf7b22785f28eb3a5c2b911e995049449701a",
+        "bytes": 159
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0033/altcolor/shiny/idle-east.webp",
+        "/theme/pokemon/pmd/sprites/0033/altcolor/shiny/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "200318546750865418",
+          "date": "2020-10-07 17:58:43.444144",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Appeal",
+            "SpAttack",
+            "Emit",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ],
+      "trackerCredit": {
+        "primary": "<@!200318546750865418>",
+        "secondary": [],
+        "total": 1
+      }
+    },
+    {
+      "id": "sprite/0033/0000/0001/Sleep",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0033/0000/0001/Sleep-Anim.png",
+        "sha256": "d41867350e56b8b7b6a993b93e4984167a2ee0b86c24417f8e6d9eff5ad5c441",
+        "bytes": 924
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0033/0000/0001/credits.txt",
+        "sha256": "babb944627569f5b7adaacf83d8cf7b22785f28eb3a5c2b911e995049449701a",
+        "bytes": 159
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0033/altcolor/shiny/sleep-east.webp",
+        "/theme/pokemon/pmd/sprites/0033/altcolor/shiny/sleep-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "200318546750865418",
+          "date": "2020-10-07 17:58:43.444144",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Appeal",
+            "SpAttack",
+            "Emit",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ],
+      "trackerCredit": {
+        "primary": "<@!200318546750865418>",
+        "secondary": [],
+        "total": 1
+      }
+    },
+    {
+      "id": "sprite/0033/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0033/0000/0001/Walk-Anim.png",
+        "sha256": "c7fd5fd9010217d855db55f2b9a940133b49cbfdb6282f04c146b9d2881bc80b",
+        "bytes": 10963
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0033/0000/0001/credits.txt",
+        "sha256": "babb944627569f5b7adaacf83d8cf7b22785f28eb3a5c2b911e995049449701a",
+        "bytes": 159
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0033/altcolor/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0033/altcolor/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "200318546750865418",
+          "date": "2020-10-07 17:58:43.444144",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Appeal",
+            "SpAttack",
+            "Emit",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ],
+      "trackerCredit": {
+        "primary": "<@!200318546750865418>",
+        "secondary": [],
+        "total": 1
+      }
+    },
+    {
+      "id": "sprite/0033/0001/Idle",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0033/0001/Idle-Anim.png",
+        "sha256": "83546f847d6e51a6c738ab90c395080767b4b4118c8698f55dff3eda4b053a46",
+        "bytes": 13251
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0033/0001/credits.txt",
+        "sha256": "1bbf861f75dc26cf0b6ae40b6efc49e2cf198b7473a05108ae36596279192b6c",
+        "bytes": 272
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0033/altcolor/normal/idle-east.webp",
+        "/theme/pokemon/pmd/sprites/0033/altcolor/normal/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "593113130213572610",
+          "date": "2021-07-05 10:08:03.949489",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Double",
+            "Emit",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Rotate",
+            "Shoot",
+            "Sleep",
+            "Swing",
+            "Walk"
+          ]
+        },
+        {
+          "artistId": "215699178553212929",
+          "date": "2022-05-21 03:11:38.406337",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Emit",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ],
+      "trackerCredit": {
+        "primary": "<@!215699178553212929>",
+        "secondary": [],
+        "total": 1
+      }
+    },
+    {
+      "id": "sprite/0033/0001/Sleep",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0033/0001/Sleep-Anim.png",
+        "sha256": "f07a02be926e0c14cd91e961d7944f9806d6ae8fc0960be4a526cef2e5fa710c",
+        "bytes": 948
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0033/0001/credits.txt",
+        "sha256": "1bbf861f75dc26cf0b6ae40b6efc49e2cf198b7473a05108ae36596279192b6c",
+        "bytes": 272
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0033/altcolor/normal/sleep-east.webp",
+        "/theme/pokemon/pmd/sprites/0033/altcolor/normal/sleep-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "593113130213572610",
+          "date": "2021-07-05 10:08:03.949489",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Double",
+            "Emit",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Rotate",
+            "Shoot",
+            "Sleep",
+            "Swing",
+            "Walk"
+          ]
+        },
+        {
+          "artistId": "215699178553212929",
+          "date": "2022-05-21 03:11:38.406337",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Emit",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ],
+      "trackerCredit": {
+        "primary": "<@!215699178553212929>",
+        "secondary": [],
+        "total": 1
+      }
+    },
+    {
+      "id": "sprite/0033/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0033/0001/Walk-Anim.png",
+        "sha256": "53aa931fb4fb704bf7541732080eb25d9e5aed765a9a1816bacd6349c3ba59f7",
+        "bytes": 11019
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0033/0001/credits.txt",
+        "sha256": "1bbf861f75dc26cf0b6ae40b6efc49e2cf198b7473a05108ae36596279192b6c",
+        "bytes": 272
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0033/altcolor/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0033/altcolor/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "593113130213572610",
+          "date": "2021-07-05 10:08:03.949489",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Double",
+            "Emit",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Rotate",
+            "Shoot",
+            "Sleep",
+            "Swing",
+            "Walk"
+          ]
+        },
+        {
+          "artistId": "215699178553212929",
+          "date": "2022-05-21 03:11:38.406337",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Emit",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ],
+      "trackerCredit": {
+        "primary": "<@!215699178553212929>",
+        "secondary": [],
+        "total": 1
+      }
     },
     {
       "id": "sprite/0034/0000/0001/Idle",

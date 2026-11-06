@@ -1,5 +1,7 @@
 // Lista aprobada en FRENÁ 1 (2026-10-28); independiente del informe ignorado por git.
 export const PMD_REQUESTED = [
+  {"name":"Nidoran♂","baseName":"nidoran-m","zone":"ground"},
+  {"name":"Nidorino","zone":"ground"},
   {"name":"Bulbasaur","zone":"ground"},
   {"name":"Ivysaur","zone":"ground"},
   {"name":"Venusaur","zone":"ground"},
@@ -401,7 +403,7 @@ export const PMD_SERPENTINES: Readonly<Record<string, string>> = {
 };
 
 /** Retratos de una forma aprobada en lugar de la base (número de la Pokédex → forma): Golem usa el Altcolor, el de colores más fieles (pedido del usuario). */
-export const PMD_PORTRAIT_FORMS: Readonly<Record<number, string>> = { 76: '0002' };
+export const PMD_PORTRAIT_FORMS: Readonly<Record<number, string>> = { 32: '0001', 33: '0001', 76: '0002' };
 
 export type Movement = 'walk' | 'run' | 'burrow' | 'roll' | 'stagger' | 'zigzag' | 'drift' | 'hop' | 'hover';
 export interface PresentationDecision {
@@ -416,6 +418,8 @@ export interface PresentationDecision {
 /** El aleteo de `Hover` es muy rápido: todos los que vuelan con él se reproducen a esta fracción de velocidad (pedido del usuario). */
 const HOVER_SLOWDOWN = 3;
 export const PMD_DECISIONS: Readonly<Partial<Record<string, PresentationDecision>>> = {
+  'Nidoran♂': { zone: 'ground', locomotion: 'Walk', sourceForm: '0001', form: 'altcolor' },
+  Nidorino: { zone: 'ground', locomotion: 'Walk', sourceForm: '0001', form: 'altcolor' },
   // Altcolor: colores más fieles a los del juego (pedido del usuario).
   Bulbasaur: { zone: 'ground', locomotion: 'Walk', sourceForm: '0001', form: 'altcolor' },
   Ivysaur: { zone: 'ground', locomotion: 'Walk', sourceForm: '0001', form: 'altcolor' },
