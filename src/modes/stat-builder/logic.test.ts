@@ -22,6 +22,22 @@ describe('Estadísticas', () => {
   it('suma únicamente el valor de la estadística asignada a cada Pokémon', () => {
     expect(totalOf([{ key: 'ps', entityId: 'e0' }, { key: 'attack', entityId: 'e1' }], pool)).toBe(151);
   });
+  it('no repite Pokémon dentro de un intento, incluso con un pool pequeño y al reordenarlo', () => {
+    const small = pool.slice(0, 10);
+    for (let day = 0; day < 100; day++) {
+      for (let attempt = 0; attempt < 5; attempt++) {
+        const context = { ...ctx, day, filterKey: 'g1' };
+        const sequence = Array.from({ length: 6 }, (_, position) => draw(small, context, attempt, position).id);
+        expect(new Set(sequence).size).toBe(6);
+        expect(Array.from({ length: 6 }, (_, position) => draw([...small].reverse(), context, attempt, position).id)).toEqual(sequence);
+        expect(sequence.map((_, position) => draw(small, context, attempt, position, sequence.slice(0, position)).id)).toEqual(sequence);
+      }
+    }
+  });
+  it('excluye también lo que ya salió en un borrador guardado con la secuencia anterior', () => {
+    const candidate = draw(pool, ctx, 0, 3);
+    expect(draw(pool, ctx, 0, 3, [candidate.id]).id).not.toBe(candidate.id);
+  });
   it('restaura solo estadísticas únicas, válidas y con Pokémon del pool', () => {
     expect(restoreBuild([{ key: 'ps', entityId: 'e0' }, { key: 'ps', entityId: 'e1' }], pool, config)).toEqual([{ key: 'ps', entityId: 'e0' }]);
     expect(restoreBuild([{ key: 'attack', entityId: 'outside' }], pool, config)).toEqual([]);

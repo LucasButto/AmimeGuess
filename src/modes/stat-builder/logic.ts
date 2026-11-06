@@ -31,9 +31,21 @@ export function outcomeOf(attempts: readonly (readonly Assignment[])[], pool: re
   const won = attempts.some((attempt) => totalOf(attempt, pool) > target);
   return { won, over: won || attempts.length >= limit };
 }
-export function draw(pool: readonly Entity[], ctx: DailyContext, attempt: number, position: number): Entity {
-  const rng = mulberry32(seedFor({ ...ctx, mode: `${ctx.mode}:${attempt}:${position}` }));
-  return pool[randomInt(rng, 0, pool.length)];
+export function draw(pool: readonly Entity[], ctx: DailyContext, attempt: number, position: number, excluded: readonly string[] = []): Entity {
+  const remaining = [...pool].sort((a, b) => a.id.localeCompare(b.id, 'en'));
+  if (position < 0 || position >= remaining.length) throw new RangeError('No quedan entidades para este sorteo');
+  // Reconstruye los sorteos anteriores sin depender de la estadística que eligió el jugador.
+  for (let index = 0; index <= position; index++) {
+    // Un borrador anterior al cambio también puede contener sorteos de la secuencia vieja.
+    if (index === position) {
+      for (let i = remaining.length - 1; i >= 0; i--) if (excluded.includes(remaining[i].id)) remaining.splice(i, 1);
+      if (remaining.length === 0) throw new RangeError('No quedan entidades para este sorteo');
+    }
+    const rng = mulberry32(seedFor({ ...ctx, mode: `${ctx.mode}:${attempt}:${index}` }));
+    const [entity] = remaining.splice(randomInt(rng, 0, remaining.length), 1);
+    if (index === position) return entity;
+  }
+  throw new RangeError('Posición inválida');
 }
 export function totalOf(assignments: readonly Assignment[], pool: readonly Entity[]): number {
   return assignments.reduce((total, assignment) => total + Number(pool.find((entity) => entity.id === assignment.entityId)?.attrs[assignment.key] ?? 0), 0);

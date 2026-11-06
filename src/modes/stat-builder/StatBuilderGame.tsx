@@ -73,7 +73,7 @@ export function StatBuilderBoard({ session, config, pool, target, limit, maximum
   const outcome = outcomeOf(attempts, pool, target, limit);
   const won = outcome.won;
   const over = (outcome.over && resultPhase === 'done') || lost;
-  const current = draw(pool, session, attempts.length, build.length);
+  const current = complete ? pool.find((entity) => entity.id === build.at(-1)?.entityId)! : draw(pool, session, attempts.length, build.length, build.map((entry) => entry.entityId));
   const revealedEntity = pool.find((entity) => entity.id === build.at(-1)?.entityId) ?? current;
   const showResult = resultPhase !== 'idle';
   const showStats = !showResult && (awaitingAdvance || complete);
@@ -119,7 +119,7 @@ export function StatBuilderBoard({ session, config, pool, target, limit, maximum
     return () => cancelAnimationFrame(frame);
   }, [resultPhase, resultValues, attempts, pool, target, limit, session, build, onFinish, report]);
 
-  // En el teléfono (diseño de app) la acción de la ruleta va en la barra inferior y la tarjeta solo muestra al Pokémon.
+  // La tarjeta completa detiene la ruleta también en el teléfono.
   const phone = useDockTarget() !== null;
   const spinDisabled = complete ? resultPhase !== 'idle' || lost : (stopped && !awaitingAdvance) || over;
   const spinPrompt = complete ? resultPhase === 'idle' ? es.statBuilder.viewResult : resultPhase === 'running' ? es.statBuilder.countingResult : es.statBuilder.finished : over ? es.statBuilder.finished : awaitingAdvance ? es.statBuilder.nextPokemon : stopped ? es.statBuilder.choose : es.statBuilder.stop;
@@ -154,15 +154,12 @@ export function StatBuilderBoard({ session, config, pool, target, limit, maximum
       </div> :
       (() => {
         const content = <>
-          {!showResult && (shown?.image ? <ContentImage key={shown.id} className={styles.image} stem={shown.image} alt="" sizes={ROULETTE_IMAGE_SIZE} priority /> : <span className={styles.image} aria-hidden="true" />)}
+          {!showResult && (shown?.image ? <ContentImage className={styles.image} stem={shown.image} alt="" sizes={ROULETTE_IMAGE_SIZE} priority /> : <span className={styles.image} aria-hidden="true" />)}
           {!showResult && <strong className={styles.name}>{stopped || complete ? shown?.name.es : " "}</strong>}
           {showResult && <span className={styles.resultTotal}>{es.statBuilder.fraction(result.total, target)}</span>}
-          {!phone && <span className={complete || awaitingAdvance ? styles.continuePrompt : undefined}>{spinPrompt}</span>}
+          <span className={complete || awaitingAdvance ? styles.continuePrompt : undefined}>{spinPrompt}</span>
         </>;
-        // En el teléfono la tarjeta no es un botón: el que detiene la ruleta es el de la barra inferior.
-        return phone
-          ? <div className={styles.spinner}>{content}</div>
-          : <button type="button" className={styles.spinner} onClick={spin} disabled={spinDisabled} aria-label={complete ? es.statBuilder.viewResult : awaitingAdvance ? es.statBuilder.nextPokemon : es.statBuilder.stop}>{content}</button>;
+        return <button type="button" className={styles.spinner} onClick={spin} disabled={spinDisabled} aria-label={complete ? es.statBuilder.viewResult : awaitingAdvance ? es.statBuilder.nextPokemon : es.statBuilder.stop}>{content}</button>;
       })()}
       <div className={styles.slots} role="group" aria-label={es.statBuilder.stats}>
         {config.stats.map((stat, index) => {
@@ -175,7 +172,7 @@ export function StatBuilderBoard({ session, config, pool, target, limit, maximum
         })}
       </div>
     </div>
-    {!over && (complete && resultPhase === 'done'
+    {!over && (complete || awaitingAdvance) && (complete && resultPhase === 'done'
       ? <DockAction label={es.statBuilder.next} onClick={retry} />
       : <DockAction label={dockPrompt} onClick={spin} disabled={spinDisabled} />)}
     {complete && resultPhase === 'done' && <section className={styles.optimal} aria-label={es.statBuilder.bestTitle}>

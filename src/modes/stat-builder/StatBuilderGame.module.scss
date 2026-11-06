@@ -38,6 +38,7 @@
 .continuePrompt { font-size: t.$font-size-lg; font-weight: t.$font-weight-bold; line-height: t.$line-height-tight; }
 .slot:focus-visible, .spinner:focus-visible { outline: 0.1875rem solid #{t.token('ink')}; outline-offset: 0.1875rem; }
 .spinner { @include m.engine-panel; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: t.$space-3; min-inline-size: 0; min-block-size: 17rem; inline-size: 100%; padding: t.$space-4; }
+.spinner > * { pointer-events: none; }
 .image { inline-size: min(100%, 15rem); block-size: 13rem; object-fit: contain; }
 .summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: t.$space-3; }
 .value { font-weight: t.$font-weight-bold; color: t.token('ink'); }
@@ -54,8 +55,7 @@
 
 .optimalDetails { min-inline-size: 0; }
 
-// Diseño de app (teléfono): el Pokémon y las seis estadísticas entran juntos sin scroll (2 × 3), y "Detener" vive en la
-// barra inferior. Desde `lg` vuelve el tablero de siempre.
+// Diseño de app: el Pokémon detiene la ruleta y las seis estadísticas se muestran en 2 × 3.
 .board {
   @include m.app-shell { gap: t.$space-3; }
   @include m.app-shell-desktop { gap: t.$space-4; }

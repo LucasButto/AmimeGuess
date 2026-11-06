@@ -306,7 +306,7 @@ async function nextAction(page: Page): Promise<string[]> {
 }
 
 /**
- * Estadísticas del diseño de app: "Detener" es el botón grande de la barra inferior, la tarjeta del Pokémon no es un botón, y
+ * Estadísticas: la tarjeta del Pokémon detiene la ruleta también en el diseño de app, sin botón separado, y
  * en un teléfono alto el Pokémon y las seis estadísticas (2 × 3) entran sin scroll encima de la barra. Sin barra, el tablero
  * es el de siempre: la tarjeta es el botón que detiene la ruleta y las seis estadísticas van en una columna.
  */
@@ -330,8 +330,8 @@ async function statsLayout(page: Page): Promise<string[]> {
   const problems: string[] = [];
   if (info.slotCount !== 6) problems.push(`se esperaban 6 estadísticas y hay ${info.slotCount}`);
   if (info.phone) {
-    if (info.dockText !== 'Detener') problems.push(`la barra inferior debería traer "Detener" y trae ${info.dockText === null ? 'nada' : `"${info.dockText}"`}`);
-    if (info.spinnerIsButton) problems.push('la tarjeta del Pokémon sigue siendo un botón además de "Detener" en la barra inferior');
+    if (info.dockText !== null) problems.push('Detener debe estar en la tarjeta, sin botón duplicado en la barra inferior');
+    if (!info.spinnerIsButton) problems.push('la tarjeta del Pokémon debe detener la ruleta también en app');
     if (!info.twoColumns) problems.push('las estadísticas deberían ir de a dos (2 × 3) en el teléfono');
     if (info.tall && info.lastBottom > info.dockTop + 0.5) problems.push(`las seis estadísticas no entran encima de la barra inferior: terminan en ${Math.round(info.lastBottom)} y la barra empieza en ${Math.round(info.dockTop)}`);
   } else if (!info.spinnerIsButton) {
