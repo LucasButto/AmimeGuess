@@ -42,6 +42,7 @@ export function solvedToday(
   franchise: string,
   modes: readonly string[],
   day: number,
+  filterKey?: string,
 ): Set<string> {
   const solved = new Set<string>();
   if (storage === null) return solved;
@@ -51,6 +52,8 @@ export function solvedToday(
     for (let index = 0; index < storage.length; index++) {
       const key = storage.key(index);
       if (key === null || !key.startsWith(prefix) || !key.endsWith(suffix)) continue;
+      // Las dificultades y los interruptores se guardan como `<filtros>~<variante>`.
+      if (filterKey !== undefined && key.slice(prefix.length).split(':')[1]?.split('~')[0] !== filterKey) continue;
       // `<modo>:<filtros>:<día>` → el modo es lo primero; los filtros llevan puntos, nunca dos puntos.
       const mode = key.slice(prefix.length).split(':')[0];
       if (modes.includes(mode) && !solved.has(mode) && isFinished(storage, key)) solved.add(mode);

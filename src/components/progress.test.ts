@@ -45,6 +45,19 @@ describe('solvedToday', () => {
     });
     expect(solvedToday(storage, 'pokemon', modes, 100).has('clasico')).toBe(true);
   });
+  it('reconoce sin relleno, sin manga y dificultades, conservando los filtros de series', () => {
+    const storage = memory({
+      ...state('dragon-ball', 'clasico', 'all~x', 100, 'won'),
+      ...state('dragon-ball', 'frase', 'all~xa', 100, 'won'),
+      ...state('dragon-ball', 'linea-de-tiempo', 'all~d2x', 100, 'won'),
+      ...state('dragon-ball', 'silueta', 'dbz~x', 100, 'won'),
+      ...state('dragon-ball', 'tecnica', 'all~x', 99, 'won'),
+      ...state('dragon-ball', 'borroso', 'all~x', 100, 'playing'),
+    });
+    const modes = ['clasico', 'frase', 'linea-de-tiempo', 'silueta', 'tecnica', 'borroso'];
+    expect([...solvedToday(storage, 'dragon-ball', modes, 100, 'all')]).toEqual(['clasico', 'frase', 'linea-de-tiempo']);
+    expect([...solvedToday(storage, 'dragon-ball', modes, 100, 'dbz')]).toEqual(['silueta']);
+  });
 
   it('no cuenta otro día, otra franquicia ni un modo que no está en la lista', () => {
     const storage = memory({

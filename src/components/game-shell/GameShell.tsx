@@ -39,6 +39,7 @@ import { DockAction, useDockTarget } from './GameDock';
 import { SheetSection, SheetSlotContext } from './SheetSlot';
 
 import { useRouletteImages } from '@/modes/stat-builder/RoulettePreview';
+import { getKeyedStorage, solvedToday } from '../progress';
 
 type Dialog = 'help' | 'stats' | 'settings' | null;
 
@@ -163,15 +164,7 @@ export function GameShell({
 
   // Modos ya resueltos hoy con estos filtros. Se vuelve a leer al terminar una partida.
   const solved = useMemo(() => {
-    const storage = getLocalStorage();
-    const finishedSlugs = modes
-      .filter((candidate) => candidate.available)
-      .filter((candidate) => {
-        const state = readState(storage, { franchise: franchise.slug, mode: candidate.slug, filterKey, day });
-        return state !== null && state.result !== 'playing';
-      })
-      .map((candidate) => candidate.slug);
-    return new Set(finishedSlugs);
+    return solvedToday(getKeyedStorage(), franchise.slug, modes.filter((candidate) => candidate.available).map((candidate) => candidate.slug), day, filterKey);
     // `report` no se usa adentro, pero cambia justo cuando se guarda una partida terminada.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modes, franchise.slug, filterKey, day, report]);
