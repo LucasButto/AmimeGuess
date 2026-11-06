@@ -22,7 +22,7 @@
     },
     {
       "id": "examen-chunin",
-      "name": "Examen Chūnin",
+      "name": "Examen Chunin",
       "series": "naruto",
       "order": 2
     },
@@ -112,13 +112,13 @@
     },
     {
       "id": "jinchuriki-del-diez-colas",
-      "name": "Nacimiento del jinchūriki del Diez Colas",
+      "name": "Nacimiento del jinchuriki del Diez Colas",
       "series": "shippuden",
       "order": 17
     },
     {
       "id": "kaguya",
-      "name": "Kaguya Ōtsutsuki ataca",
+      "name": "Kaguya Otsutsuki ataca",
       "series": "shippuden",
       "order": 18
     },
@@ -190,7 +190,7 @@
     },
     {
       "id": "reexamen-chunin",
-      "name": "Reexamen Chūnin",
+      "name": "Reexamen Chunin",
       "series": "boruto",
       "order": 30
     },

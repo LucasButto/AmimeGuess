@@ -48,7 +48,7 @@
     },
     {
       "id": "gran-rey-demonio-piccolo",
-      "name": "Arco del Gran Rey Demonio Piccolo",
+      "name": "Arco del Gran Rey Demonio Piccoro",
       "series": "db",
       "order": 5
     },
@@ -60,7 +60,7 @@
     },
     {
       "id": "saiyanos",
-      "name": "Arco de los Saiyanos",
+      "name": "Arco de los Saiyajin",
       "series": "dbz",
       "order": 7
     },
@@ -78,7 +78,7 @@
     },
     {
       "id": "androides-cell",
-      "name": "Arco de los Androides y Célula",
+      "name": "Arco de los Androides y Cell",
       "series": "dbz",
       "order": 10
     },
@@ -90,7 +90,7 @@
     },
     {
       "id": "boo",
-      "name": "Arco del Monstruo Boo",
+      "name": "Arco del Monstruo Buu",
       "series": "dbz",
       "order": 12
     },
@@ -108,7 +108,7 @@
     },
     {
       "id": "beerus",
-      "name": "Arco del Dios de la Destrucción Beerus",
+      "name": "Arco del Dios de la Destrucción Bills",
       "series": "super",
       "order": 15
     },

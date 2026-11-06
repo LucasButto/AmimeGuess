@@ -17,7 +17,7 @@
       "genero": "Masculino",
       "afiliaciones": [
         "Konoha",
-        "Monte Myōboku",
+        "Monte Myoboku",
         {
           "value": "Fuerzas Aliadas Shinobi",
           "series": "shippuden"
@@ -26,7 +26,7 @@
       "tiposDeJutsu": [
         "Ninjutsu",
         "Taijutsu",
-        "Fūinjutsu",
+        "Fuinjutsu",
         "Senjutsu"
       ],
       "kekkeiGenkai": [
@@ -45,7 +45,7 @@
         "Yin-Yang"
       ],
       "atributos": [
-        "Jinchūriki",
+        "Jinchuriki",
         "Sabio",
         "Sensor"
       ],
@@ -75,19 +75,19 @@
       "afiliaciones": [
         "Konoha",
         "Oto",
-        "Cueva Ryūchi",
+        "Cueva Ryuchi",
         "Akatsuki"
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
         "Taijutsu",
         "Genjutsu",
-        "Fūinjutsu",
+        "Fuinjutsu",
         "Kenjutsu"
       ],
       "kekkeiGenkai": [
         "Sharingan",
-        "Mangekyō Sharingan Eterno",
+        "Mangekyo Sharingan Eterno",
         "Rinnegan"
       ],
       "naturalezas": [
@@ -135,7 +135,7 @@
       "tiposDeJutsu": [
         "Ninjutsu",
         "Taijutsu",
-        "Fūinjutsu",
+        "Fuinjutsu",
         "Ninjutsu médico"
       ],
       "kekkeiGenkai": [],
@@ -189,7 +189,7 @@
       ],
       "kekkeiGenkai": [
         "Sharingan",
-        "Mangekyō Sharingan"
+        "Mangekyo Sharingan"
       ],
       "naturalezas": [
         "Rayo",
@@ -233,7 +233,7 @@
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [],
       "naturalezas": [
@@ -274,7 +274,7 @@
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [],
       "naturalezas": [
@@ -314,11 +314,11 @@
       "genero": "Masculino",
       "afiliaciones": [
         "Konoha",
-        "Monte Myōboku"
+        "Monte Myoboku"
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [],
       "naturalezas": [
@@ -373,7 +373,7 @@
   {
     "id": "hinata-hyuga",
     "name": {
-      "es": "Hinata Hyūga"
+      "es": "Hinata Hyuga"
     },
     "aliases": [
       "Hinata"
@@ -406,7 +406,7 @@
       "atributos": [],
       "arcoDebut": 1,
       "estadoVital": "Vivo",
-      "ocupacion": "Heredera del clan Hyūga (ex)",
+      "ocupacion": "Heredera del clan Hyuga (ex)",
       "inicial": "H",
       "imagenTransparente": 0
     },
@@ -456,7 +456,7 @@
   {
     "id": "choji-akimichi",
     "name": {
-      "es": "Chōji Akimichi"
+      "es": "Choji Akimichi"
     },
     "aliases": [
       "Choji"
@@ -623,7 +623,7 @@
   {
     "id": "neji-hyuga",
     "name": {
-      "es": "Neji Hyūga"
+      "es": "Neji Hyuga"
     },
     "aliases": [
       "Neji"
@@ -689,7 +689,7 @@
       "atributos": [],
       "arcoDebut": 2,
       "estadoVital": "Vivo",
-      "ocupacion": "Examinador del Examen Chūnin",
+      "ocupacion": "Examinador del Examen Chunin",
       "inicial": "R",
       "imagenTransparente": 0
     },
@@ -717,7 +717,7 @@
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [],
       "naturalezas": [],
@@ -808,7 +808,7 @@
   {
     "id": "kurenai-yuhi",
     "name": {
-      "es": "Kurenai Yūhi"
+      "es": "Kurenai Yuhi"
     },
     "aliases": [
       "Kurenai"
@@ -856,7 +856,7 @@
       "genero": "Femenino",
       "afiliaciones": [
         "Konoha",
-        "Cueva Ryūchi",
+        "Cueva Ryuchi",
         {
           "value": "Fuerzas Aliadas Shinobi",
           "series": "shippuden"
@@ -873,7 +873,7 @@
       "atributos": [],
       "arcoDebut": 2,
       "estadoVital": "Vivo",
-      "ocupacion": "Examinador del Examen Chūnin",
+      "ocupacion": "Examinador del Examen Chunin",
       "inicial": "A",
       "imagenTransparente": 0
     },
@@ -939,7 +939,7 @@
       "atributos": [],
       "arcoDebut": 2,
       "estadoVital": "Vivo",
-      "ocupacion": "Examinador del Examen Chūnin",
+      "ocupacion": "Examinador del Examen Chunin",
       "inicial": "G",
       "imagenTransparente": 0
     },
@@ -948,7 +948,7 @@
   {
     "id": "hayate-gekko",
     "name": {
-      "es": "Hayate Gekkō"
+      "es": "Hayate Gekko"
     },
     "aliases": [
       "Hayate"
@@ -971,7 +971,7 @@
       "atributos": [],
       "arcoDebut": 2,
       "estadoVital": "Muerto",
-      "ocupacion": "Examinador del Examen Chūnin",
+      "ocupacion": "Examinador del Examen Chunin",
       "inicial": "H",
       "imagenTransparente": 0
     },
@@ -1040,7 +1040,7 @@
       "tiposDeJutsu": [
         "Ninjutsu",
         "Taijutsu",
-        "Fūinjutsu",
+        "Fuinjutsu",
         "Ninjutsu médico"
       ],
       "kekkeiGenkai": [],
@@ -1080,11 +1080,11 @@
       "genero": "Masculino",
       "afiliaciones": [
         "Konoha",
-        "Monte Myōboku"
+        "Monte Myoboku"
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu",
+        "Fuinjutsu",
         "Senjutsu"
       ],
       "kekkeiGenkai": [],
@@ -1126,14 +1126,14 @@
         "Raíz",
         "Akatsuki",
         "Oto",
-        "Cueva Ryūchi"
+        "Cueva Ryuchi"
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [
-        "Kekkei Genkai de Jūgo",
+        "Kekkei Genkai de Jugo",
         "Kekkei Genkai de Sakon y Ukon",
         "Shikotsumyaku",
         "Madera"
@@ -1177,7 +1177,7 @@
       "genero": "Masculino",
       "afiliaciones": [
         "Konoha",
-        "Monte Myōboku",
+        "Monte Myoboku",
         {
           "value": "Fuerzas Aliadas Shinobi",
           "series": "shippuden"
@@ -1185,7 +1185,7 @@
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [],
       "naturalezas": [
@@ -1196,7 +1196,7 @@
         "Yang"
       ],
       "atributos": [
-        "Jinchūriki",
+        "Jinchuriki",
         "Sabio",
         "Sensor"
       ],
@@ -1228,7 +1228,7 @@
       "tiposDeJutsu": [],
       "kekkeiGenkai": [
         "Sharingan",
-        "Mangekyō Sharingan"
+        "Mangekyo Sharingan"
       ],
       "naturalezas": [
         "Fuego",
@@ -1296,7 +1296,7 @@
       ],
       "kekkeiGenkai": [
         "Sharingan",
-        "Mangekyō Sharingan"
+        "Mangekyo Sharingan"
       ],
       "naturalezas": [
         "Fuego",
@@ -1381,7 +1381,7 @@
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu",
+        "Fuinjutsu",
         "Senjutsu"
       ],
       "kekkeiGenkai": [
@@ -1514,7 +1514,7 @@
   {
     "id": "hanabi-hyuga",
     "name": {
-      "es": "Hanabi Hyūga"
+      "es": "Hanabi Hyuga"
     },
     "aliases": [
       "Hanabi"
@@ -1537,7 +1537,7 @@
       "atributos": [],
       "arcoDebut": 2,
       "estadoVital": "Vivo",
-      "ocupacion": "Heredera del clan Hyūga",
+      "ocupacion": "Heredera del clan Hyuga",
       "inicial": "H",
       "imagenTransparente": 0
     },
@@ -1546,7 +1546,7 @@
   {
     "id": "hiashi-hyuga",
     "name": {
-      "es": "Hiashi Hyūga"
+      "es": "Hiashi Hyuga"
     },
     "aliases": [
       "Hiashi"
@@ -1573,7 +1573,7 @@
       "atributos": [],
       "arcoDebut": 2,
       "estadoVital": "Vivo",
-      "ocupacion": "Líder del clan Hyūga",
+      "ocupacion": "Líder del clan Hyuga",
       "inicial": "H",
       "imagenTransparente": 0
     },
@@ -1582,7 +1582,7 @@
   {
     "id": "choza-akimichi",
     "name": {
-      "es": "Chōza Akimichi"
+      "es": "Choza Akimichi"
     },
     "aliases": [
       "Choza"
@@ -1774,7 +1774,7 @@
         "Konoha",
         "Raíz",
         "Oto",
-        "Cueva Ryūchi",
+        "Cueva Ryuchi",
         "Akatsuki"
       ],
       "tiposDeJutsu": [
@@ -1784,7 +1784,7 @@
         "Ninjutsu médico"
       ],
       "kekkeiGenkai": [
-        "Kekkei Genkai de Jūgo",
+        "Kekkei Genkai de Jugo",
         "Kekkei Genkai de Sakon y Ukon",
         "Shikotsumyaku"
       ],
@@ -2003,7 +2003,7 @@
         "Rayo"
       ],
       "atributos": [
-        "Jinchūriki",
+        "Jinchuriki",
         "Sensor"
       ],
       "arcoDebut": 2,
@@ -2017,7 +2017,7 @@
   {
     "id": "kankuro",
     "name": {
-      "es": "Kankurō"
+      "es": "Kankuro"
     },
     "aliases": [],
     "series": [
@@ -2305,7 +2305,7 @@
   {
     "id": "jirobo",
     "name": {
-      "es": "Jirōbō"
+      "es": "Jirobo"
     },
     "aliases": [],
     "series": [
@@ -2333,7 +2333,7 @@
   {
     "id": "kidomaru",
     "name": {
-      "es": "Kidōmaru"
+      "es": "Kidomaru"
     },
     "aliases": [],
     "series": [
@@ -2406,7 +2406,7 @@
     "attrs": {
       "genero": "Masculino",
       "afiliaciones": [
-        "Monte Myōboku",
+        "Monte Myoboku",
         "Konoha"
       ],
       "tiposDeJutsu": [
@@ -2477,7 +2477,7 @@
     "attrs": {
       "genero": "Masculino",
       "afiliaciones": [
-        "Cueva Ryūchi",
+        "Cueva Ryuchi",
         "Oto"
       ],
       "tiposDeJutsu": [],
@@ -2573,7 +2573,7 @@
     "attrs": {
       "genero": "Masculino",
       "afiliaciones": [
-        "Monte Myōboku",
+        "Monte Myoboku",
         "Konoha",
         {
           "value": "Fuerzas Aliadas Shinobi",
@@ -2607,7 +2607,7 @@
       "es": "Kurama"
     },
     "aliases": [
-      "Kyūbi",
+      "Kyubi",
       "Nueve Colas"
     ],
     "series": [
@@ -2732,7 +2732,7 @@
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [],
       "naturalezas": [],
@@ -2873,12 +2873,12 @@
       "tiposDeJutsu": [
         "Ninjutsu",
         "Genjutsu",
-        "Fūinjutsu",
+        "Fuinjutsu",
         "Senjutsu"
       ],
       "kekkeiGenkai": [
         "Sharingan",
-        "Mangekyō Sharingan",
+        "Mangekyo Sharingan",
         "Rinnegan",
         "Madera"
       ],
@@ -2893,7 +2893,7 @@
         "Yin-Yang"
       ],
       "atributos": [
-        "Jinchūriki",
+        "Jinchuriki",
         "Ninja renegado",
         "Rango S",
         "Sensor"
@@ -2931,7 +2931,7 @@
       ],
       "atributos": [
         "Ninja médico",
-        "Jinchūriki"
+        "Jinchuriki"
       ],
       "arcoDebut": 9,
       "estadoVital": "Muerto",
@@ -2961,12 +2961,12 @@
       "tiposDeJutsu": [
         "Ninjutsu",
         "Genjutsu",
-        "Fūinjutsu",
+        "Fuinjutsu",
         "Senjutsu"
       ],
       "kekkeiGenkai": [
         "Sharingan",
-        "Mangekyō Sharingan Eterno",
+        "Mangekyo Sharingan Eterno",
         "Rinnegan",
         "Madera",
         "Tormenta"
@@ -2982,7 +2982,7 @@
         "Yin-Yang"
       ],
       "atributos": [
-        "Jinchūriki",
+        "Jinchuriki",
         "Ninja renegado",
         "Sensor",
         "Sabio"
@@ -2998,7 +2998,7 @@
   {
     "id": "danzo-shimura",
     "name": {
-      "es": "Danzō Shimura"
+      "es": "Danzo Shimura"
     },
     "aliases": [
       "Danzo"
@@ -3015,11 +3015,11 @@
       "tiposDeJutsu": [
         "Ninjutsu",
         "Genjutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [
         "Sharingan",
-        "Mangekyō Sharingan",
+        "Mangekyo Sharingan",
         "Madera"
       ],
       "naturalezas": [
@@ -3084,7 +3084,7 @@
       "es": "Yamato"
     },
     "aliases": [
-      "Tenzō"
+      "Tenzo"
     ],
     "series": [
       "shippuden",
@@ -3102,7 +3102,7 @@
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [
         "Madera"
@@ -3143,7 +3143,7 @@
       ],
       "kekkeiGenkai": [
         "Sharingan",
-        "Mangekyō Sharingan"
+        "Mangekyo Sharingan"
       ],
       "naturalezas": [
         "Fuego",
@@ -3185,7 +3185,7 @@
         "Yin"
       ],
       "atributos": [
-        "Jinchūriki"
+        "Jinchuriki"
       ],
       "arcoDebut": 10,
       "estadoVital": "Muerto",
@@ -3310,7 +3310,7 @@
   {
     "id": "kaguya-otsutsuki",
     "name": {
-      "es": "Kaguya Ōtsutsuki"
+      "es": "Kaguya Otsutsuki"
     },
     "aliases": [
       "Kaguya"
@@ -3350,7 +3350,7 @@
   {
     "id": "hagoromo-otsutsuki",
     "name": {
-      "es": "Hagoromo Ōtsutsuki"
+      "es": "Hagoromo Otsutsuki"
     },
     "aliases": [
       "Hagoromo",
@@ -3362,11 +3362,11 @@
     "attrs": {
       "genero": "Masculino",
       "afiliaciones": [
-        "Monte Myōboku"
+        "Monte Myoboku"
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu",
+        "Fuinjutsu",
         "Senjutsu"
       ],
       "kekkeiGenkai": [],
@@ -3381,7 +3381,7 @@
         "Yin-Yang"
       ],
       "atributos": [
-        "Jinchūriki",
+        "Jinchuriki",
         "Sabio",
         "Sensor"
       ],
@@ -3396,7 +3396,7 @@
   {
     "id": "hamura-otsutsuki",
     "name": {
-      "es": "Hamura Ōtsutsuki"
+      "es": "Hamura Otsutsuki"
     },
     "aliases": [
       "Hamura"
@@ -3407,7 +3407,7 @@
     "attrs": {
       "genero": "Masculino",
       "afiliaciones": [
-        "Monte Myōboku",
+        "Monte Myoboku",
         "Luna"
       ],
       "tiposDeJutsu": [
@@ -3430,7 +3430,7 @@
       ],
       "arcoDebut": 17,
       "estadoVital": "Muerto",
-      "ocupacion": "Líder del clan Ōtsutsuki",
+      "ocupacion": "Líder del clan Otsutsuki",
       "inicial": "H",
       "imagenTransparente": 0
     },
@@ -3439,7 +3439,7 @@
   {
     "id": "indra-otsutsuki",
     "name": {
-      "es": "Indra Ōtsutsuki"
+      "es": "Indra Otsutsuki"
     },
     "aliases": [
       "Indra"
@@ -3455,7 +3455,7 @@
       ],
       "kekkeiGenkai": [
         "Sharingan",
-        "Mangekyō Sharingan"
+        "Mangekyo Sharingan"
       ],
       "naturalezas": [
         "Fuego",
@@ -3476,7 +3476,7 @@
   {
     "id": "asura-otsutsuki",
     "name": {
-      "es": "Asura Ōtsutsuki"
+      "es": "Asura Otsutsuki"
     },
     "aliases": [
       "Asura"
@@ -3519,7 +3519,7 @@
   {
     "id": "suigetsu-hozuki",
     "name": {
-      "es": "Suigetsu Hōzuki"
+      "es": "Suigetsu Hozuki"
     },
     "aliases": [
       "Suigetsu"
@@ -3593,7 +3593,7 @@
   {
     "id": "jugo",
     "name": {
-      "es": "Jūgo"
+      "es": "Jugo"
     },
     "aliases": [],
     "series": [
@@ -3612,7 +3612,7 @@
         "Senjutsu"
       ],
       "kekkeiGenkai": [
-        "Kekkei Genkai de Jūgo"
+        "Kekkei Genkai de Jugo"
       ],
       "naturalezas": [
         "Viento",
@@ -3666,7 +3666,7 @@
         "Yang"
       ],
       "atributos": [
-        "Jinchūriki"
+        "Jinchuriki"
       ],
       "arcoDebut": 11,
       "estadoVital": "Vivo",
@@ -3698,7 +3698,7 @@
         "Fuego"
       ],
       "atributos": [
-        "Jinchūriki"
+        "Jinchuriki"
       ],
       "arcoDebut": 8,
       "estadoVital": "Muerto",
@@ -3711,7 +3711,7 @@
   {
     "id": "roshi",
     "name": {
-      "es": "Rōshi"
+      "es": "Roshi"
     },
     "aliases": [],
     "series": [
@@ -3731,7 +3731,7 @@
         "Tierra"
       ],
       "atributos": [
-        "Jinchūriki"
+        "Jinchuriki"
       ],
       "arcoDebut": 9,
       "estadoVital": "Muerto",
@@ -3767,7 +3767,7 @@
         "Agua"
       ],
       "atributos": [
-        "Jinchūriki"
+        "Jinchuriki"
       ],
       "arcoDebut": 13,
       "estadoVital": "Muerto",
@@ -3800,7 +3800,7 @@
       ],
       "atributos": [
         "Sensor",
-        "Jinchūriki",
+        "Jinchuriki",
         "Ninja renegado"
       ],
       "arcoDebut": 11,
@@ -3814,7 +3814,7 @@
   {
     "id": "fu",
     "name": {
-      "es": "Fū"
+      "es": "Fu"
     },
     "aliases": [],
     "series": [
@@ -3829,7 +3829,7 @@
       "kekkeiGenkai": [],
       "naturalezas": [],
       "atributos": [
-        "Jinchūriki"
+        "Jinchuriki"
       ],
       "arcoDebut": 13,
       "estadoVital": "Muerto",
@@ -3866,7 +3866,7 @@
         "Viento"
       ],
       "atributos": [
-        "Jinchūriki"
+        "Jinchuriki"
       ],
       "arcoDebut": 13,
       "estadoVital": "Muerto",
@@ -3879,7 +3879,7 @@
   {
     "id": "mei-terumi",
     "name": {
-      "es": "Mei Terumī"
+      "es": "Mei Terumi"
     },
     "aliases": [
       "Mei",
@@ -3921,7 +3921,7 @@
   {
     "id": "onoki",
     "name": {
-      "es": "Ōnoki"
+      "es": "Onoki"
     },
     "aliases": [
       "Tercer Tsuchikage"
@@ -4081,7 +4081,7 @@
   {
     "id": "mu",
     "name": {
-      "es": "Mū"
+      "es": "Mu"
     },
     "aliases": [
       "Segundo Tsuchikage"
@@ -4120,7 +4120,7 @@
   {
     "id": "gengetsu-hozuki",
     "name": {
-      "es": "Gengetsu Hōzuki"
+      "es": "Gengetsu Hozuki"
     },
     "aliases": [
       "Gengetsu",
@@ -4156,10 +4156,10 @@
   {
     "id": "hanzo",
     "name": {
-      "es": "Hanzō"
+      "es": "Hanzo"
     },
     "aliases": [
-      "Hanzō de la Salamandra"
+      "Hanzo de la Salamandra"
     ],
     "series": [
       "shippuden"
@@ -4219,7 +4219,7 @@
   {
     "id": "chojuro",
     "name": {
-      "es": "Chōjūrō"
+      "es": "Chojuro"
     },
     "aliases": [],
     "series": [
@@ -4375,7 +4375,7 @@
   {
     "id": "mangetsu-hozuki",
     "name": {
-      "es": "Mangetsu Hōzuki"
+      "es": "Mangetsu Hozuki"
     },
     "aliases": [
       "Mangetsu"
@@ -4612,7 +4612,7 @@
     "attrs": {
       "genero": "Masculino",
       "afiliaciones": [
-        "Monte Myōboku",
+        "Monte Myoboku",
         "Konoha"
       ],
       "tiposDeJutsu": [
@@ -4649,7 +4649,7 @@
     "attrs": {
       "genero": "Femenino",
       "afiliaciones": [
-        "Monte Myōboku",
+        "Monte Myoboku",
         "Konoha"
       ],
       "tiposDeJutsu": [
@@ -4784,7 +4784,7 @@
   {
     "id": "son-goku",
     "name": {
-      "es": "Son Gokū"
+      "es": "Son Goku"
     },
     "aliases": [
       "Cuatro Colas",
@@ -4824,7 +4824,7 @@
   {
     "id": "kokuo",
     "name": {
-      "es": "Kokuō"
+      "es": "Kokuo"
     },
     "aliases": [
       "Cinco Colas",
@@ -4899,7 +4899,7 @@
   {
     "id": "chomei",
     "name": {
-      "es": "Chōmei"
+      "es": "Chomei"
     },
     "aliases": [
       "Siete Colas",
@@ -4933,7 +4933,7 @@
   {
     "id": "gyuki",
     "name": {
-      "es": "Gyūki"
+      "es": "Gyuki"
     },
     "aliases": [
       "Ocho Colas",
@@ -4980,15 +4980,15 @@
       "genero": "Masculino",
       "afiliaciones": [
         "Konoha",
-        "Cueva Ryūchi"
+        "Cueva Ryuchi"
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
         "Taijutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [
-        "Jōgan"
+        "Jogan"
       ],
       "naturalezas": [
         "Rayo",
@@ -5025,7 +5025,7 @@
       "tiposDeJutsu": [
         "Ninjutsu",
         "Taijutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [
         "Sharingan"
@@ -5060,16 +5060,16 @@
       "genero": "Masculino",
       "afiliaciones": [
         "Oto",
-        "Cueva Ryūchi",
+        "Cueva Ryuchi",
         "Konoha"
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu",
+        "Fuinjutsu",
         "Senjutsu"
       ],
       "kekkeiGenkai": [
-        "Kekkei Genkai de Jūgo"
+        "Kekkei Genkai de Jugo"
       ],
       "naturalezas": [
         "Viento",
@@ -5136,7 +5136,7 @@
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [],
       "naturalezas": [
@@ -5170,7 +5170,7 @@
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [],
       "naturalezas": [],
@@ -5189,7 +5189,7 @@
   {
     "id": "chocho-akimichi",
     "name": {
-      "es": "Chōchō Akimichi"
+      "es": "Chocho Akimichi"
     },
     "aliases": [
       "Chocho"
@@ -5246,7 +5246,7 @@
   {
     "id": "iwabee-yuino",
     "name": {
-      "es": "Iwabee Yūino"
+      "es": "Iwabee Yuino"
     },
     "aliases": [
       "Iwabee"
@@ -5261,7 +5261,7 @@
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [],
       "naturalezas": [
@@ -5296,7 +5296,7 @@
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [],
       "naturalezas": [
@@ -5359,7 +5359,7 @@
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
-        "Fūinjutsu"
+        "Fuinjutsu"
       ],
       "kekkeiGenkai": [],
       "naturalezas": [
@@ -5398,7 +5398,7 @@
       "atributos": [],
       "arcoDebut": 20,
       "estadoVital": "Vivo",
-      "ocupacion": "Asistente de Katasuke Tōno",
+      "ocupacion": "Asistente de Katasuke Tono",
       "inicial": "S",
       "imagenTransparente": 0
     },
@@ -5426,7 +5426,7 @@
         "Ninjutsu"
       ],
       "kekkeiGenkai": [
-        "Dōjutsu de Isshiki"
+        "Dojutsu de Isshiki"
       ],
       "naturalezas": [
         "Fuego"
@@ -5567,7 +5567,7 @@
   {
     "id": "isshiki-otsutsuki",
     "name": {
-      "es": "Isshiki Ōtsutsuki"
+      "es": "Isshiki Otsutsuki"
     },
     "aliases": [
       "Isshiki"
@@ -5586,7 +5586,7 @@
       "tiposDeJutsu": [],
       "kekkeiGenkai": [
         "Byakugan",
-        "Dōjutsu de Isshiki"
+        "Dojutsu de Isshiki"
       ],
       "naturalezas": [
         "Yin",
@@ -5604,7 +5604,7 @@
   {
     "id": "momoshiki-otsutsuki",
     "name": {
-      "es": "Momoshiki Ōtsutsuki"
+      "es": "Momoshiki Otsutsuki"
     },
     "aliases": [
       "Momoshiki"
@@ -5641,7 +5641,7 @@
   {
     "id": "kinshiki-otsutsuki",
     "name": {
-      "es": "Kinshiki Ōtsutsuki"
+      "es": "Kinshiki Otsutsuki"
     },
     "aliases": [
       "Kinshiki"
@@ -5792,7 +5792,7 @@
           "value": "Kara",
           "series": "boruto"
         },
-        "Monte Myōboku"
+        "Monte Myoboku"
       ],
       "tiposDeJutsu": [
         "Ninjutsu",
@@ -5818,7 +5818,7 @@
   {
     "id": "toneri-otsutsuki",
     "name": {
-      "es": "Toneri Ōtsutsuki"
+      "es": "Toneri Otsutsuki"
     },
     "aliases": [
       "Toneri"

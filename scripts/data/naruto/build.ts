@@ -26,6 +26,7 @@ import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { z } from 'zod';
 import type { Content, Entity } from '../../../src/engine/types.ts';
+import { plainDisplayText } from './display-text.ts';
 import {
   SIZES,
   imageDimensions,
@@ -392,7 +393,7 @@ async function validate(characters: Entity[], contents: Content[], groups: reado
 // --- 4. Escritura -----------------------------------------------------------
 
 async function writeJson(file: string, value: unknown): Promise<void> {
-  const text = `${JSON.stringify(value, null, 2)}\n`;
+  const text = `${JSON.stringify(plainDisplayText(value), null, 2)}\n`;
   try {
     if ((await readFile(file, 'utf8')) === text) return;
   } catch {

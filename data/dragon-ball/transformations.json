@@ -2,19 +2,19 @@
   {
     "id": "goku-ssj",
     "name": {
-      "es": "Goku Supersaiyano"
+      "es": "Goku Super Saiyajin"
     },
     "aliases": [
       "Goku SSJ",
       "Goku Super Saiyan",
-      "Goku Super Saiyajin"
+      "Goku Supersaiyano"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
       "personaje": "Goku",
-      "forma": "Supersaiyano",
+      "forma": "Super Saiyajin",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/goku-ssj"
@@ -22,18 +22,19 @@
   {
     "id": "goku-ssj2",
     "name": {
-      "es": "Goku Supersaiyano 2"
+      "es": "Goku Super Saiyajin 2"
     },
     "aliases": [
       "Goku SSJ2",
-      "Goku Super Saiyan 2"
+      "Goku Super Saiyan 2",
+      "Goku Supersaiyano 2"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
       "personaje": "Goku",
-      "forma": "Supersaiyano 2",
+      "forma": "Super Saiyajin 2",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/goku-ssj2"
@@ -41,18 +42,19 @@
   {
     "id": "goku-ssj3",
     "name": {
-      "es": "Goku Supersaiyano 3"
+      "es": "Goku Super Saiyajin 3"
     },
     "aliases": [
       "Goku SSJ3",
-      "Goku Super Saiyan 3"
+      "Goku Super Saiyan 3",
+      "Goku Supersaiyano 3"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
       "personaje": "Goku",
-      "forma": "Supersaiyano 3",
+      "forma": "Super Saiyajin 3",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/goku-ssj3"
@@ -60,18 +62,19 @@
   {
     "id": "goku-ssj4",
     "name": {
-      "es": "Goku Supersaiyano 4"
+      "es": "Goku Super Saiyajin 4"
     },
     "aliases": [
       "Goku SSJ4",
-      "Goku Super Saiyan 4"
+      "Goku Super Saiyan 4",
+      "Goku Supersaiyano 4"
     ],
     "series": [
       "gt"
     ],
     "attrs": {
       "personaje": "Goku",
-      "forma": "Supersaiyano 4",
+      "forma": "Super Saiyajin 4",
       "imagenTransparente": 0
     },
     "image": "dragon-ball/transformations/goku-ssj4"
@@ -79,19 +82,20 @@
   {
     "id": "goku-ssb",
     "name": {
-      "es": "Goku Supersaiyano Azul"
+      "es": "Goku Super Saiyajin Azul"
     },
     "aliases": [
       "Goku SSJB",
       "Goku Super Saiyan Blue",
-      "Goku Supersaiyano Dios Supersaiyano"
+      "Goku Supersaiyano Dios Supersaiyano",
+      "Goku Supersaiyano Azul"
     ],
     "series": [
       "super"
     ],
     "attrs": {
       "personaje": "Goku",
-      "forma": "Supersaiyano Azul",
+      "forma": "Super Saiyajin Azul",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/goku-ssb"
@@ -118,18 +122,19 @@
   {
     "id": "vegeta-ssj",
     "name": {
-      "es": "Vegeta Supersaiyano"
+      "es": "Vegeta Super Saiyajin"
     },
     "aliases": [
       "Vegeta SSJ",
-      "Vegeta Super Saiyan"
+      "Vegeta Super Saiyan",
+      "Vegeta Supersaiyano"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
       "personaje": "Vegeta",
-      "forma": "Supersaiyano",
+      "forma": "Super Saiyajin",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/vegeta-ssj"
@@ -137,18 +142,19 @@
   {
     "id": "vegeta-ssj2",
     "name": {
-      "es": "Vegeta Supersaiyano 2"
+      "es": "Vegeta Super Saiyajin 2"
     },
     "aliases": [
       "Vegeta SSJ2",
-      "Vegeta Super Saiyan 2"
+      "Vegeta Super Saiyan 2",
+      "Vegeta Supersaiyano 2"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
       "personaje": "Vegeta",
-      "forma": "Supersaiyano 2",
+      "forma": "Super Saiyajin 2",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/vegeta-ssj2"
@@ -156,18 +162,19 @@
   {
     "id": "vegeta-ssj4",
     "name": {
-      "es": "Vegeta Supersaiyano 4"
+      "es": "Vegeta Super Saiyajin 4"
     },
     "aliases": [
       "Vegeta SSJ4",
-      "Vegeta Super Saiyan 4"
+      "Vegeta Super Saiyan 4",
+      "Vegeta Supersaiyano 4"
     ],
     "series": [
       "gt"
     ],
     "attrs": {
       "personaje": "Vegeta",
-      "forma": "Supersaiyano 4",
+      "forma": "Super Saiyajin 4",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/vegeta-ssj4"
@@ -175,19 +182,20 @@
   {
     "id": "vegeta-ssb",
     "name": {
-      "es": "Vegeta Supersaiyano Azul"
+      "es": "Vegeta Super Saiyajin Azul"
     },
     "aliases": [
       "Vegeta SSJB",
       "Vegeta Super Saiyan Blue",
-      "Vegeta Supersaiyano Dios Supersaiyano"
+      "Vegeta Supersaiyano Dios Supersaiyano",
+      "Vegeta Supersaiyano Azul"
     ],
     "series": [
       "super"
     ],
     "attrs": {
       "personaje": "Vegeta",
-      "forma": "Supersaiyano Azul",
+      "forma": "Super Saiyajin Azul",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/vegeta-ssb"
@@ -195,17 +203,18 @@
   {
     "id": "piccolo-naranja",
     "name": {
-      "es": "Piccolo Naranja"
+      "es": "Piccoro Naranja"
     },
     "aliases": [
       "Piccolo Orange",
-      "Orange Piccolo"
+      "Orange Piccolo",
+      "Piccolo Naranja"
     ],
     "series": [
       "super"
     ],
     "attrs": {
-      "personaje": "Piccolo",
+      "personaje": "Piccoro",
       "forma": "Naranja",
       "imagenTransparente": 1
     },
@@ -315,18 +324,19 @@
   {
     "id": "celula-imperfecto",
     "name": {
-      "es": "Célula Forma Imperfecta"
+      "es": "Cell Forma Imperfecta"
     },
     "aliases": [
       "Cell Imperfect Form",
       "Cell Imperfecto",
-      "Célula Imperfecto"
+      "Célula Imperfecto",
+      "Célula Forma Imperfecta"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
-      "personaje": "Célula",
+      "personaje": "Cell",
       "forma": "Forma Imperfecta",
       "imagenTransparente": 1
     },
@@ -335,18 +345,19 @@
   {
     "id": "celula-semiperfecto",
     "name": {
-      "es": "Célula Forma Semiperfecta"
+      "es": "Cell Forma Semiperfecta"
     },
     "aliases": [
       "Cell Semi Perfect Form",
       "Cell Semiperfecto",
-      "Célula Semiperfecto"
+      "Célula Semiperfecto",
+      "Célula Forma Semiperfecta"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
-      "personaje": "Célula",
+      "personaje": "Cell",
       "forma": "Forma Semiperfecta",
       "imagenTransparente": 1
     },
@@ -355,18 +366,19 @@
   {
     "id": "celula-super-perfecto",
     "name": {
-      "es": "Célula Forma Súper Perfecta"
+      "es": "Cell Forma Súper Perfecta"
     },
     "aliases": [
       "Cell Super Perfect Form",
       "Super Perfect Cell",
-      "Célula Súper Perfecto"
+      "Célula Súper Perfecto",
+      "Célula Forma Súper Perfecta"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
-      "personaje": "Célula",
+      "personaje": "Cell",
       "forma": "Forma Súper Perfecta",
       "imagenTransparente": 1
     },
@@ -375,18 +387,19 @@
   {
     "id": "gohan-ssj",
     "name": {
-      "es": "Gohan Supersaiyano"
+      "es": "Gohan Super Saiyajin"
     },
     "aliases": [
       "Gohan SSJ",
-      "Gohan Super Saiyan"
+      "Gohan Super Saiyan",
+      "Gohan Supersaiyano"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
       "personaje": "Gohan",
-      "forma": "Supersaiyano",
+      "forma": "Super Saiyajin",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/gohan-ssj"
@@ -394,18 +407,19 @@
   {
     "id": "gohan-ssj2",
     "name": {
-      "es": "Gohan Supersaiyano 2"
+      "es": "Gohan Super Saiyajin 2"
     },
     "aliases": [
       "Gohan SSJ2",
-      "Gohan Super Saiyan 2"
+      "Gohan Super Saiyan 2",
+      "Gohan Supersaiyano 2"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
       "personaje": "Gohan",
-      "forma": "Supersaiyano 2",
+      "forma": "Super Saiyajin 2",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/gohan-ssj2"
@@ -453,18 +467,19 @@
   {
     "id": "trunks-ssj",
     "name": {
-      "es": "Trunks Supersaiyano"
+      "es": "Trunks Super Saiyajin"
     },
     "aliases": [
       "Trunks SSJ",
-      "Trunks Super Saiyan"
+      "Trunks Super Saiyan",
+      "Trunks Supersaiyano"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
       "personaje": "Trunks del Futuro",
-      "forma": "Supersaiyano",
+      "forma": "Super Saiyajin",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/trunks-ssj"
@@ -472,18 +487,19 @@
   {
     "id": "trunks-ssj2",
     "name": {
-      "es": "Trunks Supersaiyano 2"
+      "es": "Trunks Super Saiyajin 2"
     },
     "aliases": [
       "Trunks SSJ2",
-      "Trunks Super Saiyan 2"
+      "Trunks Super Saiyan 2",
+      "Trunks Supersaiyano 2"
     ],
     "series": [
       "super"
     ],
     "attrs": {
       "personaje": "Trunks del Futuro",
-      "forma": "Supersaiyano 2",
+      "forma": "Super Saiyajin 2",
       "imagenTransparente": 0
     },
     "image": "dragon-ball/transformations/trunks-ssj2"
@@ -491,19 +507,20 @@
   {
     "id": "trunks-furioso",
     "name": {
-      "es": "Trunks Supersaiyano Furioso"
+      "es": "Trunks Super Saiyajin Furioso"
     },
     "aliases": [
       "Trunks Rage",
       "Rage Trunks",
-      "Trunks Super Saiyan Rage"
+      "Trunks Super Saiyan Rage",
+      "Trunks Supersaiyano Furioso"
     ],
     "series": [
       "super"
     ],
     "attrs": {
       "personaje": "Trunks del Futuro",
-      "forma": "Supersaiyano Furioso",
+      "forma": "Super Saiyajin Furioso",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/trunks-furioso"
@@ -511,18 +528,19 @@
   {
     "id": "gotenks-ssj",
     "name": {
-      "es": "Gotenks Supersaiyano"
+      "es": "Gotenks Super Saiyajin"
     },
     "aliases": [
       "Gotenks SSJ",
-      "Gotenks Super Saiyan"
+      "Gotenks Super Saiyan",
+      "Gotenks Supersaiyano"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
       "personaje": "Gotenks",
-      "forma": "Supersaiyano",
+      "forma": "Super Saiyajin",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/gotenks-ssj"
@@ -530,18 +548,19 @@
   {
     "id": "gotenks-ssj3",
     "name": {
-      "es": "Gotenks Supersaiyano 3"
+      "es": "Gotenks Super Saiyajin 3"
     },
     "aliases": [
       "Gotenks SSJ3",
-      "Gotenks Super Saiyan 3"
+      "Gotenks Super Saiyan 3",
+      "Gotenks Supersaiyano 3"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
       "personaje": "Gotenks",
-      "forma": "Supersaiyano 3",
+      "forma": "Super Saiyajin 3",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/gotenks-ssj3"
@@ -629,18 +648,19 @@
   {
     "id": "gogeta-ssj",
     "name": {
-      "es": "Gogeta Supersaiyano"
+      "es": "Gogeta Super Saiyajin"
     },
     "aliases": [
       "Gogeta SSJ",
-      "Gogeta Super Saiyan"
+      "Gogeta Super Saiyan",
+      "Gogeta Supersaiyano"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
       "personaje": "Gogeta",
-      "forma": "Supersaiyano",
+      "forma": "Super Saiyajin",
       "imagenTransparente": 1,
       "filler": 1
     },
@@ -649,18 +669,19 @@
   {
     "id": "gogeta-ssj4",
     "name": {
-      "es": "Gogeta Supersaiyano 4"
+      "es": "Gogeta Super Saiyajin 4"
     },
     "aliases": [
       "Gogeta SSJ4",
-      "Gogeta Super Saiyan 4"
+      "Gogeta Super Saiyan 4",
+      "Gogeta Supersaiyano 4"
     ],
     "series": [
       "gt"
     ],
     "attrs": {
       "personaje": "Gogeta",
-      "forma": "Supersaiyano 4",
+      "forma": "Super Saiyajin 4",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/gogeta-ssj4"
@@ -668,18 +689,19 @@
   {
     "id": "gogeta-ssb",
     "name": {
-      "es": "Gogeta Supersaiyano Azul"
+      "es": "Gogeta Super Saiyajin Azul"
     },
     "aliases": [
       "Gogeta SSJB",
-      "Gogeta Super Saiyan Blue"
+      "Gogeta Super Saiyan Blue",
+      "Gogeta Supersaiyano Azul"
     ],
     "series": [
       "super"
     ],
     "attrs": {
       "personaje": "Gogeta",
-      "forma": "Supersaiyano Azul",
+      "forma": "Super Saiyajin Azul",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/gogeta-ssb"
@@ -687,19 +709,20 @@
   {
     "id": "vegetto-ssj",
     "name": {
-      "es": "Vegetto Supersaiyano"
+      "es": "Vegetto Super Saiyajin"
     },
     "aliases": [
       "Vegetto SSJ",
       "Vegito Super Saiyan",
-      "Vegetto Super Saiyan"
+      "Vegetto Super Saiyan",
+      "Vegetto Supersaiyano"
     ],
     "series": [
       "dbz"
     ],
     "attrs": {
       "personaje": "Vegetto",
-      "forma": "Supersaiyano",
+      "forma": "Super Saiyajin",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/vegetto-ssj"
@@ -707,19 +730,20 @@
   {
     "id": "vegetto-ssb",
     "name": {
-      "es": "Vegetto Supersaiyano Azul"
+      "es": "Vegetto Super Saiyajin Azul"
     },
     "aliases": [
       "Vegetto SSJB",
       "Vegito Blue",
-      "Vegetto Super Saiyan Blue"
+      "Vegetto Super Saiyan Blue",
+      "Vegetto Supersaiyano Azul"
     ],
     "series": [
       "super"
     ],
     "attrs": {
       "personaje": "Vegetto",
-      "forma": "Supersaiyano Azul",
+      "forma": "Super Saiyajin Azul",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/vegetto-ssb"
@@ -747,19 +771,19 @@
   {
     "id": "broly-ssj-legendario",
     "name": {
-      "es": "Broly Supersaiyano Legendario"
+      "es": "Broly Super Saiyajin Legendario"
     },
     "aliases": [
       "Broly SSJ Legendary",
       "Broly Legendary Super Saiyan",
-      "Broly Super Saiyajin Legendario"
+      "Broly Supersaiyano Legendario"
     ],
     "series": [
       "super"
     ],
     "attrs": {
       "personaje": "Broly",
-      "forma": "Supersaiyano Legendario",
+      "forma": "Super Saiyajin Legendario",
       "imagenTransparente": 1
     },
     "image": "dragon-ball/transformations/broly-ssj-legendario"

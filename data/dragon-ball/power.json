@@ -260,7 +260,7 @@
   {
     "id": "piccolo",
     "name": {
-      "es": "Piccolo (Super Hero)"
+      "es": "Piccoro (Super Hero)"
     },
     "aliases": [],
     "series": [
@@ -650,7 +650,7 @@
   {
     "id": "oob",
     "name": {
-      "es": "Oob (GT)"
+      "es": "Uub (GT)"
     },
     "aliases": [],
     "series": [
@@ -786,7 +786,7 @@
   {
     "id": "coola",
     "name": {
-      "es": "Coola"
+      "es": "Cooler"
     },
     "aliases": [],
     "series": [
@@ -802,7 +802,7 @@
   {
     "id": "celula",
     "name": {
-      "es": "Célula (saga de Cell)"
+      "es": "Cell (saga de Cell)"
     },
     "aliases": [],
     "series": [
@@ -817,7 +817,7 @@
   {
     "id": "gran-kaioshin",
     "name": {
-      "es": "Gran Kaio-shin"
+      "es": "Gran Kaioshin"
     },
     "aliases": [],
     "series": [
@@ -924,7 +924,7 @@
   {
     "id": "kaioshin-del-este",
     "name": {
-      "es": "Kaio-shin del Este (saga de Buu)"
+      "es": "Kaioshin del Este (saga de Buu)"
     },
     "aliases": [],
     "series": [
@@ -939,7 +939,7 @@
   {
     "id": "kaioshin-del-norte",
     "name": {
-      "es": "Kaio-shin del Norte"
+      "es": "Kaioshin del Norte"
     },
     "aliases": [],
     "series": [
@@ -954,7 +954,7 @@
   {
     "id": "kaioshin-del-sur",
     "name": {
-      "es": "Kaio-shin del Sur"
+      "es": "Kaioshin del Sur"
     },
     "aliases": [],
     "series": [
@@ -969,7 +969,7 @@
   {
     "id": "kaioshin-del-oeste",
     "name": {
-      "es": "Kaio-shin del Oeste"
+      "es": "Kaioshin del Oeste"
     },
     "aliases": [],
     "series": [
@@ -1107,7 +1107,7 @@
   {
     "id": "chaoz",
     "name": {
-      "es": "Chaoz (Super)"
+      "es": "Chaos (Super)"
     },
     "aliases": [],
     "series": [
@@ -1573,7 +1573,7 @@
   {
     "id": "gran-rey-demonio-piccolo",
     "name": {
-      "es": "Gran Rey Demonio Piccolo"
+      "es": "Gran Rey Demonio Piccoro"
     },
     "aliases": [],
     "series": [
@@ -1588,7 +1588,7 @@
   {
     "id": "chi-chi",
     "name": {
-      "es": "Chi-Chi"
+      "es": "Milk"
     },
     "aliases": [],
     "series": [
@@ -1858,7 +1858,7 @@
   {
     "id": "goku-ssj",
     "name": {
-      "es": "Goku Supersaiyano (saga de Namek)"
+      "es": "Goku Super Saiyajin (saga de Namek)"
     },
     "aliases": [],
     "series": [
@@ -1873,7 +1873,7 @@
   {
     "id": "goku-ssj2",
     "name": {
-      "es": "Goku Supersaiyano 2 (saga de Buu)"
+      "es": "Goku Super Saiyajin 2 (saga de Buu)"
     },
     "aliases": [],
     "series": [
@@ -1888,7 +1888,7 @@
   {
     "id": "goku-ssj3",
     "name": {
-      "es": "Goku Supersaiyano 3 (saga de Buu)"
+      "es": "Goku Super Saiyajin 3 (saga de Buu)"
     },
     "aliases": [],
     "series": [
@@ -1903,7 +1903,7 @@
   {
     "id": "goku-ssj4",
     "name": {
-      "es": "Goku Supersaiyano 4 (GT)"
+      "es": "Goku Super Saiyajin 4 (GT)"
     },
     "aliases": [],
     "series": [
@@ -1918,7 +1918,7 @@
   {
     "id": "goku-ssb",
     "name": {
-      "es": "Goku Supersaiyano Azul (La resurrección de Freezer)"
+      "es": "Goku Super Saiyajin Azul (La resurrección de Freezer)"
     },
     "aliases": [],
     "series": [
@@ -1948,7 +1948,7 @@
   {
     "id": "vegeta-ssj",
     "name": {
-      "es": "Vegeta Supersaiyano (saga de los Androides)"
+      "es": "Vegeta Super Saiyajin (saga de los Androides)"
     },
     "aliases": [],
     "series": [
@@ -1963,7 +1963,7 @@
   {
     "id": "vegeta-ssj2",
     "name": {
-      "es": "Vegeta Supersaiyano 2 (saga de Buu)"
+      "es": "Vegeta Super Saiyajin 2 (saga de Buu)"
     },
     "aliases": [],
     "series": [
@@ -1978,7 +1978,7 @@
   {
     "id": "vegeta-ssj4",
     "name": {
-      "es": "Vegeta Supersaiyano 4 (GT)"
+      "es": "Vegeta Super Saiyajin 4 (GT)"
     },
     "aliases": [],
     "series": [
@@ -1993,7 +1993,7 @@
   {
     "id": "vegeta-ssb",
     "name": {
-      "es": "Vegeta Supersaiyano Azul (La resurrección de Freezer)"
+      "es": "Vegeta Super Saiyajin Azul (La resurrección de Freezer)"
     },
     "aliases": [],
     "series": [
@@ -2008,7 +2008,7 @@
   {
     "id": "piccolo-naranja",
     "name": {
-      "es": "Piccolo Naranja (Super Hero)"
+      "es": "Piccoro Naranja (Super Hero)"
     },
     "aliases": [],
     "series": [
@@ -2098,7 +2098,7 @@
   {
     "id": "celula-imperfecto",
     "name": {
-      "es": "Célula Forma Imperfecta (saga de Cell)"
+      "es": "Cell Forma Imperfecta (saga de Cell)"
     },
     "aliases": [],
     "series": [
@@ -2113,7 +2113,7 @@
   {
     "id": "celula-semiperfecto",
     "name": {
-      "es": "Célula Forma Semiperfecta (saga de Cell)"
+      "es": "Cell Forma Semiperfecta (saga de Cell)"
     },
     "aliases": [],
     "series": [
@@ -2128,7 +2128,7 @@
   {
     "id": "celula-super-perfecto",
     "name": {
-      "es": "Célula Forma Súper Perfecta (saga de Cell)"
+      "es": "Cell Forma Súper Perfecta (saga de Cell)"
     },
     "aliases": [],
     "series": [
@@ -2143,7 +2143,7 @@
   {
     "id": "gohan-ssj",
     "name": {
-      "es": "Gohan Supersaiyano (saga de Cell)"
+      "es": "Gohan Super Saiyajin (saga de Cell)"
     },
     "aliases": [],
     "series": [
@@ -2158,7 +2158,7 @@
   {
     "id": "gohan-ssj2",
     "name": {
-      "es": "Gohan Supersaiyano 2 (saga de Cell)"
+      "es": "Gohan Super Saiyajin 2 (saga de Cell)"
     },
     "aliases": [],
     "series": [
@@ -2203,7 +2203,7 @@
   {
     "id": "trunks-ssj",
     "name": {
-      "es": "Trunks Supersaiyano (saga de los Androides)"
+      "es": "Trunks Super Saiyajin (saga de los Androides)"
     },
     "aliases": [],
     "series": [
@@ -2218,7 +2218,7 @@
   {
     "id": "trunks-ssj2",
     "name": {
-      "es": "Trunks Supersaiyano 2 (saga de Black)"
+      "es": "Trunks Super Saiyajin 2 (saga de Black)"
     },
     "aliases": [],
     "series": [
@@ -2233,7 +2233,7 @@
   {
     "id": "trunks-furioso",
     "name": {
-      "es": "Trunks Supersaiyano Furioso (saga de Black)"
+      "es": "Trunks Super Saiyajin Furioso (saga de Black)"
     },
     "aliases": [],
     "series": [
@@ -2248,7 +2248,7 @@
   {
     "id": "gotenks-ssj",
     "name": {
-      "es": "Gotenks Supersaiyano (saga de Buu)"
+      "es": "Gotenks Super Saiyajin (saga de Buu)"
     },
     "aliases": [],
     "series": [
@@ -2263,7 +2263,7 @@
   {
     "id": "gotenks-ssj3",
     "name": {
-      "es": "Gotenks Supersaiyano 3 (saga de Buu)"
+      "es": "Gotenks Super Saiyajin 3 (saga de Buu)"
     },
     "aliases": [],
     "series": [
@@ -2338,7 +2338,7 @@
   {
     "id": "gogeta-ssj",
     "name": {
-      "es": "Gogeta Supersaiyano (película La fusión)"
+      "es": "Gogeta Super Saiyajin (película La fusión)"
     },
     "aliases": [],
     "series": [
@@ -2354,7 +2354,7 @@
   {
     "id": "gogeta-ssj4",
     "name": {
-      "es": "Gogeta Supersaiyano 4 (GT)"
+      "es": "Gogeta Super Saiyajin 4 (GT)"
     },
     "aliases": [],
     "series": [
@@ -2369,7 +2369,7 @@
   {
     "id": "gogeta-ssb",
     "name": {
-      "es": "Gogeta Supersaiyano Azul (película Broly)"
+      "es": "Gogeta Super Saiyajin Azul (película Broly)"
     },
     "aliases": [],
     "series": [
@@ -2384,7 +2384,7 @@
   {
     "id": "vegetto-ssj",
     "name": {
-      "es": "Vegetto Supersaiyano (saga de Buu)"
+      "es": "Vegetto Super Saiyajin (saga de Buu)"
     },
     "aliases": [],
     "series": [
@@ -2399,7 +2399,7 @@
   {
     "id": "vegetto-ssb",
     "name": {
-      "es": "Vegetto Supersaiyano Azul (saga de Black)"
+      "es": "Vegetto Super Saiyajin Azul (saga de Black)"
     },
     "aliases": [],
     "series": [
@@ -2430,7 +2430,7 @@
   {
     "id": "broly-ssj-legendario",
     "name": {
-      "es": "Broly Supersaiyano Legendario (película Broly)"
+      "es": "Broly Super Saiyajin Legendario (película Broly)"
     },
     "aliases": [],
     "series": [

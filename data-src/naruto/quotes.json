@@ -285,12 +285,12 @@
   {
     "id": "choji-rencor-comida",
     "character": "choji-akimichi",
-    "text": "¿Nunca escuchaste el dicho de que el rencor por la comida es más profundo que el océano? Ese golpe fue por comerte el último bocado de mi bocadillo…",
+    "text": "¿Nunca escuchaste el dicho de que el rencor por la comida es más profundo que el océano? Ese golpe fue por comerte el último bocado de mi sándwich…",
     "addressee": "Jirōbō",
     "arc": "recuperacion-de-sasuke",
     "series": "naruto",
     "context": "Narutopedia, Quotes de Chōji Akimichi: (To Jirōbō) \"You've never heard of the phrase: \"a grudge over food is deeper than the ocean\"? That strike was for eating the last piece of my snack…\" [Naruto chapter 190, page 17] Durante su pelea con Jirōbō.",
-    "verified": true
+    "verified": false
   },
   {
     "id": "choza-corazon-bondadoso",

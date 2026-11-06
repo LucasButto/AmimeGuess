@@ -29,10 +29,10 @@
   },
   {
     "id": "chi-chi-conoce-a-goku",
-    "text": "Goku conoce a Chi-Chi durante su viaje y promete casarse con ella cuando sean mayores",
+    "text": "Goku conoce a Milk durante su viaje y promete casarse con ella cuando sean mayores",
     "series": "db",
     "order": 5,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-conoce-al-maestro-roshi",
@@ -149,10 +149,10 @@
   },
   {
     "id": "tenshinhan-y-chiaotzu-abandonan-la-escuela-grulla",
-    "text": "Tenshinhan y Chiaotzu cuestionan las enseñanzas de la Escuela Grulla",
+    "text": "Tenshinhan y Chaos cuestionan las enseñanzas de la Escuela Grulla",
     "series": "db",
     "order": 22,
-    "verified": true
+    "verified": false
   },
   {
     "id": "tambourine-asesina-a-krilin",
@@ -163,60 +163,60 @@
   },
   {
     "id": "piccolo-daimaoh-rejuvenece",
-    "text": "Piccolo Daimaō reúne las Esferas del Dragón y pide recuperar su juventud",
+    "text": "Piccoro Daimaō reúne las Esferas del Dragón y pide recuperar su juventud",
     "series": "db",
     "order": 24,
-    "verified": true
+    "verified": false
   },
   {
     "id": "piccolo-daimaoh-mata-a-shenlong",
-    "text": "Piccolo Daimaō destruye a Shenlong para impedir que vuelvan a pedir deseos",
+    "text": "Piccoro Daimaō destruye a Shenlong para impedir que vuelvan a pedir deseos",
     "series": "db",
     "order": 25,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-bebe-el-agua-ultradivina",
-    "text": "Goku bebe el Agua Ultradivina para despertar su potencial y enfrentar a Piccolo Daimaō",
+    "text": "Goku bebe el Agua Ultradivina para despertar su potencial y enfrentar a Piccoro Daimaō",
     "series": "db",
     "order": 26,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-derrota-al-gran-rey-demonio-piccolo",
-    "text": "Goku derrota al Gran Rey Demonio Piccolo",
+    "text": "Goku derrota al Gran Rey Demonio Piccoro",
     "series": "db",
     "order": 27,
-    "verified": true
+    "verified": false
   },
   {
     "id": "piccolo-jr-nace",
-    "text": "Piccolo Daimaō deja un huevo antes de morir y nace Piccolo Jr.",
+    "text": "Piccoro Daimaō deja un huevo antes de morir y nace Piccoro Jr.",
     "series": "db",
     "order": 28,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-derrota-a-piccolo-jr-en-el-torneo-23",
-    "text": "Goku derrota a Piccolo Jr. en la final del 23.º Torneo de las Artes Marciales",
+    "text": "Goku derrota a Piccoro Jr. en la final del 23.º Torneo de las Artes Marciales",
     "series": "db",
     "order": 29,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-y-chichi-buscan-el-vestido-de-boda",
-    "text": "Goku y Chi-Chi buscan el vestido de boda y ayudan a apagar el incendio del Monte Frypan (relleno)",
+    "text": "Goku y Milk buscan el vestido de boda y ayudan a apagar el incendio del Monte Frypan (relleno)",
     "series": "db",
     "order": 30,
     "filler": true,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-se-casa-con-chi-chi",
-    "text": "Goku se casa con Chi-Chi",
+    "text": "Goku se casa con Milk",
     "series": "db",
     "order": 31,
-    "verified": true
+    "verified": false
   },
   {
     "id": "raditz-llega-a-la-tierra",
@@ -227,10 +227,10 @@
   },
   {
     "id": "goku-y-piccolo-derrotan-a-raditz",
-    "text": "Goku y Piccolo unen fuerzas para detener a Raditz",
+    "text": "Goku y Piccoro unen fuerzas para detener a Raditz",
     "series": "dbz",
     "order": 2,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-muere-por-detener-a-raditz",
@@ -241,10 +241,10 @@
   },
   {
     "id": "piccolo-entrena-a-gohan",
-    "text": "Piccolo entrena a Gohan en el desierto para prepararlo para la llegada de los saiyajin",
+    "text": "Piccoro entrena a Gohan en el desierto para prepararlo para la llegada de los saiyajin",
     "series": "dbz",
     "order": 4,
-    "verified": true
+    "verified": false
   },
   {
     "id": "gohan-sobrevive-con-un-robot-herido",
@@ -286,10 +286,10 @@
   },
   {
     "id": "gohan-sobrevive-solo-en-la-naturaleza",
-    "text": "Gohan sobrevive solo en la naturaleza y fortalece su vínculo con Piccolo",
+    "text": "Gohan sobrevive solo en la naturaleza y fortalece su vínculo con Piccoro",
     "series": "dbz",
     "order": 10,
-    "verified": true
+    "verified": false
   },
   {
     "id": "nappa-y-vegeta-llegan-a-la-tierra",
@@ -307,10 +307,10 @@
   },
   {
     "id": "chiaotzu-se-sacrifica-contra-nappa",
-    "text": "Chiaotzu se sacrifica con una explosión contra Nappa, pero no logra derrotarlo",
+    "text": "Chaos se sacrifica con una explosión contra Nappa, pero no logra derrotarlo",
     "series": "dbz",
     "order": 13,
-    "verified": true
+    "verified": false
   },
   {
     "id": "tenshinhan-muere-tras-atacar-a-nappa",
@@ -321,10 +321,10 @@
   },
   {
     "id": "piccolo-muere-protegiendo-a-gohan",
-    "text": "Piccolo muere protegiendo a Gohan del ataque de Nappa",
+    "text": "Piccoro muere protegiendo a Gohan del ataque de Nappa",
     "series": "dbz",
     "order": 15,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-derrota-a-nappa",
@@ -342,17 +342,17 @@
   },
   {
     "id": "yajirobe-corta-la-cola-de-vegeta",
-    "text": "Yajirobe corta la cola de Vegeta cuando este se transforma en Ōzaru",
+    "text": "Yajirobe corta la cola de Vegeta cuando este se transforma en Ozaru",
     "series": "dbz",
     "order": 18,
-    "verified": true
+    "verified": false
   },
   {
     "id": "gohan-se-transforma-en-ozaru-contra-vegeta",
-    "text": "Gohan se transforma en Ōzaru y aplasta a Vegeta durante la batalla final",
+    "text": "Gohan se transforma en Ozaru y aplasta a Vegeta durante la batalla final",
     "series": "dbz",
     "order": 19,
-    "verified": true
+    "verified": false
   },
   {
     "id": "vegeta-es-derrotado-y-escapa",
@@ -363,10 +363,10 @@
   },
   {
     "id": "krilin-gohan-y-bulma-viajan-a-namek",
-    "text": "Krilin, Gohan y Bulma viajan a Namek para buscar las Esferas del Dragón namekianas",
+    "text": "Krilin, Gohan y Bulma viajan a Namek para buscar las Esferas del Dragón namekuseijin",
     "series": "dbz",
     "order": 21,
-    "verified": true
+    "verified": false
   },
   {
     "id": "falsa-namek",
@@ -427,10 +427,10 @@
   },
   {
     "id": "piccolo-se-fusiona-con-nail",
-    "text": "Piccolo se fusiona con Nail para aumentar su poder",
+    "text": "Piccoro se fusiona con Nail para aumentar su poder",
     "series": "dbz",
     "order": 30,
-    "verified": true
+    "verified": false
   },
   {
     "id": "freezer-se-transforma-en-su-segunda-forma",
@@ -441,10 +441,10 @@
   },
   {
     "id": "freezer-alcanza-su-tercera-forma",
-    "text": "Freezer revela su tercera forma y supera a Piccolo",
+    "text": "Freezer revela su tercera forma y supera a Piccoro",
     "series": "dbz",
     "order": 32,
-    "verified": true
+    "verified": false
   },
   {
     "id": "gohan-ataca-a-freezer-por-la-muerte-de-krilin",
@@ -469,10 +469,10 @@
   },
   {
     "id": "goku-se-transforma-en-supersaiyano",
-    "text": "Goku se transforma en Supersaiyano por primera vez",
+    "text": "Goku se transforma en Super Saiyajin por primera vez",
     "series": "dbz",
     "order": 36,
-    "verified": true
+    "verified": false
   },
   {
     "id": "freezer-es-derrotado-por-goku",
@@ -527,11 +527,11 @@
   },
   {
     "id": "goku-y-piccolo-aprenden-a-conducir",
-    "text": "Goku y Piccolo toman clases de conducción (relleno)",
+    "text": "Goku y Piccoro toman clases de conducción (relleno)",
     "series": "dbz",
     "order": 44,
     "filler": true,
-    "verified": true
+    "verified": false
   },
   {
     "id": "aparecen-los-androides-19-y-20",
@@ -549,17 +549,17 @@
   },
   {
     "id": "goku-y-piccolo-se-fusionan-con-kami",
-    "text": "Piccolo se fusiona con Kami y recupera el poder de un namekiano unido",
+    "text": "Piccoro se fusiona con Kami y recupera el poder de un namekuseijin unido",
     "series": "dbz",
     "order": 47,
-    "verified": true
+    "verified": false
   },
   {
     "id": "celula-aparece-en-su-primera-forma",
-    "text": "Célula aparece y comienza a absorber humanos para aumentar su poder",
+    "text": "Cell aparece y comienza a absorber humanos para aumentar su poder",
     "series": "dbz",
     "order": 48,
-    "verified": true
+    "verified": false
   },
   {
     "id": "vegeta-y-trunks-entran-en-la-habitacion-del-tiempo",
@@ -570,10 +570,10 @@
   },
   {
     "id": "celula-absorbe-a-17-y-18",
-    "text": "Célula absorbe a los Androides 17 y 18 y alcanza su forma perfecta",
+    "text": "Cell absorbe a los Androides 17 y 18 y alcanza su forma perfecta",
     "series": "dbz",
     "order": 50,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-y-gohan-entran-en-la-habitacion-del-tiempo",
@@ -584,24 +584,24 @@
   },
   {
     "id": "comienza-el-torneo-de-celula",
-    "text": "Célula organiza los Juegos de Célula para desafiar a los defensores de la Tierra",
+    "text": "Cell organiza los Juegos de Cell para desafiar a los defensores de la Tierra",
     "series": "dbz",
     "order": 52,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-se-sacrifica-con-celula",
-    "text": "Goku se sacrifica para llevarse a Célula lejos de la Tierra",
+    "text": "Goku se sacrifica para llevarse a Cell lejos de la Tierra",
     "series": "dbz",
     "order": 53,
-    "verified": true
+    "verified": false
   },
   {
     "id": "gohan-derrota-a-celula",
-    "text": "Gohan derrota a Célula con un Kamehameha Padre e Hijo",
+    "text": "Gohan derrota a Cell con un Kamehameha Padre e Hijo",
     "series": "dbz",
     "order": 54,
-    "verified": true
+    "verified": false
   },
   {
     "id": "torneo-del-otro-mundo",
@@ -662,17 +662,17 @@
   },
   {
     "id": "gotenks-se-transforma-en-supersaiyano-3",
-    "text": "Gotenks alcanza el nivel de Supersaiyano 3 para luchar contra Buu",
+    "text": "Gotenks alcanza el nivel de Super Saiyajin 3 para luchar contra Buu",
     "series": "dbz",
     "order": 63,
-    "verified": true
+    "verified": false
   },
   {
     "id": "gohan-despierta-su-potencial-con-kaio-shin-anciano",
-    "text": "Gohan libera su potencial oculto gracias al Kaio-shin Anciano",
+    "text": "Gohan libera su potencial oculto gracias al Kaioshin Anciano",
     "series": "dbz",
     "order": 64,
-    "verified": true
+    "verified": false
   },
   {
     "id": "buu-absorbe-a-gotenks-y-gohan",
@@ -683,10 +683,10 @@
   },
   {
     "id": "goku-y-vegeta-se-fusionan-en-vegetto",
-    "text": "Goku y Vegeta se fusionan mediante los pendientes Pothala y forman a Vegetto",
+    "text": "Goku y Vegeta se fusionan mediante los aretes Potara y forman a Vegetto",
     "series": "dbz",
     "order": 66,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-y-vegeta-rescatan-a-sus-amigos-del-interior-de-buu",
@@ -697,10 +697,10 @@
   },
   {
     "id": "kid-buu-destruye-la-tierra",
-    "text": "Kid Buu destruye la Tierra y Goku, Vegeta y sus aliados se refugian en el planeta de los Kaio-shin",
+    "text": "Kid Buu destruye la Tierra y Goku, Vegeta y sus aliados se refugian en el planeta de los Kaioshin",
     "series": "dbz",
     "order": 68,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-derrota-a-kid-buu-con-la-genkidama",
@@ -753,17 +753,17 @@
   },
   {
     "id": "vegeta-y-los-demas-llegan-al-segundo-mundo-demoniaco",
-    "text": "Vegeta, Piccolo y los demás llegan al Segundo Mundo Demoníaco y se reúnen con el grupo",
+    "text": "Vegeta, Piccoro y los demás llegan al Segundo Mundo Demoníaco y se reúnen con el grupo",
     "series": "daima",
     "order": 7,
-    "verified": true
+    "verified": false
   },
   {
     "id": "vegeta-derrota-al-tamagami-numero-dos",
-    "text": "Vegeta se transforma en Supersaiyano 3 y derrota al Tamagami número dos",
+    "text": "Vegeta se transforma en Super Saiyajin 3 y derrota al Tamagami número dos",
     "series": "daima",
     "order": 8,
-    "verified": true
+    "verified": false
   },
   {
     "id": "arinsu-crea-a-majin-kuu-y-majin-duu",
@@ -795,10 +795,10 @@
   },
   {
     "id": "goku-se-transforma-en-supersaiyano-4-en-daima",
-    "text": "Goku alcanza la transformación de Supersaiyano 4 durante la batalla final contra Gomah",
+    "text": "Goku alcanza la transformación de Super Saiyajin 4 durante la batalla final contra Gomah",
     "series": "daima",
     "order": 13,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-y-sus-aliados-derrotan-a-gomah",
@@ -816,10 +816,10 @@
   },
   {
     "id": "bills-despierta",
-    "text": "Bills despierta y empieza a buscar al Dios Supersaiyano",
+    "text": "Bills despierta y empieza a buscar al Dios Super Saiyajin",
     "series": "super",
     "order": 1,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-se-enfrenta-a-bills-en-el-planeta-kaio",
@@ -830,10 +830,10 @@
   },
   {
     "id": "goku-se-convierte-en-supersaiyano-dios",
-    "text": "Goku se convierte en Supersaiyano Dios gracias al ritual de los seis saiyajin de corazón puro",
+    "text": "Goku se convierte en Super Saiyajin Dios gracias al ritual de los seis saiyajin de corazón puro",
     "series": "super",
     "order": 3,
-    "verified": true
+    "verified": false
   },
   {
     "id": "bills-perdona-a-la-tierra",
@@ -886,10 +886,10 @@
   },
   {
     "id": "cabba-le-ensena-la-transformacion-a-vegeta",
-    "text": "Vegeta se enfrenta a Cabba y le muestra el poder del Supersaiyano",
+    "text": "Vegeta se enfrenta a Cabba y le muestra el poder del Super Saiyajin",
     "series": "super",
     "order": 11,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-se-enfrenta-a-hit",
@@ -1029,10 +1029,10 @@
   },
   {
     "id": "gogeta-derrota-a-broly",
-    "text": "Gogeta Supersaiyano Azul supera a Broly y Goku se asegura de que pueda vivir en paz",
+    "text": "Gogeta Super Saiyajin Azul supera a Broly y Goku se asegura de que pueda vivir en paz",
     "series": "super",
     "order": 31,
-    "verified": true
+    "verified": false
   },
   {
     "id": "moro-escapa-de-la-prision",
@@ -1115,17 +1115,17 @@
   },
   {
     "id": "piccolo-se-infiltra-en-la-base-de-la-patrulla-roja",
-    "text": "Piccolo se infiltra en la base de la Patrulla Roja para descubrir sus planes",
+    "text": "Piccoro se infiltra en la base de la Patrulla Roja para descubrir sus planes",
     "series": "super",
     "order": 42,
-    "verified": true
+    "verified": false
   },
   {
     "id": "piccolo-despierta-su-forma-naranja",
-    "text": "Piccolo despierta su forma Naranja gracias al poder liberado por Shenlong",
+    "text": "Piccoro despierta su forma Naranja gracias al poder liberado por Shenlong",
     "series": "super",
     "order": 43,
-    "verified": true
+    "verified": false
   },
   {
     "id": "cell-max-es-despertado",
@@ -1206,10 +1206,10 @@
   },
   {
     "id": "goku-se-transforma-en-supersaiyano-4",
-    "text": "Goku se transforma en Supersaiyano 4 tras recuperar su cola y convertirse en Ōzaru Dorado",
+    "text": "Goku se transforma en Super Saiyajin 4 tras recuperar su cola y convertirse en Ozaru Dorado",
     "series": "gt",
     "order": 10,
-    "verified": true
+    "verified": false
   },
   {
     "id": "baby-es-derrotado-con-la-genkidama",
@@ -1227,10 +1227,10 @@
   },
   {
     "id": "piccolo-se-queda-en-la-tierra-que-explota",
-    "text": "Piccolo decide quedarse en la Tierra y muere cuando el planeta explota",
+    "text": "Piccoro decide quedarse en la Tierra y muere cuando el planeta explota",
     "series": "gt",
     "order": 13,
-    "verified": true
+    "verified": false
   },
   {
     "id": "los-villanos-escapan-del-infierno",
@@ -1283,10 +1283,10 @@
   },
   {
     "id": "gogeta-derrota-a-omega-shenlong",
-    "text": "Goku y Vegeta se fusionan en Gogeta Supersaiyano 4 y se enfrentan a Omega Shenlong, pero la fusión termina antes de derrotarlo",
+    "text": "Goku y Vegeta se fusionan en Gogeta Super Saiyajin 4 y se enfrentan a Omega Shenlong, pero la fusión termina antes de derrotarlo",
     "series": "gt",
     "order": 21,
-    "verified": true
+    "verified": false
   },
   {
     "id": "goku-derrota-a-omega-shenlong-con-la-genkidama",

@@ -10,7 +10,7 @@ import { NARUTO_PALETTE } from './palette';
  */
 export const arcLabels: Readonly<Record<string, string>> = {
   'tierra-de-las-olas': 'País de las Olas',
-  'examen-chunin': 'Examen Chūnin',
+  'examen-chunin': 'Examen Chunin',
   'invasion-de-konoha': 'Invasión de Konoha',
   'busqueda-de-tsunade': 'Búsqueda de Tsunade',
   'recuperacion-de-sasuke': 'Recuperación de Sasuke',
@@ -25,7 +25,7 @@ export const arcLabels: Readonly<Record<string, string>> = {
   'guerra-cuenta-regresiva': 'Guerra: cuenta regresiva',
   'guerra-confrontacion': 'Guerra: confrontación',
   'guerra-climax': 'Guerra: clímax',
-  'jinchuriki-del-diez-colas': 'Jinchūriki del Diez Colas',
+  'jinchuriki-del-diez-colas': 'Jinchuriki del Diez Colas',
   kaguya: 'Ataque de Kaguya',
   'konoha-hiden': 'Konoha Hiden',
   'ingreso-a-la-academia': 'Ingreso a la Academia',
@@ -38,7 +38,7 @@ export const arcLabels: Readonly<Record<string, string>> = {
   'desaparicion-de-mitsuki': 'Desaparición de Mitsuki',
   'activacion-de-kara': 'Activación de Kara',
   'arco-de-kawaki': 'Arco de Kawaki',
-  'reexamen-chunin': 'Reexamen Chūnin',
+  'reexamen-chunin': 'Reexamen Chunin',
   'asalto-de-code': 'Asalto de Code',
 };
 
@@ -83,7 +83,7 @@ export const narutoConfig = {
           // Se compara el lugar del arco en la cronología (el orden de las series lo fija arcs.json); se muestra el nombre.
           // Si la serie del arco está apagada, el valor se oculta: lo excluido no aparece nunca.
           { key: 'arcoDebut', label: 'Arco de debut', compare: 'ordered', valueLabels: arcDebutLabels, valueHelp: arcHelp, help: es.help.narutoClassic.arcoDebut },
-        ],
+  ],
         hints: [],
       },
     },

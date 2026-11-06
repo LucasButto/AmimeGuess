@@ -37,7 +37,7 @@
       "text": "¡No me subestimes! ¡No me rindo ni huyo! ¡Puedes hacerte el duro todo lo que quieras, no me vas a asustar! ¡Ni hablar! No me importa quedarme como genin el resto de mi vida: ¡algún día seré Hokage!",
       "source": "https://naruto.fandom.com/wiki/Naruto_Uzumaki",
       "addressee": "Ibiki Morino",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -47,10 +47,10 @@
     "entityId": "naruto-uzumaki",
     "series": "naruto",
     "payload": {
-      "text": "¡No voy a huir, jamás me retracto de mi palabra! ¡Ese es mi nindō: mi camino ninja!",
+      "text": "¡No voy a huir, jamás me retracto de mi palabra! ¡Ese es mi nindo: mi camino ninja!",
       "source": "https://naruto.fandom.com/wiki/Naruto_Uzumaki",
-      "addressee": "Neji Hyūga",
-      "arc": "Examen Chūnin",
+      "addressee": "Neji Hyuga",
+      "arc": "Examen Chunin",
       "accepts": [
         "hinata-hyuga"
       ]
@@ -66,7 +66,7 @@
       "text": "Estos ojos míos me muestran muchas cosas. Una de ellas es que los límites de las personas están fijados y no cambian. ¡Solo un necio pierde su tiempo tratando de ser algo que nunca podrá ser! El único destino que todos compartimos… es la muerte.",
       "source": "https://naruto.fandom.com/wiki/Neji_Hy%C5%ABga",
       "addressee": "Naruto Uzumaki",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -91,7 +91,7 @@
     "payload": {
       "text": "¡Hasta el insignificante Demonio de la Niebla Oculta puede morir y convertirse en un verdadero demonio en el infierno! ¡Esto será divertido!",
       "source": "https://naruto.fandom.com/wiki/Zabuza_Momochi",
-      "addressee": "Gatō",
+      "addressee": "Gato",
       "arc": "Prólogo: País de las Olas"
     },
     "verified": true
@@ -131,7 +131,7 @@
       "text": "Sakura, ¡sal conmigo, por favor! ¡Te protegeré con mi vida!",
       "source": "https://naruto.fandom.com/wiki/Rock_Lee",
       "addressee": "Sakura Haruno",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -144,7 +144,7 @@
       "text": "Entre los fuertes existen los genios y los que trabajan duro. Si tu Sharingan es de tipo genio, por la sangre Uchiha, yo soy simplemente alguien que trabaja duro y que solo ha dominado el taijutsu.",
       "source": "https://naruto.fandom.com/wiki/Rock_Lee",
       "addressee": "Sasuke Uchiha",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -157,7 +157,7 @@
       "text": "Tienes mis mismos ojos… ojos llenos de odio y muerte que anhelan poder… igual que los míos… tus ojos me dicen cuánto deseas matar a quien te hizo pasar por el infierno llamado soledad.",
       "source": "https://naruto.fandom.com/wiki/Gaara",
       "addressee": "Sasuke Uchiha",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -169,7 +169,7 @@
     "payload": {
       "text": "No fue gran cosa como pelea; medio aburrida.",
       "source": "https://naruto.fandom.com/wiki/Temari",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -193,7 +193,7 @@
     "payload": {
       "text": "Como no me gusta esperar ni hacer esperar a nadie… acabaré esto rápido.",
       "source": "https://naruto.fandom.com/wiki/Sasori",
-      "addressee": "Kankurō",
+      "addressee": "Kankuro",
       "arc": "Rescate del Kazekage"
     },
     "verified": true
@@ -256,9 +256,9 @@
     "entityId": "asuma-sarutobi",
     "series": "shippuden",
     "payload": {
-      "text": "Chōji, eres un hombre amable que se preocupa por sus compañeros. Por eso… te convertirás en un shinobi más poderoso que todos. Ten más confianza en ti mismo. Y… quizás deberías hacer un poco de dieta.",
+      "text": "Choji, eres un hombre amable que se preocupa por sus compañeros. Por eso… te convertirás en un shinobi más poderoso que todos. Ten más confianza en ti mismo. Y… quizás deberías hacer un poco de dieta.",
       "source": "https://naruto.fandom.com/wiki/Asuma_Sarutobi",
-      "addressee": "Chōji Akimichi",
+      "addressee": "Choji Akimichi",
       "arc": "Supresión de Akatsuki"
     },
     "verified": true
@@ -353,7 +353,7 @@
       "text": "Los tipos rudos como tú suelen dejar su sangre por todo este bosque.",
       "source": "https://naruto.fandom.com/wiki/Anko_Mitarashi",
       "addressee": "Naruto Uzumaki",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -376,12 +376,12 @@
     "entityId": "choji-akimichi",
     "series": "naruto",
     "payload": {
-      "text": "¿Nunca escuchaste el dicho de que el rencor por la comida es más profundo que el océano? Ese golpe fue por comerte el último bocado de mi bocadillo…",
+      "text": "¿Nunca escuchaste el dicho de que el rencor por la comida es más profundo que el océano? Ese golpe fue por comerte el último bocado de mi sándwich…",
       "source": "https://naruto.fandom.com/wiki/Ch%C5%8Dji_Akimichi",
-      "addressee": "Jirōbō",
+      "addressee": "Jirobo",
       "arc": "Recuperación de Sasuke"
     },
-    "verified": true
+    "verified": false
   },
   {
     "id": "quote-choza-corazon-bondadoso",
@@ -389,9 +389,9 @@
     "entityId": "choza-akimichi",
     "series": "naruto",
     "payload": {
-      "text": "Chōji, tienes el corazón más bondadoso de todos los que conozco. Habrá alguien que lo vea y se haga tu amigo. Si lo conoces, trátalo como a tu mejor amigo.",
+      "text": "Choji, tienes el corazón más bondadoso de todos los que conozco. Habrá alguien que lo vea y se haga tu amigo. Si lo conoces, trátalo como a tu mejor amigo.",
       "source": "https://naruto.fandom.com/wiki/Ch%C5%8Dza_Akimichi",
-      "addressee": "Chōji Akimichi",
+      "addressee": "Choji Akimichi",
       "arc": "Recuperación de Sasuke"
     },
     "verified": true
@@ -443,7 +443,7 @@
       "text": "El esfuerzo por sí solo no sirve de nada. Ahora mira: te vamos a mostrar algo llamado el muro.",
       "source": "https://naruto.fandom.com/wiki/Dosu_Kinuta",
       "addressee": "Rock Lee",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -493,8 +493,8 @@
     "payload": {
       "text": "Cuando los pájaros enjaulados se vuelven más sabios, intentan abrir la jaula con el pico. No se rinden, porque quieren volver a volar.",
       "source": "https://naruto.fandom.com/wiki/Genma_Shiranui",
-      "addressee": "Neji Hyūga",
-      "arc": "Examen Chūnin"
+      "addressee": "Neji Hyuga",
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -532,7 +532,7 @@
     "payload": {
       "text": "Hinata es mi preciada hija. Y tú eres el preciado recuerdo de mi difunto hermano.",
       "source": "https://naruto.fandom.com/wiki/Hiashi_Hy%C5%ABga",
-      "addressee": "Neji Hyūga",
+      "addressee": "Neji Hyuga",
       "arc": "Asalto de Pain"
     },
     "verified": true
@@ -569,8 +569,8 @@
     "payload": {
       "text": "Porque… a veces la información es más importante que la vida… y en las misiones y en el campo de batalla, la gente arriesga la vida para conseguirla.",
       "source": "https://naruto.fandom.com/wiki/Ibiki_Morino",
-      "addressee": "Los aspirantes del examen chūnin",
-      "arc": "Examen Chūnin"
+      "addressee": "Los aspirantes del examen chunin",
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -583,7 +583,7 @@
       "text": "Te convertiste en una flor hermosa.",
       "source": "https://naruto.fandom.com/wiki/Ino_Yamanaka",
       "addressee": "Sakura Haruno",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -609,7 +609,7 @@
       "text": "No soy un pervertido… ¡Soy un súper pervertido!",
       "source": "https://naruto.fandom.com/wiki/Jiraiya",
       "addressee": "Naruto Uzumaki",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -621,7 +621,7 @@
     "payload": {
       "text": "Junta a cinco personas y siempre hay uno que sobra. El que tienen cerca solo para reírse. Y en un aprieto, siempre es el primero en caer. Tú eres el peón.",
       "source": "https://naruto.fandom.com/wiki/Jir%C5%8Db%C5%8D",
-      "addressee": "Chōji Akimichi",
+      "addressee": "Choji Akimichi",
       "arc": "Recuperación de Sasuke"
     },
     "verified": true
@@ -661,7 +661,7 @@
       "text": "Todo el chakra… me pertenece. ¡¡Una vez más, todo el chakra volverá a ser uno!!",
       "source": "https://naruto.fandom.com/wiki/Kaguya_%C5%8Ctsutsuki",
       "addressee": "Naruto Uzumaki",
-      "arc": "Kaguya Ōtsutsuki ataca"
+      "arc": "Kaguya Otsutsuki ataca"
     },
     "verified": true
   },
@@ -737,7 +737,7 @@
     "payload": {
       "text": "¡El único que puede interrumpirme soy yo!",
       "source": "https://naruto.fandom.com/wiki/Killer_B",
-      "addressee": "Suigetsu Hōzuki",
+      "addressee": "Suigetsu Hozuki",
       "arc": "Batalla del destino entre hermanos"
     },
     "verified": true
@@ -764,7 +764,7 @@
       "text": "Nunca preguntes por quién doblan las campanas, porque doblan por ti.",
       "source": "https://naruto.fandom.com/wiki/Kin_Tsuchi",
       "addressee": "Shikamaru Nara",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -790,7 +790,7 @@
       "text": "Es cierto que si tú mueres, yo también muero, pero que te atrevas a amenazarme… ¡Tienes agallas! Muy bien… recompensaré tu valor… ¡Toma!",
       "source": "https://naruto.fandom.com/wiki/Kurama",
       "addressee": "Naruto Uzumaki",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -802,8 +802,8 @@
     "payload": {
       "text": "Hinata, ya basta… Puede que hayas perdido, pero cambiaste… Bien hecho…",
       "source": "https://naruto.fandom.com/wiki/Kurenai_Y%C5%ABhi",
-      "addressee": "Hinata Hyūga",
-      "arc": "Examen Chūnin"
+      "addressee": "Hinata Hyuga",
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -868,7 +868,7 @@
       "text": "¡Sí! ¡De esto se trata la juventud!",
       "source": "https://naruto.fandom.com/wiki/Might_Guy",
       "addressee": "Rock Lee",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -906,7 +906,7 @@
     "payload": {
       "text": "Cuando termina el conflicto, una alianza se convierte en una pelea por el botín de guerra. El que gane ahí es la nueva potencia dominante.",
       "source": "https://naruto.fandom.com/wiki/M%C5%AB",
-      "addressee": "Ōnoki",
+      "addressee": "Onoki",
       "arc": "Cuarta Guerra Shinobi: Confrontación"
     },
     "verified": true
@@ -984,7 +984,7 @@
       "text": "¡Esfuérzate, Obito! Conviértete en un Hokage genial y déjame ver cómo salvas el mundo. Es una promesa.",
       "source": "https://naruto.fandom.com/wiki/Rin_Nohara",
       "addressee": "Obito Uchiha",
-      "arc": "Nacimiento del jinchūriki del Diez Colas"
+      "arc": "Nacimiento del jinchuriki del Diez Colas"
     },
     "verified": true
   },
@@ -1022,7 +1022,7 @@
     "payload": {
       "text": "Siempre me consideré una verdadera ninja… pero eran palabras vacías, porque Sasuke y Naruto siempre iban adelante. ¡Pero ahora me toca a mí ir adelante, y ustedes pueden mirarme desde atrás!",
       "source": "https://naruto.fandom.com/wiki/Sakura_Haruno",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -1074,7 +1074,7 @@
       "text": "Pelea conmigo y nunca te recuperarás. Ríndete y retírate.",
       "source": "https://naruto.fandom.com/wiki/Shino_Aburame",
       "addressee": "Zaku Abumi",
-      "arc": "Examen Chūnin"
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -1087,7 +1087,7 @@
       "text": "Ni siquiera sé si existe algo como la justicia en el mundo shinobi. Peleamos creyendo en nuestra propia justicia. Pero si el enemigo hace lo mismo, ¿quién tiene razón?",
       "source": "https://naruto.fandom.com/wiki/Shisui_Uchiha",
       "addressee": "Itachi Uchiha",
-      "arc": "Kaguya Ōtsutsuki ataca"
+      "arc": "Kaguya Otsutsuki ataca"
     },
     "verified": true
   },
@@ -1138,8 +1138,8 @@
     "payload": {
       "text": "No es porque sean chicas, Neji. Es que las dos se están conteniendo. En la batalla no importa si eres hombre o mujer.",
       "source": "https://naruto.fandom.com/wiki/Tenten",
-      "addressee": "Neji Hyūga",
-      "arc": "Examen Chūnin"
+      "addressee": "Neji Hyuga",
+      "arc": "Examen Chunin"
     },
     "verified": true
   },
@@ -1201,7 +1201,7 @@
     "entityId": "yagura-karatachi",
     "series": "shippuden",
     "payload": {
-      "text": "¡Bienvenido! ¡Te lo agradezco en nombre de todos los jinchūriki y las bestias con cola! ¡Quería conocerte, Naruto Uzumaki!",
+      "text": "¡Bienvenido! ¡Te lo agradezco en nombre de todos los jinchuriki y las bestias con cola! ¡Quería conocerte, Naruto Uzumaki!",
       "source": "https://naruto.fandom.com/wiki/Yagura_Karatachi",
       "addressee": "Naruto Uzumaki",
       "arc": "Cuarta Guerra Shinobi: Clímax"
@@ -1319,7 +1319,7 @@
     "entityId": "naruto-uzumaki",
     "series": "shippuden",
     "payload": {
-      "team": "Equipo 7 de Shippūden",
+      "team": "Equipo 7 de Shippuden",
       "items": [
         "Sakura Haruno",
         "Sai",
@@ -1335,7 +1335,7 @@
     "entityId": "sakura-haruno",
     "series": "shippuden",
     "payload": {
-      "team": "Equipo 7 de Shippūden",
+      "team": "Equipo 7 de Shippuden",
       "items": [
         "Naruto Uzumaki",
         "Sai",
@@ -1351,7 +1351,7 @@
     "entityId": "sai",
     "series": "shippuden",
     "payload": {
-      "team": "Equipo 7 de Shippūden",
+      "team": "Equipo 7 de Shippuden",
       "items": [
         "Naruto Uzumaki",
         "Sakura Haruno",
@@ -1367,7 +1367,7 @@
     "entityId": "yamato",
     "series": "shippuden",
     "payload": {
-      "team": "Equipo 7 de Shippūden",
+      "team": "Equipo 7 de Shippuden",
       "items": [
         "Naruto Uzumaki",
         "Sakura Haruno",
@@ -1387,7 +1387,7 @@
       "items": [
         "Kiba Inuzuka",
         "Shino Aburame",
-        "Kurenai Yūhi",
+        "Kurenai Yuhi",
         "Akamaru"
       ],
       "accepts": []
@@ -1402,9 +1402,9 @@
     "payload": {
       "team": "Equipo 8 (Kurenai)",
       "items": [
-        "Hinata Hyūga",
+        "Hinata Hyuga",
         "Shino Aburame",
-        "Kurenai Yūhi",
+        "Kurenai Yuhi",
         "Akamaru"
       ],
       "accepts": []
@@ -1419,9 +1419,9 @@
     "payload": {
       "team": "Equipo 8 (Kurenai)",
       "items": [
-        "Hinata Hyūga",
+        "Hinata Hyuga",
         "Kiba Inuzuka",
-        "Kurenai Yūhi",
+        "Kurenai Yuhi",
         "Akamaru"
       ],
       "accepts": []
@@ -1436,7 +1436,7 @@
     "payload": {
       "team": "Equipo 8 (Kurenai)",
       "items": [
-        "Hinata Hyūga",
+        "Hinata Hyuga",
         "Kiba Inuzuka",
         "Shino Aburame",
         "Akamaru"
@@ -1454,7 +1454,7 @@
       "team": "Equipo 10 (Asuma)",
       "items": [
         "Ino Yamanaka",
-        "Chōji Akimichi",
+        "Choji Akimichi",
         "Asuma Sarutobi"
       ],
       "accepts": []
@@ -1470,7 +1470,7 @@
       "team": "Equipo 10 (Asuma)",
       "items": [
         "Shikamaru Nara",
-        "Chōji Akimichi",
+        "Choji Akimichi",
         "Asuma Sarutobi"
       ],
       "accepts": []
@@ -1503,7 +1503,7 @@
       "items": [
         "Shikamaru Nara",
         "Ino Yamanaka",
-        "Chōji Akimichi"
+        "Choji Akimichi"
       ],
       "accepts": []
     },
@@ -1533,7 +1533,7 @@
     "payload": {
       "team": "Equipo Guy",
       "items": [
-        "Neji Hyūga",
+        "Neji Hyuga",
         "Tenten",
         "Might Guy"
       ],
@@ -1549,7 +1549,7 @@
     "payload": {
       "team": "Equipo Guy",
       "items": [
-        "Neji Hyūga",
+        "Neji Hyuga",
         "Rock Lee",
         "Might Guy"
       ],
@@ -1565,7 +1565,7 @@
     "payload": {
       "team": "Equipo Guy",
       "items": [
-        "Neji Hyūga",
+        "Neji Hyuga",
         "Rock Lee",
         "Tenten"
       ],
@@ -1646,7 +1646,7 @@
       "team": "Taka",
       "items": [
         "Karin",
-        "Jūgo",
+        "Jugo",
         "Sasuke Uchiha"
       ],
       "accepts": []
@@ -1661,8 +1661,8 @@
     "payload": {
       "team": "Taka",
       "items": [
-        "Suigetsu Hōzuki",
-        "Jūgo",
+        "Suigetsu Hozuki",
+        "Jugo",
         "Sasuke Uchiha"
       ],
       "accepts": []
@@ -1677,7 +1677,7 @@
     "payload": {
       "team": "Taka",
       "items": [
-        "Suigetsu Hōzuki",
+        "Suigetsu Hozuki",
         "Karin",
         "Sasuke Uchiha"
       ],
@@ -1693,9 +1693,9 @@
     "payload": {
       "team": "Taka",
       "items": [
-        "Suigetsu Hōzuki",
+        "Suigetsu Hozuki",
         "Karin",
-        "Jūgo"
+        "Jugo"
       ],
       "accepts": []
     },
@@ -1773,8 +1773,8 @@
     "payload": {
       "team": "Los Cuatro del Sonido",
       "items": [
-        "Jirōbō",
-        "Kidōmaru",
+        "Jirobo",
+        "Kidomaru",
         "Sakon y Ukon"
       ],
       "accepts": []
@@ -1790,7 +1790,7 @@
       "team": "Los Cuatro del Sonido",
       "items": [
         "Tayuya",
-        "Kidōmaru",
+        "Kidomaru",
         "Sakon y Ukon"
       ],
       "accepts": []
@@ -1806,7 +1806,7 @@
       "team": "Los Cuatro del Sonido",
       "items": [
         "Tayuya",
-        "Jirōbō",
+        "Jirobo",
         "Sakon y Ukon"
       ],
       "accepts": []
@@ -1822,8 +1822,8 @@
       "team": "Los Cuatro del Sonido",
       "items": [
         "Tayuya",
-        "Jirōbō",
-        "Kidōmaru"
+        "Jirobo",
+        "Kidomaru"
       ],
       "accepts": []
     },
@@ -1837,7 +1837,7 @@
     "payload": {
       "team": "Baki y los hermanos de la Arena",
       "items": [
-        "Kankurō",
+        "Kankuro",
         "Gaara",
         "Baki"
       ],
@@ -1870,7 +1870,7 @@
       "team": "Baki y los hermanos de la Arena",
       "items": [
         "Temari",
-        "Kankurō",
+        "Kankuro",
         "Baki"
       ],
       "accepts": []
@@ -1886,7 +1886,7 @@
       "team": "Baki y los hermanos de la Arena",
       "items": [
         "Temari",
-        "Kankurō",
+        "Kankuro",
         "Gaara"
       ],
       "accepts": []
@@ -1984,10 +1984,10 @@
     "entityId": "shikaku-nara",
     "series": "naruto",
     "payload": {
-      "team": "Ino-Shika-Chō (la generación de los padres)",
+      "team": "Ino-Shika-Cho (la generación de los padres)",
       "items": [
         "Inoichi Yamanaka",
-        "Chōza Akimichi"
+        "Choza Akimichi"
       ],
       "accepts": []
     },
@@ -1999,10 +1999,10 @@
     "entityId": "inoichi-yamanaka",
     "series": "naruto",
     "payload": {
-      "team": "Ino-Shika-Chō (la generación de los padres)",
+      "team": "Ino-Shika-Cho (la generación de los padres)",
       "items": [
         "Shikaku Nara",
-        "Chōza Akimichi"
+        "Choza Akimichi"
       ],
       "accepts": []
     },
@@ -2014,7 +2014,7 @@
     "entityId": "choza-akimichi",
     "series": "naruto",
     "payload": {
-      "team": "Ino-Shika-Chō (la generación de los padres)",
+      "team": "Ino-Shika-Cho (la generación de los padres)",
       "items": [
         "Shikaku Nara",
         "Inoichi Yamanaka"
@@ -2029,10 +2029,10 @@
     "entityId": "shikadai-nara",
     "series": "boruto",
     "payload": {
-      "team": "Ino-Shika-Chō (la nueva generación)",
+      "team": "Ino-Shika-Cho (la nueva generación)",
       "items": [
         "Inojin Yamanaka",
-        "Chōchō Akimichi"
+        "Chocho Akimichi"
       ],
       "accepts": []
     },
@@ -2044,10 +2044,10 @@
     "entityId": "inojin-yamanaka",
     "series": "boruto",
     "payload": {
-      "team": "Ino-Shika-Chō (la nueva generación)",
+      "team": "Ino-Shika-Cho (la nueva generación)",
       "items": [
         "Shikadai Nara",
-        "Chōchō Akimichi"
+        "Chocho Akimichi"
       ],
       "accepts": []
     },
@@ -2059,7 +2059,7 @@
     "entityId": "chocho-akimichi",
     "series": "boruto",
     "payload": {
-      "team": "Ino-Shika-Chō (la nueva generación)",
+      "team": "Ino-Shika-Cho (la nueva generación)",
       "items": [
         "Shikadai Nara",
         "Inojin Yamanaka"
@@ -2076,9 +2076,9 @@
     "payload": {
       "team": "Equipo de recuperación de Sasuke",
       "items": [
-        "Neji Hyūga",
+        "Neji Hyuga",
         "Kiba Inuzuka",
-        "Chōji Akimichi",
+        "Choji Akimichi",
         "Akamaru",
         "Naruto Uzumaki"
       ],
@@ -2096,7 +2096,7 @@
       "items": [
         "Shikamaru Nara",
         "Kiba Inuzuka",
-        "Chōji Akimichi",
+        "Choji Akimichi",
         "Akamaru",
         "Naruto Uzumaki"
       ],
@@ -2113,8 +2113,8 @@
       "team": "Equipo de recuperación de Sasuke",
       "items": [
         "Shikamaru Nara",
-        "Neji Hyūga",
-        "Chōji Akimichi",
+        "Neji Hyuga",
+        "Choji Akimichi",
         "Akamaru",
         "Naruto Uzumaki"
       ],
@@ -2131,7 +2131,7 @@
       "team": "Equipo de recuperación de Sasuke",
       "items": [
         "Shikamaru Nara",
-        "Neji Hyūga",
+        "Neji Hyuga",
         "Kiba Inuzuka",
         "Akamaru",
         "Naruto Uzumaki"
@@ -2149,9 +2149,9 @@
       "team": "Equipo de recuperación de Sasuke",
       "items": [
         "Shikamaru Nara",
-        "Neji Hyūga",
+        "Neji Hyuga",
         "Kiba Inuzuka",
-        "Chōji Akimichi",
+        "Choji Akimichi",
         "Akamaru"
       ],
       "accepts": []
@@ -2234,11 +2234,11 @@
       "items": [
         "Kushimaru Kuriarare",
         "Fuguki Suikazan",
-        "Mangetsu Hōzuki",
+        "Mangetsu Hozuki",
         "Ameyuri Ringo",
         "Kisame Hoshigaki",
         "Zabuza Momochi",
-        "Chōjūrō"
+        "Chojuro"
       ],
       "accepts": []
     },
@@ -2254,11 +2254,11 @@
       "items": [
         "Jinpachi Munashi",
         "Fuguki Suikazan",
-        "Mangetsu Hōzuki",
+        "Mangetsu Hozuki",
         "Ameyuri Ringo",
         "Kisame Hoshigaki",
         "Zabuza Momochi",
-        "Chōjūrō"
+        "Chojuro"
       ],
       "accepts": []
     },
@@ -2274,11 +2274,11 @@
       "items": [
         "Jinpachi Munashi",
         "Kushimaru Kuriarare",
-        "Mangetsu Hōzuki",
+        "Mangetsu Hozuki",
         "Ameyuri Ringo",
         "Kisame Hoshigaki",
         "Zabuza Momochi",
-        "Chōjūrō"
+        "Chojuro"
       ],
       "accepts": []
     },
@@ -2298,7 +2298,7 @@
         "Ameyuri Ringo",
         "Kisame Hoshigaki",
         "Zabuza Momochi",
-        "Chōjūrō"
+        "Chojuro"
       ],
       "accepts": []
     },
@@ -2315,10 +2315,10 @@
         "Jinpachi Munashi",
         "Kushimaru Kuriarare",
         "Fuguki Suikazan",
-        "Mangetsu Hōzuki",
+        "Mangetsu Hozuki",
         "Kisame Hoshigaki",
         "Zabuza Momochi",
-        "Chōjūrō"
+        "Chojuro"
       ],
       "accepts": []
     },
@@ -2335,10 +2335,10 @@
         "Jinpachi Munashi",
         "Kushimaru Kuriarare",
         "Fuguki Suikazan",
-        "Mangetsu Hōzuki",
+        "Mangetsu Hozuki",
         "Ameyuri Ringo",
         "Zabuza Momochi",
-        "Chōjūrō"
+        "Chojuro"
       ],
       "accepts": []
     },
@@ -2355,10 +2355,10 @@
         "Jinpachi Munashi",
         "Kushimaru Kuriarare",
         "Fuguki Suikazan",
-        "Mangetsu Hōzuki",
+        "Mangetsu Hozuki",
         "Ameyuri Ringo",
         "Kisame Hoshigaki",
-        "Chōjūrō"
+        "Chojuro"
       ],
       "accepts": []
     },
@@ -2375,7 +2375,7 @@
         "Jinpachi Munashi",
         "Kushimaru Kuriarare",
         "Fuguki Suikazan",
-        "Mangetsu Hōzuki",
+        "Mangetsu Hozuki",
         "Ameyuri Ringo",
         "Kisame Hoshigaki",
         "Zabuza Momochi"
@@ -2482,7 +2482,7 @@
     "payload": {
       "team": "Los Cinco Kage de la Cumbre",
       "items": [
-        "Mei Terumī",
+        "Mei Terumi",
         "A (Cuarto Raikage)",
         "Gaara",
         "Tsunade"
@@ -2499,7 +2499,7 @@
     "payload": {
       "team": "Los Cinco Kage de la Cumbre",
       "items": [
-        "Ōnoki",
+        "Onoki",
         "A (Cuarto Raikage)",
         "Gaara",
         "Tsunade"
@@ -2516,8 +2516,8 @@
     "payload": {
       "team": "Los Cinco Kage de la Cumbre",
       "items": [
-        "Ōnoki",
-        "Mei Terumī",
+        "Onoki",
+        "Mei Terumi",
         "Gaara",
         "Tsunade"
       ],
@@ -2533,8 +2533,8 @@
     "payload": {
       "team": "Los Cinco Kage de la Cumbre",
       "items": [
-        "Ōnoki",
-        "Mei Terumī",
+        "Onoki",
+        "Mei Terumi",
         "A (Cuarto Raikage)",
         "Tsunade"
       ],
@@ -2550,8 +2550,8 @@
     "payload": {
       "team": "Los Cinco Kage de la Cumbre",
       "items": [
-        "Ōnoki",
-        "Mei Terumī",
+        "Onoki",
+        "Mei Terumi",
         "A (Cuarto Raikage)",
         "Gaara"
       ],
@@ -3424,7 +3424,7 @@
     "kind": "event",
     "series": "boruto",
     "payload": {
-      "text": "Isshiki Ōtsutsuki llega a la Tierra con Kaguya, que lo traiciona y lo deja malherido",
+      "text": "Isshiki Otsutsuki llega a la Tierra con Kaguya, que lo traiciona y lo deja malherido",
       "order": 1
     },
     "verified": true
@@ -3434,7 +3434,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Kaguya Ōtsutsuki come el fruto del Árbol Divino",
+      "text": "Kaguya Otsutsuki come el fruto del Árbol Divino",
       "order": 2
     },
     "verified": true
@@ -3474,7 +3474,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Madara toma los ojos de su hermano Izuna y obtiene el Mangekyō Sharingan Eterno",
+      "text": "Madara toma los ojos de su hermano Izuna y obtiene el Mangekyo Sharingan Eterno",
       "order": 6
     },
     "verified": true
@@ -3504,7 +3504,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Mito Uzumaki, esposa de Hashirama, se convierte en la primera jinchūriki del Nueve Colas",
+      "text": "Mito Uzumaki, esposa de Hashirama, se convierte en la primera jinchuriki del Nueve Colas",
       "order": 9
     },
     "verified": true
@@ -3514,7 +3514,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Hanzō de la Salamandra les da el título de Sannin a Jiraiya, Tsunade y Orochimaru",
+      "text": "Hanzo de la Salamandra les da el título de Sannin a Jiraiya, Tsunade y Orochimaru",
       "order": 10
     },
     "verified": true
@@ -3584,7 +3584,7 @@
     "kind": "event",
     "series": "naruto",
     "payload": {
-      "text": "Hizashi Hyūga muere en lugar de su hermano gemelo Hiashi",
+      "text": "Hizashi Hyuga muere en lugar de su hermano gemelo Hiashi",
       "order": 17
     },
     "verified": true
@@ -3604,7 +3604,7 @@
     "kind": "event",
     "series": "naruto",
     "payload": {
-      "text": "Shisui Uchiha muere e Itachi despierta el Mangekyō Sharingan",
+      "text": "Shisui Uchiha muere e Itachi despierta el Mangekyo Sharingan",
       "order": 19
     },
     "verified": true
@@ -3614,7 +3614,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Danzō le ordena a Itachi exterminar al clan Uchiha para evitar el golpe de Estado",
+      "text": "Danzo le ordena a Itachi exterminar al clan Uchiha para evitar el golpe de Estado",
       "order": 20
     },
     "verified": true
@@ -3734,7 +3734,7 @@
     "kind": "event",
     "series": "naruto",
     "payload": {
-      "text": "Zabuza acaba con Gatō y muere junto a Haku",
+      "text": "Zabuza acaba con Gato y muere junto a Haku",
       "order": 32
     },
     "verified": true
@@ -3744,7 +3744,7 @@
     "kind": "event",
     "series": "naruto",
     "payload": {
-      "text": "Ibiki Morino toma la primera prueba del Examen Chūnin, un examen escrito",
+      "text": "Ibiki Morino toma la primera prueba del Examen Chunin, un examen escrito",
       "order": 33
     },
     "verified": true
@@ -3774,7 +3774,7 @@
     "kind": "event",
     "series": "naruto",
     "payload": {
-      "text": "Sakura e Ino empatan en las preliminares del Examen Chūnin",
+      "text": "Sakura e Ino empatan en las preliminares del Examen Chunin",
       "order": 36
     },
     "verified": true
@@ -3784,7 +3784,7 @@
     "kind": "event",
     "series": "naruto",
     "payload": {
-      "text": "Naruto vence a Kiba en las preliminares del Examen Chūnin",
+      "text": "Naruto vence a Kiba en las preliminares del Examen Chunin",
       "order": 37
     },
     "verified": true
@@ -3794,7 +3794,7 @@
     "kind": "event",
     "series": "naruto",
     "payload": {
-      "text": "Neji vence a Hinata en las preliminares del Examen Chūnin",
+      "text": "Neji vence a Hinata en las preliminares del Examen Chunin",
       "order": 38
     },
     "verified": true
@@ -3824,7 +3824,7 @@
     "kind": "event",
     "series": "naruto",
     "payload": {
-      "text": "Naruto derrota a Neji en la ronda final del Examen Chūnin",
+      "text": "Naruto derrota a Neji en la ronda final del Examen Chunin",
       "order": 41
     },
     "verified": true
@@ -3965,7 +3965,7 @@
     "kind": "event",
     "series": "naruto",
     "payload": {
-      "text": "Chōji derrota a Jirōbō con las píldoras de su clan",
+      "text": "Choji derrota a Jirobo con las píldoras de su clan",
       "order": 55
     },
     "verified": true
@@ -3975,7 +3975,7 @@
     "kind": "event",
     "series": "naruto",
     "payload": {
-      "text": "Neji derrota a Kidōmaru pese a quedar gravemente herido",
+      "text": "Neji derrota a Kidomaru pese a quedar gravemente herido",
       "order": 56
     },
     "verified": true
@@ -4016,7 +4016,7 @@
     "kind": "event",
     "series": "naruto",
     "payload": {
-      "text": "Naruto, Hinata, Kiba y Shino buscan el escarabajo bikōchū para rastrear a Sasuke (relleno)",
+      "text": "Naruto, Hinata, Kiba y Shino buscan el escarabajo bikochu para rastrear a Sasuke (relleno)",
       "order": 60,
       "filler": true
     },
@@ -4078,7 +4078,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Sasori envenena a Kankurō cuando intenta rescatar a Gaara",
+      "text": "Sasori envenena a Kankuro cuando intenta rescatar a Gaara",
       "order": 66
     },
     "verified": true
@@ -4159,7 +4159,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Hidan y Kakuzu capturan a Yugito Nii, la jinchūriki del Dos Colas",
+      "text": "Hidan y Kakuzu capturan a Yugito Nii, la jinchuriki del Dos Colas",
       "order": 74
     },
     "verified": true
@@ -4220,7 +4220,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Sasuke forma el equipo Hebi con Suigetsu, Karin y Jūgo",
+      "text": "Sasuke forma el equipo Hebi con Suigetsu, Karin y Jugo",
       "order": 80
     },
     "verified": true
@@ -4280,7 +4280,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Naruto conoce a Utakata, el jinchūriki del Seis Colas, antes de que Akatsuki lo capture (relleno)",
+      "text": "Naruto conoce a Utakata, el jinchuriki del Seis Colas, antes de que Akatsuki lo capture (relleno)",
       "order": 86,
       "filler": true
     },
@@ -4291,7 +4291,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Naruto aprende el modo Sabio con los sapos del Monte Myōboku",
+      "text": "Naruto aprende el modo Sabio con los sapos del Monte Myoboku",
       "order": 87
     },
     "verified": true
@@ -4371,7 +4371,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Danzō es nombrado candidato a Sexto Hokage",
+      "text": "Danzo es nombrado candidato a Sexto Hokage",
       "order": 95
     },
     "verified": true
@@ -4401,7 +4401,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Sasuke mata a Danzō",
+      "text": "Sasuke mata a Danzo",
       "order": 98
     },
     "verified": true
@@ -4431,7 +4431,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Naruto conoce a Killer B, el jinchūriki del Ocho Colas, en la Isla Tortuga",
+      "text": "Naruto conoce a Killer B, el jinchuriki del Ocho Colas, en la Isla Tortuga",
       "order": 101
     },
     "verified": true
@@ -4571,7 +4571,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Obito se convierte en el jinchūriki del Diez Colas",
+      "text": "Obito se convierte en el jinchuriki del Diez Colas",
       "order": 115
     },
     "verified": true
@@ -4601,7 +4601,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Madara se convierte en el jinchūriki del Diez Colas",
+      "text": "Madara se convierte en el jinchuriki del Diez Colas",
       "order": 118
     },
     "verified": true
@@ -4711,7 +4711,7 @@
     "kind": "event",
     "series": "shippuden",
     "payload": {
-      "text": "Naruto y Hinata rescatan a Hanabi de Toneri Ōtsutsuki y se vuelven pareja",
+      "text": "Naruto y Hinata rescatan a Hanabi de Toneri Otsutsuki y se vuelven pareja",
       "order": 129
     },
     "verified": true
@@ -4795,7 +4795,7 @@
     "kind": "event",
     "series": "boruto",
     "payload": {
-      "text": "Boruto hace trampa en el Examen Chūnin y Naruto lo descalifica",
+      "text": "Boruto hace trampa en el Examen Chunin y Naruto lo descalifica",
       "order": 137
     },
     "verified": true
@@ -4805,7 +4805,7 @@
     "kind": "event",
     "series": "boruto",
     "payload": {
-      "text": "Momoshiki y Kinshiki atacan el Examen Chūnin y secuestran a Naruto",
+      "text": "Momoshiki y Kinshiki atacan el Examen Chunin y secuestran a Naruto",
       "order": 138
     },
     "verified": true
@@ -4897,7 +4897,7 @@
     "kind": "event",
     "series": "boruto",
     "payload": {
-      "text": "Isshiki Ōtsutsuki destruye el Rinnegan de Sasuke",
+      "text": "Isshiki Otsutsuki destruye el Rinnegan de Sasuke",
       "order": 147
     },
     "verified": true
@@ -6121,7 +6121,7 @@
     "kind": "group",
     "series": "naruto",
     "payload": {
-      "name": "Clan Hyūga",
+      "name": "Clan Hyuga",
       "category": "clan",
       "difficulty": 2,
       "members": [
@@ -6428,7 +6428,7 @@
     "kind": "group",
     "series": "shippuden",
     "payload": {
-      "name": "Jinchūriki",
+      "name": "Jinchuriki",
       "category": "rol",
       "difficulty": 2,
       "members": [
@@ -6813,7 +6813,7 @@
     "kind": "group",
     "series": "naruto",
     "payload": {
-      "name": "Los jōnin sensei de la generación de Naruto",
+      "name": "Los jonin sensei de la generación de Naruto",
       "category": "rol",
       "difficulty": 2,
       "members": [
@@ -6884,7 +6884,7 @@
     "kind": "group",
     "series": "shippuden",
     "payload": {
-      "name": "Clan Ōtsutsuki",
+      "name": "Clan Otsutsuki",
       "category": "clan",
       "difficulty": 3,
       "members": [
@@ -8854,7 +8854,7 @@
     "kind": "group",
     "series": "naruto",
     "payload": {
-      "name": "Sapos del Monte Myōboku",
+      "name": "Sapos del Monte Myoboku",
       "category": "invocación",
       "difficulty": 3,
       "members": [
@@ -9440,7 +9440,7 @@
     "kind": "group",
     "series": "shippuden",
     "payload": {
-      "name": "Despertaron el Mangekyō Sharingan",
+      "name": "Despertaron el Mangekyo Sharingan",
       "category": "kekkei genkai",
       "difficulty": 4,
       "members": [
@@ -9599,7 +9599,7 @@
     "kind": "group",
     "series": "boruto",
     "payload": {
-      "name": "Ōtsutsuki de la era Boruto",
+      "name": "Otsutsuki de la era Boruto",
       "category": "clan",
       "difficulty": 1,
       "members": [
@@ -11090,7 +11090,7 @@
     "kind": "group",
     "series": "boruto",
     "payload": {
-      "name": "Ino-Shika-Chō de padres e hijos",
+      "name": "Ino-Shika-Cho de padres e hijos",
       "category": "generación",
       "difficulty": 2,
       "members": [
@@ -12284,7 +12284,7 @@
     "kind": "group",
     "series": "naruto",
     "payload": {
-      "name": "Participantes de los exámenes Chūnin de Naruto",
+      "name": "Participantes de los exámenes Chunin de Naruto",
       "category": "generación",
       "difficulty": 2,
       "members": [
@@ -13438,7 +13438,7 @@
     "kind": "group",
     "series": "boruto",
     "payload": {
-      "name": "Participantes de los exámenes Chūnin de Boruto",
+      "name": "Participantes de los exámenes Chunin de Boruto",
       "category": "generación",
       "difficulty": 2,
       "members": [
@@ -13700,7 +13700,7 @@
     "kind": "group",
     "series": "boruto",
     "payload": {
-      "name": "Enfrentaron a Isshiki Ōtsutsuki",
+      "name": "Enfrentaron a Isshiki Otsutsuki",
       "category": "rol",
       "difficulty": 4,
       "members": [
@@ -15719,7 +15719,7 @@
     "kind": "group",
     "series": "boruto",
     "payload": {
-      "name": "Usuarios del Puño Suave (Jūken)",
+      "name": "Usuarios del Puño Suave (Juken)",
       "category": "rol",
       "difficulty": 3,
       "members": [
@@ -16734,7 +16734,7 @@
     "kind": "group",
     "series": "boruto",
     "payload": {
-      "name": "Portadores de Kāma (Karma)",
+      "name": "Portadores de Kama (Karma)",
       "category": "rol",
       "difficulty": 4,
       "members": [
@@ -16872,7 +16872,7 @@
     "kind": "group",
     "series": "shippuden",
     "payload": {
-      "name": "Sabios y maestros del Monte Myōboku",
+      "name": "Sabios y maestros del Monte Myoboku",
       "category": "rol",
       "difficulty": 4,
       "members": [
@@ -19617,7 +19617,7 @@
     "entityId": "jiraiya",
     "series": "naruto",
     "payload": {
-      "name": "Jizō de Agujas",
+      "name": "Jizo de Agujas",
       "image": "naruto/c/acf45402036f7743",
       "video": "naruto/acf45402036f7743",
       "width": 512,
@@ -20392,7 +20392,7 @@
     "entityId": "nagato",
     "series": "shippuden",
     "payload": {
-      "name": "Banshō Ten'in",
+      "name": "Bansho Ten'in",
       "image": "naruto/c/d22838d0c310d7c9",
       "video": "naruto/d22838d0c310d7c9",
       "width": 512,
@@ -20504,7 +20504,7 @@
     "entityId": "sasuke-uchiha",
     "series": "shippuden",
     "payload": {
-      "name": "Chidori Eisō",
+      "name": "Chidori Eiso",
       "image": "naruto/c/4985ffa85502cd21",
       "video": "naruto/4985ffa85502cd21",
       "width": 512,
@@ -20534,7 +20534,7 @@
     "entityId": "naruto-uzumaki",
     "series": "naruto",
     "payload": {
-      "name": "Clones de Sombra Múltiples",
+      "name": "Jutsu Multiclones de Sombras",
       "image": "naruto/c/29354e84e5cc8337",
       "video": "naruto/29354e84e5cc8337",
       "width": 512,
@@ -21063,7 +21063,7 @@
     "entityId": "hashirama-senju",
     "series": "shippuden",
     "payload": {
-      "name": "Golpeo de la Cumbre",
+      "name": "Golpe de la Cumbre",
       "image": "naruto/c/b353c7e749237b44",
       "video": "naruto/b353c7e749237b44",
       "width": 512,
@@ -21158,7 +21158,7 @@
     "entityId": "orochimaru",
     "series": "shippuden",
     "payload": {
-      "name": "Invocación: Triple Rashōmon",
+      "name": "Invocación: Triple Rashomon",
       "image": "naruto/c/59e80d229b87e626",
       "video": "naruto/59e80d229b87e626",
       "width": 512,
@@ -22164,7 +22164,7 @@
     "entityId": "hashirama-senju",
     "series": "shippuden",
     "payload": {
-      "name": "Invocación: Quíntuple Rashōmon",
+      "name": "Invocación: Quíntuple Rashomon",
       "image": "naruto/c/99d3aa32751b1d83",
       "video": "naruto/99d3aa32751b1d83",
       "width": 512,
