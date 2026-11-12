@@ -56,6 +56,8 @@ const arcDebutLabels: Readonly<Record<string, ClassicValueLabel>> = Object.fromE
 export const narutoConfig = {
   slug: 'naruto',
   name: 'Naruto',
+  // Versus, Contrarreloj: segundos de más en el tiempo por defecto por cada serie activa desde la segunda.
+  versusSecondsPerExtraSeries: 0,
   entityNoun: { one: 'personaje', many: 'personajes' },
   // Naruto no tiene arcos del manga sin adaptar como Dragon Ball: solo queda el interruptor de relleno.
   hideMangaToggle: true,

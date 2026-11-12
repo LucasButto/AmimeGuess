@@ -9,6 +9,7 @@ import { useDockTarget } from '@/components/game-shell/GameDock';
 import { scrollIntoViewNearest } from '@/components/game-shell/scrollIntoView';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
+import { endLimit, isUnlimited, useVersusProgress, useVersusStop } from '@/components/game-shell/versus';
 import { restoreLimited } from '@/components/game-shell/attempts';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
@@ -75,6 +76,9 @@ function reportOf(attemptIds: readonly string[], answer: Candidate, accepted: re
  */
 export function ImageRevealBoard({ session, config, candidates, options }: ImageRevealBoardProps) {
   const { franchise, mode, filterKey, day, onFinish } = session;
+  // En versus sin límite, fallar no termina la partida: la imagen se queda en su último paso.
+  const unlimited = isUnlimited(session);
+  const lostAt = (failed: number) => !unlimited && isLost(failed);
   const { lost: surrendered, surrender } = useSurrender(session);
   const failedTitleId = useId();
   const difficultyId = useId();
@@ -101,7 +105,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
 
   const [attemptIds, setAttemptIds] = useState<string[]>(() => {
     const state = readState(getLocalStorage(), ctx);
-    return restoreLimited(restoreAttempts(state?.attempts, options), state, MAX_FAILED);
+    return restoreLimited(restoreAttempts(state?.attempts, options), state, endLimit(session, MAX_FAILED));
   });
   const [lastAttempt, setLastAttempt] = useState<{ id: string; revealed: boolean } | null>(null);
   const [prefs, setPrefs] = useState<RevealPrefs>(() => readPrefs(getLocalStorage(), franchise, mode));
@@ -110,7 +114,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   // mostrar su resumen, pero sin volver a sumarla a las estadísticas.
   const [restored] = useState<FinishReport | null>(() => {
     if (attemptIds.some((id) => isCorrect(id, answer.id, accepted))) return reportOf(attemptIds, answer, accepted, true, false, detail);
-    return surrendered || isLost(failedCount(attemptIds, answer.id, accepted)) ? reportOf(attemptIds, answer, accepted, false, false, detail) : null;
+    return surrendered || lostAt(failedCount(attemptIds, answer.id, accepted)) ? reportOf(attemptIds, answer, accepted, false, false, detail) : null;
   });
   useEffect(() => {
     if (restored) onFinish(restored);
@@ -120,10 +124,10 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   const won = attemptIds.some((id) => isCorrect(id, answer.id, accepted));
   const failed = failedCount(attemptIds, answer.id, accepted);
   useMissBuzz(failed);
-  const lost = !won && (surrendered || isLost(failed));
+  const lost = !won && (surrendered || lostAt(failed));
   // Ganado o perdido: ya no se puede seguir y se muestra la imagen entera.
   const over = won || lost;
-  const currentAttempt = Math.min(attemptIds.length + (over ? 0 : 1), MAX_FAILED);
+  const currentAttempt = unlimited ? attemptIds.length + (over ? 0 : 1) : Math.min(attemptIds.length + (over ? 0 : 1), MAX_FAILED);
   const step = revealStep(failed, prefs.reveal);
   // Al terminar, la imagen se muestra entera, a color y nítida.
   // Un contenido puede pedir más cerca que el resto (`zoom`): sube todos los aumentos del modo.
@@ -153,7 +157,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
     const next = [...attemptIds, id];
     const solved = isCorrect(id, answer.id, accepted);
     // Con este fallo se gastaron los intentos: se perdió.
-    const spent = !solved && isLost(failed + 1);
+    const spent = !solved && lostAt(failed + 1);
 
     setAttemptIds(next);
     setLastAttempt({ id, revealed: prefs.reveal });
@@ -161,6 +165,12 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
 
     if (solved || spent) onFinish(reportOf(next, answer, accepted, solved, true, detail));
   }
+
+  // Versus: lo que ven los rivales y el cierre desde afuera (tiempo agotado).
+  useVersusProgress(session, { attempts: attemptIds.length });
+  useVersusStop(session, over, (stop) => {
+    if (stop === 'timeUp') surrender(attemptIds, { ...reportOf(attemptIds, answer, accepted, false, true, detail), timedOut: true });
+  });
 
   function updatePrefs(next: RevealPrefs) {
     setPrefs(next);
@@ -212,7 +222,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
       )}
 
       <div className={styles.counter}>
-        <AttemptsStatus><p data-attempts-counter="">{es.imageReveal.attemptCounter(currentAttempt, MAX_FAILED)}</p></AttemptsStatus>
+        <AttemptsStatus><p data-attempts-counter="">{unlimited ? es.versus.attempt(currentAttempt) : es.imageReveal.attemptCounter(currentAttempt, MAX_FAILED)}</p></AttemptsStatus>
         {!over && (
           <SurrenderButton
             onConfirm={() => surrender(attemptIds, reportOf(attemptIds, answer, accepted, false, true, detail))}
@@ -220,7 +230,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
         )}
       </div>
       {/* Antes del último intento se avisa: si falla, se pierde. */}
-      {!over && failed === MAX_FAILED - 1 && (
+      {!over && !unlimited && failed === MAX_FAILED - 1 && (
         <p className={styles.lastChance} role="status">
           {es.imageReveal.lastChance}
         </p>

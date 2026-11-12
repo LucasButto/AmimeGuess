@@ -2,6 +2,7 @@
 
 import { useCallback, useContext, useMemo, useState } from 'react';
 import { AttemptRules } from '@/components/game-shell/AttemptRules';
+import { useVersusVariant } from '@/components/versus/VersusGameContext';
 import { GameShell } from '@/components/game-shell/GameShell';
 import type { AnswerInfo, GameSession, ModeLink, ShellFranchise } from '@/components/game-shell/types';
 import type { DailyContext } from '@/engine/daily';
@@ -59,7 +60,13 @@ export function TimelineGame({ franchise, mode, modes, config: originalConfig, c
   const rules = useContext(AttemptRules);
   const config = useMemo(() => withAttemptLimit(originalConfig, rules?.base), [originalConfig, rules?.base]);
   const levels = useMemo(() => levelsOf(config), [config]);
-  const [levelIndex, setLevelIndex] = useState(() => readLevel(franchise.slug, mode.slug, levels.length));
+  // En versus, la dificultad es la de la partida (`d2` → la segunda) y no se guarda.
+  const versus = useVersusVariant();
+  const [levelIndex, setLevelIndex] = useState(() => {
+    if (!versus) return readLevel(franchise.slug, mode.slug, levels.length);
+    const level = Number(versus.variant?.match(/^d(\d+)$/)?.[1] ?? 1) - 1;
+    return level >= 0 && level < levels.length ? level : 0;
+  });
   const levelConfig = useMemo(() => configForLevel(config, levelIndex), [config, levelIndex]);
   // La primera dificultad es la de siempre (sin variante); las demás son otras partidas (`~d2`, `~d3`). El marco le suma la
   // de los interruptores (relleno, arcos del manga).

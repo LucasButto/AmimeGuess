@@ -34,32 +34,40 @@ export function resolveActiveSeries({ param, saved, canonical }: ResolveInput): 
  *
  * Lee `window`, por lo que tiene que usarse en componentes que solo se montan
  * en el cliente, después de la hidratación (ver `ModeGame`).
+ *
+ * Con `fixed` (una partida de versus), las series son esas y no se cambian: no se leen ni se escriben las guardadas ni
+ * el parámetro `s`.
  */
-export function useSeriesFilters(franchise: string, canonical: readonly string[]) {
+export function useSeriesFilters(franchise: string, canonical: readonly string[], fixed?: readonly string[]) {
   const [active, setActiveState] = useState<string[]>(() =>
-    resolveActiveSeries({
-      param: new URLSearchParams(window.location.search).get('s'),
-      saved: readFilters(getLocalStorage(), franchise),
-      canonical,
-    }),
+    fixed
+      ? normalizeActiveSeries(fixed, canonical)
+      : resolveActiveSeries({
+          param: new URLSearchParams(window.location.search).get('s'),
+          saved: readFilters(getLocalStorage(), franchise),
+          canonical,
+        }),
   );
   const filterKey = buildFilterKey(active, canonical);
+  const locked = fixed !== undefined;
 
   useEffect(() => {
+    if (locked) return;
     const url = new URL(window.location.href);
     if (url.searchParams.get('s') === filterKey) return;
     url.searchParams.set('s', filterKey);
     window.history.replaceState(window.history.state, '', url);
-  }, [filterKey]);
+  }, [filterKey, locked]);
 
   const setActive = useCallback(
     (next: readonly string[]) => {
+      if (locked) return;
       const normalized = normalizeActiveSeries(next, canonical);
       if (normalized.length === 0) return; // Regla 7: siempre al menos una serie.
       setActiveState(normalized);
       writeFilters(getLocalStorage(), franchise, normalized);
     },
-    [canonical, franchise],
+    [canonical, franchise, locked],
   );
 
   return { active, filterKey, setActive };

@@ -5,6 +5,7 @@ import { DockActions, useDockTarget } from '@/components/game-shell/GameDock';
 import { DeselectIcon, ShuffleIcon } from './icons';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
+import { endLimit, isUnlimited, useVersusProgress, useVersusStop } from '@/components/game-shell/versus';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useMissBuzz } from '@/components/useHaptics';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
@@ -62,7 +63,10 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
   const { franchise, mode, filterKey, day, onFinish } = session;
   const { lost: surrendered, surrender } = useSurrender(session);
   const missedTitleId = useId();
-  const maxMistakes = session.attemptLimit ?? mistakesOf(config);
+  const totalMistakes = session.attemptLimit ?? mistakesOf(config);
+  // En versus sin límite, los errores no terminan la partida.
+  const unlimited = isUnlimited(session);
+  const maxMistakes = endLimit(session, totalMistakes);
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
 
   const [{ attempts, savedWin }, setGame] = useState(() => {
@@ -87,6 +91,14 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
   // Si el reto ya había terminado al montarse (se recargó la página), el marco tiene que mostrar
   // su resumen, pero sin volver a sumarlo a las estadísticas.
   const [restored] = useState<FinishReport | null>(() => (over ? reportOf(attempts, board, progress, false) : null));
+  // Versus: lo que ven los rivales (envíos de grupo y errores) y el cierre desde afuera (tiempo agotado).
+  useVersusProgress(session, { attempts: attempts.length, errors: progress.mistakes });
+  useVersusStop(session, over, (stop) => {
+    if (stop !== 'timeUp') return;
+    setSelected([]);
+    setFeedback(null);
+    surrender(attempts, { ...reportOf(attempts, board, progress, true), timedOut: true });
+  });
   useEffect(() => {
     if (restored) onFinish(restored);
   }, [restored, onFinish]);
@@ -139,7 +151,7 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
       setFeedback(verdict.kind);
       const left = maxMistakes - nextProgress.mistakes;
       setAnnouncement(
-        `${verdict.kind === 'oneAway' ? es.connections.oneAway : es.connections.wrongAnnouncement(left)} ${nextProgress.over ? es.connections.lostAnnouncement : ''}`.trim(),
+        `${verdict.kind === 'oneAway' ? es.connections.oneAway : (unlimited ? es.connections.wrongUnlimited : es.connections.wrongAnnouncement(left))} ${nextProgress.over ? es.connections.lostAnnouncement : ''}`.trim(),
       );
     }
     if (nextProgress.over) onFinish(reportOf(next, board, nextProgress, true));
@@ -151,12 +163,14 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
         <p className={styles.instructions}>{es.connections.instructions}</p>
         <div className={styles.mistakes}>
           <div className={styles.remaining}>
-            <span className={styles.dots} aria-hidden="true">
-              {Array.from({ length: maxMistakes }, (_, index) => (
-                <span key={index} className={styles.dot} data-used={index < mistakes} />
-              ))}
-            </span>
-            <span>{es.connections.mistakes(maxMistakes - mistakes, maxMistakes)}</span>
+            {!unlimited && (
+              <span className={styles.dots} aria-hidden="true">
+                {Array.from({ length: totalMistakes }, (_, index) => (
+                  <span key={index} className={styles.dot} data-used={index < mistakes} />
+                ))}
+              </span>
+            )}
+            <span>{unlimited ? es.versus.attempt(attempts.length + (over ? 0 : 1)) : es.connections.mistakes(maxMistakes - mistakes, maxMistakes)}</span>
           </div>
           {!over && (
             <SurrenderButton

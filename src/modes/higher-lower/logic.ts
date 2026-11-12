@@ -139,6 +139,46 @@ export interface Progress {
   readonly failedAt: number | null;
 }
 
+/** Tope técnico de rondas de una partida de versus (01-reglas.md, 5.1). */
+export const MAX_VERSUS_ROUNDS = 999;
+
+/** Las reglas con que se juega una partida: cuántos errores la terminan, a qué meta se llega y si la secuencia es infinita. */
+export interface PlayRules {
+  /** Con este error la partida termina. Sin límite, `Infinity`. */
+  readonly maxMistakes: number;
+  /** Aciertos con los que se resuelve; `undefined`: sin meta (la secuencia sigue). */
+  readonly target: number | undefined;
+  /** Secuencia infinita (`endlessRounds`), en el modo infinito y en versus. */
+  readonly endless: boolean;
+  /** Tope de jugadas, solo en versus. */
+  readonly cap?: number;
+}
+
+/**
+ * Las reglas de la partida según la sesión. Sin versus, las de siempre: el diario termina a los 10 aciertos y el infinito
+ * no tiene meta. En versus la secuencia es siempre infinita: con `targetScore` (Contrarreloj y Carrera) se resuelve al
+ * llegar a la meta y los errores no terminan; con `forgivenErrors` (Menos intentos) termina en el error número
+ * `forgivenErrors + 1`, sumando todos los aciertos.
+ */
+export function playRulesOf(session: {
+  readonly attemptLimit?: number;
+  readonly practice?: boolean;
+  /** El bloque `versus` de la sesión (ver `VersusRules` en el marco). */
+  readonly versus?: { readonly unlimited?: boolean; readonly forgivenErrors?: number; readonly targetScore?: number };
+}): PlayRules {
+  const { versus } = session;
+  if (!versus) return { maxMistakes: session.attemptLimit ?? 1, target: session.practice ? undefined : MAX_ROUNDS, endless: session.practice === true };
+  const maxMistakes =
+    versus.forgivenErrors !== undefined ? versus.forgivenErrors + 1 : versus.unlimited || versus.targetScore !== undefined ? Infinity : (session.attemptLimit ?? 1);
+  return { maxMistakes, target: versus.targetScore, endless: true, cap: MAX_VERSUS_ROUNDS };
+}
+
+/** `progressOf` con las reglas de la partida (y el tope técnico de versus). */
+export function playProgress(picks: readonly string[], rounds: readonly Round[], rules: PlayRules): Progress {
+  const progress = progressOf(picks, rounds, rules.maxMistakes, rules.target);
+  return !progress.ended && rules.cap !== undefined && picks.length >= rules.cap ? { ...progress, ended: true } : progress;
+}
+
 export function progressOf(picks: readonly string[], rounds: readonly Round[], maxMistakes = 1, target = rounds.length): Progress {
   let score = 0;
   let mistakes = 0;

@@ -9,6 +9,7 @@ import { useDockTarget } from '@/components/game-shell/GameDock';
 import { scrollIntoViewNearest } from '@/components/game-shell/scrollIntoView';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
+import { endLimit, isUnlimited, useVersusProgress, useVersusStop } from '@/components/game-shell/versus';
 import { fitHints, restoreLimited } from '@/components/game-shell/attempts';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
@@ -93,6 +94,9 @@ function timingFor(element: HTMLElement | null, columns: number): RevealTiming {
 export function ClassicBoard({ session, pool, columns, hints, contents }: ClassicBoardProps) {
   const { franchise, mode, filterKey, day, active, onFinish } = session;
   const maxAttempts = session.attemptLimit ?? 10;
+  // En versus sin límite, la partida no termina por intentos; las pistas siguen el ritmo de `maxAttempts`.
+  const limit = endLimit(session, maxAttempts);
+  const unlimited = isUnlimited(session);
   const { lost: surrendered, surrender } = useSurrender(session);
   const appShell = useAppShell();
   // Con la barra inferior (teléfono), el intento nuevo se deja a la vista y se anuncian las pistas que se abren.
@@ -109,7 +113,7 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
 
   const [attemptIds, setAttemptIds] = useState<string[]>(() => {
     const state = readState(getLocalStorage(), ctx);
-    return restoreLimited(restoreAttempts(state?.attempts, pool), state, maxAttempts);
+    return restoreLimited(restoreAttempts(state?.attempts, pool), state, limit);
   });
   const [revealing, setRevealing] = useState<{ id: string; timing: RevealTiming } | null>(null);
   const [announcement, setAnnouncement] = useState('');
@@ -126,7 +130,7 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
   // Si la partida ya estaba ganada al montarse (se recargó la página), el marco tiene que
   // mostrar su resumen, pero sin volver a sumarla a las estadísticas.
   const [restored] = useState<FinishReport | null>(() =>
-    attemptIds.includes(answer.id) || surrendered || attemptIds.length >= maxAttempts
+    attemptIds.includes(answer.id) || surrendered || attemptIds.length >= limit
       ? { ...reportOf(attemptIds, byId, answer, columns, active, false), won: attemptIds.includes(answer.id) && !surrendered } : null,
   );
   useEffect(() => {
@@ -135,7 +139,7 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
 
   const attempted = useMemo(() => new Set(attemptIds), [attemptIds]);
   const won = attempted.has(answer.id);
-  const over = won || surrendered || attemptIds.length >= maxAttempts;
+  const over = won || surrendered || attemptIds.length >= limit;
   const failed = failedCount(attemptIds, answer.id);
 
   const items = useMemo<AutocompleteItem[]>(
@@ -216,7 +220,7 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
 
     // El intento se guarda antes de la animación: recargar a mitad de la revelación muestra la fila completa.
     setAttemptIds(next);
-    const spent = !solved && next.length >= maxAttempts;
+    const spent = !solved && next.length >= limit;
     writeState(getLocalStorage(), ctx, { attempts: next, result: solved ? 'won' : spent ? 'lost' : 'playing' });
 
     // Una revelación en curso termina acá: su fila queda en su estado final.
@@ -245,6 +249,14 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
     }
     fallback.current = setTimeout(() => endReveal(id), timing.total + FALLBACK_MARGIN_MS);
   }
+
+  // Versus: lo que ven los rivales y el cierre desde afuera (tiempo agotado).
+  useVersusProgress(session, { attempts: attemptIds.length });
+  useVersusStop(session, over, (stop) => {
+    if (stop !== 'timeUp') return;
+    finishReveal();
+    surrender(attemptIds, { ...reportOf(attemptIds, byId, answer, columns, active, true), timedOut: true });
+  });
 
   /** Fin de la revelación de la fila `id`: por la última celda o por el temporizador de respaldo. */
   function endReveal(id: string) {
@@ -295,8 +307,8 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
 
       <div className={styles.counter}>
         <div className={styles.counterInfo}>
-          <AttemptsStatus><p data-attempts-counter="">{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
-          <AttemptsStatus><AttemptsMeter failed={failed} won={won} total={maxAttempts} /></AttemptsStatus>
+          <AttemptsStatus><p data-attempts-counter="">{unlimited ? es.versus.attempt(attemptIds.length + (over ? 0 : 1)) : es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
+          {!unlimited && <AttemptsStatus><AttemptsMeter failed={failed} won={won} total={maxAttempts} /></AttemptsStatus>}
         </div>
         {!over && (
           <SurrenderButton

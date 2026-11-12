@@ -139,6 +139,11 @@ export interface FranchiseConfig {
   readonly entitySetNouns?: Readonly<Record<string, PoolNoun>>;
   /** Si el interruptor "Arcos del manga" no se ofrece: lo marcado `mangaOnly` queda siempre afuera del juego (pero se conserva en los datos). Por defecto, se ofrece. */
   readonly hideMangaToggle?: boolean;
+  /**
+   * Versus, Contrarreloj (docs/versus/01-reglas.md, sección 1): segundos que suma al tiempo por defecto de una partida
+   * cada serie activa a partir de la segunda. Las series traen más opciones para adivinar, así que más tiempo.
+   */
+  readonly versusSecondsPerExtraSeries: number;
 }
 
 // --- Piel (SPEC 9.2, sesiones 15 a 18) --------------------------------------

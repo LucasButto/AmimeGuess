@@ -8,6 +8,8 @@ const help = es.help.pokemon;
 export const pokemonConfig = {
   slug: 'pokemon',
   name: 'Pokémon',
+  // Versus, Contrarreloj: segundos de más en el tiempo por defecto por cada serie activa desde la segunda.
+  versusSecondsPerExtraSeries: 5,
   entityNoun: { one: 'Pokémon', many: 'Pokémon' },
   entitySetNouns: { 'stat-builder': { one: 'Pokémon', many: 'Pokémon' } },
   series: ['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9'],

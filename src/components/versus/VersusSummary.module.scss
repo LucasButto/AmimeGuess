@@ -1,0 +1,31 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.root {
+  @include m.pixel-frame;
+  display: grid;
+  gap: t.$space-3;
+  padding: calc(#{t.$space-4} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
+}
+
+.title {
+  @include m.heading;
+  font-size: t.$font-size-base;
+  line-height: t.$line-height-tight;
+}
+
+.answer {
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
+}
+
+.image {
+  inline-size: 3rem;
+  block-size: 3rem;
+  object-fit: contain;
+}
+
+.label {
+  color: t.color('text-muted');
+}

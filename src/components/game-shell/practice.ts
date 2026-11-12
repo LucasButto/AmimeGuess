@@ -1,4 +1,5 @@
 import { STORAGE_PREFIX } from '@/engine/storage';
+import { isVersusDay } from '@/versus/seed';
 
 // Modo infinito: partidas extra de un modo, con los mismos filtros, después de terminar el reto del día.
 // Cada partida es un reto más del mismo motor: en lugar del número de un día real (el día 0 es el 2026-01-01, así que
@@ -10,8 +11,9 @@ import { STORAGE_PREFIX } from '@/engine/storage';
 export const PRACTICE_FROM = 1_000_000;
 const PRACTICE_SPAN = 1_000_000_000;
 
+/** Los días de versus (2.000.000.000 en adelante) no son de práctica: limpiar el modo infinito no borra las salas. */
 export function isPracticeDay(day: number): boolean {
-  return day >= PRACTICE_FROM;
+  return day >= PRACTICE_FROM && !isVersusDay(day);
 }
 
 /** El "día" de una partida nueva del modo infinito: al azar, para que no se repitan las partidas. */

@@ -16,6 +16,7 @@ import {
 } from "@/components/game-shell/flags";
 import type { ModeLink } from "@/components/game-shell/types";
 import { AttemptRules } from "@/components/game-shell/AttemptRules";
+import { useVersusGame } from "@/components/versus/VersusGameContext";
 import {
   entitiesOfMode,
   loadFranchiseData,
@@ -92,8 +93,14 @@ function ModeEngine({ franchise, mode, modes, playable }: ModeGameProps) {
   const [loaded, setLoaded] = useState<FranchiseData | "error" | null>(null);
   // Los interruptores de la partida, guardados por franquicia: con relleno y con los arcos del manga (los dos prendidos
   // por defecto: entra todo).
-  const [fillerOn, setFillerOn] = useStoredFlag("filler", franchise.slug, true);
-  const [mangaOn, setMangaOn] = useStoredFlag("manga", franchise.slug, true);
+  const [storedFiller, setFillerOn] = useStoredFlag("filler", franchise.slug, true);
+  const [storedManga, setMangaOn] = useStoredFlag("manga", franchise.slug, true);
+  // En una partida de versus valen los interruptores de la sala (los que faltan, prendidos), sin tocar los guardados.
+  const versusGame = useVersusGame();
+  const versusToggles = versusGame?.partida.toggles;
+  const versus = versusGame !== null;
+  const fillerOn = versus ? versusToggles?.filler ?? true : storedFiller;
+  const mangaOn = versus ? versusToggles?.manga ?? true : storedManga;
   const { Loader } = useSkin().skin.slots;
   // Cada reintento vuelve a pedir los datos (un fallo de red al bajar el chunk se arregla con otro intento).
   const [attempt, setAttempt] = useState(0);

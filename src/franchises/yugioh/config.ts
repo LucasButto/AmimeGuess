@@ -25,6 +25,8 @@ const serieDebutLabels: Readonly<Record<string, ClassicValueLabel>> = Object.fro
 export const yugiohConfig = {
   slug: 'yugioh',
   name: 'Yu-Gi-Oh',
+  // Versus, Contrarreloj: segundos de más en el tiempo por defecto por cada serie activa desde la segunda.
+  versusSecondsPerExtraSeries: 0,
   entityNoun: { one: 'duelista', many: 'duelistas' },
   entitySetNouns: { cards: { one: 'carta', many: 'cartas' } },
   autocompleteThumbnails: true,

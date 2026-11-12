@@ -5,6 +5,7 @@ import { flushSync } from 'react-dom';
 import { DockAction, useDockTarget } from '@/components/game-shell/GameDock';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
+import { endLimit, isUnlimited, useVersusProgress, useVersusStop } from '@/components/game-shell/versus';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
 import { ClueNames } from '@/components/game-shell/ClueNames';
@@ -85,21 +86,24 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
   const { AttemptsMeter } = skin.slots;
   const solutionTitleId = useId();
   const maxAttempts = attemptsOf(config);
+  // En versus sin límite, confirmar mal no termina la partida.
+  const limit = endLimit(session, maxAttempts);
+  const unlimited = isUnlimited(session);
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
   const itemById = useMemo(() => new Map(puzzle.solution.map((item) => [item.id, item])), [puzzle]);
 
-  const [attempts, setAttempts] = useState<string[][]>(() => restoreAttempts(readState(getLocalStorage(), ctx)?.attempts, puzzle, maxAttempts));
+  const [attempts, setAttempts] = useState<string[][]>(() => restoreAttempts(readState(getLocalStorage(), ctx)?.attempts, puzzle, limit));
   // El orden que se está armando: arranca desde como se dejó la última vez (aunque no se haya confirmado), o desde el
   // último confirmado, o desde el desorden del día. Así cambiar de dificultad y volver no deshace lo acomodado.
   const [arrangement, setArrangement] = useState<string[]>(() => {
     const state = readState(getLocalStorage(), ctx);
-    const last = restoreAttempts(state?.attempts, puzzle, maxAttempts).at(-1);
+    const last = restoreAttempts(state?.attempts, puzzle, limit).at(-1);
     return restoreDraft(state?.draft, puzzle) ?? last ?? [...puzzle.start];
   });
   const [announcement, setAnnouncement] = useState('');
   const [draggingId, setDraggingId] = useState<string | null>(null);
 
-  const outcome = outcomeOf(attempts, puzzle, maxAttempts);
+  const outcome = outcomeOf(attempts, puzzle, limit);
   const solved = outcome.solved;
   const over = outcome.over || surrendered;
   const locked = NO_LOCKS;
@@ -108,6 +112,11 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
   // Si el reto ya había terminado al montarse (se recargó la página), el marco tiene que mostrar
   // su resumen, pero sin volver a sumarlo a las estadísticas.
   const [restored] = useState<FinishReport | null>(() => (over ? reportOf(attempts, puzzle, solved, false) : null));
+  // Versus: lo que ven los rivales (los órdenes enviados) y el cierre desde afuera (tiempo agotado).
+  useVersusProgress(session, { attempts: attempts.length });
+  useVersusStop(session, over, (stop) => {
+    if (stop === 'timeUp') surrender(attempts, { ...reportOf(attempts, puzzle, false, true), timedOut: true }, arrangement);
+  });
   useEffect(() => {
     if (restored) onFinish(restored);
   }, [restored, onFinish]);
@@ -262,7 +271,7 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
   function confirm() {
     if (over) return;
     const next = [...attempts, arrangement];
-    const nextOutcome = outcomeOf(next, puzzle, maxAttempts);
+    const nextOutcome = outcomeOf(next, puzzle, limit);
 
     setAttempts(next);
     writeState(getLocalStorage(), ctx, { attempts: next, result: nextOutcome.solved ? 'won' : nextOutcome.over ? 'lost' : 'playing' });
@@ -384,8 +393,8 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
           <div className={styles.counter}>
             <div className={styles.counterInfo}>
               {/* El texto queda siempre (lectores de pantalla); un tema con medidor propio puede ocultarlo a la vista. */}
-              <p data-part="attempts">{es.timeline.attempt(Math.min(attempts.length + 1, maxAttempts), maxAttempts)}</p>
-              <AttemptsMeter failed={attempts.length - (solved ? 1 : 0)} won={solved} total={maxAttempts} />
+              <p data-part="attempts">{unlimited ? es.versus.attempt(attempts.length + (over ? 0 : 1)) : es.timeline.attempt(Math.min(attempts.length + 1, maxAttempts), maxAttempts)}</p>
+              {!unlimited && <AttemptsMeter failed={attempts.length - (solved ? 1 : 0)} won={solved} total={maxAttempts} />}
             </div>
             {!over && (
               <SurrenderButton

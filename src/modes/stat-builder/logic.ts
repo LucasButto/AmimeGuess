@@ -31,6 +31,24 @@ export function outcomeOf(attempts: readonly (readonly Assignment[])[], pool: re
   const won = attempts.some((attempt) => totalOf(attempt, pool) > target);
   return { won, over: won || attempts.length >= limit };
 }
+/**
+ * Las reglas de una partida: el total a superar y cuántas combinaciones hay. Sin versus, las de siempre. En versus:
+ * `fixedAttempts` (Menos intentos) juega exactamente esa cantidad y superar el nivel no termina antes; `targetTotal`
+ * (Contrarreloj y Carrera) da combinaciones ilimitadas hasta la primera que supera ese total.
+ */
+export function playRulesOf(
+  versus: { readonly unlimited?: boolean; readonly fixedAttempts?: number; readonly targetTotal?: number } | undefined, target: number, limit: number): { readonly target: number; readonly limit: number; readonly fixed: boolean } {
+  if (versus?.fixedAttempts !== undefined) return { target, limit: versus.fixedAttempts, fixed: true };
+  if (versus?.targetTotal !== undefined || versus?.unlimited) return { target: versus.targetTotal ?? target, limit: Infinity, fixed: false };
+  return { target, limit, fixed: false };
+}
+
+/** `outcomeOf` con las reglas de la partida: con combinaciones fijas, termina solo al hacerlas todas. */
+export function playOutcome(attempts: readonly (readonly Assignment[])[], pool: readonly Entity[], rules: { readonly target: number; readonly limit: number; readonly fixed: boolean }) {
+  const outcome = outcomeOf(attempts, pool, rules.target, rules.limit);
+  return rules.fixed ? { won: outcome.won, over: attempts.length >= rules.limit } : outcome;
+}
+
 export function draw(pool: readonly Entity[], ctx: DailyContext, attempt: number, position: number, excluded: readonly string[] = []): Entity {
   const remaining = [...pool].sort((a, b) => a.id.localeCompare(b.id, 'en'));
   if (position < 0 || position >= remaining.length) throw new RangeError('No quedan entidades para este sorteo');

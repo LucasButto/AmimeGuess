@@ -64,6 +64,8 @@ const sagaDebutLabels: Readonly<Record<string, ClassicValueLabel>> = Object.from
 export const dragonBallConfig = {
   slug: 'dragon-ball',
   name: 'Dragon Ball',
+  // Versus, Contrarreloj: segundos de más en el tiempo por defecto por cada serie activa desde la segunda.
+  versusSecondsPerExtraSeries: 0,
   // Los 121 personajes tienen imagen: el autocompletado la muestra en miniatura (se midió que escribir sigue fluido).
   autocompleteThumbnails: true,
   entityNoun: { one: 'personaje', many: 'personajes' },

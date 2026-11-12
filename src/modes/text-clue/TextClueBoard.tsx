@@ -9,6 +9,7 @@ import { scrollIntoViewNearest } from '@/components/game-shell/scrollIntoView';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
 import { fitHints, restoreLimited } from '@/components/game-shell/attempts';
+import { endLimit, isUnlimited, useVersusProgress, useVersusStop } from '@/components/game-shell/versus';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
 import { useMissBuzz } from '@/components/useHaptics';
@@ -64,6 +65,9 @@ function reportOf(attemptIds: readonly string[], winner: Entity, fresh: boolean)
 export function TextClueBoard({ session, config, candidates, options }: TextClueBoardProps) {
   const { franchise, mode, filterKey, day, onFinish } = session;
   const maxAttempts = session.attemptLimit ?? 8;
+  // En versus sin límite, la partida no termina por intentos; las pistas siguen el ritmo de `maxAttempts`.
+  const limit = endLimit(session, maxAttempts);
+  const unlimited = isUnlimited(session);
   const { lost: surrendered, surrender } = useSurrender(session);
   const clueTitleId = useId();
   const hintsTitleId = useId();
@@ -76,13 +80,13 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
 
   const [attemptIds, setAttemptIds] = useState<string[]>(() => {
     const state = readState(getLocalStorage(), ctx);
-    return restoreLimited(restoreAttempts(state?.attempts, options), state, maxAttempts);
+    return restoreLimited(restoreAttempts(state?.attempts, options), state, limit);
   });
   const [lastAttempt, setLastAttempt] = useState<string | null>(null);
 
   const winnerId = winningAttempt(attemptIds, answer.id, content);
   const won = winnerId !== null;
-  const over = won || surrendered || attemptIds.length >= maxAttempts;
+  const over = won || surrendered || attemptIds.length >= limit;
 
   // Si la partida ya estaba ganada al montarse (se recargó la página), el marco tiene que
   // mostrar su resumen, pero sin volver a sumarla a las estadísticas.
@@ -126,6 +130,12 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
     [attemptIds, answer.id, content, byId],
   );
 
+  // Versus: lo que ven los rivales y el cierre desde afuera (tiempo agotado).
+  useVersusProgress(session, { attempts: attemptIds.length });
+  useVersusStop(session, over, (stop) => {
+    if (stop === 'timeUp') surrender(attemptIds, { ...reportOf(attemptIds, answer.entity, true), timedOut: true });
+  });
+
   function addAttempt(id: string) {
     if (over || attempted.has(id)) return;
     const guess = byId.get(id);
@@ -135,7 +145,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
 
     setAttemptIds(next);
     setLastAttempt(id);
-    const spent = !solved && next.length >= maxAttempts;
+    const spent = !solved && next.length >= limit;
     writeState(getLocalStorage(), ctx, { attempts: next, result: solved ? 'won' : spent ? 'lost' : 'playing' });
 
     if (solved || spent) onFinish({ ...reportOf(next, solved ? guess : answer.entity, true), won: solved });
@@ -204,14 +214,14 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
       )}
 
       <div className={styles.counter}>
-        <AttemptsStatus><p data-attempts-counter="">{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
+        <AttemptsStatus><p data-attempts-counter="">{unlimited ? es.versus.attempt(attemptIds.length + (over ? 0 : 1)) : es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
         {!over && (
           <SurrenderButton
             onConfirm={() => surrender(attemptIds, reportOf(attemptIds, answer.entity, true))}
           />
         )}
       </div>
-      <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="text-clue" mode={mode} failed={failed} won={won} total={maxAttempts} /></AttemptsStatus>
+      {!unlimited && <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="text-clue" mode={mode} failed={failed} won={won} total={maxAttempts} /></AttemptsStatus>}
 
       {failedNames.length > 0 && (
         <section className={styles.failed} aria-labelledby={failedTitleId}>

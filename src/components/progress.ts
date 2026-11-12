@@ -1,5 +1,6 @@
 import { STORAGE_PREFIX, readStats, type StorageLike } from '@/engine/storage';
 import { isPracticeDay } from './game-shell/practice';
+import { isVersusDay } from '@/versus/seed';
 
 // Cuántos retos de hoy se resolvieron. Lee las partidas guardadas (SPEC 6): la clave de cada una es
 // `md:v1:state:<franquicia>:<modo>:<filtros>:<día>`, así que un modo cuenta si alguna de sus partidas de
@@ -131,7 +132,7 @@ export function lostToday(storage: KeyedStorage | null, franchise: string, modes
 
 /**
  * Los días reales en que se ganó al menos un reto de cualquier franquicia o modo. Lee las mismas partidas guardadas que
- * `solvedToday` (las de práctica no cuentan: su "día" no es un día).
+ * `solvedToday` (las de práctica y las de versus no cuentan: su "día" no es un día).
  */
 export function winDays(storage: KeyedStorage | null): Set<number> {
   const days = new Set<number>();
@@ -142,7 +143,7 @@ export function winDays(storage: KeyedStorage | null): Set<number> {
       const key = storage.key(index);
       if (key === null || !key.startsWith(prefix)) continue;
       const day = Number(key.slice(key.lastIndexOf(':') + 1));
-      if (!Number.isInteger(day) || isPracticeDay(day) || days.has(day)) continue;
+      if (!Number.isInteger(day) || isPracticeDay(day) || isVersusDay(day) || days.has(day)) continue;
       if (wonAttempts(storage, key) !== null) days.add(day);
     }
   } catch {

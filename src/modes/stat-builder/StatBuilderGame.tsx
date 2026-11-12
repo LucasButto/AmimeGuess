@@ -2,8 +2,10 @@
 
 import { useCallback, useEffect, useId, useMemo, useState, type CSSProperties } from 'react';
 import { GameShell } from '@/components/game-shell/GameShell';
+import { useVersusVariant } from '@/components/versus/VersusGameContext';
 import type { GameSession, GameShellProps, FinishReport } from '@/components/game-shell/types';
 import { useSurrender } from '@/components/game-shell/useSurrender';
+import { useVersusProgress, useVersusStop } from '@/components/game-shell/versus';
 import { AttemptsStatus } from '@/components/game-shell/AttemptsStatus';
 import { DockAction, useDockTarget } from '@/components/game-shell/GameDock';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
@@ -17,7 +19,7 @@ import { eligibleEntities } from '@/engine/filters';
 import { getLocalStorage, readState, writeState } from '@/engine/storage';
 import type { Entity } from '@/engine/types';
 import { es } from '@/i18n/es';
-import { bestBuild, draw, limitFor, outcomeOf, restoreBuild, totalOf, type Assignment } from './logic';
+import { bestBuild, draw, limitFor, playOutcome, playRulesOf, restoreBuild, totalOf, type Assignment } from './logic';
 import type { StatBuilderConfig } from './types';
 import styles from './StatBuilderGame.module.scss';
 import { resultFrame } from './result';
@@ -34,9 +36,12 @@ export function StatBuilderGame({ franchise, mode, modes, config, entities }: Pr
   const { skin } = useSkin();
   const { ChipMark } = skin.slots;
   const settingsId = useId();
-  const [level, setLevel] = useState(1);
-  const [regional, setRegional] = useState(false);
-  const [mega, setMega] = useState(false);
+  // En versus, nivel y formas salen de la variante de la partida (`d<nivel>-r<0|1>-m<0|1>`; sin variante, los de siempre).
+  const versus = useVersusVariant();
+  const fixed = versus?.variant?.match(/^d(\d)-r([01])-m([01])$/);
+  const [level, setLevel] = useState(() => (fixed && Number(fixed[1]) < config.targets.length ? Number(fixed[1]) : 1));
+  const [regional, setRegional] = useState(() => fixed?.[2] === '1');
+  const [mega, setMega] = useState(() => fixed?.[3] === '1');
   const maximum = useMemo(() => Math.max(1, ...entities.flatMap((entity) => config.stats.map((stat) => Number(entity.attrs[stat.key]) || 0))), [entities, config.stats]);
   const available = useMemo(() => entities.filter((entity) => config.stats.every((stat) => typeof entity.attrs[stat.key] === 'number') && (entity.attrs.statForm === 'regional' ? regional : entity.attrs.statForm === 'mega' ? mega : true)), [entities, config.stats, regional, mega]);
   const poolSize = useCallback((active: readonly string[]) => eligibleEntities(available, active).length, [available]);
@@ -57,8 +62,12 @@ export function StatBuilderGame({ franchise, mode, modes, config, entities }: Pr
   </GameShell>;
 }
 
-export function StatBuilderBoard({ session, config, pool, target, limit, maximum }: { session: GameSession; config: StatBuilderConfig; pool: readonly Entity[]; target: number; limit: number; maximum: number }) {
+export function StatBuilderBoard({ session, config, pool, target: levelTarget, limit: levelLimit, maximum }: { session: GameSession; config: StatBuilderConfig; pool: readonly Entity[]; target: number; limit: number; maximum: number }) {
   const { skin } = useSkin();
+  // Las reglas de la partida: las del nivel o, en versus, combinaciones fijas u objetivo con combinaciones ilimitadas.
+  const rules = useMemo(() => playRulesOf(session.versus, levelTarget, levelLimit), [session.versus, levelTarget, levelLimit]);
+  const { target, limit } = rules;
+  const unlimited = !Number.isFinite(limit);
   const [saved] = useState(() => readState(getLocalStorage(), session));
   const [attempts, setAttempts] = useState<Assignment[][]>(() => (saved?.attempts ?? []).map((value) => restoreBuild(value, pool, config)).filter((build) => build.length === config.stats.length));
   const [build, setBuild] = useState(() => restoreBuild(saved?.draft, pool, config));
@@ -70,7 +79,7 @@ export function StatBuilderBoard({ session, config, pool, target, limit, maximum
   const onFinish = session.onFinish;
   const { lost, surrender } = useSurrender(session);
   const complete = build.length === config.stats.length;
-  const outcome = outcomeOf(attempts, pool, target, limit);
+  const outcome = playOutcome(attempts, pool, rules);
   const won = outcome.won;
   const over = (outcome.over && resultPhase === 'done') || lost;
   const current = complete ? pool.find((entity) => entity.id === build.at(-1)?.entityId)! : draw(pool, session, attempts.length, build.length, build.map((entry) => entry.entityId));
@@ -96,7 +105,7 @@ export function StatBuilderBoard({ session, config, pool, target, limit, maximum
     return () => window.clearInterval(timer);
   }, [over, stopped, complete, awaitingAdvance]);
 
-  const report = useCallback((all: Assignment[][], success: boolean, fresh: boolean): FinishReport => ({ won: success, title: success ? es.statBuilder.won : es.shell.result.lostTitle, answerIsSentence: true, attempts: all.length, answer: { label: es.statBuilder.result(totalOf(all.at(-1) ?? build, pool), target) }, grid: all.map((attempt) => totalOf(attempt, pool) > target ? '🟩' : '🟥'), fresh }), [build, pool, target]);
+  const report = useCallback((all: Assignment[][], success: boolean, fresh: boolean): FinishReport => ({ won: success, title: success ? es.statBuilder.won : es.shell.result.lostTitle, answerIsSentence: true, attempts: all.length, answer: { label: es.statBuilder.result(totalOf(all.at(-1) ?? build, pool), target) }, grid: all.map((attempt) => totalOf(attempt, pool) > target ? '🟩' : '🟥'), scores: all.map((attempt) => totalOf(attempt, pool)), fresh }), [build, pool, target]);
   const [restored] = useState(() => over ? report(attempts, won, false) : null);
   useEffect(() => { if (restored) onFinish(restored); }, [restored, onFinish]);
 
@@ -111,13 +120,19 @@ export function StatBuilderBoard({ session, config, pool, target, limit, maximum
       setResultElapsed(elapsed);
       if (!resultFrame(elapsed, resultValues).done) { frame = requestAnimationFrame(tick); return; }
       setResultPhase('done');
-      const finishedOutcome = outcomeOf(attempts, pool, target, limit);
+      const finishedOutcome = playOutcome(attempts, pool, rules);
       writeState(getLocalStorage(), session, { attempts, draft: build, result: finishedOutcome.over ? finishedOutcome.won ? 'won' : 'lost' : 'playing' });
       if (finishedOutcome.over) onFinish(report(attempts, finishedOutcome.won, true));
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
-  }, [resultPhase, resultValues, attempts, pool, target, limit, session, build, onFinish, report]);
+  }, [resultPhase, resultValues, attempts, pool, rules, session, build, onFinish, report]);
+
+  // Versus: lo que ven los rivales (combinaciones y el mejor total) y el cierre desde afuera (tiempo agotado).
+  useVersusProgress(session, { attempts: attempts.length, score: attempts.length === 0 ? 0 : Math.max(...attempts.map((attempt) => totalOf(attempt, pool))) });
+  useVersusStop(session, over, (stop) => {
+    if (stop === 'timeUp') surrender(attempts, { ...report(attempts, false, true), timedOut: true }, build);
+  });
 
   // La tarjeta completa detiene la ruleta también en el teléfono.
   const phone = useDockTarget() !== null;
@@ -144,12 +159,12 @@ export function StatBuilderBoard({ session, config, pool, target, limit, maximum
   }
 
   return <div className={styles.root} data-game-ready="true" data-over={over}>
-    <div className={styles.summary}><AttemptsStatus><p>{es.statBuilder.progress(attempts.length + (complete ? 0 : 1), limit)}</p></AttemptsStatus>{!over && !complete && <SurrenderButton onConfirm={() => surrender(attempts, report(attempts, false, true), build)} />}</div>
-    <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="stat-builder" mode={session.mode} failed={meterFailed} won={meterWon} total={limit} /></AttemptsStatus>
+    <div className={styles.summary}><AttemptsStatus><p>{unlimited ? es.versus.attempt(attempts.length + (complete ? 0 : 1)) : es.statBuilder.progress(Math.min(attempts.length + (complete ? 0 : 1), limit), limit)}</p></AttemptsStatus>{!over && !complete && <SurrenderButton onConfirm={() => surrender(attempts, report(attempts, false, true), build)} />}</div>
+    {!unlimited && <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="stat-builder" mode={session.mode} failed={meterFailed} won={meterWon} total={limit} /></AttemptsStatus>}
     <div className={styles.board}>
       {complete && resultPhase === 'done' ? <div className={styles.spinner}>
         <span className={styles.resultTotal}>{es.statBuilder.fraction(result.total, target)}</span>
-        <p className={styles.resultMessage} role="status">{won ? es.statBuilder.won : <><span>{es.statBuilder.retry}</span><span>{es.statBuilder.remaining(Math.max(0, limit - attempts.length))}</span></>}</p>
+        <p className={styles.resultMessage} role="status">{won && !rules.fixed ? es.statBuilder.won : <><span>{won ? es.statBuilder.won : es.statBuilder.retry}</span>{!unlimited && <span>{es.statBuilder.remaining(Math.max(0, limit - attempts.length))}</span>}</>}</p>
         {!over && !phone && <Button onClick={retry}>{es.statBuilder.next}</Button>}
       </div> :
       (() => {

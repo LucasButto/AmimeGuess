@@ -41,6 +41,13 @@ import { SheetSection, SheetSlotContext } from './SheetSlot';
 
 import { useRouletteImages } from '@/modes/stat-builder/RoulettePreview';
 import { getKeyedStorage, solvedToday } from '../progress';
+import { useVersusGame } from '../versus/VersusGameContext';
+import { VersusClock } from '../versus/VersusClock';
+import { VersusSummary } from '../versus/VersusSummary';
+import { engineRulesFor } from '@/versus/session';
+import { versusDay } from '@/versus/seed';
+import { SurrenderAllowed } from './SurrenderButton';
+import type { VersusRules } from './types';
 
 type Dialog = 'help' | 'stats' | 'settings' | null;
 
@@ -79,7 +86,10 @@ export function GameShell({
   const flags = useContext(GameFlagsContext);
   const attemptRules = useContext(AttemptRules);
   const variant = `${engineVariant ?? ''}${flags.variant}` || undefined;
-  const { active, filterKey, setActive } = useSeriesFilters(franchise.slug, franchise.series);
+  // Versus (docs/versus/02-arquitectura.md, "GameShell en modo versus"): el reto, los filtros y las reglas son los de la
+  // partida de la sala; nada de esto toca estadísticas, racha, filtros guardados ni el modo infinito.
+  const versus = useVersusGame();
+  const { active, filterKey, setActive } = useSeriesFilters(franchise.slug, franchise.series, versus?.partida.series);
   useRouletteImages(active);
   const [day, setDay] = useState(() => getDay(new Date()));
   const [stats, setStats] = useState(() => readStats(getLocalStorage(), franchise.slug, mode.slug));
@@ -105,12 +115,20 @@ export function GameShell({
   // Modo infinito: el "día" de la partida extra que se está jugando, o `null` si se juega el reto de hoy.
   const [practiceDay, setPracticeDay] = useState<number | null>(null);
   const practicing = practiceDay !== null;
-  const playDay = practiceDay ?? day;
+  const versusPlayDay = versus ? versusDay(versus.seed, versus.index) : null;
+  const playDay = versusPlayDay ?? practiceDay ?? day;
+  const versusRules = useMemo<VersusRules | undefined>(
+    () => (versus ? { ...engineRulesFor(versus.modality, versus.partida.engine, versus.options), ...(versus.stop ? { stop: versus.stop } : {}) } : undefined),
+    [versus],
+  );
+  // Lo que tardó en la partida de versus, medido al terminarla (para el resumen corto).
+  const [versusElapsed, setVersusElapsed] = useState<number | undefined>(undefined);
   const sessionKey = `${filterKey}:${playDay}${variant ? `:${variant}` : ''}`;
   const report = finished?.key === sessionKey ? finished.report : null;
   // Teléfono (diseño de app): el resultado es una hoja que sube al terminar la partida (no al recargar una ya terminada);
   // se cierra para ver el tablero y un botón de la barra de abajo la vuelve a abrir.
-  const resultInSheet = appShell && phone && report !== null;
+  // En versus, el resumen corto va siempre en la página.
+  const resultInSheet = appShell && phone && report !== null && !versus;
   // Lo que la persona hizo con la hoja de ESTE resultado; sin haber hecho nada, se abre sola solo si la partida terminó ahora.
   const [sheetView, setSheetView] = useState<{ report: FinishReport; open: boolean } | null>(null);
   const resultDestination = useRef<{ report: FinishReport; href: string } | null>(null);
@@ -202,6 +220,13 @@ export function GameShell({
       const result = reported.won ? 'won' : 'lost';
       if (saved && saved.result !== result) writeState(getLocalStorage(), ctx, { ...saved, result });
       setFinished({ key: sessionKey, report: reported });
+      if (versus) {
+        // Versus: el final va a la sala y no suma a las estadísticas ni a la racha.
+        if (reported.fresh && versus.startedAt !== undefined) setVersusElapsed(Date.now() - versus.startedAt);
+        if (reported.fresh && reported.won) buzz('hit');
+        versus.onFinish?.(reported);
+        return;
+      }
       // Solo la partida que terminó ahora suma; una restaurada al recargar ya está contada.
       if (reported.fresh) {
         // Fanfarria del tema (si hay sonidos) al ganar un reto de intentos; los de puntaje no se "ganan".
@@ -220,7 +245,7 @@ export function GameShell({
         );
       }
     },
-    [sessionKey, practicing, day, franchise.slug, mode.slug, play, buzz, filterKey, variant, playDay],
+    [sessionKey, practicing, day, franchise.slug, mode.slug, play, buzz, filterKey, variant, playDay, versus],
   );
 
   const getShareText = useCallback(() => {
@@ -237,6 +262,39 @@ export function GameShell({
       url: buildShareUrl(window.location.href, filterKey),
     });
   }, [report, franchise, mode.name, active, filterKey, gridKind, skin.shareEmojis]);
+
+  // Versus: avisa a la sala cuando la pista ya se ve: con las imágenes del juego cargadas (o al montar, si no tiene).
+  const onLoaded = useRef(versus?.onLoaded);
+  useEffect(() => {
+    onLoaded.current = versus?.onLoaded;
+  });
+  const reportsLoaded = versus?.onLoaded !== undefined;
+  // Una sola vez por partida, aunque el efecto se repita (en desarrollo React lo monta dos veces).
+  const loadedFor = useRef<string | null>(null);
+  useEffect(() => {
+    const target = gameRef.current;
+    if (!reportsLoaded || !target) return;
+    let done = false;
+    const images = [...target.querySelectorAll('img')].filter((image) => !image.complete);
+    const finish = () => {
+      if (done || loadedFor.current === sessionKey || images.some((image) => !image.complete)) return;
+      done = true;
+      loadedFor.current = sessionKey;
+      onLoaded.current?.();
+    };
+    for (const image of images) {
+      image.addEventListener('load', finish);
+      image.addEventListener('error', finish);
+    }
+    finish();
+    return () => {
+      for (const image of images) {
+        image.removeEventListener('load', finish);
+        image.removeEventListener('error', finish);
+      }
+    };
+    // Una vez por partida (`sessionKey` cambia con cada partida nueva).
+  }, [reportsLoaded, sessionKey]);
 
   const closeDialog = () => setDialog(null);
   const actionsId = useId();
@@ -265,12 +323,14 @@ export function GameShell({
 
   return (
     <AttemptsStatusProvider>
-    <ActiveAttemptLimit.Provider value={limit}>
+    <SurrenderAllowed.Provider value={versus?.modality !== 'race'}>
+    {/* En versus sin límite no hay "Intento N de M": la piel no recibe un límite que no corre. */}
+    <ActiveAttemptLimit.Provider value={versusRules?.unlimited ? undefined : limit}>
     <SheetSlotContext.Provider value={{ phone, target: phone && filtersOpen ? sheetTarget : null }}>
     <div className={styles.root} data-game="shell">
       {document.getElementById('game-actions') && createPortal(
         <div className={styles.floatingActions}>
-          {appShell && <button type="button" className={styles.filterTrigger} aria-label={filtersChanged ? es.shell.filtersChanged : es.shell.filters} aria-haspopup="dialog" aria-expanded={phone && filtersOpen} onClick={() => setFiltersOpen(true)}>
+          {appShell && !versus && <button type="button" className={styles.filterTrigger} aria-label={filtersChanged ? es.shell.filtersChanged : es.shell.filters} aria-haspopup="dialog" aria-expanded={phone && filtersOpen} onClick={() => setFiltersOpen(true)}>
             <svg viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges"><path d="M4 4h16v3H4zm3 5h10v3H7zm3 5h4v7h-4z" fill="currentColor" /></svg>
             <span className={styles.filterLabel} aria-hidden="true">{es.shell.filtersShort}</span>
             {filtersChanged && <span className={styles.filterDot} aria-hidden="true" />}
@@ -322,14 +382,16 @@ export function GameShell({
           </div></div>
         , document.getElementById('game-actions')!
       )}
-      <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} solved={solved} filterKey={filterKey} />
+      {!versus && <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} solved={solved} filterKey={filterKey} />}
+
+      {versus && <VersusClock game={versus} frozen={report !== null} />}
 
       <div className={styles.toolbar}>
         {appShell && <AttemptsStatusTarget />}
-        <Countdown compact={appShell} />
+        {!versus && <Countdown compact={appShell} />}
       </div>
 
-      <SheetSection>{filters}</SheetSection>
+      {!versus && <SheetSection>{filters}</SheetSection>}
 
       {/* Teléfono: los filtros viven en la hoja; si con ellos no alcanza el mínimo para jugar, se dice acá y se ofrece abrirla. */}
       {phone && !playable && (
@@ -350,7 +412,7 @@ export function GameShell({
         </div>
       )}
 
-      {playable && <SheetSection>{beforeGame?.({ remaining, day: playDay })}</SheetSection>}
+      {playable && !versus && <SheetSection>{beforeGame?.({ remaining, day: playDay })}</SheetSection>}
 
       {/* Otra combinación de filtros, de día o de variante es otra partida: el juego se vuelve a montar. */}
       {playable && (
@@ -364,11 +426,18 @@ export function GameShell({
             filterKey: variant ? `${filterKey}~${variant}` : filterKey,
             active,
             onFinish: handleFinish,
+            ...(versus ? { versus: versusRules, onProgress: versus.onProgress } : {}),
           })}
         </div>
       )}
 
-      {yesterdayAnswer && !practicing && (
+      {versus && report && (
+        <div ref={resultRef} className={styles.result}>
+          <VersusSummary game={versus} report={report} elapsedMs={versusElapsed} />
+        </div>
+      )}
+
+      {yesterdayAnswer && !practicing && !versus && (
         <section className={styles.yesterday} aria-label={es.shell.yesterday}>
           {yesterdayAnswer.imageStem && (
             <ContentImage className={styles.yesterdayImage} stem={yesterdayAnswer.imageStem} alt="" sizes="3rem" />
@@ -382,7 +451,7 @@ export function GameShell({
       )}
 
       {/* El resultado va al final, debajo de los intentos y de "Ayer fue…", con los modos para seguir jugando. */}
-      {report && !resultInSheet && (
+      {report && !resultInSheet && !versus && (
         <div ref={resultRef} className={styles.result}>
           <ResultPanel
             titleOverride={report.title}
@@ -552,6 +621,7 @@ export function GameShell({
     </div>
     </SheetSlotContext.Provider>
     </ActiveAttemptLimit.Provider>
+    </SurrenderAllowed.Provider>
     </AttemptsStatusProvider>
   );
 }
