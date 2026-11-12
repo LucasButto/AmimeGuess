@@ -9,6 +9,8 @@ import styles from './InfoTip.module.scss';
 interface InfoTipProps {
   /** El texto de ayuda (de `es.help.*`, 140 caracteres como mucho). */
   text: string;
+  /** Contenido visual de la ayuda, montado al abrirla. */
+  preview?: ReactNode;
   /** Nombre accesible del botón ("Ayuda: Tipo 1"); el texto largo va en el recuadro, nunca acá. Con `children` y sin esto, el nombre es el texto. */
   label?: string;
   /** En lugar del ícono ⓘ, un texto que abre el recuadro (un término subrayado a puntos): su nombre accesible es ese texto. */
@@ -17,6 +19,8 @@ interface InfoTipProps {
   compact?: boolean;
   /** Diseño de app (teléfono): la ayuda no va en la pantalla de juego; su contenido está en "Cómo se juega". Desde `lg` vuelve. */
   hideInApp?: boolean;
+  /** El puntero sobre el contenedor inmediato también abre la ayuda. */
+  hoverParent?: boolean;
   className?: string;
 }
 
@@ -53,9 +57,10 @@ interface Placement {
  * en el diálogo abierto que contiene al botón), con posición fija: nunca queda recortado dentro de un
  * contenedor con desplazamiento, como la tabla del Clásico.
  */
-export function InfoTip({ text, label, children, compact = false, hideInApp = false, className }: InfoTipProps) {
+export function InfoTip({ text, preview, label, children, compact = false, hideInApp = false, hoverParent = false, className }: InfoTipProps) {
   const tipId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
+  const iconRef = useRef<HTMLSpanElement>(null);
   const tipRef = useRef<HTMLDivElement>(null);
   const { root } = useSkin();
   const [open, setOpen] = useState(false);
@@ -95,18 +100,31 @@ export function InfoTip({ text, label, children, compact = false, hideInApp = fa
 
   // Ubicación: arriba o abajo del botón según el espacio, entero dentro de la ventana.
   const place = useCallback(() => {
-    const button = buttonRef.current?.getBoundingClientRect();
-    const tip = tipRef.current?.getBoundingClientRect();
-    if (!button || !tip) return;
+    const anchor = buttonRef.current;
+    const tipElement = tipRef.current;
+    if (!anchor || !tipElement) return;
+    const button = anchor.getBoundingClientRect();
+    const icon = iconRef.current?.getBoundingClientRect() ?? button;
+    const anchorX = icon.left + icon.width / 2;
+    const tip = tipElement.getBoundingClientRect();
+    const dialog = anchor.closest('dialog[open]')?.getBoundingClientRect();
     const gap = 6;
-    const viewportWidth = document.documentElement.clientWidth;
-    const viewportHeight = window.innerHeight;
-    const below = button.bottom + gap + tip.height <= viewportHeight - EDGE || button.top - gap - tip.height < EDGE;
+    const topEdge = Math.max(0, dialog?.top ?? 0) + EDGE;
+    const leftEdge = Math.max(0, dialog?.left ?? 0) + EDGE;
+    const bottomEdge = Math.min(window.innerHeight, dialog?.bottom ?? Infinity) - EDGE;
+    const rightEdge = Math.min(document.documentElement.clientWidth, dialog?.right ?? Infinity) - EDGE;
+    const below = button.bottom + gap + tip.height <= bottomEdge || button.top - gap - tip.height < topEdge;
     const top = below ? button.bottom + gap : button.top - gap - tip.height;
-    const centered = button.left + button.width / 2 - tip.width / 2;
-    const left = Math.min(Math.max(EDGE, centered), Math.max(EDGE, viewportWidth - EDGE - tip.width));
-    const arrow = Math.min(Math.max(12, button.left + button.width / 2 - left), tip.width - 12);
-    setPlacement({ top: Math.max(EDGE, top), left, side: below ? 'below' : 'above', arrow });
+    const centered = anchorX - tip.width / 2;
+    const left = Math.min(Math.max(leftEdge, centered), Math.max(leftEdge, rightEdge - tip.width));
+    const arrow = Math.min(Math.max(12, anchorX - left), tip.width - 12);
+    // Un diálogo con translate puede ser el origen de las coordenadas fijas del recuadro.
+    setPlacement({
+      top: Math.max(topEdge, top) - (tip.top - parseFloat(tipElement.style.top)),
+      left: left - (tip.left - parseFloat(tipElement.style.left)),
+      side: below ? 'below' : 'above',
+      arrow,
+    });
   }, []);
 
   useLayoutEffect(() => {
@@ -146,9 +164,31 @@ export function InfoTip({ text, label, children, compact = false, hideInApp = fa
     };
   }, [open, close, place]);
 
-  const canHover = () => window.matchMedia('(hover: hover)').matches;
+  useEffect(() => {
+    const button = buttonRef.current;
+    const target = hoverParent ? button?.parentElement : button;
+    if (!target) return;
+    function enter(event: PointerEvent) {
+      if (event.pointerType !== 'mouse' || !window.matchMedia('(hover: hover)').matches) return;
+      clearTimeout(timer.current);
+      if (!open) timer.current = setTimeout(() => show('hover'), HOVER_OPEN_MS);
+    }
+    function leave(event: PointerEvent) {
+      if (event.pointerType !== 'mouse') return;
+      clearTimeout(timer.current);
+      if (open && openedBy.current === 'hover') timer.current = setTimeout(close, HOVER_CLOSE_MS);
+    }
+    target.addEventListener('pointerenter', enter);
+    target.addEventListener('pointerleave', leave);
+    return () => {
+      target.removeEventListener('pointerenter', enter);
+      target.removeEventListener('pointerleave', leave);
+    };
+  }, [close, hoverParent, open, show]);
 
-  const style = placement ? ({ top: `${placement.top}px`, left: `${placement.left}px`, '--arrow-x': `${placement.arrow}px` } as CSSProperties) : undefined;
+  const style = placement
+    ? ({ top: `${placement.top}px`, left: `${placement.left}px`, '--arrow-x': `${placement.arrow}px` } as CSSProperties)
+    : { top: 0, left: 0 };
 
   return (
     <>
@@ -162,17 +202,6 @@ export function InfoTip({ text, label, children, compact = false, hideInApp = fa
         aria-expanded={open}
         onPointerDown={() => {
           pointerDown.current = true;
-        }}
-        onPointerEnter={(event) => {
-          if (event.pointerType !== 'mouse' || !canHover()) return;
-          clearTimeout(timer.current);
-          if (!open) timer.current = setTimeout(() => show('hover'), HOVER_OPEN_MS);
-        }}
-        onPointerLeave={(event) => {
-          if (event.pointerType !== 'mouse') return;
-          clearTimeout(timer.current);
-          // Un momento para pasar al recuadro sin que se cierre (solo si lo abrió el cursor).
-          if (open && openedBy.current === 'hover') timer.current = setTimeout(close, HOVER_CLOSE_MS);
         }}
         onFocus={(event) => {
           // El foco del teclado lo abre; el de un toque lo maneja el clic.
@@ -191,7 +220,7 @@ export function InfoTip({ text, label, children, compact = false, hideInApp = fa
         }}
       >
         {children === undefined ? (
-          <span className={styles.dot} aria-hidden="true">
+          <span ref={iconRef} className={styles.dot} aria-hidden="true">
             <PixelIcon name="info" />
           </span>
         ) : (
@@ -214,6 +243,7 @@ export function InfoTip({ text, label, children, compact = false, hideInApp = fa
               if (event.pointerType === 'mouse' && openedBy.current === 'hover') timer.current = setTimeout(close, HOVER_CLOSE_MS);
             }}
           >
+            {preview}
             {text}
             <span className={styles.arrow} aria-hidden="true" />
           </div>,

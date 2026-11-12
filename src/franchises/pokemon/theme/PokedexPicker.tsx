@@ -8,7 +8,6 @@ import { ActiveAttemptLimit } from '@/components/game-shell/AttemptRules';
 import { useInDock } from '@/components/game-shell/GameDock';
 import { buildSearchIndex } from '@/components/search';
 import { InfoTip } from '@/components/ui/InfoTip';
-import { Switch } from '@/components/ui/Switch';
 import { Button } from '@/components/ui/Button';
 import { Chip } from '@/components/ui/Chip';
 import { PixelIcon } from '@/components/ui/icons';
@@ -23,12 +22,12 @@ import { isTypeName } from './extras-art';
 import { pokedexTypes } from './pokedexTypes';
 import { PokedexPortrait } from './PokedexPortrait';
 import { pokedexPortraitSize, pokedexPortraitUrl } from './pokedexPortraitData';
-import { MONOTYPE_FILTER, availableGenerations, availableTypes, filterByFacets, type PokedexFilters } from './pokedexFilters';
+import { TYPE_MATCH_MODES, availableGenerations, availableTypes, filterByFacets, type PokedexFilters, type TypeMatchMode } from './pokedexFilters';
 import { POKEDEX_LENS, POKEDEX_LIGHT_ROWS, inlineArt } from './art';
 import styles from './PokedexPicker.module.scss';
 
 interface DialogProps {
-  /** `null`: los de siempre, todo activo menos el guion. */
+  /** `null`: todos los tipos y generaciones activos. */
   filters: PokedexFilters | null;
   onFiltersChange: (filters: PokedexFilters | null) => void;
   items: readonly AutocompleteItem[];
@@ -54,7 +53,6 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
   const filtersOpen = panel !== null;
   const showsTypes = panel === 'types' || panel === 'all';
   const showsGenerations = panel === 'generations' || panel === 'all';
-  const [coverBar, setCoverBar] = useState(false);
   // Con el diseño de app, la Pokédex a pantalla completa (un teléfono) cambia de forma: chips, 3 columnas y marcar + confirmar.
   const appShell = useAppShell();
   const [phone, setPhone] = useState(false);
@@ -63,42 +61,60 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
   const pickerRef = useRef<HTMLDivElement>(null);
   const barRef = useRef<HTMLDivElement>(null);
   const filtersRef = useRef<HTMLDivElement>(null);
-  const filterTriggerRef = useRef<HTMLSpanElement>(null);
+  const filterControlsRef = useRef<HTMLDivElement>(null);
+  const focusFilterTrigger = useCallback(() => {
+    const controls = filterControlsRef.current;
+    (controls?.querySelector<HTMLButtonElement>('button[aria-expanded="true"]') ??
+      controls?.querySelector('button'))?.focus({ preventScroll: true });
+  }, []);
   const closeFilters = useCallback(() => {
     setPanel(null);
-    filterTriggerRef.current?.querySelector('button')?.focus({ preventScroll: true });
-  }, []);
+    focusFilterTrigger();
+  }, [focusFilterTrigger]);
   const gridRef = useRef<HTMLUListElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const [query, setQuery] = useState('');
   const [stop, setStop] = useState<string | null>(null);
   const index = useMemo(() => buildSearchIndex(items), [items]);
   const generations = useMemo(() => availableGenerations(items), [items]);
-  const plainTypes = useMemo(() => availableTypes(items), [items]);
-  const types = useMemo(() => [...plainTypes, MONOTYPE_FILTER], [plainTypes]);
-  // Por defecto todo activo (las generaciones son las series activas del modo, que ya recortan el pool) menos el guion.
+  const types = useMemo(() => availableTypes(items), [items]);
+  // Las generaciones disponibles son las series activas del modo, que ya recortan el pool.
   const activeFilters = useMemo(() => ({
-    exactTypes: filters?.exactTypes ?? false,
+    typeMatch: filters?.typeMatch ?? 'any',
     generations: (filters?.generations ?? generations).filter((value) => generations.includes(value)),
-    types: (filters?.types ?? plainTypes).filter((value) => types.includes(value)),
-  }), [filters, generations, plainTypes, types]);
-  const monotype = activeFilters.types.includes(MONOTYPE_FILTER);
-  const chosenTypes = activeFilters.types.filter((type) => type !== MONOTYPE_FILTER);
-  const activeCount = generations.length - activeFilters.generations.length + plainTypes.length - chosenTypes.length + (monotype ? 1 : 0) + (activeFilters.exactTypes ? 1 : 0);
+    types: (filters?.types ?? types).filter((value) => types.includes(value)),
+  }), [filters, generations, types]);
+  const chosenTypes = activeFilters.types;
+  const exactAvailable = chosenTypes.length === 1 || chosenTypes.length === 2;
+  const typeMatch = activeFilters.typeMatch === 'exact' && !exactAvailable ? 'marked' : activeFilters.typeMatch;
+  const activeCount = generations.length - activeFilters.generations.length + types.length - chosenTypes.length + (typeMatch !== 'any' ? 1 : 0);
   // Todo activo no restringe; nada activo no muestra nada (una lista vacía, para filterByFacets, es "sin filtro").
   const facetQuery = useMemo(() => ({
-    exactTypes: activeFilters.exactTypes,
+    typeMatch,
     generations: activeFilters.generations.length === generations.length ? [] : activeFilters.generations.length ? activeFilters.generations : [-1],
-    types: [...(!activeFilters.exactTypes && chosenTypes.length === plainTypes.length ? [] : chosenTypes.length ? chosenTypes : ['']), ...(monotype ? [MONOTYPE_FILTER] : [])],
-  }), [activeFilters, chosenTypes, generations, monotype, plainTypes]);
+    types: typeMatch === 'any' && chosenTypes.length === types.length ? [] : chosenTypes.length ? chosenTypes : [''],
+  }), [activeFilters.generations, chosenTypes, generations, types, typeMatch]);
   const matched = useMemo(() => filterByFacets(items, facetQuery, query, index), [items, facetQuery, index, query]);
   const shown = matched;
   const marked = phone && selected !== null ? shown.find((item) => item.id === selected && !excludeIds.has(item.id)) : undefined;
-  const clearFilters = () => onFiltersChange(null);
-  const deselectAll = () => onFiltersChange({ ...activeFilters, ...(showsTypes ? { types: [], exactTypes: false } : {}), ...(showsGenerations ? { generations: [] } : {}) });
+  const clearFilters = () => {
+    focusFilterTrigger();
+    onFiltersChange(null);
+  };
   const firstFree = shown.find((item) => !excludeIds.has(item.id));
   // Un solo Pokémon es parada de Tab (los demás se alcanzan con las flechas): 1025 paradas serían inusables.
   const tabStop = (stop !== null && shown.some((item) => item.id === stop) ? stop : firstFree?.id) ?? null;
+
+  function toggleType(type: string) {
+    const next = activeFilters.types.includes(type)
+      ? activeFilters.types.filter((value) => value !== type)
+      : [...activeFilters.types, type];
+    onFiltersChange({
+      ...activeFilters,
+      types: next,
+      typeMatch: typeMatch === 'exact' && (next.length === 0 || next.length > 2) ? 'marked' : typeMatch,
+    });
+  }
 
   // Es "teléfono" cuando el diálogo ocupa todo el ancho (el mismo criterio con el que el Modal decide si se puede mover).
   const measurePhone = useCallback(() => {
@@ -135,11 +151,6 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
     return () => observer.disconnect();
   }, [shown]);
 
-  // Con un puntero fino (mouse), se puede escribir de una; en un teléfono, el teclado taparía la grilla.
-  useEffect(() => {
-    if (window.matchMedia('(pointer: fine)').matches) searchRef.current?.focus();
-  }, []);
-
   useEffect(() => {
     if (!filtersOpen) return;
     const panel = filtersRef.current;
@@ -148,19 +159,18 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
     if (!panel || !bar || !body) return;
     // La altura depende también del tamaño que la persona dejó al redimensionar el modal.
     const fit = () => {
-      // El panel nunca supera el alto del cuerpo del modal: si no entra, scrollea por dentro y «Listo» queda a mano.
-      const cover = panel.scrollHeight + bar.offsetHeight > body.clientHeight;
-      panel.style.setProperty('--filters-max', `${Math.max(0, body.clientHeight - (cover ? 0 : bar.offsetHeight))}px`);
-      setCoverBar(cover);
+      // El panel desplaza su contenido debajo de la barra, dejando visibles sus acciones.
+      panel.style.setProperty('--filters-max', `${Math.max(0, body.clientHeight - bar.offsetHeight)}px`);
     };
     fit();
     const observer = new ResizeObserver(fit);
-    observer.observe(panel);
     observer.observe(bar);
     observer.observe(body);
     panel.querySelector('button')?.focus({ preventScroll: true });
     function outside(event: MouseEvent) {
-      if (!(event.target instanceof Node) || panel?.contains(event.target) || filterTriggerRef.current?.contains(event.target)) return;
+      if (!(event.target instanceof Node) || panel?.contains(event.target) || filterControlsRef.current?.contains(event.target)) return;
+      const tip = event.target instanceof Element && event.target.closest('[role="tooltip"]');
+      if (tip && panel?.closest('dialog')?.contains(tip)) return;
       // El primer clic exterior solo descarta el desplegable: nunca envía un intento.
       event.preventDefault();
       event.stopImmediatePropagation();
@@ -228,12 +238,14 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
                   mark={<SearchGlyph />} onClick={() => setSearchOpen((open) => !open)}>
                   <VisuallyHidden>{es.pokemonSkin.picker.searchOpen}</VisuallyHidden>
                 </Chip>
-                <span ref={filterTriggerRef} className={styles.chipGroup}>
+                <div ref={filterControlsRef} className={styles.chipGroup}>
                   <Chip pressed={false} aria-expanded={panel === 'types'} aria-controls={filtersId}
                     onClick={() => (panel === 'types' ? closeFilters() : setPanel('types'))}>{es.pokemonSkin.picker.typeChip}</Chip>
                   <Chip pressed={false} aria-expanded={panel === 'generations'} aria-controls={filtersId}
                     onClick={() => (panel === 'generations' ? closeFilters() : setPanel('generations'))}>{es.pokemonSkin.picker.generationChip}</Chip>
-                </span>
+                  {activeCount > 0 && <Button variant="ghost" className={styles.phoneClear}
+                    aria-label={es.pokemonSkin.picker.clearFilters} onClick={clearFilters}>{es.pokemonSkin.picker.clearFiltersShort}</Button>}
+                </div>
               </div>
               {searchOpen && (
                 <div className={styles.phoneSearch}>
@@ -269,7 +281,6 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
               {es.pokemonSkin.picker.search}
             </label>
             <input
-              ref={searchRef}
               id={searchId}
               className={styles.search}
               type="text"
@@ -293,21 +304,19 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
             <p className={styles.count} role="status">
               {es.pokemonSkin.picker.count(shown.length)}
             </p>
-            <div className={styles.filterActions}>
-              <span ref={filterTriggerRef}>
+            <div ref={filterControlsRef} className={styles.filterActions}>
               <Button variant="ghost" aria-expanded={filtersOpen} aria-controls={filtersId}
                 aria-label={es.pokemonSkin.picker.filtersAccessible(activeCount)}
                 onClick={() => (filtersOpen ? closeFilters() : setPanel('all'))}>
                 {es.pokemonSkin.picker.filters(activeCount)}
               </Button>
-              </span>
               {activeCount > 0 && <Button variant="ghost" onClick={clearFilters}>{es.pokemonSkin.picker.clearFilters}</Button>}
             </div>
 
             </>
           )}
 
-        <div id={filtersId} ref={filtersRef} hidden={!filtersOpen} className={styles.filters} data-cover-bar={coverBar}
+        <div id={filtersId} ref={filtersRef} hidden={!filtersOpen} className={styles.filters}
           role="region" aria-label={es.pokemonSkin.picker.filtersPanel}>
           {showsTypes && (<>
           <div role="group" aria-label={es.pokemonSkin.picker.types}>
@@ -315,19 +324,17 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
             <div className={`${styles.chips} ${styles.typeChips}`}>
               {types.map((type) => {
                 const pressed = activeFilters.types.includes(type);
-                const mono = type === MONOTYPE_FILTER;
-                return <Chip key={type} pressed={pressed} aria-label={mono ? es.pokemonSkin.picker.monotype : undefined} title={mono ? es.pokemonSkin.picker.monotypeHint : undefined} mark={isTypeName(type) ? <span className={styles.typeChipMark} data-on={pressed}><TypeBadge type={type} compact /></span> : undefined}
-                  onClick={() => onFiltersChange({ ...activeFilters, types: pressed
-                    ? activeFilters.types.filter((value) => value !== type)
-                    : [...activeFilters.types, type] })}>{type}</Chip>;
+                return <Chip key={type} pressed={pressed} mark={isTypeName(type) ? <span className={styles.typeChipMark} data-on={pressed}><TypeBadge type={type} compact /></span> : undefined}
+                  onClick={() => toggleType(type)}>{type}</Chip>;
               })}
+              <button type="button" className={styles.facetReset} aria-label={es.pokemonSkin.picker.deselectTypes}
+                onClick={() => onFiltersChange({ ...activeFilters, types: [], typeMatch: 'any' })}>
+                {es.pokemonSkin.picker.deselectTypesShort}
+              </button>
             </div>
           </div>
-          {/* El texto largo va en la ayuda ⓘ: en el panel solo el nombre del interruptor, así no empuja a los botones de abajo. */}
-          <div className={styles.exactRow}>
-            <Switch label={es.pokemonSkin.picker.exactTypes} checked={activeFilters.exactTypes} onChange={(exactTypes) => onFiltersChange({ ...activeFilters, exactTypes })} />
-            <InfoTip compact text={es.pokemonSkin.picker.exactTypesTip} label={es.help.button(es.pokemonSkin.picker.exactTypes)} />
-          </div>
+          <TypeMatchSelector phone={phone} mode={typeMatch} exactAvailable={exactAvailable}
+            onChange={(typeMatch) => onFiltersChange({ ...activeFilters, typeMatch })} />
           </>)}
           {showsGenerations && (
           <div role="group" aria-label={es.pokemonSkin.picker.generations}>
@@ -343,14 +350,15 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
                   {pokemonConfig.seriesLabels[id] ?? es.pokemonSkin.picker.generationNumber(generation)}
                 </Chip>;
               })}
+              <button type="button" className={styles.facetReset} aria-label={es.pokemonSkin.picker.deselectGenerations}
+                onClick={() => onFiltersChange({ ...activeFilters, generations: [] })}>
+                {es.pokemonSkin.picker.deselectGenerationsShort}
+              </button>
             </div>
           </div>
           )}
           <div className={styles.filterFooter}>
-            <p>{es.pokemonSkin.picker.count(shown.length)}</p>
-            {activeCount > 0 && <Button variant="ghost" aria-label={es.pokemonSkin.picker.clearFilters} onClick={clearFilters}>{es.pokemonSkin.picker.clearFiltersShort}</Button>}
-            {/* Deselecciona todo lo que muestra el panel (los tipos, las generaciones o las dos): para elegir uno solo sin ir apagando de a uno. */}
-            <Button variant="ghost" onClick={deselectAll}>{es.pokemonSkin.picker.deselectAll}</Button>
+            <p role="status">{es.pokemonSkin.picker.count(shown.length)}</p>
             <Button variant="secondary" onClick={closeFilters}>{es.pokemonSkin.picker.done}</Button>
           </div>
         </div>
@@ -407,6 +415,55 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
         )}
       </div>
     </Modal>
+  );
+}
+
+function TypeMatchSelector({ phone, mode, exactAvailable, onChange }: {
+  phone: boolean;
+  mode: TypeMatchMode;
+  exactAvailable: boolean;
+  onChange: (mode: TypeMatchMode) => void;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const optionsId = useId();
+  const copy = es.pokemonSkin.picker;
+
+  return (
+    <div className={styles.matchSelector}>
+      {phone && (
+        <button type="button" className={styles.matchTrigger} ref={trigger}
+          aria-expanded={expanded} aria-controls={optionsId} onClick={() => setExpanded(!expanded)}>
+          <span>
+            <span className={styles.matchLabel}>{copy.typeMatch}</span>
+            <strong>{copy.typeMatchModes[mode].label}</strong>
+          </span>
+          <span className={styles.matchArrow} aria-hidden="true"><PixelIcon name="cursor" /></span>
+        </button>
+      )}
+      <div className={styles.matchOptions} id={optionsId} hidden={phone && !expanded}
+        role="group" aria-label={copy.typeMatch}>
+        {TYPE_MATCH_MODES.map((option) => (
+          <div className={styles.matchChoice} key={option}>
+            <Chip pressed={mode === option}
+              disabled={option === 'exact' && !exactAvailable}
+              onClick={() => {
+                onChange(option);
+                if (phone) {
+                  setExpanded(false);
+                  trigger.current?.focus();
+                }
+              }}>
+              {copy.typeMatchModes[option].label}
+            </Chip>
+            <InfoTip hoverParent className={styles.matchInfo} label={es.help.button(copy.typeMatchModes[option].label)}
+              text={option === 'exact' && !exactAvailable
+                ? `${copy.typeMatchModes[option].hint} ${copy.exactTypesUnavailable}`
+                : copy.typeMatchModes[option].hint} />
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { AutocompleteItem } from '@/components/Autocomplete';
-import { MONOTYPE_FILTER, availableGenerations, availableTypes, filterByFacets } from './pokedexFilters';
+import { availableGenerations, availableTypes, filterByFacets } from './pokedexFilters';
 
 const items: AutocompleteItem[] = [
   { id: 'bulbasaur', label: 'Bulbasaur', number: 1, attrs: { generacion: 1, tipo1: 'Planta', tipo2: 'Veneno' } },
@@ -64,20 +64,27 @@ describe('facetas de la Pokédex', () => {
       .toEqual(['bulbasaur', 'gastly', 'chikorita']);
   });
 
-  it('el guion deja solo los Pokémon sin tipo secundario, dentro de los tipos elegidos', () => {
-    const mono = filterByFacets(items, { ...none, types: [MONOTYPE_FILTER] });
-    expect(mono.length).toBeGreaterThan(0);
-    expect(mono.every(({ attrs }) => !attrs?.tipo2)).toBe(true);
-    expect(ids(filterByFacets(items, { ...none, types: [MONOTYPE_FILTER, 'Veneno'] }))).toEqual([]);
-    expect(ids(filterByFacets(items, { ...none, types: [MONOTYPE_FILTER, 'Planta', 'Veneno'] }))).toEqual(['chikorita']);
-  });
 });
 
 it('matches exact type combinations regardless of order and respects generation/search', () => {
-  const exact = { generations: [], types: ['Veneno', 'Planta'], exactTypes: true };
+  const exact = { generations: [], types: ['Veneno', 'Planta'], typeMatch: 'exact' } as const;
   expect(ids(filterByFacets(items, exact))).toEqual(['bulbasaur']);
   expect(filterByFacets(items, { ...exact, generations: [2] })).toEqual([]);
   expect(filterByFacets(items, exact, 'gast')).toEqual([]);
   expect(ids(filterByFacets(items, { ...exact, types: ['Planta'] }))).toEqual(['chikorita']);
   expect(filterByFacets(items, { ...exact, types: ['Planta', 'Veneno', 'Fuego'] })).toEqual([]);
+});
+
+it('distingue los tres modos con Fuego y Agua', () => {
+  const pool: AutocompleteItem[] = [
+    items[1],
+    { id: 'charizard', label: 'Charizard', number: 6, attrs: { tipo1: 'Fuego', tipo2: 'Volador' } },
+    { id: 'squirtle', label: 'Squirtle', number: 7, attrs: { tipo1: 'Agua' } },
+    { id: 'volcanion', label: 'Volcanion', number: 721, attrs: { tipo1: 'Fuego', tipo2: 'Agua' } },
+  ];
+  const filters = { ...none, types: ['Fuego', 'Agua'] };
+  expect(ids(filterByFacets(pool, filters))).toEqual(['charmander', 'charizard', 'squirtle', 'volcanion']);
+  expect(ids(filterByFacets(pool, { ...filters, typeMatch: 'marked' }))).toEqual(['charmander', 'squirtle', 'volcanion']);
+  expect(ids(filterByFacets(pool, { ...filters, typeMatch: 'exact' }))).toEqual(['volcanion']);
+  expect(filterByFacets(pool, { ...filters, types: [''], typeMatch: 'marked' })).toEqual([]);
 });

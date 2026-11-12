@@ -127,6 +127,15 @@
   --frame-dialog-inner: var(--palette-red);
   // Las rayitas del agarre de la esquina se iluminan en el mismo rojo.
   --grip-hover: var(--palette-red);
+
+  @include bp.min-width('md') {
+    @include bp.min-height('tall') {
+      // El desplegable es absoluto: la grilla vacía no debe achicar el diálogo mientras se filtra.
+      &[data-sized='false']:has(.filters:not([hidden])) {
+        min-block-size: 85dvh;
+      }
+    }
+  }
 }
 
 // La barra del título, como la carcasa de la tabla de intentos: la lente a la izquierda, las tres luces arriba y el
@@ -251,7 +260,6 @@
   color: t.token('ink');
   box-shadow: var(--px) var(--px) 0 var(--palette-frame);
   transform-origin: top center;
-  &[data-cover-bar='true'] { inset-block-start: 0; }
   // Una sola columna (tipos arriba, generaciones abajo) y scroll propio si la pantalla es baja.
   max-block-size: var(--filters-max, calc(100dvh - 9rem));
   overflow-y: auto;
@@ -296,6 +304,24 @@
   grid-template-columns: repeat(auto-fill, minmax(6rem, 1fr));
 }
 
+.facetReset {
+  @include m.pixel-frame(
+    $fill: t.token('chip-fill'),
+    $outer: t.token('chip-edge'),
+    $inner: transparent,
+    $inner-width: 0,
+    $width: t.token('button-frame-width'),
+    $clip: t.token('clip-chip'),
+    $radius: t.token('chip-radius')
+  );
+  border: 0;
+  background: none;
+  color: t.token('chip-ink');
+  font-weight: t.$font-weight-medium;
+  cursor: pointer;
+  @include m.focus-ring;
+}
+
 .typeChipMark {
   display: inline-flex;
   &[data-on='false'] { opacity: 0.5; filter: grayscale(1); }
@@ -314,7 +340,7 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  // Una sola fila: "Limpiar", "Ninguno" y "Listo" a la misma altura (antes, con tres botones, uno saltaba a otra línea).
+  // El contador y las acciones generales quedan a la vista mientras se desplaza el panel.
   flex-wrap: nowrap;
   gap: t.$space-1;
   font-size: 0.875rem;
@@ -322,11 +348,86 @@
   > button { flex: none; font-size: 0.875rem; --_pad-inline: #{t.$space-2}; }
 }
 
-// El interruptor de "Solo la combinación exacta" y su ayuda ⓘ, en una fila.
-.exactRow {
+.matchSelector {
+  display: grid;
+  gap: t.$space-1;
+  margin-block: t.$space-1;
+}
+
+.matchOptions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: t.$space-1;
+  &[hidden] { display: none; }
+}
+
+.matchChoice {
+  --match-info-width: 2.75rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+
+  > button[aria-pressed] {
+    grid-area: 1 / 1;
+    --chip-fill: var(--palette-white);
+    min-inline-size: 0;
+    padding-inline: t.$space-2 calc(var(--match-info-width) + #{t.$space-2});
+    line-height: t.$line-height-tight;
+    overflow-wrap: anywhere;
+  }
+
+  > button[aria-pressed='true'] { font-weight: t.$font-weight-bold; }
+  > button:disabled {
+    --chip-fill: var(--palette-cloud-shade);
+    --chip-ink: #{t.token('ink-muted')};
+    cursor: not-allowed;
+  }
+}
+
+.matchChoice > .matchInfo {
+  // Los dos botones comparten el marco visible y conservan sus acciones independientes.
+  grid-area: 1 / 1;
+  place-self: center end;
+  z-index: 1;
+  inline-size: var(--match-info-width);
+  justify-content: flex-start;
+  padding-inline-start: t.$space-1;
+}
+
+.matchTrigger {
+  @include m.pixel-frame($fill: var(--palette-white), $width: t.token('button-frame-width'), $clip: t.token('clip-chip'));
+  min-block-size: 2.75rem;
+  min-inline-size: 0;
+  border: 0;
+  padding: t.$space-2 t.$space-3;
+  background: none;
+  color: var(--palette-night);
+  font: inherit;
+  font-size: t.$font-size-sm;
+  line-height: t.$line-height-tight;
+  overflow-wrap: anywhere;
+  cursor: pointer;
+  @include m.focus-ring;
   display: flex;
   align-items: center;
-  gap: t.$space-1;
+  justify-content: space-between;
+  gap: t.$space-2;
+  text-align: start;
+}
+
+.matchLabel { display: block; }
+
+.matchArrow {
+  display: inline-flex;
+  flex: none;
+  transform: rotate(90deg);
+}
+
+.matchTrigger[aria-expanded='true'] .matchArrow {
+  transform: rotate(-90deg);
+}
+
+.picker[data-phone='true'] .matchOptions {
+  grid-template-columns: minmax(0, 1fr);
 }
 
 // Todas las celdas miden lo mismo (el nombre largo se corta en dos líneas).
@@ -494,6 +595,8 @@
 
 .chipGroup { display: contents; }
 
+.phoneClear { --_pad-inline: #{t.$space-2}; }
+
 .searchGlyph { inline-size: 1rem; block-size: 1rem; flex: none; }
 
 // El buscador, solo después de tocar la lupa.
@@ -516,13 +619,6 @@
     margin: 0 calc(-1 * #{t.$space-2});
     padding: t.$space-1 t.$space-2;
     display: block;
-  }
-
-  // Los filtros se abren debajo de la fila de chips (nunca la tapan, así Tipo y Generación los cierran) y con "Listo" a la vista.
-  .filters,
-  .filters[data-cover-bar='true'] {
-    inset-block-start: 100%;
-    max-block-size: calc(var(--filters-max, 100dvh) - 3.5rem);
   }
 
   // Tres columnas: unos 15 Pokémon por pantalla en 390 × 844.
