@@ -137,13 +137,15 @@ export function HigherLowerBoard({ session, metric, rounds: initialRounds, exten
     if (awaitingNext) nextRef.current?.focus();
   }, [awaitingNext]);
   const roundNumber = index + 1;
-  const firstRender = useRef(true);
+  // Solo cuando la ronda o el estado cambian de verdad, no al montar: en desarrollo React repite los efectos al montar y
+  // un "ya pasó el primer render" no alcanza; sin esto, la página se scrolleaba hasta la primera opción al abrir el modo.
+  // Y sin desplazar la página: el tablero ya está a la vista.
+  const lastFocusKey = useRef(`${roundNumber}:${revealed}`);
   useEffect(() => {
-    if (firstRender.current) {
-      firstRender.current = false;
-      return;
-    }
-    if (!revealed) firstOptionRef.current?.focus();
+    const key = `${roundNumber}:${revealed}`;
+    if (key === lastFocusKey.current) return;
+    lastFocusKey.current = key;
+    if (!revealed) firstOptionRef.current?.focus({ preventScroll: true });
   }, [roundNumber, revealed]);
 
   function advance() {
