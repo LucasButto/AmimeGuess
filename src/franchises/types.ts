@@ -355,7 +355,7 @@ export interface SkinData {
   /** Emojis del texto para compartir; los tres tienen que distinguirse entre sí. */
   readonly shareEmojis: { readonly correct: string; readonly partial: string; readonly incorrect: string };
   readonly sounds: Readonly<Partial<Record<SoundName, SoundRecipe>>>;
-  /** Cuánto dura la animación de salida de los botones de volver antes de navegar (300 ms como máximo). */
+  /** Cuánto dura la animación de salida de los botones de volver antes de navegar (600 ms como máximo). */
   readonly backNavExitMs: number;
   /**
    * Cuánto dura la animación de salida (slot `PageExit`) al cambiar de modo antes de navegar (900 ms como máximo).

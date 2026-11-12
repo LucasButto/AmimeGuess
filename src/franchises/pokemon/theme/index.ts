@@ -9,7 +9,7 @@ import { CellBall } from './CellBall';
 import { ChipBall } from './ChipBall';
 import { DialogFooter } from './DialogFooter';
 import { BallLoader, BattleIntro, BattleOutro, HpMeter, MetricIcon, StreakMedals, TypeMark } from './Extras';
-import { PokemonModeCard, PokemonModeIcon } from './ModeCard';
+import { PokemonModeCard, PokemonModeIcon, PokemonTitleMark } from './ModeCard';
 import { PokedexFrame } from './PokedexFrame';
 import { PokedexPicker } from './PokedexPicker';
 import { pokedexPortraitUrl } from './pokedexPortraitData';
@@ -19,10 +19,11 @@ import { PokemonWinCelebration } from './WinCelebration';
 export const pokemonSkin: FranchiseSkin = {
   className: styles.root,
   cluePortraits: { pixelSource: (entity) => pokedexPortraitUrl(entity) },
-  // La bola se recoge en 250 ms antes de navegar (como máximo 300, SPEC 9.2).
-  backNavExitMs: 250,
-  // Al cambiar de modo, las barras se cierran en 400 ms y recién ahí se navega (la pantalla nueva las abre).
-  pageExitMs: 400,
+  // La pantalla se cierra en círculo sobre la bola en 600 ms antes de navegar (el máximo, SPEC 9.2; es `--recall-ms` en la hoja del tema).
+  backNavExitMs: 600,
+  // Al cambiar de modo, la bola elegida se abre (7 cuadros, 320 ms, ver BallCard) y las barras se cierran (esperan 80 ms y
+  // tardan 400); recién ahí se navega (la pantalla nueva abre las barras).
+  pageExitMs: 480,
   // La barra de PS del Clásico, también en Descripción y Estadísticas. Silueta y Carta (que comparten motor) no la llevan:
   // ya muestran abajo en qué pista van.
   additionalAttemptsMeterModes: ['descripcion', 'estadisticas'],
@@ -68,6 +69,7 @@ export const pokemonSkin: FranchiseSkin = {
     BackNav: BackNavBall,
     ModeCard: PokemonModeCard,
     ModeIcon: PokemonModeIcon,
+    TitleMark: PokemonTitleMark,
     Footer: DialogFooter,
     ChipMark: ChipBall,
     CellBack: CellBall,

@@ -6,66 +6,217 @@
   display: inline-flex;
 }
 
-// Hover y foco del botón: la bola se abre un poco.
-.ball [data-half='top'] {
+// Hover y foco del botón: la bola se abre cuadro a cuadro (y se cierra igual al salir).
+.ball {
   @include bp.hover-capable {
     a:hover & {
-      transform: translateY(calc(var(--u) * -1));
+      --ball-frame: 6;
     }
   }
 
   a:focus-visible & {
-    transform: translateY(calc(var(--u) * -1));
-  }
-
-  // Al salir: abierta mientras sale el rayo y cerrada al final, justo antes de navegar.
-  .wrap[data-leaving='true'] & {
-    @include bp.motion-ok {
-      animation: recall-ball 250ms steps(1, end) both;
-    }
+    --ball-frame: 6;
   }
 }
 
+// --- Al salir: la pantalla se cierra en círculo sobre la bola -----------------------------
+// Todo dura `--recall-ms` (600 ms, lo que espera `BackNav` para navegar; lo define la raíz del tema):
+//   0 a 10 %   la bola se abre
+//   10 a 88 %  el iris se cierra del todo: arranca despacio, cruza la pantalla y frena al llegar a la bola, hasta tragársela
+//   88 a 100 % todo negro
+// La pantalla queda en negro hasta que llega la página nueva, que abre sus barras (`BattleIntro`) desde ese negro.
+
+.wrap[data-leaving='true'] .ball [data-strip] {
+  @include bp.motion-ok {
+    animation: recall-ball var(--recall-ms) steps(1, end) both;
+  }
+}
+
+// Se abre de golpe y queda abierta hasta que la tapa el iris.
 @keyframes recall-ball {
   0% {
-    transform: translateY(calc(var(--u) * -2));
+    transform: translateX(calc(-200% / 7));
   }
 
-  80% {
-    transform: translateY(0);
+  5% {
+    transform: translateX(calc(-400% / 7));
+  }
+
+  10%,
+  100% {
+    transform: translateX(calc(-600% / 7));
   }
 }
 
-// Rayo rojo pixel que sale de la bola hacia la página (crece a pasos y se apaga).
-.ray {
-  position: absolute;
-  inset-block-start: calc(50% - var(--px));
-  inset-inline-start: 50%;
-  z-index: t.$layer-raised;
-  inline-size: 40vmin;
-  block-size: t.px(2);
-  background: var(--palette-red);
-  box-shadow: 0 var(--px) 0 var(--palette-frame);
-  transform-origin: left center;
-  pointer-events: none;
+// Capa fija sobre la raíz del tema, encima de todo. Tapa los toques mientras dura, para que un segundo clic no navegue dos
+// veces. `BackNavBall` le pone el centro de la bola (`--iris-x`, `--iris-y`), el radio con el que el círculo llega a la
+// esquina más lejana de la pantalla (`--iris-far`) y la escala del anillo para ese radio (`--iris-from`).
+.layer {
+  position: fixed;
+  inset: 0;
+  z-index: t.$layer-transition;
+  display: none;
+  overflow: hidden;
 
   @include bp.motion-ok {
-    animation: recall-ray 250ms steps(5, end) both;
+    display: block;
   }
 }
 
-@keyframes recall-ray {
+// El iris son cinco piezas que se mueven juntas (misma duración y misma curva), todas con `transform`:
+// - el anillo: un cuadrado con un agujero redondo (borde claro y rojo por dentro, negro en las esquinas), que se achica;
+// - cuatro paneles negros del tamaño de la pantalla, uno por lado, que siguen los bordes de ese cuadrado.
+// Antes lo negro era una sombra enorme alrededor del círculo: el navegador no llegaba a pintarla entera y quedaba un
+// rectángulo negro con el fondo de la página alrededor.
+$ring: 25rem;
+$recall-ease: cubic-bezier(0.5, 0, 0.3, 1);
+
+.ring {
+  position: absolute;
+  inset-block-start: calc(var(--iris-y, 0px) - #{$ring} / 2);
+  inset-inline-start: calc(var(--iris-x, 0px) - #{$ring} / 2);
+  inline-size: $ring;
+  block-size: $ring;
+  background: radial-gradient(
+    circle closest-side,
+    transparent calc(100% - 0.5rem),
+    var(--palette-white) calc(100% - 0.5rem) calc(100% - 0.3125rem),
+    var(--palette-red) calc(100% - 0.3125rem) calc(100% - 0.0625rem),
+    var(--palette-frame) 100%
+  );
+  transform: scale(var(--iris-from, 8));
+  animation: recall-ring var(--recall-ms) linear both;
+}
+
+@keyframes recall-ring {
   0% {
-    transform: rotate(30deg) scaleX(0);
+    transform: scale(var(--iris-from, 8));
   }
 
-  60% {
-    opacity: 1;
-    transform: rotate(30deg) scaleX(1);
+  10% {
+    transform: scale(var(--iris-from, 8));
+    animation-timing-function: $recall-ease;
   }
 
+  88%,
   100% {
+    transform: scale(0);
+  }
+}
+
+// Cada panel tiene un borde apoyado en el centro de la bola y arranca corrido el radio inicial hacia afuera; llega al centro
+// cuando el anillo llega a cero. Se montan un píxel sobre el anillo para que no quede una línea entre las piezas.
+.panel {
+  position: absolute;
+  inline-size: 100%;
+  block-size: 100%;
+  background: var(--palette-frame);
+  animation: var(--recall-ms) linear both;
+
+  &[data-side='top'] {
+    inset-block-end: calc(100% - var(--iris-y, 0px) - 1px);
+    inset-inline-start: 0;
+    animation-name: recall-panel-top;
+  }
+
+  &[data-side='bottom'] {
+    inset-block-start: calc(var(--iris-y, 0px) - 1px);
+    inset-inline-start: 0;
+    animation-name: recall-panel-bottom;
+  }
+
+  &[data-side='left'] {
+    inset-block-start: 0;
+    inset-inline-end: calc(100% - var(--iris-x, 0px) - 1px);
+    animation-name: recall-panel-left;
+  }
+
+  &[data-side='right'] {
+    inset-block-start: 0;
+    inset-inline-start: calc(var(--iris-x, 0px) - 1px);
+    animation-name: recall-panel-right;
+  }
+}
+
+@keyframes recall-panel-top {
+  0% {
+    transform: translateY(calc(var(--iris-far, 200vmax) * -1));
+  }
+
+  10% {
+    transform: translateY(calc(var(--iris-far, 200vmax) * -1));
+    animation-timing-function: $recall-ease;
+  }
+
+  88%,
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes recall-panel-bottom {
+  0% {
+    transform: translateY(var(--iris-far, 200vmax));
+  }
+
+  10% {
+    transform: translateY(var(--iris-far, 200vmax));
+    animation-timing-function: $recall-ease;
+  }
+
+  88%,
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes recall-panel-left {
+  0% {
+    transform: translateX(calc(var(--iris-far, 200vmax) * -1));
+  }
+
+  10% {
+    transform: translateX(calc(var(--iris-far, 200vmax) * -1));
+    animation-timing-function: $recall-ease;
+  }
+
+  88%,
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes recall-panel-right {
+  0% {
+    transform: translateX(var(--iris-far, 200vmax));
+  }
+
+  10% {
+    transform: translateX(var(--iris-far, 200vmax));
+    animation-timing-function: $recall-ease;
+  }
+
+  88%,
+  100% {
+    transform: none;
+  }
+}
+
+// El negro del final: una sola pieza encima de todo cuando el iris ya cerró, por si entre los paneles queda algún píxel.
+.cover {
+  position: absolute;
+  inset: 0;
+  background: var(--palette-frame);
+  animation: recall-cover var(--recall-ms) steps(1, end) both;
+}
+
+@keyframes recall-cover {
+  0% {
     opacity: 0;
-    transform: rotate(30deg) scaleX(1);
+  }
+
+  88%,
+  100% {
+    opacity: 1;
   }
 }

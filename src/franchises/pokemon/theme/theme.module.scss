@@ -23,6 +23,8 @@
 // src/styles/_tokens.scss sobre la raíz del tema; los colores salen de la paleta de config.ts
 // (variables --palette-*), que cubre el test de contraste.
 .root {
+  // Lo que tarda la salida de los botones de volver (ver BackNavBall); es el `backNavExitMs` de la piel.
+  --recall-ms: 600ms;
   --app-bar-fill: var(--palette-red);
   --app-bar-ink: var(--palette-white);
   --app-bar-edge: var(--palette-frame);
@@ -171,8 +173,6 @@
   --title-step: 0.0625em;
   --title-ink: var(--palette-white);
   --title-shadow: #{outline-shadow(2, var(--palette-frame), var(--palette-ink))};
-  --title-bullet: url('/theme/pokemon/ball.svg');
-  --title-bullet-size: calc(var(--px) * 6);
   --header-site-display: block;
   --kicker-ink: var(--palette-white);
   --kicker-display: none;
@@ -229,8 +229,6 @@
   --flip-ease: steps(3, end);
 }
 
-// Botones de volver ("Poké Ball que se recoge", ver BackNavBall): mientras sale, la página se encoge a
-// pasos hacia la bola. `BackNav` navega a los 250 ms.
 // Las cartas: sin marco. La carta y su reverso son imágenes oficiales con sus propias esquinas redondeadas (transparentes),
 // así que van solas sobre la página: sin borde, sin recorte de pixel art y sin fondo detrás.
 .root [data-game-mode='carta'] [data-part='visor'] {
@@ -248,43 +246,9 @@
   }
 }
 
-.root main[data-recall] {
-  overflow: clip;
-  transform-origin: var(--recall-x) var(--recall-y);
-
-  @include bp.motion-ok {
-    animation: recall 250ms steps(5, end) forwards;
-  }
-}
-
-@keyframes recall {
-  0%,
-  40% {
-    transform: none;
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(0.05);
-  }
-}
-
 @supports (inline-size: round(up, 1em, 1px)) {
   .root {
     --title-step: round(up, 0.0625em, 1px);
   }
 }
 
-// Keep the fixed bar outside the recall transform on phones.
-.root main[data-recall][data-shell='app'] {
-  animation: none;
-  overflow: visible;
-  > [data-app-content] {
-    @include bp.motion-ok { animation: recall 250ms steps(5, end) forwards; }
-  }
-  @include bp.min-width('lg') {
-    overflow: clip;
-    @include bp.motion-ok { animation: recall 250ms steps(5, end) forwards; }
-    > [data-app-content] { animation: none; }
-  }
-}

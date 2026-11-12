@@ -36,7 +36,7 @@ export function getSkin(slug: string | null): ResolvedSkin {
         revealMode: skin.revealMode ?? DEFAULT_SKIN_DATA.revealMode,
         shareEmojis: skin.shareEmojis ?? DEFAULT_SKIN_DATA.shareEmojis,
         sounds: skin.sounds ?? DEFAULT_SKIN_DATA.sounds,
-        backNavExitMs: Math.min(300, skin.backNavExitMs ?? DEFAULT_SKIN_DATA.backNavExitMs),
+        backNavExitMs: Math.min(600, skin.backNavExitMs ?? DEFAULT_SKIN_DATA.backNavExitMs),
         pageExitMs: Math.min(900, skin.pageExitMs ?? DEFAULT_SKIN_DATA.pageExitMs),
         cellIcons: skin.cellIcons ?? DEFAULT_SKIN_DATA.cellIcons,
         cellMarks: skin.cellMarks ?? DEFAULT_SKIN_DATA.cellMarks,
