@@ -1,0 +1,23 @@
+{
+  "name": "animeguess-versus",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Servidor de salas del versus de AnimeGuess: un Worker de Cloudflare con un Durable Object por sala.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p scripts",
+    "test": "vitest run --root .. versus-server",
+    "tail": "wrangler tail",
+    "smoke": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/smoke.ts"
+  },
+  "dependencies": {
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261112.1",
+    "@types/node": "^24.19.1",
+    "typescript": "^6.0.3",
+    "wrangler": "^4.161.0"
+  }
+}

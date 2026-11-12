@@ -38,3 +38,13 @@ npm-debug.log*
 .claude/
 CLAUDE.md
 docs/
+
+# Archivos de trabajo de la búsqueda de clips de técnicas
+data/dragon-ball/source/technique-clips/check/
+data/dragon-ball/source/technique-clips/trace/
+data/dragon-ball/source/technique-clips/sheet.png
+
+# Servidor de salas del versus (Cloudflare): dependencias, estado local de wrangler y variables locales
+versus-server/node_modules/
+versus-server/.wrangler/
+versus-server/.dev.vars

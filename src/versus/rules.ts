@@ -327,6 +327,13 @@ function untimed(partida: Partida): Partida {
   return rest;
 }
 
+/** Los modos jugados sin repetir (una partida ×3 es un solo modo): la primera aparición representa a las demás. */
+export function distinctModes(played: readonly PlayedOption[]): PlayedOption[] {
+  const distinct: PlayedOption[] = [];
+  for (const option of played) if (!distinct.some((seen) => sameMode(seen.partida, option.partida))) distinct.push(option);
+  return distinct;
+}
+
 /**
  * El resultado de la votación de desempate. `votes` son los votos emitidos (los que no votaron no cuentan); `played`, las
  * partidas jugadas; `random`, un número en [0, 1) que pone el servidor.
@@ -336,9 +343,7 @@ function untimed(partida: Partida): Partida {
  * Un modo jugado repetido (×3) es una sola opción, y un "otro modo" igual a uno jugado cuenta como ese.
  */
 export function tiebreakOutcome(votes: readonly TiebreakVote[], played: readonly PlayedOption[], random: number): TiebreakOutcome {
-  // Los modos jugados sin repetir: la primera aparición representa a las demás.
-  const distinct: PlayedOption[] = [];
-  for (const option of played) if (!distinct.some((seen) => sameMode(seen.partida, option.partida))) distinct.push(option);
+  const distinct = distinctModes(played);
   const canonical = (vote: TiebreakVote): TiebreakVote => {
     const partida = 'played' in vote ? played.find((option) => option.index === vote.played)?.partida : vote.other;
     const match = partida && distinct.find((option) => sameMode(option.partida, partida));

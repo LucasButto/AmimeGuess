@@ -58,7 +58,7 @@ const slug = z.string().regex(/^[a-z0-9][a-z0-9-]{0,39}$/);
 /** La variante de un modo como la arma su motor (`m-<medida>` en Mayor o Menor, `d2` en Línea de tiempo). */
 const variantId = z.string().regex(/^[A-Za-z0-9][A-Za-z0-9-]{0,39}$/);
 
-const partidaSchema = z.strictObject({
+export const partidaSchema = z.strictObject({
   franchise: slug,
   mode: slug,
   engine: z.enum(VERSUS_ENGINES),
@@ -74,6 +74,17 @@ const partidaSchema = z.strictObject({
   toggles: z.record(slug, z.boolean()).optional(),
   /** Solo Contrarreloj: el tiempo límite de esta partida. */
   timeLimitMs: z
+    .number()
+    .int()
+    .min(LIMITS.timeLimitMs.min)
+    .max(LIMITS.timeLimitMs.max)
+    .multipleOf(LIMITS.timeLimitMs.step)
+    .optional(),
+  /**
+   * El tiempo por defecto de esta partida (el de su tipo de modo más el extra por series), aunque el creador haya editado
+   * `timeLimitMs`. Lo usa el desempate, que siempre juega con el tiempo por defecto (01-reglas.md, sección 7).
+   */
+  defaultTimeLimitMs: z
     .number()
     .int()
     .min(LIMITS.timeLimitMs.min)
