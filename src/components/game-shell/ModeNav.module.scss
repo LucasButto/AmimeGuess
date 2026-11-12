@@ -196,6 +196,66 @@
   }
 }
 
+.dropdown {
+  display: none;
+  position: relative;
+
+  &[open] {
+    z-index: t.$layer-nav + 1;
+  }
+}
+
+.root[data-dropdown='true'] {
+  @include m.app-shell {
+    .list { display: none; }
+    .dropdown { display: block; }
+  }
+  @include m.app-shell-desktop {
+    .list { display: flex; }
+    .dropdown { display: none; }
+  }
+}
+
+.trigger,
+.dropdownList .pill {
+  display: flex;
+  inline-size: 100%;
+  justify-content: flex-start;
+  gap: t.$space-2;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.trigger {
+  z-index: 1;
+  cursor: pointer;
+  list-style: none;
+  &::-webkit-details-marker { display: none; }
+}
+
+.downArrow {
+  flex: none;
+  margin-inline-start: auto;
+  transform: rotate(90deg);
+  .dropdown[open] & { transform: rotate(-90deg); }
+}
+
+.dropdownList {
+  @include m.pixel-frame;
+  position: absolute;
+  inset-block-start: 100%;
+  inset-inline: 0;
+  z-index: t.$layer-dropdown;
+  display: grid;
+  gap: t.$space-1;
+  max-block-size: min(55dvh, 28rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin: t.$space-1 0 0;
+  padding: t.$space-2;
+  list-style: none;
+}
+
 .root .list .pill[data-solved='true'] {
   --_fill: #{t.color('match')};
   --_ink: #{t.color('on-result')};
