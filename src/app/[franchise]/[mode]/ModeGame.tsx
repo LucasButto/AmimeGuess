@@ -64,8 +64,11 @@ export function ModeGame(props: ModeGameProps) {
       <PoolNounContext.Provider
         value={modePoolNoun(props.franchise, props.mode)}
       >
-        <AttemptRules.Provider value={{ base: props.mode.try ?? 8, adaptive: ['classic', 'image-reveal', 'text-clue', 'reveal-list'].includes(props.mode.engine) }}>
-          <ModeEngine {...props} />
+        <AttemptRules.Provider value={props.mode.engine === 'image-reveal' ? null : {
+          base: props.mode.try ?? 8,
+          adaptive: ['classic', 'text-clue', 'reveal-list'].includes(props.mode.engine),
+        }}>
+          <ModeEngine key={`${props.franchise.slug}/${props.mode.slug}`} {...props} />
         </AttemptRules.Provider>
       </PoolNounContext.Provider>
     </AutocompleteOptions.Provider>

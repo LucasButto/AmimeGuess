@@ -74,7 +74,6 @@ function reportOf(attemptIds: readonly string[], answer: Candidate, accepted: re
  */
 export function ImageRevealBoard({ session, config, candidates, options }: ImageRevealBoardProps) {
   const { franchise, mode, filterKey, day, onFinish } = session;
-  const maxAttempts = session.attemptLimit ?? MAX_FAILED;
   const { lost: surrendered, surrender } = useSurrender(session);
   const failedTitleId = useId();
   const difficultyId = useId();
@@ -101,7 +100,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
 
   const [attemptIds, setAttemptIds] = useState<string[]>(() => {
     const state = readState(getLocalStorage(), ctx);
-    return restoreLimited(restoreAttempts(state?.attempts, options), state, maxAttempts);
+    return restoreLimited(restoreAttempts(state?.attempts, options), state, MAX_FAILED);
   });
   const [lastAttempt, setLastAttempt] = useState<{ id: string; revealed: boolean } | null>(null);
   const [prefs, setPrefs] = useState<RevealPrefs>(() => readPrefs(getLocalStorage(), franchise, mode));
@@ -110,7 +109,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   // mostrar su resumen, pero sin volver a sumarla a las estadísticas.
   const [restored] = useState<FinishReport | null>(() => {
     if (attemptIds.some((id) => isCorrect(id, answer.id, accepted))) return reportOf(attemptIds, answer, accepted, true, false, detail);
-    return surrendered || isLost(failedCount(attemptIds, answer.id, accepted), maxAttempts) ? reportOf(attemptIds, answer, accepted, false, false, detail) : null;
+    return surrendered || isLost(failedCount(attemptIds, answer.id, accepted)) ? reportOf(attemptIds, answer, accepted, false, false, detail) : null;
   });
   useEffect(() => {
     if (restored) onFinish(restored);
@@ -120,15 +119,15 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   const won = attemptIds.some((id) => isCorrect(id, answer.id, accepted));
   const failed = failedCount(attemptIds, answer.id, accepted);
   useMissBuzz(failed);
-  const lost = !won && (surrendered || isLost(failed, maxAttempts));
+  const lost = !won && (surrendered || isLost(failed));
   // Ganado o perdido: ya no se puede seguir y se muestra la imagen entera.
   const over = won || lost;
-  const visualStep = revealStep(failed, prefs.reveal, maxAttempts);
-  const step = Math.floor(visualStep);
+  const currentAttempt = Math.min(attemptIds.length + (over ? 0 : 1), MAX_FAILED);
+  const step = revealStep(failed, prefs.reveal);
   // Al terminar, la imagen se muestra entera, a color y nítida.
   // Un contenido puede pedir más cerca que el resto (`zoom`): sube todos los aumentos del modo.
   const zoomScales = image.zoom === undefined || image.zoom === 1 ? config.zoomScales : config.zoomScales?.map((scale) => scale * image.zoom!);
-  const visual = over ? REVEALED : revealVisual(config.variant, visualStep, prefs.colors, focus, zoomScales, config.blurLevels);
+  const visual = over ? REVEALED : revealVisual(config.variant, step, prefs.colors, focus, zoomScales, config.blurLevels);
 
   const items = useMemo<AutocompleteItem[]>(
     () => options.map(autocompleteItemOf),
@@ -153,7 +152,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
     const next = [...attemptIds, id];
     const solved = isCorrect(id, answer.id, accepted);
     // Con este fallo se gastaron los intentos: se perdió.
-    const spent = !solved && isLost(failedCount(next, answer.id, accepted), maxAttempts);
+    const spent = !solved && isLost(failed + 1);
 
     setAttemptIds(next);
     setLastAttempt({ id, revealed: prefs.reveal });
@@ -212,16 +211,15 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
       )}
 
       <div className={styles.counter}>
-        <AttemptsStatus><p data-attempts-counter="">{es.shell.limits.counter(attemptIds.length, maxAttempts)}</p></AttemptsStatus>
+        <AttemptsStatus><p data-attempts-counter="">{es.imageReveal.attemptCounter(currentAttempt, MAX_FAILED)}</p></AttemptsStatus>
         {!over && (
           <SurrenderButton
             onConfirm={() => surrender(attemptIds, reportOf(attemptIds, answer, accepted, false, true, detail))}
           />
         )}
       </div>
-      <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="image-reveal" mode={mode} failed={failed} won={won} total={maxAttempts} /></AttemptsStatus>
       {/* Antes del último intento se avisa: si falla, se pierde. */}
-      {!over && failed === maxAttempts - 1 && (
+      {!over && failed === MAX_FAILED - 1 && (
         <p className={styles.lastChance} role="status">
           {es.imageReveal.lastChance}
         </p>

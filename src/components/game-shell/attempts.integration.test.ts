@@ -19,7 +19,6 @@ const content: Content = { id: 'clue', kind: 'clue', series: 'one', entityId: an
 const candidates = [{ id: answer.id, entity: answer, contents: [content] }];
 const renderers = {
   classic: () => h(ClassicBoard, { session, pool: entities, columns: [{ key: 'value', label: 'Value', compare: 'ordered' as const }], hints: [], contents: [] }),
-  image: () => h(ImageRevealBoard, { session, config: { variant: 'blur' as const }, options: entities, candidates: [{ id: answer.id, entity: answer, images: [{ id: 'img', stem: 'test/image', width: 512, height: 512, focus: null }] }] }),
   text: () => h(TextClueBoard, { session, config: { contentKind: 'clue', lines: [{ kind: 'content' as const, label: 'Clue', field: 'text', after: 0 }] }, candidates, options: entities }),
   list: () => h(RevealListBoard, { session, config: { contentKind: 'clue', field: 'items', label: 'Clues' }, candidates, options: entities }),
 };
@@ -54,6 +53,33 @@ describe('límite conectado a los motores de adivinar', () => {
       expect(renderToStaticMarkup(renderer())).toContain('data-won="true"');
     });
   }
+});
+
+describe('los modos de imagen avanzan una pista por fallo', () => {
+  const wrong = entities.slice(1).map((entity) => entity.id);
+  const render = (attemptLimit: number) => renderToStaticMarkup(h(ImageRevealBoard, {
+    session: { ...session, attemptLimit },
+    config: { variant: 'blur' },
+    options: entities,
+    candidates: [{ id: answer.id, entity: answer, images: [{ id: 'img', stem: 'test/image', width: 512, height: 512, focus: null }] }],
+  }));
+
+  it.each([3, 8])('permite jugar cada pista con un presupuesto externo de %i', (limit) => {
+    for (let failed = 0; failed < 6; failed++) {
+      save(wrong.slice(0, failed));
+      const html = render(limit);
+      expect(html).toContain(`Pista ${failed + 1} de 6`);
+      expect(html).toContain('data-over="false"');
+      expect(html).toContain(`Intentos: ${failed + 1}/6`);
+    }
+    expect(render(limit)).toContain('Último intento');
+    save(wrong.slice(0, 6));
+    expect(render(limit)).toContain('data-over="true"');
+    expect(render(limit)).toContain('data-won="false"');
+    expect(render(limit)).toContain('Intentos: 6/6');
+    save([...wrong.slice(0, 5), answer.id], 'won');
+    expect(render(limit)).toContain('data-won="true"');
+  });
 });
 
 describe('derrotas de puntaje', () => {

@@ -151,8 +151,8 @@ export const REVEAL_STEPS = 6;
  * El paso que corresponde a una cantidad de intentos fallidos. Con "revelar con
  * cada intento" apagado, la imagen se queda en el paso más oculto.
  */
-export function revealStep(failed: number, reveal: boolean, attempts = REVEAL_STEPS): number {
-  return reveal ? Math.min(Math.max(failed * (REVEAL_STEPS - 1) / Math.max(1, attempts - 1), 0), REVEAL_STEPS - 1) : 0;
+export function revealStep(failed: number, reveal: boolean): number {
+  return reveal ? Math.min(Math.max(failed, 0), REVEAL_STEPS - 1) : 0;
 }
 
 // Una entrada por paso, de lo más oculto a lo más claro.
@@ -283,8 +283,8 @@ export function isCorrect(guessId: string, answerId: string, accepted: readonly 
 export const MAX_FAILED = REVEAL_STEPS;
 
 /** ¿Se gastaron los intentos? Con tantos fallos como pasos de revelado, el reto se perdió. */
-export function isLost(failed: number, limit = MAX_FAILED): boolean {
-  return failed >= limit;
+export function isLost(failed: number): boolean {
+  return failed >= MAX_FAILED;
 }
 
 /** Intentos que no acertaron: cada uno revela un paso más. */

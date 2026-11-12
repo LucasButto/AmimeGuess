@@ -571,6 +571,7 @@ export const es = {
     imageAlt: 'Imagen del reto, parcialmente oculta',
     imageSolvedAlt: (label: string) => `Imagen completa: ${label}`,
     step: (current: number, total: number) => `Pista ${current} de ${total}`,
+    attemptCounter: (current: number, total: number) => `Intentos: ${current}/${total}`,
     attempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
     failedTitle: 'Intentos fallidos',
     empty: 'Todavía no hiciste ningún intento.',
