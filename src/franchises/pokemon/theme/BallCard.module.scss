@@ -26,6 +26,19 @@
   transform-origin: 50% 100%;
 }
 
+// La bola con tira de cuadros ocupa la caja entera y se abre al elegir el modo (320 ms, 7 cuadros).
+// (Dos clases: le gana a la caja de `BallOpen` sin depender del orden de las hojas.)
+.ball .open {
+  --ball-open-ms: 320ms;
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+
+  .card[data-opened='true'] & {
+    --ball-frame: 6;
+  }
+}
+
 // Tilde de "resuelto": un sello pixel sobre la esquina de arriba a la izquierda del nombre, sin girar (girado, los píxeles se deforman). Dos capas con
 // esquinas escalonadas: el borde de tinta afuera y el verde adentro. El estado no depende
 // del color (y el nombre accesible lo dice).
