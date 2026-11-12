@@ -1,0 +1,55 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+
+// El cuadro que se muestra, de 0 (cerrada) a 6 (abierta). Es un número registrado para poder ir de uno a otro con una
+// transición: quien usa la bola pide un cuadro con `--ball-frame` y `--ball-shown` va hacia él de forma pareja; la tira se
+// mueve con ese número REDONDEADO, así que siempre muestra un cuadro entero. Con una transición puesta directamente en el
+// `transform` de la tira, al cortarla a la mitad (pasar el mouse rápido) los pasos se repartían desde donde había quedado y se
+// veía la tira deslizándose entre dos cuadros.
+@property --ball-shown {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+
+// La caja mide 12 × 12 unidades `--u` (como `PokeBall`) y es lo que ocupa la bola cerrada.
+.ball {
+  --u: var(--px);
+  --ball-shown: var(--ball-frame, 0);
+  position: relative;
+  display: inline-block;
+  flex: none;
+  inline-size: calc(var(--u) * 12);
+  block-size: calc(var(--u) * 12);
+
+  &[data-unit='half'] {
+    --u: #{t.token('px-half')};
+  }
+
+  @include bp.motion-ok {
+    transition: --ball-shown var(--ball-open-ms, 350ms) linear;
+  }
+}
+
+// Una celda de la tira (254 × 354): la bola cerrada ocupa el 98 % del ancho y el 70 % del alto, apoyada abajo. Por eso la
+// celda es un 2 % más ancha que la caja y sobresale hacia arriba.
+.cell {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: -1%;
+  display: block;
+  inline-size: 102%;
+  aspect-ratio: 254 / 354;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+// La tira entera, 7 celdas: se corre una celda por cuadro.
+.strip {
+  display: block;
+  inline-size: 700%;
+  max-inline-size: none;
+  block-size: 100%;
+  transform: translateX(calc(round(var(--ball-shown)) * -100% / 7));
+  user-select: none;
+}

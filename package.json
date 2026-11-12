@@ -13,6 +13,7 @@
     "check:design": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/check-design.ts",
     "design:scroll": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/design/scroll.ts",
     "design:icons": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/design/icons.ts",
+    "design:balls": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/design/ball-frames.ts",
     "design:assets": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/design/assets.ts",
     "data:pokemon": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/data/pokemon/build.ts",
     "data:pokemon-pmd": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/data/pokemon/pmd.ts",

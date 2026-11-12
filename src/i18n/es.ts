@@ -687,6 +687,10 @@ export const es = {
           text: "Hoja de pixel art aportada por el usuario; autor y licencia a confirmar. Ocho bolas recortadas de la hoja (Poké, Super, Ultra, Master, Lujo, Veloz, Ocaso y Premier).",
         },
         {
+          name: "Poké Balls que se abren",
+          text: "Cinco tiras de 7 cuadros aportadas por el usuario (Poké, Super, Ultra, Veloz y Master, de cerrada a abierta); origen y licencia a confirmar. Se usan en los botones de volver de Pokémon y en las bolas de los modos, que se abren al elegirlas.",
+        },
+        {
           name: "Íconos de tipo de Pokémon",
           text: "«Alan900900900» (nombre tal como figura en la imagen); recortados de la imagen aportada por el usuario; licencia a confirmar. El autor pide no copiar su trabajo sin crédito.",
         },
