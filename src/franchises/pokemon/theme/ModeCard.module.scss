@@ -37,3 +37,20 @@
     block-size: calc(#{t.token('px-half')} * 17);
   }
 }
+
+// La marca del título de un modo: su ícono, del alto de las letras y centrado con ellas. Las mayúsculas de la fuente del
+// título ocupan de 0,1 a 1,02 em sobre la línea de base (su centro queda a 0,56 em), así que la caja de 0,9 em sube 0,11 em.
+.titleMark {
+  display: inline-block;
+  inline-size: 0.9em;
+  block-size: 0.9em;
+  margin-inline-end: 0.3em;
+  vertical-align: 0.11em;
+}
+
+.titleArt {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+}
