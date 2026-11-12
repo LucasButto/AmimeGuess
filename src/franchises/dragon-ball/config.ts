@@ -176,7 +176,7 @@ export const dragonBallConfig = {
         levels: [{ count: 5, attempts: 3 }, { count: 10, attempts: 4 }, { count: 15, attempts: 5 }],
       },
     },
-          { slug: 'casillas', name: es.categoryBoard.name, engine: 'category-board', categoryBoard: { roster: boardJson.roster, exclusions: boardJson.exclusions, categories: boardJson.categories.map((category) => ({ ...category, ...es.categoryBoard.categories[category.id] })) } },
+          { slug: 'casillas', name: es.categoryBoard.name, engine: 'category-board', categoryBoard: { reassignCurrent: true, roster: boardJson.roster, exclusions: boardJson.exclusions, categories: boardJson.categories.map((category) => ({ ...category, ...es.categoryBoard.categories[category.id] })) } },
   ],
   // Manga de acción (sesión 16): paneles de papel crema con tinta negra gruesa sobre el cielo celeste de la serie. Bangers
   // para los títulos (letra de cómic, solo títulos y etiquetas cortas) y Rubik para el texto.
