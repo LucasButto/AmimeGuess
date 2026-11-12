@@ -19,6 +19,7 @@ import games from './Games.module.scss';
 import styles from './theme.module.scss';
 
 export const dragonBallSkin: FranchiseSkin = {
+  cluePortraits: {},
   className: `${styles.root} ${games.root}`,
   // La nube se disipa en 250 ms antes de navegar (como máximo 300, SPEC 9.2).
   backNavExitMs: 250,

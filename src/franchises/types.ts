@@ -327,6 +327,12 @@ export interface SoundRecipe {
 export type SoundName = 'reveal' | 'miss' | 'win';
 
 export interface SkinData {
+  /** Habilita retratos en nombres visibles de pistas y permite aportar una variante pixel art. */
+  readonly cluePortraits?: {
+    readonly pixelSource?: (entity: Entity) => string | undefined;
+    /** Personajes nombrados en pistas que no forman parte del catálogo jugable. */
+    readonly additional?: readonly { name: string; image: string; aliases?: readonly string[] }[];
+  };
   /** Reemplaza solo la imagen de las opciones con ComparisonMedia; false por defecto. */
   readonly customComparisonMedia?: boolean;
   /** Reemplaza el contenido de cada posición con RevealListItem; false por defecto. */

@@ -15,7 +15,7 @@ import { useMissBuzz } from '@/components/useHaptics';
 import { SkinAttemptsMeter, SkinGameFrame } from '@/components/skin/gameSlots';
 import { PixelIcon } from '@/components/ui/icons';
 import { InfoTip } from '@/components/ui/InfoTip';
-import { TermText } from '@/components/ui/TermText';
+import { ClueNames } from '@/components/game-shell/ClueNames';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
 import { pickDaily, type DailyContext } from '@/engine/daily';
 import { getLocalStorage, readState, writeState } from '@/engine/storage';
@@ -71,7 +71,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
   const { skin } = useSkin();
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
   const answer = useMemo(() => pickDaily(candidates, ctx), [candidates, ctx]);
-  const content = useMemo(() => pickContent(answer, ctx), [answer, ctx]);
+  const content = useMemo(() => pickContent(answer, ctx, config.preferredContentFlag), [answer, ctx, config.preferredContentFlag]);
   const byId = useMemo(() => new Map(options.map((entity) => [entity.id, entity])), [options]);
 
   const [attemptIds, setAttemptIds] = useState<string[]>(() => {
@@ -172,7 +172,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
                 {line.label}
               </p>
               <p className={styles.clueText} data-display={line.kind === 'content' ? (line.display ?? 'text') : 'text'}>
-                <TermText text={text} help={line.kind === 'attr' ? line.valueHelp : undefined} />
+                <ClueNames text={text} help={line.kind === 'attr' ? line.valueHelp : undefined} />
               </p>
             </div>
           ))}
@@ -191,7 +191,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
             {hintLines.map(({ line, unlocked, remaining, text }) => (
               <li key={line.label} className={styles.hint} data-unlocked={unlocked}>
                 <span className={styles.hintLabel}>{line.label}</span>
-                <span>{unlocked ? <TermText text={text} help={line.kind === 'attr' ? line.valueHelp : undefined} /> : es.textClue.hintLocked(remaining)}</span>
+                <span>{unlocked ? <ClueNames text={text} help={line.kind === 'attr' ? line.valueHelp : undefined} /> : es.textClue.hintLocked(remaining)}</span>
               </li>
             ))}
           </ul>
@@ -223,7 +223,7 @@ export function TextClueBoard({ session, config, candidates, options }: TextClue
               <li key={attempt.id} className={styles.chip}>
                 {/* La cruz acompaña al color, si el tema la quiere: el título de la lista ya dice que son fallos. */}
                 {skin.cellMarks === 'all' && <span aria-hidden="true">✕ </span>}
-                {attempt.label}
+                <ClueNames text={attempt.label} />
               </li>
             ))}
           </ul>

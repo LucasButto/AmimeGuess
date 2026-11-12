@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AppShellProvider } from "@/components/game-shell/AppShellContext";
+import { CluePortraitProvider } from "@/components/game-shell/ClueNames";
 import { AutocompleteOptions } from "@/components/Autocomplete";
 import { PoolNounContext } from "@/components/FilterPanel";
 import { Button } from "@/components/ui/Button";
@@ -196,7 +197,9 @@ function ModeEngine({ franchise, mode, modes, playable }: ModeGameProps) {
   return game === null ? (
     comingSoon
   ) : (
-    <RouletteCandidates.Provider value={rouletteCandidates}><GameFlagsContext.Provider value={flags}>{game}</GameFlagsContext.Provider></RouletteCandidates.Provider>
+    <CluePortraitProvider entities={loaded.entities}>
+      <RouletteCandidates.Provider value={rouletteCandidates}><GameFlagsContext.Provider value={flags}>{game}</GameFlagsContext.Provider></RouletteCandidates.Provider>
+    </CluePortraitProvider>
   );
 
   function renderGame(data: FranchiseData) {

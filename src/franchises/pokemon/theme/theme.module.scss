@@ -175,6 +175,7 @@
   --title-bullet-size: calc(var(--px) * 6);
   --header-site-display: block;
   --kicker-ink: var(--palette-white);
+  --kicker-display: none;
   --kicker-shadow: #{outline-shadow(1, var(--palette-frame))};
 
   // Placa crema con marco de dos tonos debajo del texto suelto de las páginas: con margen mínimo en el

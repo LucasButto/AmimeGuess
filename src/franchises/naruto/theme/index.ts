@@ -15,6 +15,18 @@ import { NarutoModeCard, NarutoModeIcon, NarutoTitleMark } from './Scroll';
 import styles from './theme.module.scss';
 
 export const narutoSkin: FranchiseSkin = {
+  cluePortraits: {
+    additional: [
+      { name: 'Ao', image: 'naruto/clue-portraits/ao' },
+      { name: 'Gatō', image: 'naruto/clue-portraits/gato', aliases: ['Gato'] },
+      { name: 'Ginkaku', image: 'naruto/clue-portraits/ginkaku' },
+      { name: 'Hotaru', image: 'naruto/clue-portraits/hotaru' },
+      { name: 'Kinkaku', image: 'naruto/clue-portraits/kinkaku' },
+      { name: 'Log', image: 'naruto/clue-portraits/log' },
+      { name: 'Maki', image: 'naruto/clue-portraits/maki' },
+      { name: 'Mifune', image: 'naruto/clue-portraits/mifune' },
+    ],
+  },
   className: `${styles.root} ${games.root}`,
   // El kunai sale disparado (o el humo tapa el de teletransporte) en 250 ms antes de navegar (como mucho 300, SPEC 9.2).
   backNavExitMs: 250,

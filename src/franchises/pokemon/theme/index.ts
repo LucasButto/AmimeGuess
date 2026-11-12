@@ -12,11 +12,13 @@ import { BallLoader, BattleIntro, BattleOutro, HpMeter, MetricIcon, StreakMedals
 import { PokemonModeCard, PokemonModeIcon } from './ModeCard';
 import { PokedexFrame } from './PokedexFrame';
 import { PokedexPicker } from './PokedexPicker';
+import { pokedexPortraitUrl } from './pokedexPortraitData';
 import styles from './theme.module.scss';
 import { PokemonWinCelebration } from './WinCelebration';
 
 export const pokemonSkin: FranchiseSkin = {
   className: styles.root,
+  cluePortraits: { pixelSource: (entity) => pokedexPortraitUrl(entity) },
   // La bola se recoge en 250 ms antes de navegar (como máximo 300, SPEC 9.2).
   backNavExitMs: 250,
   // Al cambiar de modo, las barras se cierran en 400 ms y recién ahí se navega (la pantalla nueva las abre).

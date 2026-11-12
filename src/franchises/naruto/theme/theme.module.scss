@@ -282,6 +282,7 @@
   --title-ink: var(--palette-paper);
   --title-shadow: #{ink-outline(0.0625em, var(--palette-ink), var(--palette-ink))};
   --kicker-ink: var(--palette-paper);
+  --kicker-display: none;
   --kicker-shadow: #{ink-outline(0.0625rem, var(--palette-ink))};
 
   // Grilla de modos: el pergamino del Clásico de lado a lado y los rollos en 2, 3 y 4 columnas.

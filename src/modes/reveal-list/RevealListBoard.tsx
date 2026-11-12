@@ -8,6 +8,7 @@ import { useSurrender } from '@/components/game-shell/useSurrender';
 import { fitHints, restoreLimited } from '@/components/game-shell/attempts';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { ClueNames } from '@/components/game-shell/ClueNames';
 import { useMissBuzz } from '@/components/useHaptics';
 import { SkinAttemptsMeter, SkinGameFrame, SkinRevealListItem, revealListPosition } from '@/components/skin/gameSlots';
 import { PixelIcon } from '@/components/ui/icons';
@@ -170,7 +171,7 @@ export function RevealListBoard({ session, config, candidates, options }: Reveal
                     {revealListPosition(slot.position, skin.revealListPositionPrefix)}
                   </span>
                   {slot.revealed ? (
-                    <span className={styles.text}>{slot.text}</span>
+                    <span className={styles.text}><ClueNames text={slot.text} /></span>
                   ) : (
                     <>
                       {/* Un hueco por revelar: se ve como "???" y se lee como "todavía oculta". */}
@@ -199,7 +200,7 @@ export function RevealListBoard({ session, config, candidates, options }: Reveal
             {hintLines.map(({ line, unlocked, remaining, text }) => (
               <li key={line.label} className={styles.hint} data-unlocked={unlocked}>
                 <span className={styles.hintLabel}>{line.label}</span>
-                <span>{unlocked ? text : es.revealList.hintLocked(remaining)}</span>
+                <span>{unlocked ? <ClueNames text={text} /> : es.revealList.hintLocked(remaining)}</span>
               </li>
             ))}
           </ul>
@@ -231,7 +232,7 @@ export function RevealListBoard({ session, config, candidates, options }: Reveal
               <li key={attempt.id} className={styles.chip}>
                 {/* La cruz acompaña al color, si el tema la quiere: el título de la lista ya dice que son fallos. */}
                 {skin.cellMarks === 'all' && <span aria-hidden="true">✕ </span>}
-                {attempt.label}
+                <ClueNames text={attempt.label} />
               </li>
             ))}
           </ul>

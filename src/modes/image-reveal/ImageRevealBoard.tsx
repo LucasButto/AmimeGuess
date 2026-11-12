@@ -12,8 +12,9 @@ import { useSurrender } from '@/components/game-shell/useSurrender';
 import { restoreLimited } from '@/components/game-shell/attempts';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { ClueNames } from '@/components/game-shell/ClueNames';
 import { useMissBuzz } from '@/components/useHaptics';
-import { SkinAttemptsMeter, SkinGameFrame } from '@/components/skin/gameSlots';
+import { SkinGameFrame } from '@/components/skin/gameSlots';
 import { Chip } from '@/components/ui/Chip';
 import { InfoTip } from '@/components/ui/InfoTip';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
@@ -235,7 +236,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
               <li key={attempt.id} className={styles.chip}>
                 {/* La cruz acompaña al color, si el tema la quiere: el título de la lista ya dice que son fallos. */}
                 {skin.cellMarks === 'all' && <span aria-hidden="true">✕ </span>}
-                {attempt.label}
+                <ClueNames text={attempt.label} />
               </li>
             ))}
           </ul>

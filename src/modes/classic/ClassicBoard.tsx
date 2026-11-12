@@ -12,6 +12,7 @@ import { useSurrender } from '@/components/game-shell/useSurrender';
 import { fitHints, restoreLimited } from '@/components/game-shell/attempts';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { ClueNames } from '@/components/game-shell/ClueNames';
 import { useSound } from '@/components/skin/useSound';
 import { useHaptics } from '@/components/useHaptics';
 import { InfoTip } from '@/components/ui/InfoTip';
@@ -278,7 +279,7 @@ export function ClassicBoard({ session, pool, columns, hints, contents }: Classi
                 <li key={hint.label} className={styles.hint} data-unlocked={unlocked} data-hint={hint.kind === 'attr' ? hint.key : hint.contentKind}>
                   <span className={styles.hintLabel}>{hint.label}</span>
                   {unlocked || !appShell ? (
-                    <span>{unlocked ? text : es.classic.hintLocked(remaining)}</span>
+                    <span>{unlocked ? <ClueNames text={text} /> : es.classic.hintLocked(remaining)}</span>
                   ) : (
                     <>
                       <span className={styles.lockedLong}>{es.classic.hintLocked(remaining)}</span>

@@ -7,6 +7,7 @@ import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
 import type { FinishReport, GameSession } from '@/components/game-shell/types';
 import { useSkin } from '@/components/skin/context';
+import { ClueNames } from '@/components/game-shell/ClueNames';
 import { InfoTip } from '@/components/ui/InfoTip';
 import { useMissBuzz } from '@/components/useHaptics';
 import { VisuallyHidden } from '@/components/VisuallyHidden';
@@ -326,7 +327,7 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
                 <span className={styles.position} aria-hidden="true">
                   {index + 1}
                 </span>
-                {item.text}
+                <ClueNames text={item.text} />
                 {state === 'locked' && <VisuallyHidden>{` (${es.timeline.stateLocked})`}</VisuallyHidden>}
               </p>
               {/* La marca acompaña al color: el estado no depende de verlo en verde o en rojo. */}
@@ -411,7 +412,7 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
           </h2>
           <ol className={styles.solutionList}>
             {puzzle.solution.map((item) => (
-              <li key={item.id}>{item.text}</li>
+              <li key={item.id}><ClueNames text={item.text} /></li>
             ))}
           </ol>
         </section>
