@@ -60,9 +60,8 @@ export const pokemonConfig = {
       },
     },
     // Un zoom sobre la sombra negra del Pokémon: parte de un costado y se abre hacia el centro (la silueta no se ilumina).
-    // Con los aumentos de siempre (de 3,2 a 1,15) la forma ya se reconocía en la tercera pista: acá parte más cerca y llega al
-    // final sin mostrar todo el cuerpo.
-    { slug: 'silueta', name: 'Silueta', engine: 'image-reveal', imageReveal: { variant: 'zoom-silhouette', zoomScales: [4.6, 3.9, 3.3, 2.8, 2.3, 1.8] } },
+    // Usa un recorte más cerrado que el zoom común para revelar la silueta de a poco.
+    { slug: 'silueta', name: 'Silueta', engine: 'image-reveal', imageReveal: { variant: 'zoom-silhouette', zoomScales: [3.7, 3.15, 2.7, 2.3, 1.95, 1.65] } },
     {
       slug: 'descripcion',
       name: 'Descripción',
@@ -82,13 +81,11 @@ export const pokemonConfig = {
       name: 'Carta',
       engine: 'image-reveal',
       // La imagen es una carta del TCG (hasta 2 por Pokémon, una por día) y la respuesta, su Pokémon.
-      // Más desenfoque que antes (en la cuarta pista ya se reconocía el Pokémon). Toda la carta, también el nombre de arriba,
-      // usa el mismo desenfoque en cada pista (prueba): el motor admite una franja siempre al máximo (`alwaysBlurred`), por
-      // ejemplo `[{ x: 0.03, y: 0.015, width: 0.94, height: 0.11 }]` para el nombre.
+      // El desenfoque cubre toda la carta, incluido el nombre.
       imageReveal: {
         variant: 'blur',
         imageContentKind: 'tcg-card',
-        blurLevels: [1.4, 1.1, 0.85, 0.65, 0.48, 0.3],
+        blurLevels: [1.03, 0.83, 0.7, 0.6, 0.43, 0.28],
       },
     },
     {

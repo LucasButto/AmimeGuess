@@ -180,8 +180,8 @@ describe('revealVisual con aumentos propios', () => {
     expect(values).toEqual(scales);
   });
 
-  it('sin aumentos propios, los de siempre; y uno que falte cae en el de siempre', () => {
-    expect(revealVisual('zoom', 0, true, focus).scale).toBe(3.2);
+  it('usa los aumentos predeterminados cuando el paso no tiene uno propio', () => {
+    expect(revealVisual('zoom', 0, true, focus).scale).toBe(2.7);
     expect(revealVisual('zoom', 5, true, focus, [5]).scale).toBe(1.15);
   });
 });

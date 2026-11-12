@@ -156,9 +156,9 @@ export function revealStep(failed: number, reveal: boolean, attempts = REVEAL_ST
 }
 
 // Una entrada por paso, de lo más oculto a lo más claro.
-const BLUR_REM = [1.7, 1.35, 1.05, 0.8, 0.6, 0.45] as const;
+const BLUR_REM = [1.3, 1, 0.76, 0.57, 0.43, 0.32] as const;
 const BRIGHTNESS = [0, 0.06, 0.13, 0.22, 0.36, 0.55] as const;
-const ZOOM_SCALE = [3.2, 2.6, 2.1, 1.7, 1.35, 1.15] as const;
+const ZOOM_SCALE = [2.7, 2.25, 1.9, 1.6, 1.3, 1.15] as const;
 
 /** Cómo se dibuja la imagen. El componente lo pasa a CSS como variables; los neutros no cambian nada. */
 export interface RevealVisual {

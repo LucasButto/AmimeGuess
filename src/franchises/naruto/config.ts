@@ -115,19 +115,16 @@ export const narutoConfig = {
       name: 'Jutsu',
       engine: 'image-reveal',
       // La pista es un clip en bucle de la escena de un jutsu (cada uno con su video y su póster) y la respuesta, quien lo usa.
-      // Cuenta como acierto cualquiera de los personajes que lo usan (ver `accepts` en los datos). El desenfoque baja más
-      // que el de las imágenes de personajes (de 1,7 a 0,45 rem): en una escena en movimiento con esos valores no se
-      // reconocía nada ni en el último paso; ahora arranca como manchas de color y termina casi nítido.
-      imageReveal: { variant: 'blur', imageContentKind: 'jutsu', showsContentName: true, countNoun: { one: 'jutsu', many: 'jutsus' }, blurLevels: [1, 0.8, 0.6, 0.42, 0.26, 0.12] },
+      // Cuenta como acierto cualquiera de los personajes que lo usan (ver `accepts` en los datos).
+      imageReveal: { variant: 'blur', imageContentKind: 'jutsu', showsContentName: true, countNoun: { one: 'jutsu', many: 'jutsus' }, blurLevels: [0.85, 0.64, 0.47, 0.32, 0.21, 0.12] },
     },
     {
       slug: 'ojo',
       name: 'Ojo',
       engine: 'image-reveal',
       // El recorte arranca en el ojo: el punto focal viene en los datos de cada personaje (`focus`). Parte con el ojo llenando el
-      // cuadro (8 veces: solo el ojo y un poco de piel, el nivel que pidió el usuario el 2026-11-02) y se abre de a poco hasta 4
-      // como mucho: nunca llega a mostrar la cara, para que no se sepa quién es al primer vistazo.
-      imageReveal: { variant: 'zoom', imageContentKind: 'eye', zoomScales: [8, 7, 6.1, 5.3, 4.6, 4] },
+      // cuadro y se abre de a poco alrededor del ojo.
+      imageReveal: { variant: 'zoom', imageContentKind: 'eye', zoomScales: [6.8, 5.9, 5.1, 4.5, 4, 3.6] },
     },
     {
       slug: 'equipo',
