@@ -1,5 +1,5 @@
 import sagasJson from '../../../data/dragon-ball/sagas.json';
-import boardJson from '../../../data/dragon-ball/casillas.json';
+import boardJson from '../../../data/dragon-ball/source/casillas.json';
 import { es } from '../../i18n/es';
 import type { ClassicValueLabel } from '../../modes/classic/types';
 import type { FranchiseConfig } from '../types';
@@ -19,7 +19,7 @@ const seriesLabels: Readonly<Record<string, string>> = {
 /**
  * Nombre corto de cada saga para la celda de la tabla del Clásico, donde el nombre completo
  * no entra. El orden de las series y de las sagas (el número que se compara) sale de
- * `data/dragon-ball/sagas.json`, que genera `npm run data:dragon-ball` desde `data-src`.
+ * `data/dragon-ball/sagas.json`, que genera `npm run data:dragon-ball` desde `data/<franquicia>/source/`.
  */
 export const sagaLabels: Readonly<Record<string, string>> = {
   pilaf: 'Pilaf',
@@ -69,7 +69,7 @@ export const dragonBallConfig = {
   entityNoun: { one: 'personaje', many: 'personajes' },
   entitySetNouns: { transformations: { one: 'forma', many: 'formas' }, power: { one: 'personaje', many: 'personajes' } },
   // En el orden de la historia (el de los filtros y el de la cronología de los datos): Daima ocurre entre Z y Super, y GT
-  // al final. Es el orden elegido por el usuario el 2026-10-14; `data-src/dragon-ball/sagas.json` (`seriesOrder`) lo repite.
+  // al final. Es el orden elegido por el usuario el 2026-10-14; `data/dragon-ball/source/sagas.json` (`seriesOrder`) lo repite.
   series: ['db', 'dbz', 'daima', 'super', 'gt'],
   seriesLabels: {
     db: seriesLabels.db,
@@ -111,13 +111,15 @@ export const dragonBallConfig = {
       slug: 'frase',
       name: 'Frase',
       engine: 'text-clue',
-      // Una frase que dijo el personaje (solo las verificadas). Su raza y su afiliación ayudan si se falla.
+      // Primero se revela a quién va dirigida la frase y luego la raza de quien la dijo.
       textClue: {
         contentKind: 'quote',
+        preferredContentFlag: 'famous',
+        // Para admitir solo citas literales, configurar requiredContentFlag: 'literal'.
         lines: [
           { kind: 'content', label: 'Frase', after: 0, field: 'text' },
-          { kind: 'attr', label: 'Raza', after: 3, keys: ['razas'] },
-          { kind: 'attr', label: 'Afiliación', after: 6, keys: ['afiliaciones'] },
+          { kind: 'content', label: es.textClue.addressee, after: 3, field: 'addressee' },
+          { kind: 'attr', label: 'Raza', after: 6, keys: ['razas'] },
         ],
       },
     },
@@ -135,7 +137,7 @@ export const dragonBallConfig = {
       name: 'Nivel de poder',
       engine: 'higher-lower',
       // Personajes y formas en un momento de la historia (la saga va entre paréntesis cuando cambia el poder), de
-      // `data-src/dragon-ball/power.json`: estimaciones propias revisadas con el usuario (2026-10-14).
+      // `data/dragon-ball/source/power.json`: estimaciones propias revisadas con el usuario (2026-10-14).
       entitySet: 'power',
       // Un orden de magnitud de diferencia como mínimo: los valores son estimaciones, no cifras exactas.
       higherLower: {

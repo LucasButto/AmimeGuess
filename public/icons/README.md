@@ -1,6 +1,6 @@
 # Íconos
 
-Recortes de las hojas de íconos que aportó el usuario (originales en `data-src/<serie>/icons/`). Un WebP por icono, con fondo
+Recortes de las hojas de íconos que aportó el usuario (originales en `data/<serie>/source/icons/`). Un WebP por icono, con fondo
 transparente, cuadrado y con 4 px de margen. Se regeneran con `python scripts/design/recortar-iconos.py`.
 
 - `pokemon/` — 36 objetos (Pokédex, mochila, piedras, fósiles…). `pokemon/pokebolas/`: las 38 Poké Balls.

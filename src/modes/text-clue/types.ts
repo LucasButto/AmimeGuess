@@ -43,6 +43,10 @@ export interface TextClueConfig {
    * evolutiva).
    */
   readonly contentKind: string;
+  /** Campo booleano del payload que una pista elegible debe tener en true. */
+  readonly requiredContentFlag?: string;
+  /** Campo booleano del payload que se prefiere al elegir la pista de la entidad del día. */
+  readonly preferredContentFlag?: string;
   /** Al menos una con `after: 0`: la pista principal. */
   readonly lines: readonly TextClueLine[];
 }

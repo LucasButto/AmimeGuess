@@ -18,7 +18,7 @@ import { attachPmdPortraits } from './pmd-portraits.ts';
 import { entitySchema } from './schemas.ts';
 
 const RAW = `https://raw.githubusercontent.com/PMDCollab/SpriteCollab/${PMD_SNAPSHOT}/`;
-const CACHE = path.join(ROOT, 'data-src/pokemon/pmd', PMD_SNAPSHOT);
+const CACHE = path.join(ROOT, 'data/pokemon/source/pmd', PMD_SNAPSHOT);
 const PUBLIC = path.join(ROOT, 'public');
 const ASSETS = '/theme/pokemon/pmd';
 const ENTITIES = path.join(ROOT, 'data/pokemon/entities.json');

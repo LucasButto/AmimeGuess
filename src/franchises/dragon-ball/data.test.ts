@@ -14,6 +14,7 @@ import { candidatesOf as textCandidates } from '@/modes/text-clue/logic';
 import { buildPuzzle, countOf, poolOf as timelinePool } from '@/modes/timeline/logic';
 import { modeStatus } from '@/app/[franchise]/[mode]/playable';
 import contentJson from '../../../data/dragon-ball/content.json';
+import { dragonBallContents } from './content';
 import entitiesJson from '../../../data/dragon-ball/entities.json';
 import formsJson from '../../../data/dragon-ball/transformations.json';
 import powerJson from '../../../data/dragon-ball/power.json';
@@ -25,8 +26,8 @@ import { dragonBallConfig, sagaLabels } from './config';
 const characters = entitiesJson as unknown as Entity[];
 const forms = formsJson as Entity[];
 const power = powerJson as unknown as Entity[];
-const rawContents = contentJson as Content[];
-// Las frases y los sucesos solo entran al pool con verified: true (en data-src), y alguno puede volver a quedar sin verificar.
+const rawContents = dragonBallContents(contentJson as Content[]);
+// Se conservan las marcas del catálogo para comprobar qué publica cada modo.
 // Para probar las reglas de exclusión sobre el contenido real se consideran verificados.
 const contents = rawContents.map((content) => ({ ...content, verified: true }));
 const modes: readonly ModeConfig[] = dragonBallConfig.modes;
@@ -105,15 +106,20 @@ describe('carga de datos', () => {
     expect(data.entities).toHaveLength(characters.length);
     expect(entitiesOfMode(data, 'transformations')).toHaveLength(forms.length);
     expect(entitiesOfMode(data, undefined)).toBe(data.entities);
-    // Con las frases y los sucesos sin verificar y sin imágenes de técnicas, hoy no queda contenido; nunca más del que hay.
     expect(data.contents.length).toBeLessThanOrEqual(rawContents.length);
   });
 
-  it('las frases y los sucesos sin verificar no llegan a ningún pool', () => {
-    const unverified = rawContents.filter((content) => content.kind === 'quote' || content.kind === 'event').filter((content) => !content.verified);
-    const loaded = new Set(data.contents.map((content) => content.id));
-    for (const content of unverified) expect(loaded.has(content.id), content.id).toBe(false);
-    for (const content of data.contents.filter((candidate) => candidate.kind === 'quote' || candidate.kind === 'event')) expect(content.verified, content.id).toBe(true);
+  it('habilita todo Frase y sigue filtrando los eventos sin verificar', () => {
+    const quotes = rawContents.filter(({ kind }) => kind === 'quote');
+    expect(data.contents.filter(({ kind }) => kind === 'quote')).toEqual(quotes);
+    expect(data.contents.filter(({ kind }) => kind === 'event').every(({ verified }) => verified)).toBe(true);
+    const config = mode('frase').textClue!;
+    for (const active of [allSeries, ...allSeries.map((series) => [series])]) {
+      const eligible = quotes.filter(({ series }) => active.includes(series));
+      const pool = textCandidates(data.entities, data.contents, active, config);
+      expect(pool).toHaveLength(new Set(eligible.map(({ entityId }) => entityId)).size);
+      expect(pool.flatMap(({ contents }) => contents)).toHaveLength(eligible.length);
+    }
   });
 
   it('lo demás sí entra, esté o no verificado', () => {
@@ -244,7 +250,19 @@ describe('contenido verificado', () => {
   const quotes = contents.filter((content) => content.kind === 'quote');
   const events = contents.filter((content) => content.kind === 'event');
 
-  it('sin verificar, un modo de frases o de sucesos no tiene pool: se oculta en vez de mostrar un juego vacío', () => {
+  it('revela primero el destinatario y luego la raza', () => {
+    expect(mode('frase').textClue!.lines.slice(1)).toEqual([
+      { kind: 'content', label: 'Dicha a', after: 3, field: 'addressee' },
+      { kind: 'attr', label: 'Raza', after: 6, keys: ['razas'] },
+    ]);
+    expect(quotes.find(({ id }) => id === 'quote-vegeta-2')?.payload.addressee).toBe('Nappa');
+    expect(quotes.find(({ id }) => id === 'quote-freezer-6')?.payload.addressee).toBe('Destinatario no identificado');
+    expect(quotes.find(({ id }) => id === 'quote-dyspo-1')?.payload.addressee).toBe('Destinatario no identificado');
+    expect(quotes.find(({ id }) => id === 'quote-trunks-nino-1')?.entityId).toBe('trunks');
+    expect(quotes.find(({ id }) => id === 'quote-trunks-del-futuro-2')?.entityId).toBe('trunks-del-futuro');
+  });
+
+  it('el filtro general de publicación conserva la verificación de frases y eventos', () => {
     const publishable = publishableContents(rawContents);
     const textPool = textCandidates(characters, publishable, allSeries, mode('frase').textClue!);
     const timeline = timelinePool(publishable, allSeries, mode('linea-de-tiempo').timeline!);

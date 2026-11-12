@@ -6,7 +6,7 @@ import type { FranchiseConfig } from '../types';
 
 /**
  * Alcance inicial (sesión 12): solo las tres series que conoce el usuario. ZEXAL, ARC-V, VRAINS, `sevens`
- * y `gorush` se suman después junto con sus duelistas en data-src/yugioh/: basta con agregar su id y su
+ * y `gorush` se suman después junto con sus duelistas en data/yugioh/source/: basta con agregar su id y su
  * nombre acá (el orden canónico de `data/yugioh/series.json` ya los trae).
  */
 const seriesLabels: Readonly<Record<string, string>> = {

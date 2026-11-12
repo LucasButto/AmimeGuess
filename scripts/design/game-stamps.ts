@@ -8,7 +8,7 @@ for (const franchise of ['naruto', 'dragon-ball']) {
   const output = path.join(root, 'public/icons', franchise);
   await mkdir(output, { recursive: true });
   for (const name of ['logrado', 'fallaste']) {
-    const input = path.join(root, 'data-src', franchise, 'icons', `${name}.png`);
+    const input = path.join(root, 'data', franchise, 'source', 'icons', `${name}.png`);
     const target = path.join(output, `${name}.webp`);
     const result = await sharp(input).resize({ width: 720, withoutEnlargement: true }).webp({ quality: 85, alphaQuality: 90, effort: 6 }).toFile(target);
     const before = (await stat(input)).size;

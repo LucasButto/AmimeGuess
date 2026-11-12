@@ -1,10 +1,10 @@
-import { publishableContents } from '../engine/filters';
+import { isContentPublishable, publishableContents } from '../engine/filters';
 import type { Content, Entity } from '../engine/types';
 
 export interface FranchiseData {
   /** Las entidades principales de la franquicia: lo que se adivina en el modo principal. */
   entities: Entity[];
-  /** Solo lo que puede entrar a un pool: las frases y los sucesos sin verificar ya no están (ver `publishableContents`). */
+  /** Contenido habilitado para los modos de la franquicia. */
   contents: Content[];
   /**
    * Otras clases de entidad que se adivinan en algunos modos, por nombre (por ejemplo, las
@@ -27,36 +27,40 @@ const loaders: Record<string, () => Promise<FranchiseData>> = {
     return { entities: entities.default as Entity[], contents: publishableContents(contents.default as Content[]), entitySets: { 'stat-builder': [...entities.default as Entity[], ...forms.default as Entity[]] } };
   },
   'dragon-ball': async () => {
-    const [entities, transformations, power, contents] = await Promise.all([
+    const [entities, transformations, power, contents, { dragonBallContents }] = await Promise.all([
       import('../../data/dragon-ball/entities.json'),
       import('../../data/dragon-ball/transformations.json'),
       import('../../data/dragon-ball/power.json'),
       import('../../data/dragon-ball/content.json'),
+      import('./dragon-ball/content'),
     ]);
     return {
       entities: entities.default as unknown as Entity[],
-      contents: publishableContents(contents.default as Content[]),
+      // Frase usa todo su catálogo curado y conserva la marca de verificación de cada entrada.
+      contents: dragonBallContents(contents.default as Content[]).filter((content) => content.kind === 'quote' || isContentPublishable(content)),
       // `power`: las entradas de Nivel de poder (personajes y formas en un momento de la historia, con su ki).
       entitySets: { transformations: transformations.default as unknown as Entity[], power: power.default as unknown as Entity[] },
     };
   },
   naruto: async () => {
-    const [entities, contents] = await Promise.all([
+    const [entities, contents, { narutoContents }] = await Promise.all([
       import('../../data/naruto/entities.json'),
       import('../../data/naruto/content.json'),
+      import('./naruto/content'),
     ]);
-    return { entities: entities.default as Entity[], contents: publishableContents(contents.default as Content[]) };
+    return { entities: entities.default as Entity[], contents: publishableContents(narutoContents(contents.default as Content[])) };
   },
   // Los duelistas son las entidades principales; las cartas insignia, un conjunto aparte (`cards`).
   yugioh: async () => {
-    const [entities, cards, contents] = await Promise.all([
+    const [entities, cards, contents, { yugiohContents }] = await Promise.all([
       import('../../data/yugioh/entities.json'),
       import('../../data/yugioh/cards.json'),
       import('../../data/yugioh/content.json'),
+      import('./yugioh/content'),
     ]);
     return {
       entities: entities.default as Entity[],
-      contents: publishableContents(contents.default as Content[]),
+      contents: publishableContents(yugiohContents(contents.default as Content[])),
       entitySets: { cards: cards.default as Entity[] },
     };
   },

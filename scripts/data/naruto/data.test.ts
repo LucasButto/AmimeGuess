@@ -8,13 +8,14 @@ import { describe, expect, it } from 'vitest';
 import type { Content, Entity } from '../../../src/engine/types.ts';
 import arcsJson from '../../../data/naruto/arcs.json';
 import contentJson from '../../../data/naruto/content.json';
+import { narutoContents } from '../../../src/franchises/naruto/content';
 import charactersJson from '../../../data/naruto/entities.json';
 import { ROOT } from './api.ts';
 import { SERIES, type GroupSrc } from './schemas.ts';
 import { countBoards, leaksName } from './transform.ts';
 
 const characters = charactersJson as Entity[];
-const contents = contentJson as Content[];
+const contents = narutoContents(contentJson as Content[]);
 const arcs = arcsJson as { series: Array<{ id: string; order: number }>; arcs: Array<{ id: string; name: string; series: string; order: number }> };
 
 const characterById = new Map(characters.map((entity) => [entity.id, entity]));

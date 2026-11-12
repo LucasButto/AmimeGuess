@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import translationsJson from '../../../data-src/yugioh/translations.json';
+import translationsJson from '../../../data/yugioh/source/translations.json';
 import sharp from 'sharp';
 import { CLEANUP, THRESHOLDS, cleanAlpha, isUsable, largestShare, measureCutout } from './silhouette.ts';
 import { translationsSchema, type DuelistSrc, type YgoprodeckCard } from './schemas.ts';

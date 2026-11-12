@@ -51,7 +51,7 @@ export function renderTodoSection(input: TodoInput): string {
   const lines: string[] = [TODO_START, '', '## Dragon Ball · imágenes para cargar a mano', ''];
   if (input.characters.length === 0 && input.techniques.length === 0) {
     lines.push(
-      'Las imágenes de Dragon Ball API se descargan solas; las de la wiki de Fandom se cargan a mano en `data-src/dragon-ball/images/` (su CDN, `static.wikia.nocookie.net`, responde con un desafío anti-bots de Cloudflare a los scripts y no se intenta saltearlo, sesión 08). Hoy no falta ninguna.',
+      'Las imágenes de Dragon Ball API se descargan solas; las de la wiki de Fandom se cargan a mano en `data/dragon-ball/source/images/` (su CDN, `static.wikia.nocookie.net`, responde con un desafío anti-bots de Cloudflare a los scripts y no se intenta saltearlo, sesión 08). Hoy no falta ninguna.',
       '',
     );
   } else {
@@ -90,7 +90,7 @@ export function renderTodoSection(input: TodoInput): string {
     lines.push(
       `### Imágenes con fondo, que no sirven para Silueta (${input.opaque.length})`,
       '',
-      'Quedan fuera del pool de Silueta (`imagenTransparente: 0`) pero sirven para Borroso. La sesión 19 les quita el fondo con el recorte automático de Yu-Gi-Oh; también se pueden reemplazar a mano por una versión con fondo transparente (mismo nombre de archivo en `data-src/dragon-ball/images/`).',
+      'Quedan fuera del pool de Silueta (`imagenTransparente: 0`) pero sirven para Borroso. La sesión 19 les quita el fondo con el recorte automático de Yu-Gi-Oh; también se pueden reemplazar a mano por una versión con fondo transparente (mismo nombre de archivo en `data/dragon-ball/source/images/`).',
       '',
       ...input.opaque.map((item) => `- ${item.name} (\`${item.id}\`)`),
       '',

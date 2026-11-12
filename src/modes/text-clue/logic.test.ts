@@ -125,6 +125,14 @@ describe('candidatesOf', () => {
     const [first] = candidatesOf(entities, many, ['g1'], CONFIG);
     expect(first.contents.map((c) => c.id)).toEqual(['m-1', 'm-2']);
   });
+
+  it('aplica el requisito de contenido antes de armar el pool', () => {
+    const literal = clue('literal', 'a', 'g1', { text: 'a', literal: true });
+    const adapted = clue('adapted', 'b', 'g1', { text: 'b', literal: false });
+    const candidates = candidatesOf(entities, [literal, adapted], ['g1'], { ...CONFIG, requiredContentFlag: 'literal' });
+    expect(candidates.map(({ id }) => id)).toEqual(['a']);
+    expect(candidates[0].contents).toEqual([literal]);
+  });
 });
 
 describe('pickContent', () => {
@@ -141,6 +149,16 @@ describe('pickContent', () => {
   it('es determinista', () => {
     const first = pickContent(candidate, ctx);
     for (let i = 0; i < 100; i++) expect(pickContent(candidate, ctx)).toBe(first);
+  });
+
+  it('da más peso al contenido marcado y permite que salgan los demás', () => {
+    const famous = clue('famous', 'a', 'g1', { text: 'famosa', famous: true });
+    const choices = Array.from({ length: 300 }, (_, day) =>
+      pickContent({ ...candidate, contents: [candidate.contents[0], famous] }, { ...ctx, day }, 'famous'));
+    const famousCount = choices.filter((choice) => choice === famous).length;
+    expect(famousCount).toBeGreaterThan(150);
+    expect(famousCount).toBeLessThan(300);
+    expect(pickContent(candidate, ctx, 'famous')).toBe(pickContent(candidate, ctx));
   });
 
   it('cambia con los días y los usa todos', () => {

@@ -1,5 +1,5 @@
 // Esquemas Zod: lo que se espera de las APIs, de los archivos curados de
-// data-src/dragon-ball/ y lo que se escribe en data/dragon-ball/. Si algo no
+// data/dragon-ball/source/ y lo que se escribe en data/dragon-ball/. Si algo no
 // cumple, el script falla (SPEC sección 7).
 
 import { z } from 'zod';
@@ -44,7 +44,7 @@ export const wikiCategoryMembersSchema = z.object({
   query: z.object({ categorymembers: z.array(z.object({ title: z.string() })) }),
 });
 
-// --- data-src/dragon-ball/ (curado a mano) ----------------------------------
+// --- data/dragon-ball/source/ (curado a mano) ----------------------------------
 
 /**
  * Orden cronológico de la historia (no el de emisión) y las sagas de cada serie,
@@ -129,9 +129,21 @@ export const quoteSrcSchema = z
     source: z.string().url(),
     /** A quién se la dijo y cuándo, tal como lo anota la wiki. Solo para quien revisa; no se publica. */
     context: z.string().min(1).optional(),
+    addressee: z.string().min(1).optional(),
+    adapted: z.boolean().optional(),
+    literal: z.boolean(),
+    famous: z.boolean(),
     verified: z.boolean(),
   })
   .strict();
+
+export const quotesSrcSchema = z.array(quoteSrcSchema).superRefine((quotes, ctx) => {
+  const ids = new Set<string>();
+  quotes.forEach(({ id }, index) => {
+    if (ids.has(id)) ctx.addIssue({ code: 'custom', path: [index, 'id'], message: `ID de frase repetido: ${id}` });
+    ids.add(id);
+  });
+});
 
 export const eventSrcSchema = z
   .object({

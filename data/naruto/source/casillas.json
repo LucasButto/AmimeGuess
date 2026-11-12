@@ -2,7 +2,11 @@
   "verified": false,
   "sources": [
     "Selección y criterios acordados con el usuario, 2026-11-05",
-    "https://naruto.fandom.com/wiki/Summoning_Technique"
+    "https://naruto.fandom.com/wiki/Summoning_Technique",
+    "https://boruto.fandom.com/wiki/The_Final_Lesson",
+    "https://naruto-official.com/en/news/01_1333",
+    "https://naruto-official.com/fr/anime/naruto1/list/01_282",
+    "https://naruto-official.com/it/anime/naruto1/list/01_293"
   ],
   "roster": [
     "naruto-uzumaki",
@@ -84,7 +88,15 @@
     "code",
     "shizune",
     "hanabi-hyuga",
-    "sumire-kakei"
+    "sumire-kakei",
+    "baki",
+    "rasa",
+    "yagura-karatachi",
+    "kurotsuchi",
+    "darui",
+    "mu",
+    "gengetsu-hozuki",
+    "chojuro"
   ],
   "categories": [
     {
@@ -97,7 +109,18 @@
         "tsunade",
         "minato-namikaze",
         "hashirama-senju",
-        "tobirama-senju"
+        "tobirama-senju",
+        "gaara",
+        "rasa",
+        "yagura-karatachi",
+        "mei-terumi",
+        "gengetsu-hozuki",
+        "chojuro",
+        "onoki",
+        "kurotsuchi",
+        "mu",
+        "a-cuarto-raikage",
+        "darui"
       ]
     },
     {
@@ -151,6 +174,15 @@
     {
       "id": "otras-aldeas",
       "members": [
+        "mitsuki",
+        "baki",
+        "rasa",
+        "yagura-karatachi",
+        "kurotsuchi",
+        "darui",
+        "mu",
+        "gengetsu-hozuki",
+        "chojuro",
         "kisame-hoshigaki",
         "kabuto-yakushi",
         "zabuza-momochi",
@@ -213,6 +245,7 @@
       "id": "invocacion",
       "members": [
         "naruto-uzumaki",
+        "shino-aburame",
         "sasuke-uchiha",
         "sakura-haruno",
         "kakashi-hatake",
@@ -288,6 +321,9 @@
         "zabuza-momochi",
         "haku",
         "gaara",
+        "kankuro",
+        "temari",
+        "baki",
         "kimimaro",
         "tayuya",
         "jirobo",
@@ -560,5 +596,5 @@
       ]
     }
   ],
-  "rosterSize": 80
+  "rosterSize": 88
 }

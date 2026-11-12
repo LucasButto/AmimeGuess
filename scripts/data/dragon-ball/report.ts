@@ -81,7 +81,7 @@ export function printReport(input: ReportInput): void {
   line('  ("personajes" cuenta las series en las que aparece cada uno; "debutan", solo la de debut)');
 
   line();
-  line('Sin verificar (verified: false), a revisar en data-src/dragon-ball/:');
+  line('Sin verificar (verified: false), a revisar en data/dragon-ball/source/:');
   for (const item of input.unverified) line(`  ${item.label.padEnd(16)}${pad(item.unverified, 4)} de ${pad(item.total, 4)}`);
   line('  Solo las frases y los sucesos de la línea de tiempo esperan verified: true para entrar al pool de producción.');
 

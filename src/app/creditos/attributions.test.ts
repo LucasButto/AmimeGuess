@@ -50,7 +50,10 @@ describe('créditos sobre los datos reales', () => {
     for (const site of sites) expect(es.credits.reuse.sites[site.host], site.host).toBeDefined();
     // Las 127 descripciones de WikiDex, y las frases publicadas de Dragon Ball y Naruto.
     expect(sites.find((site) => site.host === 'www.wikidex.net')?.count).toBe(127);
-    expect(sites.map((site) => site.host).sort()).toEqual(['dragonball.fandom.com', 'naruto.fandom.com', 'www.wikidex.net']);
+    expect(sites.map((site) => site.host).sort()).toEqual([
+      'dragonball.fandom.com', 'en.dragon-ball-official.com', 'es.dragon-ball-official.com',
+      'naruto.fandom.com', 'www.springfieldspringfield.co.uk', 'www.wikidex.net',
+    ]);
   });
 
   it('cada tipografía de un tema está acreditada', () => {

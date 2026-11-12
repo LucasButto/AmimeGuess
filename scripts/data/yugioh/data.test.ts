@@ -1,4 +1,4 @@
-// Pruebas sobre los datos reales de Yu-Gi-Oh (data/yugioh/) y sobre lo curado (data-src/yugioh/): lo que
+// Pruebas sobre los datos reales de Yu-Gi-Oh (data/yugioh/) y sobre lo curado (data/yugioh/source/): lo que
 // los tests de la lógica no pueden ver, como que ninguna carta carezca de duelista dueño, que cada duelista
 // tenga exactamente una carta as, que ningún texto delate su carta, que las imágenes existan y entren en el
 // presupuesto, o que apagar una serie no deje valores de ella a la vista.
@@ -11,12 +11,13 @@ import { eligibleEntities, filterAttrValue } from '../../../src/engine/filters.t
 import type { Content, Entity } from '../../../src/engine/types.ts';
 import cardsJson from '../../../data/yugioh/cards.json';
 import contentJson from '../../../data/yugioh/content.json';
+import { yugiohContents } from '../../../src/franchises/yugioh/content';
 import duelistsJson from '../../../data/yugioh/entities.json';
 import seriesJson from '../../../data/yugioh/series.json';
 import silhouettesJson from '../../../data/yugioh/silhouettes.json';
-import duelistsSrcJson from '../../../data-src/yugioh/duelists.json';
-import signatureJson from '../../../data-src/yugioh/signature-cards.json';
-import summonsJson from '../../../data-src/yugioh/summons.json';
+import duelistsSrcJson from '../../../data/yugioh/source/duelists.json';
+import signatureJson from '../../../data/yugioh/source/signature-cards.json';
+import summonsJson from '../../../data/yugioh/source/summons.json';
 import { ROOT } from './api.ts';
 import { THRESHOLDS, isUsable } from './silhouette.ts';
 import { leaksName, slugify } from './transform.ts';
@@ -24,7 +25,7 @@ import { ROLES, SERIES, duelistSrcSchema, signatureCardsSrcSchema, silhouetteRec
 
 const duelists = duelistsJson as Entity[];
 const cards = cardsJson as Entity[];
-const contents = contentJson as Content[];
+const contents = yugiohContents(contentJson as Content[]);
 const duelistsSrc = duelistsSrcJson.map((item) => duelistSrcSchema.parse(item));
 const signature = signatureCardsSrcSchema.parse(signatureJson);
 const summons = summonSrcSchema.parse(summonsJson);

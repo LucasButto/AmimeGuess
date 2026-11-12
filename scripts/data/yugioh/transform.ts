@@ -167,7 +167,7 @@ function taggedBy(value: string, series: readonly SeriesId[]): { value: string; 
 
 function lookup(map: Readonly<Record<string, string>>, key: string, what: string): string {
   const value = map[key];
-  if (value === undefined) throw new Error(`Falta traducir ${what} "${key}" en data-src/yugioh/translations.json`);
+  if (value === undefined) throw new Error(`Falta traducir ${what} "${key}" en data/yugioh/source/translations.json`);
   return value;
 }
 
@@ -193,7 +193,7 @@ export function cardArt(card: Pick<YgoprodeckCard, 'id' | 'card_images'>): Ygopr
 /** Cómo se invoca una carta: `null` si no es un monstruo. Falla si el tipo no está en el diccionario. */
 export function summoningOf(card: Pick<YgoprodeckCard, 'type'>, translations: Translations): SummoningKind | null {
   const entry = translations.cardType[card.type];
-  if (entry === undefined) throw new Error(`Falta traducir el tipo de carta "${card.type}" en data-src/yugioh/translations.json`);
+  if (entry === undefined) throw new Error(`Falta traducir el tipo de carta "${card.type}" en data/yugioh/source/translations.json`);
   return entry.summoning ?? null;
 }
 
@@ -211,7 +211,7 @@ export function buildCardEntity(input: CardInput, translations: Translations): E
   const { api } = input;
   const monster = isMonster(api);
   const clase = translations.cardType[api.type];
-  if (clase === undefined) throw new Error(`Falta traducir el tipo de carta "${api.type}" en data-src/yugioh/translations.json`);
+  if (clase === undefined) throw new Error(`Falta traducir el tipo de carta "${api.type}" en data/yugioh/source/translations.json`);
   const stat = (value: number | undefined) => (value !== undefined && value >= 0 ? value : null);
   const series = orderSeries(input.owners.flatMap((owner) => owner.series));
   const name = input.spanishName ?? api.name;
@@ -295,7 +295,7 @@ export function orderDeck(cards: readonly DeckCard[]): DeckCard[] {
   return [...cards].sort((a, b) => a.iconicity - b.iconicity || Number(a.ace) - Number(b.ace) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
 }
 
-/** `verified`: el de la lista de cartas insignia de la que sale (data-src/yugioh/signature-cards.json). */
+/** `verified`: el de la lista de cartas insignia de la que sale (data/yugioh/source/signature-cards.json). */
 export function buildDeckContents(duelistId: string, series: readonly SeriesId[], cards: readonly DeckCard[], verified = false): Content[] {
   const items = orderDeck(cards).map((card) => card.displayName);
   return perSeries('deck', duelistId, series, () => ({ kind: 'deck', entityId: duelistId, payload: { items }, verified }));
@@ -309,7 +309,7 @@ export interface SummonInput {
   readonly items: readonly string[];
   /** Ids de los materiales, en orden: dos monstruos con los mismos materiales se aceptan entre sí. */
   readonly materialIds: readonly string[];
-  /** El de la invocación en data-src/yugioh/summons.json. */
+  /** El de la invocación en data/yugioh/source/summons.json. */
   readonly verified?: boolean;
 }
 

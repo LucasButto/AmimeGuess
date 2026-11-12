@@ -1,6 +1,6 @@
 // Documento de revisión de Yu-Gi-Oh (docs/REVISION_YUGIOH.md): la lista completa de duelistas y de cartas
 // insignia agrupada por serie, con lo que hay que mirar para pasar `verified` a true. Lo genera el build en
-// cada corrida, así siempre coincide con data-src/yugioh/.
+// cada corrida, así siempre coincide con data/yugioh/source/.
 
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -40,7 +40,7 @@ export function renderReview(duelists: readonly ReviewDuelist[], series: readonl
   const lines: string[] = [
     '# Yu-Gi-Oh · revisión de duelistas y cartas insignia',
     '',
-    'Lo genera `npm run data:yugioh` (sesión 12) con lo que hay en `data-src/yugioh/`; no se edita a mano. Para corregir algo: cambiá `duelists.json`, `signature-cards.json` o `summons.json` y volvé a correr el script. Cuando una lista esté bien, pasá su `verified` a `true`.',
+    'Lo genera `npm run data:yugioh` (sesión 12) con lo que hay en `data/yugioh/source/`; no se edita a mano. Para corregir algo: cambiá `duelists.json`, `signature-cards.json` o `summons.json` y volvé a correr el script. Cuando una lista esté bien, pasá su `verified` a `true`.',
     '',
     'Revisión del 2026-10-12: cada carta se comprobó contra la sección de Yugipedia de la que sale. Solo quedan cartas de las listas de mazo del anime: se sacaron las que solo figuraban en videojuegos o en duelos promocionales (Ishizu tenía un mazo de Cuidadores de Tumbas de un duelo de exhibición de 2019), las de Marik que eran del mazo de Bandit Keith, y se sumó la página "Maximillion Pegasus\' Decks", que el script no encontraba. Todas las listas quedaron verificadas.',
     '',

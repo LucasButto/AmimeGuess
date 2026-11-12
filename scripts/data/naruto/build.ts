@@ -1,9 +1,9 @@
 // npm run data:naruto
 //
-// Genera el dataset de Naruto (incluido Boruto) combinando lo curado a mano (data-src/naruto/)
+// Genera el dataset de Naruto (incluido Boruto) combinando lo curado a mano (data/naruto/source/)
 // con lo que se puede sacar de las fuentes de la SPEC (sección 7):
 //   data/naruto/entities.json   los personajes, con sus atributos del Clásico
-//   data/naruto/content.json    frases, jutsus, equipos, emojis, puntos focales del ojo y grupos de Conexiones
+//   data/naruto/content.json    jutsus, equipos, emojis, puntos focales del ojo y grupos de Conexiones
 //   data/naruto/arcs.json       series y arcos con su lugar en la historia
 //   public/img/naruto/          imágenes en WebP, 256 y 512 px
 //
@@ -13,11 +13,11 @@
 //     kekkei genkai, Akatsuki y Kara con los que se comprueban los grupos y los equipos curados.
 //   - Narutopedia (API MediaWiki): la infobox de cada jutsu (clasificación → tipos de jutsu, usuarios,
 //     imagen, serie).
-//   - data-src/: el resto (series en que aparece cada personaje, arcos, frases, equipos, emojis, grupos,
+//   - data/<franquicia>/source/: el resto (series en que aparece cada personaje, arcos, frases, equipos, emojis, grupos,
 //     el diccionario inglés → español). Lo redactado va con `verified: false`.
 // Las imágenes no se descargan: su CDN (static.wikia.nocookie.net) responde con un desafío de Cloudflare a
 // los clientes que no son un navegador y no se intenta saltearlo. Se cargan a mano en
-// data-src/naruto/images/ y quedan listadas en docs/CONTENT_TODO.md.
+// data/naruto/source/images/ y quedan listadas en docs/CONTENT_TODO.md.
 //
 // Las respuestas de las APIs quedan en .cache/ (ignorada por git); la salida es determinista.
 // Si algo no cumple (esquema, referencias, fuentes, imágenes), falla sin escribir los JSON.
@@ -26,7 +26,7 @@ import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { z } from 'zod';
 import type { Content, Entity } from '../../../src/engine/types.ts';
-import { buildCategoryBoard } from '../category-board.ts';
+import { validateCategoryBoard } from '../category-board.ts';
 import { plainDisplayText } from './display-text.ts';
 import {
   SIZES,
@@ -95,7 +95,7 @@ import {
 } from './transform.ts';
 import { fetchJutsuInfos, jutsuTitles, pageUrl, type WikiJutsu } from './wiki.ts';
 
-const SRC_DIR = path.join(ROOT, 'data-src', 'naruto');
+const SRC_DIR = path.join(ROOT, 'data', 'naruto', 'source');
 const MANUAL_DIR = path.join(SRC_DIR, 'images');
 const DATA_DIR = path.join(ROOT, 'data', 'naruto');
 const IMG_ROOT = path.join(ROOT, 'public', 'img');
@@ -138,7 +138,7 @@ async function readSrc<T>(file: string, schema: z.ZodType<T>): Promise<T> {
   const parsed = schema.safeParse(await readJson(file));
   if (!parsed.success) {
     fail(
-      `data-src/naruto/${file} no cumple el esquema`,
+      `data/naruto/source/${file} no cumple el esquema`,
       parsed.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`),
     );
   }
@@ -163,7 +163,7 @@ async function loadSrc(): Promise<Src> {
     arcs: await readSrc('arcs.json', arcsFileSchema),
     translations: await readSrc('translations.json', translationsSchema),
     characters: await readSrc('characters.json', z.array(characterSrcSchema)),
-    quotes: await readSrc('quotes.json', z.array(quoteSrcSchema)),
+    quotes: await readSrc('frase.json', z.array(quoteSrcSchema)),
     jutsus: await readSrc('jutsus.json', z.array(jutsuSrcSchema)),
     teams: await readSrc('teams.json', z.array(teamSrcSchema)),
     emojis: await readSrc('emojis.json', z.array(emojiSrcSchema)),
@@ -182,7 +182,7 @@ function checkSrc(src: Src): void {
 
   for (const [file, ids] of [
     ['characters.json', src.characters.map((item) => item.id)],
-    ['quotes.json', src.quotes.map((item) => item.id)],
+    ['frase.json', src.quotes.map((item) => item.id)],
     ['jutsus.json', src.jutsus.map((item) => item.id)],
     ['teams.json', src.teams.map((item) => item.id)],
     ['emojis.json', src.emojis.map((item) => item.id)],
@@ -208,17 +208,17 @@ function checkSrc(src: Src): void {
   for (const quote of src.quotes) {
     const character = characterById.get(quote.character);
     if (character === undefined) {
-      problems.push(`quotes.json: ${quote.id} apunta al personaje inexistente ${quote.character}`);
+      problems.push(`frase.json: ${quote.id} apunta al personaje inexistente ${quote.character}`);
       continue;
     }
-    if (!character.series.includes(quote.series)) problems.push(`quotes.json: ${quote.id} es de ${quote.series}, que ${character.id} no tiene`);
+    if (!character.series.includes(quote.series)) problems.push(`frase.json: ${quote.id} es de ${quote.series}, que ${character.id} no tiene`);
     const arc = arcById.get(quote.arc);
-    if (arc === undefined) problems.push(`quotes.json: ${quote.id} dice el arco inexistente ${quote.arc}`);
-    else if (arc.series !== quote.series) problems.push(`quotes.json: ${quote.id} es de ${quote.series} pero su arco ${arc.id} es de ${arc.series}`);
-    if (leaksName(quote.text, namesOf(character))) problems.push(`quotes.json: ${quote.id} dice el nombre de ${character.name}`);
+    if (arc === undefined) problems.push(`frase.json: ${quote.id} dice el arco inexistente ${quote.arc}`);
+    else if (arc.series !== quote.series) problems.push(`frase.json: ${quote.id} es de ${quote.series} pero su arco ${arc.id} es de ${arc.series}`);
+    if (leaksName(quote.text, namesOf(character))) problems.push(`frase.json: ${quote.id} dice el nombre de ${character.name}`);
     for (const other of quote.accepts ?? []) {
-      if (!has(other)) problems.push(`quotes.json: ${quote.id} acepta al personaje inexistente ${other}`);
-      if (other === quote.character) problems.push(`quotes.json: ${quote.id} se acepta a sí misma`);
+      if (!has(other)) problems.push(`frase.json: ${quote.id} acepta al personaje inexistente ${other}`);
+      if (other === quote.character) problems.push(`frase.json: ${quote.id} se acepta a sí misma`);
     }
   }
 
@@ -270,7 +270,7 @@ function checkSrc(src: Src): void {
   }
   for (const id of duplicates(src.focus.map((item) => item.character))) problems.push(`focus.json: el personaje ${id} tiene dos puntos`);
 
-  if (problems.length > 0) fail('Los archivos de data-src/naruto/ no son coherentes', problems);
+  if (problems.length > 0) fail('Los archivos de data/naruto/source/ no son coherentes', problems);
 }
 
 // --- 2. Imágenes ------------------------------------------------------------
@@ -468,7 +468,7 @@ function checkGroups(groups: readonly GroupSrc[], sources: GroupSources): void {
     if (missing.length > 0) problems.push(`${group.id}: Dattebayo pone en el grupo a ${missing.join(', ')} y la lista no (agregarlos, o ponerlos en derived.exclude)`);
     if (extra.length > 0) problems.push(`${group.id}: la lista tiene a ${extra.join(', ')} y Dattebayo no (quitarlos, o ponerlos en derived.include)`);
   }
-  if (problems.length > 0) fail('Los grupos de data-src/naruto/groups.json no coinciden con Dattebayo', problems);
+  if (problems.length > 0) fail('Los grupos de data/naruto/source/groups.json no coinciden con Dattebayo', problems);
 }
 
 /** Cada miembro curado de un equipo tiene que estar en ese equipo según Dattebayo; devuelve los que Dattebayo suma y el equipo curado no. */
@@ -492,14 +492,14 @@ function checkTeams(teams: readonly TeamSrc[], characters: readonly CharacterSrc
     const extra = [...apiIds].flatMap((id) => (idOfApi.has(id) && !team.members.includes(idOfApi.get(id) as string) ? [idOfApi.get(id) as string] : []));
     if (extra.length > 0) hints.push(`${team.name}: ${extra.join(', ')}`);
   }
-  if (problems.length > 0) fail('Los equipos de data-src/naruto/teams.json no coinciden con Dattebayo', problems);
+  if (problems.length > 0) fail('Los equipos de data/naruto/source/teams.json no coinciden con Dattebayo', problems);
   return hints;
 }
 
 // --- Programa ---------------------------------------------------------------
 
 async function main(): Promise<void> {
-  step('Leyendo data-src/naruto/…');
+  step('Leyendo data/naruto/source/…');
   const src = await loadSrc();
   checkSrc(src);
   const arcRank = arcRanks(src.arcs);
@@ -587,7 +587,7 @@ async function main(): Promise<void> {
   if (problems.length > 0) fail('Los personajes no coinciden con Dattebayo', problems);
   if (unknownValues.size > 0) {
     fail(
-      'Valores de Dattebayo que no están en data-src/naruto/translations.json (agregarlos con su traducción, o con null para ignorarlos)',
+      'Valores de Dattebayo que no están en data/naruto/source/translations.json (agregarlos con su traducción, o con null para ignorarlos)',
       [...unknownValues].map(([field, values]) => `${field}: ${[...values].map((value) => JSON.stringify(value)).join(', ')}`),
     );
   }
@@ -629,7 +629,7 @@ async function main(): Promise<void> {
   for (const jutsu of src.jutsus) {
     const videoId = clipSources.get(jutsu.id);
     if (videoId === undefined) {
-      jutsuProblems.push(`${jutsu.id}: no tiene datos en data-src/naruto/clips.json`);
+      jutsuProblems.push(`${jutsu.id}: no tiene datos en data/naruto/source/clips.json`);
       continue;
     }
     jutsuClips.push(await renderClip(jutsu.id, videoId));
@@ -674,7 +674,7 @@ async function main(): Promise<void> {
       verified: jutsu.verified,
     });
   });
-  if (jutsuProblems.length > 0) fail('Los jutsus de data-src/naruto/jutsus.json no coinciden con Narutopedia', jutsuProblems);
+  if (jutsuProblems.length > 0) fail('Los jutsus de data/naruto/source/jutsus.json no coinciden con Narutopedia', jutsuProblems);
 
   // Primero lo que no depende de las imágenes, después los jutsus: cargar imágenes no reordena el resto.
   const contents = [...quotes, ...teams, ...emojis, ...events, ...groups, ...eyes, ...jutsuContents];
@@ -693,8 +693,8 @@ async function main(): Promise<void> {
 
   step('Escribiendo data/naruto/…');
   await writeJson(path.join(DATA_DIR, 'entities.json'), characters);
-  await buildCategoryBoard(ROOT, 'naruto', characters);
-  await writeJson(path.join(DATA_DIR, 'content.json'), contents);
+  await validateCategoryBoard(ROOT, 'naruto', characters);
+  await writeJson(path.join(DATA_DIR, 'content.json'), contents.filter(({ kind }) => kind !== 'event' && kind !== 'quote'));
   await writeJson(path.join(DATA_DIR, 'arcs.json'), arcsOutput);
 
   // Lo que falta cargar a mano
@@ -706,7 +706,7 @@ async function main(): Promise<void> {
       return {
         id: character.id,
         name: character.name,
-        file: `data-src/naruto/images/characters/${character.id}`,
+        file: `data/naruto/source/images/characters/${character.id}`,
         wikiPage: wikiTitleOf(character),
         wikiFile: first === undefined ? undefined : decodeURIComponent(path.basename(new URL(first).pathname)),
       };

@@ -1,5 +1,5 @@
 // Esquemas Zod: lo que se espera de las fuentes, de los archivos curados de
-// data-src/naruto/ y lo que se escribe en data/naruto/. Si algo no cumple, el
+// data/naruto/source/ y lo que se escribe en data/naruto/. Si algo no cumple, el
 // script falla (SPEC sección 7).
 
 import { z } from 'zod';
@@ -79,7 +79,7 @@ export const wikiPagesSchema = z.object({
   }),
 });
 
-// --- data-src/naruto/ (curado a mano) ---------------------------------------
+// --- data/naruto/source/ (curado a mano) ---------------------------------------
 
 /**
  * Los arcos de cada serie. `from` es el primer episodio del anime del arco (Narutopedia, página de cada
@@ -249,7 +249,7 @@ export const groupSrcSchema = z
     /** 1 (fácil) a 4 (difícil). Un tablero lleva un grupo de cada dificultad. */
     difficulty: z.number().int().min(1).max(4),
     series: seriesId,
-    /** TODOS los personajes de data-src/naruto/characters.json que pertenecen al grupo, no solo los que se muestran. */
+    /** TODOS los personajes de data/naruto/source/characters.json que pertenecen al grupo, no solo los que se muestran. */
     members: z.array(kebab).min(4),
     /** De dónde sale la lista, si una fuente la tiene: el build comprueba que `members` coincide con ella. */
     derived: z

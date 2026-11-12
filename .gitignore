@@ -12,7 +12,7 @@ next-env.d.ts
 # caché local de las APIs de los scripts de datos
 /.cache/
 # fuentes PMD descargables; los sprites procesados permanecen en public/
-/data-src/pokemon/pmd/
+/data/pokemon/source/pmd/
 
 # capturas de npm run check:responsive
 /.screenshots/

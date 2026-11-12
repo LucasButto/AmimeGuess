@@ -58,7 +58,7 @@ export function renderTodoSection(input: TodoInput): string {
   const pendingImages = input.characters.length + input.jutsus.length;
   if (pendingImages === 0) {
     lines.push(
-      `Las imágenes de Naruto se cargan a mano en \`data-src/naruto/images/\` (su CDN, \`static.wikia.nocookie.net\`, responde con un desafío anti-bots de Cloudflare a los scripts y no se intenta saltearlo). Hoy no falta ninguna: ${input.charactersWithImage} de personajes y ${input.jutsuAnswersWithImage > 0 ? 'todas las de jutsus' : 'ninguna de jutsus'}.`,
+      `Las imágenes de Naruto se cargan a mano en \`data/naruto/source/images/\` (su CDN, \`static.wikia.nocookie.net\`, responde con un desafío anti-bots de Cloudflare a los scripts y no se intenta saltearlo). Hoy no falta ninguna: ${input.charactersWithImage} de personajes y ${input.jutsuAnswersWithImage > 0 ? 'todas las de jutsus' : 'ninguna de jutsus'}.`,
       '',
     );
   } else {
@@ -105,7 +105,7 @@ export function renderTodoSection(input: TodoInput): string {
     );
   }
 
-  lines.push('### Punto focal del ojo (`data-src/naruto/focus.json`)', '');
+  lines.push('### Punto focal del ojo (`data/naruto/source/focus.json`)', '');
   if (input.focus.points === 0) {
     lines.push(
       'El modo Ojo hace zoom sobre el ojo del personaje. Para eso hace falta, por personaje con imagen, un punto `{ "character": "<id>", "x": 0.5, "y": 0.4, "verified": false }` (x e y entre 0 y 1, medidos sobre la imagen cuadrada de 512 px). Todavía no hay ninguno; el modo queda oculto hasta tener al menos 10 personajes con imagen y punto.',
@@ -127,7 +127,7 @@ export function renderTodoSection(input: TodoInput): string {
     lines.push(
       '### Frases',
       '',
-      `Las ${input.quotesTotal} frases de \`data-src/naruto/quotes.json\` están verificadas: el modo Frase tiene frases de ${input.quoteAnswersVerified} personajes distintos. Son traducciones de la sección "Quotes" de Narutopedia (el original en inglés está en el campo \`context\` de cada una); si alguna está mal, se corrige ahí y se corre \`npm run data:naruto\`.`,
+      `Las ${input.quotesTotal} frases de \`data/naruto/source/frase.json\` están verificadas: el modo Frase tiene frases de ${input.quoteAnswersVerified} personajes distintos. Son traducciones de la sección "Quotes" de Narutopedia (el original en inglés está en el campo \`context\` de cada una); si alguna está mal, se corrige ahí y se corre \`npm run data:naruto\`.`,
       '',
       TODO_END,
     );
@@ -135,7 +135,7 @@ export function renderTodoSection(input: TodoInput): string {
   }
   lines.push('### Frases sin verificar', '');
   lines.push(
-    `Las ${input.quotesTotal} frases de \`data-src/naruto/quotes.json\` están en español, traducidas por Claude a partir de la sección "Quotes" de Narutopedia (el original en inglés está en el campo \`context\` de cada una) y marcadas \`verified: false\`: hay ${input.quotesUnverified} sin verificar. Las frases sin verificar no entran al pool de producción, así que el modo Frase queda oculto hasta que se revisen y haya frases verificadas de al menos ${input.quotePoolMinimum} personajes distintos (ahora hay ${input.quoteAnswersVerified}). Para verificar: comprobar la traducción, el destinatario y el arco, y cambiar \`verified\` a \`true\`. Las observaciones de la revisión están en \`docs/REVISION_CONTENIDO.md\`.`,
+    `Las ${input.quotesTotal} frases de \`data/naruto/source/frase.json\` están en español, traducidas por Claude a partir de la sección "Quotes" de Narutopedia (el original en inglés está en el campo \`context\` de cada una) y marcadas \`verified: false\`: hay ${input.quotesUnverified} sin verificar. Las frases sin verificar no entran al pool de producción, así que el modo Frase queda oculto hasta que se revisen y haya frases verificadas de al menos ${input.quotePoolMinimum} personajes distintos (ahora hay ${input.quoteAnswersVerified}). Para verificar: comprobar la traducción, el destinatario y el arco, y cambiar \`verified\` a \`true\`. Las observaciones de la revisión están en \`docs/REVISION_CONTENIDO.md\`.`,
   );
   lines.push('', TODO_END);
   return lines.join('\n');

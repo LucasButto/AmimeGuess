@@ -236,8 +236,11 @@ async function imageFitsWithField(page: Page): Promise<string[]> {
 function neverAnswers(contentKind: string, count: number, franchise = 'pokemon', entitiesFile = 'entities.json', exclude: readonly string[] = []): string[] {
   const read = (file: string) => JSON.parse(readFileSync(path.join(ROOT, 'data', franchise, file), 'utf8')) as unknown[];
   const entities = read(entitiesFile) as Array<{ id: string }>;
-  const contents = read('content.json') as Array<{ kind: string; entityId?: string }>;
-  const withContent = new Set(contents.filter((content) => content.kind === contentKind).map((content) => content.entityId));
+  const answers = contentKind === 'quote'
+    ? (read('source/frase.json') as Array<{ character: string }>).map(({ character }) => character)
+    : (read('content.json') as Array<{ kind: string; entityId?: string }>)
+        .filter((content) => content.kind === contentKind).map((content) => content.entityId);
+  const withContent = new Set(answers);
   return entities.filter((entity) => !withContent.has(entity.id) && !exclude.includes(entity.id)).slice(0, count).map((entity) => entity.id);
 }
 

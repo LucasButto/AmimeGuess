@@ -1,10 +1,10 @@
 // npm run data:dragon-ball
 //
-// Genera el dataset de Dragon Ball combinando lo curado a mano (data-src/dragon-ball/)
+// Genera el dataset de Dragon Ball combinando lo curado a mano (data/dragon-ball/source/)
 // con lo que se puede sacar de las fuentes de la SPEC (sección 7):
 //   data/dragon-ball/entities.json         los personajes, con sus atributos del Clásico
 //   data/dragon-ball/transformations.json  las formas, como entidades propias (modo Transformación)
-//   data/dragon-ball/content.json          frases (quote), técnicas (technique) y sucesos (event)
+//   data/dragon-ball/content.json          técnicas (technique)
 //   data/dragon-ball/sagas.json            series y sagas con su lugar en la cronología
 //   public/img/dragon-ball/                imágenes en WebP, 256 y 512 px
 //
@@ -12,10 +12,10 @@
 //   - Dragon Ball API: la imagen (transparente) de los personajes y de las formas.
 //   - Wiki en español (API MediaWiki): en qué series aparece cada personaje, según las categorías
 //     "Personajes de Dragon Ball / Z / GT / Super / Daima". No sale de la memoria de nadie.
-//   - data-src/: el resto (atributos, frases, sucesos, ki, técnicas), todo con `verified: false`
+//   - data/<franquicia>/source/: el resto (atributos, frases, sucesos, ki, técnicas), todo con `verified: false`
 //     hasta que se revise a mano.
 // Las imágenes de Fandom no se descargan (Cloudflare las protege): se cargan a mano en
-// data-src/dragon-ball/images/ y quedan listadas en docs/CONTENT_TODO.md.
+// data/dragon-ball/source/images/ y quedan listadas en docs/CONTENT_TODO.md.
 //
 // Las respuestas de las APIs quedan en .cache/ (ignorada por git); la salida es determinista.
 // Si algo no cumple (esquema, referencias, imágenes), falla sin escribir los JSON.
@@ -24,7 +24,7 @@ import { mkdir, readFile, readdir, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { z } from 'zod';
 import type { Content, Entity } from '../../../src/engine/types.ts';
-import { buildCategoryBoard } from '../category-board.ts';
+import { validateCategoryBoard } from '../category-board.ts';
 import {
   DRAGONBALL_API,
   DRAGONBALL_API_BASE,
@@ -89,7 +89,7 @@ import {
   type EntityImage,
 } from './transform.ts';
 
-const SRC_DIR = path.join(ROOT, 'data-src', 'dragon-ball');
+const SRC_DIR = path.join(ROOT, 'data', 'dragon-ball', 'source');
 const MANUAL_DIR = path.join(SRC_DIR, 'images');
 const DATA_DIR = path.join(ROOT, 'data', 'dragon-ball');
 const IMG_ROOT = path.join(ROOT, 'public', 'img');
@@ -127,7 +127,7 @@ async function readSrc<T>(file: string, schema: z.ZodType<T>): Promise<T[]> {
   const parsed = z.array(schema).safeParse(JSON.parse(text));
   if (!parsed.success) {
     fail(
-      `data-src/dragon-ball/${file} no cumple el esquema`,
+      `data/dragon-ball/source/${file} no cumple el esquema`,
       parsed.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`),
     );
   }
@@ -148,14 +148,14 @@ async function loadSrc(): Promise<Src> {
   const sagasText = await readFile(path.join(SRC_DIR, 'sagas.json'), 'utf8');
   const sagas = sagasFileSchema.safeParse(JSON.parse(sagasText));
   if (!sagas.success) {
-    fail('data-src/dragon-ball/sagas.json no cumple el esquema', sagas.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`));
+    fail('data/dragon-ball/source/sagas.json no cumple el esquema', sagas.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`));
   }
   return {
     sagas: sagas.data,
     characters: await readSrc('characters.json', characterSrcSchema),
     transformations: await readSrc('transformations.json', transformationSrcSchema),
     techniques: await readSrc('techniques.json', techniqueSrcSchema),
-    quotes: await readSrc('quotes.json', quoteSrcSchema),
+    quotes: await readSrc('frase.json', quoteSrcSchema),
     events: await readSrc('events.json', eventSrcSchema),
     power: await readSrc('power.json', powerSrcSchema),
   };
@@ -181,7 +181,7 @@ function checkSrc(src: Src): void {
     ['characters.json', src.characters.map((item) => item.id)],
     ['transformations.json', src.transformations.map((item) => item.id)],
     ['techniques.json', src.techniques.map((item) => item.id)],
-    ['quotes.json', src.quotes.map((item) => item.id)],
+    ['frase.json', src.quotes.map((item) => item.id)],
     ['events.json', src.events.map((item) => item.id)],
     ['power.json', src.power.map((item) => item.id)],
   ] as const) {
@@ -218,16 +218,16 @@ function checkSrc(src: Src): void {
   for (const quote of src.quotes) {
     const character = characterById.get(quote.character);
     if (character === undefined) {
-      problems.push(`quotes.json: ${quote.id} apunta al personaje inexistente ${quote.character}`);
-    } else if (leaksName(quote.text, [character.name, ...character.aliases])) {
-      problems.push(`quotes.json: ${quote.id} dice el nombre de ${character.name}`);
+      problems.push(`frase.json: ${quote.id} apunta al personaje inexistente ${quote.character}`);
+    } else if (quote.verified && leaksName(quote.text, [character.name, ...character.aliases])) {
+      problems.push(`frase.json: ${quote.id} dice el nombre de ${character.name}`);
     }
   }
   const formIds = new Set(src.transformations.map((form) => form.id));
   for (const entry of src.power) {
     if (!characterIds.has(entry.of) && !formIds.has(entry.of)) problems.push(`power.json: ${entry.id} sale de ${entry.of}, que no es un personaje ni una forma`);
   }
-  if (problems.length > 0) fail('Los archivos de data-src/dragon-ball/ no son coherentes', problems);
+  if (problems.length > 0) fail('Los archivos de data/dragon-ball/source/ no son coherentes', problems);
 }
 
 // --- 2. Fuentes -------------------------------------------------------------
@@ -273,7 +273,7 @@ async function fetchSeriesMembers(): Promise<Record<SeriesId, Set<string>>> {
 interface EntityImageResult {
   readonly image: EntityImage | null;
   readonly rendered: Rendered[];
-  /** `manual` si salió de data-src/dragon-ball/images/, `api` si de Dragon Ball API. */
+  /** `manual` si salió de data/dragon-ball/source/images/, `api` si de Dragon Ball API. */
   readonly origin: 'manual' | 'api' | 'none';
 }
 
@@ -453,7 +453,7 @@ async function directoryBytes(directory: string): Promise<number> {
 // --- Programa ---------------------------------------------------------------
 
 async function main(): Promise<void> {
-  step('Leyendo data-src/dragon-ball/…');
+  step('Leyendo data/dragon-ball/source/…');
   const src = await loadSrc();
   checkSrc(src);
 
@@ -548,7 +548,7 @@ async function main(): Promise<void> {
     kind: 'quote',
     entityId: quote.character,
     series: quote.series,
-    payload: { text: quote.text, source: quote.source },
+    payload: { text: quote.text, source: quote.source, literal: quote.literal, famous: quote.famous, ...(quote.addressee ? { addressee: quote.addressee } : {}) },
     verified: quote.verified,
   }));
   const events: Content[] = src.events.map((event) => buildEventContent(event, orders.get(event.id) as number));
@@ -587,11 +587,11 @@ async function main(): Promise<void> {
   await validate(src, characters, forms, power, contents, debutOf, sagaSeries);
 
   step('Escribiendo data/dragon-ball/…');
-  await buildCategoryBoard(ROOT, 'dragon-ball', characters);
+  await validateCategoryBoard(ROOT, 'dragon-ball', characters);
   await writeJson(path.join(DATA_DIR, 'entities.json'), characters);
   await writeJson(path.join(DATA_DIR, 'transformations.json'), forms);
   await writeJson(path.join(DATA_DIR, 'power.json'), power);
-  await writeJson(path.join(DATA_DIR, 'content.json'), contents);
+  await writeJson(path.join(DATA_DIR, 'content.json'), contents.filter(({ kind }) => kind !== 'event' && kind !== 'quote'));
   await writeJson(path.join(DATA_DIR, 'sagas.json'), sagasOutput);
 
   // Lo que falta cargar a mano
@@ -600,7 +600,7 @@ async function main(): Promise<void> {
     .map((character) => ({
       id: character.id,
       name: character.name,
-      file: `data-src/dragon-ball/images/characters/${character.id}`,
+      file: `data/dragon-ball/source/images/characters/${character.id}`,
       wikiPage: character.wiki,
       note: character.sinImagen ? 'la de la API no es el personaje' : undefined,
     }));
@@ -609,7 +609,7 @@ async function main(): Promise<void> {
     .map((technique) => ({
       id: technique.id,
       name: technique.name,
-      file: `data-src/dragon-ball/images/techniques/${technique.id}`,
+      file: `data/dragon-ball/source/images/techniques/${technique.id}`,
       wikiPage: technique.name,
       note: characterById.get(technique.users[0])?.name ?? technique.users[0],
     }));

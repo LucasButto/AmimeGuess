@@ -18,6 +18,7 @@ import { candidatesOf as textCandidates, lineStates } from '@/modes/text-clue/lo
 import { buildPuzzle, countOf, poolOf as timelinePool } from '@/modes/timeline/logic';
 import cardsJson from '../../../data/yugioh/cards.json';
 import contentJson from '../../../data/yugioh/content.json';
+import { yugiohContents } from './content';
 import entitiesJson from '../../../data/yugioh/entities.json';
 import seriesJson from '../../../data/yugioh/series.json';
 import { entitiesOfMode, loadFranchiseData, type FranchiseData } from '../data';
@@ -27,7 +28,7 @@ import { yugiohConfig } from './config';
 
 const duelists = entitiesJson as Entity[];
 const cards = cardsJson as Entity[];
-const rawContents = contentJson as Content[];
+const rawContents = yugiohContents(contentJson as Content[]);
 const modes: readonly ModeConfig[] = yugiohConfig.modes;
 const allSeries: readonly string[] = yugiohConfig.series;
 

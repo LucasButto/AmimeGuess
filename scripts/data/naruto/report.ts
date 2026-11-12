@@ -89,7 +89,7 @@ export function printReport(input: ReportInput): void {
   line('  ("personajes" cuenta las series en las que aparece cada uno; "debutan", solo la de debut)');
 
   line();
-  line('Sin verificar (verified: false), a revisar en data-src/naruto/:');
+  line('Sin verificar (verified: false), a revisar en data/naruto/source/:');
   for (const item of input.unverified) line(`  ${item.label.padEnd(16)}${pad(item.unverified, 4)} de ${pad(item.total, 4)}`);
   line('  Las frases y los sucesos esperan verified: true para entrar al pool de producción.');
   line('  Las traducciones de translations.json también están sin verificar, pero se usan: sin ellas el Clásico no tendría atributos.');

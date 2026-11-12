@@ -1,4 +1,4 @@
-// Esquemas Zod: lo que se espera de las fuentes, de los archivos curados de data-src/yugioh/ y lo
+// Esquemas Zod: lo que se espera de las fuentes, de los archivos curados de data/yugioh/source/ y lo
 // que se escribe en data/yugioh/. Si algo no cumple, el script falla (SPEC sección 7).
 
 import { z } from 'zod';
@@ -18,7 +18,7 @@ const KEBAB = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const kebab = z.string().regex(KEBAB);
 const seriesId = z.enum(SERIES);
 
-// --- data-src/yugioh/ (curado a mano) ---------------------------------------
+// --- data/yugioh/source/ (curado a mano) ---------------------------------------
 
 export const duelistSrcSchema = z
   .object({
@@ -263,7 +263,7 @@ const eventSchema = z
 export const contentSchema = z.discriminatedUnion('kind', [cardTextSchema, deckSchema, summonSchema, aceCardSchema, silhouetteSchema, eventSchema]);
 
 /**
- * data-src/yugioh/events.json: los sucesos a ordenar. `order` es la posición dentro de su serie (desde 1, sin repetir);
+ * data/yugioh/source/events.json: los sucesos a ordenar. `order` es la posición dentro de su serie (desde 1, sin repetir);
  * el orden entre series es el de `SERIES`, que también es el de la historia.
  */
 export const eventSrcSchema = z

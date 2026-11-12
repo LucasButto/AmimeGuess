@@ -13,7 +13,7 @@ import {
 
 // --- Series y orden cronológico ---------------------------------------------
 
-/** Posición (desde 1) de cada serie en la cronología de la historia que define `data-src/dragon-ball/sagas.json`. */
+/** Posición (desde 1) de cada serie en la cronología de la historia que define `data/dragon-ball/source/sagas.json`. */
 export function seriesRanks(order: readonly SeriesId[]): Map<SeriesId, number> {
   if (new Set(order).size !== SERIES.length || SERIES.some((series) => !order.includes(series))) {
     throw new Error(`seriesOrder tiene que contener cada serie exactamente una vez (${SERIES.join(', ')}); es: ${order.join(', ')}`);

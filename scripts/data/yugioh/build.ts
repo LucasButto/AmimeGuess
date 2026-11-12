@@ -1,6 +1,6 @@
 // npm run data:yugioh
 //
-// Genera el dataset de Yu-Gi-Oh combinando lo curado a mano (data-src/yugioh/) con las fuentes de la SPEC
+// Genera el dataset de Yu-Gi-Oh combinando lo curado a mano (data/yugioh/source/) con las fuentes de la SPEC
 // (sección 7). Decisión de la sesión 12: por ahora solo Duel Monsters, GX y 5D's.
 //   data/yugioh/entities.json   los duelistas (la entidad principal del modo Duelista)
 //   data/yugioh/cards.json      las cartas insignia (la entidad de Carta, Silueta, Arte, Zoom, Texto y Mayor o Menor)
@@ -15,7 +15,7 @@
 //     curada es del duelista, y la imagen del duelista.
 //   - YGOPRODeck: stats, id, konami_id y las imágenes de las cartas (cada una se baja una sola vez).
 //   - YGOResources: el nombre y el texto oficiales en español de cada carta (clave "es"). No se traducen.
-//   - data-src/: la lista de duelistas y de cartas insignia (con su iconicidad y la carta as), el rol, las afiliaciones,
+//   - data/<franquicia>/source/: la lista de duelistas y de cartas insignia (con su iconicidad y la carta as), el rol, las afiliaciones,
 //     los arquetipos y las invocaciones. Lo redactado va con `verified: false`.
 //
 // Las respuestas de las APIs quedan en .cache/ (ignorada por git); la salida es determinista.
@@ -100,7 +100,7 @@ import {
   type SummonInput,
 } from './transform.ts';
 
-const SRC_DIR = path.join(ROOT, 'data-src', 'yugioh');
+const SRC_DIR = path.join(ROOT, 'data', 'yugioh', 'source');
 const MANUAL_DIR = path.join(SRC_DIR, 'images', 'duelists');
 const DATA_DIR = path.join(ROOT, 'data', 'yugioh');
 const IMG_ROOT = path.join(ROOT, 'public', 'img');
@@ -160,7 +160,7 @@ async function readSrc<T>(file: string, schema: z.ZodType<T>): Promise<T> {
   const parsed = schema.safeParse(JSON.parse(await readFile(path.join(SRC_DIR, file), 'utf8')) as unknown);
   if (!parsed.success) {
     fail(
-      `data-src/yugioh/${file} no cumple el esquema`,
+      `data/yugioh/source/${file} no cumple el esquema`,
       parsed.error.issues.map((issue) => `${issue.path.join('.')}: ${issue.message}`),
     );
   }
@@ -223,7 +223,7 @@ function checkSrc(src: Src): void {
       problems.push(`${duelist.id}: las series tienen que ir en orden canónico`);
     }
   }
-  if (problems.length > 0) fail('Lo curado en data-src/yugioh/ no es consistente', problems);
+  if (problems.length > 0) fail('Lo curado en data/yugioh/source/ no es consistente', problems);
 }
 
 // --- 2. Fuentes ---------------------------------------------------------------
@@ -272,7 +272,7 @@ async function loadDuelistFacts(src: Src): Promise<Map<string, DuelistFacts>> {
     const debut = parseDebut(infobox.anime_debut);
     const gender = infobox.gender;
     if (debut === null) problems.push(`${duelist.id}: la infobox de "${main}" no trae el episodio de debut (anime_debut)`);
-    else if (debut.series !== duelist.series[0]) problems.push(`${duelist.id}: Yugipedia dice que debutó en ${debut.series} y data-src dice ${duelist.series[0]}`);
+    else if (debut.series !== duelist.series[0]) problems.push(`${duelist.id}: Yugipedia dice que debutó en ${debut.series} y la fuente curada dice ${duelist.series[0]}`);
     if (gender === undefined || src.translations.gender[gender] === undefined) problems.push(`${duelist.id}: género "${gender ?? '(sin dato)'}" sin traducción`);
     if (debut === null || gender === undefined) continue;
     const found = all.map((title) => texts.get(title)).filter((text): text is string => typeof text === 'string');
@@ -438,7 +438,7 @@ function validate<T>(label: string, schema: z.ZodType<T>, items: readonly unknow
 // --- Programa ---------------------------------------------------------------------
 
 async function main(): Promise<void> {
-  step('Leyendo data-src/yugioh/…');
+  step('Leyendo data/yugioh/source/…');
   const src = await loadSrc();
   checkSrc(src);
   const { translations } = src;
@@ -625,7 +625,7 @@ async function main(): Promise<void> {
   step('Escribiendo data/yugioh/…');
   await writeJson(path.join(DATA_DIR, 'entities.json'), duelistEntities);
   await writeJson(path.join(DATA_DIR, 'cards.json'), cardEntities);
-  await writeJson(path.join(DATA_DIR, 'content.json'), contents);
+  await writeJson(path.join(DATA_DIR, 'content.json'), contents.filter(({ kind }) => kind !== 'event'));
   validate('Las siluetas', silhouetteRecordsSchema, [{ monsters: silhouetteResult.records }], () => 'silhouettes.json');
   await writeJson(SILHOUETTES_FILE, { monsters: silhouetteResult.records });
   const seriesOutput = { series: SERIES.map((id, index) => ({ id, order: index + 1, label: translations.series[id] })) };

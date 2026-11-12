@@ -16,6 +16,7 @@ import { candidatesOf as textCandidates, lineStates } from '@/modes/text-clue/lo
 import { buildPuzzle, countOf, poolOf as timelinePool } from '@/modes/timeline/logic';
 import arcsJson from '../../../data/naruto/arcs.json';
 import contentJson from '../../../data/naruto/content.json';
+import { narutoContents } from './content';
 import entitiesJson from '../../../data/naruto/entities.json';
 import { loadFranchiseData, type FranchiseData } from '../data';
 import { modePoolSize } from '../pool';
@@ -23,8 +24,8 @@ import type { ModeConfig } from '../types';
 import { arcLabels, narutoConfig } from './config';
 
 const characters = entitiesJson as Entity[];
-const rawContents = contentJson as Content[];
-// Las frases están sin verificar hasta que alguien las revise a mano (verified: false en data-src).
+const rawContents = narutoContents(contentJson as Content[]);
+// Las frases están sin verificar hasta que alguien las revise a mano (verified: false en la fuente curada).
 // Para probar las reglas de exclusión sobre el contenido real se consideran verificadas.
 const contents = rawContents.map((content) => ({ ...content, verified: true }));
 const modes: readonly ModeConfig[] = narutoConfig.modes;

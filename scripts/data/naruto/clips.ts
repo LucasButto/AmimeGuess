@@ -1,10 +1,10 @@
 // Clips del modo Jutsu (SPEC sección 7, "Videos"): de la escena que encontró trace.moe a un MP4 sin audio y un póster, con nombres
 // opacos (la respuesta no se puede deducir de lo que pide la página).
 //
-// Para cada jutsu con datos en data-src/naruto/clips.json:
+// Para cada jutsu con datos en data/naruto/source/clips.json:
 //   1. Baja el clip original de 640 px por su `videoId` (https://api.trace.moe/video/<videoId>?size=l&mute) a .cache/naruto/clips/.
 //      Es una descarga, no una búsqueda: no gasta cuota. De a una, con User-Agent propio y reintentos con espera. Si no se puede,
-//      usa la vista previa de 320 px que ya está en data-src/naruto/clips/.
+//      usa la vista previa de 320 px que ya está en data/naruto/source/clips/.
 //   2. ffmpeg: recorta la franja de abajo (los subtítulos chinos que trae el video), H.264, sin audio, +faststart. Si pasa del
 //      presupuesto, vuelve a codificar con más compresión.
 //   3. Un cuadro del medio del clip, como póster, en WebP de 256 y 512 px (los dos tamaños de siempre).
@@ -21,8 +21,8 @@ import { imageDimensions, imageFileName, renderPlainImage } from '../dragon-ball
 
 const run = promisify(execFile);
 
-export const CLIPS_FILE = path.join(ROOT, 'data-src', 'naruto', 'clips.json');
-export const PREVIEW_DIR = path.join(ROOT, 'data-src', 'naruto', 'clips');
+export const CLIPS_FILE = path.join(ROOT, 'data', 'naruto', 'source', 'clips.json');
+export const PREVIEW_DIR = path.join(ROOT, 'data', 'naruto', 'source', 'clips');
 export const ORIGINAL_DIR = path.join(ROOT, '.cache', 'naruto', 'clips');
 export const VIDEO_DIR = path.join(ROOT, 'public', 'video', 'naruto');
 export const POSTER_DIR = path.join(ROOT, 'public', 'img', 'naruto', 'c');
@@ -103,7 +103,7 @@ export async function fetchOriginal(id: string, videoId: string): Promise<{ file
       if (response.status >= 400 && response.status < 500) {
         // 403 o 410: el videoId venció (trace.moe guarda los clips un tiempo). Es permanente y vale para todos: no se insiste.
         downloadsDisabled = true;
-        process.stderr.write(`  trace.moe contestó ${response.status} para ${id}: los clips originales ya no se pueden bajar; se usan las vistas previas de 320 px de data-src/naruto/clips/\n`);
+        process.stderr.write(`  trace.moe contestó ${response.status} para ${id}: los clips originales ya no se pueden bajar; se usan las vistas previas de 320 px de data/naruto/source/clips/\n`);
         return fallback;
       }
       if (!response.ok) throw new Error(`HTTP ${response.status}`);

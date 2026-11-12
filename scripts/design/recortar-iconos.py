@@ -1,6 +1,6 @@
 """python scripts/design/recortar-iconos.py [pokemon|naruto|dragon-ball|yugioh|jeroglificos|bolas ...]
 
-Recorta las hojas de iconos que aportó el usuario (data-src/<serie>/icons/): un archivo WebP con fondo transparente por icono.
+Recorta las hojas de iconos que aportó el usuario (data/<serie>/source/icons/): un archivo WebP con fondo transparente por icono.
 
 Dos modos:
   color  fondo liso (crema o celeste): el fondo es lo conectado con el borde de la hoja y parecido al color del fondo; en el
@@ -13,7 +13,7 @@ from PIL import Image
 from collections import deque
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')) + '/'
-BASE = ROOT + 'data-src/'
+BASE = ROOT + 'data/'
 
 POKEMON = ['pokedex', 'pokedex-plegable', 'rotom-dex', 'rotom-telefono', 'pokedex-portatil', 'pokereloj',
            'bicicleta', 'cana-de-pescar', 'flauta', 'prismaticos', 'comunicador', 'mochila',
@@ -264,10 +264,10 @@ if __name__ == '__main__':
     for f, series, names, mode, outdir, label in SHEETS:
         key = 'jeroglificos' if label == 'jeroglificos' else series
         if key in which:
-            run(BASE + f, series, names, mode, outdir, series + ':' + label)
+            run(BASE + f.replace('/', '/source/', 1), series, names, mode, outdir, series + ':' + label)
     if 'bolas' in which:
         # Las 38 Poké Balls de la hoja de bolas (sin quitar huecos: el celeste del fondo se parece al de las bolas de agua).
         names = [BOLAS.get((i // 6 + 1, i % 6 + 1), f'bola-f{i // 6 + 1}c{i % 6 + 1}') for i in range(38)]
-        run(BASE + 'pokemon/icons/hoja-pokebolas.webp', 'pokemon', names, 'color', 'icons/pokemon/pokebolas/', 'bolas', extra={'hole': 0})
+        run(BASE + 'pokemon/source/icons/hoja-pokebolas.webp', 'pokemon', names, 'color', 'icons/pokemon/pokebolas/', 'bolas', extra={'hole': 0})
     if 'tronco' in which:
         tronco_boton()

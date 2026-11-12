@@ -2,600 +2,872 @@
 
 import type { ModeCardState, ThemeFont } from '@/franchises/types';
 
-const plural = (count: number, one: string, many: string) => (count === 1 ? one : many);
+const plural = (count: number, one: string, many: string) =>
+  count === 1 ? one : many;
 
 export const es = {
   categoryBoard: {
-    name: 'Casillas',
-    description: 'Ubicá cada personaje en una categoría y completá el tablero.',
-    difficulty: 'Dificultad',
-    levels: ['Fácil', 'Normal', 'Difícil'],
-    levelAttempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
-    progress: (attempt: number, total: number) => `Intento ${attempt} de ${total}`,
+    name: "Casillas",
+    description: "Ubicá cada personaje en una categoría y completá el tablero.",
+    difficulty: "Dificultad",
+    levels: ["Fácil", "Normal", "Difícil"],
+    levelAttempts: (count: number) =>
+      `${count} ${plural(count, "intento", "intentos")}`,
+    progress: (attempt: number, total: number) =>
+      `Intento ${attempt} de ${total}`,
     filled: (count: number) => `${count} de 8 categorías`,
-    board: 'Tablero de categorías',
-    rolling: '¿Quién te toca?',
-    stop: 'Detener ruleta',
-    reveal: 'Revelar personaje',
-    choose: 'Elegí una casilla libre',
-    next: 'Siguiente personaje',
-    retry: 'Nuevo intento',
-    finished: 'Tablero terminado',
-    occupied: 'Ocupada',
-    empty: 'Libre',
-    place: (name: string, category: string) => `Ubicar a ${name} en ${category}`,
+    board: "Tablero de categorías",
+    rolling: "¿Quién te toca?",
+    stop: "Detener ruleta",
+    reveal: "Revelar personaje",
+    choose: "Elegí una casilla libre",
+    next: "Siguiente personaje",
+    retry: "Nuevo intento",
+    finished: "Tablero terminado",
+    occupied: "Ocupada",
+    empty: "Libre",
+    place: (name: string, category: string) =>
+      `Ubicar a ${name} en ${category}`,
     placed: (name: string, category: string) => `${name} quedó en ${category}.`,
-    blocked: (name: string) => `${name} no entra en ninguna casilla libre. Terminó este intento.`,
-    wrong: (name: string, category: string, wildcardFree: boolean) => `${name} no corresponde a ${category}. ${wildcardFree ? 'Podés ubicarlo en otra casilla o en el comodín.' : 'Podés ubicarlo en otra casilla libre que le corresponda.'}`,
-    remaining: (count: number) => count === 1 ? 'Te queda un intento.' : `Te quedan ${count} intentos.`,
-    won: '¡Tablero completo!',
+    pending: (name: string, category: string) =>
+      `${name} está en ${category}. Podés moverlo a otra casilla libre antes de confirmar.`,
+    blocked: (name: string) =>
+      `${name} no entra en ninguna casilla libre. Terminó este intento.`,
+    wrong: (name: string, category: string, wildcardFree: boolean) =>
+      `${name} no corresponde a ${category}. ${wildcardFree ? "Podés ubicarlo en otra casilla o en el comodín." : "Podés ubicarlo en otra casilla libre que le corresponda."}`,
+    remaining: (count: number) =>
+      count === 1 ? "Te queda un intento." : `Te quedan ${count} intentos.`,
+    won: "¡Tablero completo!",
     result: (count: number) => `Completaste ${count} de las 8 categorías.`,
-    noBoard: 'Con estos filtros no se puede armar un tablero completo. Probá activar más series.',
-    balanced: 'El sorteo es libre: puede tocarte una secuencia sin solución. Elegí bien qué casillas reservar.',
-    wildcard: { id: 'comodin', label: 'Comodín', help: 'Acepta cualquier personaje. Se puede ocupar una sola vez en cada tablero.' },
+    noBoard:
+      "Con estos filtros no se puede armar un tablero completo. Probá activar más series.",
+    balanced:
+      "El sorteo es libre: puede tocarte una secuencia sin solución. Elegí bien qué casillas reservar.",
+    wildcard: {
+      id: "comodin",
+      label: "Comodín",
+      help: "Acepta cualquier personaje. Se puede ocupar una sola vez en cada tablero.",
+    },
     help: [
-      'Completá las ocho categorías con los personajes que te toquen. El comodín es opcional: ganás aunque quede libre. Un personaje puede corresponder a varias categorías, pero solo puede ocupar una casilla.',
-      'Detené la ruleta, elegí una casilla libre y pasá al siguiente personaje. Las colocaciones son definitivas y no se repiten personajes dentro del tablero.',
-      'El comodín acepta cualquier personaje una sola vez. Si elegís una categoría incorrecta, podés volver a elegir. Solo perdés el intento cuando no queda ninguna casilla que acepte al personaje.',
-      'Tenés cinco intentos en Fácil, cuatro en Normal y tres en Difícil. Cada intento empieza un tablero nuevo.',
-      'Los filtros se respetan. Si dejan una categoría sin candidatos, se usa una categoría alternativa. Los personajes se sortean libremente: puede tocar una secuencia sin solución.',
+      "Completá las ocho categorías con los personajes que te toquen. El comodín es opcional: ganás aunque quede libre. Un personaje puede corresponder a varias categorías, pero solo puede ocupar una casilla.",
+      "Detené la ruleta, elegí una casilla libre y pasá al siguiente personaje. Las colocaciones son definitivas y no se repiten personajes dentro del tablero.",
+      "El comodín acepta cualquier personaje una sola vez. Si elegís una categoría incorrecta, podés volver a elegir. Solo perdés el intento cuando no queda ninguna casilla que acepte al personaje.",
+      "Tenés cinco intentos en Fácil, cuatro en Normal y tres en Difícil. Cada intento empieza un tablero nuevo.",
+      "Los filtros se respetan. Si dejan una categoría sin candidatos, se usa una categoría alternativa. Los personajes se sortean libremente: puede tocar una secuencia sin solución.",
     ],
+    reassignHelp:
+      "Podés mover al personaje actual a otra casilla compatible hasta pasar al siguiente. Ganás en cuanto completás las ocho categorías.",
     categories: {
-      hokage: { label: 'Hokage', help: 'Fue Hokage de la Aldea de la Hoja.' },
-      konoha: { label: 'Konoha', help: 'Nació en Konoha o se lo identifica especialmente con la aldea.' },
-      'otras-aldeas': { label: 'Otras aldeas', help: 'Se identifica con otra aldea o tiene un origen externo a Konoha.' },
-      'poder-ocular': { label: 'Poder ocular', help: 'Usó un poder ocular en algún momento, incluidos ojos trasplantados.' },
-      invocacion: { label: 'Invocación', help: 'Realiza invocaciones o es una criatura invocada. Incluye Edo Tensei.' },
-      akatsuki: { label: 'Akatsuki', help: 'Fue integrante o aliado de Akatsuki.' },
-      jinchuriki: { label: 'Jinchuriki', help: 'Fue portador de una bestia con cola en algún momento.' },
-      antagonista: { label: 'Antagonista', help: 'Actuó como antagonista en algún arco, aunque después haya cambiado de bando.' },
-      sannin: { label: 'Sannin', help: 'Jiraiya, Tsunade u Orochimaru.' },
-      sensor: { label: 'Sensor', help: 'Puede detectar la presencia o el chakra de otros.' },
-      taijutsu: { label: 'Taijutsu', help: 'Usa técnicas de taijutsu.' },
-      'ninja-medico': { label: 'Ninja médico', help: 'Tiene habilidades de ninjutsu médico.' },
-      saiyajin: { label: 'Saiyajin', help: 'Es saiyajin o tiene ascendencia saiyajin.' },
-      terricola: { label: 'Terrícola', help: 'Tiene origen terrestre, incluidos híbridos y humanos modificados.' },
-      namekuseijin: { label: 'Namekuseijin', help: 'Pertenece a la raza namekuseijin.' },
-      androide: { label: 'Androide', help: 'Es un androide, un humano modificado o un bioandroide.' },
-      fusion: { label: 'Fusión', help: 'Es resultado de una fusión, absorción o asimilación.' },
-      'ejercito-freezer': { label: 'Ejército de Freezer', help: 'Fue parte del ejército de Freezer.' },
-      'torneo-del-poder': { label: 'Torneo del Poder', help: 'Participó en el Torneo del Poder de Dragon Ball Super.' },
-      deidad: { label: 'Deidad o ángel', help: 'Es una deidad o un ángel.' },
-      'guerreros-z': { label: 'Guerreros Z', help: 'Forma parte de los Guerreros Z.' },
-      transformacion: { label: 'Transformación', help: 'Puede transformarse.' },
-      rival: { label: 'Rival', help: 'Fue un rival destacado de Goku.' },
-      tecnica: { label: 'Técnica característica', help: 'Tiene una técnica característica.' },
-      masculino: { label: 'Masculino', help: 'Es un personaje masculino.' },
-      femenino: { label: 'Femenino', help: 'Es un personaje femenino.' },
-      vivo: { label: 'Vivo', help: 'Está vivo.' },
-      muerto: { label: 'Muerto', help: 'Está muerto.' },
+      hokage: {
+        label: "Kages",
+        help: "Fue Kage de la Hoja, la Arena, la Niebla, la Nube o la Roca.",
+      },
+      konoha: {
+        label: "Konoha",
+        help: "Nació en Konoha o se lo identifica especialmente con la aldea.",
+      },
+      "otras-aldeas": {
+        label: "Otras aldeas",
+        help: "Se identifica con otra aldea o tiene un origen externo a Konoha.",
+      },
+      "poder-ocular": {
+        label: "Poder ocular",
+        help: "Usó un poder ocular en algún momento, incluidos ojos trasplantados.",
+      },
+      invocacion: {
+        label: "Invocación",
+        help: "Realiza invocaciones o es una criatura invocada. Incluye Edo Tensei.",
+      },
+      akatsuki: {
+        label: "Akatsuki",
+        help: "Fue integrante o aliado de Akatsuki.",
+      },
+      jinchuriki: {
+        label: "Jinchuriki",
+        help: "Fue portador de una bestia con cola en algún momento.",
+      },
+      antagonista: {
+        label: "Antagonista",
+        help: "Actuó como antagonista en algún arco, aunque después haya cambiado de bando.",
+      },
+      sannin: { label: "Sannin", help: "Jiraiya, Tsunade u Orochimaru." },
+      sensor: {
+        label: "Sensor",
+        help: "Puede detectar la presencia o el chakra de otros.",
+      },
+      taijutsu: { label: "Taijutsu", help: "Usa técnicas de taijutsu." },
+      "ninja-medico": {
+        label: "Ninja médico",
+        help: "Tiene habilidades de ninjutsu médico.",
+      },
+      saiyajin: {
+        label: "Saiyajin",
+        help: "Es saiyajin o tiene ascendencia saiyajin.",
+      },
+      terricola: {
+        label: "Terrícola",
+        help: "Tiene origen terrestre, incluidos híbridos y humanos modificados.",
+      },
+      namekuseijin: {
+        label: "Namekuseijin",
+        help: "Pertenece a la raza namekuseijin.",
+      },
+      androide: {
+        label: "Androide",
+        help: "Es un androide, un humano modificado o un bioandroide.",
+      },
+      fusion: {
+        label: "Fusión",
+        help: "Es resultado de una fusión, absorción o asimilación.",
+      },
+      "ejercito-freezer": {
+        label: "Ejército de Freezer",
+        help: "Fue parte del ejército de Freezer.",
+      },
+      "torneo-del-poder": {
+        label: "Torneo del Poder",
+        help: "Participó en el Torneo del Poder de Dragon Ball Super.",
+      },
+      deidad: { label: "Deidad o ángel", help: "Es una deidad o un ángel." },
+      "guerreros-z": {
+        label: "Guerreros Z",
+        help: "Forma parte de los Guerreros Z.",
+      },
+      transformacion: { label: "Transformación", help: "Puede transformarse." },
+      rival: { label: "Rival", help: "Fue un rival destacado de Goku." },
+      tecnica: {
+        label: "Técnica característica",
+        help: "Tiene una técnica característica.",
+      },
+      masculino: { label: "Masculino", help: "Es un personaje masculino." },
+      femenino: { label: "Femenino", help: "Es un personaje femenino." },
+      vivo: { label: "Vivo", help: "Está vivo." },
+      muerto: { label: "Muerto", help: "Está muerto." },
     } as Readonly<Record<string, { label: string; help: string }>>,
   },
   modeHelp: {
-    "pokemon": {
-        "clasico": "Adiviná el Pokémon comparando sus tipos, generación y otros datos.",
-        "silueta": "Adiviná el Pokémon por su sombra ampliada.",
-        "descripcion": "Leé la descripción de la Pokédex y adiviná de qué Pokémon habla.",
-        "carta": "Adiviná el Pokémon que aparece en la carta borrosa.",
-        "movimiento-insignia": "Adiviná qué Pokémon aprende el movimiento mostrado. Se acepta cualquiera de su línea evolutiva que lo aprenda.",
-        "mayor-o-menor": "Elegí el Pokémon con el valor más alto en la medida indicada.",
-        "moveset": "Adiviná el Pokémon que puede aprender los movimientos de la lista.",
-        "estadisticas": "Elegí seis estadísticas para superar la meta de puntos."
+    pokemon: {
+      clasico:
+        "Adiviná el Pokémon comparando sus tipos, generación y otros datos.",
+      silueta: "Adiviná el Pokémon por su sombra ampliada.",
+      descripcion:
+        "Leé la descripción de la Pokédex y adiviná de qué Pokémon habla.",
+      carta: "Adiviná el Pokémon que aparece en la carta borrosa.",
+      "movimiento-insignia":
+        "Adiviná qué Pokémon aprende el movimiento mostrado. Se acepta cualquiera de su línea evolutiva que lo aprenda.",
+      "mayor-o-menor":
+        "Elegí el Pokémon con el valor más alto en la medida indicada.",
+      moveset:
+        "Adiviná el Pokémon que puede aprender los movimientos de la lista.",
+      estadisticas: "Elegí seis estadísticas para superar la meta de puntos.",
     },
     "dragon-ball": {
-        "casillas": "Ubicá cada personaje en una categoría y completá el tablero con un comodín.",
-        "clasico": "Adiviná el personaje comparando sus datos.",
-        "silueta": "Adiviná el personaje por su sombra ampliada.",
-        "frase": "Adiviná qué personaje dijo la frase.",
-        "borroso": "Adiviná el personaje de la imagen borrosa.",
-        "tecnica": "Mirá la técnica y adiviná qué personaje la usa.",
-        "poder": "Elegí quién tiene más poder en la forma y el momento indicados.",
-        "transformacion": "Adiviná la transformación exacta de la imagen, incluyendo el personaje y su forma.",
-        "linea-de-tiempo": "Ordená los sucesos de Dragon Ball según cuándo ocurren en la historia."
+      casillas:
+        "Ubicá cada personaje en una categoría y completá el tablero con un comodín.",
+      clasico: "Adiviná el personaje comparando sus datos.",
+      silueta: "Adiviná el personaje por su sombra ampliada.",
+      frase: "Adiviná qué personaje dijo la frase.",
+      borroso: "Adiviná el personaje de la imagen borrosa.",
+      tecnica: "Mirá la técnica y adiviná qué personaje la usa.",
+      poder: "Elegí quién tiene más poder en la forma y el momento indicados.",
+      transformacion:
+        "Adiviná la transformación exacta de la imagen, incluyendo el personaje y su forma.",
+      "linea-de-tiempo":
+        "Ordená los sucesos de Dragon Ball según cuándo ocurren en la historia.",
     },
-    "naruto": {
-        "casillas": "Ubicá cada personaje en una categoría y completá el tablero con un comodín.",
-        "clasico": "Adiviná el personaje comparando sus datos.",
-        "silueta": "Adiviná el personaje por su sombra.",
-        "frase": "Adiviná qué personaje dijo la frase.",
-        "borroso": "Adiviná el personaje de la imagen borrosa.",
-        "jutsu": "Mirá el jutsu y adiviná qué personaje lo usa.",
-        "ojo": "Adiviná a quién pertenece el ojo de la imagen.",
-        "equipo": "Mirá los miembros del equipo y adiviná quién falta.",
-        "emoji": "Interpretá los emojis y elegí el personaje que representan.",
-        "linea-de-tiempo": "Ordená los sucesos de Naruto según cuándo ocurren en la historia.",
-        "conexiones": "Agrupá a los personajes que comparten un clan, una aldea u otra característica."
+    naruto: {
+      casillas:
+        "Ubicá cada personaje en una categoría y completá el tablero con un comodín.",
+      clasico: "Adiviná el personaje comparando sus datos.",
+      silueta: "Adiviná el personaje por su sombra.",
+      frase: "Adiviná qué personaje dijo la frase.",
+      borroso: "Adiviná el personaje de la imagen borrosa.",
+      jutsu: "Mirá el jutsu y adiviná qué personaje lo usa.",
+      ojo: "Adiviná a quién pertenece el ojo de la imagen.",
+      equipo: "Mirá los miembros del equipo y adiviná quién falta.",
+      emoji: "Interpretá los emojis y elegí el personaje que representan.",
+      "linea-de-tiempo":
+        "Ordená los sucesos de Naruto según cuándo ocurren en la historia.",
+      conexiones:
+        "Agrupá a los personajes que comparten un clan, una aldea u otra característica.",
     },
-    "yugioh": {
-        "duelista": "Adiviná el duelista comparando sus datos.",
-        "carta": "Adiviná la carta comparando su clase, atributo y otros datos.",
-        "silueta": "Adiviná la carta por la silueta de su monstruo.",
-        "texto": "Leé el texto de la carta, con su nombre oculto, y adiviná cuál es.",
-        "arte": "Adiviná la carta por su ilustración borrosa.",
-        "carta-insignia": "Mirá la carta y adiviná a qué duelista pertenece.",
-        "zoom": "Adiviná la carta por un detalle ampliado de su ilustración.",
-        "mayor-o-menor": "Elegí la carta con más ATK o DEF, según lo que indique la pregunta.",
-        "invocacion": "Adiviná qué monstruo se invoca con los materiales mostrados.",
-        "deck": "Mirá las cartas del deck y adiviná qué duelista lo usa.",
-        "linea-de-tiempo": "Ordená los sucesos de Yu-Gi-Oh según cuándo ocurren en la historia."
-    }
-} as Readonly<Record<string, Readonly<Record<string, string>>>>,
+    yugioh: {
+      duelista: "Adiviná el duelista comparando sus datos.",
+      carta: "Adiviná la carta comparando su clase, atributo y otros datos.",
+      silueta: "Adiviná la carta por la silueta de su monstruo.",
+      texto:
+        "Leé el texto de la carta, con su nombre oculto, y adiviná cuál es.",
+      arte: "Adiviná la carta por su ilustración borrosa.",
+      "carta-insignia": "Mirá la carta y adiviná a qué duelista pertenece.",
+      zoom: "Adiviná la carta por un detalle ampliado de su ilustración.",
+      "mayor-o-menor":
+        "Elegí la carta con más ATK o DEF, según lo que indique la pregunta.",
+      invocacion:
+        "Adiviná qué monstruo se invoca con los materiales mostrados.",
+      deck: "Mirá las cartas del deck y adiviná qué duelista lo usa.",
+      "linea-de-tiempo":
+        "Ordená los sucesos de Yu-Gi-Oh según cuándo ocurren en la historia.",
+    },
+  } as Readonly<Record<string, Readonly<Record<string, string>>>>,
   statBuilder: {
-    bestTitle: 'Mejor combinación posible',
-    bestSummary: (best: number, actual: number) => best === actual ? `¡Elegiste una combinación óptima! Sumaste ${actual} puntos.` : `Con estos mismos seis Pokémon podías sumar ${best} puntos: ${best - actual} más que tus ${actual}.`,
+    bestTitle: "Mejor combinación posible",
+    bestSummary: (best: number, actual: number) =>
+      best === actual
+        ? `¡Elegiste una combinación óptima! Sumaste ${actual} puntos.`
+        : `Con estos mismos seis Pokémon podías sumar ${best} puntos: ${best - actual} más que tus ${actual}.`,
     insteadOf: (name: string, value: number) => ` — ${name} ${value}`,
 
-    settings: 'Configuración de la partida',
-    settingsHelp: 'Elegí la meta que querés superar. Cada intento es una combinación de seis estadísticas. Podés incluir formas regionales y megaevoluciones; se usan las generaciones de sus Pokémon originales.',
-    viewResult: 'Ver resultado',
-    countingResult: 'Revelando resultado…',
-    locked: 'Ya seleccionada',
-    nextPokemon: 'Tocá para el siguiente Pokémon',
+    settings: "Configuración de la partida",
+    settingsHelp:
+      "Elegí la meta que querés superar. Cada intento es una combinación de seis estadísticas. Podés incluir formas regionales y megaevoluciones; se usan las generaciones de sus Pokémon originales.",
+    viewResult: "Ver resultado",
+    countingResult: "Revelando resultado…",
+    locked: "Ya seleccionada",
+    nextPokemon: "Tocá para el siguiente Pokémon",
     fraction: (score: number, target: number) => `${score}/${target}`,
-    won: '¡Meta superada!',
-    difficulty: 'Dificultad', forms: 'Formas opcionales', regional: 'Formas regionales', mega: 'Megaevoluciones',
-    level: (level: number, target: number) => `${['Fácil', 'Normal', 'Difícil'][level]} · superar ${target}`,
-    stop: 'Tocá para detener', dockStop: 'Detener', dockNextPokemon: 'Siguiente Pokémon', choose: 'Elegí una estadística', finished: 'Combinación terminada', stats: 'Asignar estadística',
-    progress: (attempt: number, limit: number) => `Partida ${Math.min(attempt, limit)}/${limit}`,
-    total: (score: number, target: number) => `Total: ${score} · Meta: superar ${target}`,
-    assigned: (count: number, total: number) => `${count}/${total} estadísticas asignadas`,
-    revealing: 'Estadísticas reveladas. Preparando el siguiente Pokémon…',
-    retry: 'Esta combinación no superó la meta.',
-    remaining: (remaining: number) => remaining > 0 ? `Te ${remaining === 1 ? 'queda 1 intento' : `quedan ${remaining} intentos`}.` : 'No te quedan intentos.',
-    next: 'Intentá nuevamente',
-    result: (score: number, target: number) => `Tu combinación sumó ${score} puntos. La meta era superar ${target}.`,
+    won: "¡Meta superada!",
+    difficulty: "Dificultad",
+    forms: "Formas opcionales",
+    regional: "Formas regionales",
+    mega: "Megaevoluciones",
+    level: (level: number, target: number) =>
+      `${["Fácil", "Normal", "Difícil"][level]} · superar ${target}`,
+    stop: "Tocá para detener",
+    dockStop: "Detener",
+    dockNextPokemon: "Siguiente Pokémon",
+    choose: "Elegí una estadística",
+    finished: "Combinación terminada",
+    stats: "Asignar estadística",
+    progress: (attempt: number, limit: number) =>
+      `Partida ${Math.min(attempt, limit)}/${limit}`,
+    total: (score: number, target: number) =>
+      `Total: ${score} · Meta: superar ${target}`,
+    assigned: (count: number, total: number) =>
+      `${count}/${total} estadísticas asignadas`,
+    revealing: "Estadísticas reveladas. Preparando el siguiente Pokémon…",
+    retry: "Esta combinación no superó la meta.",
+    remaining: (remaining: number) =>
+      remaining > 0
+        ? `Te ${remaining === 1 ? "queda 1 intento" : `quedan ${remaining} intentos`}.`
+        : "No te quedan intentos.",
+    next: "Intentá nuevamente",
+    result: (score: number, target: number) =>
+      `Tu combinación sumó ${score} puntos. La meta era superar ${target}.`,
     help: [
-      'Armá un Pokémon con seis estadísticas: una de cada Pokémon que te toque. Buscá sumar la mayor cantidad de puntos.',
-      'Tocá la ruleta para detenerla. Elegí una estadística sin ver su valor; después de elegir, se muestran los valores de ese Pokémon. Cada estadística se puede elegir una sola vez.',
-      'Tocá para pasar al siguiente Pokémon cuando quieras. Después de la sexta elección, podés mirar sus valores y tocar «Ver resultado» para sumar los seis que elegiste.',
-      'Para ganar tenés que superar 500 puntos en Fácil, 550 en Normal o 600 en Difícil. Igualar la meta no alcanza. Si no la superás y te quedan intentos, probá otra combinación de seis.',
+      "Armá un Pokémon con seis estadísticas: una de cada Pokémon que te toque. Buscá sumar la mayor cantidad de puntos.",
+      "Tocá la ruleta para detenerla. Elegí una estadística sin ver su valor; después de elegir, se muestran los valores de ese Pokémon. Cada estadística se puede elegir una sola vez.",
+      "Tocá para pasar al siguiente Pokémon cuando quieras. Después de la sexta elección, podés mirar sus valores y tocar «Ver resultado» para sumar los seis que elegiste.",
+      "Para ganar tenés que superar 500 puntos en Fácil, 550 en Normal o 600 en Difícil. Igualar la meta no alcanza. Si no la superás y te quedan intentos, probá otra combinación de seis.",
     ],
   },
   site: {
-    name: 'AnimeGuess',
-    description: 'Juegos diarios de adivinanza de Pokémon, Dragon Ball, Naruto y Yu-Gi-Oh.',
+    name: "AnimeGuess",
+    description:
+      "Juegos diarios de adivinanza de Pokémon, Dragon Ball, Naruto y Yu-Gi-Oh.",
   },
   home: {
-    noChannels: 'No hay juegos disponibles por el momento.',
-    title: 'AnimeGuess',
-    progress: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy`,
-    loading: 'Leyendo progreso…',
+    noChannels: "No hay juegos disponibles por el momento.",
+    title: "AnimeGuess",
+    progress: (solved: number, total: number) =>
+      `${solved} de ${total} ${plural(total, "reto", "retos")} de hoy`,
+    loading: "Leyendo progreso…",
     /** En el teléfono, la pantalla de la consola abrevia: "0/7". El nombre accesible sigue siendo el completo. */
     progressShort: (solved: number, total: number) => `${solved}/${total}`,
-    loadingShort: '…',
-    tvLabel: 'Televisor: un canal por franquicia',
-    remoteLabel: 'Control remoto: franquicias',
-    channelNumber: (number: number) => `CH ${String(number).padStart(2, '0')}`,
-    channelUp: 'Canal siguiente',
-    channelDown: 'Canal anterior',
-    channelChanged: (number: number, name: string) => `Canal ${number}: ${name}`,
-    complete: '¡Completo!',
+    loadingShort: "…",
+    tvLabel: "Televisor: un canal por franquicia",
+    remoteLabel: "Control remoto: franquicias",
+    channelNumber: (number: number) => `CH ${String(number).padStart(2, "0")}`,
+    channelUp: "Canal siguiente",
+    channelDown: "Canal anterior",
+    channelChanged: (number: number, name: string) =>
+      `Canal ${number}: ${name}`,
+    complete: "¡Completo!",
     /** Onomatopeya decorativa de cada apertura. */
-    onomatopoeia: { pokemon: '¡PIKA!', 'dragon-ball': '¡ZAS!', naruto: '¡DATTEBAYO!', yugioh: '¡DUELO!' } as Readonly<Record<string, string>>,
+    onomatopoeia: {
+      pokemon: "¡PIKA!",
+      "dragon-ball": "¡ZAS!",
+      naruto: "¡DATTEBAYO!",
+      yugioh: "¡DUELO!",
+    } as Readonly<Record<string, string>>,
     // Teléfono: lo de arriba del televisor y lo que va debajo (Seguí jugando y las tarjetas de franquicia).
-    streak: (days: number) => `Racha ${days} ${plural(days, 'día', 'días')}`,
-    streakLabel: (days: number) => `Racha de ${days} ${plural(days, 'día', 'días')}: ver estadísticas`,
-    todaySummary: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} hoy`,
-    continueTitle: 'Seguí jugando',
-    continueAllDone: '¡Ya resolviste todos los retos de hoy! Volvé mañana por los nuevos.',
-    continuePlay: 'Jugar',
-    continueLabel: (franchise: string, mode: string) => `Seguí jugando: ${franchise}, ${mode}`,
-    cardsLabel: 'Franquicias',
+    streak: (days: number) => `Racha ${days} ${plural(days, "día", "días")}`,
+    streakLabel: (days: number) =>
+      `Racha de ${days} ${plural(days, "día", "días")}: ver estadísticas`,
+    todaySummary: (solved: number, total: number) =>
+      `${solved} de ${total} ${plural(total, "reto", "retos")} hoy`,
+    continueTitle: "Seguí jugando",
+    continueAllDone:
+      "¡Ya resolviste todos los retos de hoy! Volvé mañana por los nuevos.",
+    continuePlay: "Jugar",
+    continueLabel: (franchise: string, mode: string) =>
+      `Seguí jugando: ${franchise}, ${mode}`,
+    cardsLabel: "Franquicias",
     cardCount: (solved: number, total: number) => `${solved} de ${total}`,
-    comingSoon: 'Próximamente',
+    comingSoon: "Próximamente",
     comingSoonLabel: (name: string) => `${name}: próximamente`,
-    knobChannel: 'Cambiar de canal',
-    knobSound: 'Sonidos',
-    soundAnnounce: (on: boolean) => (on ? 'Sonidos prendidos' : 'Sonidos apagados'),
+    knobChannel: "Cambiar de canal",
+    knobSound: "Sonidos",
+    soundAnnounce: (on: boolean) =>
+      on ? "Sonidos prendidos" : "Sonidos apagados",
     cardLoading: (name: string) => `${name}: leyendo los retos de hoy`,
-    cardLabel: (name: string, solved: number, total: number) => `${name}: ${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy`,
+    cardLabel: (name: string, solved: number, total: number) =>
+      `${name}: ${solved} de ${total} ${plural(total, "reto", "retos")} de hoy`,
   },
   franchise: {
-    provisional: 'Página de la franquicia en construcción.',
-    modesLabel: 'Modos de juego',
+    provisional: "Página de la franquicia en construcción.",
+    modesLabel: "Modos de juego",
     intro: (name: string) => `Los retos diarios de ${name}.`,
-    progress: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy resueltos`,
-    mainMode: 'Modo principal',
+    progress: (solved: number, total: number) =>
+      `${solved} de ${total} ${plural(total, "reto", "retos")} de hoy resueltos`,
+    mainMode: "Modo principal",
     // Teléfono: el hub es una lista con el estado de hoy de cada modo.
-    barProgress: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy`,
-    play: 'Jugar',
-    continue: 'Seguir',
+    barProgress: (solved: number, total: number) =>
+      `${solved} de ${total} ${plural(total, "reto", "retos")} de hoy`,
+    play: "Jugar",
+    continue: "Seguir",
     // El estado de hoy de un modo, solo la palabra (hub del teléfono y Retos): pendiente, completado o fallado.
     rowState: {
-      won: 'Completado',
-      lost: 'Fallado',
-      pending: 'Pendiente',
+      won: "Completado",
+      lost: "Fallado",
+      pending: "Pendiente",
     },
-    solved: 'Resuelto hoy',
-    pending: 'Pendiente',
+    solved: "Resuelto hoy",
+    pending: "Pendiente",
     /** Nombre accesible de una tarjeta de modo: "Modo: estado". */
     cardLabel: (mode: string, state: ModeCardState) =>
-      state === 'unknown' ? mode : `${mode}: ${state === 'solved' ? 'resuelto hoy' : 'pendiente'}`,
+      state === "unknown"
+        ? mode
+        : `${mode}: ${state === "solved" ? "resuelto hoy" : "pendiente"}`,
   },
   nav: {
     backTo: (franchise: string) => `Volver a ${franchise}`,
-    label: 'Volver',
-    home: 'Inicio',
+    label: "Volver",
+    home: "Inicio",
   },
   // Teléfono (SPEC 9.3): la barra de pestañas de abajo y las páginas a las que lleva.
   tabs: {
-    label: 'Secciones del sitio',
-    home: 'Inicio',
-    challenges: 'Retos',
-    stats: 'Estadísticas',
-    more: 'Más',
+    label: "Secciones del sitio",
+    home: "Inicio",
+    challenges: "Retos",
+    stats: "Estadísticas",
+    more: "Más",
   },
   challenges: {
-    title: 'Retos de hoy',
-    summary: (solved: number, total: number) => `${solved} de ${total} ${plural(total, 'reto resuelto', 'retos resueltos')} hoy`,
-    loading: 'Leyendo tu progreso…',
+    title: "Retos de hoy",
+    summary: (solved: number, total: number) =>
+      `${solved} de ${total} ${plural(total, "reto resuelto", "retos resueltos")} hoy`,
+    loading: "Leyendo tu progreso…",
     group: (solved: number, total: number) => `${solved}/${total}`,
-    groupLabel: (name: string, solved: number, total: number) => `${name}: ${solved} de ${total} ${plural(total, 'reto', 'retos')} de hoy`,
-    empty: 'No hay retos disponibles por el momento.',
+    groupLabel: (name: string, solved: number, total: number) =>
+      `${name}: ${solved} de ${total} ${plural(total, "reto", "retos")} de hoy`,
+    empty: "No hay retos disponibles por el momento.",
   },
   globalStats: {
-    title: 'Tus estadísticas',
-    streak: 'Racha',
-    streakHint: 'Días seguidos con al menos un reto ganado, en cualquier franquicia.',
-    days: (count: number) => `${count} ${plural(count, 'día', 'días')}`,
-    bestStreak: 'Mejor racha',
-    played: 'Partidas',
-    won: 'Ganadas',
-    winRate: 'Aciertos',
-    rate: (won: number, played: number) => (played === 0 ? '—' : `${Math.round((100 * won) / played)} %`),
-    byFranchise: 'Por franquicia',
-    franchiseLine: (won: number, played: number) => `${won} de ${played} ${plural(played, 'ganada', 'ganadas')}`,
-    empty: 'Todavía no jugaste ningún reto. Tus números aparecen acá apenas termines el primero.',
-    note: 'Se guardan solo en este dispositivo.',
-    loading: 'Leyendo tus estadísticas…',
+    title: "Tus estadísticas",
+    streak: "Racha",
+    streakHint:
+      "Días seguidos con al menos un reto ganado, en cualquier franquicia.",
+    days: (count: number) => `${count} ${plural(count, "día", "días")}`,
+    bestStreak: "Mejor racha",
+    played: "Partidas",
+    won: "Ganadas",
+    winRate: "Aciertos",
+    rate: (won: number, played: number) =>
+      played === 0 ? "—" : `${Math.round((100 * won) / played)} %`,
+    byFranchise: "Por franquicia",
+    franchiseLine: (won: number, played: number) =>
+      `${won} de ${played} ${plural(played, "ganada", "ganadas")}`,
+    empty:
+      "Todavía no jugaste ningún reto. Tus números aparecen acá apenas termines el primero.",
+    note: "Se guardan solo en este dispositivo.",
+    loading: "Leyendo tus estadísticas…",
   },
   more: {
-    title: 'Más',
-    settings: 'Ajustes',
-    howTo: 'Cómo se juega',
-    credits: 'Créditos',
-    creditsHint: 'Fuentes, licencias y agradecimientos',
-    legal: 'Aviso legal',
-    install: 'Instalar la app',
-    installed: 'La app ya está instalada',
-    installHint: 'Jugá desde la pantalla de inicio, sin la barra del navegador.',
-    installAction: 'Instalar',
-    installTitle: 'Instalar AnimeGuess',
-    installDone: 'Listo',
+    title: "Más",
+    settings: "Ajustes",
+    howTo: "Cómo se juega",
+    credits: "Créditos",
+    creditsHint: "Fuentes, licencias y agradecimientos",
+    legal: "Aviso legal",
+    install: "Instalar la app",
+    installed: "La app ya está instalada",
+    installHint:
+      "Jugá desde la pantalla de inicio, sin la barra del navegador.",
+    installAction: "Instalar",
+    installTitle: "Instalar AnimeGuess",
+    installDone: "Listo",
     installSteps: {
-      ios: ['Tocá el botón Compartir de Safari (el cuadrado con la flecha hacia arriba).', 'Elegí «Agregar a pantalla de inicio».', 'Confirmá con «Agregar».'],
-      other: ['Abrí el menú del navegador (⋮ o ⋯).', 'Elegí «Instalar app» o «Agregar a pantalla de inicio».', 'Confirmá la instalación.'],
+      ios: [
+        "Tocá el botón Compartir de Safari (el cuadrado con la flecha hacia arriba).",
+        "Elegí «Agregar a pantalla de inicio».",
+        "Confirmá con «Agregar».",
+      ],
+      other: [
+        "Abrí el menú del navegador (⋮ o ⋯).",
+        "Elegí «Instalar app» o «Agregar a pantalla de inicio».",
+        "Confirmá la instalación.",
+      ],
     },
-    howToTitle: 'Cómo se juega',
-    howToIntro: 'AnimeGuess tiene un reto nuevo por modo cada día. Es el mismo para todos los que juegan ese día, con los mismos filtros.',
+    howToTitle: "Cómo se juega",
+    howToIntro:
+      "AnimeGuess tiene un reto nuevo por modo cada día. Es el mismo para todos los que juegan ese día, con los mismos filtros.",
     howToSteps: [
-      'Elegí una franquicia y un modo de juego.',
-      'Probá con tus respuestas: cada intento te da pistas para acercarte a la solución.',
-      'Si no entra a la primera, no pasa nada: tenés varios intentos, y cada modo explica sus reglas en el menú ⋮ (Cómo se juega).',
-      'Al terminar, compartí tu resultado o seguí con otro reto.',
-      'Los retos se renuevan a la medianoche de Argentina.',
+      "Elegí una franquicia y un modo de juego.",
+      "Probá con tus respuestas: cada intento te da pistas para acercarte a la solución.",
+      "Si no entra a la primera, no pasa nada: tenés varios intentos, y cada modo explica sus reglas en el menú ⋮ (Cómo se juega).",
+      "Al terminar, compartí tu resultado o seguí con otro reto.",
+      "Los retos se renuevan a la medianoche de Argentina.",
     ],
-    legalTitle: 'Aviso legal',
-    close: 'Cerrar',
+    legalTitle: "Aviso legal",
+    close: "Cerrar",
   },
   footer: {
-    label: 'Aviso legal',
+    label: "Aviso legal",
     notice:
-      'AnimeGuess es un proyecto de fans, sin afiliación con los titulares de las marcas Pokémon, Dragon Ball, Naruto ni Yu-Gi-Oh. Las marcas, los personajes y las imágenes pertenecen a sus dueños.',
-    credits: 'Créditos',
-    dismiss: 'Cerrar el aviso',
+      "AnimeGuess es un proyecto de fans, sin afiliación con los titulares de las marcas Pokémon, Dragon Ball, Naruto ni Yu-Gi-Oh. Las marcas, los personajes y las imágenes pertenecen a sus dueños.",
+    credits: "Créditos",
+    dismiss: "Cerrar el aviso",
   },
   // Página /creditos (SPEC 10). Los nombres de las fuentes y sus direcciones viven acá con su descripción; la lista de
   // textos CC BY-SA sale de los datos (cada contenido guarda su página de origen en `payload.source`).
   credits: {
     /** Teléfono: la ← de la barra superior vuelve a la pestaña Más. */
-    back: 'Volver a Más',
+    back: "Volver a Más",
     pmd: {
-      title: 'PMD SpriteCollab',
-      text: 'Usamos sprites de Pokémon Mystery Dungeon para los Pokémon que recorren el fondo y retratos Normal para las miniaturas de la Pokédex. Las imágenes de los retos y de las respuestas conservan su arte original.',
-      license: 'CC BY-NC 4.0',
-      licenseText: 'Uso no comercial, con atribución a los artistas. Las hojas se recortaron por dirección y cuadros, se ajustaron algunos tiempos de animación y se optimizaron sin pérdida; los retratos conservan sus píxeles originales.',
-      repository: 'Repositorio de SpriteCollab',
-      website: { name: 'Explorador de sprites y retratos', url: 'https://sprites.pmdcollab.org' },
-      snapshot: 'Instantánea fijada',
-      artists: (count: number) => `Artistas de los recursos descargados (${count})`,
-      artistsText: 'Lista generada desde los créditos de cada recurso, incluidas las coautorías históricas y los retratos Happy y Sad descargados para usos futuros. Solo Normal se muestra actualmente en la Pokédex.',
+      title: "PMD SpriteCollab",
+      text: "Usamos sprites de Pokémon Mystery Dungeon para los Pokémon que recorren el fondo y retratos Normal para las miniaturas de la Pokédex. Las imágenes de los retos y de las respuestas conservan su arte original.",
+      license: "CC BY-NC 4.0",
+      licenseText:
+        "Uso no comercial, con atribución a los artistas. Las hojas se recortaron por dirección y cuadros, se ajustaron algunos tiempos de animación y se optimizaron sin pérdida; los retratos conservan sus píxeles originales.",
+      repository: "Repositorio de SpriteCollab",
+      website: {
+        name: "Explorador de sprites y retratos",
+        url: "https://sprites.pmdcollab.org",
+      },
+      snapshot: "Instantánea fijada",
+      artists: (count: number) =>
+        `Artistas de los recursos descargados (${count})`,
+      artistsText:
+        "Lista generada desde los créditos de cada recurso, incluidas las coautorías históricas y los retratos Happy y Sad descargados para usos futuros. Solo Normal se muestra actualmente en la Pokédex.",
       forms: (count: number) => `Formas especiales y sus autores (${count})`,
-      formsText: 'Los autores corresponden a las carpetas exactas de cada forma y variante utilizadas. No se atribuyen automáticamente los recursos de una forma a los artistas de la forma base.',
-      formLabels: { altcolor: 'Altcolor', alternate: 'Alternate', cutscene: 'Cutscene', alola: 'Alola', galar: 'Galar' } as Readonly<Record<string, string>>,
-      variantLabels: { normal: 'Normal', shiny: 'Variocolor' } as Readonly<Record<string, string>>,
+      formsText:
+        "Los autores corresponden a las carpetas exactas de cada forma y variante utilizadas. No se atribuyen automáticamente los recursos de una forma a los artistas de la forma base.",
+      formLabels: {
+        altcolor: "Altcolor",
+        alternate: "Alternate",
+        cutscene: "Cutscene",
+        alola: "Alola",
+        galar: "Galar",
+      } as Readonly<Record<string, string>>,
+      variantLabels: { normal: "Normal", shiny: "Variocolor" } as Readonly<
+        Record<string, string>
+      >,
     },
-    title: 'Créditos',
-    description: 'Fuentes de datos e imágenes, licencias y atribuciones de AnimeGuess.',
+    title: "Créditos",
+    description:
+      "Fuentes de datos e imágenes, licencias y atribuciones de AnimeGuess.",
     intro:
-      'AnimeGuess es un proyecto de fans, gratuito, sin publicidad y sin afiliación con los titulares de Pokémon, Dragon Ball, Naruto ni Yu-Gi-Oh. Esta página reconoce de dónde sale cada dato y cada imagen, y atribuye cada texto que se reutiliza.',
+      "AnimeGuess es un proyecto de fans, gratuito, sin publicidad y sin afiliación con los titulares de Pokémon, Dragon Ball, Naruto ni Yu-Gi-Oh. Esta página reconoce de dónde sale cada dato y cada imagen, y atribuye cada texto que se reutiliza.",
     sources: {
-      title: 'Fuentes de datos e imágenes',
-      text: 'Los datos se descargan una sola vez con los scripts del proyecto y se sirven desde este sitio: mientras jugás no se consulta ninguna de estas fuentes.',
+      title: "Fuentes de datos e imágenes",
+      text: "Los datos se descargan una sola vez con los scripts del proyecto y se sirven desde este sitio: mientras jugás no se consulta ninguna de estas fuentes.",
       groups: [
         {
-          franchise: 'Pokémon',
-          items: [
-            { name: 'PokéAPI', url: 'https://pokeapi.co', text: 'Especies, tipos, estadísticas, movimientos, descripciones de la Pokédex en español y arte oficial.' },
-            { name: 'TCGdex', url: 'https://tcgdex.dev', text: 'Imágenes de las cartas del juego de cartas coleccionables.' },
-            { name: 'WikiDex', url: 'https://www.wikidex.net', text: 'Descripciones de la Pokédex de Leyendas Arceus y de la novena generación (CC BY-SA, más abajo).' },
-          ],
-        },
-        {
-          franchise: 'Dragon Ball',
-          items: [
-            { name: 'Dragon Ball API', url: 'https://dragonball-api.com', text: 'Personajes, transformaciones, niveles de ki e imágenes.' },
-            {
-              name: 'Dragon Ball Wiki Hispano (Fandom)',
-              url: 'https://dragonball.fandom.com/es',
-              text: 'Series en las que aparece cada personaje, frases (CC BY-SA, más abajo) e imágenes de personajes, técnicas y transformaciones.',
-            },
-          ],
-        },
-        {
-          franchise: 'Naruto',
+          franchise: "Pokémon",
           items: [
             {
-              name: 'Dattebayo API',
-              url: 'https://dattebayo-api.onrender.com',
-              text: 'Personajes, jutsus, naturalezas, kekkei genkai, afiliaciones, ocupaciones, equipos y clanes.',
+              name: "PokéAPI",
+              url: "https://pokeapi.co",
+              text: "Especies, tipos, estadísticas, movimientos, descripciones de la Pokédex en español y arte oficial.",
             },
             {
-              name: 'Narutopedia (Fandom)',
-              url: 'https://naruto.fandom.com',
-              text: 'Datos de los jutsus, frases traducidas al español (CC BY-SA, más abajo), imágenes de personajes y las capturas con que se buscó la escena de cada jutsu. Licencia de las imágenes: a confirmar.',
+              name: "TCGdex",
+              url: "https://tcgdex.dev",
+              text: "Imágenes de las cartas del juego de cartas coleccionables.",
             },
             {
-              name: 'trace.moe',
-              url: 'https://trace.moe',
-              text: 'Búsqueda de escenas por imagen: de ahí salen el episodio y el momento de cada clip del modo Jutsu. Los clips son fragmentos del anime; pertenecen a sus titulares. Licencia: a confirmar.',
+              name: "WikiDex",
+              url: "https://www.wikidex.net",
+              text: "Descripciones de la Pokédex de Leyendas Arceus y de la novena generación (CC BY-SA, más abajo).",
             },
           ],
         },
         {
-          franchise: 'Yu-Gi-Oh',
+          franchise: "Dragon Ball",
           items: [
-            { name: 'YGOPRODeck', url: 'https://ygoprodeck.com', text: 'Datos de las cartas e ilustraciones.' },
-            { name: 'YGOResources', url: 'https://db.ygoresources.com', text: 'Nombres y textos oficiales de las cartas en español.' },
             {
-              name: 'Yugipedia',
-              url: 'https://yugipedia.com',
-              text: 'Datos de los duelistas (género, primera aparición y mazos) e imágenes de los duelistas. Su texto tiene licencia CC BY-SA.',
+              name: "Dragon Ball API",
+              url: "https://dragonball-api.com",
+              text: "Personajes, transformaciones, niveles de ki e imágenes.",
             },
-            { name: 'Yu-Gi-Oh! Wiki (Fandom)', url: 'https://yugioh.fandom.com', text: 'Series en las que aparece cada duelista.' },
+            {
+              name: "Dragon Ball Wiki Hispano (Fandom)",
+              url: "https://dragonball.fandom.com/es",
+              text: "Series en las que aparece cada personaje, frases (CC BY-SA, más abajo) e imágenes de personajes, técnicas y transformaciones.",
+            },
+          ],
+        },
+        {
+          franchise: "Naruto",
+          items: [
+            {
+              name: "Dattebayo API",
+              url: "https://dattebayo-api.onrender.com",
+              text: "Personajes, jutsus, naturalezas, kekkei genkai, afiliaciones, ocupaciones, equipos y clanes.",
+            },
+            {
+              name: "Narutopedia (Fandom)",
+              url: "https://naruto.fandom.com",
+              text: "Datos de los jutsus, frases traducidas al español (CC BY-SA, más abajo), imágenes de personajes y las capturas con que se buscó la escena de cada jutsu. Licencia de las imágenes: a confirmar.",
+            },
+            {
+              name: "NarutoHQ",
+              url: "https://www.narutohq.com/characters",
+              text: "Retratos de Ao, Gatō, Ginkaku, Hotaru, Kinkaku, Log, Maki y Mifune para las pistas. Licencia de las imágenes: a confirmar.",
+            },
+            {
+              name: "trace.moe",
+              url: "https://trace.moe",
+              text: "Búsqueda de escenas por imagen: de ahí salen el episodio y el momento de cada clip del modo Jutsu. Los clips son fragmentos del anime; pertenecen a sus titulares. Licencia: a confirmar.",
+            },
+          ],
+        },
+        {
+          franchise: "Yu-Gi-Oh",
+          items: [
+            {
+              name: "YGOPRODeck",
+              url: "https://ygoprodeck.com",
+              text: "Datos de las cartas e ilustraciones.",
+            },
+            {
+              name: "YGOResources",
+              url: "https://db.ygoresources.com",
+              text: "Nombres y textos oficiales de las cartas en español.",
+            },
+            {
+              name: "Yugipedia",
+              url: "https://yugipedia.com",
+              text: "Datos de los duelistas (género, primera aparición y mazos) e imágenes de los duelistas. Su texto tiene licencia CC BY-SA.",
+            },
+            {
+              name: "Yu-Gi-Oh! Wiki (Fandom)",
+              url: "https://yugioh.fandom.com",
+              text: "Series en las que aparece cada duelista.",
+            },
           ],
         },
       ],
     },
     reuse: {
-      title: 'Textos reutilizados (CC BY-SA)',
-      text: 'Estos textos vienen de wikis con licencia Creative Commons Atribución-CompartirIgual. Se reproducen con atribución a la página de la que salen; las frases de Narutopedia se tradujeron al español, y esas traducciones se comparten bajo la misma licencia.',
-      license: { name: 'CC BY-SA 3.0', url: 'https://creativecommons.org/licenses/by-sa/3.0/deed.es' },
+      title: "Fuentes de textos y frases",
+      text: "Cada entrada enlaza a su fuente. Los textos reutilizados de las wikis y las traducciones de Narutopedia se comparten con licencia CC BY-SA. La licencia de las demás fuentes queda a confirmar.",
+      license: {
+        name: "CC BY-SA 3.0",
+        url: "https://creativecommons.org/licenses/by-sa/3.0/deed.es",
+      },
       // Un nombre por sitio de origen (el host de `payload.source`). Un test exige que todo sitio de los datos esté acá.
       sites: {
-        'www.wikidex.net': { name: 'WikiDex', what: (count: number) => `${count} ${plural(count, 'descripción', 'descripciones')} de la Pokédex` },
-        'dragonball.fandom.com': { name: 'Dragon Ball Wiki Hispano', what: (count: number) => `${count} ${plural(count, 'frase', 'frases')}` },
-        'naruto.fandom.com': {
-          name: 'Narutopedia',
-          what: (count: number) => `${count} ${plural(count, 'frase traducida', 'frases traducidas')} al español`,
+        "www.wikidex.net": {
+          name: "WikiDex",
+          what: (count: number) =>
+            `${count} ${plural(count, "descripción", "descripciones")} de la Pokédex`,
+        },
+        "dragonball.fandom.com": {
+          name: "Dragon Ball Wiki Hispano",
+          what: (count: number) =>
+            `${count} ${plural(count, "frase", "frases")}`,
+        },
+        "es.dragon-ball-official.com": {
+          name: "Sitio oficial de Dragon Ball (español)",
+          what: (count: number) =>
+            `${count} ${plural(count, "referencia", "referencias")}`,
+        },
+        "en.dragon-ball-official.com": {
+          name: "Sitio oficial de Dragon Ball (inglés)",
+          what: (count: number) =>
+            `${count} ${plural(count, "referencia", "referencias")}`,
+        },
+        "www.springfieldspringfield.co.uk": {
+          name: "Springfield! Springfield!",
+          what: (count: number) =>
+            `${count} ${plural(count, "referencia", "referencias")}`,
+        },
+        "naruto.fandom.com": {
+          name: "Narutopedia",
+          what: (count: number) =>
+            `${count} ${plural(count, "frase traducida", "frases traducidas")} al español`,
         },
       } as Record<string, { name: string; what: (count: number) => string }>,
       summary: (site: string, what: string) => `${site} · ${what}`,
-      pageCount: (title: string, count: number) => (count === 1 ? title : `${title} (${count})`),
+      pageCount: (title: string, count: number) =>
+        count === 1 ? title : `${title} (${count})`,
     },
     fonts: {
-      title: 'Tipografías',
-      text: 'Todas tienen licencia libre y se sirven desde este sitio. Salvo que se indique otra, la licencia es esta:',
-      license: { name: 'SIL Open Font License 1.1', url: 'https://openfontlicense.org' },
+      title: "Tipografías",
+      text: "Todas tienen licencia libre y se sirven desde este sitio. Salvo que se indique otra, la licencia es esta:",
+      license: {
+        name: "SIL Open Font License 1.1",
+        url: "https://openfontlicense.org",
+      },
       // Una por id de `ThemeFont`: al sumar una tipografía a un tema, el tipo obliga a acreditarla acá.
       items: {
-        'press-start-2p': { name: 'Press Start 2P', url: 'https://fonts.google.com/specimen/Press+Start+2P' },
-        'jersey-10': { name: 'Jersey 10', url: 'https://fonts.google.com/specimen/Jersey+10' },
-        rubik: { name: 'Rubik', url: 'https://fonts.google.com/specimen/Rubik' },
-        bangers: { name: 'Bangers', url: 'https://fonts.google.com/specimen/Bangers' },
-        'permanent-marker': {
-          name: 'Permanent Marker',
-          url: 'https://fonts.google.com/specimen/Permanent+Marker',
-          license: { name: 'Apache 2.0', url: 'https://www.apache.org/licenses/LICENSE-2.0' },
+        "press-start-2p": {
+          name: "Press Start 2P",
+          url: "https://fonts.google.com/specimen/Press+Start+2P",
         },
-        'shippori-mincho': { name: 'Shippori Mincho', url: 'https://fonts.google.com/specimen/Shippori+Mincho' },
-        'cinzel-decorative': { name: 'Cinzel Decorative', url: 'https://fonts.google.com/specimen/Cinzel+Decorative' },
-      } satisfies Record<ThemeFont, { name: string; url: string; license?: { name: string; url: string } }>,
+        "jersey-10": {
+          name: "Jersey 10",
+          url: "https://fonts.google.com/specimen/Jersey+10",
+        },
+        rubik: {
+          name: "Rubik",
+          url: "https://fonts.google.com/specimen/Rubik",
+        },
+        bangers: {
+          name: "Bangers",
+          url: "https://fonts.google.com/specimen/Bangers",
+        },
+        "permanent-marker": {
+          name: "Permanent Marker",
+          url: "https://fonts.google.com/specimen/Permanent+Marker",
+          license: {
+            name: "Apache 2.0",
+            url: "https://www.apache.org/licenses/LICENSE-2.0",
+          },
+        },
+        "shippori-mincho": {
+          name: "Shippori Mincho",
+          url: "https://fonts.google.com/specimen/Shippori+Mincho",
+        },
+        "cinzel-decorative": {
+          name: "Cinzel Decorative",
+          url: "https://fonts.google.com/specimen/Cinzel+Decorative",
+        },
+      } satisfies Record<
+        ThemeFont,
+        { name: string; url: string; license?: { name: string; url: string } }
+      >,
     },
     trademarks: {
-      title: 'Marcas',
+      title: "Marcas",
       items: [
-        'Pokémon: © Nintendo, Creatures Inc., GAME FREAK inc. y The Pokémon Company. Pokémon y los nombres de sus personajes son marcas de Nintendo.',
-        'Dragon Ball: © Bird Studio / Shueisha y Toei Animation.',
-        'Naruto: © Masashi Kishimoto / Shueisha, TV Tokyo y Pierrot.',
-        'Yu-Gi-Oh!: © Kazuki Takahashi / Studio Dice / Shueisha, TV Tokyo y Konami.',
+        "Pokémon: © Nintendo, Creatures Inc., GAME FREAK inc. y The Pokémon Company. Pokémon y los nombres de sus personajes son marcas de Nintendo.",
+        "Dragon Ball: © Bird Studio / Shueisha y Toei Animation.",
+        "Naruto: © Masashi Kishimoto / Shueisha, TV Tokyo y Pierrot.",
+        "Yu-Gi-Oh!: © Kazuki Takahashi / Studio Dice / Shueisha, TV Tokyo y Konami.",
       ],
-      text: 'Las imágenes de personajes, técnicas y cartas pertenecen a sus titulares, vengan de la fuente que vengan, y se usan sin fines comerciales, como parte de un juego de fans.',
+      text: "Las imágenes de personajes, técnicas y cartas pertenecen a sus titulares, vengan de la fuente que vengan, y se usan sin fines comerciales, como parte de un juego de fans.",
     },
     art: {
-      title: 'Arte y herramientas',
+      title: "Arte y herramientas",
       items: [
-        'El arte de la interfaz combina dibujos propios y material externo. Sus orígenes y licencias se indican en estos créditos.',
-        'Las siluetas de las cartas de Yu-Gi-Oh se recortan del fondo con el modelo BiRefNet (licencia MIT), ejecutado en local.',
+        "El arte de la interfaz combina dibujos propios y material externo. Sus orígenes y licencias se indican en estos créditos.",
+        "Las siluetas de las cartas de Yu-Gi-Oh se recortan del fondo con el modelo BiRefNet (licencia MIT), ejecutado en local.",
       ],
       externalItems: [
         {
-          name: 'Signos de pregunta de Naruto y Dragon Ball para la selección móvil',
-          text: 'Imágenes aportadas por el usuario; autor y licencia a confirmar. Se utilizan en la selección inicial del modo Casillas en móvil.',
+          name: "Signos de pregunta de Naruto y Dragon Ball para la selección móvil",
+          text: "Imágenes aportadas por el usuario; autor y licencia a confirmar. Se utilizan en la selección inicial del modo Casillas en móvil.",
         },
         {
-          name: 'Sellos Logrado y Fallaste de Naruto y Dragon Ball',
-          text: 'Imágenes aportadas por el usuario; autor y licencia a confirmar. Convertidas a WebP para el resultado de cada tablero del modo Casillas.',
+          name: "Sellos Logrado y Fallaste de Naruto y Dragon Ball",
+          text: "Imágenes aportadas por el usuario; autor y licencia a confirmar. Convertidas a WebP para el resultado de cada tablero del modo Casillas.",
         },
         {
-          name: 'Íconos de atributos y estilo de cartas del anime de Yu-Gi-Oh',
-          text: 'Referencias aportadas por el usuario; autor y licencia a confirmar. Nueve íconos de atributos recortados y diseño de cartas reproducido a partir de las referencias.',
+          name: "Íconos de atributos y estilo de cartas del anime de Yu-Gi-Oh",
+          text: "Referencias aportadas por el usuario; autor y licencia a confirmar. Nueve íconos de atributos recortados y diseño de cartas reproducido a partir de las referencias.",
         },
         {
-          name: 'Íconos de objetos de Pokémon, Naruto, Dragon Ball y Yu-Gi-Oh',
-          text: 'Cinco hojas de íconos aportadas por el usuario (objetos de cada serie y jeroglíficos egipcios); autor y licencia a confirmar. Se recortaron en una carpeta por serie y se usan en los botones de volver, los modos, las esferas, los artilugios del milenio y las columnas de Yu-Gi-Oh.',
+          name: "Íconos de objetos de Pokémon, Naruto, Dragon Ball y Yu-Gi-Oh",
+          text: "Cinco hojas de íconos aportadas por el usuario (objetos de cada serie y jeroglíficos egipcios); autor y licencia a confirmar. Se recortaron en una carpeta por serie y se usan en los botones de volver, los modos, las esferas, los artilugios del milenio y las columnas de Yu-Gi-Oh.",
         },
         {
-          name: 'Poké Balls de los modos de Pokémon',
-          text: 'Hoja de pixel art aportada por el usuario; autor y licencia a confirmar. Ocho bolas recortadas de la hoja (Poké, Super, Ultra, Master, Lujo, Veloz, Ocaso y Premier).',
+          name: "Poké Balls de los modos de Pokémon",
+          text: "Hoja de pixel art aportada por el usuario; autor y licencia a confirmar. Ocho bolas recortadas de la hoja (Poké, Super, Ultra, Master, Lujo, Veloz, Ocaso y Premier).",
         },
         {
-          name: 'Íconos de tipo de Pokémon',
-          text: '«Alan900900900» (nombre tal como figura en la imagen); recortados de la imagen aportada por el usuario; licencia a confirmar. El autor pide no copiar su trabajo sin crédito.',
+          name: "Íconos de tipo de Pokémon",
+          text: "«Alan900900900» (nombre tal como figura en la imagen); recortados de la imagen aportada por el usuario; licencia a confirmar. El autor pide no copiar su trabajo sin crédito.",
         },
         {
-          name: 'Reverso de carta de Yu-Gi-Oh',
-          text: 'Material oficial aportado por el usuario. Licencia a confirmar.',
+          name: "Reverso de carta de Yu-Gi-Oh",
+          text: "Material oficial aportado por el usuario. Licencia a confirmar.",
         },
         {
-          name: 'Reverso de carta de Pokémon',
-          text: 'Reverso oficial de las cartas del TCG de Pokémon, aportado por el usuario. Autor y licencia a confirmar. Se muestra del lado de atrás de las cartas del modo Carta.',
+          name: "Reverso de carta de Pokémon",
+          text: "Reverso oficial de las cartas del TCG de Pokémon, aportado por el usuario. Autor y licencia a confirmar. Se muestra del lado de atrás de las cartas del modo Carta.",
         },
         {
-          name: 'Iconos mágicos de diseño plano',
-          url: 'https://www.magnific.com/es/vector-gratis/iconos-magicos-diseno-plano_44999599.htm',
-          text: 'Magnific (antes Freepik), autor indicado: magnific. Jeroglíficos de pilares, chips y sellos, recortados y recoloreados. Licencia a confirmar; atribución pendiente de confirmar.',
+          name: "Iconos mágicos de diseño plano",
+          url: "https://www.magnific.com/es/vector-gratis/iconos-magicos-diseno-plano_44999599.htm",
+          text: "Magnific (antes Freepik), autor indicado: magnific. Jeroglíficos de pilares, chips y sellos, recortados y recoloreados. Licencia a confirmar; atribución pendiente de confirmar.",
         },
       ],
     },
   },
   notFound: {
-    title: 'Página no encontrada',
-    text: 'La página que buscás no existe o cambió de lugar.',
-    home: 'Volver al inicio',
+    title: "Página no encontrada",
+    text: "La página que buscás no existe o cambió de lugar.",
+    home: "Volver al inicio",
   },
   // Página "Sin conexión": la muestra el service worker cuando no hay red y la página pedida no se había visitado.
   offline: {
-    heading: 'Sin conexión',
-    title: 'No hay conexión',
-    text: 'Esta página todavía no está guardada en el teléfono. Las que ya abriste con conexión siguen funcionando.',
-    retry: 'Reintentar',
-    home: 'Ir al inicio',
+    heading: "Sin conexión",
+    title: "No hay conexión",
+    text: "Esta página todavía no está guardada en el teléfono. Las que ya abriste con conexión siguen funcionando.",
+    retry: "Reintentar",
+    home: "Ir al inicio",
   },
   errorPage: {
-    title: 'Algo salió mal',
-    text: 'Se produjo un error inesperado. Probá de nuevo; si sigue pasando, volvé al inicio.',
-    retry: 'Reintentar',
-    home: 'Volver al inicio',
+    title: "Algo salió mal",
+    text: "Se produjo un error inesperado. Probá de nuevo; si sigue pasando, volvé al inicio.",
+    retry: "Reintentar",
+    home: "Volver al inicio",
   },
   meta: {
     franchise: (name: string, modes: number) =>
-      `Juegos diarios de ${name}: ${modes} ${plural(modes, 'modo', 'modos')} con un reto nuevo cada día, para jugar solo o comparar con amigos.`,
+      `Juegos diarios de ${name}: ${modes} ${plural(modes, "modo", "modos")} con un reto nuevo cada día, para jugar solo o comparar con amigos.`,
     mode: (mode: string, franchise: string) =>
       `Reto diario del modo ${mode} de ${franchise}. Un reto nuevo cada día, el mismo para quien tenga los mismos filtros.`,
     imageAlt: (name: string) => `${name} en AnimeGuess`,
   },
   mode: {
-    comingSoon: 'Próximamente',
-    provisional: 'Este modo todavía no está disponible.',
+    comingSoon: "Próximamente",
+    provisional: "Este modo todavía no está disponible.",
   },
   game: {
-    loading: 'Cargando el reto…',
-    loadError: 'No se pudieron cargar los datos. Probá de nuevo.',
-    retry: 'Reintentar',
-    copyLink: 'Copiar link',
-    linkCopied: 'Link copiado',
-    linkCopyFailed: 'No se pudo copiar el link',
+    loading: "Cargando el reto…",
+    loadError: "No se pudieron cargar los datos. Probá de nuevo.",
+    retry: "Reintentar",
+    copyLink: "Copiar link",
+    linkCopied: "Link copiado",
+    linkCopyFailed: "No se pudo copiar el link",
   },
   filters: {
     // Interruptores de la partida (debajo de las series), en los modos donde cambian algo.
-    filler: 'Relleno',
-    manga: 'Arcos del manga',
-    title: 'Filtros',
-    hint: 'Apagá las series que no querés que aparezcan.',
-    groupLabel: 'Filtrar por serie',
+    filler: "Relleno",
+    manga: "Arcos del manga",
+    title: "Filtros",
+    hint: "Apagá las series que no querés que aparezcan.",
+    groupLabel: "Filtrar por serie",
     // "171 personajes posibles"; sin nombre, solo "171 posibles".
-    remaining: (count: number, noun?: { readonly one: string; readonly many: string }) =>
-      `${count} ${noun ? `${plural(count, noun.one, noun.many)} ` : ''}${plural(count, 'posible', 'posibles')}`,
+    remaining: (
+      count: number,
+      noun?: { readonly one: string; readonly many: string },
+    ) =>
+      `${count} ${noun ? `${plural(count, noun.one, noun.many)} ` : ""}${plural(count, "posible", "posibles")}`,
     // Lo que cuentan los modos que no adivinan entidades de la franquicia.
     nouns: {
-      events: { one: 'suceso', many: 'sucesos' },
-      groups: { one: 'grupo', many: 'grupos' },
+      events: { one: "suceso", many: "sucesos" },
+      groups: { one: "grupo", many: "grupos" },
     },
     belowMinimum: (remaining: number, minimum: number) =>
       `Con estos filtros quedan ${remaining} y hacen falta al menos ${minimum} para jugar este modo. Activá más series.`,
-    keepOne: 'Tiene que quedar al menos una serie activa.',
+    keepOne: "Tiene que quedar al menos una serie activa.",
   },
   autocomplete: {
-    placeholder: 'Escribí un nombre…',
-    noResults: 'Sin coincidencias',
-    results: (count: number) => `${count} ${plural(count, 'sugerencia', 'sugerencias')}`,
+    placeholder: "Escribí un nombre…",
+    noResults: "Sin coincidencias",
+    results: (count: number) =>
+      `${count} ${plural(count, "sugerencia", "sugerencias")}`,
   },
   classic: {
-    inputLabel: 'Tu intento',
-    tableCaption: 'Intentos, del más reciente al más antiguo',
-    nameHeader: 'Nombre',
+    inputLabel: "Tu intento",
+    tableCaption: "Intentos, del más reciente al más antiguo",
+    nameHeader: "Nombre",
     // Teléfono: un solo "?" arriba de las tarjetas explica las columnas (en la tabla de escritorio cada encabezado tiene su ⓘ).
-    columnsHelp: { button: 'Qué significa cada columna', title: 'Las columnas' },
-    empty: 'Todavía no hiciste ningún intento.',
-    attempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
+    columnsHelp: {
+      button: "Qué significa cada columna",
+      title: "Las columnas",
+    },
+    empty: "Todavía no hiciste ningún intento.",
+    attempts: (count: number) =>
+      `${count} ${plural(count, "intento", "intentos")}`,
     lastAttempt: (name: string) => `Intento agregado: ${name}`,
     // Al terminar de revelarse una fila, un único aviso la resume: "Pikachu: Tipo 1 correcto, Altura mayor, …".
-    revealSummary: (name: string, parts: readonly string[]) => `${name}: ${parts.join(', ')}.`,
-    cellSummary: { exact: 'correcto', partial: 'parcial', none: 'incorrecto', higher: 'mayor', lower: 'menor', hidden: 'oculto' },
-    cellExact: 'Coincide',
-    cellPartial: 'Coincide en parte',
-    cellNone: 'No coincide',
-    answerHigher: 'La respuesta es mayor',
-    answerLower: 'La respuesta es menor',
-    noValue: 'Ninguno',
-    hiddenValue: 'Oculto: pertenece a una serie que apagaste',
-    hintsTitle: 'Pistas',
+    revealSummary: (name: string, parts: readonly string[]) =>
+      `${name}: ${parts.join(", ")}.`,
+    cellSummary: {
+      exact: "correcto",
+      partial: "parcial",
+      none: "incorrecto",
+      higher: "mayor",
+      lower: "menor",
+      hidden: "oculto",
+    },
+    cellExact: "Coincide",
+    cellPartial: "Coincide en parte",
+    cellNone: "No coincide",
+    answerHigher: "La respuesta es mayor",
+    answerLower: "La respuesta es menor",
+    noValue: "Ninguno",
+    hiddenValue: "Oculto: pertenece a una serie que apagaste",
+    hintsTitle: "Pistas",
     hintLocked: (remaining: number) =>
-      `Se desbloquea con ${remaining} ${plural(remaining, 'intento fallido más', 'intentos fallidos más')}`,
+      `Se desbloquea con ${remaining} ${plural(remaining, "intento fallido más", "intentos fallidos más")}`,
     // En la tarjeta compacta del teléfono (diseño de app).
-    hintLockedShort: (remaining: number) => `en ${remaining} ${plural(remaining, 'intento', 'intentos')}`,
+    hintLockedShort: (remaining: number) =>
+      `en ${remaining} ${plural(remaining, "intento", "intentos")}`,
     hintUnlocked: (labels: string) => `Pista desbloqueada: ${labels}`,
     help: {
-      goal: 'Elegí un nombre y compará sus datos con los de la respuesta. Usá los colores y las flechas para decidir tu próximo intento.',
-      colorsTitle: 'Qué significa cada color',
-      exact: 'Verde: el valor coincide con el de la respuesta.',
-      partial: 'Naranja: coincide en parte, por ejemplo comparten uno de dos valores.',
-      none: 'Rojo: no coincide.',
-      arrows: '↑: buscá un valor más alto. ↓: buscá uno más bajo.',
-      hintsTitle: 'Pistas',
-      hintsIntro: 'Cuando fallás varias veces se desbloquean pistas:',
+      goal: "Elegí un nombre y compará sus datos con los de la respuesta. Usá los colores y las flechas para decidir tu próximo intento.",
+      colorsTitle: "Qué significa cada color",
+      exact: "Verde: el valor coincide con el de la respuesta.",
+      partial:
+        "Naranja: coincide en parte, por ejemplo comparten uno de dos valores.",
+      none: "Rojo: no coincide.",
+      arrows: "↑: buscá un valor más alto. ↓: buscá uno más bajo.",
+      hintsTitle: "Pistas",
+      hintsIntro: "Cuando fallás varias veces se desbloquean pistas:",
       hint: (label: string, after: number) =>
-        `${label}: a los ${after} ${plural(after, 'intento fallido', 'intentos fallidos')}.`,
-      columnsNote: 'Algunas columnas solo aparecen con ciertas series activas.',
-      hiddenNote: 'Si el valor de una columna pertenece a una serie que apagaste, se ve como — y no se compara.',
+        `${label}: a los ${after} ${plural(after, "intento fallido", "intentos fallidos")}.`,
+      columnsNote: "Algunas columnas solo aparecen con ciertas series activas.",
+      hiddenNote:
+        "Si el valor de una columna pertenece a una serie que apagaste, se ve como — y no se compara.",
     },
   },
   // Clips de contenido (ContentVideo): el botón para quien pidió menos movimiento o cuyo navegador no los arranca solo.
   video: {
-    play: 'Reproducir clip',
-    pause: 'Pausar clip',
+    play: "Reproducir clip",
+    pause: "Pausar clip",
   },
   imageReveal: {
-    inputLabel: 'Tu intento',
-    imageAlt: 'Imagen del reto, parcialmente oculta',
+    inputLabel: "Tu intento",
+    imageAlt: "Imagen del reto, parcialmente oculta",
     imageSolvedAlt: (label: string) => `Imagen completa: ${label}`,
     step: (current: number, total: number) => `Pista ${current} de ${total}`,
-    attemptCounter: (current: number, total: number) => `Intentos: ${current}/${total}`,
-    attempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
-    failedTitle: 'Intentos fallidos',
-    empty: 'Todavía no hiciste ningún intento.',
+    attemptCounter: (current: number, total: number) =>
+      `Intentos: ${current}/${total}`,
+    attempts: (count: number) =>
+      `${count} ${plural(count, "intento", "intentos")}`,
+    failedTitle: "Intentos fallidos",
+    empty: "Todavía no hiciste ningún intento.",
     wrongAttempt: (name: string, revealed: boolean) =>
-      revealed ? `${name} no es. Se reveló un poco más de la imagen.` : `${name} no es.`,
+      revealed
+        ? `${name} no es. Se reveló un poco más de la imagen.`
+        : `${name} no es.`,
     // El último intento: la imagen ya está lo más clara posible y, si falla, se pierde.
-    lastChance: 'Último intento: si fallás, perdés.',
-    lostAnnouncement: 'Se acabaron los intentos.',
-    difficultyTitle: 'Dificultad',
-    revealSwitch: 'Revelar con cada intento',
-    revealHint: 'Cada intento fallido muestra un poco más de la imagen.',
-    colorsSwitch: 'Mostrar colores',
-    colorsHint: 'Apagado, la imagen se ve en grises hasta que aciertes.',
+    lastChance: "Último intento: si fallás, perdés.",
+    lostAnnouncement: "Se acabaron los intentos.",
+    difficultyTitle: "Dificultad",
+    revealSwitch: "Revelar con cada intento",
+    revealHint: "Cada intento fallido muestra un poco más de la imagen.",
+    colorsSwitch: "Mostrar colores",
+    colorsHint: "Apagado, la imagen se ve en grises hasta que aciertes.",
     help: {
       goal: {
-        silhouette: 'Adiviná la respuesta del día a partir de su silueta. Buscá un nombre y seleccionalo.',
-        blur: 'Adiviná la respuesta del día a partir de una imagen desenfocada. Buscá un nombre y seleccionalo.',
-        zoom: 'Adiviná la respuesta del día a partir de un detalle ampliado de su imagen. Buscá un nombre y seleccionalo.',
-        'zoom-silhouette':
-          'Adiviná la respuesta del día a partir de un detalle ampliado de su silueta. Buscá un nombre y seleccionalo.',
+        silhouette:
+          "Adiviná la respuesta del día a partir de su silueta. Buscá un nombre y seleccionalo.",
+        blur: "Adiviná la respuesta del día a partir de una imagen desenfocada. Buscá un nombre y seleccionalo.",
+        zoom: "Adiviná la respuesta del día a partir de un detalle ampliado de su imagen. Buscá un nombre y seleccionalo.",
+        "zoom-silhouette":
+          "Adiviná la respuesta del día a partir de un detalle ampliado de su silueta. Buscá un nombre y seleccionalo.",
       },
-      stepsTitle: 'Pistas',
-      steps: 'Cada fallo deja ver un poco más de la imagen si activaste «Revelar con cada intento». Si acertás, se muestra completa. Si agotás los intentos, perdés.',
-      difficultyTitle: 'Dificultad',
+      stepsTitle: "Pistas",
+      steps:
+        "Cada fallo deja ver un poco más de la imagen si activaste «Revelar con cada intento». Si acertás, se muestra completa. Si agotás los intentos, perdés.",
+      difficultyTitle: "Dificultad",
       difficulty:
         'Podés apagar "Revelar con cada intento" para que la imagen no cambie hasta que aciertes, y "Mostrar colores" para verla en grises. Tus elecciones se recuerdan en este dispositivo.',
       // Con una silueta no hay colores que mostrar.
@@ -604,21 +876,24 @@ export const es = {
     },
   },
   textClue: {
-    inputLabel: 'Tu intento',
-    clueTitle: 'La pista',
-    hintsTitle: 'Pistas',
+    addressee: "Dicha a",
+    unknownAddressee: "Destinatario no identificado",
+    inputLabel: "Tu intento",
+    clueTitle: "La pista",
+    hintsTitle: "Pistas",
     hintLocked: (remaining: number) =>
-      `Se desbloquea con ${remaining} ${plural(remaining, 'intento fallido más', 'intentos fallidos más')}`,
-    attempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
-    failedTitle: 'Intentos fallidos',
-    empty: 'Todavía no hiciste ningún intento.',
+      `Se desbloquea con ${remaining} ${plural(remaining, "intento fallido más", "intentos fallidos más")}`,
+    attempts: (count: number) =>
+      `${count} ${plural(count, "intento", "intentos")}`,
+    failedTitle: "Intentos fallidos",
+    empty: "Todavía no hiciste ningún intento.",
     wrongAttempt: (name: string) => `${name} no es.`,
     help: {
-      goal: 'Adiviná la respuesta del día a partir de la pista. Buscá un nombre y seleccionalo antes de quedarte sin intentos.',
-      hintsTitle: 'Pistas',
-      hintsIntro: 'Cuando fallás varias veces se desbloquean más pistas:',
+      goal: "Adiviná la respuesta del día a partir de la pista. Buscá un nombre y seleccionalo antes de quedarte sin intentos.",
+      hintsTitle: "Pistas",
+      hintsIntro: "Cuando fallás varias veces se desbloquean más pistas:",
       hint: (label: string, after: number) =>
-        `${label}: a los ${after} ${plural(after, 'intento fallido', 'intentos fallidos')}.`,
+        `${label}: a los ${after} ${plural(after, "intento fallido", "intentos fallidos")}.`,
     },
   },
   higherLower: {
@@ -627,530 +902,726 @@ export const es = {
     totalScore: (score: number) => `Aciertos: ${score}`,
     dailyScore: (score: number, total: number) => `Aciertos: ${score}/${total}`,
     record: (score: number) => `Récord histórico: ${score}`,
-    target: (score: number) => `Objetivo: ${score} ${plural(score, 'acierto', 'aciertos')}`,
-    newRecord: '¡Nuevo récord!',
-    optionsLabel: 'Opciones',
+    target: (score: number) =>
+      `Objetivo: ${score} ${plural(score, "acierto", "aciertos")}`,
+    newRecord: "¡Nuevo récord!",
+    optionsLabel: "Opciones",
     // Elegir qué comparar (en las franquicias con varias medidas).
-    metricsLabel: 'Qué comparar',
-    metricDaily: 'Del día',
-    higher: 'Mayor',
-    picked: 'Tu elección',
-    next: 'Siguiente',
-    correct: '¡Correcto!',
+    metricsLabel: "Qué comparar",
+    metricDaily: "Del día",
+    higher: "Mayor",
+    picked: "Tu elección",
+    next: "Siguiente",
+    correct: "¡Correcto!",
     wrong: (winner: string) => `Fallaste: ${winner} tenía el valor mayor.`,
-    perfect: '¡Acertaste todas las rondas!',
-    noRounds: 'Con estos filtros no hay pares para comparar. Activá más series.',
-    announceCorrect: (name: string) => `Correcto: ${name} tenía el valor mayor.`,
-    announceWrong: (name: string) => `Incorrecto: ${name} tenía el valor mayor.`,
-    lastRound: (winner: string, winnerValue: string, loser: string, loserValue: string) =>
+    perfect: "¡Acertaste todas las rondas!",
+    noRounds:
+      "Con estos filtros no hay pares para comparar. Activá más series.",
+    announceCorrect: (name: string) =>
+      `Correcto: ${name} tenía el valor mayor.`,
+    announceWrong: (name: string) =>
+      `Incorrecto: ${name} tenía el valor mayor.`,
+    lastRound: (
+      winner: string,
+      winnerValue: string,
+      loser: string,
+      loserValue: string,
+    ) =>
       `Tenía el mayor valor ${winner} (${winnerValue}), frente a ${loser} (${loserValue}).`,
     help: {
-      goal: 'Elegí cuál de los dos tiene el valor mayor. Después de elegir se muestran ambos valores. Tocá «Siguiente» para continuar. Si fallás, termina la partida.',
-      goalWithMistakes: (total: number) => `Elegí cuál de los dos tiene el valor mayor. Cada acierto suma un punto; la partida termina cuando acumulás ${total} fallos.`,
-      sequence: 'Ganás el reto diario con 10 aciertos. En modo infinito podés seguir hasta agotar los fallos permitidos e intentar superar tu récord. Nunca hay empates entre las dos opciones.',
-      metricsTitle: 'Qué se compara',
-      metricsIntro: '«Del día» elige qué comparar. Si hay varias medidas, podés elegir otra y jugar una partida distinta:',
+      goal: "Elegí cuál de los dos tiene el valor mayor. Después de elegir se muestran ambos valores. Tocá «Siguiente» para continuar. Si fallás, termina la partida.",
+      goalWithMistakes: (total: number) =>
+        `Elegí cuál de los dos tiene el valor mayor. Cada acierto suma un punto; la partida termina cuando acumulás ${total} fallos.`,
+      sequence:
+        "Ganás el reto diario con 10 aciertos. En modo infinito podés seguir hasta agotar los fallos permitidos e intentar superar tu récord. Nunca hay empates entre las dos opciones.",
+      metricsTitle: "Qué se compara",
+      metricsIntro:
+        "«Del día» elige qué comparar. Si hay varias medidas, podés elegir otra y jugar una partida distinta:",
     },
   },
   revealList: {
-    inputLabel: 'Tu intento',
-    listTitle: 'Las pistas',
-    hintsTitle: 'Más pistas',
+    inputLabel: "Tu intento",
+    listTitle: "Las pistas",
+    hintsTitle: "Más pistas",
     hintLocked: (remaining: number) =>
-      `Se desbloquea con ${remaining} ${plural(remaining, 'intento fallido más', 'intentos fallidos más')}`,
+      `Se desbloquea con ${remaining} ${plural(remaining, "intento fallido más", "intentos fallidos más")}`,
     position: (position: number) => `Pista ${position}`,
-    hidden: 'Todavía oculta',
-    attempts: (count: number) => `${count} ${plural(count, 'intento', 'intentos')}`,
-    failedTitle: 'Intentos fallidos',
-    empty: 'Todavía no hiciste ningún intento.',
+    hidden: "Todavía oculta",
+    attempts: (count: number) =>
+      `${count} ${plural(count, "intento", "intentos")}`,
+    failedTitle: "Intentos fallidos",
+    empty: "Todavía no hiciste ningún intento.",
     wrongAttempt: (name: string, revealed: boolean) =>
       revealed ? `${name} no es. Se reveló una pista más.` : `${name} no es.`,
     help: {
-      goal: 'Adiviná la respuesta del día con las pistas. Buscá un nombre y seleccionalo antes de quedarte sin intentos.',
-      reveal: 'Al empezar ves una sola pista; cada intento fallido revela una más.',
+      goal: "Adiviná la respuesta del día con las pistas. Buscá un nombre y seleccionalo antes de quedarte sin intentos.",
+      reveal:
+        "Al empezar ves una sola pista; cada intento fallido revela una más.",
     },
   },
   timeline: {
-    instructions: 'Ordená los sucesos del más antiguo al más reciente.',
-    oldest: 'Más antiguo',
-    newest: 'Más reciente',
-    listLabel: 'Sucesos para ordenar',
-    attempt: (current: number, total: number) => `Intento ${current} de ${total}`,
-    confirm: 'Confirmar orden',
-    wrongOrder: 'Orden incorrecto. Cambiá algo y volvé a confirmar.',
+    instructions: "Ordená los sucesos del más antiguo al más reciente.",
+    oldest: "Más antiguo",
+    newest: "Más reciente",
+    listLabel: "Sucesos para ordenar",
+    attempt: (current: number, total: number) =>
+      `Intento ${current} de ${total}`,
+    confirm: "Confirmar orden",
+    wrongOrder: "Orden incorrecto. Cambiá algo y volvé a confirmar.",
     moveUp: (text: string) => `Subir: ${text}`,
     moveDown: (text: string) => `Bajar: ${text}`,
-    moved: (text: string, position: number, total: number) => `${text}: posición ${position} de ${total}.`,
-    stateLocked: 'En su lugar',
+    moved: (text: string, position: number, total: number) =>
+      `${text}: posición ${position} de ${total}.`,
+    stateLocked: "En su lugar",
     confirmed: (attempt: number) => `Intento ${attempt}: orden incorrecto.`,
-    solvedAnnouncement: '¡Ordenados!',
-    lostAnnouncement: 'Se acabaron los intentos.',
-    correctOrderTitle: 'El orden correcto',
+    solvedAnnouncement: "¡Ordenados!",
+    lostAnnouncement: "Se acabaron los intentos.",
+    correctOrderTitle: "El orden correcto",
     answerLabel: (first: string, last: string) => `de «${first}» a «${last}»`,
-    noPuzzle: 'Con estos filtros no hay suficientes sucesos para armar el reto. Activá más series.',
-    noPuzzleLevel: 'Con estos filtros no hay suficientes sucesos para esta dificultad. Activá más series o elegí una más fácil.',
-    levelsLabel: 'Dificultad',
-    levelNames: ['Fácil', 'Normal', 'Difícil'],
+    noPuzzle:
+      "Con estos filtros no hay suficientes sucesos para armar el reto. Activá más series.",
+    noPuzzleLevel:
+      "Con estos filtros no hay suficientes sucesos para esta dificultad. Activá más series o elegí una más fácil.",
+    levelsLabel: "Dificultad",
+    levelNames: ["Fácil", "Normal", "Difícil"],
     level: (number: number) => `Dificultad ${number}`,
     levelCount: (count: number) => `${count} sucesos`,
-    levelLocked: (name: string, needed: number, available: number) => `${name} necesita ${needed} sucesos y con estos filtros hay ${available}.`,
-    orderHelpTopic: 'orden de los sucesos',
+    levelLocked: (name: string, needed: number, available: number) =>
+      `${name} necesita ${needed} sucesos y con estos filtros hay ${available}.`,
+    orderHelpTopic: "orden de los sucesos",
     help: {
       goal: (count: number) =>
         `Ordená ${count} sucesos del más antiguo (arriba) al más reciente (abajo).`,
       goalLevels: (counts: readonly number[]) =>
-        `Ordená los sucesos del más antiguo (arriba) al más reciente (abajo). Elegí la dificultad: ${counts.join(', ')} sucesos. Cada dificultad tiene su propia partida.`,
+        `Ordená los sucesos del más antiguo (arriba) al más reciente (abajo). Elegí la dificultad: ${counts.join(", ")} sucesos. Cada dificultad tiene su propia partida.`,
       attemptsLevels: (attempts: readonly number[]) =>
-        `Tenés ${attempts.join(', ')} intentos según la dificultad. Tocá «Confirmar orden» para comprobarlo. Si está mal, cambiá el orden y probá de nuevo; no se indica qué posiciones acertaste.`,
-      move: 'Mové los sucesos con las flechas de subir y bajar, o arrastralos desde las rayitas de la izquierda.',
+        `Tenés ${attempts.join(", ")} intentos según la dificultad. Tocá «Confirmar orden» para comprobarlo. Si está mal, cambiá el orden y probá de nuevo; no se indica qué posiciones acertaste.`,
+      move: "Mové los sucesos con las flechas de subir y bajar, o arrastralos desde las rayitas de la izquierda.",
       attempts: (total: number) =>
         `Tenés ${total} intentos. Al confirmar solo te decimos si el orden es correcto; no cuáles están bien.`,
     },
   },
   connections: {
-    instructions: 'Encontrá los 4 grupos de 4. Elegí 4 elementos que tengan algo en común y enviá.',
-    gridLabel: 'Elementos para agrupar',
-    solvedLabel: 'Grupos resueltos',
-    unsolvedLabel: 'Los grupos que faltaban',
-    mistakes: (left: number, total: number) => `Errores que podés cometer: ${left} de ${total}`,
-    selectedCount: (count: number, total: number) => `${count} de ${total} elegidos`,
-    submit: 'Enviar',
-    shuffle: 'Mezclar',
-    clear: 'Deseleccionar todo',
-    difficulties: ['Fácil', 'Media', 'Difícil', 'Muy difícil'],
+    instructions:
+      "Encontrá los 4 grupos de 4. Elegí 4 elementos que tengan algo en común y enviá.",
+    gridLabel: "Elementos para agrupar",
+    solvedLabel: "Grupos resueltos",
+    unsolvedLabel: "Los grupos que faltaban",
+    mistakes: (left: number, total: number) =>
+      `Errores que podés cometer: ${left} de ${total}`,
+    selectedCount: (count: number, total: number) =>
+      `${count} de ${total} elegidos`,
+    submit: "Enviar",
+    shuffle: "Mezclar",
+    clear: "Deseleccionar todo",
+    difficulties: ["Fácil", "Media", "Difícil", "Muy difícil"],
     difficultyLabel: (name: string) => `Dificultad: ${name}`,
-    oneAway: 'Casi: a uno de un grupo.',
-    wrong: 'Esos cuatro no forman un grupo.',
-    repeated: 'Ya probaste esa combinación.',
+    oneAway: "Casi: a uno de un grupo.",
+    wrong: "Esos cuatro no forman un grupo.",
+    repeated: "Ya probaste esa combinación.",
     foundAnnouncement: (name: string) => `Grupo encontrado: ${name}.`,
-    wrongAnnouncement: (left: number) => `No es un grupo. Te ${plural(left, 'queda', 'quedan')} ${left} ${plural(left, 'error', 'errores')}.`,
-    solvedAnnouncement: '¡Encontraste los cuatro grupos!',
-    lostAnnouncement: 'Se acabaron los errores. Se muestran los grupos que faltaban.',
-    noPuzzle: 'Con estos filtros no hay suficientes grupos para armar el tablero. Activá más series.',
+    wrongAnnouncement: (left: number) =>
+      `No es un grupo. Te ${plural(left, "queda", "quedan")} ${left} ${plural(left, "error", "errores")}.`,
+    solvedAnnouncement: "¡Encontraste los cuatro grupos!",
+    lostAnnouncement:
+      "Se acabaron los errores. Se muestran los grupos que faltaban.",
+    noPuzzle:
+      "Con estos filtros no hay suficientes grupos para armar el tablero. Activá más series.",
     answerLabel: (names: readonly string[]) =>
-      names.length < 2 ? names.join('') : `${names.slice(0, -1).join(', ')} y ${names[names.length - 1]}`,
+      names.length < 2
+        ? names.join("")
+        : `${names.slice(0, -1).join(", ")} y ${names[names.length - 1]}`,
     help: {
-      goal: 'Hay 16 elementos que forman 4 grupos de 4. Tocá 4 que creas que van juntos y enviá.',
-      result: 'Si acertás, el grupo se revela con su nombre. Si tres de los cuatro son de un mismo grupo, te avisamos que estás cerca.',
+      goal: "Hay 16 elementos que forman 4 grupos de 4. Tocá 4 que creas que van juntos y enviá.",
+      result:
+        "Si acertás, el grupo se revela con su nombre. Si tres de los cuatro son de un mismo grupo, te avisamos que estás cerca.",
       mistakes: (total: number) =>
-        `Podés equivocarte ${total} ${plural(total, 'vez', 'veces')}. Repetir una combinación que ya probaste no cuenta como error.`,
-      unique: 'En este tablero, cada elemento pertenece a un solo grupo.',
-      colors: 'Cada grupo tiene un color y un nivel de dificultad, de fácil a muy difícil.',
+        `Podés equivocarte ${total} ${plural(total, "vez", "veces")}. Repetir una combinación que ya probaste no cuenta como error.`,
+      unique: "En este tablero, cada elemento pertenece a un solo grupo.",
+      colors:
+        "Cada grupo tiene un color y un nivel de dificultad, de fácil a muy difícil.",
     },
   },
   shell: {
-    filters: 'Filtros del juego',
-    filtersShort: 'Filtros',
-    filtersSheet: 'Filtros del juego',
-    filtersChanged: 'Filtros del juego (cambiados)',
-    sheetDone: 'Listo',
-    appSubtitle: ' \u00b7 reto de hoy',
-    actions: 'Ayuda y opciones del juego',
+    filters: "Filtros del juego",
+    filtersShort: "Filtros",
+    filtersSheet: "Filtros del juego",
+    filtersChanged: "Filtros del juego (cambiados)",
+    sheetDone: "Listo",
+    appSubtitle: " \u00b7 reto de hoy",
+    actions: "Ayuda y opciones del juego",
     limits: {
       counter: (used: number, total: number) => `Intentos: ${used}/${total}`,
       mistakes: (used: number, total: number) => `Fallos: ${used}/${total}`,
-      help: 'Los intentos disponibles se muestran en la partida. Al agotarlos sin resolver el reto, perdés. Con menos opciones activas, los modos de adivinar pueden tener menos intentos.',
+      help: "Los intentos disponibles se muestran en la partida. Al agotarlos sin resolver el reto, perdés. Con menos opciones activas, los modos de adivinar pueden tener menos intentos.",
     },
-    modePickerTitle: 'Modos de juego:',
-    previousMode: 'Mostrar modo anterior',
-    nextMode: 'Mostrar modo siguiente',
-    currentMode: 'Modo actual',
+    modePickerTitle: "Modos de juego:",
+    previousMode: "Mostrar modo anterior",
+    nextMode: "Mostrar modo siguiente",
+    currentMode: "Modo actual",
     surrender: {
-      button: 'Rendirse',
-      title: '¿Rendirse en esta partida?',
-      description: 'Vas a ver la solución y esta partida quedará como perdida. Después podés seguir jugando en modo infinito.',
-      scoreDescription: 'La partida termina acá. Conservás tus aciertos, pero no cuenta como una victoria. Después podés seguir jugando en modo infinito.',
-      cancel: 'Seguir jugando',
-      confirm: 'Sí, rendirme',
-      ended: 'Te rendiste',
+      button: "Rendirse",
+      title: "¿Rendirse en esta partida?",
+      description:
+        "Vas a ver la solución y esta partida quedará como perdida. Después podés seguir jugando en modo infinito.",
+      scoreDescription:
+        "La partida termina acá. Conservás tus aciertos, pero no cuenta como una victoria. Después podés seguir jugando en modo infinito.",
+      cancel: "Seguir jugando",
+      confirm: "Sí, rendirme",
+      ended: "Te rendiste",
     },
-    modesLabel: 'Modos de juego',
-    nextModes: 'Seguí jugando',
-    nextModesLabel: 'Seguir con otro modo',
+    modesLabel: "Modos de juego",
+    nextModes: "Seguí jugando",
+    nextModesLabel: "Seguir con otro modo",
     // Modo infinito: partidas extra del mismo modo y los mismos filtros, sin esperar al reto de mañana.
     practice: {
-      title: 'Modo infinito',
-      intro: 'Seguí jugando este modo con los mismos filtros, sin esperar a mañana. No cuenta para tus estadísticas ni para tu racha.',
-      start: 'Jugar en modo infinito',
-      banner: 'No cuenta para tus estadísticas ni para tu racha.',
-      next: 'Otra partida',
-      back: 'Volver al reto de hoy',
-      lostTitle: 'No salió',
-      wonSummary: (attempts: number) => `Lo resolviste en ${attempts} ${plural(attempts, 'intento', 'intentos')}.`,
-      lostSummary: 'Probá con otra partida.',
+      title: "Modo infinito",
+      intro:
+        "Seguí jugando este modo con los mismos filtros, sin esperar a mañana. No cuenta para tus estadísticas ni para tu racha.",
+      start: "Jugar en modo infinito",
+      banner: "No cuenta para tus estadísticas ni para tu racha.",
+      next: "Otra partida",
+      back: "Volver al reto de hoy",
+      lostTitle: "No salió",
+      wonSummary: (attempts: number) =>
+        `Lo resolviste en ${attempts} ${plural(attempts, "intento", "intentos")}.`,
+      lostSummary: "Probá con otra partida.",
       scoreSummary: (score: number) =>
-        score === 0 ? 'No acertaste ninguna.' : `Acertaste ${score} ${plural(score, 'seguida', 'seguidas')}.`,
+        score === 0
+          ? "No acertaste ninguna."
+          : `Acertaste ${score} ${plural(score, "seguida", "seguidas")}.`,
     },
-    modeSolved: 'resuelto hoy',
-    modeSoon: 'próximamente',
-    help: 'Cómo se juega',
-    stats: 'Estadísticas',
-    close: 'Cerrar',
+    modeSolved: "resuelto hoy",
+    modeSoon: "próximamente",
+    help: "Cómo se juega",
+    stats: "Estadísticas",
+    close: "Cerrar",
     // Al pasar el cursor por la barra del título de un modal que se puede mover (por ejemplo, la Pokédex).
-    dragHint: 'Arrastrá la barra del título para mover la ventana',
+    dragHint: "Arrastrá la barra del título para mover la ventana",
     // Al pasar el cursor por el agarre de la esquina de una ventana que se puede agrandar y achicar.
-    resizeHint: 'Arrastrá la esquina para cambiar el tamaño',
-    nextChallengeShort: 'Nuevo en',
-    nextChallenge: 'Próximo reto en',
-    yesterday: 'Ayer fue',
+    resizeHint: "Arrastrá la esquina para cambiar el tamaño",
+    nextChallengeShort: "Nuevo en",
+    nextChallenge: "Próximo reto en",
+    yesterday: "Ayer fue",
     helpTitle: (mode: string) => `Cómo se juega — ${mode}`,
-    helpCommonTitle: 'Reto diario',
+    helpCommonTitle: "Reto diario",
     helpCommon: [
-      'El reto cambia cada día a las 00:00 de Argentina.',
-      'Dos personas con los mismos filtros ven el mismo reto. Copiá el link para jugar juntos.',
-      'Los filtros eligen qué series o generaciones pueden aparecer. Cada combinación guarda su propia partida.',
+      "El reto cambia cada día a las 00:00 de Argentina.",
+      "Dos personas con los mismos filtros ven el mismo reto. Copiá el link para jugar juntos.",
+      "Los filtros eligen qué series o generaciones pueden aparecer. Cada combinación guarda su propia partida.",
     ],
     result: {
-      wonTitle: '¡Lo adivinaste!',
+      wonTitle: "¡Lo adivinaste!",
       // Título del resumen en los temas que nombran la respuesta al ganar.
       answerTitle: (label: string) => `¡Es ${label}!`,
-      lostTitle: 'Fallaste',
-      answerWas: (label: string, detail?: string) => (detail === undefined ? `Era ${label}.` : `Era ${label} – ${detail}.`),
+      lostTitle: "Fallaste",
+      answerWas: (label: string, detail?: string) =>
+        detail === undefined ? `Era ${label}.` : `Era ${label} – ${detail}.`,
       wonSummary: (attempts: number, streak: number) =>
-        `Lo resolviste en ${attempts} ${plural(attempts, 'intento', 'intentos')}. Racha: ${streak} ${plural(streak, 'día', 'días')}.`,
-      lostSummary: 'Mañana hay un reto nuevo.',
+        `Lo resolviste en ${attempts} ${plural(attempts, "intento", "intentos")}. Racha: ${streak} ${plural(streak, "día", "días")}.`,
+      lostSummary: "Mañana hay un reto nuevo.",
       // Modos de puntaje: no se gana ni se pierde, se juega hasta el primer error.
-      scoreTitle: 'Fin de la racha',
+      scoreTitle: "Fin de la racha",
       scoreSummary: (score: number, streak: number) =>
-        `${score === 0 ? 'No acertaste ninguna.' : `Acertaste ${score} ${plural(score, 'seguida', 'seguidas')}.`} Racha: ${streak} ${plural(streak, 'día', 'días')}.`,
+        `${score === 0 ? "No acertaste ninguna." : `Acertaste ${score} ${plural(score, "seguida", "seguidas")}.`} Racha: ${streak} ${plural(streak, "día", "días")}.`,
       // Teléfono: el resultado es una hoja (ver `ResultPanel` con `inSheet`).
-      sheetTitle: 'Resultado',
-      viewResult: 'Ver resultado',
+      sheetTitle: "Resultado",
+      viewResult: "Ver resultado",
       nextMode: (name: string) => `Siguiente: ${name} →`,
       backTo: (name: string) => `Volver a ${name}`,
-      streakLabel: 'Racha',
+      streakLabel: "Racha",
       // En los modos de puntaje de la hoja, la racha de la partida y la de los días llevan cada una su nombre.
       scoreSummarySheet: (score: number, streak: number) =>
-        `Aciertos seguidos: ${score}. Racha diaria: ${streak} ${plural(streak, 'día', 'días')}.`,
-      share: 'Compartir resultado',
-      shareCopied: 'Resultado copiado',
-      shareFailed: 'No se pudo copiar',
+        `Aciertos seguidos: ${score}. Racha diaria: ${streak} ${plural(streak, "día", "días")}.`,
+      share: "Compartir resultado",
+      shareCopied: "Resultado copiado",
+      shareFailed: "No se pudo copiar",
     },
     statsView: {
-      title: 'Estadísticas',
-      played: 'Partidas',
-      winRate: 'Victorias',
-      currentStreak: 'Racha actual',
-      maxStreak: 'Racha máxima',
-      distribution: 'Intentos por victoria',
+      title: "Estadísticas",
+      played: "Partidas",
+      winRate: "Victorias",
+      currentStreak: "Racha actual",
+      maxStreak: "Racha máxima",
+      distribution: "Intentos por victoria",
       distributionRow: (label: string, count: number) =>
-        `${label} ${plural(count, 'intento', 'intentos')}: ${count} ${plural(count, 'victoria', 'victorias')}`,
+        `${label} ${plural(count, "intento", "intentos")}: ${count} ${plural(count, "victoria", "victorias")}`,
       moreThan: (count: number) => `${count}+`,
-      noGames: 'Todavía no jugaste ninguna partida de este modo.',
+      noGames: "Todavía no jugaste ninguna partida de este modo.",
       // Modos de puntaje.
-      bestScore: 'Mejor puntaje',
-      scoreDistribution: 'Aciertos seguidos por partida',
+      bestScore: "Mejor puntaje",
+      scoreDistribution: "Aciertos seguidos por partida",
       scoreDistributionRow: (label: string, count: number) =>
-        `${label} aciertos: ${count} ${plural(count, 'partida', 'partidas')}`,
+        `${label} aciertos: ${count} ${plural(count, "partida", "partidas")}`,
     },
   },
   // Textos propios de la piel de Pokémon (sesión 15).
   // Textos de la piel de Dragon Ball (sesión 16): lo que se ve en sus tarjetas, su premio y sus efectos.
   dragonBallSkin: {
-    capsuleSolved: (attempts: number) => `Resuelto en ${attempts} ${plural(attempts, 'intento', 'intentos')}`,
-    capsuleSolvedToday: 'Resuelto hoy',
-    capsulePending: 'Pendiente',
-    wish: '¡Pedí un deseo!',
-    ki: 'KI',
+    capsuleSolved: (attempts: number) =>
+      `Resuelto en ${attempts} ${plural(attempts, "intento", "intentos")}`,
+    capsuleSolvedToday: "Resuelto hoy",
+    capsulePending: "Pendiente",
+    wish: "¡Pedí un deseo!",
+    ki: "KI",
     // Antes de las semillas del ermitaño que marcan los intentos que quedan (línea de tiempo).
-    attempts: 'Intentos',
+    attempts: "Intentos",
     // Encabezado decorativo de la lente del rastreador (el campo del intento).
-    scanning: 'Escaneando…',
+    scanning: "Escaneando…",
     // El objetivo marcado en la lista de coincidencias del rastreador.
-    locked: 'Objetivo fijado',
+    locked: "Objetivo fijado",
     // Lo que aparece un instante sobre cada celda del Clásico al revelarse, como en el manga.
-    onomatopoeia: ['¡ZAS!', '¡PUM!', '¡DOOM!', '¡BAM!', '¡KRASH!', '¡FUUM!'],
+    onomatopoeia: ["¡ZAS!", "¡PUM!", "¡DOOM!", "¡BAM!", "¡KRASH!", "¡FUUM!"],
   },
   yugiohAnime: {
-    lesser: 'Menor.',
+    lesser: "Menor.",
     comparedValue: (metric: string, value: string) => `${metric}: ${value}.`,
-    hidden: 'oculto',
-    unknown: '?',
-    concealed: '???',
-    hiddenCard: 'Carta todavía oculta',
+    hidden: "oculto",
+    unknown: "?",
+    concealed: "???",
+    hiddenCard: "Carta todavía oculta",
     chain: (position: number) => `Cadena ${position}`,
-    cardLabel: (name: string, kind: string, attribute: string, stats: string) => `${name}. Clase: ${kind}. Atributo: ${attribute}.${stats ? ` ${stats}` : ''}`,
-    statsLabel: (level: string, atk: string, def: string) => `Nivel / rango: ${level}. ATK: ${atk}. DEF: ${def}.`,
+    cardLabel: (name: string, kind: string, attribute: string, stats: string) =>
+      `${name}. Clase: ${kind}. Atributo: ${attribute}.${stats ? ` ${stats}` : ""}`,
+    statsLabel: (level: string, atk: string, def: string) =>
+      `Nivel / rango: ${level}. ATK: ${atk}. DEF: ${def}.`,
   },
   yugiohDisk: {
-    invoke: 'Invocá tu intento',
-    screen: 'Pantalla de puntos de vida',
-    hologram: 'Holograma de la carta marcada',
-    zones: 'Zonas de carta',
-    duelist: 'Duelista',
-    emptyScreen: 'Sin coincidencias',
-    total: (count: number) => `${count} ${plural(count, 'coincidencia', 'coincidencias')}`,
-    window: (from: number, to: number, count: number) => `${from}–${to} de ${count}`,
+    invoke: "Invocá tu intento",
+    screen: "Pantalla de puntos de vida",
+    hologram: "Holograma de la carta marcada",
+    zones: "Zonas de carta",
+    duelist: "Duelista",
+    emptyScreen: "Sin coincidencias",
+    total: (count: number) =>
+      `${count} ${plural(count, "coincidencia", "coincidencias")}`,
+    window: (from: number, to: number, count: number) =>
+      `${from}–${to} de ${count}`,
   },
   yugiohGames: {
-    lp: 'LP',
-    trap: '¡Trampa activada!',
-    won: '¡Duelo ganado!',
-    rivalLP: 'LP del rival:',
-    rivalDefeated: 'LP del rival: 0',
-    chain: 'Cadena de pistas · cada número es un eslabón',
-    chainPrefix: 'Cadena',
-    metrics: { atk: 'ATK', def: 'DEF', nivel: 'Nivel' },
-    levelQuestion: '¿Cuál tiene más nivel?',
-    levelUnit: '★',
-    levelNote: 'Se compara el nivel o rango numérico. Las cartas de Enlace, Magia y Trampa no participan.',
+    lp: "LP",
+    trap: "¡Trampa activada!",
+    won: "¡Duelo ganado!",
+    rivalLP: "LP del rival:",
+    rivalDefeated: "LP del rival: 0",
+    chain: "Cadena de pistas · cada número es un eslabón",
+    chainPrefix: "Cadena",
+    metrics: { atk: "ATK", def: "DEF", nivel: "Nivel" },
+    levelQuestion: "¿Cuál tiene más nivel?",
+    levelUnit: "★",
+    levelNote:
+      "Se compara el nivel o rango numérico. Las cartas de Enlace, Magia y Trampa no participan.",
   },
   yugiohSkin: {
-    pending: 'Pendiente',
-    solved: 'Resuelto hoy',
-    primary: 'Duelo principal',
+    pending: "Pendiente",
+    solved: "Resuelto hoy",
+    primary: "Duelo principal",
     primaryLabel: (label: string) => `${label}. Duelo principal`,
-    cardClass: { spell: '[Carta de Magia]', trap: '[Carta de Trampa]' },
-    scales: 'Escalas ilustrativas',
-    scaleBlue: '1', scaleRed: '8',
-    pendulumInscription: 'Materiales',
-    fallback: { type: 'Monstruo Normal', description: 'Descubrí la respuesta.' },
-    modes: {
-      'duelista': { type: 'Monstruo Normal', description: 'Descubrí al duelista por sus rasgos.' },
-      'carta': { type: 'Monstruo de Efecto', description: 'Hallá la carta por sus valores.' },
-      'silueta': { type: 'Monstruo de Fusión', description: 'Reconocé la silueta del monstruo.' },
-      'texto': { type: 'Monstruo de Ritual', description: 'Hallá la carta según su texto.' },
-      'arte': { type: 'Magia', description: 'Reconocé el arte de la carta.' },
-      'carta-insignia': { type: 'Trampa', description: '¿De quién es la carta que ves?' },
-      'zoom': { type: 'Monstruo de Sincronía', description: 'Reconocé la carta por un detalle.' },
-      'mayor-o-menor': { type: 'Monstruo Xyz', description: 'Compará ataque, defensa o nivel.' },
-      'invocacion': { type: 'Monstruo Péndulo de Efecto', description: 'Descubrí la fusión por materiales.' },
-      'deck': { type: 'Monstruo de Enlace', description: '¿De qué duelista es este deck?' },
-      'linea-de-tiempo': { type: 'Monstruo Máximo', description: 'Ordená sucesos de antes a después.' },
+    cardClass: { spell: "[Carta de Magia]", trap: "[Carta de Trampa]" },
+    scales: "Escalas ilustrativas",
+    scaleBlue: "1",
+    scaleRed: "8",
+    pendulumInscription: "Materiales",
+    fallback: {
+      type: "Monstruo Normal",
+      description: "Descubrí la respuesta.",
     },
-    fieldControls: 'Controles del campo',
-    graveyard: 'Cementerio',
-    field: 'Zona de Campo',
-    yesterdayMode: 'Duelista · respuesta de ayer',
-    loadingData: 'Cargando duelistas…',
-    noYesterday: 'No hay suficientes duelistas con estas series para mostrar la respuesta de ayer.',
-    activeSeries: (count: number) => `${count} ${plural(count, 'serie activa', 'series activas')}`,
-    streak: (count: number) => `Racha: ${count} ${plural(count, 'día', 'días')}`,
+    modes: {
+      duelista: {
+        type: "Monstruo Normal",
+        description: "Descubrí al duelista por sus rasgos.",
+      },
+      carta: {
+        type: "Monstruo de Efecto",
+        description: "Hallá la carta por sus valores.",
+      },
+      silueta: {
+        type: "Monstruo de Fusión",
+        description: "Reconocé la silueta del monstruo.",
+      },
+      texto: {
+        type: "Monstruo de Ritual",
+        description: "Hallá la carta según su texto.",
+      },
+      arte: { type: "Magia", description: "Reconocé el arte de la carta." },
+      "carta-insignia": {
+        type: "Trampa",
+        description: "¿De quién es la carta que ves?",
+      },
+      zoom: {
+        type: "Monstruo de Sincronía",
+        description: "Reconocé la carta por un detalle.",
+      },
+      "mayor-o-menor": {
+        type: "Monstruo Xyz",
+        description: "Compará ataque, defensa o nivel.",
+      },
+      invocacion: {
+        type: "Monstruo Péndulo de Efecto",
+        description: "Descubrí la fusión por materiales.",
+      },
+      deck: {
+        type: "Monstruo de Enlace",
+        description: "¿De qué duelista es este deck?",
+      },
+      "linea-de-tiempo": {
+        type: "Monstruo Máximo",
+        description: "Ordená sucesos de antes a después.",
+      },
+    },
+    fieldControls: "Controles del campo",
+    graveyard: "Cementerio",
+    field: "Zona de Campo",
+    yesterdayMode: "Duelista · respuesta de ayer",
+    loadingData: "Cargando duelistas…",
+    noYesterday:
+      "No hay suficientes duelistas con estas series para mostrar la respuesta de ayer.",
+    activeSeries: (count: number) =>
+      `${count} ${plural(count, "serie activa", "series activas")}`,
+    streak: (count: number) =>
+      `Racha: ${count} ${plural(count, "día", "días")}`,
     more: (count: number) => `+${count}`,
   },
   narutoSkin: {
-    pending: 'Misión pendiente',
-    solved: (attempts: number) => `Cumplida en ${attempts} ${plural(attempts, 'intento', 'intentos')}`,
-    solvedToday: 'Cumplida hoy',
+    pending: "Misión pendiente",
+    solved: (attempts: number) =>
+      `Cumplida en ${attempts} ${plural(attempts, "intento", "intentos")}`,
+    solvedToday: "Cumplida hoy",
     bowlsMore: (extra: number) => `+${extra}`,
-    chakra: 'Chakra',
+    chakra: "Chakra",
     // La tapa del selector del intento y la ficha del personaje marcado.
-    bingoTitle: 'Libro Bingo',
+    bingoTitle: "Libro Bingo",
     // El sello rojo que se estampa al ganar.
-    missionComplete: '¡Misión cumplida!',
-    wanted: 'Se busca',
+    missionComplete: "¡Misión cumplida!",
+    wanted: "Se busca",
   },
   pokemonSkin: {
-    pokedexPending: 'Hoy: pendiente',
-    pokedexSolved: (attempts: number) => `Resuelto en ${attempts} ${plural(attempts, 'intento', 'intentos')}`,
-    pokedexSolvedToday: 'Resuelto hoy',
-    play: 'Jugar',
+    pokedexPending: "Hoy: pendiente",
+    pokedexSolved: (attempts: number) =>
+      `Resuelto en ${attempts} ${plural(attempts, "intento", "intentos")}`,
+    pokedexSolvedToday: "Resuelto hoy",
+    play: "Jugar",
     // Selector de Pokémon (reemplaza al campo de texto en los modos de adivinar).
     picker: {
-      open: 'Elegir en la Pokédex',
-      openDock: 'Abrir la Pokédex',
-      attemptOf: (current: number, total: number) => `Intento ${current} de ${total}`,
-      searchOpen: 'Buscar por nombre o número',
-      typeChip: 'Tipos',
-      generationChip: 'Generaciones',
+      open: "Elegir en la Pokédex",
+      openDock: "Abrir la Pokédex",
+      attemptOf: (current: number, total: number) =>
+        `Intento ${current} de ${total}`,
+      searchOpen: "Buscar por nombre o número",
+      typeChip: "Filtros",
+      generationChip: "Generaciones",
       choose: (name: string) => `Elegir a ${name}`,
-      title: 'Pokédex',
-      search: 'Buscar por nombre o número',
-      placeholder: 'Pikachu, 25…',
+      title: "Pokédex",
+      search: "Buscar por nombre o número",
+      placeholder: "Pikachu, 25…",
       count: (count: number) => `${count} Pokémon`,
       available: (count: number) => `${count} Pokémon posibles`,
-      empty: 'Ningún Pokémon coincide con esa búsqueda.',
-      filters: (count: number) => count > 0 ? `Filtros (${count})` : 'Filtros',
-      filtersAccessible: (count: number) => `Filtros: ${count} ${plural(count, 'filtro activo', 'filtros activos')}`,
-      filtersPanel: 'Filtros de la Pokédex',
-      done: 'Listo',
-      generation: 'Generación',
-      generations: 'Generaciones',
+      empty: "Ningún Pokémon coincide con esa búsqueda.",
+      filters: (count: number) =>
+        count > 0 ? `Filtros (${count})` : "Filtros",
+      filtersAccessible: (count: number) =>
+        `Filtros: ${count} ${plural(count, "filtro activo", "filtros activos")}`,
+      filtersPanel: "Filtros de la Pokédex",
+      done: "Listo",
+      generation: "Generación",
+      generations: "Generaciones",
       generationNumber: (value: number) => `Gen. ${value}`,
-      type: 'Tipo',
-      types: 'Tipos',
-      deselectAll: 'Ninguno',
-      exactTypes: 'Solo la combinación exacta',
-      exactTypesHint: 'Elegí dos tipos para ver solo Pokémon que tengan ambos. Con un tipo, se muestran solo los de tipo único. Apagado, alcanza con tener cualquiera de los tipos elegidos.',
-      monotype: 'Sin tipo secundario',
-      monotypeHint: 'Solo Pokémon de un único tipo (sin segundo tipo)',
-      clearFilters: 'Limpiar filtros',
-      clearFiltersShort: 'Limpiar',
-      exactTypesTip: 'Con dos tipos, solo Pokémon que tengan ambos. Con uno, solo los de tipo único. Apagado, alcanza con tener alguno.',
-      emptyFilters: 'Ningún Pokémon coincide con los filtros y la búsqueda. Usá «Limpiar filtros» o cambiá lo escrito para volver a ver Pokémon.',
-      tried: 'ya probado',
-      number: (value: number) => `N.º ${String(value).padStart(3, '0')}`,
-      gridLabel: 'Pokémon',
-      itemTypes: (types: readonly string[]) => `tipos: ${types.join(', ')}`,
+      type: "Tipo",
+      types: "Tipos",
+      deselectTypes: "Ningún tipo",
+      deselectGenerations: "Ninguna generación",
+      deselectTypesShort: "Ninguno",
+      deselectGenerationsShort: "Ninguna",
+      typeMatch: "Modo de coincidencia",
+      typeMatchModes: {
+        any: {
+          label: "Cualquier coincidencia",
+          hint: "Muestra Pokémon que tengan al menos uno de los tipos que marcaste.",
+        },
+        marked: {
+          label: "Solo tipos marcados",
+          hint: "Muestra Pokémon de uno o dos tipos, siempre que todos sus tipos estén marcados.",
+        },
+        exact: {
+          label: "Combinación exacta",
+          hint: "Muestra solo Pokémon con exactamente los tipos que marcaste.",
+        },
+      },
+      exactTypesUnavailable:
+        "Marcá uno o dos tipos para habilitar la combinación exacta.",
+      clearFilters: "Limpiar filtros",
+      clearFiltersShort: "Limpiar",
+      emptyFilters:
+        "Ningún Pokémon coincide con los filtros y la búsqueda. Usá «Limpiar filtros» o cambiá lo escrito para volver a ver Pokémon.",
+      tried: "ya probado",
+      number: (value: number) => `N.º ${String(value).padStart(3, "0")}`,
+      gridLabel: "Pokémon",
+      itemTypes: (types: readonly string[]) => `tipos: ${types.join(", ")}`,
     },
     // Medallero de la racha: desde la octava medalla, cuántos días más.
     medalsMore: (extra: number) => `+${extra}`,
-    hp: 'PS',
+    hp: "PS",
   },
   // Ayudas de los botones ⓘ (SPEC 9.2): 140 caracteres como mucho y sin pistas sobre la respuesta.
   help: {
     button: (topic: string) => `Ayuda: ${topic}`,
     filters:
-      'Las mismas series activas dan el mismo reto a todo el mundo. Cambiarlas cambia el reto de hoy.',
-    hints: 'Cada pista se desbloquea sola después de una cantidad de intentos fallidos.',
-    yesterday: 'La respuesta de ayer para esta misma combinación de series.',
-    difficulty: 'Estas opciones solo cambian cómo ves la imagen. El reto y la respuesta del día son los mismos.',
-    metric: 'La medida que se compara. Con "Del día" cambia cada día y es la misma para todos; también podés elegir una.',
-    filler: 'Si está activo, también sale el relleno: personajes y sucesos que están en el anime o en sus películas, pero no en el manga.',
-    manga: 'Si está activo, también salen los arcos del manga aún sin adaptar al anime, como Moro y Granolah. Las películas siempre salen.',
+      "Las mismas series activas dan el mismo reto a todo el mundo. Cambiarlas cambia el reto de hoy.",
+    hints:
+      "Cada pista se desbloquea sola después de una cantidad de intentos fallidos.",
+    yesterday: "La respuesta de ayer para esta misma combinación de series.",
+    difficulty:
+      "Estas opciones solo cambian cómo ves la imagen. El reto y la respuesta del día son los mismos.",
+    metric:
+      'La medida que se compara. Con "Del día" cambia cada día y es la misma para todos; también podés elegir una.',
+    filler:
+      "Si está activo, también sale el relleno: personajes y sucesos que están en el anime o en sus películas, pero no en el manga.",
+    manga:
+      "Si está activo, también salen los arcos del manga aún sin adaptar al anime, como Moro y Granolah. Las películas siempre salen.",
     // Línea de tiempo de Dragon Ball: en qué orden van las series.
-    timelineOrder: 'Los sucesos siguen la historia: Dragon Ball, Dragon Ball Z, Dragon Ball Daima, Dragon Ball Super y Dragon Ball GT, en ese orden.',
+    timelineOrder:
+      "Los sucesos siguen la historia: Dragon Ball, Dragon Ball Z, Dragon Ball Daima, Dragon Ball Super y Dragon Ball GT, en ese orden.",
     // Línea de tiempo de Yu-Gi-Oh: en qué orden van las series.
-    yugiohTimelineOrder: "Los sucesos siguen la historia: Duel Monsters, GX y 5D's, en ese orden. El relleno se puede apagar.",
+    yugiohTimelineOrder:
+      "Los sucesos siguen la historia: Duel Monsters, GX y 5D's, en ese orden. El relleno se puede apagar.",
     yugioh: {
-      genero: 'Género del duelista. Verde si coincide con la respuesta; rojo si no.',
-      serieDebut: 'Serie en la que debuta. Verde si coincide; la flecha indica si la respuesta debuta antes o después.',
-      rol: 'Papel del duelista en la historia. Verde si coincide; rojo si no.',
-      afiliaciones: 'Grupos del duelista. Verde si coinciden todos; ámbar si comparten alguno; rojo si no comparten ninguno.',
-      arquetipos: 'Arquetipos de su deck. Verde si coinciden todos; ámbar si comparten alguno; rojo si no comparten ninguno.',
-      metodosInvocacion: 'Métodos de invocación. Verde si coinciden todos; ámbar si comparten alguno; rojo si no comparten ninguno.',
-      clase: 'Clase de carta. Verde si coincide; rojo si no. La banda ornamental representa el marco de esa clase.',
-      atributo: 'Atributo de la carta. Verde si coincide con la respuesta; rojo si no.',
-      tipo: 'Tipo de monstruo. Verde si coincide con la respuesta; rojo si no. «—» solo coincide con otro «—».',
-      nivel: 'Nivel o rango del monstruo. Verde si coincide; la flecha indica si la respuesta tiene un valor mayor o menor.',
-      atk: 'Ataque del monstruo. Verde si coincide; la flecha indica si el ATK de la respuesta es mayor o menor.',
-      def: 'Defensa del monstruo. Verde si coincide; la flecha indica si la DEF de la respuesta es mayor o menor.',
-      duelistas: 'Duelistas vinculados a la carta. Verde si coinciden todos; ámbar si comparten alguno; rojo si no comparten ninguno.',
-      serie: 'Series de la carta. Verde si coinciden todas; ámbar si comparten alguna; rojo si no comparten ninguna.',
+      genero:
+        "Género del duelista. Verde si coincide con la respuesta; rojo si no.",
+      serieDebut:
+        "Serie en la que debuta. Verde si coincide; la flecha indica si la respuesta debuta antes o después.",
+      rol: "Papel del duelista en la historia. Verde si coincide; rojo si no.",
+      afiliaciones:
+        "Grupos del duelista. Verde si coinciden todos; ámbar si comparten alguno; rojo si no comparten ninguno.",
+      arquetipos:
+        "Arquetipos de su deck. Verde si coinciden todos; ámbar si comparten alguno; rojo si no comparten ninguno.",
+      metodosInvocacion:
+        "Métodos de invocación. Verde si coinciden todos; ámbar si comparten alguno; rojo si no comparten ninguno.",
+      clase:
+        "Clase de carta. Verde si coincide; rojo si no. La banda ornamental representa el marco de esa clase.",
+      atributo:
+        "Atributo de la carta. Verde si coincide con la respuesta; rojo si no.",
+      tipo: "Tipo de monstruo. Verde si coincide con la respuesta; rojo si no. «—» solo coincide con otro «—».",
+      nivel:
+        "Nivel o rango del monstruo. Verde si coincide; la flecha indica si la respuesta tiene un valor mayor o menor.",
+      atk: "Ataque del monstruo. Verde si coincide; la flecha indica si el ATK de la respuesta es mayor o menor.",
+      def: "Defensa del monstruo. Verde si coincide; la flecha indica si la DEF de la respuesta es mayor o menor.",
+      duelistas:
+        "Duelistas vinculados a la carta. Verde si coinciden todos; ámbar si comparten alguno; rojo si no comparten ninguno.",
+      serie:
+        "Series de la carta. Verde si coinciden todas; ámbar si comparten alguna; rojo si no comparten ninguna.",
     },
     // Qué es cada valor de las columnas de lista de Naruto (se ve al pasar el cursor, enfocar o tocar el valor). Sin pistas
     // sobre ningún personaje. Redactado, no verificado contra el canon (ver docs/CONTENT_TODO.md).
     naruto: {
-      timelineOrder: 'Los sucesos siguen la historia: Naruto, Naruto Shippuden y Boruto, en ese orden. El relleno se puede apagar.',
+      timelineOrder:
+        "Los sucesos siguen la historia: Naruto, Naruto Shippuden y Boruto, en ese orden. El relleno se puede apagar.",
       afiliaciones: {
-        Akatsuki: 'Organización de ninjas renegados que reúne a criminales muy poderosos y busca capturar a las bestias con cola.',
-        Ame: 'Amegakure, la Aldea Oculta de la Lluvia: una aldea shinobi en un país donde llueve casi siempre.',
-        'Bosque Shikkotsu': 'Bosque donde viven las babosas invocables: un territorio aparte de las aldeas.',
-        'Cueva Ryuchi': 'Cueva donde viven las serpientes invocables: un territorio aparte de las aldeas.',
-        Iwa: 'Iwagakure, la Aldea Oculta de la Roca: la aldea shinobi del País de la Tierra.',
-        Kiri: 'Kirigakure, la Aldea Oculta de la Niebla: la aldea shinobi del País del Agua.',
-        Konoha: 'Konohagakure, la Aldea Oculta de la Hoja: la aldea shinobi del País del Fuego.',
-        Kumo: 'Kumogakure, la Aldea Oculta de las Nubes: la aldea shinobi del País del Rayo.',
-        Kusa: 'Kusagakure, la Aldea Oculta de la Hierba: una aldea shinobi pequeña.',
-        Luna: 'La Luna: allí vive una rama del clan Otsutsuki, lejos de la Tierra.',
-        'Monte Myoboku': 'Monte donde viven los sapos invocables y se enseña el modo Sabio.',
-        Oto: 'Otogakure, la Aldea Oculta del Sonido: una aldea shinobi del País de los Arrozales.',
-        'País de las Olas': 'Nami no Kuni: un país isleño pequeño, sin aldea shinobi propia.',
-        Raíz: 'Organización secreta de Konoha que actúa en las sombras, fuera del control del Hokage.',
-        Suna: 'Sunagakure, la Aldea Oculta de la Arena: la aldea shinobi del País del Viento, en el desierto.',
-        Taki: 'Takigakure, la Aldea Oculta de la Cascada: una aldea shinobi pequeña, escondida y bien protegida.',
-        Uzushio: 'Uzushiogakure, la Aldea Oculta del Remolino: una aldea aliada de Konoha, hoy destruida.',
-        Yu: 'Yugakure, la Aldea Oculta de las Aguas Termales: una aldea shinobi pequeña.',
-        Kara: 'Organización secreta de Boruto, con un plan propio que esconde de las aldeas.',
-        'Fuerzas Aliadas Shinobi': 'La alianza de las aldeas shinobi, formada para enfrentar juntas la Cuarta Guerra Ninja.',
+        Akatsuki:
+          "Organización de ninjas renegados que reúne a criminales muy poderosos y busca capturar a las bestias con cola.",
+        Ame: "Amegakure, la Aldea Oculta de la Lluvia: una aldea shinobi en un país donde llueve casi siempre.",
+        "Bosque Shikkotsu":
+          "Bosque donde viven las babosas invocables: un territorio aparte de las aldeas.",
+        "Cueva Ryuchi":
+          "Cueva donde viven las serpientes invocables: un territorio aparte de las aldeas.",
+        Iwa: "Iwagakure, la Aldea Oculta de la Roca: la aldea shinobi del País de la Tierra.",
+        Kiri: "Kirigakure, la Aldea Oculta de la Niebla: la aldea shinobi del País del Agua.",
+        Konoha:
+          "Konohagakure, la Aldea Oculta de la Hoja: la aldea shinobi del País del Fuego.",
+        Kumo: "Kumogakure, la Aldea Oculta de las Nubes: la aldea shinobi del País del Rayo.",
+        Kusa: "Kusagakure, la Aldea Oculta de la Hierba: una aldea shinobi pequeña.",
+        Luna: "La Luna: allí vive una rama del clan Otsutsuki, lejos de la Tierra.",
+        "Monte Myoboku":
+          "Monte donde viven los sapos invocables y se enseña el modo Sabio.",
+        Oto: "Otogakure, la Aldea Oculta del Sonido: una aldea shinobi del País de los Arrozales.",
+        "País de las Olas":
+          "Nami no Kuni: un país isleño pequeño, sin aldea shinobi propia.",
+        Raíz: "Organización secreta de Konoha que actúa en las sombras, fuera del control del Hokage.",
+        Suna: "Sunagakure, la Aldea Oculta de la Arena: la aldea shinobi del País del Viento, en el desierto.",
+        Taki: "Takigakure, la Aldea Oculta de la Cascada: una aldea shinobi pequeña, escondida y bien protegida.",
+        Uzushio:
+          "Uzushiogakure, la Aldea Oculta del Remolino: una aldea aliada de Konoha, hoy destruida.",
+        Yu: "Yugakure, la Aldea Oculta de las Aguas Termales: una aldea shinobi pequeña.",
+        Kara: "Organización secreta de Boruto, con un plan propio que esconde de las aldeas.",
+        "Fuerzas Aliadas Shinobi":
+          "La alianza de las aldeas shinobi, formada para enfrentar juntas la Cuarta Guerra Ninja.",
       },
       tiposDeJutsu: {
-        Ninjutsu: 'Técnicas que usan chakra para crear efectos: elementos, clones, invocaciones y más.',
-        Taijutsu: 'Técnicas de combate cuerpo a cuerpo, basadas en la fuerza, la velocidad y el entrenamiento físico.',
-        Genjutsu: 'Ilusiones que se lanzan con chakra sobre la mente del rival; se rompen alterando su flujo de chakra.',
-        Fuinjutsu: 'Técnicas de sellado: encierran, atan o bloquean un objeto, un poder o un ser con sellos y chakra.',
-        Kenjutsu: 'El arte de la espada: técnicas de combate con espadas.',
-        Senjutsu: 'Técnicas que usan la energía de la naturaleza, además del chakra.',
-        'Ninjutsu médico': 'Técnicas que usan chakra para curar heridas y tratar el cuerpo.',
+        Ninjutsu:
+          "Técnicas que usan chakra para crear efectos: elementos, clones, invocaciones y más.",
+        Taijutsu:
+          "Técnicas de combate cuerpo a cuerpo, basadas en la fuerza, la velocidad y el entrenamiento físico.",
+        Genjutsu:
+          "Ilusiones que se lanzan con chakra sobre la mente del rival; se rompen alterando su flujo de chakra.",
+        Fuinjutsu:
+          "Técnicas de sellado: encierran, atan o bloquean un objeto, un poder o un ser con sellos y chakra.",
+        Kenjutsu: "El arte de la espada: técnicas de combate con espadas.",
+        Senjutsu:
+          "Técnicas que usan la energía de la naturaleza, además del chakra.",
+        "Ninjutsu médico":
+          "Técnicas que usan chakra para curar heridas y tratar el cuerpo.",
       },
       atributos: {
-        'Bestia con cola': 'Criatura hecha de chakra enorme, con una o más colas; hay nueve y cada una tiene su propia fuerza.',
-        Invocación: 'Puede invocar a un animal con un contrato, o es una de esas criaturas invocadas.',
-        Jinchuriki: 'Persona que lleva sellada dentro a una bestia con cola y puede usar parte de su poder.',
-        Mercenario: 'Ninja que trabaja por encargo a cambio de dinero, sin lealtad a una aldea.',
-        'Ninja médico': 'Ninja entrenado para curar heridas y enfermedades con chakra.',
-        'Ninja renegado': 'Ninja que abandonó su aldea, traicionándola, y por eso se lo busca como criminal.',
-        'Rango S': 'La categoría de peligro más alta del libro Bingo: ninjas capaces de enfrentar a ejércitos enteros.',
-        Sabio: 'Ninja que domina la energía de la naturaleza y entra en el modo Sabio, que aumenta su fuerza.',
-        Sannin: 'Los tres ninjas legendarios de Konoha, reconocidos como los más fuertes de su generación.',
-        Sensor: 'Ninja que percibe a distancia el chakra y la presencia de otros.',
+        "Bestia con cola":
+          "Criatura hecha de chakra enorme, con una o más colas; hay nueve y cada una tiene su propia fuerza.",
+        Invocación:
+          "Puede invocar a un animal con un contrato, o es una de esas criaturas invocadas.",
+        Jinchuriki:
+          "Persona que lleva sellada dentro a una bestia con cola y puede usar parte de su poder.",
+        Mercenario:
+          "Ninja que trabaja por encargo a cambio de dinero, sin lealtad a una aldea.",
+        "Ninja médico":
+          "Ninja entrenado para curar heridas y enfermedades con chakra.",
+        "Ninja renegado":
+          "Ninja que abandonó su aldea, traicionándola, y por eso se lo busca como criminal.",
+        "Rango S":
+          "La categoría de peligro más alta del libro Bingo: ninjas capaces de enfrentar a ejércitos enteros.",
+        Sabio:
+          "Ninja que domina la energía de la naturaleza y entra en el modo Sabio, que aumenta su fuerza.",
+        Sannin:
+          "Los tres ninjas legendarios de Konoha, reconocidos como los más fuertes de su generación.",
+        Sensor:
+          "Ninja que percibe a distancia el chakra y la presencia de otros.",
       },
       // Por id de arco (data/naruto/arcs.json).
       arcos: {
-        'tierra-de-las-olas': 'El equipo 7 protege a un constructor de puentes de un ninja mercenario, en su primera misión de rango alto.',
-        'examen-chunin': 'Ninjas de varias aldeas compiten para ascender a chunin: pruebas escritas, el Bosque de la Muerte y combates.',
-        'invasion-de-konoha': 'Durante la final del examen, Konoha sufre un ataque sorpresa de otras aldeas.',
-        'busqueda-de-tsunade': 'Naruto y Jiraiya viajan a buscar a Tsunade para proponerle ser la nueva Hokage.',
-        'recuperacion-de-sasuke': 'Un grupo de genin intenta traer de vuelta a Sasuke, que dejó la aldea para buscar poder.',
-        'rescate-del-kazekage': 'Empieza Shippuden: Akatsuki secuestra al Kazekage de Suna y un equipo de Konoha va a rescatarlo.',
-        'puente-tenchi': 'Misión de reconocimiento del equipo de Kakashi para investigar el Puente Tenchi, una guarida de Orochimaru.',
-        'supresion-de-akatsuki': 'Los ninjas de Konoha enfrentan a miembros de Akatsuki, que buscan capturar a las bestias con cola.',
-        'persecucion-de-itachi': 'Sasuke, ya con su propio equipo, sale a buscar a su hermano Itachi.',
-        'historia-de-jiraiya': 'Relata cómo era Jiraiya de joven y a quiénes conoció en esa etapa.',
-        'batalla-entre-hermanos': 'El enfrentamiento decisivo entre Sasuke e Itachi.',
-        'asalto-de-pain': 'Pain, un líder de Akatsuki, ataca Konoha en busca de Naruto y destruye gran parte de la aldea.',
-        'cumbre-de-los-kage': 'Los cinco líderes de las grandes aldeas se reúnen para decidir cómo enfrentar a Akatsuki y a Sasuke.',
-        'guerra-cuenta-regresiva': 'Empieza la Cuarta Guerra Shinobi y las aldeas aliadas se preparan para el combate.',
-        'guerra-confrontacion': 'La alianza de aldeas combate contra el ejército enemigo en pleno campo de batalla.',
-        'guerra-climax': 'Los combates decisivos de la Cuarta Guerra Shinobi, con las peleas más importantes.',
-        'jinchuriki-del-diez-colas': 'Surge el jinchuriki del Diez Colas, la bestia con cola más poderosa, en medio de la guerra.',
-        'kaguya': 'Aparece Kaguya Otsutsuki, el origen del chakra, y los ninjas deben enfrentarla.',
-        'konoha-hiden': 'Relatos ambientados en Konoha, con misiones y vida cotidiana de los ninjas.',
-        'ingreso-a-la-academia': 'Empieza Boruto: la nueva generación entra a entrenar en la Academia ninja.',
-        'arco-de-sarada': 'Una historia centrada en Sarada Uchiha, hija de Sasuke, que quiere reencontrarse con su padre.',
-        'excursion-escolar': 'Los alumnos de la Academia salen de excursión y la salida se complica.',
-        'examen-de-graduacion': 'Los alumnos de la Academia rinden la prueba para graduarse y convertirse en genin.',
-        'mision-de-genin': 'Los nuevos genin hacen una misión como equipo.',
-        'banda-de-byakuya': 'Los ninjas de Konoha enfrentan a una banda criminal liderada por Byakuya.',
-        'contra-momoshiki': 'Momoshiki Otsutsuki llega a la Tierra durante el examen chunin y debe ser enfrentado.',
-        'desaparicion-de-mitsuki': 'Mitsuki desaparece y sus compañeros salen a buscarlo.',
-        'activacion-de-kara': 'Kara, una organización secreta, empieza a moverse y amenaza a Konoha.',
-        'arco-de-kawaki': 'Kawaki llega a Konoha y es acogido por la familia de Naruto.',
-        'reexamen-chunin': 'Se repite el examen chunin que quedó interrumpido, con nuevos participantes.',
-        'asalto-de-code': 'Code, un miembro de Kara, ataca la aldea.',
+        "tierra-de-las-olas":
+          "El equipo 7 protege a un constructor de puentes de un ninja mercenario, en su primera misión de rango alto.",
+        "examen-chunin":
+          "Ninjas de varias aldeas compiten para ascender a chunin: pruebas escritas, el Bosque de la Muerte y combates.",
+        "invasion-de-konoha":
+          "Durante la final del examen, Konoha sufre un ataque sorpresa de otras aldeas.",
+        "busqueda-de-tsunade":
+          "Naruto y Jiraiya viajan a buscar a Tsunade para proponerle ser la nueva Hokage.",
+        "recuperacion-de-sasuke":
+          "Un grupo de genin intenta traer de vuelta a Sasuke, que dejó la aldea para buscar poder.",
+        "rescate-del-kazekage":
+          "Empieza Shippuden: Akatsuki secuestra al Kazekage de Suna y un equipo de Konoha va a rescatarlo.",
+        "puente-tenchi":
+          "Misión de reconocimiento del equipo de Kakashi para investigar el Puente Tenchi, una guarida de Orochimaru.",
+        "supresion-de-akatsuki":
+          "Los ninjas de Konoha enfrentan a miembros de Akatsuki, que buscan capturar a las bestias con cola.",
+        "persecucion-de-itachi":
+          "Sasuke, ya con su propio equipo, sale a buscar a su hermano Itachi.",
+        "historia-de-jiraiya":
+          "Relata cómo era Jiraiya de joven y a quiénes conoció en esa etapa.",
+        "batalla-entre-hermanos":
+          "El enfrentamiento decisivo entre Sasuke e Itachi.",
+        "asalto-de-pain":
+          "Pain, un líder de Akatsuki, ataca Konoha en busca de Naruto y destruye gran parte de la aldea.",
+        "cumbre-de-los-kage":
+          "Los cinco líderes de las grandes aldeas se reúnen para decidir cómo enfrentar a Akatsuki y a Sasuke.",
+        "guerra-cuenta-regresiva":
+          "Empieza la Cuarta Guerra Shinobi y las aldeas aliadas se preparan para el combate.",
+        "guerra-confrontacion":
+          "La alianza de aldeas combate contra el ejército enemigo en pleno campo de batalla.",
+        "guerra-climax":
+          "Los combates decisivos de la Cuarta Guerra Shinobi, con las peleas más importantes.",
+        "jinchuriki-del-diez-colas":
+          "Surge el jinchuriki del Diez Colas, la bestia con cola más poderosa, en medio de la guerra.",
+        kaguya:
+          "Aparece Kaguya Otsutsuki, el origen del chakra, y los ninjas deben enfrentarla.",
+        "konoha-hiden":
+          "Relatos ambientados en Konoha, con misiones y vida cotidiana de los ninjas.",
+        "ingreso-a-la-academia":
+          "Empieza Boruto: la nueva generación entra a entrenar en la Academia ninja.",
+        "arco-de-sarada":
+          "Una historia centrada en Sarada Uchiha, hija de Sasuke, que quiere reencontrarse con su padre.",
+        "excursion-escolar":
+          "Los alumnos de la Academia salen de excursión y la salida se complica.",
+        "examen-de-graduacion":
+          "Los alumnos de la Academia rinden la prueba para graduarse y convertirse en genin.",
+        "mision-de-genin": "Los nuevos genin hacen una misión como equipo.",
+        "banda-de-byakuya":
+          "Los ninjas de Konoha enfrentan a una banda criminal liderada por Byakuya.",
+        "contra-momoshiki":
+          "Momoshiki Otsutsuki llega a la Tierra durante el examen chunin y debe ser enfrentado.",
+        "desaparicion-de-mitsuki":
+          "Mitsuki desaparece y sus compañeros salen a buscarlo.",
+        "activacion-de-kara":
+          "Kara, una organización secreta, empieza a moverse y amenaza a Konoha.",
+        "arco-de-kawaki":
+          "Kawaki llega a Konoha y es acogido por la familia de Naruto.",
+        "reexamen-chunin":
+          "Se repite el examen chunin que quedó interrumpido, con nuevos participantes.",
+        "asalto-de-code": "Code, un miembro de Kara, ataca la aldea.",
       },
     },
     // Columnas del Clásico de Naruto que no se explican solas (las demás ya dicen qué es cada valor al pasar el cursor).
     narutoClassic: {
-      kekkeiGenkai: 'Habilidades que se heredan por la sangre, como un dojutsu. Verde si son las mismas; naranja si comparten alguna.',
-      naturalezas: 'Las naturalezas de chakra que domina (Fuego, Agua, Yin…). Verde si son las mismas; naranja si comparten alguna.',
-      atributos: 'Rasgos especiales: jinchuriki, sabio, sensor, rango S… Verde si son los mismos; naranja si comparten alguno.',
-      arcoDebut: 'El arco en el que apareció por primera vez. La flecha indica si la respuesta debutó antes o después.',
+      kekkeiGenkai:
+        "Habilidades que se heredan por la sangre, como un dojutsu. Verde si son las mismas; naranja si comparten alguna.",
+      naturalezas:
+        "Las naturalezas de chakra que domina (Fuego, Agua, Yin…). Verde si son las mismas; naranja si comparten alguna.",
+      atributos:
+        "Rasgos especiales: jinchuriki, sabio, sensor, rango S… Verde si son los mismos; naranja si comparten alguno.",
+      arcoDebut:
+        "El arco en el que apareció por primera vez. La flecha indica si la respuesta debutó antes o después.",
     },
     // Columnas del Clásico de Dragon Ball.
     dragonBall: {
-      genero: 'El género del personaje. Verde si es el mismo que el de la respuesta; rojo si no.',
-      razas: 'Su raza (puede tener más de una). Verde si son las mismas que las de la respuesta; naranja si comparten alguna.',
-      afiliaciones: 'Los grupos a los que pertenece. Verde si son los mismos que los de la respuesta; naranja si comparten alguno.',
-      planeta: 'El planeta donde nació. Verde si es el mismo que el de la respuesta; rojo si no.',
-      transformaciones: 'Las formas que alcanzó en las series activas. Verde si son las mismas; naranja si comparten alguna.',
-      serieDebut: 'La serie en la que apareció por primera vez. La flecha indica si la respuesta debutó antes o después.',
-      sagaDebut: 'La saga en la que apareció por primera vez. La flecha indica si la respuesta debutó antes o después.',
+      genero:
+        "El género del personaje. Verde si es el mismo que el de la respuesta; rojo si no.",
+      razas:
+        "Su raza (puede tener más de una). Verde si son las mismas que las de la respuesta; naranja si comparten alguna.",
+      afiliaciones:
+        "Los grupos a los que pertenece. Verde si son los mismos que los de la respuesta; naranja si comparten alguno.",
+      planeta:
+        "El planeta donde nació. Verde si es el mismo que el de la respuesta; rojo si no.",
+      transformaciones:
+        "Las formas que alcanzó en las series activas. Verde si son las mismas; naranja si comparten alguna.",
+      serieDebut:
+        "La serie en la que apareció por primera vez. La flecha indica si la respuesta debutó antes o después.",
+      sagaDebut:
+        "La saga en la que apareció por primera vez. La flecha indica si la respuesta debutó antes o después.",
     },
     // Columnas del Clásico de Pokémon.
     pokemon: {
-      tipo1: 'Verde si el tipo es uno de los tipos de la respuesta, en el orden que sea; rojo si no.',
-      tipo2: 'Verde si el tipo es uno de los tipos de la respuesta, en cualquier orden; rojo si no. "—" solo coincide con otro "—".',
-      generacion: 'La generación en la que apareció. La flecha indica si la de la respuesta es anterior o posterior.',
-      colores: 'Sus colores. Verde si son los mismos que los de la respuesta; naranja si comparten alguno.',
-      etapa: 'Su lugar en la cadena evolutiva: 1 si no evoluciona de otro. La flecha indica hacia dónde está la respuesta.',
-      altura: 'La altura en metros. La flecha indica si la respuesta es más alta o más baja.',
-      peso: 'El peso en kilos. La flecha indica si la respuesta pesa más o menos.',
-      inicial: 'La primera letra del nombre. Verde si es la misma que la de la respuesta; rojo si no.',
-      habitat: 'Dónde vive según los juegos de Kanto a Hoenn. Esta columna aparece solo con las generaciones 1 a 3.',
+      tipo1:
+        "Verde si el tipo es uno de los tipos de la respuesta, en el orden que sea; rojo si no.",
+      tipo2:
+        'Verde si el tipo es uno de los tipos de la respuesta, en cualquier orden; rojo si no. "—" solo coincide con otro "—".',
+      generacion:
+        "La generación en la que apareció. La flecha indica si la de la respuesta es anterior o posterior.",
+      colores:
+        "Sus colores. Verde si son los mismos que los de la respuesta; naranja si comparten alguno.",
+      etapa:
+        "Su lugar en la cadena evolutiva: 1 si no evoluciona de otro. La flecha indica hacia dónde está la respuesta.",
+      altura:
+        "La altura en metros. La flecha indica si la respuesta es más alta o más baja.",
+      peso: "El peso en kilos. La flecha indica si la respuesta pesa más o menos.",
+      inicial:
+        "La primera letra del nombre. Verde si es la misma que la de la respuesta; rojo si no.",
+      habitat:
+        "Dónde vive según los juegos de Kanto a Hoenn. Esta columna aparece solo con las generaciones 1 a 3.",
     },
   },
   settings: {
-    textSize: 'Tamaño de lectura',
-    textSizeHint: 'Agrandá los textos y controles. Los títulos conservan su tamaño.',
+    textSize: "Tamaño de lectura",
+    textSizeHint:
+      "Agrandá los textos y controles. Los títulos conservan su tamaño.",
     scale: (value: number) => `×${value}`,
-    button: 'Ajustes',
-    title: 'Ajustes',
-    legibleFont: 'Fuente legible',
-    legibleFontHint: 'Cambia las letras del tema por una fuente de sistema, más fácil de leer.',
-    sounds: 'Sonidos',
-    soundsHint: 'Efectos cortos al jugar. Están apagados hasta que los prendas.',
-    vibration: 'Vibración',
-    vibrationHint: 'Una vibración corta al acertar y otra al fallar. Está apagada hasta que la prendas.',
+    button: "Ajustes",
+    title: "Ajustes",
+    legibleFont: "Fuente legible",
+    legibleFontHint:
+      "Cambia las letras del tema por una fuente de sistema, más fácil de leer.",
+    sounds: "Sonidos",
+    soundsHint:
+      "Efectos cortos al jugar. Están apagados hasta que los prendas.",
+    vibration: "Vibración",
+    vibrationHint:
+      "Una vibración corta al acertar y otra al fallar. Está apagada hasta que la prendas.",
   },
   share: {
-    header: (franchise: string, mode: string) => `AnimeGuess · ${franchise} · ${mode}`,
+    header: (franchise: string, mode: string) =>
+      `AnimeGuess · ${franchise} · ${mode}`,
     filters: (words: string) => `Series: ${words}`,
-    allSeries: 'todas',
-    and: 'y',
-    won: (attempts: number) => `Lo resolví en ${attempts} ${plural(attempts, 'intento', 'intentos')}`,
-    lost: 'Hoy no lo resolví',
+    allSeries: "todas",
+    and: "y",
+    won: (attempts: number) =>
+      `Lo resolví en ${attempts} ${plural(attempts, "intento", "intentos")}`,
+    lost: "Hoy no lo resolví",
     score: (score: number) => `Racha de aciertos: ${score}`,
-    omitted: '…',
+    omitted: "…",
   },
 } as const;

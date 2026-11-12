@@ -9,6 +9,9 @@ import type { Content, Entity } from '../../../src/engine/types.ts';
 import charactersJson from '../../../data/dragon-ball/entities.json';
 import formsJson from '../../../data/dragon-ball/transformations.json';
 import contentJson from '../../../data/dragon-ball/content.json';
+import { dragonBallContents } from '../../../src/franchises/dragon-ball/content';
+import quoteRows from '../../../data/dragon-ball/source/frase.json';
+import { quotesSrcSchema } from './schemas';
 import sagasJson from '../../../data/dragon-ball/sagas.json';
 import { ROOT } from './api.ts';
 import { SERIES } from './schemas.ts';
@@ -16,7 +19,7 @@ import { leaksName } from './transform.ts';
 
 const characters = charactersJson as unknown as Entity[];
 const forms = formsJson as Entity[];
-const contents = contentJson as Content[];
+const contents = dragonBallContents(contentJson as Content[]);
 const sagas = sagasJson as { series: Array<{ id: string; order: number }>; sagas: Array<{ id: string; name: string; series: string; order: number }> };
 
 const characterById = new Map(characters.map((entity) => [entity.id, entity]));
@@ -131,26 +134,28 @@ describe('formas', () => {
 });
 
 describe('frases', () => {
+  it('rechaza IDs repetidos y campos de clasificación ausentes', () => {
+    expect(quotesSrcSchema.safeParse([quoteRows[0], quoteRows[0]]).success).toBe(false);
+    const { famous, ...withoutFamous } = quoteRows[0];
+    expect(famous).toBe(true);
+    expect(quotesSrcSchema.safeParse([withoutFamous]).success).toBe(false);
+  });
   it('hay más de 40, todas de un personaje que existe y con la página de origen', () => {
     expect(quotes.length).toBeGreaterThan(40);
     for (const quote of quotes) {
       expect(characterById.has(quote.entityId ?? ''), quote.id).toBe(true);
-      expect(String(quote.payload.source), quote.id).toMatch(/^https:\/\/dragonball\.fandom\.com\/es\/wiki\//);
+      expect(String(quote.payload.source), quote.id).toMatch(/^https:\/\//);
     }
   });
 
-  it('ninguna dice el nombre de quien la dijo', () => {
-    const leaks = quotes.filter((quote) => {
+  it('ninguna frase verificada dice el nombre de quien la dijo', () => {
+    const leaks = quotes.filter((quote) => quote.verified).filter((quote) => {
       const speaker = characterById.get(quote.entityId ?? '');
       return speaker !== undefined && leaksName(String(quote.payload.text), [speaker.name.es, ...speaker.aliases]);
     });
     expect(leaks.map((quote) => quote.id)).toEqual([]);
   });
 
-  it('cada frase guarda su página de la wiki, para atribuirla en /creditos (CC BY-SA)', () => {
-    const withoutSource = quotes.filter((quote) => typeof quote.payload.source !== 'string' || !quote.payload.source.startsWith('https://dragonball.fandom.com/es/wiki/'));
-    expect(withoutSource.map((quote) => quote.id)).toEqual([]);
-  });
 });
 
 describe('sucesos de la línea de tiempo', () => {

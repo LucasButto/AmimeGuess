@@ -46,14 +46,14 @@ export function renderTodoSection(input: TodoInput): string {
       ? 'Todo lo curado está verificado: duelistas (rol, afiliaciones y arquetipos), listas de cartas insignia (cada carta comprobada contra las listas de mazo del anime en Yugipedia) e invocaciones, además de los sucesos de la línea de tiempo.'
       : `Queda sin verificar: ${duelists} duelistas (rol, afiliaciones y arquetipos redactados a partir de la infobox de Yugipedia), ${cards} listas de cartas insignia, ${summons} invocaciones y ${events} sucesos.`;
   lines.push(
-    `Hay ${input.duelists} duelistas y ${input.cards} cartas insignia de las series ${input.series.join(', ')} (decisión de la sesión 12: solo Duel Monsters, GX y 5D's por ahora; ZEXAL, ARC-V y VRAINS se suman después con sus duelistas en \`data-src/yugioh/\`). ${curated} Los nombres y textos de las cartas, el género y la primera aparición no se redactan: vienen de YGOResources y de Yugipedia.`,
+    `Hay ${input.duelists} duelistas y ${input.cards} cartas insignia de las series ${input.series.join(', ')} (decisión de la sesión 12: solo Duel Monsters, GX y 5D's por ahora; ZEXAL, ARC-V y VRAINS se suman después con sus duelistas en \`data/yugioh/source/\`). ${curated} Los nombres y textos de las cartas, el género y la primera aparición no se redactan: vienen de YGOResources y de Yugipedia.`,
     '',
   );
 
   lines.push(
     '### Imágenes de duelistas',
     '',
-    `${input.imagesFromYugipedia} salen de Yugipedia (la imagen de su página, recortada al cuadrado desde su centro) y ${input.imagesManual} están cargadas a mano en \`data-src/yugioh/images/duelists/<id>.png\`. Son cuadros de anime o renders anchos: si alguna se recortó mal (la cara quedó cortada), reemplazala con una imagen mejor con el nombre \`<id>.png\` (o \`.jpg\`, \`.webp\`) en esa carpeta y corré \`npm run data:yugioh\`.`,
+    `${input.imagesFromYugipedia} salen de Yugipedia (la imagen de su página, recortada al cuadrado desde su centro) y ${input.imagesManual} están cargadas a mano en \`data/yugioh/source/images/duelists/<id>.png\`. Son cuadros de anime o renders anchos: si alguna se recortó mal (la cara quedó cortada), reemplazala con una imagen mejor con el nombre \`<id>.png\` (o \`.jpg\`, \`.webp\`) en esa carpeta y corré \`npm run data:yugioh\`.`,
     '',
   );
   if (input.missingImages.length > 0) {
@@ -62,7 +62,7 @@ export function renderTodoSection(input: TodoInput): string {
       '',
       '| Duelista | Archivo (png, jpg o webp) | Dónde buscarla |',
       '|---|---|---|',
-      ...input.missingImages.map((item) => `| ${item.name} | \`data-src/yugioh/images/duelists/${item.id}\` | [${item.wikiPage}](${pageUrl(item.wikiPage)}) |`),
+      ...input.missingImages.map((item) => `| ${item.name} | \`data/yugioh/source/images/duelists/${item.id}\` | [${item.wikiPage}](${pageUrl(item.wikiPage)}) |`),
       '',
     );
   } else {

@@ -58,6 +58,7 @@ function byId(a: { id: string }, b: { id: string }): number {
  * `after: 0` de contenido): sin eso no habría nada que mostrar al empezar.
  */
 function isUsable(content: Content, entity: Entity, config: TextClueConfig): boolean {
+  if (config.requiredContentFlag && content.payload[config.requiredContentFlag] !== true) return false;
   return config.lines.every((line) => line.after > 0 || lineText(line, entity, content) !== null);
 }
 
@@ -89,8 +90,10 @@ export function candidatesOf(
 }
 
 /** El contenido del día de una respuesta que tiene varios: uno elegido con un hash del día. */
-export function pickContent(candidate: Candidate, ctx: DailyContext): Content {
-  const { contents } = candidate;
+export function pickContent(candidate: Candidate, ctx: DailyContext, preferredFlag?: string): Content {
+  const contents = preferredFlag
+    ? candidate.contents.flatMap((content) => content.payload[preferredFlag] === true ? [content, content, content] : [content])
+    : candidate.contents;
   if (contents.length === 1) return contents[0];
   const hash = fmix32(fnv1a32(`${ctx.franchise}|${ctx.mode}|${ctx.filterKey}|${ctx.day}|${candidate.id}|clue`));
   return contents[hash % contents.length];
