@@ -21,7 +21,7 @@ import type { Entity } from '@/engine/types';
 import { seedFor } from '@/engine/daily';
 import { mulberry32, shuffle } from '@/engine/rng';
 import { es } from '@/i18n/es';
-import { ATTEMPT_LIMITS, availableCategories, BOARD_SIZE, buildRound, categoriesOf, chooseCategory, emptyDraft, poolOf, restoreGame, roundIndex } from './logic';
+import { ATTEMPT_LIMITS, availableCategories, BOARD_SIZE, buildRound, categoriesOf, chooseCategory, confirmPlacement, emptyDraft, poolOf, restoreGame, roundIndex } from './logic';
 import type { BoardCategory, BoardState, CategoryBoardConfig, RoundResult } from './types';
 import styles from './CategoryBoardGame.module.scss';
 
@@ -46,7 +46,7 @@ export function CategoryBoardGame({ franchise, mode, modes, config, entities }: 
     return categoriesOf(pool, config, wildcard, active).length === BOARD_SIZE ? pool.length : 0;
   }, [entities, config]);
   return <GameShell franchise={franchise} mode={mode} modes={modes} minimumPool={10} poolSize={poolSize} yesterday={() => null}
-    variant={`d${level + 1}`} help={<>{copy.help.map((text) => <p key={text}>{text}</p>)}</>}
+    variant={`d${level + 1}`} help={<>{copy.help.map((text, index) => <p key={text}>{index === 1 && config.reassignCurrent ? copy.reassignHelp : text}</p>)}</>}
     beforeGame={() => <div className={styles.settings} role="group" aria-label={copy.difficulty}>
       <strong>{copy.difficulty}</strong>
       <div className={styles.levels}>{limits.map((limit, index) => <Chip key={index} pressed={level === index} onClick={() => {
@@ -61,12 +61,12 @@ export function CategoryBoardGame({ franchise, mode, modes, config, entities }: 
 function CategoryBoardSession({ session, pool, config, limit, level }: { session: GameSession; pool: readonly Entity[]; config: CategoryBoardConfig; limit: number; level: number }) {
   const categories = useMemo(() => categoriesOf(pool, config, wildcard, session.active), [pool, config, session.active]);
   if (categories.length !== BOARD_SIZE) return <p role="status">{copy.noBoard}</p>;
-  return <CategoryBoard session={session} pool={pool} categories={categories} limit={limit} level={level} questionImage={config.questionImage} />;
+  return <CategoryBoard session={session} pool={pool} categories={categories} limit={limit} level={level} questionImage={config.questionImage} reassignCurrent={config.reassignCurrent} />;
 }
 
-export function CategoryBoard({ session, pool, categories, limit, level, questionImage = 'common/roulette-question' }: { session: GameSession; pool: readonly Entity[]; categories: readonly BoardCategory[]; limit: number; level: number; questionImage?: string }) {
+export function CategoryBoard({ session, pool, categories, limit, level, questionImage = 'common/roulette-question', reassignCurrent = false }: { session: GameSession; pool: readonly Entity[]; categories: readonly BoardCategory[]; limit: number; level: number; questionImage?: string; reassignCurrent?: boolean }) {
   const drawsFor = useCallback((index: number) => buildRound(pool, categories, session, index), [pool, categories, session]);
-  const [state, setState] = useState(() => restoreGame(readState(getLocalStorage(), session), drawsFor, categories, limit));
+  const [state, setState] = useState(() => restoreGame(readState(getLocalStorage(), session), drawsFor, categories, limit, reassignCurrent));
   const stateRef = useRef(state);
   const { lost, surrender } = useSurrender(session);
   const { skin } = useSkin();
@@ -81,6 +81,9 @@ export function CategoryBoard({ session, pool, categories, limit, level, questio
   const over = won || lost || (failed && state.rounds.length >= limit);
   const current = draws[Math.min(placements.length, draws.length - 1)];
   const previous = draws[Math.max(0, placements.length - 1)];
+  const moving = reassignCurrent && phase === 'placed';
+  const canPlace = phase === 'choosing' || moving;
+  const placing = moving ? previous : current;
   const [preview, setPreview] = useState(0);
   const [decoded, setDecoded] = useState<readonly Entity[]>([]);
   const reel = useMemo(() => shuffle(mulberry32(seedFor({ ...session, mode: `${session.mode}:preview:${index}` })), pool.filter((entity) => entity.image)).slice(0, 12), [pool, session, index]);
@@ -130,6 +133,12 @@ export function CategoryBoard({ session, pool, categories, limit, level, questio
     const before = stateRef.current;
     if (over) return;
     if (before.draft.phase === 'failed') commit({ rounds: before.rounds, draft: emptyDraft() });
+    else if (before.draft.phase === 'placed' && reassignCurrent) {
+      const next = confirmPlacement(before, categories, phone ? 'choosing' : 'rolling');
+      if (next.draft.phase === 'won') commit(next, true);
+      else if (phone && availableCategories(categories, before.draft.placements, current.id).length === 0) fail('blocked');
+      else commit(next);
+    }
     else if (before.draft.phase === 'placed' && !phone) commit({ ...before, draft: { ...before.draft, phase: 'rolling' } });
     else if (before.draft.phase === 'rolling' || before.draft.phase === 'placed' && phone) {
       if (availableCategories(categories, before.draft.placements, current.id).length === 0) fail('blocked');
@@ -138,8 +147,11 @@ export function CategoryBoard({ session, pool, categories, limit, level, questio
   }
   function place(category: BoardCategory) {
     const before = stateRef.current;
-    if (before.draft.phase !== 'choosing' || over || before.draft.placements.includes(category.id)) return;
-    const next = chooseCategory(before, category, current.id, categories);
+    if (over) return;
+    const entity = draws[before.draft.placements.length - (before.draft.phase === 'placed' ? 1 : 0)];
+    if (!entity) return;
+    const next = chooseCategory(before, category, entity.id, categories, reassignCurrent);
+    if (next === before) return;
     if (next.draft.rejectedCategory) { play('miss'); buzz('miss'); commit(next); return; }
     play('reveal'); buzz('hit');
     commit(next, next.draft.phase === 'won');
@@ -149,7 +161,12 @@ export function CategoryBoard({ session, pool, categories, limit, level, questio
   const actionLabel = over ? copy.finished : failed ? copy.retry : phase === 'rolling' ? phone ? copy.reveal : copy.stop : phase === 'placed' ? copy.next : copy.choose;
   const rejected = categories.find((category) => category.id === state.draft.rejectedCategory);
   const filled = placements.filter((id) => id !== wildcard.id).length;
-  const message = won ? copy.won : failed ? copy.blocked(current.name.es) : phase === 'placed' ? copy.placed(previous.name.es, categories.find((category) => category.id === placements.at(-1))!.label) : phase === 'choosing' ? rejected ? copy.wrong(current.name.es, rejected.label, !placements.includes(wildcard.id)) : copy.choose : copy.rolling;
+  const placedLabel = phase === 'placed' ? categories.find((category) => category.id === placements.at(-1))!.label : '';
+  const message = won ? copy.won : failed ? copy.blocked(current.name.es)
+    : canPlace && rejected ? copy.wrong(placing.name.es, rejected.label, !placements.includes(wildcard.id))
+    : moving ? copy.pending(previous.name.es, placedLabel)
+    : phase === 'placed' ? copy.placed(previous.name.es, placedLabel)
+    : phase === 'choosing' ? copy.choose : copy.rolling;
   const portraitContent = <>
     <div className={styles.portrait} data-rolling={phase === 'rolling' && !over}>
       {phone && phase === 'rolling' && !over ? <ContentImage className={styles.portraitImage} stem={questionImage} alt="" sizes="9rem" priority /> : shown?.image ? <ContentImage className={styles.portraitImage} stem={shown.image} alt="" sizes="(min-width: 1024px) 18rem, 9rem" priority /> : <span className={styles.question} aria-hidden="true">?</span>}
@@ -177,7 +194,7 @@ export function CategoryBoard({ session, pool, categories, limit, level, questio
           const placedIndex = placements.indexOf(category.id);
           const occupant = placedIndex >= 0 ? draws[placedIndex] : undefined;
           return <div className={styles.cell} key={category.id} data-filled={!!occupant} data-wildcard={category.wildcard || undefined} data-part="category-cell">
-            <button type="button" className={styles.slot} disabled={over || phase !== 'choosing' || !!occupant} onClick={() => place(category)} aria-label={occupant ? `${category.label}: ${occupant.name.es}` : phase === 'choosing' ? copy.place(current.name.es, category.label) : category.label}>
+            <button type="button" className={styles.slot} disabled={over || !canPlace || !!occupant} onClick={() => place(category)} aria-label={occupant ? `${category.label}: ${occupant.name.es}` : canPlace ? copy.place(placing.name.es, category.label) : category.label}>
               <span className={styles.slotLabel}>{category.label}</span>
               <span className={styles.occupant}>{occupant?.image && <ContentImage stem={occupant.image} alt="" sizes="2.75rem" />}<span>{occupant ? occupant.name.es : copy.empty}</span></span>
             </button>

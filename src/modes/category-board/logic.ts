@@ -67,15 +67,21 @@ export const boardComplete = (categories: readonly BoardCategory[], placements: 
   categories.filter((category) => !category.wildcard).length === THEMATIC_COUNT && categories.every((category) => category.wildcard || placements.includes(category.id));
 
 /** Una elección incorrecta no consume el intento: se conserva el personaje para volver a ubicarlo. */
-export function chooseCategory(state: BoardState, category: BoardCategory, entityId: string, categories: readonly BoardCategory[]): BoardState {
-  if (state.draft.phase !== 'choosing' || state.draft.placements.includes(category.id)) return state;
+export function chooseCategory(state: BoardState, category: BoardCategory, entityId: string, categories: readonly BoardCategory[], reassignCurrent = false): BoardState {
+  const moving = reassignCurrent && state.draft.phase === 'placed';
+  if ((!moving && state.draft.phase !== 'choosing') || state.draft.placements.includes(category.id)) return state;
   if (!accepts(category, entityId)) return { ...state, draft: { ...state.draft, rejectedCategory: category.id } };
-  const placements = [...state.draft.placements, category.id];
-  const complete = boardComplete(categories, placements);
-  return {
-    rounds: complete ? [...state.rounds, { placements, outcome: 'won' }] : state.rounds,
-    draft: { placements, phase: complete ? 'won' : 'placed' },
-  };
+  const placements = [...(moving ? state.draft.placements.slice(0, -1) : state.draft.placements), category.id];
+  const next: BoardState = { ...state, draft: { placements, phase: 'placed' } };
+  return boardComplete(categories, placements) ? confirmPlacement(next, categories, 'rolling') : next;
+}
+
+export function confirmPlacement(state: BoardState, categories: readonly BoardCategory[], nextPhase: 'rolling' | 'choosing'): BoardState {
+  const { placements } = state.draft;
+  if (boardComplete(categories, placements)) {
+    return { rounds: [...state.rounds, { placements, outcome: 'won' }], draft: { placements, phase: 'won' } };
+  }
+  return { ...state, draft: { placements, phase: nextPhase } };
 }
 
 function validPlacements(raw: unknown, draws: readonly Entity[], categories: readonly BoardCategory[]): raw is string[] {
@@ -84,7 +90,7 @@ function validPlacements(raw: unknown, draws: readonly Entity[], categories: rea
 }
 
 /** Revalida el historial y el borrador contra la secuencia diaria, sin confiar en objetos de localStorage. */
-export function restoreGame(saved: GameState | null, drawsFor: (round: number) => readonly Entity[], categories: readonly BoardCategory[], limit: number): BoardState {
+export function restoreGame(saved: GameState | null, drawsFor: (round: number) => readonly Entity[], categories: readonly BoardCategory[], limit: number, reassignCurrent = false): BoardState {
   const rounds: RoundResult[] = [];
   for (const raw of saved?.attempts ?? []) {
     if (rounds.length >= limit || typeof raw !== 'object' || raw === null) break;
@@ -106,11 +112,13 @@ export function restoreGame(saved: GameState | null, drawsFor: (round: number) =
     return { rounds, draft: { placements: last!.placements, phase: won ? 'won' : 'failed', rejectedCategory: last!.rejectedCategory } };
   }
   const draws = drawsFor(rounds.length);
+  const provisional = reassignCurrent && draft?.phase === 'placed';
   if (draft && validPlacements(draft.placements, draws, categories) && boardComplete(categories, draft.placements)) {
     return { rounds: [...rounds, { placements: draft.placements, outcome: 'won' }], draft: { placements: draft.placements, phase: 'won' } };
   }
-  if (draft && validPlacements(draft.placements, draws, categories) && draft.placements.length < BOARD_SIZE && ['rolling', 'choosing', 'placed'].includes(draft.phase ?? '') && (draft.phase !== 'placed' || draft.placements.length > 0)) {
-    const rejectedCategory = draft.phase === 'choosing' && categories.some((category) => category.id === draft.rejectedCategory && !draft.placements!.includes(category.id) && !accepts(category, draws[draft.placements!.length].id)) ? draft.rejectedCategory : undefined;
+  if (draft && validPlacements(draft.placements, draws, categories) && (draft.placements.length < BOARD_SIZE || provisional) && ['rolling', 'choosing', 'placed'].includes(draft.phase ?? '') && (draft.phase !== 'placed' || draft.placements.length > 0)) {
+    const current = draws[draft.placements.length - (provisional ? 1 : 0)];
+    const rejectedCategory = current && (draft.phase === 'choosing' || provisional) && categories.some((category) => category.id === draft.rejectedCategory && !draft.placements!.includes(category.id) && !accepts(category, current.id)) ? draft.rejectedCategory : undefined;
     return { rounds, draft: { placements: draft.placements, phase: draft.phase!, ...(rejectedCategory ? { rejectedCategory } : {}) } };
   }
   return { rounds, draft: emptyDraft() };

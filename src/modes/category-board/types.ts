@@ -11,6 +11,7 @@ export interface BoardCategory {
 
 export interface CategoryBoardConfig {
   readonly questionImage?: string;
+  readonly reassignCurrent?: boolean;
   readonly roster: readonly string[];
   readonly exclusions?: readonly { readonly series: string; readonly members: readonly string[] }[];
   /** Las primeras ocho son las preferidas; las restantes cubren filtros con categorías vacías. */

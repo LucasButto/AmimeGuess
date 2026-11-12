@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { Entity } from '@/engine/types';
 import { es } from '@/i18n/es';
-import { accepts, ATTEMPT_LIMITS, availableCategories, BOARD_SIZE, buildRound, chooseCategory, matchCategories, restoreGame, roundIndex } from './logic';
+import { accepts, ATTEMPT_LIMITS, availableCategories, BOARD_SIZE, buildRound, chooseCategory, confirmPlacement, matchCategories, restoreGame, roundIndex } from './logic';
 import type { BoardCategory } from './types';
 
 const wildcard: BoardCategory = { ...es.categoryBoard.wildcard, members: [], wildcard: true };
@@ -80,6 +80,30 @@ describe('Casillas: distribución, reglas y restauración', () => {
     const won = chooseCategory({ ...next, draft: { ...next.draft, phase: 'choosing' } }, last, last.members[0], categories);
     expect(won.draft.phase).toBe('won');
     expect(won.draft.placements).toHaveLength(9);
+  });
+
+  it('permite mover el último personaje y fija solo su casilla al avanzar', () => {
+    const first = chooseCategory({ rounds: [], draft: { placements: [], phase: 'choosing' } }, wildcard, 'e0', categories, true);
+    const moved = chooseCategory(first, categories[0], 'e0', categories, true);
+    expect(moved.draft.placements).toEqual(['c0']);
+    const rejected = chooseCategory(moved, categories[1], 'e0', categories, true);
+    expect(rejected.draft).toEqual({ placements: ['c0'], phase: 'placed', rejectedCategory: 'c1' });
+    const confirmed = confirmPlacement(rejected, categories, 'choosing');
+    expect(confirmed.draft).toEqual({ placements: ['c0'], phase: 'choosing' });
+    expect(chooseCategory(confirmed, categories[0], 'e1', categories, true)).toBe(confirmed);
+    expect(chooseCategory(confirmed, categories[1], 'e1', categories, true).draft.placements).toEqual(['c0', 'c1']);
+  });
+
+  it('gana al completar el tablero aunque el comodín siga libre y la colocación sea editable', () => {
+    const thematic = categories.filter((category) => !category.wildcard);
+    const draft = { placements: thematic.map(({ id }) => id), phase: 'placed' as const };
+    const draws = pool.slice(0, 9);
+    const restored = restoreGame({ attempts: [], draft, result: 'playing' }, () => draws, categories, 4, true);
+    const before = { rounds: [], draft: { placements: draft.placements.slice(0, -1), phase: 'choosing' as const } };
+    const won = chooseCategory(before, thematic.at(-1)!, 'e7', categories, true);
+    expect(won.draft.phase).toBe('won');
+    expect(restored).toEqual(won);
+    expect(chooseCategory(won, wildcard, 'e7', categories, true)).toBe(won);
   });
 
   it('reproduce la secuencia al reordenar los datos y separa días e intentos', () => {

@@ -13,7 +13,7 @@ for (const franchise of [narutoConfig, dragonBallConfig] as readonly FranchiseCo
     it('conserva el catálogo y las categorías acordadas', async () => {
       const data = (await loadFranchiseData(franchise.slug))!;
       const config = franchise.modes.find((mode) => mode.slug === 'casillas')!.categoryBoard!;
-      const size = franchise.slug === 'dragon-ball' ? 83 : 80;
+      const size = franchise.slug === 'dragon-ball' ? 83 : 88;
       expect(new Set(config.roster).size).toBe(size);
       expect(poolOf(data.entities, franchise.series, config)).toHaveLength(franchise.slug === 'dragon-ball' ? 78 : size);
       const primaryCount = 8 + config.categories.filter((category) => category.replaces).length;
@@ -25,17 +25,22 @@ for (const franchise of [narutoConfig, dragonBallConfig] as readonly FranchiseCo
       }
       if (franchise.slug === 'naruto') {
         const members = (id: string) => config.categories.find((item) => item.id === id)!.members;
-        expect(members('hokage')).toHaveLength(8);
+        expect(config.categories.find((item) => item.id === 'hokage')?.label).toBe('Kages');
+        expect(members('hokage')).toHaveLength(19);
+        expect(members('hokage')).toEqual(expect.arrayContaining(['gaara', 'a-cuarto-raikage', 'chojuro', 'darui', 'kurotsuchi']));
+        expect(members('antagonista')).toEqual(expect.arrayContaining(['gaara', 'kankuro', 'temari', 'baki']));
         expect(members('konoha')).toHaveLength(43);
         expect(members('konoha')).toContain('mitsuki');
         expect(members('konoha')).not.toContain('temari');
-        expect(members('otras-aldeas')).toHaveLength(33);
+        expect(members('otras-aldeas')).toHaveLength(42);
+        expect(members('otras-aldeas')).toContain('mitsuki');
         expect(members('otras-aldeas')).toEqual(expect.arrayContaining(['gamabunta', 'gamakichi', 'katsuyu', 'manda', 'fukasaku']));
         expect(members('otras-aldeas')).toContain('kaguya-otsutsuki');
         expect(members('invocacion')).toEqual(expect.arrayContaining(['naruto-uzumaki', 'jiraiya', 'sasuke-uchiha', 'orochimaru', 'hiruzen-sarutobi', 'temari']));
         expect(members('invocacion')).toEqual(expect.arrayContaining(['gamabunta', 'katsuyu', 'manda', 'gamakichi', 'fukasaku', 'hashirama-senju']));
         expect(members('invocacion')).not.toContain('sakon-y-ukon');
-        expect(members('invocacion')).toHaveLength(29);
+        expect(members('invocacion')).toHaveLength(30);
+        expect(members('invocacion')).toContain('shino-aburame');
         expect(config.roster).not.toEqual(expect.arrayContaining(['kurama', 'shukaku', 'gyuki']));
       } else {
         expect(config.roster).not.toContain('mr-popo');
