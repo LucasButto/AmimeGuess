@@ -56,8 +56,7 @@ function difficultyName(group: BoardGroup): string {
  * Una partida: el tablero de un día para una combinación de filtros. El marco la vuelve a
  * montar cuando cambia cualquiera de los dos, y así recupera desde `localStorage` las
  * selecciones que se enviaron. Se tocan hasta 4 elementos y se envían: si son un grupo, se
- * revela con su nombre; si no, cuesta un error. Con 3 grupos resueltos, el cuarto queda
- * resuelto solo.
+ * revela con su nombre; si no, cuesta un error. La partida se gana al enviar los cuatro grupos.
  */
 export function ConnectionsBoard({ session, config, board, names }: ConnectionsBoardProps) {
   const { franchise, mode, filterKey, day, onFinish } = session;
@@ -66,7 +65,13 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
   const maxMistakes = session.attemptLimit ?? mistakesOf(config);
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
 
-  const [attempts, setAttempts] = useState<string[][]>(() => restoreAttempts(readState(getLocalStorage(), ctx)?.attempts, board, maxMistakes));
+  const [{ attempts, savedWin }, setGame] = useState(() => {
+    const saved = readState(getLocalStorage(), ctx);
+    return {
+      attempts: restoreAttempts(saved?.attempts, board, maxMistakes),
+      savedWin: saved?.result === 'won',
+    };
+  });
   const [selected, setSelected] = useState<string[]>([]);
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [announcement, setAnnouncement] = useState('');
@@ -74,7 +79,7 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
   const phone = useDockTarget() !== null;
   const [shuffled, setShuffled] = useState<readonly string[] | null>(null);
 
-  const progress = useMemo(() => progressOf(attempts, board, maxMistakes), [attempts, board, maxMistakes]);
+  const progress = useMemo(() => progressOf(attempts, board, maxMistakes, savedWin), [attempts, board, maxMistakes, savedWin]);
   const { solved, mistakes, won } = progress;
   useMissBuzz(mistakes);
   const over = progress.over || surrendered;
@@ -123,7 +128,7 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
     const verdict = judge(selected, missed);
     const next = [...attempts, selected];
     const nextProgress = progressOf(next, board, maxMistakes);
-    setAttempts(next);
+    setGame({ attempts: next, savedWin: false });
     writeState(getLocalStorage(), ctx, { attempts: next, result: nextProgress.won ? 'won' : nextProgress.over ? 'lost' : 'playing' });
 
     if (verdict.kind === 'correct') {

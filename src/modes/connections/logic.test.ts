@@ -281,8 +281,14 @@ describe('progressOf', () => {
     expect(progress.over).toBe(false);
   });
 
-  it('al resolver tres, el cuarto queda resuelto solo y se gana', () => {
+  it('deja el cuarto grupo pendiente hasta que se envíe', () => {
     const progress = progressOf([g1, g2, g3], board, 4);
+    expect(progress.solved.map((item) => item.id)).toEqual(['g1', 'g2', 'g3']);
+    expect(progress).toMatchObject({ won: false, over: false, mistakes: 0 });
+  });
+
+  it('conserva una victoria guardada con tres grupos enviados', () => {
+    const progress = progressOf([g1, g2, g3], board, 4, true);
     expect(progress.solved.map((item) => item.id)).toEqual(['g1', 'g2', 'g3', 'g4']);
     expect(progress.won).toBe(true);
     expect(progress.over).toBe(true);
@@ -296,8 +302,9 @@ describe('progressOf', () => {
   });
 
   it('se puede ganar con un error de margen', () => {
-    const progress = progressOf([wrong, g1, g2, g3], board, 4);
+    const progress = progressOf([wrong, g1, g2, g3, ['m', 'n', 'o', 'p']], board, 4);
     expect(progress).toMatchObject({ won: true, mistakes: 1 });
+    expect(progress.solved.map((item) => item.id)).toEqual(['g1', 'g2', 'g3', 'g4']);
   });
 });
 
@@ -346,8 +353,9 @@ describe('restoreAttempts', () => {
   it('no guarda nada después de terminar', () => {
     const lost = [wrong, ['a', 'f', 'k', 'p'], ['b', 'g', 'l', 'm'], ['c', 'h', 'i', 'n'], ['d', 'e', 'j', 'o']];
     expect(restoreAttempts(lost, board, 4)).toEqual(lost.slice(0, 4));
-    const won = [['a', 'b', 'c', 'd'], ['e', 'f', 'g', 'h'], ['i', 'j', 'k', 'l'], wrong];
-    expect(restoreAttempts(won, board, 4)).toEqual(won.slice(0, 3));
+    const won = [['a', 'b', 'c', 'd'], ['e', 'f', 'g', 'h'], ['i', 'j', 'k', 'l'], ['m', 'n', 'o', 'p']];
+    expect(restoreAttempts(won.slice(0, 3), board, 4)).toEqual(won.slice(0, 3));
+    expect(restoreAttempts([...won, wrong], board, 4)).toEqual(won);
   });
 });
 

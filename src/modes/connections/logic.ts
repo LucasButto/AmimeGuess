@@ -204,7 +204,7 @@ export function judge(selection: readonly string[], candidates: readonly BoardGr
 }
 
 export interface Progress {
-  /** Los grupos resueltos, en el orden en que se resolvieron. Al resolver el tercero, el cuarto queda resuelto solo. */
+  /** Los grupos resueltos, en el orden en que se resolvieron. */
   readonly solved: readonly BoardGroup[];
   readonly mistakes: number;
   readonly won: boolean;
@@ -213,17 +213,19 @@ export interface Progress {
 }
 
 /** El estado de una partida a partir de las selecciones enviadas, en orden. */
-export function progressOf(attempts: readonly (readonly string[])[], board: Board, maxMistakes: number): Progress {
+export function progressOf(attempts: readonly (readonly string[])[], board: Board, maxMistakes: number, savedWin = false): Progress {
   const solved: BoardGroup[] = [];
   let mistakes = 0;
   for (const attempt of attempts) {
-    if (mistakes >= maxMistakes || solved.length >= board.groups.length - 1) break;
+    if (mistakes >= maxMistakes || solved.length === board.groups.length) break;
     const verdict = judge(attempt, board.groups.filter((group) => !solved.includes(group)));
     if (verdict.kind === 'correct') solved.push(verdict.group);
     else mistakes++;
   }
-  // El último grupo es lo que queda: no hace falta enviarlo.
-  if (solved.length === board.groups.length - 1) solved.push(...board.groups.filter((group) => !solved.includes(group)));
+  // Las victorias guardadas con la regla anterior tienen solo tres envíos correctos.
+  if (savedWin && mistakes < maxMistakes && solved.length === board.groups.length - 1) {
+    solved.push(...board.groups.filter((group) => !solved.includes(group)));
+  }
   const won = solved.length === board.groups.length;
   return { solved, mistakes, won, over: won || mistakes >= maxMistakes };
 }
