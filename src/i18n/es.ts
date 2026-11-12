@@ -1348,11 +1348,11 @@ export const es = {
         },
         exact: {
           label: "Combinación exacta",
-          hint: "Muestra solo Pokémon con exactamente los tipos que marcaste.",
+          hint: "Con un solo tipo seleccionado, muestra Pokemones de ese único tipo. Con dos o más, muestra Pokemones con cualquier posible combinacion de los tipos seleccionados.",
         },
       },
       exactTypesUnavailable:
-        "Marcá uno o dos tipos para habilitar la combinación exacta.",
+        "Marcá al menos un tipo para habilitar la combinación exacta.",
       clearFilters: "Limpiar filtros",
       clearFiltersShort: "Limpiar",
       emptyFilters:

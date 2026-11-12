@@ -85,7 +85,7 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
     types: (filters?.types ?? types).filter((value) => types.includes(value)),
   }), [filters, generations, types]);
   const chosenTypes = activeFilters.types;
-  const exactAvailable = chosenTypes.length === 1 || chosenTypes.length === 2;
+  const exactAvailable = chosenTypes.length > 0;
   const typeMatch = activeFilters.typeMatch === 'exact' && !exactAvailable ? 'marked' : activeFilters.typeMatch;
   const activeCount = generations.length - activeFilters.generations.length + types.length - chosenTypes.length + (typeMatch !== 'any' ? 1 : 0);
   // Todo activo no restringe; nada activo no muestra nada (una lista vacía, para filterByFacets, es "sin filtro").
@@ -112,7 +112,7 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
     onFiltersChange({
       ...activeFilters,
       types: next,
-      typeMatch: typeMatch === 'exact' && (next.length === 0 || next.length > 2) ? 'marked' : typeMatch,
+      typeMatch: typeMatch === 'exact' && next.length === 0 ? 'marked' : typeMatch,
     });
   }
 

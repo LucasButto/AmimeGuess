@@ -72,7 +72,18 @@ it('matches exact type combinations regardless of order and respects generation/
   expect(filterByFacets(items, { ...exact, generations: [2] })).toEqual([]);
   expect(filterByFacets(items, exact, 'gast')).toEqual([]);
   expect(ids(filterByFacets(items, { ...exact, types: ['Planta'] }))).toEqual(['chikorita']);
-  expect(filterByFacets(items, { ...exact, types: ['Planta', 'Veneno', 'Fuego'] })).toEqual([]);
+});
+
+it('acepta todos los pares de tipos marcados y excluye los monotipo y los pares con un tipo sin marcar', () => {
+  const pool: AutocompleteItem[] = [
+    items[1],
+    { id: 'charizard', label: 'Charizard', number: 6, attrs: { tipo1: 'Fuego', tipo2: 'Volador' } },
+    { id: 'omanyte', label: 'Omanyte', number: 138, attrs: { tipo1: 'Roca', tipo2: 'Agua' } },
+    { id: 'magcargo', label: 'Magcargo', number: 219, attrs: { tipo1: 'Fuego', tipo2: 'Roca' } },
+    { id: 'volcanion', label: 'Volcanion', number: 721, attrs: { tipo1: 'Fuego', tipo2: 'Agua' } },
+  ];
+  expect(ids(filterByFacets(pool, { ...none, types: ['Agua', 'Roca', 'Fuego'], typeMatch: 'exact' })))
+    .toEqual(['omanyte', 'magcargo', 'volcanion']);
 });
 
 it('distingue los tres modos con Fuego y Agua', () => {

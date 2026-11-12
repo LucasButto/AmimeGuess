@@ -26,7 +26,7 @@ function typeMatches(attrs: AutocompleteItem['attrs'], chosen: readonly string[]
   if (chosen.length === 0) return true;
   const actual = [attrs?.tipo1, attrs?.tipo2].filter((type): type is string => typeof type === 'string' && type.length > 0);
   if (mode === 'any') return actual.some((type) => chosen.includes(type));
-  if (mode === 'exact' && actual.length !== chosen.length) return false;
+  if (mode === 'exact' && actual.length !== Math.min(chosen.length, 2)) return false;
   return actual.length > 0 && actual.every((type) => chosen.includes(type));
 }
 
