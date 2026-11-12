@@ -10,6 +10,7 @@ import { ContentImage } from '../ContentImage';
 import { CopyLinkButton } from '../CopyLinkButton';
 import { FilterPanel } from '../FilterPanel';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Modal } from '../Modal';
 import { Sheet } from '../Sheet';
 import { SettingsPanel } from '../SettingsPanel';
@@ -84,7 +85,8 @@ export function GameShell({
   const [stats, setStats] = useState(() => readStats(getLocalStorage(), franchise.slug, mode.slug));
   const [finished, setFinished] = useState<{ key: string; report: FinishReport } | null>(null);
   const [dialog, setDialog] = useState<Dialog>(null);
-  const { skin, leaveTo } = useSkin();
+  const { skin, animateDeparture } = useSkin();
+  const router = useRouter();
   const play = useSound();
   const buzz = useHaptics();
 
@@ -111,6 +113,7 @@ export function GameShell({
   const resultInSheet = appShell && phone && report !== null;
   // Lo que la persona hizo con la hoja de ESTE resultado; sin haber hecho nada, se abre sola solo si la partida terminó ahora.
   const [sheetView, setSheetView] = useState<{ report: FinishReport; open: boolean } | null>(null);
+  const resultDestination = useRef<{ report: FinishReport; href: string } | null>(null);
   const waitingForSheet = resultInSheet && report.fresh && (report.sheetDelayMs ?? 0) > 0 && sheetView?.report !== report;
   useEffect(() => {
     if (!waitingForSheet || !report) return;
@@ -444,7 +447,16 @@ export function GameShell({
       )}
 
       {resultInSheet && report && (
-        <Sheet open={resultOpen} title={es.shell.result.sheetTitle} onClose={() => setResultOpen(false)}>
+        <Sheet
+          open={resultOpen}
+          title={es.shell.result.sheetTitle}
+          onClose={() => setResultOpen(false)}
+          onAfterClose={() => {
+            const destination = resultDestination.current;
+            resultDestination.current = null;
+            if (destination?.report === report && !animateDeparture(destination.href)) router.push(destination.href);
+          }}
+        >
           <ResultPanel
             inSheet
             titleOverride={report.title}
@@ -468,7 +480,11 @@ export function GameShell({
                 </>
               ) : (
                 <>
-                  <ButtonLink variant="secondary" href={nextHref} onClick={(event) => leaveTo(event, nextHref)}>
+                  <ButtonLink variant="secondary" href={nextHref} onNavigate={(event) => {
+                    event.preventDefault();
+                    resultDestination.current = { report, href: nextHref };
+                    setResultOpen(false);
+                  }}>
                     {nextMode ? es.shell.result.nextMode(nextMode.name) : es.shell.result.backTo(franchise.name)}
                   </ButtonLink>
                   <Button variant="ghost" onClick={startPractice}>

@@ -11,6 +11,8 @@ interface SheetProps {
   title: string;
   /** Se llama al cerrar con Escape, tocando afuera del cuadro o arrastrándola hacia abajo (quien la usa pone `open` en `false`). */
   onClose: () => void;
+  /** Se llama después de que la hoja termina de salir y se desmonta. */
+  onAfterClose?: () => void;
   /** Acciones fijas al pie (por ejemplo, un botón "Listo"). */
   footer?: ReactNode;
   children: ReactNode;
@@ -29,13 +31,22 @@ const EXIT_MS = 320;
  * cuadro centrado. Siempre está en el árbol: `open` la abre y la cierra; entra y sale con transiciones (`data-shown`), y al
  * cerrarse se desmonta cuando terminó de salir.
  */
-export function Sheet({ open, ...props }: SheetProps) {
+export function Sheet({ open, onAfterClose, ...props }: SheetProps) {
   const [present, setPresent] = useState(open);
-  const exited = useCallback(() => setPresent(false), []);
+  const exited = useRef(false);
+  const finishExit = useCallback(() => {
+    exited.current = true;
+    setPresent(false);
+  }, []);
+  useEffect(() => {
+    if (present || !exited.current) return;
+    exited.current = false;
+    onAfterClose?.();
+  }, [present, onAfterClose]);
   // Al abrirse se monta; al cerrarse se queda montada hasta que termina de bajar.
   if (open && !present) setPresent(true);
   if (!present) return null;
-  return <SheetDialog {...props} closing={!open} onExited={exited} />;
+  return <SheetDialog {...props} closing={!open} onExited={finishExit} />;
 }
 
 function SheetDialog({ title, onClose, footer, children, closing, onExited }: Omit<SheetProps, 'open'> & { closing: boolean; onExited: () => void }) {

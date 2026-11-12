@@ -28,18 +28,22 @@ export function SkinRoot({ slug, children }: SkinRootProps) {
 
   const { departure, pending } = useDeparture(pathname);
 
-  const leaveTo = useCallback(
-    (event: MouseEvent<HTMLAnchorElement>, href: string) => {
-      const plain = event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey;
-      if (skin.pageExitMs <= 0 || !plain || href.split('?')[0] === pathname) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      event.preventDefault();
+  const animateDeparture = useCallback(
+    (href: string) => {
+      if (skin.pageExitMs <= 0 || href.split('?')[0] === pathname) return false;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return false;
       if (departure.start(pathname, href, skin.pageExitMs, (href) => router.push(href))) router.prefetch(href);
+      return true;
     },
     [skin.pageExitMs, departure, pathname, router],
   );
 
-  const value = useMemo(() => ({ slug, skin, root, leaveTo }), [slug, skin, root, leaveTo]);
+  const leaveTo = useCallback((event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    const plain = event.button === 0 && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey;
+    if (plain && animateDeparture(href)) event.preventDefault();
+  }, [animateDeparture]);
+
+  const value = useMemo(() => ({ slug, skin, root, leaveTo, animateDeparture }), [slug, skin, root, leaveTo, animateDeparture]);
   const className = skin.className ? `${styles.root} ${skin.className}` : styles.root;
 
   return (

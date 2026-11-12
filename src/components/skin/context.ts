@@ -20,6 +20,8 @@ export interface SkinContextValue {
    * modificadores, con movimiento reducido o sin animación no hace nada y el link navega como siempre.
    */
   readonly leaveTo: (event: MouseEvent<HTMLAnchorElement>, href: string) => void;
+  /** Inicia la salida de la piel y navega al terminar, si corresponde animarla. */
+  readonly animateDeparture: (href: string) => boolean;
 }
 
 export const SkinContext = createContext<SkinContextValue | null>(null);
@@ -33,6 +35,6 @@ let outside: SkinContextValue | undefined;
 export function useSkin(): SkinContextValue {
   const value = useContext(SkinContext);
   if (value) return value;
-  outside ??= { slug: null, skin: DEFAULT_SKIN, root: null, leaveTo: () => undefined };
+  outside ??= { slug: null, skin: DEFAULT_SKIN, root: null, leaveTo: () => undefined, animateDeparture: () => false };
   return outside;
 }
