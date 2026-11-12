@@ -33,6 +33,7 @@ export function useDockTarget(): HTMLElement | null {
 /**
  * El teclado del teléfono tapa la barra inferior en iOS (que no achica la página, solo la parte visible). Mientras el campo
  * está en la barra, `--dock-lift` dice cuánto subirla para que quede pegada al teclado; la barra la lee (ver `.dock`).
+ * Las listas del dock usan el alto visible para que se puedan desplazar por encima del teclado.
  * En Android, con `interactive-widget=resizes-content` (ver `src/app/layout.tsx`), la página se achica sola y vale 0.
  */
 export function useDockKeyboardLift(active: boolean): void {
@@ -43,6 +44,7 @@ export function useDockKeyboardLift(active: boolean): void {
     const update = () => {
       const lift = Math.max(0, window.innerHeight - viewport.height - viewport.offsetTop);
       root.style.setProperty('--dock-lift', `${Math.round(lift)}px`);
+      root.style.setProperty('--dock-viewport-height', `${Math.floor(viewport.height)}px`);
     };
     update();
     viewport.addEventListener('resize', update);
@@ -51,6 +53,7 @@ export function useDockKeyboardLift(active: boolean): void {
       viewport.removeEventListener('resize', update);
       viewport.removeEventListener('scroll', update);
       root.style.removeProperty('--dock-lift');
+      root.style.removeProperty('--dock-viewport-height');
     };
   }, [active]);
 }

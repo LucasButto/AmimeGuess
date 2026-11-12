@@ -163,9 +163,11 @@ export function ScouterInput({ label, items, excludeIds, onSelect, disabled = fa
                     role="option"
                     aria-selected={position === active}
                     data-active={position === active}
-                    // Evita que el campo pierda el foco (y se cierre la lista) antes del toque.
-                    onPointerDown={(event) => event.preventDefault()}
-                    onPointerEnter={() => setActiveIndex(position)}
+                    // WebKit puede omitir el clic táctil si se cancela pointerdown.
+                    onMouseDown={(event) => event.preventDefault()}
+                    onPointerEnter={(event) => {
+                      if (event.pointerType === 'mouse' && window.matchMedia('(any-hover: hover)').matches) setActiveIndex(position);
+                    }}
                     onClick={() => choose(item.id)}
                   >
                     <span className={styles.rowThumb} aria-hidden="true">
@@ -189,7 +191,7 @@ export function ScouterInput({ label, items, excludeIds, onSelect, disabled = fa
                 className={styles.lock}
                 aria-hidden="true"
                 // Evita que el campo pierda el foco (y se cierre la lista) antes del clic.
-                onPointerDown={(event) => event.preventDefault()}
+                onMouseDown={(event) => event.preventDefault()}
                 onClick={() => choose(target.id)}
               >
                 <span className={styles.portrait}>
@@ -212,8 +214,10 @@ export function ScouterInput({ label, items, excludeIds, onSelect, disabled = fa
                     title={item.label}
                     data-active={position === active}
                     // Evita que el campo pierda el foco (y se cierre la lista) antes del clic.
-                    onPointerDown={(event) => event.preventDefault()}
-                    onPointerEnter={() => setActiveIndex(position)}
+                    onMouseDown={(event) => event.preventDefault()}
+                    onPointerEnter={(event) => {
+                      if (event.pointerType === 'mouse' && window.matchMedia('(any-hover: hover)').matches) setActiveIndex(position);
+                    }}
                     onClick={() => choose(item.id)}
                   >
                     {item.imageStem ? <ContentImage className={styles.thumb} stem={item.imageStem} alt="" sizes="4rem" /> : <span className={styles.initial}>{item.label.slice(0, 1)}</span>}

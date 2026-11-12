@@ -388,8 +388,7 @@
 }
 
 .rows {
-  // Lo que queda entre la barra de arriba y la de abajo (con el teclado simulado, la lista sigue entera a la vista).
-  max-block-size: min(22rem, calc(100dvh - var(--app-bar-h) - var(--app-dock-h) - 1.5rem));
+  max-block-size: clamp(3.5rem, calc(var(--dock-viewport-height, 100dvh) - var(--app-bar-h) - var(--app-dock-h) - 1.5rem), 22rem);
   margin: 0;
   padding: t.$space-1;
   list-style: none;

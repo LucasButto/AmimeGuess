@@ -187,7 +187,7 @@ export function BingoBookInput({
               className={styles.wanted}
               aria-hidden="true"
               // Evita que el campo pierda el foco (y se cierre la lista) antes del clic.
-              onPointerDown={(event) => event.preventDefault()}
+              onMouseDown={(event) => event.preventDefault()}
               onClick={() => choose(wanted.id)}
             >
               <span className={styles.wantedLabel}>{es.narutoSkin.wanted}</span>
@@ -222,9 +222,11 @@ export function BingoBookInput({
                   role="option"
                   aria-selected={position === active}
                   data-active={position === active}
-                  // Evita que el campo pierda el foco (y se cierre la lista) antes del clic.
-                  onPointerDown={(event) => event.preventDefault()}
-                  onPointerEnter={() => setActiveIndex(position)}
+                  // WebKit puede omitir el clic táctil si se cancela pointerdown.
+                  onMouseDown={(event) => event.preventDefault()}
+                  onPointerEnter={(event) => {
+                    if (event.pointerType === "mouse" && window.matchMedia("(any-hover: hover)").matches) setActiveIndex(position);
+                  }}
                   onClick={() => choose(item.id)}
                 >
                   <span className={styles.thumbBox} aria-hidden="true">
