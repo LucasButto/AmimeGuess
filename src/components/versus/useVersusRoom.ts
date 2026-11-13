@@ -1,10 +1,10 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { ClientMessage, Snapshot } from '@/versus/protocol';
 import { VersusClient, type ConnectionStatus } from './client';
 import { versusUrl } from './enabled';
-import { applyMessage, noticeOf, type Notice } from './roomState';
+import { applyMessage, noticeFor, noticeOf, type Notice } from './roomState';
 import { clearCredentials, writeCredentials, type Credentials } from './storage';
 
 export interface RoomConnection {
@@ -14,6 +14,10 @@ export interface RoomConnection {
   readonly snapshot: Snapshot | null;
   /** Un aviso que no se arregla reintentando (sala llena, ya empezó, te sacaron…). */
   readonly notice: Notice | null;
+  /** Lo que el servidor le pidió cerrar a este jugador, por partida: tiempo agotado o fin anticipado. */
+  readonly stops: Readonly<Record<number, 'won' | 'timeUp'>>;
+  /** Avisos cortos de lo que pasa con los demás ("Beto terminó la partida 1"), los más nuevos al final. */
+  readonly notices: readonly string[];
   /** La hora del servidor ahora (el reloj local corregido). */
   readonly serverNow: () => number;
   readonly send: (message: ClientMessage) => boolean;
@@ -33,15 +37,23 @@ interface Input {
   readonly spectate?: boolean;
 }
 
+/** Cuántos avisos se recuerdan. */
+const NOTICE_MS = 6_000;
+const MAX_NOTICES = 3;
+
 /**
- * La conexión de la pantalla de la sala: abre un solo WebSocket por sala (con el token guardado o, si no hay, con el apodo),
- * guarda el token que manda el servidor al unirse y mantiene el estado de la sala. Se cierra al salir de la pantalla.
+ * La conexión de la sala: abre un solo WebSocket por sala (con el token guardado o, si no hay, con el apodo), guarda el token
+ * que manda el servidor al unirse y mantiene el estado de la sala. Vive en el proveedor del versus (`VersusRuntime`), que
+ * está en el layout raíz: la conexión sigue abierta mientras se navega entre la sala de espera y las partidas.
  */
 export function useVersusRoom({ code, credentials, name, spectate = false }: Input): RoomConnection {
   const [status, setStatus] = useState<ConnectionStatus>('connecting');
   const [snapshot, setSnapshot] = useState<Snapshot | null>(null);
   const [notice, setNotice] = useState<Notice | null>(null);
+  const [stops, setStops] = useState<Record<number, 'won' | 'timeUp'>>({});
+  const [notices, setNotices] = useState<readonly string[]>([]);
   const clientRef = useRef<VersusClient | null>(null);
+  const latest = useRef<Snapshot | null>(null);
   const token = credentials?.token;
 
   useEffect(() => {
@@ -58,7 +70,21 @@ export function useVersusRoom({ code, credentials, name, spectate = false }: Inp
         const next = noticeOf(message.code);
         if (next) setNotice(next);
       }
-      setSnapshot((current) => applyMessage(current, message));
+      if (message.type === 'timeUp') setStops((current) => ({ ...current, [message.index]: 'timeUp' }));
+      if (message.type === 'endNow') setStops((current) => ({ ...current, [message.index]: current[message.index] ?? 'won' }));
+      if (message.type === 'progress' && latest.current) {
+        const text = noticeFor(latest.current.progress.find((item) => item.playerId === message.progress.playerId), message.progress, latest.current.players, latest.current.you.playerId);
+        if (text) {
+          setNotices((current) => [...current, text].slice(-MAX_NOTICES));
+          // Un aviso dura unos segundos: no se acumulan ni tapan el juego.
+          window.setTimeout(() => setNotices((current) => {
+            const at = current.indexOf(text);
+            return at < 0 ? current : current.filter((_, index) => index !== at);
+          }), NOTICE_MS);
+        }
+      }
+      latest.current = applyMessage(latest.current, message);
+      setSnapshot(latest.current);
     });
     client.connect();
     return () => {
@@ -66,6 +92,7 @@ export function useVersusRoom({ code, credentials, name, spectate = false }: Inp
       offMessage();
       client.close();
       clientRef.current = null;
+      latest.current = null;
     };
   }, [code, token, name, spectate]);
 
@@ -78,5 +105,5 @@ export function useVersusRoom({ code, credentials, name, spectate = false }: Inp
     if (code) clearCredentials(code);
   }, [code]);
 
-  return { status, snapshot, notice, serverNow, send, leave, retry };
+  return useMemo(() => ({ status, snapshot, notice, stops, notices, serverNow, send, leave, retry }), [status, snapshot, notice, stops, notices, serverNow, send, leave, retry]);
 }

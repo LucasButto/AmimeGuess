@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { ContentImage } from '@/components/ContentImage';
 import type { FinishReport } from '@/components/game-shell/types';
 import { Button } from '@/components/ui/Button';
@@ -24,7 +25,17 @@ export function summaryTitle(game: Pick<VersusGame, 'modality' | 'partida'>, rep
  * Lo que se ve al terminar una partida de versus, en vez del resumen de siempre: una línea corta, la respuesta y, si
  * la sala lo ofrece, el botón para seguir.
  */
+/** En una sala real, el resumen se queda unos segundos y pasa solo a la partida siguiente (el botón lo adelanta). */
+const AUTO_NEXT_MS = 4_000;
+
 export function VersusSummary({ game, report, elapsedMs }: { game: VersusGame; report: FinishReport; elapsedMs?: number }) {
+  const { onNext, room } = game;
+  const auto = onNext !== undefined && room !== undefined && report.fresh;
+  useEffect(() => {
+    if (!auto || !onNext) return;
+    const timer = window.setTimeout(onNext, AUTO_NEXT_MS);
+    return () => window.clearTimeout(timer);
+  }, [auto, onNext]);
   return (
     <section className={styles.root} aria-live="polite" data-versus-summary="" data-won={report.won} data-timed-out={report.timedOut || undefined}>
       <h2 className={styles.title}>{summaryTitle(game, report, elapsedMs)}</h2>

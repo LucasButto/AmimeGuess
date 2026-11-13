@@ -1,6 +1,9 @@
 'use client';
 
 import { createContext, useContext } from 'react';
+import type { PlayerView, ProgressView } from '@/versus/protocol';
+import type { ConnectionStatus } from './client';
+import { useVersusStore } from './store';
 import type { FinishReport, VersusProgress } from '@/components/game-shell/types';
 import type { Modality, Partida, VersusOptions } from '@/versus/config';
 
@@ -34,13 +37,33 @@ export interface VersusGame {
   readonly onLoaded?: () => void;
   /** Pasar a la partida siguiente (o a los resultados). Sin esto, el resumen no ofrece el botón. */
   readonly onNext?: () => void;
+  /** La hora del servidor ahora (el reloj local corregido). Sin esto, la local. */
+  readonly now?: () => number;
+  /** Lo de la sala que muestran la barra y la tira de rivales (solo en una sala real). */
+  readonly room?: VersusRoomView;
+}
+
+/** Lo que se ve de la sala mientras se juega: quiénes son, cómo van y los avisos. Nunca los intentos de los demás. */
+export interface VersusRoomView {
+  readonly code: string;
+  readonly meId: string | undefined;
+  readonly players: readonly PlayerView[];
+  readonly progress: readonly ProgressView[];
+  readonly status: ConnectionStatus;
+  readonly notices: readonly string[];
+  /** Lo que tardó el jugador en cada partida que ya terminó, en ms (Contrarreloj: el límite si se le acabó el tiempo). */
+  readonly finishedMs: Readonly<Record<number, number>>;
+  /** Salir del versus (abandono). */
+  readonly onLeave: () => void;
 }
 
 export const VersusGameContext = createContext<VersusGame | null>(null);
 
 /** La partida de versus de esta página, o `null` fuera de una sala. */
 export function useVersusGame(): VersusGame | null {
-  return useContext(VersusGameContext);
+  const provided = useContext(VersusGameContext);
+  const store = useVersusStore();
+  return provided ?? store.game;
 }
 
 /**
@@ -48,6 +71,6 @@ export function useVersusGame(): VersusGame | null {
  * con selector (dificultad, medida) la usa en vez de la elegida o guardada, y no guarda nada.
  */
 export function useVersusVariant(): { readonly variant: string | undefined } | null {
-  const game = useContext(VersusGameContext);
+  const game = useVersusGame();
   return game ? { variant: game.partida.variant } : null;
 }

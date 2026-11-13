@@ -39,3 +39,58 @@
 .root[data-warning] .time {
   color: t.color('miss');
 }
+
+// La tira de rivales: una línea que se envuelve; solo nombre y en qué partida van (nunca intentos ni pistas).
+.rivals {
+  display: flex;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  gap: t.$space-1 t.$space-3;
+  font-size: t.$font-size-sm;
+}
+
+.rival {
+  display: inline-flex;
+  gap: t.$space-1;
+  color: t.color('text-muted');
+
+  strong {
+    color: t.color('text');
+  }
+
+  &[data-self] strong {
+    text-decoration: underline;
+  }
+
+  &[data-gone] {
+    opacity: 0.6;
+  }
+}
+
+.offline {
+  flex-basis: 100%;
+  color: t.color('miss');
+}
+
+.notices {
+  flex-basis: 100%;
+  font-size: t.$font-size-sm;
+  color: t.color('text-muted');
+
+  &:empty {
+    display: none;
+  }
+}
+
+.leave {
+  margin-inline-start: auto;
+  font: inherit;
+  font-size: t.$font-size-sm;
+  color: t.color('text-muted');
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  cursor: pointer;
+  min-block-size: 2.75rem;
+  padding-inline: t.$space-2;
+}

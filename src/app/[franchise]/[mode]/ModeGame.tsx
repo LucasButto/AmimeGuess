@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { AppShellProvider } from "@/components/game-shell/AppShellContext";
 import { CluePortraitProvider } from "@/components/game-shell/ClueNames";
 import { AutocompleteOptions } from "@/components/Autocomplete";
@@ -17,6 +17,7 @@ import {
 import type { ModeLink } from "@/components/game-shell/types";
 import { AttemptRules } from "@/components/game-shell/AttemptRules";
 import { useVersusGame } from "@/components/versus/VersusGameContext";
+import { useVersusStore, wantsVersusGame } from "@/components/versus/store";
 import {
   entitiesOfMode,
   loadFranchiseData,
@@ -99,6 +100,14 @@ function ModeEngine({ franchise, mode, modes, playable }: ModeGameProps) {
   const versusGame = useVersusGame();
   const versusToggles = versusGame?.partida.toggles;
   const versus = versusGame !== null;
+  // Con `?v=` la página es una partida de sala: hasta que el proveedor publica la partida no se arranca el reto del día.
+  const store = useVersusStore();
+  const wantsRoom = useSyncExternalStore(
+    () => () => undefined,
+    wantsVersusGame,
+    () => false,
+  );
+  const waitingRoom = wantsRoom && !versus;
   const fillerOn = versus ? versusToggles?.filler ?? true : storedFiller;
   const mangaOn = versus ? versusToggles?.manga ?? true : storedManga;
   const { Loader } = useSkin().skin.slots;
@@ -131,6 +140,15 @@ function ModeEngine({ franchise, mode, modes, playable }: ModeGameProps) {
   );
 
   if (!playable) return comingSoon;
+  if (waitingRoom) {
+    return store.failure ? (
+      <StatusMessage kind="error">{es.versus.room.unavailable}</StatusMessage>
+    ) : (
+      <StatusMessage kind="loading" loader={<Loader />}>
+        {es.versus.room.connecting}
+      </StatusMessage>
+    );
+  }
   if (loaded === "error") {
     return (
       <StatusMessage

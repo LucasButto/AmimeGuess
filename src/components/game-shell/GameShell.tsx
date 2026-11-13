@@ -222,7 +222,7 @@ export function GameShell({
       setFinished({ key: sessionKey, report: reported });
       if (versus) {
         // Versus: el final va a la sala y no suma a las estadísticas ni a la racha.
-        if (reported.fresh && versus.startedAt !== undefined) setVersusElapsed(Date.now() - versus.startedAt);
+        if (reported.fresh && versus.startedAt !== undefined) setVersusElapsed((versus.now ?? Date.now)() - versus.startedAt);
         if (reported.fresh && reported.won) buzz('hit');
         versus.onFinish?.(reported);
         return;

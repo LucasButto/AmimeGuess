@@ -147,6 +147,8 @@ export interface FinishReport {
   readonly scores?: readonly number[];
   /** Versus: la partida terminó porque se acabó el tiempo (`versus.stop: 'timeUp'`). */
   readonly timedOut?: boolean;
+  /** Se terminó con Rendirse (o por tiempo agotado, que también pasa por ahí): el versus lo distingue de un fallo. */
+  readonly surrendered?: boolean;
 }
 
 /** Lo que un juego deja ver a los rivales después de cada intento (regla h). */

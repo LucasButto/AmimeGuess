@@ -15,15 +15,19 @@ const WARNING_MS = 10_000;
  * va la modalidad y "Partida N de M".
  */
 export function VersusClock({ game, frozen }: { game: VersusGame; frozen?: boolean }) {
-  const [now, setNow] = useState(() => Date.now());
+  const clock = game.now ?? Date.now;
+  const [now, setNow] = useState(() => clock());
   useEffect(() => {
     if (frozen) return;
-    const timer = window.setInterval(() => setNow(Date.now()), 250);
+    const timer = window.setInterval(() => setNow(clock()), 250);
     return () => window.clearInterval(timer);
-  }, [frozen]);
+  }, [frozen, clock]);
 
   const countdown = game.modality === 'timeAttack' && game.endsAt !== undefined ? Math.max(0, game.endsAt - now) : null;
   const elapsed = game.modality === 'race' && game.raceStartedAt !== undefined ? Math.max(0, now - game.raceStartedAt) : null;
+  // Carrera: lo que ya tardó en las partidas anteriores más lo de esta (el tiempo total corre desde el inicio común).
+  const room = game.room;
+  const spentBefore = room ? Object.entries(room.finishedMs).reduce((sum, [index, ms]) => (Number(index) < game.index ? sum + ms : sum), 0) : 0;
   const warning = countdown !== null && countdown <= WARNING_MS;
 
   return (
@@ -43,6 +47,42 @@ export function VersusClock({ game, frozen }: { game: VersusGame; frozen?: boole
           <span className={styles.label}>{es.versus.elapsed}</span>
           <time className={styles.time} role="timer" data-versus-clock="">{formatClock(elapsed)}</time>
         </p>
+      )}
+      {room && game.modality === 'timeAttack' && spentBefore > 0 && (
+        <p className={styles.clock}>
+          <span className={styles.label}>{es.versus.rivals.totalTime}</span>
+          <time className={styles.time}>{formatClock(spentBefore + (game.startedAt === undefined || frozen ? 0 : Math.max(0, now - game.startedAt)))}</time>
+        </p>
+      )}
+      {room && (
+        <>
+          <ul className={styles.rivals} aria-label={es.versus.rivals.label}>
+            {room.players.map((player) => {
+              const view = room.progress.find((item) => item.playerId === player.id);
+              const gone = player.abandoned || !player.connected;
+              const label = player.abandoned
+                ? es.versus.rivals.abandoned
+                : !player.connected
+                  ? es.versus.rivals.disconnected
+                  : !view || view.index === 0
+                    ? es.versus.rivals.doneAll
+                    : es.versus.rivals.where(Math.min(view.index, game.total), game.total);
+              return (
+                <li key={player.id} className={styles.rival} data-self={player.id === room.meId || undefined} data-gone={gone || undefined}>
+                  <strong>{player.id === room.meId ? es.versus.rivals.you : player.name}</strong>
+                  <span>{label}</span>
+                </li>
+              );
+            })}
+          </ul>
+          {room.status !== 'open' && <p className={styles.offline} role="status">{room.status === 'unavailable' ? es.versus.room.unavailable : es.versus.rivals.offline}</p>}
+          <ul className={styles.notices} role="status" aria-live="polite">
+            {room.notices.slice(-1).map((notice, index) => (
+              <li key={`${index}:${notice}`}>{notice}</li>
+            ))}
+          </ul>
+          <button type="button" className={styles.leave} onClick={room.onLeave}>{es.versus.rivals.leave}</button>
+        </>
       )}
     </section>
   );

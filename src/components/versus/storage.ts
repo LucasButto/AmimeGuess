@@ -56,3 +56,26 @@ export function writeCredentials(code: string, credentials: Credentials): void {
     // Sin almacenamiento, al recargar habría que volver a entrar con el apodo.
   }
 }
+
+// --- Tiempos de las partidas ya terminadas (para el total acumulado de la barra) --------------------------------------------
+
+const timesKey = (code: string) => `${STORAGE_PREFIX}:versus:times:${code}`;
+
+/** Lo que tardó el jugador en cada partida que ya terminó de esta sala (se guarda en la pestaña: sobrevive a recargar). */
+export function readTimes(code: string): Record<number, number> {
+  try {
+    const raw = globalThis.sessionStorage?.getItem(timesKey(code));
+    const value = raw ? (JSON.parse(raw) as Record<string, unknown>) : {};
+    return Object.fromEntries(Object.entries(value).filter(([, ms]) => typeof ms === 'number').map(([index, ms]) => [Number(index), ms as number]));
+  } catch {
+    return {};
+  }
+}
+
+export function writeTimes(code: string, times: Readonly<Record<number, number>>): void {
+  try {
+    globalThis.sessionStorage?.setItem(timesKey(code), JSON.stringify(times));
+  } catch {
+    // Sin almacenamiento, el total acumulado se reinicia al recargar.
+  }
+}

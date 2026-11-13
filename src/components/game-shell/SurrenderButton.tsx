@@ -6,6 +6,7 @@ import { es } from '@/i18n/es';
 import { Modal } from '../Modal';
 import { Sheet } from '../Sheet';
 import { Button } from '../ui/Button';
+import { useVersusGame } from '../versus/VersusGameContext';
 import { useDockTarget } from './GameDock';
 import styles from './SurrenderButton.module.scss';
 
@@ -22,6 +23,9 @@ function SurrenderControl({ onConfirm, scored = false, disabled = false }: {
   scored?: boolean;
   disabled?: boolean;
 }) {
+  // En una sala no hay modo infinito: se rinde y se espera a los demás.
+  const inVersus = useVersusGame() !== null;
+  const description = inVersus ? es.versus.surrenderDescription : scored ? es.shell.surrender.scoreDescription : es.shell.surrender.description;
   const [confirming, setConfirming] = useState(false);
   const appShell = useAppShell();
   // En el teléfono la confirmación es una hoja corta; en lo demás, el modal de siempre.
@@ -40,7 +44,7 @@ function SurrenderControl({ onConfirm, scored = false, disabled = false }: {
       {confirming && !phone && (
         <Modal title={es.shell.surrender.title} onClose={() => setConfirming(false)}>
           <div className={styles.confirmation}>
-            <p>{scored ? es.shell.surrender.scoreDescription : es.shell.surrender.description}</p>
+            <p>{description}</p>
             <div className={styles.actions}>
               <Button variant="ghost" className={styles.cancel} onClick={() => setConfirming(false)}>{es.shell.surrender.cancel}</Button>
               <Button variant="ghost" className={styles.action} onClick={() => {
@@ -66,7 +70,7 @@ function SurrenderControl({ onConfirm, scored = false, disabled = false }: {
             </>
           }
         >
-          <p>{scored ? es.shell.surrender.scoreDescription : es.shell.surrender.description}</p>
+          <p>{description}</p>
         </Sheet>
       )}
     </div>

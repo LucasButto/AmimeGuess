@@ -60,9 +60,12 @@ describe('applyMessage', () => {
     expect(applyMessage(next, { type: 'partidaStart', index: 2, at: 9_000 })).toMatchObject({ phase: 'playing', mine: { index: 2 } });
   });
 
-  it('lo que todavía no se muestra no cambia nada', () => {
-    const messages: ServerMessage[] = [{ type: 'endNow', index: 1 }, { type: 'timeUp', index: 1 }, { type: 'rematch', code: 'ABCD23' }];
+  it('el cierre de partida lo maneja la conexión: no cambia la vista', () => {
+    const messages: ServerMessage[] = [{ type: 'endNow', index: 1 }, { type: 'timeUp', index: 1 }];
     for (const message of messages) expect(applyMessage(snapshot, message)).toBe(snapshot);
+  });
+  it('la revancha guarda el código de la sala nueva', () => {
+    expect(applyMessage(snapshot, { type: 'rematch', code: 'ABCD23' })).toMatchObject({ rematch: 'ABCD23' });
   });
 });
 

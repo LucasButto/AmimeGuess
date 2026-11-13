@@ -13,7 +13,8 @@ import { describePartida, optionLines } from './describe';
 import { formatClock } from './format';
 import { countdownNumber, gameHref, type Notice } from './roomState';
 import { readCredentials, readName, writeName, type Credentials } from './storage';
-import { useVersusRoom } from './useVersusRoom';
+import { useRoomHandle } from './store';
+import type { RoomConnection } from './useVersusRoom';
 import styles from './RoomScreen.module.scss';
 
 const copy = es.versus.room;
@@ -57,9 +58,12 @@ export function RoomScreen() {
 
 function Room({ code }: { code: string }) {
   const router = useRouter();
+  // La conexión la tiene el proveedor del versus (en el layout): hay un solo WebSocket por sala mientras se navega.
+  const handle = useRoomHandle(code);
+  const room = handle?.connection ?? null;
   const [credentials] = useState<Credentials | null>(() => readCredentials(code));
   const [lookup, setLookup] = useState<RoomLookup | null>(null);
-  const [joinName, setJoinName] = useState<string | null>(null);
+  const [joined, setJoined] = useState(false);
   const [typed, setTyped] = useState(() => readName());
   const [copied, setCopied] = useState(false);
 
@@ -76,17 +80,22 @@ function Room({ code }: { code: string }) {
   }, [code, credentials]);
 
   const watchOnly = lookup?.kind === 'exists' && (lookup.phase !== 'lobby' || lookup.players >= LIMITS.players.max);
-  const room = useVersusRoom({ code, credentials, name: joinName, spectate: watchOnly });
-  const { snapshot, status } = room;
+  useEffect(() => {
+    if (watchOnly && handle) handle.spectate();
+  }, [watchOnly, handle]);
+  const snapshot = room?.snapshot ?? null;
+  const status = room?.status ?? 'connecting';
 
-  const notice: Notice | null = room.notice ?? (watchOnly && lookup?.kind === 'exists' ? (lookup.phase !== 'lobby' ? 'started' : 'full') : null);
+  const notice: Notice | null = room?.notice ?? (watchOnly && lookup?.kind === 'exists' ? (lookup.phase !== 'lobby' ? 'started' : 'full') : null);
 
-  // Al empezar la partida (o al recargar en medio de una), a la partida que le toca.
+  // Al empezar la partida (o al recargar en medio de una), a la partida que le toca. Quien ya terminó todas espera acá.
   const navigated = useRef(false);
   useEffect(() => {
     if (!snapshot || snapshot.you.spectator || navigated.current) return;
     if (snapshot.phase !== 'playing' && snapshot.phase !== 'tiebreakPlaying') return;
-    const href = gameHref(snapshot, snapshot.mine?.index ?? 1);
+    const own = snapshot.progress.find((item) => item.playerId === snapshot.you.playerId);
+    if (own && own.index === 0) return;
+    const href = gameHref(snapshot, own?.index || snapshot.mine?.index || 1);
     if (!href) return;
     navigated.current = true;
     router.push(href);
@@ -95,9 +104,9 @@ function Room({ code }: { code: string }) {
   // La cuenta regresiva: 3, 2, 1 con la hora del servidor corregida.
   const [now, setNow] = useState(0);
   const counting = snapshot?.phase === 'countdown' && snapshot.startsAt !== undefined;
-  const { serverNow } = room;
+  const serverNow = room?.serverNow;
   useEffect(() => {
-    if (!counting) return;
+    if (!counting || !serverNow) return;
     const tick = () => setNow(serverNow());
     tick();
     const timer = window.setInterval(tick, 100);
@@ -107,17 +116,18 @@ function Room({ code }: { code: string }) {
   if (lookup?.kind === 'missing') {
     return <p className={styles.message} role="alert">{copy.notFound} <Link className={styles.link} href="/versus">{copy.backToCreate}</Link></p>;
   }
-  if (!credentials && joinName === null && !watchOnly) {
+  if (!credentials && !joined && !watchOnly) {
     return (
       <JoinForm
         code={code}
         value={typed}
         onChange={setTyped}
-        loading={lookup === null}
+        loading={lookup === null || handle === null}
         unavailable={lookup?.kind === 'unavailable'}
         onSubmit={(name) => {
           writeName(name);
-          setJoinName(name);
+          handle?.join(name);
+          setJoined(true);
         }}
       />
     );
@@ -141,7 +151,7 @@ function Room({ code }: { code: string }) {
   }
 
   function leave() {
-    room.leave();
+    room?.leave();
     router.push('/versus');
   }
 
@@ -152,7 +162,7 @@ function Room({ code }: { code: string }) {
       {status === 'unavailable' && (
         <div className={styles.notice} role="alert">
           <p>{copy.unavailable}</p>
-          <Button variant="secondary" onClick={room.retry}>{copy.retry}</Button>
+          <Button variant="secondary" onClick={() => room?.retry()}>{copy.retry}</Button>
         </div>
       )}
 
@@ -165,16 +175,20 @@ function Room({ code }: { code: string }) {
         </div>
       </section>
 
-      {snapshot ? (
-        <div className={styles.columns}>
-          <Summary snapshot={snapshot} />
-          <Players snapshot={snapshot} room={room} onLeave={leave} />
-        </div>
+      {snapshot && room ? (
+        snapshot.phase === 'lobby' || snapshot.phase === 'countdown' ? (
+          <div className={styles.columns}>
+            <Summary snapshot={snapshot} />
+            <Players snapshot={snapshot} room={room} onLeave={leave} />
+          </div>
+        ) : (
+          <LiveBoard snapshot={snapshot} onLeave={leave} />
+        )
       ) : (
         status !== 'unavailable' && <p className={styles.message} role="status">{copy.connecting}</p>
       )}
 
-      {counting && snapshot?.startsAt !== undefined && <CountdownOverlay value={countdownNumber(snapshot.startsAt, now || serverNow())} />}
+      {counting && snapshot?.startsAt !== undefined && <CountdownOverlay value={countdownNumber(snapshot.startsAt, now)} />}
     </div>
   );
 }
@@ -240,7 +254,7 @@ function Summary({ snapshot }: { snapshot: Snapshot }) {
   );
 }
 
-function Players({ snapshot, room, onLeave }: { snapshot: Snapshot; room: ReturnType<typeof useVersusRoom>; onLeave: () => void }) {
+function Players({ snapshot, room, onLeave }: { snapshot: Snapshot; room: RoomConnection; onLeave: () => void }) {
   const me = snapshot.you.playerId;
   const isHost = me !== undefined && snapshot.hostId === me;
   const mine = snapshot.players.find((player) => player.id === me);
@@ -303,5 +317,66 @@ function CountdownOverlay({ value }: { value: number }) {
       <p className={styles.countdownLabel}>{value > 0 ? copy.countdown : copy.starting}</p>
       <p className={styles.countdownNumber} key={value}>{value > 0 ? value : copy.go}</p>
     </div>
+  );
+}
+
+/** El texto de cómo va un jugador, sin intentos ni nombres de lo que probó. */
+function liveLine(snapshot: Snapshot, player: PlayerView): { text: string; tone: 'ready' | 'waiting' | 'away' } {
+  const total = snapshot.config.partidas.length;
+  const view = snapshot.progress.find((item) => item.playerId === player.id);
+  if (player.abandoned) return { text: copy.abandoned, tone: 'away' };
+  if (!player.connected) return { text: copy.disconnected, tone: 'away' };
+  if (!view || view.index === 0) return { text: copy.doneAll, tone: 'ready' };
+  const where = es.versus.partidaOf(Math.min(view.index, total), total);
+  const extra = view.score === undefined ? es.versus.rivals.attempts(view.attempts) : es.versus.rivals.points(view.score);
+  return { text: `${where} · ${extra}`, tone: 'waiting' };
+}
+
+/**
+ * Mientras la sala juega: la tabla en vivo de todos (quien ya terminó espera acá a los demás y quien mira como espectador la
+ * ve en lugar de los botones). Cuando la sala termina, la tabla final (el detalle completo llega en la sesión 32).
+ */
+function LiveBoard({ snapshot, onLeave }: { snapshot: Snapshot; onLeave: () => void }) {
+  const finished = snapshot.phase === 'finished';
+  const own = snapshot.progress.find((item) => item.playerId === snapshot.you.playerId);
+  const waiting = !snapshot.you.spectator && own?.index === 0 && !finished;
+  const rows = finished && snapshot.results ? snapshot.results.table : null;
+  const names = new Map(snapshot.players.map((player) => [player.id, player.name]));
+  return (
+    <section className={styles.players} aria-labelledby="vs-live" data-live-board>
+      <h2 className={styles.heading} id="vs-live">{finished ? copy.finishedTitle : waiting ? copy.waitingOthers : copy.live}</h2>
+      {snapshot.you.spectator && !finished && <p className={styles.hint}>{copy.spectator}</p>}
+      {finished && <p className={styles.hint}>{copy.finishedLead}</p>}
+      {rows ? (
+        <ol className={styles.list}>
+          {rows.map((row) => (
+            <li key={row.playerId} className={styles.player} data-self={row.playerId === snapshot.you.playerId || undefined}>
+              <span className={styles.playerName}><strong>{row.place}.º {names.get(row.playerId) ?? row.playerId}</strong></span>
+              <span className={styles.state}>
+                {row.totalMs !== undefined ? formatClock(row.totalMs) : row.arrivalMs !== undefined ? formatClock(row.arrivalMs) : row.halfPoints !== undefined ? es.versus.rivals.points(row.halfPoints / 2) : '—'}
+              </span>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <ul className={styles.list} role="status">
+          {snapshot.players.map((player) => {
+            const line = liveLine(snapshot, player);
+            return (
+              <li key={player.id} className={styles.player} data-self={player.id === snapshot.you.playerId || undefined}>
+                <span className={styles.playerName}>
+                  {player.id === snapshot.hostId && <Crown />}
+                  <strong>{player.name}</strong>
+                </span>
+                <span className={styles.state} data-tone={line.tone}>{line.text}</span>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+      <div className={styles.leaveRow}>
+        <Button variant="ghost" onClick={onLeave}>{copy.leave}</Button>
+      </div>
+    </section>
   );
 }
