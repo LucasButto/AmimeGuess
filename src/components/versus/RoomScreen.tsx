@@ -13,7 +13,9 @@ import { describePartida, optionLines } from './describe';
 import { formatClock } from './format';
 import { countdownNumber, gameHref, type Notice } from './roomState';
 import { readCredentials, readName, writeName, type Credentials } from './storage';
+import { ResultsScreen } from './ResultsScreen';
 import { useRoomHandle } from './store';
+import { TiebreakPlayingNote, TiebreakScreen } from './TiebreakScreen';
 import type { RoomConnection } from './useVersusRoom';
 import styles from './RoomScreen.module.scss';
 
@@ -181,6 +183,10 @@ function Room({ code }: { code: string }) {
             <Summary snapshot={snapshot} />
             <Players snapshot={snapshot} room={room} onLeave={leave} />
           </div>
+        ) : snapshot.phase === 'tiebreakVote' || snapshot.phase === 'tiebreakSpin' ? (
+          <TiebreakScreen snapshot={snapshot} room={room} />
+        ) : snapshot.phase === 'finished' && snapshot.results ? (
+          <ResultsScreen snapshot={snapshot} results={snapshot.results} room={room} onLeave={leave} />
         ) : (
           <LiveBoard snapshot={snapshot} onLeave={leave} />
         )
@@ -327,7 +333,7 @@ function liveLine(snapshot: Snapshot, player: PlayerView): { text: string; tone:
   if (player.abandoned) return { text: copy.abandoned, tone: 'away' };
   if (!player.connected) return { text: copy.disconnected, tone: 'away' };
   if (!view || view.index === 0) return { text: copy.doneAll, tone: 'ready' };
-  const where = es.versus.partidaOf(Math.min(view.index, total), total);
+  const where = view.index > total ? es.versus.tiebreak.badge : es.versus.partidaOf(view.index, total);
   const extra = view.score === undefined ? es.versus.rivals.attempts(view.attempts) : es.versus.rivals.points(view.score);
   return { text: `${where} · ${extra}`, tone: 'waiting' };
 }
@@ -337,43 +343,31 @@ function liveLine(snapshot: Snapshot, player: PlayerView): { text: string; tone:
  * ve en lugar de los botones). Cuando la sala termina, la tabla final (el detalle completo llega en la sesión 32).
  */
 function LiveBoard({ snapshot, onLeave }: { snapshot: Snapshot; onLeave: () => void }) {
-  const finished = snapshot.phase === 'finished';
+  const tiebreak = snapshot.phase === 'tiebreakPlaying';
   const own = snapshot.progress.find((item) => item.playerId === snapshot.you.playerId);
-  const waiting = !snapshot.you.spectator && own?.index === 0 && !finished;
-  const rows = finished && snapshot.results ? snapshot.results.table : null;
-  const names = new Map(snapshot.players.map((player) => [player.id, player.name]));
+  const waiting = !snapshot.you.spectator && own?.index === 0 && !tiebreak;
+  // En el desempate solo importan los empatados.
+  const tied = snapshot.tiebreak?.players;
+  const players = tiebreak && tied ? snapshot.players.filter((player) => tied.includes(player.id)) : snapshot.players;
   return (
     <section className={styles.players} aria-labelledby="vs-live" data-live-board>
-      <h2 className={styles.heading} id="vs-live">{finished ? copy.finishedTitle : waiting ? copy.waitingOthers : copy.live}</h2>
-      {snapshot.you.spectator && !finished && <p className={styles.hint}>{copy.spectator}</p>}
-      {finished && <p className={styles.hint}>{copy.finishedLead}</p>}
-      {rows ? (
-        <ol className={styles.list}>
-          {rows.map((row) => (
-            <li key={row.playerId} className={styles.player} data-self={row.playerId === snapshot.you.playerId || undefined}>
-              <span className={styles.playerName}><strong>{row.place}.º {names.get(row.playerId) ?? row.playerId}</strong></span>
-              <span className={styles.state}>
-                {row.totalMs !== undefined ? formatClock(row.totalMs) : row.arrivalMs !== undefined ? formatClock(row.arrivalMs) : row.halfPoints !== undefined ? es.versus.rivals.points(row.halfPoints / 2) : '—'}
+      <h2 className={styles.heading} id="vs-live">{tiebreak ? es.versus.tiebreak.playingTitle : waiting ? copy.waitingOthers : copy.live}</h2>
+      {snapshot.you.spectator && <p className={styles.hint}>{copy.spectator}</p>}
+      {tiebreak && <TiebreakPlayingNote snapshot={snapshot} />}
+      <ul className={styles.list} role="status">
+        {players.map((player) => {
+          const line = liveLine(snapshot, player);
+          return (
+            <li key={player.id} className={styles.player} data-self={player.id === snapshot.you.playerId || undefined}>
+              <span className={styles.playerName}>
+                {player.id === snapshot.hostId && <Crown />}
+                <strong>{player.name}</strong>
               </span>
+              <span className={styles.state} data-tone={line.tone}>{line.text}</span>
             </li>
-          ))}
-        </ol>
-      ) : (
-        <ul className={styles.list} role="status">
-          {snapshot.players.map((player) => {
-            const line = liveLine(snapshot, player);
-            return (
-              <li key={player.id} className={styles.player} data-self={player.id === snapshot.you.playerId || undefined}>
-                <span className={styles.playerName}>
-                  {player.id === snapshot.hostId && <Crown />}
-                  <strong>{player.name}</strong>
-                </span>
-                <span className={styles.state} data-tone={line.tone}>{line.text}</span>
-              </li>
-            );
-          })}
-        </ul>
-      )}
+          );
+        })}
+      </ul>
       <div className={styles.leaveRow}>
         <Button variant="ghost" onClick={onLeave}>{copy.leave}</Button>
       </div>

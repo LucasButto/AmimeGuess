@@ -64,6 +64,14 @@ describe('applyMessage', () => {
     const messages: ServerMessage[] = [{ type: 'endNow', index: 1 }, { type: 'timeUp', index: 1 }];
     for (const message of messages) expect(applyMessage(snapshot, message)).toBe(snapshot);
   });
+  it('los votos cuentan cuántos votaron en la votación abierta', () => {
+    const voting = applyMessage(snapshot, { type: 'tiebreak', tiebreak: { round: 1, players: ['p1', 'p2'], played: [], votingEndsAt: 30_000, voted: 0 } });
+    const next = applyMessage(voting, { type: 'votes', voted: 1, total: 2 });
+    expect(next).toMatchObject({ phase: 'tiebreakVote', tiebreak: { voted: 1 } });
+    // Sin votación abierta no cambia nada.
+    expect(applyMessage(snapshot, { type: 'votes', voted: 1, total: 2 })).toBe(snapshot);
+  });
+
   it('la revancha guarda el código de la sala nueva', () => {
     expect(applyMessage(snapshot, { type: 'rematch', code: 'ABCD23' })).toMatchObject({ rematch: 'ABCD23' });
   });

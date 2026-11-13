@@ -435,6 +435,13 @@ export const es = {
   credits: {
     /** Teléfono: la ← de la barra superior vuelve a la pestaña Más. */
     back: "Volver a Más",
+    /** Servicios que usa el sitio (el versus). */
+    services: {
+      title: "Servicios",
+      text: "Las salas del modo versus se alojan en Cloudflare Workers (plan gratuito). Solo guardan los apodos y los resultados de la sala durante 24 horas.",
+      name: "Cloudflare Workers",
+      url: "https://workers.cloudflare.com",
+    },
     pmd: {
       title: "PMD SpriteCollab",
       text: "Usamos sprites de Pokémon Mystery Dungeon para los Pokémon que recorren el fondo y retratos Normal para las miniaturas de la Pokédex. Las imágenes de los retos y de las respuestas conservan su arte original.",
@@ -715,7 +722,7 @@ export const es = {
   notFound: {
     title: "Página no encontrada",
     text: "La página que buscás no existe o cambió de lugar.",
-    home: "Volver al inicio",
+    home: "Salir de la sala",
   },
   // Página "Sin conexión": la muestra el service worker cuando no hay red y la página pedida no se había visitado.
   offline: {
@@ -729,7 +736,7 @@ export const es = {
     title: "Algo salió mal",
     text: "Se produjo un error inesperado. Probá de nuevo; si sigue pasando, volvé al inicio.",
     retry: "Reintentar",
-    home: "Volver al inicio",
+    home: "Salir de la sala",
   },
   meta: {
     franchise: (name: string, modes: number) =>
@@ -1777,6 +1784,68 @@ export const es = {
       modalityLine: (name: string) => `Modalidad: ${name}`,
       partidaLine: (total: number) => `${total} ${total === 1 ? "partida" : "partidas"}`,
       timeLimit: (time: string) => `${time} cada una`,
+    },
+    /** El desempate: votación, ruleta y partida extra. */
+    tiebreak: {
+      title: "¡Empate!",
+      tied: (names: string) => `Empatan en el primer puesto: ${names}.`,
+      choose: "Elegí el modo del desempate.",
+      played: "Modos jugados",
+      other: "Otro modo",
+      otherButton: "Elegir otro modo…",
+      otherTitle: "Otro modo",
+      otherAdd: "Votar este modo",
+      otherPicked: (name: string) => `Tu voto: ${name}`,
+      timeLeft: "Cierra en",
+      seconds: (n: number) => `${n} s`,
+      voted: (done: number, total: number) => `${done} de ${total} ya votaron.`,
+      voteSent: (done: number, total: number) => `Voto enviado · esperando a los demás (${done} de ${total})`,
+      yourVote: "Tu voto",
+      watching: "Los empatados están eligiendo el modo del desempate.",
+      spinTitle: "La ruleta decide",
+      spinSame: (name: string) => `Se juega ${name}`,
+      spinChosen: (name: string) => `Sale ${name}`,
+      slice: (name: string, percent: number) => `${name} · ${percent} %`,
+      playingTitle: "Desempate en juego",
+      playingTied: (names: string) => `Juegan ${names}. Mirás como espectador.`,
+      playingYou: "Te toca jugar el desempate.",
+      badge: "Desempate",
+      round: (n: number) => `Ronda ${n}`,
+      wheel: "Ruleta con las opciones votadas",
+    },
+    /** La pantalla de resultados. */
+    results: {
+      title: "Resultados",
+      winner: (names: string) => `Ganó ${names}`,
+      winners: (names: string) => `Ganaron ${names}`,
+      wonTiebreak: (game: string) => `Ganó el desempate en ${game}`,
+      place: (n: number) => `${n}.º`,
+      solved: (n: number, total: number) => `${n} de ${total} resueltas`,
+      timeTotal: "Tiempo total",
+      arrival: "Llegada",
+      points: "Puntos",
+      pointsValue: (halfPoints: number) => `${(halfPoints / 2).toLocaleString("es-AR")}`,
+      rule: (n: number) => `Cada partida da ${n} ${n === 1 ? "punto" : "puntos"} al 1.º, ${n - 1} al 2.º… y 1 al último. Si hay empate, se reparten los puntos de esos puestos.`,
+      detail: "Detalle por partida",
+      partida: (index: number, total: number) => `Partida ${index} de ${total}`,
+      repeat: (n: number, of: number) => `${n}/${of}`,
+      tiebreakGame: "Desempate",
+      answer: "Respuesta",
+      limit: (time: string) => `+${time}`,
+      attempts: (n: number) => `${n} ${n === 1 ? "intento" : "intentos"}`,
+      score: (n: number) => `${n.toLocaleString("es-AR")} ${n === 1 ? "punto" : "puntos"}`,
+      status: { solved: "Resuelta", failed: "Perdida", surrendered: "Se rindió", timeUp: "Se acabó el tiempo", abandoned: "Se fue", pending: "Sin jugar", playing: "Jugando" },
+      share: "Compartir",
+      shareTitle: "AnimeGuess · Versus",
+      shareText: (modality: string, lines: string, link: string) => `AnimeGuess · Versus (${modality})
+${lines}
+${link}`,
+      shareDone: "Texto copiado",
+      rematch: "Revancha",
+      rematching: "Llevando a todos a la sala nueva…",
+      another: "Crear otra sala",
+      home: "Salir de la sala",
+      host: "El creador puede pedir la revancha.",
     },
     /** Lo que dice Rendirse dentro de una sala (no hay modo infinito). */
     surrenderDescription: "Vas a ver la solución y esta partida quedará como perdida. Pasás a la siguiente.",

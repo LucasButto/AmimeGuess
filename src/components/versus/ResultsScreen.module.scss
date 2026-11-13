@@ -1,0 +1,177 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.root {
+  display: grid;
+  gap: t.$space-4;
+  padding: t.$space-4;
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+}
+
+.winner {
+  display: grid;
+  gap: t.$space-1;
+  justify-items: center;
+  text-align: center;
+
+  @include bp.motion-ok {
+    animation: pop 0.5s cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.title {
+  font-size: t.$font-size-xl;
+  line-height: t.$line-height-tight;
+  overflow-wrap: anywhere;
+}
+
+.sub,
+.rule,
+.hint,
+.label {
+  color: t.color('text-muted');
+  font-size: t.$font-size-sm;
+}
+
+.table,
+.partidas,
+.games {
+  display: grid;
+  gap: t.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: baseline;
+  gap: t.$space-1 t.$space-3;
+  padding: t.$space-2 t.$space-3;
+  border: 0.0625rem solid t.color('border');
+  border-radius: t.$radius-md;
+
+  &[data-self] {
+    border-color: t.color('accent');
+  }
+
+  &[data-first] {
+    background: color-mix(in srgb, t.color('partial') 16%, transparent);
+  }
+
+  @include bp.min-width('md') {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+}
+
+.place {
+  font-weight: t.$font-weight-bold;
+  font-variant-numeric: tabular-nums;
+}
+
+.name {
+  overflow-wrap: anywhere;
+}
+
+.value {
+  grid-column: 2;
+  font-variant-numeric: tabular-nums;
+
+  @include bp.min-width('md') {
+    grid-column: auto;
+  }
+}
+
+.details {
+  border-block-start: 0.0625rem solid t.color('border');
+  padding-block-start: t.$space-3;
+}
+
+.summary {
+  @include m.focus-ring;
+  min-block-size: t.$touch-target;
+  display: flex;
+  align-items: center;
+  font-weight: t.$font-weight-bold;
+  cursor: pointer;
+}
+
+.partida {
+  display: grid;
+  gap: t.$space-2;
+  padding-block: t.$space-3;
+  border-block-end: 0.0625rem solid t.color('border');
+}
+
+.partidaTitle {
+  font-size: t.$font-size-base;
+  overflow-wrap: anywhere;
+}
+
+.answer {
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
+}
+
+.image {
+  flex: none;
+  inline-size: 3rem;
+  block-size: 3rem;
+  object-fit: contain;
+}
+
+.game {
+  display: grid;
+  gap: t.$space-1;
+}
+
+.gameHead {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-1 t.$space-3;
+  font-size: t.$font-size-sm;
+}
+
+.status {
+  color: t.color('text-muted');
+}
+
+.grid {
+  display: grid;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  overflow-x: auto;
+  font-family: ui-monospace, monospace;
+  line-height: 1.2;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-3;
+}
+
+.link {
+  @include m.focus-ring;
+  display: inline-flex;
+  align-items: center;
+  min-block-size: t.$touch-target;
+  color: t.color('accent');
+}

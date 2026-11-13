@@ -41,6 +41,8 @@ export function applyMessage(current: Snapshot | null, message: ServerMessage): 
       return { ...current, phase: 'finished', results: message.results };
     case 'tiebreak':
       return { ...current, phase: 'tiebreakVote', tiebreak: message.tiebreak };
+    case 'votes':
+      return current.tiebreak ? { ...current, tiebreak: { ...current.tiebreak, voted: message.voted } } : current;
     case 'spin':
       return { ...current, phase: 'tiebreakSpin', spin: message.spin };
     case 'tiebreakStart':

@@ -34,7 +34,7 @@ export function VersusClock({ game, frozen }: { game: VersusGame; frozen?: boole
     <section className={styles.root} aria-label={es.versus.modality[game.modality]} data-versus-bar="" data-warning={warning || undefined}>
       <p className={styles.meta}>
         <strong>{es.versus.modality[game.modality]}</strong>
-        <span>{es.versus.partidaOf(game.index, game.total)}</span>
+        <span>{game.index > game.total ? es.versus.tiebreak.badge : es.versus.partidaOf(game.index, game.total)}</span>
       </p>
       {countdown !== null && (
         <p className={styles.clock}>
@@ -66,7 +66,7 @@ export function VersusClock({ game, frozen }: { game: VersusGame; frozen?: boole
                   ? es.versus.rivals.disconnected
                   : !view || view.index === 0
                     ? es.versus.rivals.doneAll
-                    : es.versus.rivals.where(Math.min(view.index, game.total), game.total);
+                    : view.index > game.total ? es.versus.tiebreak.badge : es.versus.rivals.where(view.index, game.total);
               return (
                 <li key={player.id} className={styles.rival} data-self={player.id === room.meId || undefined} data-gone={gone || undefined}>
                   <strong>{player.id === room.meId ? es.versus.rivals.you : player.name}</strong>

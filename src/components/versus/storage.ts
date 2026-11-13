@@ -79,3 +79,23 @@ export function writeTimes(code: string, times: Readonly<Record<number, number>>
     // Sin almacenamiento, el total acumulado se reinicia al recargar.
   }
 }
+
+// --- Partidas guardadas de la sala ---------------------------------------------------------------------------------------------
+
+/** Borra las partidas guardadas (`md:v1:state:…:<día>`) de los días de versus de una sala; no toca nada más. */
+export function clearRoomGames(days: readonly number[]): void {
+  try {
+    const storage = globalThis.localStorage;
+    if (!storage) return;
+    const wanted = new Set(days.map(String));
+    const prefix = `${STORAGE_PREFIX}:state:`;
+    const doomed: string[] = [];
+    for (let index = 0; index < storage.length; index += 1) {
+      const key = storage.key(index);
+      if (key?.startsWith(prefix) && wanted.has(key.slice(key.lastIndexOf(':') + 1))) doomed.push(key);
+    }
+    for (const key of doomed) storage.removeItem(key);
+  } catch {
+    // Sin almacenamiento no hay nada que borrar.
+  }
+}

@@ -47,6 +47,8 @@ interface AddMatchSheetProps {
   remaining: number;
   nextId: () => string;
   onAdd: (block: Block) => void;
+  /** Desempate ("Otro modo"): una sola partida, sin repeticiones. */
+  single?: { title: string; add: string };
 }
 
 /**
@@ -54,7 +56,7 @@ interface AddMatchSheetProps {
  * en Dragon Ball, sus interruptores; arrancan con los guardados) → cuántas veces. Un modo sin pool suficiente con esos filtros
  * no se puede agregar, con el mismo aviso que el panel de filtros del juego.
  */
-export function AddMatchSheet({ open, onClose, remaining, nextId, onAdd }: AddMatchSheetProps) {
+export function AddMatchSheet({ open, onClose, remaining, nextId, onAdd, single }: AddMatchSheetProps) {
   const [slug, setSlug] = useState(franchises[0]?.slug ?? '');
   const franchise = franchises.find((candidate) => candidate.slug === slug);
   const [loaded, setLoaded] = useState<{ slug: string; data: FranchiseData | 'error' } | null>(null);
@@ -130,7 +132,7 @@ export function AddMatchSheet({ open, onClose, remaining, nextId, onAdd }: AddMa
   const enough = mode !== undefined && hasMinimumPool(size, needed);
   const hasForms = mode?.engine === 'stat-builder' && (loadedData?.entitySets?.[mode.entitySet ?? '']?.some((entity) => entity.attrs.statForm !== undefined) ?? false);
   const maxCount = Math.max(1, remaining);
-  const repeats = Math.min(count, maxCount);
+  const repeats = single ? 1 : Math.min(count, maxCount);
 
   function variantId(): string | undefined {
     if (!variants) return undefined;
@@ -151,12 +153,12 @@ export function AddMatchSheet({ open, onClose, remaining, nextId, onAdd }: AddMa
   const footer = (
     <>
       <Button variant="ghost" onClick={onClose}>{copy.cancel}</Button>
-      <Button variant="primary" disabled={!enough || remaining <= 0} onClick={add}>{repeats > 1 ? copy.addMany(repeats) : copy.add}</Button>
+      <Button variant="primary" disabled={!enough || remaining <= 0} onClick={add}>{single ? single.add : repeats > 1 ? copy.addMany(repeats) : copy.add}</Button>
     </>
   );
 
   return (
-    <Sheet open={open} title={copy.title} onClose={onClose} footer={footer}>
+    <Sheet open={open} title={single?.title ?? copy.title} onClose={onClose} footer={footer}>
       <div className={styles.body}>
         <section className={styles.section} aria-labelledby="vs-franchise">
           <h3 className={styles.heading} id="vs-franchise">{copy.franchise}</h3>
@@ -207,7 +209,7 @@ export function AddMatchSheet({ open, onClose, remaining, nextId, onAdd }: AddMa
           </section>
         )}
 
-        {mode && (
+        {mode && !single && (
           <section className={styles.section} aria-label={copy.repeats}>
             <NumberField label={copy.repeats} value={repeats} min={1} max={Math.min(maxCount, LIMITS.partidas.max)} onChange={setCount} hint={copy.repeatsHint(maxCount)} />
           </section>

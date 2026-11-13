@@ -1,0 +1,176 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.root {
+  display: grid;
+  gap: t.$space-4;
+  padding: t.$space-4;
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: t.$space-2 t.$space-3;
+}
+
+.title {
+  font-size: t.$font-size-xl;
+  line-height: t.$line-height-tight;
+}
+
+.round,
+.lead,
+.filters {
+  color: t.color('text-muted');
+  font-size: t.$font-size-sm;
+}
+
+.timer {
+  display: flex;
+  align-items: baseline;
+  gap: t.$space-2;
+
+  strong {
+    font-size: t.$font-size-lg;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+.group {
+  display: grid;
+  gap: t.$space-2;
+}
+
+.groupTitle {
+  font-size: t.$font-size-base;
+}
+
+.cards {
+  display: grid;
+  gap: t.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.min-width('md') {
+    grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  }
+}
+
+.card {
+  @include m.focus-ring;
+  @include m.press;
+  display: grid;
+  gap: t.$space-1;
+  inline-size: 100%;
+  min-block-size: t.$touch-target;
+  padding: t.$space-3;
+  border: 0.125rem solid t.color('border');
+  border-radius: t.$radius-md;
+  background: t.color('surface');
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+
+  &[aria-pressed='true'] {
+    border-color: t.color('accent');
+    background: color-mix(in srgb, t.color('accent') 12%, transparent);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+}
+
+.status {
+  font-weight: t.$font-weight-bold;
+}
+
+.mine {
+  font-weight: t.$font-weight-regular;
+  color: t.color('text-muted');
+}
+
+// --- Ruleta ---------------------------------------------------------------------------------------------------------------
+
+.wheelBox {
+  position: relative;
+  justify-self: center;
+  inline-size: clamp(13rem, 70vw, 20rem);
+  aspect-ratio: 1;
+}
+
+.wheel {
+  inline-size: 100%;
+  block-size: 100%;
+  border: 0.25rem solid t.color('text');
+  border-radius: 50%;
+  // Sin animación (movimiento reducido): queda directo en la posición final, con la porción ganadora bajo el puntero.
+  transform: rotate(var(--final));
+
+  @include bp.motion-ok {
+    animation: spin var(--spin-seconds) cubic-bezier(0.12, 0.7, 0.2, 1) both;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(var(--turn));
+  }
+}
+
+.pointer {
+  position: absolute;
+  inset-block-start: -0.5rem;
+  inset-inline-start: 50%;
+  z-index: 1;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  background: t.color('text');
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transform: translateX(-50%);
+}
+
+.legend {
+  display: grid;
+  gap: t.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  padding: t.$space-2 t.$space-3;
+  border-radius: t.$radius-md;
+
+  &[data-winner] {
+    font-weight: t.$font-weight-bold;
+    background: color-mix(in srgb, t.color('accent') 12%, transparent);
+  }
+}
+
+.swatch {
+  flex: none;
+  inline-size: 1rem;
+  block-size: 1rem;
+  border-radius: 50%;
+}
+
+.chosen {
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+  text-align: center;
+}

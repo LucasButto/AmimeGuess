@@ -66,6 +66,18 @@ export default async function CreditsPage() {
 
         <PmdCredits />
 
+        <section className={styles.section} aria-labelledby="creditos-servicios">
+          <h2 id="creditos-servicios" className={styles.heading}>
+            {es.credits.services.title}
+          </h2>
+          <p>{es.credits.services.text}</p>
+          <p>
+            <a className={styles.link} href={es.credits.services.url} rel="noopener noreferrer">
+              {es.credits.services.name}
+            </a>
+          </p>
+        </section>
+
         <section className={styles.section} aria-labelledby="creditos-textos">
           <h2 id="creditos-textos" className={styles.heading}>
             {reuse.title}
