@@ -1,0 +1,305 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.root {
+  display: grid;
+  gap: t.$space-5;
+  // Lugar para la barra fija de abajo.
+  padding-block-end: t.$space-6;
+}
+
+.heading {
+  font-size: t.$font-size-lg;
+  line-height: t.$line-height-tight;
+}
+
+.note {
+  color: t.color('text-muted');
+  font-size: t.$font-size-sm;
+}
+
+// --- Modalidad ---------------------------------------------------------------------------------------------------------
+
+.modality {
+  display: grid;
+  gap: t.$space-3;
+}
+
+.cards {
+  display: grid;
+  gap: t.$space-3;
+
+  @include bp.min-width('md') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.card {
+  @include m.touch-target;
+  @include m.press(0.99);
+  display: grid;
+  align-content: start;
+  gap: t.$space-1;
+  padding: t.$space-4;
+  border: 0.125rem solid t.color('border');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+  color: t.color('text');
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 0.1875rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+
+  &[aria-checked='true'] {
+    border-color: t.color('accent');
+    background: color-mix(in srgb, t.color('accent') 12%, t.color('surface'));
+    box-shadow: inset 0 0 0 0.0625rem t.color('accent');
+  }
+}
+
+.cardName {
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+}
+
+.cardText {
+  color: t.color('text-muted');
+  font-size: t.$font-size-sm;
+}
+
+// --- Columnas: partidas a la izquierda, opciones a la derecha (desde lg) -------------------------------------------------
+
+.columns {
+  display: grid;
+  gap: t.$space-5;
+
+  @include bp.min-width('lg') {
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    align-items: start;
+  }
+}
+
+.partidas,
+.options,
+.nameBox {
+  display: grid;
+  gap: t.$space-3;
+  padding: t.$space-4;
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+}
+
+.partidasHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: t.$space-1 t.$space-3;
+}
+
+.counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 t.$space-3;
+  color: t.color('text-muted');
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+}
+
+.empty {
+  padding-block: t.$space-4;
+  color: t.color('text-muted');
+  text-align: center;
+}
+
+.blocks {
+  display: grid;
+  gap: t.$space-3;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.block {
+  display: grid;
+  gap: t.$space-3;
+  padding: t.$space-3;
+  border: 0.0625rem solid t.color('border');
+  border-radius: t.$radius-md;
+  background: color-mix(in srgb, t.color('text') 4%, t.color('surface'));
+}
+
+.blockHead {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.blockTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: t.$space-2;
+}
+
+.times {
+  padding-inline: t.$space-2;
+  border-radius: t.$radius-full;
+  background: t.color('accent');
+  color: t.color('accent-contrast');
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+}
+
+.blockMeta {
+  color: t.color('text-muted');
+  font-size: t.$font-size-sm;
+}
+
+.timeRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-2 t.$space-4;
+}
+
+.timeNotes {
+  display: grid;
+  gap: 0.125rem;
+  font-size: t.$font-size-sm;
+}
+
+.timeLabel {
+  font-weight: t.$font-weight-bold;
+}
+
+.link {
+  @include m.focus-ring;
+  justify-self: start;
+  min-block-size: t.$touch-target;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: t.color('accent');
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.blockTools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-2;
+}
+
+.moves {
+  display: flex;
+  gap: t.$space-1;
+}
+
+.tool {
+  @include m.touch-target;
+  @include m.press;
+  display: grid;
+  place-items: center;
+  border: 0.0625rem solid t.color('border');
+  border-radius: t.$radius-md;
+  background: t.color('surface');
+  color: t.color('text');
+  font: inherit;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  &:focus-visible {
+    outline: 0.1875rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+
+  &[data-danger] {
+    color: t.color('miss');
+  }
+}
+
+.addRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-3;
+}
+
+.side {
+  display: grid;
+  gap: t.$space-5;
+}
+
+.fieldLabel {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+}
+
+.aggregation {
+  display: grid;
+  gap: t.$space-2;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-2;
+}
+
+.nameInput {
+  @include m.touch-target;
+  inline-size: 100%;
+  padding-inline: t.$space-3;
+  border: 0.125rem solid t.color('border');
+  border-radius: t.$radius-md;
+  background: t.color('bg');
+  color: t.color('text');
+  font: inherit;
+
+  &:focus-visible {
+    outline: 0.1875rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+
+  &[aria-invalid='true'] {
+    border-color: t.color('miss');
+  }
+}
+
+// --- Crear sala: fija abajo ----------------------------------------------------------------------------------------------
+
+.bar {
+  position: sticky;
+  z-index: 5;
+  inset-block-end: 0;
+  margin-inline: calc(-1 * #{t.$gutter});
+  padding: t.$space-3 t.$gutter calc(#{t.$space-3} + env(safe-area-inset-bottom));
+  border-block-start: 0.0625rem solid t.color('border');
+  background: t.color('surface');
+}
+
+.barInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-3;
+}
+
+.barText {
+  flex: 1;
+  min-inline-size: 0;
+  color: t.color('text-muted');
+  font-size: t.$font-size-sm;
+}

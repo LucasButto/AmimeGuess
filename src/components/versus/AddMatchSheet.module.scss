@@ -1,0 +1,27 @@
+@use 'tokens' as t;
+
+.body {
+  display: grid;
+  gap: t.$space-5;
+}
+
+.section {
+  display: grid;
+  gap: t.$space-2;
+}
+
+.heading {
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-2;
+}
+
+.note {
+  color: t.color('text-muted');
+  font-size: t.$font-size-sm;
+}

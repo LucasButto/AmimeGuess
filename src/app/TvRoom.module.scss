@@ -249,3 +249,6 @@
 }
 
 @include bp.min-width('md') { .panel { grid-row: 1; grid-column: 2; } .badge { grid-row: 2; grid-column: 1 / -1; } }
+
+// La tecla de Versus: la misma forma que las de los canales, con el borde del canal activo para que se note aparte.
+.versusKey { border-color: var(--hub-focus); background: var(--tv-key-light); }

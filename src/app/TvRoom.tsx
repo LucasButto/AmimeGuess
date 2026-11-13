@@ -11,6 +11,7 @@ import { useSiteProgress, useSiteStats } from '@/components/useSiteProgress';
 import { playRecipe } from '@/components/ui/sound';
 import type { SoundRecipe } from '@/franchises/types';
 import { es } from '@/i18n/es';
+import { versusEnabled } from '@/components/versus/enabled';
 import { ChannelEmblem } from './ChannelEmblem';
 import { channelProgress, nextPending, type Channel, type Progress } from './channels';
 import { PhoneDots, PhoneFeed, PhoneTop } from './PhoneHome';
@@ -185,6 +186,7 @@ const BLIP: SoundRecipe = { wave: 'square', gain: 0.05, notes: [{ frequency: 660
  */
 export function TvRoom({ channels }: { channels: readonly Channel[] }) {
   const router = useRouter();
+  const versus = versusEnabled();
   const prefs = usePrefs();
   const playable = channels.filter((channel) => !channel.comingSoon);
   const progress = useSiteProgress(playable.map(({ slug, modes }) => ({ slug, modes })));
@@ -320,11 +322,18 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
         <span className={styles.stand} aria-hidden="true" />
       </section>
       <PhoneDots channels={channels} index={index} />
-      <div className={styles.floor} style={{ '--channel-count': channels.length, '--mobile-columns': Math.min(2, channels.length) } as CSSProperties}>
+      <div className={styles.floor} style={{ '--channel-count': channels.length + (versus ? 1 : 0), '--mobile-columns': Math.min(2, channels.length) } as CSSProperties}>
         <nav className={styles.remote} aria-label={es.home.remoteLabel}>
           {channels.map((channel, position) => (
             <RemoteButton key={channel.slug} channel={channel} active={position === index} progress={progress} onTune={() => tune(position)} onNavigate={enter} />
           ))}
+          {/* Versus: una tecla más, apartada de los canales; solo con la variable `NEXT_PUBLIC_VERSUS_URL`. */}
+          {versus && (
+            <Link className={`${styles.key} ${styles.versusKey}`} href="/versus" data-versus aria-label={es.versus.entry.label}>
+              <span className={styles.keyName} aria-hidden="true">{es.versus.entry.name}</span>
+              <span className={styles.keyCount} aria-hidden="true">{es.versus.entry.live}</span>
+            </Link>
+          )}
         </nav>
       </div>
       {/* Teléfono: lo que sigue (el próximo reto pendiente) y una tarjeta por franquicia. */}

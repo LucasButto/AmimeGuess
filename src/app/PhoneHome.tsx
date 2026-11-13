@@ -2,6 +2,7 @@ import Link from 'next/link';
 import type { CSSProperties } from 'react';
 import { es } from '@/i18n/es';
 import { channelProgress, type Channel, type Progress } from './channels';
+import { versusEnabled } from '@/components/versus/enabled';
 import styles from './PhoneHome.module.scss';
 
 /** Teléfono, arriba del televisor: la racha de todo el sitio (lleva a Estadísticas) y cuánto se resolvió hoy. */
@@ -62,9 +63,20 @@ interface PhoneFeedProps {
 
 /** Teléfono, en lugar del control remoto: "Seguí jugando" (el próximo reto pendiente) y una tarjeta por franquicia. */
 export function PhoneFeed({ channels, progress, next }: PhoneFeedProps) {
+  // Versus: solo con la variable `NEXT_PUBLIC_VERSUS_URL`.
+  const versusCard = versusEnabled() && (
+    <Link className={styles.versusCard} href="/versus" data-versus aria-label={es.versus.entry.label}>
+      <span className={styles.versusText} aria-hidden="true">
+        <strong>{es.versus.entry.name}</strong>
+        <span>{es.versus.entry.tagline}</span>
+      </span>
+      <span className={styles.versusGo} aria-hidden="true">{es.versus.entry.create}</span>
+    </Link>
+  );
   const modeName = next === null || next === 'done' ? '' : next.channel.modeNames[next.mode] ?? next.mode;
   return (
     <div className={styles.feed}>
+      {versusCard}
       {next === 'done' ? (
         <p className={styles.allDone}>{es.home.continueAllDone}</p>
       ) : next === null ? (

@@ -1,0 +1,350 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.root {
+  display: grid;
+  gap: t.$space-5;
+}
+
+.heading {
+  font-size: t.$font-size-lg;
+  line-height: t.$line-height-tight;
+}
+
+.subheading {
+  font-size: t.$font-size-base;
+}
+
+.message,
+.notice {
+  padding: t.$space-3 t.$space-4;
+  border-radius: t.$radius-md;
+  background: t.color('surface');
+}
+
+.notice {
+  display: grid;
+  gap: t.$space-2;
+  border: 0.125rem solid t.color('partial');
+}
+
+.link {
+  @include m.focus-ring;
+  color: t.color('accent');
+}
+
+.hint,
+.lead,
+.waiting {
+  color: t.color('text-muted');
+  font-size: t.$font-size-sm;
+}
+
+.srOnly {
+  position: absolute;
+  inline-size: 0.0625rem;
+  block-size: 0.0625rem;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+// --- Entrar con un apodo -------------------------------------------------------------------------------------------------
+
+.join {
+  display: grid;
+  gap: t.$space-2;
+  max-inline-size: 28rem;
+  padding: t.$space-4;
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+}
+
+.label {
+  font-weight: t.$font-weight-bold;
+}
+
+.input {
+  @include m.touch-target;
+  padding-inline: t.$space-3;
+  border: 0.125rem solid t.color('border');
+  border-radius: t.$radius-md;
+  background: t.color('bg');
+  color: t.color('text');
+  font: inherit;
+
+  &:focus-visible {
+    outline: 0.1875rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+
+  &[aria-invalid='true'] {
+    border-color: t.color('miss');
+  }
+}
+
+// --- El código ---------------------------------------------------------------------------------------------------------
+
+.codeBox {
+  display: grid;
+  justify-items: center;
+  gap: t.$space-2;
+  padding: t.$space-4;
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+  text-align: center;
+}
+
+.codeLabel {
+  color: t.color('text-muted');
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.code {
+  font-family: ui-monospace, 'Courier New', monospace;
+  font-size: clamp(2.25rem, 12vw, 3.75rem);
+  font-weight: t.$font-weight-bold;
+  letter-spacing: 0.18em;
+  // El espacio de la última letra no corre el texto del centro.
+  padding-inline-start: 0.18em;
+  line-height: 1.1;
+}
+
+.codeActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-3;
+}
+
+.copied {
+  color: t.color('match');
+  font-weight: t.$font-weight-bold;
+}
+
+// --- Resumen y jugadores -----------------------------------------------------------------------------------------------
+
+.columns {
+  display: grid;
+  gap: t.$space-5;
+
+  @include bp.min-width('lg') {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+
+.summary,
+.players {
+  display: grid;
+  gap: t.$space-3;
+  padding: t.$space-4;
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+}
+
+.modality {
+  color: t.color('text-muted');
+  font-weight: t.$font-weight-bold;
+}
+
+.groups,
+.list,
+.optionList {
+  display: grid;
+  gap: t.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.group {
+  display: grid;
+  gap: 0.125rem;
+  padding: t.$space-3;
+  border: 0.0625rem solid t.color('border');
+  border-radius: t.$radius-md;
+}
+
+.groupTitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: t.$space-2;
+}
+
+.groupMeta {
+  color: t.color('text-muted');
+  font-size: t.$font-size-sm;
+}
+
+.times {
+  padding-inline: t.$space-2;
+  border-radius: t.$radius-full;
+  background: t.color('accent');
+  color: t.color('accent-contrast');
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+}
+
+.options {
+  display: grid;
+  gap: t.$space-1;
+}
+
+.optionList {
+  color: t.color('text-muted');
+  font-size: t.$font-size-sm;
+}
+
+// --- Jugadores ---------------------------------------------------------------------------------------------------------
+
+.player {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-2 t.$space-3;
+  min-block-size: t.$touch-target;
+  padding: t.$space-2 t.$space-3;
+  border: 0.0625rem solid t.color('border');
+  border-radius: t.$radius-md;
+
+  &[data-self] {
+    border-color: t.color('accent');
+    background: color-mix(in srgb, t.color('accent') 8%, transparent);
+  }
+}
+
+.playerName {
+  position: relative;
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  gap: t.$space-2;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.crown {
+  flex: none;
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+  color: t.color('partial');
+}
+
+.you {
+  padding-inline: t.$space-2;
+  border-radius: t.$radius-full;
+  background: color-mix(in srgb, t.color('text') 10%, transparent);
+  font-size: t.$font-size-sm;
+}
+
+.state {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+
+  &[data-tone='ready'] {
+    color: t.color('match');
+  }
+
+  &[data-tone='waiting'] {
+    color: t.color('text-muted');
+  }
+
+  &[data-tone='away'] {
+    color: t.color('miss');
+  }
+}
+
+.kick {
+  @include m.touch-target;
+  @include m.press;
+  display: grid;
+  place-items: center;
+  border: 0.0625rem solid t.color('border');
+  border-radius: t.$radius-md;
+  background: t.color('surface');
+  color: t.color('miss');
+  font: inherit;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  &:focus-visible {
+    outline: 0.1875rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-2 t.$space-3;
+
+  .hint {
+    flex-basis: 100%;
+  }
+}
+
+.leaveRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+// --- Cuenta regresiva a pantalla completa --------------------------------------------------------------------------------
+
+.countdown {
+  position: fixed;
+  z-index: 60;
+  inset: 0;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: t.$space-3;
+  background: color-mix(in srgb, #000 88%, transparent);
+  color: #fff;
+  text-align: center;
+}
+
+.countdownLabel {
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+}
+
+.countdownNumber {
+  font-size: clamp(6rem, 40vw, 16rem);
+  font-weight: t.$font-weight-bold;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+
+  // Un latido por número: solo `transform` y `opacity`. Con movimiento reducido, solo cambian los números.
+  @include bp.motion-ok {
+    animation: countdown-beat 900ms ease-out both;
+  }
+}
+
+@keyframes countdown-beat {
+  from {
+    opacity: 0;
+    transform: scale(1.4);
+  }
+
+  35% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0.85;
+    transform: scale(0.95);
+  }
+}

@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { SettingsPanel } from '@/components/SettingsPanel';
 import { Sheet } from '@/components/Sheet';
 import { promptInstall, useInstallState } from '@/components/install';
+import { versusEnabled } from '@/components/versus/enabled';
 import { TabPage } from '@/components/tabbar/TabPage';
 import { Button } from '@/components/ui/Button';
 import { es } from '@/i18n/es';
@@ -38,6 +39,14 @@ export function MoreMenu() {
             <span className={styles.rowName}>{more.howTo}</span>
           </button>
         </li>
+        {versusEnabled() && (
+          <li>
+            <Link className={styles.row} href="/versus" data-versus>
+              <span className={styles.rowName}>{more.versus}</span>
+              <span className={styles.rowHint}>{more.versusHint}</span>
+            </Link>
+          </li>
+        )}
         <li>
           <button type="button" className={styles.row} onClick={handleInstall} disabled={install === 'installed'}>
             <span className={styles.rowName}>{install === 'installed' ? more.installed : more.install}</span>

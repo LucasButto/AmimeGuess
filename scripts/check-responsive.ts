@@ -1008,6 +1008,8 @@ const ROUTES: RouteCheck[] = [
   { name: 'retos', path: '/retos' },
   { name: 'estadisticas', path: '/estadisticas' },
   { name: 'mas', path: '/mas' },
+  // Versus (sesión 30): las páginas solo existen con NEXT_PUBLIC_VERSUS_URL (corré el script con la variable puesta).
+  ...(process.env.NEXT_PUBLIC_VERSUS_URL ? [{ name: 'versus', path: '/versus' }, { name: 'versus-sala', path: '/versus/sala?c=K7P2QX' }] : []),
   { name: 'creditos', path: '/creditos' },
   {
     // Con las listas de páginas de origen abiertas: los enlaces de adentro también miden 44 px en teléfono.

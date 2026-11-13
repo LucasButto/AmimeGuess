@@ -86,6 +86,7 @@ export type ClientMessage = z.infer<typeof clientMessageSchema>;
 
 export const PHASES = ['lobby', 'countdown', 'playing', 'tiebreakVote', 'tiebreakSpin', 'tiebreakPlaying', 'finished'] as const;
 export const phaseSchema = z.enum(PHASES);
+export type Phase = (typeof PHASES)[number];
 
 export const playerViewSchema = z.strictObject({
   id: playerId,

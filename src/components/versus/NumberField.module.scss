@@ -1,0 +1,84 @@
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.root {
+  display: grid;
+  gap: t.$space-1;
+}
+
+.label {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+
+  // Compacto: solo para lectores de pantalla (la etiqueta ya está en el texto de al lado).
+  [data-compact] > & {
+    position: absolute;
+    inline-size: 0.0625rem;
+    block-size: 0.0625rem;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+.control {
+  display: inline-grid;
+  grid-template-columns: auto minmax(4rem, 7rem) auto;
+  align-items: stretch;
+  justify-self: start;
+  border: 0.125rem solid t.color('border');
+  border-radius: t.$radius-md;
+  background: t.color('surface');
+  overflow: hidden;
+}
+
+// Compacto: el campo del medio es más angosto (entran un − y un + a cada lado en una fila de teléfono).
+[data-compact] > .control {
+  grid-template-columns: auto minmax(2.5rem, 3.5rem) auto;
+}
+
+.step {
+  @include m.touch-target;
+  @include m.press;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: color-mix(in srgb, t.color('text') 8%, transparent);
+  color: t.color('text');
+  font: inherit;
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+
+  &:focus-visible {
+    outline: 0.1875rem solid t.color('focus');
+    outline-offset: -0.1875rem;
+  }
+}
+
+.input {
+  min-inline-size: 0;
+  padding-inline: t.$space-2;
+  border: 0;
+  background: transparent;
+  color: t.color('text');
+  font: inherit;
+  font-weight: t.$font-weight-bold;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+
+  &:focus-visible {
+    outline: 0.1875rem solid t.color('focus');
+    outline-offset: -0.1875rem;
+  }
+}
+
+.hint {
+  color: t.color('text-muted');
+  font-size: t.$font-size-sm;
+}
