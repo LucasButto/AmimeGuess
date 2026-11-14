@@ -1,0 +1,61 @@
+@use 'retro' as r;
+@use 'tokens' as t;
+
+.panel {
+  @include r.panel;
+  display: grid;
+  gap: t.$space-3;
+  padding: calc(#{t.$space-3} + 0.1875rem);
+  color: r.$ink;
+
+  &[data-selected] {
+    @include r.panel($edge: r.$gold);
+  }
+
+  &[data-big] {
+    @include r.panel($notch: 1rem);
+    padding: calc(#{t.$space-4} + 0.25rem);
+  }
+
+  // La acción principal de la portada: cuerpo rojo con el borde rojo claro y el bisel dorado.
+  &[data-tone='red'] {
+    @include r.panel($fill: linear-gradient(#a3182f, #5f0c1c), $edge: #ff5a6b, $notch: 1rem, $inner: rgb(255 210 63 / 0.8));
+    padding: calc(#{t.$space-4} + 0.25rem);
+  }
+
+  &[data-big]:not([data-tone='red']) {
+    @include r.panel($fill: linear-gradient(#112b6e, #0a1a48), $edge: r.$cyan, $notch: 1rem, $inner: rgb(36 123 255 / 0.9));
+  }
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-2 t.$space-3;
+  // La pestaña sobresale por arriba y a la izquierda del marco.
+  margin: calc(-1 * #{t.$space-3} - 0.1875rem) calc(-1 * #{t.$space-3}) 0 calc(-1 * #{t.$space-3} - 0.1875rem);
+}
+
+.tab {
+  @include r.title(1.15rem, r.$ink);
+  padding: 0.15rem 1.75rem 0.15rem 1rem;
+  background: linear-gradient(#2f86ff, #1348bd);
+  clip-path: polygon(0 0, 100% 0, calc(100% - 0.9rem) 100%, 0 100%);
+  text-shadow: 0.06em 0.06em 0 r.$shadow;
+  font-style: normal;
+  letter-spacing: 0.04em;
+}
+
+.aside {
+  padding-inline-end: t.$space-3;
+  color: r.$muted;
+  font-size: t.$font-size-sm;
+}
+
+.body {
+  display: grid;
+  gap: t.$space-3;
+  min-inline-size: 0;
+}

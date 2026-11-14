@@ -1,0 +1,35 @@
+@use 'breakpoints' as bp;
+@use 'retro' as r;
+
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  background: r.$night;
+  pointer-events: none;
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  background-image: url('/img/versus/backgrounds/arena-mobile.webp');
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  // Pixel art: al agrandar la imagen no se suaviza.
+  image-rendering: pixelated;
+
+  @include bp.min-width('md') {
+    background-image: url('/img/versus/backgrounds/arena-desktop.webp');
+  }
+}
+
+// Un velo que oscurece la zona de lectura (el centro) y deja ver las torres y la pista.
+.shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(rgb(8 13 36 / 0.25), rgb(8 13 36 / 0.1) 30%, rgb(8 13 36 / 0.45)),
+    radial-gradient(ellipse at 50% 45%, rgb(8 13 36 / 0.45), transparent 70%);
+}
