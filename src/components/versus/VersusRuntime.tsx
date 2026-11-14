@@ -27,10 +27,10 @@ export default function VersusRuntime() {
   }, [code]);
 
   if (!code) return null;
-  return <RoomRuntime key={code} code={code} wantsGame={params.has('v')} index={Number(params.get('p'))} />;
+  return <RoomRuntime key={code} code={code} wantsGame={params.has('v')} index={Number(params.get('p'))} pathname={pathname} />;
 }
 
-function RoomRuntime({ code, wantsGame, index }: { code: string; wantsGame: boolean; index: number }) {
+function RoomRuntime({ code, wantsGame, index, pathname }: { code: string; wantsGame: boolean; index: number; pathname: string }) {
   const router = useRouter();
   const [credentials] = useState(() => readCredentials(code));
   const [name, setName] = useState<string | null>(null);
@@ -53,17 +53,25 @@ function RoomRuntime({ code, wantsGame, index }: { code: string; wantsGame: bool
   const checked = useRef<string | null>(null);
   useEffect(() => {
     if (!wantsGame || !snapshot) return;
+    const playing = snapshot.phase === 'playing' || snapshot.phase === 'tiebreakPlaying';
+    // Si la sala sale de "jugando" (votación de desempate, resultados) mientras se está en una partida, todos vuelven a la sala.
+    if (!playing) {
+      checked.current = null;
+      router.replace(salaHref);
+      return;
+    }
     const key = `${code}:${index}`;
     if (checked.current === key) return;
     checked.current = key;
     const own = snapshot.progress.find((item) => item.playerId === snapshot.you.playerId);
-    const playing = snapshot.phase === 'playing' || snapshot.phase === 'tiebreakPlaying';
-    if (snapshot.you.spectator || !playing || !own || own.index === 0) {
+    if (snapshot.you.spectator || !own || own.index === 0) {
       router.replace(salaHref);
       return;
     }
-    if (own.index !== index) router.replace(gameHref(snapshot, own.index) ?? salaHref);
-  }, [wantsGame, snapshot, code, index, router, salaHref]);
+    // También si la ruta no es la de la partida (se cambió el modo en la URL a mano): se va a la que corresponde.
+    const target = gameHref(snapshot, own.index);
+    if (own.index !== index || (target !== null && target.split('?')[0] !== pathname)) router.replace(target ?? salaHref);
+  }, [wantsGame, snapshot, code, index, router, salaHref, pathname]);
 
   const onProgress = useCallback(
     (progress: VersusProgress) => {
@@ -116,6 +124,8 @@ function RoomRuntime({ code, wantsGame, index }: { code: string; wantsGame: bool
     const playing = snapshot.phase === 'playing' || snapshot.phase === 'tiebreakPlaying';
     const partida = index <= snapshot.config.partidas.length ? snapshot.config.partidas[index - 1] : snapshot.tiebreakGames.find((item) => item.index === index)?.partida;
     if (!playing || !partida || !Number.isInteger(index) || index < 1) return null;
+    // Con un `p` que no es de esta página (se cambió la URL a mano), no se arma el juego: la página de otro modo se confundiría con las series de esta partida hasta que se redirige.
+    if (pathname !== `/${partida.franchise}/${partida.mode}`) return null;
     const mine = snapshot.mine?.index === index ? snapshot.mine : undefined;
     return {
       seed: snapshot.seed,
@@ -135,7 +145,7 @@ function RoomRuntime({ code, wantsGame, index }: { code: string; wantsGame: bool
       now: serverNow,
       room: { code, meId: snapshot.you.playerId, players: snapshot.players, progress: snapshot.progress, status: connection.status, notices: connection.notices, finishedMs, onLeave },
     };
-  }, [wantsGame, snapshot, index, connection.stops, connection.status, connection.notices, finishedMs, code, onProgress, onFinish, onLoaded, onNext, onLeave, serverNow]);
+  }, [wantsGame, snapshot, index, pathname, connection.stops, connection.status, connection.notices, finishedMs, code, onProgress, onFinish, onLoaded, onNext, onLeave, serverNow]);
 
   useEffect(() => {
     setVersusStore({ code, handle, game, failure: wantsGame && connection.status === 'unavailable' ? 'unavailable' : null });
