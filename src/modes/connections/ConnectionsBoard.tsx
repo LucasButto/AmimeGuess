@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useId, useMemo, useState } from 'react';
+import { ClueNameHover } from '@/components/game-shell/ClueNames';
 import { DockActions, useDockTarget } from '@/components/game-shell/GameDock';
 import { DeselectIcon, ShuffleIcon } from './icons';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
@@ -201,21 +202,23 @@ export function ConnectionsBoard({ session, config, board, names }: ConnectionsB
           {shown.map((id) => {
             const isSelected = selected.includes(id);
             return (
-              <button
-                key={id}
-                type="button"
-                className={styles.tile}
-                data-tile="true"
-                aria-pressed={isSelected}
-                onClick={() => toggle(id)}
-              >
-                {nameOf(id)}
-                {isSelected && (
-                  <span className={styles.check} aria-hidden="true">
-                    ✓
-                  </span>
-                )}
-              </button>
+              <div key={id} className={styles.cell}>
+                <button
+                  type="button"
+                  className={styles.tile}
+                  data-tile="true"
+                  aria-pressed={isSelected}
+                  onClick={() => toggle(id)}
+                >
+                  {nameOf(id)}
+                  {isSelected && (
+                    <span className={styles.check} aria-hidden="true">
+                      ✓
+                    </span>
+                  )}
+                </button>
+                <ClueNameHover text={nameOf(id)} />
+              </div>
             );
           })}
         </div>

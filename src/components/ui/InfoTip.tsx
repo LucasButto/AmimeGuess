@@ -21,6 +21,11 @@ interface InfoTipProps {
   hideInApp?: boolean;
   /** El puntero sobre el contenedor inmediato también abre la ayuda. */
   hoverParent?: boolean;
+  /**
+   * Solo con el cursor encima del contenedor inmediato: el botón es un ancla invisible que cubre al contenedor, fuera del
+   * teclado y de los lectores (para ponerlo junto a un botón sin anidar botones). Implica `hoverParent`.
+   */
+  hoverOnly?: boolean;
   className?: string;
 }
 
@@ -57,7 +62,7 @@ interface Placement {
  * en el diálogo abierto que contiene al botón), con posición fija: nunca queda recortado dentro de un
  * contenedor con desplazamiento, como la tabla del Clásico.
  */
-export function InfoTip({ text, preview, label, children, compact = false, hideInApp = false, hoverParent = false, className }: InfoTipProps) {
+export function InfoTip({ text, preview, label, children, compact = false, hideInApp = false, hoverParent = false, hoverOnly = false, className }: InfoTipProps) {
   const tipId = useId();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const iconRef = useRef<HTMLSpanElement>(null);
@@ -166,7 +171,7 @@ export function InfoTip({ text, preview, label, children, compact = false, hideI
 
   useEffect(() => {
     const button = buttonRef.current;
-    const target = hoverParent ? button?.parentElement : button;
+    const target = hoverParent || hoverOnly ? button?.parentElement : button;
     if (!target) return;
     function enter(event: PointerEvent) {
       if (event.pointerType !== 'mouse' || !window.matchMedia('(hover: hover)').matches) return;
@@ -184,7 +189,7 @@ export function InfoTip({ text, preview, label, children, compact = false, hideI
       target.removeEventListener('pointerenter', enter);
       target.removeEventListener('pointerleave', leave);
     };
-  }, [close, hoverParent, open, show]);
+  }, [close, hoverOnly, hoverParent, open, show]);
 
   const style = placement
     ? ({ top: `${placement.top}px`, left: `${placement.left}px`, '--arrow-x': `${placement.arrow}px` } as CSSProperties)
@@ -195,8 +200,10 @@ export function InfoTip({ text, preview, label, children, compact = false, hideI
       <button
         ref={buttonRef}
         type="button"
-        className={[children === undefined ? styles.button : styles.term, hideInApp && styles.hideInApp, className].filter(Boolean).join(' ')}
+        className={[hoverOnly ? styles.anchor : children === undefined ? styles.button : styles.term, hideInApp && styles.hideInApp, className].filter(Boolean).join(' ')}
         data-compact={compact}
+        tabIndex={hoverOnly ? -1 : undefined}
+        aria-hidden={hoverOnly || undefined}
         aria-label={label}
         aria-describedby={open ? tipId : undefined}
         aria-expanded={open}

@@ -41,6 +41,17 @@
   }
 }
 
+// Ancla invisible de `hoverOnly`: cubre al contenedor (que debe tener `position: relative`) y no recibe el puntero.
+.anchor {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .dot {
   display: inline-flex;
   align-items: center;
