@@ -595,7 +595,8 @@ async function timelineFinish(page: Page, { phone }: { phone: boolean }): Promis
   for (let attempt = 0; attempt < 3; attempt++) {
     if ((await page.locator(TIMELINE_GAME).getAttribute('data-over')) === 'true') break;
     // Un cambio cualquiera para poder confirmar de nuevo: el primer botón de mover que se pueda usar.
-    const move = page.locator('[data-item] button:not([disabled])').first();
+    // Solo las flechas (con nombre accesible): los nombres con retrato también son botones y no mueven nada.
+    const move = page.locator('[data-item] button[aria-label]:not([aria-label^="Ayuda"]):not([disabled])').first();
     if ((await move.count()) > 0) await move.click();
     await page.getByRole('button', { name: 'Confirmar orden' }).click();
   }
