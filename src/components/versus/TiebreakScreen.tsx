@@ -5,6 +5,7 @@ import { es } from '@/i18n/es';
 import type { Partida } from '@/versus/config';
 import type { Snapshot, SpinView, TiebreakView } from '@/versus/protocol';
 import { AddMatchSheet } from './AddMatchSheet';
+import { ArcadeIcon } from './arcade/ArcadeIcon';
 import { describePartida } from './describe';
 import { namesOf } from './names';
 import type { RoomConnection } from './useVersusRoom';
@@ -70,11 +71,13 @@ function Voting({ snapshot, tiebreak, room }: { snapshot: Snapshot; tiebreak: Ti
   return (
     <section className={styles.root} aria-labelledby="vs-tiebreak" data-tiebreak="vote">
       <header className={styles.header}>
+        <ArcadeIcon name="lightning" size="xl" />
         <h2 className={styles.title} id="vs-tiebreak">{copy.title}</h2>
         {tiebreak.round > 1 && <span className={styles.round}>{copy.round(tiebreak.round)}</span>}
       </header>
       <p className={styles.lead}>{copy.tied(namesOf(snapshot, tiebreak.players))}</p>
       <p className={styles.timer} role="timer">
+        <ArcadeIcon name="stopwatch" size="md" />
         <span>{copy.timeLeft}</span> <strong data-tiebreak-seconds>{seconds === null ? '—' : copy.seconds(seconds)}</strong>
       </p>
 

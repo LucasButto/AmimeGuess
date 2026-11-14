@@ -65,7 +65,7 @@ describe('barra de versus', () => {
 
   it('lista a los rivales por partida, sin intentos, y marca a quien se desconectó o se fue', () => {
     const text = mount(h(VersusClock, { game: game() })).textContent ?? '';
-    expect(text).toContain('Vos');
+    expect(text).toContain('Lucas');
     expect(text).toContain('2/3');
     expect(text).toContain('Desconectado');
     expect(text).toContain('Se fue');

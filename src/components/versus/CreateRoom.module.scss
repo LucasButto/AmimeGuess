@@ -1,17 +1,25 @@
 @use 'breakpoints' as bp;
 @use 'tokens' as t;
 @use 'mixins' as m;
+@use 'retro' as r;
 
 .root {
   display: grid;
   gap: t.$space-5;
   // Lugar para la barra fija de abajo.
   padding-block-end: t.$space-6;
+
+  // En pantallas anchas la caja del apodo sube a la fila del título (ver `VersusFrame`): los hijos pasan a ser de la grilla de la página.
+  @include bp.min-width('lg') {
+    display: contents;
+  }
 }
 
 .heading {
-  font-size: t.$font-size-lg;
-  line-height: t.$line-height-tight;
+  @include r.title(1.15rem, r.$ink);
+  text-shadow: 0.06em 0.06em 0 r.$shadow;
+  font-style: normal;
+  letter-spacing: 0.04em;
 }
 
 .note {
@@ -35,40 +43,62 @@
   }
 }
 
+// Las tres modalidades: tarjetas de selección de luchador (azul disponible, dorado seleccionada).
 .card {
+  @include r.panel;
   @include m.touch-target;
   @include m.press(0.99);
   display: grid;
-  align-content: start;
-  gap: t.$space-1;
-  padding: t.$space-4;
-  border: 0.125rem solid t.color('border');
-  border-radius: t.$radius-lg;
-  background: t.color('surface');
-  color: t.color('text');
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: t.$space-3;
+  padding: t.$space-3 t.$space-4;
+  border: 0;
+  color: r.$ink;
   font: inherit;
   text-align: start;
   cursor: pointer;
 
   &:focus-visible {
-    outline: 0.1875rem solid t.color('focus');
-    outline-offset: 0.125rem;
+    outline: 0.1875rem solid r.$cyan;
+    outline-offset: 0.25rem;
   }
 
   &[aria-checked='true'] {
-    border-color: t.color('accent');
-    background: color-mix(in srgb, t.color('accent') 12%, t.color('surface'));
-    box-shadow: inset 0 0 0 0.0625rem t.color('accent');
+    @include r.panel($fill: #1a2350, $edge: r.$gold);
+    filter: drop-shadow(0 0.25rem 0 r.$shadow) drop-shadow(0 0 0.75rem rgb(255 210 63 / 0.35));
+  }
+
+  @include bp.hover-capable {
+    &:hover:not([aria-checked='true']) {
+      filter: brightness(1.15) drop-shadow(0 0.25rem 0 r.$shadow);
+    }
   }
 }
 
+.cardBody {
+  display: grid;
+  gap: 0.15rem;
+  min-inline-size: 0;
+}
+
 .cardName {
-  font-size: t.$font-size-lg;
-  font-weight: t.$font-weight-bold;
+  color: r.$gold;
+  font-family: r.$font-title;
+  font-size: 1.15rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  text-transform: uppercase;
+
+  .card:not([aria-checked='true']) & {
+    color: r.$ink;
+  }
 }
 
 .cardText {
-  color: t.color('text-muted');
+  color: r.$muted;
   font-size: t.$font-size-sm;
 }
 
@@ -79,25 +109,69 @@
   gap: t.$space-5;
 
   @include bp.min-width('lg') {
-    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
-    align-items: start;
+    grid-template-columns: minmax(0, 1fr);
+    // El panel de partidas ocupa todo el alto que queda (llega hasta abajo de la pantalla).
+    grid-template-rows: minmax(0, 1fr);
+    align-items: stretch;
+    align-self: stretch;
   }
+}
+
+.nameBox {
+  order: 1;
+
+  @include bp.min-width('lg') {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+  }
+}
+
+.modality,
+.columns,
+.bar {
+  @include bp.min-width('lg') {
+    grid-column: 1 / -1;
+  }
+}
+
+.bar {
+  order: 2;
 }
 
 .partidas,
 .options,
 .nameBox {
+  @include r.panel;
   display: grid;
   gap: t.$space-3;
-  padding: t.$space-4;
-  border-radius: t.$radius-lg;
-  background: t.color('surface');
+  padding: calc(#{t.$space-4} + 0.1875rem);
+
+  // La lista de partidas es el panel principal en pantallas anchas: más aire por dentro.
+  &.partidas {
+    @include bp.min-width('lg') {
+      gap: t.$space-4;
+      padding: calc(#{t.$space-5} + 0.1875rem);
+      // La lista toma el alto sobrante y "Agregar partida" / "Crear sala" quedan abajo.
+      grid-template-rows: auto minmax(0, 1fr) auto;
+    }
+  }
+
+  // El título de cada panel es una pestaña inclinada que sobresale por arriba y por la izquierda.
+  > .heading,
+  > .partidasHead > .heading {
+    justify-self: start;
+    margin: calc(-1 * #{t.$space-4} - 0.1875rem) 0 0 calc(-1 * #{t.$space-4} - 0.1875rem);
+    padding: 0.15rem 1.75rem 0.15rem 1rem;
+    background: linear-gradient(#2f86ff, #1348bd);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 0.9rem) 100%, 0 100%);
+  }
 }
 
 .partidasHead {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: flex-start;
   justify-content: space-between;
   gap: t.$space-1 t.$space-3;
 }
@@ -106,7 +180,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0 t.$space-3;
-  color: t.color('text-muted');
+  color: r.$muted;
   font-size: t.$font-size-sm;
   font-weight: t.$font-weight-bold;
 }
@@ -118,25 +192,71 @@
 }
 
 .blocks {
+  // Las tarjetas se miden desde acá al arrastrarlas y al deslizarse a su lugar nuevo.
+  position: relative;
   display: grid;
   gap: t.$space-3;
   margin: 0;
   padding: 0;
   list-style: none;
+
+  @include bp.min-width('lg') {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-content: start;
+  }
 }
 
 .block {
+  position: relative;
   display: grid;
   gap: t.$space-3;
-  padding: t.$space-3;
-  border: 0.0625rem solid t.color('border');
-  border-radius: t.$radius-md;
-  background: color-mix(in srgb, t.color('text') 4%, t.color('surface'));
+  padding: t.$space-3 t.$space-3 t.$space-3 calc(#{t.$space-3} + 2rem);
+  border: 0.125rem solid r.$blue;
+  border-radius: 0.125rem;
+  background: r.$panel-deep;
+  cursor: grab;
+
+  // La que se arrastra sigue al puntero (`--drag-offset` se calcula en cada movimiento) y se despega de la lista.
+  &[data-dragging] {
+    z-index: 2;
+    transform: translate(var(--drag-x, 0), var(--drag-y, 0));
+    border-color: t.color('accent');
+    box-shadow: 0 0.5rem 1.25rem rgb(0 0 0 / 0.45);
+    user-select: none;
+  }
+}
+
+// El asa: desde donde se arrastra (con el dedo, solo desde acá, así el resto de la tarjeta deja desplazar la página).
+.handle {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  inline-size: 2.5rem;
+  border-radius: t.$radius-md 0 0 t.$radius-md;
+  cursor: grab;
+  touch-action: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
+    inline-size: 1rem;
+    block-size: 1.5rem;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, t.color('text-muted') 0.09375rem, transparent 0.125rem) 0 0 / 0.5rem 0.5rem;
+  }
+
+  .block[data-dragging] & {
+    cursor: grabbing;
+  }
 }
 
 .blockHead {
   display: grid;
   gap: 0.125rem;
+  // Lugar para la cruz de arriba a la derecha.
+  padding-inline-end: 5.5rem;
 }
 
 .blockTitle {
@@ -160,11 +280,25 @@
   font-size: t.$font-size-sm;
 }
 
+// Abajo de la tarjeta: el tiempo límite a la izquierda y las flechas de mover a la derecha.
+.blockFoot {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: t.$space-2 t.$space-3;
+}
+
 .timeRow {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.timeControl {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: t.$space-2 t.$space-4;
+  gap: t.$space-2 t.$space-3;
 }
 
 .timeNotes {
@@ -190,43 +324,87 @@
   cursor: pointer;
 }
 
-.blockTools {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: t.$space-2;
+// Los botones de arriba a la derecha de la tarjeta (editar y quitar), mínimos.
+.corner {
+  @include m.touch-target;
+  @include m.press;
+  position: absolute;
+  inset-block-start: 0;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  opacity: 0.8;
+
+  &:focus-visible {
+    outline: 0.1875rem solid r.$cyan;
+    outline-offset: -0.25rem;
+  }
+
+  @include bp.hover-capable {
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
 
+// El tacho de basura (quitar) arriba a la derecha y, a su izquierda, el lápiz (editar).
+.remove {
+  inset-inline-end: 0;
+}
+
+.edit {
+  inset-inline-end: 2.75rem;
+}
+
+// Mover la tarjeta un lugar antes o después: dos flechas mínimas abajo a la derecha.
 .moves {
   display: flex;
-  gap: t.$space-1;
+  justify-content: flex-end;
+  gap: 0;
+  margin-inline-start: auto;
 }
 
-.tool {
+// Una columna (teléfono): las flechas suben y bajan la tarjeta. Dos columnas (desde `lg`): van a la izquierda y a la derecha.
+.move .onlyNarrow {
+  @include bp.min-width('lg') {
+    display: none;
+  }
+}
+
+.move .onlyWide {
+  display: none;
+
+  @include bp.min-width('lg') {
+    display: block;
+  }
+}
+
+.move {
   @include m.touch-target;
   @include m.press;
   display: grid;
   place-items: center;
-  border: 0.0625rem solid t.color('border');
-  border-radius: t.$radius-md;
-  background: t.color('surface');
-  color: t.color('text');
-  font: inherit;
+  border: 0;
+  background: none;
   cursor: pointer;
+  opacity: 0.75;
 
   &:disabled {
-    opacity: 0.4;
+    opacity: 0.25;
     cursor: default;
   }
 
   &:focus-visible {
-    outline: 0.1875rem solid t.color('focus');
-    outline-offset: 0.125rem;
+    outline: 0.1875rem solid r.$cyan;
+    outline-offset: -0.25rem;
   }
 
-  &[data-danger] {
-    color: t.color('miss');
+  @include bp.hover-capable {
+    &:hover:not(:disabled) {
+      opacity: 1;
+    }
   }
 }
 
@@ -235,6 +413,25 @@
   flex-wrap: wrap;
   align-items: center;
   gap: t.$space-3;
+}
+
+// "Crear sala" en la fila de "Agregar partida", a la derecha del todo. Solo desde `lg`; abajo, en el teléfono, queda la barra fija.
+.submitRow {
+  display: none;
+
+  @include bp.min-width('lg') {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-end;
+    gap: t.$space-3;
+    min-inline-size: 0;
+  }
+
+  .barText {
+    flex: 0 1 auto;
+    text-align: end;
+  }
 }
 
 .side {
@@ -259,22 +456,10 @@
 }
 
 .nameInput {
-  @include m.touch-target;
-  inline-size: 100%;
-  padding-inline: t.$space-3;
-  border: 0.125rem solid t.color('border');
-  border-radius: t.$radius-md;
-  background: t.color('bg');
-  color: t.color('text');
-  font: inherit;
-
-  &:focus-visible {
-    outline: 0.1875rem solid t.color('focus');
-    outline-offset: 0.125rem;
-  }
+  @include r.field;
 
   &[aria-invalid='true'] {
-    border-color: t.color('miss');
+    border-color: #ff6b86;
   }
 }
 
@@ -286,8 +471,14 @@
   inset-block-end: 0;
   margin-inline: calc(-1 * #{t.$gutter});
   padding: t.$space-3 t.$gutter calc(#{t.$space-3} + env(safe-area-inset-bottom));
-  border-block-start: 0.0625rem solid t.color('border');
-  background: t.color('surface');
+  border-block-start: 0.1875rem solid r.$blue;
+  background: linear-gradient(r.$panel, r.$night);
+  box-shadow: 0 -0.25rem 0 r.$shadow;
+
+  // Pantallas anchas: "Crear sala" está en la fila de "Agregar partida" (`.submitRow`).
+  @include bp.min-width('lg') {
+    display: none;
+  }
 }
 
 .barInner {

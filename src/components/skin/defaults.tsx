@@ -1,10 +1,11 @@
 // Los valores por defecto de una piel (SPEC 9.2): los componentes que dejó la sesión 14, sobrios o vacíos.
 // Una franquicia sin piel, o una piel que no define un slot, usa estos y se ve con su tema base.
 
-import type { BackNavIconProps, ChipMarkProps, ModeFrameProps, ResolvedSkin, SkinData, SkinSlots } from '@/franchises/types';
+import type { BackNavIconProps, ChipMarkProps, ModeFrameProps, ResolvedSkin, SkinData, SkinSlots, VersusBarProps } from '@/franchises/types';
 import { Autocomplete } from '../Autocomplete';
 import { SHARE_MARKS } from '../game-shell/share';
 import { SiteFooter } from '../SiteFooter';
+import { VersusBarView } from '../versus/VersusBarView';
 import { DefaultModeCard } from './DefaultModeCard';
 import styles from './defaults.module.scss';
 
@@ -46,7 +47,12 @@ function DefaultLoader() {
   return <span aria-hidden="true" className={styles.loader} />;
 }
 
+function DefaultVersusBar(props: VersusBarProps) {
+  return <VersusBarView {...props} />;
+}
+
 export const DEFAULT_SLOTS: SkinSlots = {
+  VersusBar: DefaultVersusBar,
   ComparisonMedia: Nothing,
   RevealListItem: Nothing,
   Backdrop: Nothing,

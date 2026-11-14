@@ -1,6 +1,7 @@
 @use 'breakpoints' as bp;
 @use 'tokens' as t;
 @use 'mixins' as m;
+@use 'retro' as r;
 
 .root {
   display: grid;
@@ -8,36 +9,38 @@
 }
 
 .heading {
-  font-size: t.$font-size-lg;
-  line-height: t.$line-height-tight;
+  @include r.title(1.2rem, r.$ink);
+  text-shadow: 0.06em 0.06em 0 r.$shadow;
+  font-style: normal;
+  letter-spacing: 0.04em;
 }
 
 .subheading {
-  font-size: t.$font-size-base;
+  @include r.label;
 }
 
 .message,
 .notice {
+  @include r.panel;
   padding: t.$space-3 t.$space-4;
-  border-radius: t.$radius-md;
-  background: t.color('surface');
+  color: r.$ink;
 }
 
 .notice {
   display: grid;
   gap: t.$space-2;
-  border: 0.125rem solid t.color('partial');
+  @include r.panel($edge: r.$gold);
 }
 
 .link {
   @include m.focus-ring;
-  color: t.color('accent');
+  color: r.$gold;
 }
 
 .hint,
 .lead,
 .waiting {
-  color: t.color('text-muted');
+  color: r.$muted;
   font-size: t.$font-size-sm;
 }
 
@@ -53,65 +56,88 @@
 // --- Entrar con un apodo -------------------------------------------------------------------------------------------------
 
 .join {
+  @include r.panel;
   display: grid;
   gap: t.$space-2;
   max-inline-size: 28rem;
-  padding: t.$space-4;
-  border-radius: t.$radius-lg;
-  background: t.color('surface');
+  padding: calc(#{t.$space-4} + 0.1875rem);
 }
 
 .label {
-  font-weight: t.$font-weight-bold;
+  @include r.label;
 }
 
 .input {
-  @include m.touch-target;
-  padding-inline: t.$space-3;
-  border: 0.125rem solid t.color('border');
-  border-radius: t.$radius-md;
-  background: t.color('bg');
-  color: t.color('text');
-  font: inherit;
-
-  &:focus-visible {
-    outline: 0.1875rem solid t.color('focus');
-    outline-offset: 0.125rem;
-  }
+  @include r.field;
 
   &[aria-invalid='true'] {
-    border-color: t.color('miss');
+    border-color: #ff6b86;
   }
 }
 
-// --- El código ---------------------------------------------------------------------------------------------------------
+// --- El código de la sala (stage) ---------------------------------------------------------------------------------------
 
 .codeBox {
+  @include r.panel;
   display: grid;
   justify-items: center;
   gap: t.$space-2;
-  padding: t.$space-4;
-  border-radius: t.$radius-lg;
-  background: t.color('surface');
+  padding: 0 0 calc(#{t.$space-4} + 0.1875rem);
   text-align: center;
 }
 
-.codeLabel {
-  color: t.color('text-muted');
-  font-size: t.$font-size-sm;
-  font-weight: t.$font-weight-bold;
-  letter-spacing: 0.08em;
+.stageBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-3;
+  inline-size: 100%;
+  padding: 0.35rem t.$space-4;
+  background: linear-gradient(90deg, #12307a, #0b1a4d);
+  border-block-end: 0.125rem solid r.$blue;
+  color: r.$ink;
+  font-family: r.$font-title;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
+.stageName::before {
+  content: '//';
+  margin-inline-end: 0.5rem;
+  color: r.$red;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.stageCount {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.codeLabel {
+  @include r.label;
+  margin-block-start: t.$space-2;
+}
+
 .code {
-  font-family: ui-monospace, 'Courier New', monospace;
-  font-size: clamp(2.25rem, 12vw, 3.75rem);
-  font-weight: t.$font-weight-bold;
+  @include m.touch-target;
+  display: inline-block;
+  padding: 0.25rem 1.5rem 0.25rem calc(1.5rem + 0.18em);
+  border: 0.1875rem solid r.$cyan;
+  background: #0a1a52;
+  box-shadow: inset 0 0 0 0.125rem #061233, 0 0.25rem 0 r.$shadow;
+  clip-path: r.notch(0.5rem);
+  color: r.$gold;
+  font-family: r.$font-code;
+  font-size: clamp(2rem, 11vw, 3.5rem);
+  font-weight: 700;
   letter-spacing: 0.18em;
-  // El espacio de la última letra no corre el texto del centro.
-  padding-inline-start: 0.18em;
-  line-height: 1.1;
+  line-height: 1.2;
+  text-shadow: 0.06em 0.06em 0 #7a3a00;
 }
 
 .codeActions {
@@ -123,7 +149,7 @@
 }
 
 .copied {
-  color: t.color('match');
+  color: r.$gold;
   font-weight: t.$font-weight-bold;
 }
 
@@ -134,23 +160,34 @@
   gap: t.$space-5;
 
   @include bp.min-width('lg') {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
     align-items: start;
   }
 }
 
 .summary,
 .players {
+  @include r.panel;
   display: grid;
   gap: t.$space-3;
-  padding: t.$space-4;
-  border-radius: t.$radius-lg;
-  background: t.color('surface');
+  padding: calc(#{t.$space-4} + 0.1875rem);
+
+  > .heading {
+    justify-self: start;
+    margin: calc(-1 * #{t.$space-4} - 0.1875rem) 0 0 calc(-1 * #{t.$space-4} - 0.1875rem);
+    padding: 0.15rem 1.75rem 0.15rem 1rem;
+    background: linear-gradient(#2f86ff, #1348bd);
+    clip-path: polygon(0 0, 100% 0, calc(100% - 0.9rem) 100%, 0 100%);
+  }
 }
 
 .modality {
-  color: t.color('text-muted');
-  font-weight: t.$font-weight-bold;
+  color: r.$gold;
+  font-family: r.$font-title;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 .groups,
@@ -164,32 +201,30 @@
 }
 
 .group {
-  display: grid;
-  gap: 0.125rem;
-  padding: t.$space-3;
-  border: 0.0625rem solid t.color('border');
-  border-radius: t.$radius-md;
+  padding: t.$space-2 t.$space-3;
+  border: 0.125rem solid r.$blue;
+  background: r.$panel-deep;
 }
 
 .groupTitle {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
-  gap: t.$space-2;
-}
-
-.groupMeta {
-  color: t.color('text-muted');
-  font-size: t.$font-size-sm;
+  gap: 0 t.$space-2;
+  color: r.$ink;
 }
 
 .times {
   padding-inline: t.$space-2;
-  border-radius: t.$radius-full;
-  background: t.color('accent');
-  color: t.color('accent-contrast');
+  background: r.$gold;
+  color: #2a1400;
   font-size: t.$font-size-sm;
   font-weight: t.$font-weight-bold;
+}
+
+.groupMeta,
+.optionList {
+  color: r.$muted;
+  font-size: t.$font-size-sm;
 }
 
 .options {
@@ -197,80 +232,115 @@
   gap: t.$space-1;
 }
 
-.optionList {
-  color: t.color('text-muted');
-  font-size: t.$font-size-sm;
+// --- Las cartas de los jugadores ---------------------------------------------------------------------------------------
+
+// En la sala son una cuadrícula: dos columnas en el teléfono y hasta cinco en pantallas anchas.
+.list {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  @include bp.min-width('lg') {
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  }
 }
 
-// --- Jugadores ---------------------------------------------------------------------------------------------------------
-
 .player {
-  display: flex;
-  flex-wrap: wrap;
+  // El color de la carta es el de la inicial del apodo (el avatar del abecedario).
+  --c: #247bff;
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-areas:
+    'seat seat'
+    'face name'
+    'state state';
   align-items: center;
-  gap: t.$space-2 t.$space-3;
-  min-block-size: t.$touch-target;
-  padding: t.$space-2 t.$space-3;
-  border: 0.0625rem solid t.color('border');
-  border-radius: t.$radius-md;
+  gap: 0.15rem t.$space-2;
+  min-block-size: 5.5rem;
+  padding: 0.4rem t.$space-3 t.$space-2 0.4rem;
+  border: 0.1875rem solid color-mix(in srgb, var(--c) 75%, #fff);
+  background: linear-gradient(115deg, color-mix(in srgb, var(--c) 55%, #0a1230), color-mix(in srgb, var(--c) 18%, #0a1230));
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 0.6rem), calc(100% - 0.6rem) 100%, 0 100%);
 
   &[data-self] {
-    border-color: t.color('accent');
-    background: color-mix(in srgb, t.color('accent') 8%, transparent);
+    border-color: r.$gold;
   }
+
+  > :nth-child(2) {
+    grid-area: face;
+  }
+}
+
+.seat {
+  grid-area: seat;
+  justify-self: start;
+  padding: 0 0.5rem;
+  background: #000;
+  color: r.$ink;
+  font-family: r.$font-title;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .playerName {
-  position: relative;
+  grid-area: name;
   display: inline-flex;
-  flex: 1;
   align-items: center;
-  gap: t.$space-2;
+  gap: t.$space-1;
   min-inline-size: 0;
+  font-family: r.$font-title;
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.1;
   overflow-wrap: anywhere;
-}
 
-.crown {
-  flex: none;
-  inline-size: 1.25rem;
-  block-size: 1.25rem;
-  color: t.color('partial');
-}
-
-.you {
-  padding-inline: t.$space-2;
-  border-radius: t.$radius-full;
-  background: color-mix(in srgb, t.color('text') 10%, transparent);
-  font-size: t.$font-size-sm;
+  strong {
+    font-weight: 600;
+  }
 }
 
 .state {
-  font-size: t.$font-size-sm;
-  font-weight: t.$font-weight-bold;
+  grid-area: state;
+  justify-self: stretch;
+  justify-content: center;
+  margin-block-start: 0.15rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0 0.5rem;
+  background: rgb(0 0 0 / 0.45);
+  color: r.$ink;
+  font-family: r.$font-title;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 
   &[data-tone='ready'] {
-    color: t.color('match');
-  }
-
-  &[data-tone='waiting'] {
-    color: t.color('text-muted');
+    background: r.$gold;
+    color: #2a1400;
   }
 
   &[data-tone='away'] {
-    color: t.color('miss');
+    background: r.$red-dark;
+    color: #ffd6dc;
   }
 }
 
 .kick {
   @include m.touch-target;
   @include m.press;
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
   display: grid;
   place-items: center;
-  border: 0.0625rem solid t.color('border');
-  border-radius: t.$radius-md;
-  background: t.color('surface');
-  color: t.color('miss');
-  font: inherit;
+  min-block-size: 2.25rem;
+  min-inline-size: 2.25rem;
+  border: 0;
+  background: rgb(0 0 0 / 0.45);
   cursor: pointer;
 
   &:disabled {
@@ -279,20 +349,29 @@
   }
 
   &:focus-visible {
-    outline: 0.1875rem solid t.color('focus');
-    outline-offset: 0.125rem;
+    outline: 0.1875rem solid r.$cyan;
+    outline-offset: -0.25rem;
   }
 }
 
-.actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: t.$space-2 t.$space-3;
+.empty {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.25rem;
+  min-block-size: 5.5rem;
+  border: 0.1875rem dashed rgb(169 184 232 / 0.55);
+  color: r.$muted;
+  font-family: r.$font-title;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
 
-  .hint {
-    flex-basis: 100%;
-  }
+.actions {
+  display: grid;
+  justify-items: center;
+  gap: t.$space-3;
 }
 
 .leaveRow {
@@ -300,7 +379,7 @@
   justify-content: flex-end;
 }
 
-// --- Cuenta regresiva a pantalla completa --------------------------------------------------------------------------------
+// --- Cuenta regresiva y presentación (VS) -------------------------------------------------------------------------------
 
 .countdown {
   position: fixed;
@@ -310,21 +389,104 @@
   align-content: center;
   justify-items: center;
   gap: t.$space-3;
-  background: color-mix(in srgb, #000 88%, transparent);
-  color: #fff;
+  background-color: r.$night;
+  background-image:
+    radial-gradient(circle at 50% 38%, rgb(255 122 28 / 0.35), transparent 55%),
+    repeating-linear-gradient(115deg, #0d1740 0 1.4rem, #0a1232 1.4rem 2.8rem);
+  color: r.$ink;
   text-align: center;
 }
 
 .countdownLabel {
-  font-size: t.$font-size-lg;
-  font-weight: t.$font-weight-bold;
+  @include r.title(clamp(1rem, 4vw, 1.5rem), r.$gold);
+  padding: 0.2rem 1.6rem;
+  background: linear-gradient(#123a8f, #0a2257);
+  border: 0.125rem solid r.$gold;
+  clip-path: r.slant(0.8rem);
+  text-shadow: 0.06em 0.06em 0 r.$shadow;
+  font-style: normal;
+}
+
+.lineup {
+  display: grid;
+  gap: t.$space-1;
+  justify-items: center;
+  font-family: r.$font-title;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.side {
+  max-inline-size: 90vw;
+  padding: 0.1rem 2.5rem;
+  background: linear-gradient(color-mix(in srgb, var(--c) 85%, #fff), color-mix(in srgb, var(--c) 70%, #000));
+  clip-path: r.slant(1rem);
+  color: #fff;
+  font-size: clamp(2rem, 9vw, 3.75rem);
+  letter-spacing: 0.03em;
+  text-shadow: 0.06em 0.06em 0 rgb(0 0 0 / 0.55);
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.vsRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-2;
+}
+
+// El VS (con llamas) y los rayos azules que lo flanquean: los íconos de la hoja, escalados sin suavizado.
+.vs {
+  block-size: clamp(7rem, 30vw, 12rem);
+  transform: rotate(-6deg);
+
+  @include bp.motion-ok {
+    animation: vs-slam 500ms cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+  }
+}
+
+.spark {
+  @include bp.motion-ok {
+    animation: spark-flash 700ms steps(2) infinite alternate;
+  }
+}
+
+.flip {
+  transform: scaleX(-1);
+}
+
+@keyframes spark-flash {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0.45;
+  }
+}
+
+@keyframes vs-slam {
+  from {
+    opacity: 0;
+    transform: rotate(-6deg) scale(2.2);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(-6deg) scale(1);
+  }
 }
 
 .countdownNumber {
-  font-size: clamp(6rem, 40vw, 16rem);
-  font-weight: t.$font-weight-bold;
+  color: r.$gold;
+  font-family: r.$font-code;
+  font-size: clamp(3.5rem, 20vw, 8rem);
+  font-weight: 700;
   font-variant-numeric: tabular-nums;
   line-height: 1;
+  text-shadow: 0.06em 0.06em 0 r.$red-dark, 0.12em 0.12em 0 #000;
 
   // Un latido por número: solo `transform` y `opacity`. Con movimiento reducido, solo cambian los números.
   @include bp.motion-ok {

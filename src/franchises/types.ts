@@ -24,6 +24,25 @@ export type EngineId =
   | 'stat-builder'
   | 'category-board';
 
+/** Los íconos de modo del versus (recortados por `scripts/versus/extract-mode-icons.py`). */
+export type VersusModeIcon =
+  | 'classic'
+  | 'silhouette'
+  | 'description'
+  | 'card'
+  | 'higher-lower'
+  | 'stats'
+  | 'quote'
+  | 'blur'
+  | 'technique'
+  | 'transformation'
+  | 'timeline'
+  | 'moveset'
+  | 'jutsu'
+  | 'eye'
+  | 'team'
+  | 'connections';
+
 export interface ModeConfig {
   readonly categoryBoard?: CategoryBoardConfig;
   readonly statBuilder?: StatBuilderConfig;
@@ -33,6 +52,8 @@ export interface ModeConfig {
   readonly slug: string;
   readonly name: string;
   readonly engine: EngineId;
+  /** El ícono del modo en el versus (`public/img/versus/modes/<nombre>.png`). Sin él, se usa el del motor. */
+  readonly versusIcon?: VersusModeIcon;
   /** Columnas y pistas, solo para los modos con motor `classic`. */
   readonly classic?: ClassicConfig;
   /** Variante e imagen, solo para los modos con motor `image-reveal`. */
@@ -144,6 +165,11 @@ export interface FranchiseConfig {
    * cada serie activa a partir de la segunda. Las series traen más opciones para adivinar, así que más tiempo.
    */
   readonly versusSecondsPerExtraSeries: number;
+  /**
+   * Cómo se llaman las series de esta franquicia en el versus: la forma corta ("+5 s extra por gen") y el plural ("Todas las
+   * generaciones"). Sin esto, "serie" y "series".
+   */
+  readonly versusSeriesWords?: { readonly short: string; readonly plural: string };
 }
 
 // --- Piel (SPEC 9.2, sesiones 15 a 18) --------------------------------------
@@ -287,8 +313,47 @@ export interface RevealListItemProps {
   readonly text?: string;
 }
 
+/** Una línea de la barra de versus: un reloj o un total, con su rótulo y su texto ya formateado. */
+export interface VersusBarClock {
+  readonly label: string;
+  readonly text: string;
+  /** Solo el reloj principal lleva `role="timer"` y marca el aviso de los últimos segundos. */
+  readonly main: boolean;
+}
+
+/** Un jugador en la tira de rivales: nunca lleva sus intentos, solo en qué partida va. */
+export interface VersusBarRival {
+  readonly id: string;
+  readonly name: string;
+  readonly status: string;
+  readonly self: boolean;
+  readonly gone: boolean;
+  /** El color del jugador en la sala (el mismo de la sala de espera y los resultados). */
+  readonly color: string;
+}
+
+/** Lo que la barra de una partida de versus tiene que mostrar (la arma `VersusClock`; la piel solo la dibuja). */
+export interface VersusBarProps {
+  readonly modality: string;
+  /** La modalidad de la sala: elige el ícono (cronómetro, bandera a cuadros o estrella). */
+  readonly modalityKey: 'timeAttack' | 'race' | 'fewestAttempts';
+  readonly partida: string;
+  readonly clocks: readonly VersusBarClock[];
+  /** Los últimos segundos de una Contrarreloj. */
+  readonly warning: boolean;
+  /** Sin sala real (la página de desarrollo) no hay rivales, avisos ni salir. */
+  readonly rivals?: readonly VersusBarRival[];
+  readonly rivalsLabel: string;
+  readonly connection?: string;
+  readonly notice?: string;
+  readonly leaveLabel: string;
+  readonly onLeave?: () => void;
+}
+
 /** Los componentes que una piel puede reemplazar (SPEC 9.2). */
 export interface SkinSlots {
+  /** La barra de una partida de versus: reloj, rivales, avisos y salir (por defecto, la del tema base). */
+  readonly VersusBar: ComponentType<VersusBarProps>;
   readonly ComparisonMedia: ComponentType<ComparisonMediaProps>;
   readonly RevealListItem: ComponentType<RevealListItemProps>;
   /** Fondo de toda la franquicia: fijo detrás del contenido, decorativo. */

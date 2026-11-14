@@ -82,7 +82,7 @@ export const dragonBallConfig = {
   },
   modes: [
     {
-      slug: 'clasico',
+      slug: 'clasico', versusIcon: 'classic',
       name: 'Clásico',
       engine: 'classic',
       classic: {
@@ -102,7 +102,7 @@ export const dragonBallConfig = {
       },
     },
     {
-      slug: 'silueta',
+      slug: 'silueta', versusIcon: 'silhouette',
       name: 'Silueta',
       engine: 'image-reveal',
       // Un zoom sobre la sombra negra del personaje: parte de un costado y se abre hacia el centro (la silueta no se
@@ -110,7 +110,7 @@ export const dragonBallConfig = {
       imageReveal: { variant: 'zoom-silhouette', requireAttr: { key: 'imagenTransparente', equals: 1 } },
     },
     {
-      slug: 'frase',
+      slug: 'frase', versusIcon: 'quote',
       name: 'Frase',
       engine: 'text-clue',
       // Primero se revela a quién va dirigida la frase y luego la raza de quien la dijo.
@@ -125,9 +125,9 @@ export const dragonBallConfig = {
         ],
       },
     },
-    { slug: 'borroso', name: 'Borroso', engine: 'image-reveal', imageReveal: { variant: 'blur' } },
+    { slug: 'borroso', versusIcon: 'blur', name: 'Borroso', engine: 'image-reveal', imageReveal: { variant: 'blur' } },
     {
-      slug: 'tecnica',
+      slug: 'tecnica', versusIcon: 'technique',
       name: 'Técnica',
       engine: 'image-reveal',
       // La imagen es una técnica (cada una con su captura) y la respuesta, quien la usa. Cuenta como acierto
@@ -135,7 +135,7 @@ export const dragonBallConfig = {
       imageReveal: { variant: 'blur', imageContentKind: 'technique' },
     },
     {
-      slug: 'poder',
+      slug: 'poder', versusIcon: 'higher-lower',
       name: 'Nivel de poder',
       engine: 'higher-lower',
       // Personajes y formas en un momento de la historia (la saga va entre paréntesis cuando cambia el poder), de
@@ -155,7 +155,7 @@ export const dragonBallConfig = {
       },
     },
     {
-      slug: 'transformacion',
+      slug: 'transformacion', versusIcon: 'transformation',
       name: 'Transformación',
       engine: 'image-reveal',
       // Se adivina la forma exacta (por ejemplo, "Goku Supersaiyano 3"), no el personaje: las entidades son las formas.
@@ -163,7 +163,7 @@ export const dragonBallConfig = {
       imageReveal: { variant: 'blur' },
     },
     {
-      slug: 'linea-de-tiempo',
+      slug: 'linea-de-tiempo', versusIcon: 'timeline',
       name: 'Línea de tiempo',
       engine: 'timeline',
       // Cinco sucesos de la historia (solo los verificados) para ordenar del más antiguo al más reciente.
@@ -178,7 +178,7 @@ export const dragonBallConfig = {
         levels: [{ count: 5, attempts: 3 }, { count: 10, attempts: 4 }, { count: 15, attempts: 5 }],
       },
     },
-          { slug: 'casillas', name: es.categoryBoard.name, engine: 'category-board', categoryBoard: { reassignCurrent: true, roster: boardJson.roster, exclusions: boardJson.exclusions, categories: boardJson.categories.map((category) => ({ ...category, ...es.categoryBoard.categories[category.id] })) } },
+          { slug: 'casillas', versusIcon: 'moveset', name: es.categoryBoard.name, engine: 'category-board', categoryBoard: { reassignCurrent: true, roster: boardJson.roster, exclusions: boardJson.exclusions, categories: boardJson.categories.map((category) => ({ ...category, ...es.categoryBoard.categories[category.id] })) } },
   ],
   // Manga de acción (sesión 16): paneles de papel crema con tinta negra gruesa sobre el cielo celeste de la serie. Bangers
   // para los títulos (letra de cómic, solo títulos y etiquetas cortas) y Rubik para el texto.

@@ -1,16 +1,59 @@
+@use 'sass:list';
 @use 'breakpoints' as bp;
-@use 'tokens' as t;
 @use 'mixins' as m;
+@use 'retro' as r;
+@use 'tokens' as t;
 
 .root {
+  @include r.panel;
+  position: relative;
   display: grid;
   gap: t.$space-4;
-  padding: t.$space-4;
-  border-radius: t.$radius-lg;
-  background: t.color('surface');
+  padding: calc(#{t.$space-4} + 0.1875rem);
+  overflow: hidden;
+}
+
+// El confeti pixelado: cuadraditos que caen (solo `transform` y `opacity`; quietos con movimiento reducido).
+.confetti {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  span {
+    position: absolute;
+    inset-block-start: -1rem;
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+    background: r.$gold;
+    opacity: 0.85;
+
+    @include bp.motion-ok {
+      animation: fall 3.2s linear infinite;
+    }
+  }
+
+  @for $i from 1 through 18 {
+    span:nth-child(#{$i}) {
+      inset-inline-start: #{($i * 5.3) % 100}#{'%'};
+      animation-delay: #{-($i * 0.37)}s;
+      background: list.nth((#ffd23f, #e92d45, #51deff, #3ddc97, #ff9d1c, #ffffff), ($i % 6) + 1);
+    }
+  }
+}
+
+@keyframes fall {
+  from {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  to {
+    transform: translateY(28rem) rotate(240deg);
+  }
 }
 
 .winner {
+  position: relative;
   display: grid;
   gap: t.$space-1;
   justify-items: center;
@@ -33,19 +76,113 @@
   }
 }
 
+.crown {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-2;
+}
+
+.flip {
+  transform: scaleX(-1);
+}
+
 .title {
-  font-size: t.$font-size-xl;
-  line-height: t.$line-height-tight;
+  @include r.title(clamp(1.6rem, 7vw, 2.75rem), r.$gold);
   overflow-wrap: anywhere;
+  transform: rotate(-2deg);
 }
 
 .sub,
 .rule,
 .hint,
 .label {
-  color: t.color('text-muted');
+  color: r.$muted;
   font-size: t.$font-size-sm;
 }
+
+// --- Podio -----------------------------------------------------------------------------------------------------------------
+
+.podium {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: t.$space-2;
+}
+
+.step {
+  --c: #247bff;
+  display: grid;
+  flex: 1;
+  justify-items: center;
+  gap: t.$space-1;
+  max-inline-size: 8rem;
+  min-inline-size: 0;
+}
+
+.stepName {
+  max-inline-size: 100%;
+  overflow: hidden;
+  font-family: r.$font-title;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stepBlock {
+  display: grid;
+  place-items: start center;
+  inline-size: 100%;
+  padding-block-start: t.$space-1;
+  border: 0.1875rem solid #fff;
+  clip-path: polygon(0.5rem 0, calc(100% - 0.5rem) 0, 100% 0.5rem, 100% 100%, 0 100%, 0 0.5rem);
+  color: #120a2a;
+  font-family: r.$font-title;
+  font-size: 2.75rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.1;
+  background: linear-gradient(#e4eaf8, #98a6c8);
+
+  .step[data-place='1'] & {
+    block-size: 6.5rem;
+    background: linear-gradient(#ffe56f, #ffb800);
+  }
+
+  .step[data-place='2'] & {
+    block-size: 4.5rem;
+  }
+
+  .step[data-place='3'] & {
+    block-size: 3.25rem;
+    background: linear-gradient(#e8a46a, #b0642c);
+  }
+
+  // Los empatados en el primer puesto, al mismo nivel que el primero.
+  .step[data-place='1'] ~ .step[data-place='1'] & {
+    block-size: 6.5rem;
+  }
+
+  @include bp.motion-ok {
+    transform-origin: bottom;
+    animation: rise 600ms cubic-bezier(0.2, 0.9, 0.3, 1.1) both;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0.4;
+    transform: scaleY(0.2);
+  }
+
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+// --- Ranking --------------------------------------------------------------------------------------------------------------
 
 .table,
 .partidas,
@@ -58,38 +195,50 @@
 }
 
 .row {
+  --c: #247bff;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  align-items: baseline;
+  grid-template-columns: auto auto minmax(0, 1fr);
+  align-items: center;
   gap: t.$space-1 t.$space-3;
-  padding: t.$space-2 t.$space-3;
-  border: 0.0625rem solid t.color('border');
-  border-radius: t.$radius-md;
+  padding: t.$space-1 t.$space-3;
+  border: 0.125rem solid color-mix(in srgb, var(--c) 75%, #fff);
+  border-inline-start-width: 0.5rem;
+  background: linear-gradient(110deg, color-mix(in srgb, var(--c) 40%, #0a1230), #0a1230 75%);
 
   &[data-self] {
-    border-color: t.color('accent');
+    box-shadow: 0 0 0 0.125rem r.$gold;
   }
 
   &[data-first] {
-    background: color-mix(in srgb, t.color('partial') 16%, transparent);
+    border-color: r.$gold;
   }
 
   @include bp.min-width('md') {
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-columns: auto auto minmax(0, 1fr) auto;
   }
 }
 
 .place {
-  font-weight: t.$font-weight-bold;
-  font-variant-numeric: tabular-nums;
+  min-inline-size: 2.5rem;
+  color: r.$gold;
+  font-family: r.$font-title;
+  font-size: 1.15rem;
+  font-style: normal;
+  font-weight: 700;
 }
 
 .name {
+  font-family: r.$font-title;
+  font-size: 1.15rem;
+  font-weight: 600;
   overflow-wrap: anywhere;
 }
 
 .value {
-  grid-column: 2;
+  grid-column: 2 / -1;
+  color: r.$ink;
+  font-family: r.$font-code;
+  font-size: 0.85rem;
   font-variant-numeric: tabular-nums;
 
   @include bp.min-width('md') {
@@ -98,7 +247,7 @@
 }
 
 .details {
-  border-block-start: 0.0625rem solid t.color('border');
+  border-block-start: 0.125rem solid r.$blue;
   padding-block-start: t.$space-3;
 }
 
@@ -107,7 +256,12 @@
   min-block-size: t.$touch-target;
   display: flex;
   align-items: center;
-  font-weight: t.$font-weight-bold;
+  color: r.$gold;
+  font-family: r.$font-title;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   cursor: pointer;
 }
 
@@ -115,11 +269,15 @@
   display: grid;
   gap: t.$space-2;
   padding-block: t.$space-3;
-  border-block-end: 0.0625rem solid t.color('border');
+  border-block-end: 0.125rem solid rgb(36 123 255 / 0.4);
 }
 
 .partidaTitle {
-  font-size: t.$font-size-base;
+  color: r.$ink;
+  font-family: r.$font-title;
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
   overflow-wrap: anywhere;
 }
 
@@ -149,7 +307,7 @@
 }
 
 .status {
-  color: t.color('text-muted');
+  color: r.$muted;
 }
 
 .grid {
@@ -173,5 +331,5 @@
   display: inline-flex;
   align-items: center;
   min-block-size: t.$touch-target;
-  color: t.color('accent');
+  color: r.$gold;
 }

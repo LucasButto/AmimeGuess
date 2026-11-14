@@ -10,6 +10,7 @@ export const pokemonConfig = {
   name: 'Pokémon',
   // Versus, Contrarreloj: segundos de más en el tiempo por defecto por cada serie activa desde la segunda.
   versusSecondsPerExtraSeries: 5,
+  versusSeriesWords: { short: 'gen', plural: 'generaciones' },
   entityNoun: { one: 'Pokémon', many: 'Pokémon' },
   entitySetNouns: { 'stat-builder': { one: 'Pokémon', many: 'Pokémon' } },
   series: ['g1', 'g2', 'g3', 'g4', 'g5', 'g6', 'g7', 'g8', 'g9'],
@@ -40,7 +41,7 @@ export const pokemonConfig = {
   autocompleteThumbnails: true,
   modes: [
     {
-      slug: 'clasico',
+      slug: 'clasico', versusIcon: 'classic',
       name: 'Clásico',
       engine: 'classic',
       classic: {
@@ -63,9 +64,9 @@ export const pokemonConfig = {
     },
     // Un zoom sobre la sombra negra del Pokémon: parte de un costado y se abre hacia el centro (la silueta no se ilumina).
     // Usa un recorte más cerrado que el zoom común para revelar la silueta de a poco.
-    { slug: 'silueta', name: 'Silueta', engine: 'image-reveal', imageReveal: { variant: 'zoom-silhouette', zoomScales: [3.7, 3.15, 2.7, 2.3, 1.95, 1.65] } },
+    { slug: 'silueta', versusIcon: 'silhouette', name: 'Silueta', engine: 'image-reveal', imageReveal: { variant: 'zoom-silhouette', zoomScales: [3.7, 3.15, 2.7, 2.3, 1.95, 1.65] } },
     {
-      slug: 'descripcion',
+      slug: 'descripcion', versusIcon: 'description',
       name: 'Descripción',
       engine: 'text-clue',
       // La entrada de la Pokédex en español, con el nombre en "???". Los tipos y la generación ayudan si se falla.
@@ -79,7 +80,7 @@ export const pokemonConfig = {
       },
     },
     {
-      slug: 'carta',
+      slug: 'carta', versusIcon: 'card',
       name: 'Carta',
       engine: 'image-reveal',
       // La imagen es una carta del TCG (hasta 2 por Pokémon, una por día) y la respuesta, su Pokémon.
@@ -109,7 +110,7 @@ export const pokemonConfig = {
       },
     },
     {
-      slug: 'mayor-o-menor',
+      slug: 'mayor-o-menor', versusIcon: 'higher-lower',
       name: 'Mayor o Menor',
       engine: 'higher-lower',
       // Una métrica por día, en este orden; quien juega también puede elegir cuál comparar. Los atributos existen para
@@ -130,7 +131,7 @@ export const pokemonConfig = {
       },
     },
     {
-      slug: 'moveset',
+      slug: 'moveset', versusIcon: 'moveset',
       name: 'Moveset',
       engine: 'reveal-list',
       // Sus 4 movimientos menos comunes, del más común al menos común: cada fallo revela uno más.
@@ -147,7 +148,7 @@ export const pokemonConfig = {
       },
     },
     {
-      slug: 'estadisticas', name: 'Estadísticas', engine: 'stat-builder', entitySet: 'stat-builder',
+      slug: 'estadisticas', versusIcon: 'stats', name: 'Estadísticas', engine: 'stat-builder', entitySet: 'stat-builder',
       statBuilder: { targets: [500, 550, 600], stats: [
         { key: 'ps', label: 'PS' }, { key: 'ataque', label: 'Ataque' }, { key: 'defensa', label: 'Defensa' },
         { key: 'ataqueEspecial', label: 'Ataque especial' }, { key: 'defensaEspecial', label: 'Defensa especial' }, { key: 'velocidad', label: 'Velocidad' },

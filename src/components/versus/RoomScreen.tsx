@@ -2,13 +2,15 @@
 
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useId, useMemo, useRef, useState, useSyncExternalStore } from 'react';
-import { Button } from '@/components/ui/Button';
+import { useEffect, useId, useMemo, useRef, useState, useSyncExternalStore, type CSSProperties } from 'react';
 import { es } from '@/i18n/es';
 import { isRoomCode } from '@/versus/code';
 import { LIMITS, groupRepeats, isValidName } from '@/versus/config';
 import type { PlayerView, Snapshot } from '@/versus/protocol';
 import { lookupRoom, type RoomLookup } from './api';
+import { ArcadeButton } from './arcade/ArcadeButton';
+import { ArcadeIcon } from './arcade/ArcadeIcon';
+import { PlayerAvatar, avatarColor } from './arcade/PlayerAvatar';
 import { describePartida, optionLines } from './describe';
 import { formatClock } from './format';
 import { countdownNumber, gameHref, type Notice } from './roomState';
@@ -36,14 +38,6 @@ function statusOf(player: PlayerView): { label: string; tone: 'ready' | 'waiting
   if (player.abandoned) return { label: copy.abandoned, tone: 'away' };
   if (!player.connected) return { label: copy.disconnected, tone: 'away' };
   return player.ready ? { label: copy.ready, tone: 'ready' } : { label: copy.notReady, tone: 'waiting' };
-}
-
-function Crown() {
-  return (
-    <svg className={styles.crown} viewBox="0 0 24 24" aria-hidden="true" focusable="false" shapeRendering="crispEdges">
-      <path d="M3 7l4 4 5-7 5 7 4-4-2 11H5z" fill="currentColor" />
-    </svg>
-  );
 }
 
 /** `/versus/sala?c=CÓDIGO`: la sala de espera. Conecta con la sala, muestra quiénes están y arranca la partida con la cuenta regresiva. */
@@ -164,15 +158,19 @@ function Room({ code }: { code: string }) {
       {status === 'unavailable' && (
         <div className={styles.notice} role="alert">
           <p>{copy.unavailable}</p>
-          <Button variant="secondary" onClick={() => room?.retry()}>{copy.retry}</Button>
+          <ArcadeButton tone="blue" onClick={() => room?.retry()}>{copy.retry}</ArcadeButton>
         </div>
       )}
 
       <section className={styles.codeBox} aria-labelledby="vs-code">
+        <div className={styles.stageBar}>
+          <span className={styles.stageName}>{copy.stage}</span>
+          {snapshot && <span className={styles.stageCount}><ArcadeIcon name="players" size="sm" /> {snapshot.players.length} / {LIMITS.players.max}</span>}
+        </div>
         <p className={styles.codeLabel} id="vs-code">{copy.codeLabel}</p>
         <p className={styles.code} data-room-code aria-labelledby="vs-code">{code}</p>
         <div className={styles.codeActions}>
-          <Button variant="secondary" onClick={() => void share()}>{typeof navigator !== 'undefined' && typeof navigator.share === 'function' ? copy.share : copy.copy}</Button>
+          <ArcadeButton tone="blue" icon="share" onClick={() => void share()}>{typeof navigator !== 'undefined' && typeof navigator.share === 'function' ? copy.share : copy.copy}</ArcadeButton>
           <span className={styles.copied} role="status">{copied ? copy.copied : ''}</span>
         </div>
       </section>
@@ -194,7 +192,7 @@ function Room({ code }: { code: string }) {
         status !== 'unavailable' && <p className={styles.message} role="status">{copy.connecting}</p>
       )}
 
-      {counting && snapshot?.startsAt !== undefined && <CountdownOverlay value={countdownNumber(snapshot.startsAt, now)} />}
+      {counting && snapshot?.startsAt !== undefined && <CountdownOverlay value={countdownNumber(snapshot.startsAt, now)} snapshot={snapshot} />}
     </div>
   );
 }
@@ -217,7 +215,7 @@ function JoinForm({ code, value, onChange, loading, unavailable, onSubmit }: { c
       <input id={id} className={styles.input} type="text" value={value} maxLength={LIMITS.name.max} autoComplete="nickname" aria-invalid={value !== '' && !valid} onChange={(event) => onChange(event.target.value)} />
       <p className={styles.hint}>{value !== '' && !valid ? es.versus.create.name.invalid : es.versus.create.name.hint}</p>
       {unavailable && <p className={styles.notice} role="alert">{copy.unavailable}</p>}
-      <Button type="submit" variant="primary" disabled={!valid || loading}>{copy.join}</Button>
+      <ArcadeButton type="submit" disabled={!valid || loading}>{copy.join}</ArcadeButton>
     </form>
   );
 }
@@ -272,37 +270,42 @@ function Players({ snapshot, room, onLeave }: { snapshot: Snapshot; room: RoomCo
     <section className={styles.players} aria-labelledby="vs-players">
       <h2 className={styles.heading} id="vs-players">{copy.players}</h2>
       <ul className={styles.list}>
-        {snapshot.players.map((player) => {
+        {snapshot.players.map((player, order) => {
           const state = statusOf(player);
           const self = player.id === me;
           return (
-            <li key={player.id} className={styles.player} data-self={self || undefined}>
+            <li key={player.id} className={styles.player} data-self={self || undefined} data-tone={state.tone} style={{ '--c': avatarColor(player.name) } as CSSProperties}>
+              <span className={styles.seat}>{copy.seat(order + 1)}{player.id === snapshot.hostId ? ` · ${copy.creator}` : ''}</span>
+              <PlayerAvatar name={player.name} size="lg" />
               <span className={styles.playerName}>
-                {player.id === snapshot.hostId && <Crown />}
                 <strong>{player.name}</strong>
-                {player.id === snapshot.hostId && <span className={styles.srOnly}> ({copy.host})</span>}
-                {self && <span className={styles.you}>{copy.you}</span>}
               </span>
-              <span className={styles.state} data-tone={state.tone}>{state.label}</span>
+              <span className={styles.state} data-tone={state.tone}>{state.label}{state.tone === 'ready' && <ArcadeIcon name="check" size="sm" />}</span>
               {isHost && lobby && !self && (
                 <button type="button" className={styles.kick} disabled={!open} aria-label={copy.kick(player.name)} onClick={() => room.send({ type: 'kick', playerId: player.id })}>
-                  <span aria-hidden="true">✕</span>
+                  <ArcadeIcon name="close" size="sm" />
                 </button>
               )}
             </li>
           );
         })}
+        {lobby && snapshot.players.length < LIMITS.players.max && (
+          <li className={styles.empty} aria-hidden="true">
+            <ArcadeIcon name="add-player" size="lg" />
+            <span>{copy.emptySlot}</span>
+          </li>
+        )}
       </ul>
       {lobby && snapshot.players.length < LIMITS.players.max && <p className={styles.waiting}>{copy.waiting(snapshot.players.length, LIMITS.players.max)}</p>}
 
       {mine && lobby && (
         <div className={styles.actions}>
-          <Button variant={mine.ready ? 'secondary' : 'primary'} disabled={!open} aria-pressed={mine.ready} onClick={() => room.send({ type: 'ready', value: !mine.ready })}>
+          <ArcadeButton tone={mine.ready ? 'blue' : 'gold'} icon={mine.ready ? 'close' : 'check'} disabled={!open} aria-pressed={mine.ready} onClick={() => room.send({ type: 'ready', value: !mine.ready })}>
             {mine.ready ? copy.notReadyButton : copy.readyButton}
-          </Button>
+          </ArcadeButton>
           {isHost && (
             <>
-              <Button variant="primary" disabled={!open || !canStart} onClick={() => room.send({ type: 'start' })}>{copy.start}</Button>
+              <ArcadeButton tone="gold" size="lg" disabled={!open || !canStart} onClick={() => room.send({ type: 'start' })}>» {copy.start} «</ArcadeButton>
               {!canStart && <p className={styles.hint}>{copy.startHint}</p>}
             </>
           )}
@@ -310,17 +313,36 @@ function Players({ snapshot, room, onLeave }: { snapshot: Snapshot; room: RoomCo
       )}
       {snapshot.you.spectator && <p className={styles.hint}>{copy.spectator}</p>}
       <div className={styles.leaveRow}>
-        <Button variant="ghost" onClick={onLeave}>{copy.leave}</Button>
+        <ArcadeButton tone="blue" icon="arrow-left" onClick={onLeave}>{copy.leave}</ArcadeButton>
       </div>
     </section>
   );
 }
 
 /** La cuenta regresiva a pantalla completa: 3, 2, 1 (con movimiento reducido, solo los números). */
-function CountdownOverlay({ value }: { value: number }) {
+function CountdownOverlay({ value, snapshot }: { value: number; snapshot: Snapshot }) {
+  // El splash: la primera partida y los jugadores enfrentados ("VS"), con el número abajo.
+  const first = snapshot.config.partidas[0];
+  const me = snapshot.you.playerId;
+  const names = snapshot.players.filter((player) => !player.abandoned);
+  const mineFirst = names.find((player) => player.id === me) ?? names[0];
+  const rivals = names.filter((player) => player !== mineFirst);
   return (
     <div className={styles.countdown} role="timer" aria-live="assertive" data-countdown>
-      <p className={styles.countdownLabel}>{value > 0 ? copy.countdown : copy.starting}</p>
+      {first && <p className={styles.countdownLabel}>{es.versus.partidaOf(1, snapshot.config.partidas.length)} · {describePartida(first).full}</p>}
+      {mineFirst && (
+        <div className={styles.lineup} aria-hidden="true">
+          <span className={styles.side} style={{ '--c': avatarColor(mineFirst.name) } as CSSProperties}>{mineFirst.name}</span>
+          <span className={styles.vsRow}>
+            <ArcadeIcon name="lightning-blue" size="xl" className={styles.spark} />
+            <ArcadeIcon name="versus" size="hero" className={styles.vs} />
+            <ArcadeIcon name="lightning-blue" size="xl" className={`${styles.spark} ${styles.flip}`} />
+          </span>
+          <span className={styles.side} style={{ '--c': avatarColor(rivals[0]?.name ?? '') } as CSSProperties}>
+            {rivals.length > 2 ? `${rivals[0]?.name ?? ''} +${rivals.length - 1}` : rivals.map((player) => player.name).join(' · ')}
+          </span>
+        </div>
+      )}
       <p className={styles.countdownNumber} key={value}>{value > 0 ? value : copy.go}</p>
     </div>
   );
@@ -355,12 +377,14 @@ function LiveBoard({ snapshot, onLeave }: { snapshot: Snapshot; onLeave: () => v
       {snapshot.you.spectator && <p className={styles.hint}>{copy.spectator}</p>}
       {tiebreak && <TiebreakPlayingNote snapshot={snapshot} />}
       <ul className={styles.list} role="status">
-        {players.map((player) => {
+        {players.map((player, order) => {
           const line = liveLine(snapshot, player);
           return (
-            <li key={player.id} className={styles.player} data-self={player.id === snapshot.you.playerId || undefined}>
+            <li key={player.id} className={styles.player} data-self={player.id === snapshot.you.playerId || undefined} data-tone={line.tone} style={{ '--c': avatarColor(player.name) } as CSSProperties}>
+              <span className={styles.seat}>{copy.seat(order + 1)}{player.id === snapshot.hostId ? ` · ${copy.creator}` : ''}</span>
+              <PlayerAvatar name={player.name} size="lg" />
               <span className={styles.playerName}>
-                {player.id === snapshot.hostId && <Crown />}
+                {player.id === snapshot.hostId && <ArcadeIcon name="crown-gold" size="md" label={copy.host} />}
                 <strong>{player.name}</strong>
               </span>
               <span className={styles.state} data-tone={line.tone}>{line.text}</span>
@@ -369,7 +393,7 @@ function LiveBoard({ snapshot, onLeave }: { snapshot: Snapshot; onLeave: () => v
         })}
       </ul>
       <div className={styles.leaveRow}>
-        <Button variant="ghost" onClick={onLeave}>{copy.leave}</Button>
+        <ArcadeButton tone="blue" icon="arrow-left" onClick={onLeave}>{copy.leave}</ArcadeButton>
       </div>
     </section>
   );

@@ -1,3 +1,6 @@
+@use 'breakpoints' as bp;
+@use 'mixins' as m;
+@use 'retro' as r;
 @use 'tokens' as t;
 
 .body {
@@ -11,8 +14,57 @@
 }
 
 .heading {
-  font-size: t.$font-size-base;
-  font-weight: t.$font-weight-bold;
+  @include r.label;
+  font-size: 0.95rem;
+}
+
+// Los minijuegos: tarjetas de selección de luchador (azul disponible, dorado el elegido).
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: t.$space-2;
+
+  @include bp.min-width('md') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.tile {
+  @include r.panel($fill: r.$panel-deep, $notch: 0.35rem);
+  @include m.touch-target;
+  @include m.press(0.98);
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: t.$space-1;
+  padding: t.$space-2;
+  border: 0;
+  color: r.$ink;
+  font-family: r.$font-title;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 0.1875rem solid r.$cyan;
+    outline-offset: 0.25rem;
+  }
+
+  &[aria-pressed='true'] {
+    @include r.panel($fill: #1a2350, $edge: r.$gold, $notch: 0.35rem);
+    color: r.$gold;
+  }
+}
+
+// El ícono propio del modo (cuadrado, con aire alrededor del dibujo): un poco más grande que los íconos del motor.
+.modeIcon {
+  inline-size: 3.25rem;
+  block-size: 3.25rem;
+  image-rendering: pixelated;
+  user-select: none;
 }
 
 .chips {
@@ -24,4 +76,12 @@
 .note {
   color: t.color('text-muted');
   font-size: t.$font-size-sm;
+}
+
+// "Cuántas veces" y "Tiempo límite", uno al lado del otro (uno debajo del otro si no entran).
+.pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: t.$space-3 t.$space-4;
+  align-items: start;
 }

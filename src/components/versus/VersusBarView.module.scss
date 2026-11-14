@@ -1,0 +1,182 @@
+@use 'retro' as r;
+@use 'tokens' as t;
+
+// El HUD de la partida (Retro Battle): panel azul oscuro con el reloj en rojo. Los colores son fijos (no salen de la piel de la
+// franquicia): el minijuego de abajo conserva la suya.
+.root {
+  @include r.panel;
+  display: grid;
+  gap: t.$space-2;
+  padding: calc(#{t.$space-2} + 0.1875rem) calc(#{t.$space-3} + 0.1875rem);
+  color: r.$ink;
+  font-family: r.$font-body;
+  font-size: t.$font-size-sm;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-2 t.$space-4;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 t.$space-2;
+}
+
+.modality {
+  color: r.$gold;
+  font-family: r.$font-title;
+  font-size: 1.05rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.partida {
+  padding: 0 0.75rem;
+  background: #123a8f;
+  border: 0.125rem solid r.$cyan;
+  clip-path: r.slant(0.5rem);
+  color: r.$ink;
+  font-family: r.$font-title;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.clock {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  padding: 0 0.9rem;
+  background: linear-gradient(#e0364d, #9c1428);
+  border: 0.125rem solid #ffa1ac;
+  clip-path: r.slant(0.6rem);
+
+  &[data-small] {
+    background: #0a1a52;
+    border-color: r.$blue;
+  }
+}
+
+.label {
+  color: #ffd6dc;
+  font-family: r.$font-title;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  .clock[data-small] & {
+    color: r.$muted;
+  }
+}
+
+.time {
+  color: r.$gold;
+  font-family: r.$font-code;
+  font-size: 1.35rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0.08em 0.08em 0 #4a0510;
+
+  .clock[data-small] & {
+    font-size: 1.05rem;
+    text-shadow: none;
+  }
+}
+
+// Los últimos 10 segundos: el número se pone blanco sobre el fondo rojo más intenso (siempre con el texto del reloj).
+.root[data-warning] .clock[data-main] {
+  background: linear-gradient(#ff2f4d, #c30d27);
+
+  .time {
+    color: #fff;
+  }
+}
+
+.rivals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-1 t.$space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rival {
+  --c: #247bff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.1rem 0.6rem 0.1rem 0.25rem;
+  background: linear-gradient(110deg, color-mix(in srgb, var(--c) 55%, #0a1230), color-mix(in srgb, var(--c) 18%, #0a1230));
+  border: 0.125rem solid color-mix(in srgb, var(--c) 75%, #fff);
+
+  strong {
+    font-family: r.$font-title;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+
+  span {
+    color: r.$muted;
+    font-size: 0.8rem;
+  }
+
+  &[data-self] {
+    border-color: r.$gold;
+  }
+
+  &[data-gone] {
+    opacity: 0.6;
+  }
+}
+
+.offline {
+  display: flex;
+  align-items: center;
+  gap: t.$space-1;
+  color: #ff8aa0;
+}
+
+.notices {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  color: r.$muted;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.leave {
+  display: inline-flex;
+  align-items: center;
+  gap: t.$space-1;
+  justify-self: end;
+  min-block-size: t.$touch-target;
+  padding: 0 t.$space-3;
+  border: 0.125rem solid r.$blue;
+  background: r.$night;
+  color: r.$ink;
+  font-family: r.$font-title;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 0.1875rem solid r.$cyan;
+    outline-offset: 0.125rem;
+  }
+}

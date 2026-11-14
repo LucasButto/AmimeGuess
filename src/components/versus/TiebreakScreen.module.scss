@@ -1,42 +1,67 @@
 @use 'breakpoints' as bp;
-@use 'tokens' as t;
 @use 'mixins' as m;
+@use 'retro' as r;
+@use 'tokens' as t;
 
 .root {
+  @include r.panel;
   display: grid;
   gap: t.$space-4;
-  padding: t.$space-4;
-  border-radius: t.$radius-lg;
-  background: t.color('surface');
+  padding: calc(#{t.$space-4} + 0.1875rem);
 }
 
 .header {
   display: flex;
   flex-wrap: wrap;
-  align-items: baseline;
+  align-items: center;
   gap: t.$space-2 t.$space-3;
 }
 
 .title {
-  font-size: t.$font-size-xl;
-  line-height: t.$line-height-tight;
+  @include r.title(clamp(1.6rem, 7vw, 2.5rem), #ff6b86);
+  transform: rotate(-2deg);
 }
 
 .round,
 .lead,
 .filters {
-  color: t.color('text-muted');
+  color: r.$muted;
   font-size: t.$font-size-sm;
 }
 
+.round {
+  padding: 0 0.75rem;
+  background: #123a8f;
+  border: 0.125rem solid r.$cyan;
+  clip-path: r.slant(0.5rem);
+  color: r.$ink;
+  font-family: r.$font-title;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 .timer {
-  display: flex;
-  align-items: baseline;
+  display: inline-flex;
+  align-items: center;
+  justify-self: start;
   gap: t.$space-2;
+  padding: 0 1rem;
+  background: linear-gradient(#e0364d, #9c1428);
+  border: 0.125rem solid #ffa1ac;
+  clip-path: r.slant(0.6rem);
+  color: #ffd6dc;
+  font-family: r.$font-title;
+  font-size: 1.2rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 
   strong {
-    font-size: t.$font-size-lg;
+    color: r.$gold;
+    font-family: r.$font-code;
+    font-size: 1.35rem;
     font-variant-numeric: tabular-nums;
+    text-shadow: 0.08em 0.08em 0 #4a0510;
   }
 }
 
@@ -46,7 +71,8 @@
 }
 
 .groupTitle {
-  font-size: t.$font-size-base;
+  @include r.label;
+  font-size: 1.25rem;
 }
 
 .cards {
@@ -61,25 +87,41 @@
   }
 }
 
+// Las opciones del desempate: tarjetas de selección (azul disponible, dorado el voto propio).
 .card {
-  @include m.focus-ring;
-  @include m.press;
+  @include r.panel($fill: r.$panel-deep, $notch: 0.35rem);
+  @include m.touch-target;
+  @include m.press(0.99);
   display: grid;
   gap: t.$space-1;
   inline-size: 100%;
-  min-block-size: t.$touch-target;
   padding: t.$space-3;
-  border: 0.125rem solid t.color('border');
-  border-radius: t.$radius-md;
-  background: t.color('surface');
-  color: inherit;
+  border: 0;
+  color: r.$ink;
   font: inherit;
   text-align: start;
   cursor: pointer;
 
+  strong {
+    color: r.$ink;
+    font-family: r.$font-title;
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
   &[aria-pressed='true'] {
-    border-color: t.color('accent');
-    background: color-mix(in srgb, t.color('accent') 12%, transparent);
+    @include r.panel($fill: #1a2350, $edge: r.$gold, $notch: 0.35rem);
+
+    strong {
+      color: r.$gold;
+    }
+  }
+
+  &:focus-visible {
+    outline: 0.1875rem solid r.$cyan;
+    outline-offset: 0.25rem;
   }
 
   &:disabled {
@@ -89,12 +131,13 @@
 }
 
 .status {
+  color: r.$gold;
   font-weight: t.$font-weight-bold;
 }
 
 .mine {
+  color: r.$muted;
   font-weight: t.$font-weight-regular;
-  color: t.color('text-muted');
 }
 
 // --- Ruleta ---------------------------------------------------------------------------------------------------------------
@@ -109,8 +152,9 @@
 .wheel {
   inline-size: 100%;
   block-size: 100%;
-  border: 0.25rem solid t.color('text');
+  border: 0.375rem solid r.$gold;
   border-radius: 50%;
+  box-shadow: 0 0 0 0.1875rem r.$shadow, 0 0.5rem 0 r.$shadow;
   // Sin animación (movimiento reducido): queda directo en la posición final, con la porción ganadora bajo el puntero.
   transform: rotate(var(--final));
 
@@ -131,12 +175,13 @@
 
 .pointer {
   position: absolute;
-  inset-block-start: -0.5rem;
+  inset-block-start: -0.75rem;
   inset-inline-start: 50%;
   z-index: 1;
-  inline-size: 1.5rem;
-  block-size: 1.5rem;
-  background: t.color('text');
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  background: r.$red;
+  border: 0.125rem solid #fff;
   clip-path: polygon(0 0, 100% 0, 50% 100%);
   transform: translateX(-50%);
 }
@@ -154,11 +199,13 @@
   align-items: center;
   gap: t.$space-2;
   padding: t.$space-2 t.$space-3;
-  border-radius: t.$radius-md;
+  border: 0.125rem solid r.$blue;
+  background: r.$panel-deep;
 
   &[data-winner] {
+    border-color: r.$gold;
+    color: r.$gold;
     font-weight: t.$font-weight-bold;
-    background: color-mix(in srgb, t.color('accent') 12%, transparent);
   }
 }
 
@@ -166,11 +213,10 @@
   flex: none;
   inline-size: 1rem;
   block-size: 1rem;
-  border-radius: 50%;
+  border: 0.125rem solid #fff;
 }
 
 .chosen {
-  font-size: t.$font-size-lg;
-  font-weight: t.$font-weight-bold;
+  @include r.title(clamp(1.5rem, 6vw, 2.25rem), r.$gold);
   text-align: center;
 }

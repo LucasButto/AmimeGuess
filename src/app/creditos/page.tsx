@@ -71,6 +71,7 @@ export default async function CreditsPage() {
             {es.credits.services.title}
           </h2>
           <p>{es.credits.services.text}</p>
+          <p>{es.credits.services.retro}</p>
           <p>
             <a className={styles.link} href={es.credits.services.url} rel="noopener noreferrer">
               {es.credits.services.name}

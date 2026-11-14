@@ -85,11 +85,12 @@ export function describePartida(partida: Pick<Partida, 'franchise' | 'mode' | 'v
   const franchiseName = franchise?.name ?? partida.franchise;
   const modeName = mode?.name ?? partida.mode;
   const all = franchise ? partida.series.length === franchise.series.length : false;
+  const plural = franchise?.versusSeriesWords?.plural ?? 'series';
   const series = all
-    ? copy.partidas.allSeries
+    ? copy.partidas.allSeries(plural)
     : partida.series.length <= 3
       ? partida.series.map((id) => franchise?.seriesLabels[id] ?? id).join(', ')
-      : copy.partidas.seriesCount(partida.series.length, franchise?.series.length ?? partida.series.length);
+      : copy.partidas.seriesCount(partida.series.length, franchise?.series.length ?? partida.series.length, plural);
   const off = Object.entries(partida.toggles ?? {})
     .filter(([, on]) => !on)
     .map(([id]) => copy.partidas.toggleOff(id === 'manga' ? es.filters.manga : es.filters.filler));

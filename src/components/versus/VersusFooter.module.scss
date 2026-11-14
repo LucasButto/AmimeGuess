@@ -1,0 +1,57 @@
+@use 'mixins' as m;
+@use 'retro' as r;
+@use 'tokens' as t;
+
+.footer {
+  position: relative;
+  z-index: 1;
+  margin-block-start: auto;
+  padding: t.$space-4 t.$gutter calc(#{t.$space-5} + env(safe-area-inset-bottom));
+}
+
+.box {
+  @include r.panel;
+  @include m.container(t.$container-wide);
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: t.$space-1;
+  // Lugar a la derecha para la cruz de cerrar (44 px).
+  padding: t.$space-4 3.5rem t.$space-3 t.$space-4;
+}
+
+.notice {
+  color: r.$ink;
+  font-size: t.$font-size-sm;
+  text-align: center;
+}
+
+.link {
+  @include m.touch-target;
+  @include m.focus-ring;
+  display: inline-flex;
+  align-items: center;
+  color: r.$gold;
+  font-family: r.$font-title;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+// La cruz de cerrar: en la esquina de arriba a la derecha del recuadro.
+.close {
+  @include m.touch-target;
+  position: absolute;
+  inset-block-start: 0.25rem;
+  inset-inline-end: 0.25rem;
+  display: grid;
+  place-items: center;
+  border: 0.125rem solid r.$red-dark;
+  background: linear-gradient(#ff5b70, #c41830);
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 0.1875rem solid r.$cyan;
+    outline-offset: 0.125rem;
+  }
+}

@@ -1,17 +1,18 @@
+@use 'retro' as r;
 @use 'tokens' as t;
-@use 'mixins' as m;
 
+// El resumen entre partidas (Retro Battle): colores fijos, el minijuego de arriba conserva su piel.
 .root {
-  @include m.pixel-frame;
+  @include r.panel;
   display: grid;
   gap: t.$space-3;
-  padding: calc(#{t.$space-4} + #{t.token('frame-width')} + #{t.token('frame-inner-width')});
+  padding: calc(#{t.$space-4} + 0.1875rem);
+  color: r.$ink;
+  font-family: r.$font-body;
 }
 
 .title {
-  @include m.heading;
-  font-size: t.$font-size-base;
-  line-height: t.$line-height-tight;
+  @include r.title(clamp(1.75rem, 7vw, 2.5rem), r.$gold);
 }
 
 .answer {
@@ -27,5 +28,5 @@
 }
 
 .label {
-  color: t.color('text-muted');
+  color: r.$muted;
 }

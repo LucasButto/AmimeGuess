@@ -2,12 +2,14 @@
 
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { ContentImage } from '@/components/ContentImage';
-import { Button } from '@/components/ui/Button';
 import { es } from '@/i18n/es';
 import type { Results, Snapshot } from '@/versus/protocol';
 import { versusDay } from '@/versus/seed';
+import { ArcadeButton } from './arcade/ArcadeButton';
+import { ArcadeIcon } from './arcade/ArcadeIcon';
+import { PlayerAvatar, avatarColor } from './arcade/PlayerAvatar';
 import { describePartida } from './describe';
 import { formatClock } from './format';
 import { placesOf, pointsOf, repeatMarks, solvedCounts, tableLines } from './resultsView';
@@ -43,6 +45,10 @@ export function ResultsScreen({ snapshot, results, room, onLeave }: { snapshot: 
   const [shared, setShared] = useState(false);
   const [rematching, setRematching] = useState(false);
   const tiebreakGame = results.partidas.filter((partida) => partida.tiebreak).at(-1);
+  const colorOf = (id: string) => avatarColor(names.get(id) ?? '');
+  // El podio: segundo, primero y tercero (solo los tres primeros puestos; los empatados en el primer puesto ocupan el centro).
+  const top = lines.filter((line) => line.place <= 3).slice(0, 3);
+  const podium = top.length === 3 ? [top[1]!, top[0]!, top[2]!] : top.length === 2 ? [top[1]!, top[0]!] : top;
   const marks = repeatMarks(results.partidas.filter((partida) => !partida.tiebreak).map((partida) => partida.partida));
 
   // Al ver los resultados se borran las partidas guardadas de la sala (solo esas).
@@ -75,17 +81,36 @@ export function ResultsScreen({ snapshot, results, room, onLeave }: { snapshot: 
 
   return (
     <section className={styles.root} aria-labelledby="vs-results" data-results>
+      <div className={styles.confetti} aria-hidden="true">
+        {Array.from({ length: 18 }, (_, index) => <span key={index} />)}
+      </div>
       <header className={styles.winner}>
-        <h2 className={styles.title} id="vs-results">
-          {winners.length === 1 ? copy.winner(winners[0]!.name) : copy.winners(winners.map((line) => line.name).join(', '))}
-        </h2>
+        <div className={styles.crown}>
+          <ArcadeIcon name="laurel" size="xl" />
+          <h2 className={styles.title} id="vs-results">
+            {winners.length === 1 ? copy.winner(winners[0]!.name) : copy.winners(winners.map((line) => line.name).join(', '))}
+          </h2>
+          <ArcadeIcon name="laurel" size="xl" className={styles.flip} />
+        </div>
         {results.tiebreakWon && tiebreakGame && <p className={styles.sub}>{copy.wonTiebreak(describePartida(tiebreakGame.partida).full)}</p>}
       </header>
 
+      <div className={styles.podium} aria-hidden="true">
+        {podium.map((entry) => (
+          <div key={entry.playerId} className={styles.step} data-place={entry.place} style={{ '--c': colorOf(entry.playerId) } as CSSProperties}>
+            {entry.place === 1 && <ArcadeIcon name="trophy" size="xl" />}
+            <PlayerAvatar name={names.get(entry.playerId) ?? '?'} size="md" />
+            <span className={styles.stepName}>{names.get(entry.playerId) ?? '?'}</span>
+            <span className={styles.stepBlock}>{entry.place}</span>
+          </div>
+        ))}
+      </div>
+
       <ol className={styles.table} aria-label={copy.title}>
         {results.table.map((row) => (
-          <li key={row.playerId} className={styles.row} data-self={row.playerId === snapshot.you.playerId || undefined} data-first={row.place === 1 || undefined}>
+          <li key={row.playerId} className={styles.row} data-self={row.playerId === snapshot.you.playerId || undefined} data-first={row.place === 1 || undefined} style={{ '--c': colorOf(row.playerId) } as CSSProperties}>
             <span className={styles.place}>{copy.place(row.place)}</span>
+            <PlayerAvatar name={names.get(row.playerId) ?? '?'} size="sm" />
             <strong className={styles.name}>{names.get(row.playerId) ?? '?'}</strong>
             <span className={styles.value}>{valueOf(results, row, solved[row.playerId] ?? 0, total)}</span>
           </li>
@@ -151,10 +176,11 @@ export function ResultsScreen({ snapshot, results, room, onLeave }: { snapshot: 
       </details>
 
       <div className={styles.actions}>
-        <Button variant="secondary" onClick={() => void share()}>{shared ? copy.shareDone : copy.share}</Button>
+        <ArcadeButton tone="blue" icon="share" onClick={() => void share()}>{shared ? copy.shareDone : copy.share}</ArcadeButton>
         {isHost ? (
-          <Button
-            variant="primary"
+          <ArcadeButton
+            tone="red"
+            icon="refresh"
             disabled={rematching || room.status !== 'open'}
             onClick={() => {
               setRematching(true);
@@ -162,12 +188,12 @@ export function ResultsScreen({ snapshot, results, room, onLeave }: { snapshot: 
             }}
           >
             {rematching ? copy.rematching : copy.rematch}
-          </Button>
+          </ArcadeButton>
         ) : (
           <p className={styles.hint}>{copy.host}</p>
         )}
-        <Link className={styles.link} href="/versus">{copy.another}</Link>
-        <Button variant="ghost" onClick={onLeave}>{copy.home}</Button>
+        <Link className={styles.link} href="/versus/crear">{copy.another}</Link>
+        <ArcadeButton tone="blue" icon="arrow-left" onClick={onLeave}>{copy.home}</ArcadeButton>
       </div>
     </section>
   );

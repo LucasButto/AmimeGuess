@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { ContentImage } from '@/components/ContentImage';
 import type { FinishReport } from '@/components/game-shell/types';
-import { Button } from '@/components/ui/Button';
+import { ArcadeButton } from './arcade/ArcadeButton';
 import { es } from '@/i18n/es';
 import { formatClock } from './format';
 import type { VersusGame } from './VersusGameContext';
@@ -51,7 +51,7 @@ export function VersusSummary({ game, report, elapsedMs }: { game: VersusGame; r
       )}
       {game.onNext && (
         <div>
-          <Button variant="primary" onClick={game.onNext}>{es.versus.summary.next}</Button>
+          <ArcadeButton tone="gold" icon="arrow-right" onClick={game.onNext}>{es.versus.summary.next}</ArcadeButton>
         </div>
       )}
     </section>
