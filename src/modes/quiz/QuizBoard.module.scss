@@ -116,6 +116,13 @@
     opacity: 0.55;
   }
 
+  // Teléfono: la opción marcada, todavía sin confirmar (como una casilla elegida de Conexiones).
+  &[aria-pressed='true'] {
+    border-color: t.color('accent');
+    background: color-mix(in srgb, #{t.color('accent')} 14%, #{t.color('surface')});
+    box-shadow: inset 0 0 0 0.125rem t.color('accent');
+  }
+
   // La opción acertada (y la que se revela al perder) y la incorrecta: el color acompaña al texto de lectores de pantalla.
   &[data-state='right'],
   &[data-state='reveal'] {

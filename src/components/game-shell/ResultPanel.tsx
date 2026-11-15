@@ -83,6 +83,12 @@ export function ResultPanel({ won, attempts, score, answer, streak, getShareText
                   ? es.shell.result.wonSummary(attempts, streak)
                   : es.shell.result.lostSummary}
           </p>
+          {inSheet && answer.note && (
+            <section className={styles.note} data-part="result-note">
+              <h3 className={styles.noteTitle}>{answer.note.title}</h3>
+              <p>{answer.note.text}</p>
+            </section>
+          )}
           {!practice && <StreakDisplay streak={streak} />}
           <div className={styles.actions}>
             {leadingAction}

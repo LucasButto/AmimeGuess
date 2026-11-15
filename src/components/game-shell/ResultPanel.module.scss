@@ -98,6 +98,21 @@
   color: t.token('ink-muted');
 }
 
+// Un dato que acompaña a la respuesta (en el Quiz, el que la explica): con título propio y su texto.
+.note {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
+  // Un poco de aire antes de los botones.
+  margin-block-end: t.$space-2;
+  line-height: t.$line-height-base;
+}
+
+.noteTitle {
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;

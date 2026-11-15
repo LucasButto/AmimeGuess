@@ -116,6 +116,8 @@ export interface AnswerInfo {
   readonly detail?: string;
   /** Imagen de la respuesta, ver `ContentImage`. */
   readonly imageStem?: string;
+  /** Un dato que explica la respuesta ("El dato"): en el teléfono va en la hoja del resultado, donde si no se perdería. */
+  readonly note?: { readonly title: string; readonly text: string };
 }
 
 /** Lo que el motor le avisa al marco cuando la persona termina el reto del día. */

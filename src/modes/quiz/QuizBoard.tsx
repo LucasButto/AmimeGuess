@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useMemo, useState } from 'react';
 import { ClueNameHover } from '@/components/game-shell/ClueNames';
+import { DockAction, useDockTarget } from '@/components/game-shell/GameDock';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
 import { endLimit, isUnlimited, useVersusProgress, useVersusStop } from '@/components/game-shell/versus';
@@ -46,12 +47,12 @@ function inRandomOrder<T>(items: readonly T[]): T[] {
   return result;
 }
 
-/** El aviso al marco de que terminó el reto: la respuesta, los intentos y la grilla para compartir. */
-function reportOf(progress: QuizProgress, answer: QuizOption, fresh: boolean): FinishReport {
+/** El aviso al marco de que terminó el reto: la respuesta (con el dato que la explica), los intentos y la grilla para compartir. */
+function reportOf(progress: QuizProgress, answer: QuizOption, fresh: boolean, explanation?: string): FinishReport {
   return {
     won: progress.solved,
     attempts: progress.picks.length,
-    answer: { label: answer.name, imageStem: answer.image },
+    answer: { label: answer.name, imageStem: answer.image, ...(explanation ? { note: { title: es.quiz.factTitle, text: explanation } } : {}) },
     grid: shareGrid(progress),
     fresh,
   };
@@ -84,6 +85,9 @@ export function QuizBoard({ session, question, optionCount, options }: QuizBoard
 
   const [picks, setPicks] = useState<string[]>(() => [...replay(readState(getLocalStorage(), ctx)?.attempts, optionIds, question, limit).picks]);
   const [announcement, setAnnouncement] = useState('');
+  // Teléfono: tocar una opción solo la marca y se puede cambiar; la elección vale al tocar el botón de la barra de abajo.
+  const phone = useDockTarget() !== null;
+  const [selected, setSelected] = useState<string | null>(null);
   const progress = useMemo(() => replay(picks, optionIds, question, limit), [picks, optionIds, question, limit]);
   const { solved, mistakes } = progress;
   const over = progress.over || surrendered;
@@ -91,10 +95,10 @@ export function QuizBoard({ session, question, optionCount, options }: QuizBoard
 
   // Si el reto ya había terminado al montarse (se recargó la página), el marco tiene que mostrar su resumen, pero sin
   // volver a sumarlo a las estadísticas.
-  const [restored] = useState<FinishReport | null>(() => (over ? reportOf(progress, answer, false) : null));
+  const [restored] = useState<FinishReport | null>(() => (over ? reportOf(progress, answer, false, question.explanation) : null));
   useVersusProgress(session, { attempts: picks.length });
   useVersusStop(session, over, (stop) => {
-    if (stop === 'timeUp') surrender(picks, { ...reportOf(progress, answer, true), timedOut: true });
+    if (stop === 'timeUp') surrender(picks, { ...reportOf(progress, answer, true, question.explanation), timedOut: true });
   });
   useEffect(() => {
     if (restored) onFinish(restored);
@@ -102,6 +106,7 @@ export function QuizBoard({ session, question, optionCount, options }: QuizBoard
 
   function choose(id: string) {
     if (over || picks.includes(id)) return;
+    setSelected(null);
     const next = [...picks, id];
     const nextProgress = replay(next, optionIds, question, limit);
     setPicks(next);
@@ -113,7 +118,7 @@ export function QuizBoard({ session, question, optionCount, options }: QuizBoard
           ? es.quiz.lostAnnouncement(answer.name)
           : es.quiz.wrongAnnouncement(Math.max(0, limit - next.length)),
     );
-    if (nextProgress.over) onFinish(reportOf(nextProgress, answer, true));
+    if (nextProgress.over) onFinish(reportOf(nextProgress, answer, true, question.explanation));
   }
 
   const stateOf = (id: string): OptionState => {
@@ -131,7 +136,7 @@ export function QuizBoard({ session, question, optionCount, options }: QuizBoard
           <div className={styles.counter}>
             <p data-part="attempts">{unlimited ? es.versus.attempt(picks.length + (over ? 0 : 1)) : es.quiz.attempt(Math.min(picks.length + 1, total), total)}</p>
             {!unlimited && <AttemptsMeter failed={mistakes} won={solved} total={total} />}
-            {!over && <SurrenderButton onConfirm={() => surrender(picks, reportOf(progress, answer, true))} />}
+            {!over && <SurrenderButton onConfirm={() => surrender(picks, reportOf(progress, answer, true, question.explanation))} />}
           </div>
         )}
       </header>
@@ -148,7 +153,15 @@ export function QuizBoard({ session, question, optionCount, options }: QuizBoard
             const blocked = over || picks.includes(id);
             return (
               <div key={id} className={styles.cell}>
-                <button type="button" className={styles.tile} data-tile="true" data-state={state} disabled={blocked} onClick={() => choose(id)}>
+                <button
+                  type="button"
+                  className={styles.tile}
+                  data-tile="true"
+                  data-state={state}
+                  aria-pressed={phone && !blocked ? selected === id : undefined}
+                  disabled={blocked}
+                  onClick={() => (phone ? setSelected((current) => (current === id ? null : id)) : choose(id))}
+                >
                   {nameOf(id)}
                   {state !== 'idle' && <VisuallyHidden>{` (${state === 'wrong' ? es.quiz.stateWrong : state === 'reveal' ? es.quiz.stateReveal : es.quiz.stateRight})`}</VisuallyHidden>}
                 </button>
@@ -159,7 +172,8 @@ export function QuizBoard({ session, question, optionCount, options }: QuizBoard
         </div>
       </section>
 
-      {over && question.explanation && (
+      {/* En el teléfono el dato va en la hoja del resultado (no en una sala): acá no se repite. */}
+      {over && question.explanation && !(phone && !session.versus) && (
         <section className={styles.fact} aria-labelledby={factId} data-part="quiz-fact" data-right={solved}>
           <h2 className={styles.factTitle} id={factId}>
             {es.quiz.factTitle}
@@ -167,6 +181,8 @@ export function QuizBoard({ session, question, optionCount, options }: QuizBoard
           <p>{question.explanation}</p>
         </section>
       )}
+
+      {!over && <DockAction label={es.quiz.confirm} onClick={() => selected !== null && choose(selected)} disabled={selected === null} />}
 
       <VisuallyHidden role="status">{announcement}</VisuallyHidden>
     </div>

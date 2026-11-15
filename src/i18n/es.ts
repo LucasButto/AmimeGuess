@@ -1065,6 +1065,7 @@ export const es = {
     stateWrong: "incorrecta",
     stateReveal: "era la respuesta correcta",
     factTitle: "El dato",
+    confirm: "Elegir opción",
     rightAnnouncement: "¡Correcto!",
     wrongAnnouncement: (left: number) =>
       `Esa no es. Te ${plural(left, "queda", "quedan")} ${left} ${plural(left, "intento", "intentos")}.`,
