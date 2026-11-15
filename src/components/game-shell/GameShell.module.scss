@@ -232,6 +232,12 @@
     flex-wrap: wrap;
     gap: 0 t.$space-1;
     min-block-size: 2rem;
+    // Sin contenido (el contador va arriba del selector y el modo no cuenta intentos) la barra no ocupa lugar: ni su alto ni el
+    // espacio que la separa de lo siguiente. No se oculta con `display: none`: su destino de los intentos tiene que seguir medible.
+    &:not(:has(> :not(:empty))) {
+      min-block-size: 0;
+      margin-block-end: calc(-1 * #{t.$space-4});
+    }
   }
   @include m.app-shell-desktop {
     flex-wrap: wrap;

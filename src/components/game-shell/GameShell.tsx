@@ -382,13 +382,15 @@ export function GameShell({
           </div></div>
         , document.getElementById('game-actions')!
       )}
+      {/* Teléfono: el contador del próximo reto va arriba del selector de modo. */}
+      {!versus && phone && <Countdown compact={appShell} />}
       {!versus && <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} solved={solved} filterKey={filterKey} />}
 
       {versus && <VersusClock game={versus} frozen={report !== null} />}
 
       <div className={styles.toolbar}>
         {appShell && <AttemptsStatusTarget />}
-        {!versus && <Countdown compact={appShell} />}
+        {!versus && !phone && <Countdown compact={appShell} />}
       </div>
 
       {!versus && <SheetSection>{filters}</SheetSection>}
