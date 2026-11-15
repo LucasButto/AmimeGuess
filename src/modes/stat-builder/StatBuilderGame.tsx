@@ -134,7 +134,7 @@ export function StatBuilderBoard({ session, config, pool, target: levelTarget, l
     if (stop === 'timeUp') surrender(attempts, { ...report(attempts, false, true), timedOut: true }, build);
   });
 
-  // La tarjeta completa detiene la ruleta también en el teléfono.
+  // La tarjeta completa detiene la ruleta también en el teléfono, y mientras gira el botón de la barra de abajo dice "Detener".
   const phone = useDockTarget() !== null;
   const spinDisabled = complete ? resultPhase !== 'idle' || lost : (stopped && !awaitingAdvance) || over;
   const spinPrompt = complete ? resultPhase === 'idle' ? es.statBuilder.viewResult : resultPhase === 'running' ? es.statBuilder.countingResult : es.statBuilder.finished : over ? es.statBuilder.finished : awaitingAdvance ? es.statBuilder.nextPokemon : stopped ? es.statBuilder.choose : es.statBuilder.stop;
@@ -187,7 +187,7 @@ export function StatBuilderBoard({ session, config, pool, target: levelTarget, l
         })}
       </div>
     </div>
-    {!over && (complete || awaitingAdvance) && (complete && resultPhase === 'done'
+    {!over && (complete || awaitingAdvance || !stopped) && (complete && resultPhase === 'done'
       ? <DockAction label={es.statBuilder.next} onClick={retry} />
       : <DockAction label={dockPrompt} onClick={spin} disabled={spinDisabled} />)}
     {complete && resultPhase === 'done' && <section className={styles.optimal} aria-label={es.statBuilder.bestTitle}>
