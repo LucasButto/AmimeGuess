@@ -54,6 +54,8 @@ function reportOf(picks: readonly string[], progress: Progress, rounds: readonly
 
   return {
     won: !failed,
+    // Sin llegar a la meta (se gastaron los intentos), el resumen dice "Fallaste" y no "Fin de la racha".
+    ...(failed ? { title: es.shell.result.lostTitle } : {}),
     attempts: picks.length,
     score: progress.score,
     answer: {
@@ -218,7 +220,11 @@ export function HigherLowerBoard({ session, metric, rounds: initialRounds, exten
           <div className={styles.scoreInfo}>
             <span>{es.higherLower.roundLabel(roundNumber)}</span>
             <span className={styles.score}>{session.versus ? rules.target !== undefined ? es.higherLower.dailyScore(progress.score, rules.target) : es.higherLower.totalScore(progress.score) : session.practice ? maxMistakes === 1 ? es.higherLower.score(progress.score) : es.higherLower.totalScore(progress.score) : es.higherLower.dailyScore(progress.score, MAX_ROUNDS)}</span>
-            <AttemptsStatus>{maxMistakes > 1 && Number.isFinite(maxMistakes) && <span>{es.shell.limits.mistakes(mistakes, maxMistakes)}</span>}</AttemptsStatus>
+            {/* Fallos y, pegada a su derecha, la barra de vida; en el teléfono las dos van a la barra de estado, como en el Clásico. */}
+            <AttemptsStatus>
+              {maxMistakes > 1 && Number.isFinite(maxMistakes) && <span>{es.shell.limits.mistakes(mistakes, maxMistakes)}</span>}
+              {Number.isFinite(maxMistakes) && <SkinAttemptsMeter skin={skin} engine="higher-lower" mode={session.mode} failed={mistakes} won={ended && !surrendered && progress.failedAt === null} total={maxMistakes} />}
+            </AttemptsStatus>
             {session.practice && <span>{es.higherLower.record(record)}</span>}
             {session.practice && <span className={styles.score}>{progress.score > target ? es.higherLower.newRecord : es.higherLower.target(target + 1)}</span>}
           </div>
@@ -235,8 +241,6 @@ export function HigherLowerBoard({ session, metric, rounds: initialRounds, exten
           )}
         </div>
       </header>
-      {/* Se juega hasta el primer fallo: un solo intento fallido agota el medidor. */}
-      {Number.isFinite(maxMistakes) && <AttemptsStatus><SkinAttemptsMeter skin={skin} engine="higher-lower" failed={mistakes} won={ended && !surrendered && progress.failedAt === null} total={maxMistakes} /></AttemptsStatus>}
 
       <div className={styles.options} role="group" aria-labelledby={questionId} data-part="duel" data-leaving={leaving}>
         {([round.a, round.b] as const).map((entity, position) => (
