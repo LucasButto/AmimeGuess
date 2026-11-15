@@ -46,10 +46,10 @@ describe('ayudas ⓘ', () => {
     }
   });
 
-  it('las siete columnas del Clásico de Dragon Ball explican cómo se comparan', () => {
+  it('las seis columnas del Clásico de Dragon Ball explican cómo se comparan', () => {
     const dragonBall = franchises.find((franchise) => franchise.slug === 'dragon-ball');
     const columns = dragonBall?.modes.find((mode) => mode.slug === 'clasico')?.classic?.columns ?? [];
-    expect(columns).toHaveLength(7);
+    expect(columns).toHaveLength(6);
     for (const column of columns) expect(column.help, column.key).toBeTruthy();
   });
 

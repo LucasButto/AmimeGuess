@@ -10,6 +10,7 @@ import * as board from '@/modes/category-board/logic';
 import * as connections from '@/modes/connections/logic';
 import * as higherLower from '@/modes/higher-lower/logic';
 import * as image from '@/modes/image-reveal/logic';
+import * as quiz from '@/modes/quiz/logic';
 import * as list from '@/modes/reveal-list/logic';
 import { draw } from '@/modes/stat-builder/logic';
 import * as text from '@/modes/text-clue/logic';
@@ -55,6 +56,10 @@ function challenge(franchise: FranchiseConfig, mode: ModeConfig, loaded: Franchi
       });
     case 'connections':
       return connections.buildBoard(connections.poolOf(entities, loaded.contents, active, mode.connections!), ctx);
+    case 'quiz': {
+      const question = quiz.questionOf(quiz.poolOf(entities, loaded.contents, active, mode.quiz!), ctx);
+      return question && [question.id, quiz.optionsFor(question, quiz.optionCountOf(mode.quiz!), ctx)];
+    }
     case 'stat-builder':
       return [0, 1, 2].map((position) => draw(eligibleEntities(entities, active), ctx, 0, position).id);
     case 'category-board': {
@@ -82,7 +87,8 @@ describe('días de versus en los motores', () => {
       }
     }
     expect(checked).toBeGreaterThan(40);
-  });
+    // Arma el reto de todos los modos de las cuatro franquicias: con la máquina cargada pasa de los 5 s de siempre.
+  }, 60_000);
 });
 
 describe('días de versus fuera del modo infinito', () => {

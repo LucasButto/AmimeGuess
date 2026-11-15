@@ -14,7 +14,7 @@ import { DragonReward } from './Reward';
 import { Onomatopoeia, ScouterBack } from './Scan';
 import { ScouterInput } from './ScouterInput';
 import { NaveIn, NaveOut } from './Nave';
-import { GoldenAura, ScouterIcon } from './Win';
+import { GoldenAura } from './Win';
 import games from './Games.module.scss';
 import styles from './theme.module.scss';
 
@@ -27,8 +27,7 @@ export const dragonBallSkin: FranchiseSkin = {
   // (900 ms) y recién ahí se navega; la pantalla nueva sigue el vuelo otros 900 ms (1,8 s en total).
   pageExitMs: 900,
   // Las semillas del ermitaño (los intentos) también en el modo de frase y en los de lista, no solo en el Clásico y la línea de
-  // tiempo. No en Nivel de poder (se juega hasta el primer fallo: solo cuentan los aciertos) ni en los de imagen (Silueta, Borroso,
-  // Técnica, Transformación), donde "Pista N de M" ya dice cuánto se reveló.
+  // tiempo. No en los de imagen (Silueta, Borroso y Técnica), donde "Pista N de M" ya dice cuánto se reveló.
   additionalAttemptsMeters: ['text-clue', 'reveal-list', 'category-board'],
   // Sin tildes, cruces ni el símbolo del parcial: el verde, el amarillo y el rojo lo dicen solos; solo quedan las flechas de
   // mayor y menor.
@@ -70,7 +69,6 @@ export const dragonBallSkin: FranchiseSkin = {
     CellBack: ScouterBack,
     ValueMark: Onomatopoeia,
     WinCelebration: GoldenAura,
-    MetricMark: ScouterIcon,
     AttemptsMeter: KiMeter,
   },
 };

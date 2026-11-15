@@ -12,7 +12,7 @@ import { DEFAULT_OPTIONS, type Partida } from '@/versus/config';
 import { engineRulesFor } from '@/versus/session';
 import { VersusGameContext, type VersusGame } from './VersusGameContext';
 
-// Pasos 1.4 y 1.5 en los nueve motores con datos reales: dentro de una sala, el cierre desde afuera (`stop: 'timeUp'`)
+// Pasos 1.4 y 1.5 en los diez motores con datos reales: dentro de una sala, el cierre desde afuera (`stop: 'timeUp'`)
 // bloquea el juego y reporta `timedOut`, y el marco le entrega a cada motor las reglas de su modalidad.
 
 vi.mock('next/navigation', () => ({ useRouter: () => ({ push: () => undefined, replace: () => undefined, prefetch: () => undefined }) }));
@@ -67,7 +67,7 @@ const playable = () =>
     franchise.modes.filter((mode) => modeStatus(franchise, mode, data[franchise.slug]) === 'playable').map((mode) => ({ franchise: franchise.slug, mode: mode.slug, engine: mode.engine })),
   );
 
-describe('los nueve motores dentro de una sala', () => {
+describe('los diez motores dentro de una sala', () => {
   it('cada modo jugable se bloquea con `stop: timeUp`, muestra la respuesta y reporta `timedOut`', async () => {
     const engines = new Set<string>();
     for (const { franchise, mode, engine } of playable()) {
@@ -83,7 +83,7 @@ describe('los nueve motores dentro de una sala', () => {
       localStorage.clear();
     }
     // Todos los motores del sitio quedaron cubiertos (en datos reales y con los modos que hoy están activos).
-    expect([...engines].sort()).toEqual(['category-board', 'classic', 'connections', 'higher-lower', 'image-reveal', 'reveal-list', 'stat-builder', 'text-clue', 'timeline']);
+    expect([...engines].sort()).toEqual(['category-board', 'classic', 'connections', 'higher-lower', 'image-reveal', 'quiz', 'reveal-list', 'stat-builder', 'text-clue', 'timeline']);
   }, 120_000);
 
   it('Contrarreloj y Carrera: sin límite de intentos; Menos intentos: con los de siempre', () => {

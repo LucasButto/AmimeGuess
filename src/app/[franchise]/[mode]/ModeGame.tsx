@@ -31,6 +31,7 @@ import { ClassicGame } from "@/modes/classic/ClassicGame";
 import { ConnectionsGame } from "@/modes/connections/ConnectionsGame";
 import { HigherLowerGame } from "@/modes/higher-lower/HigherLowerGame";
 import { ImageRevealGame } from "@/modes/image-reveal/ImageRevealGame";
+import { QuizGame } from "@/modes/quiz/QuizGame";
 import { RevealListGame } from "@/modes/reveal-list/RevealListGame";
 import { TextClueGame } from "@/modes/text-clue/TextClueGame";
 import { TimelineGame } from "@/modes/timeline/TimelineGame";
@@ -91,6 +92,7 @@ function ModeEngine({ franchise, mode, modes, playable }: ModeGameProps) {
   const timeline = mode.engine === "timeline" ? mode.timeline : undefined;
   const connections =
     mode.engine === "connections" ? mode.connections : undefined;
+  const quiz = mode.engine === "quiz" ? mode.quiz : undefined;
   const [loaded, setLoaded] = useState<FranchiseData | "error" | null>(null);
   // Los interruptores de la partida, guardados por franquicia: con relleno y con los arcos del manga (los dos prendidos
   // por defecto: entra todo).
@@ -290,6 +292,19 @@ function ModeEngine({ franchise, mode, modes, playable }: ModeGameProps) {
           mode={mode}
           modes={modes}
           config={connections}
+          entities={entities}
+          contents={data.contents}
+        />
+      );
+    }
+
+    if (quiz) {
+      return (
+        <QuizGame
+          franchise={franchise}
+          mode={mode}
+          modes={modes}
+          config={quiz}
           entities={entities}
           contents={data.contents}
         />

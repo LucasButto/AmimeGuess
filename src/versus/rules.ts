@@ -105,9 +105,9 @@ function withLosers(ranked: string[][], losers: readonly string[]): string[][] {
  * - Contrarreloj: menor tiempo contado primero (`countedTime`); a igual tiempo, empatan.
  * - Carrera: los que la resolvieron, de menor a mayor tiempo; los demás, detrás y empatados.
  * - Menos intentos (el tiempo no desempata): en los modos de adivinar, Línea de tiempo y Conexiones, los que la
- *   resolvieron de menos a más intentos; en Mayor o Menor, más aciertos primero; en Estadísticas, mayor puntaje
- *   primero. Quien pierde (sin intentos, rendido o abandono; en Mayor o Menor y Estadísticas, rendido o abandono) queda
- *   detrás de todos, empatado con los otros que perdieron.
+ *   resolvieron de menos a más intentos (el Quiz también); en Mayor o Menor, más aciertos primero; en Estadísticas,
+ *   mayor puntaje primero. Quien pierde (sin intentos, rendido o abandono; en Mayor o Menor y Estadísticas, rendido o
+ *   abandono) queda detrás de todos, empatado con los otros que perdieron.
  */
 export function rankPartida(
   modality: Modality,

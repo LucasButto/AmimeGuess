@@ -21,6 +21,7 @@ export const VERSUS_ENGINES = [
   'higher-lower',
   'timeline',
   'connections',
+  'quiz',
   'stat-builder',
   'category-board',
 ] as const;
@@ -156,7 +157,8 @@ export function isValidName(name: string): boolean {
 
 /**
  * Tiempo por defecto de cada motor (01-reglas.md, sección 1). Se decide por motor, nunca por franquicia: el Clásico es
- * `classic` en todas. Casillas (`category-board`) es posterior a la tabla de reglas: queda con 3:00 hasta que se decida.
+ * `classic` en todas. Casillas (`category-board`) y Quiz (`quiz`) son posteriores a la tabla de reglas: Casillas queda
+ * con 3:00 hasta que se decida y el Quiz con 2:30.
  */
 const BASE_SECONDS: Readonly<Record<VersusEngine, number>> = {
   'image-reveal': 60,
@@ -166,6 +168,8 @@ const BASE_SECONDS: Readonly<Record<VersusEngine, number>> = {
   timeline: 120,
   'higher-lower': 120,
   connections: 180,
+  // Diez preguntas: unos 15 s por pregunta, con las 4 a 12 opciones de la dificultad.
+  quiz: 150,
   'stat-builder': 180,
   'category-board': 180,
 };

@@ -471,7 +471,6 @@ function threeMisses(
 const DB_MISS_CANDIDATES = ['oolong', 'puar', 'yajirobe', 'krilin'];
 /** Silueta solo usa las imágenes con fondo transparente (ver su config). */
 const DB_SILHOUETTE = { key: 'imagenTransparente', equals: 1 };
-const DB_THREE_FORMS = threeMisses('dragon-ball', 'transformacion', 'transformations.json', ['goku-ssj', 'vegeta-ssj', 'gohan-ssj', 'trunks-ssj']);
 
 /** Todas las series menos GT: la tabla del Clásico oculta lo que es de esa serie. */
 const WITHOUT_GT = 'db.dbz.super.daima';
@@ -739,6 +738,26 @@ async function connectionsFinish(page: Page): Promise<string[]> {
   if (end.bands !== 4) problems.push(`al terminar deberían verse los 4 grupos con su nombre y hay ${end.bands}`);
   if (end.tiles > 0 || end.submit) problems.push('al terminar siguen la grilla o el botón de enviar');
   if (!end.summary) problems.push('no aparece el resumen del marco al terminar');
+  return problems;
+}
+
+/** Quiz: contesta la pregunta y comprueba lo que tiene que aparecer (la elegida y la correcta marcadas, y el dato). */
+async function quizAnswered(page: Page): Promise<string[]> {
+  const tiles = page.locator('[data-part="quiz-card"] [data-tile]');
+  if ((await tiles.count()) === 0) return [];
+  const problems: string[] = [];
+  const before = await tiles.count();
+  await tiles.first().click();
+  const after = await page.evaluate(() => ({
+    marked: [...document.querySelectorAll('[data-part="quiz-card"] [data-tile]')].filter((tile) => tile.getAttribute('data-state') !== 'idle').length,
+    fact: document.querySelector('[data-part="quiz-fact"]') !== null,
+    summary: document.querySelector('section[data-won]') !== null,
+  }));
+  // Con un solo intento terminó: la elegida y la correcta (que pueden ser la misma) quedan marcadas.
+  if (after.marked === 0) problems.push('al contestar no se marca ninguna opción');
+  if (!after.fact) problems.push('al contestar no aparece el dato de la respuesta');
+  if (!after.summary) problems.push('no aparece el resumen del marco al terminar');
+  if ((await tiles.count()) !== before) problems.push('al contestar cambió la cantidad de opciones');
   return problems;
 }
 
@@ -1159,7 +1178,7 @@ const ROUTES: RouteCheck[] = [
     ready: GAME_READY,
     storage: seededGame(WITHOUT_GT, DB_SIX_ATTEMPTS, 'clasico', 'dragon-ball'),
   },
-  ...['silueta', 'borroso'].flatMap((slug) => [
+  ...['silueta'].flatMap((slug) => [
     { name: `dragon-ball-${slug}`, path: `/dragon-ball/${slug}`, ready: GAME_READY, check: imageFitsWithField },
     {
       name: `dragon-ball-${slug}-3-fallos`,
@@ -1174,19 +1193,15 @@ const ROUTES: RouteCheck[] = [
       check: imageFitsWithField,
     },
   ]),
-  { name: 'dragon-ball-transformacion', path: '/dragon-ball/transformacion', ready: GAME_READY, check: imageFitsWithField },
-  {
-    name: 'dragon-ball-transformacion-3-fallos',
-    path: '/dragon-ball/transformacion',
-    ready: GAME_READY,
-    storage: seededGame('all', DB_THREE_FORMS, 'transformacion', 'dragon-ball'),
-    check: imageFitsWithField,
-  },
-  // Ninguna forma es de Daima: con solo esa serie el modo no alcanza el pool mínimo.
-  { name: 'dragon-ball-transformacion-sin-pool', path: '/dragon-ball/transformacion?s=daima', check: showsPoolWarning },
-  { name: 'dragon-ball-poder', path: '/dragon-ball/poder', ready: GAME_READY, check: optionsLayout },
-  { name: 'dragon-ball-poder-elegida-1', path: '/dragon-ball/poder', ready: GAME_READY, check: afterPicking(0) },
-  { name: 'dragon-ball-poder-elegida-2', path: '/dragon-ball/poder', ready: GAME_READY, check: afterPicking(1) },
+  // Conexiones (2026-11-14): el mismo juego que el de Naruto, con los grupos de data/dragon-ball/source/conexiones.json.
+  { name: 'dragon-ball-conexiones', path: '/dragon-ball/conexiones', ready: GAME_READY, check: connectionsLayout },
+  { name: 'dragon-ball-conexiones-seleccion', path: '/dragon-ball/conexiones', ready: GAME_READY, check: connectionsSelect },
+  { name: 'dragon-ball-conexiones-terminado', path: '/dragon-ball/conexiones', ready: GAME_READY, check: connectionsFinish },
+  // Solo Dragon Ball Z: es la única serie que alcanza el pool mínimo sola.
+  { name: 'dragon-ball-conexiones-solo-z', path: '/dragon-ball/conexiones?s=dbz', ready: GAME_READY, check: connectionsLayout },
+  // Quiz (2026-11-15, en el lugar de Borroso): una pregunta con 12 opciones, sin contestar y contestada.
+  { name: 'dragon-ball-quiz', path: '/dragon-ball/quiz', ready: GAME_READY },
+  { name: 'dragon-ball-quiz-contestada', path: '/dragon-ball/quiz', ready: GAME_READY, check: quizAnswered },
   { name: 'dragon-ball-frase', path: '/dragon-ball/frase', ready: GAME_READY },
   {
     // Con 6 fallos ya se desbloquearon todas las pistas (raza y afiliación).

@@ -17,10 +17,9 @@ export interface UnverifiedCount {
 export interface ReportInput {
   readonly seriesOrder: readonly SeriesId[];
   readonly characters: Entity[];
-  readonly forms: Entity[];
   readonly contents: Content[];
   readonly sagaCount: number;
-  readonly rendered: { characters: Rendered[]; forms: Rendered[]; techniques: Rendered[] };
+  readonly rendered: { characters: Rendered[]; techniques: Rendered[] };
   readonly unverified: UnverifiedCount[];
   /** Personajes sin imagen y técnicas sin imagen (a cargar a mano). */
   readonly missing: { characters: string[]; techniques: string[] };
@@ -29,8 +28,8 @@ export interface ReportInput {
   readonly techniquesTotal: number;
   /** Personajes distintos que son respuesta de alguna técnica con imagen: lo que cuenta el pool del modo Técnica. */
   readonly techniqueAnswers: number;
-  readonly powerWithValue: number;
-  readonly powerOfficial: number;
+  readonly connectionGroups: number;
+  readonly connectionBoards: number;
   readonly imageBytesDragonBall: number;
   readonly imageBytesProject: number;
 }
@@ -55,7 +54,7 @@ function countBySeries(items: ReadonlyArray<{ series: readonly string[] }>, seri
 
 export function printReport(input: ReportInput): void {
   const line = (text = '') => console.log(text);
-  const { characters, forms, contents } = input;
+  const { characters, contents } = input;
   const quotes = contents.filter((content) => content.kind === 'quote');
   const events = contents.filter((content) => content.kind === 'event');
   const techniques = contents.filter((content) => content.kind === 'technique');
@@ -66,17 +65,17 @@ export function printReport(input: ReportInput): void {
   line('=== Informe: datos de Dragon Ball ===');
   line(`Cronología de las series: ${input.seriesOrder.join(' → ')}  (${input.sagaCount} sagas)`);
   line();
-  line('Por serie                      personajes   debutan   formas   frases   sucesos   técnicas');
+  line('Por serie                      personajes   debutan   frases   sucesos   técnicas');
   for (const series of SERIES) {
     const debut = characters.filter((entity) => entity.series[0] === series).length;
     line(
-      `  ${series.padEnd(26)}${pad(countBySeries(characters, series), 10)}${pad(debut, 10)}${pad(countBySeries(forms, series), 9)}` +
+      `  ${series.padEnd(26)}${pad(countBySeries(characters, series), 10)}${pad(debut, 10)}` +
         `${pad(quotes.filter((c) => c.series === series).length, 9)}${pad(events.filter((c) => c.series === series).length, 10)}` +
         `${pad(techniques.filter((c) => c.series === series).length, 11)}`,
     );
   }
   line(
-    `  ${'TOTAL'.padEnd(26)}${pad(characters.length, 10)}${pad(characters.length, 10)}${pad(forms.length, 9)}${pad(quotes.length, 9)}${pad(events.length, 10)}${pad(techniques.length, 11)}`,
+    `  ${'TOTAL'.padEnd(26)}${pad(characters.length, 10)}${pad(characters.length, 10)}${pad(quotes.length, 9)}${pad(events.length, 10)}${pad(techniques.length, 11)}`,
   );
   line('  ("personajes" cuenta las series en las que aparece cada uno; "debutan", solo la de debut)');
 
@@ -89,13 +88,12 @@ export function printReport(input: ReportInput): void {
   line('Tamaño del pool de cada modo con todas las series activas:');
   line(`  Clásico (personajes)            ${pad(characters.length, 4)}`);
   line(`  Silueta (arte transparente)     ${pad(characters.filter(transparent).length, 4)}`);
-  line(`  Borroso (con imagen)            ${pad(characters.filter(withImage).length, 4)}`);
+  line(`  Personajes con imagen           ${pad(characters.filter(withImage).length, 4)}`);
   // El pool de Frase cuenta personajes distintos que dijeron alguna frase verificada, no frases.
   const verifiedQuotes = quotes.filter((c) => c.verified);
   line(`  Frase (personajes distintos)    ${pad(new Set(verifiedQuotes.map((c) => c.entityId)).size, 4)}   (hacen falta 10; ${verifiedQuotes.length} de ${quotes.length} frases verificadas)`);
   line(`  Técnica (personajes distintos)  ${pad(input.techniqueAnswers, 4)}   (hacen falta 10; ${techniques.length} de ${input.techniquesTotal} técnicas con imagen)`);
-  line(`  Transformación (con imagen)     ${pad(forms.filter(withImage).length, 4)}`);
-  line(`  Nivel de poder (entradas)       ${pad(input.powerWithValue, 4)}   (${input.powerOfficial} con valor oficial)`);
+  line(`  Conexiones (grupos)             ${pad(input.connectionGroups, 4)}   (${input.connectionBoards} tableros distintos con todas las series)`);
   line(`  Línea de tiempo (verificados)   ${pad(events.filter((c) => c.verified).length, 4)}   (hacen falta 10; hay ${events.length} sucesos)`);
 
   line();
@@ -109,7 +107,6 @@ export function printReport(input: ReportInput): void {
   line('Imágenes (WebP):');
   const total =
     printImages(line, 'personajes  ', input.rendered.characters) +
-    printImages(line, 'formas      ', input.rendered.forms) +
     printImages(line, 'técnicas    ', input.rendered.techniques);
   line(`  Peso generado en esta corrida: ${mb(total)}`);
   line(`  Peso de public/img/dragon-ball: ${mb(input.imageBytesDragonBall)}`);

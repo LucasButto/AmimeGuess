@@ -3,7 +3,6 @@
 // Genera el dataset de Dragon Ball combinando lo curado a mano (data/dragon-ball/source/)
 // con lo que se puede sacar de las fuentes de la SPEC (sección 7):
 //   data/dragon-ball/entities.json         los personajes, con sus atributos del Clásico
-//   data/dragon-ball/transformations.json  las formas, como entidades propias (modo Transformación)
 //   data/dragon-ball/content.json          técnicas (technique)
 //   data/dragon-ball/sagas.json            series y sagas con su lugar en la cronología
 //   public/img/dragon-ball/                imágenes en WebP, 256 y 512 px
@@ -48,40 +47,33 @@ import { printReport } from './report.ts';
 import {
   SERIES,
   apiCharacterListSchema,
-  apiTransformationListSchema,
   characterEntitySchema,
   characterSrcSchema,
   contentSchema,
   eventSrcSchema,
-  powerSrcSchema,
+  connectionGroupSrcSchema,
+  quizQuestionSrcSchema,
   quoteSrcSchema,
   sagasFileSchema,
   sagasOutputSchema,
   techniqueSrcSchema,
-  powerEntitySchema,
-  transformationEntitySchema,
-  transformationSrcSchema,
   wikiCategoryMembersSchema,
   type ApiCharacter,
-  type ApiTransformation,
   type CharacterSrc,
   type EventSrc,
-  type PowerSrc,
+  type ConnectionGroupSrc,
+  type QuizQuestionSrc,
   type QuoteSrc,
   type SagasFile,
   type SeriesId,
   type TechniqueSrc,
-  type TransformationSrc,
 } from './schemas.ts';
 import { renderTodoSection, writeTodoSection, type MissingImage } from './todo.ts';
 import {
   buildCharacterEntity,
-  buildEventContent,
-  buildPowerEntity,
-  buildTransformationEntity,
+  countBoards,
   canonicalSeries,
   debutSeries,
-  eventOrders,
   leaksName,
   sagaRanks,
   seriesOfPage,
@@ -94,12 +86,15 @@ const MANUAL_DIR = path.join(SRC_DIR, 'images');
 const DATA_DIR = path.join(ROOT, 'data', 'dragon-ball');
 const IMG_ROOT = path.join(ROOT, 'public', 'img');
 const IMAGE_DIR = path.join(IMG_ROOT, 'dragon-ball');
-const FORM_IMAGE_DIR = path.join(IMAGE_DIR, 'transformations');
 const TECHNIQUE_IMAGE_DIR = path.join(IMAGE_DIR, 'techniques');
 const TODO_FILE = path.join(ROOT, 'docs', 'CONTENT_TODO.md');
 
 const IMAGE_TASKS = 4;
 const IMG_LIMIT_BYTES = 250 * 1024 * 1024;
+/** Tableros de Conexiones distintos que tienen que poder armarse con todas las series. */
+const CONNECTIONS_BOARDS_MINIMUM = 30;
+/** Veces que un mismo personaje puede ser la respuesta correcta de las preguntas del Quiz. */
+const QUIZ_ANSWER_REPEATS = 2;
 /** Pool mínimo del modo Técnica (SPEC 4, regla 6). */
 const TECHNIQUE_POOL_MINIMUM = 10;
 
@@ -137,11 +132,11 @@ async function readSrc<T>(file: string, schema: z.ZodType<T>): Promise<T[]> {
 interface Src {
   readonly sagas: SagasFile;
   readonly characters: CharacterSrc[];
-  readonly transformations: TransformationSrc[];
   readonly techniques: TechniqueSrc[];
   readonly quotes: QuoteSrc[];
   readonly events: EventSrc[];
-  readonly power: PowerSrc[];
+  readonly connections: ConnectionGroupSrc[];
+  readonly quiz: QuizQuestionSrc[];
 }
 
 async function loadSrc(): Promise<Src> {
@@ -153,11 +148,11 @@ async function loadSrc(): Promise<Src> {
   return {
     sagas: sagas.data,
     characters: await readSrc('characters.json', characterSrcSchema),
-    transformations: await readSrc('transformations.json', transformationSrcSchema),
     techniques: await readSrc('techniques.json', techniqueSrcSchema),
     quotes: await readSrc('frase.json', quoteSrcSchema),
     events: await readSrc('events.json', eventSrcSchema),
-    power: await readSrc('power.json', powerSrcSchema),
+    connections: await readSrc('conexiones.json', connectionGroupSrcSchema),
+    quiz: await readSrc('quiz.json', quizQuestionSrcSchema),
   };
 }
 
@@ -179,35 +174,24 @@ function checkSrc(src: Src): void {
 
   for (const [file, ids] of [
     ['characters.json', src.characters.map((item) => item.id)],
-    ['transformations.json', src.transformations.map((item) => item.id)],
     ['techniques.json', src.techniques.map((item) => item.id)],
     ['frase.json', src.quotes.map((item) => item.id)],
     ['events.json', src.events.map((item) => item.id)],
-    ['power.json', src.power.map((item) => item.id)],
+    ['conexiones.json', src.connections.map((item) => item.id)],
+    ['quiz.json', src.quiz.map((item) => item.id)],
   ] as const) {
     for (const id of duplicates(ids)) problems.push(`${file}: el id ${id} está repetido`);
   }
-  for (const wiki of duplicates(src.characters.map((character) => character.wiki))) {
+  for (const wiki of duplicates(src.characters.flatMap((character) => (character.wiki === undefined ? [] : [character.wiki])))) {
     problems.push(`characters.json: dos personajes usan la misma página de la wiki (${wiki})`);
   }
   for (const api of duplicates(src.characters.flatMap((character) => (character.api === undefined ? [] : [String(character.api)])))) {
     problems.push(`characters.json: dos personajes usan el mismo id de Dragon Ball API (${api})`);
   }
-  for (const api of duplicates(src.transformations.map((form) => String(form.api)))) {
-    problems.push(`transformations.json: dos formas usan el mismo id de Dragon Ball API (${api})`);
-  }
 
   const characterById = new Map(src.characters.map((character) => [character.id, character]));
   for (const character of src.characters) {
     if (!sagaIds.has(character.sagaDebut)) problems.push(`${character.id}: la saga de debut ${character.sagaDebut} no existe en sagas.json`);
-  }
-  for (const form of src.transformations) {
-    const owner = characterById.get(form.character);
-    if (owner === undefined) {
-      problems.push(`transformations.json: ${form.id} apunta al personaje inexistente ${form.character}`);
-    } else if (!owner.transformaciones.some((item) => item.value === form.forma && item.series === form.series)) {
-      problems.push(`${form.id}: ${owner.id} no tiene la transformación "${form.forma}" de ${form.series} en sus atributos`);
-    }
   }
   for (const technique of src.techniques) {
     for (const user of technique.users) {
@@ -223,9 +207,33 @@ function checkSrc(src: Src): void {
       problems.push(`frase.json: ${quote.id} dice el nombre de ${character.name}`);
     }
   }
-  const formIds = new Set(src.transformations.map((form) => form.id));
-  for (const entry of src.power) {
-    if (!characterIds.has(entry.of) && !formIds.has(entry.of)) problems.push(`power.json: ${entry.id} sale de ${entry.of}, que no es un personaje ni una forma`);
+  for (const group of src.connections) {
+    for (const member of group.members) {
+      if (!characterIds.has(member)) problems.push(`conexiones.json: ${group.id} nombra al personaje inexistente ${member}`);
+    }
+    if (new Set(group.members).size !== group.members.length) problems.push(`conexiones.json: ${group.id} repite miembros`);
+  }
+  for (const level of [1, 2, 3, 4]) {
+    if (!src.connections.some((group) => group.difficulty === level)) problems.push(`conexiones.json: no hay ningún grupo de dificultad ${level}`);
+  }
+  if (countBoards(src.connections) < CONNECTIONS_BOARDS_MINIMUM) {
+    problems.push(`conexiones.json: con todas las series solo se pueden armar ${countBoards(src.connections)} tableros distintos y hacen falta ${CONNECTIONS_BOARDS_MINIMUM}`);
+  }
+  const answers = new Map<string, number>();
+  for (const question of src.quiz) {
+    const options = [question.correct, ...question.distractors, ...question.excluded];
+    for (const id of options) {
+      if (!characterIds.has(id)) problems.push(`quiz.json: ${question.id} nombra al personaje inexistente ${id}`);
+    }
+    if (new Set(options).size !== options.length) problems.push(`quiz.json: ${question.id} repite personajes entre la correcta, los distractores y los excluidos`);
+    const answer = characterById.get(question.correct);
+    if (answer !== undefined && leaksName(question.question, [answer.name, ...answer.aliases])) {
+      problems.push(`quiz.json: ${question.id} dice el nombre de la respuesta (${answer.name})`);
+    }
+    answers.set(question.correct, (answers.get(question.correct) ?? 0) + 1);
+  }
+  for (const [id, count] of answers) {
+    if (count > QUIZ_ANSWER_REPEATS) problems.push(`quiz.json: ${id} es la respuesta de ${count} preguntas y el máximo es ${QUIZ_ANSWER_REPEATS}`);
   }
   if (problems.length > 0) fail('Los archivos de data/dragon-ball/source/ no son coherentes', problems);
 }
@@ -243,10 +251,6 @@ async function fetchApiCharacters(): Promise<ApiCharacter[]> {
     page++;
   } while (page <= totalPages);
   return items;
-}
-
-async function fetchApiTransformations(): Promise<ApiTransformation[]> {
-  return getJson(`${DRAGONBALL_API_BASE}/transformations?limit=100`, apiTransformationListSchema, DRAGONBALL_API);
 }
 
 /** Las páginas de cada categoría de personajes por serie de la wiki. */
@@ -329,8 +333,6 @@ const BUDGET: Record<256 | 512, number> = { 256: 25 * 1024, 512: 70 * 1024 };
 async function validate(
   src: Src,
   characters: Entity[],
-  forms: Entity[],
-  power: Entity[],
   contents: Content[],
   debutOf: Map<string, SeriesId>,
   sagaSeries: Map<string, SeriesId>,
@@ -341,22 +343,12 @@ async function validate(
     const result = characterEntitySchema.safeParse(entity);
     if (!result.success) problems.push(`personaje ${entity.id}: ${result.error.message}`);
   });
-  forms.forEach((entity) => {
-    const result = transformationEntitySchema.safeParse(entity);
-    if (!result.success) problems.push(`forma ${entity.id}: ${result.error.message}`);
-  });
-  power.forEach((entity) => {
-    const result = powerEntitySchema.safeParse(entity);
-    if (!result.success) problems.push(`nivel de poder ${entity.id}: ${result.error.message}`);
-  });
   contents.forEach((content) => {
     const result = contentSchema.safeParse(content);
     if (!result.success) problems.push(`contenido ${content.id}: ${result.error.message}`);
   });
 
   for (const id of duplicates(characters.map((entity) => entity.id))) problems.push(`hay dos personajes con el id ${id}`);
-  for (const id of duplicates(forms.map((entity) => entity.id))) problems.push(`hay dos formas con el id ${id}`);
-  for (const id of duplicates(power.map((entity) => entity.id))) problems.push(`hay dos entradas de nivel de poder con el id ${id}`);
   for (const id of duplicates(contents.map((content) => content.id))) problems.push(`hay dos contenidos con el id ${id}`);
 
   // Referencias: un contenido no puede apuntar a un personaje que no existe.
@@ -392,7 +384,6 @@ async function validate(
   const imageChecks = await mapPool(
     [
       ...characters.map((entity) => ({ entity, directory: IMAGE_DIR, expected: `dragon-ball/${entity.id}` })),
-      ...forms.map((entity) => ({ entity, directory: FORM_IMAGE_DIR, expected: `dragon-ball/transformations/${entity.id}` })),
     ],
     8,
     async ({ entity, directory, expected }) => {
@@ -457,10 +448,9 @@ async function main(): Promise<void> {
   const src = await loadSrc();
   checkSrc(src);
 
-  step('Dragon Ball API: personajes y transformaciones…');
-  const [apiCharacters, apiTransformations] = await Promise.all([fetchApiCharacters(), fetchApiTransformations()]);
+  step('Dragon Ball API: personajes…');
+  const apiCharacters = await fetchApiCharacters();
   const apiCharacterById = new Map(apiCharacters.map((character) => [character.id, character]));
-  const apiTransformationById = new Map(apiTransformations.map((form) => [form.id, form]));
 
   step('Wiki en español: categorías de personajes por serie…');
   const members = await fetchSeriesMembers();
@@ -473,24 +463,21 @@ async function main(): Promise<void> {
     if (character.api !== undefined && !apiCharacterById.has(character.api)) {
       sourceProblems.push(`${character.id}: el id ${character.api} ya no existe en Dragon Ball API`);
     }
-    const series = seriesOfPage(character.wiki, members);
+    const series = character.wiki === undefined ? SERIES.filter((id) => character.series?.includes(id)) : seriesOfPage(character.wiki, members);
     if (series.length === 0) sourceProblems.push(`${character.id}: la página "${character.wiki}" no está en ninguna categoría de personajes por serie`);
     seriesByCharacter.set(character.id, series);
   }
-  for (const form of src.transformations) {
-    if (!apiTransformationById.has(form.api)) sourceProblems.push(`${form.id}: el id ${form.api} ya no existe en las transformaciones de Dragon Ball API`);
-  }
   if (sourceProblems.length > 0) fail('Lo curado ya no coincide con las fuentes', sourceProblems);
 
-  // Cronología de las series: la fijó quien mantiene el proyecto en sagas.json (db, dbz, super, gt, daima).
+  // El orden de series (db, dbz, daima, super, gt) y el global de sagas son independientes.
   const seriesRank = seriesRanks(src.sagas.seriesOrder);
   const sagaRank = sagaRanks(src.sagas);
   const sagaSeries = new Map(src.sagas.sagas.map((saga) => [saga.id, saga.series]));
   const debutOf = new Map<string, SeriesId>();
   for (const character of src.characters) debutOf.set(character.id, debutSeries(seriesByCharacter.get(character.id) ?? []));
 
-  // Imágenes de personajes y formas
-  step(`Imágenes de ${src.characters.length} personajes y ${src.transformations.length} formas…`);
+  // Imágenes de personajes
+  step(`Imágenes de ${src.characters.length} personajes…`);
   const characterImages = await mapPool(src.characters, IMAGE_TASKS, async (character): Promise<EntityImageResult> => {
     const api = character.sinImagen || character.api === undefined ? null : apiCharacterById.get(character.api);
     return entityImage(
@@ -501,17 +488,6 @@ async function main(): Promise<void> {
       api === null || api === undefined ? null : { url: api.image, cacheName: `characters/${api.id}-${apiFileName(api.image)}` },
     );
   });
-  const formImages = await mapPool(src.transformations, IMAGE_TASKS, async (form): Promise<EntityImageResult> => {
-    const api = apiTransformationById.get(form.api);
-    return entityImage(
-      form.id,
-      `dragon-ball/transformations/${form.id}`,
-      path.join(MANUAL_DIR, 'transformations'),
-      FORM_IMAGE_DIR,
-      api === undefined ? null : { url: api.image, cacheName: `transformations/${api.id}-${apiFileName(api.image)}` },
-    );
-  });
-
   // Imágenes de técnicas: solo las cargadas a mano
   step(`Imágenes de ${src.techniques.length} técnicas (solo las cargadas a mano)…`);
   const techniqueImages = await mapPool(src.techniques, IMAGE_TASKS, async (technique) => {
@@ -535,23 +511,7 @@ async function main(): Promise<void> {
     });
   });
   const characterById = new Map(src.characters.map((character) => [character.id, character]));
-  const forms: Entity[] = src.transformations.map((form, index) =>
-    buildTransformationEntity(form, (characterById.get(form.character) as CharacterSrc).name, formImages[index].image),
-  );
 
-  const entityById = new Map([...characters, ...forms].map((entity) => [entity.id, entity]));
-  const power: Entity[] = src.power.map((entry) => buildPowerEntity(entry, entityById.get(entry.of) as Entity));
-
-  const orders = eventOrders(src.events, src.sagas.seriesOrder);
-  const quotes: Content[] = src.quotes.map((quote) => ({
-    id: `quote-${quote.id}`,
-    kind: 'quote',
-    entityId: quote.character,
-    series: quote.series,
-    payload: { text: quote.text, source: quote.source, literal: quote.literal, famous: quote.famous, ...(quote.addressee ? { addressee: quote.addressee } : {}) },
-    verified: quote.verified,
-  }));
-  const events: Content[] = src.events.map((event) => buildEventContent(event, orders.get(event.id) as number));
   const techniques: Content[] = [];
   src.techniques.forEach((technique, index) => {
     const image = techniqueImages[index];
@@ -571,8 +531,9 @@ async function main(): Promise<void> {
       verified: technique.verified,
     });
   });
-  // Primero las frases y los sucesos, después las técnicas: agregar imágenes no reordena el resto.
-  const contents = [...quotes, ...events, ...techniques];
+  // Las frases y los sucesos se cargan en tiempo de ejecución desde source/ (src/franchises/dragon-ball/content.ts):
+  // en content.json solo van las técnicas, que dependen de las imágenes.
+  const contents = techniques;
 
   const sagasOutput = {
     series: src.sagas.seriesOrder.map((id) => ({ id, order: seriesRank.get(id) as number })),
@@ -584,13 +545,11 @@ async function main(): Promise<void> {
   if (!sagasCheck.success) fail('sagas.json generado no cumple el esquema', [sagasCheck.error.message]);
 
   step('Validando…');
-  await validate(src, characters, forms, power, contents, debutOf, sagaSeries);
+  await validate(src, characters, contents, debutOf, sagaSeries);
 
   step('Escribiendo data/dragon-ball/…');
   await validateCategoryBoard(ROOT, 'dragon-ball', characters);
   await writeJson(path.join(DATA_DIR, 'entities.json'), characters);
-  await writeJson(path.join(DATA_DIR, 'transformations.json'), forms);
-  await writeJson(path.join(DATA_DIR, 'power.json'), power);
   await writeJson(path.join(DATA_DIR, 'content.json'), contents.filter(({ kind }) => kind !== 'event' && kind !== 'quote'));
   await writeJson(path.join(DATA_DIR, 'sagas.json'), sagasOutput);
 
@@ -601,7 +560,7 @@ async function main(): Promise<void> {
       id: character.id,
       name: character.name,
       file: `data/dragon-ball/source/images/characters/${character.id}`,
-      wikiPage: character.wiki,
+      wikiPage: character.wiki ?? character.name,
       note: character.sinImagen ? 'la de la API no es el personaje' : undefined,
     }));
   const missingTechniques: MissingImage[] = src.techniques
@@ -614,10 +573,7 @@ async function main(): Promise<void> {
       note: characterById.get(technique.users[0])?.name ?? technique.users[0],
     }));
   const techniqueAnswers = new Set(techniques.map((content) => content.entityId)).size;
-  const opaque = [
-    ...characters.filter((entity) => entity.attrs.imagenTransparente === 0),
-    ...forms.filter((entity) => entity.attrs.imagenTransparente === 0),
-  ].map((entity) => ({ id: entity.id, name: entity.name.es }));
+  const opaque = characters.filter((entity) => entity.attrs.imagenTransparente === 0).map((entity) => ({ id: entity.id, name: entity.name.es }));
   await writeTodoSection(
     TODO_FILE,
     renderTodoSection({
@@ -633,17 +589,14 @@ async function main(): Promise<void> {
   printReport({
     seriesOrder: src.sagas.seriesOrder,
     characters,
-    forms,
     contents,
     sagaCount: src.sagas.sagas.length,
     rendered: {
       characters: characterImages.flatMap((result) => result.rendered),
-      forms: formImages.flatMap((result) => result.rendered),
       techniques: techniqueImages.flatMap((result) => result?.rendered ?? []),
     },
     unverified: [
       { label: 'personajes', unverified: src.characters.filter((item) => !item.verified).length, total: src.characters.length },
-      { label: 'formas', unverified: src.transformations.filter((item) => !item.verified).length, total: src.transformations.length },
       { label: 'técnicas', unverified: src.techniques.filter((item) => !item.verified).length, total: src.techniques.length },
       { label: 'frases', unverified: src.quotes.filter((item) => !item.verified).length, total: src.quotes.length },
       { label: 'sucesos', unverified: src.events.filter((item) => !item.verified).length, total: src.events.length },
@@ -652,8 +605,8 @@ async function main(): Promise<void> {
     opaqueImages: opaque.map((item) => item.id),
     techniquesTotal: src.techniques.length,
     techniqueAnswers,
-    powerWithValue: power.length,
-    powerOfficial: power.filter((entity) => entity.attrs.kiOficial === 1).length,
+    connectionGroups: src.connections.length,
+    connectionBoards: countBoards(src.connections),
     imageBytesDragonBall: await directoryBytes(IMAGE_DIR),
     imageBytesProject,
   });

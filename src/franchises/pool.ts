@@ -4,6 +4,7 @@ import { es } from '@/i18n/es';
 import { poolOf as connectionsPool } from '@/modes/connections/logic';
 import { candidatesOf as imageCandidates } from '@/modes/image-reveal/logic';
 import { poolOf as higherLowerPool } from '@/modes/higher-lower/logic';
+import { poolOf as quizPool } from '@/modes/quiz/logic';
 import { candidatesOf as listCandidates } from '@/modes/reveal-list/logic';
 import { candidatesOf as textCandidates } from '@/modes/text-clue/logic';
 import { poolOf as timelinePool } from '@/modes/timeline/logic';
@@ -41,17 +42,20 @@ export function modePoolSize(mode: ModeConfig, data: FranchiseData, active: read
       return mode.timeline === undefined ? null : timelinePool(data.contents, active, mode.timeline).length;
     case 'connections':
       return mode.connections === undefined ? null : connectionsPool(entities, data.contents, active, mode.connections).length;
+    case 'quiz':
+      return mode.quiz === undefined ? null : quizPool(entities, data.contents, active, mode.quiz).length;
   }
 }
 
 /**
  * Cómo se llama lo que cuenta el contador de posibles de un modo: los sucesos de una línea de tiempo, los grupos de las
- * conexiones o, en los demás, las entidades que se adivinan (las de su conjunto, o las principales de la franquicia).
+ * conexiones, las preguntas de un quiz o, en los demás, las entidades que se adivinan (las de su conjunto, o las principales de la franquicia).
  * `undefined` si la config no las nombra: el contador dice solo "N posibles".
  */
 export function modePoolNoun(franchise: FranchiseConfig, mode: ModeConfig): PoolNoun | undefined {
   if (mode.engine === 'timeline') return es.filters.nouns.events;
   if (mode.engine === 'connections') return es.filters.nouns.groups;
+  if (mode.engine === 'quiz') return es.filters.nouns.questions;
   if (mode.engine === 'image-reveal' && mode.imageReveal?.countNoun !== undefined) return mode.imageReveal.countNoun;
   return mode.entitySet === undefined ? franchise.entityNoun : franchise.entitySetNouns?.[mode.entitySet];
 }

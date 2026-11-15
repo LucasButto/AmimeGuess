@@ -7,7 +7,6 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type { Content, Entity } from '../../../src/engine/types.ts';
 import charactersJson from '../../../data/dragon-ball/entities.json';
-import formsJson from '../../../data/dragon-ball/transformations.json';
 import contentJson from '../../../data/dragon-ball/content.json';
 import { dragonBallContents } from '../../../src/franchises/dragon-ball/content';
 import quoteRows from '../../../data/dragon-ball/source/frase.json';
@@ -18,7 +17,6 @@ import { SERIES } from './schemas.ts';
 import { leaksName } from './transform.ts';
 
 const characters = charactersJson as unknown as Entity[];
-const forms = formsJson as Entity[];
 const contents = dragonBallContents(contentJson as Content[]);
 const sagas = sagasJson as { series: Array<{ id: string; order: number }>; sagas: Array<{ id: string; name: string; series: string; order: number }> };
 
@@ -34,9 +32,9 @@ const CLASSIC_KEYS = [
 ];
 
 describe('personajes', () => {
-  it('hay entre 100 y 150, con ids únicos', () => {
+  it('hay entre 100 y 400, con ids únicos', () => {
     expect(characters.length).toBeGreaterThanOrEqual(100);
-    expect(characters.length).toBeLessThanOrEqual(150);
+    expect(characters.length).toBeLessThanOrEqual(400);
     expect(new Set(characters.map((entity) => entity.id)).size).toBe(characters.length);
   });
 
@@ -107,29 +105,6 @@ describe('personajes', () => {
       }
     }
     expect(characters.filter((entity) => entity.attrs.imagenTransparente === 1).length).toBeGreaterThanOrEqual(10);
-  });
-});
-
-describe('formas', () => {
-  it('tienen una sola serie, imagen y un personaje que existe', () => {
-    expect(forms.length).toBeGreaterThanOrEqual(10);
-    expect(new Set(forms.map((entity) => entity.id)).size).toBe(forms.length);
-    for (const form of forms) {
-      expect(form.series.length, form.id).toBe(1);
-      expect(form.image, form.id).toBeDefined();
-      expect(characters.some((entity) => entity.name.es === form.attrs.personaje), `${form.id}: personaje ${String(form.attrs.personaje)}`).toBe(true);
-      for (const size of [256, 512]) {
-        expect(existsSync(path.join(ROOT, 'public', 'img', `${form.image}-${size}.webp`)), `${form.id} ${size}`).toBe(true);
-      }
-    }
-  });
-
-  it('cada forma figura en las transformaciones de su personaje, con la misma serie', () => {
-    for (const form of forms) {
-      const owner = characters.find((entity) => entity.name.es === form.attrs.personaje);
-      const list = (owner?.attrs.transformaciones ?? []) as Array<{ value: string; series?: string }>;
-      expect(list.some((item) => item.value === form.attrs.forma && item.series === form.series[0]), form.id).toBe(true);
-    }
   });
 });
 

@@ -751,7 +751,7 @@ async function narutoTerms(ctx: Ctx): Promise<string[]> {
 /** Con las 7 esferas resueltas hoy (estado preparado) aparece el dragón con "¡Pedí un deseo!"; con una menos, no. */
 async function dragonBallReward(ctx: Ctx): Promise<string[]> {
   const problems: string[] = [];
-  const spheres = ['silueta', 'frase', 'borroso', 'tecnica', 'poder', 'transformacion', 'linea-de-tiempo'];
+  const spheres = ['silueta', 'frase', 'quiz', 'tecnica', 'linea-de-tiempo', 'conexiones', 'casillas'];
   const solved = (slugs: string[]) => Object.assign({}, ...slugs.map((slug) => savedGame('dragon-ball', slug, ['x'], 'won')));
   for (const [slugs, expected] of [
     [spheres, true],

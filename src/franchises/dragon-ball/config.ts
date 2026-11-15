@@ -25,12 +25,13 @@ export const sagaLabels: Readonly<Record<string, string>> = {
   pilaf: 'Pilaf',
   'torneo-21': 'Torneo 21',
   'liston-rojo': 'Listón Rojo',
+  'uranai-baba': 'Uranai Baba',
   'torneo-22': 'Torneo 22',
   'gran-rey-demonio-piccolo': 'Rey Piccoro',
   'torneo-23': 'Torneo 23',
   saiyanos: 'Saiyajin',
   'namek-freezer': 'Namek',
-  makyo: 'Makyo',
+  makyo: 'Garlic Jr.',
   'androides-cell': 'Androides y Cell',
   'otro-mundo': 'Otro Mundo',
   boo: 'Buu',
@@ -44,17 +45,14 @@ export const sagaLabels: Readonly<Record<string, string>> = {
   'prisionero-patrulla-galactica': 'Patrulla Galáctica',
   'sobreviviente-granolah': 'Granolah',
   'super-hero': 'Super Hero',
+  'final-dbz': 'Final de Z',
   'esferas-definitivas': 'Esferas Definitivas',
   baby: 'Baby',
   'androide-definitivo': 'Androide Definitivo',
   'dragones-malignos': 'Dragones Malignos',
+  'cien-anos-despues': '100 años después',
   'reino-demoniaco': 'Daima',
 };
-
-/** El número de cada serie en la cronología → su nombre y a qué serie pertenece. */
-const serieDebutLabels: Readonly<Record<string, ClassicValueLabel>> = Object.fromEntries(
-  sagasJson.series.map((entry) => [String(entry.order), { label: seriesLabels[entry.id] ?? entry.id, series: entry.id }]),
-);
 
 /** El número de cada saga en la cronología → su nombre corto y la serie a la que pertenece. */
 const sagaDebutLabels: Readonly<Record<string, ClassicValueLabel>> = Object.fromEntries(
@@ -66,10 +64,9 @@ export const dragonBallConfig = {
   name: 'Dragon Ball',
   // Versus, Contrarreloj: segundos de más en el tiempo por defecto por cada serie activa desde la segunda.
   versusSecondsPerExtraSeries: 0,
-  // Los 121 personajes tienen imagen: el autocompletado la muestra en miniatura (se midió que escribir sigue fluido).
+  // Todos los personajes tienen imagen: el autocompletado la muestra en miniatura (se midió que escribir sigue fluido).
   autocompleteThumbnails: true,
   entityNoun: { one: 'personaje', many: 'personajes' },
-  entitySetNouns: { transformations: { one: 'forma', many: 'formas' }, power: { one: 'personaje', many: 'personajes' } },
   // En el orden de la historia (el de los filtros y el de la cronología de los datos): Daima ocurre entre Z y Super, y GT
   // al final. Es el orden elegido por el usuario el 2026-10-14; `data/dragon-ball/source/sagas.json` (`seriesOrder`) lo repite.
   series: ['db', 'dbz', 'daima', 'super', 'gt'],
@@ -93,9 +90,8 @@ export const dragonBallConfig = {
           { key: 'planeta', label: 'Planeta de origen', compare: 'exact', help: help.planeta },
           // Cada forma lleva la serie en que se ve: con una serie apagada, sus formas no aparecen (regla 3).
           { key: 'transformaciones', label: 'Transformaciones', compare: 'set', help: help.transformaciones },
-          // Se compara el lugar en la cronología (el orden de las series lo fija sagas.json); se muestra el nombre.
+          // Se compara el orden global de las sagas en sagas.json; se muestra el nombre corto.
           // Si la serie del debut está apagada, el valor se oculta: lo excluido no aparece nunca.
-          { key: 'serieDebut', label: 'Serie de debut', compare: 'ordered', valueLabels: serieDebutLabels, help: help.serieDebut },
           { key: 'sagaDebut', label: 'Saga de debut', compare: 'ordered', valueLabels: sagaDebutLabels, help: help.sagaDebut },
   ],
         hints: [],
@@ -125,7 +121,22 @@ export const dragonBallConfig = {
         ],
       },
     },
-    { slug: 'borroso', versusIcon: 'blur', name: 'Borroso', engine: 'image-reveal', imageReveal: { variant: 'blur' } },
+    {
+      slug: 'quiz', versusIcon: 'description',
+      name: 'Quiz',
+      engine: 'quiz',
+      // Una pregunta rebuscada por día, con una sola respuesta correcta (un personaje) entre 12 opciones que aparecen
+      // siempre en orden aleatorio, en la grilla de nombres de Conexiones. Las preguntas salen de
+      // `data/dragon-ball/source/quiz.json`; `try` de data/mode.json fija los intentos (uno por defecto).
+      quiz: {
+        contentKind: 'question',
+        questionField: 'question',
+        correctField: 'correct',
+        distractorsField: 'distractors',
+        explanationField: 'explanation',
+        scopeField: 'scope',
+      },
+    },
     {
       slug: 'tecnica', versusIcon: 'technique',
       name: 'Técnica',
@@ -133,34 +144,6 @@ export const dragonBallConfig = {
       // La imagen es una técnica (cada una con su captura) y la respuesta, quien la usa. Cuenta como acierto
       // cualquiera de los personajes que la usan (ver `accepts` en los datos).
       imageReveal: { variant: 'blur', imageContentKind: 'technique' },
-    },
-    {
-      slug: 'poder', versusIcon: 'higher-lower',
-      name: 'Nivel de poder',
-      engine: 'higher-lower',
-      // Personajes y formas en un momento de la historia (la saga va entre paréntesis cuando cambia el poder), de
-      // `data/dragon-ball/source/power.json`: estimaciones propias revisadas con el usuario (2026-10-14).
-      entitySet: 'power',
-      // Un orden de magnitud de diferencia como mínimo: los valores son estimaciones, no cifras exactas.
-      higherLower: {
-        minRatio: 10,
-        metrics: [
-          {
-            key: 'ki',
-            label: 'Nivel de poder',
-            question: '¿Quién tiene más ki?',
-            note: 'Estimaciones propias: solo hay cifras oficiales hasta la saga de Freezer. Entre paréntesis, la saga de ese poder. Cada par difiere al menos 10 veces.',
-          },
-        ],
-      },
-    },
-    {
-      slug: 'transformacion', versusIcon: 'transformation',
-      name: 'Transformación',
-      engine: 'image-reveal',
-      // Se adivina la forma exacta (por ejemplo, "Goku Supersaiyano 3"), no el personaje: las entidades son las formas.
-      entitySet: 'transformations',
-      imageReveal: { variant: 'blur' },
     },
     {
       slug: 'linea-de-tiempo', versusIcon: 'timeline',
@@ -177,6 +160,14 @@ export const dragonBallConfig = {
         orderHelp: es.help.timelineOrder,
         levels: [{ count: 5, attempts: 3 }, { count: 10, attempts: 4 }, { count: 15, attempts: 5 }],
       },
+    },
+    {
+      slug: 'conexiones', versusIcon: 'connections',
+      name: 'Conexiones',
+      engine: 'connections',
+      // Cuatro grupos de cuatro personajes por tablero, de fácil a difícil. Los grupos salen de
+      // `data/dragon-ball/source/conexiones.json` (con la lista completa de miembros de cada uno).
+      connections: { contentKind: 'group', nameField: 'name', membersField: 'members', difficultyField: 'difficulty' },
     },
           { slug: 'casillas', versusIcon: 'moveset', name: es.categoryBoard.name, engine: 'category-board', categoryBoard: { reassignCurrent: true, roster: boardJson.roster, exclusions: boardJson.exclusions, categories: boardJson.categories.map((category) => ({ ...category, ...es.categoryBoard.categories[category.id] })) } },
   ],
@@ -229,7 +220,7 @@ export const dragonBallConfig = {
       { text: 'ink', background: 'paper-shade', kind: 'text', where: 'Texto sobre lo hundido (celdas vacías, pistas bloqueadas)' },
       { text: 'scouter', background: 'scouter-dark', kind: 'text', where: 'Lectura del scouter' },
       { text: 'text-muted', background: 'cloud', kind: 'text', where: 'Estado del Clásico en el cuerpo de la cápsula' },
-      { text: 'ink', background: 'orange', kind: 'ui', where: 'Marcos sobre naranja (líneas de impacto del Nivel de poder, tapa de la cápsula)' },
+      { text: 'ink', background: 'orange', kind: 'ui', where: 'Marcos sobre naranja (tapa de la cápsula)' },
       { text: 'ink', background: 'sky-blue', kind: 'ui', where: 'Marcos y contorno de los títulos sobre el cielo' },
       { text: 'ink', background: 'cloud', kind: 'ui', where: 'Marcos y contorno de las nubes sobre el horizonte claro' },
       { text: 'ink', background: 'logo-yellow-top', kind: 'ui', where: 'Contorno negro de los títulos sobre el amarillo (arriba)' },

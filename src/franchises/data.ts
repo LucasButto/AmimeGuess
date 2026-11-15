@@ -27,10 +27,8 @@ const loaders: Record<string, () => Promise<FranchiseData>> = {
     return { entities: entities.default as Entity[], contents: publishableContents(contents.default as Content[]), entitySets: { 'stat-builder': [...entities.default as Entity[], ...forms.default as Entity[]] } };
   },
   'dragon-ball': async () => {
-    const [entities, transformations, power, contents, { dragonBallContents }] = await Promise.all([
+    const [entities, contents, { dragonBallContents }] = await Promise.all([
       import('../../data/dragon-ball/entities.json'),
-      import('../../data/dragon-ball/transformations.json'),
-      import('../../data/dragon-ball/power.json'),
       import('../../data/dragon-ball/content.json'),
       import('./dragon-ball/content'),
     ]);
@@ -38,8 +36,6 @@ const loaders: Record<string, () => Promise<FranchiseData>> = {
       entities: entities.default as unknown as Entity[],
       // Frase usa todo su catálogo curado y conserva la marca de verificación de cada entrada.
       contents: dragonBallContents(contents.default as Content[]).filter((content) => content.kind === 'quote' || isContentPublishable(content)),
-      // `power`: las entradas de Nivel de poder (personajes y formas en un momento de la historia, con su ki).
-      entitySets: { transformations: transformations.default as unknown as Entity[], power: power.default as unknown as Entity[] },
     };
   },
   naruto: async () => {

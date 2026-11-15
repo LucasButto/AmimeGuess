@@ -6,6 +6,7 @@ import type { ClassicConfig } from '../modes/classic/types';
 import type { ConnectionsConfig } from '../modes/connections/types';
 import type { HigherLowerConfig } from '../modes/higher-lower/types';
 import type { ImageRevealConfig } from '../modes/image-reveal/types';
+import type { QuizConfig } from '../modes/quiz/types';
 import type { RevealListConfig } from '../modes/reveal-list/types';
 import type { TextClueConfig } from '../modes/text-clue/types';
 import type { TimelineConfig } from '../modes/timeline/types';
@@ -21,6 +22,7 @@ export type EngineId =
   | 'higher-lower'
   | 'timeline'
   | 'connections'
+  | 'quiz'
   | 'stat-builder'
   | 'category-board';
 
@@ -68,6 +70,8 @@ export interface ModeConfig {
   readonly timeline?: TimelineConfig;
   /** Grupos a formar, solo para los modos con motor `connections`. */
   readonly connections?: ConnectionsConfig;
+  /** Preguntas y dificultades, solo para los modos con motor `quiz`. */
+  readonly quiz?: QuizConfig;
   /**
    * De dónde salen las entidades que se adivinan y se ofrecen como opción: el
    * conjunto con este nombre de `FranchiseData.entitySets` (por ejemplo, las

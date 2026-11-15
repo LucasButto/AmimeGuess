@@ -60,6 +60,7 @@ const ENGINE_ICON: Readonly<Record<string, ArcadeIconName>> = {
   'higher-lower': 'sort',
   timeline: 'hourglass',
   connections: 'shuffle',
+  quiz: 'question',
   'stat-builder': 'gamepad',
   'category-board': 'key-a',
 };

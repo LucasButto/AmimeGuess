@@ -23,7 +23,7 @@ describe('parseConfig', () => {
   it('acepta una sala mínima y completa las opciones por defecto', () => {
     const result = parseConfig({ modality: 'timeAttack', partidas: [clasico] });
     expect(sameEngines).toBe(true);
-    expect(VERSUS_ENGINES).toHaveLength(9);
+    expect(VERSUS_ENGINES).toHaveLength(10);
     expect(result.ok).toBe(true);
     if (result.ok) expect(result.config.options).toEqual(DEFAULT_OPTIONS);
   });
@@ -89,6 +89,7 @@ describe('defaultTimeLimit', () => {
       timeline: 120_000,
       'higher-lower': 120_000,
       connections: 180_000,
+      quiz: 150_000,
       'stat-builder': 180_000,
       'category-board': 180_000,
     };

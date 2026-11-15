@@ -167,13 +167,12 @@ export const es = {
       clasico: "Adiviná el personaje comparando sus datos.",
       silueta: "Adiviná el personaje por su sombra ampliada.",
       frase: "Adiviná qué personaje dijo la frase.",
-      borroso: "Adiviná el personaje de la imagen borrosa.",
+      quiz: "Contestá preguntas rebuscadas sobre Dragon Ball eligiendo al personaje correcto entre 12 opciones.",
       tecnica: "Mirá la técnica y adiviná qué personaje la usa.",
-      poder: "Elegí quién tiene más poder en la forma y el momento indicados.",
-      transformacion:
-        "Adiviná la transformación exacta de la imagen, incluyendo el personaje y su forma.",
       "linea-de-tiempo":
         "Ordená los sucesos de Dragon Ball según cuándo ocurren en la historia.",
+      conexiones:
+        "Agrupá a los personajes que comparten una raza, una organización u otra característica.",
     },
     naruto: {
       casillas:
@@ -508,12 +507,12 @@ export const es = {
             {
               name: "Dragon Ball API",
               url: "https://dragonball-api.com",
-              text: "Personajes, transformaciones, niveles de ki e imágenes.",
+              text: "Personajes e imágenes.",
             },
             {
               name: "Dragon Ball Wiki Hispano (Fandom)",
               url: "https://dragonball.fandom.com/es",
-              text: "Series en las que aparece cada personaje, frases (CC BY-SA, más abajo) e imágenes de personajes, técnicas y transformaciones.",
+              text: "Series en las que aparece cada personaje, frases (CC BY-SA, más abajo) e imágenes de personajes y técnicas.",
             },
           ],
         },
@@ -775,6 +774,7 @@ export const es = {
     nouns: {
       events: { one: "suceso", many: "sucesos" },
       groups: { one: "grupo", many: "grupos" },
+      questions: { one: "pregunta", many: "preguntas" },
     },
     belowMinimum: (remaining: number, minimum: number) =>
       `Con estos filtros quedan ${remaining} y hacen falta al menos ${minimum} para jugar este modo. Activá más series.`,
@@ -1055,6 +1055,30 @@ export const es = {
       unique: "En este tablero, cada elemento pertenece a un solo grupo.",
       colors:
         "Cada grupo tiene un color y un nivel de dificultad, de fácil a muy difícil.",
+    },
+  },
+  quiz: {
+    instructions: "Elegí la opción correcta. Al terminar ves el dato que explica la respuesta.",
+    attempt: (current: number, total: number) => `Intento ${current} de ${total}`,
+    gridLabel: "Opciones",
+    stateRight: "correcta",
+    stateWrong: "incorrecta",
+    stateReveal: "era la respuesta correcta",
+    factTitle: "El dato",
+    rightAnnouncement: "¡Correcto!",
+    wrongAnnouncement: (left: number) =>
+      `Esa no es. Te ${plural(left, "queda", "quedan")} ${left} ${plural(left, "intento", "intentos")}.`,
+    lostAnnouncement: (name: string) => `No era. La respuesta correcta es ${name}.`,
+    noPuzzle:
+      "Con estos filtros no hay preguntas suficientes para armar el quiz. Activá más series.",
+    help: {
+      goal: (options: number) =>
+        `Cada día hay una pregunta rebuscada sobre la historia. La respuesta es un personaje: elegilo entre ${options} opciones, que aparecen siempre en un orden distinto.`,
+      attempts: (total: number) =>
+        total === 1
+          ? "Tenés un solo intento: elegí con cuidado."
+          : `Tenés ${total} intentos. Cada opción incorrecta queda descartada.`,
+      hover: "Pasá el cursor por un nombre para ver al personaje.",
     },
   },
   shell: {
@@ -1584,10 +1608,8 @@ export const es = {
         "El planeta donde nació. Verde si es el mismo que el de la respuesta; rojo si no.",
       transformaciones:
         "Las formas que alcanzó en las series activas. Verde si son las mismas; naranja si comparten alguna.",
-      serieDebut:
-        "La serie en la que apareció por primera vez. La flecha indica si la respuesta debutó antes o después.",
       sagaDebut:
-        "La saga en la que apareció por primera vez. La flecha indica si la respuesta debutó antes o después.",
+        "La saga en la que apareció por primera vez, en el orden de la historia. La flecha indica si la respuesta debutó antes o después.",
     },
     // Columnas del Clásico de Pokémon.
     pokemon: {

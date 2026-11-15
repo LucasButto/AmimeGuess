@@ -56,7 +56,7 @@ export function renderTodoSection(input: TodoInput): string {
     );
   } else {
     lines.push(
-      'Las imágenes de Dragon Ball API (58 personajes y 43 formas) se descargan solas. Las de la wiki de Fandom no: su CDN (`static.wikia.nocookie.net`) responde con un desafío anti-bots de Cloudflare a cualquier cliente que no sea un navegador, y el script no intenta saltearlo (sesión 08).',
+      'Las imágenes de Dragon Ball API (58 personajes) se descargan solas. Las de la wiki de Fandom no: su CDN (`static.wikia.nocookie.net`) responde con un desafío anti-bots de Cloudflare a cualquier cliente que no sea un navegador, y el script no intenta saltearlo (sesión 08).',
       '',
       'Para cada una: abrí la página indicada en el navegador, guardá la imagen principal (cuanto más grande mejor; las de fondo transparente sirven también para Silueta) con el nombre de la columna "Archivo" y volvé a correr `npm run data:dragon-ball`. El script la convierte a WebP en dos tamaños, la suma al dataset y quita la fila de esta lista. Este bloque lo reescribe el script en cada corrida.',
       '',
@@ -67,7 +67,7 @@ export function renderTodoSection(input: TodoInput): string {
     lines.push(
       `### Personajes sin imagen (${input.characters.length})`,
       '',
-      'Sin imagen siguen jugando en el Clásico, pero no pueden ser la respuesta de Silueta ni de Borroso.',
+      'Sin imagen siguen jugando en el Clásico, pero no pueden ser la respuesta de Silueta y se ven sin retrato en las opciones del Quiz.',
       '',
       ...table(input.characters),
       '',
@@ -90,7 +90,7 @@ export function renderTodoSection(input: TodoInput): string {
     lines.push(
       `### Imágenes con fondo, que no sirven para Silueta (${input.opaque.length})`,
       '',
-      'Quedan fuera del pool de Silueta (`imagenTransparente: 0`) pero sirven para Borroso. La sesión 19 les quita el fondo con el recorte automático de Yu-Gi-Oh; también se pueden reemplazar a mano por una versión con fondo transparente (mismo nombre de archivo en `data/dragon-ball/source/images/`).',
+      'Quedan fuera del pool de Silueta (`imagenTransparente: 0`) pero se ven enteras en el resto de los modos. La sesión 19 les quita el fondo con el recorte automático de Yu-Gi-Oh; también se pueden reemplazar a mano por una versión con fondo transparente (mismo nombre de archivo en `data/dragon-ball/source/images/`).',
       '',
       ...input.opaque.map((item) => `- ${item.name} (\`${item.id}\`)`),
       '',
