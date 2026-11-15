@@ -41,148 +41,166 @@
       "order": 3
     },
     {
+      "id": "uranai-baba",
+      "name": "Arco de Uranai Baba",
+      "series": "db",
+      "order": 4
+    },
+    {
       "id": "torneo-22",
       "name": "Arco del 22.º Torneo Mundial de las Artes Marciales",
       "series": "db",
-      "order": 4
+      "order": 5
     },
     {
       "id": "gran-rey-demonio-piccolo",
       "name": "Arco del Gran Rey Demonio Piccoro",
       "series": "db",
-      "order": 5
+      "order": 6
     },
     {
       "id": "torneo-23",
       "name": "Arco del 23.º Torneo Mundial de las Artes Marciales",
       "series": "db",
-      "order": 6
+      "order": 7
     },
     {
       "id": "saiyanos",
       "name": "Arco de los Saiyajin",
       "series": "dbz",
-      "order": 7
+      "order": 8
     },
     {
       "id": "namek-freezer",
       "name": "Arco de Namek y Freezer",
       "series": "dbz",
-      "order": 8
+      "order": 9
     },
     {
       "id": "makyo",
-      "name": "Arco del Planeta Makyo",
+      "name": "Arco de Garlic Jr.",
       "series": "dbz",
-      "order": 9
+      "order": 10
     },
     {
       "id": "androides-cell",
       "name": "Arco de los Androides y Cell",
       "series": "dbz",
-      "order": 10
+      "order": 11
     },
     {
       "id": "otro-mundo",
       "name": "Arco del Torneo del Otro Mundo",
       "series": "dbz",
-      "order": 11
+      "order": 12
     },
     {
       "id": "boo",
       "name": "Arco del Monstruo Buu",
       "series": "dbz",
-      "order": 12
+      "order": 13
     },
     {
       "id": "dbz-peliculas",
       "name": "Películas y especiales de Dragon Ball Z",
       "series": "dbz",
-      "order": 13
+      "order": 14
     },
     {
       "id": "reino-demoniaco",
       "name": "Dragon Ball Daima",
       "series": "daima",
-      "order": 14
+      "order": 15
     },
     {
       "id": "beerus",
       "name": "Arco del Dios de la Destrucción Bills",
       "series": "super",
-      "order": 15
+      "order": 16
     },
     {
       "id": "freezer-dorado",
       "name": "Arco de Freezer Dorado",
       "series": "super",
-      "order": 16
+      "order": 17
     },
     {
       "id": "universo-6",
       "name": "Arco del Universo 6 contra el Universo 7",
       "series": "super",
-      "order": 17
+      "order": 18
     },
     {
       "id": "trunks-futuro",
       "name": "Arco de Trunks del Futuro",
       "series": "super",
-      "order": 18
+      "order": 19
     },
     {
       "id": "supervivencia",
       "name": "Arco de la Supervivencia del Universo",
       "series": "super",
-      "order": 19
+      "order": 20
     },
     {
       "id": "super-broly",
       "name": "Película Dragon Ball Super: Broly",
       "series": "super",
-      "order": 20
+      "order": 21
     },
     {
       "id": "prisionero-patrulla-galactica",
       "name": "Arco del Prisionero de la Patrulla Galáctica",
       "series": "super",
-      "order": 21
+      "order": 22
     },
     {
       "id": "sobreviviente-granolah",
       "name": "Arco del Sobreviviente Granolah",
       "series": "super",
-      "order": 22
+      "order": 23
     },
     {
       "id": "super-hero",
       "name": "Película Dragon Ball Super: Super Hero",
       "series": "super",
-      "order": 23
+      "order": 24
+    },
+    {
+      "id": "final-dbz",
+      "name": "Final de Dragon Ball Z: 28.º Torneo Mundial y despedida con Uub",
+      "series": "dbz",
+      "order": 25
     },
     {
       "id": "esferas-definitivas",
       "name": "Arco de las Esferas del Dragón Definitivas",
       "series": "gt",
-      "order": 24
+      "order": 26
     },
     {
       "id": "baby",
       "name": "Arco del Demonio Vengador Baby",
       "series": "gt",
-      "order": 25
+      "order": 27
     },
     {
       "id": "androide-definitivo",
       "name": "Arco del Androide Definitivo",
       "series": "gt",
-      "order": 26
+      "order": 28
     },
     {
       "id": "dragones-malignos",
       "name": "Arco de los Siete Dragones Malignos",
       "series": "gt",
-      "order": 27
+      "order": 29
+    },
+    {
+      "id": "cien-anos-despues",
+      "name": "100 años después",
+      "series": "gt",
+      "order": 30
     }
   ]
 }

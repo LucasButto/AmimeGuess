@@ -1,10 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import type { CharacterSrc, EventSrc, SagasFile, TransformationSrc } from './schemas.ts';
+import type { CharacterSrc, EventSrc, SagasFile } from './schemas.ts';
 import {
   buildCharacterEntity,
   buildEventContent,
-  buildPowerEntity,
-  buildTransformationEntity,
+  countBoards,
   canonicalSeries,
   debutSeries,
   eventOrders,
@@ -40,16 +39,15 @@ describe('sagaRanks', () => {
     ],
   };
 
-  it('ordena primero por serie y dentro de ella según el archivo', () => {
+  it('ordena las sagas según su posición en el archivo, sin importar la serie', () => {
     const ranks = sagaRanks(file);
-    expect([...ranks].sort((a, b) => a[1] - b[1]).map(([id]) => id)).toEqual(['db-uno', 'db-dos', 'dbz-uno', 'super-uno', 'gt-uno']);
+    expect([...ranks].sort((a, b) => a[1] - b[1]).map(([id]) => id)).toEqual(['gt-uno', 'db-uno', 'super-uno', 'db-dos', 'dbz-uno']);
     expect(Math.max(...ranks.values())).toBe(5);
   });
 
-  it('cambiar el orden de las series reordena las sagas sin tocar su orden interno', () => {
+  it('cambiar el orden de las series no reordena las sagas', () => {
     const release = sagaRanks({ ...file, seriesOrder: ['db', 'dbz', 'gt', 'super', 'daima'] });
-    expect(release.get('gt-uno')).toBeLessThan(release.get('super-uno') as number);
-    expect(release.get('db-uno')).toBeLessThan(release.get('db-dos') as number);
+    expect([...release.entries()]).toEqual([...sagaRanks(file).entries()]);
   });
 
   it('rechaza una saga repetida', () => {
@@ -161,31 +159,6 @@ describe('buildCharacterEntity', () => {
   });
 });
 
-describe('buildTransformationEntity', () => {
-  const form: TransformationSrc = {
-    id: 'goku-ssj',
-    api: 1,
-    character: 'goku',
-    forma: 'Supersaiyano',
-    name: 'Goku Supersaiyano',
-    aliases: ['Goku SSJ'],
-    series: 'dbz',
-    verified: false,
-  };
-
-  it('es una entidad de una sola serie con el personaje y la forma como atributos', () => {
-    const entity = buildTransformationEntity(form, 'Goku', { path: 'dragon-ball/transformations/goku-ssj', transparent: true });
-    expect(entity).toEqual({
-      id: 'goku-ssj',
-      name: { es: 'Goku Supersaiyano' },
-      aliases: ['Goku SSJ'],
-      series: ['dbz'],
-      image: 'dragon-ball/transformations/goku-ssj',
-      attrs: { personaje: 'Goku', forma: 'Supersaiyano', imagenTransparente: 1 },
-    });
-  });
-});
-
 describe('eventOrders', () => {
   const event = (id: string, series: EventSrc['series'], order: number): EventSrc => ({ id, text: id, series, order, verified: false });
   const events = [event('super-1', 'super', 1), event('db-2', 'db', 2), event('gt-1', 'gt', 1), event('db-1', 'db', 1), event('dbz-1', 'dbz', 1)];
@@ -209,16 +182,36 @@ describe('eventOrders', () => {
   });
 });
 
-describe('buildPowerEntity', () => {
-  const goku = { id: 'goku', name: { es: 'Goku' }, aliases: [], series: ['dbz'], image: 'dragon-ball/goku', attrs: {} };
+describe('countBoards', () => {
+  const group = (id: string, difficulty: number, members: string[]) => ({
+    id,
+    name: id,
+    category: 'x',
+    difficulty,
+    series: 'dbz' as const,
+    members,
+    verified: false,
+  });
+  const ids = (prefix: string, count = 4) => Array.from({ length: count }, (_, index) => `${prefix}${index}`);
+  const base = [group('a', 1, ids('a')), group('b', 2, ids('b')), group('c', 3, ids('c')), group('d', 4, ids('d'))];
 
-  it('lleva el nombre con su saga, la serie de ese momento, el ki y la imagen de la que sale', () => {
-    const entity = buildPowerEntity({ id: 'goku-base', of: 'goku', name: 'Goku (base, saga de Buu)', series: 'dbz', ki: 1e9, official: false, source: 'x' }, goku);
-    expect(entity).toEqual({ id: 'goku-base', name: { es: 'Goku (base, saga de Buu)' }, aliases: [], series: ['dbz'], image: 'dragon-ball/goku', attrs: { ki: 1e9, kiOficial: 0 } });
+  it('cuenta una combinación de un grupo por dificultad', () => {
+    expect(countBoards(base)).toBe(1);
+    expect(countBoards([...base, group('e', 1, ids('e'))])).toBe(2);
   });
 
-  it('hereda las marcas de relleno y de solo manga', () => {
-    const moro = { ...goku, id: 'moro', attrs: { mangaOnly: 1 } };
-    expect(buildPowerEntity({ id: 'moro', of: 'moro', name: 'Moro', series: 'super', ki: 1, official: true, source: 'x' }, moro).attrs).toEqual({ ki: 1, kiOficial: 1, mangaOnly: 1 });
+  it('sin una dificultad no hay tableros', () => {
+    expect(countBoards(base.slice(0, 3))).toBe(0);
+  });
+
+  it('un grupo que comparte miembros con los otros necesita 4 propios', () => {
+    const shared = [group('a', 1, [...ids('a'), 'b0']), group('b', 2, ids('b', 5)), ...base.slice(2)];
+    expect(countBoards(shared)).toBe(1);
+    const tight = [group('a', 1, ids('a')), group('b', 2, ['a0', 'a1', 'b0', 'b1', 'b2', 'b3']), group('c', 3, ids('c')), group('d', 4, ids('d'))];
+    expect(countBoards(tight)).toBe(0);
+  });
+
+  it('solo cuenta a los miembros elegibles', () => {
+    expect(countBoards(base, (id) => id !== 'a0')).toBe(0);
   });
 });
