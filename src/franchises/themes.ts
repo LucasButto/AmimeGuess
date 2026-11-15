@@ -26,6 +26,7 @@ export function getSkin(slug: string | null): ResolvedSkin {
   const result: ResolvedSkin = skin
     ? {
         cluePortraits: skin.cluePortraits,
+        menuIcons: skin.menuIcons,
         customComparisonMedia: skin.customComparisonMedia ?? DEFAULT_SKIN_DATA.customComparisonMedia,
         customRevealListItems: skin.customRevealListItems ?? DEFAULT_SKIN_DATA.customRevealListItems,
         additionalAttemptsMeters: skin.additionalAttemptsMeters ?? DEFAULT_SKIN_DATA.additionalAttemptsMeters,

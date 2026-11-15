@@ -324,10 +324,10 @@ export const es = {
       `${solved} de ${total} ${plural(total, "reto", "retos")} de hoy`,
     play: "Jugar",
     continue: "Seguir",
-    // El estado de hoy de un modo, solo la palabra (hub del teléfono y Retos): pendiente, completado o fallado.
+    // El estado de hoy de un modo, solo la palabra (hub del teléfono y Retos): pendiente, completado o fallido.
     rowState: {
       won: "Completado",
-      lost: "Fallado",
+      lost: "Fallido",
       pending: "Pendiente",
     },
     solved: "Resuelto hoy",
@@ -675,6 +675,14 @@ export const es = {
         "Las siluetas de las cartas de Yu-Gi-Oh se recortan del fondo con el modelo BiRefNet (licencia MIT), ejecutado en local.",
       ],
       externalItems: [
+        {
+          name: "Íconos del menú del juego de Pokémon, Naruto y Dragon Ball",
+          text: "Imágenes aportadas por el usuario; autor y licencia a confirmar. Cómo se juega, Estadísticas, Ajustes, el botón que abre el menú, el de los filtros del teléfono y la bandera blanca de Rendirse de cada serie, recortados y convertidos a WebP.",
+        },
+        {
+          name: "Cápsula del Clásico de Dragon Ball",
+          text: "Imagen aportada por el usuario; autor y licencia a confirmar. Es la tarjeta del modo principal en la página de la serie, con el nombre y el estado encima.",
+        },
         {
           name: "Signos de pregunta de Naruto y Dragon Ball para la selección móvil",
           text: "Imágenes aportadas por el usuario; autor y licencia a confirmar. Se utilizan en la selección inicial del modo Casillas en móvil.",

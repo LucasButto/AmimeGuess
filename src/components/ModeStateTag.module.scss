@@ -1,7 +1,7 @@
 @use 'tokens' as t;
 
 // Solo el texto, sin recuadro ni borde, y el color lo dice todo: pendiente en negro (la tinta del tema), completado en verde y
-// fallado en rojo (los de los resultados del Clásico de cada franquicia). El relleno queda, invisible, para que el texto esté
+// fallido en rojo (los de los resultados del Clásico de cada franquicia). El relleno queda, invisible, para que el texto esté
 // donde estaba cuando tenía recuadro.
 .tag {
   display: inline-block;

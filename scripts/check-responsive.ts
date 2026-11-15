@@ -424,7 +424,7 @@ async function hubList(page: Page): Promise<string[]> {
       visible: visible.length,
       gridVisible: !!grid && grid.getClientRects().length > 0,
       lastBottom: Math.max(0, ...visible.map((row) => row.getBoundingClientRect().bottom)),
-      states: visible.filter((row) => /Pendiente|Completado|Fallado/.test(row.textContent ?? '')).length,
+      states: visible.filter((row) => /Pendiente|Completado|Fallido/.test(row.textContent ?? '')).length,
       play: visible[0]?.textContent?.includes('Jugar') ?? false,
       tall: window.innerHeight >= 800,
       height: window.innerHeight,

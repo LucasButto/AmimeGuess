@@ -75,7 +75,7 @@ export default async function ModePage({
   const appShell = appShellEnabled(franchise.slug);
   const heading = (
     <header className={styles.header}>
-      <p className={styles.franchise}>{franchise.name}{appShell && <span className={styles.appSubtitle}>{es.shell.appSubtitle}</span>}</p>
+      <p className={styles.franchise}>{franchise.name}</p>
       <h1 className={styles.title}>
         <TitleMark slug={mode.slug} index={markIndex} />
         <TitleWords text={mode.name} />

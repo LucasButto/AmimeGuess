@@ -407,6 +407,13 @@ export interface SkinData {
     /** Personajes nombrados en pistas que no forman parte del catálogo jugable. */
     readonly additional?: readonly { name: string; image: string; aliases?: readonly string[] }[];
   };
+  /**
+   * Íconos propios del menú del juego (Cómo se juega, Estadísticas y Ajustes): rutas de imagen en `public/img` sin tamaño
+   * ni extensión, ver `ContentImage`. `menu` es el botón que abre el menú (en lugar de las tres rayas o los tres puntos) y
+   * `filters`, el de los filtros del teléfono (en lugar del ícono con "Filtros" escrito debajo).
+   * Sin esto, los dibujos pixel de siempre.
+   */
+  readonly menuIcons?: Readonly<Record<'help' | 'stats' | 'settings', string>> & { readonly menu?: string; readonly filters?: string; readonly surrender?: string };
   /** Reemplaza solo la imagen de las opciones con ComparisonMedia; false por defecto. */
   readonly customComparisonMedia?: boolean;
   /** Reemplaza el contenido de cada posición con RevealListItem; false por defecto. */

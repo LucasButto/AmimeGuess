@@ -26,6 +26,9 @@ export const dragonBallSkin: FranchiseSkin = {
   // Al cambiar de modo, el resplandor dorado tapa la pantalla mientras la nave Saiyajin cruza de izquierda a derecha hasta el medio
   // (900 ms) y recién ahí se navega; la pantalla nueva sigue el vuelo otros 900 ms (1,8 s en total).
   pageExitMs: 900,
+  // Íconos del menú del juego (Cómo se juega, Estadísticas y Ajustes), aportados por el usuario el 2026-11-15; los originales
+  // están en data/dragon-ball/source/menu-icons/.
+  menuIcons: { help: 'dragon-ball/menu/help', stats: 'dragon-ball/menu/stats', settings: 'dragon-ball/menu/settings', menu: 'dragon-ball/menu/menu', filters: 'dragon-ball/menu/filters', surrender: 'dragon-ball/menu/surrender' },
   // Las semillas del ermitaño (los intentos) también en el modo de frase y en los de lista, no solo en el Clásico y la línea de
   // tiempo. No en los de imagen (Silueta, Borroso y Técnica), donde "Pista N de M" ya dice cuánto se reveló.
   additionalAttemptsMeters: ['text-clue', 'reveal-list', 'category-board'],

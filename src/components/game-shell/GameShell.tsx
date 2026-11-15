@@ -9,7 +9,6 @@ import { es } from '@/i18n/es';
 import { ContentImage } from '../ContentImage';
 import { CopyLinkButton } from '../CopyLinkButton';
 import { FilterPanel } from '../FilterPanel';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Modal } from '../Modal';
 import { Sheet } from '../Sheet';
@@ -331,15 +330,16 @@ export function GameShell({
       {document.getElementById('game-actions') && createPortal(
         <div className={styles.floatingActions}>
           {appShell && !versus && <button type="button" className={styles.filterTrigger} aria-label={filtersChanged ? es.shell.filtersChanged : es.shell.filters} aria-haspopup="dialog" aria-expanded={phone && filtersOpen} onClick={() => setFiltersOpen(true)}>
-            <svg viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges"><path d="M4 4h16v3H4zm3 5h10v3H7zm3 5h4v7h-4z" fill="currentColor" /></svg>
-            <span className={styles.filterLabel} aria-hidden="true">{es.shell.filtersShort}</span>
-            {filtersChanged && <span className={styles.filterDot} aria-hidden="true" />}
+            {skin.menuIcons?.filters ? <ContentImage className={styles.filterImage} stem={skin.menuIcons.filters} alt="" sizes="2.75rem" /> : <>
+              <svg viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges"><path d="M4 4h16v3H4zm3 5h10v3H7zm3 5h4v7h-4z" fill="currentColor" /></svg>
+              <span className={styles.filterLabel} aria-hidden="true">{es.shell.filtersShort}</span>
+            </>}
           </button>}
-          <button type="button" popoverTarget={actionsId} aria-label={es.shell.actions} className={styles.menuTrigger}>
-            <svg className={styles.menuSymbol} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges">
+          <button type="button" popoverTarget={actionsId} aria-label={es.shell.actions} className={styles.menuTrigger} data-image={skin.menuIcons?.menu ? '' : undefined}>
+            {skin.menuIcons?.menu ? <ContentImage className={styles.menuImage} stem={skin.menuIcons.menu} alt="" sizes="3rem" /> : <svg className={styles.menuSymbol} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges">
               <path className={appShell ? styles.hamburger : undefined} d="M5 5h14v3H5zm0 6h14v3H5zm0 6h14v3H5z" fill="currentColor" />
               {appShell && <path className={styles.ellipsis} d="M10 3h4v4h-4zm0 7h4v4h-4zm0 7h4v4h-4z" fill="currentColor" />}
-            </svg>
+            </svg>}
           </button>
           <div id={actionsId} popover="auto" ref={actionsRef} className={styles.actionsMenu}>
           <div className={styles.buttons} role="group" aria-label={es.shell.actions} onKeyDown={(event) => {
@@ -351,11 +351,11 @@ export function GameShell({
             event.preventDefault(); buttons[next].focus();
           }}>
             {(['help', 'stats', 'settings'] as const).map((action, index) => <button
-              type="button" key={action} className={action === 'settings' ? `${styles.menuOption} ${styles.settingsOption}` : styles.menuOption} data-selected={menuSelection === index}
+              type="button" key={action} className={styles.menuOption} data-selected={menuSelection === index}
               onFocus={() => setMenuSelection(index)}
               onPointerEnter={(event) => { if (event.pointerType === 'mouse' && window.matchMedia('(hover: hover)').matches) setMenuSelection(index); }}
               onClick={() => openDialog(action)}>
-              <svg className={styles.optionIcon} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges">
+              {skin.menuIcons ? <ContentImage className={`${styles.optionIcon} ${styles.optionImage}`} stem={skin.menuIcons[action]} alt="" sizes="2.5rem" /> : <svg className={styles.optionIcon} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges">
                 {action === 'help' ? <>
                   <path d="M3 3h8l1 2 1-2h8v18h-8l-1 1-1-1H3z" fill="var(--game-menu-icon-edge, currentColor)" />
                   <path d="M5 5h5v14H5zm9 0h5v14h-5z" fill="var(--game-menu-icon-fill, currentColor)" />
@@ -370,14 +370,14 @@ export function GameShell({
                   <path d="M6 7h12v2H6zm0 5h12v2H6zm0 5h12v2H6z" fill="var(--game-menu-icon-edge, currentColor)" />
                   <path d="M8 6h3v4H8zm6 5h3v4h-3zm-6 5h3v4H8z" fill="var(--game-menu-icon-fill, currentColor)" />
                 </>}
-              </svg>
+              </svg>}
               <span>{action === 'help' ? es.shell.help : action === 'stats' ? es.shell.stats : es.settings.button}</span>
             </button>)}
-            {appShell && <Link href="/creditos" className={`${styles.menuOption} ${styles.creditsOption}`}><span>{es.footer.credits}</span></Link>}
-            {appShell && <button type="button" className={`${styles.menuOption} ${styles.surrenderOption}`} disabled={!surrender || surrender.disabled} data-selected={menuSelection === 3} onFocus={() => setMenuSelection(3)} onClick={() => {
+            {appShell && <button type="button" className={`${styles.menuOption} ${styles.surrenderOption}`} disabled={!surrender || surrender.disabled} data-selected={menuSelection === 3} onFocus={() => setMenuSelection(3)}
+              onPointerEnter={(event) => { if (event.pointerType === 'mouse' && window.matchMedia('(hover: hover)').matches) setMenuSelection(3); }} onClick={() => {
               actionsRef.current?.hidePopover();
               surrenderRegistry?.open();
-            }}>{es.shell.surrender.button}</button>}
+            }}>{skin.menuIcons?.surrender && <ContentImage className={`${styles.optionIcon} ${styles.optionImage}`} stem={skin.menuIcons.surrender} alt="" sizes="2.5rem" />}<span>{es.shell.surrender.button}</span></button>}
           </div>
           </div></div>
         , document.getElementById('game-actions')!

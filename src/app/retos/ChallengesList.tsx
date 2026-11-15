@@ -8,7 +8,7 @@ import { es } from '@/i18n/es';
 import type { PlayableFranchise } from '../playable';
 import styles from './ChallengesList.module.scss';
 
-/** Los retos de hoy de todas las franquicias, agrupados por franquicia, cada uno con su estado (completado, fallado o pendiente). */
+/** Los retos de hoy de todas las franquicias, agrupados por franquicia, cada uno con su estado (completado, fallido o pendiente). */
 export function ChallengesList({ groups }: { groups: readonly PlayableFranchise[] }) {
   const progress = useSiteProgress(groups.map(({ slug, modes }) => ({ slug, modes: modes.map((mode) => mode.slug) })));
   const total = groups.reduce((sum, group) => sum + group.modes.length, 0);
