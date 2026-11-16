@@ -22,7 +22,7 @@ import sagasJson from '../../../data/dragon-ball/sagas.json';
 import quizSource from '../../../data/dragon-ball/source/quiz.json';
 import { entitiesOfMode, loadFranchiseData, type FranchiseData } from '../data';
 import type { ModeConfig } from '../types';
-import { dragonBallConfig, sagaLabels } from './config';
+import { dragonBallConfig } from './config';
 
 const characters = entitiesJson as unknown as Entity[];
 const rawContents = dragonBallContents(contentJson as Content[]);
@@ -84,12 +84,47 @@ describe('config', () => {
     }
   });
 
-  it('cada número de saga se muestra con el nombre corto de su saga y la serie a la que pertenece', () => {
+  it('cada número de saga se muestra con el nombre del catálogo y la serie a la que pertenece', () => {
     const labels = mode('clasico').classic?.columns.find((column) => column.key === 'sagaDebut')?.valueLabels ?? {};
     for (const saga of sagasJson.sagas) {
-      expect(sagaLabels[saga.id], `falta el nombre corto de ${saga.id}`).toBeDefined();
-      expect(labels[String(saga.order)]).toEqual({ label: sagaLabels[saga.id], series: saga.series });
+      expect(labels[String(saga.order)]).toEqual({ label: saga.name, series: saga.series });
     }
+  });
+
+  it('las flechas del Clásico siguen el orden pedido y distinguen Androides, Cell y el Otro Mundo', () => {
+    const column = mode('clasico').classic!.columns.find((candidate) => candidate.key === 'sagaDebut')!;
+    const progression = [
+      ['goku', 'Búsqueda de las Esferas del Dragón'],
+      ['general-blue', 'Ejército de la Patrulla Roja'],
+      ['androide-17', 'Saga de los Androides'],
+      ['celula', 'Los Juegos de Cell'],
+      ['paikuhan', 'Torneo del Otro Mundo'],
+      ['oob', 'Epílogo de Dragon Ball Z'],
+      ['gogeta', 'Películas Z'],
+      ['glorio', 'Dragon Ball Daima'],
+      ['bills', 'La Batalla de los Dioses'],
+      ['jiren', 'Torneo del Poder'],
+      ['broly', 'Broly'],
+      ['gamma-1', 'Dragon Ball Super: Super Hero'],
+      ['giru', 'Búsqueda de las Esferas del Dragón de Estrellas Negras'],
+      ['goku-jr', '100 años después'],
+    ] as const;
+    for (const [index, [earlierId, label]] of progression.slice(0, -1).entries()) {
+      const [laterId] = progression[index + 1];
+      const [cell] = buildRow(byId.get(earlierId)!, byId.get(laterId)!, [column], allSeries).cells;
+      expect(cellText(column, cell.value), earlierId).toBe(label);
+      expect(cell.direction, earlierId).toBe('up');
+    }
+    const last = sagasJson.sagas.at(-1)!;
+    expect(last.name).toBe('100 años después');
+    expect(characters.filter((entity) => entity.attrs.sagaDebut === last.order).map((entity) => entity.id).sort()).toEqual(['goku-jr', 'vegeta-jr']);
+  });
+
+  it('abrevia las formas Super Saiyajin y distingue SSJ2 de SSJ Dios', () => {
+    const column = mode('clasico').classic!.columns.find((candidate) => candidate.key === 'transformaciones')!;
+    const goku = byId.get('goku')!;
+    const [cell] = buildRow(goku, goku, [column], allSeries).cells;
+    expect(cell.value).toEqual(['Ozaru', 'SSJ1', 'SSJ2', 'SSJ3', 'SSJ4', 'SSJ Dios', 'SSJ Blue', 'Ultra Instinto']);
   });
 
   it('ya no están Nivel de poder ni Transformación, y todos los modos usan a los personajes', () => {
@@ -151,7 +186,7 @@ describe('con una serie apagada no aparece nada de ella', () => {
   const timelineConfig = mode('linea-de-tiempo').timeline!;
 
   it('hay personajes que debutaron en una serie y siguen en otras: con aquella apagada, su debut se oculta de verdad', () => {
-    for (const off of ['gt', 'dbz']) {
+    for (const off of ['db', 'dbz']) {
       const active = without(off);
       const debuted = eligibleEntities(characters, active).filter((entity) => entity.series[0] === off);
       expect(debuted.length, off).toBeGreaterThan(0);
@@ -186,7 +221,7 @@ describe('con una serie apagada no aparece nada de ella', () => {
         const columns = visibleColumns(mode('clasico').classic!.columns, active);
         const pool = eligibleEntities(characters, active);
         const answer = pool[0];
-        const sagaNames = new Set(sagasJson.sagas.filter((saga) => saga.series === off).map((saga) => sagaLabels[saga.id]));
+        const sagaNames = new Set(sagasJson.sagas.filter((saga) => saga.series === off).map((saga) => saga.name));
         for (const guess of pool) {
           const row = buildRow(guess, answer, columns, active);
           for (const cell of row.cells) {

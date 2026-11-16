@@ -31,27 +31,27 @@
           "series": "db"
         },
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 2",
+          "value": "SSJ2",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 3",
+          "value": "SSJ3",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 4",
+          "value": "SSJ4",
           "series": "gt"
         },
         {
-          "value": "Super Saiyajin Dios",
+          "value": "SSJ Dios",
           "series": "super"
         },
         {
-          "value": "Super Saiyajin Azul",
+          "value": "SSJ Blue",
           "series": "super"
         },
         {
@@ -97,23 +97,23 @@
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 2",
+          "value": "SSJ2",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 4",
+          "value": "SSJ4",
           "series": "gt"
         },
         {
-          "value": "Super Saiyajin Dios",
+          "value": "SSJ Dios",
           "series": "super"
         },
         {
-          "value": "Super Saiyajin Azul",
+          "value": "SSJ Blue",
           "series": "super"
         }
       ],
@@ -380,7 +380,7 @@
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 11,
+      "sagaDebut": 12,
       "estadoVital": "Muerto",
       "tecnica": "Absorción",
       "imagenTransparente": 1
@@ -416,11 +416,11 @@
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 2",
+          "value": "SSJ2",
           "series": "dbz"
         },
         {
@@ -596,16 +596,16 @@
       "planeta": "Tierra",
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 3",
+          "value": "SSJ3",
           "series": "dbz"
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -639,7 +639,7 @@
       "planeta": "Tierra",
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         }
       ],
@@ -676,15 +676,15 @@
       "planeta": "Tierra",
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 2",
+          "value": "SSJ2",
           "series": "super"
         },
         {
-          "value": "Super Saiyajin Furioso",
+          "value": "SSJ Rage",
           "series": "super"
         }
       ],
@@ -821,7 +821,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 11,
+      "sagaDebut": 12,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1021,7 +1021,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -1054,7 +1054,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -1087,7 +1087,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -1177,7 +1177,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1230,7 +1230,7 @@
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1261,7 +1261,7 @@
       "planeta": "Planeta de Bills",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 16,
+      "sagaDebut": 18,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1290,7 +1290,7 @@
       "planeta": "Cielo",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 16,
+      "sagaDebut": 18,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1321,7 +1321,7 @@
       "planeta": "Templo del Rey de Todo",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1352,7 +1352,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1380,7 +1380,7 @@
       "planeta": "Universo 11",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1408,7 +1408,7 @@
       "planeta": "Universo 11",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1436,7 +1436,7 @@
       "planeta": "Universo 11",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1464,7 +1464,7 @@
       "planeta": "Cielo",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1495,7 +1495,7 @@
       "planeta": "Universo 11",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1526,7 +1526,7 @@
       "planeta": "Cielo",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 19,
+      "sagaDebut": 21,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1609,6 +1609,7 @@
     },
     "aliases": [],
     "series": [
+      "dbz",
       "gt",
       "super"
     ],
@@ -1623,20 +1624,20 @@
       "planeta": null,
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 4",
+          "value": "SSJ4",
           "series": "gt"
         },
         {
-          "value": "Super Saiyajin Azul",
+          "value": "SSJ Blue",
           "series": "super"
         }
       ],
-      "serieDebut": 5,
-      "sagaDebut": 29,
+      "serieDebut": 2,
+      "sagaDebut": 16,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1667,16 +1668,16 @@
       "planeta": null,
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin Azul",
+          "value": "SSJ Blue",
           "series": "super"
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1710,7 +1711,7 @@
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -1738,12 +1739,12 @@
       "planeta": "Planeta Vegeta",
       "transformaciones": [
         {
-          "value": "Super Saiyajin Legendario",
+          "value": "SSJ Legendario",
           "series": "super"
         }
       ],
       "serieDebut": 4,
-      "sagaDebut": 21,
+      "sagaDebut": 23,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1772,7 +1773,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1893,7 +1894,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1922,7 +1923,7 @@
       "planeta": "Planeta Sagrado",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1952,7 +1953,7 @@
       "planeta": "Planeta Sagrado",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1981,7 +1982,7 @@
       "planeta": "Planeta Sagrado",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2011,7 +2012,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2040,7 +2041,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2438,7 +2439,6 @@
     },
     "aliases": [
       "Baba",
-      
       "Adivina Baba"
     ],
     "series": [
@@ -2753,7 +2753,7 @@
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -2784,7 +2784,7 @@
       "planeta": "Namek",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -2816,7 +2816,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": "Rayo Mortal",
       "imagenTransparente": 1,
@@ -2846,7 +2846,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2879,12 +2879,12 @@
       "planeta": "Tierra",
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": "Kamehameha",
       "imagenTransparente": 1
@@ -2916,7 +2916,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 25,
+      "sagaDebut": 15,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2948,7 +2948,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -2982,7 +2982,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3015,7 +3015,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3047,7 +3047,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 11,
+      "sagaDebut": 12,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3076,7 +3076,7 @@
       "planeta": "Planeta Hera",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -3110,7 +3110,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3229,7 +3229,7 @@
       "planeta": "Planeta Plant",
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 27,
+      "sagaDebut": 28,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3260,7 +3260,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 28,
+      "sagaDebut": 29,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3291,7 +3291,7 @@
       "planeta": "Planeta M2",
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 27,
+      "sagaDebut": 28,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3322,7 +3322,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 30,
+      "sagaDebut": 31,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3350,7 +3350,7 @@
       "planeta": "Universo 6",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3378,7 +3378,7 @@
       "planeta": "Cielo",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3405,7 +3405,7 @@
       "planeta": "Universo 6",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": "Salto Temporal",
       "imagenTransparente": 1
@@ -3436,7 +3436,7 @@
       "planeta": "Universo 10",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 19,
+      "sagaDebut": 21,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3468,12 +3468,12 @@
       "planeta": "Universo 10",
       "transformaciones": [
         {
-          "value": "Super Saiyajin Rosado",
+          "value": "SSJ Rose",
           "series": "super"
         }
       ],
       "serieDebut": 4,
-      "sagaDebut": 19,
+      "sagaDebut": 21,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3502,12 +3502,12 @@
       "planeta": "Planeta Sadala",
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "super"
         }
       ],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3537,16 +3537,16 @@
       "planeta": "Planeta Sadala",
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "super"
         },
         {
-          "value": "Super Saiyajin 2",
+          "value": "SSJ2",
           "series": "super"
         }
       ],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3575,12 +3575,12 @@
       "planeta": "Planeta Sadala",
       "transformaciones": [
         {
-          "value": "Super Saiyajin Legendario",
+          "value": "SSJ Legendario",
           "series": "super"
         }
       ],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3609,16 +3609,16 @@
       "planeta": "Planeta Sadala",
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "super"
         },
         {
-          "value": "Super Saiyajin 2",
+          "value": "SSJ2",
           "series": "super"
         }
       ],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3648,7 +3648,7 @@
       "planeta": "Universo 6",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": "Rayo Mortal",
       "imagenTransparente": 1
@@ -3673,7 +3673,7 @@
       "planeta": "Planeta Wagashi",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3703,7 +3703,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 24,
+      "sagaDebut": 26,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3733,7 +3733,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 24,
+      "sagaDebut": 26,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3763,7 +3763,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 24,
+      "sagaDebut": 26,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3790,7 +3790,7 @@
       "planeta": "Planeta Cereal",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 23,
+      "sagaDebut": 25,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -3818,7 +3818,7 @@
       "planeta": "Universo 7",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 22,
+      "sagaDebut": 24,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -3849,7 +3849,7 @@
       "planeta": "Cielo",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 22,
+      "sagaDebut": 24,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -3877,7 +3877,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 15,
+      "sagaDebut": 17,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3904,7 +3904,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 15,
+      "sagaDebut": 17,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3932,7 +3932,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 15,
+      "sagaDebut": 17,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3959,7 +3959,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 15,
+      "sagaDebut": 17,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3990,7 +3990,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 15,
+      "sagaDebut": 17,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -4017,7 +4017,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 15,
+      "sagaDebut": 17,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -5101,7 +5101,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 11,
+      "sagaDebut": 12,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5183,7 +5183,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5208,7 +5208,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5235,7 +5235,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5265,7 +5265,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5292,7 +5292,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5320,7 +5320,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5348,7 +5348,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5379,7 +5379,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5408,7 +5408,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5438,7 +5438,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -5468,7 +5468,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5498,7 +5498,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 14,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -5528,7 +5528,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 25,
+      "sagaDebut": 15,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5561,7 +5561,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 25,
+      "sagaDebut": 15,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5591,7 +5591,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -5619,7 +5619,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -5650,7 +5650,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -5681,12 +5681,12 @@
       "planeta": "Planeta Vegeta",
       "transformaciones": [
         {
-          "value": "Super Saiyajin Legendario",
+          "value": "SSJ Legendario",
           "series": "dbz"
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -5714,7 +5714,7 @@
       "planeta": "Planeta Vegeta",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -5740,7 +5740,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -5768,7 +5768,7 @@
       "planeta": "Otro Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 14,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -5796,7 +5796,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 15,
+      "sagaDebut": 17,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5826,7 +5826,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 15,
+      "sagaDebut": 17,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5856,7 +5856,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 15,
+      "sagaDebut": 17,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5883,7 +5883,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 15,
+      "sagaDebut": 17,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -5913,7 +5913,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 15,
+      "sagaDebut": 17,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5943,7 +5943,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 15,
+      "sagaDebut": 17,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0
@@ -5973,7 +5973,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 15,
+      "sagaDebut": 17,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6002,7 +6002,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 15,
+      "sagaDebut": 17,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6027,7 +6027,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 16,
+      "sagaDebut": 18,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6057,7 +6057,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 17,
+      "sagaDebut": 19,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6084,7 +6084,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 17,
+      "sagaDebut": 19,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6111,7 +6111,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 17,
+      "sagaDebut": 19,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6138,7 +6138,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 17,
+      "sagaDebut": 19,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6167,7 +6167,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6196,7 +6196,7 @@
       "planeta": "Universo 6",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6223,7 +6223,7 @@
       "planeta": "Universo 6",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6252,7 +6252,7 @@
       "planeta": "Universo 6",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6279,7 +6279,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6306,7 +6306,7 @@
       "planeta": "Cielo",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 19,
+      "sagaDebut": 21,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6336,7 +6336,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 19,
+      "sagaDebut": 21,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6363,7 +6363,7 @@
       "planeta": "Universo 11",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6392,7 +6392,7 @@
       "planeta": "Universo 11",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6419,7 +6419,7 @@
       "planeta": "Universo 9",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6446,7 +6446,7 @@
       "planeta": "Universo 9",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6476,7 +6476,7 @@
       "planeta": "Universo 2",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -6506,7 +6506,7 @@
       "planeta": "Universo 2",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -6537,7 +6537,7 @@
       "planeta": "Universo 2",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -6564,7 +6564,7 @@
       "planeta": "Universo 3",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6593,7 +6593,7 @@
       "planeta": "Universo 4",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6623,7 +6623,7 @@
       "planeta": "Universo 3",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6650,7 +6650,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6677,7 +6677,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6704,7 +6704,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6729,7 +6729,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6756,7 +6756,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6783,7 +6783,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6811,7 +6811,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6838,7 +6838,7 @@
       "planeta": "Planeta Vegeta",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 21,
+      "sagaDebut": 23,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6867,7 +6867,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 21,
+      "sagaDebut": 23,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6894,7 +6894,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 21,
+      "sagaDebut": 23,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -6919,7 +6919,7 @@
       "planeta": "Planeta Vegeta",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 21,
+      "sagaDebut": 23,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6948,7 +6948,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 21,
+      "sagaDebut": 23,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0
@@ -6975,7 +6975,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 21,
+      "sagaDebut": 23,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0
@@ -7004,7 +7004,7 @@
       "planeta": "Universo 7",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 22,
+      "sagaDebut": 24,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -7035,7 +7035,7 @@
       "planeta": "Universo 7",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 22,
+      "sagaDebut": 24,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -7063,7 +7063,7 @@
       "planeta": "Universo 7",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 22,
+      "sagaDebut": 24,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -7093,7 +7093,7 @@
       "planeta": "Universo 7",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 22,
+      "sagaDebut": 24,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -7123,7 +7123,7 @@
       "planeta": "Universo 7",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 22,
+      "sagaDebut": 24,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -7151,7 +7151,7 @@
       "planeta": "Universo 7",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 22,
+      "sagaDebut": 24,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -7179,7 +7179,7 @@
       "planeta": "Universo 7",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 22,
+      "sagaDebut": 24,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -7207,7 +7207,7 @@
       "planeta": "Planeta Cereal",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 23,
+      "sagaDebut": 25,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -7237,7 +7237,7 @@
       "planeta": "Planeta Cereal",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 23,
+      "sagaDebut": 25,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -7267,7 +7267,7 @@
       "planeta": "Planeta Cereal",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 23,
+      "sagaDebut": 25,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -7297,7 +7297,7 @@
       "planeta": "Planeta Cereal",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 23,
+      "sagaDebut": 25,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -7327,7 +7327,7 @@
       "planeta": "Planeta Cereal",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 23,
+      "sagaDebut": 25,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -7353,7 +7353,7 @@
       "planeta": "Planeta Cereal",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 23,
+      "sagaDebut": 25,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0,
@@ -7383,7 +7383,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 24,
+      "sagaDebut": 26,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -7410,7 +7410,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 24,
+      "sagaDebut": 26,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -7437,7 +7437,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 24,
+      "sagaDebut": 26,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -7465,7 +7465,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 26,
+      "sagaDebut": 27,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -7490,7 +7490,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 26,
+      "sagaDebut": 27,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -7520,7 +7520,7 @@
       "planeta": "Planeta M2",
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 27,
+      "sagaDebut": 28,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -7547,7 +7547,7 @@
       "planeta": "Infierno",
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 28,
+      "sagaDebut": 29,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0
@@ -7577,7 +7577,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 29,
+      "sagaDebut": 30,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -7606,7 +7606,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 29,
+      "sagaDebut": 30,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -7635,7 +7635,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 29,
+      "sagaDebut": 30,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -7664,7 +7664,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 29,
+      "sagaDebut": 30,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -7693,7 +7693,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 29,
+      "sagaDebut": 30,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -7722,7 +7722,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 29,
+      "sagaDebut": 30,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -7751,7 +7751,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 29,
+      "sagaDebut": 30,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -7782,7 +7782,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 29,
+      "sagaDebut": 30,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -7811,7 +7811,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 30,
+      "sagaDebut": 31,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0

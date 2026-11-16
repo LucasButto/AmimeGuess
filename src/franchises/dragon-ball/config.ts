@@ -16,47 +16,9 @@ const seriesLabels: Readonly<Record<string, string>> = {
   daima: 'Dragon Ball Daima',
 };
 
-/**
- * Nombre corto de cada saga para la celda de la tabla del Clásico, donde el nombre completo
- * no entra. El orden de las series y de las sagas (el número que se compara) sale de
- * `data/dragon-ball/sagas.json`, que genera `npm run data:dragon-ball` desde `data/<franquicia>/source/`.
- */
-export const sagaLabels: Readonly<Record<string, string>> = {
-  pilaf: 'Pilaf',
-  'torneo-21': 'Torneo 21',
-  'liston-rojo': 'Listón Rojo',
-  'uranai-baba': 'Uranai Baba',
-  'torneo-22': 'Torneo 22',
-  'gran-rey-demonio-piccolo': 'Rey Piccoro',
-  'torneo-23': 'Torneo 23',
-  saiyanos: 'Saiyajin',
-  'namek-freezer': 'Namek',
-  makyo: 'Garlic Jr.',
-  'androides-cell': 'Androides y Cell',
-  'otro-mundo': 'Otro Mundo',
-  boo: 'Buu',
-  'dbz-peliculas': 'Películas de Z',
-  beerus: 'Bills',
-  'freezer-dorado': 'Freezer Dorado',
-  'universo-6': 'Universo 6',
-  'trunks-futuro': 'Trunks del Futuro',
-  supervivencia: 'Supervivencia',
-  'super-broly': 'Película Broly',
-  'prisionero-patrulla-galactica': 'Patrulla Galáctica',
-  'sobreviviente-granolah': 'Granolah',
-  'super-hero': 'Super Hero',
-  'final-dbz': 'Final de Z',
-  'esferas-definitivas': 'Esferas Definitivas',
-  baby: 'Baby',
-  'androide-definitivo': 'Androide Definitivo',
-  'dragones-malignos': 'Dragones Malignos',
-  'cien-anos-despues': '100 años después',
-  'reino-demoniaco': 'Daima',
-};
-
-/** El número de cada saga en la cronología → su nombre corto y la serie a la que pertenece. */
+/** Cada posición de la cronología apunta al nombre de la saga y a su serie. */
 const sagaDebutLabels: Readonly<Record<string, ClassicValueLabel>> = Object.fromEntries(
-  sagasJson.sagas.map((saga) => [String(saga.order), { label: sagaLabels[saga.id] ?? saga.name, series: saga.series }]),
+  sagasJson.sagas.map((saga) => [String(saga.order), { label: saga.name, series: saga.series }]),
 );
 
 export const dragonBallConfig = {
@@ -90,7 +52,7 @@ export const dragonBallConfig = {
           { key: 'planeta', label: 'Planeta de origen', compare: 'exact', help: help.planeta },
           // Cada forma lleva la serie en que se ve: con una serie apagada, sus formas no aparecen (regla 3).
           { key: 'transformaciones', label: 'Transformaciones', compare: 'set', help: help.transformaciones },
-          // Se compara el orden global de las sagas en sagas.json; se muestra el nombre corto.
+          // Se compara el orden global de las sagas en sagas.json.
           // Si la serie del debut está apagada, el valor se oculta: lo excluido no aparece nunca.
           { key: 'sagaDebut', label: 'Saga de debut', compare: 'ordered', valueLabels: sagaDebutLabels, help: help.sagaDebut },
   ],

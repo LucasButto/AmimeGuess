@@ -22,7 +22,7 @@ export function seriesRanks(order: readonly SeriesId[]): Map<SeriesId, number> {
 
 /**
  * Posición (desde 1) de cada saga en toda la historia: manda el orden del arreglo
- * `sagas`, independientemente de su serie (el final de Z ocurre después de Super).
+ * `sagas`, independientemente del orden que `seriesOrder` fija para los filtros.
  */
 export function sagaRanks(file: SagasFile): Map<string, number> {
   seriesRanks(file.seriesOrder);

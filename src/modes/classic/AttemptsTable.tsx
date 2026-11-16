@@ -117,7 +117,7 @@ export function AttemptsTable({ rows, columns, revealing = null, onRevealEnd }: 
           }
         : undefined;
     return (
-      <div className={styles.flip} data-reveal={animate ? 'revealing' : 'face'} data-index={index} data-mode={skin.revealMode} style={delay}>
+      <div className={styles.flip} data-reveal={animate ? 'revealing' : 'face'} data-index={index} data-mode={skin.revealMode} data-column={cell.column.key} style={delay}>
         <div className={styles.box} data-match={cell.match} onAnimationEnd={handleEnd}>
           <ValueMark column={cell.column.key} value={text ?? ''} />
           <span className={styles.value} data-part="value" data-large={cell.column.large || undefined}>

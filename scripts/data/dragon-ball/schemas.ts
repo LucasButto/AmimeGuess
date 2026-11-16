@@ -38,8 +38,7 @@ export const wikiCategoryMembersSchema = z.object({
 
 /**
  * `seriesOrder` conserva el orden de filtros y de las series de la línea de tiempo.
- * El arreglo `sagas` define el orden global de la historia para "Saga de debut",
- * aunque una saga pertenezca a una serie anterior (el final de Z tras Super).
+ * El arreglo `sagas` define el orden de comparación de "Saga de debut".
  */
 export const sagasFileSchema = z
   .object({
