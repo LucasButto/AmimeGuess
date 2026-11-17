@@ -13,7 +13,7 @@ const kebab = z.string().regex(KEBAB);
 const seriesId = z.enum(SERIES);
 
 export const STATUSES = ['Vivo', 'Muerto', 'Incapacitado'] as const;
-export const GENDERS = ['Masculino', 'Femenino'] as const;
+export const GENDERS = ['Masculino', 'Femenino', 'Biju'] as const;
 
 // --- Dattebayo API (solo los campos que usa el script) ----------------------
 

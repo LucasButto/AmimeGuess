@@ -1024,7 +1024,7 @@
       "boruto"
     ],
     "override": {
-      "genero": "Masculino"
+      "genero": "Biju"
     },
     "verified": false
   },
@@ -1041,6 +1041,9 @@
       "naruto",
       "shippuden"
     ],
+    "override": {
+      "genero": "Biju"
+    },
     "verified": false
   },
   {
@@ -1772,6 +1775,9 @@
     "series": [
       "shippuden"
     ],
+    "override": {
+      "genero": "Biju"
+    },
     "verified": false
   },
   {
@@ -1786,6 +1792,9 @@
     "series": [
       "shippuden"
     ],
+    "override": {
+      "genero": "Biju"
+    },
     "verified": false
   },
   {
@@ -1801,6 +1810,9 @@
     "series": [
       "shippuden"
     ],
+    "override": {
+      "genero": "Biju"
+    },
     "verified": false
   },
   {
@@ -1816,6 +1828,9 @@
     "series": [
       "shippuden"
     ],
+    "override": {
+      "genero": "Biju"
+    },
     "verified": false
   },
   {
@@ -1830,6 +1845,9 @@
     "series": [
       "shippuden"
     ],
+    "override": {
+      "genero": "Biju"
+    },
     "verified": false
   },
   {
@@ -1845,6 +1863,9 @@
     "series": [
       "shippuden"
     ],
+    "override": {
+      "genero": "Biju"
+    },
     "verified": false
   },
   {
@@ -1860,6 +1881,9 @@
     "series": [
       "shippuden"
     ],
+    "override": {
+      "genero": "Biju"
+    },
     "verified": false
   },
   {
