@@ -214,7 +214,11 @@ export const es = {
       best === actual
         ? `¡Elegiste una combinación óptima! Sumaste ${actual} puntos.`
         : `Con estos mismos seis Pokémon podías sumar ${best} puntos: ${best - actual} más que tus ${actual}.`,
-    insteadOf: (name: string, value: number) => ` — ${name} ${value}`,
+    // Los dos equipos lado a lado: el que armó la persona y el mejor posible con los mismos Pokémon.
+    yourTeam: "Tu equipo",
+    bestTeam: "Mejor equipo posible",
+    teamTotal: (total: number) => `${total} puntos`,
+    moved: "Cambia de lugar",
 
     settings: "Configuración de la partida",
     settingsHelp:

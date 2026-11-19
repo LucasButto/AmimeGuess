@@ -24,6 +24,7 @@ import type { StatBuilderConfig } from './types';
 import styles from './StatBuilderGame.module.scss';
 import { resultFrame } from './result';
 import { ROULETTE_IMAGE_SIZE, useRouletteImages } from './RoulettePreview';
+import { TeamCompare } from './TeamCompare';
 
 interface Props {
   franchise: GameShellProps['franchise'];
@@ -190,23 +191,7 @@ export function StatBuilderBoard({ session, config, pool, target: levelTarget, l
     {!over && (complete || awaitingAdvance || !stopped) && (complete && resultPhase === 'done'
       ? <DockAction label={es.statBuilder.next} onClick={retry} />
       : <DockAction label={dockPrompt} onClick={spin} disabled={spinDisabled} />)}
-    {complete && resultPhase === 'done' && <section className={styles.optimal} aria-label={es.statBuilder.bestTitle}>
-      <h2>{es.statBuilder.bestTitle}</h2>
-      <p>{es.statBuilder.bestSummary(totalOf(optimal, pool), totalOf(build, pool))}</p>
-      <ul className={styles.optimalList}>
-        {config.stats.map((stat) => {
-          const entry = optimal.find((item) => item.key === stat.key)!;
-          const entity = pool.find((item) => item.id === entry.entityId)!;
-          const previous = build.find((item) => item.key === stat.key)!;
-          return <li key={stat.key} className={styles.optimalItem}>
-            {entity.image && <ContentImage stem={entity.image} alt="" sizes="3rem" className={styles.optimalImage} />}
-            <div className={styles.optimalDetails}><strong>{stat.label}</strong><p>{entity.name.es} {Number(entity.attrs[stat.key])}
-              {previous.entityId !== entry.entityId && <span className={styles.change}>{es.statBuilder.insteadOf(pool.find((item) => item.id === previous.entityId)!.name.es, Number(pool.find((item) => item.id === previous.entityId)!.attrs[stat.key]))}</span>}
-            </p></div>
-          </li>;
-        })}
-      </ul>
-    </section>}
+    {complete && resultPhase === 'done' && <TeamCompare stats={config.stats} pool={pool} build={build} optimal={optimal} />}
     <div className={styles.summary}><p role="status">{es.statBuilder.assigned(build.length, config.stats.length)}</p></div>
   </div>;
 }
