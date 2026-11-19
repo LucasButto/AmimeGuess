@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
-import { Analytics } from '@vercel/analytics/next';
+import { AnalyticsClient } from '@/components/AnalyticsClient';
+import { NoTrackFlag } from '@/components/NoTrackFlag';
 import { PREFS_BOOT_SCRIPT } from '@/components/prefs';
 import { SITE_THEME_COLOR } from '@/franchises/themeColor';
 import { es } from '@/i18n/es';
@@ -54,7 +55,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <VersusMount />
         {/* Lo ya visitado se puede jugar sin conexión (ver public/sw.js). */}
         <ServiceWorker />
-        <Analytics />
+        <NoTrackFlag />
+        <AnalyticsClient />
       </body>
     </html>
   );

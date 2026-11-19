@@ -263,6 +263,10 @@ export const es = {
       "Para ganar tenés que superar 500 puntos en Fácil, 550 en Normal o 600 en Difícil. Igualar la meta no alcanza. Si no la superás y te quedan intentos, probá otra combinación de seis.",
     ],
   },
+  noTrack: {
+    on: 'Listo, este navegador ya no se cuenta',
+    off: 'Este navegador vuelve a contarse',
+  },
   site: {
     name: "AnimeGuess",
     description:
