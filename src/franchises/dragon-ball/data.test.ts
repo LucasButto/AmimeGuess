@@ -15,6 +15,7 @@ import { optionCountOf, optionsFor, poolOf as quizPool, questionOf } from '@/mod
 import { candidatesOf as textCandidates } from '@/modes/text-clue/logic';
 import { buildPuzzle, countOf, poolOf as timelinePool } from '@/modes/timeline/logic';
 import { modeStatus } from '@/app/[franchise]/[mode]/playable';
+import { minimumPoolOf, modePoolSize } from '@/franchises/pool';
 import contentJson from '../../../data/dragon-ball/content.json';
 import { dragonBallContents } from './content';
 import entitiesJson from '../../../data/dragon-ball/entities.json';
@@ -520,5 +521,30 @@ describe('Quiz', () => {
         expect(active, `${filterKey}: ${question.id}`).toContain(bySeries.get(question.id));
       }
     }
+  });
+});
+
+describe('Técnica: el mínimo cuenta técnicas y el buscador ofrece a todos', () => {
+  const techniqueMode = mode('tecnica');
+  const techniqueConfig = techniqueMode.imageReveal!;
+  let published: FranchiseData;
+  beforeAll(async () => {
+    published = (await loadFranchiseData('dragon-ball')) as FranchiseData;
+  });
+  const answers = (active: readonly string[]) => imageCandidates(published.entities, published.contents, active, techniqueConfig);
+
+  it('con solo GT hay 12 técnicas de 6 personajes: alcanza el mínimo (10) aunque los personajes sean menos', () => {
+    const size = modePoolSize(techniqueMode, published, ['gt']);
+    expect(answers(['gt']).length).toBeLessThan(defaultMinPool('image-reveal'));
+    expect(size).toBeGreaterThanOrEqual(defaultMinPool('image-reveal'));
+    expect(hasMinimumPool(size ?? 0, minimumPoolOf(techniqueMode))).toBe(true);
+  });
+
+  it('las opciones del buscador son todos los personajes de las series activas, no solo los que son respuesta', () => {
+    const options = eligibleEntities(published.entities, ['gt']);
+    const answerIds = new Set(answers(['gt']).map((candidate) => candidate.entity.id));
+    expect(options.length).toBeGreaterThan(answerIds.size * 5);
+    expect([...answerIds].every((id) => options.some((option) => option.id === id))).toBe(true);
+    expect(options.every((option) => option.series.includes('gt'))).toBe(true);
   });
 });

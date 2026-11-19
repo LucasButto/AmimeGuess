@@ -516,7 +516,12 @@ export const es = {
             {
               name: "Dragon Ball Wiki Hispano (Fandom)",
               url: "https://dragonball.fandom.com/es",
-              text: "Series en las que aparece cada personaje, frases (CC BY-SA, más abajo) e imágenes de personajes y técnicas.",
+              text: "Series en las que aparece cada personaje, frases (CC BY-SA, más abajo), imágenes de personajes y las capturas con que se buscó la escena de cada técnica. Licencia de las imágenes: a confirmar.",
+            },
+            {
+              name: "trace.moe",
+              url: "https://trace.moe",
+              text: "Búsqueda de escenas por imagen: de ahí salen el episodio y el momento de muchos clips del modo Técnica. Los clips son fragmentos del anime; pertenecen a sus titulares. Licencia: a confirmar.",
             },
           ],
         },

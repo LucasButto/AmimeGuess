@@ -3,12 +3,13 @@
     "id": "technique-kamehameha",
     "kind": "technique",
     "entityId": "goku",
-    "series": "db",
+    "series": "dbz",
     "payload": {
       "name": "Kamehameha",
-      "image": "dragon-ball/techniques/kamehameha",
+      "image": "dragon-ball/c/6d342730b0b7959e",
+      "video": "dragon-ball/6d342730b0b7959e",
       "width": 512,
-      "height": 288,
+      "height": 248,
       "accepts": [
         "maestro-roshi",
         "gohan",
@@ -24,10 +25,11 @@
     "entityId": "goku",
     "series": "dbz",
     "payload": {
-      "name": "Genkidama",
-      "image": "dragon-ball/techniques/genki-dama",
-      "width": 237,
-      "height": 512,
+      "name": "Genki-dama",
+      "image": "dragon-ball/c/962f60a1bbc6ca63",
+      "video": "dragon-ball/962f60a1bbc6ca63",
+      "width": 512,
+      "height": 248,
       "accepts": []
     },
     "verified": false
@@ -35,13 +37,14 @@
   {
     "id": "technique-makankosappo",
     "kind": "technique",
-    "entityId": "piccolo",
+    "entityId": "gohan",
     "series": "dbz",
     "payload": {
       "name": "Makankosappo",
-      "image": "dragon-ball/techniques/makankosappo",
-      "width": 461,
-      "height": 512,
+      "image": "dragon-ball/c/00dc3485f18cdaf5",
+      "video": "dragon-ball/00dc3485f18cdaf5",
+      "width": 512,
+      "height": 248,
       "accepts": []
     },
     "verified": false
@@ -50,12 +53,13 @@
     "id": "technique-canon-galick",
     "kind": "technique",
     "entityId": "vegeta",
-    "series": "dbz",
+    "series": "super",
     "payload": {
       "name": "Cañón Galick",
-      "image": "dragon-ball/techniques/canon-galick",
+      "image": "dragon-ball/c/4f7d9b57bffd16e6",
+      "video": "dragon-ball/4f7d9b57bffd16e6",
       "width": 512,
-      "height": 288,
+      "height": 248,
       "accepts": []
     },
     "verified": false
@@ -66,10 +70,11 @@
     "entityId": "vegeta",
     "series": "dbz",
     "payload": {
-      "name": "Destello Final",
-      "image": "dragon-ball/techniques/destello-final",
+      "name": "Destello final",
+      "image": "dragon-ball/c/01b98d8a015c9fe1",
+      "video": "dragon-ball/01b98d8a015c9fe1",
       "width": 512,
-      "height": 288,
+      "height": 248,
       "accepts": []
     },
     "verified": false
@@ -78,12 +83,13 @@
     "id": "technique-ataque-del-big-bang",
     "kind": "technique",
     "entityId": "vegeta",
-    "series": "dbz",
+    "series": "gt",
     "payload": {
       "name": "Ataque del Big Bang",
-      "image": "dragon-ball/techniques/ataque-del-big-bang",
+      "image": "dragon-ball/c/43b4f172ffc8755c",
+      "video": "dragon-ball/43b4f172ffc8755c",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": []
     },
     "verified": false
@@ -95,9 +101,10 @@
     "series": "dbz",
     "payload": {
       "name": "Kienzan",
-      "image": "dragon-ball/techniques/kienzan",
+      "image": "dragon-ball/c/047adbdfa97128f3",
+      "video": "dragon-ball/047adbdfa97128f3",
       "width": 512,
-      "height": 376,
+      "height": 248,
       "accepts": []
     },
     "verified": false
@@ -109,13 +116,11 @@
     "series": "db",
     "payload": {
       "name": "Taiyoken",
-      "image": "dragon-ball/techniques/taiyoken",
+      "image": "dragon-ball/c/b047cd382051a4c6",
+      "video": "dragon-ball/b047cd382051a4c6",
       "width": 512,
-      "height": 289,
-      "accepts": [
-        "krilin",
-        "goku"
-      ]
+      "height": 330,
+      "accepts": []
     },
     "verified": false
   },
@@ -123,12 +128,13 @@
     "id": "technique-kikoho",
     "kind": "technique",
     "entityId": "tenshinhan",
-    "series": "db",
+    "series": "dbz",
     "payload": {
       "name": "Kikoho",
-      "image": "dragon-ball/techniques/kikoho",
-      "width": 485,
-      "height": 512,
+      "image": "dragon-ball/c/88d86c9c68d9c62c",
+      "video": "dragon-ball/88d86c9c68d9c62c",
+      "width": 512,
+      "height": 248,
       "accepts": []
     },
     "verified": false
@@ -140,10 +146,13 @@
     "series": "db",
     "payload": {
       "name": "Dodompa",
-      "image": "dragon-ball/techniques/dodompa",
+      "image": "dragon-ball/c/d5d76b978f37765b",
+      "video": "dragon-ball/d5d76b978f37765b",
       "width": 512,
-      "height": 247,
-      "accepts": []
+      "height": 330,
+      "accepts": [
+        "tao-pai-pai"
+      ]
     },
     "verified": false
   },
@@ -154,9 +163,10 @@
     "series": "dbz",
     "payload": {
       "name": "Masenko",
-      "image": "dragon-ball/techniques/masenko",
+      "image": "dragon-ball/c/343d7325b84983de",
+      "video": "dragon-ball/343d7325b84983de",
       "width": 512,
-      "height": 421,
+      "height": 250,
       "accepts": []
     },
     "verified": false
@@ -167,10 +177,11 @@
     "entityId": "freezer",
     "series": "dbz",
     "payload": {
-      "name": "Bola Mortal",
-      "image": "dragon-ball/techniques/bola-mortal",
+      "name": "Bola mortal",
+      "image": "dragon-ball/c/2eb7d68bb59421a5",
+      "video": "dragon-ball/2eb7d68bb59421a5",
       "width": 512,
-      "height": 375,
+      "height": 248,
       "accepts": []
     },
     "verified": false
@@ -181,10 +192,11 @@
     "entityId": "freezer",
     "series": "dbz",
     "payload": {
-      "name": "Rayo Mortal",
-      "image": "dragon-ball/techniques/rayo-mortal",
+      "name": "Rayo mortal",
+      "image": "dragon-ball/c/5d680579e668fa07",
+      "video": "dragon-ball/5d680579e668fa07",
       "width": 512,
-      "height": 385,
+      "height": 248,
       "accepts": [
         "coola",
         "frost"
@@ -196,15 +208,14 @@
     "id": "technique-mafuba",
     "kind": "technique",
     "entityId": "maestro-roshi",
-    "series": "db",
+    "series": "super",
     "payload": {
       "name": "Mafuba",
-      "image": "dragon-ball/techniques/mafuba",
+      "image": "dragon-ball/c/7b7c889f3250707f",
+      "video": "dragon-ball/7b7c889f3250707f",
       "width": 512,
-      "height": 298,
-      "accepts": [
-        "kami"
-      ]
+      "height": 288,
+      "accepts": []
     },
     "verified": false
   },
@@ -214,10 +225,11 @@
     "entityId": "yamcha",
     "series": "db",
     "payload": {
-      "name": "Golpe Colmillo de Lobo",
-      "image": "dragon-ball/techniques/golpe-colmillo-de-lobo",
+      "name": "Golpe colmillo de lobo",
+      "image": "dragon-ball/c/fd9d96aa24c54b4d",
+      "video": "dragon-ball/fd9d96aa24c54b4d",
       "width": 512,
-      "height": 384,
+      "height": 286,
       "accepts": []
     },
     "verified": false
@@ -226,26 +238,13 @@
     "id": "technique-puno-del-dragon",
     "kind": "technique",
     "entityId": "goku",
-    "series": "db",
+    "series": "gt",
     "payload": {
-      "name": "Puño del Dragón",
-      "image": "dragon-ball/techniques/puno-del-dragon",
+      "name": "Puño del dragón",
+      "image": "dragon-ball/c/99bdc339c6f9da8a",
+      "video": "dragon-ball/99bdc339c6f9da8a",
       "width": 512,
-      "height": 424,
-      "accepts": []
-    },
-    "verified": false
-  },
-  {
-    "id": "technique-teletransportacion",
-    "kind": "technique",
-    "entityId": "goku",
-    "series": "dbz",
-    "payload": {
-      "name": "Teletransportación",
-      "image": "dragon-ball/techniques/teletransportacion",
-      "width": 512,
-      "height": 287,
+      "height": 288,
       "accepts": []
     },
     "verified": false
@@ -257,9 +256,10 @@
     "series": "dbz",
     "payload": {
       "name": "Kaio-ken",
-      "image": "dragon-ball/techniques/kaio-ken",
-      "width": 484,
-      "height": 512,
+      "image": "dragon-ball/c/9e59a1fec6efa735",
+      "video": "dragon-ball/9e59a1fec6efa735",
+      "width": 512,
+      "height": 330,
       "accepts": []
     },
     "verified": false
@@ -270,56 +270,11 @@
     "entityId": "trunks-del-futuro",
     "series": "dbz",
     "payload": {
-      "name": "Ataque Ardiente",
-      "image": "dragon-ball/techniques/ataque-ardiente",
-      "width": 384,
-      "height": 512,
-      "accepts": [
-        "vegeta"
-      ]
-    },
-    "verified": false
-  },
-  {
-    "id": "technique-kamehameha-padre-e-hijo",
-    "kind": "technique",
-    "entityId": "gohan",
-    "series": "dbz",
-    "payload": {
-      "name": "Kamehameha Padre e Hijo",
-      "image": "dragon-ball/techniques/kamehameha-padre-e-hijo",
+      "name": "Ataque ardiente",
+      "image": "dragon-ball/c/80063555ec934a1f",
+      "video": "dragon-ball/80063555ec934a1f",
       "width": 512,
-      "height": 384,
-      "accepts": [
-        "goku"
-      ]
-    },
-    "verified": false
-  },
-  {
-    "id": "technique-granada-infernal",
-    "kind": "technique",
-    "entityId": "androide-17",
-    "series": "super",
-    "payload": {
-      "name": "Granada Infernal",
-      "image": "dragon-ball/techniques/granada-infernal",
-      "width": 512,
-      "height": 384,
-      "accepts": []
-    },
-    "verified": false
-  },
-  {
-    "id": "technique-cambio-de-cuerpo",
-    "kind": "technique",
-    "entityId": "ginyu",
-    "series": "dbz",
-    "payload": {
-      "name": "Cambio de cuerpo",
-      "image": "dragon-ball/techniques/cambio-de-cuerpo",
-      "width": 512,
-      "height": 421,
+      "height": 330,
       "accepts": []
     },
     "verified": false
@@ -331,9 +286,10 @@
     "series": "dbz",
     "payload": {
       "name": "Absorción",
-      "image": "dragon-ball/techniques/absorcion",
+      "image": "dragon-ball/c/c1840b52839f2e77",
+      "video": "dragon-ball/c1840b52839f2e77",
       "width": 512,
-      "height": 384,
+      "height": 330,
       "accepts": [
         "androide-19",
         "dr-gero"
@@ -342,15 +298,1710 @@
     "verified": false
   },
   {
-    "id": "technique-salto-temporal",
+    "id": "technique-absorcion-de-buu",
+    "kind": "technique",
+    "entityId": "super-buu",
+    "series": "dbz",
+    "payload": {
+      "name": "Absorción de Buu",
+      "image": "dragon-ball/c/5b2084d94306e231",
+      "video": "dragon-ball/5b2084d94306e231",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-absorcion-de-buu-2",
+    "kind": "technique",
+    "entityId": "super-buu",
+    "series": "dbz",
+    "payload": {
+      "name": "Absorción de Buu",
+      "image": "dragon-ball/c/0a977fa1fe324697",
+      "video": "dragon-ball/0a977fa1fe324697",
+      "width": 512,
+      "height": 285,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-aguja-venenosa-super",
+    "kind": "technique",
+    "entityId": "frost",
+    "series": "super",
+    "payload": {
+      "name": "Aguja venenosa",
+      "image": "dragon-ball/c/fc65cf45d5a7fc7e",
+      "video": "dragon-ball/fc65cf45d5a7fc7e",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-aguja-venenosa-super-2",
+    "kind": "technique",
+    "entityId": "frost",
+    "series": "super",
+    "payload": {
+      "name": "Aguja venenosa",
+      "image": "dragon-ball/c/7420e5fafee54af5",
+      "video": "dragon-ball/7420e5fafee54af5",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-ataque-de-exterminio-humano",
+    "kind": "technique",
+    "entityId": "super-buu",
+    "series": "dbz",
+    "payload": {
+      "name": "Ataque de exterminio humano",
+      "image": "dragon-ball/c/0ee98d77cea21c07",
+      "video": "dragon-ball/0ee98d77cea21c07",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-ataque-de-ira-de-gohan",
+    "kind": "technique",
+    "entityId": "gohan",
+    "series": "dbz",
+    "payload": {
+      "name": "Ataque de ira de Gohan",
+      "image": "dragon-ball/c/c7db9acf5c00fca0",
+      "video": "dragon-ball/c7db9acf5c00fca0",
+      "width": 512,
+      "height": 331,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-autodestruccion",
+    "kind": "technique",
+    "entityId": "celula",
+    "series": "dbz",
+    "payload": {
+      "name": "Autodestrucción",
+      "image": "dragon-ball/c/995a075d2b0b6d68",
+      "video": "dragon-ball/995a075d2b0b6d68",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-autodestruccion-2",
+    "kind": "technique",
+    "entityId": "celula",
+    "series": "dbz",
+    "payload": {
+      "name": "Autodestrucción",
+      "image": "dragon-ball/c/a1dce7a3e8cdf02f",
+      "video": "dragon-ball/a1dce7a3e8cdf02f",
+      "width": 512,
+      "height": 334,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-barrera-super",
+    "kind": "technique",
+    "entityId": "androide-17",
+    "series": "super",
+    "payload": {
+      "name": "Barrera",
+      "image": "dragon-ball/c/6849c3f28a314107",
+      "video": "dragon-ball/6849c3f28a314107",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-big-bang-kamehameha-gt",
+    "kind": "technique",
+    "entityId": "gogeta",
+    "series": "gt",
+    "payload": {
+      "name": "Big Bang Kamehameha",
+      "image": "dragon-ball/c/9e3adc02f513f64c",
+      "video": "dragon-ball/9e3adc02f513f64c",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-big-bang-kamehameha-gt-2",
+    "kind": "technique",
+    "entityId": "gogeta",
+    "series": "gt",
+    "payload": {
+      "name": "Big Bang Kamehameha",
+      "image": "dragon-ball/c/469428a92435180c",
+      "video": "dragon-ball/469428a92435180c",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-bola-mortal-2",
+    "kind": "technique",
+    "entityId": "freezer",
+    "series": "dbz",
+    "payload": {
+      "name": "Bola mortal",
+      "image": "dragon-ball/c/3821e52ac34c2975",
+      "video": "dragon-ball/3821e52ac34c2975",
+      "width": 512,
+      "height": 285,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-bola-mortal-3",
+    "kind": "technique",
+    "entityId": "freezer",
+    "series": "dbz",
+    "payload": {
+      "name": "Bola mortal",
+      "image": "dragon-ball/c/5f172c3606bc229c",
+      "video": "dragon-ball/5f172c3606bc229c",
+      "width": 512,
+      "height": 283,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-bola-mortal-de-la-venganza-gt",
+    "kind": "technique",
+    "entityId": "baby",
+    "series": "gt",
+    "payload": {
+      "name": "Bola mortal de la venganza",
+      "image": "dragon-ball/c/8b714c8d34dadd09",
+      "video": "dragon-ball/8b714c8d34dadd09",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-cambio-de-cuerpo-2",
+    "kind": "technique",
+    "entityId": "ginyu",
+    "series": "dbz",
+    "payload": {
+      "name": "Cambio de cuerpo",
+      "image": "dragon-ball/c/8c1d4fb74d4a466f",
+      "video": "dragon-ball/8c1d4fb74d4a466f",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-cambio-de-cuerpo-3",
+    "kind": "technique",
+    "entityId": "ginyu",
+    "series": "dbz",
+    "payload": {
+      "name": "Cambio de cuerpo",
+      "image": "dragon-ball/c/74a515b86a3baba8",
+      "video": "dragon-ball/74a515b86a3baba8",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-canon-aplastante-super",
+    "kind": "technique",
+    "entityId": "caulifla",
+    "series": "super",
+    "payload": {
+      "name": "Cañón aplastante",
+      "image": "dragon-ball/c/9f823cbfa9df38bd",
+      "video": "dragon-ball/9f823cbfa9df38bd",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-canon-final-del-espiritu",
+    "kind": "technique",
+    "entityId": "bardock",
+    "series": "dbz",
+    "payload": {
+      "name": "Cañón final del espíritu",
+      "image": "dragon-ball/c/b1a0f6efabaa2d33",
+      "video": "dragon-ball/b1a0f6efabaa2d33",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-canon-galick-super",
+    "kind": "technique",
+    "entityId": "vegeta",
+    "series": "super",
+    "payload": {
+      "name": "Cañón Galick",
+      "image": "dragon-ball/c/80bacd702a075796",
+      "video": "dragon-ball/80bacd702a075796",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-castigador-de-almas",
+    "kind": "technique",
+    "entityId": "gogeta",
+    "series": "dbz",
+    "payload": {
+      "name": "Castigador de almas",
+      "image": "dragon-ball/c/5247537659a0ee09",
+      "video": "dragon-ball/5247537659a0ee09",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-curacion",
+    "kind": "technique",
+    "entityId": "dende",
+    "series": "dbz",
+    "payload": {
+      "name": "Curación",
+      "image": "dragon-ball/c/656de48938c8a581",
+      "video": "dragon-ball/656de48938c8a581",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "kibito"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-danza-de-la-fusion",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "name": "Danza de la fusión",
+      "image": "dragon-ball/c/999ed2a9da543c67",
+      "video": "dragon-ball/999ed2a9da543c67",
+      "width": 512,
+      "height": 248,
+      "accepts": [
+        "vegeta",
+        "goten",
+        "trunks"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-danza-de-la-fusion-2",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "name": "Danza de la fusión",
+      "image": "dragon-ball/c/6a2b91adb6f7297c",
+      "video": "dragon-ball/6a2b91adb6f7297c",
+      "width": 512,
+      "height": 288,
+      "accepts": [
+        "vegeta"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-danza-de-la-fusion-3",
+    "kind": "technique",
+    "entityId": "goten",
+    "series": "dbz",
+    "payload": {
+      "name": "Danza de la fusión",
+      "image": "dragon-ball/c/acbcdc90fa085598",
+      "video": "dragon-ball/acbcdc90fa085598",
+      "width": 512,
+      "height": 288,
+      "accepts": [
+        "trunks"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-destello-de-la-justicia-super",
+    "kind": "technique",
+    "entityId": "toppo",
+    "series": "super",
+    "payload": {
+      "name": "Destello de la justicia",
+      "image": "dragon-ball/c/dfeeeef667856ce1",
+      "video": "dragon-ball/dfeeeef667856ce1",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-destello-final-2",
+    "kind": "technique",
+    "entityId": "vegeta",
+    "series": "dbz",
+    "payload": {
+      "name": "Destello final",
+      "image": "dragon-ball/c/4ae344204c46c9c6",
+      "video": "dragon-ball/4ae344204c46c9c6",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-destello-final-super-2",
+    "kind": "technique",
+    "entityId": "trunks-del-futuro",
+    "series": "super",
+    "payload": {
+      "name": "Destello final",
+      "image": "dragon-ball/c/11e3c7c093a24efe",
+      "video": "dragon-ball/11e3c7c093a24efe",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-detencion-del-tiempo",
+    "kind": "technique",
+    "entityId": "guldo",
+    "series": "dbz",
+    "payload": {
+      "name": "Detención del tiempo",
+      "image": "dragon-ball/c/d6ff72add8ec4e1c",
+      "video": "dragon-ball/d6ff72add8ec4e1c",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-detencion-del-tiempo-super",
     "kind": "technique",
     "entityId": "hit",
     "series": "super",
     "payload": {
-      "name": "Salto Temporal",
-      "image": "dragon-ball/techniques/salto-temporal",
+      "name": "Detención del tiempo",
+      "image": "dragon-ball/c/9a7a7b1fc5587d40",
+      "video": "dragon-ball/9a7a7b1fc5587d40",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-dodompa-db",
+    "kind": "technique",
+    "entityId": "chaoz",
+    "series": "db",
+    "payload": {
+      "name": "Dodompa",
+      "image": "dragon-ball/c/2f865304e1671354",
+      "video": "dragon-ball/2f865304e1671354",
+      "width": 512,
+      "height": 358,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-dodompa-db-2",
+    "kind": "technique",
+    "entityId": "tao-pai-pai",
+    "series": "db",
+    "payload": {
+      "name": "Dodompa",
+      "image": "dragon-ball/c/7f33593b8d6bac6c",
+      "video": "dragon-ball/7f33593b8d6bac6c",
+      "width": 512,
+      "height": 370,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-dona-galactica",
+    "kind": "technique",
+    "entityId": "gotenks",
+    "series": "dbz",
+    "payload": {
+      "name": "Dona galáctica",
+      "image": "dragon-ball/c/dfe15781760619f6",
+      "video": "dragon-ball/dfe15781760619f6",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-escupitajo-petrificante",
+    "kind": "technique",
+    "entityId": "dabura",
+    "series": "dbz",
+    "payload": {
+      "name": "Escupitajo petrificante",
+      "image": "dragon-ball/c/b8a6afb647b5d57c",
+      "video": "dragon-ball/b8a6afb647b5d57c",
+      "width": 512,
+      "height": 302,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-escupitajo-petrificante-2",
+    "kind": "technique",
+    "entityId": "dabura",
+    "series": "dbz",
+    "payload": {
+      "name": "Escupitajo petrificante",
+      "image": "dragon-ball/c/13cd11552781988b",
+      "video": "dragon-ball/13cd11552781988b",
+      "width": 512,
+      "height": 362,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-escupitajo-petrificante-super",
+    "kind": "technique",
+    "entityId": "dabura",
+    "series": "super",
+    "payload": {
+      "name": "Escupitajo petrificante",
+      "image": "dragon-ball/c/7bf90f0575dae145",
+      "video": "dragon-ball/7bf90f0575dae145",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-esfera-de-destruccion-super",
+    "kind": "technique",
+    "entityId": "bills",
+    "series": "super",
+    "payload": {
+      "name": "Esfera de destrucción",
+      "image": "dragon-ball/c/5ed703483d3008df",
+      "video": "dragon-ball/5ed703483d3008df",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-espada-de-ki",
+    "kind": "technique",
+    "entityId": "vegetto",
+    "series": "dbz",
+    "payload": {
+      "name": "Espada de ki",
+      "image": "dragon-ball/c/a771e85b65ebf5f5",
+      "video": "dragon-ball/a771e85b65ebf5f5",
+      "width": 512,
+      "height": 248,
+      "accepts": [
+        "goku-black"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-espada-de-ki-super",
+    "kind": "technique",
+    "entityId": "vegetto",
+    "series": "super",
+    "payload": {
+      "name": "Espada de ki",
+      "image": "dragon-ball/c/9268735df70ff4f4",
+      "video": "dragon-ball/9268735df70ff4f4",
+      "width": 512,
+      "height": 248,
+      "accepts": [
+        "goku-black"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-espada-de-ki-super-2",
+    "kind": "technique",
+    "entityId": "goku-black",
+    "series": "super",
+    "payload": {
+      "name": "Espada de ki",
+      "image": "dragon-ball/c/56370a6aa73b9042",
+      "video": "dragon-ball/56370a6aa73b9042",
+      "width": 512,
+      "height": 283,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-espada-de-ki-super-3",
+    "kind": "technique",
+    "entityId": "goku-black",
+    "series": "super",
+    "payload": {
+      "name": "Espada de ki",
+      "image": "dragon-ball/c/b19b569ca2158e09",
+      "video": "dragon-ball/b19b569ca2158e09",
+      "width": 512,
+      "height": 283,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-espada-de-ki-super-4",
+    "kind": "technique",
+    "entityId": "zamasu",
+    "series": "super",
+    "payload": {
+      "name": "Espada de ki",
+      "image": "dragon-ball/c/eed27558037397d8",
+      "video": "dragon-ball/eed27558037397d8",
+      "width": 512,
+      "height": 282,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-espada-de-la-esperanza-super",
+    "kind": "technique",
+    "entityId": "trunks-del-futuro",
+    "series": "super",
+    "payload": {
+      "name": "Espada de la esperanza",
+      "image": "dragon-ball/c/dba22de28c0202de",
+      "video": "dragon-ball/dba22de28c0202de",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-final-shine-gt",
+    "kind": "technique",
+    "entityId": "vegeta",
+    "series": "gt",
+    "payload": {
+      "name": "Final Shine",
+      "image": "dragon-ball/c/d9b268966a227383",
+      "video": "dragon-ball/d9b268966a227383",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-genki-dama-3",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "name": "Genki-dama",
+      "image": "dragon-ball/c/6314d1793b752010",
+      "video": "dragon-ball/6314d1793b752010",
       "width": 512,
       "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-genki-dama-4",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "name": "Genki-dama",
+      "image": "dragon-ball/c/449bcd3002d7b1d0",
+      "video": "dragon-ball/449bcd3002d7b1d0",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-genki-dama-5",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "name": "Genki-dama",
+      "image": "dragon-ball/c/d8ec4c6a0f5d053f",
+      "video": "dragon-ball/d8ec4c6a0f5d053f",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-granada-de-luz-sagrada-super",
+    "kind": "technique",
+    "entityId": "zamasu",
+    "series": "super",
+    "payload": {
+      "name": "Granada de luz sagrada",
+      "image": "dragon-ball/c/c7378a6585dd30c7",
+      "video": "dragon-ball/c7378a6585dd30c7",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-hakai-super",
+    "kind": "technique",
+    "entityId": "bills",
+    "series": "super",
+    "payload": {
+      "name": "Hakai",
+      "image": "dragon-ball/c/6532990dc4835576",
+      "video": "dragon-ball/6532990dc4835576",
+      "width": 512,
+      "height": 248,
+      "accepts": [
+        "champa",
+        "toppo"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-hakai-super-2",
+    "kind": "technique",
+    "entityId": "bills",
+    "series": "super",
+    "payload": {
+      "name": "Hakai",
+      "image": "dragon-ball/c/22fd059e971c62dd",
+      "video": "dragon-ball/22fd059e971c62dd",
+      "width": 512,
+      "height": 290,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-hakai-super-3",
+    "kind": "technique",
+    "entityId": "toppo",
+    "series": "super",
+    "payload": {
+      "name": "Hakai",
+      "image": "dragon-ball/c/c491cffa7cb56b5f",
+      "video": "dragon-ball/c491cffa7cb56b5f",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-impacto-de-poder-super",
+    "kind": "technique",
+    "entityId": "jiren",
+    "series": "super",
+    "payload": {
+      "name": "Impacto de poder",
+      "image": "dragon-ball/c/0fda813876bf5689",
+      "video": "dragon-ball/0fda813876bf5689",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-jaula-del-tiempo-super",
+    "kind": "technique",
+    "entityId": "hit",
+    "series": "super",
+    "payload": {
+      "name": "Jaula del tiempo",
+      "image": "dragon-ball/c/5b8233ba1ccec80c",
+      "video": "dragon-ball/5b8233ba1ccec80c",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-jaula-del-tiempo-super-2",
+    "kind": "technique",
+    "entityId": "hit",
+    "series": "super",
+    "payload": {
+      "name": "Jaula del tiempo",
+      "image": "dragon-ball/c/c3dca89574a21550",
+      "video": "dragon-ball/c3dca89574a21550",
+      "width": 512,
+      "height": 290,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kaio-ken-2",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "name": "Kaio-ken",
+      "image": "dragon-ball/c/6f6f64898e74c291",
+      "video": "dragon-ball/6f6f64898e74c291",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kaio-ken-namek",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "name": "Kaio-ken (Namek)",
+      "image": "dragon-ball/c/e08b96eddcc5f81b",
+      "video": "dragon-ball/e08b96eddcc5f81b",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kamehameha-2",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "name": "Kamehameha",
+      "image": "dragon-ball/c/a1b3f089eb1968bf",
+      "video": "dragon-ball/a1b3f089eb1968bf",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kamehameha-3",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "name": "Kamehameha",
+      "image": "dragon-ball/c/46e598ec467f5312",
+      "video": "dragon-ball/46e598ec467f5312",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kamehameha-gt",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "gt",
+    "payload": {
+      "name": "Kamehameha",
+      "image": "dragon-ball/c/021739687df65255",
+      "video": "dragon-ball/021739687df65255",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "maestro-roshi",
+        "gohan",
+        "goten",
+        "krilin"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kamehameha-instantaneo",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "name": "Kamehameha instantáneo",
+      "image": "dragon-ball/c/00fae3181b98e407",
+      "video": "dragon-ball/00fae3181b98e407",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kamehameha-instantaneo-2",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "name": "Kamehameha instantáneo",
+      "image": "dragon-ball/c/7834b8931cce1fc8",
+      "video": "dragon-ball/7834b8931cce1fc8",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kamehameha-negro-super",
+    "kind": "technique",
+    "entityId": "goku-black",
+    "series": "super",
+    "payload": {
+      "name": "Kamehameha negro",
+      "image": "dragon-ball/c/f030c63ff2b7fc9a",
+      "video": "dragon-ball/f030c63ff2b7fc9a",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kamehameha-padre-e-hijo-2",
+    "kind": "technique",
+    "entityId": "gohan",
+    "series": "dbz",
+    "payload": {
+      "name": "Kamehameha padre e hijo",
+      "image": "dragon-ball/c/b2f0e2e9b609ba8f",
+      "video": "dragon-ball/b2f0e2e9b609ba8f",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kamehameha-padre-e-hijo-3",
+    "kind": "technique",
+    "entityId": "gohan",
+    "series": "dbz",
+    "payload": {
+      "name": "Kamehameha padre e hijo",
+      "image": "dragon-ball/c/842127405ceaf743",
+      "video": "dragon-ball/842127405ceaf743",
+      "width": 512,
+      "height": 288,
+      "accepts": [
+        "goku"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kamehameha-super-super",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "super",
+    "payload": {
+      "name": "Kamehameha (Super)",
+      "image": "dragon-ball/c/5f439ff6d61b095c",
+      "video": "dragon-ball/5f439ff6d61b095c",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kamehameha-x10-gt",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "gt",
+    "payload": {
+      "name": "Kamehameha x10",
+      "image": "dragon-ball/c/33d47fa693e4a867",
+      "video": "dragon-ball/33d47fa693e4a867",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kamehameha-x10-gt-2",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "gt",
+    "payload": {
+      "name": "Kamehameha x10",
+      "image": "dragon-ball/c/9cd95ae6b6b9466d",
+      "video": "dragon-ball/9cd95ae6b6b9466d",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kienzan-2",
+    "kind": "technique",
+    "entityId": "krilin",
+    "series": "dbz",
+    "payload": {
+      "name": "Kienzan",
+      "image": "dragon-ball/c/7d790699f2aaffcd",
+      "video": "dragon-ball/7d790699f2aaffcd",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kienzan-3",
+    "kind": "technique",
+    "entityId": "krilin",
+    "series": "dbz",
+    "payload": {
+      "name": "Kienzan",
+      "image": "dragon-ball/c/6b540fb50b023517",
+      "video": "dragon-ball/6b540fb50b023517",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kienzan-de-freezer",
+    "kind": "technique",
+    "entityId": "freezer",
+    "series": "dbz",
+    "payload": {
+      "name": "Kienzan de Freezer",
+      "image": "dragon-ball/c/8184ff51221c1000",
+      "video": "dragon-ball/8184ff51221c1000",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-kienzan-super",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "super",
+    "payload": {
+      "name": "Kienzan",
+      "image": "dragon-ball/c/5a6eacec3a1805c4",
+      "video": "dragon-ball/5a6eacec3a1805c4",
+      "width": 512,
+      "height": 290,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-mafuba-db",
+    "kind": "technique",
+    "entityId": "tenshinhan",
+    "series": "db",
+    "payload": {
+      "name": "Mafuba",
+      "image": "dragon-ball/c/93973b27bb5880d6",
+      "video": "dragon-ball/93973b27bb5880d6",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-mafuba-super",
+    "kind": "technique",
+    "entityId": "trunks-del-futuro",
+    "series": "super",
+    "payload": {
+      "name": "Mafuba",
+      "image": "dragon-ball/c/78abde575e1ac2ab",
+      "video": "dragon-ball/78abde575e1ac2ab",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-makankosappo-super-super",
+    "kind": "technique",
+    "entityId": "piccolo",
+    "series": "super",
+    "payload": {
+      "name": "Makankosappo (Super)",
+      "image": "dragon-ball/c/702ace32681e7256",
+      "video": "dragon-ball/702ace32681e7256",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-masenko-2",
+    "kind": "technique",
+    "entityId": "gohan",
+    "series": "dbz",
+    "payload": {
+      "name": "Masenko",
+      "image": "dragon-ball/c/85000de64ebc3294",
+      "video": "dragon-ball/85000de64ebc3294",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-materializacion",
+    "kind": "technique",
+    "entityId": "piccolo",
+    "series": "dbz",
+    "payload": {
+      "name": "Materialización",
+      "image": "dragon-ball/c/cedca5a6aab6ed34",
+      "video": "dragon-ball/cedca5a6aab6ed34",
+      "width": 512,
+      "height": 250,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-materializacion-2",
+    "kind": "technique",
+    "entityId": "piccolo",
+    "series": "dbz",
+    "payload": {
+      "name": "Materialización",
+      "image": "dragon-ball/c/a238a26e5236f75f",
+      "video": "dragon-ball/a238a26e5236f75f",
+      "width": 512,
+      "height": 280,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-materializacion-super",
+    "kind": "technique",
+    "entityId": "piccolo",
+    "series": "super",
+    "payload": {
+      "name": "Materialización",
+      "image": "dragon-ball/c/dfb82296f448f2e1",
+      "video": "dragon-ball/dfb82296f448f2e1",
+      "width": 512,
+      "height": 248,
+      "accepts": [
+        "kami"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-multiplicacion-db",
+    "kind": "technique",
+    "entityId": "tenshinhan",
+    "series": "db",
+    "payload": {
+      "name": "Multiplicación",
+      "image": "dragon-ball/c/69e3e67260171e43",
+      "video": "dragon-ball/69e3e67260171e43",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-onda-expansiva-super",
+    "kind": "technique",
+    "entityId": "frost",
+    "series": "super",
+    "payload": {
+      "name": "Onda expansiva",
+      "image": "dragon-ball/c/cb7cdd3b9a30e29a",
+      "video": "dragon-ball/cb7cdd3b9a30e29a",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-poses-de-las-fuerzas-especiales-ginyu",
+    "kind": "technique",
+    "entityId": "ginyu",
+    "series": "dbz",
+    "payload": {
+      "name": "Poses de las Fuerzas Especiales Ginyu",
+      "image": "dragon-ball/c/c29786f6f812b62b",
+      "video": "dragon-ball/c29786f6f812b62b",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "recoome",
+        "burter",
+        "jeice",
+        "guldo"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-posesion-gt",
+    "kind": "technique",
+    "entityId": "baby",
+    "series": "gt",
+    "payload": {
+      "name": "Posesión",
+      "image": "dragon-ball/c/c01f1b7454cbc09a",
+      "video": "dragon-ball/c01f1b7454cbc09a",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-puno-cohete-gt",
+    "kind": "technique",
+    "entityId": "general-rildo",
+    "series": "gt",
+    "payload": {
+      "name": "Puño cohete",
+      "image": "dragon-ball/c/56b0edcec1ae5e27",
+      "video": "dragon-ball/56b0edcec1ae5e27",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-rayo-de-chocolate",
+    "kind": "technique",
+    "entityId": "majin-buu",
+    "series": "dbz",
+    "payload": {
+      "name": "Rayo de chocolate",
+      "image": "dragon-ball/c/9f388d66850cfa64",
+      "video": "dragon-ball/9f388d66850cfa64",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-rayo-de-chocolate-2",
+    "kind": "technique",
+    "entityId": "majin-buu",
+    "series": "dbz",
+    "payload": {
+      "name": "Rayo de chocolate",
+      "image": "dragon-ball/c/ddda0d1d5b3f69eb",
+      "video": "dragon-ball/ddda0d1d5b3f69eb",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-rayo-de-chocolate-3",
+    "kind": "technique",
+    "entityId": "majin-buu",
+    "series": "dbz",
+    "payload": {
+      "name": "Rayo de chocolate",
+      "image": "dragon-ball/c/fa84c529747c9b14",
+      "video": "dragon-ball/fa84c529747c9b14",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-rayo-de-chocolate-gt",
+    "kind": "technique",
+    "entityId": "majin-buu",
+    "series": "gt",
+    "payload": {
+      "name": "Rayo de chocolate",
+      "image": "dragon-ball/c/45b8ea4048915ef5",
+      "video": "dragon-ball/45b8ea4048915ef5",
+      "width": 512,
+      "height": 330,
+      "accepts": [
+        "super-buu",
+        "kid-buu"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-rayo-gigantesco-super",
+    "kind": "technique",
+    "entityId": "kefla",
+    "series": "super",
+    "payload": {
+      "name": "Rayo gigantesco",
+      "image": "dragon-ball/c/90f93dd459ac8137",
+      "video": "dragon-ball/90f93dd459ac8137",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-regeneracion",
+    "kind": "technique",
+    "entityId": "piccolo",
+    "series": "dbz",
+    "payload": {
+      "name": "Regeneración",
+      "image": "dragon-ball/c/f9f17fb4cbf770cb",
+      "video": "dragon-ball/f9f17fb4cbf770cb",
+      "width": 512,
+      "height": 248,
+      "accepts": [
+        "nail",
+        "celula",
+        "majin-buu",
+        "super-buu",
+        "kid-buu",
+        "gran-rey-demonio-piccolo",
+        "slug"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-regeneracion-2",
+    "kind": "technique",
+    "entityId": "majin-buu",
+    "series": "dbz",
+    "payload": {
+      "name": "Regeneración",
+      "image": "dragon-ball/c/567596fe1613dfd0",
+      "video": "dragon-ball/567596fe1613dfd0",
+      "width": 512,
+      "height": 334,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-resplandor-del-diablo",
+    "kind": "technique",
+    "entityId": "hombre-diablo",
+    "series": "db",
+    "payload": {
+      "name": "Resplandor del diablo",
+      "image": "dragon-ball/c/e103bd10f42010cf",
+      "video": "dragon-ball/e103bd10f42010cf",
+      "width": 512,
+      "height": 326,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-retroceso-del-tiempo-super",
+    "kind": "technique",
+    "entityId": "whis",
+    "series": "super",
+    "payload": {
+      "name": "Retroceso del tiempo",
+      "image": "dragon-ball/c/54a97213d6d85baf",
+      "video": "dragon-ball/54a97213d6d85baf",
+      "width": 512,
+      "height": 248,
+      "accepts": [
+        "vados"
+      ]
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-salto-temporal-super",
+    "kind": "technique",
+    "entityId": "hit",
+    "series": "super",
+    "payload": {
+      "name": "Salto temporal",
+      "image": "dragon-ball/c/e6fe758fd49765f4",
+      "video": "dragon-ball/e6fe758fd49765f4",
+      "width": 512,
+      "height": 290,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-salto-temporal-super-2",
+    "kind": "technique",
+    "entityId": "hit",
+    "series": "super",
+    "payload": {
+      "name": "Salto temporal",
+      "image": "dragon-ball/c/0377f52238e88555",
+      "video": "dragon-ball/0377f52238e88555",
+      "width": 512,
+      "height": 290,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-sokidan-db",
+    "kind": "technique",
+    "entityId": "yamcha",
+    "series": "db",
+    "payload": {
+      "name": "Sokidan",
+      "image": "dragon-ball/c/fe59890cafbf4721",
+      "video": "dragon-ball/fe59890cafbf4721",
+      "width": 512,
+      "height": 410,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-super-ataque-kamikaze-de-fantasmas",
+    "kind": "technique",
+    "entityId": "gotenks",
+    "series": "dbz",
+    "payload": {
+      "name": "Súper ataque kamikaze de fantasmas",
+      "image": "dragon-ball/c/01eca9535c3e57db",
+      "video": "dragon-ball/01eca9535c3e57db",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-super-ataque-kamikaze-de-fantasmas-2",
+    "kind": "technique",
+    "entityId": "gotenks",
+    "series": "dbz",
+    "payload": {
+      "name": "Súper ataque kamikaze de fantasmas",
+      "image": "dragon-ball/c/ec2013ee054c2343",
+      "video": "dragon-ball/ec2013ee054c2343",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-super-ataque-kamikaze-de-fantasmas-3",
+    "kind": "technique",
+    "entityId": "super-buu",
+    "series": "dbz",
+    "payload": {
+      "name": "Súper ataque kamikaze de fantasmas",
+      "image": "dragon-ball/c/dfe6d8370e5d381f",
+      "video": "dragon-ball/dfe6d8370e5d381f",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-supernova",
+    "kind": "technique",
+    "entityId": "freezer",
+    "series": "dbz",
+    "payload": {
+      "name": "Supernova",
+      "image": "dragon-ball/c/5c0d100a80824d04",
+      "video": "dragon-ball/5c0d100a80824d04",
+      "width": 512,
+      "height": 331,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-supernova-2",
+    "kind": "technique",
+    "entityId": "coola",
+    "series": "dbz",
+    "payload": {
+      "name": "Supernova",
+      "image": "dragon-ball/c/d36a46d75eb7503d",
+      "video": "dragon-ball/d36a46d75eb7503d",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-supernova-3",
+    "kind": "technique",
+    "entityId": "coola",
+    "series": "dbz",
+    "payload": {
+      "name": "Supernova",
+      "image": "dragon-ball/c/0ae5b1f8aae57e30",
+      "video": "dragon-ball/0ae5b1f8aae57e30",
+      "width": 512,
+      "height": 290,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-supernova-4",
+    "kind": "technique",
+    "entityId": "freezer",
+    "series": "dbz",
+    "payload": {
+      "name": "Supernova",
+      "image": "dragon-ball/c/0b36c87154db3fc7",
+      "video": "dragon-ball/0b36c87154db3fc7",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-supernova-super",
+    "kind": "technique",
+    "entityId": "freezer",
+    "series": "super",
+    "payload": {
+      "name": "Supernova",
+      "image": "dragon-ball/c/5d58a924f980db68",
+      "video": "dragon-ball/5d58a924f980db68",
+      "width": 512,
+      "height": 280,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-taiyoken-2",
+    "kind": "technique",
+    "entityId": "celula",
+    "series": "dbz",
+    "payload": {
+      "name": "Taiyoken",
+      "image": "dragon-ball/c/3a259a15ed006c33",
+      "video": "dragon-ball/3a259a15ed006c33",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-taiyoken-3",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "name": "Taiyoken",
+      "image": "dragon-ball/c/4def22ba025d87b4",
+      "video": "dragon-ball/4def22ba025d87b4",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-taiyoken-db",
+    "kind": "technique",
+    "entityId": "tenshinhan",
+    "series": "db",
+    "payload": {
+      "name": "Taiyoken",
+      "image": "dragon-ball/c/512f68b76c216be0",
+      "video": "dragon-ball/512f68b76c216be0",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-telequinesis",
+    "kind": "technique",
+    "entityId": "guldo",
+    "series": "dbz",
+    "payload": {
+      "name": "Telequinesis",
+      "image": "dragon-ball/c/db5395a7e36f43df",
+      "video": "dragon-ball/db5395a7e36f43df",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-telequinesis-2",
+    "kind": "technique",
+    "entityId": "guldo",
+    "series": "dbz",
+    "payload": {
+      "name": "Telequinesis",
+      "image": "dragon-ball/c/296dbc719dfe294a",
+      "video": "dragon-ball/296dbc719dfe294a",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-teletransportacion-2",
+    "kind": "technique",
+    "entityId": "goku",
+    "series": "dbz",
+    "payload": {
+      "name": "Teletransportación",
+      "image": "dragon-ball/c/af50ae3f2c529447",
+      "video": "dragon-ball/af50ae3f2c529447",
+      "width": 512,
+      "height": 288,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-tormenta-gigante",
+    "kind": "technique",
+    "entityId": "nappa",
+    "series": "dbz",
+    "payload": {
+      "name": "Tormenta gigante",
+      "image": "dragon-ball/c/e7812aa5d5cd3e61",
+      "video": "dragon-ball/e7812aa5d5cd3e61",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-viaje-en-pilar-db",
+    "kind": "technique",
+    "entityId": "tao-pai-pai",
+    "series": "db",
+    "payload": {
+      "name": "Viaje en pilar",
+      "image": "dragon-ball/c/738c218cba22449e",
+      "video": "dragon-ball/738c218cba22449e",
+      "width": 512,
+      "height": 354,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-zanzoken",
+    "kind": "technique",
+    "entityId": "dodoria",
+    "series": "dbz",
+    "payload": {
+      "name": "Zanzoken",
+      "image": "dragon-ball/c/8ad0cc589c170d3f",
+      "video": "dragon-ball/8ad0cc589c170d3f",
+      "width": 512,
+      "height": 330,
       "accepts": []
     },
     "verified": false

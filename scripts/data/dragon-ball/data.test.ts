@@ -157,6 +157,20 @@ describe('técnicas', () => {
       }
     }
   });
+
+  it('las que tienen clip traen el MP4 y el tamaño del póster, y ni el póster ni el clip tienen en su nombre el id ni la respuesta', () => {
+    const withClip = techniques.filter((technique) => technique.payload.video !== undefined);
+    expect(withClip.length).toBeGreaterThan(0);
+    for (const technique of withClip) {
+      expect(existsSync(path.join(ROOT, 'public', 'video', `${String(technique.payload.video)}.mp4`)), `${technique.id} clip`).toBe(true);
+      expect(technique.payload.width, technique.id).toBeGreaterThan(0);
+      const id = technique.id.replace(/^technique-/, '');
+      for (const file of [technique.payload.image as string, technique.payload.video as string]) {
+        expect(file, technique.id).not.toContain(id);
+        expect(file, technique.id).not.toContain(technique.entityId as string);
+      }
+    }
+  });
 });
 
 describe('sagas', () => {
