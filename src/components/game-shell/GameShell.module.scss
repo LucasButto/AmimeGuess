@@ -67,6 +67,54 @@
   gap: t.$space-2 t.$space-4;
 }
 
+// "Cómo se juega" a la vista dentro de la pantalla (antes solo estaba en el menú, donde casi nadie lo encontraba).
+.topRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-2 t.$space-4;
+}
+
+// Un botón vistoso: relleno de acento, el librito de la ayuda y un shake corto al cargar la página (tres veces, con pausas, y se
+// queda quieto) para que se note. Cambia apenas de color al pasar el cursor.
+.howToButton {
+  // Compacto en el teléfono (comparte renglón con el contador del próximo reto); desde `md`, con más aire.
+  --_pad-inline: #{t.$space-2};
+  flex: none;
+  margin-inline-start: auto;
+  gap: t.$space-1;
+  font-size: t.$font-size-sm;
+  @include bp.min-width('md') {
+    --_pad-inline: #{t.$space-3};
+    gap: t.$space-2;
+  }
+  @include m.hover-tint(14%);
+  @include bp.motion-ok {
+    animation: how-to-shake 3.5s ease-in-out 1.2s 3;
+    // Con el cursor encima o el foco puesto, quieto: ya lo encontró.
+    &:hover, &:focus-visible { animation-play-state: paused; }
+  }
+}
+
+.howToIcon {
+  flex: none;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  object-fit: contain;
+  @include bp.min-width('md') { inline-size: 1.75rem; block-size: 1.75rem; }
+}
+
+// El movimiento (solo `transform`) ocupa el primer 17 % de cada vuelta; el resto es pausa.
+@keyframes how-to-shake {
+  0%, 17%, 100% { transform: none; }
+  3% { transform: translateX(-0.1875rem) rotate(-4deg); }
+  6% { transform: translateX(0.1875rem) rotate(4deg); }
+  9% { transform: translateX(-0.125rem) rotate(-3deg); }
+  12% { transform: translateX(0.125rem) rotate(3deg); }
+  15% { transform: translateX(-0.0625rem) rotate(-1deg); }
+}
+
 .buttons {
   display: flex;
   flex-wrap: wrap;

@@ -45,6 +45,7 @@ import { VersusClock } from '../versus/VersusClock';
 import { VersusHowTo } from '../versus/VersusHowTo';
 import { VersusSummary } from '../versus/VersusSummary';
 import { versusRulesText } from '../versus/howTo';
+import { HelpIcon } from './HelpIcon';
 import { HowToPlay } from './HowToPlay';
 import { engineRulesFor } from '@/versus/session';
 import { versusDay } from '@/versus/seed';
@@ -329,6 +330,17 @@ export function GameShell({
       </FilterPanel>
   );
 
+  // El botón de "Cómo se juega" a la vista dentro de la pantalla (no solo en el menú ⋮/☰, donde casi nadie lo encontraba).
+  const howToButton = (
+    <Button variant="secondary" className={styles.howToButton} aria-haspopup="dialog" onClick={() => setDialog('help')}>
+      <HelpIcon className={styles.howToIcon} />
+      {es.shell.helpButton}
+    </Button>
+  );
+  // Teléfono, modo normal: comparte el renglón del contador del próximo reto (que deja libre su lado derecho). En los demás
+  // casos va a la derecha de la barra de intentos.
+  const howToInTopRow = !versus && phone;
+
   return (
     <AttemptsStatusProvider>
     <SurrenderAllowed.Provider value={versus?.modality !== 'race'}>
@@ -391,8 +403,13 @@ export function GameShell({
           </div></div>
         , document.getElementById('game-actions')!
       )}
-      {/* Teléfono: el contador del próximo reto va arriba del selector de modo. */}
-      {!versus && phone && <Countdown compact={appShell} />}
+      {/* Teléfono: el contador del próximo reto va arriba del selector de modo, con "Cómo se juega" a la derecha. */}
+      {howToInTopRow && (
+        <div className={styles.topRow}>
+          <Countdown compact={appShell} />
+          {howToButton}
+        </div>
+      )}
       {!versus && <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} solved={solved} filterKey={filterKey} />}
 
       {versus && <VersusClock game={versus} frozen={report !== null} />}
@@ -400,6 +417,7 @@ export function GameShell({
       <div className={styles.toolbar}>
         {appShell && <AttemptsStatusTarget />}
         {!versus && !phone && <Countdown compact={appShell} />}
+        {!howToInTopRow && howToButton}
       </div>
 
       {!versus && <SheetSection>{filters}</SheetSection>}

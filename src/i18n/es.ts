@@ -1142,6 +1142,8 @@ export const es = {
     modeSolved: "resuelto hoy",
     modeSoon: "próximamente",
     help: "Cómo se juega",
+    // El botón visible dentro de la pantalla de juego (además de la opción del menú ⋮ o ☰).
+    helpButton: "Cómo se juega",
     stats: "Estadísticas",
     close: "Cerrar",
     // Al pasar el cursor por la barra del título de un modal que se puede mover (por ejemplo, la Pokédex).
