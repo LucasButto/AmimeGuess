@@ -43,6 +43,7 @@ import {
   renderPlainImage,
   type Rendered,
 } from './images.ts';
+import { CLIP_BUDGET, POSTER_DIR, VIDEO_DIR, opaqueName, readClipSources, renderClip, type RenderedClip } from './clips.ts';
 import { printReport } from './report.ts';
 import {
   SERIES,
@@ -404,6 +405,25 @@ async function validate(
     async (content) => {
       const found: string[] = [];
       const id = content.id.replace(/^technique-/, '');
+      if (content.payload.video !== undefined) {
+        // Con clip: nombre opaco, póster en los dos tamaños y el clip dentro del presupuesto.
+        const name = opaqueName(id);
+        if (content.payload.image !== `dragon-ball/c/${name}` || content.payload.video !== `dragon-ball/${name}`) found.push(`${content.id}: el nombre opaco del clip no es el esperado`);
+        for (const size of SIZES) {
+          found.push(...(await checkImageFile(path.join(POSTER_DIR, imageFileName(name, size)), size, BUDGET[size], `${content.id} (póster ${size} px)`)));
+        }
+        try {
+          const clipBytes = (await stat(path.join(VIDEO_DIR, `${name}.mp4`))).size;
+          if (clipBytes > CLIP_BUDGET) found.push(`${content.id}: el clip pesa ${clipBytes} bytes y el máximo son ${CLIP_BUDGET}`);
+        } catch {
+          found.push(`${content.id}: falta el clip public/video/dragon-ball/${name}.mp4`);
+        }
+        const poster = await imageDimensions(path.join(POSTER_DIR, imageFileName(name, 512)));
+        if (poster.width !== content.payload.width || poster.height !== content.payload.height) {
+          found.push(`${content.id}: el contenido dice ${String(content.payload.width)}×${String(content.payload.height)} y el póster mide ${poster.width}×${poster.height}`);
+        }
+        return found;
+      }
       for (const size of SIZES) {
         found.push(...(await checkImageFile(path.join(TECHNIQUE_IMAGE_DIR, imageFileName(id, size)), size, BUDGET[size], `${content.id} (${size} px)`)));
       }
@@ -488,9 +508,18 @@ async function main(): Promise<void> {
       api === null || api === undefined ? null : { url: api.image, cacheName: `characters/${api.id}-${apiFileName(api.image)}` },
     );
   });
-  // Imágenes de técnicas: solo las cargadas a mano
-  step(`Imágenes de ${src.techniques.length} técnicas (solo las cargadas a mano)…`);
+  // Técnicas: las que tienen clip aprobado (data/dragon-ball/source/technique-clips/) salen en video, con su póster (ver clips.ts); las
+  // demás, de la imagen fija cargada a mano.
+  const clipSources = await readClipSources();
+  step(`Clips de técnicas (${src.techniques.filter((technique) => clipSources.has(technique.id)).length}; se reutilizan los ya procesados)…`);
+  const techniqueClips = new Map<string, RenderedClip>();
+  for (const technique of src.techniques) {
+    const source = clipSources.get(technique.id);
+    if (source !== undefined) techniqueClips.set(technique.id, await renderClip(source));
+  }
+  step('Imágenes de las técnicas sin clip (solo las cargadas a mano)…');
   const techniqueImages = await mapPool(src.techniques, IMAGE_TASKS, async (technique) => {
+    if (techniqueClips.has(technique.id)) return null;
     const manual = await readManualImage(path.join(MANUAL_DIR, 'techniques'), technique.id);
     if (manual === null) return null;
     const rendered = await renderPlainImage(technique.id, manual.buffer, TECHNIQUE_IMAGE_DIR);
@@ -514,6 +543,18 @@ async function main(): Promise<void> {
 
   const techniques: Content[] = [];
   src.techniques.forEach((technique, index) => {
+    const clip = techniqueClips.get(technique.id);
+    if (clip !== undefined) {
+      techniques.push({
+        id: `technique-${technique.id}`,
+        kind: 'technique',
+        entityId: technique.users[0],
+        series: technique.series,
+        payload: { name: technique.name, image: clip.image, video: clip.video, width: clip.width, height: clip.height, accepts: technique.users.slice(1) },
+        verified: technique.verified,
+      });
+      return;
+    }
     const image = techniqueImages[index];
     if (image === null) return;
     techniques.push({
@@ -564,7 +605,7 @@ async function main(): Promise<void> {
       note: character.sinImagen ? 'la de la API no es el personaje' : undefined,
     }));
   const missingTechniques: MissingImage[] = src.techniques
-    .filter((_, index) => techniqueImages[index] === null)
+    .filter((technique, index) => !techniqueClips.has(technique.id) && techniqueImages[index] === null)
     .map((technique) => ({
       id: technique.id,
       name: technique.name,
@@ -572,7 +613,9 @@ async function main(): Promise<void> {
       wikiPage: technique.name,
       note: characterById.get(technique.users[0])?.name ?? technique.users[0],
     }));
-  const techniqueAnswers = new Set(techniques.map((content) => content.entityId)).size;
+  // El mínimo del modo Técnica cuenta técnicas (clips o imágenes); los personajes que son respuesta se informan aparte.
+  const techniqueAnswers = techniques.length;
+  const techniqueCharacters = new Set(techniques.map((content) => content.entityId)).size;
   const opaque = characters.filter((entity) => entity.attrs.imagenTransparente === 0).map((entity) => ({ id: entity.id, name: entity.name.es }));
   await writeTodoSection(
     TODO_FILE,
@@ -595,6 +638,7 @@ async function main(): Promise<void> {
       characters: characterImages.flatMap((result) => result.rendered),
       techniques: techniqueImages.flatMap((result) => result?.rendered ?? []),
     },
+    clips: [...techniqueClips.values()],
     unverified: [
       { label: 'personajes', unverified: src.characters.filter((item) => !item.verified).length, total: src.characters.length },
       { label: 'técnicas', unverified: src.techniques.filter((item) => !item.verified).length, total: src.techniques.length },
@@ -605,6 +649,7 @@ async function main(): Promise<void> {
     opaqueImages: opaque.map((item) => item.id),
     techniquesTotal: src.techniques.length,
     techniqueAnswers,
+    techniqueCharacters,
     connectionGroups: src.connections.length,
     connectionBoards: countBoards(src.connections),
     imageBytesDragonBall: await directoryBytes(IMAGE_DIR),

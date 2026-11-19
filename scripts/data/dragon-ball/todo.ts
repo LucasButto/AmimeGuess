@@ -79,7 +79,7 @@ export function renderTodoSection(input: TodoInput): string {
     lines.push(
       `### Técnicas sin imagen (${input.techniques.length})`,
       '',
-      `El modo Técnica adivina quién usa la técnica, así que su pool se cuenta en personajes distintos que son respuesta (columna "Responde"), no en técnicas: queda oculto hasta tener imagen de técnicas de al menos ${input.techniquePoolMinimum} personajes distintos (ahora hay ${input.techniqueAnswersWithImage}${missingToOpen > 0 ? `; faltan ${missingToOpen}` : ''}). La captura puede ser de cualquier escena de la técnica; si no es de la serie anotada en \`techniques.json\`, corregí el campo \`series\` de esa técnica.`,
+      `El modo Técnica mide su pool en técnicas (clips o imágenes), no en personajes: queda oculto hasta tener al menos ${input.techniquePoolMinimum} técnicas con clip o imagen (ahora hay ${input.techniqueAnswersWithImage}${missingToOpen > 0 ? `; faltan ${missingToOpen}` : ''}). La captura puede ser de cualquier escena de la técnica; si no es de la serie anotada en \`techniques.json\`, corregí el campo \`series\` de esa técnica.`,
       '',
       ...table(input.techniques, true),
       '',

@@ -20,6 +20,8 @@ export interface ReportInput {
   readonly contents: Content[];
   readonly sagaCount: number;
   readonly rendered: { characters: Rendered[]; techniques: Rendered[] };
+  /** Los clips del modo Técnica: peso del video y del póster, y de dónde salió. */
+  readonly clips: ReadonlyArray<{ id: string; clipBytes: number; posterBytes: number; source: string; crf: number | 'copia'; cropped: boolean; cleaned: boolean; seconds: number }>;
   readonly unverified: UnverifiedCount[];
   /** Personajes sin imagen y técnicas sin imagen (a cargar a mano). */
   readonly missing: { characters: string[]; techniques: string[] };
@@ -28,6 +30,8 @@ export interface ReportInput {
   readonly techniquesTotal: number;
   /** Personajes distintos que son respuesta de alguna técnica con imagen: lo que cuenta el pool del modo Técnica. */
   readonly techniqueAnswers: number;
+  /** Personajes distintos que son respuesta de alguna técnica (el buscador sigue ofreciendo a todos los de las series activas). */
+  readonly techniqueCharacters: number;
   readonly connectionGroups: number;
   readonly connectionBoards: number;
   readonly imageBytesDragonBall: number;
@@ -92,7 +96,7 @@ export function printReport(input: ReportInput): void {
   // El pool de Frase cuenta personajes distintos que dijeron alguna frase verificada, no frases.
   const verifiedQuotes = quotes.filter((c) => c.verified);
   line(`  Frase (personajes distintos)    ${pad(new Set(verifiedQuotes.map((c) => c.entityId)).size, 4)}   (hacen falta 10; ${verifiedQuotes.length} de ${quotes.length} frases verificadas)`);
-  line(`  Técnica (personajes distintos)  ${pad(input.techniqueAnswers, 4)}   (hacen falta 10; ${techniques.length} de ${input.techniquesTotal} técnicas con imagen)`);
+  line(`  Técnica (técnicas)              ${pad(input.techniqueAnswers, 4)}   (hacen falta 10; ${input.techniqueAnswers} de ${input.techniquesTotal} con clip o imagen; ${input.techniqueCharacters} personajes distintos)`);
   line(`  Conexiones (grupos)             ${pad(input.connectionGroups, 4)}   (${input.connectionBoards} tableros distintos con todas las series)`);
   line(`  Línea de tiempo (verificados)   ${pad(events.filter((c) => c.verified).length, 4)}   (hacen falta 10; hay ${events.length} sucesos)`);
 
@@ -109,6 +113,7 @@ export function printReport(input: ReportInput): void {
     printImages(line, 'personajes  ', input.rendered.characters) +
     printImages(line, 'técnicas    ', input.rendered.techniques);
   line(`  Peso generado en esta corrida: ${mb(total)}`);
+  printClips(line, input.clips);
   line(`  Peso de public/img/dragon-ball: ${mb(input.imageBytesDragonBall)}`);
   const limit = 250 * 1024 * 1024;
   line(
@@ -117,4 +122,17 @@ export function printReport(input: ReportInput): void {
   line(`  Personajes sin imagen: ${input.missing.characters.length}; técnicas sin imagen: ${input.missing.techniques.length}  → ver docs/CONTENT_TODO.md`);
   line(`  Imágenes con fondo (no sirven para Silueta): ${input.opaqueImages.length}${input.opaqueImages.length > 0 ? ` (${input.opaqueImages.join(', ')})` : ''}`);
   line();
+}
+
+/** Los clips del modo Técnica (public/video/dragon-ball/): cuántos son, cuánto pesan, de dónde salieron y el más pesado. */
+function printClips(line: (text?: string) => void, clips: ReportInput['clips']): void {
+  if (clips.length === 0) return;
+  const bytes = clips.reduce((sum, clip) => sum + clip.clipBytes, 0);
+  const heaviest = clips.reduce((max, clip) => (clip.clipBytes > max.clipBytes ? clip : max));
+  const posters = clips.reduce((sum, clip) => sum + clip.posterBytes, 0);
+  const seconds = clips.reduce((sum, clip) => sum + clip.seconds, 0);
+  line(`  Clips (MP4 sin audio, public/video/dragon-ball): ${clips.length}, ${mb(bytes)} en total, promedio ${(bytes / clips.length / 1024).toFixed(0)} KB, máximo ${(heaviest.clipBytes / 1024).toFixed(0)} KB (${heaviest.id}); duran ${seconds.toFixed(0)} s en total; pósters: ${mb(posters)}`);
+  const origins = new Map<string, number>();
+  for (const clip of clips) origins.set(clip.source, (origins.get(clip.source) ?? 0) + 1);
+  line(`  Orígenes: ${[...origins].map(([origin, count]) => `${count} de ${origin}`).join(', ')}; con recorte de subtítulos: ${clips.filter((clip) => clip.cropped).length}; con marca borrada: ${clips.filter((clip) => clip.cleaned).length}; copiados sin recomprimir: ${clips.filter((clip) => clip.crf === 'copia').length}`);
 }

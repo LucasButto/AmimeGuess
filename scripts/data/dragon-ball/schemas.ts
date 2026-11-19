@@ -237,8 +237,9 @@ const eventContentSchema = z
   .strict();
 
 /**
- * La imagen de una técnica: `image` es la ruta sin tamaño ni extensión; `width` y `height`, las del archivo
- * de 512 px. La respuesta es `entityId`; `accepts` son los otros que la usan.
+ * La técnica: o una imagen fija cargada a mano (`image` en `dragon-ball/techniques/<id>`) o un clip en bucle (`video`, con su póster en
+ * `image`, los dos con nombre opaco: no dicen qué técnica es). `image` es la ruta sin tamaño ni extensión; `width` y `height`, las del
+ * archivo de 512 px (el póster, si hay clip). La respuesta es `entityId`; `accepts` son los otros que la usan.
  */
 const techniqueContentSchema = z
   .object({
@@ -248,7 +249,9 @@ const techniqueContentSchema = z
     payload: z
       .object({
         name: z.string().min(1),
-        image: z.string().regex(/^dragon-ball\/techniques\/[a-z0-9]+(-[a-z0-9]+)*$/),
+        image: z.string().regex(/^dragon-ball\/(techniques\/[a-z0-9]+(-[a-z0-9]+)*|c\/[0-9a-f]{16})$/),
+        /** El clip, sin extensión, dentro de /public/video: un MP4 sin audio, con nombre opaco. */
+        video: z.string().regex(/^dragon-ball\/[0-9a-f]{16}$/).optional(),
         width: z.number().int().positive(),
         height: z.number().int().positive(),
         accepts: z.array(kebab),
