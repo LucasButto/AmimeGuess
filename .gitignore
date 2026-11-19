@@ -39,12 +39,15 @@ npm-debug.log*
 CLAUDE.md
 docs/
 
-# Archivos de trabajo de la búsqueda de clips de técnicas
-data/dragon-ball/source/technique-clips/check/
-data/dragon-ball/source/technique-clips/trace/
-data/dragon-ball/source/technique-clips/sheet.png
+# Búsqueda de clips de técnicas (en curso): originales aprobados, archivos de trabajo y herramientas. Cuando termine la búsqueda,
+# se saca de acá lo que haya que versionar (los originales de `clips/` y `approved.json`, que lee `npm run data:dragon-ball`).
+data/dragon-ball/source/technique-clips/
 
 # Servidor de salas del versus (Cloudflare): dependencias, estado local de wrangler y variables locales
 versus-server/node_modules/
 versus-server/.wrangler/
 versus-server/.dev.vars
+
+# Revisión local de clips de técnicas (no va al repo)
+revision-clips-db/
+.claude-tmp-prev/
