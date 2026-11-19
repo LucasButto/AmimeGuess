@@ -88,6 +88,7 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
   const { ChipMark } = skin.slots;
   // Una silueta no tiene colores que mostrar: el interruptor no aplica.
   const hasColors = config.variant !== 'zoom-silhouette';
+  const compact = config.compactDifficulty === true;
   const ctx = useMemo<DailyContext>(() => ({ franchise, mode, filterKey, day }), [franchise, mode, filterKey, day]);
   const answer = useMemo(() => pickDaily(candidates, ctx), [candidates, ctx]);
   const image = useMemo(() => pickImage(answer, ctx), [answer, ctx]);
@@ -256,38 +257,46 @@ export function ImageRevealBoard({ session, config, candidates, options }: Image
 
       {!over && (
         <SheetSection>
-          <fieldset className={styles.difficulty} aria-labelledby={difficultyId}>
+          <fieldset className={styles.difficulty} data-compact={compact || undefined} aria-labelledby={difficultyId}>
             <legend className={styles.difficultyTitle} id={difficultyId}>
               {es.imageReveal.difficultyTitle}
               <InfoTip compact text={es.help.difficulty} label={es.help.button(es.imageReveal.difficultyTitle)} className={styles.titleHelp} />
             </legend>
-            {/* Cada opción es un chip que se prende y se apaga, con su explicación debajo. */}
+            {/* Cada opción es un chip que se prende y se apaga, con su explicación debajo (o, en la dificultad compacta, en su ⓘ). */}
             <div className={styles.option}>
               <Chip
                 pressed={prefs.reveal}
-                aria-describedby={revealHintId}
+                aria-describedby={compact ? undefined : revealHintId}
                 mark={<ChipMark on={prefs.reveal} />}
                 onClick={() => updatePrefs({ ...prefs, reveal: !prefs.reveal })}
               >
                 {es.imageReveal.revealSwitch}
               </Chip>
-              <p className={styles.optionHint} id={revealHintId}>
-                {es.imageReveal.revealHint}
-              </p>
+              {compact ? (
+                <InfoTip compact text={es.imageReveal.revealHint} label={es.help.button(es.imageReveal.revealSwitch)} className={styles.optionInfo} />
+              ) : (
+                <p className={styles.optionHint} id={revealHintId}>
+                  {es.imageReveal.revealHint}
+                </p>
+              )}
             </div>
             {hasColors && (
               <div className={styles.option}>
                 <Chip
                   pressed={prefs.colors}
-                  aria-describedby={colorsHintId}
+                  aria-describedby={compact ? undefined : colorsHintId}
                   mark={<ChipMark on={prefs.colors} />}
                   onClick={() => updatePrefs({ ...prefs, colors: !prefs.colors })}
                 >
                   {es.imageReveal.colorsSwitch}
                 </Chip>
-                <p className={styles.optionHint} id={colorsHintId}>
-                  {es.imageReveal.colorsHint}
-                </p>
+                {compact ? (
+                  <InfoTip compact text={es.imageReveal.colorsHint} label={es.help.button(es.imageReveal.colorsSwitch)} className={styles.optionInfo} />
+                ) : (
+                  <p className={styles.optionHint} id={colorsHintId}>
+                    {es.imageReveal.colorsHint}
+                  </p>
+                )}
               </div>
             )}
           </fieldset>

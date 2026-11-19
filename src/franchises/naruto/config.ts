@@ -118,7 +118,7 @@ export const narutoConfig = {
       engine: 'image-reveal',
       // La pista es un clip en bucle de la escena de un jutsu (cada uno con su video y su póster) y la respuesta, quien lo usa.
       // Cuenta como acierto cualquiera de los personajes que lo usan (ver `accepts` en los datos).
-      imageReveal: { variant: 'blur', imageContentKind: 'jutsu', showsContentName: true, countNoun: { one: 'jutsu', many: 'jutsus' }, blurLevels: [0.85, 0.64, 0.47, 0.32, 0.21, 0.12] },
+      imageReveal: { variant: 'blur', imageContentKind: 'jutsu', showsContentName: true, countNoun: { one: 'jutsu', many: 'jutsus' }, blurLevels: [0.85, 0.64, 0.47, 0.32, 0.21, 0.12], compactDifficulty: true },
     },
     {
       slug: 'ojo', versusIcon: 'eye',

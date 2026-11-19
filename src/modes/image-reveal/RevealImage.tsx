@@ -83,7 +83,7 @@ export function RevealImage({ stem, width, height, alt, visual, kind, video, vei
   } as CSSProperties;
 
   return (
-    <div ref={frameRef} className={styles.frame} style={style} data-part="visor" data-back={hasBack} data-face-up={faceUp}>
+    <div ref={frameRef} className={styles.frame} style={style} data-part="visor" data-back={hasBack} data-face-up={faceUp} data-clip={video !== undefined || undefined}>
       <div className={styles.flipper}>
         <div className={styles.front}>
           {video === undefined ? (
@@ -98,7 +98,7 @@ export function RevealImage({ stem, width, height, alt, visual, kind, video, vei
             />
           ) : (
             // El clip lleva los mismos filtros y el mismo recorte que la imagen (la clase `image`).
-            <ContentVideo className={styles.image} stem={video} poster={stem} alt={alt} sizes="(min-width: 30rem) 24rem, 100vw" width={width} height={height} />
+            <ContentVideo className={styles.image} stem={video} poster={stem} alt={alt} sizes="(min-width: 64rem) 36rem, (min-width: 30rem) 24rem, 100vw" width={width} height={height} />
           )}
           {/* Una copia de la imagen, al máximo desenfoque y recortada a cada zona: lo que está escrito ahí no se lee nunca. */}
           {video === undefined &&
