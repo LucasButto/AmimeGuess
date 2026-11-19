@@ -14,9 +14,8 @@ import { categoriesOf as boardCategories, poolOf as boardPool, BOARD_SIZE } from
 
 /**
  * Cuántas opciones tiene un modo con las series activas: lo que cada motor llama su pool
- * (respuestas posibles, pares posibles o sucesos). `null` si el modo no tiene la
- * configuración de su motor (todavía no se puede jugar). Es lo mismo que cada juego le
- * pasa a `GameShell` como `poolSize`.
+ * (respuestas posibles, pares posibles o sucesos; en los modos que cuentan contenidos, como Jutsu y Técnica, los contenidos). `null` si el
+ * modo no tiene la configuración de su motor (todavía no se puede jugar). Es con lo que `GameShell` mide el mínimo para jugar.
  */
 export function modePoolSize(mode: ModeConfig, data: FranchiseData, active: readonly string[]): number | null {
   const entities = entitiesOfMode(data, mode.entitySet);
@@ -30,8 +29,13 @@ export function modePoolSize(mode: ModeConfig, data: FranchiseData, active: read
       return mode.statBuilder === undefined ? null : eligibleEntities(entities, active).filter((entity) => mode.statBuilder!.stats.every((stat) => typeof entity.attrs[stat.key] === 'number')).length;
     case 'classic':
       return mode.classic === undefined ? null : eligibleEntities(entities, active).length;
-    case 'image-reveal':
-      return mode.imageReveal === undefined ? null : imageCandidates(entities, data.contents, active, mode.imageReveal).length;
+    case 'image-reveal': {
+      if (mode.imageReveal === undefined) return null;
+      const candidates = imageCandidates(entities, data.contents, active, mode.imageReveal);
+      // Un modo que cuenta contenidos (cada técnica o jutsu es un clip) mide el mínimo con ellos y no con los personajes que son respuesta:
+      // 12 técnicas de 6 personajes alcanzan. Las opciones del buscador siguen siendo todos los personajes de las series activas.
+      return mode.imageReveal.countNoun === undefined ? candidates.length : candidates.reduce((sum, candidate) => sum + candidate.images.length, 0);
+    }
     case 'text-clue':
       return mode.textClue === undefined ? null : textCandidates(entities, data.contents, active, mode.textClue).length;
     case 'reveal-list':

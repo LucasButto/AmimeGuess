@@ -198,7 +198,9 @@ export function GameShell({
   const shownCount = useMemo(() => displayCount?.(active), [displayCount, active]);
   const fullPool = useMemo(() => poolSize(franchise.series), [poolSize, franchise.series]);
   const limit = attemptRules ? attemptLimit(attemptRules.base, remaining, fullPool, attemptRules.adaptive) : undefined;
-  const playable = hasMinimumPool(remaining, minimumPool);
+  // El mínimo para jugar y el aviso de "quedan N" miden lo mismo que muestra el contador (los clips de Jutsu y Técnica, no sus personajes).
+  const counted = shownCount ?? remaining;
+  const playable = hasMinimumPool(counted, minimumPool);
 
   const yesterdayAnswer = useMemo(
     () =>
@@ -331,8 +333,7 @@ export function GameShell({
         details={franchise.seriesDetails}
         active={active}
         onChange={setActive}
-        remaining={remaining}
-        shown={shownCount}
+        remaining={counted}
         minimum={minimumPool}
         toggles={flags.toggles}
         sheet={inSheet}
@@ -436,7 +437,7 @@ export function GameShell({
       {/* Teléfono: los filtros viven en la hoja; si con ellos no alcanza el mínimo para jugar, se dice acá y se ofrece abrirla. */}
       {phone && !playable && (
         <section className={styles.poolWarning} role="status">
-          <p>{es.filters.belowMinimum(remaining, minimumPool)}</p>
+          <p>{es.filters.belowMinimum(counted, minimumPool)}</p>
           <Button variant="primary" onClick={() => setFiltersOpen(true)}>{es.shell.filters}</Button>
         </section>
       )}

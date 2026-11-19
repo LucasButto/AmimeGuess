@@ -221,7 +221,10 @@ export interface GameShellProps {
   readonly minimumPool: number;
   /** Cuántas opciones quedan elegibles con estas series activas. */
   readonly poolSize: (active: readonly string[]) => number;
-  /** Si el contador de posibles cuenta otra cosa que `poolSize` (los jutsus y no los personajes), cuántos hay con los filtros actuales. */
+  /**
+   * Si el contador de posibles cuenta otra cosa que `poolSize` (los jutsus o las técnicas y no los personajes), cuántos hay con los filtros
+   * actuales. Con esto, el mínimo para jugar se mide con este número; `poolSize` queda para los intentos.
+   */
   readonly displayCount?: (active: readonly string[]) => number;
   /**
    * La respuesta de ayer para la misma combinación de filtros. Recibe el
