@@ -35,6 +35,13 @@ export interface VersusGame {
   readonly onFinish?: (report: FinishReport) => void;
   /** La pista ya se ve (en los modos de imagen, con la imagen cargada). */
   readonly onLoaded?: () => void;
+  /**
+   * Mostrar "Cómo se juega" antes de empezar esta partida: el juego no se monta hasta que el jugador toca Continuar, así
+   * que la pista no se ve (ni se avisa `onLoaded`, que es lo que arranca el reloj de la partida) hasta entonces.
+   */
+  readonly howTo?: boolean;
+  /** El jugador tocó Continuar en "Cómo se juega". */
+  readonly onHowToDone?: () => void;
   /** Pasar a la partida siguiente (o a los resultados). Sin esto, el resumen no ofrece el botón. */
   readonly onNext?: () => void;
   /** La hora del servidor ahora (el reloj local corregido). Sin esto, la local. */

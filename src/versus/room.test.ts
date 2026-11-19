@@ -144,12 +144,21 @@ function lobby(cfg: VersusConfig, names: string[] = ['Ana', 'Beto']): Sim {
   return sim;
 }
 
-/** Los jugadores marcan Listo, el anfitrión empieza y pasa la cuenta regresiva. */
-function begin(sim: Sim): void {
+/**
+ * Los jugadores marcan Listo, el anfitrión empieza y pasa la cuenta regresiva. Después, cada uno toca Continuar en "Cómo se
+ * juega" en el mismo instante (`loaded`): así la partida 1 arranca a la hora de inicio, como antes de que la pantalla previa
+ * hiciera esperar ese aviso. `beginWithoutContinue` deja las partidas 1 pendientes.
+ */
+function beginWithoutContinue(sim: Sim): void {
   const conns = Object.keys(sim.state.conns);
   for (const conn of conns) sim.send(conn, { type: 'ready', value: true });
   sim.send('A', { type: 'start' });
   sim.goto(sim.state.startsAt!);
+}
+
+function begin(sim: Sim): void {
+  beginWithoutContinue(sim);
+  for (const [conn, playerId] of Object.entries(sim.state.conns)) if (playerId !== null) sim.send(conn, { type: 'loaded', index: 1 });
 }
 
 const finishMsg = (index: number, won = true, extra: Partial<Extract<ClientMessage, { type: 'finish' }>> = {}): ClientMessage => ({
@@ -330,6 +339,28 @@ describe('Contrarreloj', () => {
     expect(sim.player('Ana').games[1]).toMatchObject({ status: 'playing', startedAt: sim.state.startsAt! + 10_000 + LOAD_GRACE_MS });
   });
 
+  it('la partida 1 también espera el aviso `loaded` (el jugador lee "Cómo se juega"): el reloj arranca al tocar Continuar, no con la cuenta regresiva', () => {
+    const sim = lobby(config('timeAttack', [withLimit(clasico, 60_000)]));
+    beginWithoutContinue(sim);
+    expect(sim.player('Ana').games[0]).toMatchObject({ status: 'pending' });
+    expect(sim.player('Ana').games[0].endsAt).toBeUndefined();
+    sim.at(20_000).send('A', { type: 'loaded', index: 1 });
+    expect(sim.of('A', 'partidaStart').at(-1)).toEqual({ type: 'partidaStart', index: 1, at: sim.state.startsAt! + 20_000, endsAt: sim.state.startsAt! + 20_000 + 60_000 });
+    // Beto sigue leyendo: su reloj no corre.
+    expect(sim.player('Beto').games[0].status).toBe('pending');
+    sim.at(25_000).send('B', { type: 'loaded', index: 1 });
+    expect(sim.player('Beto').games[0]).toMatchObject({ status: 'playing', startedAt: sim.state.startsAt! + 25_000, endsAt: sim.state.startsAt! + 25_000 + 60_000 });
+  });
+
+  it('si no toca Continuar, la partida 1 empieza sola a los 30 s', () => {
+    const sim = lobby(config('timeAttack', [withLimit(clasico, 60_000)]));
+    beginWithoutContinue(sim);
+    sim.fire(LOAD_GRACE_MS - 1);
+    expect(sim.player('Ana').games[0].status).toBe('pending');
+    sim.fire(LOAD_GRACE_MS);
+    expect(sim.player('Ana').games[0]).toMatchObject({ status: 'playing', startedAt: sim.state.startsAt! + LOAD_GRACE_MS });
+  });
+
   it('tiempo agotado: la alarma cierra la partida con el límite completo, avisa timeUp y un finish tardío se ignora', () => {
     const sim = lobby(config('timeAttack', [withLimit(clasico, 60_000)]));
     begin(sim);
@@ -413,6 +444,13 @@ describe('Carrera', () => {
     expect(sim.player('Ana').games[0].status).toBe('playing');
     sim.send('A', finishMsg(1, false));
     expect(sim.errors('A')).toEqual(['not_allowed', 'not_allowed']);
+  });
+
+  it('la partida 1 corre desde la cuenta regresiva aunque nadie toque Continuar: el reloj de la sala no se detiene', () => {
+    const sim = lobby(config('race', partidas));
+    beginWithoutContinue(sim);
+    expect(sim.player('Ana').games[0]).toMatchObject({ status: 'playing', startedAt: sim.state.startsAt });
+    expect(sim.player('Beto').games[0]).toMatchObject({ status: 'playing', startedAt: sim.state.startsAt });
   });
 
   it('2 jugadores, 2 partidas: gana quien llega primero desde el inicio común, la carga incluida', () => {

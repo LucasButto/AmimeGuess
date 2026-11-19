@@ -80,6 +80,29 @@ export function writeTimes(code: string, times: Readonly<Record<number, number>>
   }
 }
 
+// --- "Cómo se juega" ya visto ---------------------------------------------------------------------------------------------------
+
+const howToKey = (code: string) => `${STORAGE_PREFIX}:versus:howto:${code}`;
+
+/** Las partidas de esta sala en las que el jugador ya tocó Continuar en "Cómo se juega" (se guarda en la pestaña: al recargar en medio de la partida no se vuelve a ver). */
+export function readHowToSeen(code: string): number[] {
+  try {
+    const raw = globalThis.sessionStorage?.getItem(howToKey(code));
+    const value: unknown = raw ? JSON.parse(raw) : [];
+    return Array.isArray(value) ? value.filter((index): index is number => Number.isInteger(index)) : [];
+  } catch {
+    return [];
+  }
+}
+
+export function writeHowToSeen(code: string, seen: readonly number[]): void {
+  try {
+    globalThis.sessionStorage?.setItem(howToKey(code), JSON.stringify(seen));
+  } catch {
+    // Sin almacenamiento, al recargar la pantalla previa se vuelve a ver.
+  }
+}
+
 // --- Partidas guardadas de la sala ---------------------------------------------------------------------------------------------
 
 /** Borra las partidas guardadas (`md:v1:state:…:<día>`) de los días de versus de una sala; no toca nada más. */

@@ -5,7 +5,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { FinishReport, VersusProgress } from '@/components/game-shell/types';
 import { isRoomCode } from '@/versus/code';
 import { buildFinish, gameHref } from './roomState';
-import { readCredentials, readTimes, writeTimes } from './storage';
+import { showsHowTo } from './howTo';
+import { readCredentials, readHowToSeen, readTimes, writeHowToSeen, writeTimes } from './storage';
 import { resetVersusStore, setVersusStore, type RoomHandle } from './store';
 import { useVersusRoom } from './useVersusRoom';
 import type { VersusGame } from './VersusGameContext';
@@ -38,6 +39,8 @@ function RoomRuntime({ code, wantsGame, index, pathname }: { code: string; wants
   const connection = useVersusRoom({ code, credentials, name, spectate });
   const { snapshot, send, serverNow } = connection;
   const [finishedMs, setFinishedMs] = useState<Record<number, number>>(() => readTimes(code));
+  // Las partidas en las que ya se tocó Continuar en "Cómo se juega" (sobrevive a recargar).
+  const [howToSeen, setHowToSeen] = useState<readonly number[]>(() => readHowToSeen(code));
 
   const latest = useRef(snapshot);
   useEffect(() => {
@@ -106,6 +109,15 @@ function RoomRuntime({ code, wantsGame, index, pathname }: { code: string; wants
     [send, serverNow, index, code],
   );
 
+  const onHowToDone = useCallback(() => {
+    setHowToSeen((current) => {
+      if (current.includes(index)) return current;
+      const next = [...current, index];
+      writeHowToSeen(code, next);
+      return next;
+    });
+  }, [code, index]);
+
   const onNext = useCallback(() => {
     const snap = latest.current;
     if (!snap) return;
@@ -127,7 +139,11 @@ function RoomRuntime({ code, wantsGame, index, pathname }: { code: string; wants
     // Con un `p` que no es de esta página (se cambió la URL a mano), no se arma el juego: la página de otro modo se confundiría con las series de esta partida hasta que se redirige.
     if (pathname !== `/${partida.franchise}/${partida.mode}`) return null;
     const mine = snapshot.mine?.index === index ? snapshot.mine : undefined;
+    // "Cómo se juega" antes de cada modo; las de desempate (índice > total) no tienen "anterior" y se ven siempre.
+    const previous = index > 1 && index <= snapshot.config.partidas.length ? snapshot.config.partidas[index - 2] : undefined;
     return {
+      howTo: showsHowTo(partida, previous, howToSeen.includes(index)),
+      onHowToDone,
       seed: snapshot.seed,
       index,
       total: snapshot.config.partidas.length,
@@ -145,7 +161,7 @@ function RoomRuntime({ code, wantsGame, index, pathname }: { code: string; wants
       now: serverNow,
       room: { code, meId: snapshot.you.playerId, players: snapshot.players, progress: snapshot.progress, status: connection.status, notices: connection.notices, finishedMs, onLeave },
     };
-  }, [wantsGame, snapshot, index, pathname, connection.stops, connection.status, connection.notices, finishedMs, code, onProgress, onFinish, onLoaded, onNext, onLeave, serverNow]);
+  }, [wantsGame, snapshot, index, pathname, connection.stops, connection.status, connection.notices, finishedMs, howToSeen, code, onProgress, onFinish, onLoaded, onHowToDone, onNext, onLeave, serverNow]);
 
   useEffect(() => {
     setVersusStore({ code, handle, game, failure: wantsGame && connection.status === 'unavailable' ? 'unavailable' : null });

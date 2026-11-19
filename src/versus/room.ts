@@ -883,12 +883,9 @@ function onMessage(ctx: Ctx, event: Extract<RoomEvent, { type: 'message' }>): vo
 function startPlaying(ctx: Ctx, at: number): void {
   const { s } = ctx;
   s.phase = 'playing';
-  for (const player of activePlayers(s)) {
-    const game: GameRecord = { index: 1, status: 'pending', attempts: 0 };
-    player.games.push(game);
-    player.current = 1;
-    beginGame(ctx, player, game, at);
-  }
+  // La partida 1 se abre como las demás: en Carrera corre desde ya (la cuenta regresiva es el inicio común); en las otras
+  // modalidades espera el aviso `loaded`, que el jugador manda al tocar Continuar en "Cómo se juega" (o a los 30 s).
+  for (const player of activePlayers(s)) openGame(ctx, player, 1, at);
 }
 
 function processTimer(ctx: Ctx, timer: Timer): void {

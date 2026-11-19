@@ -31,6 +31,9 @@ export function applyMessage(current: Snapshot | null, message: ServerMessage): 
       // El progreso propio dice en qué partida va (0: ya terminó todas).
       if (message.progress.playerId === current.you.playerId) {
         const own = message.progress;
+        // La partida 1 se abre pendiente (espera el Continuar de "Cómo se juega"; `partidaStart` llega recién entonces): el primer
+        // progreso propio con partida, ya en la cuenta regresiva, es el inicio de la sala y hay que ir a jugarla.
+        if (own.index > 0 && current.phase === 'countdown') next.phase = 'playing';
         if (own.index === 0) delete next.mine;
         else if (current.mine?.index !== own.index) next.mine = { index: own.index, status: own.status };
         else next.mine = { ...current.mine, status: own.status };

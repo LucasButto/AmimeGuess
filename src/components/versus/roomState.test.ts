@@ -60,6 +60,18 @@ describe('applyMessage', () => {
     expect(applyMessage(next, { type: 'partidaStart', index: 2, at: 9_000 })).toMatchObject({ phase: 'playing', mine: { index: 2 } });
   });
 
+  it('la partida 1 pendiente (espera Continuar en "Cómo se juega") también pasa la sala a `playing`: el progreso propio es el aviso', () => {
+    const counting = applyMessage(snapshot, { type: 'countdown', startsAt: 4_000, serverNow: 1_000, seed: 'abc' });
+    const own = { playerId: 'p1', index: 1, attempts: 0, status: 'pending' as const, done: 0 };
+    expect(applyMessage(counting, { type: 'progress', progress: own })).toMatchObject({ phase: 'playing', mine: { index: 1, status: 'pending' } });
+    // El progreso de otro jugador no cambia la fase, ni uno propio sin partida (index 0).
+    expect(applyMessage(counting, { type: 'progress', progress: { ...own, playerId: 'p2' } })?.phase).toBe('countdown');
+    expect(applyMessage(counting, { type: 'progress', progress: { ...own, index: 0 } })?.phase).toBe('countdown');
+    // Cuando llega `partidaStart` (al tocar Continuar), la partida pasa a jugándose sin cambiar la fase.
+    const playing = applyMessage(counting, { type: 'progress', progress: own });
+    expect(applyMessage(playing, { type: 'partidaStart', index: 1, at: 9_000, endsAt: 99_000 })).toMatchObject({ phase: 'playing', mine: { index: 1, status: 'playing', startedAt: 9_000 } });
+  });
+
   it('el cierre de partida lo maneja la conexión: no cambia la vista', () => {
     const messages: ServerMessage[] = [{ type: 'endNow', index: 1 }, { type: 'timeUp', index: 1 }];
     for (const message of messages) expect(applyMessage(snapshot, message)).toBe(snapshot);

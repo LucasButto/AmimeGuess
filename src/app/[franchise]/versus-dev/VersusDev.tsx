@@ -56,6 +56,8 @@ export function VersusDev({ franchise, playable, modes, appShell, query }: Props
   const [round, setRound] = useState(() => ({ index: initial.index, startedAt: Date.now() }));
   const [stop, setStop] = useState<'won' | 'timeUp' | undefined>(undefined);
   const [finished, setFinished] = useState(false);
+  // "Cómo se juega" antes de cada partida: la última en la que se tocó Continuar (la sala real lo guarda en la pestaña).
+  const [howToSeen, setHowToSeen] = useState<number | null>(null);
   const [log, setLog] = useState<readonly LogEntry[]>([]);
 
   const start = useCallback(() => {
@@ -106,9 +108,11 @@ export function VersusDev({ franchise, playable, modes, appShell, query }: Props
           setLog((entries) => [...entries, { kind: 'finish', value }]);
         },
         onLoaded: () => setLog((entries) => [...entries, { kind: 'loaded' }]),
+        howTo: howToSeen !== round.index,
+        onHowToDone: () => setHowToSeen(round.index),
         onNext: start,
       },
-    [partida, initial.seed, round, modality, endsAt, stop, start],
+    [partida, initial.seed, round, modality, endsAt, stop, start, howToSeen],
   );
 
   if (!mode || !game) return null;

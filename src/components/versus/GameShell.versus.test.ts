@@ -27,6 +27,9 @@ beforeAll(async () => {
   window.matchMedia = ((query: string) => ({ matches: false, media: query, addEventListener: () => undefined, removeEventListener: () => undefined, addListener: () => undefined, removeListener: () => undefined, onchange: null, dispatchEvent: () => false })) as typeof window.matchMedia;
   Element.prototype.scrollIntoView = () => undefined;
   window.scrollTo = () => undefined;
+  // El modal de ayuda usa <dialog>, que jsdom no termina de implementar.
+  HTMLDialogElement.prototype.showModal ??= function showModal(this: HTMLDialogElement) { this.setAttribute('open', ''); };
+  HTMLDialogElement.prototype.close ??= function close(this: HTMLDialogElement) { this.removeAttribute('open'); };
   entities = (await import('../../../data/pokemon/entities.json')).default as Entity[];
   contents = (await import('../../../data/pokemon/content.json')).default as Content[];
 });
@@ -110,6 +113,46 @@ describe('GameShell con el contexto de versus', () => {
     mount({ modality: 'fewestAttempts', partida: { ...partida, timeLimitMs: undefined }, endsAt: undefined });
     expect(container!.querySelector('[data-versus-clock]')).toBeNull();
     expect(container!.querySelector('[data-versus-bar]')?.textContent).toContain('Menos intentos');
+  });
+
+  it('con "Cómo se juega" por delante, el juego no se monta ni avisa `loaded` hasta tocar Continuar', () => {
+    const onLoaded = vi.fn();
+    const onHowToDone = vi.fn();
+    const value = mount({ howTo: true, onLoaded, onHowToDone });
+    expect(container!.querySelector('[data-versus-howto]')?.textContent).toContain('Cómo se juega — Clásico');
+    // Lo que corre en esta sala (tiempo límite de la partida) va primero.
+    expect(container!.querySelector('[data-versus-howto]')?.textContent).toContain('En esta salaContrarreloj: tenés 1:30 para resolverla');
+    expect(container!.querySelector('[data-game-mode]')).toBeNull();
+    expect(onLoaded).not.toHaveBeenCalled();
+    // Continuar avisa al proveedor, que es quien da la partida por vista.
+    const continueButton = [...container!.querySelectorAll('button')].find((button) => button.textContent === 'Continuar');
+    act(() => continueButton!.click());
+    expect(onHowToDone).toHaveBeenCalledTimes(1);
+    act(() => {
+      root!.render(h(VersusGameContext.Provider, { value: { ...value, howTo: false } }, h(ClassicGame, { franchise: pokemonConfig, mode: { slug: classic.slug, name: classic.name }, modes, config: classic.classic!, entities, contents })));
+    });
+    expect(container!.querySelector('[data-versus-howto]')).toBeNull();
+    expect(container!.querySelector('[data-game-mode]')).not.toBeNull();
+    expect(onLoaded).toHaveBeenCalledTimes(1);
+  });
+
+  it('si el servidor ya cerró la partida (`stop`) mientras se leía "Cómo se juega", pasa directo al juego para informar el final', () => {
+    const reports: FinishReport[] = [];
+    mount({ howTo: true, stop: 'timeUp', onFinish: (report) => reports.push(report) });
+    expect(container!.querySelector('[data-versus-howto]')).toBeNull();
+    expect(reports).toHaveLength(1);
+    expect(reports[0]).toMatchObject({ timedOut: true });
+  });
+
+  it('el botón "Cómo se juega" está a la vista en la pantalla y abre la ayuda con las reglas de la sala', () => {
+    mount({ stop: 'timeUp' });
+    const helpButton = [...container!.querySelectorAll('button')].find((button) => button.textContent?.includes('Cómo se juega'));
+    expect(helpButton).toBeDefined();
+    act(() => helpButton!.click());
+    const dialog = document.querySelector('dialog');
+    expect(dialog?.textContent).toContain('En esta sala');
+    // En la sala no valen las reglas del reto diario.
+    expect(dialog?.textContent).not.toContain('Reto diario');
   });
 
   it('sin el contexto, el marco queda como siempre', () => {

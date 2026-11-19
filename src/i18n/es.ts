@@ -1937,6 +1937,16 @@ ${link}`,
     targetTotal: (n: number) => `Objetivo: más de ${n}`,
     forgiven: (n: number) => `Fallos perdonados: ${n}`,
     combinations: (used: number, total: number) => `Combinación ${used} de ${total}`,
+    // La pantalla previa a cada modo (se ve antes de empezar la partida, con "Continuar").
+    howTo: {
+      // Estas líneas dicen cómo corre esta partida en la sala (modalidad y reglas del modo).
+      rulesTitle: "En esta sala",
+      timeAttack: (limit: string) => `Contrarreloj: tenés ${limit} para resolverla y los intentos son ilimitados. El tiempo empieza cuando tocás Continuar.`,
+      race: "Carrera: intentos ilimitados y sin tiempo límite, pero no podés pasar a la siguiente sin resolverla. El reloj de la sala ya está corriendo.",
+      fewestAttempts: "Menos intentos: sin tiempo límite. Gana quien la resuelve con menos intentos.",
+      fixedCombinations: (n: number) => `Hacés exactamente ${n} combinaciones.`,
+      continue: "Continuar",
+    },
     summary: {
       solvedIn: (time: string) => `¡Resuelta en ${time}!`,
       timeUp: (limit: string) => `Se acabó el tiempo · +${limit}`,

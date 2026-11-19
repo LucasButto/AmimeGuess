@@ -42,7 +42,10 @@ import { useRouletteImages } from '@/modes/stat-builder/RoulettePreview';
 import { getKeyedStorage, solvedToday } from '../progress';
 import { useVersusGame } from '../versus/VersusGameContext';
 import { VersusClock } from '../versus/VersusClock';
+import { VersusHowTo } from '../versus/VersusHowTo';
 import { VersusSummary } from '../versus/VersusSummary';
+import { versusRulesText } from '../versus/howTo';
+import { HowToPlay } from './HowToPlay';
 import { engineRulesFor } from '@/versus/session';
 import { versusDay } from '@/versus/seed';
 import { SurrenderAllowed } from './SurrenderButton';
@@ -120,6 +123,11 @@ export function GameShell({
     () => (versus ? { ...engineRulesFor(versus.modality, versus.partida.engine, versus.options), ...(versus.stop ? { stop: versus.stop } : {}) } : undefined),
     [versus],
   );
+  // Versus: "Cómo se juega" antes de cada modo. Mientras se ve, el juego no está montado: no se ve la pista ni se avisa `loaded`
+  // (lo que arranca el reloj de la partida). Si el servidor ya cerró la partida (`stop`, por ejemplo al agotarse el tiempo
+  // leyendo), se pasa directo al juego para que informe su final.
+  const showHowTo = versus?.howTo === true && versus.stop === undefined;
+  const howToRules = useMemo(() => (versus ? versusRulesText(versus.modality, versus.partida, versusRules) : undefined), [versus, versusRules]);
   // Lo que tardó en la partida de versus, medido al terminarla (para el resumen corto).
   const [versusElapsed, setVersusElapsed] = useState<number | undefined>(undefined);
   const sessionKey = `${filterKey}:${playDay}${variant ? `:${variant}` : ''}`;
@@ -272,7 +280,8 @@ export function GameShell({
   const loadedFor = useRef<string | null>(null);
   useEffect(() => {
     const target = gameRef.current;
-    if (!reportsLoaded || !target) return;
+    // Con "Cómo se juega" a la vista no hay juego montado; al tocar Continuar el efecto vuelve a correr y avisa.
+    if (!reportsLoaded || showHowTo || !target) return;
     let done = false;
     const images = [...target.querySelectorAll('img')].filter((image) => !image.complete);
     const finish = () => {
@@ -293,7 +302,7 @@ export function GameShell({
       }
     };
     // Una vez por partida (`sessionKey` cambia con cada partida nueva).
-  }, [reportsLoaded, sessionKey]);
+  }, [reportsLoaded, sessionKey, showHowTo]);
 
   const closeDialog = () => setDialog(null);
   const actionsId = useId();
@@ -416,8 +425,21 @@ export function GameShell({
 
       {playable && !versus && <SheetSection>{beforeGame?.({ remaining, day: playDay })}</SheetSection>}
 
+      {/* Versus: antes de cada modo, "Cómo se juega" con Continuar; recién ahí se monta el juego y arranca. */}
+      {playable && versus && showHowTo && howToRules && (
+        <VersusHowTo
+          franchise={franchise.slug}
+          mode={mode.slug}
+          modeName={mode.name}
+          help={help}
+          rules={howToRules}
+          phone={phone}
+          onContinue={() => versus.onHowToDone?.()}
+        />
+      )}
+
       {/* Otra combinación de filtros, de día o de variante es otra partida: el juego se vuelve a montar. */}
-      {playable && (
+      {playable && !showHowTo && (
         <div key={`${sessionKey}:try-${limit ?? ''}`} ref={gameRef} className={styles.game} data-game-mode={mode.slug}>
           {children({
             attemptLimit: limit,
@@ -572,19 +594,7 @@ export function GameShell({
 
       {dialog === 'help' && (
         <Modal title={es.shell.helpTitle(mode.name)} onClose={closeDialog}>
-          <div className={styles.help}>
-            {es.modeHelp[franchise.slug]?.[mode.slug] && <p>{es.modeHelp[franchise.slug][mode.slug]}</p>}
-            {help}
-            <p>{es.shell.limits.help}</p>
-            <section>
-              <h3 className={styles.helpTitle}>{es.shell.helpCommonTitle}</h3>
-              <ul className={styles.helpList}>
-                {es.shell.helpCommon.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </section>
-          </div>
+          <HowToPlay franchise={franchise.slug} mode={mode.slug} help={help} versusRules={howToRules} />
         </Modal>
       )}
 
