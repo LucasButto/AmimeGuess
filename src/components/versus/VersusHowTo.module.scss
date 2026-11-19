@@ -1,0 +1,16 @@
+@use 'tokens' as t;
+
+// La pantalla previa a cada modo del versus: un cuadro de diálogo con el tema de la franquicia (como el modal de ayuda).
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-4;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.title {
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+}

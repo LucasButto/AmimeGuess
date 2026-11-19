@@ -1,0 +1,26 @@
+@use 'tokens' as t;
+
+.help {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-5;
+  // Keep all help paragraphs and lists readable, including engine-specific notes.
+  font-size: calc(#{t.$font-size-base} * 1.05);
+  line-height: t.$line-height-base;
+
+  p, li, h3 { font-size: inherit; }
+}
+
+.helpTitle {
+  margin-block-end: t.$space-2;
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+}
+
+.helpList {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-2;
+  margin: 0;
+  padding-inline-start: t.$space-5;
+}

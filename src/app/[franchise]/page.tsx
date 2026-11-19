@@ -10,7 +10,7 @@ import { getSkin } from '@/franchises/themes';
 import { es } from '@/i18n/es';
 import { OG_SIZE, ogImage } from '../site';
 import { modeStatus } from './[mode]/playable';
-import { HubBarProgress, ModesGrid } from './ModesGrid';
+import { ModesGrid } from './ModesGrid';
 import styles from './page.module.scss';
 
 // Solo existen las franquicias de la config; cualquier otra ruta es 404.
@@ -60,11 +60,6 @@ export default async function FranchisePage({ params }: { params: Promise<{ fran
       <h1 className={styles.title}>
         <TitleWords text={franchise.name} />
       </h1>
-      {appShell && (
-        <p className={styles.appSubtitle}>
-          <HubBarProgress franchise={franchise.slug} modes={modes.map((mode) => mode.slug)} />
-        </p>
-      )}
     </header>
   );
   const navigation = <BackNav franchise={franchise} atFranchise appShell={appShell} />;

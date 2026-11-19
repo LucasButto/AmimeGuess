@@ -2,7 +2,8 @@
   "verified": false,
   "sources": [
     "Selección y criterios acordados con el usuario, 2026-11-05",
-    "https://en.dragon-ball-official.com/news/01_1908.html"
+    "https://en.dragon-ball-official.com/news/01_1908.html",
+    "Dragon_Ball_personajes_por_saga.pdf (aportado por el usuario; licencia a confirmar), ficha del Torneo del Universo 6"
   ],
   "roster": [
     "goku",
@@ -281,6 +282,8 @@
         "baby",
         "super-17",
         "champa",
+        "hit",
+        "cabba",
         "zamasu",
         "goku-black",
         "frost",

@@ -1,9 +1,11 @@
 import quotes from '../../../data/dragon-ball/source/frase.json';
 import events from '../../../data/dragon-ball/source/events.json';
 import sagas from '../../../data/dragon-ball/source/sagas.json';
+import connections from '../../../data/dragon-ball/source/conexiones.json';
+import quiz from '../../../data/dragon-ball/source/quiz.json';
 import type { Content } from '@/engine/types';
 import { es } from '@/i18n/es';
-import { eventContents, quoteContent } from '../curated-content';
+import { eventContents, groupContents, questionContents, quoteContent } from '../curated-content';
 import { quotesSrcSchema } from '../../../scripts/data/dragon-ball/schemas';
 
 export function dragonBallContents(generated: readonly Content[]): Content[] {
@@ -15,6 +17,8 @@ export function dragonBallContents(generated: readonly Content[]): Content[] {
       famous: quote.famous,
     })),
     ...eventContents(events, sagas.seriesOrder),
+    ...groupContents(connections),
+    ...questionContents(quiz),
     ...generated,
   ];
 }

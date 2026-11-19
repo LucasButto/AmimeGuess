@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { AppShellProvider } from "@/components/game-shell/AppShellContext";
 import { CluePortraitProvider } from "@/components/game-shell/ClueNames";
 import { AutocompleteOptions } from "@/components/Autocomplete";
@@ -16,6 +16,8 @@ import {
 } from "@/components/game-shell/flags";
 import type { ModeLink } from "@/components/game-shell/types";
 import { AttemptRules } from "@/components/game-shell/AttemptRules";
+import { useVersusGame } from "@/components/versus/VersusGameContext";
+import { useVersusStore, wantsVersusGame } from "@/components/versus/store";
 import {
   entitiesOfMode,
   loadFranchiseData,
@@ -29,6 +31,7 @@ import { ClassicGame } from "@/modes/classic/ClassicGame";
 import { ConnectionsGame } from "@/modes/connections/ConnectionsGame";
 import { HigherLowerGame } from "@/modes/higher-lower/HigherLowerGame";
 import { ImageRevealGame } from "@/modes/image-reveal/ImageRevealGame";
+import { QuizGame } from "@/modes/quiz/QuizGame";
 import { RevealListGame } from "@/modes/reveal-list/RevealListGame";
 import { TextClueGame } from "@/modes/text-clue/TextClueGame";
 import { TimelineGame } from "@/modes/timeline/TimelineGame";
@@ -89,11 +92,26 @@ function ModeEngine({ franchise, mode, modes, playable }: ModeGameProps) {
   const timeline = mode.engine === "timeline" ? mode.timeline : undefined;
   const connections =
     mode.engine === "connections" ? mode.connections : undefined;
+  const quiz = mode.engine === "quiz" ? mode.quiz : undefined;
   const [loaded, setLoaded] = useState<FranchiseData | "error" | null>(null);
   // Los interruptores de la partida, guardados por franquicia: con relleno y con los arcos del manga (los dos prendidos
   // por defecto: entra todo).
-  const [fillerOn, setFillerOn] = useStoredFlag("filler", franchise.slug, true);
-  const [mangaOn, setMangaOn] = useStoredFlag("manga", franchise.slug, true);
+  const [storedFiller, setFillerOn] = useStoredFlag("filler", franchise.slug, true);
+  const [storedManga, setMangaOn] = useStoredFlag("manga", franchise.slug, true);
+  // En una partida de versus valen los interruptores de la sala (los que faltan, prendidos), sin tocar los guardados.
+  const versusGame = useVersusGame();
+  const versusToggles = versusGame?.partida.toggles;
+  const versus = versusGame !== null;
+  // Con `?v=` la página es una partida de sala: hasta que el proveedor publica la partida no se arranca el reto del día.
+  const store = useVersusStore();
+  const wantsRoom = useSyncExternalStore(
+    () => () => undefined,
+    wantsVersusGame,
+    () => false,
+  );
+  const waitingRoom = wantsRoom && !versus;
+  const fillerOn = versus ? versusToggles?.filler ?? true : storedFiller;
+  const mangaOn = versus ? versusToggles?.manga ?? true : storedManga;
   const { Loader } = useSkin().skin.slots;
   // Cada reintento vuelve a pedir los datos (un fallo de red al bajar el chunk se arregla con otro intento).
   const [attempt, setAttempt] = useState(0);
@@ -124,6 +142,15 @@ function ModeEngine({ franchise, mode, modes, playable }: ModeGameProps) {
   );
 
   if (!playable) return comingSoon;
+  if (waitingRoom) {
+    return store.failure ? (
+      <StatusMessage kind="error">{es.versus.room.unavailable}</StatusMessage>
+    ) : (
+      <StatusMessage kind="loading" loader={<Loader />}>
+        {es.versus.room.connecting}
+      </StatusMessage>
+    );
+  }
   if (loaded === "error") {
     return (
       <StatusMessage
@@ -265,6 +292,19 @@ function ModeEngine({ franchise, mode, modes, playable }: ModeGameProps) {
           mode={mode}
           modes={modes}
           config={connections}
+          entities={entities}
+          contents={data.contents}
+        />
+      );
+    }
+
+    if (quiz) {
+      return (
+        <QuizGame
+          franchise={franchise}
+          mode={mode}
+          modes={modes}
+          config={quiz}
           entities={entities}
           contents={data.contents}
         />

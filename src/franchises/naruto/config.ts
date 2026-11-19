@@ -56,6 +56,8 @@ const arcDebutLabels: Readonly<Record<string, ClassicValueLabel>> = Object.fromE
 export const narutoConfig = {
   slug: 'naruto',
   name: 'Naruto',
+  // Versus, Contrarreloj: segundos de más en el tiempo por defecto por cada serie activa desde la segunda.
+  versusSecondsPerExtraSeries: 0,
   entityNoun: { one: 'personaje', many: 'personajes' },
   // Naruto no tiene arcos del manga sin adaptar como Dragon Ball: solo queda el interruptor de relleno.
   hideMangaToggle: true,
@@ -67,7 +69,7 @@ export const narutoConfig = {
   },
   modes: [
     {
-      slug: 'clasico',
+      slug: 'clasico', versusIcon: 'classic',
       name: 'Clásico',
       engine: 'classic',
       classic: {
@@ -89,14 +91,14 @@ export const narutoConfig = {
       },
     },
     {
-      slug: 'silueta',
+      slug: 'silueta', versusIcon: 'silhouette',
       name: 'Silueta',
       engine: 'image-reveal',
       // Solo el arte de fondo transparente: con fondo, la sombra sería un rectángulo negro. Los demás se pueden intentar.
       imageReveal: { variant: 'silhouette', requireAttr: { key: 'imagenTransparente', equals: 1 } },
     },
     {
-      slug: 'frase',
+      slug: 'frase', versusIcon: 'quote',
       name: 'Frase',
       engine: 'text-clue',
       // Una frase que dijo el personaje (solo las verificadas). Si se falla: a quién se la dijo y en qué arco.
@@ -109,17 +111,17 @@ export const narutoConfig = {
         ],
       },
     },
-    { slug: 'borroso', name: 'Borroso', engine: 'image-reveal', imageReveal: { variant: 'blur' } },
+    { slug: 'borroso', versusIcon: 'blur', name: 'Borroso', engine: 'image-reveal', imageReveal: { variant: 'blur' } },
     {
-      slug: 'jutsu',
+      slug: 'jutsu', versusIcon: 'jutsu',
       name: 'Jutsu',
       engine: 'image-reveal',
       // La pista es un clip en bucle de la escena de un jutsu (cada uno con su video y su póster) y la respuesta, quien lo usa.
       // Cuenta como acierto cualquiera de los personajes que lo usan (ver `accepts` en los datos).
-      imageReveal: { variant: 'blur', imageContentKind: 'jutsu', showsContentName: true, countNoun: { one: 'jutsu', many: 'jutsus' }, blurLevels: [0.85, 0.64, 0.47, 0.32, 0.21, 0.12] },
+      imageReveal: { variant: 'blur', imageContentKind: 'jutsu', showsContentName: true, countNoun: { one: 'jutsu', many: 'jutsus' }, blurLevels: [0.85, 0.64, 0.47, 0.32, 0.21, 0.12], compactDifficulty: true },
     },
     {
-      slug: 'ojo',
+      slug: 'ojo', versusIcon: 'eye',
       name: 'Ojo',
       engine: 'image-reveal',
       // El recorte arranca en el ojo: el punto focal viene en los datos de cada personaje (`focus`). Parte con el ojo llenando el
@@ -127,7 +129,7 @@ export const narutoConfig = {
       imageReveal: { variant: 'zoom', imageContentKind: 'eye', zoomScales: [6.8, 5.9, 5.1, 4.5, 4, 3.6] },
     },
     {
-      slug: 'equipo',
+      slug: 'equipo', versusIcon: 'team',
       name: 'Equipo',
       engine: 'reveal-list',
       // Los miembros del equipo de a uno, y la respuesta es el que falta: cada fallo revela un miembro más.
@@ -148,7 +150,7 @@ export const narutoConfig = {
       },
     },
     {
-      slug: 'linea-de-tiempo',
+      slug: 'linea-de-tiempo', versusIcon: 'timeline',
       name: 'Línea de tiempo',
       engine: 'timeline',
       // Sucesos de la historia (solo los verificados) para ordenar del más antiguo al más reciente, con las mismas tres
@@ -163,13 +165,13 @@ export const narutoConfig = {
       },
     },
     {
-      slug: 'conexiones',
+      slug: 'conexiones', versusIcon: 'connections',
       name: 'Conexiones',
       engine: 'connections',
       // 4 grupos de 4 personajes (un grupo de cada dificultad). Cada personaje del tablero pertenece a uno solo de los cuatro.
       connections: { contentKind: 'group', nameField: 'name', membersField: 'members', difficultyField: 'difficulty' },
     },
-          { slug: 'casillas', name: es.categoryBoard.name, engine: 'category-board', categoryBoard: { questionImage: 'naruto/roulette-question', reassignCurrent: true, roster: boardJson.roster, categories: boardJson.categories.map((category) => ({ ...category, ...es.categoryBoard.categories[category.id] })) } },
+          { slug: 'casillas', versusIcon: 'moveset', name: es.categoryBoard.name, engine: 'category-board', categoryBoard: { questionImage: 'naruto/roulette-question', reassignCurrent: true, roster: boardJson.roster, categories: boardJson.categories.map((category) => ({ ...category, ...es.categoryBoard.categories[category.id] })) } },
   ],
   // Pergamino y tinta: papel cálido, naranja apagado y un título de pincel.
   theme: {

@@ -109,7 +109,7 @@
   --_ink: #{t.token('ink')};
   --_edge: var(--button-edge, #{t.color('border')});
   @include m.touch-target;
-  @include m.pixel-frame($fill: var(--_fill), $outer: var(--_edge), $inner: transparent, $width: t.token('button-frame-width'), $inner-width: 0px, $clip: t.token('clip-chip'), $radius: t.token('chip-radius'));
+  @include m.pixel-frame($fill: var(--_fill-shown, var(--_fill)), $outer: var(--_edge), $inner: transparent, $width: t.token('button-frame-width'), $inner-width: 0px, $clip: t.token('clip-chip'), $radius: t.token('chip-radius'));
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -127,6 +127,11 @@
     @include m.hover {
       --_edge: var(--button-edge, #{t.color('accent')});
     }
+  }
+
+  // Al pasar el cursor, el relleno cambia apenas (también en el modo actual y en los resueltos); el modo que todavía no existe no.
+  &:not([data-state='soon']) {
+    @include m.hover-tint(12%);
   }
 
   // El modo actual se destaca con el acento, salvo que el tema defina otro relleno (`--pill-current-fill` y

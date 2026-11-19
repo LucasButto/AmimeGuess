@@ -119,6 +119,12 @@
   }
 }
 
+// La casilla va en un contenedor porque el retrato del personaje (hover) no puede colgar de un botón.
+.cell {
+  position: relative;
+  display: grid;
+}
+
 .tile {
   position: relative;
   display: flex;

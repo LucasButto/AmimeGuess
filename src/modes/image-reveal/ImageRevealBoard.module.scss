@@ -143,6 +143,33 @@
   gap: t.$space-1;
 }
 
+// Dificultad compacta (`compactDifficulty`): los botones lado a lado, cada uno con su ⓘ adentro (en el extremo de la derecha), y se
+// acomodan en otra fila solo si no entran. El ⓘ es un botón aparte, hermano del chip y encima de su borde derecho (un botón no puede
+// ir dentro de otro): el chip deja el lugar con su relleno y quien toca el círculo abre la ayuda, no cambia la opción.
+.difficulty[data-compact='true'] {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-2 t.$space-4;
+
+  .option {
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .option > button[aria-pressed] {
+    padding-inline-end: 2.75rem;
+  }
+
+  .optionInfo {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-end: 0.125rem;
+    margin: auto 0;
+  }
+}
+
 .optionHint {
   font-size: t.$font-size-sm;
   color: t.token('ink-muted');

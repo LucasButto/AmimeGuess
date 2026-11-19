@@ -24,9 +24,12 @@ export const pokemonSkin: FranchiseSkin = {
   // Al cambiar de modo, la bola elegida se abre (7 cuadros, 320 ms, ver BallCard) y las barras se cierran (esperan 80 ms y
   // tardan 400); recién ahí se navega (la pantalla nueva abre las barras).
   pageExitMs: 480,
+  // Íconos del menú del juego (Cómo se juega, Estadísticas y Ajustes), aportados por el usuario el 2026-11-15; los originales
+  // están en data/pokemon/source/menu-icons/.
+  menuIcons: { help: 'pokemon/menu/help', stats: 'pokemon/menu/stats', settings: 'pokemon/menu/settings', menu: 'pokemon/menu/menu', filters: 'pokemon/menu/filters', surrender: 'pokemon/menu/surrender' },
   // La barra de PS del Clásico, también en Descripción y Estadísticas. Silueta y Carta (que comparten motor) no la llevan:
   // ya muestran abajo en qué pista van.
-  additionalAttemptsMeterModes: ['descripcion', 'estadisticas'],
+  additionalAttemptsMeterModes: ['descripcion', 'estadisticas', 'mayor-o-menor'],
   // Celdas del Clásico con íconos pixel (✓, ~, ✗ y flechas).
   cellIcons: 'pixel',
   // El verde y el rojo ya lo dicen con el color: solo llevan ícono el parcial y las flechas.

@@ -31,27 +31,27 @@
           "series": "db"
         },
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 2",
+          "value": "SSJ2",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 3",
+          "value": "SSJ3",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 4",
+          "value": "SSJ4",
           "series": "gt"
         },
         {
-          "value": "Super Saiyajin Dios",
+          "value": "SSJ Dios",
           "series": "super"
         },
         {
-          "value": "Super Saiyajin Azul",
+          "value": "SSJ Blue",
           "series": "super"
         },
         {
@@ -97,28 +97,28 @@
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 2",
+          "value": "SSJ2",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 4",
+          "value": "SSJ4",
           "series": "gt"
         },
         {
-          "value": "Super Saiyajin Dios",
+          "value": "SSJ Dios",
           "series": "super"
         },
         {
-          "value": "Super Saiyajin Azul",
+          "value": "SSJ Blue",
           "series": "super"
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 7,
+      "sagaDebut": 8,
       "estadoVital": "Vivo",
       "tecnica": "Cañón Galick",
       "imagenTransparente": 1
@@ -157,7 +157,7 @@
         }
       ],
       "serieDebut": 1,
-      "sagaDebut": 6,
+      "sagaDebut": 7,
       "estadoVital": "Vivo",
       "tecnica": "Makankosappo",
       "imagenTransparente": 1
@@ -239,7 +239,7 @@
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 8,
+      "sagaDebut": 9,
       "estadoVital": "Vivo",
       "tecnica": "Bola Mortal",
       "imagenTransparente": 1
@@ -273,7 +273,7 @@
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 8,
+      "sagaDebut": 9,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -302,7 +302,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 8,
+      "sagaDebut": 9,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -336,7 +336,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 8,
+      "sagaDebut": 9,
       "estadoVital": "Desconocido",
       "tecnica": "Cambio de cuerpo",
       "imagenTransparente": 1
@@ -380,7 +380,7 @@
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 10,
+      "sagaDebut": 12,
       "estadoVital": "Muerto",
       "tecnica": "Absorción",
       "imagenTransparente": 1
@@ -416,11 +416,11 @@
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 2",
+          "value": "SSJ2",
           "series": "dbz"
         },
         {
@@ -433,7 +433,7 @@
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 7,
+      "sagaDebut": 8,
       "estadoVital": "Vivo",
       "tecnica": "Masenko",
       "imagenTransparente": 1
@@ -502,7 +502,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 1,
-      "sagaDebut": 4,
+      "sagaDebut": 5,
       "estadoVital": "Vivo",
       "tecnica": "Kikoho",
       "imagenTransparente": 1
@@ -596,16 +596,16 @@
       "planeta": "Tierra",
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 3",
+          "value": "SSJ3",
           "series": "dbz"
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -639,12 +639,12 @@
       "planeta": "Tierra",
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 10,
+      "sagaDebut": 11,
       "estadoVital": "Vivo",
       "tecnica": "Danza de la Fusión",
       "imagenTransparente": 1
@@ -676,20 +676,20 @@
       "planeta": "Tierra",
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 2",
+          "value": "SSJ2",
           "series": "super"
         },
         {
-          "value": "Super Saiyajin Furioso",
+          "value": "SSJ Rage",
           "series": "super"
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 10,
+      "sagaDebut": 11,
       "estadoVital": "Vivo",
       "tecnica": "Ataque Ardiente",
       "imagenTransparente": 1
@@ -758,7 +758,7 @@
       "planeta": "Planeta Vegeta",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 9,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -821,7 +821,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 10,
+      "sagaDebut": 12,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -851,7 +851,7 @@
       "planeta": "Namek",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 8,
+      "sagaDebut": 9,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -886,7 +886,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 10,
+      "sagaDebut": 11,
       "estadoVital": "Vivo",
       "tecnica": "Granada Infernal",
       "imagenTransparente": 1
@@ -917,7 +917,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 10,
+      "sagaDebut": 11,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -951,7 +951,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 10,
+      "sagaDebut": 11,
       "estadoVital": "Muerto",
       "tecnica": "Absorción",
       "imagenTransparente": 1
@@ -989,7 +989,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 10,
+      "sagaDebut": 11,
       "estadoVital": "Muerto",
       "tecnica": "Absorción",
       "imagenTransparente": 1
@@ -1021,7 +1021,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -1054,7 +1054,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -1087,7 +1087,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -1116,7 +1116,7 @@
       "planeta": "Namek",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 8,
+      "sagaDebut": 9,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1145,7 +1145,7 @@
       "planeta": "Planeta Vegeta",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 7,
+      "sagaDebut": 8,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1177,7 +1177,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1230,7 +1230,7 @@
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1261,7 +1261,7 @@
       "planeta": "Planeta de Bills",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 15,
+      "sagaDebut": 18,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1290,7 +1290,7 @@
       "planeta": "Cielo",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 15,
+      "sagaDebut": 18,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1321,7 +1321,7 @@
       "planeta": "Templo del Rey de Todo",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 17,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1352,7 +1352,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1380,7 +1380,7 @@
       "planeta": "Universo 11",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 19,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1408,7 +1408,7 @@
       "planeta": "Universo 11",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 19,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1436,7 +1436,7 @@
       "planeta": "Universo 11",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 19,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1464,7 +1464,7 @@
       "planeta": "Cielo",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 19,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1495,7 +1495,7 @@
       "planeta": "Universo 11",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 19,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1526,7 +1526,7 @@
       "planeta": "Cielo",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 21,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1559,7 +1559,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 7,
+      "sagaDebut": 8,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1595,7 +1595,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 10,
+      "sagaDebut": 11,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1609,6 +1609,7 @@
     },
     "aliases": [],
     "series": [
+      "dbz",
       "gt",
       "super"
     ],
@@ -1623,20 +1624,20 @@
       "planeta": null,
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin 4",
+          "value": "SSJ4",
           "series": "gt"
         },
         {
-          "value": "Super Saiyajin Azul",
+          "value": "SSJ Blue",
           "series": "super"
         }
       ],
-      "serieDebut": 5,
-      "sagaDebut": 27,
+      "serieDebut": 2,
+      "sagaDebut": 16,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1667,16 +1668,16 @@
       "planeta": null,
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         },
         {
-          "value": "Super Saiyajin Azul",
+          "value": "SSJ Blue",
           "series": "super"
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1710,7 +1711,7 @@
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -1738,12 +1739,12 @@
       "planeta": "Planeta Vegeta",
       "transformaciones": [
         {
-          "value": "Super Saiyajin Legendario",
+          "value": "SSJ Legendario",
           "series": "super"
         }
       ],
       "serieDebut": 4,
-      "sagaDebut": 20,
+      "sagaDebut": 23,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1772,7 +1773,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 11,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1801,7 +1802,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 11,
+      "sagaDebut": 13,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1830,7 +1831,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 11,
+      "sagaDebut": 13,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1859,7 +1860,7 @@
       "planeta": "Planeta del Gran Kaio",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 11,
+      "sagaDebut": 13,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 0
@@ -1893,7 +1894,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1922,7 +1923,7 @@
       "planeta": "Planeta Sagrado",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1952,7 +1953,7 @@
       "planeta": "Planeta Sagrado",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -1981,7 +1982,7 @@
       "planeta": "Planeta Sagrado",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2011,7 +2012,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2040,7 +2041,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2137,7 +2138,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 1,
-      "sagaDebut": 5,
+      "sagaDebut": 6,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2172,7 +2173,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 1,
-      "sagaDebut": 4,
+      "sagaDebut": 5,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2236,7 +2237,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 1,
-      "sagaDebut": 5,
+      "sagaDebut": 7,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2434,11 +2435,10 @@
   {
     "id": "baba",
     "name": {
-      "es": "Gran Adivina Baba"
+      "es": "Uranai Baba"
     },
     "aliases": [
       "Baba",
-      "Uranai Baba",
       "Adivina Baba"
     ],
     "series": [
@@ -2456,7 +2456,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 1,
-      "sagaDebut": 3,
+      "sagaDebut": 4,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2491,7 +2491,7 @@
       "planeta": "Namek",
       "transformaciones": [],
       "serieDebut": 1,
-      "sagaDebut": 5,
+      "sagaDebut": 6,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2554,7 +2554,7 @@
       "planeta": "Namek",
       "transformaciones": [],
       "serieDebut": 1,
-      "sagaDebut": 5,
+      "sagaDebut": 7,
       "estadoVital": "Desconocido",
       "tecnica": "Mafuba",
       "imagenTransparente": 1
@@ -2588,7 +2588,7 @@
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 7,
+      "sagaDebut": 8,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2621,7 +2621,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 8,
+      "sagaDebut": 9,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2653,7 +2653,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 8,
+      "sagaDebut": 9,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2686,7 +2686,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 8,
+      "sagaDebut": 9,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2718,7 +2718,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 8,
+      "sagaDebut": 9,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2753,7 +2753,7 @@
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -2784,7 +2784,7 @@
       "planeta": "Namek",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -2816,7 +2816,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": "Rayo Mortal",
       "imagenTransparente": 1,
@@ -2846,7 +2846,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2879,12 +2879,12 @@
       "planeta": "Tierra",
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "dbz"
         }
       ],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": "Kamehameha",
       "imagenTransparente": 1
@@ -2916,7 +2916,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 15,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -2948,7 +2948,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 0
@@ -2982,7 +2982,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3015,7 +3015,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3047,7 +3047,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 10,
+      "sagaDebut": 12,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3076,7 +3076,7 @@
       "planeta": "Planeta Hera",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 13,
+      "sagaDebut": 16,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -3110,7 +3110,7 @@
       "planeta": "Núcleo del Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 12,
+      "sagaDebut": 14,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3139,7 +3139,7 @@
       "planeta": "Planeta de Kaio del Norte",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 7,
+      "sagaDebut": 8,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3169,7 +3169,7 @@
       "planeta": "Otro Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 7,
+      "sagaDebut": 8,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 0
@@ -3199,7 +3199,7 @@
       "planeta": "Otro Mundo",
       "transformaciones": [],
       "serieDebut": 2,
-      "sagaDebut": 7,
+      "sagaDebut": 8,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3229,7 +3229,7 @@
       "planeta": "Planeta Plant",
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 25,
+      "sagaDebut": 28,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3260,7 +3260,7 @@
       "planeta": null,
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 26,
+      "sagaDebut": 29,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3291,7 +3291,7 @@
       "planeta": "Planeta M2",
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 26,
+      "sagaDebut": 28,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3322,7 +3322,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 5,
-      "sagaDebut": 27,
+      "sagaDebut": 31,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3350,7 +3350,7 @@
       "planeta": "Universo 6",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 16,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3378,7 +3378,7 @@
       "planeta": "Cielo",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 16,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3405,7 +3405,7 @@
       "planeta": "Universo 6",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 17,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": "Salto Temporal",
       "imagenTransparente": 1
@@ -3436,7 +3436,7 @@
       "planeta": "Universo 10",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 21,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3468,12 +3468,12 @@
       "planeta": "Universo 10",
       "transformaciones": [
         {
-          "value": "Super Saiyajin Rosado",
+          "value": "SSJ Rose",
           "series": "super"
         }
       ],
       "serieDebut": 4,
-      "sagaDebut": 18,
+      "sagaDebut": 21,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3502,12 +3502,12 @@
       "planeta": "Planeta Sadala",
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "super"
         }
       ],
       "serieDebut": 4,
-      "sagaDebut": 17,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3537,16 +3537,16 @@
       "planeta": "Planeta Sadala",
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "super"
         },
         {
-          "value": "Super Saiyajin 2",
+          "value": "SSJ2",
           "series": "super"
         }
       ],
       "serieDebut": 4,
-      "sagaDebut": 19,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3575,12 +3575,12 @@
       "planeta": "Planeta Sadala",
       "transformaciones": [
         {
-          "value": "Super Saiyajin Legendario",
+          "value": "SSJ Legendario",
           "series": "super"
         }
       ],
       "serieDebut": 4,
-      "sagaDebut": 19,
+      "sagaDebut": 22,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3609,16 +3609,16 @@
       "planeta": "Planeta Sadala",
       "transformaciones": [
         {
-          "value": "Super Saiyajin",
+          "value": "SSJ1",
           "series": "super"
         },
         {
-          "value": "Super Saiyajin 2",
+          "value": "SSJ2",
           "series": "super"
         }
       ],
       "serieDebut": 4,
-      "sagaDebut": 19,
+      "sagaDebut": 22,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3648,7 +3648,7 @@
       "planeta": "Universo 6",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 17,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": "Rayo Mortal",
       "imagenTransparente": 1
@@ -3673,7 +3673,7 @@
       "planeta": "Planeta Wagashi",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 17,
+      "sagaDebut": 20,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3703,7 +3703,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 23,
+      "sagaDebut": 26,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3733,7 +3733,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 23,
+      "sagaDebut": 26,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3763,7 +3763,7 @@
       "planeta": "Tierra",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 23,
+      "sagaDebut": 26,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3790,7 +3790,7 @@
       "planeta": "Planeta Cereal",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 22,
+      "sagaDebut": 25,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -3818,7 +3818,7 @@
       "planeta": "Universo 7",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 21,
+      "sagaDebut": 24,
       "estadoVital": "Muerto",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -3849,7 +3849,7 @@
       "planeta": "Cielo",
       "transformaciones": [],
       "serieDebut": 4,
-      "sagaDebut": 21,
+      "sagaDebut": 24,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1,
@@ -3877,7 +3877,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 14,
+      "sagaDebut": 17,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3904,7 +3904,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 14,
+      "sagaDebut": 17,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3932,7 +3932,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 14,
+      "sagaDebut": 17,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3959,7 +3959,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 14,
+      "sagaDebut": 17,
       "estadoVital": "Desconocido",
       "tecnica": null,
       "imagenTransparente": 1
@@ -3990,7 +3990,7 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 14,
+      "sagaDebut": 17,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
@@ -4017,11 +4017,3805 @@
       "planeta": "Reino Demoníaco",
       "transformaciones": [],
       "serieDebut": 3,
-      "sagaDebut": 14,
+      "sagaDebut": 17,
       "estadoVital": "Vivo",
       "tecnica": null,
       "imagenTransparente": 1
     },
     "image": "dragon-ball/neva"
+  },
+  {
+    "id": "tortuga-marina",
+    "name": {
+      "es": "Tortuga Mar"
+    },
+    "aliases": [
+      "Tortuga Marina"
+    ],
+    "series": [
+      "db",
+      "dbz",
+      "gt",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Tortuga"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 1,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/tortuga-marina"
+  },
+  {
+    "id": "nam",
+    "name": {
+      "es": "Nam"
+    },
+    "aliases": [],
+    "series": [
+      "db",
+      "dbz",
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 2,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/nam"
+  },
+  {
+    "id": "giran",
+    "name": {
+      "es": "Giran"
+    },
+    "aliases": [
+      "Gilan"
+    ],
+    "series": [
+      "db",
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 2,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/giran"
+  },
+  {
+    "id": "bacterian",
+    "name": {
+      "es": "Bacterian"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 2,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/bacterian"
+  },
+  {
+    "id": "presentador-del-torneo",
+    "name": {
+      "es": "Presentador del torneo"
+    },
+    "aliases": [
+      "Anunciador",
+      "Anunciador del torneo"
+    ],
+    "series": [
+      "db",
+      "dbz",
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 2,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/presentador-del-torneo"
+  },
+  {
+    "id": "ninja-purpura",
+    "name": {
+      "es": "Ninja Púrpura"
+    },
+    "aliases": [
+      "Murasaki",
+      "Ninja Murasaki"
+    ],
+    "series": [
+      "db",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [
+        "Ejército del Listón Rojo"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 3,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/ninja-purpura"
+  },
+  {
+    "id": "androide-8",
+    "name": {
+      "es": "Octavio"
+    },
+    "aliases": [
+      "Androide 8",
+      "Androide número 8",
+      "Androide Hachi"
+    ],
+    "series": [
+      "db",
+      "dbz",
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Androide"
+      ],
+      "afiliaciones": [
+        "Ejército del Listón Rojo"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 3,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/androide-8"
+  },
+  {
+    "id": "comandante-red",
+    "name": {
+      "es": "Comandante Red"
+    },
+    "aliases": [
+      "Red",
+      "Comandante Rojo"
+    ],
+    "series": [
+      "db",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [
+        "Ejército del Listón Rojo"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 3,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/comandante-red"
+  },
+  {
+    "id": "general-black",
+    "name": {
+      "es": "General Black"
+    },
+    "aliases": [
+      "General Negro"
+    ],
+    "series": [
+      "db",
+      "gt",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [
+        "Ejército del Listón Rojo"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 3,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/general-black"
+  },
+  {
+    "id": "sargento-metallic",
+    "name": {
+      "es": "Sargento Metallic"
+    },
+    "aliases": [
+      "Sargento Metálico"
+    ],
+    "series": [
+      "db",
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Androide"
+      ],
+      "afiliaciones": [
+        "Ejército del Listón Rojo"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 3,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/sargento-metallic"
+  },
+  {
+    "id": "buyon",
+    "name": {
+      "es": "Buyon"
+    },
+    "aliases": [],
+    "series": [
+      "db",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Monstruo"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 3,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/buyon"
+  },
+  {
+    "id": "dr-brief",
+    "name": {
+      "es": "Dr. Brief"
+    },
+    "aliases": [
+      "Doctor Brief"
+    ],
+    "series": [
+      "db",
+      "dbz",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [
+        "Corporación Cápsula"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 3,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/dr-brief"
+  },
+  {
+    "id": "sra-brief",
+    "name": {
+      "es": "Sra. Brief"
+    },
+    "aliases": [
+      "Señora Brief",
+      "Panchy"
+    ],
+    "series": [
+      "db",
+      "dbz",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [
+        "Corporación Cápsula"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 3,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/sra-brief"
+  },
+  {
+    "id": "robot-pirata",
+    "name": {
+      "es": "Robot pirata"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "genero": "Sin género",
+      "razas": [
+        "Robot"
+      ],
+      "afiliaciones": [
+        "Ejército del Listón Rojo"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 3,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/robot-pirata"
+  },
+  {
+    "id": "upa",
+    "name": {
+      "es": "Upa"
+    },
+    "aliases": [],
+    "series": [
+      "db",
+      "dbz",
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 3,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/upa"
+  },
+  {
+    "id": "bora",
+    "name": {
+      "es": "Bora"
+    },
+    "aliases": [],
+    "series": [
+      "db",
+      "dbz",
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 3,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/bora"
+  },
+  {
+    "id": "abuelo-gohan",
+    "name": {
+      "es": "Abuelo Gohan"
+    },
+    "aliases": [
+      "Son Gohan (abuelo)",
+      "Gohan abuelo"
+    ],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 4,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/abuelo-gohan"
+  },
+  {
+    "id": "hombre-dracula",
+    "name": {
+      "es": "Hombre Drácula"
+    },
+    "aliases": [
+      "Dracula Man",
+      "Drácula"
+    ],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Vampiro"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 4,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/hombre-dracula"
+  },
+  {
+    "id": "hombre-invisible",
+    "name": {
+      "es": "Hombre Invisible"
+    },
+    "aliases": [],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 4,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/hombre-invisible"
+  },
+  {
+    "id": "momia",
+    "name": {
+      "es": "Momia"
+    },
+    "aliases": [
+      "La Momia"
+    ],
+    "series": [
+      "db",
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Momia"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 4,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/momia"
+  },
+  {
+    "id": "hombre-diablo",
+    "name": {
+      "es": "Hombre Diablo"
+    },
+    "aliases": [
+      "Devilman",
+      "Hombre Demonio"
+    ],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Demonio"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 4,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/hombre-diablo"
+  },
+  {
+    "id": "maestro-tsuru",
+    "name": {
+      "es": "Maestro Tsuru"
+    },
+    "aliases": [
+      "Ermitaño Grulla",
+      "Tsuru"
+    ],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [
+        "Escuela de la Grulla"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 5,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/maestro-tsuru"
+  },
+  {
+    "id": "rey-chapa",
+    "name": {
+      "es": "Rey Chapa"
+    },
+    "aliases": [
+      "Chapa"
+    ],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 5,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/rey-chapa"
+  },
+  {
+    "id": "lobo-hombre",
+    "name": {
+      "es": "Lobo Hombre"
+    },
+    "aliases": [
+      "Hombre Lobo"
+    ],
+    "series": [
+      "db",
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Hombre Lobo"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 5,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/lobo-hombre"
+  },
+  {
+    "id": "tamborin",
+    "name": {
+      "es": "Tamborín"
+    },
+    "aliases": [
+      "Tambourine"
+    ],
+    "series": [
+      "db",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Demonio"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 6,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/tamborin"
+  },
+  {
+    "id": "rey-del-mundo",
+    "name": {
+      "es": "Rey del Mundo"
+    },
+    "aliases": [
+      "Rey de la Tierra"
+    ],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 6,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/rey-del-mundo"
+  },
+  {
+    "id": "maestro-mutaito",
+    "name": {
+      "es": "Maestro Mutaito"
+    },
+    "aliases": [
+      "Mutaito"
+    ],
+    "series": [
+      "db"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [
+        "Escuela de la Tortuga"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 1,
+      "sagaDebut": 6,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/maestro-mutaito"
+  },
+  {
+    "id": "saibaiman",
+    "name": {
+      "es": "Saibaiman"
+    },
+    "aliases": [
+      "Saibaimen",
+      "Saibamen",
+      "Saibaiman (grupo)"
+    ],
+    "series": [
+      "dbz",
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Saibaiman"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 8,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/saibaiman"
+  },
+  {
+    "id": "kiwi",
+    "name": {
+      "es": "Kiwi"
+    },
+    "aliases": [
+      "Kewi"
+    ],
+    "series": [
+      "dbz",
+      "gt",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Kiwi"
+      ],
+      "afiliaciones": [
+        "Ejército de Freezer"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 9,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/kiwi"
+  },
+  {
+    "id": "muri",
+    "name": {
+      "es": "Muri"
+    },
+    "aliases": [
+      "Muuri"
+    ],
+    "series": [
+      "dbz",
+      "gt",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Namekuseijin"
+      ],
+      "afiliaciones": [],
+      "planeta": "Namek",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 9,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/muri"
+  },
+  {
+    "id": "gran-patriarca",
+    "name": {
+      "es": "Gran Patriarca"
+    },
+    "aliases": [
+      "Patriarca de Namek"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Namekuseijin"
+      ],
+      "afiliaciones": [],
+      "planeta": "Namek",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 9,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/gran-patriarca"
+  },
+  {
+    "id": "porunga",
+    "name": {
+      "es": "Porunga"
+    },
+    "aliases": [
+      "Polunga"
+    ],
+    "series": [
+      "dbz",
+      "gt",
+      "super",
+      "daima"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dragón"
+      ],
+      "afiliaciones": [],
+      "planeta": "Namek",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 9,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/porunga"
+  },
+  {
+    "id": "rey-vegeta",
+    "name": {
+      "es": "Rey Vegeta"
+    },
+    "aliases": [
+      "Vegeta III",
+      "Rey Vegeta III"
+    ],
+    "series": [
+      "dbz",
+      "gt",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Saiyajin"
+      ],
+      "afiliaciones": [
+        "Ejército de Freezer"
+      ],
+      "planeta": "Planeta Vegeta",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 9,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/rey-vegeta"
+  },
+  {
+    "id": "garlic-jr",
+    "name": {
+      "es": "Garlic Jr."
+    },
+    "aliases": [
+      "Garlick Jr.",
+      "Garlick Junior",
+      "Garlic Junior"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Makyano"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Planeta Makyo",
+      "transformaciones": [
+        {
+          "value": "Super Garlic Jr.",
+          "series": "dbz"
+        }
+      ],
+      "serieDebut": 2,
+      "sagaDebut": 10,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/garlic-jr"
+  },
+  {
+    "id": "maron",
+    "name": {
+      "es": "Maron"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 10,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/maron"
+  },
+  {
+    "id": "rey-cold",
+    "name": {
+      "es": "Gran Rey Cold"
+    },
+    "aliases": [
+      "Rey Cold",
+      "Cold",
+      "King Cold"
+    ],
+    "series": [
+      "dbz",
+      "gt",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Clan de Freezer"
+      ],
+      "afiliaciones": [
+        "Ejército de Freezer",
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [
+        {
+          "value": "Forma Final",
+          "series": "dbz"
+        }
+      ],
+      "serieDebut": 2,
+      "sagaDebut": 11,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/rey-cold"
+  },
+  {
+    "id": "anunciador-ztv",
+    "name": {
+      "es": "Anunciador de ZTV"
+    },
+    "aliases": [
+      "Anunciador de los Juegos de Cell"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 12,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/anunciador-ztv"
+  },
+  {
+    "id": "paikuhan",
+    "name": {
+      "es": "Paikuhan"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Paikuhan"
+      ],
+      "afiliaciones": [],
+      "planeta": "Otro Mundo",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 13,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/paikuhan"
+  },
+  {
+    "id": "olib",
+    "name": {
+      "es": "Olib"
+    },
+    "aliases": [
+      "Olibu"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Olib"
+      ],
+      "afiliaciones": [],
+      "planeta": "Otro Mundo",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 13,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/olib"
+  },
+  {
+    "id": "marron",
+    "name": {
+      "es": "Marron"
+    },
+    "aliases": [],
+    "series": [
+      "dbz",
+      "gt",
+      "super",
+      "daima"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 14,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/marron"
+  },
+  {
+    "id": "shapner",
+    "name": {
+      "es": "Shapner"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 14,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/shapner"
+  },
+  {
+    "id": "ireza",
+    "name": {
+      "es": "Ireza"
+    },
+    "aliases": [
+      "Erasa"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 14,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/ireza"
+  },
+  {
+    "id": "spopovich",
+    "name": {
+      "es": "Spopovich"
+    },
+    "aliases": [
+      "Spopović",
+      "Spopovitch"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 14,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/spopovich"
+  },
+  {
+    "id": "yam",
+    "name": {
+      "es": "Yam"
+    },
+    "aliases": [
+      "Yamu"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 14,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/yam"
+  },
+  {
+    "id": "pui-pui",
+    "name": {
+      "es": "Pui Pui"
+    },
+    "aliases": [],
+    "series": [
+      "dbz",
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Pui Pui"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 14,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/pui-pui"
+  },
+  {
+    "id": "yakon",
+    "name": {
+      "es": "Yakon"
+    },
+    "aliases": [],
+    "series": [
+      "dbz",
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Yakon"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 14,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/yakon"
+  },
+  {
+    "id": "majin-buu-malvado",
+    "name": {
+      "es": "Majin Buu malvado"
+    },
+    "aliases": [
+      "Buu de maldad pura",
+      "Boo de Maldad Pura",
+      "Majin Boo malvado"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Majin"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 14,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/majin-buu-malvado"
+  },
+  {
+    "id": "bee",
+    "name": {
+      "es": "Bee"
+    },
+    "aliases": [
+      "Perrito de Buu",
+      "Bee (perrito de Buu)"
+    ],
+    "series": [
+      "dbz",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Animal"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 14,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/bee"
+  },
+  {
+    "id": "super-buu-gotenks",
+    "name": {
+      "es": "Super Buu (Gotenks absorbido)"
+    },
+    "aliases": [
+      "Super Buu con Gotenks",
+      "Súper Majin Buu Gotenks"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Majin"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 14,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/super-buu-gotenks"
+  },
+  {
+    "id": "super-buu-piccolo",
+    "name": {
+      "es": "Super Buu (Piccoro absorbido)"
+    },
+    "aliases": [
+      "Super Buu con Piccoro",
+      "Súper Majin Buu Piccoro"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Majin"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 14,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/super-buu-piccolo"
+  },
+  {
+    "id": "super-buu-gohan",
+    "name": {
+      "es": "Super Buu (Gohan absorbido)"
+    },
+    "aliases": [
+      "Super Buu con Gohan",
+      "Súper Majin Buu Gohan"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Majin"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 14,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/super-buu-gohan"
+  },
+  {
+    "id": "pan",
+    "name": {
+      "es": "Pan"
+    },
+    "aliases": [],
+    "series": [
+      "dbz",
+      "gt",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "razas": [
+        "Saiyajin",
+        "Terrícola"
+      ],
+      "afiliaciones": [
+        "Guerreros Z"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 15,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/pan"
+  },
+  {
+    "id": "bura",
+    "name": {
+      "es": "Bura"
+    },
+    "aliases": [
+      "Bra",
+      "Bulla"
+    ],
+    "series": [
+      "dbz",
+      "gt",
+      "super"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "razas": [
+        "Saiyajin",
+        "Terrícola"
+      ],
+      "afiliaciones": [
+        "Corporación Cápsula"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 15,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/bura"
+  },
+  {
+    "id": "dr-willow",
+    "name": {
+      "es": "Dr. Willow"
+    },
+    "aliases": [
+      "Willow",
+      "Doctor Willow"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Terrícola"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 16,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/dr-willow"
+  },
+  {
+    "id": "salza",
+    "name": {
+      "es": "Salza"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Salza"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 16,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/salza"
+  },
+  {
+    "id": "metal-cooler",
+    "name": {
+      "es": "Metal Cooler"
+    },
+    "aliases": [
+      "Cooler Metálico",
+      "Metal Coola"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Clan de Freezer"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 16,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/metal-cooler"
+  },
+  {
+    "id": "broly-z",
+    "name": {
+      "es": "Broly (Z)"
+    },
+    "aliases": [
+      "Broly original",
+      "Broly Legendario"
+    ],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Saiyajin"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Planeta Vegeta",
+      "transformaciones": [
+        {
+          "value": "SSJ Legendario",
+          "series": "dbz"
+        }
+      ],
+      "serieDebut": 2,
+      "sagaDebut": 16,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/broly-z"
+  },
+  {
+    "id": "paragus-z",
+    "name": {
+      "es": "Paragus (Z)"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Saiyajin"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Planeta Vegeta",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 16,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/paragus-z"
+  },
+  {
+    "id": "tapion",
+    "name": {
+      "es": "Tapion"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Tapion"
+      ],
+      "afiliaciones": [],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 16,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/tapion"
+  },
+  {
+    "id": "hildegarn",
+    "name": {
+      "es": "Hildegarn"
+    },
+    "aliases": [],
+    "series": [
+      "dbz"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Monstruo"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Otro Mundo",
+      "transformaciones": [],
+      "serieDebut": 2,
+      "sagaDebut": 16,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "filler": 1
+    },
+    "image": "dragon-ball/hildegarn"
+  },
+  {
+    "id": "hybis",
+    "name": {
+      "es": "Hybis"
+    },
+    "aliases": [],
+    "series": [
+      "daima"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Demonio"
+      ],
+      "afiliaciones": [
+        "Reino Demoníaco"
+      ],
+      "planeta": "Reino Demoníaco",
+      "transformaciones": [],
+      "serieDebut": 3,
+      "sagaDebut": 17,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/hybis"
+  },
+  {
+    "id": "majin-kuu",
+    "name": {
+      "es": "Majin Kuu"
+    },
+    "aliases": [
+      "Majin Coo",
+      "Kuu"
+    ],
+    "series": [
+      "daima"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Majin"
+      ],
+      "afiliaciones": [
+        "Reino Demoníaco"
+      ],
+      "planeta": "Reino Demoníaco",
+      "transformaciones": [],
+      "serieDebut": 3,
+      "sagaDebut": 17,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/majin-kuu"
+  },
+  {
+    "id": "majin-duu",
+    "name": {
+      "es": "Majin Duu"
+    },
+    "aliases": [
+      "Majin Doo",
+      "Duu"
+    ],
+    "series": [
+      "daima"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Majin"
+      ],
+      "afiliaciones": [
+        "Reino Demoníaco"
+      ],
+      "planeta": "Reino Demoníaco",
+      "transformaciones": [],
+      "serieDebut": 3,
+      "sagaDebut": 17,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/majin-duu"
+  },
+  {
+    "id": "marba",
+    "name": {
+      "es": "Marba"
+    },
+    "aliases": [],
+    "series": [
+      "daima"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Demonio"
+      ],
+      "afiliaciones": [
+        "Reino Demoníaco"
+      ],
+      "planeta": "Reino Demoníaco",
+      "transformaciones": [],
+      "serieDebut": 3,
+      "sagaDebut": 17,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/marba"
+  },
+  {
+    "id": "tamagami-1",
+    "name": {
+      "es": "Tamagami número 1"
+    },
+    "aliases": [
+      "Tamagami Número Uno",
+      "Tamagami 1"
+    ],
+    "series": [
+      "daima"
+    ],
+    "attrs": {
+      "genero": "Sin género",
+      "razas": [
+        "Tamagami"
+      ],
+      "afiliaciones": [
+        "Reino Demoníaco"
+      ],
+      "planeta": "Reino Demoníaco",
+      "transformaciones": [],
+      "serieDebut": 3,
+      "sagaDebut": 17,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/tamagami-1"
+  },
+  {
+    "id": "tamagami-2",
+    "name": {
+      "es": "Tamagami número 2"
+    },
+    "aliases": [
+      "Tamagami Número Dos",
+      "Tamagami 2"
+    ],
+    "series": [
+      "daima"
+    ],
+    "attrs": {
+      "genero": "Sin género",
+      "razas": [
+        "Tamagami"
+      ],
+      "afiliaciones": [
+        "Reino Demoníaco"
+      ],
+      "planeta": "Reino Demoníaco",
+      "transformaciones": [],
+      "serieDebut": 3,
+      "sagaDebut": 17,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/tamagami-2"
+  },
+  {
+    "id": "tamagami-3",
+    "name": {
+      "es": "Tamagami número 3"
+    },
+    "aliases": [
+      "Tamagami Número Tres",
+      "Tamagami 3"
+    ],
+    "series": [
+      "daima"
+    ],
+    "attrs": {
+      "genero": "Sin género",
+      "razas": [
+        "Tamagami"
+      ],
+      "afiliaciones": [
+        "Reino Demoníaco"
+      ],
+      "planeta": "Reino Demoníaco",
+      "transformaciones": [],
+      "serieDebut": 3,
+      "sagaDebut": 17,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/tamagami-3"
+  },
+  {
+    "id": "porunga-reino-demoniaco",
+    "name": {
+      "es": "Porunga del Reino Demoníaco"
+    },
+    "aliases": [
+      "Polunga del Mundo Demoníaco"
+    ],
+    "series": [
+      "daima"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dragón"
+      ],
+      "afiliaciones": [
+        "Reino Demoníaco"
+      ],
+      "planeta": "Reino Demoníaco",
+      "transformaciones": [],
+      "serieDebut": 3,
+      "sagaDebut": 17,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/porunga-reino-demoniaco"
+  },
+  {
+    "id": "pez-oraculo",
+    "name": {
+      "es": "Pez Oráculo"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Pez"
+      ],
+      "afiliaciones": [],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 18,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/pez-oraculo"
+  },
+  {
+    "id": "jaco",
+    "name": {
+      "es": "Jaco"
+    },
+    "aliases": [
+      "Jaco Thilimentempibossi",
+      "Jaco el Patrullero Galáctico"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Alienígena"
+      ],
+      "afiliaciones": [
+        "Patrulla Galáctica"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 19,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/jaco"
+  },
+  {
+    "id": "sorbet",
+    "name": {
+      "es": "Sorbet"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Alienígena"
+      ],
+      "afiliaciones": [
+        "Ejército de Freezer"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 19,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/sorbet"
+  },
+  {
+    "id": "tagoma",
+    "name": {
+      "es": "Tagoma"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Alienígena"
+      ],
+      "afiliaciones": [
+        "Ejército de Freezer"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 19,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/tagoma"
+  },
+  {
+    "id": "shisami",
+    "name": {
+      "es": "Shisami"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Alienígena"
+      ],
+      "afiliaciones": [
+        "Ejército de Freezer"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 19,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/shisami"
+  },
+  {
+    "id": "rey-de-la-via-lactea",
+    "name": {
+      "es": "Rey de la Vía Láctea"
+    },
+    "aliases": [
+      "Rey Galáctico"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Alienígena"
+      ],
+      "afiliaciones": [
+        "Patrulla Galáctica"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 20,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/rey-de-la-via-lactea"
+  },
+  {
+    "id": "zuno",
+    "name": {
+      "es": "Zuno"
+    },
+    "aliases": [
+      "Zunoh"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Kaioshin"
+      ],
+      "afiliaciones": [
+        "Universo 6"
+      ],
+      "planeta": "Universo 6",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 20,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/zuno"
+  },
+  {
+    "id": "botamo",
+    "name": {
+      "es": "Botamo"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Botamo"
+      ],
+      "afiliaciones": [
+        "Universo 6"
+      ],
+      "planeta": "Universo 6",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 20,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/botamo"
+  },
+  {
+    "id": "magetta",
+    "name": {
+      "es": "Magetta"
+    },
+    "aliases": [
+      "Auta Magetta"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Magetta"
+      ],
+      "afiliaciones": [
+        "Universo 6"
+      ],
+      "planeta": "Universo 6",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 20,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/magetta"
+  },
+  {
+    "id": "super-shenlong",
+    "name": {
+      "es": "Súper Shen Long"
+    },
+    "aliases": [
+      "Super Shenlong"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dragón"
+      ],
+      "afiliaciones": [],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 20,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/super-shenlong"
+  },
+  {
+    "id": "gowas",
+    "name": {
+      "es": "Gowas"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Kaioshin"
+      ],
+      "afiliaciones": [
+        "Kaioshin"
+      ],
+      "planeta": "Cielo",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 21,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/gowas"
+  },
+  {
+    "id": "zamasu-fusionado",
+    "name": {
+      "es": "Zamas fusionado"
+    },
+    "aliases": [
+      "Zamasu fusionado",
+      "Zamas Pothala"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Kaioshin"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 21,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/zamasu-fusionado"
+  },
+  {
+    "id": "bergamo",
+    "name": {
+      "es": "Bergamo"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Bergamo"
+      ],
+      "afiliaciones": [
+        "Universo 11"
+      ],
+      "planeta": "Universo 11",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/bergamo"
+  },
+  {
+    "id": "lavender",
+    "name": {
+      "es": "Lavender"
+    },
+    "aliases": [
+      "Lavenda"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Lavender"
+      ],
+      "afiliaciones": [
+        "Universo 11"
+      ],
+      "planeta": "Universo 11",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/lavender"
+  },
+  {
+    "id": "basil",
+    "name": {
+      "es": "Basil"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Basil"
+      ],
+      "afiliaciones": [
+        "Universo 9"
+      ],
+      "planeta": "Universo 9",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/basil"
+  },
+  {
+    "id": "sidra",
+    "name": {
+      "es": "Sidra"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Sidra"
+      ],
+      "afiliaciones": [
+        "Universo 9"
+      ],
+      "planeta": "Universo 9",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/sidra"
+  },
+  {
+    "id": "ribrianne",
+    "name": {
+      "es": "Ribrianne"
+    },
+    "aliases": [
+      "Brianne de Château",
+      "Ribrianne (transformada)"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "razas": [
+        "Raza de Ribrianne"
+      ],
+      "afiliaciones": [
+        "Universo 2"
+      ],
+      "planeta": "Universo 2",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/ribrianne"
+  },
+  {
+    "id": "kakunsa",
+    "name": {
+      "es": "Kakunsa"
+    },
+    "aliases": [
+      "Cocotte",
+      "Kakunsa (transformada)"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "razas": [
+        "Raza de Kakunsa"
+      ],
+      "afiliaciones": [
+        "Universo 2"
+      ],
+      "planeta": "Universo 2",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/kakunsa"
+  },
+  {
+    "id": "roasy",
+    "name": {
+      "es": "Roasy"
+    },
+    "aliases": [
+      "Roselle",
+      "Rozie",
+      "Roasy (transformada)"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "razas": [
+        "Raza de Roasy"
+      ],
+      "afiliaciones": [
+        "Universo 2"
+      ],
+      "planeta": "Universo 2",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/roasy"
+  },
+  {
+    "id": "jerez",
+    "name": {
+      "es": "Jerez"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Jerez"
+      ],
+      "afiliaciones": [
+        "Universo 3"
+      ],
+      "planeta": "Universo 3",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/jerez"
+  },
+  {
+    "id": "anilaza",
+    "name": {
+      "es": "Anilaza"
+    },
+    "aliases": [
+      "Agnilasa"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Androide"
+      ],
+      "afiliaciones": [
+        "Universo 4"
+      ],
+      "planeta": "Universo 4",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/anilaza"
+  },
+  {
+    "id": "dr-paparoni",
+    "name": {
+      "es": "Dr. Paparoni"
+    },
+    "aliases": [
+      "Paparoni",
+      "Doctor Paparoni"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Paparoni"
+      ],
+      "afiliaciones": [
+        "Universo 3"
+      ],
+      "planeta": "Universo 3",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/dr-paparoni"
+  },
+  {
+    "id": "mosco",
+    "name": {
+      "es": "Mosco"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dios de la Destrucción"
+      ],
+      "afiliaciones": [
+        "Dioses de la Destrucción"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/mosco"
+  },
+  {
+    "id": "quitela",
+    "name": {
+      "es": "Quitela"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dios de la Destrucción"
+      ],
+      "afiliaciones": [
+        "Dioses de la Destrucción"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/quitela"
+  },
+  {
+    "id": "rumoosh",
+    "name": {
+      "es": "Rumoosh"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dios de la Destrucción"
+      ],
+      "afiliaciones": [
+        "Dioses de la Destrucción"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/rumoosh"
+  },
+  {
+    "id": "iwen",
+    "name": {
+      "es": "Iwen"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Iwen"
+      ],
+      "afiliaciones": [],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/iwen"
+  },
+  {
+    "id": "arak",
+    "name": {
+      "es": "Arak"
+    },
+    "aliases": [
+      "Araq"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Arak"
+      ],
+      "afiliaciones": [],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/arak"
+  },
+  {
+    "id": "liquir",
+    "name": {
+      "es": "Liquir"
+    },
+    "aliases": [
+      "Liquiir"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Liquir"
+      ],
+      "afiliaciones": [],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/liquir"
+  },
+  {
+    "id": "geen",
+    "name": {
+      "es": "Geen"
+    },
+    "aliases": [
+      "Geene",
+      "Giin"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Raza de Geen"
+      ],
+      "afiliaciones": [],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 22,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/geen"
+  },
+  {
+    "id": "paragus-super",
+    "name": {
+      "es": "Paragus (Super)"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Saiyajin"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Planeta Vegeta",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 23,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/paragus-super"
+  },
+  {
+    "id": "cheelai",
+    "name": {
+      "es": "Cheelai"
+    },
+    "aliases": [
+      "Cheelye"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "razas": [
+        "Alienígena"
+      ],
+      "afiliaciones": [
+        "Ejército de Freezer"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 23,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/cheelai"
+  },
+  {
+    "id": "lemo",
+    "name": {
+      "es": "Lemo"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Alienígena"
+      ],
+      "afiliaciones": [
+        "Ejército de Freezer"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 23,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/lemo"
+  },
+  {
+    "id": "gine",
+    "name": {
+      "es": "Gine"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "razas": [
+        "Saiyajin"
+      ],
+      "afiliaciones": [],
+      "planeta": "Planeta Vegeta",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 23,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/gine"
+  },
+  {
+    "id": "beriblu",
+    "name": {
+      "es": "Beriblu"
+    },
+    "aliases": [
+      "Berriblu"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Alienígena"
+      ],
+      "afiliaciones": [
+        "Ejército de Freezer"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 23,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/beriblu"
+  },
+  {
+    "id": "kikono",
+    "name": {
+      "es": "Kikono"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Alienígena"
+      ],
+      "afiliaciones": [
+        "Ejército de Freezer"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 23,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/kikono"
+  },
+  {
+    "id": "saganbo",
+    "name": {
+      "es": "Saganbo"
+    },
+    "aliases": [
+      "Sagambo"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Demonio"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Universo 7",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 24,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/saganbo"
+  },
+  {
+    "id": "seven-three",
+    "name": {
+      "es": "Seven-Three"
+    },
+    "aliases": [
+      "73",
+      "OG73-I"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Androide"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Universo 7",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 24,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/seven-three"
+  },
+  {
+    "id": "shimorekka",
+    "name": {
+      "es": "Shimorekka"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Demonio"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Universo 7",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 24,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/shimorekka"
+  },
+  {
+    "id": "yunba",
+    "name": {
+      "es": "Yunba"
+    },
+    "aliases": [
+      "Yumba"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Demonio"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Universo 7",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 24,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/yunba"
+  },
+  {
+    "id": "cranberry",
+    "name": {
+      "es": "Cranberry"
+    },
+    "aliases": [
+      "Cranberri"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Demonio"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Universo 7",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 24,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/cranberry"
+  },
+  {
+    "id": "esca",
+    "name": {
+      "es": "Esca"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Demonio"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Universo 7",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 24,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/esca"
+  },
+  {
+    "id": "irico",
+    "name": {
+      "es": "Irico"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Femenino",
+      "razas": [
+        "Demonio"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Universo 7",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 24,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/irico"
+  },
+  {
+    "id": "monaito",
+    "name": {
+      "es": "Monaito"
+    },
+    "aliases": [
+      "Monite"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Ceresiano"
+      ],
+      "afiliaciones": [],
+      "planeta": "Planeta Cereal",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 25,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/monaito"
+  },
+  {
+    "id": "gas",
+    "name": {
+      "es": "Gas"
+    },
+    "aliases": [
+      "Gas Heata"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Heeter"
+      ],
+      "afiliaciones": [
+        "Tropas del Orgullo"
+      ],
+      "planeta": "Planeta Cereal",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 25,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 1,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/gas"
+  },
+  {
+    "id": "elec",
+    "name": {
+      "es": "Elec"
+    },
+    "aliases": [
+      "Elec Heata"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Heeter"
+      ],
+      "afiliaciones": [
+        "Tropas del Orgullo"
+      ],
+      "planeta": "Planeta Cereal",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 25,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/elec"
+  },
+  {
+    "id": "oil",
+    "name": {
+      "es": "Oil"
+    },
+    "aliases": [
+      "Oil Heata"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Heeter"
+      ],
+      "afiliaciones": [
+        "Tropas del Orgullo"
+      ],
+      "planeta": "Planeta Cereal",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 25,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/oil"
+  },
+  {
+    "id": "macki",
+    "name": {
+      "es": "Macki"
+    },
+    "aliases": [
+      "Macki Heata"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Heeter"
+      ],
+      "afiliaciones": [
+        "Tropas del Orgullo"
+      ],
+      "planeta": "Planeta Cereal",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 25,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 1,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/macki"
+  },
+  {
+    "id": "toronbo",
+    "name": {
+      "es": "Toronbo"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dragón"
+      ],
+      "afiliaciones": [],
+      "planeta": "Planeta Cereal",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 25,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0,
+      "mangaOnly": 1
+    },
+    "image": "dragon-ball/toronbo"
+  },
+  {
+    "id": "magenta",
+    "name": {
+      "es": "Magenta"
+    },
+    "aliases": [
+      "Magenta Rybon"
+    ],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Androide"
+      ],
+      "afiliaciones": [
+        "Listón Rojo Renacido"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 26,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/magenta"
+  },
+  {
+    "id": "carmine",
+    "name": {
+      "es": "Carmine"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Androide"
+      ],
+      "afiliaciones": [
+        "Listón Rojo Renacido"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 26,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 1
+    },
+    "image": "dragon-ball/carmine"
+  },
+  {
+    "id": "cell-max",
+    "name": {
+      "es": "Cell Max"
+    },
+    "aliases": [],
+    "series": [
+      "super"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Bioandroide"
+      ],
+      "afiliaciones": [
+        "Listón Rojo Renacido"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 4,
+      "sagaDebut": 26,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/cell-max"
+  },
+  {
+    "id": "shenlong-estrellas-negras",
+    "name": {
+      "es": "Shen Long de las Esferas de Estrellas Negras"
+    },
+    "aliases": [
+      "Shen Long de las Esferas Negras",
+      "Shen Long de GT"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dragón"
+      ],
+      "afiliaciones": [],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 5,
+      "sagaDebut": 27,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/shenlong-estrellas-negras"
+  },
+  {
+    "id": "giru",
+    "name": {
+      "es": "Giru"
+    },
+    "aliases": [],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Sin género",
+      "razas": [
+        "Robot"
+      ],
+      "afiliaciones": [],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 5,
+      "sagaDebut": 27,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/giru"
+  },
+  {
+    "id": "general-rildo",
+    "name": {
+      "es": "General Rildo"
+    },
+    "aliases": [
+      "General Rilld",
+      "Rildo"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Máquina Mutante"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": "Planeta M2",
+      "transformaciones": [],
+      "serieDebut": 5,
+      "sagaDebut": 28,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/general-rildo"
+  },
+  {
+    "id": "peleador-del-infierno-17",
+    "name": {
+      "es": "Peleador del Infierno número 17"
+    },
+    "aliases": [
+      "Androide 17 del Infierno"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Androide"
+      ],
+      "afiliaciones": [],
+      "planeta": "Infierno",
+      "transformaciones": [],
+      "serieDebut": 5,
+      "sagaDebut": 29,
+      "estadoVital": "Desconocido",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/peleador-del-infierno-17"
+  },
+  {
+    "id": "shenlong-humo-negro",
+    "name": {
+      "es": "Shen Long del Humo Negro"
+    },
+    "aliases": [
+      "Dragón del Humo Negro",
+      "Shen Long del Humo"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dragón"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 5,
+      "sagaDebut": 30,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/shenlong-humo-negro"
+  },
+  {
+    "id": "dragon-2-estrellas",
+    "name": {
+      "es": "Dragón de Dos Estrellas"
+    },
+    "aliases": [
+      "Liang Xing Long"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dragón"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 5,
+      "sagaDebut": 30,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/dragon-2-estrellas"
+  },
+  {
+    "id": "dragon-5-estrellas",
+    "name": {
+      "es": "Dragón de Cinco Estrellas"
+    },
+    "aliases": [
+      "Wu Xing Long"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dragón"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 5,
+      "sagaDebut": 30,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/dragon-5-estrellas"
+  },
+  {
+    "id": "dragon-6-estrellas",
+    "name": {
+      "es": "Dragón de Seis Estrellas"
+    },
+    "aliases": [
+      "Liu Xing Long"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dragón"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 5,
+      "sagaDebut": 30,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/dragon-6-estrellas"
+  },
+  {
+    "id": "dragon-7-estrellas",
+    "name": {
+      "es": "Dragón de Siete Estrellas"
+    },
+    "aliases": [
+      "Qi Xing Long"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dragón"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 5,
+      "sagaDebut": 30,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/dragon-7-estrellas"
+  },
+  {
+    "id": "dragon-4-estrellas",
+    "name": {
+      "es": "Dragón de Cuatro Estrellas"
+    },
+    "aliases": [
+      "Si Xing Long"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dragón"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 5,
+      "sagaDebut": 30,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/dragon-4-estrellas"
+  },
+  {
+    "id": "dragon-3-estrellas",
+    "name": {
+      "es": "Dragón de Tres Estrellas"
+    },
+    "aliases": [
+      "San Xing Long"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dragón"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 5,
+      "sagaDebut": 30,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/dragon-3-estrellas"
+  },
+  {
+    "id": "dragon-1-estrella",
+    "name": {
+      "es": "Dragón de Una Estrella"
+    },
+    "aliases": [
+      "Omega Shen Long",
+      "Omega Shenlong",
+      "Yi Xing Long"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Dragón"
+      ],
+      "afiliaciones": [
+        "Villanos"
+      ],
+      "planeta": null,
+      "transformaciones": [],
+      "serieDebut": 5,
+      "sagaDebut": 30,
+      "estadoVital": "Muerto",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/dragon-1-estrella"
+  },
+  {
+    "id": "vegeta-jr",
+    "name": {
+      "es": "Vegeta Jr."
+    },
+    "aliases": [
+      "Vegeta Junior"
+    ],
+    "series": [
+      "gt"
+    ],
+    "attrs": {
+      "genero": "Masculino",
+      "razas": [
+        "Saiyajin"
+      ],
+      "afiliaciones": [
+        "Guerreros Z"
+      ],
+      "planeta": "Tierra",
+      "transformaciones": [],
+      "serieDebut": 5,
+      "sagaDebut": 31,
+      "estadoVital": "Vivo",
+      "tecnica": null,
+      "imagenTransparente": 0
+    },
+    "image": "dragon-ball/vegeta-jr"
   }
 ]

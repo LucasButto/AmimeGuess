@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "animeguess-versus",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-12",
+  "durable_objects": {
+    "bindings": [{ "name": "VERSUS_ROOM", "class_name": "VersusRoom" }]
+  },
+  // La lista `migrations` solo se agranda: nunca se borra ni se cambia una entrada vieja.
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["VersusRoom"] }],
+  "vars": { "ALLOWED_ORIGINS": "https://animeguess.vercel.app,http://localhost:3000" }
+}

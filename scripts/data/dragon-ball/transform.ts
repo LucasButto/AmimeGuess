@@ -5,10 +5,9 @@ import {
   SERIES,
   type CharacterSrc,
   type EventSrc,
-  type PowerSrc,
+  type ConnectionGroupSrc,
   type SagasFile,
   type SeriesId,
-  type TransformationSrc,
 } from './schemas.ts';
 
 // --- Series y orden cronológico ---------------------------------------------
@@ -22,20 +21,17 @@ export function seriesRanks(order: readonly SeriesId[]): Map<SeriesId, number> {
 }
 
 /**
- * Posición (desde 1) de cada saga en toda la cronología: primero por serie, y dentro
- * de ella en el orden en que están en el archivo.
+ * Posición (desde 1) de cada saga en toda la historia: manda el orden del arreglo
+ * `sagas`, independientemente del orden que `seriesOrder` fija para los filtros.
  */
 export function sagaRanks(file: SagasFile): Map<string, number> {
-  const ranks = seriesRanks(file.seriesOrder);
+  seriesRanks(file.seriesOrder);
   const ids = new Set<string>();
   for (const saga of file.sagas) {
     if (ids.has(saga.id)) throw new Error(`La saga ${saga.id} está repetida`);
     ids.add(saga.id);
   }
-  const ordered = file.sagas
-    .map((saga, index) => ({ saga, index }))
-    .sort((a, b) => (ranks.get(a.saga.series) ?? 0) - (ranks.get(b.saga.series) ?? 0) || a.index - b.index);
-  return new Map(ordered.map(({ saga }, index) => [saga.id, index + 1]));
+  return new Map(file.sagas.map((saga, index) => [saga.id, index + 1]));
 }
 
 /** Las series de la lista en orden canónico, sin repetir. */
@@ -147,42 +143,29 @@ export function buildCharacterEntity(input: CharacterInput): Entity {
 }
 
 /**
- * Una entrada de Nivel de poder como entidad: el nombre con su saga, la imagen y las marcas del personaje o la forma de
- * la que sale (`of`), y el ki. `kiOficial` es 1 o 0.
+ * Cuántos tableros distintos de Conexiones se pueden armar: uno por cada combinación de un grupo de cada dificultad
+ * (1 a 4) en que cada grupo conserva al menos 4 miembros que no están en ninguno de los otros tres. `eligible`
+ * limita los miembros (por ejemplo, a los de las series activas).
  */
-export function buildPowerEntity(src: PowerSrc, of: Entity): Entity {
-  const entity: Entity = {
-    id: src.id,
-    name: { es: src.name },
-    aliases: [],
-    series: [src.series],
-    attrs: {
-      ki: src.ki,
-      kiOficial: src.official ? 1 : 0,
-      ...(of.attrs.filler === 1 ? { filler: 1 } : {}),
-      ...(of.attrs.mangaOnly === 1 ? { mangaOnly: 1 } : {}),
-    },
-  };
-  if (of.image !== undefined) entity.image = of.image;
-  return entity;
-}
-
-/** Una forma como entidad propia: lo que se adivina en el modo Transformación. */
-export function buildTransformationEntity(src: TransformationSrc, characterName: string, image: EntityImage | null): Entity {
-  const entity: Entity = {
-    id: src.id,
-    name: { es: src.name },
-    aliases: uniqueAliases(src.name, src.aliases),
-    series: [src.series],
-    attrs: {
-      personaje: characterName,
-      forma: src.forma,
-      imagenTransparente: image === null ? null : image.transparent ? 1 : 0,
-      ...(src.filler === true ? { filler: 1 } : {}),
-    },
-  };
-  if (image !== null) entity.image = image.path;
-  return entity;
+export function countBoards(groups: readonly ConnectionGroupSrc[], eligible: (id: string) => boolean = () => true): number {
+  const byDifficulty = [1, 2, 3, 4].map((level) => groups.filter((group) => group.difficulty === level));
+  if (byDifficulty.some((list) => list.length === 0)) return 0;
+  let count = 0;
+  for (const a of byDifficulty[0]) {
+    for (const b of byDifficulty[1]) {
+      for (const c of byDifficulty[2]) {
+        for (const d of byDifficulty[3]) {
+          const chosen = [a, b, c, d];
+          const valid = chosen.every((group) => {
+            const others = chosen.filter((other) => other !== group);
+            return group.members.filter((id) => eligible(id) && !others.some((other) => other.members.includes(id))).length >= 4;
+          });
+          if (valid) count++;
+        }
+      }
+    }
+  }
+  return count;
 }
 
 // --- Contenidos -------------------------------------------------------------

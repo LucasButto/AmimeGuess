@@ -22,6 +22,25 @@ $max-height: min(28rem, 60dvh);
   background: t.color('stage');
 }
 
+// En escritorio el marco queda un poco separado de la fila de arriba (el campo de intento y la dificultad): varios temas dibujan el
+// marco con sombras y filetes que sobresalen de su caja y se comían casi todo el espacio entre los dos.
+.frame {
+  @include bp.min-width('md') {
+    margin-block-start: t.$space-3;
+  }
+}
+
+// Los clips son más anchos que altos y a 24 rem quedaban chicos en escritorio: ahí se agrandan (36 rem desde `xl`). El alto máximo
+// sigue valiendo, pero un clip de 2:1 nunca lo alcanza.
+.frame[data-clip='true'] {
+  @include bp.min-width('lg') {
+    inline-size: min(100%, 32rem, calc(#{$max-height} * var(--aspect)));
+  }
+  @include bp.min-width('xl') {
+    inline-size: min(100%, 36rem, calc(#{$max-height} * var(--aspect)));
+  }
+}
+
 // El giro: el marco da la perspectiva y la pieza de adentro se da vuelta con sus dos caras (la imagen y, si el tema le
 // pone dorso, el dorso). Sin dorso, la pieza no gira y la imagen se ve como siempre.
 .frame {

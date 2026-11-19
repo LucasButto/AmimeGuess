@@ -41,7 +41,7 @@
         "slug": "mayor-o-menor",
         "name": "Mayor o Menor",
         "status": true,
-        "try": 1
+        "try": 3
       },
       {
         "slug": "moveset",
@@ -83,28 +83,16 @@
         "try": 8
       },
       {
-        "slug": "borroso",
-        "name": "Borroso",
+        "slug": "quiz",
+        "name": "Quiz",
         "status": true,
-        "try": 7
+        "try": 1
       },
       {
         "slug": "tecnica",
         "name": "Técnica",
         "status": true,
         "try": 7
-      },
-      {
-        "slug": "poder",
-        "name": "Nivel de poder",
-        "status": false,
-        "try": 1
-      },
-      {
-        "slug": "transformacion",
-        "name": "Transformación",
-        "status": true,
-        "try": 8
       },
       {
         "slug": "linea-de-tiempo",
@@ -115,6 +103,12 @@
       {
         "slug": "casillas",
         "name": "Casillas",
+        "status": true,
+        "try": 4
+      },
+      {
+        "slug": "conexiones",
+        "name": "Conexiones",
         "status": true,
         "try": 4
       }
@@ -199,7 +193,7 @@
     "slug": "yugioh",
     "name": "Yu-Gi-Oh",
     "status": false,
-    "comingSoon": true,
+    "comingSoon": false,
     "modes": [
       {
         "slug": "duelista",

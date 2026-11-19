@@ -26,7 +26,9 @@
     }
     // Una fila de piezas con su tamaño (las semillas) no se estira: ocupa su renglón y la cuenta regresiva baja al siguiente.
     &:has(> [data-meter]) { flex-basis: 100%; flex-wrap: nowrap; gap: t.$space-2; }
-    &:empty { flex: 0; }
+    // Sin nada que mostrar (el Quiz no cuenta intentos) no deja el alto de un renglón, pero conserva 1 px: con 0 el
+    // observador de tamaño nunca avisa que la caja apareció y los intentos de otro modo no llegarían a este lugar.
+    &:empty { flex: 0; min-block-size: 1px; }
   }
   @include m.app-shell-desktop { display: none; }
 }

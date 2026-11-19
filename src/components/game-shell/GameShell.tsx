@@ -9,7 +9,6 @@ import { es } from '@/i18n/es';
 import { ContentImage } from '../ContentImage';
 import { CopyLinkButton } from '../CopyLinkButton';
 import { FilterPanel } from '../FilterPanel';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Modal } from '../Modal';
 import { Sheet } from '../Sheet';
@@ -25,7 +24,7 @@ import { Countdown } from './Countdown';
 import { GameFlagsContext } from './flags';
 import styles from './GameShell.module.scss';
 import { ModeNav } from './ModeNav';
-import { clearPracticeStates, newPracticeDay, practiceStorage } from './practice';
+import { clearPracticeStates, pickPracticeDay, practiceKeyOf, practiceSeenKey, practiceStorage, readSeen, writeSeen } from './practice';
 import { ResultPanel } from './ResultPanel';
 import { scrollToElement } from './scroll';
 import { RESULT_SETTLE_MS } from './scrollIntoView';
@@ -41,6 +40,17 @@ import { SheetSection, SheetSlotContext } from './SheetSlot';
 
 import { useRouletteImages } from '@/modes/stat-builder/RoulettePreview';
 import { getKeyedStorage, solvedToday } from '../progress';
+import { useVersusGame } from '../versus/VersusGameContext';
+import { VersusClock } from '../versus/VersusClock';
+import { VersusHowTo } from '../versus/VersusHowTo';
+import { VersusSummary } from '../versus/VersusSummary';
+import { versusRulesText } from '../versus/howTo';
+import { HelpIcon } from './HelpIcon';
+import { HowToPlay } from './HowToPlay';
+import { engineRulesFor } from '@/versus/session';
+import { versusDay } from '@/versus/seed';
+import { SurrenderAllowed } from './SurrenderButton';
+import type { VersusRules } from './types';
 
 type Dialog = 'help' | 'stats' | 'settings' | null;
 
@@ -79,7 +89,10 @@ export function GameShell({
   const flags = useContext(GameFlagsContext);
   const attemptRules = useContext(AttemptRules);
   const variant = `${engineVariant ?? ''}${flags.variant}` || undefined;
-  const { active, filterKey, setActive } = useSeriesFilters(franchise.slug, franchise.series);
+  // Versus (docs/versus/02-arquitectura.md, "GameShell en modo versus"): el reto, los filtros y las reglas son los de la
+  // partida de la sala; nada de esto toca estadísticas, racha, filtros guardados ni el modo infinito.
+  const versus = useVersusGame();
+  const { active, filterKey, setActive } = useSeriesFilters(franchise.slug, franchise.series, versus?.partida.series);
   useRouletteImages(active);
   const [day, setDay] = useState(() => getDay(new Date()));
   const [stats, setStats] = useState(() => readStats(getLocalStorage(), franchise.slug, mode.slug));
@@ -105,12 +118,25 @@ export function GameShell({
   // Modo infinito: el "día" de la partida extra que se está jugando, o `null` si se juega el reto de hoy.
   const [practiceDay, setPracticeDay] = useState<number | null>(null);
   const practicing = practiceDay !== null;
-  const playDay = practiceDay ?? day;
+  const versusPlayDay = versus ? versusDay(versus.seed, versus.index) : null;
+  const playDay = versusPlayDay ?? practiceDay ?? day;
+  const versusRules = useMemo<VersusRules | undefined>(
+    () => (versus ? { ...engineRulesFor(versus.modality, versus.partida.engine, versus.options), ...(versus.stop ? { stop: versus.stop } : {}) } : undefined),
+    [versus],
+  );
+  // Versus: "Cómo se juega" antes de cada modo. Mientras se ve, el juego no está montado: no se ve la pista ni se avisa `loaded`
+  // (lo que arranca el reloj de la partida). Si el servidor ya cerró la partida (`stop`, por ejemplo al agotarse el tiempo
+  // leyendo), se pasa directo al juego para que informe su final.
+  const showHowTo = versus?.howTo === true && versus.stop === undefined;
+  const howToRules = useMemo(() => (versus ? versusRulesText(versus.modality, versus.partida, versusRules) : undefined), [versus, versusRules]);
+  // Lo que tardó en la partida de versus, medido al terminarla (para el resumen corto).
+  const [versusElapsed, setVersusElapsed] = useState<number | undefined>(undefined);
   const sessionKey = `${filterKey}:${playDay}${variant ? `:${variant}` : ''}`;
   const report = finished?.key === sessionKey ? finished.report : null;
   // Teléfono (diseño de app): el resultado es una hoja que sube al terminar la partida (no al recargar una ya terminada);
   // se cierra para ver el tablero y un botón de la barra de abajo la vuelve a abrir.
-  const resultInSheet = appShell && phone && report !== null;
+  // En versus, el resumen corto va siempre en la página.
+  const resultInSheet = appShell && phone && report !== null && !versus;
   // Lo que la persona hizo con la hoja de ESTE resultado; sin haber hecho nada, se abre sola solo si la partida terminó ahora.
   const [sheetView, setSheetView] = useState<{ report: FinishReport; open: boolean } | null>(null);
   const resultDestination = useRef<{ report: FinishReport; href: string } | null>(null);
@@ -147,10 +173,21 @@ export function GameShell({
     return scrollToElement(target);
   }, [practiceDay]);
 
+  // Una partida nueva del modo infinito no repite un reto hasta que salieron todos (ver `pickPracticeDay`).
   const startPractice = useCallback(() => {
     clearPracticeStates(practiceStorage());
-    setPracticeDay(newPracticeDay());
-  }, []);
+    const storage = getLocalStorage();
+    const key = variant ? `${filterKey}~${variant}` : filterKey;
+    const seenKey = practiceSeenKey(franchise.slug, mode.slug, key);
+    const seen = readSeen(storage, seenKey);
+    // La respuesta del día D es "la de ayer" de D + 1: el mismo cálculo que ya hace el marco para "Ayer fue…".
+    const pick = pickPracticeDay((candidate) => {
+      const info = yesterday({ franchise: franchise.slug, mode: mode.slug, filterKey: key, day: candidate + 1 }, active);
+      return info ? practiceKeyOf(info) : null;
+    }, seen);
+    if (pick.key !== null) writeSeen(storage, seenKey, new Set([...(pick.exhausted ? [] : seen), pick.key]));
+    setPracticeDay(pick.day);
+  }, [franchise.slug, mode.slug, filterKey, variant, yesterday, active]);
 
   const leavePractice = useCallback(() => {
     clearPracticeStates(practiceStorage());
@@ -161,7 +198,9 @@ export function GameShell({
   const shownCount = useMemo(() => displayCount?.(active), [displayCount, active]);
   const fullPool = useMemo(() => poolSize(franchise.series), [poolSize, franchise.series]);
   const limit = attemptRules ? attemptLimit(attemptRules.base, remaining, fullPool, attemptRules.adaptive) : undefined;
-  const playable = hasMinimumPool(remaining, minimumPool);
+  // El mínimo para jugar y el aviso de "quedan N" miden lo mismo que muestra el contador (los clips de Jutsu y Técnica, no sus personajes).
+  const counted = shownCount ?? remaining;
+  const playable = hasMinimumPool(counted, minimumPool);
 
   const yesterdayAnswer = useMemo(
     () =>
@@ -202,6 +241,13 @@ export function GameShell({
       const result = reported.won ? 'won' : 'lost';
       if (saved && saved.result !== result) writeState(getLocalStorage(), ctx, { ...saved, result });
       setFinished({ key: sessionKey, report: reported });
+      if (versus) {
+        // Versus: el final va a la sala y no suma a las estadísticas ni a la racha.
+        if (reported.fresh && versus.startedAt !== undefined) setVersusElapsed((versus.now ?? Date.now)() - versus.startedAt);
+        if (reported.fresh && reported.won) buzz('hit');
+        versus.onFinish?.(reported);
+        return;
+      }
       // Solo la partida que terminó ahora suma; una restaurada al recargar ya está contada.
       if (reported.fresh) {
         // Fanfarria del tema (si hay sonidos) al ganar un reto de intentos; los de puntaje no se "ganan".
@@ -220,7 +266,7 @@ export function GameShell({
         );
       }
     },
-    [sessionKey, practicing, day, franchise.slug, mode.slug, play, buzz, filterKey, variant, playDay],
+    [sessionKey, practicing, day, franchise.slug, mode.slug, play, buzz, filterKey, variant, playDay, versus],
   );
 
   const getShareText = useCallback(() => {
@@ -238,6 +284,40 @@ export function GameShell({
     });
   }, [report, franchise, mode.name, active, filterKey, gridKind, skin.shareEmojis]);
 
+  // Versus: avisa a la sala cuando la pista ya se ve: con las imágenes del juego cargadas (o al montar, si no tiene).
+  const onLoaded = useRef(versus?.onLoaded);
+  useEffect(() => {
+    onLoaded.current = versus?.onLoaded;
+  });
+  const reportsLoaded = versus?.onLoaded !== undefined;
+  // Una sola vez por partida, aunque el efecto se repita (en desarrollo React lo monta dos veces).
+  const loadedFor = useRef<string | null>(null);
+  useEffect(() => {
+    const target = gameRef.current;
+    // Con "Cómo se juega" a la vista no hay juego montado; al tocar Continuar el efecto vuelve a correr y avisa.
+    if (!reportsLoaded || showHowTo || !target) return;
+    let done = false;
+    const images = [...target.querySelectorAll('img')].filter((image) => !image.complete);
+    const finish = () => {
+      if (done || loadedFor.current === sessionKey || images.some((image) => !image.complete)) return;
+      done = true;
+      loadedFor.current = sessionKey;
+      onLoaded.current?.();
+    };
+    for (const image of images) {
+      image.addEventListener('load', finish);
+      image.addEventListener('error', finish);
+    }
+    finish();
+    return () => {
+      for (const image of images) {
+        image.removeEventListener('load', finish);
+        image.removeEventListener('error', finish);
+      }
+    };
+    // Una vez por partida (`sessionKey` cambia con cada partida nueva).
+  }, [reportsLoaded, sessionKey, showHowTo]);
+
   const closeDialog = () => setDialog(null);
   const actionsId = useId();
   const [menuSelection, setMenuSelection] = useState(0);
@@ -253,8 +333,7 @@ export function GameShell({
         details={franchise.seriesDetails}
         active={active}
         onChange={setActive}
-        remaining={remaining}
-        shown={shownCount}
+        remaining={counted}
         minimum={minimumPool}
         toggles={flags.toggles}
         sheet={inSheet}
@@ -263,23 +342,37 @@ export function GameShell({
       </FilterPanel>
   );
 
+  // El botón de "Cómo se juega" a la vista dentro de la pantalla (no solo en el menú ⋮/☰, donde casi nadie lo encontraba).
+  const howToButton = (
+    <Button variant="secondary" className={styles.howToButton} aria-haspopup="dialog" onClick={() => setDialog('help')}>
+      <HelpIcon className={styles.howToIcon} />
+      {es.shell.helpButton}
+    </Button>
+  );
+  // Teléfono, modo normal: comparte el renglón del contador del próximo reto (que deja libre su lado derecho). En los demás
+  // casos va a la derecha de la barra de intentos.
+  const howToInTopRow = !versus && phone;
+
   return (
     <AttemptsStatusProvider>
-    <ActiveAttemptLimit.Provider value={limit}>
+    <SurrenderAllowed.Provider value={versus?.modality !== 'race'}>
+    {/* En versus sin límite no hay "Intento N de M": la piel no recibe un límite que no corre. */}
+    <ActiveAttemptLimit.Provider value={versusRules?.unlimited ? undefined : limit}>
     <SheetSlotContext.Provider value={{ phone, target: phone && filtersOpen ? sheetTarget : null }}>
     <div className={styles.root} data-game="shell">
       {document.getElementById('game-actions') && createPortal(
         <div className={styles.floatingActions}>
-          {appShell && <button type="button" className={styles.filterTrigger} aria-label={filtersChanged ? es.shell.filtersChanged : es.shell.filters} aria-haspopup="dialog" aria-expanded={phone && filtersOpen} onClick={() => setFiltersOpen(true)}>
-            <svg viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges"><path d="M4 4h16v3H4zm3 5h10v3H7zm3 5h4v7h-4z" fill="currentColor" /></svg>
-            <span className={styles.filterLabel} aria-hidden="true">{es.shell.filtersShort}</span>
-            {filtersChanged && <span className={styles.filterDot} aria-hidden="true" />}
+          {appShell && !versus && <button type="button" className={styles.filterTrigger} aria-label={filtersChanged ? es.shell.filtersChanged : es.shell.filters} aria-haspopup="dialog" aria-expanded={phone && filtersOpen} onClick={() => setFiltersOpen(true)}>
+            {skin.menuIcons?.filters ? <ContentImage className={styles.filterImage} stem={skin.menuIcons.filters} alt="" sizes="2.75rem" /> : <>
+              <svg viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges"><path d="M4 4h16v3H4zm3 5h10v3H7zm3 5h4v7h-4z" fill="currentColor" /></svg>
+              <span className={styles.filterLabel} aria-hidden="true">{es.shell.filtersShort}</span>
+            </>}
           </button>}
-          <button type="button" popoverTarget={actionsId} aria-label={es.shell.actions} className={styles.menuTrigger}>
-            <svg className={styles.menuSymbol} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges">
+          <button type="button" popoverTarget={actionsId} aria-label={es.shell.actions} className={styles.menuTrigger} data-image={skin.menuIcons?.menu ? '' : undefined}>
+            {skin.menuIcons?.menu ? <ContentImage className={styles.menuImage} stem={skin.menuIcons.menu} alt="" sizes="3rem" /> : <svg className={styles.menuSymbol} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges">
               <path className={appShell ? styles.hamburger : undefined} d="M5 5h14v3H5zm0 6h14v3H5zm0 6h14v3H5z" fill="currentColor" />
               {appShell && <path className={styles.ellipsis} d="M10 3h4v4h-4zm0 7h4v4h-4zm0 7h4v4h-4z" fill="currentColor" />}
-            </svg>
+            </svg>}
           </button>
           <div id={actionsId} popover="auto" ref={actionsRef} className={styles.actionsMenu}>
           <div className={styles.buttons} role="group" aria-label={es.shell.actions} onKeyDown={(event) => {
@@ -291,11 +384,11 @@ export function GameShell({
             event.preventDefault(); buttons[next].focus();
           }}>
             {(['help', 'stats', 'settings'] as const).map((action, index) => <button
-              type="button" key={action} className={action === 'settings' ? `${styles.menuOption} ${styles.settingsOption}` : styles.menuOption} data-selected={menuSelection === index}
+              type="button" key={action} className={styles.menuOption} data-selected={menuSelection === index}
               onFocus={() => setMenuSelection(index)}
               onPointerEnter={(event) => { if (event.pointerType === 'mouse' && window.matchMedia('(hover: hover)').matches) setMenuSelection(index); }}
               onClick={() => openDialog(action)}>
-              <svg className={styles.optionIcon} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges">
+              {skin.menuIcons ? <ContentImage className={`${styles.optionIcon} ${styles.optionImage}`} stem={skin.menuIcons[action]} alt="" sizes="2.5rem" /> : <svg className={styles.optionIcon} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges">
                 {action === 'help' ? <>
                   <path d="M3 3h8l1 2 1-2h8v18h-8l-1 1-1-1H3z" fill="var(--game-menu-icon-edge, currentColor)" />
                   <path d="M5 5h5v14H5zm9 0h5v14h-5z" fill="var(--game-menu-icon-fill, currentColor)" />
@@ -310,31 +403,41 @@ export function GameShell({
                   <path d="M6 7h12v2H6zm0 5h12v2H6zm0 5h12v2H6z" fill="var(--game-menu-icon-edge, currentColor)" />
                   <path d="M8 6h3v4H8zm6 5h3v4h-3zm-6 5h3v4H8z" fill="var(--game-menu-icon-fill, currentColor)" />
                 </>}
-              </svg>
+              </svg>}
               <span>{action === 'help' ? es.shell.help : action === 'stats' ? es.shell.stats : es.settings.button}</span>
             </button>)}
-            {appShell && <Link href="/creditos" className={`${styles.menuOption} ${styles.creditsOption}`}><span>{es.footer.credits}</span></Link>}
-            {appShell && <button type="button" className={`${styles.menuOption} ${styles.surrenderOption}`} disabled={!surrender || surrender.disabled} data-selected={menuSelection === 3} onFocus={() => setMenuSelection(3)} onClick={() => {
+            {appShell && <button type="button" className={`${styles.menuOption} ${styles.surrenderOption}`} disabled={!surrender || surrender.disabled} data-selected={menuSelection === 3} onFocus={() => setMenuSelection(3)}
+              onPointerEnter={(event) => { if (event.pointerType === 'mouse' && window.matchMedia('(hover: hover)').matches) setMenuSelection(3); }} onClick={() => {
               actionsRef.current?.hidePopover();
               surrenderRegistry?.open();
-            }}>{es.shell.surrender.button}</button>}
+            }}>{skin.menuIcons?.surrender && <ContentImage className={`${styles.optionIcon} ${styles.optionImage}`} stem={skin.menuIcons.surrender} alt="" sizes="2.5rem" />}<span>{es.shell.surrender.button}</span></button>}
           </div>
           </div></div>
         , document.getElementById('game-actions')!
       )}
-      <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} solved={solved} filterKey={filterKey} />
+      {/* Teléfono: el contador del próximo reto va arriba del selector de modo, con "Cómo se juega" a la derecha. */}
+      {howToInTopRow && (
+        <div className={styles.topRow}>
+          <Countdown compact={appShell} />
+          {howToButton}
+        </div>
+      )}
+      {!versus && <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} solved={solved} filterKey={filterKey} />}
+
+      {versus && <VersusClock game={versus} frozen={report !== null} />}
 
       <div className={styles.toolbar}>
         {appShell && <AttemptsStatusTarget />}
-        <Countdown compact={appShell} />
+        {!versus && !phone && <Countdown compact={appShell} />}
+        {!howToInTopRow && howToButton}
       </div>
 
-      <SheetSection>{filters}</SheetSection>
+      {!versus && <SheetSection>{filters}</SheetSection>}
 
       {/* Teléfono: los filtros viven en la hoja; si con ellos no alcanza el mínimo para jugar, se dice acá y se ofrece abrirla. */}
       {phone && !playable && (
         <section className={styles.poolWarning} role="status">
-          <p>{es.filters.belowMinimum(remaining, minimumPool)}</p>
+          <p>{es.filters.belowMinimum(counted, minimumPool)}</p>
           <Button variant="primary" onClick={() => setFiltersOpen(true)}>{es.shell.filters}</Button>
         </section>
       )}
@@ -350,10 +453,23 @@ export function GameShell({
         </div>
       )}
 
-      {playable && <SheetSection>{beforeGame?.({ remaining, day: playDay })}</SheetSection>}
+      {playable && !versus && <SheetSection>{beforeGame?.({ remaining, day: playDay })}</SheetSection>}
+
+      {/* Versus: antes de cada modo, "Cómo se juega" con Continuar; recién ahí se monta el juego y arranca. */}
+      {playable && versus && showHowTo && howToRules && (
+        <VersusHowTo
+          franchise={franchise.slug}
+          mode={mode.slug}
+          modeName={mode.name}
+          help={help}
+          rules={howToRules}
+          phone={phone}
+          onContinue={() => versus.onHowToDone?.()}
+        />
+      )}
 
       {/* Otra combinación de filtros, de día o de variante es otra partida: el juego se vuelve a montar. */}
-      {playable && (
+      {playable && !showHowTo && (
         <div key={`${sessionKey}:try-${limit ?? ''}`} ref={gameRef} className={styles.game} data-game-mode={mode.slug}>
           {children({
             attemptLimit: limit,
@@ -364,11 +480,18 @@ export function GameShell({
             filterKey: variant ? `${filterKey}~${variant}` : filterKey,
             active,
             onFinish: handleFinish,
+            ...(versus ? { versus: versusRules, onProgress: versus.onProgress } : {}),
           })}
         </div>
       )}
 
-      {yesterdayAnswer && !practicing && (
+      {versus && report && (
+        <div ref={resultRef} className={styles.result}>
+          <VersusSummary game={versus} report={report} elapsedMs={versusElapsed} />
+        </div>
+      )}
+
+      {yesterdayAnswer && !practicing && !versus && (
         <section className={styles.yesterday} aria-label={es.shell.yesterday}>
           {yesterdayAnswer.imageStem && (
             <ContentImage className={styles.yesterdayImage} stem={yesterdayAnswer.imageStem} alt="" sizes="3rem" />
@@ -382,7 +505,7 @@ export function GameShell({
       )}
 
       {/* El resultado va al final, debajo de los intentos y de "Ayer fue…", con los modos para seguir jugando. */}
-      {report && !resultInSheet && (
+      {report && !resultInSheet && !versus && (
         <div ref={resultRef} className={styles.result}>
           <ResultPanel
             titleOverride={report.title}
@@ -501,19 +624,7 @@ export function GameShell({
 
       {dialog === 'help' && (
         <Modal title={es.shell.helpTitle(mode.name)} onClose={closeDialog}>
-          <div className={styles.help}>
-            {es.modeHelp[franchise.slug]?.[mode.slug] && <p>{es.modeHelp[franchise.slug][mode.slug]}</p>}
-            {help}
-            <p>{es.shell.limits.help}</p>
-            <section>
-              <h3 className={styles.helpTitle}>{es.shell.helpCommonTitle}</h3>
-              <ul className={styles.helpList}>
-                {es.shell.helpCommon.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </section>
-          </div>
+          <HowToPlay franchise={franchise.slug} mode={mode.slug} help={help} versusRules={howToRules} />
         </Modal>
       )}
 
@@ -552,6 +663,7 @@ export function GameShell({
     </div>
     </SheetSlotContext.Provider>
     </ActiveAttemptLimit.Provider>
+    </SurrenderAllowed.Provider>
     </AttemptsStatusProvider>
   );
 }

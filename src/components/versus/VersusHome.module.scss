@@ -1,0 +1,135 @@
+@use 'breakpoints' as bp;
+@use 'retro' as r;
+@use 'tokens' as t;
+
+.root {
+  display: grid;
+  gap: t.$space-5;
+}
+
+.actions {
+  display: grid;
+  gap: t.$space-5;
+
+  @include bp.min-width('md') {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+}
+
+.create,
+.join {
+  align-content: center;
+  min-block-size: 12rem;
+}
+
+.create {
+  justify-items: center;
+  text-align: center;
+}
+
+.createButton {
+  inline-size: 100%;
+  max-inline-size: 22rem;
+  padding-block: 1rem;
+}
+
+.hint {
+  color: r.$ink;
+}
+
+.joinTitle {
+  @include r.title(clamp(1.15rem, 4vw, 1.5rem), r.$ink);
+  display: flex;
+  align-items: center;
+  gap: t.$space-3;
+  text-shadow: 0.06em 0.06em 0 r.$shadow;
+}
+
+.field {
+  display: grid;
+  gap: t.$space-2;
+}
+
+.label {
+  @include r.label;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: t.$space-3;
+  align-items: center;
+}
+
+.input {
+  @include r.field;
+  font-family: r.$font-code;
+  font-size: 1.15rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  &[aria-invalid='true'] {
+    border-color: #ff6b86;
+  }
+}
+
+.error {
+  min-block-size: 1.25rem;
+  color: #ff8aa0;
+  font-size: t.$font-size-sm;
+}
+
+// Las tres modalidades, cada una en su propio recuadro.
+.modes {
+  display: grid;
+  gap: t.$space-4;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include bp.min-width('md') {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  > li {
+    display: grid;
+  }
+}
+
+.mode {
+  color: r.$ink;
+  font-size: t.$font-size-sm;
+
+  // El cuerpo del panel: ícono a la izquierda y el texto al lado.
+  > div {
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: t.$space-3;
+  }
+}
+
+.modeText {
+  display: grid;
+  gap: 0.15rem;
+  color: r.$muted;
+
+  strong {
+    color: r.$gold;
+    font-family: r.$font-title;
+    font-size: 1.1rem;
+    font-style: normal;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+}
+
+.srOnly {
+  position: absolute;
+  inline-size: 0.0625rem;
+  block-size: 0.0625rem;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

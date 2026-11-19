@@ -3,28 +3,21 @@
 @use 'mixins' as m;
 
 // --- Cápsula (el modo principal) -----------------------------------------------------
-// Una cápsula Hoi-Poi acostada. El cuerpo (punta redonda, banda azul con la etiqueta) se estira con el ancho; el extremo
-// (hombro, cuello con el accionador y tapa) es un dibujo de proporción fija a la derecha. Dibujo propio a partir de la
-// cápsula de la serie, sin ningún logo. El ancho lo pone la grilla (desde la esfera 2 hasta la 6 en pantalla grande).
-
-// El sombreado del cuerpo, igual en el cuerpo y en el hombro: luz arriba y sombra abajo.
-$body-shade: linear-gradient(
-  to bottom,
-  color-mix(in srgb, var(--palette-white) 55%, var(--palette-cloud)) 0,
-  var(--palette-white) 20%,
-  color-mix(in srgb, var(--palette-white) 55%, var(--palette-cloud)) 55%,
-  var(--palette-cloud) 100%
-);
+// Una cápsula Hoi-Poi acostada: la imagen aportada por el usuario el 2026-11-15 (data/dragon-ball/source/capsule/), sin
+// texto. La etiqueta (número del modo, nombre y estado de hoy) va encima del recuadro celeste del medio, que ocupa del
+// 17,4 % al 79,4 % del ancho y del 15,3 % al 83,9 % del alto (medido sobre la imagen). El ancho lo pone la grilla (desde
+// la esfera 2 hasta la 6 en pantalla grande); el alto sale de la proporción de la imagen.
 
 .capsule {
   @include m.touch-target;
   container-type: inline-size;
-  display: flex;
-  align-items: stretch;
+  position: relative;
+  display: block;
   inline-size: 100%;
-  max-inline-size: 40rem;
+  // Con la imagen la cápsula se veía demasiado grande a lo ancho de la grilla: queda en un tamaño fijo, centrada.
+  max-inline-size: 28rem;
   margin-inline: auto;
-  block-size: clamp(7.5rem, 15vw, 11rem);
+  aspect-ratio: 1962 / 601;
   color: t.token('ink');
   text-decoration: none;
   @include m.focus-ring;
@@ -41,61 +34,36 @@ $body-shade: linear-gradient(
     transform: translateY(0.125rem);
   }
 
-  // En pantalla grande mide lo que cinco de las siete columnas (de la esfera 2 a la 6, más las separaciones), centrada.
+  // En pantalla grande, un poco más.
   @include bp.min-width('xl') {
-    max-inline-size: calc(100% * 5 / 7 - 0.25rem);
+    max-inline-size: 32rem;
   }
 }
 
-// El cuerpo: blanco, con una textura de puntitos (la cápsula de la foto es rugosa) y el sombreado de arriba abajo. La punta
-// de la izquierda es redonda y la derecha queda abierta: sigue el hombro del dibujo.
-.pill {
-  position: relative;
-  flex: 1;
-  min-inline-size: 0;
-  overflow: hidden;
-  border: 0.3125rem solid var(--palette-ink);
-  border-inline-end: 0;
-  border-radius: 100rem 0 0 100rem;
-  background:
-    radial-gradient(circle, color-mix(in srgb, var(--palette-ink) 9%, transparent) 0 0.04rem, transparent 0.07rem) 0 0 / 0.375rem 0.375rem,
-    $body-shade;
-  box-shadow: t.token('shadow-card');
-
-  // El brillo: una línea clara a lo largo del cuerpo, arriba.
-  &::before {
-    content: '';
-    position: absolute;
-    inset-block-start: 18%;
-    inset-inline: 12% 4%;
-    block-size: 0.375rem;
-    border-radius: 1rem;
-    background: var(--palette-white);
-    opacity: 0.95;
-  }
-}
-
-// La banda azul, de arriba a abajo del cuerpo, con un borde de tinta a cada lado.
-.band {
+.capsuleArt {
   position: absolute;
-  inset-block: 0;
-  inset-inline: 20% 12%;
-  border-inline: 0.25rem solid var(--palette-ink);
-  background: var(--palette-sky-blue);
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0.25rem 0.25rem 0 var(--palette-ink));
+  pointer-events: none;
+  user-select: none;
 }
 
-// La etiqueta: el número del modo, su nombre y su estado. Pendiente es celeste; resuelto hoy, amarillo y con un ✓.
+// La etiqueta, sobre el recuadro celeste (un poco adentro, para no tapar su borde de tinta). Pendiente se ve el celeste de
+// la imagen; resuelto hoy, el recuadro se pinta de amarillo.
 .label {
   position: absolute;
-  inset: 0.75rem;
+  inset-block: calc(15.3% + 0.375rem) calc(16.1% + 0.375rem);
+  inset-inline: calc(17.4% + 0.375rem) calc(20.6% + 0.375rem);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
   min-inline-size: 0;
   padding-inline: 0.5rem;
-  border: 0.1875rem solid var(--palette-ink);
-  background: var(--palette-cloud);
+  border-radius: 0.5rem;
   color: var(--palette-ink);
 
   .capsule[data-state='solved'] & {
@@ -134,70 +102,6 @@ $body-shade: linear-gradient(
   font-size: t.$font-size-sm;
   font-weight: t.$font-weight-bold;
   line-height: 1.2;
-}
-// El extremo: el dibujo se pega al cuerpo y su ancho sale de su proporción. Su borde de arriba y de abajo está a mitad del
-// borde del cuerpo (5 px): mide el alto de la tarjeta menos un borde y baja medio borde, así las dos líneas se continúan.
-.tip {
-  flex: none;
-  block-size: calc(100% - 0.3125rem);
-  margin-block: 0.15625rem;
-  inline-size: auto;
-  overflow: visible;
-  filter: drop-shadow(0.25rem 0.25rem 0 var(--palette-ink));
-}
-
-.dot {
-  fill: color-mix(in srgb, var(--palette-ink) 9%, transparent);
-}
-
-.bodyTop {
-  stop-color: color-mix(in srgb, var(--palette-white) 55%, var(--palette-cloud));
-}
-
-.bodyHigh {
-  stop-color: var(--palette-white);
-}
-
-.bodyMid {
-  stop-color: color-mix(in srgb, var(--palette-white) 55%, var(--palette-cloud));
-}
-
-.bodyLow {
-  stop-color: var(--palette-cloud);
-}
-
-.line,
-.actuator,
-.cap,
-.capShade {
-  vector-effect: non-scaling-stroke;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-}
-
-.line {
-  fill: none;
-  stroke: var(--palette-ink);
-  stroke-width: 0.3125rem;
-  stroke-linecap: butt;
-}
-
-.actuator {
-  fill: var(--palette-gray);
-  stroke: var(--palette-ink);
-  stroke-width: 0.25rem;
-}
-
-.cap {
-  fill: var(--palette-white);
-  stroke: var(--palette-ink);
-  stroke-width: 0.3125rem;
-}
-
-// Un poco de sombra en la tapa, como la del cuerpo.
-.capShade {
-  fill: var(--palette-cloud);
-  stroke: none;
 }
 
 // --- Esfera del dragón (los demás modos) -----------------------------------------------

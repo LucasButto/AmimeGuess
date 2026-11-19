@@ -46,15 +46,6 @@
 
 .name { min-block-size: 2rem; }
 
-.optimal { @include m.engine-panel; font-size: t.$font-size-lg; line-height: t.$line-height-base; display: grid; gap: t.$space-3; padding: t.$space-4; }
-.optimal h2 { font-size: t.$font-size-lg; }
-.optimalList { display: grid; gap: t.$space-3; list-style: none; margin: 0; padding: 0; @include bp.min-width('lg') { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.optimalItem { display: flex; align-items: center; gap: t.$space-3; min-inline-size: 0; overflow-wrap: anywhere; }
-.optimalImage { display: none; @include bp.min-width('sm') { display: block; } inline-size: 3rem; block-size: 3rem; object-fit: contain; flex: none; }
-.change { color: t.token('ink-muted'); }
-
-.optimalDetails { min-inline-size: 0; }
-
 // Diseño de app: el Pokémon detiene la ruleta y las seis estadísticas se muestran en 2 × 3.
 .board {
   @include m.app-shell { gap: t.$space-3; }

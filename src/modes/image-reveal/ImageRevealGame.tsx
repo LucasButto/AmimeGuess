@@ -36,7 +36,8 @@ export function ImageRevealGame({ franchise, mode, modes, config, entities, cont
     [entities, contents, config],
   );
 
-  // El contador de posibles del modo Jutsu cuenta los jutsus (cada imagen) y no los personajes que los usan.
+  // El contador de posibles de los modos Jutsu y Técnica cuenta los contenidos (cada clip) y no los personajes que los usan, y con ellos se
+  // mide también el mínimo para jugar. Los intentos siguen contando las respuestas (`poolSize`).
   const displayCount = useMemo(
     () => (config.countNoun === undefined ? undefined : (active: readonly string[]) => candidatesOf(entities, contents, active, config).reduce((sum, candidate) => sum + candidate.images.length, 0)),
     [entities, contents, config],
@@ -45,7 +46,8 @@ export function ImageRevealGame({ franchise, mode, modes, config, entities, cont
   const yesterday = useCallback(
     (ctx: DailyContext, active: readonly string[]): AnswerInfo | null => {
       const pool = candidatesOf(entities, contents, active, config);
-      if (!hasMinimumPool(pool.length, MINIMUM_POOL)) return null;
+      const counted = config.countNoun === undefined ? pool.length : pool.reduce((sum, candidate) => sum + candidate.images.length, 0);
+      if (!hasMinimumPool(counted, MINIMUM_POOL)) return null;
       const answer = yesterdayOf(pool, ctx);
       const name = config.showsContentName ? pickImage(answer, { ...ctx, day: ctx.day - 1 }).name : undefined;
       return { label: answer.entity.name.es, imageStem: answer.entity.image, ...(name === undefined ? {} : { detail: name }) };

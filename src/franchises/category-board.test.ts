@@ -55,7 +55,9 @@ for (const franchise of [narutoConfig, dragonBallConfig] as readonly FranchiseCo
         for (const id of ['chi-chi', 'gotenks', 'lunch', 'dende', 'nail', 'gogeta', 'vegetto', 'puar', 'videl', 'bulma']) expect(config.categories[2].members).not.toContain(id);
         expect(config.categories.find((item) => item.id === 'fusion')!.members).toEqual(expect.arrayContaining(['celula', 'piccolo', 'majin-buu']));
         expect(config.categories.find((item) => item.id === 'ejercito-freezer')!.members).toContain('broly');
-        expect(config.categories.find((item) => item.id === 'antagonista')!.members).toContain('champa');
+        const antagonists = config.categories.find((item) => item.id === 'antagonista')!.members;
+        expect(antagonists).toEqual(expect.arrayContaining(['champa', 'hit', 'cabba', 'frost']));
+        for (const id of ['botamo', 'magetta']) expect(config.roster).not.toContain(id);
         expect(config.categories.find((item) => item.id === 'antagonista')!.members).toEqual(expect.arrayContaining(['chaoz', 'tenshinhan']));
         expect(config.categories.find((item) => item.id === 'antagonista')!.members).not.toContain('yamcha');
         expect(config.roster).not.toContain('kaio-del-este');

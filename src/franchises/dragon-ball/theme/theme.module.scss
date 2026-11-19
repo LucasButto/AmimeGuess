@@ -340,6 +340,10 @@
   --cell-edge: var(--palette-ink);
   --cell-lines: 2;
 
+  [data-column='sagaDebut'] [data-part='value'] {
+    -webkit-line-clamp: unset;
+  }
+
   // La revelación del Clásico (`swap`): el escaneo recorre cada celda en medio segundo y las columnas arrancan una tras
   // otra cada 170 ms (7 columnas: menos de 1,6 s en total, bajo el tope de 2,4 s).
   --flip-duration: 520ms;

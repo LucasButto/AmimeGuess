@@ -52,9 +52,9 @@ describe('solvedToday', () => {
       ...state('dragon-ball', 'linea-de-tiempo', 'all~d2x', 100, 'won'),
       ...state('dragon-ball', 'silueta', 'dbz~x', 100, 'won'),
       ...state('dragon-ball', 'tecnica', 'all~x', 99, 'won'),
-      ...state('dragon-ball', 'borroso', 'all~x', 100, 'playing'),
+      ...state('dragon-ball', 'quiz', 'all~x', 100, 'playing'),
     });
-    const modes = ['clasico', 'frase', 'linea-de-tiempo', 'silueta', 'tecnica', 'borroso'];
+    const modes = ['clasico', 'frase', 'linea-de-tiempo', 'silueta', 'tecnica', 'quiz'];
     expect([...solvedToday(storage, 'dragon-ball', modes, 100, 'all')]).toEqual(['clasico', 'frase', 'linea-de-tiempo']);
     expect([...solvedToday(storage, 'dragon-ball', modes, 100, 'dbz')]).toEqual(['silueta']);
   });

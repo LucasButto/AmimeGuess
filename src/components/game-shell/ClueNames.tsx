@@ -86,14 +86,28 @@ export function ClueNames({ text, help }: { text: string; help?: Readonly<Record
   return <>{parts}{text.slice(end)}</>;
 }
 
-function PortraitName({ portrait, children }: { portrait: Portrait; children: string }) {
-  const preview = portrait.pixelSource
+function portraitPreview(portrait: Portrait) {
+  return portrait.pixelSource
     ? <img src={portrait.pixelSource} alt="" width={40} height={40} decoding="async" draggable={false}
         className={`${styles.portrait} ${styles.pixel}`} />
     : portrait.image && <ContentImage stem={portrait.image} alt="" sizes="7.5rem" className={styles.portrait} />;
+}
+
+function PortraitName({ portrait, children }: { portrait: Portrait; children: string }) {
   return (
     <span data-inline-targets="" data-clue-name="">
-      <InfoTip text={portrait.name} preview={preview}>{children}</InfoTip>
+      <InfoTip text={portrait.name} preview={portraitPreview(portrait)}>{children}</InfoTip>
     </span>
   );
+}
+
+/**
+ * El retrato de un nombre al pasar el cursor sobre el contenedor inmediato (una casilla de Conexiones: no lleva botón propio
+ * porque ya está dentro de uno). El contenedor tiene que ser `position: relative`. No dibuja nada si el nombre no es un personaje.
+ */
+export function ClueNameHover({ text }: { text: string }) {
+  const catalog = useContext(CluePortraits);
+  const portrait = catalog && (catalog.names.get(text) ?? catalog.exact.get(text.toLocaleLowerCase('es')));
+  if (!portrait) return null;
+  return <InfoTip hoverOnly text={portrait.name} preview={portraitPreview(portrait)} />;
 }

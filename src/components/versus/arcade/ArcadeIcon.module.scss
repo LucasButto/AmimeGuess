@@ -1,0 +1,30 @@
+.icon {
+  display: inline-block;
+  flex: none;
+  inline-size: auto;
+  max-inline-size: none;
+  vertical-align: middle;
+  // Pixel art: nada de suavizado al escalar.
+  image-rendering: pixelated;
+  user-select: none;
+
+  &[data-size='sm'] {
+    block-size: 1.25rem;
+  }
+
+  &[data-size='md'] {
+    block-size: 1.75rem;
+  }
+
+  &[data-size='lg'] {
+    block-size: 2.75rem;
+  }
+
+  &[data-size='xl'] {
+    block-size: 4.5rem;
+  }
+
+  &[data-size='hero'] {
+    block-size: clamp(6rem, 24vw, 9rem);
+  }
+}

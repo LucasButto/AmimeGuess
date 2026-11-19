@@ -1,0 +1,121 @@
+@use 'tokens' as t;
+@use 'breakpoints' as bp;
+@use 'mixins' as m;
+
+.root {
+  @include m.engine-panel;
+  display: grid;
+  gap: t.$space-3;
+  padding: t.$space-4;
+  line-height: t.$line-height-base;
+}
+
+.title { font-size: t.$font-size-lg; }
+
+.summary { font-size: t.$font-size-base; }
+
+// Los dos equipos siempre lado a lado, también en el teléfono: la comparación se lee de un vistazo.
+.teams {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: t.$space-2;
+  @include bp.min-width('sm') { gap: t.$space-4; }
+}
+
+.team {
+  display: grid;
+  gap: t.$space-2;
+  min-inline-size: 0;
+  padding: t.$space-2;
+  border: t.$border-width solid t.token('frame-color');
+  border-radius: t.$radius-sm;
+  @include bp.min-width('sm') { padding: t.$space-3; }
+}
+
+// El mejor equipo se distingue por su encabezado, con el color de acento del tema.
+.team[data-best] { border-color: t.token('accent-primary'); }
+
+.teamHeader {
+  display: grid;
+  gap: 0.125rem;
+  min-inline-size: 0;
+  padding-block-end: t.$space-2;
+  border-block-end: t.$border-width solid t.token('frame-color');
+}
+
+.team[data-best] .teamHeader { border-block-end-color: t.token('accent-primary'); }
+
+.teamTitle {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+  @include bp.min-width('sm') { font-size: t.$font-size-base; }
+}
+
+.teamTotal {
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+  font-variant-numeric: tabular-nums;
+}
+
+.members {
+  display: grid;
+  gap: t.$space-1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Imagen del Pokémon a la izquierda y, a la derecha, la estadística con su valor. En el teléfono cada equipo es una columna
+// angosta: el valor va debajo de la estadística y el nombre solo se ve desde `sm` (el lector de pantalla lo lee siempre).
+.member {
+  display: grid;
+  grid-template: 'image stat' auto 'image value' auto / 2.5rem minmax(0, 1fr);
+  align-items: center;
+  column-gap: t.$space-2;
+  min-inline-size: 0;
+  padding: 0.125rem t.$space-1;
+  border: t.$border-width solid transparent;
+  border-radius: t.$radius-sm;
+  @include bp.min-width('sm') { grid-template: 'image stat value' auto 'image name name' auto / 3rem minmax(0, 1fr) auto; }
+}
+
+// Dónde cambia el mejor equipo respecto del tuyo.
+.member[data-changed] { border-color: t.token('accent-primary'); background: t.token('chip-fill'); }
+
+.memberImage {
+  grid-area: image;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+  object-fit: contain;
+  @include bp.min-width('sm') { inline-size: 3rem; block-size: 3rem; }
+}
+
+.memberStat {
+  grid-area: stat;
+  min-inline-size: 0;
+  overflow-wrap: break-word;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+}
+
+.memberValue {
+  grid-area: value;
+  font-size: t.$font-size-sm;
+  font-variant-numeric: tabular-nums;
+  @include bp.min-width('sm') { font-size: t.$font-size-base; }
+}
+
+.memberName {
+  display: none;
+  grid-area: name;
+  min-inline-size: 0;
+  overflow: hidden;
+  color: t.token('ink-muted');
+  font-size: t.$font-size-sm;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  @include bp.min-width('sm') { display: block; }
+}

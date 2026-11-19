@@ -32,6 +32,9 @@ export const narutoSkin: FranchiseSkin = {
   backNavExitMs: 250,
   // Al cambiar de modo, el humo tapa la pantalla en 280 ms antes de navegar (ver `SmokeOut`).
   pageExitMs: 280,
+  // Íconos del menú del juego (Cómo se juega, Estadísticas y Ajustes), aportados por el usuario el 2026-11-15; los originales
+  // están en data/naruto/source/menu-icons/.
+  menuIcons: { help: 'naruto/menu/help', stats: 'naruto/menu/stats', settings: 'naruto/menu/settings', menu: 'naruto/menu/menu', filters: 'naruto/menu/filters', surrender: 'naruto/menu/surrender' },
   // Sin tildes, cruces ni el símbolo del parcial: el verde, el naranja y el rojo lo dicen solos; solo quedan las flechas.
   cellMarks: 'arrows',
   additionalAttemptsMeters: ['category-board'],

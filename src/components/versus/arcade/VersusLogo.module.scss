@@ -1,0 +1,32 @@
+.logo {
+  display: grid;
+  justify-items: center;
+  line-height: 0;
+}
+
+.full,
+.brand,
+.word {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
+  image-rendering: pixelated;
+  user-select: none;
+}
+
+.full {
+  inline-size: min(34rem, 92vw);
+}
+
+.logo[data-variant='page'] {
+  justify-items: start;
+  gap: 0.25rem;
+}
+
+.brand {
+  inline-size: clamp(7rem, 26vw, 10rem);
+}
+
+.word {
+  inline-size: clamp(10rem, 40vw, 16rem);
+}

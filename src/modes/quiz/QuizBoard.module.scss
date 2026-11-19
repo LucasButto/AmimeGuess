@@ -1,0 +1,161 @@
+@use 'breakpoints' as bp;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-3;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
+}
+
+.instructions {
+  line-height: t.$line-height-base;
+}
+
+// Los intentos (si hay más de uno) y Rendirse.
+.counter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: t.$space-1 t.$space-3;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: t.color('text-muted');
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-3;
+  padding: t.$space-3;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-lg;
+  background: t.color('surface');
+
+  @include bp.min-width('sm') {
+    padding: t.$space-4;
+  }
+}
+
+.scope {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  color: t.color('text-muted');
+}
+
+.question {
+  font-size: t.$font-size-lg;
+  font-weight: t.$font-weight-bold;
+  line-height: t.$line-height-tight;
+  overflow-wrap: anywhere;
+}
+
+// La grilla de Conexiones: cuatro columnas desde `sm` (12 opciones, tres filas). En un teléfono de 360 px las casillas de
+// cuatro columnas miden 71 px y los nombres largos no entran: ahí van tres columnas (cuatro filas).
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: t.$space-1;
+
+  @include bp.min-width('sm') {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: t.$space-2;
+  }
+}
+
+// La casilla va en un contenedor porque el retrato del personaje (hover) no puede colgar de un botón.
+.cell {
+  position: relative;
+  display: grid;
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 4.25rem;
+  padding: t.$space-1 0.25rem;
+  font: inherit;
+  font-size: max(0.8125rem, #{t.fluid(0.71875rem, 1rem)});
+  font-weight: t.$font-weight-medium;
+  line-height: t.$line-height-tight;
+  text-align: center;
+  color: t.color('text');
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  border: t.$border-width solid t.color('border');
+  border-radius: t.$radius-md;
+  background: t.color('surface');
+  cursor: pointer;
+
+  &:not(:disabled) {
+    @include m.hover {
+      border-color: t.color('accent');
+      background: color-mix(in srgb, #{t.color('accent')} 10%, #{t.color('surface')});
+    }
+  }
+
+  &:focus-visible {
+    outline: 0.125rem solid t.color('focus');
+    outline-offset: 0.125rem;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+
+  // Lo que no se eligió, una vez terminada la partida, queda apagado.
+  &:disabled[data-state='idle'] {
+    opacity: 0.55;
+  }
+
+  // Teléfono: la opción marcada, todavía sin confirmar (como una casilla elegida de Conexiones).
+  &[aria-pressed='true'] {
+    border-color: t.color('accent');
+    background: color-mix(in srgb, #{t.color('accent')} 14%, #{t.color('surface')});
+    box-shadow: inset 0 0 0 0.125rem t.color('accent');
+  }
+
+  // La opción acertada (y la que se revela al perder) y la incorrecta: el color acompaña al texto de lectores de pantalla.
+  &[data-state='right'],
+  &[data-state='reveal'] {
+    border-color: t.color('match');
+    background: color-mix(in srgb, #{t.color('match')} 16%, #{t.color('surface')});
+    box-shadow: inset 0 0 0 0.125rem t.color('match');
+  }
+
+  &[data-state='wrong'] {
+    border-color: t.color('miss');
+    background: color-mix(in srgb, #{t.color('miss')} 14%, #{t.color('surface')});
+    box-shadow: inset 0 0 0 0.125rem t.color('miss');
+  }
+}
+
+// El dato que explica la respuesta, al terminar.
+.fact {
+  display: flex;
+  flex-direction: column;
+  gap: t.$space-1;
+  padding: t.$space-3;
+  border-inline-start: 0.25rem solid t.color('miss');
+  border-radius: t.$radius-md;
+  background: color-mix(in srgb, #{t.color('miss')} 8%, #{t.color('surface')});
+  line-height: t.$line-height-base;
+
+  &[data-right='true'] {
+    border-inline-start-color: t.color('match');
+    background: color-mix(in srgb, #{t.color('match')} 10%, #{t.color('surface')});
+  }
+}
+
+.factTitle {
+  font-size: t.$font-size-base;
+  font-weight: t.$font-weight-bold;
+}

@@ -2616,7 +2616,7 @@
       "boruto"
     ],
     "attrs": {
-      "genero": "Masculino",
+      "genero": "Biju",
       "afiliaciones": [
         "Konoha",
         {
@@ -2657,7 +2657,7 @@
       "shippuden"
     ],
     "attrs": {
-      "genero": null,
+      "genero": "Biju",
       "afiliaciones": [
         "Suna"
       ],
@@ -4724,7 +4724,7 @@
       "shippuden"
     ],
     "attrs": {
-      "genero": null,
+      "genero": "Biju",
       "afiliaciones": [
         "Kumo"
       ],
@@ -4757,7 +4757,7 @@
       "shippuden"
     ],
     "attrs": {
-      "genero": null,
+      "genero": "Biju",
       "afiliaciones": [
         "Kiri"
       ],
@@ -4794,7 +4794,7 @@
       "shippuden"
     ],
     "attrs": {
-      "genero": null,
+      "genero": "Biju",
       "afiliaciones": [
         "Iwa"
       ],
@@ -4834,7 +4834,7 @@
       "shippuden"
     ],
     "attrs": {
-      "genero": null,
+      "genero": "Biju",
       "afiliaciones": [
         "Iwa"
       ],
@@ -4873,7 +4873,7 @@
       "shippuden"
     ],
     "attrs": {
-      "genero": null,
+      "genero": "Biju",
       "afiliaciones": [
         "Kiri"
       ],
@@ -4909,7 +4909,7 @@
       "shippuden"
     ],
     "attrs": {
-      "genero": null,
+      "genero": "Biju",
       "afiliaciones": [
         "Taki"
       ],
@@ -4943,7 +4943,7 @@
       "shippuden"
     ],
     "attrs": {
-      "genero": null,
+      "genero": "Biju",
       "afiliaciones": [
         "Kumo",
         {

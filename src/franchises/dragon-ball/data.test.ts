@@ -4,28 +4,28 @@
 // ni como valor visible en ninguno de los modos.
 
 import { beforeAll, describe, expect, it } from 'vitest';
-import { yesterday as yesterdayOf, type DailyContext } from '@/engine/daily';
+import type { DailyContext } from '@/engine/daily';
 import { defaultMinPool, eligibleEntities, hasMinimumPool, publishableContents } from '@/engine/filters';
 import type { Content, Entity } from '@/engine/types';
 import { buildRow, cellText, visibleColumns } from '@/modes/classic/logic';
-import { MAX_ROUNDS, buildRounds, metricOfDay, poolOf as higherLowerPool } from '@/modes/higher-lower/logic';
+import { buildBoard, poolOf as connectionsPool } from '@/modes/connections/logic';
+import { GROUP_SIZE } from '@/modes/connections/types';
 import { candidatesOf as imageCandidates } from '@/modes/image-reveal/logic';
+import { optionCountOf, optionsFor, poolOf as quizPool, questionOf } from '@/modes/quiz/logic';
 import { candidatesOf as textCandidates } from '@/modes/text-clue/logic';
 import { buildPuzzle, countOf, poolOf as timelinePool } from '@/modes/timeline/logic';
 import { modeStatus } from '@/app/[franchise]/[mode]/playable';
+import { minimumPoolOf, modePoolSize } from '@/franchises/pool';
 import contentJson from '../../../data/dragon-ball/content.json';
 import { dragonBallContents } from './content';
 import entitiesJson from '../../../data/dragon-ball/entities.json';
-import formsJson from '../../../data/dragon-ball/transformations.json';
-import powerJson from '../../../data/dragon-ball/power.json';
 import sagasJson from '../../../data/dragon-ball/sagas.json';
+import quizSource from '../../../data/dragon-ball/source/quiz.json';
 import { entitiesOfMode, loadFranchiseData, type FranchiseData } from '../data';
 import type { ModeConfig } from '../types';
-import { dragonBallConfig, sagaLabels } from './config';
+import { dragonBallConfig } from './config';
 
 const characters = entitiesJson as unknown as Entity[];
-const forms = formsJson as Entity[];
-const power = powerJson as unknown as Entity[];
 const rawContents = dragonBallContents(contentJson as Content[]);
 // Se conservan las marcas del catálogo para comprobar qué publica cada modo.
 // Para probar las reglas de exclusión sobre el contenido real se consideran verificados.
@@ -41,19 +41,24 @@ const mode = (slug: string): ModeConfig => {
 
 const exclusiveTo = (entity: Pick<Entity, 'series'>, series: string) => entity.series.length === 1 && entity.series[0] === series;
 const without = (series: string) => allSeries.filter((id) => id !== series);
+const nameOf = new Map(characters.map((entity) => [entity.id, entity.name.es]));
+const byId = new Map(characters.map((entity) => [entity.id, entity]));
+/** Todas las combinaciones de series que se pueden dejar activas (31 con 5 series). */
+const combinations: string[][] = Array.from({ length: 2 ** allSeries.length - 1 }, (_, bits) =>
+  allSeries.filter((_, index) => ((bits + 1) >> index) & 1),
+);
 const ctx: DailyContext = { franchise: 'dragon-ball', mode: 'x', filterKey: 'all', day: 200 };
 
 describe('config', () => {
-  it('tiene los 9 modos de la SPEC, en orden y con su motor', () => {
+  it('tiene los 8 modos, en orden y con su motor', () => {
     expect(modes.map((m) => [m.slug, m.engine])).toEqual([
       ['clasico', 'classic'],
       ['silueta', 'image-reveal'],
       ['frase', 'text-clue'],
-      ['borroso', 'image-reveal'],
+      ['quiz', 'quiz'],
       ['tecnica', 'image-reveal'],
-      ['poder', 'higher-lower'],
-      ['transformacion', 'image-reveal'],
       ['linea-de-tiempo', 'timeline'],
+      ['conexiones', 'connections'],
       ['casillas', 'category-board'],
     ]);
   });
@@ -70,29 +75,62 @@ describe('config', () => {
     }
   });
 
-  it('las columnas de serie y saga de debut tienen nombre para cada número que aparece en los datos', () => {
+  it('la columna de saga de debut tiene nombre para cada número que aparece en los datos, y ya no hay columna de serie de debut', () => {
     const columns = Object.fromEntries((mode('clasico').classic?.columns ?? []).map((column) => [column.key, column]));
-    for (const key of ['serieDebut', 'sagaDebut']) {
-      const labels = columns[key]?.valueLabels;
-      expect(labels, key).toBeDefined();
-      for (const entity of characters) {
-        expect(labels?.[String(entity.attrs[key])], `${entity.id}.${key}=${String(entity.attrs[key])}`).toBeDefined();
-      }
+    expect(columns.serieDebut).toBeUndefined();
+    const labels = columns.sagaDebut?.valueLabels;
+    expect(labels).toBeDefined();
+    for (const entity of characters) {
+      expect(labels?.[String(entity.attrs.sagaDebut)], `${entity.id}.sagaDebut=${String(entity.attrs.sagaDebut)}`).toBeDefined();
     }
   });
 
-  it('cada número de saga se muestra con el nombre corto de su saga y la serie a la que pertenece', () => {
+  it('cada número de saga se muestra con el nombre del catálogo y la serie a la que pertenece', () => {
     const labels = mode('clasico').classic?.columns.find((column) => column.key === 'sagaDebut')?.valueLabels ?? {};
     for (const saga of sagasJson.sagas) {
-      expect(sagaLabels[saga.id], `falta el nombre corto de ${saga.id}`).toBeDefined();
-      expect(labels[String(saga.order)]).toEqual({ label: sagaLabels[saga.id], series: saga.series });
+      expect(labels[String(saga.order)]).toEqual({ label: saga.name, series: saga.series });
     }
   });
 
-  it('Transformación adivina las formas y Nivel de poder compara sus entradas; los demás, los personajes', () => {
-    expect(mode('transformacion').entitySet).toBe('transformations');
-    expect(mode('poder').entitySet).toBe('power');
-    for (const other of modes.filter((candidate) => !['transformacion', 'poder'].includes(candidate.slug))) expect(other.entitySet, other.slug).toBeUndefined();
+  it('las flechas del Clásico siguen el orden pedido y distinguen Androides, Cell y el Otro Mundo', () => {
+    const column = mode('clasico').classic!.columns.find((candidate) => candidate.key === 'sagaDebut')!;
+    const progression = [
+      ['goku', 'Búsqueda de las Esferas del Dragón'],
+      ['general-blue', 'Ejército de la Patrulla Roja'],
+      ['androide-17', 'Saga de los Androides'],
+      ['celula', 'Los Juegos de Cell'],
+      ['paikuhan', 'Torneo del Otro Mundo'],
+      ['oob', 'Epílogo de Dragon Ball Z'],
+      ['gogeta', 'Películas Z'],
+      ['glorio', 'Dragon Ball Daima'],
+      ['bills', 'La Batalla de los Dioses'],
+      ['jiren', 'Torneo del Poder'],
+      ['broly', 'Broly'],
+      ['gamma-1', 'Dragon Ball Super: Super Hero'],
+      ['giru', 'Búsqueda de las Esferas del Dragón de Estrellas Negras'],
+      ['goku-jr', '100 años después'],
+    ] as const;
+    for (const [index, [earlierId, label]] of progression.slice(0, -1).entries()) {
+      const [laterId] = progression[index + 1];
+      const [cell] = buildRow(byId.get(earlierId)!, byId.get(laterId)!, [column], allSeries).cells;
+      expect(cellText(column, cell.value), earlierId).toBe(label);
+      expect(cell.direction, earlierId).toBe('up');
+    }
+    const last = sagasJson.sagas.at(-1)!;
+    expect(last.name).toBe('100 años después');
+    expect(characters.filter((entity) => entity.attrs.sagaDebut === last.order).map((entity) => entity.id).sort()).toEqual(['goku-jr', 'vegeta-jr']);
+  });
+
+  it('abrevia las formas Super Saiyajin y distingue SSJ2 de SSJ Dios', () => {
+    const column = mode('clasico').classic!.columns.find((candidate) => candidate.key === 'transformaciones')!;
+    const goku = byId.get('goku')!;
+    const [cell] = buildRow(goku, goku, [column], allSeries).cells;
+    expect(cell.value).toEqual(['Ozaru', 'SSJ1', 'SSJ2', 'SSJ3', 'SSJ4', 'SSJ Dios', 'SSJ Blue', 'Ultra Instinto']);
+  });
+
+  it('ya no están Nivel de poder ni Transformación, y todos los modos usan a los personajes', () => {
+    expect(modes.some((candidate) => ['poder', 'transformacion'].includes(candidate.slug))).toBe(false);
+    for (const other of modes) expect(other.entitySet, other.slug).toBeUndefined();
   });
 });
 
@@ -102,9 +140,9 @@ describe('carga de datos', () => {
     data = (await loadFranchiseData('dragon-ball')) as FranchiseData;
   });
 
-  it('trae los personajes, las formas como conjunto aparte y el contenido', () => {
+  it('trae los personajes y el contenido', () => {
     expect(data.entities).toHaveLength(characters.length);
-    expect(entitiesOfMode(data, 'transformations')).toHaveLength(forms.length);
+    expect(data.entitySets).toBeUndefined();
     expect(entitiesOfMode(data, undefined)).toBe(data.entities);
     expect(data.contents.length).toBeLessThanOrEqual(rawContents.length);
   });
@@ -128,7 +166,7 @@ describe('carga de datos', () => {
   });
 
   it('los modos con contenido de sobra están disponibles; los demás dependen de lo que haya y se oculta el que no alcanza', () => {
-    for (const slug of ['clasico', 'silueta', 'borroso', 'poder', 'transformacion']) {
+    for (const slug of ['clasico', 'silueta', 'quiz', 'conexiones']) {
       expect(modeStatus(dragonBallConfig, mode(slug), data), slug).toBe('playable');
     }
     // Un modo sin pool suficiente con todas las series se oculta de la navegación; nunca queda como "próximamente".
@@ -149,7 +187,7 @@ describe('con una serie apagada no aparece nada de ella', () => {
   const timelineConfig = mode('linea-de-tiempo').timeline!;
 
   it('hay personajes que debutaron en una serie y siguen en otras: con aquella apagada, su debut se oculta de verdad', () => {
-    for (const off of ['gt', 'dbz']) {
+    for (const off of ['db', 'dbz']) {
       const active = without(off);
       const debuted = eligibleEntities(characters, active).filter((entity) => entity.series[0] === off);
       expect(debuted.length, off).toBeGreaterThan(0);
@@ -164,25 +202,27 @@ describe('con una serie apagada no aparece nada de ella', () => {
         const options = eligibleEntities(characters, active);
         expect(options.some((entity) => exclusiveTo(entity, off))).toBe(false);
         expect(options.every((entity) => entity.series.some((id) => active.includes(id)))).toBe(true);
-        for (const slug of ['silueta', 'borroso']) {
+        for (const slug of ['silueta']) {
           const candidates = imageCandidates(characters, contents, active, mode(slug).imageReveal!);
           expect(candidates.some((candidate) => exclusiveTo(candidate.entity, off)), slug).toBe(false);
         }
       });
 
-      it('ninguna transformación de la serie es una respuesta ni una opción', () => {
-        const options = eligibleEntities(forms, active);
-        expect(options.some((form) => form.series.includes(off))).toBe(false);
-        const candidates = imageCandidates(forms, contents, active, mode('transformacion').imageReveal!);
-        expect(candidates.some((candidate) => candidate.entity.series.includes(off))).toBe(false);
+      it('en el Quiz no sale ninguna pregunta de la serie ni un personaje exclusivo suyo, ni como respuesta ni como opción', () => {
+        const pool = quizPool(characters, contents, active, mode('quiz').quiz!);
+        const bySeries = new Map(contents.map((content) => [content.id, content.series]));
+        expect(pool.some((question) => bySeries.get(question.id) === off)).toBe(false);
+        for (const question of pool) {
+          expect(exclusiveTo(byId.get(question.correct)!, off), `${question.id}: respuesta`).toBe(false);
+          expect(question.distractors.some((id) => exclusiveTo(byId.get(id)!, off)), `${question.id}: opciones`).toBe(false);
+        }
       });
 
       it('ningún valor visible del Clásico es de la serie: ni sus transformaciones, ni su debut', () => {
         const columns = visibleColumns(mode('clasico').classic!.columns, active);
         const pool = eligibleEntities(characters, active);
         const answer = pool[0];
-        const seriesName = dragonBallConfig.seriesLabels[off as keyof typeof dragonBallConfig.seriesLabels];
-        const sagaNames = new Set(sagasJson.sagas.filter((saga) => saga.series === off).map((saga) => sagaLabels[saga.id]));
+        const sagaNames = new Set(sagasJson.sagas.filter((saga) => saga.series === off).map((saga) => saga.name));
         for (const guess of pool) {
           const row = buildRow(guess, answer, columns, active);
           for (const cell of row.cells) {
@@ -194,23 +234,20 @@ describe('con una serie apagada no aparece nada de ella', () => {
                 .map((item) => item.value);
               expect(cell.value, guess.id).toEqual(visible);
             }
-            if (cell.column.key === 'serieDebut') expect(text, guess.id).not.toBe(seriesName);
             if (cell.column.key === 'sagaDebut') expect(sagaNames.has(text), `${guess.id}: ${text}`).toBe(false);
           }
         }
       });
 
-      it('si el debut de un personaje fue en la serie apagada, su serie y su saga de debut se ocultan', () => {
+      it('si el debut de un personaje fue en la serie apagada, su saga de debut se oculta', () => {
         const columns = visibleColumns(mode('clasico').classic!.columns, active);
         const pool = eligibleEntities(characters, active);
         const debuted = pool.filter((entity) => entity.series[0] === off);
         for (const guess of debuted) {
           const row = buildRow(guess, pool[0], columns, active);
-          for (const key of ['serieDebut', 'sagaDebut']) {
-            const cell = row.cells.find((candidate) => candidate.column.key === key)!;
-            expect(cell.hidden, `${guess.id}.${key}`).toBe(true);
-            expect(cell.value).toBeNull();
-          }
+          const cell = row.cells.find((candidate) => candidate.column.key === 'sagaDebut')!;
+          expect(cell.hidden, `${guess.id}.sagaDebut`).toBe(true);
+          expect(cell.value).toBeNull();
         }
       });
 
@@ -233,13 +270,17 @@ describe('con una serie apagada no aparece nada de ella', () => {
         }
       });
 
-      it('en Nivel de poder no sale ningún personaje exclusivo de la serie', () => {
-        const metrics = mode('poder').higherLower!.metrics;
-        const pool = higherLowerPool(characters, active, metrics);
-        expect(pool.some((entity) => exclusiveTo(entity, off))).toBe(false);
-        const rounds = buildRounds(pool, metricOfDay(metrics, 5).key, { ...ctx, mode: 'poder' }, MAX_ROUNDS, mode('poder').higherLower!.minRatio);
-        for (const round of rounds) {
-          expect(exclusiveTo(round.a, off) || exclusiveTo(round.b, off)).toBe(false);
+      it('en Conexiones no sale ningún grupo ni personaje exclusivo de la serie', () => {
+        const pool = connectionsPool(characters, contents, active, mode('conexiones').connections!);
+        const bySeries = new Map(contents.map((content) => [content.id, content.series]));
+        expect(pool.some((group) => bySeries.get(group.id) === off)).toBe(false);
+        const byId = new Map(characters.map((entity) => [entity.id, entity]));
+        for (const group of pool) expect(group.available.some((id) => exclusiveTo(byId.get(id)!, off)), group.id).toBe(false);
+        if (pool.length >= defaultMinPool('connections')) {
+          for (let day = 0; day < 60; day++) {
+            const board = buildBoard(pool, { ...ctx, mode: 'conexiones', filterKey: active.join('.'), day });
+            for (const id of board?.groups.flatMap((group) => group.members) ?? []) expect(exclusiveTo(byId.get(id)!, off), `día ${day}: ${id}`).toBe(false);
+          }
         }
       });
     });
@@ -298,74 +339,212 @@ describe('Silueta', () => {
     expect(modes.some((candidate) => candidate.slug === 'zoom')).toBe(false);
   });
 
-  it('Borroso acepta también las imágenes con fondo', () => {
-    const silhouette = imageCandidates(characters, contents, allSeries, mode('silueta').imageReveal!);
-    const blur = imageCandidates(characters, contents, allSeries, mode('borroso').imageReveal!);
-    expect(blur.length).toBeGreaterThan(silhouette.length);
+  it('Dragon Ball ya no tiene el modo Borroso', () => {
+    expect(modes.some((candidate) => candidate.slug === 'borroso')).toBe(false);
   });
 });
 
-describe('Transformación', () => {
-  it('las respuestas son las formas, y los personajes no se pueden elegir', () => {
-    const candidates = imageCandidates(forms, contents, allSeries, mode('transformacion').imageReveal!);
-    expect(candidates.length).toBe(forms.filter((form) => form.image !== undefined).length);
-    const formIds = new Set(forms.map((form) => form.id));
-    for (const candidate of candidates) expect(formIds.has(candidate.id)).toBe(true);
-    for (const character of characters) expect(formIds.has(character.id), character.id).toBe(false);
-  });
+describe('Conexiones', () => {
+  const config = () => mode('conexiones').connections!;
+  const groups = rawContents.filter((content) => content.kind === 'group');
+  const fullMembers = new Map(groups.map((content) => [content.id, new Set(content.payload.members as string[])]));
 
-  it('la respuesta de ayer es una forma', () => {
-    const candidates = imageCandidates(forms, contents, allSeries, mode('transformacion').imageReveal!);
-    const answer = yesterdayOf(candidates, ctx);
-    expect(forms.some((form) => form.id === answer.id)).toBe(true);
-  });
-});
-
-describe('Nivel de poder', () => {
-  const higherLower = () => mode('poder').higherLower!;
-
-  it('están todos los personajes (menos Shenlong) y todas las formas, con ki positivo', () => {
-    const sources = new Set(power.map((entry) => entry.image));
-    for (const entity of [...characters, ...forms]) {
-      if (entity.id === 'shenlong') continue;
-      expect(sources.has(entity.image), entity.id).toBe(true);
-    }
-    expect(power.some((entry) => entry.image === characters.find((entity) => entity.id === 'shenlong')?.image)).toBe(false);
-    const pool = higherLowerPool(power, allSeries, higherLower().metrics);
-    expect(pool.length).toBe(power.length);
-    expect(hasMinimumPool(pool.length, defaultMinPool('higher-lower'))).toBe(true);
-    for (const entity of pool) expect(entity.attrs.ki as number, entity.id).toBeGreaterThan(0);
-  });
-
-  it('solo ofrece pares con al menos un orden de magnitud de diferencia, todos los días', () => {
-    const metrics = higherLower().metrics;
-    const pool = higherLowerPool(power, allSeries, metrics);
-    let total = 0;
-    for (let day = 0; day < 60; day++) {
-      const rounds = buildRounds(pool, metricOfDay(metrics, day).key, { ...ctx, mode: 'poder', day }, MAX_ROUNDS, higherLower().minRatio);
-      expect(rounds.length, `día ${day}`).toBe(MAX_ROUNDS);
-      for (const round of rounds) {
-        total++;
-        expect(Math.max(round.aValue, round.bValue) / Math.min(round.aValue, round.bValue), `${round.a.id} vs ${round.b.id}`).toBeGreaterThanOrEqual(10);
+  /** El tablero de un día con una combinación de series, y comprobaciones que valen para cualquiera. */
+  function expectUniqueSolution(active: readonly string[], days: number) {
+    const pool = connectionsPool(characters, contents, active, config());
+    expect(pool.length, active.join('.')).toBeGreaterThanOrEqual(defaultMinPool('connections'));
+    const filterKey = active.join('.');
+    for (let day = 0; day < days; day++) {
+      const board = buildBoard(pool, { franchise: 'dragon-ball', mode: 'conexiones', filterKey, day });
+      expect(board, `${filterKey} día ${day}`).not.toBeNull();
+      const members = board!.groups.flatMap((group) => group.members);
+      expect(board!.groups.map((group) => group.difficulty), `${filterKey} día ${day}`).toEqual([1, 2, 3, 4]);
+      expect(members, `${filterKey} día ${day}`).toHaveLength(4 * GROUP_SIZE);
+      expect(new Set(members).size, `${filterKey} día ${day}: repetidos`).toBe(members.length);
+      expect(new Set(members.map((id) => nameOf.get(id))).size, `${filterKey} día ${day}: nombres repetidos`).toBe(members.length);
+      // Solución única: con la lista COMPLETA de miembros de cada grupo elegido, cada personaje del tablero está en uno solo.
+      for (const group of board!.groups) {
+        expect(group.members).toHaveLength(GROUP_SIZE);
+        for (const id of group.members) {
+          const owners = board!.groups.filter((other) => fullMembers.get(other.id)?.has(id)).map((other) => other.id);
+          expect(owners, `${filterKey} día ${day}: ${id}`).toEqual([group.id]);
+        }
       }
     }
-    expect(total).toBe(60 * MAX_ROUNDS);
+  }
+
+  it('el JSON de conexiones trae grupos de las cuatro dificultades, con ids únicos y al menos 4 miembros', () => {
+    expect(groups.length).toBeGreaterThanOrEqual(30);
+    expect(new Set(groups.map((group) => group.id)).size).toBe(groups.length);
+    for (const level of [1, 2, 3, 4]) expect(groups.some((group) => group.payload.difficulty === level), `dificultad ${level}`).toBe(true);
+    for (const group of groups) {
+      expect((group.payload.members as string[]).length, group.id).toBeGreaterThanOrEqual(GROUP_SIZE);
+      expect(new Set(group.payload.members as string[]).size, `${group.id}: repetidos`).toBe((group.payload.members as string[]).length);
+    }
   });
 
-  it('la secuencia es la misma para quien tenga los mismos filtros', () => {
-    const metrics = higherLower().metrics;
-    const pool = higherLowerPool(power, allSeries, metrics);
-    const ids = () => buildRounds(pool, 'ki', { ...ctx, mode: 'poder' }, MAX_ROUNDS, 10).map((round) => `${round.a.id}|${round.b.id}`);
-    expect(ids()).toEqual(ids());
+  it('cada miembro de cada grupo es un personaje que existe', () => {
+    const known = new Set(characters.map((entity) => entity.id));
+    for (const [id, members] of fullMembers) for (const member of members) expect(known.has(member), `${id}.${member}`).toBe(true);
   });
 
-  it('Goku base de la saga de Buu queda entre Goku Supersaiyano de Namek y Gohan Supersaiyano 2 de Cell', () => {
-    const ki = (id: string) => power.find((entry) => entry.id === id)?.attrs.ki as number;
-    expect(ki('goku-base-saga-de-buu')).toBeGreaterThan(ki('goku-ssj'));
-    expect(ki('goku-base-saga-de-buu')).toBeLessThan(ki('gohan-ssj2'));
-    expect(ki('neva')).toBeGreaterThan(ki('kami'));
-    expect(ki('glorio')).toBeGreaterThan(ki('yamcha'));
-    expect(ki('glorio')).toBeLessThan(ki('krilin'));
-    expect(ki('goku-ssj4')).toBeLessThan(ki('goku-ssb'));
+  // Medido en el navegador a 360 px (casilla de 71 px, Rubik de 12 px con -0,03 em, ver Games.module.scss): hasta 10 letras entran.
+  it('ninguna palabra de un personaje es tan larga como para partirse en la grilla de 4 columnas a 360 px', () => {
+    for (const group of groups) {
+      for (const id of group.payload.members as string[]) {
+        for (const word of (nameOf.get(id) ?? '').split(/\s+/)) expect(word.length, `${group.id}.${id}: ${word}`).toBeLessThanOrEqual(10);
+      }
+    }
+  });
+
+  it('en 500 días simulados con todas las series, todos los tableros tienen solución única', () => {
+    expectUniqueSolution(allSeries, 500);
+  });
+
+  it('también con cada combinación de series que tiene pool suficiente', () => {
+    let checked = 0;
+    for (const active of combinations) {
+      if (connectionsPool(characters, contents, active, config()).length < defaultMinPool('connections')) continue;
+      expectUniqueSolution(active, 100);
+      checked++;
+    }
+    expect(checked).toBeGreaterThanOrEqual(4);
+  });
+
+  it('hay grupos de sobra para al menos 30 tableros distintos con todas las series', () => {
+    const pool = connectionsPool(characters, contents, allSeries, config());
+    const boards = new Set<string>();
+    for (let day = 0; day < 500; day++) {
+      const board = buildBoard(pool, { franchise: 'dragon-ball', mode: 'conexiones', filterKey: 'all', day })!;
+      boards.add(board.groups.map((group) => `${group.id}:${group.members.join(',')}`).join('|'));
+    }
+    expect(boards.size).toBeGreaterThanOrEqual(30);
+  });
+
+  it('es el mismo tablero para quien tenga los mismos filtros, y otro con otros filtros', () => {
+    const pool = connectionsPool(characters, contents, allSeries, config());
+    const day = { franchise: 'dragon-ball', mode: 'conexiones', filterKey: 'all', day: 321 };
+    const board = JSON.stringify(buildBoard(pool, day));
+    expect(JSON.stringify(buildBoard([...pool].reverse(), day))).toBe(board);
+    expect(JSON.stringify(buildBoard(pool, { ...day, filterKey: 'dbz.super' }))).not.toBe(board);
+  });
+});
+
+describe('Quiz', () => {
+  const config = () => mode('quiz').quiz!;
+  const questions = rawContents.filter((content) => content.kind === 'question');
+  type Payload = { question: string; correct: string; distractors: string[]; explanation: string };
+
+  it('el JSON trae 127 preguntas con ids consecutivos y personajes que existen', () => {
+    expect(questions).toHaveLength(127);
+    expect(questions.map((question) => question.id)).toEqual(Array.from({ length: 127 }, (_, index) => `question-q-${String(index + 1).padStart(3, '0')}`));
+    for (const question of questions) {
+      const { correct, distractors } = question.payload as Payload;
+      expect(allSeries, question.id).toContain(question.series);
+      expect(byId.has(correct), `${question.id}: ${correct}`).toBe(true);
+      expect(distractors, question.id).toHaveLength(11);
+      expect(new Set(distractors).size, `${question.id}: distractores repetidos`).toBe(11);
+      expect(distractors, question.id).not.toContain(correct);
+      for (const id of distractors) expect(byId.has(id), `${question.id}: ${id}`).toBe(true);
+    }
+  });
+
+  it('la pregunta no nombra a la respuesta y cada una tiene dato y fuente', () => {
+    for (const question of questions) {
+      const { question: text, correct, explanation } = question.payload as Payload;
+      expect(text.toLowerCase(), question.id).not.toContain(nameOf.get(correct)!.toLowerCase());
+      expect(explanation.length, question.id).toBeGreaterThan(10);
+    }
+    // La página donde se verificó cada dato está en el archivo de datos y no entra a los créditos (no es texto copiado).
+    for (const question of quizSource) expect(question.source, question.id).toMatch(/^https?:\/\//);
+    expect(questions.some((question) => 'source' in question.payload)).toBe(false);
+  });
+
+  it('ninguna respuesta se repite más de dos veces en todo el set', () => {
+    const counts = new Map<string, number>();
+    for (const question of questions) counts.set((question.payload as Payload).correct, (counts.get((question.payload as Payload).correct) ?? 0) + 1);
+    expect(Math.max(...counts.values())).toBeLessThanOrEqual(2);
+  });
+
+  it('con todas las series y todas las preguntas disponibles hay 127, y con cualquier combinación alcanza el mínimo para jugar', () => {
+    expect(quizPool(characters, contents, allSeries, config())).toHaveLength(127);
+    for (const active of combinations) {
+      expect(quizPool(characters, contents, active, config()).length, active.join('.')).toBeGreaterThanOrEqual(defaultMinPool('quiz'));
+    }
+  });
+
+  it('cada día trae una pregunta con 12 opciones distintas, la correcta entre ellas', () => {
+    const pool = quizPool(characters, contents, allSeries, config());
+    for (const day of [0, 1, 7, 99, 321]) {
+      const dayCtx = { franchise: 'dragon-ball', mode: 'quiz', filterKey: 'all', day };
+      const question = questionOf(pool, dayCtx)!;
+      expect(question, `día ${day}`).not.toBeNull();
+      const options = optionsFor(question, optionCountOf(config()), dayCtx);
+      expect(options, question.id).toHaveLength(12);
+      expect(new Set(options).size, question.id).toBe(12);
+      expect(options.filter((id) => id === question.correct), question.id).toHaveLength(1);
+      for (const id of options) expect(byId.has(id), id).toBe(true);
+    }
+  });
+
+  it('con todas las series no se repite ninguna pregunta en 127 días seguidos', () => {
+    const pool = quizPool(characters, contents, allSeries, config());
+    for (let start = 0; start < 381; start += 127) {
+      const seen = new Set<string>();
+      for (let day = start; day < start + 127; day++) {
+        const question = questionOf(pool, { franchise: 'dragon-ball', mode: 'quiz', filterKey: 'all', day })!;
+        expect(seen.has(question.id), `día ${day}: ${question.id}`).toBe(false);
+        seen.add(question.id);
+      }
+      expect(seen.size).toBe(127);
+    }
+  });
+
+  it('es la misma pregunta para quien tenga los mismos filtros, sin importar el orden de los datos, y otra con otros filtros', () => {
+    const pool = quizPool(characters, contents, allSeries, config());
+    const day = { franchise: 'dragon-ball', mode: 'quiz', filterKey: 'all', day: 321 };
+    const asked = questionOf(pool, day)!.id;
+    expect(questionOf([...pool].reverse(), day)!.id).toBe(asked);
+    const others = ['dbz', 'all~x', 'all~a', 'db.super'].map((filterKey) => questionOf(pool, { ...day, filterKey })!.id);
+    expect(others.some((id) => id !== asked)).toBe(true);
+  });
+
+  it('cada combinación de series arma una pregunta de sus series', () => {
+    const bySeries = new Map(contents.map((content) => [content.id, content.series]));
+    for (const active of combinations) {
+      const filterKey = active.join('.');
+      const pool = quizPool(characters, contents, active, config());
+      expect(pool.length, filterKey).toBeGreaterThan(0);
+      for (const day of [0, 5, 40]) {
+        const question = questionOf(pool, { franchise: 'dragon-ball', mode: 'quiz', filterKey, day })!;
+        expect(question, `${filterKey} día ${day}`).not.toBeNull();
+        expect(active, `${filterKey}: ${question.id}`).toContain(bySeries.get(question.id));
+      }
+    }
+  });
+});
+
+describe('Técnica: el mínimo cuenta técnicas y el buscador ofrece a todos', () => {
+  const techniqueMode = mode('tecnica');
+  const techniqueConfig = techniqueMode.imageReveal!;
+  let published: FranchiseData;
+  beforeAll(async () => {
+    published = (await loadFranchiseData('dragon-ball')) as FranchiseData;
+  });
+  const answers = (active: readonly string[]) => imageCandidates(published.entities, published.contents, active, techniqueConfig);
+
+  it('con solo GT hay 12 técnicas de 6 personajes: alcanza el mínimo (10) aunque los personajes sean menos', () => {
+    const size = modePoolSize(techniqueMode, published, ['gt']);
+    expect(answers(['gt']).length).toBeLessThan(defaultMinPool('image-reveal'));
+    expect(size).toBeGreaterThanOrEqual(defaultMinPool('image-reveal'));
+    expect(hasMinimumPool(size ?? 0, minimumPoolOf(techniqueMode))).toBe(true);
+  });
+
+  it('las opciones del buscador son todos los personajes de las series activas, no solo los que son respuesta', () => {
+    const options = eligibleEntities(published.entities, ['gt']);
+    const answerIds = new Set(answers(['gt']).map((candidate) => candidate.entity.id));
+    expect(options.length).toBeGreaterThan(answerIds.size * 5);
+    expect([...answerIds].every((id) => options.some((option) => option.id === id))).toBe(true);
+    expect(options.every((option) => option.series.includes('gt'))).toBe(true);
   });
 });

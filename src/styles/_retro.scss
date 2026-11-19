@@ -1,0 +1,172 @@
+@use 'breakpoints' as bp;
+@use 'mixins' as m;
+@use 'tokens' as t;
+
+// RETRO BATTLE: la identidad visual del versus (arcades de pelea de los años 90). Tokens y mixins para los componentes de
+// `src/components/versus/`. Los colores son fijos (no salen de la piel de una franquicia): el versus tiene identidad propia y
+// cada minijuego conserva la suya.
+
+$night: #080d24;
+$arena: #121f48;
+$panel: #0e1838;
+$panel-deep: #0a1230;
+$blue: #247bff;
+$blue-dark: #0b2a78;
+$red: #e92d45;
+$red-dark: #7d0f22;
+$gold: #ffd23f;
+$gold-dark: #8a4a00;
+$cyan: #51deff;
+$ink: #ffffff;
+$muted: #a9b8e8;
+$shadow: #03061a;
+
+$font-title: var(--font-versus), var(--font-teko), 'Arial Narrow', Impact, sans-serif;
+$font-code: var(--font-silkscreen), ui-monospace, 'Courier New', monospace;
+$font-body: var(--font-rubik), system-ui, sans-serif;
+
+/// Esquinas en escalera de tres escalones (pixel art): `$step` es el lado de cada escalón.
+@function stepped($step) {
+  $s1: $step;
+  $s2: calc(#{$step} * 2);
+  $s3: calc(#{$step} * 3);
+  @return polygon(
+    0 $s3, $s1 $s3, $s1 $s2, $s2 $s2, $s2 $s1, $s3 $s1, $s3 0,
+    calc(100% - #{$s3}) 0, calc(100% - #{$s3}) $s1, calc(100% - #{$s2}) $s1, calc(100% - #{$s2}) $s2, calc(100% - #{$s1}) $s2, calc(100% - #{$s1}) $s3, 100% $s3,
+    100% calc(100% - #{$s3}), calc(100% - #{$s1}) calc(100% - #{$s3}), calc(100% - #{$s1}) calc(100% - #{$s2}), calc(100% - #{$s2}) calc(100% - #{$s2}), calc(100% - #{$s2}) calc(100% - #{$s1}), calc(100% - #{$s3}) calc(100% - #{$s1}), calc(100% - #{$s3}) 100%,
+    $s3 100%, $s3 calc(100% - #{$s1}), $s2 calc(100% - #{$s1}), $s2 calc(100% - #{$s2}), $s1 calc(100% - #{$s2}), $s1 calc(100% - #{$s3}), 0 calc(100% - #{$s3})
+  );
+}
+
+/// El marco escalonado: el escalón es un píxel de arte (los grandes, para las tarjetas de la portada).
+@function notch($n) {
+  @if $n >= 0.8rem {
+    @return stepped(var(--px));
+  }
+  @return stepped(var(--px-half));
+}
+
+/// Un paralelogramo inclinado (botones y carteles).
+@function slant($n) {
+  @return polygon($n 0, 100% 0, calc(100% - #{$n}) 100%, 0 100%);
+}
+
+/// Título de pantalla: condensado, itálico y en mayúsculas, con la sombra dura del arcade.
+@mixin title($size: clamp(2rem, 8vw, 3.5rem), $color: $gold) {
+  color: $color;
+  font-family: $font-title;
+  font-size: $size;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-shadow: 0.06em 0.06em 0 $red-dark, 0.12em 0.12em 0 $shadow;
+  text-transform: uppercase;
+}
+
+/// Etiqueta chica en mayúsculas.
+@mixin label {
+  color: $muted;
+  font-family: $font-title;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/// Un panel: azul oscuro opaco, borde escalonado azul, bisel cian y sombra sólida.
+@mixin panel($fill: $panel, $edge: $blue, $notch: 0.5rem, $inner: rgb(81 222 255 / 0.55)) {
+  @include m.pixel-frame($fill: $fill, $outer: $edge, $inner: $inner, $width: 0.1875rem, $inner-width: 0.0625rem, $clip: notch($notch), $radius: 0);
+  filter: drop-shadow(0 0.25rem 0 $shadow);
+  // Si el panel es un <button>, su propio fondo gris asoma en las esquinas recortadas: el relleno lo dibuja el marco.
+  background: none;
+}
+
+/// Los tonos de un botón arcade: relleno, borde oscuro, brillo interior y tinta.
+@mixin tone($name) {
+  @if $name == 'gold' {
+    --_fill: linear-gradient(#ffe56f, #ffb800);
+    --_edge: #{$gold-dark};
+    --_glow: #fff6b3;
+    --_ink: #2a1400;
+  } @else if $name == 'red' {
+    --_fill: linear-gradient(#ff5b70, #c41830);
+    --_edge: #{$red-dark};
+    --_glow: #ffa1ac;
+    --_ink: #ffffff;
+  } @else {
+    --_fill: linear-gradient(#3d8fff, #1244b8);
+    --_edge: #061a52;
+    --_glow: #9ac9ff;
+    --_ink: #ffffff;
+  }
+}
+
+/// Un botón arcade inclinado: el tono sale de `--_fill`, `--_edge`, `--_glow` y `--_ink` (ver `tone`).
+@mixin button {
+  @include m.pixel-frame($fill: var(--_fill), $outer: var(--_edge), $inner: var(--_glow), $width: 0.1875rem, $inner-width: 0.0625rem, $clip: notch(0.5rem), $radius: 0);
+  @include m.touch-target;
+  @include m.press;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-2;
+  padding: t.$space-2 calc(#{t.$space-5} + 0.75rem);
+  border: 0;
+  background: none;
+  color: var(--_ink);
+  filter: drop-shadow(0 0.25rem 0 $shadow);
+  font-family: $font-title;
+  font-size: 1.05rem;
+  font-style: normal;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.1;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 0.1875rem solid $cyan;
+    outline-offset: 0.25rem;
+  }
+
+  &:disabled,
+  &[aria-disabled='true'] {
+    cursor: not-allowed;
+    filter: grayscale(0.85) drop-shadow(0 0.25rem 0 $shadow);
+    opacity: 0.55;
+  }
+
+  @include bp.hover-capable {
+    &:hover:not(:disabled, [aria-disabled='true']) {
+      filter: brightness(1.12) drop-shadow(0 0.25rem 0 $shadow);
+    }
+  }
+}
+
+/// Un campo de texto de arcade: pozo oscuro con borde azul.
+@mixin field {
+  inline-size: 100%;
+  min-block-size: t.$touch-target;
+  padding: t.$space-2 t.$space-3;
+  border: 0.1875rem solid $blue;
+  border-radius: 0.125rem;
+  background: $night;
+  box-shadow: inset 0 0.25rem 0 rgb(0 0 0 / 0.35);
+  color: $ink;
+  font-family: $font-body;
+  font-size: 1rem;
+
+  &::placeholder {
+    color: rgb(169 184 232 / 0.65);
+  }
+
+  &:focus-visible {
+    border-color: $gold;
+    outline: 0.125rem solid $gold;
+    outline-offset: 0.125rem;
+  }
+}

@@ -14,7 +14,7 @@ export function useSurrender(session: GameSession) {
     committed.current = true;
     writeState(getLocalStorage(), session, { attempts: [...attempts], result: 'lost', draft });
     setLost(true);
-    session.onFinish({ ...report, won: false, fresh: true });
+    session.onFinish({ ...report, won: false, fresh: true, surrendered: true });
   }
 
   return { lost, surrender };

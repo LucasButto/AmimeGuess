@@ -11,6 +11,7 @@ import { useSiteProgress, useSiteStats } from '@/components/useSiteProgress';
 import { playRecipe } from '@/components/ui/sound';
 import type { SoundRecipe } from '@/franchises/types';
 import { es } from '@/i18n/es';
+import { versusEnabled } from '@/components/versus/enabled';
 import { ChannelEmblem } from './ChannelEmblem';
 import { channelProgress, nextPending, type Channel, type Progress } from './channels';
 import { PhoneDots, PhoneFeed, PhoneTop } from './PhoneHome';
@@ -185,6 +186,7 @@ const BLIP: SoundRecipe = { wave: 'square', gain: 0.05, notes: [{ frequency: 660
  */
 export function TvRoom({ channels }: { channels: readonly Channel[] }) {
   const router = useRouter();
+  const versus = versusEnabled();
   const prefs = usePrefs();
   const playable = channels.filter((channel) => !channel.comingSoon);
   const progress = useSiteProgress(playable.map(({ slug, modes }) => ({ slug, modes })));
@@ -195,6 +197,9 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
   const [noisy, setNoisy] = useState(false);
   const [noiseKey, setNoiseKey] = useState(0);
   const [turns, setTurns] = useState(0);
+  // La pantalla de Versus: se enciende en el televisor al pasar el cursor (o el foco del teclado) por su tecla y se queda así, como un
+  // canal más, hasta que se sintoniza otro (con el cursor, las flechas, la perilla o el teclado).
+  const [versusPreview, setVersusPreview] = useState(false);
   // El canal que se ve y el que se pidió por último; la estática corre de a un corte por vez (640 ms, a lo sumo 1,6 por segundo).
   const shown = useRef(0);
   const wanted = useRef(0);
@@ -212,6 +217,7 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
 
   function show(target: number) {
     shown.current = target;
+    setVersusPreview(false);
     setIndex(target);
     setAnnouncement(es.home.channelChanged(target + 1, channels[target].name));
   }
@@ -232,9 +238,34 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
     }, 640);
   }
 
+  // La estática para pasar de la pantalla de Versus a un canal y al revés: tapa la pantalla y, a los 160 ms (ya opaca), se hace el cambio.
+  function staticThen(apply: () => void) {
+    if (busy.current || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      apply();
+      return;
+    }
+    busy.current = true;
+    setNoiseKey((key) => key + 1);
+    setNoisy(true);
+    swapTimer.current = setTimeout(apply, 160);
+    noiseTimer.current = setTimeout(() => {
+      setNoisy(false);
+      busy.current = false;
+      if (wanted.current !== shown.current) cycle();
+    }, 640);
+  }
+
+  function openVersus() {
+    if (!versusPreview) staticThen(() => setVersusPreview(true));
+  }
+
   function tune(next: number) {
     const target = (next + channels.length) % channels.length;
-    if (target === wanted.current) return;
+    // El mismo canal que quedó debajo de la pantalla de Versus: no hay cambio de canal, solo se apaga Versus.
+    if (target === wanted.current) {
+      if (versusPreview) staticThen(() => setVersusPreview(false));
+      return;
+    }
     // La perilla acompaña: hacia adelante si el canal pedido es el siguiente, hacia atrás si es el anterior.
     const forward = target === (wanted.current + 1) % channels.length;
     const backward = target === (wanted.current - 1 + channels.length) % channels.length;
@@ -295,11 +326,19 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
       {/* Teléfono: la racha de todo el sitio y cuánto se resolvió hoy. */}
       <PhoneTop streak={stats?.streak ?? 0} solved={solvedTotal} total={modeTotal} ready={stats !== null && progress !== null} />
       <section className={styles.set} aria-label={es.home.tvLabel} data-entering={entering}>
-        <span className={styles.antenna} data-side="start" aria-hidden="true" />
-        <span className={styles.antenna} data-side="end" aria-hidden="true" />
         <div className={styles.cabinet}>
           <div className={styles.bezel} data-noisy={noisy}>
             <TvScreen channel={current} number={index + 1} muted={!prefs.sounds} progress={progress} swipe={swipe} onNavigate={enter} key={current.slug} />
+            {versus && (
+              <Link className={styles.versusScreen} href="/versus" data-open={versusPreview || undefined} aria-hidden="true" tabIndex={-1} data-tv-versus-screen onNavigate={(event) => enter(event, 'versus')}>
+                {/* Como en los demás canales: el parlante y, en lugar de "CH 01", "LIVE". */}
+                <span className={styles.osdRow}>
+                  <SpeakerIcon muted={!prefs.sounds} />
+                  <span className={`${styles.osd} ${styles.liveOsd}`}><span className={styles.liveDot} />{es.versus.entry.previewLive}</span>
+                </span>
+                <img className={styles.versusLogo} src="/img/versus/logo/versus-full.webp" alt="" width={1931} height={692} decoding="async" />
+              </Link>
+            )}
             <span className={styles.noise} key={noiseKey} aria-hidden="true" data-tv-noise><span className={styles.noiseLayer} /></span>
           </div>
           <h1 className={styles.badge}><span>{es.home.title}</span></h1>
@@ -320,11 +359,27 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
         <span className={styles.stand} aria-hidden="true" />
       </section>
       <PhoneDots channels={channels} index={index} />
-      <div className={styles.floor} style={{ '--channel-count': channels.length, '--mobile-columns': Math.min(2, channels.length) } as CSSProperties}>
+      <div className={styles.floor} style={{ '--channel-count': channels.length + (versus ? 1 : 0), '--mobile-columns': Math.min(2, channels.length) } as CSSProperties}>
         <nav className={styles.remote} aria-label={es.home.remoteLabel}>
           {channels.map((channel, position) => (
-            <RemoteButton key={channel.slug} channel={channel} active={position === index} progress={progress} onTune={() => tune(position)} onNavigate={enter} />
+            <RemoteButton key={channel.slug} channel={channel} active={position === index && !versusPreview} progress={progress} onTune={() => tune(position)} onNavigate={enter} />
           ))}
+          {/* Versus: una tecla más, apartada de los canales; solo con la variable `NEXT_PUBLIC_VERSUS_URL`. */}
+          {versus && (
+            <Link
+              className={`${styles.key} ${styles.versusKey}`}
+              href="/versus"
+              data-versus
+              data-active={versusPreview}
+              aria-label={es.versus.entry.label}
+              onPointerEnter={(event) => event.pointerType === 'mouse' && openVersus()}
+              onFocus={openVersus}
+              onNavigate={(event) => enter(event, 'versus')}
+            >
+              <span className={styles.keyName} aria-hidden="true">{es.versus.entry.name}</span>
+              <span className={styles.keyCount} aria-hidden="true"><span className={styles.liveDot} />{es.versus.entry.live}</span>
+            </Link>
+          )}
         </nav>
       </div>
       {/* Teléfono: lo que sigue (el próximo reto pendiente) y una tarjeta por franquicia. */}

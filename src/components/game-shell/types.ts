@@ -63,6 +63,22 @@
  *   g. `answer.label` es una frase libre (no "Era X.") que el marco muestra tal
  *      cual; puede ir vacía. `grid` es una línea de cuadrados por cada 10 jugadas
  *      (🟩 acierto, 🟥 el error final), no una línea por intento.
+ *
+ * Versus (docs/versus/02-arquitectura.md, "Contrato con los motores"). Sin sala, la
+ * sesión no trae `versus` ni `onProgress` y nada de esto cambia el juego:
+ *
+ *   h. Después de cada intento, el juego llama a `session.onProgress?.(…)` con lo
+ *      que se puede mostrar a los rivales: intentos y, si el modo los tiene, errores
+ *      y puntaje. Nunca qué se intentó.
+ *   i. Con `versus.unlimited` no hay límite de intentos ni de fallos: la partida
+ *      termina solo al resolverla (o desde afuera, con `stop`). Las ayudas y los
+ *      niveles de imagen siguen el ritmo del límite normal y, al pasarlo, quedan en
+ *      su último nivel. El contador muestra solo la cuenta ("Intento 7").
+ *   j. Con `versus.stop`, la partida termina desde afuera en el acto: `timeUp` (se
+ *      acabó el tiempo) la bloquea, muestra la respuesta y reporta `won: false` con
+ *      `timedOut: true`; `won` la termina como ganada (fin anticipado de Mayor o
+ *      Menor). Mayor o Menor y Estadísticas leen además sus reglas propias del
+ *      bloque `versus` (meta, fallos perdonados, combinaciones fijas, objetivo).
  */
 
 import type { ReactNode } from 'react';
@@ -100,6 +116,8 @@ export interface AnswerInfo {
   readonly detail?: string;
   /** Imagen de la respuesta, ver `ContentImage`. */
   readonly imageStem?: string;
+  /** Un dato que explica la respuesta ("El dato"): en el teléfono va en la hoja del resultado, donde si no se perdería. */
+  readonly note?: { readonly title: string; readonly text: string };
 }
 
 /** Lo que el motor le avisa al marco cuando la persona termina el reto del día. */
@@ -127,6 +145,38 @@ export interface FinishReport {
   readonly settleMs?: number;
   /** Espera antes de abrir automáticamente la hoja móvil de un resultado recién terminado. */
   readonly sheetDelayMs?: number;
+  /** Versus, Estadísticas: el total de cada combinación, en orden. */
+  readonly scores?: readonly number[];
+  /** Versus: la partida terminó porque se acabó el tiempo (`versus.stop: 'timeUp'`). */
+  readonly timedOut?: boolean;
+  /** Se terminó con Rendirse (o por tiempo agotado, que también pasa por ahí): el versus lo distingue de un fallo. */
+  readonly surrendered?: boolean;
+}
+
+/** Lo que un juego deja ver a los rivales después de cada intento (regla h). */
+export interface VersusProgress {
+  readonly attempts: number;
+  readonly errors?: number;
+  readonly score?: number;
+}
+
+/** Las reglas de una partida de versus que leen los motores (reglas i y j). Genérico: no nombra franquicias. */
+export interface VersusRules {
+  /** Intentos y fallos sin límite: la partida termina solo al resolverla (o por fuera, con `stop`). */
+  readonly unlimited?: boolean;
+  /** Mayor o Menor: errores perdonados; con esto la secuencia es infinita y no hay tope de 10. */
+  readonly forgivenErrors?: number;
+  /** Mayor o Menor: se resuelve al llegar a esta cantidad de aciertos (los errores no terminan). */
+  readonly targetScore?: number;
+  /** Estadísticas: cantidad fija de combinaciones; superar el nivel no termina antes. */
+  readonly fixedAttempts?: number;
+  /** Estadísticas: se resuelve en la primera combinación que supera este total. */
+  readonly targetTotal?: number;
+  /**
+   * El servidor terminó la partida desde afuera: `won` (fin anticipado de Mayor o Menor) o `timeUp`
+   * (se acabó el tiempo). El motor se bloquea, muestra la respuesta y reporta el final.
+   */
+  readonly stop?: 'won' | 'timeUp';
 }
 
 /** Lo que el marco le da al juego. */
@@ -149,6 +199,10 @@ export interface GameSession {
    */
   readonly active: readonly string[];
   readonly onFinish: (report: FinishReport) => void;
+  /** Solo dentro de una sala de versus (reglas i y j). */
+  readonly versus?: VersusRules;
+  /** Solo dentro de una sala de versus: llamado después de cada intento (regla h). */
+  readonly onProgress?: (progress: VersusProgress) => void;
 }
 
 export interface GameShellProps {
@@ -167,7 +221,10 @@ export interface GameShellProps {
   readonly minimumPool: number;
   /** Cuántas opciones quedan elegibles con estas series activas. */
   readonly poolSize: (active: readonly string[]) => number;
-  /** Si el contador de posibles cuenta otra cosa que `poolSize` (los jutsus y no los personajes), cuántos hay con los filtros actuales. */
+  /**
+   * Si el contador de posibles cuenta otra cosa que `poolSize` (los jutsus o las técnicas y no los personajes), cuántos hay con los filtros
+   * actuales. Con esto, el mínimo para jugar se mide con este número; `poolSize` queda para los intentos.
+   */
   readonly displayCount?: (active: readonly string[]) => number;
   /**
    * La respuesta de ayer para la misma combinación de filtros. Recibe el

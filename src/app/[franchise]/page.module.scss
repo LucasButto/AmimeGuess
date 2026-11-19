@@ -89,7 +89,10 @@
 
 .title {
   @include m.app-shell {
-    font-size: t.$font-display-sm;
+    // Sin el renglón de los retos de hoy debajo: el nombre de la serie, más grande.
+    font-size: t.$font-display-lg;
+    // Aire a la izquierda: el contorno y la sombra de las letras del logo (Dragon Ball) se cortaban contra la caja.
+    padding-inline-start: 0.25rem;
     line-height: t.$line-height-base;
     color: t.token('app-bar-ink');
     text-shadow: none;

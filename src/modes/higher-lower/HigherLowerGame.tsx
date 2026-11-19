@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
+import { useVersusVariant } from '@/components/versus/VersusGameContext';
 import { GameShell } from '@/components/game-shell/GameShell';
 import type { AnswerInfo, GameSession, ModeLink, ShellFranchise } from '@/components/game-shell/types';
 import { defaultMinPool } from '@/engine/filters';
@@ -55,7 +56,13 @@ const noYesterday = (): AnswerInfo | null => null;
  * quien juega puede elegir cuál comparar; cada una es otra partida (la variante `m-<medida>`).
  */
 export function HigherLowerGame({ franchise, mode, modes, config, entities }: HigherLowerGameProps) {
-  const [chosen, setChosen] = useState<string | null>(() => readMetric(franchise.slug, mode.slug, config.metrics));
+  // En versus, la medida es la de la partida (`m-<medida>`, o la del día de la partida) y no se guarda.
+  const versus = useVersusVariant();
+  const [chosen, setChosen] = useState<string | null>(() => {
+    if (!versus) return readMetric(franchise.slug, mode.slug, config.metrics);
+    const key = versus.variant?.startsWith('m-') ? versus.variant.slice(2) : null;
+    return key !== null && config.metrics.some((metric) => metric.key === key) ? key : null;
+  });
   const many = config.metrics.length > 1;
   // "Del día" es la de siempre (sin variante); las demás son otras partidas.
   const variant = many && chosen !== null ? `m-${chosen}` : undefined;
@@ -114,8 +121,9 @@ function HigherLowerSession({ session, config, entities, chosen }: HigherLowerSe
   );
   const pool = useMemo(() => poolOf(entities, active, config.metrics), [entities, active, config.metrics]);
   const sequence = useMemo(
-    () => session.practice ? endlessRounds(pool, metric.key, { franchise, mode, filterKey, day }, config.minRatio) : undefined,
-    [session.practice, pool, metric.key, franchise, mode, filterKey, day, config.minRatio],
+    // El modo infinito y el versus juegan la secuencia infinita: sin tope de 10.
+    () => session.practice || session.versus ? endlessRounds(pool, metric.key, { franchise, mode, filterKey, day }, config.minRatio) : undefined,
+    [session.practice, session.versus, pool, metric.key, franchise, mode, filterKey, day, config.minRatio],
   );
   const rounds = useMemo(
     () => sequence?.(1) ?? buildRounds(pool, metric.key, { franchise, mode, filterKey, day }, MAX_ROUNDS + (session.attemptLimit ?? 1) - 1, config.minRatio),

@@ -1,20 +1,31 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { useAppShell, useSurrenderRegistry } from './AppShellContext';
 import { es } from '@/i18n/es';
 import { Modal } from '../Modal';
 import { Sheet } from '../Sheet';
 import { Button } from '../ui/Button';
+import { useVersusGame } from '../versus/VersusGameContext';
 import { useDockTarget } from './GameDock';
 import styles from './SurrenderButton.module.scss';
 
+/** Si la partida se puede abandonar con Rendirse. En versus, Carrera no lo permite: hay que resolverla. */
+export const SurrenderAllowed = createContext(true);
+
 /** Acción secundaria que conserva los marcos, colores y tipografía de la piel. */
-export function SurrenderButton({ onConfirm, scored = false, disabled = false }: {
+export function SurrenderButton(props: { onConfirm: () => void; scored?: boolean; disabled?: boolean }) {
+  return useContext(SurrenderAllowed) ? <SurrenderControl {...props} /> : null;
+}
+
+function SurrenderControl({ onConfirm, scored = false, disabled = false }: {
   onConfirm: () => void;
   scored?: boolean;
   disabled?: boolean;
 }) {
+  // En una sala no hay modo infinito: se rinde y se espera a los demás.
+  const inVersus = useVersusGame() !== null;
+  const description = inVersus ? es.versus.surrenderDescription : scored ? es.shell.surrender.scoreDescription : es.shell.surrender.description;
   const [confirming, setConfirming] = useState(false);
   const appShell = useAppShell();
   // En el teléfono la confirmación es una hoja corta; en lo demás, el modal de siempre.
@@ -33,7 +44,7 @@ export function SurrenderButton({ onConfirm, scored = false, disabled = false }:
       {confirming && !phone && (
         <Modal title={es.shell.surrender.title} onClose={() => setConfirming(false)}>
           <div className={styles.confirmation}>
-            <p>{scored ? es.shell.surrender.scoreDescription : es.shell.surrender.description}</p>
+            <p>{description}</p>
             <div className={styles.actions}>
               <Button variant="ghost" className={styles.cancel} onClick={() => setConfirming(false)}>{es.shell.surrender.cancel}</Button>
               <Button variant="ghost" className={styles.action} onClick={() => {
@@ -59,7 +70,7 @@ export function SurrenderButton({ onConfirm, scored = false, disabled = false }:
             </>
           }
         >
-          <p>{scored ? es.shell.surrender.scoreDescription : es.shell.surrender.description}</p>
+          <p>{description}</p>
         </Sheet>
       )}
     </div>

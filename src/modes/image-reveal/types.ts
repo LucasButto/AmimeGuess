@@ -74,6 +74,11 @@ export interface ImageRevealConfig {
   /** Radio de desenfoque en rem por paso, de mayor a menor. */
   readonly blurLevels?: readonly number[];
   /**
+   * La dificultad en una fila: los dos botones lado a lado y la explicación de cada uno en su ⓘ (un recuadro que se abre), en vez de
+   * en una columna con el texto debajo. Ocupa menos alto, y en los modos de clips el video queda más cerca del campo de intento.
+   */
+  readonly compactDifficulty?: boolean;
+  /**
    * Zonas de la imagen que se quedan siempre al máximo desenfoque, aunque el resto se aclare con cada pista: sirve cuando la
    * propia imagen trae escrita la respuesta (el nombre en la parte de arriba de una carta). Solo con `blur` y sin clip de
    * video. Al terminar el reto, ganado o perdido, desaparecen y la imagen se ve entera.

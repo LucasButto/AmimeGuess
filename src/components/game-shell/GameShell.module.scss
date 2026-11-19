@@ -1,3 +1,4 @@
+@use 'breakpoints' as bp;
 @use 'tokens' as t;
 @use 'mixins' as m;
 
@@ -66,6 +67,54 @@
   gap: t.$space-2 t.$space-4;
 }
 
+// "Cómo se juega" a la vista dentro de la pantalla (antes solo estaba en el menú, donde casi nadie lo encontraba).
+.topRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-2 t.$space-4;
+}
+
+// Un botón vistoso: relleno de acento, el librito de la ayuda y un shake corto al cargar la página (tres veces, con pausas, y se
+// queda quieto) para que se note. Cambia apenas de color al pasar el cursor.
+.howToButton {
+  // Compacto en el teléfono (comparte renglón con el contador del próximo reto); desde `md`, con más aire.
+  --_pad-inline: #{t.$space-2};
+  flex: none;
+  margin-inline-start: auto;
+  gap: t.$space-1;
+  font-size: t.$font-size-sm;
+  @include bp.min-width('md') {
+    --_pad-inline: #{t.$space-3};
+    gap: t.$space-2;
+  }
+  @include m.hover-tint(14%);
+  @include bp.motion-ok {
+    animation: how-to-shake 3.5s ease-in-out 1.2s 3;
+    // Con el cursor encima o el foco puesto, quieto: ya lo encontró.
+    &:hover, &:focus-visible { animation-play-state: paused; }
+  }
+}
+
+.howToIcon {
+  flex: none;
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+  object-fit: contain;
+  @include bp.min-width('md') { inline-size: 1.75rem; block-size: 1.75rem; }
+}
+
+// El movimiento (solo `transform`) ocupa el primer 17 % de cada vuelta; el resto es pausa.
+@keyframes how-to-shake {
+  0%, 17%, 100% { transform: none; }
+  3% { transform: translateX(-0.1875rem) rotate(-4deg); }
+  6% { transform: translateX(0.1875rem) rotate(4deg); }
+  9% { transform: translateX(-0.125rem) rotate(-3deg); }
+  12% { transform: translateX(0.125rem) rotate(3deg); }
+  15% { transform: translateX(-0.0625rem) rotate(-1deg); }
+}
+
 .buttons {
   display: flex;
   flex-wrap: wrap;
@@ -113,36 +162,8 @@
   color: t.color('text-muted');
 }
 
-.help {
-  display: flex;
-  flex-direction: column;
-  gap: t.$space-5;
-}
-
-.helpTitle {
-  margin-block-end: t.$space-2;
-  font-size: t.$font-size-base;
-  font-weight: t.$font-weight-bold;
-}
-
-.helpList {
-  display: flex;
-  flex-direction: column;
-  gap: t.$space-2;
-  margin: 0;
-  padding-inline-start: t.$space-5;
-}
-
 .yesterdayHelp {
   margin-inline-start: auto;
-}
-
-// Keep all help paragraphs and lists readable, including engine-specific notes.
-.help {
-  font-size: calc(#{t.$font-size-base} * 1.05);
-  line-height: t.$line-height-base;
-
-  p, li, h3 { font-size: inherit; }
 }
 
 .floatingActions { position: fixed; inset-block-start: max(1.5rem, env(safe-area-inset-top)); inset-inline-end: max(1.5rem, env(safe-area-inset-right)); z-index: t.$layer-nav; }
@@ -172,6 +193,14 @@
   &[data-selected='true']::before { border-color: var(--game-menu-selection, #{t.token('accent-primary')}); }
 }
 .optionIcon { flex: none; inline-size: 2.5rem; block-size: 2.5rem; filter: grayscale(1); opacity: 0.65; }
+// Los íconos de imagen de una piel (`menuIcons`): enteros dentro de su cuadro.
+.optionImage {
+  object-fit: contain;
+  // En el teléfono no hay hover que los encienda: siempre a color.
+  @include m.app-shell { filter: none; opacity: 1; }
+  // En la computadora, más grandes: a 2,5 rem el dibujo no se distingue.
+  @include m.app-shell-desktop { inline-size: 3.25rem; block-size: 3.25rem; }
+}
 .menuOption[data-selected='true'] .optionIcon { filter: none; opacity: 1; }
 
 .floatingActions {
@@ -203,6 +232,20 @@
     @include m.hover { color: t.color('accent'); }
   }
 }
+// El botón del menú con el ícono de imagen de la piel (`menuIcons.menu`): la imagen ya es el botón, sin el marco pixel.
+.menuTrigger[data-image] {
+  &::before, &::after { display: none; }
+  // En la computadora el dibujo se pierde a 3 rem: va más grande, y el menú baja lo mismo para no taparlo.
+  @include m.app-shell-desktop { inline-size: 4.5rem; block-size: 4.5rem; &::before, &::after { display: none; } }
+}
+.menuTrigger[data-image] + .actionsMenu {
+  @include m.app-shell-desktop { inset-block-start: max(1.5rem + 5rem, calc(env(safe-area-inset-top) + 5rem)); }
+}
+.menuImage {
+  inline-size: 100%; block-size: 100%; object-fit: contain;
+  @include bp.motion-ok { transition: transform 120ms ease-out; }
+  .menuTrigger:active & { transform: scale(0.94); }
+}
 .hamburger {
   @include m.app-shell { display: none; }
   @include m.app-shell-desktop { display: inline; }
@@ -232,6 +275,12 @@
     flex-wrap: wrap;
     gap: 0 t.$space-1;
     min-block-size: 2rem;
+    // Sin contenido (el contador va arriba del selector y el modo no cuenta intentos) la barra no ocupa lugar: ni su alto ni el
+    // espacio que la separa de lo siguiente. No se oculta con `display: none`: su destino de los intentos tiene que seguir medible.
+    &:not(:has(> :not(:empty))) {
+      min-block-size: 0;
+      margin-block-end: calc(-1 * #{t.$space-4});
+    }
   }
   @include m.app-shell-desktop {
     flex-wrap: wrap;
@@ -249,15 +298,11 @@
   letter-spacing: 0;
   text-transform: none;
 }
-.filterDot {
-  position: absolute;
-  inset-block-start: 0.5rem;
-  inset-inline-end: 0.5rem;
-  inline-size: 0.625rem;
-  block-size: 0.625rem;
-  border-radius: 50%;
-  background: t.color('miss');
-  box-shadow: 0 0 0 0.125rem t.token('app-bar-fill');
+// El ícono de imagen de la piel (`menuIcons.filters`), que ya trae escrito "Filtros": ocupa el botón entero.
+.filterImage {
+  inline-size: 2.75rem; block-size: 2.75rem; object-fit: contain;
+  @include bp.motion-ok { transition: transform 120ms ease-out; }
+  .filterTrigger:active & { transform: scale(0.94); }
 }
 
 // Lo que la hoja de filtros recibe de las otras partes del juego (dificultad, "Qué comparar", configuración).
@@ -280,10 +325,6 @@
 }
 
 // "Créditos" en el menú ⋮: el aviso legal se muestra una vez en el teléfono y de ahí en más vive en Créditos.
-.creditsOption {
-  text-decoration: none;
-  @include m.app-shell-desktop { display: none; }
-}
 
 // Teléfono: el aviso de que los filtros dejan muy pocos para jugar (los filtros están en la hoja), con el botón que la abre.
 .poolWarning {
@@ -295,7 +336,3 @@
 }
 
 // Teléfono: Ajustes no está en el ⋮ del juego sino en la pestaña Más; desde `lg` vuelve a su lugar de siempre.
-.settingsOption {
-  @include m.app-shell { display: none; }
-  @include m.app-shell-desktop { display: flex; }
-}

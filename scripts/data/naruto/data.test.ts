@@ -11,7 +11,7 @@ import contentJson from '../../../data/naruto/content.json';
 import { narutoContents } from '../../../src/franchises/naruto/content';
 import charactersJson from '../../../data/naruto/entities.json';
 import { ROOT } from './api.ts';
-import { SERIES, type GroupSrc } from './schemas.ts';
+import { GENDERS, SERIES, type GroupSrc } from './schemas.ts';
 import { countBoards, leaksName } from './transform.ts';
 
 const characters = charactersJson as Entity[];
@@ -51,7 +51,7 @@ describe('personajes', () => {
         }
       }
       expect(['Vivo', 'Muerto', 'Incapacitado'], entity.id).toContain(entity.attrs.estadoVital);
-      expect(['Masculino', 'Femenino', null], entity.id).toContain(entity.attrs.genero);
+      expect([...GENDERS, null], entity.id).toContain(entity.attrs.genero);
       expect(Number.isInteger(entity.attrs.arcoDebut), entity.id).toBe(true);
     }
   });

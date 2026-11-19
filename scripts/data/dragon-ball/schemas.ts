@@ -25,17 +25,7 @@ export const apiCharacterListSchema = z.object({
   meta: z.object({ totalItems: z.number().int(), totalPages: z.number().int() }),
 });
 
-export const apiTransformationSchema = z.object({
-  id: z.number().int(),
-  name: z.string(),
-  image: z.string().url(),
-});
-
-/** Las transformaciones llegan como una lista sin paginar. */
-export const apiTransformationListSchema = z.array(apiTransformationSchema);
-
 export type ApiCharacter = z.infer<typeof apiCharacterSchema>;
-export type ApiTransformation = z.infer<typeof apiTransformationSchema>;
 
 // --- API MediaWiki de la wiki en español ------------------------------------
 
@@ -47,9 +37,8 @@ export const wikiCategoryMembersSchema = z.object({
 // --- data/dragon-ball/source/ (curado a mano) ----------------------------------
 
 /**
- * Orden cronológico de la historia (no el de emisión) y las sagas de cada serie,
- * en el orden en que ocurren dentro de su serie. De acá salen los números de
- * "Serie de debut" y "Saga de debut" del Clásico y el orden de la línea de tiempo.
+ * `seriesOrder` conserva el orden de filtros y de las series de la línea de tiempo.
+ * El arreglo `sagas` define el orden de comparación de "Saga de debut".
  */
 export const sagasFileSchema = z
   .object({
@@ -68,8 +57,10 @@ export const characterSrcSchema = z
     aliases: z.array(z.string().min(1)),
     /** Id en Dragon Ball API: de ahí sale la imagen (transparente). */
     api: z.number().int().positive().optional(),
-    /** Título de la página en la wiki en español: sus categorías dicen en qué series aparece. */
-    wiki: z.string().min(1),
+    /** Título de la página en la wiki en español: sus categorías dicen en qué series aparece. Falta si el personaje no tiene página propia (entonces va `series`). */
+    wiki: z.string().min(1).optional(),
+    /** Series en que aparece, a mano, para quien no tiene página propia en la wiki. Sin `wiki`, es obligatorio. */
+    series: z.array(seriesId).min(1).optional(),
     genero: z.string().min(1),
     razas: z.array(z.string().min(1)),
     afiliaciones: z.array(z.string().min(1)),
@@ -87,25 +78,10 @@ export const characterSrcSchema = z
     mangaOnly: z.boolean().optional(),
     verified: z.boolean(),
   })
-  .strict();
-
-export const transformationSrcSchema = z
-  .object({
-    id: kebab,
-    api: z.number().int().positive(),
-    /** Id del personaje que la usa. */
-    character: kebab,
-    /** Nombre de la forma sin el personaje: es el valor que aparece en `transformaciones` del personaje. */
-    forma: z.string().min(1),
-    /** Nombre completo, el que se adivina. */
-    name: z.string().min(1),
-    aliases: z.array(z.string().min(1)),
-    series: seriesId,
-    /** `true` si solo está en el anime o en sus películas, no en el manga (por ejemplo, las de las películas de Z). */
-    filler: z.boolean().optional(),
-    verified: z.boolean(),
-  })
-  .strict();
+  .strict()
+  .refine((character) => character.wiki !== undefined || character.series !== undefined, {
+    message: 'Hace falta `wiki` (página de la wiki) o `series` (a mano)',
+  });
 
 export const techniqueSrcSchema = z
   .object({
@@ -161,33 +137,55 @@ export const eventSrcSchema = z
   .strict();
 
 /**
- * Una entrada del modo Nivel de poder: un personaje o una transformación en un momento de la historia. Un mismo
- * personaje puede tener más de una (Goku en el Torneo del Poder y Goku base en la saga de Buu).
+ * Un grupo del modo Conexiones: 4 de sus miembros salen en un tablero junto a los de otros 3 grupos de las demás
+ * dificultades. `members` tiene que listar a TODOS los personajes del grupo, no solo a los que se muestran: de ahí
+ * sale la solución única (un personaje no entra al tablero si pertenece a otro de los grupos elegidos).
  */
-export const powerSrcSchema = z
+export const connectionGroupSrcSchema = z
   .object({
-    /** Id de la entrada, estable. */
     id: kebab,
-    /** El personaje o la transformación: de ahí salen la imagen y las marcas de relleno y de solo manga. */
-    of: kebab,
-    /** Lo que se muestra: el nombre y, si hace falta aclararlo, la saga entre paréntesis. */
+    /** Lo que se muestra al resolver el grupo. */
     name: z.string().min(1),
-    /** La serie de ese momento: es la que filtra el chip. */
+    /** Qué clase de grupo es (raza, organización, planeta…). Es una etiqueta; no la usa la lógica. */
+    category: z.string().min(1),
+    /** 1 (fácil) a 4 (difícil). Un tablero lleva un grupo de cada dificultad. */
+    difficulty: z.number().int().min(1).max(4),
+    /** La serie del grupo: es la que lo filtra (con esa serie apagada, el grupo no sale). */
     series: seriesId,
-    ki: z.number().positive().finite(),
-    /** `true` solo si el valor figura en una fuente oficial (manga o guías). */
-    official: z.boolean(),
-    source: z.string().min(1),
+    members: z.array(kebab).min(4),
+    verified: z.boolean(),
+  })
+  .strict();
+
+/**
+ * `quiz.json`: una pregunta del Quiz. La respuesta correcta y los distractores son ids de personajes (las opciones);
+ * `excluded` lista a quienes podrían discutirse como correctos: no se usan como distractores y no se muestran.
+ */
+export const quizQuestionSrcSchema = z
+  .object({
+    id: z.string().regex(/^q-\d{3}$/),
+    question: z.string().min(10),
+    /** A qué parte de la historia se refiere ("Anime de Dragon Ball Z, saga de los Saiyajin"). */
+    scope: z.string().min(1),
+    series: seriesId,
+    type: z.enum(['quien-mato', 'maestro-discipulo', 'primera-ultima-vez', 'intruso', 'muertes', 'fusiones', 'familia', 'lugares-organizaciones', 'tecnicas-transformaciones', 'curiosidad']),
+    correct: kebab,
+    /** Exactamente 11: con la dificultad más difícil (12 opciones) se usan todos. */
+    distractors: z.array(kebab).length(11),
+    excluded: z.array(kebab),
+    explanation: z.string().min(10),
+    source: z.string().url(),
+    verified: z.boolean(),
   })
   .strict();
 
 export type SagasFile = z.infer<typeof sagasFileSchema>;
 export type CharacterSrc = z.infer<typeof characterSrcSchema>;
-export type TransformationSrc = z.infer<typeof transformationSrcSchema>;
 export type TechniqueSrc = z.infer<typeof techniqueSrcSchema>;
 export type QuoteSrc = z.infer<typeof quoteSrcSchema>;
 export type EventSrc = z.infer<typeof eventSrcSchema>;
-export type PowerSrc = z.infer<typeof powerSrcSchema>;
+export type ConnectionGroupSrc = z.infer<typeof connectionGroupSrcSchema>;
+export type QuizQuestionSrc = z.infer<typeof quizQuestionSrcSchema>;
 
 // --- Datos generados (data/dragon-ball/) ------------------------------------
 
@@ -209,16 +207,6 @@ const entityBase = {
 /** Un personaje: aparece en una o más series, en orden canónico. */
 export const characterEntitySchema = z
   .object({ ...entityBase, series: z.array(seriesId).min(1) })
-  .strict();
-
-/** Una entrada de Nivel de poder: una sola serie, la del momento que se compara. */
-export const powerEntitySchema = z
-  .object({ ...entityBase, series: z.array(seriesId).length(1) })
-  .strict();
-
-/** Una forma: pertenece a una sola serie. */
-export const transformationEntitySchema = z
-  .object({ ...entityBase, series: z.array(seriesId).length(1) })
   .strict();
 
 const contentBase = { id: kebab, series: seriesId, verified: z.boolean() };
@@ -249,8 +237,9 @@ const eventContentSchema = z
   .strict();
 
 /**
- * La imagen de una técnica: `image` es la ruta sin tamaño ni extensión; `width` y `height`, las del archivo
- * de 512 px. La respuesta es `entityId`; `accepts` son los otros que la usan.
+ * La técnica: o una imagen fija cargada a mano (`image` en `dragon-ball/techniques/<id>`) o un clip en bucle (`video`, con su póster en
+ * `image`, los dos con nombre opaco: no dicen qué técnica es). `image` es la ruta sin tamaño ni extensión; `width` y `height`, las del
+ * archivo de 512 px (el póster, si hay clip). La respuesta es `entityId`; `accepts` son los otros que la usan.
  */
 const techniqueContentSchema = z
   .object({
@@ -260,7 +249,9 @@ const techniqueContentSchema = z
     payload: z
       .object({
         name: z.string().min(1),
-        image: z.string().regex(/^dragon-ball\/techniques\/[a-z0-9]+(-[a-z0-9]+)*$/),
+        image: z.string().regex(/^dragon-ball\/(techniques\/[a-z0-9]+(-[a-z0-9]+)*|c\/[0-9a-f]{16})$/),
+        /** El clip, sin extensión, dentro de /public/video: un MP4 sin audio, con nombre opaco. */
+        video: z.string().regex(/^dragon-ball\/[0-9a-f]{16}$/).optional(),
         width: z.number().int().positive(),
         height: z.number().int().positive(),
         accepts: z.array(kebab),

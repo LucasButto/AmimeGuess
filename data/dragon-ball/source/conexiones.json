@@ -1,0 +1,1534 @@
+[
+  {
+    "id": "saiyajin",
+    "name": "Saiyajin (puros y mestizos)",
+    "category": "raza",
+    "difficulty": 1,
+    "series": "dbz",
+    "members": [
+      "goku",
+      "vegeta",
+      "gohan",
+      "gotenks",
+      "trunks",
+      "trunks-del-futuro",
+      "bardock",
+      "raditz",
+      "gogeta",
+      "vegetto",
+      "broly",
+      "nappa",
+      "turles",
+      "goten",
+      "goku-jr",
+      "goku-black",
+      "cabba",
+      "caulifla",
+      "kale",
+      "kefla",
+      "rey-vegeta",
+      "pan",
+      "bura",
+      "broly-z",
+      "paragus-z",
+      "paragus-super",
+      "gine",
+      "vegeta-jr"
+    ],
+    "verified": false
+  },
+  {
+    "id": "androides",
+    "name": "Androides",
+    "category": "raza",
+    "difficulty": 1,
+    "series": "dbz",
+    "members": [
+      "androide-17",
+      "androide-16",
+      "androide-19",
+      "dr-gero",
+      "androide-13",
+      "androide-14",
+      "androide-15",
+      "androide-18",
+      "super-17",
+      "gamma-1",
+      "gamma-2",
+      "androide-8",
+      "sargento-metallic",
+      "anilaza",
+      "magenta",
+      "carmine",
+      "peleador-del-infierno-17"
+    ],
+    "verified": false
+  },
+  {
+    "id": "namekuseijin",
+    "name": "Namekuseijin",
+    "category": "raza",
+    "difficulty": 1,
+    "series": "dbz",
+    "members": [
+      "piccolo",
+      "dende",
+      "nail",
+      "gran-rey-demonio-piccolo",
+      "kami",
+      "slug",
+      "neva",
+      "muri",
+      "gran-patriarca"
+    ],
+    "verified": false
+  },
+  {
+    "id": "dragones",
+    "name": "Dragones",
+    "category": "raza",
+    "difficulty": 1,
+    "series": "db",
+    "members": [
+      "shenlong",
+      "porunga",
+      "porunga-reino-demoniaco",
+      "super-shenlong",
+      "toronbo",
+      "shenlong-estrellas-negras",
+      "shenlong-humo-negro",
+      "dragon-2-estrellas",
+      "dragon-5-estrellas",
+      "dragon-6-estrellas",
+      "dragon-7-estrellas",
+      "dragon-4-estrellas",
+      "dragon-3-estrellas",
+      "dragon-1-estrella"
+    ],
+    "verified": false
+  },
+  {
+    "id": "clan-de-freezer",
+    "name": "Clan de Freezer",
+    "category": "raza",
+    "difficulty": 1,
+    "series": "dbz",
+    "members": [
+      "freezer",
+      "coola",
+      "frost",
+      "rey-cold",
+      "metal-cooler"
+    ],
+    "verified": false
+  },
+  {
+    "id": "fuerzas-especiales-ginyu",
+    "name": "Fuerzas Especiales Ginyu",
+    "category": "organización",
+    "difficulty": 1,
+    "series": "dbz",
+    "members": [
+      "ginyu",
+      "recoome",
+      "burter",
+      "jeice",
+      "guldo"
+    ],
+    "verified": false
+  },
+  {
+    "id": "reyes",
+    "name": "Reyes",
+    "category": "título",
+    "difficulty": 1,
+    "series": "dbz",
+    "members": [
+      "rey-gyuma",
+      "rey-enma",
+      "rey-vegeta",
+      "rey-cold",
+      "rey-chapa",
+      "rey-del-mundo",
+      "rey-de-la-via-lactea",
+      "zeno",
+      "gran-rey-demonio-piccolo"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kaios",
+    "name": "Kaios",
+    "category": "raza",
+    "difficulty": 1,
+    "series": "dbz",
+    "members": [
+      "kaio-del-norte",
+      "kaio-del-sur",
+      "kaio-del-este",
+      "kaio-del-oeste",
+      "gran-kaio"
+    ],
+    "verified": false
+  },
+  {
+    "id": "guerreros-z",
+    "name": "Guerreros Z",
+    "category": "organización",
+    "difficulty": 1,
+    "series": "dbz",
+    "members": [
+      "goku",
+      "vegeta",
+      "piccolo",
+      "bulma",
+      "gohan",
+      "krilin",
+      "tenshinhan",
+      "yamcha",
+      "chi-chi",
+      "gotenks",
+      "trunks",
+      "trunks-del-futuro",
+      "maestro-roshi",
+      "lunch",
+      "dende",
+      "androide-17",
+      "nail",
+      "androide-18",
+      "gogeta",
+      "vegetto",
+      "puar",
+      "yajirobe",
+      "chaoz",
+      "videl",
+      "goten",
+      "oob",
+      "goku-jr",
+      "pan",
+      "vegeta-jr"
+    ],
+    "verified": false
+  },
+  {
+    "id": "ejercito-del-liston-rojo",
+    "name": "Ejército del Listón Rojo",
+    "category": "organización",
+    "difficulty": 1,
+    "series": "db",
+    "members": [
+      "dr-gero",
+      "tao-pai-pai",
+      "general-blue",
+      "ninja-purpura",
+      "androide-8",
+      "general-black",
+      "sargento-metallic",
+      "robot-pirata"
+    ],
+    "verified": false
+  },
+  {
+    "id": "dioses-de-la-destruccion",
+    "name": "Dioses de la Destrucción",
+    "category": "raza",
+    "difficulty": 1,
+    "series": "super",
+    "members": [
+      "bills",
+      "vermoud",
+      "champa",
+      "mosco",
+      "quitela",
+      "rumoosh"
+    ],
+    "verified": false
+  },
+  {
+    "id": "terricolas",
+    "name": "Terrícolas (de pura raza)",
+    "category": "raza",
+    "difficulty": 1,
+    "series": "db",
+    "members": [
+      "bulma",
+      "krilin",
+      "tenshinhan",
+      "yamcha",
+      "chi-chi",
+      "maestro-roshi",
+      "lunch",
+      "mr-satan",
+      "oolong",
+      "puar",
+      "yajirobe",
+      "chaoz",
+      "karin",
+      "pilaf",
+      "mai",
+      "shu",
+      "tao-pai-pai",
+      "general-blue",
+      "rey-gyuma",
+      "baba",
+      "videl",
+      "oob",
+      "dr-hedo",
+      "nam",
+      "giran",
+      "bacterian",
+      "ninja-purpura",
+      "general-black",
+      "dr-brief",
+      "sra-brief",
+      "upa",
+      "bora",
+      "abuelo-gohan",
+      "hombre-invisible",
+      "maestro-tsuru",
+      "rey-chapa",
+      "rey-del-mundo",
+      "maestro-mutaito",
+      "maron",
+      "anunciador-ztv",
+      "marron",
+      "shapner",
+      "ireza",
+      "spopovich",
+      "yam",
+      "dr-willow"
+    ],
+    "verified": false
+  },
+  {
+    "id": "empiezan-con-k",
+    "name": "Su nombre empieza con K",
+    "category": "curiosidad",
+    "difficulty": 1,
+    "series": "dbz",
+    "members": [
+      "krilin",
+      "kibitoshin",
+      "kaio-del-norte",
+      "kaio-del-sur",
+      "kaio-del-este",
+      "kaio-del-oeste",
+      "kaioshin-del-este",
+      "kaioshin-del-norte",
+      "kaioshin-del-sur",
+      "kaioshin-del-oeste",
+      "kibito",
+      "karin",
+      "kami",
+      "kid-buu",
+      "kaioshin-anciano",
+      "kale",
+      "kefla",
+      "kiwi",
+      "kakunsa",
+      "kikono"
+    ],
+    "verified": false
+  },
+  {
+    "id": "empiezan-con-b",
+    "name": "Su nombre empieza con B",
+    "category": "curiosidad",
+    "difficulty": 1,
+    "series": "dbz",
+    "members": [
+      "bulma",
+      "bardock",
+      "babidi",
+      "bills",
+      "broly",
+      "burter",
+      "bojack",
+      "bubbles",
+      "baby",
+      "bacterian",
+      "buyon",
+      "bora",
+      "bee",
+      "bura",
+      "broly-z",
+      "botamo",
+      "bergamo",
+      "basil",
+      "beriblu"
+    ],
+    "verified": false
+  },
+  {
+    "id": "equipo-de-daima",
+    "name": "El equipo que viaja al Reino Demoníaco",
+    "category": "saga",
+    "difficulty": 1,
+    "series": "daima",
+    "members": [
+      "goku",
+      "vegeta",
+      "piccolo",
+      "bulma",
+      "panzy",
+      "glorio",
+      "neva",
+      "arins",
+      "kaioshin-del-este"
+    ],
+    "verified": false
+  },
+  {
+    "id": "villanos-de-gt",
+    "name": "Villanos de Dragon Ball GT",
+    "category": "saga",
+    "difficulty": 1,
+    "series": "gt",
+    "members": [
+      "baby",
+      "dr-mu",
+      "general-rildo",
+      "super-17",
+      "peleador-del-infierno-17",
+      "shenlong-humo-negro",
+      "dragon-1-estrella",
+      "dragon-2-estrellas",
+      "dragon-3-estrellas",
+      "dragon-4-estrellas",
+      "dragon-5-estrellas",
+      "dragon-6-estrellas",
+      "dragon-7-estrellas"
+    ],
+    "verified": false
+  },
+  {
+    "id": "ejercito-de-freezer",
+    "name": "Ejército de Freezer",
+    "category": "organización",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "vegeta",
+      "freezer",
+      "zarbon",
+      "dodoria",
+      "ginyu",
+      "bardock",
+      "raditz",
+      "nappa",
+      "recoome",
+      "burter",
+      "jeice",
+      "guldo",
+      "kiwi",
+      "rey-vegeta",
+      "rey-cold",
+      "sorbet",
+      "tagoma",
+      "shisami",
+      "cheelai",
+      "lemo",
+      "beriblu",
+      "kikono"
+    ],
+    "verified": false
+  },
+  {
+    "id": "angeles",
+    "name": "Ángeles",
+    "category": "raza",
+    "difficulty": 2,
+    "series": "super",
+    "members": [
+      "whis",
+      "marcarita",
+      "gran-sacerdote",
+      "vados",
+      "merus"
+    ],
+    "verified": false
+  },
+  {
+    "id": "universo-6",
+    "name": "Universo 6",
+    "category": "universo",
+    "difficulty": 2,
+    "series": "super",
+    "members": [
+      "champa",
+      "vados",
+      "hit",
+      "cabba",
+      "caulifla",
+      "kale",
+      "kefla",
+      "frost",
+      "zuno",
+      "botamo",
+      "magetta"
+    ],
+    "verified": false
+  },
+  {
+    "id": "universo-11",
+    "name": "Universo 11",
+    "category": "universo",
+    "difficulty": 2,
+    "series": "super",
+    "members": [
+      "jiren",
+      "toppo",
+      "dyspo",
+      "marcarita",
+      "vermoud",
+      "bergamo",
+      "lavender"
+    ],
+    "verified": false
+  },
+  {
+    "id": "mestizos",
+    "name": "Mitad saiyajin, mitad terrícola",
+    "category": "raza",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "gohan",
+      "gotenks",
+      "trunks",
+      "trunks-del-futuro",
+      "goten",
+      "goku-jr",
+      "pan",
+      "bura"
+    ],
+    "verified": false
+  },
+  {
+    "id": "majin",
+    "name": "Majin",
+    "category": "raza",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "majin-buu",
+      "super-buu",
+      "kid-buu",
+      "majin-buu-malvado",
+      "super-buu-gotenks",
+      "super-buu-piccolo",
+      "super-buu-gohan",
+      "majin-kuu",
+      "majin-duu"
+    ],
+    "verified": false
+  },
+  {
+    "id": "villanos-de-babidi",
+    "name": "Villanos de la saga de Majin Buu",
+    "category": "saga",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "babidi",
+      "dabura",
+      "pui-pui",
+      "yakon",
+      "spopovich",
+      "majin-buu",
+      "super-buu",
+      "kid-buu",
+      "majin-buu-malvado",
+      "super-buu-gotenks",
+      "super-buu-piccolo",
+      "super-buu-gohan"
+    ],
+    "verified": false
+  },
+  {
+    "id": "planeta-vegeta",
+    "name": "Nacidos en el Planeta Vegeta",
+    "category": "planeta",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "goku",
+      "vegeta",
+      "bardock",
+      "raditz",
+      "broly",
+      "nappa",
+      "turles",
+      "rey-vegeta",
+      "broly-z",
+      "paragus-z",
+      "paragus-super",
+      "gine"
+    ],
+    "verified": false
+  },
+  {
+    "id": "dragon-ball-daima",
+    "name": "Dragon Ball Daima",
+    "category": "serie",
+    "difficulty": 2,
+    "series": "daima",
+    "members": [
+      "glorio",
+      "panzy",
+      "gomah",
+      "deges",
+      "arins",
+      "neva",
+      "hybis",
+      "majin-kuu",
+      "majin-duu",
+      "marba",
+      "tamagami-1",
+      "tamagami-2",
+      "tamagami-3",
+      "porunga-reino-demoniaco"
+    ],
+    "verified": false
+  },
+  {
+    "id": "hijos-de-los-heroes",
+    "name": "Hijos y nietos de los héroes",
+    "category": "familia",
+    "difficulty": 2,
+    "series": "gt",
+    "members": [
+      "gohan",
+      "goten",
+      "trunks",
+      "trunks-del-futuro",
+      "bura",
+      "marron",
+      "pan",
+      "goku-jr",
+      "vegeta-jr"
+    ],
+    "verified": false
+  },
+  {
+    "id": "cientificos",
+    "name": "Científicos e inventores",
+    "category": "ocupación",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "bulma",
+      "dr-brief",
+      "dr-gero",
+      "dr-mu",
+      "dr-hedo",
+      "dr-willow",
+      "arins",
+      "dr-paparoni"
+    ],
+    "verified": false
+  },
+  {
+    "id": "saiyajin-puros",
+    "name": "Saiyajin de sangre pura",
+    "category": "raza",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "goku",
+      "vegeta",
+      "bardock",
+      "raditz",
+      "gogeta",
+      "vegetto",
+      "broly",
+      "nappa",
+      "turles",
+      "cabba",
+      "caulifla",
+      "kale",
+      "kefla",
+      "rey-vegeta",
+      "broly-z",
+      "paragus-z",
+      "paragus-super",
+      "gine",
+      "vegeta-jr"
+    ],
+    "verified": false
+  },
+  {
+    "id": "mujeres",
+    "name": "Personajes femeninos",
+    "category": "género",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "bulma",
+      "chi-chi",
+      "lunch",
+      "marcarita",
+      "androide-18",
+      "kaio-del-este",
+      "kaioshin-del-oeste",
+      "mai",
+      "baba",
+      "videl",
+      "vados",
+      "caulifla",
+      "kale",
+      "kefla",
+      "panzy",
+      "arins",
+      "sra-brief",
+      "maron",
+      "marron",
+      "ireza",
+      "pan",
+      "bura",
+      "ribrianne",
+      "kakunsa",
+      "roasy",
+      "cheelai",
+      "gine",
+      "irico"
+    ],
+    "verified": false
+  },
+  {
+    "id": "creaciones-del-dr-gero",
+    "name": "Creaciones del Dr. Gero",
+    "category": "organización",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "androide-17",
+      "androide-16",
+      "androide-19",
+      "dr-gero",
+      "androide-13",
+      "androide-14",
+      "androide-15",
+      "androide-18"
+    ],
+    "verified": false
+  },
+  {
+    "id": "con-numero",
+    "name": "Con un número en el nombre",
+    "category": "curiosidad",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "androide-17",
+      "androide-16",
+      "androide-19",
+      "androide-13",
+      "androide-14",
+      "androide-15",
+      "androide-18",
+      "super-17",
+      "gamma-1",
+      "gamma-2",
+      "tamagami-1",
+      "tamagami-2",
+      "tamagami-3",
+      "peleador-del-infierno-17",
+      "dragon-2-estrellas",
+      "dragon-5-estrellas",
+      "dragon-6-estrellas",
+      "dragon-7-estrellas",
+      "dragon-4-estrellas",
+      "dragon-3-estrellas",
+      "dragon-1-estrella"
+    ],
+    "verified": false
+  },
+  {
+    "id": "rangos-militares",
+    "name": "Con un rango militar en el nombre",
+    "category": "curiosidad",
+    "difficulty": 2,
+    "series": "db",
+    "members": [
+      "ginyu",
+      "sargento-metallic",
+      "general-blue",
+      "general-black",
+      "general-rildo"
+    ],
+    "verified": false
+  },
+  {
+    "id": "familia-de-goku",
+    "name": "Familia de Goku",
+    "category": "familia",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "bardock",
+      "gine",
+      "raditz",
+      "goku",
+      "gohan",
+      "goten",
+      "chi-chi",
+      "pan",
+      "goku-jr",
+      "rey-gyuma",
+      "abuelo-gohan",
+      "videl"
+    ],
+    "verified": false
+  },
+  {
+    "id": "equipo-del-universo-7",
+    "name": "Equipo del Universo 7 en el Torneo del Poder",
+    "category": "saga",
+    "difficulty": 2,
+    "series": "super",
+    "members": [
+      "goku",
+      "vegeta",
+      "gohan",
+      "krilin",
+      "tenshinhan",
+      "piccolo",
+      "androide-17",
+      "androide-18",
+      "maestro-roshi",
+      "majin-buu"
+    ],
+    "verified": false
+  },
+  {
+    "id": "dragones-que-conceden-deseos",
+    "name": "Dragones que conceden deseos",
+    "category": "raza",
+    "difficulty": 2,
+    "series": "db",
+    "members": [
+      "shenlong",
+      "porunga",
+      "super-shenlong",
+      "porunga-reino-demoniaco",
+      "shenlong-estrellas-negras"
+    ],
+    "verified": false
+  },
+  {
+    "id": "invasores-saiyajin",
+    "name": "La invasión saiyajin",
+    "category": "saga",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "raditz",
+      "nappa",
+      "vegeta",
+      "saibaiman"
+    ],
+    "verified": false
+  },
+  {
+    "id": "monstruos-de-la-primera-serie",
+    "name": "Monstruos de la primera Dragon Ball",
+    "category": "saga",
+    "difficulty": 2,
+    "series": "db",
+    "members": [
+      "hombre-dracula",
+      "hombre-invisible",
+      "momia",
+      "hombre-diablo",
+      "lobo-hombre",
+      "buyon"
+    ],
+    "verified": false
+  },
+  {
+    "id": "demonios-de-daima",
+    "name": "Demonios del Reino Demoníaco",
+    "category": "saga",
+    "difficulty": 2,
+    "series": "daima",
+    "members": [
+      "glorio",
+      "panzy",
+      "gomah",
+      "hybis",
+      "marba"
+    ],
+    "verified": false
+  },
+  {
+    "id": "esposas-de-los-guerreros",
+    "name": "Esposas de los guerreros",
+    "category": "familia",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "chi-chi",
+      "bulma",
+      "videl",
+      "androide-18"
+    ],
+    "verified": false
+  },
+  {
+    "id": "empiezan-con-j",
+    "name": "Su nombre empieza con J",
+    "category": "curiosidad",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "jiren",
+      "janemba",
+      "jeice",
+      "jaco",
+      "jerez"
+    ],
+    "verified": false
+  },
+  {
+    "id": "empiezan-con-z",
+    "name": "Su nombre empieza con Z",
+    "category": "curiosidad",
+    "difficulty": 2,
+    "series": "dbz",
+    "members": [
+      "zarbon",
+      "zeno",
+      "zamasu",
+      "zuno",
+      "zamasu-fusionado"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kaioshin",
+    "name": "Kaioshin",
+    "category": "raza",
+    "difficulty": 3,
+    "series": "dbz",
+    "members": [
+      "kibitoshin",
+      "kaioshin-del-este",
+      "kaioshin-del-norte",
+      "kaioshin-del-sur",
+      "kaioshin-del-oeste",
+      "gran-kaioshin",
+      "kibito",
+      "kaioshin-anciano",
+      "zamasu",
+      "goku-black",
+      "zuno",
+      "gowas",
+      "zamasu-fusionado"
+    ],
+    "verified": false
+  },
+  {
+    "id": "corporacion-capsula",
+    "name": "Corporación Cápsula",
+    "category": "organización",
+    "difficulty": 3,
+    "series": "db",
+    "members": [
+      "bulma",
+      "trunks",
+      "dr-brief",
+      "sra-brief",
+      "bura"
+    ],
+    "verified": false
+  },
+  {
+    "id": "escuela-de-la-grulla",
+    "name": "Escuela de la Grulla",
+    "category": "organización",
+    "difficulty": 3,
+    "series": "db",
+    "members": [
+      "tenshinhan",
+      "chaoz",
+      "tao-pai-pai",
+      "maestro-tsuru"
+    ],
+    "verified": false
+  },
+  {
+    "id": "liston-rojo-renacido",
+    "name": "Listón Rojo Renacido",
+    "category": "organización",
+    "difficulty": 3,
+    "series": "super",
+    "members": [
+      "gamma-1",
+      "gamma-2",
+      "dr-hedo",
+      "magenta",
+      "carmine",
+      "cell-max"
+    ],
+    "verified": false
+  },
+  {
+    "id": "dragones-malignos",
+    "name": "Dragones Malignos de GT",
+    "category": "saga",
+    "difficulty": 3,
+    "series": "gt",
+    "members": [
+      "shenlong-humo-negro",
+      "dragon-1-estrella",
+      "dragon-2-estrellas",
+      "dragon-3-estrellas",
+      "dragon-4-estrellas",
+      "dragon-5-estrellas",
+      "dragon-6-estrellas",
+      "dragon-7-estrellas"
+    ],
+    "verified": false
+  },
+  {
+    "id": "otro-mundo",
+    "name": "Habitantes del Otro Mundo",
+    "category": "lugar",
+    "difficulty": 3,
+    "series": "dbz",
+    "members": [
+      "janemba",
+      "gregory",
+      "rey-enma",
+      "paikuhan",
+      "olib",
+      "hildegarn"
+    ],
+    "verified": false
+  },
+  {
+    "id": "guerreros-de-baba",
+    "name": "Los guerreros de Uranai Baba",
+    "category": "saga",
+    "difficulty": 3,
+    "series": "db",
+    "members": [
+      "hombre-dracula",
+      "hombre-invisible",
+      "momia",
+      "hombre-diablo"
+    ],
+    "verified": false
+  },
+  {
+    "id": "templo-de-kami",
+    "name": "Templo de Kami y Torre Karin",
+    "category": "lugar",
+    "difficulty": 3,
+    "series": "db",
+    "members": [
+      "kami",
+      "mr-popo",
+      "dende",
+      "karin",
+      "yajirobe"
+    ],
+    "verified": false
+  },
+  {
+    "id": "villanos-de-peliculas-z",
+    "name": "Villanos de las películas de Z",
+    "category": "película",
+    "difficulty": 3,
+    "series": "dbz",
+    "members": [
+      "androide-13",
+      "androide-14",
+      "androide-15",
+      "janemba",
+      "turles",
+      "slug",
+      "coola",
+      "bojack",
+      "dr-willow",
+      "salza",
+      "metal-cooler",
+      "broly-z",
+      "paragus-z",
+      "tapion",
+      "hildegarn"
+    ],
+    "verified": false
+  },
+  {
+    "id": "demonios",
+    "name": "Demonios",
+    "category": "raza",
+    "difficulty": 3,
+    "series": "dbz",
+    "members": [
+      "janemba",
+      "gran-rey-demonio-piccolo",
+      "dabura",
+      "moro",
+      "glorio",
+      "panzy",
+      "gomah",
+      "hombre-diablo",
+      "tamborin",
+      "hybis",
+      "marba",
+      "saganbo",
+      "shimorekka",
+      "yunba",
+      "cranberry",
+      "esca",
+      "irico"
+    ],
+    "verified": false
+  },
+  {
+    "id": "fusiones",
+    "name": "Fusiones",
+    "category": "transformación",
+    "difficulty": 3,
+    "series": "dbz",
+    "members": [
+      "gotenks",
+      "vegetto",
+      "gogeta",
+      "kefla",
+      "zamasu-fusionado",
+      "kibitoshin"
+    ],
+    "verified": false
+  },
+  {
+    "id": "familia-de-vegeta",
+    "name": "Familia de Vegeta",
+    "category": "familia",
+    "difficulty": 3,
+    "series": "dbz",
+    "members": [
+      "rey-vegeta",
+      "vegeta",
+      "trunks",
+      "trunks-del-futuro",
+      "bura",
+      "vegeta-jr"
+    ],
+    "verified": false
+  },
+  {
+    "id": "ozaru",
+    "name": "Se transforman en Ozaru",
+    "category": "transformación",
+    "difficulty": 3,
+    "series": "dbz",
+    "members": [
+      "goku",
+      "vegeta",
+      "gohan",
+      "nappa",
+      "turles"
+    ],
+    "verified": false
+  },
+  {
+    "id": "nacidos-en-namek",
+    "name": "Nacidos en el planeta Namek",
+    "category": "planeta",
+    "difficulty": 3,
+    "series": "dbz",
+    "members": [
+      "dende",
+      "nail",
+      "gran-rey-demonio-piccolo",
+      "kami",
+      "slug",
+      "muri",
+      "gran-patriarca",
+      "porunga"
+    ],
+    "verified": false
+  },
+  {
+    "id": "subordinados-de-freezer-en-namek",
+    "name": "Subordinados de Freezer en Namek",
+    "category": "saga",
+    "difficulty": 3,
+    "series": "dbz",
+    "members": [
+      "zarbon",
+      "dodoria",
+      "ginyu",
+      "recoome",
+      "burter",
+      "jeice",
+      "guldo",
+      "kiwi"
+    ],
+    "verified": false
+  },
+  {
+    "id": "broly-y-paragus",
+    "name": "Broly y Paragus, en todas sus versiones",
+    "category": "familia",
+    "difficulty": 3,
+    "series": "super",
+    "members": [
+      "broly",
+      "broly-z",
+      "paragus-z",
+      "paragus-super"
+    ],
+    "verified": false
+  },
+  {
+    "id": "formas-de-majin-buu",
+    "name": "Formas de Majin Buu",
+    "category": "transformación",
+    "difficulty": 3,
+    "series": "dbz",
+    "members": [
+      "majin-buu",
+      "majin-buu-malvado",
+      "super-buu",
+      "super-buu-gotenks",
+      "super-buu-piccolo",
+      "super-buu-gohan",
+      "kid-buu"
+    ],
+    "verified": false
+  },
+  {
+    "id": "dioses-y-angeles-6-7-11",
+    "name": "Dioses y ángeles de los universos 6, 7 y 11",
+    "category": "universo",
+    "difficulty": 3,
+    "series": "super",
+    "members": [
+      "bills",
+      "whis",
+      "champa",
+      "vados",
+      "vermoud",
+      "marcarita"
+    ],
+    "verified": false
+  },
+  {
+    "id": "dioses-de-otros-universos",
+    "name": "Dioses de la Destrucción de otros universos",
+    "category": "universo",
+    "difficulty": 3,
+    "series": "super",
+    "members": [
+      "champa",
+      "vermoud",
+      "mosco",
+      "quitela",
+      "rumoosh"
+    ],
+    "verified": false
+  },
+  {
+    "id": "padres-de-los-heroes",
+    "name": "Padres de los héroes",
+    "category": "familia",
+    "difficulty": 3,
+    "series": "dbz",
+    "members": [
+      "bardock",
+      "rey-gyuma",
+      "dr-brief",
+      "rey-vegeta",
+      "abuelo-gohan",
+      "mr-satan"
+    ],
+    "verified": false
+  },
+  {
+    "id": "primer-viaje-por-las-esferas",
+    "name": "Los del primer viaje por las esferas",
+    "category": "saga",
+    "difficulty": 3,
+    "series": "db",
+    "members": [
+      "goku",
+      "bulma",
+      "oolong",
+      "puar",
+      "yamcha"
+    ],
+    "verified": false
+  },
+  {
+    "id": "viajeros-de-las-esferas-negras",
+    "name": "Viajeros del espacio en la saga de las Esferas Negras",
+    "category": "saga",
+    "difficulty": 3,
+    "series": "gt",
+    "members": [
+      "goku",
+      "pan",
+      "trunks",
+      "giru"
+    ],
+    "verified": false
+  },
+  {
+    "id": "empiezan-con-y",
+    "name": "Su nombre empieza con Y",
+    "category": "curiosidad",
+    "difficulty": 3,
+    "series": "dbz",
+    "members": [
+      "yamcha",
+      "yajirobe",
+      "yam",
+      "yakon",
+      "yunba"
+    ],
+    "verified": false
+  },
+  {
+    "id": "universos-2-3-4-9",
+    "name": "Universos 2, 3, 4 y 9",
+    "category": "universo",
+    "difficulty": 4,
+    "series": "super",
+    "members": [
+      "ribrianne",
+      "kakunsa",
+      "roasy",
+      "jerez",
+      "dr-paparoni",
+      "anilaza",
+      "basil",
+      "sidra"
+    ],
+    "verified": false
+  },
+  {
+    "id": "saiyajin-con-nombre-de-verdura",
+    "name": "Saiyajin con nombre de verdura",
+    "category": "curiosidad",
+    "difficulty": 4,
+    "series": "dbz",
+    "members": [
+      "goku",
+      "vegeta",
+      "raditz",
+      "nappa",
+      "bardock",
+      "broly",
+      "broly-z",
+      "paragus-z",
+      "paragus-super",
+      "kale",
+      "cabba",
+      "caulifla",
+      "gine",
+      "rey-vegeta",
+      "vegeta-jr"
+    ],
+    "verified": false
+  },
+  {
+    "id": "animales-y-mascotas",
+    "name": "Animales y mascotas",
+    "category": "ocupación",
+    "difficulty": 4,
+    "series": "db",
+    "members": [
+      "puar",
+      "oolong",
+      "bee",
+      "gregory",
+      "bubbles",
+      "pez-oraculo",
+      "tortuga-marina"
+    ],
+    "verified": false
+  },
+  {
+    "id": "nucleo-del-mundo",
+    "name": "Viven en el Núcleo del Mundo",
+    "category": "lugar",
+    "difficulty": 4,
+    "series": "dbz",
+    "members": [
+      "kibitoshin",
+      "kaio-del-norte",
+      "kaio-del-sur",
+      "kaio-del-este",
+      "kaio-del-oeste",
+      "kaioshin-del-este",
+      "gran-kaioshin",
+      "kibito",
+      "kaioshin-anciano"
+    ],
+    "verified": false
+  },
+  {
+    "id": "tropas-del-orgullo",
+    "name": "Tropas del Orgullo",
+    "category": "organización",
+    "difficulty": 4,
+    "series": "super",
+    "members": [
+      "jiren",
+      "toppo",
+      "dyspo",
+      "gas",
+      "elec",
+      "oil",
+      "macki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "prisioneros-de-la-patrulla-galactica",
+    "name": "Prisioneros de la Patrulla Galáctica",
+    "category": "saga",
+    "difficulty": 4,
+    "series": "super",
+    "members": [
+      "moro",
+      "saganbo",
+      "shimorekka",
+      "yunba",
+      "cranberry",
+      "esca",
+      "irico"
+    ],
+    "verified": false
+  },
+  {
+    "id": "planeta-sadala",
+    "name": "Saiyajin del Planeta Sadala",
+    "category": "planeta",
+    "difficulty": 4,
+    "series": "super",
+    "members": [
+      "cabba",
+      "caulifla",
+      "kale",
+      "kefla"
+    ],
+    "verified": false
+  },
+  {
+    "id": "ceresianos",
+    "name": "Planeta Cereal",
+    "category": "planeta",
+    "difficulty": 4,
+    "series": "super",
+    "members": [
+      "granolah",
+      "monaito",
+      "gas",
+      "elec",
+      "oil",
+      "macki",
+      "toronbo"
+    ],
+    "verified": false
+  },
+  {
+    "id": "heeters",
+    "name": "Los hermanos Heeter",
+    "category": "raza",
+    "difficulty": 4,
+    "series": "super",
+    "members": [
+      "gas",
+      "elec",
+      "oil",
+      "macki"
+    ],
+    "verified": false
+  },
+  {
+    "id": "androides-de-super-hero",
+    "name": "Androides de Super Hero",
+    "category": "saga",
+    "difficulty": 4,
+    "series": "super",
+    "members": [
+      "gamma-1",
+      "gamma-2",
+      "magenta",
+      "carmine"
+    ],
+    "verified": false
+  },
+  {
+    "id": "nombres-de-comida",
+    "name": "Nombres que vienen de la comida",
+    "category": "curiosidad",
+    "difficulty": 4,
+    "series": "db",
+    "members": [
+      "oolong",
+      "puar",
+      "pilaf",
+      "mai",
+      "shu",
+      "yamcha",
+      "chaoz",
+      "tenshinhan",
+      "lunch",
+      "krilin",
+      "marron"
+    ],
+    "verified": false
+  },
+  {
+    "id": "kaioshin-del-este-y-su-gente",
+    "name": "Kaioshin del Este y su gente",
+    "category": "raza",
+    "difficulty": 4,
+    "series": "dbz",
+    "members": [
+      "kaioshin-del-este",
+      "kibito",
+      "kibitoshin",
+      "kaioshin-anciano"
+    ],
+    "verified": false
+  },
+  {
+    "id": "fusiones-con-aretes",
+    "name": "Fusiones con los aretes Pothala",
+    "category": "transformación",
+    "difficulty": 4,
+    "series": "dbz",
+    "members": [
+      "vegetto",
+      "kefla",
+      "zamasu-fusionado",
+      "kibitoshin"
+    ],
+    "verified": false
+  },
+  {
+    "id": "sin-genero",
+    "name": "Sin género definido",
+    "category": "género",
+    "difficulty": 4,
+    "series": "dbz",
+    "members": [
+      "janemba",
+      "shenlong",
+      "robot-pirata",
+      "tamagami-1",
+      "tamagami-2",
+      "tamagami-3",
+      "giru"
+    ],
+    "verified": false
+  }
+]

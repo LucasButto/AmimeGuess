@@ -297,6 +297,17 @@
   }
 }
 
+// Un cambio apenas visible del relleno al pasar el cursor, para pastillas y botones que lo traen en `--_fill` (con `--_ink` de
+// tinta): mezcla `$amount` de la tinta en el relleno. El marco dibuja el relleno con `--_fill-shown` (ver `pixel-frame` en
+// `Button` y `ModeNav`); sin este mixin cae a `--_fill`, igual que antes. Sin transición: solo `transform` y `opacity` se animan.
+@mixin hover-tint($amount: 12%) {
+  --_fill-shown: color-mix(in srgb, var(--_fill) calc(100% - var(--_tint, 0%)), var(--_ink));
+
+  @include hover {
+    --_tint: #{$amount};
+  }
+}
+
 // Estado presionado propio de lo que se toca (SPEC 9.3): mientras el dedo está encima, el elemento se achica un poco, como los
 // botones de una app. Reemplaza al recuadro gris del navegador (que se saca en globals.scss). Usa la propiedad `scale`, no
 // `transform`: se suma a los transforms que el elemento ya tenga. Solo con movimiento permitido y nunca en un botón desactivado.

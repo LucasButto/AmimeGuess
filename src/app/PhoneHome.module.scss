@@ -231,3 +231,35 @@
   transform: scaleX(var(--progress, 0));
   transform-origin: left center;
 }
+
+// Versus: la tarjeta de arriba, antes de "Seguí jugando".
+.versusCard {
+  @include m.touch-target;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: t.$space-3;
+  padding: t.$space-3 t.$space-4;
+  border: 0.125rem solid var(--hub-focus);
+  border-radius: 0.75rem;
+  background: var(--tv-key-light);
+  color: var(--hub-ink);
+  text-decoration: none;
+}
+
+.versusText {
+  display: grid;
+  gap: 0.125rem;
+
+  strong { color: var(--hub-focus); font: 800 1.125rem / 1.2 var(--hub-body-font); }
+  span { color: var(--hub-muted); font: 600 0.875rem / 1.3 var(--hub-body-font); }
+}
+
+.versusGo {
+  padding: t.$space-2 t.$space-3;
+  border-radius: t.$radius-full;
+  background: var(--hub-focus);
+  color: var(--tv-key);
+  font: 800 0.875rem / 1 var(--hub-body-font);
+  white-space: nowrap;
+}

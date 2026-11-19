@@ -50,7 +50,7 @@ interface FilterPanelProps {
  * Chips por serie: se apagan para excluir (SPEC 9). Muestra cuántas entidades
  * quedan, avisa si no alcanzan el mínimo e impide apagar la última serie.
  */
-export function FilterPanel({ series, labels, details, active, onChange, remaining, shown, minimum, toggles, children, sheet = false }: FilterPanelProps) {
+export function FilterPanel({ series, labels, details, active, onChange, remaining, minimum, toggles, children, sheet = false }: FilterPanelProps) {
   const { skin } = useSkin();
   const noun = useContext(PoolNounContext);
   const { ChipMark } = skin.slots;
@@ -77,7 +77,7 @@ export function FilterPanel({ series, labels, details, active, onChange, remaini
           <InfoTip compact text={es.help.filters} label={es.help.button(es.filters.title)} />
         </div>
         <p className={styles.count} role="status">
-          {es.filters.remaining(shown ?? remaining, noun)}
+          {es.filters.remaining(remaining, noun)}
         </p>
       </div>
       <div id={bodyId} hidden={!sheet && !open} className={styles.body}>

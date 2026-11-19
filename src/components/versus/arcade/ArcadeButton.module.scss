@@ -1,0 +1,22 @@
+@use 'retro' as r;
+
+.button {
+  @include r.button;
+
+  &[data-tone='gold'] {
+    @include r.tone('gold');
+  }
+
+  &[data-tone='red'] {
+    @include r.tone('red');
+  }
+
+  &[data-tone='blue'] {
+    @include r.tone('blue');
+  }
+
+  &[data-size='lg'] {
+    padding-block: 0.75rem;
+    font-size: clamp(1.2rem, 4.6vw, 1.6rem);
+  }
+}

@@ -8,6 +8,8 @@
   aspect-ratio: 1;
   object-fit: contain;
   margin-block-end: t.$space-1;
+  // Centrada: si el pie (el nombre) es más ancho que la imagen, sin esto quedaba pegada a la izquierda.
+  margin-inline: auto;
 }
 
 .pixel {

@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from 'next';
 import type { ReactNode } from 'react';
+import { Analytics } from '@vercel/analytics/next';
 import { PREFS_BOOT_SCRIPT } from '@/components/prefs';
 import { SITE_THEME_COLOR } from '@/franchises/themeColor';
 import { es } from '@/i18n/es';
 import '@/styles/globals.scss';
 import { fontVariables } from './fonts';
+import { VersusMount } from '@/components/versus/VersusMount';
 import { RouteStatic } from './RouteStatic';
 import { ServiceWorker } from './ServiceWorker';
 import { OG_SIZE, SITE_URL, ogImage } from './site';
@@ -48,8 +50,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <script dangerouslySetInnerHTML={{ __html: PREFS_BOOT_SCRIPT }} />
         {children}
         <RouteStatic />
+        {/* Versus: la conexión con la sala se carga solo en sus páginas y en las partidas (`?v=`); ver VersusMount. */}
+        <VersusMount />
         {/* Lo ya visitado se puede jugar sin conexión (ver public/sw.js). */}
         <ServiceWorker />
+        <Analytics />
       </body>
     </html>
   );

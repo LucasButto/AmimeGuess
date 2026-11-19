@@ -3,10 +3,12 @@
 import { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { AttemptRules } from '@/components/game-shell/AttemptRules';
 import { GameShell } from '@/components/game-shell/GameShell';
+import { useVersusVariant } from '@/components/versus/VersusGameContext';
 import { AttemptsStatus } from '@/components/game-shell/AttemptsStatus';
 import { DockAction, useDockTarget } from '@/components/game-shell/GameDock';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
 import { useSurrender } from '@/components/game-shell/useSurrender';
+import { endLimit, isUnlimited, useVersusProgress, useVersusStop } from '@/components/game-shell/versus';
 import type { FinishReport, GameSession, GameShellProps } from '@/components/game-shell/types';
 import { ContentImage } from '@/components/ContentImage';
 import { Chip } from '@/components/ui/Chip';
@@ -37,7 +39,13 @@ function readLevel(franchise: string): number {
 }
 
 export function CategoryBoardGame({ franchise, mode, modes, config, entities }: Props) {
-  const [level, setLevel] = useState(() => readLevel(franchise.slug));
+  // En versus, la dificultad es la de la partida (`d1` a `d3`; sin variante, la normal) y no se guarda.
+  const versus = useVersusVariant();
+  const [level, setLevel] = useState(() => {
+    if (!versus) return readLevel(franchise.slug);
+    const index = Number(versus.variant?.match(/^d([123])$/)?.[1] ?? 2) - 1;
+    return index;
+  });
   const rules = useContext(AttemptRules);
   const base = rules?.base ?? ATTEMPT_LIMITS[1];
   const limits = [base + 1, base, Math.max(1, base - 1)];
@@ -64,7 +72,10 @@ function CategoryBoardSession({ session, pool, config, limit, level }: { session
   return <CategoryBoard session={session} pool={pool} categories={categories} limit={limit} level={level} questionImage={config.questionImage} reassignCurrent={config.reassignCurrent} />;
 }
 
-export function CategoryBoard({ session, pool, categories, limit, level, questionImage = 'common/roulette-question', reassignCurrent = false }: { session: GameSession; pool: readonly Entity[]; categories: readonly BoardCategory[]; limit: number; level: number; questionImage?: string; reassignCurrent?: boolean }) {
+export function CategoryBoard({ session, pool, categories, limit: levelLimit, level, questionImage = 'common/roulette-question', reassignCurrent = false }: { session: GameSession; pool: readonly Entity[]; categories: readonly BoardCategory[]; limit: number; level: number; questionImage?: string; reassignCurrent?: boolean }) {
+  // En versus sin límite, los tableros fallidos no terminan la partida.
+  const limit = endLimit(session, levelLimit);
+  const unlimited = isUnlimited(session);
   const drawsFor = useCallback((index: number) => buildRound(pool, categories, session, index), [pool, categories, session]);
   const [state, setState] = useState(() => restoreGame(readState(getLocalStorage(), session), drawsFor, categories, limit, reassignCurrent));
   const stateRef = useRef(state);
@@ -112,6 +123,11 @@ export function CategoryBoard({ session, pool, categories, limit, level, questio
     grid: next.rounds.map((round) => `${'🟩'.repeat(round.placements.length)}${round.outcome === 'won' ? '' : '🟥'}`),
   }), []);
   const [restored] = useState(() => over ? reportOf(state, won, false) : null);
+  // Versus: lo que ven los rivales (tableros usados y casillas llenas) y el cierre desde afuera (tiempo agotado).
+  useVersusProgress(session, { attempts: state.rounds.length, score: placements.filter((id) => id !== wildcard.id).length });
+  useVersusStop(session, over, (stop) => {
+    if (stop === 'timeUp') surrender(state.rounds, { ...reportOf(state, false, true), timedOut: true }, state.draft);
+  });
   const onFinish = session.onFinish;
   useEffect(() => { if (restored) onFinish(restored); }, [restored, onFinish]);
 
@@ -175,12 +191,12 @@ export function CategoryBoard({ session, pool, categories, limit, level, questio
   </>;
   return <div className={styles.root} data-game-ready="true" data-category-board="" data-phase={phase} data-over={over}>
     <div className={styles.summary}>
-      <AttemptsStatus><span>{copy.progress(Math.min(index + 1, limit), limit)}</span></AttemptsStatus>
+      <AttemptsStatus><span>{unlimited ? es.versus.attempt(index + 1) : copy.progress(Math.min(index + 1, limit), limit)}</span></AttemptsStatus>
       <span className={styles.levelBadge}>{copy.levels[level]}</span>
       <strong>{copy.filled(filled)}</strong>
       {!over && <SurrenderButton onConfirm={() => surrender(state.rounds, reportOf(state, false, true), state.draft)} />}
     </div>
-    <SkinAttemptsMeter skin={skin} engine="category-board" mode={session.mode} failed={over && !won ? limit : state.rounds.filter((round) => round.outcome !== 'won').length} won={won} total={limit} />
+    {!unlimited && <SkinAttemptsMeter skin={skin} engine="category-board" mode={session.mode} failed={over && !won ? limit : state.rounds.filter((round) => round.outcome !== 'won').length} won={won} total={limit} />}
     <div className={styles.layout}>
       {failed && !over ? <section className={`${styles.spotlight} ${styles.failedPanel}`} data-part="category-spotlight">
         {portraitContent}
@@ -205,7 +221,7 @@ export function CategoryBoard({ session, pool, categories, limit, level, questio
     </div>
     <div className={styles.feedback} data-failed={failed} role="status" aria-live="polite">
       <strong>{message}</strong>
-      {failed && !over && <span>{copy.remaining(limit - state.rounds.length)}</span>}
+      {failed && !over && !unlimited && <span>{copy.remaining(limit - state.rounds.length)}</span>}
     </div>
     {!over && phone && (phase === 'rolling' || phase === 'placed' || failed) && <DockAction label={actionLabel} detail={copy.filled(filled)} onClick={action} />}
   </div>;

@@ -97,10 +97,32 @@ export function isTransparentArt(analysis: Analysis): boolean {
   return analysis.transparentPct >= 15 && analysis.borderSolidPct <= 5 && analysis.bounds !== null;
 }
 
-/** Imagen cuadrada de 512 px lista para convertir: la figura centrada en un lienzo transparente, o el recorte cuadrado si tiene fondo. */
+/** Una imagen con fondo que ya es casi cuadrada se recorta al cuadrado; una alta o ancha se muestra entera (ver `toSquare`). */
+const NEARLY_SQUARE = 0.08;
+
+/**
+ * Imagen cuadrada de 512 px lista para convertir: la figura centrada en un lienzo transparente, o, si tiene fondo, la imagen
+ * entera y centrada sobre una versión desenfocada de sí misma (recortarla al cuadrado le cortaba la cabeza o los pies a las
+ * figuras altas; solo se recorta si ya es casi cuadrada).
+ */
 export async function toSquare(source: Buffer, analysis: Analysis): Promise<Buffer> {
   if (!isTransparentArt(analysis) || analysis.bounds === null) {
-    return sharp(source).flatten({ background: '#ffffff' }).resize(CANVAS, CANVAS, { fit: 'cover', position: sharp.strategy.attention }).png().toBuffer();
+    const flat = await sharp(source).flatten({ background: '#ffffff' }).png().toBuffer();
+    if (Math.abs(analysis.width / analysis.height - 1) <= NEARLY_SQUARE) {
+      return sharp(flat).resize(CANVAS, CANVAS, { fit: 'cover', position: sharp.strategy.attention }).png().toBuffer();
+    }
+    const backdrop = await sharp(flat).resize(CANVAS, CANVAS, { fit: 'cover' }).blur(16).modulate({ brightness: 0.92 }).png().toBuffer();
+    const front = await sharp(flat).resize(CANVAS, CANVAS, { fit: 'inside' }).png().toBuffer({ resolveWithObject: true });
+    return sharp(backdrop)
+      .composite([
+        {
+          input: front.data,
+          left: Math.round((CANVAS - front.info.width) / 2),
+          top: Math.round((CANVAS - front.info.height) / 2),
+        },
+      ])
+      .png()
+      .toBuffer();
   }
   const inner = CANVAS - 2 * MARGIN;
   const figure = await sharp(source)

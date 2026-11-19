@@ -167,13 +167,12 @@ export const es = {
       clasico: "Adiviná el personaje comparando sus datos.",
       silueta: "Adiviná el personaje por su sombra ampliada.",
       frase: "Adiviná qué personaje dijo la frase.",
-      borroso: "Adiviná el personaje de la imagen borrosa.",
+      quiz: "Contestá preguntas rebuscadas sobre Dragon Ball eligiendo al personaje correcto entre 12 opciones.",
       tecnica: "Mirá la técnica y adiviná qué personaje la usa.",
-      poder: "Elegí quién tiene más poder en la forma y el momento indicados.",
-      transformacion:
-        "Adiviná la transformación exacta de la imagen, incluyendo el personaje y su forma.",
       "linea-de-tiempo":
         "Ordená los sucesos de Dragon Ball según cuándo ocurren en la historia.",
+      conexiones:
+        "Agrupá a los personajes que comparten una raza, una organización u otra característica.",
     },
     naruto: {
       casillas:
@@ -215,7 +214,11 @@ export const es = {
       best === actual
         ? `¡Elegiste una combinación óptima! Sumaste ${actual} puntos.`
         : `Con estos mismos seis Pokémon podías sumar ${best} puntos: ${best - actual} más que tus ${actual}.`,
-    insteadOf: (name: string, value: number) => ` — ${name} ${value}`,
+    // Los dos equipos lado a lado: el que armó la persona y el mejor posible con los mismos Pokémon.
+    yourTeam: "Tu equipo",
+    bestTeam: "Mejor equipo posible",
+    teamTotal: (total: number) => `${total} puntos`,
+    moved: "Cambia de lugar",
 
     settings: "Configuración de la partida",
     settingsHelp:
@@ -325,10 +328,10 @@ export const es = {
       `${solved} de ${total} ${plural(total, "reto", "retos")} de hoy`,
     play: "Jugar",
     continue: "Seguir",
-    // El estado de hoy de un modo, solo la palabra (hub del teléfono y Retos): pendiente, completado o fallado.
+    // El estado de hoy de un modo, solo la palabra (hub del teléfono y Retos): pendiente, completado o fallido.
     rowState: {
       won: "Completado",
-      lost: "Fallado",
+      lost: "Fallido",
       pending: "Pendiente",
     },
     solved: "Resuelto hoy",
@@ -386,6 +389,8 @@ export const es = {
     title: "Más",
     settings: "Ajustes",
     howTo: "Cómo se juega",
+    versus: "Versus",
+    versusHint: "Jugá en vivo contra tus amigos",
     credits: "Créditos",
     creditsHint: "Fuentes, licencias y agradecimientos",
     legal: "Aviso legal",
@@ -433,6 +438,14 @@ export const es = {
   credits: {
     /** Teléfono: la ← de la barra superior vuelve a la pestaña Más. */
     back: "Volver a Más",
+    /** Servicios que usa el sitio (el versus). */
+    services: {
+      title: "Servicios",
+      text: "Las salas del modo versus se alojan en Cloudflare Workers (plan gratuito). Solo guardan los apodos y los resultados de la sala durante 24 horas.",
+      name: "Cloudflare Workers",
+      url: "https://workers.cloudflare.com",
+      retro: "Retro Battle (el diseño del versus): tipografías Teko y Silkscreen (licencia SIL Open Font), alojadas en el sitio. Los íconos (también los de cada modo de juego) y los avatares pixel art del versus son recursos aportados por el proyecto; su origen y licencia están por confirmar.",
+    },
     pmd: {
       title: "PMD SpriteCollab",
       text: "Usamos sprites de Pokémon Mystery Dungeon para los Pokémon que recorren el fondo y retratos Normal para las miniaturas de la Pokédex. Las imágenes de los retos y de las respuestas conservan su arte original.",
@@ -498,12 +511,17 @@ export const es = {
             {
               name: "Dragon Ball API",
               url: "https://dragonball-api.com",
-              text: "Personajes, transformaciones, niveles de ki e imágenes.",
+              text: "Personajes e imágenes.",
             },
             {
               name: "Dragon Ball Wiki Hispano (Fandom)",
               url: "https://dragonball.fandom.com/es",
-              text: "Series en las que aparece cada personaje, frases (CC BY-SA, más abajo) e imágenes de personajes, técnicas y transformaciones.",
+              text: "Series en las que aparece cada personaje, frases (CC BY-SA, más abajo), imágenes de personajes y las capturas con que se buscó la escena de cada técnica. Licencia de las imágenes: a confirmar.",
+            },
+            {
+              name: "trace.moe",
+              url: "https://trace.moe",
+              text: "Búsqueda de escenas por imagen: de ahí salen el episodio y el momento de muchos clips del modo Técnica. Los clips son fragmentos del anime; pertenecen a sus titulares. Licencia: a confirmar.",
             },
           ],
         },
@@ -667,6 +685,14 @@ export const es = {
       ],
       externalItems: [
         {
+          name: "Íconos del menú del juego de Pokémon, Naruto y Dragon Ball",
+          text: "Imágenes aportadas por el usuario; autor y licencia a confirmar. Cómo se juega, Estadísticas, Ajustes, el botón que abre el menú, el de los filtros del teléfono y la bandera blanca de Rendirse de cada serie, recortados y convertidos a WebP.",
+        },
+        {
+          name: "Cápsula del Clásico de Dragon Ball",
+          text: "Imagen aportada por el usuario; autor y licencia a confirmar. Es la tarjeta del modo principal en la página de la serie, con el nombre y el estado encima.",
+        },
+        {
           name: "Signos de pregunta de Naruto y Dragon Ball para la selección móvil",
           text: "Imágenes aportadas por el usuario; autor y licencia a confirmar. Se utilizan en la selección inicial del modo Casillas en móvil.",
         },
@@ -713,7 +739,7 @@ export const es = {
   notFound: {
     title: "Página no encontrada",
     text: "La página que buscás no existe o cambió de lugar.",
-    home: "Volver al inicio",
+    home: "Salir de la sala",
   },
   // Página "Sin conexión": la muestra el service worker cuando no hay red y la página pedida no se había visitado.
   offline: {
@@ -727,7 +753,7 @@ export const es = {
     title: "Algo salió mal",
     text: "Se produjo un error inesperado. Probá de nuevo; si sigue pasando, volvé al inicio.",
     retry: "Reintentar",
-    home: "Volver al inicio",
+    home: "Salir de la sala",
   },
   meta: {
     franchise: (name: string, modes: number) =>
@@ -765,6 +791,7 @@ export const es = {
     nouns: {
       events: { one: "suceso", many: "sucesos" },
       groups: { one: "grupo", many: "grupos" },
+      questions: { one: "pregunta", many: "preguntas" },
     },
     belowMinimum: (remaining: number, minimum: number) =>
       `Con estos filtros quedan ${remaining} y hacen falta al menos ${minimum} para jugar este modo. Activá más series.`,
@@ -1021,6 +1048,7 @@ export const es = {
     difficulties: ["Fácil", "Media", "Difícil", "Muy difícil"],
     difficultyLabel: (name: string) => `Dificultad: ${name}`,
     oneAway: "Casi: a uno de un grupo.",
+    wrongUnlimited: "No es un grupo.",
     wrong: "Esos cuatro no forman un grupo.",
     repeated: "Ya probaste esa combinación.",
     foundAnnouncement: (name: string) => `Grupo encontrado: ${name}.`,
@@ -1044,6 +1072,31 @@ export const es = {
       unique: "En este tablero, cada elemento pertenece a un solo grupo.",
       colors:
         "Cada grupo tiene un color y un nivel de dificultad, de fácil a muy difícil.",
+    },
+  },
+  quiz: {
+    instructions: "Elegí la opción correcta. Al terminar ves el dato que explica la respuesta.",
+    attempt: (current: number, total: number) => `Intento ${current} de ${total}`,
+    gridLabel: "Opciones",
+    stateRight: "correcta",
+    stateWrong: "incorrecta",
+    stateReveal: "era la respuesta correcta",
+    factTitle: "El dato",
+    confirm: "Elegir opción",
+    rightAnnouncement: "¡Correcto!",
+    wrongAnnouncement: (left: number) =>
+      `Esa no es. Te ${plural(left, "queda", "quedan")} ${left} ${plural(left, "intento", "intentos")}.`,
+    lostAnnouncement: (name: string) => `No era. La respuesta correcta es ${name}.`,
+    noPuzzle:
+      "Con estos filtros no hay preguntas suficientes para armar el quiz. Activá más series.",
+    help: {
+      goal: (options: number) =>
+        `Cada día hay una pregunta rebuscada sobre la historia. La respuesta es un personaje: elegilo entre ${options} opciones, que aparecen siempre en un orden distinto.`,
+      attempts: (total: number) =>
+        total === 1
+          ? "Tenés un solo intento: elegí con cuidado."
+          : `Tenés ${total} intentos. Cada opción incorrecta queda descartada.`,
+      hover: "Pasá el cursor por un nombre para ver al personaje.",
     },
   },
   shell: {
@@ -1098,6 +1151,8 @@ export const es = {
     modeSolved: "resuelto hoy",
     modeSoon: "próximamente",
     help: "Cómo se juega",
+    // El botón visible dentro de la pantalla de juego (además de la opción del menú ⋮ o ☰).
+    helpButton: "Cómo se juega",
     stats: "Estadísticas",
     close: "Cerrar",
     // Al pasar el cursor por la barra del título de un modal que se puede mover (por ejemplo, la Pokédex).
@@ -1573,10 +1628,8 @@ export const es = {
         "El planeta donde nació. Verde si es el mismo que el de la respuesta; rojo si no.",
       transformaciones:
         "Las formas que alcanzó en las series activas. Verde si son las mismas; naranja si comparten alguna.",
-      serieDebut:
-        "La serie en la que apareció por primera vez. La flecha indica si la respuesta debutó antes o después.",
       sagaDebut:
-        "La saga en la que apareció por primera vez. La flecha indica si la respuesta debutó antes o después.",
+        "La saga en la que apareció por primera vez, en el orden de la historia. La flecha indica si la respuesta debutó antes o después.",
     },
     // Columnas del Clásico de Pokémon.
     pokemon: {
@@ -1627,5 +1680,305 @@ export const es = {
     lost: "Hoy no lo resolví",
     score: (score: number) => `Racha de aciertos: ${score}`,
     omitted: "…",
+  },
+  // Versus (sesiones 28 a 32). En la 28, solo lo que muestran los juegos dentro de una sala y la página de desarrollo.
+  versus: {
+    /** El acceso a Versus en el inicio y en "Más" (solo con `NEXT_PUBLIC_VERSUS_URL`). */
+    entry: {
+      name: "Versus",
+      live: "EN VIVO",
+      /** La pantalla del televisor al pasar el cursor por la tecla de Versus. */
+      previewLive: "LIVE",
+      tagline: "Jugá en vivo contra tus amigos",
+      create: "Crear sala",
+      label: "Versus: jugá en vivo contra tus amigos",
+    },
+    /** La portada de Versus (`/versus`): crear una sala o unirse con un código. */
+    home: {
+      title: "Versus",
+      tagline: "Desafiá a tus amigos",
+      logoAlt: "AnimeGuess Versus",
+      create: "Crear sala",
+      createHint: "Configurá tus partidas y compartí el link.",
+      join: "Unirme a una sala",
+      codeLabel: "Código de sala",
+      codePlaceholder: "Ej: 8Y9NES",
+      joinButton: "Unirme",
+      invalidCode: "El código tiene 6 letras y números.",
+      modes: "Modalidades",
+      timeAttack: "Ganá en el menor tiempo.",
+      race: "Ganá el primero en terminar.",
+      fewestAttempts: "Sumá más puntos con menos errores.",
+    },
+    /** Crear sala (`/versus/crear`, sesión 30). */
+    create: {
+      title: "Versus",
+      heading: "Crear sala",
+      lead: "Armá la sala, compartí el link y jugá en vivo contra tus amigos.",
+      modality: {
+        title: "Modalidad",
+        timeAttack: "Cada partida tiene un tiempo. Gana el menor tiempo total.",
+        race: "No pasás a la siguiente sin resolverla. Gana el primero en terminar todo.",
+        fewestAttempts: "Cada partida da puntos según tu puesto. Gana quien suma más.",
+      },
+      partidas: {
+        title: "Partidas",
+        count: (total: number, max: number) => `${total} de ${max} partidas`,
+        maxTime: (time: string) => `Tiempo máximo: ${time}`,
+        empty: "Todavía no agregaste ninguna partida.",
+        add: "Agregar partida",
+        full: "Llegaste al máximo de 10 partidas.",
+        remove: (name: string) => `Quitar ${name}`,
+        edit: (name: string) => `Editar ${name}`,
+        moveEarlier: (name: string) => `Mover ${name} un lugar antes`,
+        moveLater: (name: string) => `Mover ${name} un lugar después`,
+        repeats: (n: number) => `×${n}`,
+        repeatsLabel: (name: string) => `Veces que se juega ${name}`,
+        allSeries: (plural: string) => `Todas las ${plural}`,
+        seriesCount: (n: number, total: number, plural: string) => `${n} de ${total} ${plural}`,
+        toggleOff: (label: string) => `sin ${label.toLowerCase()}`,
+      },
+      time: {
+        label: "Tiempo límite",
+        inputLabel: (name: string) => `Tiempo límite de ${name} (minutos y segundos)`,
+        more: "Cinco segundos más",
+        less: "Cinco segundos menos",
+        extra: (seconds: number, unit: string) => `+${seconds} s extra por ${unit}`,
+        reset: "Volver al tiempo por defecto",
+        range: "De 0:10 a 30:00",
+      },
+      options: {
+        title: "Opciones",
+        higherLowerTarget: "Mayor o Menor: meta de aciertos",
+        higherLowerTargetHint: "Se resuelve al llegar a esta cantidad de aciertos; los errores no cuentan.",
+        higherLowerForgiven: "Mayor o Menor: fallos perdonados",
+        higherLowerForgivenHint: "Con 0, el primer error termina tu partida.",
+        statsTarget: "Estadísticas: puntaje objetivo",
+        statsTargetHint: "Se resuelve con la primera combinación que supera este total.",
+        statsAggregation: "Estadísticas: cómo cuentan las 3 oportunidades",
+        aggregation: { best: "La mejor", sum: "La suma", average: "El promedio" },
+        less: "Menos",
+        more: "Más",
+      },
+      name: {
+        label: "Tu apodo",
+        hint: "De 1 a 16 caracteres.",
+        invalid: "Escribí un apodo de 1 a 16 caracteres.",
+      },
+      submit: "Crear sala",
+      submitting: "Creando la sala…",
+      needPartida: "Agregá al menos una partida.",
+      needName: "Escribí tu apodo.",
+      errors: {
+        generic: "No se pudo crear la sala. Probá de nuevo en un rato.",
+        quota: "El versus no está disponible ahora. Vuelve a las 21:00.",
+        invalid: "La sala tiene una partida que ya no se puede jugar. Revisá la lista.",
+      },
+      sheet: {
+        title: "Agregar partida",
+        franchise: "Franquicia",
+        mode: "Modo",
+        modeLoading: "Cargando los modos…",
+        modeError: "No se pudieron cargar los datos. Probá de nuevo.",
+        pickMode: "Elegí un modo.",
+        variant: "Variante",
+        variantRandom: "Una distinta cada partida",
+        level: "Dificultad",
+        forms: "Formas",
+        filters: "Filtros",
+        repeats: "Cuántas veces",
+        repeatsHint: (max: number) => `Cada una con un reto distinto (hasta ${max}).`,
+        needLevel: (needed: number, available: number) => `Con estos filtros hay ${available} sucesos y esta dificultad pide ${needed}.`,
+        editTitle: "Editar partida",
+        save: "Guardar cambios",
+        add: "Agregar a la sala",
+        addMany: (n: number) => `Agregar ${n} partidas`,
+        cancel: "Cancelar",
+        regional: "Regionales",
+        mega: "Megas",
+      },
+    },
+    /** Sala de espera (`/versus/sala`, sesión 30). */
+    room: {
+      title: "Sala de versus",
+      codeLabel: "Código de la sala",
+      share: "Compartir",
+      copy: "Copiar link",
+      copied: "Link copiado",
+      shareText: (code: string) => `Jugá conmigo en AnimeGuess: sala ${code}`,
+      summary: "La sala",
+      options: "Opciones",
+      players: "Jugadores",
+      waiting: (count: number, max: number) => `Esperando jugadores (${count} de ${max})`,
+      host: "Creador",
+      ready: "Listo",
+      notReady: "Esperando",
+      disconnected: "Desconectado",
+      abandoned: "Se fue",
+      readyButton: "Estoy listo",
+      notReadyButton: "Ya no estoy listo",
+      start: "Empezar",
+      startHint: "Hacen falta al menos 2 jugadores listos.",
+      kick: (name: string) => `Sacar a ${name}`,
+      leave: "Salir",
+      stage: "Stage · Sala abierta",
+      seat: (n: number) => `P${n}`,
+      creator: "Creador",
+      emptySlot: "Esperando rival…",
+      joinTitle: "Entrar a la sala",
+      joinLead: (code: string) => `Elegí un apodo para entrar a la sala ${code}.`,
+      join: "Entrar",
+      connecting: "Conectando con la sala…",
+      reconnecting: "Reconectando…",
+      unavailable: "El versus no está disponible ahora. Vuelve a las 21:00.",
+      retry: "Reintentar",
+      full: "La sala está llena.",
+      started: "La sala ya empezó. La mirás como espectador.",
+      spectator: "Mirás como espectador.",
+      notFound: "Esa sala no existe o ya terminó.",
+      updatePage: "Actualizá la página: el servidor tiene otra versión del versus.",
+      kicked: "El creador te sacó de la sala.",
+      closed: "La sala se cerró.",
+      noCode: "Falta el código de la sala.",
+      backToCreate: "Crear otra sala",
+      countdown: "La partida empieza en",
+      go: "¡Ya!",
+      starting: "Empezando…",
+      waitingOthers: "Esperando a los demás",
+      live: "En vivo",
+      doneAll: "Terminó todo",
+      finishedTitle: "La sala terminó",
+      finishedLead: "Los resultados completos llegan en la próxima actualización.",
+      modalityLine: (name: string) => `Modalidad: ${name}`,
+      partidaLine: (total: number) => `${total} ${total === 1 ? "partida" : "partidas"}`,
+      timeLimit: (time: string) => `${time} cada una`,
+    },
+    /** El desempate: votación, ruleta y partida extra. */
+    tiebreak: {
+      title: "¡Empate!",
+      tied: (names: string) => `Empatan en el primer puesto: ${names}.`,
+      choose: "Elegí el modo del desempate.",
+      played: "Modos jugados",
+      other: "Otro modo",
+      otherButton: "Elegir otro modo…",
+      otherTitle: "Otro modo",
+      otherAdd: "Votar este modo",
+      otherPicked: (name: string) => `Tu voto: ${name}`,
+      timeLeft: "Cierra en",
+      seconds: (n: number) => `${n} s`,
+      voted: (done: number, total: number) => `${done} de ${total} ya votaron.`,
+      voteSent: (done: number, total: number) => `Voto enviado · esperando a los demás (${done} de ${total})`,
+      yourVote: "Tu voto",
+      watching: "Los empatados están eligiendo el modo del desempate.",
+      spinTitle: "La ruleta decide",
+      spinSame: (name: string) => `Se juega ${name}`,
+      spinChosen: (name: string) => `Sale ${name}`,
+      slice: (name: string, percent: number) => `${name} · ${percent} %`,
+      playingTitle: "Desempate en juego",
+      playingTied: (names: string) => `Juegan ${names}. Mirás como espectador.`,
+      playingYou: "Te toca jugar el desempate.",
+      badge: "Desempate",
+      round: (n: number) => `Ronda ${n}`,
+      wheel: "Ruleta con las opciones votadas",
+    },
+    /** La pantalla de resultados. */
+    results: {
+      title: "Resultados",
+      winner: (names: string) => `Ganó ${names}`,
+      winners: (names: string) => `Ganaron ${names}`,
+      wonTiebreak: (game: string) => `Ganó el desempate en ${game}`,
+      place: (n: number) => `${n}.º`,
+      solved: (n: number, total: number) => `${n} de ${total} resueltas`,
+      timeTotal: "Tiempo total",
+      arrival: "Llegada",
+      points: "Puntos",
+      pointsValue: (halfPoints: number) => `${(halfPoints / 2).toLocaleString("es-AR")}`,
+      rule: (n: number) => `Cada partida da ${n} ${n === 1 ? "punto" : "puntos"} al 1.º, ${n - 1} al 2.º… y 1 al último. Si hay empate, se reparten los puntos de esos puestos.`,
+      detail: "Detalle por partida",
+      partida: (index: number, total: number) => `Partida ${index} de ${total}`,
+      repeat: (n: number, of: number) => `${n}/${of}`,
+      tiebreakGame: "Desempate",
+      answer: "Respuesta",
+      limit: (time: string) => `+${time}`,
+      attempts: (n: number) => `${n} ${n === 1 ? "intento" : "intentos"}`,
+      score: (n: number) => `${n.toLocaleString("es-AR")} ${n === 1 ? "punto" : "puntos"}`,
+      status: { solved: "Resuelta", failed: "Perdida", surrendered: "Se rindió", timeUp: "Se acabó el tiempo", abandoned: "Se fue", pending: "Sin jugar", playing: "Jugando" },
+      share: "Compartir",
+      shareTitle: "AnimeGuess · Versus",
+      shareText: (modality: string, lines: string, link: string) => `AnimeGuess · Versus (${modality})
+${lines}
+${link}`,
+      shareDone: "Texto copiado",
+      rematch: "Revancha",
+      rematching: "Llevando a todos a la sala nueva…",
+      another: "Crear otra sala",
+      home: "Salir de la sala",
+      host: "El creador puede pedir la revancha.",
+    },
+    /** Lo que dice Rendirse dentro de una sala (no hay modo infinito). */
+    surrenderDescription: "Vas a ver la solución y esta partida quedará como perdida. Pasás a la siguiente.",
+    /** La tira de rivales y la tabla en vivo. */
+    rivals: {
+      label: "Rivales",
+      attempts: (n: number) => `${n} ${n === 1 ? "intento" : "intentos"}`,
+      points: (n: number) => `${n.toLocaleString("es-AR")} ${n === 1 ? "punto" : "puntos"}`,
+      playing: "Jugando",
+      doneAll: "Terminó todo",
+      abandoned: "Se fue",
+      disconnected: "Desconectado",
+      /** En qué partida va un rival, corto para que entren varios por línea. */
+      where: (index: number, total: number) => `${index}/${total}`,
+      totalTime: "Total",
+      leave: "Salir",
+      offline: "Sin conexión: tu partida sigue, se manda al volver.",
+      table: "Tabla en vivo",
+      open: "Ver la tabla en vivo",
+      close: "Cerrar",
+    },
+    notices: {
+      finished: (name: string, partida: number) => `${name} terminó la partida ${partida}`,
+      abandoned: (name: string) => `${name} abandonó`,
+    },
+    attempt: (n: number) => `Intento ${n}`,
+    modality: { timeAttack: "Contrarreloj", race: "Carrera", fewestAttempts: "Menos intentos" },
+    partidaOf: (index: number, total: number) => `Partida ${index} de ${total}`,
+    timeLeft: "Tiempo restante",
+    elapsed: "Tiempo total",
+    target: (n: number) => `Meta: ${n} aciertos`,
+    targetTotal: (n: number) => `Objetivo: más de ${n}`,
+    forgiven: (n: number) => `Fallos perdonados: ${n}`,
+    combinations: (used: number, total: number) => `Combinación ${used} de ${total}`,
+    // La pantalla previa a cada modo (se ve antes de empezar la partida, con "Continuar").
+    howTo: {
+      // Estas líneas dicen cómo corre esta partida en la sala (modalidad y reglas del modo).
+      rulesTitle: "En esta sala",
+      timeAttack: (limit: string) => `Contrarreloj: tenés ${limit} para resolverla y los intentos son ilimitados. El tiempo empieza cuando tocás Continuar.`,
+      race: "Carrera: intentos ilimitados y sin tiempo límite, pero no podés pasar a la siguiente sin resolverla. El reloj de la sala ya está corriendo.",
+      fewestAttempts: "Menos intentos: sin tiempo límite. Gana quien la resuelve con menos intentos.",
+      fixedCombinations: (n: number) => `Hacés exactamente ${n} combinaciones.`,
+      continue: "Continuar",
+    },
+    summary: {
+      solvedIn: (time: string) => `¡Resuelta en ${time}!`,
+      timeUp: (limit: string) => `Se acabó el tiempo · +${limit}`,
+      attempts: (n: number) => `Resuelta en ${n} ${n === 1 ? "intento" : "intentos"}`,
+      score: (n: number) => `${n} ${n === 1 ? "acierto" : "aciertos"}`,
+      scores: (values: string) => `Combinaciones: ${values}`,
+      lost: "Perdida",
+      answer: "Respuesta",
+      next: "Siguiente partida",
+    },
+    dev: {
+      title: "Versus · página de desarrollo",
+      intro: "Una partida de versus falsa, sin servidor: el tiempo límite lo simula un temporizador local.",
+      franchise: "Franquicia",
+      mode: "Modo",
+      modality: "Modalidad",
+      timeLimit: "Tiempo límite (s)",
+      start: "Empezar partida",
+      timeUp: "Agotar el tiempo",
+      earlyEnd: "Fin anticipado",
+      log: "Lo que recibe la sala",
+    },
   },
 } as const;

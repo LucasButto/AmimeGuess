@@ -7,7 +7,6 @@ import path from 'node:path';
 import { describe, expect, it } from 'vitest';
 import type { Content, Entity } from '../../../src/engine/types.ts';
 import charactersJson from '../../../data/dragon-ball/entities.json';
-import formsJson from '../../../data/dragon-ball/transformations.json';
 import contentJson from '../../../data/dragon-ball/content.json';
 import { dragonBallContents } from '../../../src/franchises/dragon-ball/content';
 import quoteRows from '../../../data/dragon-ball/source/frase.json';
@@ -18,7 +17,6 @@ import { SERIES } from './schemas.ts';
 import { leaksName } from './transform.ts';
 
 const characters = charactersJson as unknown as Entity[];
-const forms = formsJson as Entity[];
 const contents = dragonBallContents(contentJson as Content[]);
 const sagas = sagasJson as { series: Array<{ id: string; order: number }>; sagas: Array<{ id: string; name: string; series: string; order: number }> };
 
@@ -34,9 +32,9 @@ const CLASSIC_KEYS = [
 ];
 
 describe('personajes', () => {
-  it('hay entre 100 y 150, con ids únicos', () => {
+  it('hay entre 100 y 400, con ids únicos', () => {
     expect(characters.length).toBeGreaterThanOrEqual(100);
-    expect(characters.length).toBeLessThanOrEqual(150);
+    expect(characters.length).toBeLessThanOrEqual(400);
     expect(new Set(characters.map((entity) => entity.id)).size).toBe(characters.length);
   });
 
@@ -110,29 +108,6 @@ describe('personajes', () => {
   });
 });
 
-describe('formas', () => {
-  it('tienen una sola serie, imagen y un personaje que existe', () => {
-    expect(forms.length).toBeGreaterThanOrEqual(10);
-    expect(new Set(forms.map((entity) => entity.id)).size).toBe(forms.length);
-    for (const form of forms) {
-      expect(form.series.length, form.id).toBe(1);
-      expect(form.image, form.id).toBeDefined();
-      expect(characters.some((entity) => entity.name.es === form.attrs.personaje), `${form.id}: personaje ${String(form.attrs.personaje)}`).toBe(true);
-      for (const size of [256, 512]) {
-        expect(existsSync(path.join(ROOT, 'public', 'img', `${form.image}-${size}.webp`)), `${form.id} ${size}`).toBe(true);
-      }
-    }
-  });
-
-  it('cada forma figura en las transformaciones de su personaje, con la misma serie', () => {
-    for (const form of forms) {
-      const owner = characters.find((entity) => entity.name.es === form.attrs.personaje);
-      const list = (owner?.attrs.transformaciones ?? []) as Array<{ value: string; series?: string }>;
-      expect(list.some((item) => item.value === form.attrs.forma && item.series === form.series[0]), form.id).toBe(true);
-    }
-  });
-});
-
 describe('frases', () => {
   it('rechaza IDs repetidos y campos de clasificación ausentes', () => {
     expect(quotesSrcSchema.safeParse([quoteRows[0], quoteRows[0]]).success).toBe(false);
@@ -179,6 +154,20 @@ describe('técnicas', () => {
       for (const other of technique.payload.accepts as string[]) expect(characterById.has(other), `${technique.id}: ${other}`).toBe(true);
       for (const size of [256, 512]) {
         expect(existsSync(path.join(ROOT, 'public', 'img', `${String(technique.payload.image)}-${size}.webp`)), `${technique.id} ${size}`).toBe(true);
+      }
+    }
+  });
+
+  it('las que tienen clip traen el MP4 y el tamaño del póster, y ni el póster ni el clip tienen en su nombre el id ni la respuesta', () => {
+    const withClip = techniques.filter((technique) => technique.payload.video !== undefined);
+    expect(withClip.length).toBeGreaterThan(0);
+    for (const technique of withClip) {
+      expect(existsSync(path.join(ROOT, 'public', 'video', `${String(technique.payload.video)}.mp4`)), `${technique.id} clip`).toBe(true);
+      expect(technique.payload.width, technique.id).toBeGreaterThan(0);
+      const id = technique.id.replace(/^technique-/, '');
+      for (const file of [technique.payload.image as string, technique.payload.video as string]) {
+        expect(file, technique.id).not.toContain(id);
+        expect(file, technique.id).not.toContain(technique.entityId as string);
       }
     }
   });

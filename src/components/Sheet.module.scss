@@ -29,7 +29,8 @@
 
   // El fondo aparece y se va con la hoja; mientras se la arrastra, se aclara a medida que baja (`--swipe-progress`).
   &::backdrop {
-    background: color-mix(in srgb, #{t.color('text')} 60%, transparent);
+    // `--sheet-scrim`: una pantalla puede poner su propio color de fondo (el versus lo pone negro).
+    background: var(--sheet-scrim, color-mix(in srgb, #{t.color('text')} 60%, transparent));
     opacity: 0;
     transition: opacity 0.32s ease-in;
   }
