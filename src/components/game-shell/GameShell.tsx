@@ -24,7 +24,7 @@ import { Countdown } from './Countdown';
 import { GameFlagsContext } from './flags';
 import styles from './GameShell.module.scss';
 import { ModeNav } from './ModeNav';
-import { clearPracticeStates, newPracticeDay, practiceStorage } from './practice';
+import { clearPracticeStates, pickPracticeDay, practiceKeyOf, practiceSeenKey, practiceStorage, readSeen, writeSeen } from './practice';
 import { ResultPanel } from './ResultPanel';
 import { scrollToElement } from './scroll';
 import { RESULT_SETTLE_MS } from './scrollIntoView';
@@ -173,10 +173,21 @@ export function GameShell({
     return scrollToElement(target);
   }, [practiceDay]);
 
+  // Una partida nueva del modo infinito no repite un reto hasta que salieron todos (ver `pickPracticeDay`).
   const startPractice = useCallback(() => {
     clearPracticeStates(practiceStorage());
-    setPracticeDay(newPracticeDay());
-  }, []);
+    const storage = getLocalStorage();
+    const key = variant ? `${filterKey}~${variant}` : filterKey;
+    const seenKey = practiceSeenKey(franchise.slug, mode.slug, key);
+    const seen = readSeen(storage, seenKey);
+    // La respuesta del día D es "la de ayer" de D + 1: el mismo cálculo que ya hace el marco para "Ayer fue…".
+    const pick = pickPracticeDay((candidate) => {
+      const info = yesterday({ franchise: franchise.slug, mode: mode.slug, filterKey: key, day: candidate + 1 }, active);
+      return info ? practiceKeyOf(info) : null;
+    }, seen);
+    if (pick.key !== null) writeSeen(storage, seenKey, new Set([...(pick.exhausted ? [] : seen), pick.key]));
+    setPracticeDay(pick.day);
+  }, [franchise.slug, mode.slug, filterKey, variant, yesterday, active]);
 
   const leavePractice = useCallback(() => {
     clearPracticeStates(practiceStorage());
