@@ -113,8 +113,8 @@ export const dragonBallConfig = {
       engine: 'image-reveal',
       // La pista es un clip en bucle de una técnica (cada uno con su video y su póster; no quedan imágenes fijas) y la respuesta, quien la usa. Cuenta como acierto cualquiera de los personajes que la usan (ver `accepts` en los
       // datos). Una técnica tiene más de un clip: el contador cuenta clips, y al terminar el reto se nombra la técnica ("Era Goku –
-      // Kamehameha"). El desenfoque es algo más fuerte que el de Jutsu (se acertaba a la primera con la escena en movimiento) y más suave que el de una imagen.
-      imageReveal: { variant: 'blur', imageContentKind: 'technique', showsContentName: true, countNoun: { one: 'técnica', many: 'técnicas' }, blurLevels: [1.25, 0.95, 0.7, 0.5, 0.32, 0.18], compactDifficulty: true },
+      // Kamehameha"). El desenfoque es mucho más fuerte que el de Jutsu y que el de una imagen fija (2026-11-20: con la escena en movimiento se acertaba a la primera): de 3 rem en la pista 1, bajando de a 0,5, a 0,5 rem en la última.
+      imageReveal: { variant: 'blur', imageContentKind: 'technique', showsContentName: true, countNoun: { one: 'técnica', many: 'técnicas' }, blurLevels: [3, 2.5, 2, 1.5, 1, 0.5], compactDifficulty: true },
     },
     {
       slug: 'linea-de-tiempo', versusIcon: 'timeline',
