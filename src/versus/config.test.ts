@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import type { EngineId } from '../franchises/types';
 import {
   DEFAULT_OPTIONS,
+  MODALITIES,
+  MODALITY_ORDER,
   VERSUS_ENGINES,
   defaultTimeLimit,
   expandRepeat,
@@ -63,6 +65,15 @@ describe('parseConfig', () => {
     expect(at({ statsTarget: 1_510 })).toBe(false);
     expect(at({ statsAggregation: 'average' })).toBe(true);
     expect(at({ statsAggregation: 'median' })).toBe(false);
+    expect(at({ statsAttempts: 1 })).toBe(true);
+    expect(at({ statsAttempts: 5 })).toBe(true);
+    expect(at({ statsAttempts: 10 })).toBe(true);
+    expect(at({ statsAttempts: 0 })).toBe(false);
+    expect(at({ statsAttempts: 11 })).toBe(false);
+    expect(at({ statsAttempts: 2.5 })).toBe(false);
+    // Sin el campo (una sala hecha antes de que existiera) valen 3 oportunidades.
+    const legacy = parseConfig({ modality: 'fewestAttempts', partidas: [untimed] });
+    expect(legacy.ok && legacy.config.options.statsAttempts).toBe(3);
   });
 
   it('rechaza campos de más, series repetidas y motores que no existen', () => {
@@ -137,5 +148,12 @@ describe('isValidName', () => {
     expect(isValidName('')).toBe(false);
     expect(isValidName('   ')).toBe(false);
     expect(isValidName('Ana\nBeto')).toBe(false);
+  });
+});
+
+describe('MODALITY_ORDER', () => {
+  it('muestra primero Menos intentos, después Contrarreloj y al final Carrera, con las tres modalidades una sola vez', () => {
+    expect(MODALITY_ORDER).toEqual(['fewestAttempts', 'timeAttack', 'race']);
+    expect([...MODALITY_ORDER].sort()).toEqual([...MODALITIES].sort());
   });
 });

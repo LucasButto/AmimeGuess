@@ -7,15 +7,16 @@ import { isRoomCode } from '@/versus/code';
 import { ArcadeButton } from './arcade/ArcadeButton';
 import { ArcadeIcon } from './arcade/ArcadeIcon';
 import { ArcadePanel } from './arcade/ArcadePanel';
+import { EyeButton } from './EyeButton';
 import styles from './VersusHome.module.scss';
 
 const copy = es.versus.home;
 
 /** Las tres modalidades de la portada, cada una en su recuadro. */
 const MODES = [
+  { key: 'fewestAttempts', icon: 'crown-gold' },
   { key: 'timeAttack', icon: 'stopwatch' },
   { key: 'race', icon: 'checkered-flag' },
-  { key: 'fewestAttempts', icon: 'crown-gold' },
 ] as const;
 
 /** La portada de Versus: dos acciones (crear una sala o unirse con su código) y la franja de modalidades. */
@@ -25,6 +26,8 @@ export function VersusHome() {
   const hintId = useId();
   const [code, setCode] = useState('');
   const [touched, setTouched] = useState(false);
+  // El código que se escribe va escondido (como una contraseña) hasta que se toca el ojito.
+  const [shown, setShown] = useState(false);
   const normalized = code.trim().toUpperCase();
   const valid = isRoomCode(normalized);
   const invalid = touched && !valid;
@@ -51,14 +54,18 @@ export function VersusHome() {
           <div className={styles.field}>
             <label className={styles.label} htmlFor={inputId}>{copy.codeLabel}</label>
             <div className={styles.row}>
+              <div className={styles.codeField}>
               <input
                 id={inputId}
                 className={styles.input}
+                type={shown ? 'text' : 'password'}
                 value={code}
                 maxLength={6}
                 autoComplete="off"
                 autoCapitalize="characters"
                 spellCheck={false}
+                data-1p-ignore=""
+                data-lpignore="true"
                 placeholder={copy.codePlaceholder}
                 aria-invalid={invalid || undefined}
                 aria-describedby={invalid ? hintId : undefined}
@@ -71,6 +78,8 @@ export function VersusHome() {
                   }
                 }}
               />
+              <EyeButton className={styles.codeEye} shown={shown} onToggle={() => setShown((current) => !current)} showLabel={copy.showCode} hideLabel={copy.hideCode} />
+              </div>
               <ArcadeButton onClick={join}>{copy.joinButton}</ArcadeButton>
             </div>
             <p className={styles.error} id={hintId} role="status">{invalid ? copy.invalidCode : ''}</p>

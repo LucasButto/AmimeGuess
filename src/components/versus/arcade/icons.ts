@@ -74,6 +74,7 @@ export const ARCADE_ICONS = [
   'undo',
   'enter',
   'share',
+  'copy',
   'sound',
   'mute',
   'fullscreen'

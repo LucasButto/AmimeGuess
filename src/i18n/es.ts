@@ -473,6 +473,7 @@ export const es = {
         altcolor: "Altcolor",
         alternate: "Alternate",
         cutscene: "Cutscene",
+        trooper: "Trooper",
         alola: "Alola",
         galar: "Galar",
       } as Readonly<Record<string, string>>,
@@ -1091,6 +1092,8 @@ export const es = {
     wrongAnnouncement: (left: number) =>
       `Esa no es. Te ${plural(left, "queda", "quedan")} ${left} ${plural(left, "intento", "intentos")}.`,
     lostAnnouncement: (name: string) => `No era. La respuesta correcta es ${name}.`,
+    /** En una sala no hay límite: la incorrecta queda marcada y se puede elegir otra. */
+    wrongUnlimited: "Esa no es. Queda marcada como incorrecta: elegí otra opción.",
     noPuzzle:
       "Con estos filtros no hay preguntas suficientes para armar el quiz. Activá más series.",
     help: {
@@ -1100,6 +1103,8 @@ export const es = {
         total === 1
           ? "Tenés un solo intento: elegí con cuidado."
           : `Tenés ${total} intentos. Cada opción incorrecta queda descartada.`,
+      attemptsVersus:
+        "En una sala podés seguir eligiendo: cada opción incorrecta queda marcada y cada una que elegís cuenta como un intento, hasta dar con la correcta.",
       hover: "Pasá el cursor por un nombre para ver al personaje.",
     },
   },
@@ -1708,6 +1713,8 @@ export const es = {
       codeLabel: "Código de sala",
       codePlaceholder: "Ej: 8Y9NES",
       joinButton: "Unirme",
+      showCode: "Mostrar el código",
+      hideCode: "Ocultar el código",
       invalidCode: "El código tiene 6 letras y números.",
       modes: "Modalidades",
       timeAttack: "Ganá en el menor tiempo.",
@@ -1753,14 +1760,22 @@ export const es = {
       },
       options: {
         title: "Opciones",
-        higherLowerTarget: "Mayor o Menor: meta de aciertos",
+        higherLowerTarget: "Meta de aciertos",
         higherLowerTargetHint: "Se resuelve al llegar a esta cantidad de aciertos; los errores no cuentan.",
-        higherLowerForgiven: "Mayor o Menor: fallos perdonados",
+        higherLowerForgiven: "Fallos perdonados",
         higherLowerForgivenHint: "Con 0, el primer error termina tu partida.",
-        statsTarget: "Estadísticas: puntaje objetivo",
+        statsTarget: "Puntaje objetivo",
         statsTargetHint: "Se resuelve con la primera combinación que supera este total.",
-        statsAggregation: "Estadísticas: cómo cuentan las 3 oportunidades",
+        statsAttempts: "Oportunidades",
+        statsAttemptsHint: "Cuántas combinaciones armás. Con una sola, cuenta esa.",
+        statsAggregation: "Cómo se cuentan las oportunidades",
         aggregation: { best: "La mejor", sum: "La suma", average: "El promedio" },
+        /** Una ayuda por opción (140 caracteres como mucho, SPEC 9.2): qué hace cada una. */
+        aggregationHelp: {
+          best: "Cuenta solo tu mejor combinación: gana quien arma el total más alto en una sola oportunidad.",
+          sum: "Se suman los totales de todas las oportunidades: gana quien junta más puntos en conjunto.",
+          average: "Es la suma dividida entre las oportunidades: ordena igual que la suma, pero muestra los puntos de cada una en promedio.",
+        },
         less: "Menos",
         more: "Más",
       },
@@ -1780,6 +1795,8 @@ export const es = {
       },
       sheet: {
         title: "Agregar partida",
+        options: "Opciones",
+        optionsNote: "Valen para todas las partidas de este modo de la sala.",
         franchise: "Franquicia",
         mode: "Modo",
         modeLoading: "Cargando los modos…",
@@ -1806,9 +1823,14 @@ export const es = {
     room: {
       title: "Sala de versus",
       codeLabel: "Código de la sala",
+      showCode: "Mostrar el código",
+      hideCode: "Ocultar el código",
+      codeHidden: "Código oculto",
       share: "Compartir",
       copy: "Copiar link",
       copied: "Link copiado",
+      copyCode: "Copiar código",
+      copiedCode: "Código copiado",
       shareText: (code: string) => `Jugá conmigo en AnimeGuess: sala ${code}`,
       summary: "La sala",
       options: "Opciones",
@@ -1948,9 +1970,6 @@ ${link}`,
     partidaOf: (index: number, total: number) => `Partida ${index} de ${total}`,
     timeLeft: "Tiempo restante",
     elapsed: "Tiempo total",
-    target: (n: number) => `Meta: ${n} aciertos`,
-    targetTotal: (n: number) => `Objetivo: más de ${n}`,
-    forgiven: (n: number) => `Fallos perdonados: ${n}`,
     combinations: (used: number, total: number) => `Combinación ${used} de ${total}`,
     // La pantalla previa a cada modo (se ve antes de empezar la partida, con "Continuar").
     howTo: {
@@ -1959,7 +1978,22 @@ ${link}`,
       timeAttack: (limit: string) => `Contrarreloj: tenés ${limit} para resolverla y los intentos son ilimitados. El tiempo empieza cuando tocás Continuar.`,
       race: "Carrera: intentos ilimitados y sin tiempo límite, pero no podés pasar a la siguiente sin resolverla. El reloj de la sala ya está corriendo.",
       fewestAttempts: "Menos intentos: sin tiempo límite. Gana quien la resuelve con menos intentos.",
-      fixedCombinations: (n: number) => `Hacés exactamente ${n} combinaciones.`,
+      // Las reglas de esta partida según cómo está armada la sala (opciones, variante, modalidad).
+      variant: (title: string, label: string) => `${title}: ${label}`,
+      higherLowerTarget: (n: number) => `Ganás al llegar a ${n} ${n === 1 ? "acierto" : "aciertos"}; los errores no cuentan.`,
+      higherLowerForgiven: (n: number) =>
+        n === 0
+          ? "No se perdona ningún fallo: el primer error termina tu partida. Gana quien más aciertos suma."
+          : `Se te perdonan ${n} ${n === 1 ? "fallo" : "fallos"}: el siguiente error termina tu partida. Gana quien más aciertos suma.`,
+      statsTarget: (n: number) => `Ganás al armar una combinación que supere ${n} puntos (igualar no alcanza); podés armar todas las que quieras.`,
+      statsAttempts: (n: number) =>
+        n === 1 ? "Tenés una sola oportunidad: una combinación de seis." : `Tenés exactamente ${n} oportunidades: ${n} combinaciones de seis. Superar el total no termina antes.`,
+      statsScore: {
+        single: "Cuenta el total de esa combinación: gana quien arma el más alto.",
+        best: (n: number) => `Cuenta tu mejor combinación de las ${n}: gana quien arma el total más alto.`,
+        sum: (n: number) => `Cuenta la suma de tus ${n} combinaciones: gana quien junta más puntos.`,
+        average: (n: number) => `Cuenta el promedio de tus ${n} combinaciones (se ordena igual que la suma): gana el promedio más alto.`,
+      },
       continue: "Continuar",
     },
     summary: {

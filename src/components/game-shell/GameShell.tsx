@@ -128,7 +128,7 @@ export function GameShell({
   // (lo que arranca el reloj de la partida). Si el servidor ya cerró la partida (`stop`, por ejemplo al agotarse el tiempo
   // leyendo), se pasa directo al juego para que informe su final.
   const showHowTo = versus?.howTo === true && versus.stop === undefined;
-  const howToRules = useMemo(() => (versus ? versusRulesText(versus.modality, versus.partida, versusRules) : undefined), [versus, versusRules]);
+  const howToRules = useMemo(() => (versus ? versusRulesText(versus.modality, versus.partida, versusRules, versus.options) : undefined), [versus, versusRules]);
   // Lo que tardó en la partida de versus, medido al terminarla (para el resumen corto).
   const [versusElapsed, setVersusElapsed] = useState<number | undefined>(undefined);
   const sessionKey = `${filterKey}:${playDay}${variant ? `:${variant}` : ''}`;
@@ -344,7 +344,7 @@ export function GameShell({
 
   // El botón de "Cómo se juega" a la vista dentro de la pantalla (no solo en el menú ⋮/☰, donde casi nadie lo encontraba).
   const howToButton = (
-    <Button variant="secondary" className={styles.howToButton} aria-haspopup="dialog" onClick={() => setDialog('help')}>
+    <Button variant="secondary" className={`${styles.howToButton} ${!phone || versus ? styles.howToStart : ''}`} aria-haspopup="dialog" onClick={() => setDialog('help')}>
       <HelpIcon className={styles.howToIcon} />
       {es.shell.helpButton}
     </Button>
@@ -428,8 +428,9 @@ export function GameShell({
 
       <div className={styles.toolbar}>
         {appShell && <AttemptsStatusTarget />}
+        {/* En la pantalla previa del versus las reglas ya están escritas debajo: el botón vuelve al empezar la partida. */}
+        {!howToInTopRow && !showHowTo && howToButton}
         {!versus && !phone && <Countdown compact={appShell} />}
-        {!howToInTopRow && howToButton}
       </div>
 
       {!versus && <SheetSection>{filters}</SheetSection>}

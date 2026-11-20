@@ -85,6 +85,16 @@
   margin-inline-start: auto;
   gap: t.$space-1;
   font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  // Misma píldora que los chips de los filtros (serie, generación) encendidos: mismo relleno, texto, borde y forma del tema.
+  // Selector reforzado para ganarle a la variante `secondary` del botón sin depender del orden de los estilos.
+  &#{&}[data-variant] {
+    --_fill: #{t.token('chip-on-fill')};
+    --_ink: #{t.token('chip-on-ink')};
+    --_edge: #{t.token('chip-on-edge')};
+    --_clip: #{t.token('clip-chip')};
+    --_radius: #{t.token('chip-radius')};
+  }
   @include bp.min-width('md') {
     --_pad-inline: #{t.$space-3};
     gap: t.$space-2;
@@ -95,6 +105,12 @@
     // Con el cursor encima o el foco puesto, quieto: ya lo encontró.
     &:hover, &:focus-visible { animation-play-state: paused; }
   }
+}
+
+// Escritorio, modo normal: "Cómo se juega" va a la izquierda y el contador del próximo reto a la derecha. En una sala de versus (sin contador),
+// también a la izquierda, en cualquier ancho.
+.howToStart {
+  margin-inline: 0 auto;
 }
 
 .howToIcon {

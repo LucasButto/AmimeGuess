@@ -31,7 +31,7 @@ export interface Draft {
   readonly name: string;
 }
 
-export const EMPTY_DRAFT: Draft = { modality: 'timeAttack', blocks: [], options: { ...DEFAULT_OPTIONS }, name: '' };
+export const EMPTY_DRAFT: Draft = { modality: 'fewestAttempts', blocks: [], options: { ...DEFAULT_OPTIONS }, name: '' };
 
 export interface NewBlockInput {
   readonly id: string;
@@ -152,6 +152,7 @@ export interface VisibleOptions {
   readonly higherLowerForgiven: boolean;
   readonly statsTarget: boolean;
   readonly statsAggregation: boolean;
+  readonly statsAttempts: boolean;
 }
 
 /** Qué opciones corresponden a las partidas y a la modalidad (tabla de `01-reglas.md`, sección 1). */
@@ -168,6 +169,7 @@ export function visibleOptionsFor(modality: Modality, engines: readonly VersusEn
     higherLowerForgiven: has('higher-lower') && fewest,
     statsTarget: has('stat-builder') && !fewest,
     statsAggregation: has('stat-builder') && fewest,
+    statsAttempts: has('stat-builder') && fewest,
   };
 }
 
@@ -192,7 +194,9 @@ export function buildConfig(draft: Draft): ParseResult {
     higherLowerTarget: shown.higherLowerTarget ? draft.options.higherLowerTarget : DEFAULT_OPTIONS.higherLowerTarget,
     higherLowerForgiven: shown.higherLowerForgiven ? draft.options.higherLowerForgiven : DEFAULT_OPTIONS.higherLowerForgiven,
     statsTarget: shown.statsTarget ? draft.options.statsTarget : DEFAULT_OPTIONS.statsTarget,
-    statsAggregation: shown.statsAggregation ? draft.options.statsAggregation : DEFAULT_OPTIONS.statsAggregation,
+    statsAttempts: shown.statsAttempts ? draft.options.statsAttempts : DEFAULT_OPTIONS.statsAttempts,
+    // Con una sola oportunidad la mejor, la suma y el promedio dan lo mismo: no viaja la elección.
+    statsAggregation: shown.statsAggregation && draft.options.statsAttempts > 1 ? draft.options.statsAggregation : DEFAULT_OPTIONS.statsAggregation,
   };
   return parseConfig({ modality: draft.modality, partidas, options });
 }

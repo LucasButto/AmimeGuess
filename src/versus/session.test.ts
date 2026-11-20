@@ -12,10 +12,18 @@ describe('engineRulesFor', () => {
   });
 
   it('Menos intentos: los de siempre, con fallos perdonados y 3 combinaciones', () => {
-    for (const engine of VERSUS_ENGINES.filter((id) => id !== 'higher-lower' && id !== 'stat-builder')) {
+    for (const engine of VERSUS_ENGINES.filter((id) => id !== 'higher-lower' && id !== 'stat-builder' && id !== 'quiz')) {
       expect(engineRulesFor('fewestAttempts', engine, DEFAULT_OPTIONS)).toEqual({});
     }
     expect(engineRulesFor('fewestAttempts', 'higher-lower', { ...DEFAULT_OPTIONS, higherLowerForgiven: 0 })).toEqual({ forgivenErrors: 0 });
     expect(engineRulesFor('fewestAttempts', 'stat-builder', DEFAULT_OPTIONS)).toEqual({ fixedAttempts: 3 });
+    // Las oportunidades de Estadísticas las elige el creador de la sala.
+    for (const attempts of [1, 2, 5, 10]) expect(engineRulesFor('fewestAttempts', 'stat-builder', { ...DEFAULT_OPTIONS, statsAttempts: attempts })).toEqual({ fixedAttempts: attempts });
+  });
+
+  it('Quiz: en las tres modalidades una opción incorrecta no termina la partida (sin límite de intentos), también en Menos intentos', () => {
+    for (const modality of ['fewestAttempts', 'timeAttack', 'race'] as const) {
+      expect(engineRulesFor(modality, 'quiz', DEFAULT_OPTIONS), modality).toEqual({ unlimited: true });
+    }
   });
 });

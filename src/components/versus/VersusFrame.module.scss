@@ -106,7 +106,8 @@
   // Un poco más arriba del centro exacto: el aire de abajo es mayor que el de arriba.
   &[data-variant='hero'] {
     justify-content: center;
-    padding-block-start: calc(#{t.$space-4} + env(safe-area-inset-top));
+    // "Inicio" va fijo arriba a la izquierda: el logo y lo demás empiezan debajo de su caja, con aire, para no pisarlo en el teléfono.
+    padding-block-start: calc(#{t.$space-4} + env(safe-area-inset-top) + #{t.$touch-target} + #{t.$space-4});
     padding-block-end: clamp(#{t.$space-6}, 14dvh, 10rem);
   }
 }

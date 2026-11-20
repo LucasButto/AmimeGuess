@@ -40,10 +40,28 @@ describe('versusRulesText', () => {
     expect(versusRulesText('fewestAttempts', {}, {}).intro).toContain('sin tiempo límite');
   });
 
-  it('suma las reglas del modo: meta de aciertos, fallos perdonados, objetivo y combinaciones', () => {
-    expect(versusRulesText('timeAttack', { timeLimitMs: 120_000 }, { unlimited: true, targetScore: 10 }).lines).toEqual(['Meta: 10 aciertos']);
-    expect(versusRulesText('fewestAttempts', {}, { forgivenErrors: 3 }).lines).toEqual(['Fallos perdonados: 3']);
-    expect(versusRulesText('timeAttack', { timeLimitMs: 180_000 }, { unlimited: true, targetTotal: 500 }).lines).toEqual(['Objetivo: más de 500']);
-    expect(versusRulesText('fewestAttempts', {}, { fixedAttempts: 3 }).lines).toEqual(['Hacés exactamente 3 combinaciones.']);
+  it('Mayor o Menor: la meta de aciertos y los fallos perdonados, con lo que significan', () => {
+    expect(versusRulesText('timeAttack', { timeLimitMs: 120_000 }, { unlimited: true, targetScore: 10 }).lines).toEqual(['Ganás al llegar a 10 aciertos; los errores no cuentan.']);
+    expect(versusRulesText('race', {}, { unlimited: true, targetScore: 1 }).lines).toEqual(['Ganás al llegar a 1 acierto; los errores no cuentan.']);
+    expect(versusRulesText('fewestAttempts', {}, { forgivenErrors: 3 }).lines).toEqual(['Se te perdonan 3 fallos: el siguiente error termina tu partida. Gana quien más aciertos suma.']);
+    expect(versusRulesText('fewestAttempts', {}, { forgivenErrors: 0 }).lines).toEqual(['No se perdona ningún fallo: el primer error termina tu partida. Gana quien más aciertos suma.']);
+  });
+
+  it('Estadísticas en Contrarreloj y Carrera: el puntaje objetivo y que se arman todas las combinaciones que se quiera', () => {
+    const { lines } = versusRulesText('timeAttack', { timeLimitMs: 180_000 }, { unlimited: true, targetTotal: 550 });
+    expect(lines).toEqual(['Ganás al armar una combinación que supere 550 puntos (igualar no alcanza); podés armar todas las que quieras.']);
+  });
+
+  it('Estadísticas en Menos intentos: las oportunidades y cómo se cuentan (la mejor, la suma o el promedio)', () => {
+    const lines = (attempts: number, statsAggregation: 'best' | 'sum' | 'average') => versusRulesText('fewestAttempts', {}, { fixedAttempts: attempts }, { statsAggregation }).lines;
+    expect(lines(4, 'sum')).toEqual(['Tenés exactamente 4 oportunidades: 4 combinaciones de seis. Superar el total no termina antes.', 'Cuenta la suma de tus 4 combinaciones: gana quien junta más puntos.']);
+    expect(lines(5, 'best')[1]).toBe('Cuenta tu mejor combinación de las 5: gana quien arma el total más alto.');
+    expect(lines(3, 'average')[1]).toBe('Cuenta el promedio de tus 3 combinaciones (se ordena igual que la suma): gana el promedio más alto.');
+    // Con una sola oportunidad la mejor, la suma y el promedio dan lo mismo: se dice una sola cosa.
+    for (const aggregation of ['best', 'sum', 'average'] as const) {
+      expect(lines(1, aggregation)).toEqual(['Tenés una sola oportunidad: una combinación de seis.', 'Cuenta el total de esa combinación: gana quien arma el más alto.']);
+    }
+    // Sin las opciones de la sala se cuenta como la mejor (lo de siempre).
+    expect(versusRulesText('fewestAttempts', {}, { fixedAttempts: 3 }).lines[1]).toContain('mejor combinación');
   });
 });

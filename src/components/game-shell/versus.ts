@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useVersusGame } from '@/components/versus/VersusGameContext';
+import { engineRulesFor } from '@/versus/session';
 import type { GameSession, VersusProgress } from './types';
 
 // Lo común a todos los motores dentro de una sala de versus (reglas h, i y j de types.ts). Sin `session.versus` ni
@@ -9,6 +11,15 @@ import type { GameSession, VersusProgress } from './types';
 /** Si la partida no tiene límite de intentos ni de fallos (Contrarreloj y Carrera). */
 export function isUnlimited(session: Pick<GameSession, 'versus'>): boolean {
   return session.versus?.unlimited === true;
+}
+
+/**
+ * Para las ayudas ("Cómo se juega"), que no reciben la sesión: si la partida de esta sala corre sin límite de intentos. Fuera de una
+ * sala, siempre `false`.
+ */
+export function useVersusUnlimited(): boolean {
+  const versus = useVersusGame();
+  return versus ? engineRulesFor(versus.modality, versus.partida.engine, versus.options).unlimited === true : false;
 }
 
 /** El límite con el que termina la partida: el de siempre o, sin límite, infinito. Las ayudas siguen usando `limit`. */

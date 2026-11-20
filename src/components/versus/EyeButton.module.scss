@@ -1,0 +1,27 @@
+@use 'retro' as r;
+@use 'tokens' as t;
+@use 'mixins' as m;
+
+// El ojito de los campos escondidos: un botón cuadrado con el ojo en pixel art, del color del acento del versus.
+.eye {
+  @include m.touch-target;
+  @include m.focus-ring;
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  padding: 0;
+  border: 0.125rem solid r.$cyan;
+  background: #0a1a52;
+  color: r.$gold;
+  cursor: pointer;
+
+  svg {
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+  }
+
+  &[aria-pressed='true'] {
+    background: #12307a;
+    color: r.$ink;
+  }
+}

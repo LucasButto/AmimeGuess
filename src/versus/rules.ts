@@ -1,4 +1,4 @@
-import { samePartida, type Modality, type Partida, type StatsAggregation, type VersusEngine, type VersusOptions } from './config';
+import { DEFAULT_OPTIONS, samePartida, type Modality, type Partida, type StatsAggregation, type VersusEngine, type VersusOptions } from './config';
 
 // Las reglas de puntaje del versus (docs/versus/01-reglas.md, secciones 3 a 8). Funciones puras sobre resultados ya
 // medidos: los tiempos los pone el servidor y el azar entra como dato. Si una regla cambia, se cambia primero en
@@ -46,7 +46,7 @@ export interface VersusPlayer {
 export type Ranking = readonly (readonly string[])[];
 
 /** Las opciones de la sala que usan las reglas. */
-export type RuleOptions = Pick<VersusOptions, 'statsAggregation'>;
+export type RuleOptions = Pick<VersusOptions, 'statsAggregation'> & Partial<Pick<VersusOptions, 'statsAttempts'>>;
 
 const LOST: ReadonlySet<PartidaStatus> = new Set(['surrendered', 'timeUp', 'abandoned']);
 
@@ -67,15 +67,18 @@ export interface StatsScore {
   readonly rank: number;
 }
 
-/** El puntaje de las combinaciones de Estadísticas según la opción de la sala. */
-export function statsScore(totals: readonly number[], aggregation: StatsAggregation): StatsScore {
+/**
+ * El puntaje de las combinaciones de Estadísticas según la opción de la sala. `attempts` son las oportunidades de la sala (3 por
+ * defecto): el promedio divide por ellas, no por las que se llegaron a jugar (quien se rinde antes cuenta como si hubiera sacado 0 en el resto).
+ */
+export function statsScore(totals: readonly number[], aggregation: StatsAggregation, attempts: number = DEFAULT_OPTIONS.statsAttempts): StatsScore {
   const sum = totals.reduce((acc, total) => acc + total, 0);
   if (aggregation === 'best') {
     const best = totals.length === 0 ? 0 : Math.max(...totals);
     return { value: best, rank: best };
   }
   if (aggregation === 'sum') return { value: sum, rank: sum };
-  return { value: Math.round((sum / 3) * 10) / 10, rank: sum };
+  return { value: Math.round((sum / Math.max(1, attempts)) * 10) / 10, rank: sum };
 }
 
 // --- Orden de una partida ---------------------------------------------------------------------------------------------
@@ -133,7 +136,7 @@ export function rankPartida(
     const scored = results.filter((result) => !LOST.has(result.status));
     const losers = results.filter((result) => LOST.has(result.status)).map((result) => result.playerId);
     const key = (result: PartidaResult) =>
-      partida.engine === 'higher-lower' ? (result.score ?? 0) : statsScore(result.scores ?? [], options.statsAggregation).rank;
+      partida.engine === 'higher-lower' ? (result.score ?? 0) : statsScore(result.scores ?? [], options.statsAggregation, options.statsAttempts).rank;
     return withLosers(groupBy(scored.map((result) => ({ id: result.playerId, key: key(result) })), 'desc'), losers);
   }
 

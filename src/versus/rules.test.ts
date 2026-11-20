@@ -164,6 +164,10 @@ describe('5.1 Menos intentos: quién gana cada partida', () => {
   it('Estadísticas (El promedio): se muestra con un decimal y se ordena por la suma', () => {
     expect(statsScore([480, 530, 510], 'average')).toEqual({ value: 506.7, rank: 1520 });
     expect(statsScore([600, 440, 470], 'best')).toEqual({ value: 600, rank: 600 });
+    // El promedio divide por las oportunidades de la sala, no siempre por tres.
+    expect(statsScore([480, 530, 510, 400, 470], 'average', 5)).toEqual({ value: 478, rank: 2390 });
+    expect(statsScore([450], 'average', 1)).toEqual({ value: 450, rank: 450 });
+    expect(statsScore([450], 'sum', 1)).toEqual({ value: 450, rank: 450 });
   });
 });
 

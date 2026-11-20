@@ -8,6 +8,8 @@ import { z } from 'zod';
 /** Las modalidades: Contrarreloj, Carrera y Menos intentos. */
 export const MODALITIES = ['timeAttack', 'race', 'fewestAttempts'] as const;
 export type Modality = (typeof MODALITIES)[number];
+/** El orden en que se muestran al crear una sala: Menos intentos, Contrarreloj y Carrera. */
+export const MODALITY_ORDER: readonly Modality[] = ['fewestAttempts', 'timeAttack', 'race'];
 
 /**
  * Los motores de juego, con los mismos ids que `EngineId` (src/franchises/types.ts; un test lo comprueba). Cada partida
@@ -40,6 +42,8 @@ export const LIMITS = {
   higherLowerTarget: { min: 1, max: 100 },
   higherLowerForgiven: { min: 0, max: 5 },
   statsTarget: { min: 100, max: 1_500, step: 10 },
+  /** Oportunidades (combinaciones) de Estadísticas en Menos intentos. */
+  statsAttempts: { min: 1, max: 10 },
 } as const;
 
 export const DEFAULT_OPTIONS: {
@@ -47,11 +51,13 @@ export const DEFAULT_OPTIONS: {
   readonly higherLowerForgiven: number;
   readonly statsTarget: number;
   readonly statsAggregation: StatsAggregation;
+  readonly statsAttempts: number;
 } = {
   higherLowerTarget: 10,
   higherLowerForgiven: 3,
   statsTarget: 500,
   statsAggregation: 'best',
+  statsAttempts: 3,
 };
 
 /** Un slug o id de los datos: minúsculas, dígitos y guiones. */
@@ -107,6 +113,7 @@ const optionsSchema = z.strictObject({
     .multipleOf(LIMITS.statsTarget.step)
     .default(DEFAULT_OPTIONS.statsTarget),
   statsAggregation: z.enum(STATS_AGGREGATIONS).default(DEFAULT_OPTIONS.statsAggregation),
+  statsAttempts: z.number().int().min(LIMITS.statsAttempts.min).max(LIMITS.statsAttempts.max).default(DEFAULT_OPTIONS.statsAttempts),
 });
 
 export const versusConfigSchema = z

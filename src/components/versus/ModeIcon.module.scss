@@ -1,0 +1,24 @@
+// El ícono propio de un modo (cuadrado, con aire alrededor del dibujo): un poco más grande que los íconos del motor del mismo tamaño.
+.image {
+  display: inline-block;
+  flex: none;
+  max-inline-size: none;
+  vertical-align: middle;
+  image-rendering: pixelated;
+  user-select: none;
+
+  &[data-size='sm'] {
+    inline-size: 2rem;
+    block-size: 2rem;
+  }
+
+  &[data-size='md'] {
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+  }
+
+  &[data-size='lg'] {
+    inline-size: 3.25rem;
+    block-size: 3.25rem;
+  }
+}

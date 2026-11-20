@@ -17,7 +17,7 @@ const clasico: Partida = { franchise: 'pokemon', mode: 'clasico', engine: 'class
 const config = (partidas: Partida[]): VersusConfig => ({
   modality: 'timeAttack',
   partidas,
-  options: { higherLowerTarget: 10, higherLowerForgiven: 3, statsTarget: 500, statsAggregation: 'best' },
+  options: { higherLowerTarget: 10, higherLowerForgiven: 3, statsTarget: 500, statsAggregation: 'best', statsAttempts: 3 },
 });
 
 describe('isValidForSite', () => {

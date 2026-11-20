@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { groupRepeats } from '@/versus/config';
+import { MODALITY_ORDER, groupRepeats } from '@/versus/config';
 import {
   EMPTY_DRAFT,
   addBlock,
@@ -146,6 +146,11 @@ describe('opciones', () => {
 });
 
 describe('armar la sala', () => {
+  it('arranca con Menos intentos, la primera modalidad de la lista', () => {
+    expect(EMPTY_DRAFT.modality).toBe('fewestAttempts');
+    expect(EMPTY_DRAFT.modality).toBe(MODALITY_ORDER[0]);
+  });
+
   const draft = (patch: Partial<Draft>): Draft => ({ ...EMPTY_DRAFT, name: 'Ana', ...patch });
 
   it('expande los ×N y la lista vuelve a agruparse igual', () => {
@@ -159,7 +164,7 @@ describe('armar la sala', () => {
 
   it('en Contrarreloj cada partida lleva su tiempo (y el sugerido, para el desempate)', () => {
     const blocks = setBlockTime([make('a', { count: 2 })], 'a', 45_000);
-    const result = buildConfig(draft({ blocks }));
+    const result = buildConfig(draft({ blocks, modality: 'timeAttack' }));
     if (!result.ok) throw new Error(result.errors.join(';'));
     expect(result.config.partidas.every((partida) => partida.timeLimitMs === 45_000 && partida.timeEdited === true && partida.defaultTimeLimitMs === 90_000)).toBe(true);
   });
@@ -176,11 +181,27 @@ describe('armar la sala', () => {
     expect(blocks[0].partida.timeLimitMs).toBe(45_000);
   });
 
+  it('Estadísticas en Menos intentos: viajan las oportunidades y cómo se cuentan; con una sola, no viaja la elección', () => {
+    const stats = make('s', { engine: 'stat-builder', mode: 'estadisticas' });
+    const five = buildConfig(draft({ blocks: [stats], modality: 'fewestAttempts', options: { ...EMPTY_DRAFT.options, statsAttempts: 5, statsAggregation: 'average' } }));
+    if (!five.ok) throw new Error(five.errors.join(';'));
+    expect(five.config.options).toMatchObject({ statsAttempts: 5, statsAggregation: 'average' });
+    const one = buildConfig(draft({ blocks: [stats], modality: 'fewestAttempts', options: { ...EMPTY_DRAFT.options, statsAttempts: 1, statsAggregation: 'sum' } }));
+    if (!one.ok) throw new Error(one.errors.join(';'));
+    expect(one.config.options).toMatchObject({ statsAttempts: 1, statsAggregation: 'best' });
+    // Fuera de Menos intentos las oportunidades no valen (son ilimitadas): vuelve el valor por defecto.
+    const timed = buildConfig(draft({ blocks: [stats], modality: 'timeAttack', options: { ...EMPTY_DRAFT.options, statsAttempts: 7 } }));
+    if (!timed.ok) throw new Error(timed.errors.join(';'));
+    expect(timed.config.options.statsAttempts).toBe(3);
+    expect(buildConfig(draft({ blocks: [stats], modality: 'fewestAttempts', options: { ...EMPTY_DRAFT.options, statsAttempts: 11 } })).ok).toBe(false);
+    expect(buildConfig(draft({ blocks: [stats], modality: 'fewestAttempts', options: { ...EMPTY_DRAFT.options, statsAttempts: 0 } })).ok).toBe(false);
+  });
+
   it('solo viajan las opciones que valen; el resto, con su valor por defecto', () => {
     const stats = make('s', { engine: 'stat-builder', mode: 'estadisticas' });
-    const result = buildConfig(draft({ blocks: [stats], modality: 'race', options: { higherLowerTarget: 50, higherLowerForgiven: 5, statsTarget: 700, statsAggregation: 'sum' } }));
+    const result = buildConfig(draft({ blocks: [stats], modality: 'race', options: { higherLowerTarget: 50, higherLowerForgiven: 5, statsTarget: 700, statsAggregation: 'sum', statsAttempts: 6 } }));
     if (!result.ok) throw new Error(result.errors.join(';'));
-    expect(result.config.options).toEqual({ higherLowerTarget: 10, higherLowerForgiven: 3, statsTarget: 700, statsAggregation: 'best' });
+    expect(result.config.options).toEqual({ higherLowerTarget: 10, higherLowerForgiven: 3, statsTarget: 700, statsAggregation: 'best', statsAttempts: 3 });
   });
 
   it('sin partidas la configuración no es válida', () => {

@@ -125,7 +125,8 @@
 
 .code {
   @include m.touch-target;
-  display: inline-block;
+  display: inline-grid;
+  justify-items: center;
   padding: 0.25rem 1.5rem 0.25rem calc(1.5rem + 0.18em);
   border: 0.1875rem solid r.$cyan;
   background: #0a1a52;
@@ -140,6 +141,23 @@
   text-shadow: 0.06em 0.06em 0 #7a3a00;
 }
 
+// El código y su versión escondida van en la misma celda: se ve uno solo, pero el recuadro tiene el ancho del más ancho y no cambia de tamaño.
+.codeText {
+  grid-area: 1 / 1;
+
+  &[data-off] {
+    visibility: hidden;
+  }
+}
+
+// El código y, al lado, el ojito para verlo o esconderlo.
+.codeRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: t.$space-3;
+}
+
 .codeActions {
   display: flex;
   flex-wrap: wrap;
@@ -148,9 +166,18 @@
   gap: t.$space-3;
 }
 
-.copied {
-  color: r.$gold;
-  font-weight: t.$font-weight-bold;
+// Los íconos de estos botones (compartir, copiar, tilde) tienen un contorno negro grueso a la izquierda que se funde con el borde del botón:
+// el contenido se ve unos píxeles corrido a la derecha aunque esté centrado de verdad. Se le quita ese aire al relleno de la izquierda.
+.codeActions button {
+  padding-inline-start: calc(#{t.$space-5} + 0.75rem - 0.125rem);
+}
+
+// Los tres íconos (compartir, copiar y el tilde en que se vuelve el de copiar) ocupan el mismo cuadrado: al cambiar de uno a otro los botones
+// no se mueven ni un píxel.
+.codeActions button img {
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
+  object-fit: contain;
 }
 
 // --- Resumen y jugadores -----------------------------------------------------------------------------------------------

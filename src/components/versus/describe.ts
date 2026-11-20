@@ -68,6 +68,14 @@ export function variantLabel(mode: ModeConfig, variant: string | undefined): str
   return choice.options.find((option) => option.id === variant)?.label ?? null;
 }
 
+/** El título de la variante de una partida y su nombre ("Dificultad", "Normal · superar 550"), o `null` si el modo no tiene variantes. */
+export function variantLine(partida: Pick<Partida, 'franchise' | 'mode' | 'variant'>): { title: string; label: string } | null {
+  const mode = franchises.find((candidate) => candidate.slug === partida.franchise)?.modes.find((candidate) => candidate.slug === partida.mode);
+  const choice = mode ? variantsOf(mode) : null;
+  const label = mode ? variantLabel(mode, partida.variant) : null;
+  return choice && label ? { title: choice.title, label } : null;
+}
+
 export interface BlockDescription {
   readonly franchise: string;
   readonly mode: string;
@@ -111,6 +119,7 @@ export function optionLines(config: VersusConfig): string[] {
   if (shown.higherLowerTarget) lines.push(`${copy.options.higherLowerTarget}: ${options.higherLowerTarget}`);
   if (shown.higherLowerForgiven) lines.push(`${copy.options.higherLowerForgiven}: ${options.higherLowerForgiven}`);
   if (shown.statsTarget) lines.push(`${copy.options.statsTarget}: ${options.statsTarget}`);
-  if (shown.statsAggregation) lines.push(`${copy.options.statsAggregation}: ${copy.options.aggregation[options.statsAggregation]}`);
+  if (shown.statsAttempts) lines.push(`${copy.options.statsAttempts}: ${options.statsAttempts}`);
+  if (shown.statsAggregation && options.statsAttempts > 1) lines.push(`${copy.options.statsAggregation}: ${copy.options.aggregation[options.statsAggregation]}`);
   return lines;
 }

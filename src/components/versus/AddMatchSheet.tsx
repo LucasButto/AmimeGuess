@@ -15,13 +15,13 @@ import { minimumPoolOf, modePoolNoun, modePoolSize } from '@/franchises/pool';
 import type { FranchiseConfig, ModeConfig } from '@/franchises/types';
 import { es } from '@/i18n/es';
 import { levelsOf } from '@/modes/timeline/logic';
-import { LIMITS, defaultTimeLimit } from '@/versus/config';
+import { LIMITS, defaultTimeLimit, type Modality, type VersusOptions } from '@/versus/config';
 import { dataOf } from './catalog';
 import { variantsOf } from './describe';
 import { newBlock, parseClock, setBlockTime, type Block } from './draft';
 import { formatClock } from './format';
-import { ArcadeIcon } from './arcade/ArcadeIcon';
-import type { ArcadeIconName } from './arcade/icons';
+import { ModeIcon } from './ModeIcon';
+import { ModeOptions, hasModeOptions } from './ModeOptions';
 import { NumberField } from './NumberField';
 import styles from './AddMatchSheet.module.scss';
 
@@ -50,20 +50,6 @@ function startOf(editing: Block | undefined): { choice: number; regional: boolea
   const found = variants.options.findIndex((option) => option.id === variant);
   return { ...none, choice: found >= 0 ? found : variants.initial };
 }
-
-/** El ícono de cada tipo de minijuego (por su motor): lupa, silueta, signo de pregunta… */
-const ENGINE_ICON: Readonly<Record<string, ArcadeIconName>> = {
-  classic: 'search',
-  'image-reveal': 'player',
-  'text-clue': 'question',
-  'reveal-list': 'players',
-  'higher-lower': 'sort',
-  timeline: 'hourglass',
-  connections: 'shuffle',
-  quiz: 'question',
-  'stat-builder': 'gamepad',
-  'category-board': 'key-a',
-};
 
 /** Con qué series arranca una partida de esta franquicia: las que la persona tiene guardadas (o todas). */
 function startingSeries(franchise: FranchiseConfig): string[] {
@@ -94,6 +80,14 @@ interface AddMatchSheetProps {
   timed?: boolean;
   /** Una partida de la sala para editar: la hoja arranca con sus datos y, al confirmar, la reemplaza (mismo lugar). */
   editing?: Block;
+  /**
+   * Las opciones de la sala y la modalidad: con ellas la hoja muestra las opciones propias del modo elegido (la meta de Mayor o Menor, las
+   * oportunidades de Estadísticas…), debajo de los filtros. Valen para toda la sala: al agregar la partida se guardan con `onOptionsChange`.
+   * Sin ellas (el desempate) no hay sección de opciones.
+   */
+  modality?: Modality;
+  options?: VersusOptions;
+  onOptionsChange?: (options: VersusOptions) => void;
 }
 
 /**
@@ -101,7 +95,7 @@ interface AddMatchSheetProps {
  * en Dragon Ball, sus interruptores; arrancan con los guardados) → cuántas veces. Un modo sin pool suficiente con esos filtros
  * no se puede agregar, con el mismo aviso que el panel de filtros del juego.
  */
-export function AddMatchSheet({ open, onClose, remaining, nextId, onAdd, single, timed = false, editing }: AddMatchSheetProps) {
+export function AddMatchSheet({ open, onClose, remaining, nextId, onAdd, single, timed = false, editing, modality, options, onOptionsChange }: AddMatchSheetProps) {
   const [slug, setSlug] = useState(editing?.partida.franchise ?? franchises[0]?.slug ?? '');
   const start = startOf(editing);
   const franchise = franchises.find((candidate) => candidate.slug === slug);
@@ -115,6 +109,8 @@ export function AddMatchSheet({ open, onClose, remaining, nextId, onAdd, single,
   const [filler, setFiller] = useState(() => (editing ? editing.partida.toggles?.filler !== false : franchise ? storedFlag('filler', franchise.slug) : true));
   const [manga, setManga] = useState(() => (editing ? editing.partida.toggles?.manga !== false : franchise ? storedFlag('manga', franchise.slug) : true));
   const [count, setCount] = useState(1);
+  // Las opciones de la sala que se están mirando en la hoja: se guardan en la sala recién al agregar la partida.
+  const [roomOptions, setRoomOptions] = useState<VersusOptions | undefined>(options);
   // El tiempo límite elegido a mano (`null`: el sugerido para este modo y estas series).
   const [customTime, setCustomTime] = useState<number | null>(editing?.partida.timeEdited ? editing.partida.timeLimitMs : null);
 
@@ -195,6 +191,7 @@ export function AddMatchSheet({ open, onClose, remaining, nextId, onAdd, single,
     if (toggles.some((toggle) => toggle.id === 'manga') && !manga) toggleValues.manga = false;
     const variant = variantOf(mode, variants, choice, regional, mega);
     const block = newBlock({ id: editing?.id ?? nextId(), franchise: franchise.slug, mode: mode.slug, engine: mode.engine, ...(variant === undefined ? {} : { variant }), series: active, toggles: toggleValues, secondsPerExtraSeries: franchise.versusSecondsPerExtraSeries, count: repeats });
+    if (onOptionsChange && roomOptions && options && JSON.stringify(roomOptions) !== JSON.stringify(options)) onOptionsChange(roomOptions);
     onAdd(timed && !single && customTime !== null ? (setBlockTime([block], block.id, customTime)[0] ?? block) : block);
     onClose();
   }
@@ -226,11 +223,7 @@ export function AddMatchSheet({ open, onClose, remaining, nextId, onAdd, single,
             <div className={styles.tiles} role="group" aria-labelledby="vs-mode">
               {playable.map((candidate) => (
                 <button key={candidate.slug} type="button" className={styles.tile} aria-pressed={candidate.slug === modeSlug} onClick={() => pickMode(candidate)}>
-                  {candidate.versusIcon ? (
-                    <img className={styles.modeIcon} src={`/img/versus/modes/${candidate.versusIcon}.png`} alt="" aria-hidden="true" width={128} height={128} draggable={false} decoding="async" />
-                  ) : (
-                    <ArcadeIcon name={ENGINE_ICON[candidate.engine] ?? 'star'} size="lg" />
-                  )}
+                  <ModeIcon mode={candidate} size="lg" />
                   <span>{candidate.name}</span>
                 </button>
               ))}
@@ -262,6 +255,15 @@ export function AddMatchSheet({ open, onClose, remaining, nextId, onAdd, single,
               <FilterPanel series={franchise.series} labels={franchise.seriesLabels} details={franchise.seriesDetails} active={active} onChange={setActive} remaining={size} minimum={needed} toggles={toggles} sheet />
             </PoolNounContext.Provider>
             {levelNeed > minimum && size < levelNeed && size >= minimum && <p className={styles.note} role="status">{copy.needLevel(levelNeed, size)}</p>}
+          </section>
+        )}
+
+        {/* Opciones propias de este modo (debajo de los filtros y arriba de "Cuántas veces"): las mismas que en el panel de la sala. */}
+        {mode && !single && modality && roomOptions && onOptionsChange && hasModeOptions(mode.engine, modality) && (
+          <section className={styles.section} aria-labelledby="vs-mode-options">
+            <h3 className={styles.heading} id="vs-mode-options">{copy.options}</h3>
+            <ModeOptions engine={mode.engine} modality={modality} options={roomOptions} onChange={(key, value) => setRoomOptions((current) => (current ? { ...current, [key]: value } : current))} idPrefix="vs-sheet" />
+            <p className={styles.note}>{copy.optionsNote}</p>
           </section>
         )}
 

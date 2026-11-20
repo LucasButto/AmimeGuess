@@ -1,4 +1,4 @@
-import type { VersusConfig } from '@/versus/config';
+import { DEFAULT_OPTIONS, type VersusConfig } from '@/versus/config';
 import { snapshotSchema, type Phase } from '@/versus/protocol';
 import { versusUrl } from './enabled';
 
@@ -12,12 +12,24 @@ export type CreateRoomResult =
   /** `quota`: el servidor no puede ahora (cupo del día agotado); `invalid`: no aceptó la configuración; `failed`: no respondió. */
   | { readonly ok: false; readonly reason: 'quota' | 'invalid' | 'failed' };
 
+/**
+ * La configuración como viaja al servidor. Las oportunidades de Estadísticas solo van si no son las de siempre (3): así una sala común sigue
+ * siendo aceptada por un servidor de salas que todavía no conoce esa opción (el servidor rechaza las opciones que no conoce); el que las
+ * cambia necesita el servidor al día. Al llegar, el servidor completa el 3.
+ */
+export function wireConfig(config: VersusConfig): VersusConfig {
+  if (config.options.statsAttempts !== DEFAULT_OPTIONS.statsAttempts) return config;
+  const options: Partial<VersusConfig['options']> = { ...config.options };
+  delete options.statsAttempts;
+  return { ...config, options: options as VersusConfig['options'] };
+}
+
 /** Crea la sala en el servidor (`POST /rooms`). */
 export async function createRoom(config: VersusConfig, name: string): Promise<CreateRoomResult> {
   const base = httpBase();
   if (!base) return { ok: false, reason: 'failed' };
   try {
-    const response = await fetch(`${base}/rooms`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ config, name }) });
+    const response = await fetch(`${base}/rooms`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ config: wireConfig(config), name }) });
     if (response.status === 201) {
       const body = (await response.json()) as { code?: unknown; playerId?: unknown; token?: unknown };
       if (typeof body.code === 'string' && typeof body.playerId === 'string' && typeof body.token === 'string') {

@@ -46,7 +46,7 @@ export function StatBuilderGame({ franchise, mode, modes, config, entities }: Pr
   const maximum = useMemo(() => Math.max(1, ...entities.flatMap((entity) => config.stats.map((stat) => Number(entity.attrs[stat.key]) || 0))), [entities, config.stats]);
   const available = useMemo(() => entities.filter((entity) => config.stats.every((stat) => typeof entity.attrs[stat.key] === 'number') && (entity.attrs.statForm === 'regional' ? regional : entity.attrs.statForm === 'mega' ? mega : true)), [entities, config.stats, regional, mega]);
   const poolSize = useCallback((active: readonly string[]) => eligibleEntities(available, active).length, [available]);
-  return <GameShell franchise={franchise} mode={mode} modes={modes} minimumPool={10} poolSize={poolSize} yesterday={() => null} variant={level === 1 && !regional && !mega ? undefined : `d${level}-r${Number(regional)}-m${Number(mega)}`} help={<>{es.statBuilder.help.map((step) => <p key={step}>{step}</p>)}</>} beforeGame={() => <section className={styles.root} aria-labelledby={settingsId}>
+  return <GameShell franchise={franchise} mode={mode} modes={modes} minimumPool={10} poolSize={poolSize} yesterday={() => null} variant={level === 1 && !regional && !mega ? undefined : `d${level}-r${Number(regional)}-m${Number(mega)}`} help={<>{(versus ? es.statBuilder.help.slice(0, -1) : es.statBuilder.help).map((step) => <p key={step}>{step}</p>)}</>} beforeGame={() => <section className={styles.root} aria-labelledby={settingsId}>
     <div className={styles.settingsHeader}>
       <h2 className={styles.settingsTitle} id={settingsId}>{es.statBuilder.settings}</h2>
       <InfoTip compact text={es.statBuilder.settingsHelp} label={es.help.button(es.statBuilder.settings)} />

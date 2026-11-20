@@ -11,17 +11,19 @@ export interface EngineRules {
   readonly targetTotal?: number;
 }
 
-/** Combinaciones fijas de Estadísticas en Menos intentos. */
-export const STATS_FIXED_ATTEMPTS = 3;
-
 /**
  * Contrarreloj y Carrera: sin límite de intentos (más la meta de Mayor o Menor y el objetivo de Estadísticas). Menos
- * intentos: los intentos de siempre (más los fallos perdonados de Mayor o Menor y 3 combinaciones fijas en Estadísticas).
+ * intentos: los intentos de siempre (más los fallos perdonados de Mayor o Menor y las oportunidades fijas de Estadísticas: 3 por defecto, de 1 a 10).
+ * El Quiz es la excepción: en las tres modalidades una opción incorrecta no termina la partida, queda marcada y se puede elegir
+ * otra; cada opción elegida cuenta como un intento y la partida sigue hasta dar con la correcta (en Menos intentos, esos intentos
+ * son los que se comparan).
  */
 export function engineRulesFor(modality: Modality, engine: VersusEngine, options: VersusOptions): EngineRules {
   if (modality === 'fewestAttempts') {
+    if (engine === 'quiz') return { unlimited: true };
     if (engine === 'higher-lower') return { forgivenErrors: options.higherLowerForgiven };
-    if (engine === 'stat-builder') return { fixedAttempts: STATS_FIXED_ATTEMPTS };
+    // Estadísticas: las oportunidades que eligió el creador de la sala (3 por defecto).
+    if (engine === 'stat-builder') return { fixedAttempts: options.statsAttempts };
     return {};
   }
   if (engine === 'higher-lower') return { unlimited: true, targetScore: options.higherLowerTarget };

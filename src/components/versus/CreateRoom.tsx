@@ -2,10 +2,9 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect, useId, useRef, useState } from 'react';
-import { Chip } from '@/components/ui/Chip';
 import { franchises } from '@/franchises';
 import { es } from '@/i18n/es';
-import { LIMITS, MODALITIES, STATS_AGGREGATIONS, isValidName, type Modality } from '@/versus/config';
+import { LIMITS, MODALITY_ORDER, isValidName, type Modality } from '@/versus/config';
 import { AddMatchSheet } from './AddMatchSheet';
 import { ArcadeButton } from './arcade/ArcadeButton';
 import { ArcadeIcon } from './arcade/ArcadeIcon';
@@ -30,6 +29,8 @@ import {
   type Draft,
 } from './draft';
 import { formatClock } from './format';
+import { ModeIcon } from './ModeIcon';
+import { ModeOptions } from './ModeOptions';
 import { NumberField } from './NumberField';
 import { isValidForSite } from './site';
 import { readName, writeCredentials, writeName } from './storage';
@@ -69,6 +70,12 @@ export function CreateRoom() {
   const total = totalPartidas(blocks);
   const timed = draft.modality === 'timeAttack';
   const shown = visibleOptions(draft.modality, blocks);
+  // De qué modo es cada grupo de opciones (el primero de la lista que lo usa), para ponerle su ícono y su nombre.
+  const modeOfEngine = (engine: string) => {
+    const block = blocks.find((candidate) => candidate.partida.engine === engine);
+    return block ? franchises.find((candidate) => candidate.slug === block.partida.franchise)?.modes.find((candidate) => candidate.slug === block.partida.mode) : undefined;
+  };
+  const optionModes = { higherLower: modeOfEngine('higher-lower'), statBuilder: modeOfEngine('stat-builder') };
   const anyOption = Object.values(shown).some(Boolean);
   const nameValid = isValidName(draft.name.trim());
   const ready = blocks.length > 0 && nameValid && !busy;
@@ -127,7 +134,7 @@ export function CreateRoom() {
       <section className={styles.modality} aria-labelledby={modalityId}>
         <h2 className={styles.heading} id={modalityId}>{copy.modality.title}</h2>
         <div className={styles.cards} role="radiogroup" aria-labelledby={modalityId}>
-          {MODALITIES.map((modality: Modality) => (
+          {MODALITY_ORDER.map((modality: Modality) => (
             <button
               key={modality}
               type="button"
@@ -163,6 +170,7 @@ export function CreateRoom() {
               {blocks.map((block, index) => {
                 const info = describePartida(block.partida);
                 const owner = franchises.find((candidate) => candidate.slug === block.partida.franchise);
+                const modeConfig = owner?.modes.find((candidate) => candidate.slug === block.partida.mode);
                 const edited = block.partida.timeEdited === true;
                 return (
                   <li
@@ -193,10 +201,14 @@ export function CreateRoom() {
                       <ArcadeIcon name="trash" size="md" />
                     </button>
                     <div className={styles.blockHead}>
-                      <p className={styles.blockTitle}>
-                        <strong>{info.franchise} · {info.mode}</strong>
-                      </p>
-                      <p className={styles.blockMeta}>{[info.variant, info.filters].filter(Boolean).join(' · ')}</p>
+                      {/* El ícono del modo (la lupa del Clásico…), para reconocerlo de un vistazo. */}
+                      {modeConfig && <ModeIcon mode={modeConfig} size="md" className={styles.blockIcon} />}
+                      <div className={styles.blockText}>
+                        <p className={styles.blockTitle}>
+                          <strong>{info.franchise} · {info.mode}</strong>
+                        </p>
+                        <p className={styles.blockMeta}>{[info.variant, info.filters].filter(Boolean).join(' · ')}</p>
+                      </div>
                     </div>
 
                     {/* Abajo: el tiempo límite a la izquierda (el rótulo arriba del campo) y las flechas de mover a la derecha. */}
@@ -272,23 +284,22 @@ export function CreateRoom() {
           {anyOption && (
             <section className={styles.options} aria-labelledby="vs-options">
               <h2 className={styles.heading} id="vs-options">{copy.options.title}</h2>
-              {shown.higherLowerTarget && (
-                <NumberField label={copy.options.higherLowerTarget} value={draft.options.higherLowerTarget} min={LIMITS.higherLowerTarget.min} max={LIMITS.higherLowerTarget.max} hint={copy.options.higherLowerTargetHint} lessLabel={copy.options.less} moreLabel={copy.options.more} onChange={(value) => setOption('higherLowerTarget', value)} />
+              {(shown.higherLowerTarget || shown.higherLowerForgiven) && (
+                <div className={styles.optionGroup} role="group" aria-label={optionModes.higherLower?.name}>
+                  <p className={styles.optionGroupHead}>
+                    {optionModes.higherLower && <ModeIcon mode={optionModes.higherLower} size="sm" />}
+                    <span>{optionModes.higherLower?.name}</span>
+                  </p>
+                  <ModeOptions engine="higher-lower" modality={draft.modality} options={draft.options} onChange={setOption} idPrefix="vs-room-hl" />
+                </div>
               )}
-              {shown.higherLowerForgiven && (
-                <NumberField label={copy.options.higherLowerForgiven} value={draft.options.higherLowerForgiven} min={LIMITS.higherLowerForgiven.min} max={LIMITS.higherLowerForgiven.max} hint={copy.options.higherLowerForgivenHint} lessLabel={copy.options.less} moreLabel={copy.options.more} onChange={(value) => setOption('higherLowerForgiven', value)} />
-              )}
-              {shown.statsTarget && (
-                <NumberField label={copy.options.statsTarget} value={draft.options.statsTarget} min={LIMITS.statsTarget.min} max={LIMITS.statsTarget.max} step={LIMITS.statsTarget.step} hint={copy.options.statsTargetHint} lessLabel={copy.options.less} moreLabel={copy.options.more} onChange={(value) => setOption('statsTarget', value)} />
-              )}
-              {shown.statsAggregation && (
-                <div className={styles.aggregation}>
-                  <p className={styles.fieldLabel} id="vs-aggregation">{copy.options.statsAggregation}</p>
-                  <div className={styles.chips} role="group" aria-labelledby="vs-aggregation">
-                    {STATS_AGGREGATIONS.map((value) => (
-                      <Chip key={value} pressed={draft.options.statsAggregation === value} onClick={() => setOption('statsAggregation', value)}>{copy.options.aggregation[value]}</Chip>
-                    ))}
-                  </div>
+              {(shown.statsTarget || shown.statsAggregation || shown.statsAttempts) && (
+                <div className={styles.optionGroup} role="group" aria-label={optionModes.statBuilder?.name}>
+                  <p className={styles.optionGroupHead}>
+                    {optionModes.statBuilder && <ModeIcon mode={optionModes.statBuilder} size="sm" />}
+                    <span>{optionModes.statBuilder?.name}</span>
+                  </p>
+                  <ModeOptions engine="stat-builder" modality={draft.modality} options={draft.options} onChange={setOption} idPrefix="vs-room-sb" />
                 </div>
               )}
             </section>
@@ -309,6 +320,10 @@ export function CreateRoom() {
         onClose={() => setAdding(false)}
         remaining={remainingPartidas(blocks)}
         timed={timed}
+        // Las opciones de la sala (la meta de Mayor o Menor, las oportunidades de Estadísticas…) se ven y se cambian también en la hoja.
+        modality={draft.modality}
+        options={draft.options}
+        onOptionsChange={(options) => setDraft((current) => ({ ...current, options }))}
         {...(editing ? { editing } : {})}
         nextId={() => `b${++counter.current}`}
         // "Cuántas veces" agrega una tarjeta por cada vez (cada una con su tiempo y su lugar): así se pueden ordenar a gusto.

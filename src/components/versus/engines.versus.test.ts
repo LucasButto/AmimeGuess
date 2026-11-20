@@ -86,11 +86,11 @@ describe('los diez motores dentro de una sala', () => {
     expect([...engines].sort()).toEqual(['category-board', 'classic', 'connections', 'higher-lower', 'image-reveal', 'quiz', 'reveal-list', 'stat-builder', 'text-clue', 'timeline']);
   }, 120_000);
 
-  it('Contrarreloj y Carrera: sin límite de intentos; Menos intentos: con los de siempre', () => {
+  it('Contrarreloj y Carrera: sin límite de intentos; Menos intentos: con los de siempre (menos el Quiz, que nunca pierde por una opción)', () => {
     for (const { engine } of playable()) {
       expect(engineRulesFor('timeAttack', engine, DEFAULT_OPTIONS).unlimited, engine).toBe(true);
       expect(engineRulesFor('race', engine, DEFAULT_OPTIONS).unlimited, engine).toBe(true);
-      expect(engineRulesFor('fewestAttempts', engine, DEFAULT_OPTIONS).unlimited, engine).toBeUndefined();
+      expect(engineRulesFor('fewestAttempts', engine, DEFAULT_OPTIONS).unlimited, engine).toBe(engine === 'quiz' ? true : undefined);
     }
   });
 });

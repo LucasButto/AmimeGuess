@@ -10,8 +10,10 @@ import type { PlayerView, Snapshot } from '@/versus/protocol';
 import { lookupRoom, type RoomLookup } from './api';
 import { ArcadeButton } from './arcade/ArcadeButton';
 import { ArcadeIcon } from './arcade/ArcadeIcon';
+import { VisuallyHidden } from '@/components/VisuallyHidden';
 import { PlayerAvatar, avatarColor } from './arcade/PlayerAvatar';
 import { describePartida, optionLines } from './describe';
+import { EyeButton } from './EyeButton';
 import { formatClock } from './format';
 import { countdownNumber, gameHref, type Notice } from './roomState';
 import { readCredentials, readName, writeName, type Credentials } from './storage';
@@ -61,7 +63,10 @@ function Room({ code }: { code: string }) {
   const [lookup, setLookup] = useState<RoomLookup | null>(null);
   const [joined, setJoined] = useState(false);
   const [typed, setTyped] = useState(() => readName());
-  const [copied, setCopied] = useState(false);
+  // Qué se copió hace un momento (para avisarlo): el link o solo el código.
+  const [copied, setCopied] = useState<'link' | 'code' | null>(null);
+  // El código va escondido (como una contraseña) hasta que se toca el ojito.
+  const [codeShown, setCodeShown] = useState(false);
 
   // Sin lugar guardado se mira la sala antes de pedir el apodo: si no existe, ya empezó o está llena, se avisa.
   useEffect(() => {
@@ -139,10 +144,21 @@ function Room({ code }: { code: string }) {
         return;
       }
       await navigator.clipboard.writeText(link);
-      setCopied(true);
-      window.setTimeout(() => setCopied(false), 2500);
+      setCopied('link');
+      window.setTimeout(() => setCopied(null), 2500);
     } catch {
       // La persona cerró el menú de compartir: no es un error.
+    }
+  }
+
+  /** Copia solo el código (con el ojito en escondido también: copiar no lo muestra en pantalla). */
+  async function copyCode() {
+    try {
+      await navigator.clipboard.writeText(code);
+      setCopied('code');
+      window.setTimeout(() => setCopied(null), 2500);
+    } catch {
+      // Sin permiso para el portapapeles: no hay nada que avisar.
     }
   }
 
@@ -168,10 +184,20 @@ function Room({ code }: { code: string }) {
           {snapshot && <span className={styles.stageCount}><ArcadeIcon name="players" size="sm" /> {snapshot.players.length} / {LIMITS.players.max}</span>}
         </div>
         <p className={styles.codeLabel} id="vs-code">{copy.codeLabel}</p>
-        <p className={styles.code} data-room-code aria-labelledby="vs-code">{code}</p>
+        <div className={styles.codeRow}>
+          {/* Se dibujan los dos textos en el mismo lugar y solo uno se ve: el recuadro mide siempre lo que el más ancho, así no salta al tocar el ojito. */}
+          <p className={styles.code} data-room-code data-hidden={!codeShown || undefined}>
+            <span className={styles.codeText} data-off={!codeShown || undefined} aria-hidden={!codeShown || undefined}>{code}</span>
+            <span className={styles.codeText} data-off={codeShown || undefined} aria-hidden="true">{'*'.repeat(code.length)}</span>
+            {!codeShown && <VisuallyHidden>{copy.codeHidden}</VisuallyHidden>}
+          </p>
+          <EyeButton shown={codeShown} onToggle={() => setCodeShown((current) => !current)} showLabel={copy.showCode} hideLabel={copy.hideCode} />
+        </div>
         <div className={styles.codeActions}>
-          <ArcadeButton tone="blue" icon="share" onClick={() => void share()}>{typeof navigator !== 'undefined' && typeof navigator.share === 'function' ? copy.share : copy.copy}</ArcadeButton>
-          <span className={styles.copied} role="status">{copied ? copy.copied : ''}</span>
+          <ArcadeButton tone="blue" icon={copied === 'link' ? 'check' : 'share'} onClick={() => void share()}>{typeof navigator !== 'undefined' && typeof navigator.share === 'function' ? copy.share : copy.copy}</ArcadeButton>
+          <ArcadeButton tone="blue" icon={copied === 'code' ? 'check' : 'copy'} onClick={() => void copyCode()}>{copy.copyCode}</ArcadeButton>
+          {/* El aviso no se ve (no mueve los botones): el ícono de copiar pasa a un tilde un momento. Los lectores de pantalla lo escuchan. */}
+          <VisuallyHidden role="status">{copied === 'link' ? copy.copied : copied === 'code' ? copy.copiedCode : ''}</VisuallyHidden>
         </div>
       </section>
 

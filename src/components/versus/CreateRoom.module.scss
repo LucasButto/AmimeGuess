@@ -254,9 +254,38 @@
 
 .blockHead {
   display: grid;
-  gap: 0.125rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  column-gap: t.$space-3;
   // Lugar para la cruz de arriba a la derecha.
   padding-inline-end: 5.5rem;
+}
+
+.blockText {
+  display: grid;
+  gap: 0.125rem;
+  min-inline-size: 0;
+}
+
+.blockIcon {
+  align-self: center;
+}
+
+// Un grupo de opciones: el ícono y el nombre del modo arriba, y sus campos debajo.
+.optionGroup {
+  display: grid;
+  gap: t.$space-3;
+}
+
+.optionGroupHead {
+  display: flex;
+  align-items: center;
+  gap: t.$space-2;
+  color: r.$gold;
+  font-family: r.$font-title;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }
 
 .blockTitle {
@@ -437,22 +466,6 @@
 .side {
   display: grid;
   gap: t.$space-5;
-}
-
-.fieldLabel {
-  font-size: t.$font-size-sm;
-  font-weight: t.$font-weight-bold;
-}
-
-.aggregation {
-  display: grid;
-  gap: t.$space-2;
-}
-
-.chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: t.$space-2;
 }
 
 .nameInput {

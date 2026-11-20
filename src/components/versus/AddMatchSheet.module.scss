@@ -59,14 +59,6 @@
   }
 }
 
-// El ícono propio del modo (cuadrado, con aire alrededor del dibujo): un poco más grande que los íconos del motor.
-.modeIcon {
-  inline-size: 3.25rem;
-  block-size: 3.25rem;
-  image-rendering: pixelated;
-  user-select: none;
-}
-
 .chips {
   display: flex;
   flex-wrap: wrap;

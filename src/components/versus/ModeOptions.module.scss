@@ -1,0 +1,53 @@
+@use 'retro' as r;
+@use 'tokens' as t;
+
+// Cómo se cuentan las oportunidades: un rótulo, debajo las tres opciones (cada una con su ⓘ adentro) y la ayuda de la elegida.
+.aggregation {
+  display: grid;
+  gap: t.$space-2;
+}
+
+.fieldLabel {
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-bold;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: t.$space-2 t.$space-3;
+}
+
+// Una opción: el botón y, encima, el ancla invisible que abre la ayuda al pasar el cursor.
+.choice {
+  position: relative;
+  display: inline-flex;
+}
+
+// El circulito ⓘ de adentro del botón: el mismo del resto del sitio (relleno y tinta del tema), solo dibujo.
+.dot {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  inline-size: 1.125rem;
+  block-size: 1.125rem;
+  margin-inline-start: t.$space-1;
+  border-radius: t.token('infotip-radius');
+  background: t.token('infotip-fill');
+  color: t.token('infotip-ink');
+  font-size: 0.7rem;
+  clip-path: t.token('clip-infotip');
+}
+
+// Con la opción elegida el botón se rellena con el color de acento: el círculo se invierte para que no se pierda.
+.choice button[aria-pressed='true'] .dot {
+  background: t.token('chip-on-ink');
+  color: t.token('chip-on-fill');
+}
+
+// La ayuda de la opción elegida, siempre a la vista (para quien no pasa el cursor: teclado y toque).
+.note {
+  color: r.$ink;
+  font-size: t.$font-size-sm;
+}

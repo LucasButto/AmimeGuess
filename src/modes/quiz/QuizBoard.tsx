@@ -116,7 +116,9 @@ export function QuizBoard({ session, question, optionCount, options }: QuizBoard
         ? es.quiz.rightAnnouncement
         : nextProgress.over
           ? es.quiz.lostAnnouncement(answer.name)
-          : es.quiz.wrongAnnouncement(Math.max(0, limit - next.length)),
+          : unlimited
+            ? es.quiz.wrongUnlimited
+            : es.quiz.wrongAnnouncement(Math.max(0, limit - next.length)),
     );
     if (nextProgress.over) onFinish(reportOf(nextProgress, answer, true, question.explanation));
   }
