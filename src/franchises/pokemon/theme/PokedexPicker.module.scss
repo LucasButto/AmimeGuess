@@ -156,6 +156,23 @@
   }
 }
 
+// Los botones de cerrar (la cruz de la barra y el del pie) cambian el fondo al pasar el cursor y suben un pelo: solo con puntero que
+// pasa por encima (`hover-capable`), y el movimiento es solo `transform`.
+.dialog header[data-part='modal-header'] > button,
+.dialog footer > button {
+  @include m.hover-tint(22%);
+
+  @include bp.motion-ok {
+    transition: transform 0.12s ease-out;
+
+    @include m.hover {
+      &:not(:disabled) {
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
+
 .dialog h2[data-part='modal-title'] {
   grid-column: 2;
   grid-row: 2;
