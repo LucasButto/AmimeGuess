@@ -28,13 +28,13 @@ export function ScouterInput({ label, items, excludeIds, onSelect, disabled = fa
   const inputRef = useRef<HTMLInputElement>(null);
   // En la barra inferior del teléfono la lente es más baja y los objetivos son una lista vertical que se abre hacia arriba.
   const inDock = useInDock();
-  const { seriesLabels } = useContext(AutocompleteOptions);
+  const { seriesLabels, seriesSearchTags } = useContext(AutocompleteOptions);
 
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const index = useMemo(() => buildSearchIndex(items), [items]);
+  const index = useMemo(() => buildSearchIndex(items, seriesSearchTags), [items, seriesSearchTags]);
   const results = useMemo(() => search(index, query, { exclude: excludeIds }), [index, query, excludeIds]);
 
   const showPanel = open && query.trim().length > 0;

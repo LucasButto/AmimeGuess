@@ -151,6 +151,11 @@ export interface FranchiseConfig {
   readonly series: readonly string[];
   /** Nombre visible de cada serie, para los chips del panel de filtros. */
   readonly seriesLabels: Readonly<Record<string, string>>;
+  /**
+   * Siglas con que se busca cada serie en el autocompletado ("dbz" trae a todos los de Dragon Ball Z). Coinciden exactas, no por
+   * prefijo: así "db" trae solo los de Dragon Ball y no los de DBZ, DBS o DBGT. Sin esto, la búsqueda es solo por nombre y alias.
+   */
+  readonly seriesSearchTags?: Readonly<Record<string, readonly string[]>>;
   /** Un dato más de cada serie que los chips muestran desde `sm` (por ejemplo, la región de una generación). */
   readonly seriesDetails?: Readonly<Record<string, string>>;
   /** Modos en el orden en que se muestran (SPEC 3.3). El primero es el principal. */

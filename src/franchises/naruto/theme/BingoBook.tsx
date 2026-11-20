@@ -42,13 +42,13 @@ export function BingoBookInput({
   const inputRef = useRef<HTMLInputElement>(null);
   // En la barra inferior del teléfono el libro es una tira baja y las fichas se abren hacia arriba (sin la ficha grande).
   const inDock = useInDock();
-  const { seriesLabels } = useContext(AutocompleteOptions);
+  const { seriesLabels, seriesSearchTags } = useContext(AutocompleteOptions);
 
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const index = useMemo(() => buildSearchIndex(items), [items]);
+  const index = useMemo(() => buildSearchIndex(items, seriesSearchTags), [items, seriesSearchTags]);
   const results = useMemo(
     () => search(index, query, { exclude: excludeIds }),
     [index, query, excludeIds],

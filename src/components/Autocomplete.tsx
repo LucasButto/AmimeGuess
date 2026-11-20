@@ -6,7 +6,7 @@ import { es } from '@/i18n/es';
 import styles from './Autocomplete.module.scss';
 import { ContentImage } from './ContentImage';
 import { VisuallyHidden } from './VisuallyHidden';
-import { buildSearchIndex, search, type SearchItem } from './search';
+import { buildSearchIndex, search, type SearchItem, type SeriesSearchTags } from './search';
 
 export interface AutocompleteItem extends SearchItem {
   /** Imagen de la opción, ver `ContentImage`. */
@@ -37,7 +37,7 @@ export function autocompleteItemOf(entity: Entity): AutocompleteItem {
  * Opciones de la franquicia para todos los autocompletados de la página (las da `ModeGame` desde su
  * config): así ningún motor tiene que pasarlas.
  */
-export const AutocompleteOptions = createContext<{ thumbnails: boolean; seriesLabels: Readonly<Record<string, string>> }>({ thumbnails: true, seriesLabels: {} });
+export const AutocompleteOptions = createContext<{ thumbnails: boolean; seriesLabels: Readonly<Record<string, string>>; seriesSearchTags: SeriesSearchTags }>({ thumbnails: true, seriesLabels: {}, seriesSearchTags: {} });
 
 interface AutocompleteProps {
   label: string;
@@ -64,13 +64,13 @@ export function Autocomplete({ label, items, excludeIds, onSelect, disabled = fa
   const inputId = `${baseId}-input`;
   const listId = `${baseId}-list`;
   const inputRef = useRef<HTMLInputElement>(null);
-  const { thumbnails } = useContext(AutocompleteOptions);
+  const { thumbnails, seriesSearchTags } = useContext(AutocompleteOptions);
 
   const [query, setQuery] = useState('');
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const index = useMemo(() => buildSearchIndex(items), [items]);
+  const index = useMemo(() => buildSearchIndex(items, seriesSearchTags), [items, seriesSearchTags]);
   const results = useMemo(() => search(index, query, { exclude: excludeIds }), [index, query, excludeIds]);
 
   const showPanel = open && query.trim().length > 0;

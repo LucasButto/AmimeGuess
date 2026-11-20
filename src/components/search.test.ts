@@ -143,3 +143,34 @@ describe('search', () => {
     expect(ids('zzzz')).toEqual([]);
   });
 });
+
+describe('siglas de serie', () => {
+  const tags = { db: ['db'], dbz: ['dbz'], gt: ['dbgt', 'gt'] };
+  const people = [
+    { id: 'goku', label: 'Goku', series: ['db', 'dbz', 'gt'] },
+    { id: 'piccolo', label: 'Piccolo', series: ['db', 'dbz'] },
+    { id: 'gohan', label: 'Gohan', series: ['dbz'] },
+    { id: 'pan', label: 'Pan', series: ['gt'] },
+  ];
+  const find = (query: string) => search(buildSearchIndex(people, tags), query).map((item) => item.id);
+
+  it('la sigla trae a todos los de esa serie, y solo con la sigla exacta', () => {
+    expect(find('db').sort()).toEqual(['goku', 'piccolo']);
+    expect(find('DBZ').sort()).toEqual(['gohan', 'goku', 'piccolo']);
+    expect(find('dbgt').sort()).toEqual(['goku', 'pan']);
+    expect(find('dbg')).toEqual([]);
+  });
+
+  it('con una sigla no se mezclan los nombres que la llevan adentro', () => {
+    const withName = [...people, { id: 'kid-buu', label: 'Kid Buu', series: ['dbz'] }, { id: 'dbzeta', label: 'Dbzeta' }];
+    // "Kid Buu" contiene "db" pero es de DBZ: no sale con "db"; y "Dbzeta" (sin serie) tampoco sale con "dbz".
+    expect(search(buildSearchIndex(withName, tags), 'db').map((item) => item.id).sort()).toEqual(['goku', 'piccolo']);
+    expect(search(buildSearchIndex(withName, tags), 'dbz').map((item) => item.id)).not.toContain('dbzeta');
+    // Si no es una sigla, la búsqueda es la de siempre.
+    expect(search(buildSearchIndex(withName, tags), 'dbze').map((item) => item.id)).toEqual(['dbzeta']);
+  });
+
+  it('sin siglas configuradas, no hay efecto', () => {
+    expect(search(buildSearchIndex(people), 'db').map((item) => item.id)).toEqual([]);
+  });
+});
