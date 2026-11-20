@@ -23,38 +23,42 @@ const viewport: WalkerViewport = { width: 1920, height: 1080, rem: 16, artPixel:
 const random = () => 0.5;
 
 describe('apariciones PMD', () => {
-  it('repone mínimos por zona (un caminante menos por el pasto); el río no se repone por mínimo: a veces ninguno y hasta dos', () => {
-    for (const [width, height, rem, minimum] of [[360,640,16,1],[390,844,16,1],[844,390,16,2],[768,1024,16,2],[1920,1080,16,2],[3840,2160,30,2]]) {
+  it('repone mínimos por zona: entre pasto y río siempre el mismo total; el río, a veces ninguno y hasta dos', () => {
+    for (const [width, height, rem, minimum] of [[360,640,16,2],[390,844,16,2],[844,390,16,3],[768,1024,16,3],[1920,1080,16,3],[3840,2160,30,3]]) {
       const population = walkerPopulation(width,height,rem);
+      const total = population.ground.max;
       expect(population.ground.min).toBe(minimum);
-      expect(population.ground.max).toBe(3);
       expect(population.sky).toEqual({min:1,max:2});
       expect(population.water).toEqual({min:0,max:2});
-      // El total de la escena no cambia: nunca más de seis a la vez.
-      expect(walkerCapacity(width,height,rem)).toBe(WALKER_MAX);
-      const fill = (waterReady: boolean) => {
-        const actors: {zone:'ground'|'sky'|'water';walking:boolean}[] = [];
+      expect(walkerCapacity(width,height,rem)).toBeLessThanOrEqual(WALKER_MAX);
+      const fill = (waterReady: boolean, start: {zone:'ground'|'sky'|'water';walking:boolean}[] = []) => {
+        const actors = [...start];
         while (replenishmentZone(actors,population,waterReady)) actors.push({zone:replenishmentZone(actors,population,waterReady)!,walking:true});
         return actors;
       };
-      // Sin que toque un nadador, nunca sale uno: suelo y cielo como siempre.
+      const count = (actors: {zone:string}[], zone: string) => actors.filter(actor=>actor.zone===zone).length;
+      // Sin nadador: todo el total camina por el pasto y hay dos volando.
       const dry = fill(false);
-      expect(dry.filter(actor=>actor.zone==='water')).toHaveLength(0);
-      expect(dry.filter(actor=>actor.zone==='ground')).toHaveLength(Math.min(minimum+1,population.ground.max));
-      expect(dry.filter(actor=>actor.zone==='sky')).toHaveLength(2);
-      // Cuando toca, entran hasta dos y los mínimos de suelo y cielo se cumplen; el total no pasa de seis.
+      expect(count(dry,'water')).toBe(0);
+      expect(count(dry,'ground')).toBe(total);
+      expect(count(dry,'sky')).toBe(2);
+      // Cuando toca un nadador, ocupa el lugar de un caminante: el total del pasto y el río no cambia.
       const wet = fill(true);
-      expect(wet.filter(actor=>actor.zone==='water').length).toBeGreaterThanOrEqual(1);
-      expect(wet.filter(actor=>actor.zone==='water').length).toBeLessThanOrEqual(2);
-      expect(wet.filter(actor=>actor.zone==='ground').length).toBeGreaterThanOrEqual(minimum);
-      expect(wet.filter(actor=>actor.zone==='sky').length).toBeGreaterThanOrEqual(1);
-      expect(wet.length).toBeLessThanOrEqual(WALKER_MAX);
-      // Con el cielo y el suelo en su mínimo, toca el nadador solo si está listo.
-      const base = [{zone:'sky' as const,walking:true},...Array.from({length:minimum},()=>({zone:'ground' as const,walking:true}))];
-      expect(replenishmentZone(base,population,true)).toBe('water');
-      expect(replenishmentZone(base,population,false)).not.toBe('water');
-      // Con dos nadando, ya no sale otro.
-      expect(replenishmentZone([...base,{zone:'water' as const,walking:true},{zone:'water' as const,walking:true}],population,true)).not.toBe('water');
+      expect(count(wet,'water')).toBeGreaterThanOrEqual(1);
+      expect(count(wet,'water')).toBeLessThanOrEqual(2);
+      expect(count(wet,'ground')+count(wet,'water')).toBe(count(dry,'ground'));
+      expect(count(wet,'sky')).toBe(2);
+      // Si un nadador debe salir y el pasto está lleno, no entra otro caminante: se espera a que se libere un lugar.
+      const grass = Array.from({length:total},()=>({zone:'ground' as const,walking:true}));
+      expect(replenishmentZone(grass,population,true)).not.toBe('ground');
+      expect(replenishmentZone(grass,population,true)).not.toBe('water');
+      const freed = fill(true, [{zone:'sky',walking:true},{zone:'sky',walking:true},...grass.slice(1)]);
+      expect(count(freed,'water')).toBe(1);
+      expect(count(freed,'ground')).toBe(total-1);
+      // Con dos nadando, ya no sale otro y el pasto completa el resto.
+      const two = fill(true, [{zone:'water',walking:true},{zone:'water',walking:true}]);
+      expect(count(two,'water')).toBe(2);
+      expect(count(two,'ground')).toBe(total-2);
       const full = Array.from({length:WALKER_MAX},()=>({zone:'ground' as const,walking:false}));
       expect(replenishmentZone(full,population)).toBeNull();
     }

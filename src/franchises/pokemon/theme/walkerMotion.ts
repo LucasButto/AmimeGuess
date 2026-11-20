@@ -400,28 +400,35 @@ export function walkerPopulation(width: number, height: number, rem: number) {
   const compact = compactWalkers(width, height, rem);
   // Reserve a seven-rem footprint plus one crossing space for a large creature.
   const groundMin = compact ? Math.max(1, Math.min(3, Math.floor(width / (7 * rem)) - 1)) : 3;
-  // Un caminante menos por el pasto y uno más nadando en el río (pedido del usuario): el total de la escena no cambia.
+  // Entre el pasto y el río siempre hay `ground.max` Pokémon (4 en pantalla grande): 4 caminando y ninguno nadando, 3 y 1, o, raro, 2 y 2.
   return {
-    ground: { min: Math.max(1, groundMin - 1), max: (compact ? Math.min(4, groundMin + 2) : 4) - 1 },
+    ground: { min: groundMin, max: compact ? Math.min(4, groundMin + 2) : 4 },
     sky: { min: 1, max: 2 },
-    // Nadadores: a veces ninguno y a veces hasta dos; cuándo sale uno lo decide `nextSwimMs` (no hay uno por obligación).
+    // Nadadores: a veces ninguno y como mucho dos; cuándo sale uno lo decide `nextSwimMs`, y ocupa el lugar de un caminante.
     water: { min: 0, max: 2 },
   };
 }
 export function walkerCapacity(width: number, height: number, rem: number): number {
   const target = walkerPopulation(width, height, rem);
-  return Math.min(WALKER_MAX, target.ground.max + target.sky.max + target.water.max);
+  return Math.min(WALKER_MAX, target.ground.max + target.sky.max);
 }
 /** Entre veinte segundos y minuto y cuarenta de reloj visible hasta que puede salir el próximo nadador normal. */
 export const nextSwimMs = (now: number, random: () => number) => now + 20_000 + Math.max(0, Math.min(1, random())) * 80_000;
 
-export function replenishmentZone(actors: readonly { zone: 'ground' | 'sky' | 'water'; walking: boolean }[], population: ReturnType<typeof walkerPopulation>, waterReady = true): 'ground' | 'sky' | 'water' | null {
+export function replenishmentZone(actors: readonly { zone: 'ground' | 'sky' | 'water'; walking: boolean }[], population: ReturnType<typeof walkerPopulation>, waterReady = false): 'ground' | 'sky' | 'water' | null {
   if (actors.length >= WALKER_MAX) return null;
-  for (const buffer of [0, 1]) for (const zone of ['sky', 'ground', 'water'] as const) {
-    const count = actors.filter((actor) => actor.zone === zone);
-    // El río no se repone por mínimo: sale un nadador solo cuando toca (`waterReady`) y hay lugar.
-    if (zone === 'water') { if (buffer === 0 && waterReady && count.length < population.water.max) return zone; continue; }
-    if (count.length < population[zone].max && count.filter((actor) => actor.walking).length < population[zone].min + buffer) return zone;
+  const inZone = (zone: 'ground' | 'sky' | 'water') => actors.filter((actor) => actor.zone === zone);
+  const water = inZone('water').length;
+  const ground = inZone('ground').length;
+  // El pasto y el río comparten el mismo total (`ground.max`): un nadador ocupa el lugar de un caminante.
+  const total = population.ground.max;
+  const swimmerDue = waterReady && water < population.water.max;
+  // Con un nadador por salir se reserva su lugar: el pasto no se llena del todo hasta que entra.
+  const groundLimit = total - water - (swimmerDue ? 1 : 0);
+  for (const buffer of [0, 1, 2]) {
+    if (inZone('sky').length < population.sky.max && inZone('sky').filter((actor) => actor.walking).length < population.sky.min + buffer) return 'sky';
+    if (buffer === 0 && swimmerDue && ground + water < total) return 'water';
+    if (ground < groundLimit && inZone('ground').filter((actor) => actor.walking).length < Math.min(population.ground.min, groundLimit) + buffer) return 'ground';
   }
   return null;
 }
@@ -456,7 +463,7 @@ export function chooseReplenishment(request: {
   actors: readonly { zone: 'ground' | 'sky' | 'water'; walking: boolean }[];
   population: ReturnType<typeof walkerPopulation>;
   now: number; nextAt: number; pending: boolean; lastDirection: WalkerDirection | null;
-  /** Ya toca que salga un nadador (por defecto sí): lo marca `nextSwimMs`. */
+  /** Ya toca que salga un nadador (por defecto no): lo marca `nextSwimMs`. */
   waterReady?: boolean;
   /** Pokémon ya en escena: dos iguales nunca conviven. */
   activeIds?: readonly string[];
@@ -465,7 +472,7 @@ export function chooseReplenishment(request: {
 }, random: () => number): { pokemon: WalkerPokemon; direction: WalkerDirection; bags: WalkerBags } | null {
   const { actors, population, now, nextAt, pending, previous, width, rem, lastDirection } = request;
   if (pending || now < nextAt || actors.length >= WALKER_MAX) return null;
-  const zone = replenishmentZone(actors, population, request.waterReady ?? true);
+  const zone = replenishmentZone(actors, population, request.waterReady ?? false);
   if (!zone) return null;
   let direction = entranceDirection(now, nextAt, lastDirection === 'east' ? 'west' : 'east', previous, width, rem);
   if (!direction) return null;
