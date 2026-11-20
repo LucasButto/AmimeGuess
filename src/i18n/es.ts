@@ -1162,6 +1162,7 @@ export const es = {
           : `Acertaste ${score} ${plural(score, "seguida", "seguidas")}.`,
     },
     modeSolved: "resuelto hoy",
+    modeLost: "perdido hoy",
     modeSoon: "próximamente",
     help: "Cómo se juega",
     // El botón visible dentro de la pantalla de juego (además de la opción del menú ⋮ o ☰).

@@ -39,7 +39,7 @@ import { DockAction, useDockTarget } from './GameDock';
 import { SheetSection, SheetSlotContext } from './SheetSlot';
 
 import { useRouletteImages } from '@/modes/stat-builder/RoulettePreview';
-import { getKeyedStorage, solvedToday } from '../progress';
+import { getKeyedStorage, lostToday, solvedToday } from '../progress';
 import { useVersusGame } from '../versus/VersusGameContext';
 import { VersusClock } from '../versus/VersusClock';
 import { VersusHowTo } from '../versus/VersusHowTo';
@@ -216,6 +216,12 @@ export function GameShell({
     // `report` no se usa adentro, pero cambia justo cuando se guarda una partida terminada.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modes, franchise.slug, filterKey, day, report]);
+
+  // De esos, los que se perdieron: sus pastillas van en rojo.
+  const lost = useMemo(() => {
+    return lostToday(getKeyedStorage(), franchise.slug, modes.filter((candidate) => candidate.available).map((candidate) => candidate.slug), day);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [modes, franchise.slug, day, report]);
 
   // Qué sigue al terminar: el primer modo que hoy no se resolvió con estos filtros, o la franquicia si no queda ninguno.
   const nextMode = modes.find((candidate) => candidate.available && candidate.slug !== mode.slug && !solved.has(candidate.slug));
@@ -422,7 +428,7 @@ export function GameShell({
           {howToButton}
         </div>
       )}
-      {!versus && <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} solved={solved} filterKey={filterKey} />}
+      {!versus && <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} solved={solved} lost={lost} filterKey={filterKey} />}
 
       {versus && <VersusClock game={versus} frozen={report !== null} />}
 
@@ -549,6 +555,7 @@ export function GameShell({
               modes={modes}
               current={mode.slug}
               solved={solved}
+              lost={lost}
               filterKey={filterKey}
               label={es.shell.nextModesLabel}
             />

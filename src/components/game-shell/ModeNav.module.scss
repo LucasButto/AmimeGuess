@@ -338,3 +338,12 @@
     }
   }
 }
+
+// Un modo que se perdió hoy (terminado sin ganar): la pastilla va en el color de error del tema, en vez del verde de lo resuelto.
+// Va al final para ganarle a todos los rellenos de "resuelto" y de "modo actual" de arriba.
+.root .list .pill[data-lost='true'][data-solved='true'],
+.root .list .pill[data-lost='true'][data-solved='true'][aria-current='page'] {
+  --_fill: #{t.token('cell-incorrect')};
+  --_ink: #{t.token('cell-ink')};
+  --_edge: var(--button-edge, #{t.token('cell-incorrect')});
+}

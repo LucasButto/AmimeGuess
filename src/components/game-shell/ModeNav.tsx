@@ -18,6 +18,8 @@ interface ModeNavProps {
   current: string;
   /** Slugs de los modos ya resueltos hoy con los filtros actuales. */
   solved?: ReadonlySet<string>;
+  /** De los resueltos, los que se perdieron (terminados sin ganar): la pastilla va en el color de error. */
+  lost?: ReadonlySet<string>;
   /** Con filtros activos, los links los conservan (`?s=`) para seguir jugando la misma combinación. */
   filterKey?: string;
   /** Nombre de la navegación para lectores de pantalla; si hay dos en la página, el de la segunda tiene que ser otro. */
@@ -25,7 +27,7 @@ interface ModeNavProps {
 }
 
 /** En móvil se exploran los modos con flechas y se entra tocando el nombre; desde tablet se ven todos. */
-export function ModeNav({ franchise, modes, current, solved, filterKey, label = es.shell.modesLabel }: ModeNavProps) {
+export function ModeNav({ franchise, modes, current, solved, lost, filterKey, label = es.shell.modesLabel }: ModeNavProps) {
   const appShell = useAppShell();
   const listRef = useRef<HTMLUListElement>(null);
   const listId = useId();
@@ -90,6 +92,7 @@ export function ModeNav({ franchise, modes, current, solved, filterKey, label = 
     return modes.map((mode, index) => {
       const isCurrent = mode.slug === current;
       const isSolved = solved?.has(mode.slug) ?? false;
+      const isLost = isSolved && (lost?.has(mode.slug) ?? false);
       const href = `/${franchise}/${mode.slug}${filterKey ? `?s=${filterKey}` : ''}`;
 
       if (!mode.available) {
@@ -118,6 +121,7 @@ export function ModeNav({ franchise, modes, current, solved, filterKey, label = 
             aria-current={isCurrent ? 'page' : undefined}
             data-state={isCurrent ? 'current' : isSolved ? 'solved' : 'idle'}
             data-solved={isSolved}
+            data-lost={isLost || undefined}
           >
             {isCurrent && (
               <span aria-hidden="true" className={styles.cursor}>
@@ -127,7 +131,7 @@ export function ModeNav({ franchise, modes, current, solved, filterKey, label = 
             <ModeIcon slug={mode.slug} index={index} current={isCurrent} solved={false} />
             {mode.name}
             {appShell && isSolved && <span className={styles.solvedDot} aria-hidden="true" />}
-            {isSolved && <VisuallyHidden> ({es.shell.modeSolved})</VisuallyHidden>}
+            {isSolved && <VisuallyHidden> ({isLost ? es.shell.modeLost : es.shell.modeSolved})</VisuallyHidden>}
           </Link>
         </li>
       );
