@@ -624,7 +624,7 @@ export function GameShell({
       {resultInSheet && !resultOpen && !waitingForSheet && <DockAction label={es.shell.result.viewResult} onClick={() => setResultOpen(true)} />}
 
       {dialog === 'help' && (
-        <Modal title={es.shell.helpTitle(mode.name)} onClose={closeDialog}>
+        <Modal title={es.shell.helpTitle(mode.name)} onClose={closeDialog} className={styles.helpDialog}>
           <HowToPlay franchise={franchise.slug} mode={mode.slug} help={help} versusRules={howToRules} />
         </Modal>
       )}

@@ -14,6 +14,8 @@ export const POKEMON_PALETTE = {
   'ink-shadow': '#a8a8a8',
   frame: '#202020',
   red: '#d83030',
+  // El rojo vivo del botón y del modal de "Cómo se juega" (el del ícono de elegir de la Pokédex); también el de la bola de las extras (antes rosa: la paleta tiene tope de 24).
+  'red-bright': '#fb4b42',
   blue: '#3068c8',
   yellow: '#f8d030',
   night: '#1c2a4a',
@@ -24,7 +26,6 @@ export const POKEMON_PALETTE = {
   // también el de la pantalla de la Pokédex cuando se enciende.
   violet: '#8858c8',
   cyan: '#58c8d8',
-  pink: '#e878a8',
   // Cielo del amanecer y del atardecer (el de noche es `night`, con estrellas `cream`).
   dawn: '#f8b880',
   dusk: '#e87850',

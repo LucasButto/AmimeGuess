@@ -12,7 +12,7 @@
 
   &[data-variant='dialog'] {
     --_fill: #{t.token('surface-dialog')};
-    --_inner: #{t.token('frame-dialog-inner')};
+    --_inner: var(--frame-dialog-inner-own, #{t.token('frame-dialog-inner')});
   }
 
   &[data-variant='screen'] {

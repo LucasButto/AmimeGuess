@@ -89,7 +89,8 @@
   // Misma píldora que los chips de los filtros (serie, generación) encendidos: mismo relleno, texto, borde y forma del tema.
   // Selector reforzado para ganarle a la variante `secondary` del botón sin depender del orden de los estilos.
   &#{&}[data-variant] {
-    --_fill: #{t.token('chip-on-fill')};
+    // Una piel puede darle su propio relleno con `--how-to-fill` (Pokémon: rojo); sin él, el de los chips.
+    --_fill: var(--how-to-fill, #{t.token('chip-on-fill')});
     --_ink: #{t.token('chip-on-ink')};
     --_edge: #{t.token('chip-on-edge')};
     --_clip: #{t.token('clip-chip')};
@@ -109,6 +110,13 @@
 
 // Escritorio, modo normal: "Cómo se juega" va a la izquierda y el contador del próximo reto a la derecha. En una sala de versus (sin contador),
 // también a la izquierda, en cualquier ancho.
+// El modal de "Cómo se juega": si la piel define `--how-to-fill` (Pokémon: el rojo del botón), la barra y el anillo van de ese color
+// y no del azul de los demás modales.
+.helpDialog {
+  --dialog-bar-fill-own: var(--how-to-fill);
+  --frame-dialog-inner-own: var(--how-to-fill);
+}
+
 .howToStart {
   margin-inline: 0 auto;
 }

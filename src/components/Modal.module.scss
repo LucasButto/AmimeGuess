@@ -189,7 +189,8 @@
   padding: max(t.$space-3, env(safe-area-inset-top)) t.$space-4 t.$space-3;
   border-block-end: t.$border-width solid t.token('frame-color');
   // Barra del título: del color que le dé el tema (por defecto, sin fondo).
-  background: t.token('dialog-bar-fill');
+  // `--dialog-bar-fill-own` lo pone un diálogo que quiere otro color que el del tema (ver `GameShell`: "Cómo se juega").
+  background: var(--dialog-bar-fill-own, #{t.token('dialog-bar-fill')});
   color: t.token('dialog-bar-ink');
 
   @include bp.min-width('md') {

@@ -34,7 +34,7 @@ const MEDAL_ROWS: ReadonlyArray<{ readonly rows: readonly string[]; readonly col
   // Luna
   { rows: ['..KKK...', '.KVVK...', 'KVVK....', 'KVK.....', 'KVK.....', 'KVVK....', '.KVVK...', '..KKK...'], colors: { V: 'violet' } },
   // Corazón
-  { rows: ['.KK..KK.', 'KPPKKPPK', 'KPWPPPPK', 'KPPPPPPK', '.KPPPPK.', '..KPPK..', '...KK...', '........'], colors: { P: 'pink' } },
+  { rows: ['.KK..KK.', 'KPPKKPPK', 'KPWPPPPK', 'KPPPPPPK', '.KPPPPK.', '..KPPK..', '...KK...', '........'], colors: { P: 'red-bright' } },
 ];
 
 /** Una medalla encendida (con sus colores) o apagada (gris). */

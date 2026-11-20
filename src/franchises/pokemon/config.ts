@@ -211,7 +211,7 @@ export const pokemonConfig = {
       { text: 'cyan', background: 'frame', kind: 'ui', where: 'Bola turquesa contra su contorno' },
       { text: 'night', background: 'cyan', kind: 'text', where: 'Pantalla de la Pokédex encendida (hover y foco)' },
       { text: 'ink', background: 'cyan', kind: 'text', where: 'Chip de filtro prendido' },
-      { text: 'pink', background: 'frame', kind: 'ui', where: 'Bola rosa contra su contorno' },
+      { text: 'red-bright', background: 'frame', kind: 'ui', where: 'Bola coral contra su contorno' },
       { text: 'frame', background: 'dawn', kind: 'ui', where: 'Marcos sobre el cielo del amanecer' },
       { text: 'frame', background: 'dusk', kind: 'ui', where: 'Marcos sobre el cielo del atardecer' },
     ],

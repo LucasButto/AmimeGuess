@@ -106,6 +106,8 @@
   --chip-on-fill: var(--palette-cyan);
   --chip-on-ink: var(--palette-frame);
   --chip-on-edge: var(--palette-frame);
+  // "Cómo se juega" no usa el cian de los chips: va en el rojo vivo del ícono de elegir de la Pokédex.
+  --how-to-fill: var(--palette-red-bright);
 
   // Botones de volver: todo blanco con borde negro, sin el aro celeste de adentro.
   --nav-fill: var(--palette-white);
