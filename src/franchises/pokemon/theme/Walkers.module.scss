@@ -18,6 +18,7 @@
 
 .actor,
 .motion,
+.slot,
 .scale,
 .facing,
 .crop,
@@ -38,6 +39,33 @@
 }
 
 .crop { overflow: hidden; }
+
+// La ondita del agua de un nadador: una raya clara con otra azul debajo, que se desplaza apenas (solo `translate`).
+.ripple {
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block-start: 0;
+  block-size: 0.25rem;
+  background: rgba(235, 248, 255, 0.75);
+  pointer-events: none;
+  animation: ripple-drift 1.8s steps(6, end) infinite;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset-inline: 12%;
+    inset-block-start: 0.25rem;
+    block-size: 0.1875rem;
+    background: rgba(110, 165, 230, 0.65);
+  }
+}
+
+@keyframes ripple-drift {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0.25rem 0; }
+}
+
+.layer[data-paused='true'] .ripple { animation-play-state: paused; }
 .sheet { max-inline-size: none; image-rendering: pixelated; }
 .target { inset: 0; }
 .actor[data-can-trip='true'] .target { pointer-events: auto; touch-action: pan-y; }

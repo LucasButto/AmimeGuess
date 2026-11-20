@@ -2,7 +2,7 @@ import sharp from 'sharp';
 import { walkerScale, withWalkerHeights, type WalkerPokemon } from '../../../src/franchises/pokemon/theme/walkerMotion.ts';
 
 export const SIZE_VIEWPORT = { width: 1920, height: 1080, rem: 16, artPixel: 4, ground: 336, skyFloor: 604 };
-export interface SizeSample { id: string; zone: 'ground' | 'sky'; height: number; elongated?: boolean; area: number; heightScale: number }
+export interface SizeSample { id: string; zone: 'ground' | 'sky' | 'water'; height: number; elongated?: boolean; area: number; heightScale: number }
 const response = (sample: SizeSample) => (sample.zone === 'sky' ? 0.83 : 1) * (sample.height * (sample.elongated ? 0.4 : 1)) ** 0.75;
 export function calibrateSizes(samples: readonly SizeSample[]) {
   if (!samples.length || samples.some(s => s.area <= 0 || s.height <= 0 || s.heightScale <= 0)) throw new Error('Invalid PMD size sample');

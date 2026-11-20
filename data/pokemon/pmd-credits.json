@@ -508,6 +508,7 @@
       "name": "RaoKurai",
       "contact": "https://twitter.com/RaoKurai",
       "resourceIds": [
+        "sprite/0131/0000/0001/Walk",
         "sprite/0175/0000/0001/Idle",
         "sprite/0175/0000/0001/Sleep",
         "sprite/0175/0000/0001/Walk",
@@ -797,7 +798,8 @@
         "sprite/0478/0000/0001/Idle",
         "sprite/0478/0000/0001/Sleep",
         "sprite/0478/0000/0001/Walk",
-        "sprite/0478/0000/0001/Walk/shadow"
+        "sprite/0478/0000/0001/Walk/shadow",
+        "sprite/0489/0000/0001/Walk"
       ]
     },
     {
@@ -907,7 +909,14 @@
         "sprite/0446/0000/0001/Laying",
         "sprite/0446/0000/0001/Sleep",
         "sprite/0446/0000/0001/Wake",
-        "sprite/0446/0000/0001/Walk"
+        "sprite/0446/0000/0001/Walk",
+        "sprite/0488/0000/0001/HitGround",
+        "sprite/0488/0000/0001/Idle",
+        "sprite/0488/0000/0001/Laying",
+        "sprite/0488/0000/0001/Sleep",
+        "sprite/0488/0000/0001/Wake",
+        "sprite/0488/0000/0001/Walk",
+        "sprite/0488/0000/0001/Walk/shadow"
       ]
     },
     {
@@ -1128,6 +1137,10 @@
         "sprite/0033/0001/Idle",
         "sprite/0033/0001/Sleep",
         "sprite/0033/0001/Walk",
+        "sprite/0102/0000/0001/Idle",
+        "sprite/0102/0000/0001/Sleep",
+        "sprite/0102/0000/0001/Walk",
+        "sprite/0171/0000/0001/Walk",
         "sprite/0185/0000/0001/Idle",
         "sprite/0185/0000/0001/Sleep",
         "sprite/0185/0000/0001/Walk",
@@ -1149,6 +1162,7 @@
         "sprite/0248/0000/0001/Idle",
         "sprite/0248/0000/0001/Sleep",
         "sprite/0248/0000/0001/Walk",
+        "sprite/0320/0000/0001/Walk",
         "sprite/0417/0000/0001/Sleep",
         "sprite/0417/0000/0001/Walk",
         "sprite/0445/0000/0001/Idle",
@@ -1298,9 +1312,13 @@
         "sprite/0101/0000/0001/Idle",
         "sprite/0101/0000/0001/Sleep",
         "sprite/0101/0000/0001/Walk",
+        "sprite/0102/0000/0001/Idle",
+        "sprite/0102/0000/0001/Sleep",
+        "sprite/0102/0000/0001/Walk",
         "sprite/0129/0000/0001/Idle",
         "sprite/0129/0000/0001/Sleep",
         "sprite/0129/0000/0001/Walk",
+        "sprite/0130/0000/0001/Walk",
         "sprite/0163/0000/0001/Idle",
         "sprite/0163/0000/0001/Sleep",
         "sprite/0163/0000/0001/Walk",
@@ -1717,6 +1735,7 @@
         "sprite/0300/0000/0001/Sleep",
         "sprite/0300/0000/0001/Wake",
         "sprite/0300/0000/0001/Walk",
+        "sprite/0382/0000/0001/Walk",
         "sprite/0383/0000/0001/Idle",
         "sprite/0383/0000/0001/Sleep",
         "sprite/0383/0000/0001/Walk",
@@ -1764,9 +1783,12 @@
         "sprite/0068/0000/0001/Idle",
         "sprite/0068/0000/0001/Sleep",
         "sprite/0068/0000/0001/Walk",
+        "sprite/0072/0000/0001/Walk",
+        "sprite/0073/0000/0001/Walk",
         "sprite/0077/0000/0001/Idle",
         "sprite/0077/0000/0001/Sleep",
         "sprite/0077/0000/0001/Walk",
+        "sprite/0087/0000/0001/Walk",
         "sprite/0093/0000/0001/Idle",
         "sprite/0093/0000/0001/Sleep",
         "sprite/0093/0000/0001/Walk",
@@ -3288,6 +3310,7 @@
         "sprite/0057/0000/0001/Idle",
         "sprite/0057/0000/0001/Sleep",
         "sprite/0057/0000/0001/Walk",
+        "sprite/0321/0000/0001/Walk",
         "sprite/0472/0000/0001/Idle",
         "sprite/0472/0000/0001/Sleep",
         "sprite/0472/0000/0001/Walk",
@@ -3389,6 +3412,9 @@
         "sprite/0909/Idle",
         "sprite/0909/Sleep",
         "sprite/0909/Walk",
+        "sprite/0924/0000/0001/Idle",
+        "sprite/0924/0000/0001/Sleep",
+        "sprite/0924/0000/0001/Walk",
         "sprite/0998/0000/0001/Idle",
         "sprite/0998/0000/0001/Sleep",
         "sprite/0998/0000/0001/Walk"
@@ -4087,6 +4113,7 @@
         "sprite/0115/0000/0001/Idle",
         "sprite/0115/0000/0001/Sleep",
         "sprite/0115/0000/0001/Walk",
+        "sprite/0130/0000/0001/Walk",
         "sprite/0134/0000/0001/Idle",
         "sprite/0134/0000/0001/Sleep",
         "sprite/0134/0000/0001/Walk",
@@ -4249,6 +4276,7 @@
         "sprite/0336/0000/0001/Idle",
         "sprite/0336/0000/0001/Sleep",
         "sprite/0336/0000/0001/Walk",
+        "sprite/0350/0000/0001/Walk",
         "sprite/0373/0000/0001/HitGround",
         "sprite/0373/0000/0001/Idle",
         "sprite/0373/0000/0001/Laying",
@@ -4317,6 +4345,8 @@
         "sprite/0487/0000/0001/Idle",
         "sprite/0487/0000/0001/Sleep",
         "sprite/0487/0000/0001/Walk",
+        "sprite/0489/Walk",
+        "sprite/0490/0000/0001/Walk",
         "sprite/0495/0000/0001/HitGround",
         "sprite/0495/0000/0001/Idle",
         "sprite/0495/0000/0001/Laying",
@@ -4671,6 +4701,7 @@
         "sprite/0835/Sleep",
         "sprite/0835/Wake",
         "sprite/0835/Walk",
+        "sprite/0870/0003/0001/Walk",
         "sprite/0873/0000/0001/Idle",
         "sprite/0873/0000/0001/Sleep",
         "sprite/0873/0000/0001/Walk",
@@ -4705,6 +4736,9 @@
         "sprite/0906/Sleep",
         "sprite/0906/Wake",
         "sprite/0906/Walk",
+        "sprite/0925/0000/0001/Idle",
+        "sprite/0925/0000/0001/Sleep",
+        "sprite/0925/0000/0001/Walk",
         "sprite/0926/0000/0001/HitGround",
         "sprite/0926/0000/0001/Idle",
         "sprite/0926/0000/0001/Laying",
@@ -5677,6 +5711,12 @@
         "sprite/0471/HitGround",
         "sprite/0471/Laying",
         "sprite/0471/Wake",
+        "sprite/0488/HitGround",
+        "sprite/0488/Laying",
+        "sprite/0488/Wake",
+        "sprite/0491/HitGround",
+        "sprite/0491/Laying",
+        "sprite/0491/Wake",
         "sprite/0493/0000/0001/HitGround",
         "sprite/0493/0000/0001/Idle",
         "sprite/0493/0000/0001/Laying",
@@ -5908,6 +5948,7 @@
         "sprite/0861/Walk",
         "sprite/0865/0000/0001/Walk",
         "sprite/0865/Walk",
+        "sprite/0870/0003/Walk",
         "sprite/0888/Idle",
         "sprite/0888/Sleep",
         "sprite/0888/Walk",
@@ -5926,6 +5967,14 @@
         "sprite/0923/Idle",
         "sprite/0923/Sleep",
         "sprite/0923/Walk",
+        "sprite/0924/Idle",
+        "sprite/0924/Sleep",
+        "sprite/0924/Walk",
+        "sprite/0925/Idle",
+        "sprite/0925/Sleep",
+        "sprite/0925/Walk",
+        "sprite/0963/Walk",
+        "sprite/0964/Walk",
         "sprite/0967/Idle",
         "sprite/0967/Sleep",
         "sprite/0967/Walk",
@@ -6072,6 +6121,20 @@
         "sprite/0483/0000/0001/Idle",
         "sprite/0483/0000/0001/Sleep",
         "sprite/0483/0000/0001/Walk",
+        "sprite/0488/0000/0001/HitGround",
+        "sprite/0488/0000/0001/Idle",
+        "sprite/0488/0000/0001/Laying",
+        "sprite/0488/0000/0001/Sleep",
+        "sprite/0488/0000/0001/Wake",
+        "sprite/0488/0000/0001/Walk",
+        "sprite/0488/0000/0001/Walk/shadow",
+        "sprite/0491/0000/0001/HitGround",
+        "sprite/0491/0000/0001/Idle",
+        "sprite/0491/0000/0001/Laying",
+        "sprite/0491/0000/0001/Sleep",
+        "sprite/0491/0000/0001/Wake",
+        "sprite/0491/0000/0001/Walk",
+        "sprite/0491/0000/0001/Walk/shadow",
         "sprite/0496/0000/0001/Idle",
         "sprite/0496/0000/0001/Sleep",
         "sprite/0496/0000/0001/Walk",
@@ -6151,12 +6214,17 @@
         "sprite/0923/0000/0001/Idle",
         "sprite/0923/0000/0001/Sleep",
         "sprite/0923/0000/0001/Walk",
+        "sprite/0925/0000/0001/Idle",
+        "sprite/0925/0000/0001/Sleep",
+        "sprite/0925/0000/0001/Walk",
         "sprite/0957/0000/0001/Idle",
         "sprite/0957/0000/0001/Sleep",
         "sprite/0957/0000/0001/Walk",
         "sprite/0958/0000/0001/Idle",
         "sprite/0958/0000/0001/Sleep",
-        "sprite/0958/0000/0001/Walk"
+        "sprite/0958/0000/0001/Walk",
+        "sprite/0963/0000/0001/Walk",
+        "sprite/0964/0000/0001/Walk"
       ]
     },
     {
@@ -7372,6 +7440,7 @@
         "sprite/0254/0000/0001/Idle",
         "sprite/0254/0000/0001/Sleep",
         "sprite/0254/0000/0001/Walk",
+        "sprite/0319/0000/0001/Walk",
         "sprite/0390/0000/0001/HitGround",
         "sprite/0390/0000/0001/Idle",
         "sprite/0390/0000/0001/Laying",
@@ -8166,6 +8235,8 @@
         "sprite/0068/Idle",
         "sprite/0068/Sleep",
         "sprite/0068/Walk",
+        "sprite/0072/Walk",
+        "sprite/0073/Walk",
         "sprite/0074/Idle",
         "sprite/0074/Sleep",
         "sprite/0074/Walk",
@@ -8181,6 +8252,7 @@
         "sprite/0083/Idle",
         "sprite/0083/Sleep",
         "sprite/0083/Walk",
+        "sprite/0087/Walk",
         "sprite/0092/Idle",
         "sprite/0092/Sleep",
         "sprite/0092/Walk",
@@ -8201,6 +8273,9 @@
         "sprite/0101/Idle",
         "sprite/0101/Sleep",
         "sprite/0101/Walk",
+        "sprite/0102/Idle",
+        "sprite/0102/Sleep",
+        "sprite/0102/Walk",
         "sprite/0104/Idle",
         "sprite/0104/Sleep",
         "sprite/0104/Walk",
@@ -8248,6 +8323,8 @@
         "sprite/0129/Idle",
         "sprite/0129/Sleep",
         "sprite/0129/Walk",
+        "sprite/0130/Walk",
+        "sprite/0131/Walk",
         "sprite/0132/Idle",
         "sprite/0132/Sleep",
         "sprite/0132/Walk",
@@ -8352,6 +8429,7 @@
         "sprite/0169/Sleep",
         "sprite/0169/Walk",
         "sprite/0169/Walk/shadow",
+        "sprite/0171/Walk",
         "sprite/0172/Idle",
         "sprite/0172/Sleep",
         "sprite/0172/Walk",
@@ -8571,6 +8649,9 @@
         "sprite/0306/Idle",
         "sprite/0306/Sleep",
         "sprite/0306/Walk",
+        "sprite/0319/Walk",
+        "sprite/0320/Walk",
+        "sprite/0321/Walk",
         "sprite/0324/Idle",
         "sprite/0324/Sleep",
         "sprite/0324/Walk",
@@ -8602,6 +8683,7 @@
         "sprite/0336/Idle",
         "sprite/0336/Sleep",
         "sprite/0336/Walk",
+        "sprite/0350/Walk",
         "sprite/0353/Idle",
         "sprite/0353/Sleep",
         "sprite/0353/Walk",
@@ -8639,6 +8721,7 @@
         "sprite/0381/Sleep",
         "sprite/0381/Walk",
         "sprite/0381/Walk/shadow",
+        "sprite/0382/Walk",
         "sprite/0383/Idle",
         "sprite/0383/Sleep",
         "sprite/0383/Walk",
@@ -8779,7 +8862,17 @@
         "sprite/0484/Walk",
         "sprite/0487/Idle",
         "sprite/0487/Sleep",
-        "sprite/0487/Walk"
+        "sprite/0487/Walk",
+        "sprite/0488/Idle",
+        "sprite/0488/Sleep",
+        "sprite/0488/Walk",
+        "sprite/0488/Walk/shadow",
+        "sprite/0489/Walk",
+        "sprite/0490/Walk",
+        "sprite/0491/Idle",
+        "sprite/0491/Sleep",
+        "sprite/0491/Walk",
+        "sprite/0491/Walk/shadow"
       ]
     },
     {
@@ -169733,6 +169826,174 @@
       ]
     },
     {
+      "id": "sprite/0072/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0072/0000/0001/Walk-Anim.png",
+        "sha256": "7c8bc27fc48d755069f1095b65b29960c8c915321840a22b6149eacf6f0199a9",
+        "bytes": 7161
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0072/0000/0001/credits.txt",
+        "sha256": "ca733e28685545cb1900e87f5b8f4bb0a79cb5463e9a53fd90fe2446a1c94d0b",
+        "bytes": 149
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0072/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0072/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "234720295292895232",
+          "date": "2020-10-07 17:58:43.544848",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Slam",
+            "Shoot",
+            "Twirl",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0072/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0072/Walk-Anim.png",
+        "sha256": "91449da3edb0b17d94d1d7cd2a5c32812438859077f9cb7de0f58a709291da29",
+        "bytes": 6677
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0072/credits.txt",
+        "sha256": "c1985d4891ae9989df0ff4bc6a5dec11c6cdb57ae3e8db435458d0ba2698ac1d",
+        "bytes": 135
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0072/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0072/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:43.542853",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Slam",
+            "Shoot",
+            "Twirl",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0073/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0073/0000/0001/Walk-Anim.png",
+        "sha256": "17600366e70649b3aa827d9e345d0a060a7551f5425b5ef5da2c07cb83c3734c",
+        "bytes": 9109
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0073/0000/0001/credits.txt",
+        "sha256": "02c90d29a81df1c9b411a4907ad1817898fccfdfb64c862450044093ccaa732a",
+        "bytes": 149
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0073/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0073/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "234720295292895232",
+          "date": "2020-10-07 17:58:43.547841",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Slam",
+            "Shoot",
+            "Twirl",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0073/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0073/Walk-Anim.png",
+        "sha256": "64be4736f766def612d9761bc03d4afbb64ffe1bed4e37b47d5fa7a8ce2c4e10",
+        "bytes": 8575
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0073/credits.txt",
+        "sha256": "8b7836e878d1fd56454d90c44e28c689bdd4c50cfcd3b3b19529d72a1edf4e74",
+        "bytes": 135
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0073/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0073/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:43.546843",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Slam",
+            "Shoot",
+            "Twirl",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
       "id": "sprite/0074/0000/0001/Idle",
       "kind": "sprite",
       "source": {
@@ -171545,6 +171806,88 @@
         {
           "artistId": "CHUNSOFT",
           "date": "2020-10-07 17:58:43.569782",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Twirl",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0087/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0087/0000/0001/Walk-Anim.png",
+        "sha256": "38db1e5ab0a64691905232c9355b34ced7de5a4ae0ca44d07d49446140cf7aac",
+        "bytes": 10505
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0087/0000/0001/credits.txt",
+        "sha256": "3ab51b1979a00a1246873b72bcde6ae6287b53c3c9d8fb793278e6a0eb6a7837",
+        "bytes": 144
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0087/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0087/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "234720295292895232",
+          "date": "2020-10-07 17:58:43.584741",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Twirl",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0087/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0087/Walk-Anim.png",
+        "sha256": "430faf06842395392366a12653e827756b785910ba04f53be2b36944efc5954a",
+        "bytes": 11405
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0087/credits.txt",
+        "sha256": "822cde66e41f7f7efdf1b896b142e77cc996d7a8acfbd3363531dd3d8ec895c9",
+        "bytes": 130
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0087/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0087/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:43.583744",
           "status": "CUR",
           "sourceLicense": "Unspecified",
           "contributions": [
@@ -174823,6 +175166,309 @@
             "Strike",
             "Shoot",
             "RearUp",
+            "Twirl",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0102/0000/0001/Idle",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0102/0000/0001/Idle-Anim.png",
+        "sha256": "c3d310038fc5a1b3e07022b43d0d5d1a90a0b0dd9000c678ef349bfe21ad6266",
+        "bytes": 10034
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0102/0000/0001/credits.txt",
+        "sha256": "c82d8779194c9f43948e7564dc21735357336518308071cf55415c7179c4f597",
+        "bytes": 274
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0102/base/shiny/idle-east.webp",
+        "/theme/pokemon/pmd/sprites/0102/base/shiny/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "215699178553212929",
+          "date": "2020-10-07 17:58:43.625633",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Double",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Rotate",
+            "Shoot",
+            "Sleep",
+            "Swing",
+            "Twirl",
+            "Walk"
+          ]
+        },
+        {
+          "artistId": "217899432652308480",
+          "date": "2022-01-26 01:41:56.843241",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Double",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Rotate",
+            "Shoot",
+            "Sleep",
+            "Swing",
+            "Twirl",
+            "Walk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0102/0000/0001/Sleep",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0102/0000/0001/Sleep-Anim.png",
+        "sha256": "5403622345584b5867e3166abeecbba242295751e6cfac74396513b823fd06f3",
+        "bytes": 999
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0102/0000/0001/credits.txt",
+        "sha256": "c82d8779194c9f43948e7564dc21735357336518308071cf55415c7179c4f597",
+        "bytes": 274
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0102/base/shiny/sleep-east.webp",
+        "/theme/pokemon/pmd/sprites/0102/base/shiny/sleep-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "215699178553212929",
+          "date": "2020-10-07 17:58:43.625633",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Double",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Rotate",
+            "Shoot",
+            "Sleep",
+            "Swing",
+            "Twirl",
+            "Walk"
+          ]
+        },
+        {
+          "artistId": "217899432652308480",
+          "date": "2022-01-26 01:41:56.843241",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Double",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Rotate",
+            "Shoot",
+            "Sleep",
+            "Swing",
+            "Twirl",
+            "Walk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0102/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0102/0000/0001/Walk-Anim.png",
+        "sha256": "a005b449797854a9282d727bc62e6d204830f6c3a449f5c528c4d15531fb7901",
+        "bytes": 8888
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0102/0000/0001/credits.txt",
+        "sha256": "c82d8779194c9f43948e7564dc21735357336518308071cf55415c7179c4f597",
+        "bytes": 274
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0102/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0102/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "215699178553212929",
+          "date": "2020-10-07 17:58:43.625633",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Double",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Rotate",
+            "Shoot",
+            "Sleep",
+            "Swing",
+            "Twirl",
+            "Walk"
+          ]
+        },
+        {
+          "artistId": "217899432652308480",
+          "date": "2022-01-26 01:41:56.843241",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Double",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Rotate",
+            "Shoot",
+            "Sleep",
+            "Swing",
+            "Twirl",
+            "Walk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0102/Idle",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0102/Idle-Anim.png",
+        "sha256": "0eef8530fdc97a63170508be9229a133cb158c42f48dd287b3a6b44a6619281c",
+        "bytes": 9295
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0102/credits.txt",
+        "sha256": "57538bd65841216c7defd6950dc1d1648e6f0983760ef1ac21e3d06b2528ba43",
+        "bytes": 130
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0102/base/normal/idle-east.webp",
+        "/theme/pokemon/pmd/sprites/0102/base/normal/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:43.623636",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Twirl",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0102/Sleep",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0102/Sleep-Anim.png",
+        "sha256": "f0ebae1359c7f957b0a5523497f2e9e4e00b356345a945a30ca98877789b5ad8",
+        "bytes": 854
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0102/credits.txt",
+        "sha256": "57538bd65841216c7defd6950dc1d1648e6f0983760ef1ac21e3d06b2528ba43",
+        "bytes": 130
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0102/base/normal/sleep-east.webp",
+        "/theme/pokemon/pmd/sprites/0102/base/normal/sleep-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:43.623636",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Twirl",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0102/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0102/Walk-Anim.png",
+        "sha256": "8b82a76f6d7a5f7cc7da507c18e98c74d30c05c7f726301aa350beaf8da6547f",
+        "bytes": 8154
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0102/credits.txt",
+        "sha256": "57538bd65841216c7defd6950dc1d1648e6f0983760ef1ac21e3d06b2528ba43",
+        "bytes": 130
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0102/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0102/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:43.623636",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
             "Twirl",
             "Sleep",
             "Hurt",
@@ -179871,6 +180517,194 @@
             "Strike",
             "Shoot",
             "SpAttack",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0130/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0130/0000/0001/Walk-Anim.png",
+        "sha256": "c040ded56b1384c69f1154f5dbefd231b4c90cee65cce376627c1d50405ff5c7",
+        "bytes": 46976
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0130/0000/0001/credits.txt",
+        "sha256": "bb932a69eedea98a620b75e11f8ae3401aeaa4e450df1cc81c2bb10c87ee1b60",
+        "bytes": 288
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0130/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0130/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "217899432652308480",
+          "date": "2024-12-01 19:01:54.162498",
+          "status": "CUR",
+          "sourceLicense": "CC_BY-NC_4",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Rumble",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        },
+        {
+          "artistId": "356635814668664832",
+          "date": "2024-12-01 19:55:07.203789",
+          "status": "CUR",
+          "sourceLicense": "CC_BY-NC_4",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0130/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0130/Walk-Anim.png",
+        "sha256": "7cee3a662c821e98b990151f96b5a7964b95d1a0495f3adbc90e3d1f610739a5",
+        "bytes": 45010
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0130/credits.txt",
+        "sha256": "e9c2ff0fba42ad3d36907c873c922bb9e17e9d4e2c611d7051a41c83b2bae4bb",
+        "bytes": 138
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0130/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0130/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2023-05-04 14:55:15.921758",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Rumble",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0131/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0131/0000/0001/Walk-Anim.png",
+        "sha256": "2e3d032402bac2bd73a3a632cd156b813cace49c0c66478792c9e779d6b906cc",
+        "bytes": 17212
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0131/0000/0001/credits.txt",
+        "sha256": "99bb04e57d33e91d977c2bc53e0a0606b6628cf1fe8ca8e3a8f288ec0fe295dc",
+        "bytes": 151
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0131/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0131/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "173896352554549248",
+          "date": "2020-10-07 17:58:43.708410",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Sound",
+            "RearUp",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0131/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0131/Walk-Anim.png",
+        "sha256": "7f2fac19960cf6ca7683329caff196e8d71e3e41f9ac027b57f38f088c8db9ca",
+        "bytes": 16761
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0131/credits.txt",
+        "sha256": "bfa85d8b3082673c7d0c40953c8e5d0ed5e28fc9182e61ab2d95a9f97ee56e83",
+        "bytes": 137
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0131/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0131/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:43.706416",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Sound",
+            "RearUp",
             "Sleep",
             "Hurt",
             "Idle",
@@ -194253,6 +195087,88 @@
         {
           "artistId": "CHUNSOFT",
           "date": "2020-10-07 17:58:43.805152",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Twirl",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0171/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0171/0000/0001/Walk-Anim.png",
+        "sha256": "5b59047d1bf5ba8125527b5b053b6d22b12238bccb4fb044683383ef077ffd70",
+        "bytes": 8003
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0171/0000/0001/credits.txt",
+        "sha256": "3527880ff058511c232a6bc44ba5d96a05eaa0c0f15b55d381a682dc573b8442",
+        "bytes": 144
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0171/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0171/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "215699178553212929",
+          "date": "2020-10-07 17:58:43.811135",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Twirl",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0171/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0171/Walk-Anim.png",
+        "sha256": "106056ed39506587dbd74778d094457168baf5f7feac5d708add2a2fe2b5c16f",
+        "bytes": 7112
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0171/credits.txt",
+        "sha256": "5c5033a8c0615ff78805ea2d28ff58bf7019ab2e8f7cceb81bae7d137a124a5e",
+        "bytes": 495
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0171/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0171/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:43.810139",
           "status": "CUR",
           "sourceLicense": "Unspecified",
           "contributions": [
@@ -227202,6 +228118,256 @@
       ]
     },
     {
+      "id": "sprite/0319/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0319/0000/0001/Walk-Anim.png",
+        "sha256": "2902fe40d9586c29e2be4f50880efb4ba9fa9593a5276b55a64817cedbb02725",
+        "bytes": 12731
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0319/0000/0001/credits.txt",
+        "sha256": "83ed558621e2256eadbeda2efc791137194fd4052817706e48b72fe1adfe5024",
+        "bytes": 141
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0319/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0319/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "95650095034273792",
+          "date": "2020-10-07 17:58:44.362268",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Bite",
+            "Shoot",
+            "Swell",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0319/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0319/Walk-Anim.png",
+        "sha256": "911a28a00814e53bb9474620dd06719540676e1d3df4b08c075355bbe2594ac7",
+        "bytes": 12237
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0319/credits.txt",
+        "sha256": "f6bad8355c3afa8bb051ba6f6c83bb4a074dae9af2bb9deaa9371b37323e629a",
+        "bytes": 128
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0319/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0319/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:44.360273",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Bite",
+            "Shoot",
+            "Swell",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0320/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0320/0000/0001/Walk-Anim.png",
+        "sha256": "1336655eabd20fdc4bae665f47d6d81c168e2f60c5708b083f4e800f7bc57d97",
+        "bytes": 12594
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0320/0000/0001/credits.txt",
+        "sha256": "aab8bc228f0f5bf376a0b71a26f38900241459405198c387d18c0ee7769872d7",
+        "bytes": 152
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0320/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0320/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "215699178553212929",
+          "date": "2020-10-07 17:58:44.365264",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Rumble",
+            "RearUp",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0320/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0320/Walk-Anim.png",
+        "sha256": "cdc875ac85d38a380685bfdb4088c8b0759af787f21539b12777bfdf1992696b",
+        "bytes": 12280
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0320/credits.txt",
+        "sha256": "01d5bf07d4b90e0078c238695a5ceea5bf44a37474c1d7f926392ca30a9c5023",
+        "bytes": 138
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0320/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0320/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:44.363264",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Rumble",
+            "RearUp",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0321/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0321/0000/0001/Walk-Anim.png",
+        "sha256": "e8714d6ebac57f0adfc09dd80b7424e431a5291e99641f0b40982151ce01b159",
+        "bytes": 38237
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0321/0000/0001/credits.txt",
+        "sha256": "2b90dd974896543d310b3d57846f206f7dfd25ef59dc38ce97a6402512eaf891",
+        "bytes": 151
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0321/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0321/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "350050109741858829",
+          "date": "2024-12-22 00:36:05.856842",
+          "status": "CUR",
+          "sourceLicense": "CC_BY-NC_4",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Rumble",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0321/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0321/Walk-Anim.png",
+        "sha256": "40fe5aab75d74c5c0c449e3a24232890d942834c38e3ec08184d8c39650e52fa",
+        "bytes": 38832
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0321/credits.txt",
+        "sha256": "46a5a0ee093759ef19a6356ac7082054f6362afced4da1abeeefa54a78d5fbab",
+        "bytes": 138
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0321/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0321/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:44.366264",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "Rumble",
+            "RearUp",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
       "id": "sprite/0324/0000/0001/Idle",
       "kind": "sprite",
       "source": {
@@ -232117,6 +233283,88 @@
             "Bite",
             "Shoot",
             "Swell",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0350/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0350/0000/0001/Walk-Anim.png",
+        "sha256": "fb24102e107c4d2e4fc8879fda79ad30b68e33e614ec0ab56f827c3765460b3e",
+        "bytes": 32683
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0350/0000/0001/credits.txt",
+        "sha256": "6493a4e144d318b295d724a0c34185cda25fa04dddf334e560cbfbda6d2ebcb1",
+        "bytes": 144
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0350/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0350/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "356635814668664832",
+          "date": "2024-07-02 07:23:45.893247",
+          "status": "CUR",
+          "sourceLicense": "CC_BY-NC_4",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0350/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0350/Walk-Anim.png",
+        "sha256": "01b5271df3d48851fb60f82b8140f7af5acb34ea6b16b4d10d5b665bc7525e04",
+        "bytes": 30692
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0350/credits.txt",
+        "sha256": "e0484327ae9fc04203816622de27bab3aae89fefc98ceabf452dda5658a551f8",
+        "bytes": 131
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0350/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0350/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:44.435076",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Strike",
+            "Shoot",
+            "RearUp",
             "Sleep",
             "Hurt",
             "Idle",
@@ -237456,6 +238704,88 @@
             "Double",
             "Rotate",
             "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0382/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0382/0000/0001/Walk-Anim.png",
+        "sha256": "ba82faa88b616028ff66e76e04b887eeab17260f7031e6bcdbb59931ae80e15f",
+        "bytes": 45671
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0382/0000/0001/credits.txt",
+        "sha256": "0470316ca14c2b48e46307ec12c324ca3acc24912534c497250943e08d2cc9d5",
+        "bytes": 143
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0382/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0382/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "232091727094218752",
+          "date": "2020-10-07 17:58:44.517851",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Stomp",
+            "Shoot",
+            "Swell",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0382/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0382/Walk-Anim.png",
+        "sha256": "30b4030193457b062f23a0d6afce4a7c84f72738c1583456c3b19fe059dcffa5",
+        "bytes": 44910
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0382/credits.txt",
+        "sha256": "5ba325855e9af490a018b3ed9dfabc21007428a76bbea9349d591dc6021b5e28",
+        "bytes": 129
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0382/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0382/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:44.516860",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Walk",
+            "Attack",
+            "Stomp",
+            "Shoot",
+            "Swell",
+            "Sleep",
+            "Hurt",
+            "Idle",
+            "Swing",
+            "Double",
+            "Hop",
+            "Charge",
+            "Rotate"
           ]
         }
       ]
@@ -257445,6 +258775,2049 @@
             "Hop",
             "Charge",
             "Rotate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0488/0000/0001/HitGround",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/0000/0001/HitGround-Anim.png",
+        "sha256": "b8e11bf3654fca3619d070e6847174e0bac7cba28f1d53cdb4f2f463bfbc8da7",
+        "bytes": 4526
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/0000/0001/credits.txt",
+        "sha256": "f6326466ccde248d06a437b0c80b958544c9868f49abc85c6ae64fe7b3dd2adc",
+        "bytes": 585
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0488/base/shiny/hit-ground-east.webp",
+        "/theme/pokemon/pmd/sprites/0488/base/shiny/hit-ground-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2022-11-08 05:43:57.523586",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        },
+        {
+          "artistId": "200385851069300736",
+          "date": "2023-10-20 17:17:29.279029",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0488/0000/0001/Idle",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/0000/0001/Idle-Anim.png",
+        "sha256": "bc9ef1f3d501f418ba0cd66a9bc3b5b16887bd8a03892c5276d56355344d0352",
+        "bytes": 13451
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/0000/0001/credits.txt",
+        "sha256": "f6326466ccde248d06a437b0c80b958544c9868f49abc85c6ae64fe7b3dd2adc",
+        "bytes": 585
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0488/base/shiny/idle-east.webp",
+        "/theme/pokemon/pmd/sprites/0488/base/shiny/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2022-11-08 05:43:57.523586",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        },
+        {
+          "artistId": "200385851069300736",
+          "date": "2023-10-20 17:17:29.279029",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0488/0000/0001/Laying",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/0000/0001/Laying-Anim.png",
+        "sha256": "f735d44f9ee77cb7ff377b346eb88c49d7b884e21491df0172d6f886851fd9a1",
+        "bytes": 2672
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/0000/0001/credits.txt",
+        "sha256": "f6326466ccde248d06a437b0c80b958544c9868f49abc85c6ae64fe7b3dd2adc",
+        "bytes": 585
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0488/base/shiny/laying-east.webp",
+        "/theme/pokemon/pmd/sprites/0488/base/shiny/laying-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2022-11-08 05:43:57.523586",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        },
+        {
+          "artistId": "200385851069300736",
+          "date": "2023-10-20 17:17:29.279029",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0488/0000/0001/Sleep",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/0000/0001/Sleep-Anim.png",
+        "sha256": "81b68c3c73b99ae8d12aaffffb553e64d0ee01244a6b79b3dba47c5d53e3f648",
+        "bytes": 2522
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/0000/0001/credits.txt",
+        "sha256": "f6326466ccde248d06a437b0c80b958544c9868f49abc85c6ae64fe7b3dd2adc",
+        "bytes": 585
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0488/base/shiny/sleep-east.webp",
+        "/theme/pokemon/pmd/sprites/0488/base/shiny/sleep-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2022-11-08 05:43:57.523586",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        },
+        {
+          "artistId": "200385851069300736",
+          "date": "2023-10-20 17:17:29.279029",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0488/0000/0001/Wake",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/0000/0001/Wake-Anim.png",
+        "sha256": "0e34341409478e2c726e0e3338169d6b7f477ffaa25cde83d6ff77bb2fe34425",
+        "bytes": 25151
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/0000/0001/credits.txt",
+        "sha256": "f6326466ccde248d06a437b0c80b958544c9868f49abc85c6ae64fe7b3dd2adc",
+        "bytes": 585
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0488/base/shiny/wake-east.webp",
+        "/theme/pokemon/pmd/sprites/0488/base/shiny/wake-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2022-11-08 05:43:57.523586",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        },
+        {
+          "artistId": "200385851069300736",
+          "date": "2023-10-20 17:17:29.279029",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0488/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/0000/0001/Walk-Anim.png",
+        "sha256": "f55a1f1644de179917929409f8ca2743eb9f81ccfc3164709c96cb4ebdd00c0f",
+        "bytes": 19531
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/0000/0001/credits.txt",
+        "sha256": "f6326466ccde248d06a437b0c80b958544c9868f49abc85c6ae64fe7b3dd2adc",
+        "bytes": 585
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0488/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0488/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2022-11-08 05:43:57.523586",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        },
+        {
+          "artistId": "200385851069300736",
+          "date": "2023-10-20 17:17:29.279029",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0488/0000/0001/Walk/shadow",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/0000/0001/Walk-Shadow.png",
+        "sha256": "41892897b5727a4a48b5445a3156f2ceb9f0102b73efc28c2aff369372c366ca",
+        "bytes": 2868
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/0000/0001/credits.txt",
+        "sha256": "f6326466ccde248d06a437b0c80b958544c9868f49abc85c6ae64fe7b3dd2adc",
+        "bytes": 585
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0488/base/shiny/walk-shadow-east.webp",
+        "/theme/pokemon/pmd/sprites/0488/base/shiny/walk-shadow-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2022-11-08 05:43:57.523586",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        },
+        {
+          "artistId": "200385851069300736",
+          "date": "2023-10-20 17:17:29.279029",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0488/HitGround",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/HitGround-Anim.png",
+        "sha256": "5039faa42ba35124eccb216ee1d14060d67a762d829679e1c94422eb1e15c855",
+        "bytes": 3917
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/credits.txt",
+        "sha256": "4131b5f86e1569c6872db29d1313ce5bfc14044f6076a912048f48f0077490ff",
+        "bytes": 348
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0488/base/normal/hit-ground-east.webp",
+        "/theme/pokemon/pmd/sprites/0488/base/normal/hit-ground-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2022-11-08 04:15:16.285701",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0488/Idle",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/Idle-Anim.png",
+        "sha256": "1d7b2b55cebcbe8eb2c7633e34d6f8495fba456074a133616011a0f2c59577ae",
+        "bytes": 11758
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/credits.txt",
+        "sha256": "4131b5f86e1569c6872db29d1313ce5bfc14044f6076a912048f48f0077490ff",
+        "bytes": 348
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0488/base/normal/idle-east.webp",
+        "/theme/pokemon/pmd/sprites/0488/base/normal/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2022-11-08 03:47:35.725172",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0488/Laying",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/Laying-Anim.png",
+        "sha256": "b7a8b4544417641e3aa0d63c8a0f7aa5992a195d9b3f2ad0d6682eb2bc7ec3fd",
+        "bytes": 2507
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/credits.txt",
+        "sha256": "4131b5f86e1569c6872db29d1313ce5bfc14044f6076a912048f48f0077490ff",
+        "bytes": 348
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0488/base/normal/laying-east.webp",
+        "/theme/pokemon/pmd/sprites/0488/base/normal/laying-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2022-11-08 04:15:16.285701",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0488/Sleep",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/Sleep-Anim.png",
+        "sha256": "f088a29692ae2891689ca57ff7019d906f27e02f616a3c2587704e2937f644ae",
+        "bytes": 2257
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/credits.txt",
+        "sha256": "4131b5f86e1569c6872db29d1313ce5bfc14044f6076a912048f48f0077490ff",
+        "bytes": 348
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0488/base/normal/sleep-east.webp",
+        "/theme/pokemon/pmd/sprites/0488/base/normal/sleep-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2022-11-08 03:47:35.725172",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0488/Wake",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/Wake-Anim.png",
+        "sha256": "ef901eb10ab786007d9afb0badfb588d55c9fe05e25c4670b273a0d1338977d2",
+        "bytes": 22563
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/credits.txt",
+        "sha256": "4131b5f86e1569c6872db29d1313ce5bfc14044f6076a912048f48f0077490ff",
+        "bytes": 348
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0488/base/normal/wake-east.webp",
+        "/theme/pokemon/pmd/sprites/0488/base/normal/wake-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2022-11-08 04:15:16.285701",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0488/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/Walk-Anim.png",
+        "sha256": "66cd95c080a6910637e76fab47b56727771b1d6260940156777a86abbb39a321",
+        "bytes": 17708
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/credits.txt",
+        "sha256": "4131b5f86e1569c6872db29d1313ce5bfc14044f6076a912048f48f0077490ff",
+        "bytes": 348
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0488/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0488/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2022-11-08 03:47:35.725172",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0488/Walk/shadow",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/Walk-Shadow.png",
+        "sha256": "41892897b5727a4a48b5445a3156f2ceb9f0102b73efc28c2aff369372c366ca",
+        "bytes": 2868
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0488/credits.txt",
+        "sha256": "4131b5f86e1569c6872db29d1313ce5bfc14044f6076a912048f48f0077490ff",
+        "bytes": 348
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0488/base/normal/walk-shadow-east.webp",
+        "/theme/pokemon/pmd/sprites/0488/base/normal/walk-shadow-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2022-11-08 03:47:35.725172",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0489/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0489/0000/0001/Walk-Anim.png",
+        "sha256": "5d0b57e9725ec17c538d158614182c4d632af5307efd0118bee8df049889d952",
+        "bytes": 10658
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0489/0000/0001/credits.txt",
+        "sha256": "50b4d98f6c086c33599ff20893a16828c8a38c07abaa970b05d61b795109b4d4",
+        "bytes": 355
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0489/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0489/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "200318546750865418",
+          "date": "2020-10-07 17:58:44.849963",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Double",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Rotate",
+            "Shoot",
+            "Sleep",
+            "Swing",
+            "Twirl",
+            "Walk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0489/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0489/Walk-Anim.png",
+        "sha256": "721b528f523992bc9178d62f6833520a2710dc9227079848af11fd7d58aa972d",
+        "bytes": 9671
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0489/credits.txt",
+        "sha256": "c1aa473ff5c8331aca05c984433bcb30d85b648bd6f99f42db76f95bfe37b15c",
+        "bytes": 412
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0489/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0489/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2020-10-07 17:58:44.848966",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Double",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Rotate",
+            "Shoot",
+            "Sleep",
+            "Swing",
+            "Twirl",
+            "Walk"
+          ]
+        },
+        {
+          "artistId": "356635814668664832",
+          "date": "2021-06-04 06:34:20.589022",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Attack",
+            "Charge",
+            "Cringe",
+            "DeepBreath",
+            "Double",
+            "Eat",
+            "EventSleep",
+            "Faint",
+            "Float",
+            "Head",
+            "HitGround",
+            "Hop",
+            "Hurt",
+            "Idle",
+            "Laying",
+            "LeapForth",
+            "LookUp",
+            "LostBalance",
+            "Nod",
+            "Pain",
+            "Pose",
+            "Pull",
+            "Rotate",
+            "Shoot",
+            "Sink",
+            "Sit",
+            "Sleep",
+            "Swing",
+            "Trip",
+            "Tumble",
+            "TumbleBack",
+            "Twirl",
+            "Wake",
+            "Walk"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0490/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0490/0000/0001/Walk-Anim.png",
+        "sha256": "f63b721a0a84293e4a90a0afdd8d88b81a995712653ff2bddc5fc7a220c3a190",
+        "bytes": 10411
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0490/0000/0001/credits.txt",
+        "sha256": "ea14a08b9d044d99e3cce040da27a15b307126a131865496b74a661183b64b96",
+        "bytes": 305
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0490/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0490/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "356635814668664832",
+          "date": "2024-05-12 01:28:25.877416",
+          "status": "CUR",
+          "sourceLicense": "CC_BY-NC_4",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "SpAttack",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0490/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0490/Walk-Anim.png",
+        "sha256": "c03f715aebe4a6584656074877f341663cf4d8cb87d4e5bf9952a4a5aaafd8ae",
+        "bytes": 9791
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0490/credits.txt",
+        "sha256": "a24a3686bb2e38f66db0cf975667c0479c4df3a58a6bfd1c30e88cec917e7f3e",
+        "bytes": 357
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0490/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0490/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2022-11-08 03:47:43.902912",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "SpAttack",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0491/0000/0001/HitGround",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/0000/0001/HitGround-Anim.png",
+        "sha256": "89d950f37951951a0b8c24a380c51dbb2d025c97578e24f3df4c37479568e338",
+        "bytes": 2816
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/0000/0001/credits.txt",
+        "sha256": "62aa4a4103d19f5d034c3d27e793868a68d7de18ec3c201841519126795c767d",
+        "bytes": 446
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0491/base/shiny/hit-ground-east.webp",
+        "/theme/pokemon/pmd/sprites/0491/base/shiny/hit-ground-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2022-11-08 05:45:11.344231",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "SpAttack",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "QuickStrike",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0491/0000/0001/Idle",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/0000/0001/Idle-Anim.png",
+        "sha256": "15434a767ae6631823ae6163720fdcef348042618f809e558e7d0977a1bd51ce",
+        "bytes": 14784
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/0000/0001/credits.txt",
+        "sha256": "62aa4a4103d19f5d034c3d27e793868a68d7de18ec3c201841519126795c767d",
+        "bytes": 446
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0491/base/shiny/idle-east.webp",
+        "/theme/pokemon/pmd/sprites/0491/base/shiny/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2022-11-08 05:45:11.344231",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "SpAttack",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "QuickStrike",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0491/0000/0001/Laying",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/0000/0001/Laying-Anim.png",
+        "sha256": "572de9462c961630a88972f851305deba58fea4a5e2a78d27c77119b4f37a92d",
+        "bytes": 1411
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/0000/0001/credits.txt",
+        "sha256": "62aa4a4103d19f5d034c3d27e793868a68d7de18ec3c201841519126795c767d",
+        "bytes": 446
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0491/base/shiny/laying-east.webp",
+        "/theme/pokemon/pmd/sprites/0491/base/shiny/laying-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2022-11-08 05:45:11.344231",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "SpAttack",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "QuickStrike",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0491/0000/0001/Sleep",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/0000/0001/Sleep-Anim.png",
+        "sha256": "83d987c097744f67492527be136f25fd90679b7c1db81b75de6fe2128ebc8101",
+        "bytes": 1101
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/0000/0001/credits.txt",
+        "sha256": "62aa4a4103d19f5d034c3d27e793868a68d7de18ec3c201841519126795c767d",
+        "bytes": 446
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0491/base/shiny/sleep-east.webp",
+        "/theme/pokemon/pmd/sprites/0491/base/shiny/sleep-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2022-11-08 05:45:11.344231",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "SpAttack",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "QuickStrike",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0491/0000/0001/Wake",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/0000/0001/Wake-Anim.png",
+        "sha256": "a7c89cc3d075c20f0f77744abebac44aee69f33d83a9e091a09d281340b91d29",
+        "bytes": 23189
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/0000/0001/credits.txt",
+        "sha256": "62aa4a4103d19f5d034c3d27e793868a68d7de18ec3c201841519126795c767d",
+        "bytes": 446
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0491/base/shiny/wake-east.webp",
+        "/theme/pokemon/pmd/sprites/0491/base/shiny/wake-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2022-11-08 05:45:11.344231",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "SpAttack",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "QuickStrike",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0491/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/0000/0001/Walk-Anim.png",
+        "sha256": "a0d1f0d697c5429a855534952660ffe7353288f4ed8acfc954211ea97e6756c7",
+        "bytes": 16858
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/0000/0001/credits.txt",
+        "sha256": "62aa4a4103d19f5d034c3d27e793868a68d7de18ec3c201841519126795c767d",
+        "bytes": 446
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0491/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0491/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2022-11-08 05:45:11.344231",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "SpAttack",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "QuickStrike",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0491/0000/0001/Walk/shadow",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/0000/0001/Walk-Shadow.png",
+        "sha256": "b476454406bc78c5a9ffa54e33efcf26059bd3847d7ecfea25e11a0aa7c4ea28",
+        "bytes": 2473
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/0000/0001/credits.txt",
+        "sha256": "62aa4a4103d19f5d034c3d27e793868a68d7de18ec3c201841519126795c767d",
+        "bytes": 446
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0491/base/shiny/walk-shadow-east.webp",
+        "/theme/pokemon/pmd/sprites/0491/base/shiny/walk-shadow-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2022-11-08 05:45:11.344231",
+          "status": "OLD",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "SpAttack",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "QuickStrike",
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0491/HitGround",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/HitGround-Anim.png",
+        "sha256": "961f42dbd454c9d1c804a9d007e50a70d55725af051d74ff221cbbb44c912f5d",
+        "bytes": 2630
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/credits.txt",
+        "sha256": "b472421683fca8034a18f287d4a3cadb3025f1c2246146a5e104bdfdd699a5de",
+        "bytes": 363
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0491/base/normal/hit-ground-east.webp",
+        "/theme/pokemon/pmd/sprites/0491/base/normal/hit-ground-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2022-11-08 04:14:41.871948",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0491/Idle",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/Idle-Anim.png",
+        "sha256": "3890272ba4e4761922b644f6d9d80c9faa34dd5220d9b90f342f99ab13afa7c6",
+        "bytes": 12917
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/credits.txt",
+        "sha256": "b472421683fca8034a18f287d4a3cadb3025f1c2246146a5e104bdfdd699a5de",
+        "bytes": 363
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0491/base/normal/idle-east.webp",
+        "/theme/pokemon/pmd/sprites/0491/base/normal/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2022-11-08 03:47:19.670949",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "SpAttack",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "QuickStrike"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0491/Laying",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/Laying-Anim.png",
+        "sha256": "c5985b8bedca116138fc949370ad4e6cf48870a620d13a4eeb0ac721b2864819",
+        "bytes": 1380
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/credits.txt",
+        "sha256": "b472421683fca8034a18f287d4a3cadb3025f1c2246146a5e104bdfdd699a5de",
+        "bytes": 363
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0491/base/normal/laying-east.webp",
+        "/theme/pokemon/pmd/sprites/0491/base/normal/laying-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2022-11-08 04:14:41.871948",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0491/Sleep",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/Sleep-Anim.png",
+        "sha256": "4f04d6ecf105ea925bff5433d3e4e7c148317a731b529a64fde24e58d604c31f",
+        "bytes": 1060
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/credits.txt",
+        "sha256": "b472421683fca8034a18f287d4a3cadb3025f1c2246146a5e104bdfdd699a5de",
+        "bytes": 363
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0491/base/normal/sleep-east.webp",
+        "/theme/pokemon/pmd/sprites/0491/base/normal/sleep-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2022-11-08 03:47:19.670949",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "SpAttack",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "QuickStrike"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0491/Wake",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/Wake-Anim.png",
+        "sha256": "163cbe70c47b3df3e8ac71ccf380babfc1eff7f2ad8aa05477490edfe60373d9",
+        "bytes": 21824
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/credits.txt",
+        "sha256": "b472421683fca8034a18f287d4a3cadb3025f1c2246146a5e104bdfdd699a5de",
+        "bytes": 363
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0491/base/normal/wake-east.webp",
+        "/theme/pokemon/pmd/sprites/0491/base/normal/wake-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2022-11-08 04:14:41.871948",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_1",
+          "contributions": [
+            "EventSleep",
+            "Wake",
+            "Eat",
+            "Tumble",
+            "Pose",
+            "Pull",
+            "Pain",
+            "Float",
+            "DeepBreath",
+            "Nod",
+            "Sit",
+            "LookUp",
+            "Sink",
+            "Trip",
+            "Laying",
+            "LeapForth",
+            "Head",
+            "Cringe",
+            "LostBalance",
+            "TumbleBack",
+            "HitGround",
+            "Faint"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0491/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/Walk-Anim.png",
+        "sha256": "32fd28ded3bb3b26b61b5d27d13dece20f254d3a77a72e5dd8d3e3c789ee9cf0",
+        "bytes": 15755
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/credits.txt",
+        "sha256": "b472421683fca8034a18f287d4a3cadb3025f1c2246146a5e104bdfdd699a5de",
+        "bytes": 363
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0491/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0491/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2022-11-08 03:47:19.670949",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "SpAttack",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "QuickStrike"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0491/Walk/shadow",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/Walk-Shadow.png",
+        "sha256": "b476454406bc78c5a9ffa54e33efcf26059bd3847d7ecfea25e11a0aa7c4ea28",
+        "bytes": 2473
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0491/credits.txt",
+        "sha256": "b472421683fca8034a18f287d4a3cadb3025f1c2246146a5e104bdfdd699a5de",
+        "bytes": 363
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0491/base/normal/walk-shadow-east.webp",
+        "/theme/pokemon/pmd/sprites/0491/base/normal/walk-shadow-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "CHUNSOFT",
+          "date": "2022-11-08 03:47:19.670949",
+          "status": "CUR",
+          "sourceLicense": "Unspecified",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "SpAttack",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop",
+            "QuickStrike"
           ]
         }
       ]
@@ -325399,6 +328772,108 @@
       ]
     },
     {
+      "id": "sprite/0870/0003/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0870/0003/0001/Walk-Anim.png",
+        "sha256": "a20f56b86f0953b9f63149d27dcd09021de41ad763216c0334e787f04dc7cd75",
+        "bytes": 3588
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0870/0003/0001/credits.txt",
+        "sha256": "78af63811e2e169342eff36dab07c2e52fcf95230c0f9eec1b4bd463cd5458ce",
+        "bytes": 143
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0870/trooper/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0870/trooper/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "356635814668664832",
+          "date": "2025-02-03 20:50:30.912310",
+          "status": "CUR",
+          "sourceLicense": "CC_BY-NC_4",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ],
+      "trackerCredit": {
+        "primary": "<@!356635814668664832>",
+        "secondary": [],
+        "total": 1
+      }
+    },
+    {
+      "id": "sprite/0870/0003/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0870/0003/Walk-Anim.png",
+        "sha256": "23861886df58ad7f39752bc0d9483c7dc318d4bdad4c2a925820b883de6d8c69",
+        "bytes": 3176
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0870/0003/credits.txt",
+        "sha256": "c8731a01e0e8d14d0263222ee551c461309d70793e600295ff3bc26e01d2bc0e",
+        "bytes": 222
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0870/trooper/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0870/trooper/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2024-12-22 02:08:38.853154",
+          "status": "CUR",
+          "sourceLicense": "CC_BY-NC_4",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        },
+        {
+          "artistId": "544245909639397378",
+          "date": "2024-12-27 20:18:49.561449",
+          "status": "CUR",
+          "sourceLicense": "CC_BY-NC_4",
+          "contributions": [
+            "Charge",
+            "Double"
+          ]
+        }
+      ],
+      "trackerCredit": {
+        "primary": "<@!544245909639397378>",
+        "secondary": [],
+        "total": 1
+      }
+    },
+    {
       "id": "sprite/0872/0000/0001/Idle",
       "kind": "sprite",
       "source": {
@@ -332945,6 +336420,591 @@
       ]
     },
     {
+      "id": "sprite/0924/0000/0001/Idle",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0924/0000/0001/Idle-Anim.png",
+        "sha256": "6b3af06009d60efc67cf8c014b19311ea5cf790509e0d1d633f1b5c9dd72f758",
+        "bytes": 5762
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0924/0000/0001/credits.txt",
+        "sha256": "d3932511e5c87c8cfda43e3015f3d878d4a33f690ea5e6071e1b3a4bcf3d3369",
+        "bytes": 145
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0924/base/shiny/idle-east.webp",
+        "/theme/pokemon/pmd/sprites/0924/base/shiny/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "350050109741858829",
+          "date": "2023-07-12 18:40:55.005385",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0924/0000/0001/Sleep",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0924/0000/0001/Sleep-Anim.png",
+        "sha256": "cdb06e600382e1775f23d74bd3e994d56a5c7cd004eefee5cc86f5965a91142b",
+        "bytes": 617
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0924/0000/0001/credits.txt",
+        "sha256": "d3932511e5c87c8cfda43e3015f3d878d4a33f690ea5e6071e1b3a4bcf3d3369",
+        "bytes": 145
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0924/base/shiny/sleep-east.webp",
+        "/theme/pokemon/pmd/sprites/0924/base/shiny/sleep-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "350050109741858829",
+          "date": "2023-07-12 18:40:55.005385",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0924/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0924/0000/0001/Walk-Anim.png",
+        "sha256": "855ffd8f4b3eb407440f49480327d15f52e4b785dca2410f5d537d375987bd7b",
+        "bytes": 6615
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0924/0000/0001/credits.txt",
+        "sha256": "d3932511e5c87c8cfda43e3015f3d878d4a33f690ea5e6071e1b3a4bcf3d3369",
+        "bytes": 145
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0924/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0924/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "350050109741858829",
+          "date": "2023-07-12 18:40:55.005385",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0924/Idle",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0924/Idle-Anim.png",
+        "sha256": "69037f7f40261b948411e70fc3c561f26a799f5fb34a873470cf9c16758e46eb",
+        "bytes": 5471
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0924/credits.txt",
+        "sha256": "56c2dee8b01bef3745655676d6016c0e7c51a2be8dcf4822dbea66b9f6850001",
+        "bytes": 145
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0924/base/normal/idle-east.webp",
+        "/theme/pokemon/pmd/sprites/0924/base/normal/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2023-07-04 02:34:20.543188",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0924/Sleep",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0924/Sleep-Anim.png",
+        "sha256": "e9852eb18379ab72f5e4b657855ae3cc22690520961e398d0e655d0fc1688509",
+        "bytes": 560
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0924/credits.txt",
+        "sha256": "56c2dee8b01bef3745655676d6016c0e7c51a2be8dcf4822dbea66b9f6850001",
+        "bytes": 145
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0924/base/normal/sleep-east.webp",
+        "/theme/pokemon/pmd/sprites/0924/base/normal/sleep-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2023-07-04 02:34:20.543188",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0924/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0924/Walk-Anim.png",
+        "sha256": "7baedc47e83392478f98bae3f070c78e132a5813694ba67b2cad4a0929bc5b3e",
+        "bytes": 6209
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0924/credits.txt",
+        "sha256": "56c2dee8b01bef3745655676d6016c0e7c51a2be8dcf4822dbea66b9f6850001",
+        "bytes": 145
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0924/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0924/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2023-07-04 02:34:20.543188",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0925/0000/0001/Idle",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0925/0000/0001/Idle-Anim.png",
+        "sha256": "64411e1af21bab53ed1f000450288fca55600bfd44d6b171082c9e55047dd39a",
+        "bytes": 9476
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0925/0000/0001/credits.txt",
+        "sha256": "539fa82704d5e88c5fcd6ef1f517a8e9087afbfdaf348a0802174cc5129912ac",
+        "bytes": 275
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0925/base/shiny/idle-east.webp",
+        "/theme/pokemon/pmd/sprites/0925/base/shiny/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2023-08-27 19:54:43.556116",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        },
+        {
+          "artistId": "356635814668664832",
+          "date": "2026-05-27 09:17:07.703075",
+          "status": "CUR",
+          "sourceLicense": "CC_BY-NC_4",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0925/0000/0001/Sleep",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0925/0000/0001/Sleep-Anim.png",
+        "sha256": "052132c82988d0f5a0a318c419eacbfbaf5cd5bbf47bf359c4c2d1a2c26cbabd",
+        "bytes": 859
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0925/0000/0001/credits.txt",
+        "sha256": "539fa82704d5e88c5fcd6ef1f517a8e9087afbfdaf348a0802174cc5129912ac",
+        "bytes": 275
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0925/base/shiny/sleep-east.webp",
+        "/theme/pokemon/pmd/sprites/0925/base/shiny/sleep-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2023-08-27 19:54:43.556116",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        },
+        {
+          "artistId": "356635814668664832",
+          "date": "2026-05-27 09:17:07.703075",
+          "status": "CUR",
+          "sourceLicense": "CC_BY-NC_4",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0925/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0925/0000/0001/Walk-Anim.png",
+        "sha256": "3e481e5cd0fcad95caabe83dd119d932b556b91c4d28019a0e2e0a0c4af4bc8f",
+        "bytes": 6987
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0925/0000/0001/credits.txt",
+        "sha256": "539fa82704d5e88c5fcd6ef1f517a8e9087afbfdaf348a0802174cc5129912ac",
+        "bytes": 275
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0925/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0925/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2023-08-27 19:54:43.556116",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        },
+        {
+          "artistId": "356635814668664832",
+          "date": "2026-05-27 09:17:07.703075",
+          "status": "CUR",
+          "sourceLicense": "CC_BY-NC_4",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0925/Idle",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0925/Idle-Anim.png",
+        "sha256": "e864ff20640cb49c0caa08297d6e7df389f79b44b3398ea4c77331bee74e37c2",
+        "bytes": 9525
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0925/credits.txt",
+        "sha256": "cd6e9fa2592897fb07a7e96c281da5700de214dd1e8f48db89231cca86da7c24",
+        "bytes": 344
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0925/base/normal/idle-east.webp",
+        "/theme/pokemon/pmd/sprites/0925/base/normal/idle-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2023-08-22 05:11:30.560151",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        },
+        {
+          "artistId": "544245909639397378",
+          "date": "2024-09-03 14:35:15.529910",
+          "status": "CUR",
+          "sourceLicense": "CC_BY-NC_4",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0925/Sleep",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0925/Sleep-Anim.png",
+        "sha256": "3eb9a5ebd5538fb2e554452b43067c05df8e00c0bbeef9820f8ef0657eb0db08",
+        "bytes": 858
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0925/credits.txt",
+        "sha256": "cd6e9fa2592897fb07a7e96c281da5700de214dd1e8f48db89231cca86da7c24",
+        "bytes": 344
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0925/base/normal/sleep-east.webp",
+        "/theme/pokemon/pmd/sprites/0925/base/normal/sleep-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2023-08-22 05:11:30.560151",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0925/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0925/Walk-Anim.png",
+        "sha256": "cba6c2a139bb06a9aed056247b93a1a007085204d1e1562a9e9f0d83e1fd43f7",
+        "bytes": 7028
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0925/credits.txt",
+        "sha256": "cd6e9fa2592897fb07a7e96c281da5700de214dd1e8f48db89231cca86da7c24",
+        "bytes": 344
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0925/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0925/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2023-08-22 05:11:30.560151",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "RearUp",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        },
+        {
+          "artistId": "544245909639397378",
+          "date": "2024-09-03 14:35:15.529910",
+          "status": "CUR",
+          "sourceLicense": "CC_BY-NC_4",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
       "id": "sprite/0926/0000/0001/HitGround",
       "kind": "sprite",
       "source": {
@@ -334804,6 +338864,170 @@
             "Float",
             "Laying",
             "Cringe"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0963/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0963/0000/0001/Walk-Anim.png",
+        "sha256": "f2d1f383f1c88e9fe402550aa5280b8a69c49fcd38afae30d6607610f42701d8",
+        "bytes": 12674
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0963/0000/0001/credits.txt",
+        "sha256": "2efacceda5223abcd84b03de6ccdfcc2966aaa358e6053b606e770030a416f07",
+        "bytes": 144
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0963/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0963/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2023-07-03 23:34:26.616202",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0963/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0963/Walk-Anim.png",
+        "sha256": "93c5df47c7ffa81ad8fa24ba66981b2126caf9ac3b4523ce558c859485f9004b",
+        "bytes": 10583
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0963/credits.txt",
+        "sha256": "ed79c06bb89ae964e842496712536d889a26cc6d51b566aa9cf45290647c204f",
+        "bytes": 144
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0963/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0963/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2023-06-28 23:01:36.451331",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0964/0000/0001/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0964/0000/0001/Walk-Anim.png",
+        "sha256": "a860233ff79f918653375857a05bac2890be57b984b250d778157f3723f4fdf0",
+        "bytes": 12708
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0964/0000/0001/credits.txt",
+        "sha256": "87b6c0b42c4ac2171f057d293bd2c43aeeeb920459de67a5d83de95a5c933b16",
+        "bytes": 144
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0964/base/shiny/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0964/base/shiny/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "576876006636519434",
+          "date": "2023-07-03 23:58:44.837160",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sprite/0964/Walk",
+      "kind": "sprite",
+      "source": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0964/Walk-Anim.png",
+        "sha256": "51a63106db3e8c5710c6d523393990f5aa74e148828c46acf16443b6f3487e97",
+        "bytes": 11922
+      },
+      "creditSource": {
+        "url": "https://raw.githubusercontent.com/PMDCollab/SpriteCollab/a966728683def4f4df3c51ef7dea53e271dcfd7a/sprite/0964/credits.txt",
+        "sha256": "2607191d86e455a34ec6e290600796fbed5761c4bb58ac2b2cfcc093f04fa214",
+        "bytes": 144
+      },
+      "outputs": [
+        "/theme/pokemon/pmd/sprites/0964/base/normal/walk-east.webp",
+        "/theme/pokemon/pmd/sprites/0964/base/normal/walk-west.webp"
+      ],
+      "contributions": [
+        {
+          "artistId": "544245909639397378",
+          "date": "2023-06-29 03:19:40.407596",
+          "status": "CUR",
+          "sourceLicense": "PMDCollab_2",
+          "contributions": [
+            "Idle",
+            "Walk",
+            "Sleep",
+            "Hurt",
+            "Attack",
+            "Charge",
+            "Shoot",
+            "Strike",
+            "Twirl",
+            "Swing",
+            "Double",
+            "Rotate",
+            "Hop"
           ]
         }
       ]

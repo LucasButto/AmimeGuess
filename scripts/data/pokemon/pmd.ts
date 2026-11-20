@@ -10,7 +10,7 @@ import {
   sleepRecipe, creditsForForm,
   type Artist, type Credit, type Direction, type PortraitEmotion, type SpriteCredit,
 } from './pmd-core.ts';
-import { PMD_REQUESTED, PMD_EXCLUDED, PMD_GALAR, PMD_PORTRAIT_FORMS, PMD_SERPENTINES, PMD_FORM_HEIGHTS, presentationFor } from './pmd-roster.ts';
+import { PMD_REQUESTED, PMD_EXCLUDED, PMD_GALAR, PMD_PORTRAIT_FORMS, PMD_SERPENTINES, PMD_FORM_HEIGHTS, PMD_WALK_HEIGHTS, PMD_SUBMERGE, presentationFor } from './pmd-roster.ts';
 import { generateSizeFactors, SIZE_VIEWPORT } from './pmd-sizing.ts';
 import type { WalkerPokemon } from '../../../src/franchises/pokemon/theme/walkerMotion.ts';
 import { processDirection, processPortrait, processShadow, sha256 } from './pmd-images.ts';
@@ -142,7 +142,7 @@ async function variant(directory: string, outputDirectory: string, decision: Ret
     throw new Error(`${directory}: faltan acciones ${required.join('/')}`);
   }
   const preserve = !decision.sourceForm; // Keep legacy actions, paths and hashes for unchanged forms.
-  const interactive = !burrow && (decision.zone === 'ground' || preserve);
+  const interactive = !burrow && !decision.group && decision.zone !== 'water' && (decision.zone === 'ground' || preserve);
   const hit = interactive ? resolveAnimation(data, 'HitGround') : null;
   const sleep = interactive ? sleepRecipe(data) : null;
   const names = [...new Set([...required, ...(hit ? ['HitGround', 'Idle'] : []),
@@ -165,6 +165,13 @@ async function variant(directory: string, outputDirectory: string, decision: Ret
     if (name === decision.locomotion && decision.locomotionSizeReference && !referenceAnimation) throw new Error('Falta referencia de escala aprobada');
     for (const direction of Object.keys(PMD_DIRECTIONS) as Direction[]) {
       const result = await processDirection(sheet, animation, direction, selection, durationFactor);
+      if (name === decision.locomotion && decision.locomotionStabilizeX) {
+        // Cada cuadro se corre `offsetX` px de arte (enteros) para que el borde izquierdo del cuerpo quede donde está en promedio.
+        const frames = result.metadata.frames as { bbox: { x: number } | null; offsetX?: number }[];
+        const lefts = frames.flatMap((frame) => frame.bbox ? [frame.bbox.x] : []);
+        const reference = Math.round(lefts.reduce((sum, left) => sum + left, 0) / lefts.length);
+        for (const frame of frames) frame.offsetX = frame.bbox ? reference - frame.bbox.x : 0;
+      }
       if (referenceAnimation) {
         const reference = await processDirection(await sourceFile(`sprite/${directory}/${referenceAnimation.name}-Anim.png`), referenceAnimation, direction);
         result.metadata.referenceBbox = reference.metadata.bbox;
@@ -213,7 +220,7 @@ async function main() {
   const tracker: Record<string, TrackerNode> = JSON.parse((await sourceFile('tracker.json')).toString('utf8'));
   const names = parseArtistNames((await sourceFile('credit_names.txt')).toString('utf8'));
   await sourceFile('LICENSE.md');
-  const selected: { name: string; zone: 'sky' | 'ground'; baseName?: string; entityId?: string }[] = [...PMD_REQUESTED.filter((entry) => !PMD_EXCLUDED.has(entry.name)), ...PMD_GALAR];
+  const selected: { name: string; zone: 'sky' | 'ground' | 'water'; baseName?: string; entityId?: string }[] = [...PMD_REQUESTED.filter((entry) => !PMD_EXCLUDED.has(entry.name)), ...PMD_GALAR];
   console.log(`PMD ${PMD_SNAPSHOT}: ${selected.length} caminantes; ${entities.length} especies × Normal/Happy/Sad. Concurrencia ${CONCURRENCY}.`);
   let complete = 0;
   const pokemon = await mapPool(selected, CONCURRENCY, async (entry) => {
@@ -250,9 +257,12 @@ async function main() {
       return { ...mapped, entityId: entry.entityId ?? mapped.entityId, form: outputForm, name: entry.name, zone: decision.zone, movement: decision.movement, locomotion: decision.locomotion,
         ...(Object.hasOwn(PMD_SERPENTINES, entry.entityId ?? mapped.entityId) ? { elongated: true } : {}),
         ...(PMD_FORM_HEIGHTS[entry.entityId ?? mapped.entityId] ? { formHeightMeters: PMD_FORM_HEIGHTS[entry.entityId ?? mapped.entityId] } : {}),
+        ...(PMD_SUBMERGE[entry.entityId ?? mapped.entityId] ? { submergeFraction: PMD_SUBMERGE[entry.entityId ?? mapped.entityId] } : {}),
+        ...(PMD_WALK_HEIGHTS[entry.entityId ?? mapped.entityId] ? { walkHeightMeters: PMD_WALK_HEIGHTS[entry.entityId ?? mapped.entityId] } : {}),
         ...(decision.locomotionFrames ? { locomotionFrames: decision.locomotionFrames, locomotionFrameMs: decision.locomotionFrameMs } : {}),
         ...(decision.locomotionBob ? { locomotionBob: decision.locomotionBob } : {}),
         ...(decision.locomotionDurationFactor ? { locomotionDurationFactor: decision.locomotionDurationFactor } : {}),
+        ...(decision.group ? { group: decision.group } : {}),
         ...(decision.movement === 'burrow' ? { burrow: { emerge: 'DigIn', idle: 'Idle', hide: 'DigOut' } } : {}), variants: { normal, shiny } };
     } catch (error) { stopped = true; throw new Error(`${entry.name}: ${String(error)}`); }
   });

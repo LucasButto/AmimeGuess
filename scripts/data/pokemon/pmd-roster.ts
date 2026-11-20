@@ -377,9 +377,36 @@ export const PMD_REQUESTED = [
   {"name":"Porygon","zone":"ground"},
   {"name":"Porygon2","zone":"ground"},
   {"name":"Porygon-Z","zone":"ground"},
+  // Pedido del usuario (2026-11-20): Tandemaus (pareja) y Maushold (familia) traen la compañía dibujada en el mismo sprite.
+  {"name":"Tandemaus","zone":"ground"},
+  {"name":"Maushold","zone":"ground"},
+  // Pedido del usuario (2026-11-20): Exeggcute camina como cualquier otro, sin eventos.
+  {"name":"Exeggcute","zone":"ground"},
+  // Prueba del evento del lago (2026-11-20): solo dos nadadores, que nunca salen en las apariciones normales.
+  {"name":"Lapras","zone":"water"},
+  {"name":"Kyogre","zone":"water"},
+  // Más nadadores (pedido del usuario, 2026-11-20): Finizen y Palafin (formas normales), Tentacool, Tentacruel, Phione y Manaphy; y los
+  // que se propusieron: Wailord, Wailmer, Gyarados, Milotic, Sharpedo, Mantine, Dewgong y Lanturn.
+  {"name":"Wailord","zone":"water"},
+  {"name":"Wailmer","zone":"water"},
+  {"name":"Gyarados","zone":"water"},
+  {"name":"Milotic","zone":"water"},
+  {"name":"Sharpedo","zone":"water"},
+  {"name":"Dewgong","zone":"water"},
+  {"name":"Lanturn","zone":"water"},
+  {"name":"Finizen","zone":"water"},
+  {"name":"Palafin","zone":"water"},
+  {"name":"Tentacool","zone":"water"},
+  {"name":"Tentacruel","zone":"water"},
+  {"name":"Phione","zone":"water"},
+  {"name":"Manaphy","zone":"water"},
+  // Voladores (pedido del usuario, 2026-11-20): flotan con su Walk, como Latias y Latios.
+  {"name":"Cresselia","zone":"sky"},
+  {"name":"Darkrai","zone":"sky"},
 ] as const;
 
-export const PMD_EXCLUDED = new Set(['Pyroar', 'Maschiff', 'Mabosstiff', 'Toucannon', 'Flamigo', 'Falinks']);
+// Falinks salió de la lista (2026-11-20): se compone como un grupo de seis Troopers (PMD_DECISIONS.Falinks).
+export const PMD_EXCLUDED = new Set(['Pyroar', 'Maschiff', 'Mabosstiff', 'Toucannon', 'Flamigo']);
 
 // Official form heights supplied by the user; sources are recorded in docs/PMD.md.
 export const PMD_FORM_HEIGHTS: Readonly<Record<string, number>> = {
@@ -387,6 +414,25 @@ export const PMD_FORM_HEIGHTS: Readonly<Record<string, number>> = {
   'articuno-galar': 1.7,
   'zapdos-galar': 1.6,
   'moltres-galar': 2,
+  // Un Trooper suelto; los 3 m de la Pokédex son la formación entera de seis.
+  falinks: 0.35,
+};
+
+/**
+ * Altura (m) con la que se dibuja al caminar, en lugar de la de la Pokédex, para quien quedaría demasiado chico al lado de los suyos.
+ * Eevee mide 0,3 m y sus evoluciones, entre 0,8 y 1 m: así desfilan juntos con un tamaño parecido (pedido del usuario, 2026-11-20).
+ */
+export const PMD_WALK_HEIGHTS: Readonly<Record<string, number>> = {
+  eevee: 0.65,
+};
+
+/**
+ * Cuánto del cuerpo (fracción del alto, desde abajo) queda bajo el agua en el lago; por defecto, un tercio (`SUBMERGE`).
+ * Kyogre se hunde más (pedido del usuario): la línea de flotación queda justo debajo del ojo, que sigue a la vista.
+ * Medido sobre sus cuadros: el ojo está al 50 % del alto del cuerpo (entre el 47 y el 53 % según el cuadro).
+ */
+export const PMD_SUBMERGE: Readonly<Record<string, number>> = {
+  kyogre: 0.44,
 };
 
 /** Explicit morphology decisions; never infer a body shape from density in the browser. */
@@ -409,11 +455,23 @@ export type Movement = 'walk' | 'run' | 'burrow' | 'roll' | 'stagger' | 'zigzag'
 export interface PresentationDecision {
   locomotionDurationFactor?: number; locomotionSizeReference?: string;
   locomotionFrames?: readonly number[]; locomotionFrameMs?: number;
+  /** Cancela el deslizamiento lateral del cuadro (alinea el borde izquierdo del cuerpo de todos los cuadros): la animación avanza sin tirones. */
+  locomotionStabilizeX?: boolean;
   /** Sube y baja en pasos (un cuadro arriba, uno abajo) mientras avanza: `px` píxeles de arte cada `ms`. */
   locomotionBob?: { ms: number; px: number };
-  zone: 'ground' | 'sky'; locomotion: string; movement?: Movement;
-  sourceForm?: string; form?: 'alternate' | 'cutscene' | 'galar' | 'altcolor';
+  zone: 'ground' | 'sky' | 'water'; locomotion: string; movement?: Movement;
+  sourceForm?: string; form?: 'alternate' | 'cutscene' | 'galar' | 'altcolor' | 'trooper';
+  /** Un solo Pokémon de la lista se dibuja como una fila de `count` miembros iguales (Falinks). Sin tropiezo ni sueño. */
+  group?: { count: number };
 }
+/**
+ * Nadadores del río (evento `lake`): solo Pokémon sin patas que pisen, cuya animación `Walk` es de nado o de flotar; uno con patas
+ * (Squirtle) se vería caminando sobre el agua. Revisados uno por uno sobre los cuadros de SpriteCollab (2026-11-20).
+ */
+export const PMD_SWIMMERS = ['Lapras', 'Kyogre', 'Wailord', 'Wailmer', 'Gyarados', 'Milotic', 'Sharpedo', 'Dewgong', 'Lanturn',
+  'Finizen', 'Palafin', 'Tentacool', 'Tentacruel', 'Phione', 'Manaphy'] as const;
+/** Peces: aletean más rápido que el resto. */
+export const PMD_FAST_SWIMMERS: readonly string[] = ['Sharpedo', 'Lanturn', 'Finizen', 'Palafin'];
 // Decisiones del usuario: vuelo real, paso 2. Las claves conservan los nombres/IDs de la escena.
 /** El aleteo de `Hover` es muy rápido: todos los que vuelan con él se reproducen a esta fracción de velocidad (pedido del usuario). */
 const HOVER_SLOWDOWN = 3;
@@ -451,6 +509,14 @@ export const PMD_DECISIONS: Readonly<Partial<Record<string, PresentationDecision
   ...Object.fromEntries(['Hoothoot', 'Hawlucha', 'Rowlet', 'Oricorio', 'Zekrom'].map(name => [name, { zone: 'ground', movement: 'walk', locomotion: 'Walk' }])),
   Diglett: { zone: 'ground', locomotion: 'Idle', movement: 'burrow', sourceForm: '0003', form: 'cutscene' },
   Dugtrio: { zone: 'ground', locomotion: 'Idle', movement: 'burrow', sourceForm: '0002', form: 'cutscene' },
+  // Los seis soldados salen del Trooper (pedido del usuario); la formación se arma en el navegador.
+  // Nadadores del lago: el aleteo del Walk va más despacio, a 2/3 de velocidad, para que floten y no se agiten.
+  ...Object.fromEntries(PMD_SWIMMERS.map((name) => [name, { zone: 'water', locomotion: 'Walk', locomotionDurationFactor: PMD_FAST_SWIMMERS.includes(name) ? 1.2 : 1.5 }])),
+  // Cresselia: el Walk trae 9 cuadros que suben y bajan 3 px MIENTRAS se deslizan de 1 a 4 px de lado a lado (flota en el lugar). Al avanzar por la
+  // pantalla, ese vaivén lateral se suma al avance y la velocidad aparente se frena y se acelera, con un tirón en la altura máxima (el "zumbido").
+  // Se conservan los 9 cuadros (con su aleteo) y se cancela el deslizamiento lateral: queda el subir y bajar y el avance parejo.
+  Cresselia: { zone: 'sky', locomotion: 'Walk', locomotionStabilizeX: true },
+  Falinks: { zone: 'ground', locomotion: 'Walk', sourceForm: '0003', form: 'trooper', group: { count: 6 } },
   'Articuno de Galar': { zone: 'sky', locomotion: 'Walk', sourceForm: '0001', form: 'galar' },
   'Zapdos de Galar': { zone: 'ground', locomotion: 'Walk', movement: 'run', sourceForm: '0001', form: 'galar' },
   'Moltres de Galar': { zone: 'sky', locomotion: 'Walk', sourceForm: '0001', form: 'galar' },
@@ -460,7 +526,7 @@ export const PMD_GALAR = [
   { name: 'Zapdos de Galar', baseName: 'Zapdos', entityId: 'zapdos-galar', zone: 'ground' },
   { name: 'Moltres de Galar', baseName: 'Moltres', entityId: 'moltres-galar', zone: 'sky' },
 ] as const;
-export function presentationFor(name: string, zone: 'ground' | 'sky'): PresentationDecision & { movement: Movement } {
+export function presentationFor(name: string, zone: 'ground' | 'sky' | 'water'): PresentationDecision & { movement: Movement } {
   const decision = PMD_DECISIONS[name];
   return { zone, locomotion: 'Walk', movement: movementFor(name), ...decision };
 }
@@ -478,6 +544,8 @@ export function movementFor(name: string): Movement {
 
 // B2: Walk ya es vuelo; lista blanca aprobada, no sustituir por otras acciones.
 export const PMD_WALK_FLYERS = [
+  'cresselia',
+  'darkrai',
   'charizard',
   'salamence',
   'skarmory',

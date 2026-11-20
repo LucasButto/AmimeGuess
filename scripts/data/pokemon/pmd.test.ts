@@ -89,13 +89,13 @@ describe('PMD píxeles y anclaje', () => {
 
 describe('PMD selección y datos', () => {
   it('mapea todos los nombres y números, sin sustituir la forma base por otra', () => {
-    const mapped = PMD_REQUESTED.map((entry) => mapPokemonName(entry.name, entities));
-    expect(mapped).toHaveLength(375);
-    expect(new Set(mapped.map((entry) => `${entry.number}/${entry.form}`)).size).toBe(375);
+    const mapped = PMD_REQUESTED.map((entry) => mapPokemonName((entry as { baseName?: string }).baseName ?? entry.name, entities));
+    expect(mapped).toHaveLength(397);
+    expect(new Set(mapped.map((entry) => `${entry.number}/${entry.form}`)).size).toBe(397);
     const selected = PMD_REQUESTED.filter((entry) => !PMD_EXCLUDED.has(entry.name));
-    expect(selected).toHaveLength(369);
-    expect(PMD_EXCLUDED.size).toBe(6);
-    expect(PMD_EXCLUDED.has('Falinks')).toBe(true);
+    expect(selected).toHaveLength(392);
+    expect(PMD_EXCLUDED.size).toBe(5);
+    expect(PMD_EXCLUDED.has('Falinks')).toBe(false); // Falinks se compone con seis Troopers (PMD_DECISIONS.Falinks).
     expect(mapPokemonName('Exeggutor de Alola', entities)).toMatchObject({ number: 103, dex: '0103', entityId: 'exeggutor', form: 'alola' });
     expect(mapPokemonName("Farfetch'd", entities).number).toBe(83);
     expect(mapPokemonName('Mr. Mime', entities).number).toBe(122);

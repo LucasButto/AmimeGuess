@@ -12,6 +12,6 @@ it('calibra la mediana del suelo y mezcla las escalas geometricamente', () => {
   expect(() => calibrateSizes([{ ...sample, area: 0 }])).toThrow();
 });
 
-it('declara las cuatro alturas de formas sin entidad propia', () => {
-  expect(PMD_FORM_HEIGHTS).toEqual({ exeggutor: 10.9, 'articuno-galar': 1.7, 'zapdos-galar': 1.6, 'moltres-galar': 2 });
+it('declara las alturas de formas sin entidad propia (y la del Trooper suelto de Falinks)', () => {
+  expect(PMD_FORM_HEIGHTS).toEqual({ exeggutor: 10.9, 'articuno-galar': 1.7, 'zapdos-galar': 1.6, 'moltres-galar': 2, falinks: 0.35 });
 });

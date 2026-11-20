@@ -36,7 +36,7 @@ describe('creditos PMD generados', () => {
     const data = pmdAttributions(credits, manifest);
     const expected = manifest.pokemon.filter(pokemon => pokemon.form !== 'base');
     expect(data.forms.map(form => form.id)).toEqual(expected.map(pokemon => pokemon.entityId));
-    expect(new Set(data.forms.map(form => form.form))).toEqual(new Set(['altcolor', 'alternate', 'cutscene', 'galar', 'alola']));
+    expect(new Set(data.forms.map(form => form.form))).toEqual(new Set(['altcolor', 'alternate', 'cutscene', 'galar', 'alola', 'trooper']));
     const html = renderToStaticMarkup(createElement(PmdCredits));
     for (const form of data.forms) {
       expect(html).toContain(`data-pmd-form="${form.id}"`);

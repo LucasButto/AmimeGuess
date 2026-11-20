@@ -1,4 +1,10 @@
 import { sameWalkerGeometry } from './walkerMotion';
+import { PARADE_IDS, PARADE_SPEED_REM, DUO_IDS, DUO_SPEED_REM, nextEventMs, nextSwimMs, planParade, planDuo, walkerBodyWidth } from './walkerMotion';
+import { walkerBodyExtent } from './walkerMotion';
+import { groundTopMargin } from './walkerMotion';
+import { LAKE_COUNT, LAKE_IDS, LAKE_LOW_LANE, LAKE_SPEED_REM, WATER_DEPTH_MAX, WATER_DEPTH_MIN, waterBand, waterCeiling } from './walkerMotion';
+import { BIRD_IDS, BIRD_SPEED_REM, DOG_IDS, DOG_SPEED_REM, EVENT_KINDS, FAMILY_LINES, FAMILY_SPEED_REM, OUTBREAK_COUNT, RACE_SPEEDS_REM, drawEventKind, planEvent, type EventEntry } from './walkerMotion';
+import { FORMATION_KINDS, GROUP_LIFT, formationSlots, formationSpan, formationStepOffsetMs, groupSlots, walkerLeftScene } from './walkerMotion';
 import { describe, expect, it } from 'vitest';
 import { readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -17,25 +23,46 @@ const viewport: WalkerViewport = { width: 1920, height: 1080, rem: 16, artPixel:
 const random = () => 0.5;
 
 describe('apariciones PMD', () => {
-  it('repone m?nimos por zona, con reserva para sue?o y l?mites independientes', () => {
-    for (const [width, height, rem, minimum, maximum] of [[360,640,16,2,6],[390,844,16,2,6],[844,390,16,3,6],[768,1024,16,3,6],[1920,1080,16,3,6],[3840,2160,30,3,6]]) {
+  it('repone mínimos por zona (un caminante menos por el pasto); el río no se repone por mínimo: a veces ninguno y hasta dos', () => {
+    for (const [width, height, rem, minimum] of [[360,640,16,1],[390,844,16,1],[844,390,16,2],[768,1024,16,2],[1920,1080,16,2],[3840,2160,30,2]]) {
       const population = walkerPopulation(width,height,rem);
       expect(population.ground.min).toBe(minimum);
-      expect(population.sky.min).toBe(1);
-      expect(population.sky.max).toBe(2);
-      expect(population.ground.max).toBe(4);
-      expect(walkerCapacity(width,height,rem)).toBe(maximum);
-      const actors: {zone:'ground'|'sky';walking:boolean}[] = [];
-      while (replenishmentZone(actors,population)) actors.push({zone:replenishmentZone(actors,population)!,walking:true});
-      expect(actors.filter(actor=>actor.zone==='ground')).toHaveLength(Math.min(minimum+1,population.ground.max));
-      expect(actors.filter(actor=>actor.zone==='sky')).toHaveLength(2);
-      expect(actors.length).toBeLessThanOrEqual(WALKER_MAX);
-      actors.find(actor=>actor.zone==='ground')!.walking=false;
-      expect(replenishmentZone(actors,population)).toBe(actors.length < WALKER_MAX && actors.filter(actor=>actor.zone==='ground').length < population.ground.max ? 'ground' : null);
-      expect(replenishmentZone(actors.filter(actor=>actor.zone!=='ground').concat(Array.from({length:3},()=>({zone:'ground' as const,walking:true}))),population)).toBe(minimum === 2 ? null : 'ground');
+      expect(population.ground.max).toBe(3);
+      expect(population.sky).toEqual({min:1,max:2});
+      expect(population.water).toEqual({min:0,max:2});
+      // El total de la escena no cambia: nunca más de seis a la vez.
+      expect(walkerCapacity(width,height,rem)).toBe(WALKER_MAX);
+      const fill = (waterReady: boolean) => {
+        const actors: {zone:'ground'|'sky'|'water';walking:boolean}[] = [];
+        while (replenishmentZone(actors,population,waterReady)) actors.push({zone:replenishmentZone(actors,population,waterReady)!,walking:true});
+        return actors;
+      };
+      // Sin que toque un nadador, nunca sale uno: suelo y cielo como siempre.
+      const dry = fill(false);
+      expect(dry.filter(actor=>actor.zone==='water')).toHaveLength(0);
+      expect(dry.filter(actor=>actor.zone==='ground')).toHaveLength(Math.min(minimum+1,population.ground.max));
+      expect(dry.filter(actor=>actor.zone==='sky')).toHaveLength(2);
+      // Cuando toca, entran hasta dos y los mínimos de suelo y cielo se cumplen; el total no pasa de seis.
+      const wet = fill(true);
+      expect(wet.filter(actor=>actor.zone==='water').length).toBeGreaterThanOrEqual(1);
+      expect(wet.filter(actor=>actor.zone==='water').length).toBeLessThanOrEqual(2);
+      expect(wet.filter(actor=>actor.zone==='ground').length).toBeGreaterThanOrEqual(minimum);
+      expect(wet.filter(actor=>actor.zone==='sky').length).toBeGreaterThanOrEqual(1);
+      expect(wet.length).toBeLessThanOrEqual(WALKER_MAX);
+      // Con el cielo y el suelo en su mínimo, toca el nadador solo si está listo.
+      const base = [{zone:'sky' as const,walking:true},...Array.from({length:minimum},()=>({zone:'ground' as const,walking:true}))];
+      expect(replenishmentZone(base,population,true)).toBe('water');
+      expect(replenishmentZone(base,population,false)).not.toBe('water');
+      // Con dos nadando, ya no sale otro.
+      expect(replenishmentZone([...base,{zone:'water' as const,walking:true},{zone:'water' as const,walking:true}],population,true)).not.toBe('water');
       const full = Array.from({length:WALKER_MAX},()=>({zone:'ground' as const,walking:false}));
       expect(replenishmentZone(full,population)).toBeNull();
     }
+  });
+  it('el próximo nadador normal llega entre veinte segundos y minuto y cuarenta después', () => {
+    expect(nextSwimMs(1000, () => 0)).toBe(21_000);
+    expect(nextSwimMs(1000, () => 1)).toBe(101_000);
+    expect(nextSwimMs(0, () => 0.5)).toBe(60_000);
   });
   it('sue?o por variante, solo en suelo, 1/16 y entre diez y veinte segundos', () => {
     expect(appearanceSleep(bulbasaur.variants.normal,'ground',()=>0)).toEqual({atMs:5000,durationMs:10000});
@@ -219,7 +246,7 @@ describe('cuadros, caída y pausa', () => {
         checked++;
       }
     }
-    expect(checked).toBe(5984);
+    expect(checked).toBe(6156);
     const mewtwo = manifest.pokemon.find((pokemon) => pokemon.entityId === 'mewtwo')!.variants.normal;
     expect(mirrorsSheet(mewtwo.animations.HitGround.directions.west, 'west')).toBe(true);
     expect(mirrorsSheet(mewtwo.animations.Idle.directions.west, 'west')).toBe(false);
@@ -357,7 +384,8 @@ describe('posicion descubierta de Diglett y Dugtrio', () => {
   it('prueba carril y x juntos, incluso en un borde superior estrecho de la franja', () => {
     const p=manifest.pokemon.find(p=>p.entityId==='diglett')!;
     const plan=planWalker(p,viewport,random),bounds=burrowBounds(plan, viewport.rem);
-    const top=viewport.height-viewport.ground;
+    // El borde de arriba ya no es el del pasto: se descarta la franja pegada al agua (groundTopMargin).
+    const top=viewport.height-viewport.ground+groundTopMargin(viewport);
     const scene={...viewport,occluders:[{x:0,y:top+bounds.height+1,width:viewport.width,height:viewport.ground}]};
     const placed=chooseBurrowPosition({...plan,canAppear:false},scene,()=>0.75,box=>box.y+box.height<=top+bounds.height+1);
     expect(placed).not.toBeNull();
@@ -610,4 +638,703 @@ it('conserva actores al cambiar oclusiones y solo reconstruye ante otra geometr�
   for (const change of [{ width: 390 }, { height: 844 }, { rem: 20 }, { artPixel: 5 }, { ground: 250 }]) {
     expect(sameWalkerGeometry(viewport, { ...viewport, ...change })).toBe(false);
   }
+});
+
+describe('grupos: Falinks en formación', () => {
+  const falinks = manifest.pokemon.find((pokemon) => pokemon.entityId === 'falinks')!;
+  const scenes = [viewport, { ...viewport, width: 360, height: 640, ground: 224 }, { ...viewport, width: 844, height: 390, ground: 160 }];
+  const seeds = [0.1, 0.9, 0.4, 0.7, 0.2, 0.55];
+  const unit = { unitW: 40, unitH: 40, seeds };
+
+  it('Falinks son seis Troopers sin tropiezo ni sueño, con variocolor propio', () => {
+    expect(falinks.group).toEqual({ count: 6 });
+    expect(falinks.form).toBe('trooper');
+    expect(falinks.variants.normal.hasHitGround).toBe(false);
+    expect(falinks.variants.normal.sleep).toBeNull();
+    expect(falinks.variants.shiny).not.toBeNull();
+  });
+
+  it('hay cuatro formas, ninguna sube y baja caminando, y la elegida queda en el plan', () => {
+    expect(FORMATION_KINDS).toEqual(['line', 'stagger', 'pins', 'ring']);
+    for (const kind of FORMATION_KINDS) {
+      const plan = planWalker(falinks, viewport, random, { direction: 'east', formation: kind });
+      expect(plan.formation?.kind).toBe(kind);
+      expect(plan.formation?.seeds).toHaveLength(6);
+      expect(plan.formation!.span).toBeCloseTo(formationSpan(kind, 6, plan.formation!.unitW), 8);
+    }
+    // Sin forma pedida, el azar reparte las cuatro.
+    const picked = new Set([0, 0.26, 0.51, 0.76].map((value) => planWalker(falinks, viewport, () => value, { direction: 'east' }).formation!.kind));
+    expect(picked.size).toBe(4);
+  });
+
+  it('la fila recta va en línea y al compás; las demás se separan del carril sin pasar el tope', () => {
+    const line = formationSlots({ kind: 'line', ...unit }, 6, 3);
+    expect(line.map((slot) => slot.lift)).toEqual([0, 0, 0, 0, 0, 0]);
+    expect(line[0].back).toBe(0);
+    for (let index = 1; index < 6; index++) expect(line[index].back).toBeGreaterThan(line[index - 1].back);
+    expect(formationStepOffsetMs('line', 0.7, 600)).toBe(0);
+    expect(formationStepOffsetMs('pins', 0.7, 600)).toBe(0);
+    expect(formationStepOffsetMs('ring', 0.5, 600)).toBe(300);
+    for (const kind of FORMATION_KINDS) for (const seconds of [0, 0.37, 1.9, 7.3, 25]) {
+      const slots = formationSlots({ kind, ...unit }, 6, seconds);
+      expect(slots).toHaveLength(6);
+      for (const slot of slots) {
+        expect(Math.abs(slot.lift), `${kind} ${seconds}`).toBeLessThanOrEqual(GROUP_LIFT * unit.unitH + 1e-9);
+        expect(slot.back, `${kind} ${seconds}`).toBeGreaterThanOrEqual(-1e-9);
+        expect(slot.back, `${kind} ${seconds}`).toBeLessThanOrEqual(formationSpan(kind, 6, unit.unitW) + 1e-9);
+      }
+    }
+    // Las formas no rectas de verdad suben y bajan.
+    const lifts = formationSlots({ kind: 'stagger', ...unit }, 6, 2).map((slot) => slot.lift);
+    expect(Math.min(...lifts)).toBeLessThan(0);
+    expect(Math.max(...lifts)).toBeGreaterThan(0);
+    // El círculo no gira y los bolos no se mueven: el mismo puesto en cualquier instante (solo el escalonado deriva despacio).
+    for (const kind of ['line', 'pins', 'ring'] as const) expect(formationSlots({ kind, ...unit }, 6, 0)).toEqual(formationSlots({ kind, ...unit }, 6, 9.5));
+    // Bolos: uno al frente, dos detrás y tres al final, cada fila centrada en el carril del líder.
+    const pins = formationSlots({ kind: 'pins', ...unit }, 6, 0);
+    expect(pins[0]).toEqual({ back: 0, lift: 0 });
+    expect(pins[1].back).toBeCloseTo(pins[2].back, 8);
+    expect(pins[1].lift).toBeCloseTo(-pins[2].lift, 8);
+    expect(pins[3].back).toBeCloseTo(pins[5].back, 8);
+    expect(pins[4].lift).toBeCloseTo(0, 8);
+    expect(pins[3].lift).toBeCloseTo(-pins[5].lift, 8);
+    expect(pins[1].back).toBeGreaterThan(pins[0].back);
+    expect(pins[3].back).toBeGreaterThan(pins[1].back);
+    expect(Math.abs(pins[5].lift)).toBeGreaterThan(Math.abs(pins[2].lift));
+    expect(new Set(pins.map((slot) => slot.back.toFixed(6))).size).toBe(3);
+    // Círculo: el líder al frente y los seis repartidos alrededor, sin que dos coincidan.
+    const ring = formationSlots({ kind: 'ring', ...unit }, 6, 0);
+    expect(ring[0]).toEqual({ back: 0, lift: 0 });
+    expect(new Set(ring.map((slot) => `${slot.back.toFixed(3)}/${slot.lift.toFixed(3)}`)).size).toBe(6);
+  });
+
+  it('los puestos son determinísticos y cambian de signo según hacia dónde caminan', () => {
+    const east = planWalker(falinks, viewport, random, { direction: 'east', formation: 'pins' });
+    const west = planWalker(falinks, viewport, random, { direction: 'west', formation: 'pins' });
+    expect(groupSlots(east, 1234)).toEqual(groupSlots(east, 1234));
+    const [a, b] = [groupSlots(east, 800), groupSlots(west, 800)];
+    for (let index = 0; index < 6; index++) {
+      expect(a[index].dx).toBeLessThanOrEqual(0);
+      expect(b[index].dx).toBeGreaterThanOrEqual(0);
+      expect(a[index].dx).toBeCloseTo(-b[index].dx, 8);
+      expect(a[index].dy).toBeCloseTo(b[index].dy, 8);
+    }
+    expect(groupSlots(planWalker(bulbasaur, viewport, random, { direction: 'east' }), 0)).toEqual([]);
+  });
+
+  it('entra con todos fuera y sale cuando cruzó el último miembro, en toda escena, forma y dirección', () => {
+    for (const scene of scenes) for (const kind of FORMATION_KINDS) for (const direction of ['east', 'west'] as const) for (const shiny of [false, true]) {
+      const plan = planWalker(falinks, scene, random, { direction, formation: kind, shiny });
+      const span = plan.formation!.span, start = walkerFrameBounds(plan, 0, scene.rem);
+      const wake = direction === 'east' ? -span : span;
+      if (direction === 'east') expect(start.right + wake).toBeLessThanOrEqual(0);
+      else expect(start.left + wake).toBeGreaterThanOrEqual(scene.width);
+      const last = walkerPose(plan, plan.durationMs, scene.rem).x;
+      expect(walkerLeftScene(plan, last, scene.width), `${scene.width} ${kind} ${direction}`).toBe(true);
+      // Con el líder recién fuera por el borde de entrada de la salida, el grupo todavía no salió del todo.
+      if (direction === 'east') expect(walkerLeftScene(plan, scene.width + 1, scene.width)).toBe(false);
+      expect(plan.canAppear, `${scene.width} ${kind}`).toBe(true);
+      expect(walkerExtents(falinks, plan.variant, plan.scale, scene.rem).height).toBeLessThanOrEqual(walkerVerticalArea(falinks, scene) - 2 * scene.rem + 0.01);
+    }
+  });
+
+  it('los pies de todos los miembros pisan siempre el pasto, nunca el agua, en cualquier carril, forma e instante', () => {
+    const grassScenes = [...scenes, { ...viewport, width: 390, height: 844, ground: 160 }, { ...viewport, width: 1280, height: 720, ground: 232 }, { ...viewport, width: 3840, height: 2160, rem: 30, artPixel: 8, ground: 672 }];
+    // Como en la escena real: las copas de los árboles (skyFloor) quedan por encima del pasto, con el agua en el medio.
+    const withWater = grassScenes.map((scene) => ({ ...scene, skyFloor: scene.height - scene.ground - 0.4 * scene.ground }));
+    for (const scene of withWater) for (const kind of FORMATION_KINDS) for (const lane of [0, 0.25, 0.5, 0.75, 1]) for (const direction of ['east', 'west'] as const) {
+      const plan = planWalker(falinks, scene, () => lane === 1 ? 0.999 : lane, { direction, formation: kind });
+      if (!plan.canAppear) continue;
+      const top = scene.height - scene.ground;
+      for (const seconds of [0, 0.4, 1.3, 2.9, 6.1, 11, 20]) {
+        for (const slot of formationSlots(plan.formation!, 6, seconds)) {
+          expect(plan.feetY + slot.lift, `${scene.width}x${scene.height} ${kind} ${lane} ${seconds}`).toBeGreaterThanOrEqual(top);
+          expect(plan.feetY + slot.lift, `${scene.width}x${scene.height} ${kind} ${lane} ${seconds}`).toBeLessThanOrEqual(scene.height);
+        }
+      }
+    }
+    // Y en las escenas de prueba el grupo siempre encuentra lugar.
+    for (const scene of scenes) for (const kind of FORMATION_KINDS) expect(planWalker(falinks, scene, random, { direction: 'east', formation: kind }).canAppear).toBe(true);
+  });
+
+  it('el grupo reserva el espacio vertical de su formación y un solitario no cambia', () => {
+    const plan = planWalker(falinks, viewport, random, { direction: 'east', formation: 'pins' });
+    const solo = { ...falinks, group: undefined };
+    const grouped = walkerExtents(falinks, plan.variant, plan.scale, viewport.rem), single = walkerExtents(solo, plan.variant, plan.scale, viewport.rem);
+    expect(grouped.top - single.top).toBeCloseTo(GROUP_LIFT * plan.formation!.unitH, 6);
+    expect(grouped.bottom - single.bottom).toBeCloseTo(GROUP_LIFT * plan.formation!.unitH, 6);
+    expect(planWalker(bulbasaur, viewport, random, { direction: 'east' }).formation).toBeUndefined();
+  });
+});
+
+describe('desfile de Eevee y sus evoluciones', () => {
+  const members = PARADE_IDS.map((id) => manifest.pokemon.find((pokemon) => pokemon.entityId === id)!);
+
+  it('están Eevee y las ocho evoluciones, todas de suelo y con variocolor', () => {
+    expect(PARADE_IDS).toEqual(['eevee', 'vaporeon', 'jolteon', 'flareon', 'espeon', 'umbreon', 'leafeon', 'glaceon', 'sylveon']);
+    for (const member of members) {
+      expect(member, 'falta en el manifiesto').toBeDefined();
+      expect(member.zone).toBe('ground');
+      expect(member.variants.shiny).not.toBeNull();
+    }
+  });
+
+  it('el desfile reparte a todas una sola vez, por los dos lados, y nunca una pegada a la otra', () => {
+    for (const scene of [{ rem: 16 }, { rem: 30 }]) {
+      for (const seed of [0, 0.3, 0.55, 0.7, 0.999]) {
+        const widths = Object.fromEntries(PARADE_IDS.map((id, index) => [id, 60 + index * 15]));
+        const lineup = planParade(PARADE_IDS.map((id) => ({ id, width: widths[id] })), scene, () => seed);
+        expect([...lineup.map((entry) => entry.id)].sort()).toEqual([...PARADE_IDS].sort());
+        const east = lineup.filter((entry) => entry.direction === 'east'), west = lineup.filter((entry) => entry.direction === 'west');
+        expect(east.length).toBeGreaterThanOrEqual(4);
+        expect(west.length).toBeGreaterThanOrEqual(4);
+        expect(east.length + west.length).toBe(PARADE_IDS.length);
+        for (const side of [east, west]) {
+          for (let index = 1; index < side.length; index++) {
+            // Misma velocidad: la distancia de salida es la que mantienen toda la marcha. Siempre más que sus anchos juntos.
+            const gap = side[index].behind - side[index - 1].behind;
+            expect(gap, `${seed} ${side[index].id}`).toBeGreaterThanOrEqual((widths[side[index].id] + widths[side[index - 1].id]) / 2 * 1.15);
+          }
+        }
+      }
+    }
+    // Con otro azar cambian el orden y el reparto entre los lados.
+    let n = 0;
+    const noise = () => { n = (n * 7 + 3) % 11; return n / 11; };
+    const members = PARADE_IDS.map((id) => ({ id, width: 80 }));
+    const first = planParade(members, { rem: 16 }, noise).map((entry) => `${entry.id}${entry.direction}`).join();
+    const second = planParade(members, { rem: 16 }, noise).map((entry) => `${entry.id}${entry.direction}`).join();
+    expect(first).not.toBe(second);
+  });
+
+  it('a cada lado le toca un número parecido y un mismo desfile usa ambas direcciones', () => {
+    const counts = new Set<number>();
+    for (const seed of [0.1, 0.4, 0.6, 0.9]) {
+      const lineup = planParade(PARADE_IDS.map((id) => ({ id, width: 80 })), { rem: 16 }, () => seed);
+      counts.add(lineup.filter((entry) => entry.direction === 'east').length);
+      expect(new Set(lineup.map((entry) => entry.direction))).toEqual(new Set(['east', 'west']));
+    }
+    expect([...counts].every((count) => count === 4 || count === 5)).toBe(true);
+  });
+
+  it('el ancho de cuerpo sale de la escala real del Pokémon en la escena', () => {
+    for (const member of members) {
+      const wide = walkerBodyWidth(member, viewport), narrow = walkerBodyWidth(member, { ...viewport, width: 360, height: 640, ground: 224 });
+      expect(wide).toBeGreaterThan(10);
+      expect(narrow).toBeGreaterThan(10);
+    }
+  });
+
+  it('con laneGap los carriles ocupados se alejan más entre sí', () => {
+    const ground = { ...viewport, occupiedLanes: [900] };
+    const near = Array.from({ length: 40 }, (_, i) => chooseGroundLane(744, 1060, 120, ground, () => i / 40).feetY);
+    const wide = Array.from({ length: 40 }, (_, i) => chooseGroundLane(744, 1060, 120, { ...ground, laneGap: 60 }, () => i / 40).feetY);
+    expect(near.every((feet) => Math.abs(feet - 900) >= 16 - 1e-9)).toBe(true);
+    expect(wide.every((feet) => Math.abs(feet - 900) >= 60 - 1e-9)).toBe(true);
+  });
+
+  it('todas van al mismo ritmo y la que sale más atrás llega más tarde, en ambas direcciones y escenas', () => {
+    for (const scene of [viewport, { ...viewport, width: 360, height: 640, ground: 224 }]) for (const direction of ['east', 'west'] as const) {
+      for (const member of members) {
+        const near = planWalker(member, scene, random, { direction, speedRem: PARADE_SPEED_REM, behind: 0 });
+        const far = planWalker(member, scene, random, { direction, speedRem: PARADE_SPEED_REM, behind: 200 });
+        expect(near.speed).toBeCloseTo(PARADE_SPEED_REM * scene.rem, 8);
+        expect(far.speed).toBeCloseTo(near.speed, 8);
+        expect(Math.abs(far.start - near.start)).toBeCloseTo(200, 6);
+        expect(far.durationMs).toBeGreaterThan(near.durationMs);
+        expect(far.durationMs - near.durationMs).toBeCloseTo(200 / near.speed * 1000, 3);
+        // Sale más atrás que la entrada normal: sigue empezando fuera de la pantalla.
+        expect(direction === 'east' ? far.start < near.start : far.start > near.start).toBe(true);
+        // Sin el pedido del desfile, cada uno trae su propio ritmo (entre 0,9 y 1,1 veces el normal).
+        expect(planWalker(member, scene, () => 0.9, { direction }).speed).not.toBe(near.speed);
+      }
+    }
+  });
+
+  it('Eevee se dibuja con un tamaño parecido al de sus evoluciones, no mucho más chico', () => {
+    const eevee = members.find((member) => member.entityId === 'eevee')!;
+    expect(eevee.walkHeightMeters).toBe(0.65);
+    expect(withWalkerHeights([eevee], entities)[0].heightMeters).toBe(0.65);
+    for (const scene of [viewport, { ...viewport, width: 390, height: 844, artPixel: 2, ground: 224 }]) {
+      const height = (member: typeof eevee) => Math.max(...Object.values(member.variants.normal.animations.Walk.directions).map((sheet) => sheet.bbox.height)) * walkerScale(member, member.variants.normal, scene);
+      const others = members.filter((member) => member.entityId !== 'eevee').map(height);
+      expect(height(eevee)).toBeGreaterThan(0.75 * Math.min(...others));
+      expect(height(eevee)).toBeLessThan(Math.max(...others));
+    }
+  });
+
+  it('el próximo evento llega entre ocho y doce minutos después', () => {
+    expect(nextEventMs(1000, () => 0)).toBe(481_000);
+    expect(nextEventMs(1000, () => 1)).toBe(721_000);
+    expect(nextEventMs(0, () => 0.5)).toBe(600_000);
+  });
+});
+
+describe('vuelo de Latios y Latias', () => {
+  const duo = DUO_IDS.map((id) => manifest.pokemon.find((pokemon) => pokemon.entityId === id)!);
+  const skyScene = { ...viewport, skyFloor: 604 };
+
+  it('son los dos, de cielo y con variocolor', () => {
+    expect(DUO_IDS).toEqual(['latios', 'latias']);
+    for (const member of duo) {
+      expect(member.zone).toBe('sky');
+      expect(member.variants.shiny).not.toBeNull();
+    }
+    expect(DUO_SPEED_REM).toBe(4);
+  });
+
+  it('los dos van para el mismo lado, bien separados y cada uno en su mitad del cielo, en cualquier azar', () => {
+    for (const seed of [0, 0.2, 0.45, 0.6, 0.999]) {
+      const widths = { latios: 140, latias: 110 };
+      const lineup = planDuo(DUO_IDS.map((id) => ({ id, width: widths[id as 'latios' | 'latias'] })), { rem: 16 }, () => seed);
+      expect(lineup.map((entry) => entry.id).sort()).toEqual(['latias', 'latios']);
+      expect(new Set(lineup.map((entry) => entry.direction)).size).toBe(1);
+      const [first, second] = lineup;
+      expect(second.behind - first.behind).toBeGreaterThanOrEqual((widths.latios + widths.latias) / 2 * 1.6 + 4 * 16 - 1e-9);
+      expect([first.band, second.band].map((band) => band.join()).sort()).toEqual(['0,0.45', '0.55,1']);
+    }
+    // El azar cambia el lado y cuál va primero.
+    const sides = new Set(), firsts = new Set();
+    let t = 12345;
+    const noise = () => { t = (t * 1664525 + 1013904223) % 4294967296; return t / 4294967296; };
+    for (let i = 0; i < 12; i++) {
+      const lineup = planDuo(DUO_IDS.map((id) => ({ id, width: 100 })), { rem: 16 }, noise);
+      sides.add(lineup[0].direction); firsts.add(lineup[0].id);
+    }
+    expect(sides.size).toBe(2);
+    expect(firsts.size).toBe(2);
+  });
+
+  it('cada uno vuela dentro de su franja y a la misma velocidad, sin cruzarse de altura', () => {
+    for (const direction of ['east', 'west'] as const) for (const seed of [0, 0.5, 0.999]) {
+      const [low, high] = [[0.55, 1], [0, 0.45]] as const;
+      for (const member of duo) {
+        const upper = planWalker(member, skyScene, () => seed, { direction, speedRem: DUO_SPEED_REM, band: high });
+        const lower = planWalker(member, skyScene, () => seed, { direction, speedRem: DUO_SPEED_REM, band: low });
+        expect(upper.speed).toBeCloseTo(DUO_SPEED_REM * skyScene.rem, 8);
+        expect(upper.y).toBeLessThanOrEqual(lower.y + 1e-9);
+        expect(upper.canAppear && lower.canAppear).toBe(true);
+      }
+    }
+    // Sin franja nada cambia: el cielo entero.
+    const free = planWalker(duo[0], skyScene, () => 0.5, { direction: 'east' });
+    const full = planWalker(duo[0], skyScene, () => 0.5, { direction: 'east', band: [0, 1] });
+    expect(free.y).toBeCloseTo(full.y, 8);
+  });
+});
+
+describe('ocho eventos raros', () => {
+  const scenes = [viewport, { ...viewport, width: 390, height: 844, artPixel: 2, ground: 224 }, { ...viewport, width: 844, height: 390, ground: 160 }];
+  const seeds = [0, 0.13, 0.3, 0.5, 0.71, 0.9, 0.999];
+  const at = (value: number) => () => value;
+  const find = (id: string) => manifest.pokemon.find((pokemon) => pokemon.entityId === id)!;
+  const sameDirection = (entries: readonly EventEntry[]) => new Set(entries.map((entry) => entry.direction)).size === 1;
+  /**
+   * Aire real entre el borde del cuerpo de un integrante y el del anterior, al salir (misma velocidad: es el que mantienen toda la marcha).
+   * Positivo: hay espacio; negativo: se pisan en horizontal.
+   */
+  const edgeGaps = (entries: readonly EventEntry[], scene: typeof viewport) => entries.slice(1).map((entry, index) => {
+    const previous = entries[index], direction = entry.direction;
+    const start = (item: EventEntry) => planWalker(find(item.id), scene, at(0.5), { direction, behind: item.behind }).start;
+    const before = walkerBodyExtent(find(previous.id), scene, direction), after = walkerBodyExtent(find(entry.id), scene, direction);
+    const gap = direction === 'east' ? start(previous) + before.left - (start(entry) + after.right) : start(entry) + after.left - (start(previous) + before.right);
+    return { id: entry.id, gap, smaller: Math.min(walkerBodyWidth(find(previous.id), scene), walkerBodyWidth(find(entry.id), scene)) };
+  });
+
+  it('la bolsa saca los ocho una vez cada uno antes de repetir', () => {
+    let bag: readonly (typeof EVENT_KINDS)[number][] = [];
+    let n = 0;
+    const noise = () => { n = (n * 7 + 5) % 17; return n / 17; };
+    for (let round = 0; round < 3; round++) {
+      const seen: string[] = [];
+      for (let index = 0; index < EVENT_KINDS.length; index++) { const draw = drawEventKind(bag, noise); seen.push(draw.kind); bag = draw.bag; }
+      expect([...seen].sort()).toEqual([...EVENT_KINDS].sort());
+      expect(bag).toHaveLength(0);
+    }
+    expect(EVENT_KINDS).toHaveLength(8);
+  });
+
+  it('sin alguno de los integrantes en el manifiesto, no se arma el evento', () => {
+    for (const kind of EVENT_KINDS) expect(planEvent(kind, [], viewport, random), kind).toBeNull();
+    expect(planEvent('dogs', manifest.pokemon.filter((pokemon) => pokemon.entityId !== 'entei'), viewport, random)).toBeNull();
+  });
+
+  it('perros legendarios: los tres para el mismo lado; uno al medio, un poco atrás y arriba el segundo, más atrás y abajo el tercero', () => {
+    expect(DOG_IDS).toEqual(['raikou', 'entei', 'suicune']);
+    for (const scene of scenes) for (const seed of seeds) {
+      const entries = planEvent('dogs', manifest.pokemon, scene, at(seed))!;
+      expect(entries.map((entry) => entry.id).sort()).toEqual([...DOG_IDS].sort());
+      expect(sameDirection(entries)).toBe(true);
+      const [lead, second, third] = entries;
+      expect(lead.lane).toBe(0.5);
+      expect(second.lane!).toBeLessThan(0.5);
+      expect(third.lane!).toBeGreaterThan(0.5);
+      expect(second.lane! + third.lane!).toBeCloseTo(1, 8);
+      expect(entries.every((entry) => entry.speedRem === DOG_SPEED_REM)).toBe(true);
+      // Un poco atrás: pegados pero sin pisarse, y sin un hueco grande entre ellos.
+      for (const { gap, smaller, id } of edgeGaps(entries, scene)) {
+        expect(gap, `${id} ${scene.width}`).toBeGreaterThanOrEqual(0.12 * smaller + 0.5 * scene.rem - 1e-6);
+        expect(gap, `${id} ${scene.width}`).toBeLessThanOrEqual(0.3 * smaller + scene.rem);
+      }
+    }
+  });
+
+  it('pájaros legendarios: los seis (normales y de Galar), tres para cada lado y cada volador en su franja', () => {
+    expect(BIRD_IDS).toHaveLength(6);
+    const splits = new Set<string>();
+    for (const scene of scenes) for (const seed of seeds) {
+      const entries = planEvent('birds', manifest.pokemon, scene, at(seed))!;
+      expect(entries.map((entry) => entry.id).sort()).toEqual([...BIRD_IDS].sort());
+      const east = entries.filter((entry) => entry.direction === 'east'), west = entries.filter((entry) => entry.direction === 'west');
+      expect(east).toHaveLength(3);
+      expect(west).toHaveLength(3);
+      splits.add(east.map((entry) => entry.id).sort().join());
+      expect(entries.every((entry) => entry.speedRem === BIRD_SPEED_REM)).toBe(true);
+      const flyers = entries.filter((entry) => find(entry.id).zone === 'sky'), runner = entries.filter((entry) => find(entry.id).zone === 'ground');
+      expect(flyers).toHaveLength(5);
+      expect(runner.map((entry) => entry.id)).toEqual(['zapdos-galar']);
+      expect(runner[0].lane).toBeGreaterThanOrEqual(0.3);
+      expect(runner[0].lane).toBeLessThanOrEqual(0.7);
+      expect(new Set(flyers.map((entry) => entry.band!.join())).size).toBe(5);
+      for (const entry of flyers) { expect(entry.band![0]).toBeGreaterThanOrEqual(0); expect(entry.band![1]).toBeLessThanOrEqual(1); expect(entry.band![1] - entry.band![0]).toBeCloseTo(0.2, 8); }
+      // Los de un mismo lado salen con aire entre sus bordes: no se pisan.
+      for (const side of [east, west]) for (const { gap, id } of edgeGaps(side, scene)) expect(gap, `${id} ${scene.width}`).toBeGreaterThanOrEqual(2 * scene.rem - 1e-6);
+    }
+    // Con otro azar cambian cuáles tres van a cada lado.
+    expect(splits.size).toBeGreaterThan(2);
+  });
+
+  it('familia: cuña como los perros (uno al medio, otro atrás arriba, otro más atrás abajo), de la más chica a la más grande, sin huecos grandes', () => {
+    for (const line of FAMILY_LINES) for (const id of line) expect(find(id)?.zone, id).toBe('ground');
+    const used = new Set<string>();
+    for (const scene of scenes) for (const seed of seeds) {
+      const entries = planEvent('family', manifest.pokemon, scene, at(seed))!;
+      expect(entries).toHaveLength(3);
+      expect(FAMILY_LINES.some((line) => line.join() === entries.map((entry) => entry.id).join())).toBe(true);
+      used.add(entries.map((entry) => entry.id).join());
+      expect(sameDirection(entries)).toBe(true);
+      const [lead, second, third] = entries;
+      expect(lead.lane).toBe(0.5);
+      expect(second.lane!).toBeLessThan(0.5);
+      expect(third.lane!).toBeGreaterThan(0.5);
+      expect(entries.every((entry) => entry.speedRem === FAMILY_SPEED_REM)).toBe(true);
+      for (const { gap, smaller, id } of edgeGaps(entries, scene)) {
+        expect(gap, `${id} ${scene.width}`).toBeGreaterThanOrEqual(0.12 * smaller + 0.5 * scene.rem - 1e-6);
+        expect(gap, `${id} ${scene.width}`).toBeLessThanOrEqual(0.3 * smaller + scene.rem);
+      }
+    }
+    expect(used.size).toBeGreaterThan(3);
+  });
+
+  it('todas las familias, una por una, en todas las escenas y hacia los dos lados: nunca un hueco grande ni se pisan', () => {
+    const lines = FAMILY_LINES.filter((line) => line.every((id) => find(id)?.zone === 'ground'));
+    expect(lines).toHaveLength(FAMILY_LINES.length);
+    const worst: { line: string; gap: number; smaller: number }[] = [];
+    for (const line of lines) for (const scene of scenes) for (const direction of ['east', 'west'] as const) {
+      // Fuerza esta línea y este lado: el manifiesto reducido deja una sola línea posible; el primer sorteo decide el lado y el segundo la línea.
+      const only = manifest.pokemon.filter((pokemon) => !FAMILY_LINES.flat().includes(pokemon.entityId) || line.includes(pokemon.entityId));
+      const entries = planEvent('family', only, scene, (() => { const values = [direction === 'east' ? 0 : 0.9, 0]; let i = 0; return () => values[Math.min(i++, 1)]; })());
+      if (!entries || entries.map((entry) => entry.id).join() !== line.join()) continue;
+      for (const { gap, smaller } of edgeGaps(entries, scene)) {
+        worst.push({ line: `${line[0]} ${scene.width} ${direction}`, gap, smaller });
+        expect(gap, `${line.join('>')} ${scene.width} ${direction}`).toBeGreaterThanOrEqual(0.12 * smaller + 0.5 * scene.rem - 1e-6);
+        expect(gap, `${line.join('>')} ${scene.width} ${direction}`).toBeLessThanOrEqual(0.3 * smaller + scene.rem);
+      }
+    }
+    // Se probó de verdad cada línea (al menos una escena y un lado).
+    expect(new Set(worst.map((entry) => entry.line.split(' ')[0])).size).toBe(FAMILY_LINES.length);
+  });
+
+  it('carrera: Voltorb y Electrode en carriles distintos, y Electrode más rápido', () => {
+    expect(RACE_SPEEDS_REM.electrode).toBeGreaterThan(RACE_SPEEDS_REM.voltorb);
+    for (const scene of scenes) for (const seed of seeds) {
+      const entries = planEvent('race', manifest.pokemon, scene, at(seed))!;
+      expect(entries.map((entry) => entry.id).sort()).toEqual(['electrode', 'voltorb']);
+      expect(sameDirection(entries)).toBe(true);
+      expect(entries[0].lane).not.toBe(entries[1].lane);
+      for (const entry of entries) expect(entry.speedRem).toBe(RACE_SPEEDS_REM[entry.id]);
+      for (const entry of entries) expect(entry.behind).toBeLessThanOrEqual(2 * scene.rem);
+    }
+  });
+
+  it('brote: muchos Diglett y Dugtrio, más de uno de cada especie permitido y cada uno un poco después del anterior', () => {
+    for (const scene of scenes) for (const seed of seeds) {
+      const entries = planEvent('outbreak', manifest.pokemon, scene, at(seed))!;
+      const compact = scene.width < 768 || scene.height <= 26 * scene.rem;
+      expect(entries).toHaveLength(compact ? OUTBREAK_COUNT.compact : OUTBREAK_COUNT.regular);
+      expect(entries.every((entry) => ['diglett', 'dugtrio'].includes(entry.id) && entry.copy === true)).toBe(true);
+      for (let index = 1; index < entries.length; index++) expect(entries[index].delayMs! - entries[index - 1].delayMs!).toBeGreaterThanOrEqual(150);
+      expect(entries[0].delayMs).toBe(0);
+    }
+    const mix = planEvent('outbreak', manifest.pokemon, viewport, (() => { let t = 7; return () => { t = (t * 1664525 + 1013904223) % 4294967296; return t / 4294967296; }; })())!;
+    expect(new Set(mix.map((entry) => entry.id)).size).toBe(2);
+  });
+
+  it('un carril pedido deja los pies ahí si cabe y, si no, en el borde más cercano; sin carril nada cambia', () => {
+    const scene = { ...viewport, skyFloor: 604 };
+    const groundTop = scene.height - scene.ground;
+    for (const id of ['raikou', 'bulbasaur', 'groudon', 'onix']) {
+      const member = find(id);
+      for (const lane of [0, 0.3, 0.5, 0.8, 1]) {
+        const target = groundTop + lane * scene.ground;
+        const plan = planWalker(member, scene, at(0.5), { direction: 'east', feetY: target });
+        expect(plan.canAppear, id).toBe(true);
+        expect(plan.feetY, `${id} ${lane}`).toBeGreaterThanOrEqual(groundTop);
+        expect(plan.feetY, `${id} ${lane}`).toBeLessThanOrEqual(scene.height);
+        if (lane === 0.5 && id !== 'groudon' && id !== 'onix') expect(plan.feetY).toBeCloseTo(target, 6);
+      }
+    }
+    expect(planWalker(find('bulbasaur'), scene, at(0.5), { direction: 'east' }).feetY).toBe(planWalker(find('bulbasaur'), scene, at(0.5), { direction: 'east', feetY: undefined }).feetY);
+    // Dos con el mismo carril pedido quedan con los mismos pies: la marcha de la familia va en fila.
+    const a = planWalker(find('ivysaur'), { ...scene, occupiedLanes: [groundTop + 0.5 * scene.ground] }, at(0.5), { direction: 'east', feetY: groundTop + 0.5 * scene.ground });
+    const b = planWalker(find('venusaur'), { ...scene, occupiedLanes: [groundTop + 0.5 * scene.ground] }, at(0.5), { direction: 'east', feetY: groundTop + 0.5 * scene.ground });
+    expect(a.feetY).toBeCloseTo(b.feetY, 6);
+  });
+});
+
+describe('lago: nadadores en el río', () => {
+  const swimmers = LAKE_IDS.map((id) => manifest.pokemon.find((pokemon) => pokemon.entityId === id)!);
+  const river = { ...viewport, skyFloor: 604, water: { top: 640, bottom: 740 } };
+  const scenes = [river, { ...viewport, width: 390, height: 844, artPixel: 2, ground: 224, skyFloor: 560, water: { top: 560, bottom: 620 } }, viewport];
+
+  it('los quince nadadores son de agua, sin patas que pisen: solo la animación de nado y nada de tropiezo ni sueño', () => {
+    expect(LAKE_IDS).toHaveLength(15);
+    expect(LAKE_IDS).toEqual(expect.arrayContaining(['lapras', 'kyogre', 'finizen', 'palafin', 'tentacool', 'tentacruel', 'phione', 'manaphy']));
+    expect(new Set(LAKE_IDS).size).toBe(LAKE_IDS.length);
+    for (const member of swimmers) {
+      expect(member.zone).toBe('water');
+      expect(member.movement).toBe('walk');
+      expect(Object.keys(member.variants.normal.animations)).toEqual(['Walk']);
+      expect(member.variants.normal.hasHitGround).toBe(false);
+      expect(member.variants.normal.sleep).toBeNull();
+      expect(member.variants.shiny).not.toBeNull();
+    }
+  });
+
+  it('Kyogre se hunde más que Lapras: la línea de flotación queda justo debajo del ojo', () => {
+    const lapras = swimmers.find((member) => member.entityId === 'lapras')!, kyogre = swimmers.find((member) => member.entityId === 'kyogre')!;
+    expect(lapras.submergeFraction).toBeUndefined();
+    expect(kyogre.submergeFraction).toBe(0.44);
+    const plan = (member: typeof lapras) => planWalker(member, river, () => 0.5, { direction: 'east' });
+    // El ojo de Kyogre está al 50 % del alto de su cuerpo: el agua llega al 56 %, debajo del ojo.
+    expect(1 - kyogre.submergeFraction!).toBeGreaterThan(0.5);
+    expect(1 - kyogre.submergeFraction!).toBeLessThan(0.6);
+    expect(plan(kyogre).submerge! / plan(kyogre).visibleHeight).toBeGreaterThan(plan(lapras).submerge! / plan(lapras).visibleHeight);
+  });
+
+  it('en las apariciones normales, un nadador sale solo cuando toca, y nunca en el pasto ni en el cielo', () => {
+    const population = walkerPopulation(1920, 1080, 16);
+    const request = (actors: { zone: 'ground' | 'sky' | 'water'; walking: boolean }[], waterReady: boolean) => ({ bags: createWalkerBags(), pokemon: manifest.pokemon, actors, population, now: 10_000, nextAt: 0, pending: false, lastDirection: null, previous: [], width: 1920, rem: 16, waterReady });
+    const walking = (zone: 'ground' | 'sky' | 'water', count: number) => Array.from({ length: count }, () => ({ zone, walking: true }));
+    const seen = new Set<string>();
+    for (let value = 0; value < 1; value += 0.05) {
+      // Toca nadador y ya hay suelo y cielo: sale uno de agua.
+      const swim = chooseReplenishment(request([...walking('ground', 2), ...walking('sky', 1)], true), () => value)!;
+      expect(swim.pokemon.zone).toBe('water');
+      expect(LAKE_IDS).toContain(swim.pokemon.entityId);
+      seen.add(swim.pokemon.entityId);
+      // Si todavía no toca, sale otro de suelo o cielo (o ninguno), nunca de agua.
+      const dry = chooseReplenishment(request([...walking('ground', 2), ...walking('sky', 1)], false), () => value);
+      if (dry) expect(dry.pokemon.zone).not.toBe('water');
+      // Con dos nadando, nunca sale otro.
+      const crowded = chooseReplenishment(request([...walking('ground', 1), ...walking('water', 2)], true), () => value);
+      if (crowded) expect(crowded.pokemon.zone).not.toBe('water');
+    }
+    expect(seen.size).toBeGreaterThan(3);
+  });
+
+  it('el río: sin medirlo hay una franja sobre el pasto, y el cuerpo puede subir dos veces y media su alto', () => {
+    const band = waterBand(viewport);
+    expect(band.bottom).toBeLessThan(viewport.height - viewport.ground);
+    expect(band.top).toBeLessThan(band.bottom);
+    expect(waterBand(river)).toEqual(river.water);
+    expect(waterCeiling(river)).toBeCloseTo(740 - 2.5 * 100, 8);
+    expect(walkerVerticalArea(swimmers[0], river)).toBeCloseTo(250, 8);
+  });
+
+  it('cada nadador, en cada escena, entra fuera de la pantalla y flota con los pies dentro del río en toda la marcha', () => {
+    for (const scene of scenes) for (const member of swimmers) for (const direction of ['east', 'west'] as const) for (const seed of [0, 0.5, 0.999]) {
+      const plan = planWalker(member, scene, () => seed, { direction });
+      const band = waterBand(scene);
+      expect(plan.canAppear, `${member.entityId} ${scene.width}`).toBe(true);
+      // La línea de flotación queda dentro del río; el tercio de abajo del cuerpo va sumergido (y no se dibuja).
+      expect(plan.feetY).toBeGreaterThanOrEqual(band.top + 0.5 * scene.rem - 1e-6);
+      expect(plan.feetY).toBeLessThanOrEqual(band.bottom - 0.5 * scene.rem + 1e-6);
+      expect(plan.submerge).toBeCloseTo((member.submergeFraction ?? 0.35) * plan.visibleHeight, 8);
+      const walking = locomotionAnimation(member, plan.variant).directions[direction];
+      expect(plan.y + (walking.bbox.y + walking.bbox.height - walking.anchor.y) * plan.scale).toBeCloseTo(plan.feetY + plan.submerge!, 6);
+      expect(plan.depth).toBeGreaterThanOrEqual(WATER_DEPTH_MIN);
+      expect(plan.depth).toBeLessThanOrEqual(WATER_DEPTH_MAX);
+      const start = walkerFrameBounds(plan, 0, scene.rem);
+      if (direction === 'east') expect(start.right).toBeLessThanOrEqual(0); else expect(start.left).toBeGreaterThanOrEqual(scene.width);
+      expect(walkerExtents(member, plan.variant, plan.scale, scene.rem).height).toBeLessThanOrEqual(walkerVerticalArea(member, scene) - 2 * scene.rem + 0.01);
+    }
+  });
+
+  it('un carril pedido deja los pies en esa altura del río', () => {
+    for (const member of swimmers) for (const lane of [0.35, 0.8]) {
+      const band = river.water;
+      const plan = planWalker(member, river, () => 0.5, { direction: 'east', feetY: band.top + lane * (band.bottom - band.top) });
+      expect(plan.canAppear).toBe(true);
+      expect(plan.feetY).toBeGreaterThanOrEqual(band.top);
+      expect(plan.feetY).toBeLessThanOrEqual(band.bottom);
+    }
+    // Un Pokémon de suelo no se sumerge.
+    expect(planWalker(bulbasaur, viewport, random, { direction: 'east' }).submerge).toBeUndefined();
+  });
+
+  it('más arriba en el río es más lejos: lo tapan los de más abajo, sin importar quién apareció primero; y siempre detrás del pasto', () => {
+    const band = river.water;
+    const depthAt = (member: typeof swimmers[number], lane: number) => planWalker(member, river, () => 0.5, { direction: 'east', feetY: band.top + lane * (band.bottom - band.top) }).depth;
+    for (const first of swimmers) for (const second of swimmers) {
+      if (first === second) continue;
+      // El que nada más arriba queda atrás, aunque haya aparecido segundo.
+      expect(depthAt(first, 0.3)).toBeLessThan(depthAt(second, 0.8));
+    }
+    for (const member of swimmers) {
+      const depths = [0, 0.25, 0.5, 0.75, 1].map((lane) => depthAt(member, lane));
+      expect([...depths].sort((a, b) => a - b)).toEqual(depths);
+      expect(Math.max(...depths)).toBeLessThan(100);
+      expect(Math.min(...depths)).toBeGreaterThan(10);
+    }
+    // Y el de suelo siempre tapa a los del río.
+    expect(planWalker(bulbasaur, river, () => 0, { direction: 'east' }).depth).toBeGreaterThan(WATER_DEPTH_MAX);
+  });
+
+  it('Kyogre nada siempre por la mitad de abajo del río, en el evento y fuera de él', () => {
+    expect(LAKE_LOW_LANE).toEqual(['kyogre']);
+    const kyogre = swimmers.find((member) => member.entityId === 'kyogre')!;
+    for (const scene of scenes) for (const seed of [0, 0.25, 0.5, 0.75, 0.999]) for (const direction of ['east', 'west'] as const) {
+      const band = waterBand(scene);
+      const plan = planWalker(kyogre, scene, () => seed, { direction });
+      expect(plan.canAppear).toBe(true);
+      expect(plan.feetY).toBeGreaterThanOrEqual(band.top + 0.6 * (band.bottom - band.top) - 1e-6);
+    }
+    let n = 0;
+    const noise = () => { n = (n * 1103515245 + 12345) % 2147483648; return n / 2147483648; };
+    let withKyogre = 0;
+    for (const scene of scenes) for (let round = 0; round < 80; round++) {
+      const entries = planEvent('lake', manifest.pokemon, scene, noise)!;
+      const kyogreEntry = entries.find((entry) => entry.id === 'kyogre');
+      if (!kyogreEntry) continue;
+      withKyogre++;
+      expect(kyogreEntry.lane).toBe(Math.max(...entries.map((entry) => entry.lane!)));
+    }
+    expect(withKyogre).toBeGreaterThan(10);
+  });
+
+  it('Mantine ya no está entre los nadadores', () => {
+    expect(LAKE_IDS).not.toContain('mantine');
+    expect(manifest.pokemon.some((pokemon) => pokemon.entityId === 'mantine')).toBe(false);
+  });
+
+  it('el evento del lago: tres sorteados del grupo, para el mismo lado, en alturas distintas del río, sin pisarse', () => {
+    const seen = new Set<string>();
+    let n = 0;
+    const noise = () => { n = (n * 1103515245 + 12345) % 2147483648; return n / 2147483648; };
+    for (const scene of scenes) for (let round = 0; round < 10; round++) {
+      const entries = planEvent('lake', manifest.pokemon, scene, noise)!;
+      expect(entries).toHaveLength(LAKE_COUNT);
+      expect(new Set(entries.map((entry) => entry.id)).size).toBe(LAKE_COUNT);
+      entries.forEach((entry) => { expect(LAKE_IDS).toContain(entry.id); seen.add(entry.id); });
+      expect(new Set(entries.map((entry) => entry.direction)).size).toBe(1);
+      expect(new Set(entries.map((entry) => entry.lane)).size).toBe(LAKE_COUNT);
+      expect(entries.every((entry) => entry.speedRem === LAKE_SPEED_REM && entry.lane! >= 0 && entry.lane! <= 1)).toBe(true);
+      const direction = entries[0].direction;
+      const find = (entry: typeof entries[number]) => manifest.pokemon.find((pokemon) => pokemon.entityId === entry.id)!;
+      const start = (entry: typeof entries[number]) => planWalker(find(entry), scene, () => 0.5, { direction, behind: entry.behind }).start;
+      const extent = (entry: typeof entries[number]) => walkerBodyExtent(find(entry), scene, direction);
+      for (let index = 1; index < entries.length; index++) {
+        const [first, second] = [entries[index - 1], entries[index]];
+        const gap = direction === 'east' ? start(first) + extent(first).left - (start(second) + extent(second).right) : start(second) + extent(second).left - (start(first) + extent(first).right);
+        expect(gap, `${second.id} ${scene.width}`).toBeGreaterThanOrEqual(2 * scene.rem - 1e-6);
+      }
+    }
+    // Con otro azar salen otros: no son siempre los mismos.
+    expect(seen.size).toBeGreaterThan(LAKE_COUNT + 2);
+  });
+});
+
+describe('voladores nuevos: Cresselia y Darkrai', () => {
+  const flyers = ['cresselia', 'darkrai'].map((id) => manifest.pokemon.find((pokemon) => pokemon.entityId === id)!);
+  const sky = { ...viewport, skyFloor: 604 };
+
+  it('Cresselia conserva sus nueve cuadros y cancela el deslizamiento lateral: el borde del cuerpo queda en el mismo lugar en todos', () => {
+    const cresselia = flyers[0];
+    expect((cresselia as { locomotionFrames?: unknown }).locomotionFrames).toBeUndefined();
+    for (const variant of Object.values(cresselia.variants)) for (const direction of ['east', 'west'] as const) {
+      const sheet = variant!.animations.Walk.directions[direction];
+      expect(sheet.frames).toHaveLength(9);
+      const lefts = sheet.frames.map((frame) => frame.bbox!.x + frame.offsetX!);
+      // Sin la corrección el borde se movía 3 px de arte; ahora, a lo sumo 1 por el redondeo al entero.
+      expect(Math.max(...sheet.frames.map((frame) => frame.bbox!.x)) - Math.min(...sheet.frames.map((frame) => frame.bbox!.x))).toBeGreaterThanOrEqual(3);
+      expect(Math.max(...lefts) - Math.min(...lefts)).toBeLessThanOrEqual(1);
+    }
+    // Solo ella: nadie más lleva corrección.
+    for (const pokemon of manifest.pokemon.filter((entry) => entry.entityId !== 'cresselia')) for (const variant of Object.values(pokemon.variants)) if (variant) {
+      for (const animation of Object.values(variant.animations)) for (const sheet of Object.values(animation.directions)) expect(sheet.frames.some((frame) => frame.offsetX !== undefined), pokemon.entityId).toBe(false);
+    }
+  });
+
+  it('flotan en el cielo con su Walk, con sombra, y entran fuera de la pantalla en ambos lados', () => {
+    for (const member of flyers) {
+      expect(member, 'falta en el manifiesto').toBeDefined();
+      expect(member.zone).toBe('sky');
+      expect(member.locomotion).toBe('Walk');
+      expect(member.variants.normal.animations.Walk.shadow).toBeDefined();
+      for (const scene of [sky, { ...viewport, width: 390, height: 844, ground: 224, skyFloor: 560 }]) for (const direction of ['east', 'west'] as const) {
+        const plan = planWalker(member, scene, random, { direction });
+        expect(plan.canAppear, `${member.entityId} ${scene.width}`).toBe(true);
+        const start = walkerFrameBounds(plan, 0, scene.rem);
+        if (direction === 'east') expect(start.right).toBeLessThanOrEqual(0); else expect(start.left).toBeGreaterThanOrEqual(scene.width);
+      }
+    }
+  });
+});
+
+describe('la franja de arriba del pasto, pegada al agua, no se camina', () => {
+  const scenes = [viewport, { ...viewport, width: 390, height: 844, artPixel: 2, ground: 224 }, { ...viewport, width: 844, height: 390, ground: 160 }, { ...viewport, width: 3840, height: 2160, rem: 30, artPixel: 8, ground: 672 }];
+
+  it('el margen es el 15 % del pasto, de dos rem como mínimo y un cuarto como máximo', () => {
+    expect(groundTopMargin({ ground: 336, rem: 16 })).toBeCloseTo(50.4, 8);
+    expect(groundTopMargin({ ground: 160, rem: 16 })).toBe(32);
+    expect(groundTopMargin({ ground: 100, rem: 16 })).toBe(25);
+    for (const scene of scenes) {
+      expect(groundTopMargin(scene)).toBeGreaterThanOrEqual(Math.min(0.25 * scene.ground, 2 * scene.rem));
+      expect(groundTopMargin(scene)).toBeLessThanOrEqual(0.25 * scene.ground);
+    }
+  });
+
+  it('ningún caminante de suelo apoya los pies en la franja de arriba, en ninguna escena, lado ni carril', () => {
+    let checked = 0;
+    for (const scene of scenes) {
+      const top = scene.height - scene.ground + groundTopMargin(scene);
+      for (const pokemon of manifest.pokemon.filter((entry) => entry.zone === 'ground' && !entry.burrow)) for (const seed of [0, 0.5, 0.999]) {
+        const plan = planWalker(pokemon, scene, () => seed, { direction: 'east' });
+        if (!plan.canAppear) continue;
+        expect(plan.feetY, `${pokemon.entityId} ${scene.width}x${scene.height}`).toBeGreaterThanOrEqual(top - 1e-6);
+        checked++;
+      }
+    }
+    expect(checked).toBeGreaterThan(2000);
+  });
+
+  it('un carril pedido (eventos) arriba del todo se corre hacia abajo, fuera de la franja', () => {
+    const top = viewport.height - viewport.ground + groundTopMargin(viewport);
+    for (const id of ['raikou', 'bulbasaur', 'zapdos-galar']) {
+      const plan = planWalker(manifest.pokemon.find((entry) => entry.entityId === id)!, viewport, random, { direction: 'east', feetY: viewport.height - viewport.ground });
+      expect(plan.feetY, id).toBeGreaterThanOrEqual(top - 1e-6);
+    }
+  });
+
+  it('los de madriguera tampoco asoman en la franja de arriba', () => {
+    const scene = { ...viewport };
+    const top = scene.height - scene.ground + groundTopMargin(scene);
+    for (const id of ['diglett', 'dugtrio']) for (const seed of [0, 0.3, 0.6, 0.999]) {
+      const plan = planWalker(manifest.pokemon.find((entry) => entry.entityId === id)!, scene, () => seed);
+      const placed = chooseBurrowPosition(plan, scene, () => seed);
+      expect(placed, id).not.toBeNull();
+      expect(burrowBounds(placed!, scene.rem).y).toBeGreaterThanOrEqual(top - 1e-6);
+    }
+  });
 });

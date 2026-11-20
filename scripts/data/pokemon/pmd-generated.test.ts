@@ -53,19 +53,19 @@ describe('PMD archivos generados', () => {
         for (const sheet of Object.values(variant.animations[name].directions)) expect(existsSync(path.join(root, 'public', sheet.url))).toBe(true);
       }
     }
-    expect(sleepers).toBe(734);
-    expect(ground).toBe(598);
+    expect(sleepers).toBe(744);
+    expect(ground).toBe(604);
     expect(manifest.pokemon.find(pokemon=>pokemon.entityId==='emolga')?.zone).toBe('ground');
     expect(manifest.pokemon.find(pokemon=>pokemon.entityId==='pidgeotto')?.zone).toBe('sky');
     expect(manifest.pokemon.find(pokemon=>pokemon.entityId==='charizard')?.zone).toBe('sky');
   });
-  it('usa el snapshot aprobado, 374 entradas con Galar y 1025 retratos, sin los seis excluidos', () => {
+  it('usa el snapshot aprobado, 374 entradas con Galar y 1025 retratos, sin los cinco excluidos', () => {
     expect(manifest.snapshot).toBe(PMD_SNAPSHOT);
     expect(credits.snapshot).toBe(PMD_SNAPSHOT);
-    expect(manifest.pokemon).toHaveLength(374);
-    expect(new Set(manifest.pokemon.map(p=>p.entityId)).size).toBe(374);
+    expect(manifest.pokemon).toHaveLength(395);
+    expect(new Set(manifest.pokemon.map(p=>p.entityId)).size).toBe(395);
     expect(manifest.portraits).toHaveLength(1025);
-    expect(manifest.excluded).toHaveLength(6);
+    expect(manifest.excluded).toHaveLength(5);
     expect(manifest.pokemon.some((pokemon) => manifest.excluded.includes(pokemon.name))).toBe(false);
     expect(manifest.pokemon.find((pokemon) => pokemon.name === 'Exeggutor de Alola')).toMatchObject({ number: 103, form: 'alola' });
     expect(manifest.pokemon.find((pokemon) => pokemon.name === 'Hoppip')).toMatchObject({ zone: 'sky', movement: 'drift' });
@@ -91,8 +91,8 @@ describe('PMD archivos generados', () => {
         }
       }
     }
-    expect(manifest.pokemon.filter(p=>p.zone==='sky')).toHaveLength(72);
-    expect(manifest.pokemon.filter(p=>p.zone==='ground')).toHaveLength(302);
+    expect(manifest.pokemon.filter(p=>p.zone==='sky')).toHaveLength(74);
+    expect(manifest.pokemon.filter(p=>p.zone==='ground')).toHaveLength(306);
     expect(manifest.pokemon.filter(p=>p.zone==='sky'&&p.locomotion==='Walk').map(p=>p.entityId).sort()).toEqual([...PMD_WALK_FLYERS,'articuno-galar','moltres-galar'].sort());
     for(const p of manifest.pokemon.filter(p=>p.zone==='sky'))for(const variant of Object.values(p.variants))if(variant){
       const animation=variant.animations[p.locomotion];
@@ -259,7 +259,8 @@ it('solo ocho vuelos usan f1/f0 a 180 ms; el resto conserva sus hashes de locomo
       }
     }
   }
-  const untouched=manifest.pokemon.filter(p=>p.zone==='sky'&&!ids.includes(p.entityId)&&p.entityId!=='taillow'&&p.entityId!=='rayquaza'&&p.entityId!=='swellow'&&p.entityId!=='togetic'&&p.entityId!=='dragapult'&&p.entityId!=='salamence'&&p.entityId!=='charizard'&&!['starly','staravia','staraptor','braviary','pikipek','fletchinder','aerodactyl','noivern'].includes(p.entityId)).flatMap(p=>Object.entries(p.variants).filter(([,v])=>v).flatMap(([name,v])=>Object.entries(v!.animations[p.locomotion].directions).map(([d,s])=>[p.entityId,name,d,s.sha256])));
+  // Cresselia y Darkrai se agregaron después (2026-11-20): el hash cubre solo los voladores de antes.
+  const untouched=manifest.pokemon.filter(p=>p.zone==='sky'&&!['cresselia','darkrai'].includes(p.entityId)&&!ids.includes(p.entityId)&&p.entityId!=='taillow'&&p.entityId!=='rayquaza'&&p.entityId!=='swellow'&&p.entityId!=='togetic'&&p.entityId!=='dragapult'&&p.entityId!=='salamence'&&p.entityId!=='charizard'&&!['starly','staravia','staraptor','braviary','pikipek','fletchinder','aerodactyl','noivern'].includes(p.entityId)).flatMap(p=>Object.entries(p.variants).filter(([,v])=>v).flatMap(([name,v])=>Object.entries(v!.animations[p.locomotion].directions).map(([d,s])=>[p.entityId,name,d,s.sha256])));
   expect(sha256(Buffer.from(JSON.stringify(untouched)))).toBe('26e6e644632656dd43f8361c6a90a13099eee9c9dbee6d19b0db697ad743345d');
   expect(manifest.pokemon.filter(p=>p.elongated).map(p=>p.entityId).sort()).toEqual(Object.keys(PMD_SERPENTINES).sort());
 });
@@ -282,7 +283,7 @@ it('Salamence vuela con Walk normal y shiny, en este/oeste y con sombra, sin Flo
 });
 
 it('genera factores de tama?o y alturas regionales para todo el roster', () => {
-  expect(manifest.pokemon).toHaveLength(374);
+  expect(manifest.pokemon).toHaveLength(395);
   for(const p of manifest.pokemon) {
     expect(p.sizeFactor,p.entityId).toBeGreaterThanOrEqual(0.5);
     expect(p.sizeFactor,p.entityId).toBeLessThanOrEqual(2);
