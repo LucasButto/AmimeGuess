@@ -83,6 +83,8 @@ select,
 textarea {
   font: inherit;
   color: inherit;
+  // El navegador les pone `letter-spacing: normal`: que hereden la separación de la piel (Pokémon, `--body-letter-spacing`).
+  letter-spacing: inherit;
 }
 
 // El color de las barras del sistema (la de estado y la de gestos de abajo) en la app instalada: el de la página en que se está. Cada

@@ -23,6 +23,10 @@
 // src/styles/_tokens.scss sobre la raíz del tema; los colores salen de la paleta de config.ts
 // (variables --palette-*), que cubre el test de contraste.
 .root {
+  // Jersey 10 es angosta y las letras quedaban muy pegadas: 1 px de separación en todo el texto del cuerpo (pastillas, botones, párrafos).
+  // Los títulos (Press Start 2P) llevan el suyo (`headingStyle`).
+  --body-letter-spacing: 0.0625rem;
+  letter-spacing: var(--body-letter-spacing);
   // Lo que tarda la salida de los botones de volver (ver BackNavBall); es el `backNavExitMs` de la piel.
   --recall-ms: 600ms;
   --app-bar-fill: var(--palette-red);

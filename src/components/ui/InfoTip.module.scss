@@ -84,7 +84,8 @@
   line-height: t.$line-height-base;
   text-align: start;
   text-transform: none;
-  letter-spacing: normal;
+  // Sin la separación de los títulos; la del cuerpo de la piel (`--body-letter-spacing`), si la tiene.
+  letter-spacing: var(--body-letter-spacing, normal);
   color: t.token('ink');
   box-shadow: t.token('shadow-pop');
   visibility: hidden;
