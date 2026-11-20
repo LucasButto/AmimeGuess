@@ -62,7 +62,7 @@ export const narutoConfig = {
   // Naruto no tiene arcos del manga sin adaptar como Dragon Ball: solo queda el interruptor de relleno.
   hideMangaToggle: true,
   series: ['naruto', 'shippuden', 'boruto'],
-  // Escribir "nc" trae los personajes de Naruto (la serie original); "ns" o "shippuden", los de Shippuden; "boruto" o "bnnt", los de Boruto.
+  // Escribir "nc" trae los que debutaron en Naruto (la serie original); "ns" o "shippuden", en Shippuden; "boruto" o "bnnt", en Boruto.
   seriesSearchTags: {
     naruto: ['nc'],
     shippuden: ['ns', 'nsh', 'shippuden'],

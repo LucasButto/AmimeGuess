@@ -32,7 +32,7 @@ export const dragonBallConfig = {
   // En el orden de la historia (el de los filtros y el de la cronología de los datos): Daima ocurre entre Z y Super, y GT
   // al final. Es el orden elegido por el usuario el 2026-10-14; `data/dragon-ball/source/sagas.json` (`seriesOrder`) lo repite.
   series: ['db', 'dbz', 'daima', 'super', 'gt'],
-  // Escribir "db" trae los personajes de Dragon Ball; "dbz", los de Z; "dbd", los de Daima; "dbs", los de Super; "dbgt", los de GT.
+  // Escribir "db" trae los que debutaron en Dragon Ball; "dbz", en Z; "dbd", en Daima; "dbs", en Super; "dbgt", en GT.
   seriesSearchTags: {
     db: ['db', 'dragonball'],
     dbz: ['dbz', 'dragonballz'],

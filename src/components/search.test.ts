@@ -154,10 +154,11 @@ describe('siglas de serie', () => {
   ];
   const find = (query: string) => search(buildSearchIndex(people, tags), query).map((item) => item.id);
 
-  it('la sigla trae a todos los de esa serie, y solo con la sigla exacta', () => {
+  it('la sigla trae a los que debutaron en esa serie, y solo con la sigla exacta', () => {
     expect(find('db').sort()).toEqual(['goku', 'piccolo']);
-    expect(find('DBZ').sort()).toEqual(['gohan', 'goku', 'piccolo']);
-    expect(find('dbgt').sort()).toEqual(['goku', 'pan']);
+    // Solo los que debutaron en la serie: Goku y Piccolo salen también en Z y GT, pero no con "dbz" ni "dbgt".
+    expect(find('DBZ')).toEqual(['gohan']);
+    expect(find('dbgt')).toEqual(['pan']);
     expect(find('dbg')).toEqual([]);
   });
 

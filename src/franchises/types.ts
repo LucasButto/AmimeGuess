@@ -152,7 +152,7 @@ export interface FranchiseConfig {
   /** Nombre visible de cada serie, para los chips del panel de filtros. */
   readonly seriesLabels: Readonly<Record<string, string>>;
   /**
-   * Siglas con que se busca cada serie en el autocompletado ("dbz" trae a todos los de Dragon Ball Z). Coinciden exactas, no por
+   * Siglas con que se busca cada serie en el autocompletado ("dbz" trae a los que debutaron en Dragon Ball Z). Coinciden exactas, no por
    * prefijo: así "db" trae solo los de Dragon Ball y no los de DBZ, DBS o DBGT. Sin esto, la búsqueda es solo por nombre y alias.
    */
   readonly seriesSearchTags?: Readonly<Record<string, readonly string[]>>;

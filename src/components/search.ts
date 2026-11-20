@@ -3,7 +3,7 @@
 // lo que tiene una palabra que empieza igual ("sar" → Hiruzen Sarutobi) y al final
 // lo que lo contiene en cualquier parte ("chu" → Pikachu). Con una sola letra no
 // cuenta lo de "cualquier parte": con "s" no salen los que llevan una S adentro.
-// Las siglas de una serie ("DBZ", "DBGT") traen todo lo de esa serie, y solo eso: coinciden exactas, no por prefijo (con "db" no salen los
+// Las siglas de una serie ("DBZ", "DBGT") traen a los que DEBUTARON en esa serie (la primera de `series`), y solo eso: coinciden exactas, no por prefijo (con "db" no salen los
 // de "dbz") y, si lo escrito es una sigla, no se mezclan nombres que la llevan adentro ("Kid Buu" contiene "db" y no es de Dragon Ball).
 // Lógica pura, sin React.
 
@@ -11,11 +11,11 @@ export interface SearchItem {
   id: string;
   label: string;
   aliases?: readonly string[];
-  /** Series en las que aparece (ver `SeriesSearchTags`). */
+  /** Series en las que aparece, la de debut primero (ver `SeriesSearchTags`). */
   series?: readonly string[];
 }
 
-/** Por cada id de serie, las siglas con que se la busca ("dbz" → los de Dragon Ball Z). */
+/** Por cada id de serie, las siglas con que se la busca ("dbz" → los que debutaron en Dragon Ball Z). */
 export type SeriesSearchTags = Readonly<Record<string, readonly string[]>>;
 
 /** "Mr. Mime", "mr mime" y "MRMIME" dan lo mismo: minúsculas, sin acentos, signos ni espacios. */
@@ -57,7 +57,8 @@ export function buildSearchIndex<T extends SearchItem>(items: readonly T[], seri
     item,
     keys: [toKey(item.label, 0), ...(item.aliases ?? []).map((alias) => toKey(alias, 3))],
     sortKey: normalizeSearch(item.label),
-    tags: new Set((item.series ?? []).flatMap((id) => seriesTags[id] ?? []).map(normalizeSearch)),
+    // Solo la serie de debut: "dbz" trae a Majin Buu (debutó en Z) pero no a Majin Kuu (debutó en Daima) aunque salga también en Z.
+    tags: new Set((seriesTags[item.series?.[0] ?? ''] ?? []).map(normalizeSearch)),
   }));
 }
 
