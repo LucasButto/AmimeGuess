@@ -2005,5 +2005,80 @@
       "accepts": []
     },
     "verified": false
+  },
+  {
+    "id": "technique-canon-galick-daima",
+    "kind": "technique",
+    "entityId": "vegeta",
+    "series": "daima",
+    "payload": {
+      "name": "Cañón Galick",
+      "image": "dragon-ball/c/335818e196696aa4",
+      "video": "dragon-ball/335818e196696aa4",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-creacion-de-cell-jr",
+    "kind": "technique",
+    "entityId": "celula",
+    "series": "dbz",
+    "payload": {
+      "name": "Creación de Cell Jr.",
+      "image": "dragon-ball/c/5f515be13a6f8db9",
+      "video": "dragon-ball/5f515be13a6f8db9",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-destello-final-super",
+    "kind": "technique",
+    "entityId": "vegeta",
+    "series": "super",
+    "payload": {
+      "name": "Destello final",
+      "image": "dragon-ball/c/70f7052e8ec96863",
+      "video": "dragon-ball/70f7052e8ec96863",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-granada-infernal",
+    "kind": "technique",
+    "entityId": "piccolo",
+    "series": "dbz",
+    "payload": {
+      "name": "Granada infernal",
+      "image": "dragon-ball/c/2de1e1f67a155cca",
+      "video": "dragon-ball/2de1e1f67a155cca",
+      "width": 512,
+      "height": 330,
+      "accepts": []
+    },
+    "verified": false
+  },
+  {
+    "id": "technique-makankosappo-super-2",
+    "kind": "technique",
+    "entityId": "gohan",
+    "series": "super",
+    "payload": {
+      "name": "Makankosappo",
+      "image": "dragon-ball/c/165828415ff375ec",
+      "video": "dragon-ball/165828415ff375ec",
+      "width": 512,
+      "height": 248,
+      "accepts": []
+    },
+    "verified": false
   }
 ]

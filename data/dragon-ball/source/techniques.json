@@ -128,5 +128,10 @@
   { "id": "teletransportacion-2", "name": "Teletransportación", "users": ["goku"], "series": "dbz", "verified": false },
   { "id": "tormenta-gigante", "name": "Tormenta gigante", "users": ["nappa"], "series": "dbz", "verified": false },
   { "id": "viaje-en-pilar-db", "name": "Viaje en pilar", "users": ["tao-pai-pai"], "series": "db", "verified": false },
-  { "id": "zanzoken", "name": "Zanzoken", "users": ["dodoria"], "series": "dbz", "verified": false }
+  { "id": "zanzoken", "name": "Zanzoken", "users": ["dodoria"], "series": "dbz", "verified": false },
+  { "id": "canon-galick-daima", "name": "Cañón Galick", "users": ["vegeta"], "series": "daima", "verified": false },
+  { "id": "creacion-de-cell-jr", "name": "Creación de Cell Jr.", "users": ["celula"], "series": "dbz", "verified": false },
+  { "id": "destello-final-super", "name": "Destello final", "users": ["vegeta"], "series": "super", "verified": false },
+  { "id": "granada-infernal", "name": "Granada infernal", "users": ["piccolo"], "series": "dbz", "verified": false },
+  { "id": "makankosappo-super-2", "name": "Makankosappo", "users": ["gohan"], "series": "super", "verified": false }
 ]
