@@ -54,8 +54,22 @@ interface TeamCompareProps {
   optimal: readonly Assignment[];
 }
 
-/** "Mejor combinación posible": los dos equipos lado a lado, el de la persona y el mejor que se podía armar con los mismos Pokémon. */
+/**
+ * "Mejor combinación posible": los dos equipos lado a lado, el de la persona y el mejor que se podía armar con los mismos Pokémon.
+ * Si la persona ya armó la mejor, no hay nada que comparar: se muestra solo su elección, con cada Pokémon en su lugar.
+ */
 export function TeamCompare({ stats, pool, build, optimal }: TeamCompareProps) {
+  if (totalOf(optimal, pool) === totalOf(build, pool)) {
+    return (
+      <section className={styles.root} aria-label={es.statBuilder.pickedBestTitle}>
+        <h2 className={styles.title}>{es.statBuilder.pickedBestTitle}</h2>
+        <p className={styles.summary}>{es.statBuilder.pickedBestSummary(totalOf(build, pool))}</p>
+        <div className={styles.teams} data-single="">
+          <Team title={es.statBuilder.yourPick} stats={stats} pool={pool} build={build} against={build} />
+        </div>
+      </section>
+    );
+  }
   return (
     <section className={styles.root} aria-label={es.statBuilder.bestTitle}>
       <h2 className={styles.title}>{es.statBuilder.bestTitle}</h2>

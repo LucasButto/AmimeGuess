@@ -214,6 +214,10 @@ export const es = {
       best === actual
         ? `¡Elegiste una combinación óptima! Sumaste ${actual} puntos.`
         : `Con estos mismos seis Pokémon podías sumar ${best} puntos: ${best - actual} más que tus ${actual}.`,
+    // La persona ya armó la mejor combinación: se le muestra solo su elección.
+    pickedBestTitle: "¡Elegiste la mejor combinación!",
+    pickedBestSummary: (total: number) => `Sumaste ${total} puntos, lo máximo que se podía lograr con estos seis Pokémon. Así los ubicaste:`,
+    yourPick: "Tu elección",
     // Los dos equipos lado a lado: el que armó la persona y el mejor posible con los mismos Pokémon.
     yourTeam: "Tu equipo",
     bestTeam: "Mejor equipo posible",

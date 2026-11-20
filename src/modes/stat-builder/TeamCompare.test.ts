@@ -38,10 +38,17 @@ it('en el mejor equipo marca los lugares donde cambia el Pokémon, y solo ahí',
   expect(html).toContain('Cambia de lugar');
 });
 
-it('si la combinación ya era óptima no marca nada y los dos totales coinciden', () => {
+it('si la combinación ya era óptima no compara: muestra solo la elección de la persona, sin marcar nada', () => {
   const build = [{ key: 'attack', entityId: 'strong' }, { key: 'speed', entityId: 'fast' }];
   expect(totalOf(build, pool)).toBe(250);
   const html = render(build);
   expect(html).not.toContain('data-changed');
-  expect(html.match(/>250 puntos</g)).toHaveLength(2);
+  expect(html.match(/<article/g)).toHaveLength(1);
+  expect(html).toContain('¡Elegiste la mejor combinación!');
+  expect(html).toContain('Tu elección');
+  expect(html).not.toContain('Mejor equipo posible');
+  expect(html).toContain('>250 puntos<');
+  // Cada Pokémon aparece en el lugar que le dio la persona.
+  expect(html).toContain('>130</strong>');
+  expect(html).toContain('>120</strong>');
 });

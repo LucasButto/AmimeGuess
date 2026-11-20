@@ -14,37 +14,45 @@
 
 .summary { font-size: t.$font-size-base; }
 
-// Los dos equipos siempre lado a lado, también en el teléfono: la comparación se lee de un vistazo.
+// Los dos equipos siempre lado a lado, también en el teléfono: la comparación se lee de un vistazo. Si la persona ya armó el mejor,
+// queda un solo equipo, centrado.
 .teams {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   align-items: start;
   gap: t.$space-2;
   @include bp.min-width('sm') { gap: t.$space-4; }
+
+  &[data-single] {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
 }
 
+// Cada equipo es una caja con el marco del tema (recorte, borde y relleno de la piel), no un borde suelto. Solo borde oscuro, sin
+// color: ni el rojo de acento (se leería como "está mal") ni otro que distinga al mejor equipo; eso lo hacen los lugares que cambian.
 .team {
+  --_fill: #{t.token('surface-sunken')};
+  --_edge: #{t.token('frame-color')};
+  @include m.pixel-frame($fill: var(--_fill), $outer: var(--_edge), $inner: transparent, $width: t.token('frame-width'), $inner-width: 0px, $clip: t.token('clip-panel'), $radius: t.$radius-md);
   display: grid;
   gap: t.$space-2;
   min-inline-size: 0;
-  padding: t.$space-2;
-  border: t.$border-width solid t.token('frame-color');
-  border-radius: t.$radius-sm;
-  @include bp.min-width('sm') { padding: t.$space-3; }
-}
+  padding: calc(#{t.token('frame-width')} + #{t.$space-1});
+  @include bp.min-width('sm') { padding: calc(#{t.token('frame-width')} + #{t.$space-3}); }
 
-// El mejor equipo se distingue por su encabezado, con el color de acento del tema.
-.team[data-best] { border-color: t.token('accent-primary'); }
+  [data-single] > & {
+    inline-size: min(100%, 40rem);
+  }
+}
 
 .teamHeader {
   display: grid;
   gap: 0.125rem;
   min-inline-size: 0;
   padding-block-end: t.$space-2;
-  border-block-end: t.$border-width solid t.token('frame-color');
+  border-block-end: t.token('frame-width') solid var(--_edge);
 }
-
-.team[data-best] .teamHeader { border-block-end-color: t.token('accent-primary'); }
 
 .teamTitle {
   font-size: t.$font-size-sm;
@@ -59,37 +67,54 @@
   font-variant-numeric: tabular-nums;
 }
 
+// Teléfono: una lista, un Pokémon por renglón. Desde `md`, una grilla de 3 × 2 en el orden de las estadísticas: arriba PS, Ataque y
+// Defensa; abajo Ataque especial, Defensa especial y Velocidad.
 .members {
   display: grid;
   gap: t.$space-1;
   margin: 0;
   padding: 0;
   list-style: none;
+  @include bp.min-width('md') { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: t.$space-2; }
 }
 
 // Imagen del Pokémon a la izquierda y, a la derecha, la estadística con su valor. En el teléfono cada equipo es una columna
 // angosta: el valor va debajo de la estadística y el nombre solo se ve desde `sm` (el lector de pantalla lo lee siempre).
+// Cada lugar es una casilla con el marco del tema; desde `md`, con la imagen arriba y los datos debajo, centrados.
 .member {
+  --_cell-fill: #{t.token('surface-panel')};
+  --_cell-ink: #{t.token('ink')};
+  @include m.pixel-frame($fill: var(--_cell-fill), $outer: #{t.token('frame-color')}, $inner: transparent, $width: t.token('frame-width'), $inner-width: 0px, $clip: t.token('clip-cell'), $radius: t.$radius-sm);
   display: grid;
-  grid-template: 'image stat' auto 'image value' auto / 2.5rem minmax(0, 1fr);
+  grid-template: 'image stat' auto 'image value' auto / 2rem minmax(0, 1fr);
   align-items: center;
-  column-gap: t.$space-2;
+  column-gap: t.$space-1;
   min-inline-size: 0;
-  padding: 0.125rem t.$space-1;
-  border: t.$border-width solid transparent;
-  border-radius: t.$radius-sm;
+  padding: calc(#{t.token('frame-width')} + 0.125rem) calc(#{t.token('frame-width')} + 0.125rem);
+  color: var(--_cell-ink);
   @include bp.min-width('sm') { grid-template: 'image stat value' auto 'image name name' auto / 3rem minmax(0, 1fr) auto; }
+  @include bp.min-width('md') {
+    grid-template: 'image' auto 'stat' auto 'value' auto 'name' auto / minmax(0, 1fr);
+    justify-items: center;
+    row-gap: 0.125rem;
+    padding: calc(#{t.token('frame-width')} + #{t.$space-2}) calc(#{t.token('frame-width')} + #{t.$space-1});
+    text-align: center;
+  }
 }
 
 // Dónde cambia el mejor equipo respecto del tuyo.
-.member[data-changed] { border-color: t.token('accent-primary'); background: t.token('chip-fill'); }
+.member[data-changed] {
+  --_cell-fill: #{t.token('chip-on-fill')};
+  --_cell-ink: #{t.token('chip-on-ink')};
+}
 
 .memberImage {
   grid-area: image;
-  inline-size: 2.5rem;
-  block-size: 2.5rem;
+  inline-size: 2rem;
+  block-size: 2rem;
   object-fit: contain;
   @include bp.min-width('sm') { inline-size: 3rem; block-size: 3rem; }
+  @include bp.min-width('md') { inline-size: 4.5rem; block-size: 4.5rem; }
 }
 
 .memberStat {
@@ -106,14 +131,16 @@
   font-size: t.$font-size-sm;
   font-variant-numeric: tabular-nums;
   @include bp.min-width('sm') { font-size: t.$font-size-base; }
+  @include bp.min-width('md') { font-size: t.$font-size-lg; }
 }
 
 .memberName {
   display: none;
   grid-area: name;
   min-inline-size: 0;
+  max-inline-size: 100%;
   overflow: hidden;
-  color: t.token('ink-muted');
+  color: color-mix(in srgb, var(--_cell-ink) 70%, transparent);
   font-size: t.$font-size-sm;
   text-overflow: ellipsis;
   white-space: nowrap;
