@@ -135,6 +135,12 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
     if (searchOpen) searchRef.current?.focus();
   }, [searchOpen]);
 
+  // Al abrir la Pokédex en pantalla grande, el buscador ya está seleccionado para escribir de una. En el teléfono se abre con su lupa
+  // (si no, el teclado taparía la grilla apenas se abre).
+  useEffect(() => {
+    if (!phone) searchRef.current?.focus({ preventScroll: true });
+  }, [phone]);
+
   // One observer for the whole grid; 1025 cells do not need state or resize subscriptions each.
   useEffect(() => {
     const grid = gridRef.current;
@@ -281,6 +287,7 @@ function PickerDialog({ items, excludeIds, onPick, onClose, offset, size, onMove
               {es.pokemonSkin.picker.search}
             </label>
             <input
+              ref={searchRef}
               id={searchId}
               className={styles.search}
               type="text"
