@@ -38,6 +38,10 @@
   --attempt-card-cols: 2;
   --attempt-card-cols-md: 4;
   --attempt-card-label-h: 1.2em;
+  // La barra de abajo del teléfono es un poco más alta: el campo del rastreador necesita aire arriba y abajo (ver ScouterInput).
+  --dock-max-h: 6.5rem;
+  --dock-pad-end: 1.25rem;
+  --dock-pad-inline: 0.75rem;
   --app-bar-fill: var(--palette-orange);
   --app-bar-ink: var(--palette-ink);
   --app-bar-edge: var(--palette-ink);
