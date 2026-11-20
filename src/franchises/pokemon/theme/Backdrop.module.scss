@@ -44,8 +44,9 @@
   @include bp.min-width('md') { --ground-h: clamp(14rem, 32.2dvh, 21rem); }
   &[data-pmd-low='true'] { --ground-h: 9.8rem; }
 
-  // Las cuatro franjas de la hora local (decoración: el reto no depende de la hora).
-  &[data-time='dawn'] {
+  // Las cuatro franjas de la hora local (decoración: el reto no depende de la hora). Las marca en <html> el script del <head>
+  // antes de pintar (ver sky-boot.ts): sin él, se ve el día.
+  :global(html[data-sky-pokemon='dawn']) & {
     --water-shade: 0.1;
     --landscape-veil: var(--palette-dawn);
     --landscape-shade: 0.12;
@@ -55,7 +56,7 @@
   }
 
   // Atardecer: todo el cielo es naranja, más oscuro arriba y más claro en el resto.
-  &[data-time='dusk'] {
+  :global(html[data-sky-pokemon='dusk']) & {
     --water-shade: 0.16;
     --landscape-veil: var(--palette-dusk);
     --landscape-shade: 0.22;
@@ -64,7 +65,7 @@
     --sky-c: var(--palette-dawn);
   }
 
-  &[data-time='night'] {
+  :global(html[data-sky-pokemon='night']) & {
     --water-shade: 0.45;
     --landscape-shade: 0.6;
     --sky-a: var(--palette-night);
@@ -185,7 +186,7 @@
   box-shadow: star-field(40, 480, 110);
   opacity: 0;
 
-  .backdrop[data-time='night'] & {
+  :global(html[data-sky-pokemon='night']) .backdrop & {
     opacity: 1;
   }
 }
@@ -220,16 +221,16 @@
   }
 
   // Al atardecer, la base de las nubes es naranja (los mismos dibujos, con otra sombra).
-  .backdrop[data-time='dusk'] &[data-layer='back'] {
+  :global(html[data-sky-pokemon='dusk']) .backdrop &[data-layer='back'] {
     --tile: url('/theme/pokemon/clouds-back-dusk.svg');
   }
 
-  .backdrop[data-time='dusk'] &[data-layer='front'] {
+  :global(html[data-sky-pokemon='dusk']) .backdrop &[data-layer='front'] {
     --tile: url('/theme/pokemon/clouds-front-dusk.svg');
   }
 
   // De noche las nubes casi no se ven.
-  .backdrop[data-time='night'] & {
+  :global(html[data-sky-pokemon='night']) .backdrop & {
     opacity: 0.3;
   }
 }
@@ -259,11 +260,11 @@
     background: var(--palette-night);
     opacity: 0;
 
-    .backdrop[data-time='night'] & {
+    :global(html[data-sky-pokemon='night']) .backdrop & {
       opacity: 0.45;
     }
 
-    .backdrop[data-time='dusk'] & {
+    :global(html[data-sky-pokemon='dusk']) .backdrop & {
       opacity: 0.15;
     }
   }

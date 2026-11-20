@@ -14,17 +14,16 @@
   background-repeat: no-repeat;
   background-size: cover;
 
-  &[data-time='day'] {
-    background-color: #5b9bd5;
-    background-image: url('/theme/naruto/fondo-dia.webp');
-  }
+  // Día por defecto; la tarde y la noche las marca en <html> el script del <head> antes de pintar (ver sky-boot.ts).
+  background-color: #5b9bd5;
+  background-image: url('/theme/naruto/fondo-dia.webp');
 
-  &[data-time='dusk'] {
+  :global(html[data-sky-naruto='dusk']) & {
     background-color: var(--palette-orange);
     background-image: url('/theme/naruto/fondo-tarde.webp');
   }
 
-  &[data-time='night'] {
+  :global(html[data-sky-naruto='night']) & {
     background-color: var(--palette-night);
     background-image: url('/theme/naruto/fondo-noche.webp');
   }

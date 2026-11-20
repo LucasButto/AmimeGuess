@@ -3,6 +3,7 @@ import type { ReactNode } from 'react';
 import { AnalyticsClient } from '@/components/AnalyticsClient';
 import { NoTrackFlag } from '@/components/NoTrackFlag';
 import { PREFS_BOOT_SCRIPT } from '@/components/prefs';
+import { SKY_BOOT_SCRIPT } from '@/franchises/sky-boot';
 import { SITE_THEME_COLOR } from '@/franchises/themeColor';
 import { es } from '@/i18n/es';
 import '@/styles/globals.scss';
@@ -49,6 +50,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body>
         {/* Antes de pintar: la "Fuente legible" de las preferencias (ver prefs.ts). */}
         <script dangerouslySetInnerHTML={{ __html: PREFS_BOOT_SCRIPT }} />
+        {/* Antes de pintar: la franja horaria de los fondos (ver sky-boot.ts), así no se ve un instante el cielo de día. */}
+        <script dangerouslySetInnerHTML={{ __html: SKY_BOOT_SCRIPT }} />
         {children}
         <RouteStatic />
         {/* Versus: la conexión con la sala se carga solo en sus páginas y en las partidas (`?v=`); ver VersusMount. */}

@@ -12,17 +12,16 @@
   background-repeat: no-repeat;
   background-size: cover;
 
-  &[data-time='day'] {
-    background-color: var(--palette-sky-blue);
-    background-image: url('/theme/dragon-ball/fondo-dia.webp');
-  }
+  // Día por defecto; la tarde y la noche las marca en <html> el script del <head> antes de pintar (ver sky-boot.ts).
+  background-color: var(--palette-sky-blue);
+  background-image: url('/theme/dragon-ball/fondo-dia.webp');
 
-  &[data-time='dusk'] {
+  :global(html[data-sky-dragon-ball='dusk']) & {
     background-color: var(--palette-orange);
     background-image: url('/theme/dragon-ball/fondo-tarde.webp');
   }
 
-  &[data-time='night'] {
+  :global(html[data-sky-dragon-ball='night']) & {
     background-color: var(--palette-navy);
     background-image: url('/theme/dragon-ball/fondo-noche.webp');
   }

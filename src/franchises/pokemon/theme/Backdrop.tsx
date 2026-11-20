@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useSyncExternalStore } from 'react';
 import styles from './Backdrop.module.scss';
+import { markSky } from '../../sky-boot';
 import { timeOfDay, type TimeOfDay } from './time-of-day';
 import { PokemonWalkers } from './Walkers';
 
@@ -23,14 +24,19 @@ const RECHECK_MS = 5 * 60 * 1000;
  * reducido. Todas las páginas de la piel llevan actores PMD, con reloj visible y carga diferida.
  *
  * El cielo cambia según la hora local (amanecer, día, atardecer y noche con estrellas). Es solo decoración:
- * el reto nunca depende de la hora local. Antes de montar (y en el servidor) se ve el de día.
+ * el reto nunca depende de la hora local. El cielo lo elige el atributo que el script del <head> pone en <html> antes de pintar (ver sky-boot.ts): no se ve un instante el de día.
  */
 export function PokemonBackdrop() {
   const [time, setTime] = useState<TimeOfDay>('day');
   const low = useSyncExternalStore(subscribeViewport, lowLandscape, serverLow);
 
   useEffect(() => {
-    const update = () => setTime(timeOfDay(new Date().getHours()));
+    const update = () => {
+      const next = timeOfDay(new Date().getHours());
+      setTime(next);
+      // El cielo se pinta con el atributo de <html> (lo puso el script del <head>): se actualiza si cambió la franja.
+      markSky('pokemon', next);
+    };
     update();
     const timer = setInterval(update, RECHECK_MS);
     return () => clearInterval(timer);
