@@ -6,7 +6,7 @@
 // (otros 4): 0,5 rem en total. Desde md, la carcasa roja se ve alrededor.
 .dex {
   @include m.pixel-frame(
-    $fill: var(--palette-red),
+    $fill: var(--palette-red-bright),
     $outer: var(--palette-frame),
     $inner: transparent,
     $width: var(--px),

@@ -14,7 +14,7 @@ export const POKEMON_PALETTE = {
   'ink-shadow': '#a8a8a8',
   frame: '#202020',
   red: '#d83030',
-  // El rojo vivo del botón y del modal de "Cómo se juega" (el del ícono de elegir de la Pokédex); también el de la bola de las extras (antes rosa: la paleta tiene tope de 24).
+  // El rojo vivo del botón y del modal de "Cómo se juega" y de la Pokédex (el del ícono de elegir); también el de la bola de las extras (antes rosa: la paleta tiene tope de 24).
   'red-bright': '#fb4b42',
   blue: '#3068c8',
   yellow: '#f8d030',

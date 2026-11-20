@@ -94,7 +94,7 @@
 // En la barra inferior del teléfono (`#game-dock`, con `data-dock`): un botón rojo de 3,75 rem, con la lente a la izquierda,
 // "Abrir la Pokédex" y debajo cuántos Pokémon quedan (o en qué intento va), y el cursor a la derecha.
 [data-dock] .bigBall {
-  @include m.pixel-frame($fill: var(--palette-red), $outer: var(--palette-frame), $inner: var(--palette-ink-shadow));
+  @include m.pixel-frame($fill: var(--palette-red-bright), $outer: var(--palette-frame), $inner: var(--palette-ink-shadow));
   justify-content: flex-start;
   gap: t.$space-3;
   // Con letra muy grande el texto se acorta en vez de empujar el cursor fuera de la pantalla.
@@ -123,10 +123,10 @@
 
 // La Pokédex es roja: la barra del título y el anillo del marco, en el rojo del tema (el resto de los modales, azules).
 .dialog {
-  --dialog-bar-fill: var(--palette-red);
-  --frame-dialog-inner: var(--palette-red);
+  --dialog-bar-fill: var(--palette-red-bright);
+  --frame-dialog-inner: var(--palette-red-bright);
   // Las rayitas del agarre de la esquina se iluminan en el mismo rojo.
-  --grip-hover: var(--palette-red);
+  --grip-hover: var(--palette-red-bright);
 
   @include bp.min-width('md') {
     @include bp.min-height('tall') {
@@ -536,7 +536,7 @@
   position: absolute;
   inset-block-start: t.$space-1;
   inset-inline-end: t.$space-1;
-  color: var(--palette-red);
+  color: var(--palette-red-bright);
   font-size: 1rem;
 }
 
@@ -546,7 +546,7 @@
 .dialog [data-part='modal-body'],
 .filters {
   @supports not selector(::-webkit-scrollbar) {
-    scrollbar-color: var(--palette-red) var(--palette-cloud-shade);
+    scrollbar-color: var(--palette-red-bright) var(--palette-cloud-shade);
     scrollbar-width: auto;
   }
 
@@ -563,7 +563,7 @@
 
   &::-webkit-scrollbar-thumb {
     border: var(--px-half) solid var(--palette-frame);
-    background: linear-gradient(to right, var(--palette-red) 0 70%, color-mix(in srgb, var(--palette-red) 65%, var(--palette-frame)) 70%);
+    background: linear-gradient(to right, var(--palette-red-bright) 0 70%, color-mix(in srgb, var(--palette-red-bright) 65%, var(--palette-frame)) 70%);
   }
 
   &::-webkit-scrollbar-thumb:hover {
@@ -652,8 +652,8 @@
 
 // El Pokémon marcado (primer toque): aro rojo; el botón de abajo lo confirma.
 .cell[data-selected='true'] {
-  border-color: var(--palette-red);
-  box-shadow: inset 0 0 0 var(--px-half) var(--palette-red);
+  border-color: var(--palette-red-bright);
+  box-shadow: inset 0 0 0 var(--px-half) var(--palette-red-bright);
   background: var(--palette-white);
 }
 
