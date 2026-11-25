@@ -56,6 +56,8 @@
   --frame-width: var(--px);
   --frame-color: var(--palette-frame);
   --frame-inner-width: var(--px);
+  // Divisores y bordes finos: medio píxel de arte, como el medidor de PS, y no una línea de 1 px que desentona con el pixel art.
+  --rule-width: var(--px-half);
   --frame-inner: var(--palette-cloud-shade);
   --frame-dialog-inner: var(--palette-blue);
   // El resumen de una partida ganada va con el anillo verde de los aciertos.
@@ -177,6 +179,8 @@
   // sombra (van directo sobre el cielo), con una bola como viñeta. Un paso es 1/16 de la letra,
   // redondeado a píxeles enteros.
   --title-step: 0.0625em;
+  // Press Start 2P es monoespaciada y cuadrada: cada letra mide exactamente 1 em de ancho.
+  --title-char-width: 1;
   --title-ink: var(--palette-white);
   --title-shadow: #{outline-shadow(2, var(--palette-frame), var(--palette-ink))};
   --header-site-display: block;

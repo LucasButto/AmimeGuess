@@ -43,7 +43,7 @@
 .dot {
   inline-size: 0.625rem;
   block-size: 0.625rem;
-  border: t.$border-width solid t.color('text-muted');
+  border: t.token('rule-width') solid t.color('text-muted');
   border-radius: t.$radius-full;
   background: t.color('text-muted');
 
@@ -141,7 +141,7 @@
   color: t.color('text');
   overflow-wrap: anywhere;
   hyphens: auto;
-  border: t.$border-width solid t.color('border');
+  border: t.token('rule-width') solid t.color('border');
   border-radius: t.$radius-md;
   background: t.color('surface');
   cursor: pointer;
@@ -205,7 +205,7 @@
 .submit {
   flex: 1;
   color: t.color('accent-contrast');
-  border: t.$border-width solid t.color('accent');
+  border: t.token('rule-width') solid t.color('accent');
   background: t.color('accent');
 
   @include bp.min-width('sm') {
@@ -215,7 +215,7 @@
 
 .clear {
   color: t.color('accent');
-  border: t.$border-width solid t.color('accent');
+  border: t.token('rule-width') solid t.color('accent');
   background: transparent;
 }
 

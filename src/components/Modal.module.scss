@@ -187,7 +187,7 @@
   gap: t.$space-3;
   // El notch del teléfono no tapa el título.
   padding: max(t.$space-3, env(safe-area-inset-top)) t.$space-4 t.$space-3;
-  border-block-end: t.$border-width solid t.token('frame-color');
+  border-block-end: t.token('rule-width') solid t.token('frame-color');
   // Barra del título: del color que le dé el tema (por defecto, sin fondo).
   // `--dialog-bar-fill-own` lo pone un diálogo que quiere otro color que el del tema (ver `GameShell`: "Cómo se juega").
   background: var(--dialog-bar-fill-own, #{t.token('dialog-bar-fill')});
@@ -225,7 +225,7 @@
   @include m.app-shell-desktop { display: flex; }
   // El botón queda en el borde inferior: se alcanza con el pulgar y no queda bajo la barra de gestos.
   padding: t.$space-3 t.$space-4 max(t.$space-3, env(safe-area-inset-bottom));
-  border-block-start: t.$border-width solid t.token('frame-color');
+  border-block-start: t.token('rule-width') solid t.token('frame-color');
 
   @include bp.min-width('md') {
     @include bp.min-height('tall') {

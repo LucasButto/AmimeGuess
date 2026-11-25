@@ -68,7 +68,7 @@
   gap: t.$space-3;
   min-block-size: 2.75rem;
   padding: t.$space-1 t.$space-3;
-  border: t.$border-width solid t.token('frame-color');
+  border: t.token('rule-width') solid t.token('frame-color');
   border-radius: t.$radius-md;
   background: t.token('surface-sunken');
 

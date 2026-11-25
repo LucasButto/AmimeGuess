@@ -166,7 +166,7 @@
     --_fill: transparent;
     --_edge: transparent;
     --_ink: #{t.token('ink-muted')};
-    outline: t.$border-width dashed t.color('border');
+    outline: t.token('rule-width') dashed t.color('border');
     outline-offset: -0.0625rem;
   }
 

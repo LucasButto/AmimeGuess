@@ -30,7 +30,7 @@
   align-items: center;
   gap: t.$space-1;
   padding: t.$space-3 t.$space-2;
-  border: t.$border-width solid t.color('border');
+  border: t.token('rule-width') solid t.color('border');
   border-radius: t.$radius-md;
   background: t.color('bg');
   text-align: center;

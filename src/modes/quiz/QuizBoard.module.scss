@@ -34,7 +34,7 @@
   flex-direction: column;
   gap: t.$space-3;
   padding: t.$space-3;
-  border: t.$border-width solid t.color('border');
+  border: t.token('rule-width') solid t.color('border');
   border-radius: t.$radius-lg;
   background: t.color('surface');
 
@@ -90,7 +90,7 @@
   color: t.color('text');
   overflow-wrap: anywhere;
   hyphens: auto;
-  border: t.$border-width solid t.color('border');
+  border: t.token('rule-width') solid t.color('border');
   border-radius: t.$radius-md;
   background: t.color('surface');
   cursor: pointer;

@@ -7,7 +7,7 @@
   align-items: flex-start;
   gap: t.$space-3;
   padding: t.$space-4;
-  border: t.$border-width solid t.color('border');
+  border: t.token('rule-width') solid t.color('border');
   border-inline-start: 0.375rem solid t.color('accent');
   border-radius: t.$radius-lg;
   background: t.color('surface');

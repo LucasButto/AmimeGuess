@@ -13,7 +13,7 @@
   block-size: 100%;
   min-block-size: 6rem;
   padding: t.$space-4;
-  border: t.$border-width solid t.color('border');
+  border: t.token('rule-width') solid t.color('border');
   border-radius: t.$radius-lg;
   background: t.color('surface');
   box-shadow: t.$card-shadow;

@@ -219,7 +219,7 @@
   gap: t.$space-1 t.$space-3;
   margin: calc(-1 * #{t.$space-4}) calc(-1 * #{t.$space-4}) 0;
   padding: t.$space-3 t.$space-4;
-  border-block-end: t.$border-width solid t.token('frame-color');
+  border-block-end: t.token('rule-width') solid t.token('frame-color');
   background: t.token('surface-dialog');
 }
 
@@ -272,7 +272,7 @@
   display: grid;
   gap: t.$space-1;
   padding: t.$space-1;
-  border: t.$border-width solid t.token('frame-color');
+  border: t.token('rule-width') solid t.token('frame-color');
   background: t.token('surface-dialog');
   color: t.token('ink');
   box-shadow: var(--px) var(--px) 0 var(--palette-frame);
@@ -664,7 +664,7 @@
   z-index: t.$layer-sticky;
   margin: 0 calc(-1 * #{t.$space-2}) calc(-1 * #{t.$space-2});
   padding: t.$space-2 t.$space-3 calc(#{t.$space-2} + env(safe-area-inset-bottom));
-  border-block-start: t.$border-width solid t.token('frame-color');
+  border-block-start: t.token('rule-width') solid t.token('frame-color');
   background: t.token('surface-dialog');
   > button { inline-size: 100%; min-block-size: 3.5rem; }
 }

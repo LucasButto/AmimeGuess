@@ -159,6 +159,8 @@ $semantic: (
   'frame-color': var(--color-border),
   'frame-inner-width': 0px,
   'frame-inner': transparent,
+  // Líneas sueltas: divisores (debajo de un título, arriba de un pie) y bordes finos. Un tema pixel las engrosa a un píxel de arte.
+  'rule-width': 1px,
   // Formas: el recorte de las esquinas (`none`, o un polígono escalonado de `pixel-corners`) de los
   // paneles, los botones, los chips y las celdas. Con `none` mandan los redondeos del tema base.
   'clip-panel': none,
@@ -244,6 +246,9 @@ $semantic: (
   'title-bullet-size': 0px,
   // Cuánto se agranda el título de la página respecto del tamaño base (1 = el de siempre).
   'title-scale': 1,
+  // Cuánto mide de ancho, en em, una letra del título (en promedio, redondeando para arriba). Con eso el título de la barra del
+  // teléfono baja su tamaño lo justo para entrar en un renglón (ver `.title` en la página de un modo).
+  'title-char-width': 0.66,
   // Nombre del sitio sobre el título de la franquicia (oculto por defecto) y la línea chica sobre el
   // título de un modo (el nombre de la franquicia): color y sombra.
   'header-site-display': none,

@@ -5,7 +5,7 @@
 .cellBack {
   position: absolute;
   inset: 0;
-  border: t.$border-width solid t.token('frame-color');
+  border: t.token('rule-width') solid t.token('frame-color');
   border-radius: t.$radius-md;
   background: t.token('surface-sunken');
 }

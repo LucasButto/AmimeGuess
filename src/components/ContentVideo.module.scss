@@ -10,7 +10,7 @@
   inset-block-end: t.$space-2;
   inset-inline-end: t.$space-2;
   padding: t.$space-1 t.$space-3;
-  border: t.$border-width solid t.token('frame-color');
+  border: t.token('rule-width') solid t.token('frame-color');
   border-radius: 0;
   background: t.token('surface-panel');
   color: t.token('ink');

@@ -86,7 +86,7 @@ $column-min: 4.75rem;
   text-align: center;
   background: t.token('surface-panel');
   color: t.token('ink-muted');
-  border-block-end: t.$border-width solid t.token('frame-color');
+  border-block-end: t.token('rule-width') solid t.token('frame-color');
 }
 
 // La esquina queda fija en los dos sentidos, encima de todo.
@@ -95,7 +95,7 @@ $column-min: 4.75rem;
   z-index: t.$layer-sticky-corner;
   min-inline-size: $name-column;
   inline-size: $name-column;
-  border-inline-end: t.$border-width solid t.token('frame-color');
+  border-inline-end: t.token('rule-width') solid t.token('frame-color');
 }
 
 .name {
@@ -111,7 +111,7 @@ $column-min: 4.75rem;
   line-height: t.$line-height-tight;
   text-align: center;
   background: t.token('surface-panel');
-  border-inline-end: t.$border-width solid t.token('frame-color');
+  border-inline-end: t.token('rule-width') solid t.token('frame-color');
   overflow-wrap: anywhere;
 
   span {
@@ -377,7 +377,7 @@ $column-min: 4.75rem;
     inline-size: 1.75rem;
     block-size: 1.75rem;
     border-radius: 50%;
-    border: t.$border-width solid t.token('frame-color');
+    border: t.token('rule-width') solid t.token('frame-color');
     background: t.token('surface-panel');
     font-weight: t.$font-weight-bold;
   }

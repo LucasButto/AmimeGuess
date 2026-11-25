@@ -108,7 +108,7 @@
   flex-direction: column;
   gap: t.$space-3;
   padding: t.$space-4;
-  border: t.$border-width solid t.color('border');
+  border: t.token('rule-width') solid t.color('border');
   border-radius: t.$radius-lg;
   background: t.color('surface');
   box-shadow: t.$card-shadow;
@@ -183,7 +183,7 @@
 }
 
 .details {
-  border-block-start: t.$border-width solid t.color('border');
+  border-block-start: t.token('rule-width') solid t.color('border');
 }
 
 .summary {

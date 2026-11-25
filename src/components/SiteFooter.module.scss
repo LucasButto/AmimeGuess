@@ -5,7 +5,7 @@
   // Pegado al fondo de la ventana aunque la página sea corta (el body es una columna flexible).
   margin-block-start: auto;
   padding-block: t.$space-5;
-  border-block-start: t.$border-width solid t.color('border');
+  border-block-start: t.token('rule-width') solid t.color('border');
   // Sobre la ilustración de fondo, el texto se lee con el color de las tarjetas.
   background: t.color('surface');
 }

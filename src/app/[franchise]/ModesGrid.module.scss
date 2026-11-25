@@ -139,7 +139,7 @@
 .rowPlay {
   flex: none;
   padding: t.$space-2 t.$space-4;
-  border: t.$border-width solid t.token('frame-color');
+  border: t.token('rule-width') solid t.token('frame-color');
   background: t.token('surface-panel');
   color: t.token('ink');
   font-weight: t.$font-weight-bold;
@@ -153,7 +153,7 @@
   align-self: center;
   // Sobre una placa del tema (nunca el texto directo sobre el fondo del paisaje).
   padding-inline: t.$space-4;
-  border: t.$border-width solid t.token('frame-color');
+  border: t.token('rule-width') solid t.token('frame-color');
   background: t.token('surface-panel');
   color: t.token('ink');
   font-size: t.$font-size-sm;

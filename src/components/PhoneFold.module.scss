@@ -4,7 +4,7 @@
 
 .fold {
   display: grid;
-  border-block-start: t.$border-width solid t.color('border');
+  border-block-start: t.token('rule-width') solid t.color('border');
 
   @include bp.min-width('lg') {
     border-block-start: 0;

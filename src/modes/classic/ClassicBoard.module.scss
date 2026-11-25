@@ -105,7 +105,7 @@
 .empty {
   padding: t.$space-5 t.$space-4;
   text-align: center;
-  border: t.$border-width dashed t.token('frame-color');
+  border: t.token('rule-width') dashed t.token('frame-color');
   border-radius: t.$radius-lg;
   color: t.token('ink-muted');
 }
@@ -142,7 +142,7 @@
     gap: 0.125rem;
     min-inline-size: 0;
     padding: t.$space-2;
-    border: t.$border-width dashed t.token('frame-color');
+    border: t.token('rule-width') dashed t.token('frame-color');
     &[data-unlocked='true'] { grid-column: 1 / -1; border-style: solid; }
     .lockedLong { display: none; }
     .lockedShort { display: inline; }
