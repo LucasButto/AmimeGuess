@@ -376,7 +376,9 @@
 // esfera del dragón. Sigue funcionando con arrastre y con botones.
 
 .root [data-game-mode='linea-de-tiempo'] [data-part='path'] {
-  padding: t.$space-4 t.$space-3;
+  // Teléfono: menos cielo alrededor, más ancho para el texto de cada suceso.
+  padding: t.$space-3 t.$space-2;
+  @include bp.min-width('sm') { padding: t.$space-4 t.$space-3; }
   border: 0.1875rem solid var(--palette-ink);
   background: linear-gradient(to bottom, var(--palette-sky-blue), var(--palette-cloud));
   box-shadow: 0.25rem 0.25rem 0 var(--palette-ink);
@@ -434,10 +436,11 @@
     box-shadow: 0.5rem 0.5rem 0 var(--palette-ink);
   }
 
-  // El número del lugar, dentro de una esfera.
+  // El número del lugar, dentro de una esfera. En el teléfono no va (ver `.position` del motor): deja ancho al texto.
   > li p > span[aria-hidden='true']:first-child {
     @include sphere-fill;
-    display: inline-flex;
+    display: none;
+    @include bp.min-width('sm') { display: inline-flex; }
     align-items: center;
     justify-content: center;
     inline-size: 1.875rem;

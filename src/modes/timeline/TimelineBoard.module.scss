@@ -79,10 +79,15 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: t.$space-2;
+  // Teléfono: el asa pegada a la izquierda y las flechas angostas a la derecha, así el texto tiene casi todo el ancho.
+  gap: t.$space-1;
   min-block-size: 3.5rem;
-  padding: t.$space-1 t.$space-2;
-  border: t.$border-width solid t.color('border');
+  padding: t.$space-1 0;
+  @include bp.min-width('sm') {
+    gap: t.$space-2;
+    padding: t.$space-1 t.$space-2;
+  }
+  border: t.token('rule-width') solid t.color('border');
   border-radius: t.$radius-md;
   background: t.color('surface');
 
@@ -107,8 +112,10 @@
   position: relative;
   flex: none;
   align-self: stretch;
-  inline-size: t.$touch-target;
+  // Teléfono: una columna angosta (el área táctil sigue siendo toda la altura de la tarjeta).
+  inline-size: 1.75rem;
   min-block-size: t.$touch-target;
+  @include bp.min-width('sm') { inline-size: t.$touch-target; }
   border-radius: t.$radius-sm;
   cursor: grab;
   touch-action: none;
@@ -149,9 +156,12 @@
 }
 
 .position {
+  // Teléfono: sin el número del lugar (el orden ya se ve de arriba abajo); desde `sm`, con él.
+  display: none;
   margin-inline-end: t.$space-1;
   font-weight: t.$font-weight-bold;
   color: t.color('text-muted');
+  @include bp.min-width('sm') { display: inline; }
 }
 
 .mark {
@@ -176,6 +186,8 @@
 
 .move {
   @include m.touch-target;
+  // Teléfono: las flechas, una sobre otra, en una columna angosta; cada una sigue teniendo su alto táctil.
+  min-inline-size: 2rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -187,6 +199,7 @@
   border-radius: t.$radius-md;
   background: transparent;
   cursor: pointer;
+  @include bp.min-width('sm') { min-inline-size: t.$touch-target; }
 
   &:not(:disabled) {
     @include m.hover {
@@ -268,7 +281,7 @@
   flex-direction: column;
   gap: t.$space-2;
   padding: t.$space-3 t.$space-4;
-  border: t.$border-width solid t.color('border');
+  border: t.token('rule-width') solid t.color('border');
   border-radius: t.$radius-lg;
   background: t.color('surface');
 }

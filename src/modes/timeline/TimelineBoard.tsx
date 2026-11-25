@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useId, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
+import { useCallback, useEffect, useId, useLayoutEffect, useMemo, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import { flushSync } from 'react-dom';
 import { DockAction, useDockTarget } from '@/components/game-shell/GameDock';
 import { SurrenderButton } from '@/components/game-shell/SurrenderButton';
@@ -68,6 +68,23 @@ type Direction = -1 | 1;
 
 /** Ningún suceso queda fijo: al confirmar no se dice cuáles estaban bien (ver `TimelineBoard`). */
 const NO_LOCKS: ReadonlySet<number> = new Set();
+
+/** Lo que tarda un suceso en deslizarse hasta su lugar nuevo (el mismo tiempo que las tarjetas de Crear sala). */
+const SLIDE_MS = 240;
+
+/** Desliza un suceso desde `dy` píxeles (donde estaba) hasta su lugar. Solo `transform`. */
+function slideFrom(element: HTMLElement, dy: number): void {
+  element.style.transition = 'none';
+  element.style.transform = `translateY(${dy}px)`;
+  void element.offsetHeight;
+  element.style.transition = `transform ${SLIDE_MS}ms cubic-bezier(0.25, 0.8, 0.3, 1)`;
+  element.style.transform = '';
+  const clear = () => {
+    element.style.transition = '';
+    element.removeEventListener('transitionend', clear);
+  };
+  element.addEventListener('transitionend', clear);
+}
 
 /**
  * Una partida: el reto de un día para una combinación de filtros. El marco la vuelve a
@@ -156,6 +173,27 @@ export function TimelineBoard({ session, config, puzzle }: TimelineBoardProps) {
     if (element) buttonRefs.current.set(key, element);
     else buttonRefs.current.delete(key);
   }, []);
+
+  // Al cambiar el orden (con las flechas o al pasar por encima de otro mientras se arrastra), cada suceso que cambió de lugar
+  // se desliza desde donde estaba hasta su lugar nuevo, como las tarjetas de Crear sala del versus (animación FLIP: solo
+  // `transform`, quieta con movimiento reducido). El que se arrastra sigue al puntero y no se anima.
+  const places = useRef(new Map<string, number>());
+  const draggingRef = useRef<string | null>(null);
+  useEffect(() => {
+    draggingRef.current = draggingId;
+  }, [draggingId]);
+  useLayoutEffect(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const next = new Map<string, number>();
+    for (const [id, element] of itemRefs.current) {
+      const top = element.offsetTop;
+      next.set(id, top);
+      const before = places.current.get(id);
+      if (reduced || before === undefined || before === top || id === draggingRef.current) continue;
+      slideFrom(element, before - top);
+    }
+    places.current = next;
+  }, [arrangement]);
 
   // El foco acompaña al suceso que se movió con un botón: al reordenarse la lista el navegador lo suelta.
   useEffect(() => {

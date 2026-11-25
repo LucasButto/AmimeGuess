@@ -153,7 +153,9 @@ $ink: var(--palette-ink);
 // un sello rojo. El veredicto del motor (aro rojo si el orden está mal, verde si se resolvió) se conserva.
 
 .root [data-game-mode='linea-de-tiempo'] [data-part='path'] {
-  padding: 0.75rem;
+  // Teléfono: menos pergamino alrededor, más ancho para el texto de cada suceso.
+  padding: 0.5rem;
+  @include bp.min-width('sm') { padding: 0.75rem; }
   border: 0.125rem solid $ink;
   @include art.sheet;
 
