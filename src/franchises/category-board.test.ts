@@ -32,10 +32,10 @@ for (const franchise of [narutoConfig, dragonBallConfig] as readonly FranchiseCo
         expect(members('konoha')).toHaveLength(43);
         expect(members('konoha')).toContain('mitsuki');
         expect(members('konoha')).not.toContain('temari');
-        expect(members('otras-aldeas')).toHaveLength(42);
+        expect(members('otras-aldeas')).toHaveLength(45);
         expect(members('otras-aldeas')).toContain('mitsuki');
         expect(members('otras-aldeas')).toEqual(expect.arrayContaining(['gamabunta', 'gamakichi', 'katsuyu', 'manda', 'fukasaku']));
-        expect(members('otras-aldeas')).toContain('kaguya-otsutsuki');
+        expect(members('otras-aldeas')).toEqual(expect.arrayContaining(config.roster.filter((id) => id.endsWith('-otsutsuki'))));
         expect(members('invocacion')).toEqual(expect.arrayContaining(['naruto-uzumaki', 'jiraiya', 'sasuke-uchiha', 'orochimaru', 'hiruzen-sarutobi', 'temari']));
         expect(members('invocacion')).toEqual(expect.arrayContaining(['gamabunta', 'katsuyu', 'manda', 'gamakichi', 'fukasaku', 'hashirama-senju']));
         expect(members('invocacion')).not.toContain('sakon-y-ukon');
