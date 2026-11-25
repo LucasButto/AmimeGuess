@@ -5432,7 +5432,7 @@
         "Fuego"
       ],
       "atributos": [],
-      "arcoDebut": 20,
+      "arcoDebut": 30,
       "estadoVital": "Vivo",
       "ocupacion": null,
       "inicial": "K",
@@ -5466,7 +5466,7 @@
       ],
       "naturalezas": [],
       "atributos": [],
-      "arcoDebut": 31,
+      "arcoDebut": 32,
       "estadoVital": "Vivo",
       "ocupacion": null,
       "inicial": "E",
@@ -5496,7 +5496,7 @@
       "kekkeiGenkai": [],
       "naturalezas": [],
       "atributos": [],
-      "arcoDebut": 31,
+      "arcoDebut": 32,
       "estadoVital": "Vivo",
       "ocupacion": null,
       "inicial": "D",
@@ -5593,7 +5593,7 @@
         "Fuego"
       ],
       "atributos": [],
-      "arcoDebut": 29,
+      "arcoDebut": 30,
       "estadoVital": "Muerto",
       "ocupacion": null,
       "inicial": "I",
@@ -5630,7 +5630,7 @@
         "Yin"
       ],
       "atributos": [],
-      "arcoDebut": 20,
+      "arcoDebut": 26,
       "estadoVital": "Muerto",
       "ocupacion": null,
       "inicial": "M",
@@ -5662,7 +5662,7 @@
       "atributos": [
         "Sensor"
       ],
-      "arcoDebut": 20,
+      "arcoDebut": 26,
       "estadoVital": "Muerto",
       "ocupacion": "Guardián de Momoshiki",
       "inicial": "K",
@@ -5728,7 +5728,7 @@
         "Yin"
       ],
       "atributos": [],
-      "arcoDebut": 28,
+      "arcoDebut": 29,
       "estadoVital": "Vivo",
       "ocupacion": "Científico",
       "inicial": "A",
@@ -5807,7 +5807,7 @@
       "atributos": [
         "Sabio"
       ],
-      "arcoDebut": 26,
+      "arcoDebut": 28,
       "estadoVital": "Vivo",
       "ocupacion": null,
       "inicial": "K",

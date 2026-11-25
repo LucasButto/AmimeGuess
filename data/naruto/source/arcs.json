@@ -24,9 +24,10 @@
   { "id": "examen-de-graduacion", "name": "Examen de graduación", "series": "boruto", "from": 34 },
   { "id": "mision-de-genin", "name": "Misión de genin", "series": "boruto", "from": 40 },
   { "id": "banda-de-byakuya", "name": "Banda de Byakuya", "series": "boruto", "from": 43 },
-  { "id": "contra-momoshiki", "name": "Contra Momoshiki", "series": "boruto", "from": 51 },
+  { "id": "contra-momoshiki", "name": "Exámenes Chūnin Boruto", "series": "boruto", "from": 51 },
   { "id": "desaparicion-de-mitsuki", "name": "Desaparición de Mitsuki", "series": "boruto", "from": 71 },
   { "id": "activacion-de-kara", "name": "Activación de Kara", "series": "boruto", "from": 157 },
+  { "id": "arco-de-ao", "name": "Arco de Ao", "series": "boruto", "from": 178 },
   { "id": "arco-de-kawaki", "name": "Arco de Kawaki", "series": "boruto", "from": 188 },
   { "id": "reexamen-chunin", "name": "Reexamen Chūnin", "series": "boruto", "from": 221 },
   { "id": "asalto-de-code", "name": "Asalto de Code", "series": "boruto", "from": 287 }

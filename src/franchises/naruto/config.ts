@@ -35,9 +35,11 @@ export const arcLabels: Readonly<Record<string, string>> = {
   'examen-de-graduacion': 'Examen de graduación',
   'mision-de-genin': 'Misión de genin',
   'banda-de-byakuya': 'Banda de Byakuya',
-  'contra-momoshiki': 'Contra Momoshiki',
+  // "Boruto": que no se confunda con el Examen Chunin de Naruto.
+  'contra-momoshiki': 'Exámenes Chunin Boruto',
   'desaparicion-de-mitsuki': 'Desaparición de Mitsuki',
   'activacion-de-kara': 'Activación de Kara',
+  'arco-de-ao': 'Arco de Ao',
   'arco-de-kawaki': 'Arco de Kawaki',
   'reexamen-chunin': 'Reexamen Chunin',
   'asalto-de-code': 'Asalto de Code',

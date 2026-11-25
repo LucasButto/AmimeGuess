@@ -120,7 +120,11 @@ export const characterSrcSchema = z
     wiki: z.string().min(1).optional(),
     /** Series en las que aparece, en orden canónico. La primera es la serie de debut y tiene que coincidir con `debut.anime` de Dattebayo. */
     series: z.array(seriesId).min(1),
-    /** Arco de debut: solo si el personaje no tiene episodio de anime en Dattebayo (el resto se calcula con arcs.json). */
+    /**
+     * Arco de debut, cuando no se puede calcular con arcs.json: el personaje no tiene episodio de anime en Dattebayo, o el que tiene
+     * es una aparición que nadie asocia con él (Kawaki: el ep. 1 de Boruto abre con un adelanto del futuro; Kashin Koji, Momoshiki y
+     * Kinshiki: escenas cortas antes de su arco). Va el arco donde se lo conoce. Reemplaza al calculado.
+     */
     arcDebut: kebab.optional(),
     override: overrideSchema.optional(),
     verified: z.boolean(),

@@ -166,7 +166,7 @@
     },
     {
       "id": "contra-momoshiki",
-      "name": "Contra Momoshiki",
+      "name": "Exámenes Chunin Boruto",
       "series": "boruto",
       "order": 26
     },
@@ -183,22 +183,28 @@
       "order": 28
     },
     {
+      "id": "arco-de-ao",
+      "name": "Arco de Ao",
+      "series": "boruto",
+      "order": 29
+    },
+    {
       "id": "arco-de-kawaki",
       "name": "Arco de Kawaki",
       "series": "boruto",
-      "order": 29
+      "order": 30
     },
     {
       "id": "reexamen-chunin",
       "name": "Reexamen Chunin",
       "series": "boruto",
-      "order": 30
+      "order": 31
     },
     {
       "id": "asalto-de-code",
       "name": "Asalto de Code",
       "series": "boruto",
-      "order": 31
+      "order": 32
     }
   ]
 }
