@@ -107,6 +107,12 @@ $half: 0.9s;
   }
 }
 
+// --- Volver (de un modo a la página de la franquicia, `data-entrance='back'`, ver EntranceGate): el vuelo espejado --------------
+// El punto del vuelo se da vuelta: la nave mira a la izquierda y el mismo recorrido la lleva del medio hacia la izquierda.
+:global([data-entrance='back']) .root[data-phase='in'] .axis {
+  transform: scaleX(-1);
+}
+
 // --- Entrada: del medio hasta que se va por la derecha --------------------------------------------------------------------------
 .root[data-phase='in'] {
   @include bp.motion-ok {

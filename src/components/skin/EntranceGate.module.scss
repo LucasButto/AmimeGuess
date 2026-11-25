@@ -1,0 +1,4 @@
+// Solo lleva `data-entrance` para el tema: no ocupa lugar ni cambia la animación de entrada, que va fija sobre la ventana.
+.root {
+  display: contents;
+}

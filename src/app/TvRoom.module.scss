@@ -207,7 +207,11 @@
   .fullStatic[data-mode='in'] { animation: tv-full-in 640ms linear both; }
   .fullStatic[data-mode='out'] { animation: tv-full-out 640ms linear both; }
   .fullStatic > span { animation: tv-static-shift 640ms steps(8) both; }
+  // Mientras tapa la ventana esperando la página nueva, la nieve sigue moviéndose.
+  .fullStatic[data-mode='in'] > span { animation-iteration-count: infinite; }
 }
+// Mientras tapa la ventana, tampoco deja tocar lo de abajo (un segundo toque no navega a otro lado).
+.fullStatic[data-mode='in'] { pointer-events: auto; }
 @keyframes tv-full-in { 0% { opacity: 0; } 25% { opacity: 1; } 100% { opacity: 1; } }
 @keyframes tv-full-out { 0% { opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; } }
 

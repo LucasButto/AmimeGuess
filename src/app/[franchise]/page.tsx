@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { BackNav } from '@/components/BackNav';
+import { EntranceGate } from '@/components/skin/EntranceGate';
 import { TabBar } from '@/components/tabbar/TabBar';
 import { TitleWords } from '@/components/TitleWords';
 import { franchises, getFranchise } from '@/franchises';
@@ -67,7 +68,9 @@ export default async function FranchisePage({ params }: { params: Promise<{ fran
   return (
     <>
       <main className={styles.page} data-shell={appShell ? 'app' : undefined}>
-        <PageTransition />
+        <EntranceGate>
+          <PageTransition />
+        </EntranceGate>
         {appShell ? <div className={styles.appBar}>{navigation}{heading}</div> : <>{navigation}{heading}</>}
         {modes.length === 0 ? (
           <p className={styles.plate}>{es.franchise.provisional}</p>

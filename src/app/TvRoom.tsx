@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { createPortal } from 'react-dom';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type MouseEvent, type PointerEvent } from 'react';
 import { TitleWords } from '@/components/TitleWords';
@@ -12,6 +11,7 @@ import { playRecipe } from '@/components/ui/sound';
 import type { SoundRecipe } from '@/franchises/types';
 import { es } from '@/i18n/es';
 import { versusEnabled } from '@/components/versus/enabled';
+import { goThroughStatic } from '@/components/route-static';
 import { ChannelEmblem } from './ChannelEmblem';
 import { channelProgress, nextPending, type Channel, type Progress } from './channels';
 import { PhoneDots, PhoneFeed, PhoneTop } from './PhoneHome';
@@ -206,17 +206,23 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
   const busy = useRef(false);
   const swapTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const noiseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   useEffect(() => () => {
-    if (timer.current !== null) clearTimeout(timer.current);
     if (noiseTimer.current !== null) clearTimeout(noiseTimer.current);
     if (swapTimer.current !== null) clearTimeout(swapTimer.current);
     delete document.body.dataset.tvLeaving;
   }, []);
   const current = channels[index];
+  // Teléfono (por debajo de `lg`, sin control remoto): Versus es un canal más, después del último. Su lugar es `channels.length`.
+  const versusSlot = channels.length;
+  const versusChannel = () => versus && window.matchMedia('(max-width: 1023.98px)').matches;
 
   function show(target: number) {
     shown.current = target;
+    if (target === versusSlot) {
+      setVersusPreview(true);
+      setAnnouncement(es.home.channelChanged(target + 1, es.versus.entry.name));
+      return;
+    }
     setVersusPreview(false);
     setIndex(target);
     setAnnouncement(es.home.channelChanged(target + 1, channels[target].name));
@@ -260,15 +266,16 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
   }
 
   function tune(next: number) {
-    const target = (next + channels.length) % channels.length;
+    const total = channels.length + (versusChannel() ? 1 : 0);
+    const target = (next + total) % total;
     // El mismo canal que quedó debajo de la pantalla de Versus: no hay cambio de canal, solo se apaga Versus.
     if (target === wanted.current) {
       if (versusPreview) staticThen(() => setVersusPreview(false));
       return;
     }
     // La perilla acompaña: hacia adelante si el canal pedido es el siguiente, hacia atrás si es el anterior.
-    const forward = target === (wanted.current + 1) % channels.length;
-    const backward = target === (wanted.current - 1 + channels.length) % channels.length;
+    const forward = target === (wanted.current + 1) % total;
+    const backward = target === (wanted.current - 1 + total) % total;
     setTurns((count) => count + (forward ? 1 : backward ? -1 : Math.sign(target - wanted.current)));
     wanted.current = target;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -280,14 +287,15 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
 
   const swipe = useSwipe((direction) => tune(wanted.current + direction));
 
+  // Entrar a un canal: la estática del sitio (ver `route-static.ts`) tapa la ventana en el acto y se navega por debajo; en la
+  // página nueva se disipa, sin la animación de entrada del tema (es un cambio de canal).
   function enter(event: { preventDefault: () => void }, slug: string) {
     // Los clics modificados conservan el enlace nativo y no pasan por onNavigate.
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     event.preventDefault();
-    if (timer.current !== null) return;
+    if (entering) return;
     setEntering(true);
-    document.body.dataset.tvLeaving = 'true';
-    timer.current = setTimeout(() => router.push(`/${slug}`), 640);
+    goThroughStatic((href) => router.push(href), `/${slug}`);
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
@@ -321,8 +329,6 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
 
   return (
     <div className={styles.stage} data-franchise={current.comingSoon ? undefined : current.slug} data-tv-room data-channel={index + 1} onKeyDown={handleKeyDown}>
-      {/* Va en el <body>: tapa toda la ventana, también el pie. */}
-      {entering && createPortal(<span className={styles.fullStatic} data-mode="in" data-tv-full-static aria-hidden="true"><span /></span>, document.body)}
       {/* Teléfono: la racha de todo el sitio y cuánto se resolvió hoy. */}
       <PhoneTop streak={stats?.streak ?? 0} solved={solvedTotal} total={modeTotal} ready={stats !== null && progress !== null} />
       <section className={styles.set} aria-label={es.home.tvLabel} data-entering={entering}>
@@ -330,7 +336,9 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
           <div className={styles.bezel} data-noisy={noisy}>
             <TvScreen channel={current} number={index + 1} muted={!prefs.sounds} progress={progress} swipe={swipe} onNavigate={enter} key={current.slug} />
             {versus && (
-              <Link className={styles.versusScreen} href="/versus" data-open={versusPreview || undefined} aria-hidden="true" tabIndex={-1} data-tv-versus-screen onNavigate={(event) => enter(event, 'versus')}>
+              // Encendida, se puede tocar (en el teléfono es un canal más) y también deslizar para cambiar de canal.
+              <Link className={styles.versusScreen} href="/versus" data-open={versusPreview || undefined} aria-hidden={versusPreview ? undefined : true} tabIndex={versusPreview ? undefined : -1}
+                aria-label={es.versus.entry.label} data-tv-versus-screen onNavigate={(event) => enter(event, 'versus')} {...swipe}>
                 {/* Como en los demás canales: el parlante y, en lugar de "CH 01", "LIVE". */}
                 <span className={styles.osdRow}>
                   <SpeakerIcon muted={!prefs.sounds} />
@@ -358,7 +366,7 @@ export function TvRoom({ channels }: { channels: readonly Channel[] }) {
         </div>
         <span className={styles.stand} aria-hidden="true" />
       </section>
-      <PhoneDots channels={channels} index={index} />
+      <PhoneDots channels={channels} index={index} versus={versus} versusActive={versusPreview} />
       <div className={styles.floor} style={{ '--channel-count': channels.length + (versus ? 1 : 0), '--mobile-columns': Math.min(2, channels.length) } as CSSProperties}>
         <nav className={styles.remote} aria-label={es.home.remoteLabel}>
           {channels.map((channel, position) => (
