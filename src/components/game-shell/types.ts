@@ -107,6 +107,8 @@ export interface ShellFranchise {
   readonly seriesLabels: Readonly<Record<string, string>>;
   /** Un dato más de cada serie para los chips, desde `sm` (ver `FranchiseConfig.seriesDetails`). */
   readonly seriesDetails?: Readonly<Record<string, string>>;
+  /** Cómo se llaman las series de la franquicia (ver `FranchiseConfig.versusSeriesWords`); sin esto, "series". */
+  readonly versusSeriesWords?: { readonly short: string; readonly plural: string };
 }
 
 /** Una respuesta del reto, lista para mostrar: la de hoy al terminar, o la de ayer. */
@@ -244,7 +246,8 @@ export interface GameShellProps {
    * Algo que va arriba del juego y que no se vuelve a montar al cambiar de variante (el selector de dificultad):
    * recibe cuántos hay con los filtros de ahora y el día de la partida (el de hoy o el del modo infinito).
    */
-  readonly beforeGame?: (info: { readonly remaining: number; readonly day: number }) => ReactNode;
+  /** `inSheet`: se dibuja dentro de la hoja "Configurar partida" del teléfono (ahí puede partirse en secciones). */
+  readonly beforeGame?: (info: { readonly remaining: number; readonly day: number; readonly inSheet: boolean }) => ReactNode;
   /** El juego. */
   readonly children: (session: GameSession) => ReactNode;
 }

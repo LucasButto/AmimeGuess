@@ -30,6 +30,8 @@
   --attempt-card-cols: 2;
   --attempt-card-cols-md: 4;
   --attempt-card-label-h: 1.2em;
+  // Ancho de letra del título (ver `title-char-width`). Permanent Marker: unos 0,55 em por letra.
+  --title-char-width: 0.6;
   --app-bar-fill: var(--palette-orange);
   --app-bar-ink: var(--palette-ink);
   --app-bar-edge: var(--palette-ink);
@@ -48,6 +50,9 @@
   --accent-primary-ink: var(--palette-white);
   --accent-secondary: var(--palette-wood);
   --accent-secondary-ink: var(--palette-white);
+  // "Configurar partida" (teléfono): del cuero de la tapa del Libro Bingo (`$leather` de BingoBook.module.scss).
+  --series-fill: color-mix(in srgb, var(--palette-wood-dark) 80%, var(--palette-ink));
+  --series-ink: var(--palette-paper);
 
   // Marcos: tinta de pincel por fuera y un filete de papel oscuro por dentro; los cuadros de diálogo llevan el filete
   // naranja, el resumen ganado el verde hoja y el modo infinito el rojo del sello.
@@ -271,16 +276,18 @@
 
   // Los modales se abren como un pergamino que se desenrolla: el cuadro crece de arriba hacia abajo (quieto con
   // movimiento reducido).
-  dialog[open] > * {
+  dialog[open]:not([data-sheet]) > * {
     @include bp.motion-ok {
       transform-origin: top center;
       animation: unroll 0.32s cubic-bezier(0.2, 0.7, 0.3, 1) both;
     }
   }
 
-  // Títulos directo sobre la ilustración: letras de papel con contorno de tinta (se leen de día y de noche).
-  --title-ink: var(--palette-paper);
-  --title-shadow: #{ink-outline(0.0625em, var(--palette-ink), var(--palette-ink))};
+  // Títulos (el nombre de la serie y el de cada modo), como el "Naruto" del televisor del inicio: letras de tinta con un contorno
+  // de papel y un difuminado claro alrededor. Se leen sobre la ilustración (de día y de noche) y sobre la barra naranja.
+  --title-ink: var(--palette-ink);
+  --title-shadow: #{ink-outline(0.0625em, var(--palette-paper))}, 0 0 0.5rem var(--palette-paper);
+  --app-bar-title-shadow: #{ink-outline(0.0625em, var(--palette-paper))}, 0 0 0.5rem var(--palette-paper);
   --kicker-ink: var(--palette-paper);
   --kicker-display: none;
   --kicker-shadow: #{ink-outline(0.0625rem, var(--palette-ink))};

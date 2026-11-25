@@ -95,7 +95,8 @@
     padding-inline-start: 0.25rem;
     line-height: t.$line-height-base;
     color: t.token('app-bar-ink');
-    text-shadow: none;
+    // Una piel puede darle un halo al título de la barra con `--app-bar-title-shadow` (Naruto: el difuminado del televisor).
+    text-shadow: var(--app-bar-title-shadow, none);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

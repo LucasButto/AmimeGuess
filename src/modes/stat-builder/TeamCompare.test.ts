@@ -22,7 +22,7 @@ it('muestra dos equipos lado a lado: el armado y el mejor posible, con la imagen
   const html = render([{ key: 'attack', entityId: 'fast' }, { key: 'speed', entityId: 'strong' }]);
   expect(html.match(/<article/g)).toHaveLength(2);
   expect(html).toContain('Tu equipo');
-  expect(html).toContain('Mejor equipo posible');
+  expect(html).toContain('Mejor equipo');
   expect(html).toContain('90 puntos');
   expect(html).toContain('250 puntos');
   expect(html).toContain('/img/test/fast-512.webp');
@@ -46,7 +46,7 @@ it('si la combinación ya era óptima no compara: muestra solo la elección de l
   expect(html.match(/<article/g)).toHaveLength(1);
   expect(html).toContain('¡Elegiste la mejor combinación!');
   expect(html).toContain('Tu elección');
-  expect(html).not.toContain('Mejor equipo posible');
+  expect(html).not.toContain('Mejor equipo');
   expect(html).toContain('>250 puntos<');
   // Cada Pokémon aparece en el lugar que le dio la persona.
   expect(html).toContain('>130</strong>');

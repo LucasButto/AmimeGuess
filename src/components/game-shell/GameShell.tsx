@@ -330,8 +330,6 @@ export function GameShell({
   const actionsRef = useRef<HTMLDivElement>(null);
   const openDialog = (next: Dialog) => { actionsRef.current?.hidePopover(); setDialog(next); };
 
-  // Si los filtros dejan de ser los de siempre, el botón de la barra lo avisa con un punto.
-  const filtersChanged = active.length < franchise.series.length || flags.toggles.some((toggle) => !toggle.on);
   const filters = (inSheet: boolean) => (
       <FilterPanel
         series={franchise.series}
@@ -343,6 +341,7 @@ export function GameShell({
         minimum={minimumPool}
         toggles={flags.toggles}
         sheet={inSheet}
+        sheetTitle={seriesTitle}
       >
         {!inSheet && <CopyLinkButton filterKey={filterKey} />}
       </FilterPanel>
@@ -355,25 +354,25 @@ export function GameShell({
       {es.shell.helpButton}
     </Button>
   );
-  // Teléfono, modo normal: comparte el renglón del contador del próximo reto (que deja libre su lado derecho). En los demás
+  // Teléfono, modo normal: va debajo del selector de modo, a todo el ancho, seguido del botón que abre los filtros. En los demás
   // casos va a la derecha de la barra de intentos.
   const howToInTopRow = !versus && phone;
+  // "Generaciones" / "Series" (título de la sección en la hoja) y "Gen" / "Series" (el resumen corto del botón).
+  const seriesPlural = franchise.versusSeriesWords?.plural ?? 'series';
+  const seriesTitle = seriesPlural.charAt(0).toUpperCase() + seriesPlural.slice(1);
+  const seriesShort = franchise.versusSeriesWords?.short;
+  const seriesTag = seriesShort ? seriesShort.charAt(0).toUpperCase() + seriesShort.slice(1) : seriesTitle;
 
   return (
     <AttemptsStatusProvider>
     <SurrenderAllowed.Provider value={versus?.modality !== 'race'}>
     {/* En versus sin límite no hay "Intento N de M": la piel no recibe un límite que no corre. */}
     <ActiveAttemptLimit.Provider value={versusRules?.unlimited ? undefined : limit}>
-    <SheetSlotContext.Provider value={{ phone, target: phone && filtersOpen ? sheetTarget : null }}>
+    {/* El contenido se queda en la hoja mientras baja al cerrarse: `sheetTarget` vuelve a `null` recién cuando se desmonta. */}
+    <SheetSlotContext.Provider value={{ phone, target: phone ? sheetTarget : null }}>
     <div className={styles.root} data-game="shell">
       {document.getElementById('game-actions') && createPortal(
         <div className={styles.floatingActions}>
-          {appShell && !versus && <button type="button" className={styles.filterTrigger} aria-label={filtersChanged ? es.shell.filtersChanged : es.shell.filters} aria-haspopup="dialog" aria-expanded={phone && filtersOpen} onClick={() => setFiltersOpen(true)}>
-            {skin.menuIcons?.filters ? <ContentImage className={styles.filterImage} stem={skin.menuIcons.filters} alt="" sizes="2.75rem" /> : <>
-              <svg viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges"><path d="M4 4h16v3H4zm3 5h10v3H7zm3 5h4v7h-4z" fill="currentColor" /></svg>
-              <span className={styles.filterLabel} aria-hidden="true">{es.shell.filtersShort}</span>
-            </>}
-          </button>}
           <button type="button" popoverTarget={actionsId} aria-label={es.shell.actions} className={styles.menuTrigger} data-image={skin.menuIcons?.menu ? '' : undefined}>
             {skin.menuIcons?.menu ? <ContentImage className={styles.menuImage} stem={skin.menuIcons.menu} alt="" sizes="3rem" /> : <svg className={styles.menuSymbol} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges">
               <path className={appShell ? styles.hamburger : undefined} d="M5 5h14v3H5zm0 6h14v3H5zm0 6h14v3H5z" fill="currentColor" />
@@ -421,7 +420,7 @@ export function GameShell({
           </div></div>
         , document.getElementById('game-actions')!
       )}
-      {/* Teléfono: el contador del próximo reto va arriba del selector de modo, con "Cómo se juega" a la derecha. */}
+      {/* Teléfono: el contador del próximo reto con "Cómo se juega" a la derecha, arriba del selector de modo; debajo, los filtros a todo el ancho. */}
       {howToInTopRow && (
         <div className={styles.topRow}>
           <Countdown compact={appShell} />
@@ -429,6 +428,16 @@ export function GameShell({
         </div>
       )}
       {!versus && <ModeNav franchise={franchise.slug} modes={modes} current={mode.slug} solved={solved} lost={lost} filterKey={filterKey} />}
+      {howToInTopRow && (
+        <div className={styles.phoneActions}>
+          <Button variant="secondary" className={styles.seriesButton} aria-haspopup="dialog" aria-expanded={filtersOpen} onClick={() => setFiltersOpen(true)}>
+            <svg className={styles.howToIcon} viewBox="0 0 24 24" aria-hidden="true" shapeRendering="crispEdges"><path d="M4 4h16v3H4zm3 5h10v3H7zm3 5h4v7h-4z" fill="currentColor" /></svg>
+            {/* Si no entra en un renglón (360 px), "ahora 9/9" baja entero al segundo. */}
+            <span className={styles.seriesLabel}>{es.shell.seriesButton}</span>
+            <span className={styles.seriesNow}>{es.shell.seriesNow(seriesTag, active.length, franchise.series.length)}</span>
+          </Button>
+        </div>
+      )}
 
       {versus && <VersusClock game={versus} frozen={report !== null} />}
 
@@ -460,7 +469,7 @@ export function GameShell({
         </div>
       )}
 
-      {playable && !versus && <SheetSection>{beforeGame?.({ remaining, day: playDay })}</SheetSection>}
+      {playable && !versus && <SheetSection>{(inSheet) => beforeGame?.({ remaining, day: playDay, inSheet })}</SheetSection>}
 
       {/* Versus: antes de cada modo, "Cómo se juega" con Continuar; recién ahí se monta el juego y arranca. */}
       {playable && versus && showHowTo && howToRules && (

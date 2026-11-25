@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
+import type { CSSProperties } from 'react';
 import { notFound } from 'next/navigation';
 import { BackNav } from '@/components/BackNav';
+import { EntranceGate } from '@/components/skin/EntranceGate';
 import { TitleWords } from '@/components/TitleWords';
 import { getSkin } from '@/franchises/themes';
 import { franchises, getFranchise } from '@/franchises';
@@ -76,8 +78,11 @@ export default async function ModePage({
   const heading = (
     <header className={styles.header}>
       <p className={styles.franchise}>{franchise.name}</p>
-      <h1 className={styles.title}>
-        <TitleMark slug={mode.slug} index={markIndex} />
+      {/* `--title-chars`: el largo del nombre, para que en la barra del teléfono el título entre en un renglón. */}
+      <h1 className={styles.title} style={{ '--title-chars': mode.name.length } as CSSProperties}>
+        <span className={styles.titleMark}>
+          <TitleMark slug={mode.slug} index={markIndex} />
+        </span>
         <TitleWords text={mode.name} />
       </h1>
     </header>
@@ -91,7 +96,9 @@ export default async function ModePage({
 
   return (
     <main className={styles.page} data-shell={appShell ? 'app' : undefined} data-game-screen>
-      <PageTransition />
+      <EntranceGate>
+        <PageTransition />
+      </EntranceGate>
       {appShell ? <div className={styles.appBar}>{navigation}{heading}</div> : <>{navigation}{heading}</>}
       {/* El área de juego va sobre la placa del tema: el texto nunca queda directo sobre el fondo. */}
       <div className={styles.plate} data-app-content={appShell ? '' : undefined}>

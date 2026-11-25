@@ -68,12 +68,60 @@
 }
 
 // "Cómo se juega" a la vista dentro de la pantalla (antes solo estaba en el menú, donde casi nadie lo encontraba).
+// Teléfono: el contador y "Cómo se juega" siempre en el mismo renglón. Si no entran (360 px, letra grande), el contador se parte
+// en dos ("Nuevo en" arriba, la hora abajo) y el botón sigue a la derecha.
 .topRow {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  gap: t.$space-2 t.$space-4;
+  gap: t.$space-2;
+
+  > :first-child { min-inline-size: 0; }
+}
+
+// Teléfono: "Cómo se juega" y el botón de los filtros, uno debajo del otro y a todo el ancho, debajo del selector de modo.
+.phoneActions {
+  display: grid;
+  gap: t.$space-2;
+
+  > .seriesButton {
+    inline-size: 100%;
+    margin-inline: 0;
+    justify-content: flex-start;
+  }
+}
+
+// Abre la hoja "Configurar partida" (series y configuración del modo): el nombre a la izquierda y, a la derecha, con cuántas
+// series se juega. Una piel puede darle su color con `--series-fill` y `--series-ink` (Naruto: el cuero del Libro Bingo).
+.seriesButton {
+  --_pad-inline: #{t.$space-3};
+  position: relative;
+  gap: t.$space-2;
+  font-size: t.$font-size-sm;
+  font-weight: t.$font-weight-medium;
+  text-align: start;
+  @include m.hover-tint(14%);
+  &#{&}[data-variant] {
+    --_fill: var(--series-fill, #{t.token('accent-secondary')});
+    --_ink: var(--series-ink, #{t.token('accent-secondary-ink')});
+  }
+}
+
+.seriesLabel {
+  flex: 1 1 auto;
+  min-inline-size: 0;
+}
+
+.seriesNow {
+  flex: none;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+// Teléfono: al lado del contador del próximo reto, a la derecha, sin el sacudón que lo destaca en la computadora.
+.topRow > .howToButton {
+  animation: none;
 }
 
 // Un botón vistoso: relleno de acento, el librito de la ayuda y un shake corto al cargar la página (tres veces, con pausas, y se
@@ -231,20 +279,6 @@
   @include m.app-shell { position: static; display: flex; align-items: center; gap: t.$space-1; }
   @include m.app-shell-desktop { position: fixed; display: block; }
 }
-.filterTrigger {
-  @include m.focus-ring;
-  @include m.touch-target;
-  display: none;
-  border: 0; padding: 0; background: none; color: t.token('app-bar-ink'); cursor: pointer;
-  svg { inline-size: 1.5rem; block-size: 1.5rem; }
-  // El ícono con su nombre escrito debajo ("Filtros"): solo el ícono se perdía contra la barra, y una placa parecía un hover pegado.
-  @include m.app-shell {
-    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.0625rem;
-    min-inline-size: 3rem; block-size: 3rem; padding-inline: 0.25rem;
-    svg { inline-size: 1.5rem; block-size: 1.5rem; }
-  }
-  @include m.app-shell-desktop { display: none; }
-}
 .menuTrigger {
   @include m.app-shell {
     inline-size: 2.75rem; block-size: 2.75rem; color: t.token('app-bar-ink');
@@ -313,28 +347,27 @@
   }
 }
 
-// El punto del botón de filtros: dice que no son los de siempre (y el nombre accesible también).
-.filterTrigger { position: relative; }
-.filterLabel {
-  font-size: 0.6875rem;
-  font-weight: t.$font-weight-bold;
-  line-height: 1;
-  letter-spacing: 0;
-  text-transform: none;
-}
-// El ícono de imagen de la piel (`menuIcons.filters`), que ya trae escrito "Filtros": ocupa el botón entero.
-.filterImage {
-  inline-size: 2.75rem; block-size: 2.75rem; object-fit: contain;
-  @include bp.motion-ok { transition: transform 120ms ease-out; }
-  .filterTrigger:active & { transform: scale(0.94); }
-}
-
-// Lo que la hoja de filtros recibe de las otras partes del juego (dificultad, "Qué comparar", configuración).
+// Lo que la hoja "Configurar partida" recibe de las otras partes del juego (dificultad, "Qué comparar", configuración).
+// Cada parte, separada de la anterior por una línea y con su título bien visible.
 .sheetContent {
   display: grid;
   gap: t.$space-4;
   min-inline-size: 0;
   &:empty { display: none; }
+
+  // Primero lo propio del modo (dificultad, "Qué comparar", configuración) y al final las series, que valen para todos los
+  // modos: así lo que cambia de un modo a otro se ve sin desplazar la hoja.
+  > [data-part='filters'] { order: 1; }
+  // Lo que un modo quiere después de las series (Estadísticas: las formas opcionales).
+  > [data-part='sheet-end'] { order: 2; }
+
+  > :not([data-part='filters']) + :not([data-part='filters']),
+  > [data-part='filters']:not(:only-child) {
+    padding-block-start: t.$space-4;
+    border-block-start: t.token('rule-width') solid t.token('frame-color');
+  }
+
+  h2 { font-size: t.$font-size-lg; }
 }
 
 // "Ayer fue…" dentro de la hoja de resultado y de Estadísticas (teléfono): una línea chica con la imagen.
@@ -344,7 +377,7 @@
   gap: t.$space-3;
   margin: 0;
   padding-block-start: t.$space-3;
-  border-block-start: t.$border-width solid t.token('frame-color');
+  border-block-start: t.token('rule-width') solid t.token('frame-color');
   font-size: t.$font-size-sm;
 }
 

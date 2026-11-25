@@ -16,9 +16,11 @@
 
 // Los dos equipos siempre lado a lado, también en el teléfono: la comparación se lee de un vistazo. Si la persona ya armó el mejor,
 // queda un solo equipo, centrado.
+// Dos filas compartidas (encabezado y lista): si un título ocupa dos renglones, el otro equipo baja igual y las filas quedan parejas.
 .teams {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto auto;
   align-items: start;
   gap: t.$space-2;
   @include bp.min-width('sm') { gap: t.$space-4; }
@@ -36,6 +38,10 @@
   --_edge: #{t.token('frame-color')};
   @include m.pixel-frame($fill: var(--_fill), $outer: var(--_edge), $inner: transparent, $width: t.token('frame-width'), $inner-width: 0px, $clip: t.token('clip-panel'), $radius: t.$radius-md);
   display: grid;
+  grid-row: span 2;
+  grid-template-rows: subgrid;
+  align-self: stretch;
+  align-content: start;
   gap: t.$space-2;
   min-inline-size: 0;
   padding: calc(#{t.token('frame-width')} + #{t.$space-1});
@@ -86,7 +92,7 @@
   --_cell-ink: #{t.token('ink')};
   @include m.pixel-frame($fill: var(--_cell-fill), $outer: #{t.token('frame-color')}, $inner: transparent, $width: t.token('frame-width'), $inner-width: 0px, $clip: t.token('clip-cell'), $radius: t.$radius-sm);
   display: grid;
-  grid-template: 'image stat' auto 'image value' auto / 2rem minmax(0, 1fr);
+  grid-template: 'image stat' auto 'image value' auto / 1.75rem minmax(0, 1fr);
   align-items: center;
   column-gap: t.$space-1;
   min-inline-size: 0;
@@ -110,8 +116,8 @@
 
 .memberImage {
   grid-area: image;
-  inline-size: 2rem;
-  block-size: 2rem;
+  inline-size: 1.75rem;
+  block-size: 1.75rem;
   object-fit: contain;
   @include bp.min-width('sm') { inline-size: 3rem; block-size: 3rem; }
   @include bp.min-width('md') { inline-size: 4.5rem; block-size: 4.5rem; }
@@ -124,6 +130,9 @@
   font-size: t.$font-size-sm;
   font-weight: t.$font-weight-bold;
   line-height: t.$line-height-tight;
+  // Teléfono: cada equipo es una columna angosta; sin el espaciado extra de letras del tema, "Velocidad" entra entera desde 360 px.
+  letter-spacing: 0;
+  @include bp.min-width('sm') { letter-spacing: inherit; }
 }
 
 .memberValue {

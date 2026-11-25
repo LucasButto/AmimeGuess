@@ -128,7 +128,8 @@
   @include m.app-shell { grid-area: actions; inline-size: auto; }
 }
 .header {
-  @include m.app-shell { grid-area: title; min-inline-size: 0; gap: 0; }
+  // `container-type`: el título mide su letra contra el ancho que le deja la barra.
+  @include m.app-shell { grid-area: title; min-inline-size: 0; gap: 0; container-type: inline-size; }
   @include m.app-shell-desktop { gap: t.$space-1; }
 }
 .franchise {
@@ -140,20 +141,21 @@
   @include m.app-shell {
     // La fuente de títulos necesita aire sobre los glifos dentro de la caja que trunca.
     // El tamaño display evita aplicar la escala que el tema reserva al texto corrido. Sin el renglón de abajo, más grande.
-    font-size: t.$font-display-md;
+    // Un renglón siempre: con un nombre largo ("Mayor o Menor", "Estadísticas") la letra baja lo justo para entrar en el ancho
+    // que deja la barra (`100cqi`, ver `.header`), según el largo del nombre y el ancho de letra del tema. Nunca más grande que
+    // el tamaño de siempre; si aun así no entra, termina en "…".
+    font-size: min(#{t.$font-display-md}, calc((100cqi - 0.75rem) / (var(--title-chars, 10) * #{t.token('title-char-width')})));
     line-height: t.$line-height-tight;
     // Un poco de aire arriba: con la fuente pixel el título quedaba pegado al borde de la barra.
     padding-block-start: 0.25rem;
     // Aire a la izquierda: el contorno de las letras del logo no se corta contra la caja.
     padding-inline-start: 0.25rem;
     color: t.token('app-bar-ink');
-    text-shadow: none;
-    // Un nombre largo ("Mayor o Menor", "Línea de tiempo") baja a un segundo renglón en vez de cortarse; más de dos, no.
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    line-clamp: 2;
+    // Una piel puede darle un halo al título de la barra con `--app-bar-title-shadow` (Naruto: el difuminado del televisor).
+    text-shadow: var(--app-bar-title-shadow, none);
     overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     &::before { display: none; }
   }
   @include m.app-shell-desktop {
@@ -163,6 +165,11 @@
     white-space: normal; overflow: visible;
     &::before { display: inline-block; }
   }
+}
+.titleMark {
+  // Teléfono: el ícono del modo ya está en la tira de modos; en la barra, solo el nombre (y más lugar para él).
+  @include m.app-shell { display: none; }
+  @include m.app-shell-desktop { display: contents; }
 }
 .appSubtitle {
   @include m.app-shell-desktop { display: none; }

@@ -42,6 +42,8 @@
   --dock-max-h: 6.5rem;
   --dock-pad-end: 1.25rem;
   --dock-pad-inline: 0.75rem;
+  // Ancho de letra del título (ver `title-char-width`). Bangers es angosta: unos 0,44 em por letra.
+  --title-char-width: 0.48;
   --app-bar-fill: var(--palette-orange);
   --app-bar-ink: var(--palette-ink);
   --app-bar-edge: var(--palette-ink);

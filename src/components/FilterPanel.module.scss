@@ -121,6 +121,7 @@
 
 // Dentro de la hoja del teléfono el título es el de siempre pero sin ser un botón que pliega.
 .sheetTitle {
-  font-size: t.$font-size-base;
+  // En la hoja, un título de sección bien visible (como "Configuración de la partida").
+  font-size: t.$font-size-lg;
   font-weight: t.$font-weight-bold;
 }

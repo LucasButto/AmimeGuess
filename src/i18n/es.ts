@@ -220,7 +220,7 @@ export const es = {
     yourPick: "Tu elección",
     // Los dos equipos lado a lado: el que armó la persona y el mejor posible con los mismos Pokémon.
     yourTeam: "Tu equipo",
-    bestTeam: "Mejor equipo posible",
+    bestTeam: "Mejor equipo",
     teamTotal: (total: number) => `${total} puntos`,
     moved: "Cambia de lugar",
 
@@ -349,6 +349,11 @@ export const es = {
       state === "unknown"
         ? mode
         : `${mode}: ${state === "solved" ? "resuelto hoy" : "pendiente"}`,
+  },
+  // Lo escrito en las transiciones entre pantallas (decorativo: no lo lee el lector de pantalla).
+  transitions: {
+    // Naruto: la bomba de humo al cambiar de pantalla, arriba a la derecha del ícono de la bomba.
+    smoke: "¡Puf!",
   },
   nav: {
     backTo: (franchise: string) => `Volver a ${franchise}`,
@@ -1114,9 +1119,12 @@ export const es = {
   },
   shell: {
     filters: "Filtros del juego",
-    filtersShort: "Filtros",
-    filtersSheet: "Filtros del juego",
-    filtersChanged: "Filtros del juego (cambiados)",
+    // La hoja del teléfono: las series (o generaciones) y la configuración del modo (dificultad, formas…).
+    filtersSheet: "Configurar partida",
+    // Botón del teléfono, debajo del selector de modo: abre la hoja "Configurar partida".
+    seriesButton: "Configurar partida",
+    // A la derecha del botón: con cuántas series se juega ahora ("Gen 1/9", "Series 5/5").
+    seriesNow: (tag: string, active: number, total: number) => `${tag} ${active}/${total}`,
     sheetDone: "Listo",
     appSubtitle: " \u00b7 reto de hoy",
     actions: "Ayuda y opciones del juego",
@@ -1607,11 +1615,13 @@ export const es = {
         "banda-de-byakuya":
           "Los ninjas de Konoha enfrentan a una banda criminal liderada por Byakuya.",
         "contra-momoshiki":
-          "Momoshiki Otsutsuki llega a la Tierra durante el examen chunin y debe ser enfrentado.",
+          "El examen chunin de la nueva generación, interrumpido por la llegada de Momoshiki y Kinshiki Otsutsuki.",
         "desaparicion-de-mitsuki":
           "Mitsuki desaparece y sus compañeros salen a buscarlo.",
         "activacion-de-kara":
           "Kara, una organización secreta, empieza a moverse y amenaza a Konoha.",
+        "arco-de-ao":
+          "Ao, antiguo ninja de la Niebla convertido en miembro de Kara, enfrenta a Konoha con su cuerpo modificado.",
         "arco-de-kawaki":
           "Kawaki llega a Konoha y es acogido por la familia de Naruto.",
         "reexamen-chunin":
