@@ -7,6 +7,8 @@ export interface BoardCategory {
   readonly requiresSeries?: string;
   readonly excludesSeries?: string;
   readonly replaces?: string;
+  /** Aclaraciones por casilla: clave del texto en la interfaz y a qué miembros acompaña una vez ubicados. */
+  readonly notes?: Readonly<Record<string, readonly string[]>>;
 }
 
 export interface CategoryBoardConfig {

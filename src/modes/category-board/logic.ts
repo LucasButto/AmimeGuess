@@ -35,6 +35,9 @@ export function matchCategories(pool: readonly Entity[], categories: readonly Bo
   return categories.map((_, i) => assignment.get(i)!);
 }
 
+export const noteOf = (category: BoardCategory, id: string): string | undefined =>
+  Object.entries(category.notes ?? {}).find(([, members]) => members.includes(id))?.[0];
+
 /** Conserva las ocho preferidas donde se pueden jugar. Los filtros pueden activar categorías de reserva. */
 export function categoriesOf(pool: readonly Entity[], config: CategoryBoardConfig, wildcard: BoardCategory, active: readonly string[]): BoardCategory[] {
   if (pool.length < BOARD_SIZE) return [];
@@ -42,7 +45,7 @@ export function categoriesOf(pool: readonly Entity[], config: CategoryBoardConfi
   for (const category of config.categories) {
     if (category.requiresSeries && !active.includes(category.requiresSeries)) continue;
     if (category.excludesSeries && active.includes(category.excludesSeries)) continue;
-    if (selected.some((item) => item.id === category.id) || !pool.some((entity) => accepts(category, entity.id))) continue;
+    if (selected.some((item) => item.id === category.id || item.replaces === category.id) || !pool.some((entity) => accepts(category, entity.id))) continue;
     if (matchCategories(pool, [...selected, category, wildcard]) !== null) selected.push(category);
     if (selected.length === THEMATIC_COUNT) return [...selected, wildcard];
   }

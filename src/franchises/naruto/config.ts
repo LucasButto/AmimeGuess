@@ -179,7 +179,7 @@ export const narutoConfig = {
       // 4 grupos de 4 personajes (un grupo de cada dificultad). Cada personaje del tablero pertenece a uno solo de los cuatro.
       connections: { contentKind: 'group', nameField: 'name', membersField: 'members', difficultyField: 'difficulty' },
     },
-          { slug: 'casillas', versusIcon: 'moveset', name: es.categoryBoard.name, engine: 'category-board', categoryBoard: { questionImage: 'naruto/roulette-question', reassignCurrent: true, roster: boardJson.roster, categories: boardJson.categories.map((category) => ({ ...category, ...es.categoryBoard.categories[category.id] })) } },
+          { slug: 'casillas', versusIcon: 'moveset', name: es.categoryBoard.name, engine: 'category-board', categoryBoard: { questionImage: 'naruto/roulette-question', reassignCurrent: true, roster: boardJson.roster, categories: boardJson.categories.map((category) => ({ ...category, ...es.categoryBoard.categories[category.id], ...(category.id === 'antagonista' && { help: es.categoryBoard.edoTenseiAntagonist }) })) } },
   ],
   // Pergamino y tinta: papel cálido, naranja apagado y un título de pincel.
   theme: {

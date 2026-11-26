@@ -23,12 +23,17 @@ import type { Entity } from '@/engine/types';
 import { seedFor } from '@/engine/daily';
 import { mulberry32, shuffle } from '@/engine/rng';
 import { es } from '@/i18n/es';
-import { ATTEMPT_LIMITS, availableCategories, BOARD_SIZE, buildRound, categoriesOf, chooseCategory, confirmPlacement, emptyDraft, poolOf, restoreGame, roundIndex } from './logic';
+import { ATTEMPT_LIMITS, availableCategories, BOARD_SIZE, buildRound, categoriesOf, chooseCategory, confirmPlacement, emptyDraft, noteOf, poolOf, restoreGame, roundIndex } from './logic';
 import type { BoardCategory, BoardState, CategoryBoardConfig, RoundResult } from './types';
 import styles from './CategoryBoardGame.module.scss';
 
 const copy = es.categoryBoard;
 const wildcard: BoardCategory = { ...copy.wildcard, members: [], wildcard: true };
+/** El nombre de quien ocupa una casilla, con la aclaración que esa casilla le ponga. */
+function nameIn(category: BoardCategory | undefined, entity: Entity): string {
+  const note = category && noteOf(category, entity.id);
+  return note ? copy.noted(entity.name.es, copy.memberNotes[note]) : entity.name.es;
+}
 type Props = Pick<GameShellProps, 'franchise' | 'mode' | 'modes'> & { config: CategoryBoardConfig; entities: readonly Entity[] };
 
 function readLevel(franchise: string): number {
@@ -177,11 +182,12 @@ export function CategoryBoard({ session, pool, categories, limit: levelLimit, le
   const actionLabel = over ? copy.finished : failed ? copy.retry : phase === 'rolling' ? phone ? copy.reveal : copy.stop : phase === 'placed' ? copy.next : copy.choose;
   const rejected = categories.find((category) => category.id === state.draft.rejectedCategory);
   const filled = placements.filter((id) => id !== wildcard.id).length;
-  const placedLabel = phase === 'placed' ? categories.find((category) => category.id === placements.at(-1))!.label : '';
+  const placedCategory = phase === 'placed' ? categories.find((category) => category.id === placements.at(-1))! : undefined;
+  const placedLabel = placedCategory?.label ?? '';
   const message = won ? copy.won : failed ? copy.blocked(current.name.es)
     : canPlace && rejected ? copy.wrong(placing.name.es, rejected.label, !placements.includes(wildcard.id))
-    : moving ? copy.pending(previous.name.es, placedLabel)
-    : phase === 'placed' ? copy.placed(previous.name.es, placedLabel)
+    : moving ? copy.pending(nameIn(placedCategory, previous), placedLabel)
+    : phase === 'placed' ? copy.placed(nameIn(placedCategory, previous), placedLabel)
     : phase === 'choosing' ? copy.choose : copy.rolling;
   const portraitContent = <>
     <div className={styles.portrait} data-rolling={phase === 'rolling' && !over}>
@@ -210,9 +216,9 @@ export function CategoryBoard({ session, pool, categories, limit: levelLimit, le
           const placedIndex = placements.indexOf(category.id);
           const occupant = placedIndex >= 0 ? draws[placedIndex] : undefined;
           return <div className={styles.cell} key={category.id} data-filled={!!occupant} data-wildcard={category.wildcard || undefined} data-part="category-cell">
-            <button type="button" className={styles.slot} disabled={over || !canPlace || !!occupant} onClick={() => place(category)} aria-label={occupant ? `${category.label}: ${occupant.name.es}` : canPlace ? copy.place(placing.name.es, category.label) : category.label}>
+            <button type="button" className={styles.slot} disabled={over || !canPlace || !!occupant} onClick={() => place(category)} aria-label={occupant ? `${category.label}: ${nameIn(category, occupant)}` : canPlace ? copy.place(placing.name.es, category.label) : category.label}>
               <span className={styles.slotLabel}>{category.label}</span>
-              <span className={styles.occupant}>{occupant?.image && <ContentImage stem={occupant.image} alt="" sizes="2.75rem" />}<span>{occupant ? occupant.name.es : copy.empty}</span></span>
+              <span className={styles.occupant}>{occupant?.image && <ContentImage stem={occupant.image} alt="" sizes="2.75rem" />}<span>{occupant ? nameIn(category, occupant) : copy.empty}</span></span>
             </button>
             <InfoTip compact text={category.help} label={es.help.button(category.label)} className={styles.help} />
           </div>;

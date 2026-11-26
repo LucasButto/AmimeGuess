@@ -55,6 +55,10 @@ export const es = {
       "Tenés cinco intentos en Fácil, cuatro en Normal y tres en Difícil. Cada intento empieza un tablero nuevo.",
       "Los filtros se respetan. Si dejan una categoría sin candidatos, se usa una categoría alternativa. Los personajes se sortean libremente: puede tocar una secuencia sin solución.",
     ],
+    noted: (name: string, note: string) => `${name} (${note})`,
+    memberNotes: { "edo-tensei": "Edo Tensei" } as Readonly<Record<string, string>>,
+    edoTenseiAntagonist:
+      "Actuó como antagonista en algún arco, aunque después haya cambiado de bando. Incluye a los revividos con Edo Tensei en la Cuarta Guerra Ninja, salvo los cuatro Hokage.",
     reassignHelp:
       "Podés mover al personaje actual a otra casilla compatible hasta pasar al siguiente. Ganás en cuanto completás las ocho categorías.",
     categories: {
@@ -81,6 +85,10 @@ export const es = {
       akatsuki: {
         label: "Akatsuki",
         help: "Fue integrante o aliado de Akatsuki.",
+      },
+      "cuarta-guerra": {
+        label: "Cuarta Guerra Ninja",
+        help: "Participó en la Cuarta Guerra Ninja, en cualquier bando, incluidos los revividos con Edo Tensei.",
       },
       jinchuriki: {
         label: "Jinchuriki",

@@ -42,6 +42,13 @@ for (const franchise of [narutoConfig, dragonBallConfig] as readonly FranchiseCo
         expect(members('invocacion')).toHaveLength(30);
         expect(members('invocacion')).toContain('shino-aburame');
         expect(config.roster).not.toEqual(expect.arrayContaining(['kurama', 'shukaku', 'gyuki']));
+        const edo = ['asuma-sarutobi', 'chiyo', 'rasa', 'mu', 'gengetsu-hozuki', 'yagura-karatachi'];
+        expect(members('antagonista')).toEqual(expect.arrayContaining(edo));
+        expect(config.categories.find((item) => item.id === 'antagonista')!.notes).toEqual({ 'edo-tensei': edo });
+        for (const id of ['hiruzen-sarutobi', 'minato-namikaze', 'hashirama-senju', 'tobirama-senju']) {
+          expect(members('antagonista')).not.toContain(id);
+          expect(members('cuarta-guerra')).toContain(id);
+        }
       } else {
         expect(config.roster).not.toContain('mr-popo');
         expect(config.roster).toEqual(expect.arrayContaining(['gamma-1', 'gamma-2', 'cabba', 'caulifla', 'kale', 'frost']));
@@ -84,6 +91,11 @@ for (const franchise of [narutoConfig, dragonBallConfig] as readonly FranchiseCo
             expect(pool.some((entity) => ['jiren', 'toppo', 'hit'].includes(entity.id))).toBe(active.includes('super'));
           }
           expect(categories, active.join('.')).toHaveLength(BOARD_SIZE);
+          if (franchise.slug === 'naruto') {
+            const war = active.includes('shippuden') && !active.includes('boruto');
+            expect(categories.some((category) => category.id === 'cuarta-guerra'), active.join('.')).toBe(war);
+            expect(categories.some((category) => category.id === 'jinchuriki'), active.join('.')).toBe(!war);
+          }
           for (let level = 0; level < 3; level++) for (let day = 300; day < 306; day++) {
             const ctx = { franchise: franchise.slug, mode: 'casillas', filterKey: `${active.join('.')}~d${level + 1}${skipFiller ? 'x' : ''}`, day };
             for (let attempt = 0; attempt < ATTEMPT_LIMITS[level]; attempt++) {

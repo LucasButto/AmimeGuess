@@ -9,7 +9,7 @@ const sourceSchema = z.object({
   rosterSize: z.number().int().positive(),
   roster: z.array(z.string()),
   exclusions: z.array(z.object({ series: z.string(), members: z.array(z.string()) }).strict()).optional(),
-  categories: z.array(z.object({ id: z.string(), members: z.array(z.string()), requiresSeries: z.string().optional(), excludesSeries: z.string().optional(), replaces: z.string().optional() }).strict()).min(8),
+  categories: z.array(z.object({ id: z.string(), members: z.array(z.string()), requiresSeries: z.string().optional(), excludesSeries: z.string().optional(), replaces: z.string().optional(), notes: z.record(z.string(), z.array(z.string())).optional() }).strict()).min(8),
 }).strict();
 
 /** Comprueba el catálogo de Casillas, que se lee directamente de la fuente curada. */
@@ -20,6 +20,7 @@ export async function validateCategoryBoard(root: string, franchise: string, ent
   if (new Set(source.categories.map((category) => category.id)).size !== source.categories.length) throw new Error(`${franchise}: categorías repetidas`);
   for (const category of source.categories) {
     if (new Set(category.members).size !== category.members.length || category.members.some((id) => !source.roster.includes(id))) throw new Error(`${franchise}: miembros inválidos en ${category.id}`);
+    if (Object.values(category.notes ?? {}).flat().some((id) => !category.members.includes(id))) throw new Error(`${franchise}: aclaraciones fuera de ${category.id}`);
   }
   const primaryCount = 8 + source.categories.filter((category) => category.replaces).length;
   for (const rule of source.exclusions ?? []) if (rule.members.some((id) => !source.roster.includes(id)) || new Set(rule.members).size !== rule.members.length) throw new Error(`${franchise}: exclusiones inválidas`);
