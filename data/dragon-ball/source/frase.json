@@ -855,9 +855,9 @@
     "text": "Por un encargo así cobro mucho, pero terminaré el trabajo sin problemas.",
     "series": "db",
     "source": "https://es.dragon-ball-official.com/news/01_3864.html",
-    "context": "El mercenario Tao Pai Pai presume de sus servicios ante el Ejército del Listón Rojo.",
+    "context": "El mercenario Tao Pai Pai presume de sus servicios ante el Ejército de la Patrulla Roja.",
     "verified": false,
-    "addressee": "Ejército del Listón Rojo",
+    "addressee": "Ejército de la Patrulla Roja",
     "adapted": true,
     "literal": false,
     "famous": false
@@ -865,7 +865,7 @@
   {
     "id": "general-blue-1",
     "character": "general-blue",
-    "text": "¡Nadie escapa de la disciplina del Ejército del Listón Rojo!",
+    "text": "¡Nadie escapa de la disciplina del Ejército de la Patrulla Roja!",
     "series": "db",
     "source": "https://es.dragon-ball-official.com/news/01_3864.html",
     "context": "El General Blue se enfrenta a los intrusos durante la búsqueda de las esferas.",

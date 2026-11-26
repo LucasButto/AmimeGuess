@@ -78,14 +78,14 @@
   },
   {
     "id": "goku-busca-la-esfera-de-cuatro-estrellas",
-    "text": "Goku parte en busca de la Esfera de Cuatro Estrellas y se enfrenta al Ejército del Listón Rojo",
+    "text": "Goku parte en busca de la Esfera de Cuatro Estrellas y se enfrenta al Ejército de la Patrulla Roja",
     "series": "db",
     "order": 12,
     "verified": true
   },
   {
     "id": "goku-derrota-a-la-torre-musculo",
-    "text": "Goku derrota a los soldados del Ejército del Listón Rojo en la Torre del Músculo",
+    "text": "Goku derrota a los soldados del Ejército de la Patrulla Roja en la Torre del Músculo",
     "series": "db",
     "order": 13,
     "verified": true
@@ -128,7 +128,7 @@
   },
   {
     "id": "goku-acaba-con-el-ejercito-del-liston-rojo",
-    "text": "Goku acaba con el Ejército del Listón Rojo y derrota al comandante Black",
+    "text": "Goku acaba con el Ejército de la Patrulla Roja y derrota al comandante Black",
     "series": "db",
     "order": 19,
     "verified": true

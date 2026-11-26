@@ -212,7 +212,7 @@
   },
   {
     "id": "ejercito-del-liston-rojo",
-    "name": "Ejército del Listón Rojo",
+    "name": "Ejército de la Patrulla Roja",
     "category": "organización",
     "difficulty": 1,
     "series": "db",
@@ -959,7 +959,7 @@
   },
   {
     "id": "liston-rojo-renacido",
-    "name": "Listón Rojo Renacido",
+    "name": "Patrulla Roja Renacida",
     "category": "organización",
     "difficulty": 3,
     "series": "super",
