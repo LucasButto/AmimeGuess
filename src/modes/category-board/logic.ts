@@ -8,6 +8,13 @@ import type { BoardCategory, BoardDraft, BoardState, CategoryBoardConfig, RoundR
 export const THEMATIC_COUNT = 8;
 export const BOARD_SIZE = THEMATIC_COUNT + 1;
 export const ATTEMPT_LIMITS = [5, 4, 3] as const;
+/** Probabilidad buscada de ganar la partida usando todos los intentos, igual en cualquier dificultad y filtro. */
+export const WIN_TARGET = 0.73;
+/** La calibración sortea hasta juntar estos tableros con solución, sin pasar del máximo de sorteos. */
+const CALIBRATION_SOLVABLE = 1000;
+const CALIBRATION_MAX_DRAWS = 20000;
+const CALIBRATION_SEED = 0xca5111a5;
+const MAX_REDRAWS = 1000;
 export const emptyDraft = (): BoardDraft => ({ placements: [], phase: 'rolling' });
 export const poolOf = (entities: readonly Entity[], active: readonly string[], config: CategoryBoardConfig): Entity[] =>
   eligibleEntities(entities, active).filter((entity) => config.roster.includes(entity.id) && !config.exclusions?.some((rule) => active.includes(rule.series) && rule.members.includes(entity.id))).sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
@@ -52,12 +59,75 @@ export function categoriesOf(pool: readonly Entity[], config: CategoryBoardConfi
   return [];
 }
 
-/** Sorteo uniforme sin reemplazo: no filtra personajes para garantizar una solución. */
-export function buildRound(pool: readonly Entity[], categories: readonly BoardCategory[], ctx: DailyContext, round: number): Entity[] {
+/**
+ * Jugador de referencia, que no ve el futuro: ubica a cada personaje en la casilla compatible con menos candidatos y usa
+ * el comodín solo para quien no entra en ninguna otra.
+ */
+export function referencePlayer(pool: readonly Entity[], categories: readonly BoardCategory[]): (draws: readonly Entity[]) => boolean {
+  const thematic = categories.filter((category) => !category.wildcard)
+    .map((category) => ({ category, candidates: pool.filter((entity) => accepts(category, entity.id)).length }))
+    .sort((a, b) => a.candidates - b.candidates)
+    .map((item) => item.category);
+  const wildcards = categories.length - thematic.length;
+  return (draws) => {
+    const taken = new Set<string>();
+    let free = wildcards;
+    for (const entity of draws) {
+      const target = thematic.find((category) => !taken.has(category.id) && accepts(category, entity.id));
+      if (target) taken.add(target.id);
+      else if (free > 0) free--;
+      else return false;
+      if (taken.size === thematic.length) return true;
+    }
+    return false;
+  };
+}
+
+const winRates = new Map<string, number>();
+
+/** Con qué frecuencia el jugador de referencia gana un tablero que tiene solución. Se mide siempre con la misma semilla. */
+function winRateWhenSolvable(ordered: readonly Entity[], categories: readonly BoardCategory[]): number {
+  const key = JSON.stringify([ordered.map((entity) => entity.id), categories.map((category) => [category.id, category.members])]);
+  let rate = winRates.get(key);
+  if (rate === undefined) {
+    const rng = mulberry32(CALIBRATION_SEED);
+    const wins = referencePlayer(ordered, categories);
+    let won = 0;
+    let solvable = 0;
+    for (let i = 0; i < CALIBRATION_MAX_DRAWS && solvable < CALIBRATION_SOLVABLE; i++) {
+      const draws = shuffle(rng, ordered).slice(0, BOARD_SIZE);
+      if (wins(draws)) { won++; solvable++; }
+      else if (matchCategories(draws, categories) !== null) solvable++;
+    }
+    rate = solvable === 0 ? 0 : won / solvable;
+    winRates.set(key, rate);
+  }
+  return rate;
+}
+
+/** Proporción de tableros con solución para que, con `attempts` intentos, se gane cerca de `WIN_TARGET`. */
+function solvableShare(ordered: readonly Entity[], categories: readonly BoardCategory[], attempts: number): number {
+  const perAttempt = 1 - (1 - WIN_TARGET) ** (1 / Math.max(1, attempts));
+  const rate = winRateWhenSolvable(ordered, categories);
+  return rate > perAttempt ? perAttempt / rate : 1;
+}
+
+/**
+ * Sorteo sin reemplazo y determinista. Primero decide si el tablero tendrá solución, según los intentos de la dificultad,
+ * y después sortea hasta que salga uno así.
+ */
+export function buildRound(pool: readonly Entity[], categories: readonly BoardCategory[], ctx: DailyContext, round: number, attempts: number = ATTEMPT_LIMITS[1]): Entity[] {
   if (categories.length !== BOARD_SIZE || pool.length < BOARD_SIZE) return [];
   const rng = mulberry32(seedFor({ ...ctx, mode: `${ctx.mode}:board:${round}` }));
   const ordered = [...pool].sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
-  return shuffle(rng, ordered).slice(0, BOARD_SIZE);
+  const solvable = rng() < solvableShare(ordered, categories, attempts);
+  for (let i = 0; i < MAX_REDRAWS; i++) {
+    const draws = shuffle(rng, ordered).slice(0, BOARD_SIZE);
+    if ((matchCategories(draws, categories) !== null) === solvable) return draws;
+  }
+  // Casi imposible de alcanzar: se arma un tablero con solución directamente (o cualquiera, si no existe ninguno).
+  const matched = solvable ? matchCategories(shuffle(rng, ordered), categories) : null;
+  return shuffle(rng, matched ?? ordered).slice(0, BOARD_SIZE);
 }
 
 export function availableCategories(categories: readonly BoardCategory[], placements: readonly string[], entityId: string): BoardCategory[] {

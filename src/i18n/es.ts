@@ -41,8 +41,6 @@ export const es = {
     result: (count: number) => `Completaste ${count} de las 8 categorías.`,
     noBoard:
       "Con estos filtros no se puede armar un tablero completo. Probá activar más series.",
-    balanced:
-      "El sorteo es libre: puede tocarte una secuencia sin solución. Elegí bien qué casillas reservar.",
     wildcard: {
       id: "comodin",
       label: "Comodín",
@@ -53,7 +51,8 @@ export const es = {
       "Detené la ruleta, elegí una casilla libre y pasá al siguiente personaje. Las colocaciones son definitivas y no se repiten personajes dentro del tablero.",
       "El comodín acepta cualquier personaje una sola vez. Si elegís una categoría incorrecta, podés volver a elegir. Solo perdés el intento cuando no queda ninguna casilla que acepte al personaje.",
       "Tenés cinco intentos en Fácil, cuatro en Normal y tres en Difícil. Cada intento empieza un tablero nuevo.",
-      "Los filtros se respetan. Si dejan una categoría sin candidatos, se usa una categoría alternativa. Los personajes se sortean libremente: puede tocar una secuencia sin solución.",
+      "Los filtros se respetan: algunas categorías cambian según las series activas.",
+      "No todos los tableros tienen solución. La proporción se ajusta a la dificultad y a los filtros, así que conviene pensar bien qué casillas reservar.",
     ],
     noted: (name: string, note: string) => `${name} (${note})`,
     memberNotes: { "edo-tensei": "Edo Tensei" } as Readonly<Record<string, string>>,

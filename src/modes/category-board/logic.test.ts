@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import type { Entity } from '@/engine/types';
 import { es } from '@/i18n/es';
-import { accepts, ATTEMPT_LIMITS, availableCategories, BOARD_SIZE, buildRound, chooseCategory, confirmPlacement, matchCategories, restoreGame, roundIndex } from './logic';
+import { accepts, ATTEMPT_LIMITS, availableCategories, BOARD_SIZE, buildRound, chooseCategory, confirmPlacement, matchCategories, restoreGame, roundIndex, WIN_TARGET } from './logic';
 import type { BoardCategory } from './types';
 
 const wildcard: BoardCategory = { ...es.categoryBoard.wildcard, members: [], wildcard: true };
@@ -145,17 +145,22 @@ describe('Casillas: distribución, reglas y restauración', () => {
     expect(restoreGame({ attempts: [{ placements: [], outcome: 'blocked' }], result: 'lost' }, drawsFor, categories, 4).rounds).toEqual([]);
   });
 
-  it('sortea todo el catálogo sin forzar candidatos con solución', () => {
+  it('mezcla tableros con y sin solución, con más soluciones cuanto menos intentos hay', () => {
     const seen = new Set<string>();
-    let impossible = false;
-    for (let day = 0; day < 100; day++) {
-      const draws = buildRound(pool, categories, { ...ctx, day }, 0);
-      expect(new Set(draws.map((item) => item.id)).size).toBe(BOARD_SIZE);
-      draws.forEach((item) => seen.add(item.id));
-      impossible ||= matchCategories(draws, categories) === null;
-    }
+    const solvable = ATTEMPT_LIMITS.map((attempts) => {
+      let count = 0;
+      for (let day = 0; day < 1000; day++) {
+        const draws = buildRound(pool, categories, { ...ctx, day }, 0, attempts);
+        expect(new Set(draws.map((item) => item.id)).size).toBe(BOARD_SIZE);
+        draws.forEach((item) => seen.add(item.id));
+        if (matchCategories(draws, categories) !== null) count++;
+      }
+      return count / 1000;
+    });
     expect(seen.size).toBe(pool.length);
-    expect(impossible).toBe(true);
+    // En este catálogo el jugador de referencia gana todo tablero resoluble: la proporción es la de cada intento.
+    ATTEMPT_LIMITS.forEach((attempts, level) => expect(1 - (1 - solvable[level]) ** attempts).toBeCloseTo(WIN_TARGET, 1));
+    expect(solvable[0]).toBeLessThan(solvable[2]);
   });
 });
 

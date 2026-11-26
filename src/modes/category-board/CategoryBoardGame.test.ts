@@ -62,8 +62,8 @@ it('marca la grilla ganada aunque el comodín quede libre', () => {
   const entries = new Map<string, string>();
   const storage = { getItem: (key: string) => entries.get(key) ?? null, setItem: (key: string, value: string) => { entries.set(key, value); } };
   vi.stubGlobal('localStorage', storage);
-  const draws = buildRound(pool, categories, session, 0);
-  const winningCategories = categories.map((category, index) => ({ ...category, members: [draws[index].id] }));
+  // El sorteo depende de las categorías: acá todas aceptan a todos y se pide con las mismas que recibe el tablero.
+  const winningCategories = categories.map((category) => ({ ...category, members: pool.map((entity) => entity.id) }));
   const placements = winningCategories.filter((category) => !category.wildcard).map((category) => category.id);
   writeState(storage, session, { attempts: [{ placements, outcome: 'won' }], result: 'won' });
   const html = renderToStaticMarkup(createElement(CategoryBoard, { session, pool, categories: winningCategories, limit: 3, level: 0 }));

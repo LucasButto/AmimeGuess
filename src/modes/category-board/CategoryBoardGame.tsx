@@ -81,7 +81,7 @@ export function CategoryBoard({ session, pool, categories, limit: levelLimit, le
   // En versus sin límite, los tableros fallidos no terminan la partida.
   const limit = endLimit(session, levelLimit);
   const unlimited = isUnlimited(session);
-  const drawsFor = useCallback((index: number) => buildRound(pool, categories, session, index), [pool, categories, session]);
+  const drawsFor = useCallback((index: number) => buildRound(pool, categories, session, index, levelLimit), [pool, categories, session, levelLimit]);
   const [state, setState] = useState(() => restoreGame(readState(getLocalStorage(), session), drawsFor, categories, limit, reassignCurrent));
   const stateRef = useRef(state);
   const { lost, surrender } = useSurrender(session);
