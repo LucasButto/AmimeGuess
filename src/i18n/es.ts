@@ -140,7 +140,8 @@ export const es = {
         label: "Guerreros Z",
         help: "Forma parte de los Guerreros Z.",
       },
-      transformacion: { label: "Transformación", help: "Puede transformarse." },
+      // El guion discrecional (U+00AD) la parte bien en las casillas angostas del teléfono.
+      transformacion: { label: "Transforma\u00adción", help: "Puede transformarse." },
       rival: { label: "Rival", help: "Fue un rival destacado de Goku." },
       tecnica: {
         label: "Técnica característica",

@@ -24,14 +24,15 @@
 .board { position: relative; isolation: isolate; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: t.$space-2; min-inline-size: 0; }
 .cell { @include m.engine-panel; padding: 0; min-inline-size: 0; position: relative; }
 .board[data-outcome] .cell { opacity: 0.35; }
-.slot { display: flex; flex-direction: column; align-items: flex-start; gap: t.$space-1; inline-size: 100%; block-size: 100%; min-block-size: 6rem; padding: t.$space-2; border: 0; background: none; color: t.token('ink'); text-align: start; font: inherit; cursor: pointer; }
+.slot { display: flex; flex-direction: column; align-items: flex-start; gap: t.$space-1; inline-size: 100%; block-size: 100%; min-block-size: 6rem; padding: t.$space-2 t.$space-1 t.$space-6 t.$space-2; border: 0; background: none; color: t.token('ink'); text-align: start; font: inherit; cursor: pointer; }
 .slot:disabled { cursor: default; opacity: 1; }
 .slot:focus-visible { outline: 0.1875rem solid t.token('focus-color'); outline-offset: 0.125rem; }
-.slotLabel { padding-inline-end: 1.5rem; min-block-size: 1.25rem; font-weight: t.$font-weight-bold; font-size: calc(#{t.$font-size-sm} * 0.87); letter-spacing: -0.025em; line-height: t.$line-height-tight; overflow-wrap: anywhere; }
-.occupant { display: flex; align-items: center; gap: t.$space-1; font-size: t.$font-size-sm; line-height: t.$line-height-tight; min-inline-size: 0; inline-size: 100%; color: t.token('ink-muted'); }
-.occupant > span { min-inline-size: 0; overflow-wrap: anywhere; }
+.slotLabel { min-block-size: 1.25rem; font-weight: t.$font-weight-bold; font-size: calc(#{t.$font-size-sm} * 0.87); letter-spacing: -0.025em; line-height: t.$line-height-tight; overflow-wrap: anywhere; hyphens: auto; }
+.occupant { display: flex; align-items: center; gap: t.$space-1; font-size: calc(#{t.$font-size-sm} * 0.87); line-height: t.$line-height-tight; min-inline-size: 0; inline-size: 100%; color: t.token('ink-muted'); }
+.occupant > span { min-inline-size: 0; overflow-wrap: anywhere; hyphens: auto; }
 .occupant img { display: none; flex: none; inline-size: 2.75rem; block-size: 2.75rem; object-fit: contain; }
-.help { position: absolute; inset-block-start: t.$space-2; inset-inline-end: t.$space-2; }
+// En el teléfono el ⓘ va abajo: la etiqueta usa todo el ancho de la casilla y no se corta a mitad de palabra.
+.help { position: absolute; inset-block-end: t.$space-1; inset-inline-end: t.$space-1; }
 .cell[data-filled='true'] { --surface-panel: #{t.token('chip-on-fill')}; }
 .cell[data-filled='true'] .occupant { color: t.token('ink'); }
 .feedback { display: grid; gap: t.$space-1; min-block-size: 2.5rem; font-size: t.$font-size-sm; line-height: t.$line-height-base; }
@@ -58,6 +59,9 @@
 
 @include bp.min-width('sm') {
   .slot { min-block-size: 7rem; padding: t.$space-3; }
+  .slotLabel { padding-inline-end: 1.5rem; }
+  .help { inset-block: t.$space-2 auto; inset-inline-end: t.$space-2; }
+  .occupant { font-size: t.$font-size-sm; }
   .occupant img { display: block; }
 }
 @include bp.landscape {
@@ -76,5 +80,4 @@
   .slot { min-block-size: 9rem; padding: t.$space-4; }
   .slotLabel { font-size: t.$font-size-base; }
   .help { inset-block-start: t.$space-4; inset-inline-end: t.$space-4; }
-  .occupant { font-size: t.$font-size-sm; }
 }
